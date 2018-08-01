@@ -1,0 +1,69 @@
+ignore the following (pe):
+00 30 A2 08
+F0 30 A2 08
+00 00 E4 08
+00 7A EB 08
+90 89 EB 08
+00 00 00 09
+00 00 01 09
+A0 0B 06 09
+00 00 0B 09
+00 D0 3F 09
+00 F0 3F 09
+
+(stench actual desc: 71C9A4)
+("the pkmn" -> "it"; if "it" would be at the beginning, skip it)
+abilities:
++ 0x54 = Unburden
++ 0x5F = Quick Feet
++ 0x64 = Stall
++ 0x67 = Klutz
+- 0x70 = ???
++ 0x92 = Sand Rush
+- 0x9E = ???
++ 0xB2 = Gale Wings
++ 0xCA = Slush Rush
+
+item effects:
+0x46 = Choice Scarf
+0x4A = Lagging Tail
+
+grafics:
+- D0051C (C0051C old, EB8990 new)
+
++ expand rom to 2x
+- expand 245EE0 (species names) from 10 per to 12 per (1060BA0?)
+- expand 247094 (move names) from 355 entries/12 per to 680 entries/16 per (1000000)
++ expand 24FB08 (ability descriptions) from 78 entries to 232 (13FD000)
+- expand 24FC40 (ability names) from 78 entries/12 per to 232 entries/16 per (13FF000)
++ expand 25011C (battle script commands) from 248 entries to 256 (EB7A00)
++ expand 250C04 (move data) from 355 entries to 680 (1010000)
++ expand 26056C (ball sprites) from 12 entries to 26 (A23000)
++ expand 2605CC (ball sprite palettes) from 12 entries to 26 (A230F0)
++ expand 3DB028 (item data) from 375 entries to 435 (10B0000)
++ expand 3D4038 (mon icon palettes) from 6 entries to 16 (1E40000)
+
+- repoint 1D9015 -> 1052EE0 (BattleScript_FocusPunchSetUp) - do it itself later
+
+- 006884: ptr 217818 (gUnusedJapaneseFireRedLeafGreenMaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
+- 0069F0: ptr 227B30 (gUnusedJapaneseFireRedLeafGreenFemaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
+		  (wait until playthrough - is this the equivalent of removing gender colors?)
+- 008CF8, 008D2C: 0A -> 0C (pkmnnamelength)
+- 00960C: 36 -> 33 (some sort of link-related graphics function?, see 1disasm)
+- 00D311: 68 -> 47 and 00D320: 4C 2B 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (j252400, see 02disasm))
+		  Required knowledge: j0203B900, j0203C00D, j0203D500
+- 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
+- 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC: 0B -> 0D (pkmnnamelength)
+- 011688: 0E 49 -> 10 47 and 011C68: 4C 2B 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
+		  Required knowledge: j02023F8C (viable), j020385E2, unknown data table at j1400000
+- 0124EB: 80 -> 60 (store weather as fullword)
+- 014CD8: Entirety of GetWhoStrikesFirst (+added GetSpeedStat, GetPriority, +mysteryfunc) (see 04disasm/04disasm2/04bakpe)
+		  Implements: Unburden, Quick Feet, Stall, Klutz, (ability70?), Sand Rush, (ability9E?), Gale Wings, Slush Rush, Choice Scarf (speed boost only), Lagging Tail, Tailwind (effect only), Trick Room (effect only)
+		  Relies on: weather refactor, returns 0 sometimes instead of 1 or 2
+		  Required knowledge: DisableStruct byte 18, BattleMove byte A
+		  Glitch: Stall and Trick Room are in wrong order, Stall goes first in Trick Room (probably doesn't matter in P/D itself)
+- 015910: Entirety of HandleEndTurn_FinishBattle + extra fn j207370 (see 05disasm/05bakpe)
+		  Required knowledge: j02023F89 (viable), j020241E4 (viable)
+- 015CA0: Entirety of HandleAction_UseMove (see 06disasm/06bakpe)
+		  Relies on: B_ACTION_SAFARI_WATCH_CAREFULLY changed
+		  
