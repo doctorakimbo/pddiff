@@ -1,0 +1,30 @@
+*gBattlerAttacker = *gBattlerTarget = *(*gCurrentTurnActionNumber + gBattlerByTurnOrder)
+*gBattle_BG0_X = 0
+*gBattle_BG0_Y = 0
+ClearFuryCutterDestinyBondGrudge(*gBattlerAttacker)
+*gLastUsedItem = *((*gBattlerAttacker * 512) + gBattleBufferB + 1) | (*((*gBattlerAttacker * 512) + gBattleBufferB + 2) * 256)
+
+if(*gLastUsedItem <= 0xC)
+{
+	*gBattleScriptCurrInstr = *(*gLastUsedItem + data_081D99B0)
+	r10 = gCurrentActionFuncId
+	goto lbl_306
+}
+elseif(*gLastUsedItem - 0x50 <= 1)
+{
+	*gBattleScriptCurrInstr = *data_081D99FC
+	r10 = gCurrentActionFuncId
+	goto lbl_306
+}
+elseif(*gLastUsedItem == 0x15E)
+{
+	*gBattleScriptCurrInstr = *(data_081D99FC + 4)
+	r10 = gCurrentActionFuncId
+	goto lbl_306
+}
+elseif(GetBattlerSide(*gBattlerAttacker) << 0x18 == 0)
+{
+	*gBattleScriptCurrInstr = *data_081D99E4
+	r10 = gCurrentActionFuncId
+	goto lbl_306
+}

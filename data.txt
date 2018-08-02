@@ -1,6 +1,9 @@
 addr e: addr j: desc
 
+74 29 02 02: E4 28 02 02: gBattle_BG0_X
+76 29 02 02: E6 28 02 02: gBattle_BG0_Y
 4C 2B 02 02: AC 2A 02 02: gBattleTypeFlags
+C4 33 02 02: 24 33 02 02: gBattleBufferB
 C4 3B 02 02: 24 3B 02 02: gActiveBattler
 C8 3B 02 02: 28 3B 02 02: gBattleControllerExecFlags
 CC 3B 02 02: 2C 3B 02 02: gBattlersCount
@@ -12,7 +15,7 @@ E4 3B 02 02: 44 3B 02 02: gBattleMons
 49 3D 02 02: A9 3C 02 02: gChosenMovePos
 4A 3D 02 02: AA 3C 02 02: gCurrentMove
 4C 3D 02 02: AC 3C 02 02: gChosenMove
-6A 3D 02 02:			: gLastUsedAbility
+68 3D 02 02: C8 3C 02 02: gLastUsedItem
 6B 3D 02 02: CB 3C 02 02: gBattlerAttacker
 6C 3D 02 02: CC 3C 02 02: gBattlerTarget
 70 3D 02 02: D0 3C 02 02: gAbsentBattlerFlags
@@ -20,8 +23,6 @@ E4 3B 02 02: 44 3B 02 02: gBattleMons
 72 3D 02 02: D2 3C 02 02: gMultiHitCounter
 74 3D 02 02: D4 3C 02 02: gBattleScriptCurrInstr
 7C 3D 02 02: DC 3C 02 02: gChosenActionByBattler (FR) / ?????? (PD)
-A0 3D 02 02:			: gLastLandedMoves
-A8 3D 02 02:			: gLastHitByType
 B8 3D 02 02: 18 3D 02 02: gLockedMoves
 C4 3D 02 02: 24 3D 02 02: gChosenMoveByBattler
 CC 3D 02 02: 2C 3D 02 02: gMoveResultFlags
@@ -30,7 +31,6 @@ E4 3D 02 02: 44 3D 02 02: gSideTimers
 0C 3E 02 02: 6C 3D 02 02: gDisableStructs
 80 3E 02 02: E0 3D 02 02: gRandomTurnNumber
 82 3E 02 02: E2 3D 02 02: gBattleCommunication
-8A 3E 02 02:			: gBattleOutcome
 8C 3E 02 02: EC 3D 02 02: gProtectStructs
 CC 3E 02 02: 2C 3E 02 02: gSpecialStatuses
 1C 3F 02 02: 7C 3E 02 02: gBattleWeather
@@ -38,7 +38,6 @@ CC 3E 02 02: 2C 3E 02 02: gSpecialStatuses
 54 3F 02 02: B4 3E 02 02: gEnigmaBerries
 C4 3F 02 02: 24 3F 02 02: gBattleScripting
 E8 3F 02 02: 48 3F 02 02: gBattleStruct
-22 40 02 02:			: gMoveToLearn
 		   : 89 3F 02 02: ?????? (within parameters, viable)
 		   : 8C 3F 02 02: ?????? (within parameters, viable)
 		   : E4 41 02 02: ?????? (within parameters, viable)
@@ -46,6 +45,7 @@ E8 3F 02 02: 48 3F 02 02: gBattleStruct
            : 00 B9 03 02: ??????
 		   : 0D C0 03 02: ??????
            : 00 D5 03 02: ??????
+		   : 00 FE 03 02: ??????
 		   
 84 4F 00 03: C4 4F 00 03: gBattleMainFunc
 90 4F 00 03: D0 4F 00 03: gBattleResults
@@ -56,6 +56,7 @@ funcs:
 008D84 = StringCopy
 011100 = BattleMainCB2
 015A30 = FreeResetData_ReturnToOvOrDoEvolutions
+0172E8 = ???
 01D05C = GetMoveTarget
 01FEE8 = GetBattlerTurnOrderNum
 03E47C = CalculateMonStats
@@ -68,7 +69,7 @@ funcs:
 071AB4 = FadeOutMapMusic
 0751C4 = GetBattlerSide
 0751D8 = GetBattlerPosition
-0751E8 = GetBankByIdentity
+0751E8 = GetBattlerAtPosition
 09A924 = GetHoldEffect
 09A948 = GetHoldEffectParam
 0C71D0 = RecordAbilityBattle
@@ -81,7 +82,6 @@ j0146B8 = GetPriority
 j014734 = unknown_uncalled_func (disasm if needed)
 
 data:
-1D65A8 = gBattleScriptsForMoveEffects
 25DEAD = gStatStageRatios
 25E45C = gBitTable
 
@@ -114,4 +114,4 @@ DisableStruct:
 BattleMove:
 0xA = ???
 
-B_ACTION_SAFARI_WATCH_CAREFULLY -> ???
+POCKET_POKE_BALLS = 3 in FR

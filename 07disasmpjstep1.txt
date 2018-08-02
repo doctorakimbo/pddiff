@@ -1,0 +1,104 @@
+r4 = gBattlerAttacker
+r2 = gBattlerTarget
+r1 = gBattlerByTurnOrder
+r0 = gCurrentTurnActionNumber
+r0 = *r0
+r0 += r1
+r0 = *r0
+*r2 = r0
+*r4 = r0
+r0 = gBattle_BG0_X
+r1 = 0
+*r0 = r1
+r0 = gBattle_BG0_Y
+*r0 = r1
+ClearFuryCutterDestinyBondGrudge(*r4)
+r5 = gLastUsedItem
+r2 = gBattleBufferB
+r1 = *r4
+r1 *= 512
+r0 = r2 + 1
+r0 += r1
+r3 = *r0
+r2 += 2
+r1 += r2
+r0 = *r1
+r0 *= 256
+r3 |= r0
+*r5 = r3
+r1 = r3
+r0 = 0x28
+r0 *= r1
+r10 = r1
+r1 = gItemData
+r1 += r0
+r1 += 0x16
+r0 = *r1
+
+if(r0 == 3)
+{
+	r0 = data_0203FE00_J
+	r1++
+	r1 = *r1
+	*r0 = r1
+	r0 = data_081BD9D0_J
+	
+	if(r1 == 0x11)
+	{
+		r0 += 0x28
+		r1 = gBattleScriptCurrInstr
+		*r1 = r0
+		r1 = gCurrentActionFuncId
+		r10 = r1
+		goto lbl_306
+	}
+
+	if(r1 != 5)
+	{
+		r1 = gBattleScriptCurrInstr
+		*r1 = r0
+		r1 = gCurrentActionFuncId
+		r10 = r1
+		goto lbl_306
+	}
+}
+
+r1 = r10
+
+if(r1 == 0x50 || r1 == 0x51)
+{
+	r0 = data_081BDB38_J
+	r1 = gBattleScriptCurrInstr
+	*r1 = r0
+	r1 = gCurrentActionFuncId
+	r10 = r1
+	goto lbl_306
+}
+
+r0 = 0xAF
+r0 *= 2
+
+if(r1 == r0)
+{
+	lblx6:
+	r0 = data_081BDB42_J
+	r1 = gBattleScriptCurrInstr
+	*r1 = r0
+	r1 = gCurrentActionFuncId
+	r10 = r1
+	goto lbl_306
+}
+
+r0 = GetBattlerSide(*r4)
+r0 <<= 0x18
+
+if(r0 == 0)
+{
+	r0 = gBattleScriptCurrInstr
+	r1 = data_081D99E4
+	r1 = *r1
+	*r0 = r1
+	r0 = gCurrentActionFuncId
+	r10 = r0
+	goto lbl_306
+}

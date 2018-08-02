@@ -1,0 +1,43 @@
+*gBattlerAttacker = *gBattlerTarget = *(*gCurrentTurnActionNumber + gBattlerByTurnOrder)
+*gBattle_BG0_X = 0
+*gBattle_BG0_Y = 0
+ClearFuryCutterDestinyBondGrudge(*gBattlerAttacker)
+*gLastUsedItem = *((*gBattlerAttacker * 512) + gBattleBufferB + 1) | (*((*gBattlerAttacker * 512) + gBattleBufferB + 2) * 256)
+
+if(*((*gLastUsedItem * 0x28) + gItemData + 0x16) == 3)
+{
+	*data_0203FE00_J = *((*gLastUsedItem * 0x28) + gItemData + 0x17)
+	
+	if(*data_0203FE00_J == 0x11)
+	{
+		*gBattleScriptCurrInstr = data_081BD9D0_J + 0x28
+		r10 = gCurrentActionFuncId
+		goto lbl_306
+	}
+
+	if(*data_0203FE00_J != 5)
+	{
+		*gBattleScriptCurrInstr = data_081BD9D0_J
+		r10 = gCurrentActionFuncId
+		goto lbl_306
+	}
+}
+
+if(*gLastUsedItem == 0x50 || *gLastUsedItem == 0x51)
+{
+	*gBattleScriptCurrInstr = data_081BDB38_J
+	r10 = gCurrentActionFuncId
+	goto lbl_306
+}
+elseif(*gLastUsedItem == 0x15E)
+{
+	*gBattleScriptCurrInstr = data_081BDB42_J
+	r10 = gCurrentActionFuncId
+	goto lbl_306
+}
+elseif(GetBattlerSide(*gBattlerAttacker) << 0x18 == 0)
+{
+	*gBattleScriptCurrInstr = *data_081D99E4
+	r10 = gCurrentActionFuncId
+	goto lbl_306
+}

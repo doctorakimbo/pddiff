@@ -1,0 +1,89 @@
+lbl1: @17594
+r6 = 0
+r2 = (data_118)
+r1 = (data_11C)
+r5 = (data_120)
+r3 = *r5
+r0 = r3 * 512
+r1 += 2
+r0 += r1
+r0 = *r0
+r0 *= 2
+r1 = 0x58
+r1 *= r3
+r0 += r1
+r2 += 0xC
+r0 += r2
+r4 = *r0
+r1 = (data_124)
+r0 = r3 * 2
+r0 += 0xC8
+r1 = *r1
+r1 += r0
+r8 = r1
+r1 = (data_128)
+r0 = r3 * 8
+r0 -= r3
+r0 *= 4
+r0 += r1
+r0 = *(r0 + 4)
+if(r0 != r4) goto lbl2
+
+if(r4 == 0) goto lbl2
+
+r0 = (data_12C)
+*(r0 + 0x17) = r3
+r0 = (data_130)
+*r0 = r4
+r1 = (data_134)
+r0 = *r5
+r0 *= 4
+r0 += r1
+r1 = (data_138)
+*r0 = r1
+r6 = 1
+goto lbl2
+
+lbl2:
+r1 = (data_13C)
+r5 = (data_120)
+r2 = *r5
+r0 = r2 * 2
+r0 += r1
+r0 = *r0
+if(r4 != r0) goto lbl3
+
+if(r4 == 0) goto lbl3
+
+r1 = (data_118)
+r0 = 0x58
+r0 *= r2
+r1 += 0x50
+r0 += r1
+r0 = *r0
+if(r0 >= 0) goto lbl3
+
+r0 = r2
+fn_172E8()
+r1 = (data_134)
+r0 = *r5
+r0 *= 4
+r0 += r1
+r1 = (data_140)
+*r0 = r1
+r0 = r6 + 1
+r6 = r0
+goto lbl3
+
+lbl3:
+r2 = (data_128)
+r3 = (data_120)
+r1 = *r3
+r0 = r1 * 8
+r0 -= r1
+r0 *= 4
+r0 += r2
+r0 = *(r0 + 0x13)
+r0 <<= 0x1C
+if(r0 == 0) goto lbl(D4)
+

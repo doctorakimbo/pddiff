@@ -1,0 +1,37 @@
+gBattlerAttacker = gBattlerTarget = gBattlerByTurnOrder[gCurrentTurnActionNumber];
+gBattle_BG0_X = 0;
+gBattle_BG0_Y = 0;
+ClearFuryCutterDestinyBondGrudge(gBattlerAttacker);
+gLastUsedItem = gBattleBufferB[gBattlerAttacker][1] | (gBattleBufferB[gBattlerAttacker][2] << 8);
+
+if(gItemData[gLastUsedItem].pocket == POCKET_POKE_BALLS)
+{
+	data_0203FE00_J = gItemData[gLastUsedItem].type
+	
+	if(data_0203FE00_J == 0x11 || data_0203FE00_J == 5)
+		gBattleScriptCurrInstr = BattleScript_SafariBallThrow;
+	else
+		gBattleScriptCurrInstr = BattleScript_BallThrow;
+	
+	r10 = gCurrentActionFuncId
+	goto lbl_306
+}
+
+if(gLastUsedItem == ITEM_POKE_DOLL || gLastUsedItem == ITEM_FLUFFY_TAIL)
+{
+	gBattleScriptCurrInstr = BattleScript_RunByUsingItem;
+	r10 = gCurrentActionFuncId
+	goto lbl_306
+}
+elseif(gLastUsedItem == ITEM_POKE_FLUTE)
+{
+	gBattleScriptCurrInstr = BattleScript_UsePokeFlute;
+	r10 = gCurrentActionFuncId
+	goto lbl_306
+}
+elseif(GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
+{
+	gBattleScriptCurrInstr = gBattlescriptsForUsingItem[0];
+	r10 = gCurrentActionFuncId
+	goto lbl_306
+}
