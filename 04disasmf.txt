@@ -1,0 +1,463 @@
+lbl1: @14CD8
+r9 = r0
+r10 = r1
+s1 = r2
+r0 = 0
+s2 = r0
+s0 = r0
+r0 = 0x13
+r1 = 0
+r2 = 0xD
+r3 = 0
+fn_19F18()
+r0 << 0x18
+if(r0 != 0) goto lbl8
+
+r1 = data_02023BE4
+r0 = 0x58
+r2 = r9
+r2 *= r0
+r0 = r2
+r0 += r1
+r0 += 0x20
+r3 = *r0
+if(r3 != 0x21) goto lbl2
+
+r0 = data_02023F1C
+r1 = *r0
+r0 = 7
+r0 &= r1
+if(r0 != 0) goto lbl3
+
+goto lbl2
+
+lbl2:
+if(r3 != 0x22) goto lbl4
+
+r0 = data_02023F1C
+r1 = *r0
+r0 = 0x60
+r0 &= r1
+if(r0 == 0) goto lbl4
+
+lbl3:
+r3 = 2
+goto lbl5
+
+lbl4:
+r3 = 1
+goto lbl5
+
+lbl5:
+r0 = 0x58
+r1 = r10
+r1 *= r0
+r0 = r1
+r2 = data_02023BE4
+r0 += r2
+r0 += 0x20
+r2 = *r0
+if(r2 != 0x21) goto lbl6
+
+r0 = data_02023F1C
+r1 = *r0
+r0 = 7
+r0 &= r1
+if(r0 != 0) goto lbl7
+
+goto lbl6
+
+lbl6:
+if(r2 != 0x22) goto lbl9
+
+r0 = data_02023F1C
+r1 = *r0
+r0 = 0x60
+r0 &= r1
+if(r0 == 0) goto lbl9
+
+goto lbl7
+
+lbl7:
+r7 = 2
+goto lbl10
+
+lbl8:
+r3 = 1
+goto lbl9
+
+lbl9:
+r7 = 1
+goto lbl10
+
+lbl10:
+r1 = data_02023BE4
+r0 = 0x58
+r2 = r9
+r2 *= r0
+r0 = r2
+r4 = r0 + r1
+r0 = *(r4 + 6)
+r3 *= r0
+r2 = data_0825DEAD
+r1 = 0x1B
+r1 = *(r4 + r1)
+r1 *= 2
+r0 = r1 + r2
+r0 = *r0
+r0 *= r3
+r2++
+r1 += r2
+r1 = *r1
+fn_1E4018()
+r8 = r0
+r0 = *(r4 + 0x2E)
+if(r0 != 0xAF) goto lbl11
+
+r1 = data_02023F54
+r3 = r9
+r0 = r3 * 8
+r0 -= r3
+r0 *= 4
+r0 += r1
+r6 = *(r0 + 7)
+r5 = *(r0 + 0x1A)
+goto lbl12
+
+lbl11:
+r7 -= 0x54
+r2 = r0 << 8
+r0 = *(r4 + 0x2E)
+fn_9A924()
+r6 = r0
+r0 = *(r4 + 0x2E)
+fn_9A948()
+r5 = r0
+goto lbl12
+
+lbl12:
+r0 = data_02022B4C
+r0 = *r0
+r1 = 2
+r0 &= r1
+if(r0 != 0) goto lbl13
+
+r0 = 0x822
+fn_6E6D0()
+r0 << 0x18
+if(r0 == 0) goto lbl13
+
+r0 = r9
+fn_751C4()
+r0 << 0x18
+if(r0 != 0) goto lbl13
+
+r0 = 0x6E
+r1 = r8
+r1 *= r0
+r1 = 0x64
+fn_1E460C()
+r8 = r0
+
+lbl13:
+if(r6 != 0x18) goto lbl14
+
+r2 = r8
+r2 *= 2
+r8 = r2
+goto lbl14
+
+lbl14:
+r1 = data_02023BE4
+r0 = 0x58
+r3 = r9
+r3 *= r0
+r1 += 0x4C
+r0 += r1
+r0 = *r0
+r1 = 0x40
+r0 &= r1
+if(r0 == 0) goto lbl15
+
+r0 = r8
+r0 /= 4
+r8 = r0
+goto lbl15
+
+lbl15:
+if(r6 != 0x1A) goto lbl16
+
+r0 = data_02023E80
+r4 = *r0
+r0 = r5 << 0x10
+r0 -= r5
+r1 = 0x64
+fn_1E4018()
+if(r4 >= r0) goto lbl16
+
+r1 = 1
+r1 = -r1
+r8 = r1
+goto lbl16
+
+lbl16:
+r1 = data_02023BE4
+r0 = 0x58
+r2 = r9
+r2 *= r0
+r0 = r2
+r4 = r0 + r1
+r0 = *(r4 + 6)
+r3 = r0
+r3 *= r7
+r2 = data_0825DEAD
+r1 = 0x1B
+r1 = *(r4 + r1)
+r1 *= 2
+r0 = r1 + r2
+r0 = *r0
+r0 *= r3
+r2++
+r1 += r2
+r1 = *r1
+fn_1E4018()
+r7 = r0
+r0 = *(r4 + 0x2E)
+if(r0 != 0xAF) goto lbl17
+
+r1 = data_02023F54
+r3 = r10
+r0 = r3 * 8
+r0 -= r3
+r0 *= 4
+r0 += r1
+r6 = *(r0 + 7)
+r5 = *(r0 + 0x1A)
+goto lbl18
+
+lbl17:
+r0 = *(r4 + 0x2E)
+fn_9A924()
+r6 = r0
+r0 = *(r4 + 0x2E)
+fn_9A948()
+r5 = r0
+goto lbl18
+
+lbl18:
+r0 = data_02022B4C
+r0 = *r0
+r1 = 2
+r0 &= r1
+if(r0 != 0) goto lbl19
+
+r0 = 0x822
+fn_6E6D0()
+r0 << 0x18
+if(r0 == 0) goto lbl19
+
+r0 = r10
+fn_751C4()
+r0 << 0x18
+if(r0 != 0) goto lbl19
+
+r0 = 0x6E
+r0 *= r7
+r1 = 0x64
+fn_1E460C()
+r7 = r0
+goto lbl19
+
+lbl19:
+if(r6 != 0x18) goto lbl20
+
+r7 /= 2
+goto lbl20
+
+lbl20:
+r2 = data_02023BE4
+r0 = 0x58
+r1 = r10
+r1 *= r0
+r0 = r1
+r1 = r2
+r1 += 0x4C
+r0 += r1
+r0 = *r0
+r1 = 0x40
+r0 &= r1
+if(r0 == 0) goto lbl21
+
+r7 /= 4
+goto lbl21
+
+lbl21:
+if(r6 != 0x1A) goto lbl22
+
+r0 = data_02023E80
+r4 = *r0
+r0 = r5 << 0x10
+r0 -= r5
+r1 = 0x64
+fn_1E4018()
+if(r4 >= r0) goto lbl22
+
+r7 = 1
+r7 = -r7
+goto lbl22
+
+lbl22:
+r2 = s1
+if(r2 == 0) goto lbl23
+
+r3 = 0
+goto lbl28
+
+lbl23:
+r0 = data_02023D7C
+r3 = r9
+r1 = r3 + r0
+r1 = *r1
+r2 = r0
+if(r1 != 0) goto lbl25
+
+r0 = data_02023E8C
+r1 = r3 * 16
+r1 += r0
+r0 = *r1
+r0 << 0x1D
+if(r0 >= 0) goto lbl24
+
+r3 = 0xA5
+goto lbl26
+
+lbl24:
+r0 = data_02023FE8
+r0 = *r0
+r0 += r9
+r0 += 0x80
+r0 = *r0
+r0 *= 2
+r1 = 0x58
+r3 = r9
+r3 *= r1
+r1 = r3
+r0 += r1
+r1 = data_02023BE4
+r1 += 0xC
+r0 += r1
+r3 = *r0
+goto lbl26
+
+lbl25:
+r3 = 0
+goto lbl26
+
+lbl26:
+r1 = r10
+r0 = r1 + r2
+r0 = *r0
+if(r0 != 0) goto lbl28
+
+r0 = data_02023E8C
+r1 *= 16
+r1 += r0
+r0 = *r1
+r0 << 0x1D
+if(r0 >= 0) goto lbl27
+
+r2 = 0xA5
+goto lbl29
+
+lbl27:
+r0 = data_02023FE8
+r0 = *r0
+r0 += r10
+r0 += 0x80
+r0 = *r0
+r0 *= 2
+r1 = 0x58
+r2 = r10
+r2 *= r1
+r1 = r2
+r0 += r1
+r2 = *r0
+goto lbl29
+
+lbl28:
+r2 = 0
+goto lbl29
+
+lbl29:
+r4 = data_02023BE4
+r0 = r3 * 2
+r0 += r3
+r0 *= 4
+r0 += r4
+r1 = 7
+r1 = *(r0 + r1)
+r3 = r2 * 2
+if(r1 != 0) goto lbl30
+
+r0 = r3 + r2
+r0 *= 4
+r0 += r4
+r0 = *(r0 + 7)
+if(r0 == 0) goto lbl33
+
+lbl30:
+r0 = r3 + r2
+r0 *= 4
+r0 += r4
+r0 = *(r0 + 7)
+if(r1 != r0) goto lbl32
+
+if(r8 != r7) goto lbl31
+
+fn_44EC8()
+r1 = 1
+r1 &= r0
+if(r1 == 0) goto lbl31
+
+r3 = 2
+goto lbl35
+
+lbl31:
+if(r8 >= r7) goto lbl36
+
+r0 = 1
+s2 = r0
+goto lbl36
+
+lbl32:
+if(r1 >= r0) goto lbl36
+
+r1 = 1
+s2 = r1
+goto lbl36
+
+lbl33:
+if(r8 != r7) goto lbl34
+
+fn_44EC8()
+r1 = 1
+r1 &= r0
+if(r1 == 0) goto lbl34
+
+r2 = 2
+s2 = r2
+goto lbl36
+
+lbl34:
+if(r8 >= r7) goto lbl36
+
+r3 = 1
+goto lbl35
+
+lbl35:
+s2 = r3
+goto lbl36
+
+lbl36:
+r0 = s2
+return r0

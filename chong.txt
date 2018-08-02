@@ -1,0 +1,920 @@
+OLD
+
+BattleScript_EffectAbsorb::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	typecalc
+	adjustnormaldamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage 0x40
+	resultmessage
+	waitmessage 0x40
+	negativedamage
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	jumpifability BS_TARGET, ABILITY_LIQUID_OOZE, BattleScript_AbsorbLiquidOoze
+	setbyte cMULTISTRING_CHOOSER, 0x0
+	goto BattleScript_AbsorbUpdateHp
+BattleScript_AbsorbLiquidOoze::
+	manipulatedamage ATK80_DMG_CHANGE_SIGN
+	setbyte cMULTISTRING_CHOOSER, 0x1
+BattleScript_AbsorbUpdateHp::
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	jumpifmovehadnoeffect BattleScript_AbsorbTryFainting
+	printfromtable gLeechSeedDrainStringIds
+	waitmessage 0x40
+BattleScript_AbsorbTryFainting::
+	tryfaintmon BS_ATTACKER, FALSE, NULL
+	tryfaintmon BS_TARGET, FALSE, NULL
+	goto BattleScript_MoveEnd
+	
+BattleScript_EffectDreamEater::
+	attackcanceler
+	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_82D8C0E
+	jumpifstatus BS_TARGET, STATUS1_SLEEP, BattleScript_82D8C18
+BattleScript_82D8C0E::
+	attackstring
+	ppreduce
+	waitmessage 0x40
+	goto BattleScript_WasntAffected
+BattleScript_82D8C18::
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	typecalc
+	adjustnormaldamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage 0x40
+	resultmessage
+	waitmessage 0x40
+	negativedamage
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	jumpifmovehadnoeffect BattleScript_DreamEaterTryFaintEnd
+	printstring STRINGID_PKMNDREAMEATEN
+	waitmessage 0x40
+BattleScript_DreamEaterTryFaintEnd::
+	tryfaintmon BS_TARGET, FALSE, NULL
+	goto BattleScript_MoveEnd
+	
+BattleScript_PresentHealTarget::
+	attackanimation
+	waitanimation
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	printstring STRINGID_PKMNREGAINEDHEALTH
+	waitmessage 0x40
+	goto BattleScript_MoveEnd
+	
+NEW
+
+BattleScript_EffectAbsorb::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	typecalc
+	adjustnormaldamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage 0x40
+	resultmessage
+	waitmessage 0x40
+	goto BattleScript_AbsorbCheckFullHp
+BattleScript_AbsorbNotFullHp::
+	jumpifability BS_TARGET, ABILITY_LIQUID_OOZE, BattleScript_AbsorbLiquidOoze
+	setbyte cMULTISTRING_CHOOSER, 0x0
+	goto BattleScript_AbsorbUpdateHp
+BattleScript_AbsorbLiquidOoze::
+	manipulatedamage ATK80_DMG_CHANGE_SIGN
+	setbyte cMULTISTRING_CHOOSER, 0x1
+BattleScript_AbsorbUpdateHp::
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	jumpifmovehadnoeffect BattleScript_AbsorbTryFainting
+	printfromtable gLeechSeedDrainStringIds
+	waitmessage 0x40
+BattleScript_AbsorbTryFainting::
+	tryfaintmon BS_ATTACKER, FALSE, NULL
+	tryfaintmon BS_TARGET, FALSE, NULL
+	goto BattleScript_MoveEnd
+	
+BattleScript_AbsorbCheckFullHp::
+	jumpiffullhp BS_ATTACKER, BattleScript_AbsorbFullHp
+	negativedamage
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	goto BattleScript_AbsorbNotFullHp
+BattleScript_AbsorbFullHp::
+	negativedamage
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	jumpifability BS_TARGET, ABILITY_LIQUID_OOZE, BattleScript_AbsorbLiquidOoze
+	setbyte cMULTISTRING_CHOOSER, 0x0
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	goto BattleScript_AbsorbTryFainting
+	
+	
+1D6A07:
+	28 XX XX XX 08
+XXXXXX:
+	29 00 6B 3D 02 02 00 XY XX XX 08
+	29 00 6B 3D 02 02 01 XZ XX XX 08
+	29 00 6B 3D 02 02 02 YA XX XX 08
+	2C 14 3D 02 02 16 3D 02 02 YC XX XX 08
+	28 YB XX XX 08
+XXXXXY: @XXXXXX + 33
+	2C 0C 3C 02 02 0E 3C 02 02 YC XX XX 08
+	28 YB XX XX 08
+XXXXXZ: @XXXXXX + 45
+	2C 64 3C 02 02 66 3C 02 02 YC XX XX 08
+	28 YB XX XX 08
+XXXXYA: @XXXXXX + 57
+	2C BC 3C 02 02 BE 3C 02 02 YC XX XX 08
+XXXXYB: @XXXXXX + 64
+	88
+	35 D0 3D 02 02 00 01 00 00
+	28 11 6A 1D 08
+XXXXYC: @XXXXXX + 73
+	88
+	35 D0 3D 02 02 00 01 00 00
+	1E 00 40 23 6A 1D 08
+	2E 87 3E 02 02 00
+	0B 01
+	0C 01
+	28 42 6A 1D 08
+	
+	
+jumpiffullhp:
+	*2023D6B = gBattlerAttacker
+	*((0x58 * gBattlerAttacker) + 2023C0C) = gBattlerAttacker.HP
+	*((0x58 * gBattlerAttacker) + 2023C0E) = gBattlerAttacker.maxHP
+	
+jumpiffullhp:
+	jumpifbyte CMP_EQUAL, gBattlerAttacker, 0, battlerzero
+	jumpifbyte CMP_EQUAL, gBattlerAttacker, 1, battlerone
+	jumpifbyte CMP_EQUAL, gBattlerAttacker, 2, battlertwo
+	jumpifbyteequal 2023D14, 2023D16, BattleScript_AbsorbFullHp
+	goto BattleScript_AbsorbCleanup
+battlerzero:
+	jumpifbyteequal 2023C0C, 2023C0E, BattleScript_AbsorbFullHp
+	goto BattleScript_AbsorbCleanup
+battlerone:
+	jumpifbyteequal 2023C64, 2023C66, BattleScript_AbsorbFullHp
+	goto BattleScript_AbsorbCleanup
+battlertwo:
+	jumpifbyteequal 2023CBC, 2023CBE, BattleScript_AbsorbFullHp
+	goto BattleScript_AbsorbCleanup
+	
+	
+jumpifhasnohp:
+	r4 = data_2023D74
+	r0 = *r4
+	r0 = *(r0 + 1)
+	exec(sub_8016E24)
+	r1 = data_2023BC4
+	*r1 = r0
+	r2 = data_2023BE4
+	r1 = *r1
+	r0 = 0x58
+	r0 = r0 * r1
+	r0 = r0 + r2
+	r0 = *(r0 + 28)
+	if(r0 != 0) goto lbl2
+	
+	r2 = *r4
+	r1 = *(r2 + 2)
+	r0 = *(r2 + 3)
+	r0 = r0 << 8
+	r1 = r1 | r0
+	r0 = *(r2 + 4)
+	r0 = r0 << 16
+	r1 = r1 | r0
+	r0 = *(r2 + 5)
+	r0 = r0 << 24
+	r1 = r1 | r0
+	*r4 = r1
+	goto lbl3
+	
+lbl2:
+	r0 = *r4
+	r0 = r0 + 6
+	*r4 = r0
+	goto lbl3
+	
+lbl3:
+	return
+	
+jumpifhasnohp_decomp:
+	gActiveBattler = sub_8016E24(*(gBattlescriptCurrInstr + 1))
+	
+	if(*((0x58 * gActiveBattler) + data_2023BE4 + 28) != 0)
+	{
+		gBattlescriptCurrInstr = gBattlescriptCurrInstr + 6
+	}
+	else
+	{
+		gBattlescriptCurrInstr = *(gBattlescriptCurrInstr + 2) | (*(gBattlescriptCurrInstr + 3) << 8) | (*(gBattlescriptCurrInstr + 4) << 16) | (*(gBattlescriptCurrInstr + 5) << 24)
+	}
+	
+BattleScript_EffectDreamEater::
+	attackcanceler
+	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_82D8C0E
+	jumpifstatus BS_TARGET, STATUS1_SLEEP, BattleScript_82D8C18
+BattleScript_82D8C0E::
+	attackstring
+	ppreduce
+	waitmessage 0x40
+	goto BattleScript_WasntAffected
+BattleScript_82D8C18::
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	typecalc
+	adjustnormaldamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage 0x40
+	resultmessage
+	waitmessage 0x40
+	goto BattleScript_DreamEaterCheckFullHp
+BattleScript_DreamEaterNotFullHp::
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	jumpifmovehadnoeffect BattleScript_DreamEaterTryFaintEnd
+	printstring STRINGID_PKMNDREAMEATEN
+	waitmessage 0x40
+BattleScript_DreamEaterTryFaintEnd::
+	tryfaintmon BS_TARGET, FALSE, NULL
+	goto BattleScript_MoveEnd
+	
+BattleScript_DreamEaterCheckFullHp::
+	jumpiffullhp BS_ATTACKER, BattleScript_DreamEaterFullHp
+	negativedamage
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	goto BattleScript_DreamEaterNotFullHp
+BattleScript_DreamEaterFullHp::
+	negativedamage
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	goto BattleScript_DreamEaterTryFaintEnd
+	
+1D6B34:
+	28 XX XX XX 08
+XXXXXX:
+	29 00 6B 3D 02 02 00 XY XX XX 08
+	29 00 6B 3D 02 02 01 XZ XX XX 08
+	29 00 6B 3D 02 02 02 YA XX XX 08
+	2C 14 3D 02 02 16 3D 02 02 YC XX XX 08
+	28 YB XX XX 08
+XXXXXY: @XXXXXX + 33
+	2C 0C 3C 02 02 0E 3C 02 02 YC XX XX 08
+	28 YB XX XX 08
+XXXXXZ: @XXXXXX + 45
+	2C 64 3C 02 02 66 3C 02 02 YC XX XX 08
+	28 YB XX XX 08
+XXXXYA: @XXXXXX + 57
+	2C BC 3C 02 02 BE 3C 02 02 YC XX XX 08
+XXXXYB: @XXXXXX + 64
+	88
+	35 D0 3D 02 02 00 01 00 00
+	28 3E 6B 1D 08
+XXXXYC: @XXXXXX + 73
+	88
+	35 D0 3D 02 02 00 01 00 00
+	0B 01
+	0C 01
+	28 53 6B 1D 08
+
+BattleScript_RestHealTarget::
+	attackanimation
+	waitanimation
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	goto BattleScript_MoveEnd
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+BattleScript_BerryStatRaiseEnd2::
+	playanimation BS_ATTACKER, B_ANIM_ITEM_EFFECT, NULL
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | 0x1, BattleScript_82DB85B
+BattleScript_82DB85B::
+	setbyte cMULTISTRING_CHOOSER, 0x4
+	call BattleScript_StatUp
+	removeitem BS_ATTACKER
+	end2
+	
+BattleScript_BerryStatRaiseEnd3::
+	playanimation BS_ATTACKER, B_ANIM_ITEM_EFFECT, NULL
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | 0x1, BattleScript_82DB85B
+BattleScript_82DB85B::
+	setbyte cMULTISTRING_CHOOSER, 0x6
+	call BattleScript_StatUp
+	removeitem BS_ATTACKER
+	end2
+	
+XXXXXX:
+	45 01 07 00 00 00 00 89 41 XY XX XX 08
+XXXXXY: @XXXXXX + D
+	2E 87 3E 02 02 06 41 D1 6B 1D 08 6A 01 3E
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+BattleScript_BrickBreakAnim::
+	attackanimation
+	waitanimation
+	jumpifbyte CMP_LESS_THAN, sB_ANIM_TURN, 0x2, BattleScript_BrickBreakDoHit
+	printstring STRINGID_THEWALLSHATTERED
+	waitmessage 0x40
+BattleScript_BrickBreakDoHit::
+	typecalc2
+	....
+	
+1D81DB:
+	29 03 DC 3F 02 02 02 EC 81 1D 08
+	10 62 01
+	12 40 00
+	
+	
+BattleScript_BrickBreakAnim::
+	attackanimation
+	waitanimation
+	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 0x1, BattleScript_BrickBreakReflectBroke
+	goto BattleScript_BrickBreakCheckLightScreen
+BattleScript_BrickBreakDoHit::
+	typecalc2
+	...
+	
+	
+BattleScript_BrickBreakCheckLightScreen::
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x1, BattleScript_BrickBreakLightScreenBroke
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x3, BattleScript_BrickBreakLightScreenBroke
+	goto BattleScript_BrickBreakDoHit
+BattleScript_BrickBreakReflectBroke::
+	printstring STRINGID_REFLECTBROKE
+	waitmessage 0x40
+	goto BattleScript_BrickBreakCheckLightScreen
+BattleScript_BrickBreakLightScreenBroke::
+	printstring STRINGID_LIGHTSCREENBROKE
+	waitmessage 0x40
+	goto BattleScript_BrickBreakDoHit
+	
+1D81DB:
+	29 02 87 3E 02 02 01 XY XX XX 08
+	28 XX XX XX 08 (00)
+XXXXXX:
+	29 00 87 3E 02 02 01 XZ XX XX 08
+	29 00 87 3E 02 02 03 XZ XX XX 08
+	28 EC 81 1D 08
+XXXXXY:
+	10 62 01
+	12 40 00
+	28 XX XX XX 08
+XXXXXZ:
+	10 81 01
+	12 40 00
+	28 EC 81 1D 08 (81 01 -> ??)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+atkEE_removelightscreenreflect:
+	r0 = gBattlerAttacker
+	r0 = *r0
+	exec(GetBattlerSide)
+	r1 = 1
+	r0 = r0 xor r1
+	r1 = gSideTimers
+	r3 = r0 * 2
+	r0 = r3 + r0
+	r0 = r0 * 4
+	r4 = r0 + r1
+	r0 = *r4
+	if(r0 != 0) goto lbl2
+	
+	r1 = *(r4 + 2)
+	if(r1 == 0) goto lbl3
+	
+	goto lbl2
+	
+lbl2:
+	r2 = gSideAffecting
+	r2 = r3 + r2
+	r1 = *r2
+	r0 = 0xFFFE
+	r0 = r0 & r1
+	r3 = 0
+	r1 = 0xFFFD
+	r0 = r0 & r1
+	*r2 = r0
+	*r4 = r3
+	*(r4 + 2) = r3
+	r1 = gBattleScripting
+	r0 = 1
+	*(r1 + 18) = r0
+	*(r1 + 19) = r0
+	goto lbl4
+	
+lbl3:
+	r0 = gBattleScripting
+	*(r0 + 18) = r1
+	*(r0 + 19) = r1
+	goto lbl4
+	
+lbl4:
+	r1 = gBattlescriptCurrInstr
+	r0 = *r1
+	r0 = r0 + 1
+	*r1 = r0
+	return
+	
+	
+	
+atkEE_removelightscreenreflect_new:
+	r0 = gBattlerAttacker
+	r0 = *r0
+	exec(GetBattlerSide)
+	r1 = 1
+	r0 = r0 xor r1
+	r1 = gSideTimers
+	r3 = r0 * 2
+	r0 = r3 + r0
+	r0 = r0 * 4
+	r4 = r0 + r1
+	r0 = *r4
+	if(r0 != 0) goto lbl2
+	
+	r1 = *(r4 + 2)
+	if(r1 == 0) goto lbl3
+	
+	goto lbl2
+	
+lbl2:
+	r2 = gSideAffecting
+	r2 = r3 + r2
+	r5 = cMULTISTRING_CHOOSER
+	r3 = 0
+	*r5 = r3
+	
+	r0 = *r4
+	if(r0 != 0) goto lblx2
+	
+	goto lblx1
+	
+lblx1:
+	r1 = *(r4 + 2)
+	if(r1 != 0) goto lblx3
+	
+	goto lblx4
+	
+lblx2:
+	r1 = *r2
+	r0 = 0xFFFE
+	r0 = r0 & r1
+	*r2 = r0
+	*r4 = r3
+	r3 = *r5
+	r3 = r3 + 2
+	*r5 = r3
+	r3 = 0
+	goto lblx1
+	
+lblx3:
+	r0 = *r2
+	r1 = 0xFFFD
+	r0 = r0 & r1
+	*r2 = r0
+	*(r4 + 2) = r3
+	r3 = r5
+	r3 = r3 + 1
+	*r5 = r3
+	goto lblx4
+	
+lblx4:
+	r1 = gBattleScripting
+	r0 = 1
+	*(r1 + 18) = r0
+	*(r1 + 19) = r0
+	goto lbl4
+	
+lbl3:
+	r0 = gBattleScripting
+	*(r0 + 18) = r1
+	*(r0 + 19) = r1
+	goto lbl4
+	
+lbl4:
+	r1 = gBattlescriptCurrInstr
+	r0 = *r1
+	r0 = r0 + 1
+	*r1 = r0
+	return
+	
+	
+	
+	
+	
+	
+	
+atkEE_removelightscreenreflect_decomp:
+	r4 = ((GetBattlerSide(*gBattlerAttacker) xor 1) * 12) + gSideTimers
+	
+	if(*r4 != 0 || *(r4 + 2) != 0)
+	{
+		r2 = ((GetBattlerSide(*gBattlerAttacker) xor 1) * 2) + gSideAffecting
+		*r2 = (*r2 & 0xFFFE) & 0xFFFD
+		*r4 = 0
+		*(r4 + 2) = 0
+		*(gBattleScripting + 18) = 1
+		*(gBattleScripting + 19) = 1
+	}
+	else
+	{
+		*(gBattleScripting + 18) = 0
+		*(gBattleScripting + 19) = 0
+	}
+	
+	(*gBattlescriptCurrInstr)++
+	return
+	
+	
+	
+atkEE_removelightscreenreflect_new_decomp:
+	r4 = ((GetBattlerSide(*gBattlerAttacker) xor 1) * 12) + gSideTimers
+	
+	if(*r4 != 0 || *(r4 + 2) != 0)
+	{
+		r2 = ((GetBattlerSide(*gBattlerAttacker) xor 1) * 2) + gSideAffecting
+		*cMULTISTRING_CHOOSER = 0
+		
+		if(*r4 != 0)
+		{
+			*r2 = *r2 & 0xFFFE
+			*r4 = 0
+			*cMULTISTRING_CHOOSER = *cMULTISTRING_CHOOSER + 2
+		}
+		if(*(r4 + 2) != 0)
+		{
+			*r2 = *r2 & 0xFFFD
+			*(r4 + 2) = 0
+			(*cMULTISTRING_CHOOSER)++
+		}
+		
+		*(gBattleScripting + 18) = 1
+		*(gBattleScripting + 19) = 1
+	}
+	else
+	{
+		*(gBattleScripting + 18) = 0
+		*(gBattleScripting + 19) = 0
+	}
+	
+	(*gBattlescriptCurrInstr)++
+	return
+	
+	
+	
+	
+	
+atkEE_removelightscreenreflect_new_recomp:
+	r0 = gBattlerAttacker
+	r0 = *r0
+	exec(GetBattlerSide)
+	r1 = 1
+	r0 = r0 xor r1
+	r1 = gSideTimers
+	r3 = r0 * 2
+	r0 = r3 + r0
+	r0 = r0 * 4
+	r4 = r0 + r1
+	r0 = *r4
+	if(r0 != 0) goto lbl2
+	
+	r1 = *(r4 + 2)
+	if(r1 == 0) goto lbl3
+	
+lbl2:
+	r2 = gSideAffecting
+	r2 = r3 + r2
+	r5 = cMULTISTRING_CHOOSER
+	r3 = 0
+	*r5 = r3
+	
+	r0 = *r4
+	if(r0 != 0) goto lblx2
+	
+lblx1:
+	r1 = *(r4 + 2)
+	if(r1 != 0) goto lblx3
+	
+	goto lblx4
+	
+lblx2:
+	r1 = *r2
+	r0 = 0xFFFE
+	r0 = r0 & r1
+	*r2 = r0
+	*r4 = r3
+	r6 = 2
+	*r5 = r6
+	goto lblx1
+	
+lblx3:
+	r0 = *r2
+	r1 = 0xFFFD
+	r0 = r0 & r1
+	*r2 = r0
+	*(r4 + 2) = r3
+	r3 = *r5
+	r3 = r3 + 1
+	*r5 = r3
+	
+lblx4:
+	r1 = gBattleScripting
+	r0 = 1
+	*(r1 + 18) = r0
+	*(r1 + 19) = r0
+	goto lbl4
+	
+lbl3:
+	r0 = gBattleScripting
+	*(r0 + 18) = r1
+	*(r0 + 19) = r1
+	
+lbl4:
+	r1 = gBattlescriptCurrInstr
+	r0 = *r1
+	r0 = r0 + 1
+	*r1 = r0
+	return
+	
+	
+02D3B8:
+10 B5 11 48 00 78 47 F0 01 FF 01 21 48 40 00 06 00 0E 0E 49 43 00 18 18 80 00 44 18 20 78 00 28 02 D1 A1 78 00 29 1B D0 09 4A 9A 18 11 88 09 48 08 40 00 23 08 49 08 40 10 80 23 70 A3 70 07 49 01 20 08 76 48 76 0E E0 6B 3D 02 02 E4 3D 02 02 DE 3D 02 02 FE FF 00 00 FD FF 00 00 C4 3F 02 02 04 48 01 76 41 76 04 49 08 68 01 30 08 60 10 BC 01 BC 00 47 C4 3F 02 02 74 3D 02 02
+->
+10 B5 11 48 00 78 47 F0 01 FF 01 21 48 40 00 06 00 0E 0E 49 43 00 18 18 80 00 44 18 20 78 00 28 02 D1 A1 78 00 29 1B D0 09 4A 9A 18 09 4D 00 23 2B 70 01 4F BF 46 00 00 XX XX XX 08 00 00 00 00 00 00 00 00 00 00 00 00 6B 3D 02 02 E4 3D 02 02 DE 3D 02 02 87 3E 02 02 00 00 00 00 00 00 00 00 04 48 01 76 41 76 04 49 08 68 01 30 08 60 10 BC 01 BC 00 47 C4 3F 02 02 74 3D 02 02
+
+XXXXXX:
+20 78 00 28 02 D1 A1 78 00 29 07 D0 11 88 0A 48 08 40 10 80 23 70 02 26 2E 70 07 E0 10 88 07 49 08 40 10 80 A3 70 2B 78 01 33 2B 70 04 49 01 20 08 76 48 76 03 4F BF 46 FE FF 00 00 FD FF 00 00 C4 3F 02 02 1E D4 02 08
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+lbl1:
+r2 = data_2023E0C
+r1 = *r6
+r0 = r1 * 8
+r0 = r0 - r1
+r0 = r0 * 4
+r3 = r0 + r2
+r2 = *(r3 + 0x13)
+r1 = r2 << 28
+if(r1 == 0) goto lbl2
+
+r1 >> 28
+r1 = r1 - 1
+r0 = 0xF
+r1 = r1 & r0
+r0 = 0x10
+r0 = -r0
+r0 = r0 & r2
+r0 = r0 | r1
+*(r3 + 0x13) = r0
+goto lbl2
+
+lbl2:
+r1 = *r7
+goto lblx
+
+
+
+
+DECOMP
+r2 = *((*data_2023BC4 * 28) + data_2023E0C + 0x13)
+
+if(r2 != 0)
+{
+	r2 = (r2 & ~0x10) | ((r2 - 1) & 0xF)
+	
+	*((*data_2023BC4 * 28) + data_2023E0C + 0x13) = r2
+}
+
+r1 = *data_2023FE8
+goto lblx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+018B3C:
+0A 4A 31 78 C8 00 40 1A 80 00 83 18 DA 7C 11 07 00 29 08 D0 09 0F 01 39 0F 20 01 40 10 20 40 42 10 40 08 43 D8 74 39 68 57 E0 00 00 0C 3E 02 02
+
+new:
+0A 4A 31 78 C8 00 40 1A 80 00 83 18 DA 7C 11 07 00 29 08 D0 09 0F 01 48 87 46 XX XX XX 08 00 00 00 00 03 F0 41 F8 39 68 57 E0 00 00 0C 3E 02 02
+
+xxxxxx:
+0F 20 01 40 10 20 40 42 10 40 08 43 D8 74 00 28 02 D1 05 48 02 49 8F 46 02 48 87 46 5E 8B 01 08 62 8B 01 08 00 00 XY XX XX 08
+
+xxxxxy:
+10 ?? ?? 12 40 00 3E
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+02979A:
+	01 48 87 46 XX XX XX 08
+XXXXXX:
+	05 48 06 4A 0D 21 51 43 06 4A 89 18 06 4A 96 46 06 4A 97 46 C8 2A 02 02 00 00 4A 3D 02 02 00 00 94 70 24 08 XZ XX XX 08 84 8D 00 08 (94 70 24 08 -> curmovnamelist)
+XXXXXY: (XXXXXZ = XXXXXY + 1)
+	04 48 01 78 04 48 05 4A 96 46 05 4A 97 46 00 00 C8 3B 02 02 ?? ?? 00 00 00 00 YB XX XX 08 AC 73 01 08
+XXXXYA: (XXXXYB = XXXXYA + 1)
+	03 49 01 20 C8 71 03 4A 97 46 00 00 82 3E 02 02 00 00 A4 97 02 08

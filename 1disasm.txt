@@ -1,0 +1,36 @@
+r8 = r0
+r6 = r1
+r5 = r2
+r4 = r3
+r8 = r0
+r0 = data_8232578
+r2 = r8
+r1 = r2 * 16
+r2 = 0x20
+call(LoadPalette)
+r2 = 0x40000d4
+r0 = data_8232598
+*r2 = r0
+r0 = r5 << 14
+r1 = 0xC0
+r1 << 19
+r0 = r0 + r1
+*(r2 + 4) = r0
+r0 = 0x80001000
+*(r2 + 8) = r0
+r0 = *(r2 + 8)
+r0 = data_3003F70
+*r0 = r4
+r1 = r8
+*(r0 + 4) = r1
+r1 = 0
+*(r0 + 8) = r1
+r0 = gBGControlRegOffsets
+r6 = r6 + r0
+r0 = *r6
+r4 = r4 * 256
+r5 = r5 * 4
+r4 = r4 | r5
+r1 = r4
+call(SetGpuReg)
+return

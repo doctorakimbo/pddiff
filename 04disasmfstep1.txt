@@ -1,0 +1,472 @@
+r9 = r0
+r10 = r1
+s1 = r2
+r0 = 0
+s2 = r0
+s0 = r0
+r0 = 0x13
+r1 = 0
+r2 = 0xD
+r3 = 0
+fn_19F18()
+r0 << 0x18
+
+if(r0 != 0)
+{
+	r3 = 1
+	r7 = 1
+}
+else
+{
+	r1 = gBattleMons
+	r0 = 0x58
+	r2 = r9
+	r2 *= r0
+	r0 = r2
+	r0 += r1
+	r0 += 0x20
+	r3 = *r0
+	
+	if(r3 == 0x21)
+	{
+		r0 = gBattleWeather
+		r1 = *r0
+		r0 = 7
+		r0 &= r1
+		if(r0 != 0)
+			r3 = 2
+		else
+			r3 = 1
+	}
+	elseif(r3 == 0x22)
+	{
+		r0 = gBattleWeather
+		r1 = *r0
+		r0 = 0x60
+		r0 &= r1
+		
+		if(r0 != 0)
+			r3 = 2
+		else
+			r3 = 1
+	}
+	else
+		r3 = 1
+
+	r0 = 0x58
+	r1 = r10
+	r1 *= r0
+	r0 = r1
+	r2 = gBattleMons
+	r0 += r2
+	r0 += 0x20
+	r2 = *r0
+	
+	if(r2 == 0x21)
+	{
+		r0 = gBattleWeather
+		r1 = *r0
+		r0 = 7
+		r0 &= r1
+		
+		if(r0 != 0)
+			r7 = 2
+		else
+			r7 = 1
+	}
+	elseif(r2 == 0x22)
+	{
+		r0 = gBattleWeather
+		r1 = *r0
+		r0 = 0x60
+		r0 &= r1
+		
+		if(r0 != 0)
+			r7 = 2
+		else
+			r7 = 1
+	}
+	else
+		r7 = 1
+}
+
+r1 = gBattleMons
+r0 = 0x58
+r2 = r9
+r2 *= r0
+r0 = r2
+r4 = r0 + r1
+r0 = *(r4 + 6)
+r3 *= r0
+r2 = data_0825DEAD
+r1 = 0x1B
+r1 = *(r4 + r1)
+r1 *= 2
+r0 = r1 + r2
+r0 = *r0
+r0 *= r3
+r2++
+r1 += r2
+r1 = *r1
+fn_1E4018()
+r8 = r0
+r0 = *(r4 + 0x2E)
+
+if(r0 == 0xAF)
+{
+	r1 = gEnigmaBerries
+	r3 = r9
+	r0 = r3 * 8
+	r0 -= r3
+	r0 *= 4
+	r0 += r1
+	r6 = *(r0 + 7)
+	r5 = *(r0 + 0x1A)
+}
+else
+{
+	r7 -= 0x54
+	r2 = r0 << 8
+	r0 = *(r4 + 0x2E)
+	GetHoldEffect()
+	r6 = r0
+	r0 = *(r4 + 0x2E)
+	GetHoldEffectParam()
+	r5 = r0
+}
+
+r0 = gBattleTypeFlags
+r0 = *r0
+r1 = 2
+r0 &= r1
+if(r0 == 0)
+{
+	r0 = 0x822
+	FlagGet()
+	r0 << 0x18
+	
+	if(r0 != 0)
+	{
+		r0 = r9
+		GetBankSide()
+		r0 << 0x18
+		
+		if(r0 == 0)
+		{
+			r0 = 0x6E
+			r1 = r8
+			r1 *= r0
+			r1 = 0x64
+			fn_1E460C()
+			r8 = r0
+		}
+	}
+}
+
+if(r6 == 0x18)
+{
+	r2 = r8
+	r2 *= 2
+	r8 = r2
+}
+
+r1 = gBattleMons
+r0 = 0x58
+r3 = r9
+r3 *= r0
+r1 += 0x4C
+r0 += r1
+r0 = *r0
+r1 = 0x40
+r0 &= r1
+
+if(r0 != 0)
+{
+	r0 = r8
+	r0 /= 4
+	r8 = r0
+}
+
+if(r6 == 0x1A)
+{
+	r0 = gRandomTurnNumber
+	r4 = *r0
+	r0 = r5 << 0x10
+	r0 -= r5
+	r1 = 0x64
+	fn_1E4018()
+	
+	if(r4 < r0)
+	{
+		r1 = 1
+		r1 = -r1
+		r8 = r1
+	}
+}
+
+r1 = gBattleMons
+r0 = 0x58
+r2 = r9
+r2 *= r0
+r0 = r2
+r4 = r0 + r1
+r0 = *(r4 + 6)
+r3 = r0
+r3 *= r7
+r2 = data_0825DEAD
+r1 = 0x1B
+r1 = *(r4 + r1)
+r1 *= 2
+r0 = r1 + r2
+r0 = *r0
+r0 *= r3
+r2++
+r1 += r2
+r1 = *r1
+fn_1E4018()
+r7 = r0
+r0 = *(r4 + 0x2E)
+
+if(r0 == 0xAF)
+{
+	r1 = gEnigmaBerries
+	r3 = r10
+	r0 = r3 * 8
+	r0 -= r3
+	r0 *= 4
+	r0 += r1
+	r6 = *(r0 + 7)
+	r5 = *(r0 + 0x1A)
+}
+else
+{
+	r0 = *(r4 + 0x2E)
+	GetHoldEffect()
+	r6 = r0
+	r0 = *(r4 + 0x2E)
+	GetHoldEffectParam()
+	r5 = r0
+}
+
+r0 = gBattleTypeFlags
+r0 = *r0
+r1 = 2
+r0 &= r1
+
+if(r0 == 0)
+{
+	r0 = 0x822
+	FlagGet()
+	r0 << 0x18
+	
+	if(r0 != 0)
+	{
+		r0 = r10
+		GetBankSide()
+		r0 << 0x18
+		
+		if(r0 == 0)
+		{
+			r0 = 0x6E
+			r0 *= r7
+			r1 = 0x64
+			fn_1E460C()
+			r7 = r0
+		}
+	}
+}
+
+if(r6 == 0x18)
+	r7 /= 2
+
+r2 = gBattleMons
+r0 = 0x58
+r1 = r10
+r1 *= r0
+r0 = r1
+r1 = r2
+r1 += 0x4C
+r0 += r1
+r0 = *r0
+r1 = 0x40
+r0 &= r1
+
+if(r0 != 0)
+	r7 /= 4
+
+if(r6 == 0x1A)
+{
+	r0 = gRandomTurnNumber
+	r4 = *r0
+	r0 = r5 << 0x10
+	r0 -= r5
+	r1 = 0x64
+	fn_1E4018()
+	
+	if(r4 < r0)
+	{
+		r7 = 1
+		r7 = -r7
+	}
+}
+
+r2 = s1
+
+if(r2 != 0)
+	r3 = 0
+else
+{
+	r0 = gChosenActionByBattler
+	r3 = r9
+	r1 = r3 + r0
+	r1 = *r1
+	r2 = r0
+	
+	if(r1 == 0)
+	{
+		r0 = gProtectStructs
+		r1 = r3 * 16
+		r1 += r0
+		r0 = *r1
+		r0 << 0x1D
+		
+		if(r0 < 0)
+			r3 = 0xA5
+		else
+		{
+			r0 = data_02023FE8
+			r0 = *r0
+			r0 += r9
+			r0 += 0x80
+			r0 = *r0
+			r0 *= 2
+			r1 = 0x58
+			r3 = r9
+			r3 *= r1
+			r1 = r3
+			r0 += r1
+			r1 = gBattleMons
+			r1 += 0xC
+			r0 += r1
+			r3 = *r0
+		}
+	}
+	else
+		r3 = 0
+
+	r1 = r10
+	r0 = r1 + r2
+	r0 = *r0
+	
+	if(r0 == 0)
+	{
+		r0 = gProtectStructs
+		r1 *= 16
+		r1 += r0
+		r0 = *r1
+		r0 << 0x1D
+		
+		if(r0 < 0)
+			r2 = 0xA5
+		else
+		{
+			r0 = data_02023FE8
+			r0 = *r0
+			r0 += r10
+			r0 += 0x80
+			r0 = *r0
+			r0 *= 2
+			r1 = 0x58
+			r2 = r10
+			r2 *= r1
+			r1 = r2
+			r0 += r1
+			r2 = *r0
+		}
+	}
+	else
+		r2 = 0
+}
+else
+	r2 = 0
+
+r4 = gBattleMons
+r0 = r3 * 2
+r0 += r3
+r0 *= 4
+r0 += r4
+r1 = 7
+r1 = *(r0 + r1)
+r3 = r2 * 2
+
+if(r1 == 0)
+{
+	r0 = r3 + r2
+	r0 *= 4
+	r0 += r4
+	r0 = *(r0 + 7)
+	r0 = s2
+	return r0
+}
+elseif(r0 == 0)
+{
+	if(r8 == r7)
+	{
+		Random()
+		r1 = 1
+		r1 &= r0
+		
+		if(r1 != 0)
+		{
+			r2 = 2
+			s2 = r2
+		}
+	}
+	elseif(r8 < r7)
+	{
+		r3 = 1
+		s2 = r3
+	}
+	
+	r0 = s2
+	return r0
+}
+else
+{
+	r0 = r3 + r2
+	r0 *= 4
+	r0 += r4
+	r0 = *(r0 + 7)
+	
+	if(r1 == r0)
+	{
+		if(r8 == r7)
+		{
+			Random()
+			r1 = 1
+			r1 &= r0
+			
+			if(r1 != 0)
+			{
+				r3 = 2
+				s2 = r3
+			}
+		}
+		elseif(r8 < r7)
+		{
+			r0 = 1
+			s2 = r0
+		}
+	}
+	else
+	{
+		if(r1 < r0)
+		{
+			r1 = 1
+			s2 = r1
+		}
+	}
+	
+	r0 = s2
+	return r0
+}

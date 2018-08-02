@@ -1,0 +1,21 @@
+r3 = 0
+r4 = (arg1 * 0x58) + gBattleMons
+
+if(*(data_02023CDC_J + arg1) == 0)
+{
+	r3 = 0xA5
+
+	if((*((arg1 * 16) + gProtectStructs) << 0x1D) >= 0)
+		r3 = *((*(*data_02023F48_J + arg1 + 0x80) * 2) + r4 + 0xC)
+}
+
+r2 = (r3 * 0xC) + gBattleMoves
+r0 = *(r2 + 7)
+r4 += 0x20
+
+if(*r4 == 0x9E && *(r2 + 0xA) >= 4)
+	r0++
+elseif(*r4 == 0xB2 && *(r2 + 2) == 2)
+	r0++
+
+return r0 (,r4)

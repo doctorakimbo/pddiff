@@ -1,0 +1,15 @@
+args r8, r6, r5, r4
+
+sub_80094EC(a0, a1, a2, a3)
+{
+	LoadPalette(gLinkTestDigitsPal, a0 * 16, 0x20)
+	&r2 = 0x40000d4
+	r2[0] = gLinkTestDigitsGfx
+	r2[1] = (a2 << 14) + 0x6000000
+	r2[2] = 0x80001000
+	&r0 = data_3003F70
+	r0[0] = a3
+	r0[1] = a0
+	r0[2] = 0
+	SetGpuReg(gBGControlRegOffsets[a1], (a3 * 256) | (a2 * 4))
+}

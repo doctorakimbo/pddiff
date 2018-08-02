@@ -1,0 +1,23 @@
+GetPriority(battlerId)
+{
+	if(gChosenActionByBattler[battlerId] == B_ACTION_USE_MOVE)
+	{
+		if(gProtectStructs[battlerId].noValidMoves)
+			chosenMoveId = MOVE_STRUGGLE;
+		else
+			chosenMoveId = gBattleMons[battlerId].moves[*(gBattleStruct->chosenMovePositions + battlerId)];
+	}
+	else
+		chosenMoveId = MOVE_NONE;
+
+	chosenMove = gBattleMoves[chosenMoveId];
+	priority = chosenMove.priority;
+	battlerAbility = gBattleMons[battlerId].ability;
+
+	if(battlerAbility == 0x9E && chosenMove.byteA >= 4)
+		priority++;
+	elseif(battlerAbility == ABILITY_GALE_WINGS && chosenMove.type == TYPE_FLYING)
+		priority++;
+
+	return priority;
+}

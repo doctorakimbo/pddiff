@@ -1,0 +1,302 @@
+s0 = 4
+*gBattlerAttacker = *(*gCurrentTurnActionNumber + gBattlerByTurnOrder)
+r2 = *(*gBattleStruct + 0x91) & *((*gBattlerAttacker * 4) + data_0825E41C)
+
+if(r2 != 0)
+{
+	*gCurrentActionFuncId = 0xC
+	return
+}
+
+*gAbsentBattlerFlags = 1
+*(gBattleScripting + 0xE) = 1
+*(*gBattleStruct + 0xB7) = 0
+*gMoveResultFlags = 0
+*gCritMultiplier = 0
+*(gBattleCommunication + 6) = 0
+r0 = *(*gBattlerAttacker + *gBattleStruct + 0x80)
+*gChosenMovePos = r0
+*gCurrMovePos = r0
+r4 = *gBattlerAttacker
+r3 = (r4 * 16) + gProtectStructs
+
+if((*r3 << 0x1D) < 0)
+{
+	*r3 &= 5
+	*gChosenMove = 0xA5
+	*gCurrentMove = 0xA5
+	*gHitMarker |= 0x800
+	*(*gBattlerAttacker + *gBattleStruct + 0xC) = GetMoveTarget(0xA5, 0)
+}
+else
+{
+	r5 = r4 * 0x58
+	r2 = *(gBattleMons + 0x50 + r5)
+	
+	if(r2 & 0x1000 != 0) goto lbl4
+	
+	if(r2 & 0x400000 == 0)
+	{
+		r0 = (r4 * 0x1C) + gDisableStructs
+		r4 = *(r0 + 6)
+		r2 = r4
+		
+		if(r2 == 0) goto lbl7
+		
+		r3 = *(r0 + 0xC)
+		r0 = (r3 * 2) + r5
+		r5 = gChosenMovePos + 0xC
+		r1 = *(r0 + r5)
+		
+		if(r2 == r1)
+		{
+			*gChosenMove = r4
+			*gCurrentMove = r4
+			r0 = *((*gBattlerAttacker * 0x1C) + gDisableStructs + 0xC)
+			*gChosenMovePos = r0
+			*gCurrMovePos = r0
+			*(*gBattlerAttacker + *gBattleStruct + 0xC) = GetMoveTarget(*gCurrentMove, 0)
+		}
+		else
+		{
+			if(r2 != 0 && r2 != r1)
+			{
+				*gChosenMovePos = r3
+				*gCurrMovePos = r3
+				r0 = *((*gCurrMovePos * 2) + (*gBattlerAttacker * 0x58) + r5)
+				*gChosenMove = r0
+				*gCurrentMove = r0
+				*((*gBattlerAttacker * 0x1C) + gDisableStructs + 6) = 0
+				*((*gBattlerAttacker * 0x1C) + gDisableStructs + 0xC) = 0
+				*((*gBattlerAttacker * 0x1C) + gDisableStructs + 0xE) &= 0x10
+				*(*gBattlerAttacker + *gBattleStruct + 0xC) = GetMoveTarget(*gCurrentMove, 0)
+			}
+			else
+			{
+				lbl7:
+				r3 = *((*gBattlerAttacker * 0x58) + (*gCurrMovePos * 2) + gBattleMons + 0xC)
+				
+				if(r3 == *((*gBattlerAttacker * 2) + gChosenMoveByBattler))
+				{
+					*gChosenMove = r3
+					*gCurrentMove = r3
+				}
+				else
+				{
+					*gChosenMove = r3
+					*gCurrentMove = r3
+					*(*gBattlerAttacker + *gBattleStruct + 0xC) = GetMoveTarget(*gCurrentMove, 0)
+				}
+			}
+		}
+	}
+	else
+	{
+		lbl4:
+		r0 = (r4 * 2) + gLockedMoves
+		*gChosenMove = r0
+		*gCurrentMove = r0
+	}
+}
+
+if(GetBattlerSide(*gBattlerAttacker) == 0)
+	*(gBattleResults + 0x22) = *gCurrentMove
+else
+	*(gBattleResults + 0x24) = *gCurrentMove
+
+r6 = GetBattlerSide(*gBattlerAttacker) xor 1
+r5 = (r6 * 0xC) + gSideTimers
+
+if(*(r5 + 8) != 0 && *((*gCurrentMove * 0xC) + gBattleMoves + 6) == 0 && GetBattlerSide(*gBattlerAttacker) != GetBattlerSide(*(r5 + 9)))
+{
+	r2 = *(r5 + 9)
+
+	if(*((r2 * 0x58) + gBattleMons + 0x28) != 0)
+	{
+		*gBattlerTarget = r2
+		goto lbl41
+	}
+}
+
+r3 = gBattlerAttacker
+r7 = gBattleTypeFlags
+
+if(*gBattleTypeFlags & 1 != 0)
+{
+	r5 = *((r6 * 0xC) + gSideTimers + 8)
+
+	if(r5 != 0)
+	{
+		r4 = (*gCurrentMove * 0xC) + gBattleMoves
+
+		if(*(r4 + 6) < 0x10)
+		{
+			r3 = gBattleMons
+			*(gBattlerAttacker + 0x11) = 0
+			r0 = *((*gBattlerAttacker * 0x58) + r3 + 0x20)
+
+			if(r0 != 0x68 && r0 - 0xA3 >= 1)
+			{
+				r0 = *((*(*gBattleStruct + *gBattlerAttacker + 0xC) * 0x58) + r3 + 0x20)
+				r3 = *(r4 + 2)
+				
+				if(r3 != 0xD)
+				{
+					if(r3 != 0xB)
+					{
+						r3 = gBattlerAttacker
+						goto lbl32
+					}
+
+					if(r0 == 0x72)
+					{
+						*(gBattlerAttacker + 0x11) = 4
+						r3 = gBattlerAttacker
+						goto lbl32
+					}
+				}
+				
+				if(r0 == 0x1F)
+				{
+					*(gBattlerAttacker + 0x11) = 4
+					r3 = gBattlerAttacker
+					goto lbl32
+				}
+				
+				for(i = *gActiveBattler; i < *gBattlersCount; i++)
+				{
+					if(i != *gBattlerAttacker)
+					{
+						r0 = *((i * 0x58) + gBattleMons + 0x20)
+						
+						if(r3 != 0xD)
+							goto lblx6
+
+						if(r0 == 0x1F)
+							goto lblx7
+						
+						lblx6:
+						if(r3 == 0xB && r0 == 0x72)
+						{
+							lblx7:
+							r3 = s0
+							
+							if(GetBattlerTurnOrderNum(i) < r3)
+								s0 = GetBattlerTurnOrderNum(i)
+						}
+					}
+				}
+			}
+
+			if(s0 == 4)
+			{
+				if(*((*gChosenMove * 0xC) + gBattleMoves + 6) & s0 == 0)
+					*gBattlerTarget = *(*gBattlerAttacker + *gBattleStruct + 0xC)
+				else
+				{
+					if(GetBattlerSide(*gBattlerAttacker) == 0)
+					{
+						if(Random() & 1 == 0)
+							r0 = 3
+						else
+							r0 = 1
+					}
+					else
+					{
+						if(Random() & 1 == 0)
+							r0 = 2
+						else
+							r0 = 0
+					}
+
+					*gBattlerTarget = GetBankIdentity(r0)
+				}
+
+				r7 = data_02023D70
+				
+				if(*r7 & *((*gBattlerTarget * 4) + data_0825E45C) == 0)
+					goto lbl41
+				
+				if(GetBattlerSide(*gBattlerAttacker) != GetBattlerSide(*gBattlerTarget))
+				{
+					r0 = *gBattlerTarget
+					goto lbl40
+				}
+				
+				*gBattlerTarget = GetBankByIdentity(GetBankIdentity(*gBattlerAttacker) xor 1)
+				r1 = *r7
+				r0 = (*gBattlerTarget * 4) + data_0825E45C
+				goto lbl39
+			}
+			
+			r0 = *(gBattlerByTurnOrder + s0)
+			*gActiveBattler = r0
+			r1 = *((r0 * 0x58) + gBattleMons + 0x20)
+			sub_80C71D0()
+			*((*gActiveBattler * 0x14) + gSpecialStatuses) |= 2
+			*gBattlerTarget = *gActiveBattler
+			goto lbl41
+		}
+	}
+
+	lbl32:
+	if(*r7 & 1 != 0 && *((*gChosenMove * 0xC) + gBattleMoves + 6) & 4 != 0)
+	{
+		if(GetBattlerSide(*r3) == 0)
+		{
+			if(Random() & 1 == 0)
+				r0 = 3
+			else
+				r0 = 1
+		}
+		else
+		{
+			if(Random() & 1 == 0)
+				r0 = 2
+			else
+				r0 = 0
+		}
+		
+		*gBattlerTarget = GetBankByIdentity(r0)
+		
+		if((*((*gBattlerTarget * 4) + data_0825E45C) & *data_02023D70 != 0) && GetBattlerSide(*gBattlerAttacker) != GetBattlerSide(*gBattlerTarget))
+		{
+			r0 = *gBattlerTarget
+			goto lbl40
+		}
+		
+		goto lbl41
+	}
+}
+
+lbl37:
+*gBattlerTarget = *(*r3 + *gBattleStruct + 0xC)
+
+if(*((*gBattlerTarget * 4) + data_0825E45C) & *data_02023D70 != 0)
+{	
+	if(GetBattlerSide(*r3) != GetBattlerSide(*gBattlerTarget))
+	{
+		r0 = *gBattlerTarget
+		goto lbl40
+	}
+
+	*gBattlerTarget = GetBankByIdentity(GetBankIdentity(*r3) xor 1)
+	r1 = *data_02023D70
+	r2 = *gBattlerTarget
+	r0 = (*gBattlerTarget * r2) + data_0825E45C
+
+	lbl39:
+	r0 = *r0
+	
+	if(r1 != 0)
+	{
+		r0 = r2
+
+		lbl40:
+		*gBattlerTarget = GetBankByIdentity(GetBankIdentity(r0) xor 2)
+	}
+}
+
+lbl41:
+*gBattleScriptCurrInstr = *((*((*gCurrentMove * 0xC) + gBattleMoves) * 4) + data_081D65A8)
+*gCurrentActionFuncId = 0xA

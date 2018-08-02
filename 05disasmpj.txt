@@ -1,0 +1,198 @@
+lbl1: @15128
+r0 = gCurrentActionFuncId
+r6 = r0 + 1
+r0 = *r0
+r0 = r0 - 0xB
+if(r0 > 1) goto lbl8
+
+r0 = gBattleTypeFlags
+r1 = *r0
+r0 = 0x80B92
+r1 &= r0
+if(r1 != 0) goto lbl5
+
+r2 = data_02023BC4
+*r2 = r1
+r0 = *(r2 + 8)
+if(r1 >= r0) goto lbl5
+
+r4 = r2
+r5 = 0x58
+r7 = r6
+r7 += 0x30
+goto lbl2
+
+lbl2:
+r0 = *r4
+GetBattlerSide()
+r0 << 0x18
+if(r0 != 0) goto lbl4
+
+r2 = data_03004F90
+r0 = *(r2 + 6)
+if(r0 != 0) goto lbl3
+
+r0 = *r4
+r0 *= r5
+r0 += r6
+r0 = *r0
+*(r2 + 6) = r0
+r0 = *r4
+r1 = r0
+r1 *= r5
+r1 += r7
+r0 = r2
+r0 += 8
+StringCopy()
+goto lbl4
+
+lbl3:
+r0 = *r4
+r0 *= r5
+r0 += r6
+r0 = *r0
+*(r2 + 0x26) = r0
+r0 = *r4
+r1 = r0
+r1 *= r5
+r1 += r7
+r0 = r2
+r0 += 0x14
+StringCopy()
+goto lbl4
+
+lbl4:
+r0 = *r4
+r0++
+*r4 = r0
+r1 = data_02023BC4
+r1 = *(r1 + 8)
+if(r0 blo r1) goto lbl2
+
+lbl5:
+sub_812BFDC()
+r0 = gBattleTypeFlags
+r0 = *r0
+r1 = 8
+r0 &= r1
+if(r0 == 0) goto lbl6
+
+sub_810CB90()
+goto lbl6
+
+lbl6:
+r0 = 3
+BeginFastPaletteFade()
+r0 = 5
+FadeOutMapMusic()
+r1 = data_03004F84
+r0 = sub_8015A30
+*r1 = r0
+r1 = data_0300537C
+r0 = sub_8011100
+*r1 = r0
+r0 = data_02023F89_J
+r6 = *r0
+goto lbl7
+
+lbl7:
+r0 = data_020241E4_J
+r6--
+r1 = 0x64
+r1 *= r6
+r0 += r1
+fn_207370_PD()
+if(r6 != 0) goto lbl7
+
+goto lbl9
+
+lbl8:
+r0 = data_02023BC4
+r0 = *(r0 + 4)
+if(r0 != 0) goto lbl9
+
+r1 = gBattleScriptingCommandsTable
+r0 = gBattleScriptCurrInstr
+r0 = *r0
+r0 = *r0
+r0 *= 4
+r0 += r1
+r0 = *r0
+_call_via_r0()
+goto lbl9
+
+lbl9:
+return r0
+
+
+fn_207370_PD()
+lbl10: @207370
+r5 = r0
+r4 = r1
+CalculateMonStats()
+r0 = r5
+r1 = 0
+CheckPartyPokerus()
+if(r0 != 0) goto lbl13
+
+r0 = r5
+r1 = 0
+CheckPartyHasHadPokerus()
+if(r0 != 0) goto lbl15
+
+r0 = r4
+r1 = 0x64
+svc(6)
+r4 = r0
+r0 = data_020241E4_J
+r2 = r4 - 1
+r1 = 1
+r1 << r2
+r2 = r4 + 1
+r3 = 1
+r3 << r2
+r1 |= r3
+r2 = 0x3F
+r1 &= r2
+beq lbl11
+
+CheckPartyPokerus()
+if(r0 == 0) goto lbl11
+
+Random()
+r1 = 3
+svc(6)
+if(r1 == 0) goto lbl12
+
+lbl11:
+Random()
+r1 = 0x400
+svc(6)
+if(r1 != 0) goto lbl15
+
+goto lbl12
+
+lbl12:
+r0 = 1
+goto lbl14
+
+lbl13:
+Random()
+r1 = 0x20
+svc(6)
+if(r1 != 0) goto lbl15
+
+r0 = 2
+goto lbl14
+
+lbl14:
+s0 = r0
+r0 = r5
+r1 = 0x22
+r2 = s0
+sub_804037C()
+r0 = s0
+goto lbl15
+
+lbl15:
+return r0

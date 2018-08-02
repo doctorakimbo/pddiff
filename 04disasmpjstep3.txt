@@ -1,0 +1,88 @@
+GetWhoStrikesFirst(battler1, battler2, ignoreChosenMoves)
+{
+	speedBattler1 = GetSpeedStat(battler1)
+	speedBattler2 = GetSpeedStat(battler2)
+
+	if(!ignoreChosenMoves)
+	{
+		priority1 = GetPriority(battler1);
+		priority2 = GetPriority(battler2);
+		
+		if(priority1 != priority2)
+		{
+			if(priority1 < priority2)
+				return 1;
+			else
+				return 0;
+		}
+	}
+
+	if(speedBattler1 == speedBattler2)
+	{	
+		if(Random() & 1 == 0)
+			return 0;
+		else
+			return 2;
+	}
+
+	if(speedBattler1 < speedBattler2)
+		return 1;
+	else
+		return 0;
+}
+
+GetSpeedStat(battlerId)
+{
+	speedStat = gBattleMons[battlerId].speed;
+	ability = gBattleMons[battlerId].ability;
+	
+	if(!AbilityBattleEffects(ABILITYEFFECT_CHECK_ON_FIELD, 0, ABILITY_CLOUD_NINE, 0, 0) && !AbilityBattleEffects(ABILITYEFFECT_CHECK_ON_FIELD, 0, ABILITY_AIR_LOCK, 0, 0) && ((ability == ABILITY_SWIFT_SWIM && gBattleWeather & WEATHER_RAIN_ANY) || (ability == ABILITY_SAND_RUSH && gBattleWeather & WEATHER_SANDSTORM_ANY) || (ability == ABILITY_CHLOROPHYLL && gBattleWeather & WEATHER_SUN_ANY) || (ability == ABILITY_SLUSH_RUSH && gBattleWeather & WEATHER_HAIL_ANY)))
+		speedStat *= 2;
+
+	speedStat *= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][0] / gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][1];
+	
+	if(gBattleMons[battlerId].status1)
+	{
+		if(ability == ABILITY_QUICK_FEET)
+			speedStat += speedStat / 2;
+		elseif(gBattleMons[battlerId].status1 & STATUS_PARALYSIS != 0)
+			speedStat /= 2;
+	}
+
+	if(gSideTimers[battlerId % 2].tailwindTimer)
+		speedStat *= 2;
+
+	mysteryvar = gDisableStructs[battlerId].bit18; // ???
+	
+	if(ability == ABILITY_UNBURDEN && mysteryvar == 2 && gBattleMons[battlerId].item == ITEM_NONE)
+		speedStat *= 2;
+
+	if(ability == 0x70 && mysteryvar != 0)
+		speedStat /= 2;
+
+	holdEffect = GetHoldEffect(gBattleMons[battlerId].item);
+	holdEffectParam = GetHoldEffectParam(gBattleMons[battlerId].item);
+	
+	if(holdEffect == HOLD_EFFECT_MACHO_BRACE)
+		speedStat /= 2;
+
+	if(ability != ABILITY_KLUTZ)
+	{
+		if(holdEffect == HOLD_EFFECT_CHOICE_SCARF)
+			speedStat += speedStat / 2;
+
+		if(holdEffect == HOLD_EFFECT_LAGGING_TAIL)
+			return UINT_MIN;
+			
+		if(holdEffect == HOLD_EFFECT_QUICK_CLAW && *gRandomTurnNumber < ((holdEffectParam * 0xFFFF) / 100))
+			return UINT_MAX;
+	}
+
+	if(gTrickRoomActive)
+		return -speedStat;
+
+	if(ability == ABILITY_STALL)
+		return UINT_MIN;
+	
+	return speedStat;
+}

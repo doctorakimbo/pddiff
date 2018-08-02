@@ -1,0 +1,56 @@
+sub_8015910()
+{
+	if(*gCurrentActionFuncId > 0xC)
+	{
+		if(*data_02023BC8 == 0)
+		{
+			r0 = *((**gBattleScriptCurrInstr * 4) + gBattleScriptingCommandsTable)
+			_call_via_r0()
+		}
+	}
+	else
+	{
+		r1 = *gBattleTypeFlags & 0x80B92
+		
+		if(r1 == 0)
+		{
+			r4 = data_02023BC4
+			r6 = gBattleMons
+			r5 = 0x58
+			r7 = r6 + 0x30
+			
+			for(*r4 = 0; *r4 < *gBattlersCount; (*r4)++)
+			{
+				if((GetBattlerSide(*r4) << 0x18) == 0)
+				{
+					r2 = data_03004F90
+					
+					if(*(r2 + 6) == 0)
+					{
+						*(r2 + 6) = *((*r4 * r5) + r6)
+						r0 = StringCopy(r2 + 8, (*r4 * r5) + r7)
+					}
+					else
+					{
+						*(r2 + 0x26) = *((*r4 * r5) + r6)
+						r0 = StringCopy(r2 + 0x14, (*r4 * r5) + r7)
+					}
+				}
+			}
+		}
+
+		sub_812BFDC()
+		r0 = *gBattleTypeFlags & 8
+		
+		if(r0 != 0)
+			sub_810CB90()
+		
+		BeginFastPaletteFade(3)
+		FadeOutMapMusic(5)
+		*data_03004F84 = sub_8015A30
+		r0 = sub_8011100
+		*data_0300537C = r0
+	}
+
+	return r0
+}

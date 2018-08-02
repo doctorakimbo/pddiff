@@ -1,0 +1,518 @@
+lbl1: @112E0
+s4 = r0
+s5 = r1
+r0 = 0
+r9 = r0
+r0 = 0x80
+r0 = r0 * 8
+if(r1 != r0) goto lbl2
+
+r0 = 0
+goto lbl30
+
+lbl2:
+r0 = gBattleTypeFlags
+r0 = *r0
+r1 = 080908
+r0 = r0 & r1
+r1 = s5
+r1 = r1 * 4
+s8 = r1
+if(r0 == 8) goto lbl3
+
+goto lbl29
+
+lbl3:
+call ZeroEnemyPartyMons
+r2 = 0
+s6 = r2
+r2 = gTrainers
+r1 = s8
+r3 = s5
+r0 = r1 + r3
+r0 = r0 * 8
+r0 = r0 + r2
+r0 = r0 + 0x20
+r4 = s6
+goto lbl27
+
+lbl4:
+r3 = s5
+r0 = r1 + r3
+r0 = r0 * 8
+r1 = r0 * r2
+r0 = *(r1 + 0x18)
+if(r0 != 1) goto lbl5
+
+r4 = 0x80
+r10 = r4
+goto lbl6
+
+lbl5:
+r1 = *(r1 + 2)
+r0 = 0x80
+r0 = r0 & r1
+r1 = 0x88
+r10 = r1
+if(r0 == 0) goto lbl6
+
+r2 = 0x78
+r10 = r2
+goto lbl6
+
+lbl6:
+r6 = 0
+r0 = gTrainers
+r2 = s8
+r3 = s5
+r1 = r2 + r3
+r1 = r1 * 8
+r3 = r0 + 4
+r1 = r1 + r3
+r1 = *r1
+r4 = r0
+r0 = s6
+r0 = r0 + 1
+s7 = r0
+if(r1 == 0xFF) goto lbl8
+
+goto lbl7
+
+lbl7:
+r1 = s5
+r1 = r2 + r0
+r1 = r1 * 8
+r0 = r6 + r1
+r0 = r0 + r3
+r0 = *r0
+r9 = r9 + r0
+r6 = r6 + 1
+r1 = r6 + r1
+r1 = r1 + r3
+r0 = *r1
+if(r0 != 0xFF) goto lbl7
+
+goto lbl8
+
+lbl8:
+r2 = r4
+r1 = s8
+r3 = s5
+r0 = r1 + r3
+r1 = r0 * 8
+r0 = r1 + r2
+r0 = *r0
+if(r0 == 1) goto lbl15
+
+if(r0 > 1) goto lbl9
+
+if(r0 == 0) goto lbl12
+
+goto lbl26
+
+lbl9:
+if(r0 != 2) goto lbl10
+
+goto lbl19
+
+lbl10:
+if(r0 != 3) goto lbl11
+
+goto lbl22
+
+lbl11:
+goto lbl26
+
+lbl12:
+r0 = r2
+r0 = r0 + 0x24
+r0 = r1 + r0
+r4 = *r0
+r6 = 0
+r0 = s6
+r2 = r0 * 8
+r0 = r2 + r4
+r1 = *(r0 + 4)
+r0 = 0xB
+r0 = r1 * r0
+r1 = gSpeciesNames
+r0 = r0 + r1
+r0 = *r0
+r5 = r2
+if(r0 == 0xFF) goto lbl14
+
+r3 = r1
+goto lbl13
+
+lbl13:
+r7 = 0xB
+r0 = r2 + r4
+r0 = *(r0 + 4)
+r1 = r1 + r0
+r1 = r7 * r1
+r0 = r6 + r1
+r0 = r0 + r3
+r0 = *r0
+r9 = r9 + r0
+r6 = r6 + 1
+r1 = r6 + r1
+r1 = r1 + r3
+r0 = *r1
+if(r0 != 0xFF) goto lbl13
+
+goto lbl14
+
+lbl14:
+r2 = r9
+r0 = r2 * 256
+r10 = r10 + r0
+r4 = r5 + r4
+r1 = *r4
+r0 = r1 * 32
+r0 = r0 - r1
+r1 = 0xFF
+call __divsi3
+r6 = r0
+r1 = s5
+r3 = s6
+r2 = 0x64
+r0 = r3
+r0 = r1 + r0
+r2 = s4
+r0 = r2 + r0
+r1 = *(r4 + 4)
+r2 = *(r4 + 2)
+r3 = 1
+s0 = r3
+r3 = r10
+s1 = r3
+r3 = 2
+s2 = r3
+r3 = 0
+s3 = r3
+r3 = r6
+call CreateMon
+goto lbl26
+
+lbl15:
+r0 = r2
+r0 = r0 + 0x24
+r0 = r1 + r0
+r7 = *r0
+r6 = 0
+r4 = s6
+r2 = r4 * 16
+r0 = r2 + r7
+r1 = *(r0 + 4)
+r0 = 0xB
+r0 = r1 * r0
+r1 = gSpeciesNames
+r0 = r0 + r1
+r0 = *r0
+r8 = r2
+if(r0 == 0xFF) goto lbl17
+
+r3 = r1
+goto lbl16
+
+lbl16:
+r4 = 0xB
+r0 = r2 + r7
+r0 = *(r0 + 4)
+r1 = r0
+r1 = r4 * r1
+r0 = r6 + r1
+r0 = r0 + r3
+r0 = *r0
+r9 = r0
+r6 = r6 + 1
+r1 = r6 + r1
+r1 = r1 + r3
+r0 = *r1
+if(r0 != 0xFF) goto lbl16
+
+goto lbl17
+
+lbl17:
+r2 = r9
+r0 = r2 * 256
+r10 = r10 + r0
+r3 = r8
+r4 = r3 + r7
+r1 = *r4
+r0 = r1 * 32
+r0 = r0 - r1
+r1 = 0xFF
+call __divsi3
+r6 = r0
+r0 = s6
+r1 = 0x64
+r5 = r0
+r5 = r1 * r5
+r2 = s4
+r5 = r2 + r5
+r1 = *(r4 + 4)
+r2 = *(r4 + 2)
+r0 = 1
+s0 = r0
+r3 = r10
+s1 = r3
+r0 = 2
+s2 = r0
+r0 = 0
+s3 = r0
+r0 = r5
+r3 = r6
+call CreateMon
+r6 = 0
+r0 = r8
+r0 = r0 + 6
+r4 = r7 + r0
+goto lbl18
+
+lbl18:
+r1 = r6
+r1 = r1 + 0xD
+r0 = r5
+r2 = r4
+call SetMonData
+r1 = r6
+r1 = r1 + 0x11
+r0 = *r4
+r2 = r0 * 2
+r2 = r2 + r0
+r2 = r2 * 4
+r0 = gBattleMoves + 8
+r2 = r2 + r0
+r0 = r5
+call SetMonData
+r4 = r4 + 2
+r6 = r6 + 1
+if(r6 <= 3) goto lbl18
+
+goto lbl26
+
+lbl19:
+r0 = r2
+r0 = r0 + 0x24
+r0 = r1 + r0
+r4 = *r0
+r6 = 0
+r0 = s6
+r2 = r0 * 8
+r0 = r2 + r4
+r1 = *(r0 + 4)
+r0 = 0xB
+r0 = r1 * r0
+r1 = gSpeciesNames
+r0 = r0 + r1
+r0 = *r0
+r5 = r2
+if(r0 == 0xFF) goto lbl21
+
+r3 = r1
+goto lbl20
+
+lbl20:
+r7 = 0xB
+r0 = r2 + r4
+r0 = *(r0 + 4)
+r1 = r0
+r1 = r7 * r1
+r0 = r6 + r1
+r0 = r0 + r3
+r0 = *r0
+r9 = r9 + r0
+r6 = r6 + 1
+r1 = r6 + r1
+r1 = r1 + r3
+r0 = *r1
+if(r0 != 0xFF) goto lbl20
+
+goto lbl21
+
+lbl21:
+r2 = r9
+r0 = r2 * 256
+r10 = r10 + r0
+r5 = r5 + r4
+r1 = *r5
+r0 = r1 * 32
+r0 = r0 - r1
+r1 = 0xFF
+call __divsi3
+r6 = r0
+r3 = s6
+r0 = 0x64
+r4 = r3
+r4 = r0 * r4
+r1 = s4
+r4 = r1 + r4
+r1 = *(r5 + 4)
+r2 = *(r5 + 2)
+r0 = 1
+s0 = r0
+r3 = r10
+s1 = r3
+r0 = 2
+s2 = r0
+r0 = 0
+s3 = r0
+r0 = r4
+r3 = r6
+call CreateMon
+r5 = r5 + 6
+r0 = r4
+r1 = 0xC
+r2 = r5
+call SetMonData
+goto lbl26
+
+lbl22:
+r0 = r4
+r0 = 0x24
+r0 = r1 + r0
+r7 = *r0
+r6 = 0
+r4 = s6
+r2 = r4 * 16
+r0 = r2 + r7
+r1 = *(r0 + 4)
+r0 = 0xB
+r0 = r1 * r0
+r1 = gSpeciesNames
+r0 = r0 + r1
+r0 = *r0
+r8 = r2
+if(r0 == 0xFF) goto lbl24
+
+r3 = r1
+goto lbl23
+
+lbl23:
+r4 = 0xB
+r0 = r2 + r7
+r0 = *(r0 + 4)
+r1 = r0
+r1 = r4 * r1
+r0 = r6 + r1
+r0 = r0 + r3
+r0 = *r0
+r9 = r9 + r0
+r6 = r6 + 1
+r1 = r6 + r1
+r1 = r1 + r3
+r0 = *r1
+if(r0 != 0xFF) goto lbl23
+
+goto lbl24
+
+lbl24:
+r2 = r9
+r0 = r2 * 256
+r10 = r10 + r0
+r3 = r8
+r5 = r3 + r7
+r1 = *r5
+r0 = r1 * 32
+r0 = r0 - r1
+r1 = 0xFF
+call __divsi3
+r6 = r0
+r0 = s6
+r1 = 0x64
+r4 = r0
+r4 = r1 * r4
+r2 = s4
+r4 = r2 + r4
+r1 = *(r5 + 4)
+r2 = *(r5 + 2)
+r0 = 1
+s0 = r0
+r3 = r10
+s1 = r3
+r0 = 2
+s2 = r0
+r0 = 0
+s3 = r0
+r0 = r4
+r3 = r6
+call CreateMon
+r5 = r5 + 6
+r0 = r4
+r1 = 0xC
+r2 = r5
+call SetMonData
+r6 = 0
+r5 = r4
+r0 = r8
+r0 = r0 + 8
+r4 = r7 + r0
+
+lbl25:
+r1 = r6
+r1 = r1 + 0xD
+r0 = r5
+r2 = r4
+call SetMonData
+r1 = r6
+r1 = r1 + 0x11
+r0 = *r4
+r2 = r0 * 2
+r2 = r2 + r0
+r2 = r2 * 4
+r0 = gBattleMoves + 8
+r2 = r2 + r0
+r0 = r5
+call SetMonData
+r4 = r4 + 2
+r6 = r6 + 1
+if(r6 <= 3) goto lbl25
+
+goto lbl26
+
+lbl26:
+r4 = s7
+s6 = r4
+r2 = gTrainers
+r1 = s8
+r3 = s5
+r0 = r1 + r3
+r0 = r0 * 8
+r0 = r0 + r2
+r0 = r0 + 0x20
+goto lbl27
+
+lbl27:
+r0 = *r0
+if(r4 >= r0) goto lbl28
+
+goto lbl4
+
+lbl28:
+r2 = gBattleTypeFlags
+r1 = gTrainers
+r4 = s8
+r3 = s5
+r0 = r4 + r3
+r0 = r0 * 8
+r0 = r0 + r1
+r1 = *(r0 + 0x18)
+r0 = r2
+r0 = r0 | r1
+*r2 = r0
+goto lbl29
+
+lbl29:
+r0 = gTrainers
+r4 = s8
+r2 = s5
+r1 = r4 + r2
+r1 = r1 * 8
+r1 = r1 + r0
+r1 = r1 + 0x20
+r0 = *r1
+goto lbl30
+
+lbl30:
+return r0

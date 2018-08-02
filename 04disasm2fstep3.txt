@@ -1,0 +1,54 @@
+fakeFunction(battler1, battler2, ignoreChosenMoves, speedBattler1, speedBattler2)
+{
+	strikesFirst = 0;
+
+	if(ignoreChosenMoves != 0)
+	{
+		moveBattler1 = 0;
+		moveBattler2 = 0;
+	}
+	else
+	{
+		if(gChosenActionByBattler[battler1] == B_ACTION_USE_MOVE)
+		{
+			if(gProtectStructs[battler1].noValidMoves)
+				moveBattler1 = MOVE_STRUGGLE;
+			else
+				moveBattler1 = gBattleMons[battler1].moves[*(gBattleStruct->chosenMovePositions + battler1)];
+		}
+		else
+			moveBattler1 = MOVE_NONE;
+
+		if(gChosenActionByBattler[battler2] == B_ACTION_USE_MOVE)
+		{
+			if(gProtectStructs[battler2].noValidMoves)
+				moveBattler2 = MOVE_STRUGGLE;
+			else
+				moveBattler2 = gBattleMons[battler2].moves[*(gBattleStruct->chosenMovePositions + battler2)];
+		}
+		else
+			moveBattler2 = MOVE_NONE;
+	}
+
+	if(gBattleMoves[moveBattler1].priority == 0 || gBattleMoves[moveBattler2].priority != 0)
+	{
+		if (gBattleMoves[moveBattler1].priority == gBattleMoves[moveBattler2].priority)
+        {
+            if(speedBattler1 == speedBattler2 && Random() & 1)
+			   strikesFirst = 2;
+            elseif(speedBattler1 < speedBattler2)
+               strikesFirst = 1;
+		}
+        elseif(gBattleMoves[moveBattler1].priority < gBattleMoves[moveBattler2].priority)
+            strikesFirst = 1;
+	}
+	else
+    {
+        if(speedBattler1 == speedBattler2 && Random() & 1)
+            strikesFirst = 2;
+        elseif(speedBattler1 < speedBattler2)
+            strikesFirst = 1;
+	}
+	
+	return strikesFirst;
+}

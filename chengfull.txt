@@ -1,0 +1,120 @@
+upper = +ba
+lower = +d4
+
+repoint 3FDF3C -> CDEFA0 + add 5 entries (fiery vortex, item can't be removed, sharply item rose, waggle, light screen wore off)
+0D77C8: 81 01 -> 86 01
+
+fire spin:
+3FE5A4 OR 3FE5A8: 5B 00 -> 7D 01 (?)
+
+status on sub not affect:
+F2 7D 1D 08 -> 04 7E 1D 08
+sleep: 1D6976
+statdown?: 1D6C1A
+toxic: 1D6DF0
+confuse: 1D70BB
+poison: 1D7191
+paralyze: 1D71F2
+mimic?: 1D737D
+leech seed: 1D73BA
+lockon?: 1D74F4
+sketch?: 1D7516
+meanlook?: 1D76D8
+nightmare?: 1D770F
+curse?: 1D77DF
+willowisp: 1D7F34
+trick?: 1D8101
+yawn?: 1D8221
+
+no energy drain msg at full hp:
+1D6A07:
+	28 XX XX XX 08 00 00 00 00 00
+XXXXXX:
+	29 00 6B 3D 02 02 00 XY XX XX 08 29 00 6B 3D 02 02 01 XZ XX XX 08 29 00 6B 3D 02 02 02 YA XX XX 08 2C 14 3D 02 02 16 3D 02 02 YC XX XX 08 28 YB XX XX 08
+XXXXXY: @XXXXXX + 33
+	2C 0C 3C 02 02 0E 3C 02 02 YC XX XX 08 28 YB XX XX 08
+XXXXXZ: @XXXXXX + 45
+	2C 64 3C 02 02 66 3C 02 02 YC XX XX 08 28 YB XX XX 08
+XXXXYA: @XXXXXX + 57
+	2C BC 3C 02 02 BE 3C 02 02 YC XX XX 08
+XXXXYB: @XXXXXX + 64
+	88 35 D0 3D 02 02 00 01 00 00 28 11 6A 1D 08
+XXXXYC: @XXXXXX + 73
+	88 35 D0 3D 02 02 00 01 00 00 1E 00 40 23 6A 1D 08 2E 87 3E 02 02 00 0B 01 0C 01 28 42 6A 1D 08
+1D6B34:
+	28 XX XX XX 08 00 00 00 00 00
+XXXXXX:
+	29 00 6B 3D 02 02 00 XY XX XX 08 29 00 6B 3D 02 02 01 XZ XX XX 08 29 00 6B 3D 02 02 02 YA XX XX 08 2C 14 3D 02 02 16 3D 02 02 YC XX XX 08 28 YB XX XX 08
+XXXXXY: @XXXXXX + 33
+	2C 0C 3C 02 02 0E 3C 02 02 YC XX XX 08 28 YB XX XX 08
+XXXXXZ: @XXXXXX + 45
+	2C 64 3C 02 02 66 3C 02 02 YC XX XX 08 28 YB XX XX 08
+XXXXYA: @XXXXXX + 57
+	2C BC 3C 02 02 BE 3C 02 02 YC XX XX 08
+XXXXYB: @XXXXXX + 64
+	88 35 D0 3D 02 02 00 01 00 00 28 3E 6B 1D 08
+XXXXYC: @XXXXXX + 73
+	88 35 D0 3D 02 02 00 01 00 00 0B 01 0C 01 28 53 6B 1D 08
+
+no rest regained health msg:
+1D6EAE: B7 7D 1D 08 -> XX XX XX 08
+XXXXXX: 09 0A 35 D0 3D 02 02 00 01 00 00 0B 00 0C 00 28 4E 69 1D 08
+
+leech seed miss:
+1D73BF: C5 73 1D 08 -> 60 69 1D 08
+should be free to change "evaded" to "failed" afterwards
+
+teeterdance on sub not affect:
+1D83D2: E5 00 -> 1B 00
+
+sticky hold:
+1D9492: 5B 00 -> 7E 01 (?)
+
+starf:
+repoint 3FE57C + add one entry (7F 01?)
+hardcode vanilla "rose" w/ item
+01C6BC:
+	79 96 1D 08 -> XX XX XX 08
+XXXXXX:
+	45 01 07 00 00 00 00 89 41 XY XX XX 08
+XXXXXY: @XXXXXX + D
+	2E 87 3E 02 02 06 41 D1 6B 1D 08 6A 01 3E
+
+waggle finger:
+1D66F4: 9A 73 1D 08 -> XX XX XX 08
+XXXXXX: 00 02 39 20 00 09 0A 2E DC 3F 02 02 00 2E DD 3F 02 02 00 10 80 01 9E (80 01 -> ??)
+029799: D1 13 4A 10 68 13 49 08 40 10 60 -> all 00
+
+brick break:
+hardcode "wall shattered" -> "reflect wore off"
+02D3E4:
+	11 88 09 48 08 40 00 23 08 49 08 40 10 80 23 70 A3 70 07 49 01 20 08 76 48 76 0E E0 -> 09 4D 00 23 2B 70 01 4F BF 46 00 00 XX XX XX 08 00 00 00 00 00 00 00 00 00 00 00 00
+02D40C:
+	FE FF 00 00 FD FF 00 00 C4 3F 02 02 -> 87 3E 02 02 00 00 00 00 00 00 00 00
+XXXXXX:
+	20 78 00 28 02 D1 A1 78 00 29 07 D0 11 88 0A 48 08 40 10 80 23 70 02 26 2E 70 07 E0 10 88 07 49 08 40 10 80 A3 70 2B 78 01 33 2B 70 04 49 01 20 08 76 48 76 03 4F BF 46 FE FF 00 00 FD FF 00 00 C4 3F 02 02 1E D4 02 08
+1D81DB:
+	29 03 DC 3F 02 02 02 EC 81 1D 08 10 62 01 12 40 -> 29 02 87 3E 02 02 01 XY XX XX 08 28 XX XX XX 08
+XXXXXX:
+	29 00 87 3E 02 02 01 XZ XX XX 08 29 00 87 3E 02 02 03 XZ XX XX 08 28 EC 81 1D 08
+XXXXXY: @XXXXXX + 1B
+	10 62 01 12 40 00 28 XX XX XX 08
+XXXXXZ: @XXXXXX + 26
+	10 81 01 12 40 00 28 EC 81 1D 08 (81 01 -> ??)
+
+todo:
+tmhm forgotten (NEED INFO)
+taunt (NEED INFO)
+quickclaw/pressure/cloudnine
+
+questions:
+status miss = failed? (->missed) (sleep, toxic, confuse, poison, paralyze, disable, lockon, sketch, spite, attract, torment, willowisp, taunt, trick, tickle)
+thunder wave on ground = failed? (->doesn't affect?)
+statdown/mimic/lockon/sketch/meanlook/nightmare/curse/trick/yawn on substitute = failed? (->doesn't affect?)
+swagger/flatter on substitute = missed? (->doesn't affect?)
+memento on substitute = "had no effect"? (->doesn't affect?)
+intimidate on substitute?
+check liquid ooze leech seed msg (g3)
+check if opp disable wearing off visible (g3)
+check if opp taunt wearing off visible (g7)
+tmhm forgotten needs further research

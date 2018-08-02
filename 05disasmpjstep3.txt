@@ -1,0 +1,88 @@
+HandleEndTurn_FinishBattle()
+{
+	if(gCurrentActionFuncId == 0xB || gCurrentActionFuncId == 0xC)
+	{
+		if(!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_x2000000 | BATTLE_TYPE_FIRST_BATTLE | BATTLE_TYPE_SAFARI | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FRONTIER)))
+		{
+			for(gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
+			{
+				if(GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
+				{
+					if(gBattleResults.playerMon1Species == SPECIES_NONE)
+					{
+						gBattleResults.playerMon1Species = gBattleMons[gActiveBattler];
+						StringCopy(gBattleResults.playerMon1Name, gBattleMons[gActiveBattler].nickname);
+					}
+					else
+					{
+						gBattleResults.playerMon2Species = gBattleMons[gActiveBattler];
+						StringCopy(gBattleResults.playerMon2Name, gBattleMons[gActiveBattler].nickname);
+					}
+				}
+			}
+		}
+		
+		sub_812BFDC();
+
+		if(gBattleTypeFlags & 8)
+			sub_810CB90();
+
+		BeginFastPaletteFade(3);
+		FadeOutMapMusic(5);
+		gBattleMainFunc = FreeResetData_ReturnToOvOrDoEvolutions;
+		gCB2_AfterEvolution = BattleMainCB2;
+		
+		for(i = *data_02023F89_J - 1; i != 0; i--)
+		{
+			r0 = data_020241E4_J[i]; // record size: 0x64
+			fn_207370_PD(r0, i * 0x64);
+		}
+	}
+	else
+	{
+		if(gBattleControllerExecFlags == 0)
+			gBattleScriptingCommandsTable[gBattleScriptCurrInstr[0]]();
+	}
+}
+
+fn_207370_PD(pkmn, arg1)
+{
+	CalculateMonStats(pkmn)
+
+	if(CheckPartyPokerus(pkmn, 0))
+	{
+		r0 = Random()
+		r1 = 0x20
+		svc(6)
+
+		if(r1 == 0)
+			SetMonData(pkmn, MON_DATA_POKERUS, 2);
+	}
+	elseif(!CheckPartyHasHadPokerus(pkmn, 0))
+	{
+		r0 = arg1
+		r1 = 0x64
+		svc(6)
+		r4 = r0
+		r0 = data_020241E4_J
+		r1 = ((1 << (r4 - 1)) | (1 << (r4 + 1))) & 0x3F
+		beq lbl11
+
+		if(!CheckPartyPokerus(r0, r1)) goto lbl11
+
+		r0 = Random()
+		r1 = 3
+		svc(6)
+		
+		if(r1 != 0)
+		{
+			lbl11:
+			r0 = Random()
+			r1 = 0x400
+			svc(6)
+			
+			if(r1 == 0)
+				SetMonData(pkmn, MON_DATA_POKERUS, 1);
+		}
+	}
+}

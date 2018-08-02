@@ -1,0 +1,102 @@
+sub_8015910()
+{
+	if(*gCurrentActionFuncId > 0xC)
+	{
+		if(*data_02023BC8 == 0)
+		{
+			r0 = *((**gBattleScriptCurrInstr * 4) + gBattleScriptingCommandsTable)
+			_call_via_r0()
+		}
+	}
+	else
+	{
+		r1 = *gBattleTypeFlags & 0x80B92
+		
+		if(r1 == 0)
+		{
+			r2 = data_02023BC4
+			*r2 = r1
+			r0 = *gBattlersCount
+			
+			if(r1 < r0)
+			{
+				r4 = r2
+				r6 = gBattleMons
+				r5 = 0x58
+				r7 = r6 + 0x30
+
+				do
+				{
+					r0 = *r4
+					GetBattlerSide()
+					
+					if((r0 << 0x18) == 0)
+					{
+						r2 = data_03004F90
+						r0 = *(r2 + 6)
+						
+						if(r0 == 0)
+						{
+							r0 = *r4
+							r0 *= r5
+							r0 += r6
+							r0 = *r0
+							*(r2 + 6) = r0
+							r0 = *r4
+							r1 = r0
+							r1 *= r5
+							r1 += r7
+							r0 = r2
+							r0 += 8
+							StringCopy()
+						}
+						else
+						{
+							r0 = *r4
+							r0 *= r5
+							r0 += r6
+							r0 = *r0
+							*(r2 + 0x26) = r0
+							r0 = *r4
+							r1 = r0
+							r1 *= r5
+							r1 += r7
+							r0 = r2
+							r0 += 0x14
+							StringCopy()
+						}
+					}
+
+					r0 = *r4
+					r0++
+					*r4 = r0
+					r1 = gBattlersCount
+					r0 = r0 % 256
+					r1 = *r1
+				} while(r0 < r1)
+			}
+		}
+
+		sub_812BFDC()
+		r0 = gBattleTypeFlags
+		r0 = *r0
+		r1 = 8
+		r0 &= r1
+		
+		if(r0 != 0)
+			sub_810CB90()
+		
+		r0 = 3
+		BeginFastPaletteFade()
+		r0 = 5
+		FadeOutMapMusic()
+		r1 = data_03004F84
+		r0 = sub_8015A30
+		*r1 = r0
+		r1 = data_0300537C
+		r0 = sub_8011100
+		*r1 = r0
+	}
+
+	return r0
+}

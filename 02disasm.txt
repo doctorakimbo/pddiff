@@ -1,0 +1,41 @@
+lbl1:
+r0 = data_02022AAC
+r0 = *r0
+r1 = 2
+r0 = r0 & r1
+if(r0 == 0) goto lbl2
+
+call fn_CEB8
+goto lbl3
+
+lbl2:
+call fn_CD88
+goto lbl3
+
+lbl3:
+call fn_D18C
+r0 = data_02022AAC
+r0 = *r0
+r0 = r0 & r1
+if(r0 != 0) goto lbl5
+
+r4 = 0
+r0 = data_02023B2C
+r1 = *r0
+if(r4 >= r1) goto lbl5
+
+r5 = r5 + r0
+goto lbl4
+
+lbl4:
+r0 = r4
+r1 = 0
+call fn_1286E0
+r4 = r4 + 1
+r0 = *r5
+if(r4 < r0) goto lbl4
+
+goto lbl5
+
+lbl5:
+return

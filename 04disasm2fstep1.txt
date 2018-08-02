@@ -1,0 +1,163 @@
+r2 = s1
+
+if(r2 != 0)
+{
+	r3 = 0
+	r2 = 0
+}
+else
+{
+	r0 = gChosenActionByBattler
+	r3 = r9
+	r1 = r3 + r0
+	r1 = *r1
+	r2 = r0
+
+	if(r1 == 0)
+	{
+		r0 = gProtectStructs
+		r1 = r3 * 16
+		r1 += r0
+		r0 = *r1
+		r0 << 0x1D
+		
+		if(r0 >= 0)
+		{
+			r0 = gBattleStruct
+			r0 = *r0
+			r0 += r9
+			r0 += 0x80
+			r0 = *r0
+			r0 *= 2
+			r1 = 0x58
+			r3 = r9
+			r3 *= r1
+			r1 = r3
+			r0 += r1
+			r1 = gBattleMons
+			r1 += 0xC
+			r0 += r1
+			r3 = *r0	
+		}
+		else
+			r3 = 0xA5
+	}
+	else
+		r3 = 0
+
+	r1 = r10
+	r0 = r1 + r2
+	r0 = *r0
+
+	if(r0 != 0)
+	{
+		r0 = gProtectStructs
+		r1 *= 16
+		r1 += r0
+		r0 = *r1
+		r0 << 0x1D
+
+		if(r0 >= 0)
+		{
+			r0 = gBattleStruct
+			r0 = *r0
+			r0 += r10
+			r0 += 0x80
+			r0 = *r0
+			r0 *= 2
+			r1 = 0x58
+			r2 = r10
+			r2 *= r1
+			r1 = r2
+			r0 += r1
+			r2 = *r0
+		}
+		else
+			r2 = 0xA5
+	}
+	else
+		r2 = 0
+}
+
+r4 = gBattleMons
+r0 = r3 * 2
+r0 += r3
+r0 *= 4
+r0 += r4
+r1 = 7
+r1 = *(r0 + r1)
+r3 = r2 * 2
+
+if(r1 == 0)
+{
+	r0 = r3 + r2
+	r0 *= 4
+	r0 += r4
+	r0 = *(r0 + 7)
+	
+	if(r0 == 0)
+	{
+		if(r8 == r7)
+		{
+			Random()
+			r1 = 1
+			r1 &= r0
+			
+			if(r1 != 0)
+			{
+				r2 = 2
+				s2 = r2
+				r0 = s2
+				return r0
+			}
+		}
+
+		if(r8 < r7)
+		{
+			r3 = 1
+			s2 = r3
+			r0 = s2
+			return r0
+		}
+	}
+}
+
+r0 = r3 + r2
+r0 *= 4
+r0 += r4
+r0 = *(r0 + 7)
+
+if(r1 == r0)
+{
+	if(r8 == r7)
+	{
+		Random()
+		r1 = 1
+		r1 &= r0
+		
+		if(r1 != 0)
+		{
+			r3 = 2
+			s2 = r3
+			r0 = s2
+			return r0
+		}
+	}
+
+	if(r8 < r7)
+	{
+		r0 = 1
+		s2 = r0
+		r0 = s2
+		return r0
+	}
+}
+
+if(r1 < r0)
+{
+	r1 = 1
+	s2 = r1
+}
+
+r0 = s2
+return r0

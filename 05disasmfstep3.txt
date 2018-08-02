@@ -1,0 +1,40 @@
+HandleEndTurn_FinishBattle()
+{
+	if(gCurrentActionFuncId == 0xB || gCurrentActionFuncId == 0xC)
+	{
+		if(!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_x2000000 | BATTLE_TYPE_FIRST_BATTLE | BATTLE_TYPE_SAFARI | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FRONTIER)))
+		{			
+			for(gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
+			{
+				if(GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
+				{
+					if(gBattleResults.playerMon1Species == SPECIES_NONE)
+					{
+						gBattleResults.playerMon1Species = gBattleMons[gActiveBattler];
+						StringCopy(gBattleResults.playerMon1Name, gBattleMons[gActiveBattler].nickname);
+					}
+					else
+					{
+						gBattleResults.playerMon2Species = gBattleMons[gActiveBattler];
+						StringCopy(gBattleResults.playerMon2Name, gBattleMons[gActiveBattler].nickname);
+					}
+				}
+			}
+		}
+
+		sub_812BFDC();
+		
+		if(gBattleTypeFlags & 8)
+			sub_810CB90();
+		
+		BeginFastPaletteFade(3);
+		FadeOutMapMusic(5);
+		gBattleMainFunc = FreeResetData_ReturnToOvOrDoEvolutions;
+		gCB2_AfterEvolution = BattleMainCB2;
+	}
+	else
+	{
+		if(gBattleControllerExecFlags == 0)
+			gBattleScriptingCommandsTable[gBattleScriptCurrInstr[0]]();
+	}
+}

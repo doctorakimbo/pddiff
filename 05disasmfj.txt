@@ -1,0 +1,115 @@
+lbl1: @15128
+r0 = gCurrentActionFuncId
+r0 = *r0
+r0 = r0 - 0xB
+r0 = r0 % 256
+if(r0 > 1) goto lbl7
+
+r0 = gBattleTypeFlags
+r1 = *r0
+r0 = 0x80B92
+r1 &= r0
+if(r1 != 0) goto lbl5
+
+r2 = data_02023BC4
+*r2 = r1
+r0 = gBattlersCount
+r0 = *r0
+if(r1 >= r0) goto lbl5
+
+r4 = r2
+r6 = gBattleMons
+r5 = 0x58
+r7 = r6
+r7 += 0x30
+goto lbl2
+
+lbl2:
+r0 = *r4
+GetBattlerSide()
+r0 << 0x18
+if(r0 != 0) goto lbl4
+
+r2 = data_03004F90
+r0 = *(r2 + 6)
+if(r0 != 0) goto lbl3
+
+r0 = *r4
+r0 *= r5
+r0 += r6
+r0 = *r0
+*(r2 + 6) = r0
+r0 = *r4
+r1 = r0
+r1 *= r5
+r1 += r7
+r0 = r2
+r0 += 8
+StringCopy()
+goto lbl4
+
+lbl3:
+r0 = *r4
+r0 *= r5
+r0 += r6
+r0 = *r0
+*(r2 + 0x26) = r0
+r0 = *r4
+r1 = r0
+r1 *= r5
+r1 += r7
+r0 = r2
+r0 += 0x14
+StringCopy()
+goto lbl4
+
+lbl4:
+r0 = *r4
+r0++
+*r4 = r0
+r1 = gBattlersCount
+r0 = r0 % 256
+r1 = *r1
+if(r0 blo r1) goto lbl2
+
+lbl5:
+sub_812BFDC()
+r0 = gBattleTypeFlags
+r0 = *r0
+r1 = 8
+r0 &= r1
+if(r0 == 0) goto lbl6
+
+sub_810CB90()
+goto lbl6
+
+lbl6:
+r0 = 3
+BeginFastPaletteFade()
+r0 = 5
+FadeOutMapMusic()
+r1 = data_03004F84
+r0 = sub_8015A30
+*r1 = r0
+r1 = data_0300537C
+r0 = sub_8011100
+*r1 = r0
+goto lbl8
+
+lbl7:
+r0 = data_02023BC8
+r0 = *r0
+if(r0 != 0) goto lbl8
+
+r1 = gBattleScriptingCommandsTable
+r0 = gBattleScriptCurrInstr
+r0 = *r0
+r0 = *r0
+r0 *= 4
+r0 += r1
+r0 = *r0
+_call_via_r0()
+goto lbl8
+
+lbl8:
+return r0

@@ -1,0 +1,169 @@
+HandleAction_UseMove()
+{
+	var = 4;
+	
+	gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
+
+	if(*(&gBattleStruct->field_91) & gBitTable[gBattlerAttacker])
+	{
+		gCurrentActionFuncId = B_ACTION_FINISHED;
+		return;
+	}
+
+	gCritMultiplier = 1;
+	gBattleScripting.dmgMultiplier = 1;
+	gBattleStruct->atkCancellerTracker = 0;
+	gMoveResultFlags = 0;
+	gMultiHitCounter = 0;
+	gBattleCommunication[6] = 0;
+	gCurrMovePos = gChosenMovePos = *(gBattleStruct->chosenMovePositions + gBattlerAttacker);
+	
+	// choose move
+    if(gProtectStructs[gBattlerAttacker].noValidMoves)
+	{
+		gProtectStructs[gBattlerAttacker].noValidMoves = 0;
+		gCurrentMove = gChosenMove = MOVE_STRUGGLE;
+		gHitMarker |= HITMARKER_NO_PPDEDUCT;
+		*(gBattleStruct->moveTarget + gBattlerAttacker) = GetMoveTarget(MOVE_STRUGGLE, 0);
+	}
+	elseif(gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS || gBattleMons[gBattlerAttacker].status2 & STATUS2_RECHARGE)
+	{
+		gCurrentMove = gChosenMove = gLockedMoves[gBattlerAttacker];
+	}
+	// encore forces you to use the same move
+    elseif(gDisableStructs[gBattlerAttacker].encoredMove != MOVE_NONE && gDisableStructs[gBattlerAttacker].encoredMove == gBattleMons[gBattlerAttacker].moves[gDisableStructs[gBattlerAttacker].encoredMovePos])
+    {
+        gCurrentMove = gChosenMove = gDisableStructs[gBattlerAttacker].encoredMove;
+        gCurrMovePos = gChosenMovePos = gDisableStructs[gBattlerAttacker].encoredMovePos;
+        *(gBattleStruct->moveTarget + gBattlerAttacker) = GetMoveTarget(gCurrentMove, 0);
+    }
+    // check if the encored move wasn't overwritten
+    elseif(gDisableStructs[gBattlerAttacker].encoredMove != MOVE_NONE && gDisableStructs[gBattlerAttacker].encoredMove != gBattleMons[gBattlerAttacker].moves[gDisableStructs[gBattlerAttacker].encoredMovePos])
+    {
+        gCurrMovePos = gChosenMovePos = gDisableStructs[gBattlerAttacker].encoredMovePos;
+        gCurrentMove = gChosenMove = gBattleMons[gBattlerAttacker].moves[gCurrMovePos];
+        gDisableStructs[gBattlerAttacker].encoredMove = MOVE_NONE;
+        gDisableStructs[gBattlerAttacker].encoredMovePos = 0;
+        gDisableStructs[gBattlerAttacker].encoreTimer1 = 0;
+        *(gBattleStruct->moveTarget + gBattlerAttacker) = GetMoveTarget(gCurrentMove, 0);
+    }
+    elseif(gBattleMons[gBattlerAttacker].moves[gCurrMovePos] != gChosenMoveByBattler[gBattlerAttacker])
+    {
+        gCurrentMove = gChosenMove = gBattleMons[gBattlerAttacker].moves[gCurrMovePos];
+        *(gBattleStruct->moveTarget + gBattlerAttacker) = GetMoveTarget(gCurrentMove, 0);
+    }
+    else
+    {
+        gCurrentMove = gChosenMove = gBattleMons[gBattlerAttacker].moves[gCurrMovePos];
+    }
+
+	if(GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
+		gBattleResults.lastUsedMovePlayer = gCurrentMove;
+	else
+		gBattleResults.lastUsedMoveOpponent = gCurrentMove;
+
+	// choose target
+	side = GetBattlerSide(gBattlerAttacker) ^ BIT_SIDE;
+
+	if(gSideTimers[side].followmeTimer != 0 && gBattleMoves[gCurrentMove].target == 0 && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gSideTimers[side].followmeTarget) && gBattleMons[gSideTimers[side].followmeTarget].hp) != 0)
+	{
+		gBattlerTarget = gSideTimers[side].followmeTarget;
+	}
+	else
+	{
+		if(gBattleTypeFlags & BATTLE_TYPE_DOUBLE && gSideTimers[side].followmeTimer == 0 && (gBattleMoves[gCurrentMove].power != 0 || gBattleMoves[gCurrentMove].target != MOVE_TARGET_USER) && gBattleMons[*(gBattleStruct->moveTarget + gBattlerAttacker)].ability != ABILITY_LIGHTNING_ROD && gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)
+		{
+			side = GetBattlerSide(gBattlerAttacker);
+
+			for(i = gActiveBattler; i < gBattlersCount; i++)
+			{
+				if(side != GetBattlerSide(i) && *(gBattleStruct->moveTarget + gBattlerAttacker) != i && gBattleMons[i].ability == ABILITY_LIGHTNING_ROD && GetBattlerTurnOrderNum(i) < var)
+				{
+						var = GetBattlerTurnOrderNum(i)
+				}
+			}
+
+			if(var == 4)
+			{
+				if(gBattleMoves[gChosenMove].target & MOVE_TARGET_RANDOM)
+				{
+					if(GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
+					{
+						if(Random() & 1)
+							gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+						else
+							gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
+					}
+					else
+					{
+						if(Random() & 1)
+							gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+						else
+							gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
+					}
+				}
+				else
+				{
+					gBattlerTarget = *(gBattleStruct->moveTarget + gBattlerAttacker);
+				}
+				
+				if(gAbsentBattlerFlags & gBitTable[gBattlerTarget] == 0)
+					goto lbl41
+				
+				if(GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
+					goto lbl40
+				
+				gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerAttacker) ^ BIT_SIDE)
+				goto lbl39
+			}
+			
+			gActiveBattler = gBattlerByTurnOrder[var];
+			RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
+			gSpecialStatuses[gActiveBattler].lightningRodRedirected = 1;
+			gBattlerTarget = gActiveBattler;
+		}
+		elseif(gBattleTypeFlags & BATTLE_TYPE_DOUBLE && gBattleMoves[gChosenMove].target & MOVE_TARGET_RANDOM)
+		{
+			if(GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
+			{
+				if(Random() & 1)
+					gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+				else
+					gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
+			}
+			else
+			{
+				if(Random() & 1)
+					gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+				else
+					gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
+			}
+			
+			if(gAbsentBattlerFlags & gBitTable[gBattlerTarget] && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
+				goto lbl40
+		}
+		else
+		{
+			gBattlerTarget = *(gBattleStruct->moveTarget + gBattlerAttacker)
+
+			if(gAbsentBattlerFlags & gBitTable[gBattlerTarget])
+			{
+				if(GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
+					goto lbl40
+
+				gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerAttacker) ^ BIT_SIDE)
+
+				lbl39:
+				if(gAbsentBattlerFlags & gBitTable[gBattlerTarget])
+				{
+					lbl40:
+					gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerTarget) ^ BIT_FLANK)
+				}
+			}
+		}
+	}
+
+	lbl41:
+	gBattleScriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
+	gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
+}

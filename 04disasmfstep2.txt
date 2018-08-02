@@ -1,0 +1,214 @@
+GetWhoStrikesFirst(arg1, arg2, arg3)
+{
+	s2 = 0
+	s0 = 0
+	r0 = 0x13
+	r1 = 0
+	r2 = 0xD
+	r3 = 0
+
+	if(fn_19F18() << 0x18 != 0)
+	{
+		r3 = 1
+		r7 = 1
+	}
+	else
+	{
+		r3 = *((arg1 * 0x58) + gBattleMons + 0x20)
+		
+		if(r3 == 0x21)
+		{
+			if(*gBattleWeather & 7 != 0)
+				r3 = 2
+			else
+				r3 = 1
+		}
+		elseif(r3 == 0x22)
+		{
+			if(*gBattleWeather & 0x60 != 0)
+				r3 = 2
+			else
+				r3 = 1
+		}
+		else
+			r3 = 1
+
+		r2 = *((arg2 * 0x58) + gBattleMons + 0x20)
+		
+		if(r2 == 0x21)
+		{
+			if(*gBattleWeather & 7 != 0)
+				r7 = 2
+			else
+				r7 = 1
+		}
+		elseif(r2 == 0x22)
+		{
+			if(*gBattleWeather & 0x60 != 0)
+				r7 = 2
+			else
+				r7 = 1
+		}
+		else
+			r7 = 1
+	}
+
+	r4 = (arg1 * 0x58) + gBattleMons
+	r3 *= *(r4 + 6)
+	r1 = *(r4 + 0x1B) * 2
+	r0 = *(r1 + data_0825DEAD) * r3
+	r1 = *(r1 + data_0825DEAD + 1)
+	r8 = fn_1E4018()
+	r0 = *(r4 + 0x2E)
+
+	if(r0 == 0xAF)
+	{
+		r0 = (arg1 * 28) + gEnigmaBerries
+		r6 = *(r0 + 7)
+		r5 = *(r0 + 0x1A)
+	}
+	else
+	{
+		r7 -= 0x54
+		r2 = r0 << 8
+		r6 = GetHoldEffect(*(r4 + 0x2E))
+		r5 = GetHoldEffectParam(*(r4 + 0x2E))
+	}
+
+	if(*gBattleTypeFlags & 2 == 0 && FlagGet(0x822) << 0x18 != 0 && GetBankSide(arg1) << 0x18 == 0)
+	{
+		r0 = r8 * 0x6E
+		r1 = 0x64
+		r8 = fn_1E460C()
+	}
+
+	if(r6 == 0x18)
+		r8 *= 2
+
+	r3 = arg1 * 0x58
+
+	if(*(0x58 + gBattleMons + 0x4C) & 0x40 != 0)
+		r8 /= 4
+
+	if(r6 == 0x1A)
+	{
+		r0 = (r5 << 0x10) - r5
+		r1 = 0x64
+		
+		if(*gRandomTurnNumber < fn_1E4018())
+			r8 = -1
+	}
+
+	r2 = arg1 * 0x58
+	r4 = r2 + gBattleMons
+	r3 = *(r4 + 6) * r7
+	r1 = *(r4 + 0x1B) * 2
+	r0 = *(r1 + data_0825DEAD) * r3
+	r1 = *(r1 + data_0825DEAD + 1)
+	r7 = fn_1E4018()
+
+	if(*(r4 + 0x2E) == 0xAF)
+	{
+		r0 = (arg2 * 28) + gEnigmaBerries
+		r6 = *(r0 + 7)
+		r5 = *(r0 + 0x1A)
+	}
+	else
+	{
+		r6 = GetHoldEffect(*(r4 + 0x2E))
+		r5 = GetHoldEffectParam(*(r4 + 0x2E))
+	}
+
+	if(*gBattleTypeFlags & 2 == 0 && FlagGet(0x822) << 0x18 != 0 && GetBankSide(arg2) << 0x18 == 0)
+	{
+		r0 = r7 * 0x6E
+		r1 = 0x64
+		r7 = fn_1E460C()
+	}
+
+	if(r6 == 0x18)
+		r7 /= 2
+
+	if(*((arg2 * 0x58) + gBattleMons + 0x4C) & 0x40 != 0)
+		r7 /= 4
+
+	if(r6 == 0x1A)
+	{
+		r0 = (r5 << 0x10) - r5
+		r1 = 0x64
+		
+		if(*gRandomTurnNumber < fn_1E4018())
+			r7 = -1
+	}
+
+	if(arg3 != 0)
+		r3 = 0
+	else
+	{	
+		if(*(arg1 + gChosenActionByBattler) == 0)
+		{
+			if(*((arg1 * 16) + gProtectStructs) << 0x1D < 0)
+				r3 = 0xA5
+			else
+				r3 = *((*(*data_02023FE8 + arg1 + 0x80) * 2) + (arg1 * 0x58) + gBattleMons + 0xC)
+		}
+		else
+			r3 = 0
+
+		if(*(arg2 + gChosenActionByBattler) == 0)
+		{
+			if(*((arg2 * 16) + gProtectStructs) << 0x1D < 0)
+				r2 = 0xA5
+			else
+				r2 = *(*(*data_02023FE8 + arg2 + 0x80) * 2 + (arg2 * 0x58))
+		}
+		else
+			r2 = 0
+	}
+	else
+		r2 = 0
+
+	r1 = *((r3 * 12) + gBattleMons + 7)
+	r3 = r2 * 2
+
+	if(r1 == 0)
+	{
+		r0 = *(((r3 + r2) * 4) + gBattleMons + 7)
+		r0 = s2
+		return r0
+	}
+	elseif(r0 == 0)
+	{
+		if(r8 == r7)
+		{
+			if(Random() & 1 != 0)
+				s2 = 2
+		}
+		elseif(r8 < r7)
+			s2 = 1
+		
+		return s2
+	}
+	else
+	{
+		r0 = *(((r3 + r2) * 4) + gBattleMons + 7)
+		
+		if(r1 == r0)
+		{
+			if(r8 == r7)
+			{
+				if(Random() & 1 != 0)
+					s2 = 2
+			}
+			elseif(r8 < r7)
+				s2 = 1
+		}
+		else
+		{
+			if(r1 < r0)
+				s2 = 1
+		}
+		
+		return s2
+	}
+}
