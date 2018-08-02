@@ -19,7 +19,7 @@ E4 3B 02 02: 44 3B 02 02: gBattleMons
 71 3D 02 02: D1 3C 02 02: gCritMultiplier
 72 3D 02 02: D2 3C 02 02: gMultiHitCounter
 74 3D 02 02: D4 3C 02 02: gBattleScriptCurrInstr
-7C 3D 02 02: DC 3C 02 02: gChosenActionByBattler
+7C 3D 02 02: DC 3C 02 02: gChosenActionByBattler (FR) / ?????? (PD)
 A0 3D 02 02:			: gLastLandedMoves
 A8 3D 02 02:			: gLastHitByType
 B8 3D 02 02: 18 3D 02 02: gLockedMoves

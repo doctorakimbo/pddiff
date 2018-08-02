@@ -69,138 +69,123 @@ HandleAction_UseMove()
 	{
 		gBattlerTarget = gSideTimers[side].followmeTarget;
 	}
-	else
+	elseif(gBattleTypeFlags & BATTLE_TYPE_DOUBLE && gSideTimers[side].followmeTimer != 0 && gBattleMoves[gCurrentMove].target < MOVE_TARGET_USER)
 	{
-		if(gBattleTypeFlags & BATTLE_TYPE_DOUBLE && gSideTimers[side].followmeTimer != 0 && gBattleMoves[gCurrentMove].target < MOVE_TARGET_USER)
+		gChosenActionByBattler[0] = B_ACTION_USE_MOVE;
+
+		if(gBattleMons[gBattlerAttacker].ability != ABILITY_MOLD_BREAKER && gBattleMons[gBattlerAttacker].ability - 0xA3 >= 1)
 		{
-			gChosenActionByBattler = B_ACTION_USE_MOVE;
-
-			if(gBattleMons[gBattlerAttacker].ability != 0x68 && gBattleMons[gBattlerAttacker].ability - 0xA3 >= 1)
+			if(gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)
 			{
-				if(gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)
+				if(gBattleMons[*(gBattleStruct->moveTarget + gBattlerAttacker)].ability == ABILITY_LIGHTNING_ROD)
 				{
-					if(gBattleMons[*(gBattleStruct->moveTarget + gBattlerAttacker)].ability == ABILITY_LIGHTNING_ROD)
-					{
-						gChosenActionByBattler = B_ACTION_SAFARI_WATCH_CAREFULLY;
-						goto lbl32
-					}
-					
-					for(i = gActiveBattler; i < gBattlersCount; i++)
-					{
-						if(i != gBattlerAttacker)
-						{						
-							if(gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC && gBattleMons[i].ability == ABILITY_LIGHTNING_ROD)
-							{
-								if(GetBattlerTurnOrderNum(i) < var)
-									var = GetBattlerTurnOrderNum(i)
-							}
-							elseif(gBattleMoves[gCurrentMove].type == TYPE_WATER && gBattleMons[i].ability == 0x72)
-							{
-								if(GetBattlerTurnOrderNum(i) < var)
-									var = GetBattlerTurnOrderNum(i)
-							}
-						}
-					}
+					gChosenActionByBattler[0] = B_ACTION_SAFARI_WATCH_CAREFULLY;
+					goto lbl32
 				}
-				else
-				{
-					if(gBattleMoves[gCurrentMove].type != TYPE_WATER)
-						goto lbl32
-
-					if(gBattleMons[*(gBattleStruct->moveTarget + gBattlerAttacker)].ability == 0x72)
+				
+				for(gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
+				{					
+					if(gActiveBattler != gBattlerAttacker && ((gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC && gBattleMons[gActiveBattler].ability == ABILITY_LIGHTNING_ROD) || (gBattleMoves[gCurrentMove].type == TYPE_WATER && gBattleMons[gActiveBattler].ability == ABILITY_STORM_DRAIN)) && GetBattlerTurnOrderNum(gActiveBattler) < var)
 					{
-						gChosenActionByBattler = B_ACTION_SAFARI_WATCH_CAREFULLY;
-						goto lbl32
+						var = GetBattlerTurnOrderNum(gActiveBattler);
 					}
 				}
 			}
-
-			if(var == 4)
+			else
 			{
-				if(gBattleMoves[gChosenMove].target & MOVE_TARGET_RANDOM)
+				if(gBattleMoves[gCurrentMove].type == TYPE_WATER && gBattleMons[*(gBattleStruct->moveTarget + gBattlerAttacker)].ability == ABILITY_STORM_DRAIN)
 				{
-					if(GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
-					{
-						if(Random() & 1)
-							gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
-						else
-							gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
-					}
+					gChosenActionByBattler[0] = B_ACTION_SAFARI_WATCH_CAREFULLY;
+				}
+				
+				goto lbl32
+			}
+		}
+
+		if(var == 4)
+		{
+			if(gBattleMoves[gChosenMove].target & MOVE_TARGET_RANDOM)
+			{
+				if(GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
+				{
+					if(Random() & 1)
+						gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
 					else
-					{
-						if(Random() & 1)
-							gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
-						else
-							gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
-					}
+						gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
 				}
 				else
 				{
-					gBattlerTarget = *(gBattleStruct->moveTarget + gBattlerAttacker);
+					if(Random() & 1)
+						gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+					else
+						gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
 				}
-				
-				if(gAbsentBattlerFlags & gBitTable[gBattlerTarget] == 0)
-					goto lbl41
-				
-				if(GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
-					goto lbl40
-				
-				gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerAttacker) ^ BIT_SIDE)
-				r1 = gAbsentBattlerFlags
-				r0 = gBitTable[gBattlerTarget]
-				goto lbl39
+			}
+			else
+			{
+				gBattlerTarget = *(gBattleStruct->moveTarget + gBattlerAttacker);
 			}
 			
+			if(gAbsentBattlerFlags & gBitTable[gBattlerTarget])
+			{
+				if(GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
+					gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerTarget) ^ BIT_FLANK);
+				else
+				{
+					gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerAttacker) ^ BIT_SIDE);
+					
+					if(gAbsentBattlerFlags & gBitTable[gBattlerTarget])
+						gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerTarget) ^ BIT_FLANK);
+				}
+			}
+		}
+		else
+		{
 			gActiveBattler = gBattlerByTurnOrder[var];
 			RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
 			gSpecialStatuses[gActiveBattler].lightningRodRedirected = 1;
 			gBattlerTarget = gActiveBattler;
 		}
-		lbl32:
-		elseif(gBattleTypeFlags & BATTLE_TYPE_DOUBLE && gBattleMoves[gChosenMove].target & MOVE_TARGET_RANDOM)
+	}
+	lbl32:
+	elseif(gBattleTypeFlags & BATTLE_TYPE_DOUBLE && gBattleMoves[gChosenMove].target & MOVE_TARGET_RANDOM)
+	{
+		if(GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
 		{
-			if(GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
-			{
-				if(Random() & 1)
-					gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
-				else
-					gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
-			}
+			if(Random() & 1)
+				gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
 			else
-			{
-				if(Random() & 1)
-					gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
-				else
-					gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
-			}
-			
-			if(gAbsentBattlerFlags & gBitTable[gBattlerTarget] && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
-				goto lbl40
+				gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
 		}
 		else
 		{
-			gBattlerTarget = *(gBattleStruct->moveTarget + gBattlerAttacker)
+			if(Random() & 1)
+				gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+			else
+				gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
+		}
+		
+		if(gAbsentBattlerFlags & gBitTable[gBattlerTarget] && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
+			gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerTarget) ^ BIT_FLANK)
+	}
+	else
+	{
+		gBattlerTarget = *(gBattleStruct->moveTarget + gBattlerAttacker);
 
-			if(gAbsentBattlerFlags & gBitTable[gBattlerTarget])
+		if(gAbsentBattlerFlags & gBitTable[gBattlerTarget])
+		{
+			if(GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
+				gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerTarget) ^ BIT_FLANK);
+			else
 			{
-				if(GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
-					goto lbl40
+				gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerAttacker) ^ BIT_SIDE);
 
-				gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerAttacker) ^ BIT_SIDE)
-				r1 = gAbsentBattlerFlags
-				r0 = gBitTable[gBattlerTarget]
-
-				lbl39:
-				if(r1 & r0)
-				{
-					lbl40:
-					gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerTarget) ^ BIT_FLANK)
-				}
+				if(gAbsentBattlerFlags & gBitTable[gBattlerTarget])
+					gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerTarget) ^ BIT_FLANK);
 			}
 		}
 	}
 
-	lbl41:
 	gBattleScriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
 	gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }

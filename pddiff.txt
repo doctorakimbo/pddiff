@@ -18,9 +18,13 @@ abilities:
 + 0x5F = Quick Feet
 + 0x64 = Stall
 + 0x67 = Klutz
-- 0x70 = ???
+- 0x68 = Mold Breaker
+= 0x70 = ???
+- 0x72 = Storm Drain
 + 0x92 = Sand Rush
-- 0x9E = ???
+= 0x9E = ???
+= (0xA2~0xA4) = Turboblaze
+= (0xA2~0xA4) = Teravolt
 + 0xB2 = Gale Wings
 + 0xCA = Slush Rush
 
@@ -58,12 +62,14 @@ grafics:
 		  Required knowledge: j02023F8C (viable), j020385E2, unknown data table at j1400000
 - 0124EB: 80 -> 60 (store weather as fullword)
 - 014CD8: Entirety of GetWhoStrikesFirst (+added GetSpeedStat, GetPriority, +mysteryfunc) (see 04disasm/04disasm2/04bakpe)
-		  Implements: Unburden, Quick Feet, Stall, Klutz, (ability70?), Sand Rush, (ability9E?), Gale Wings, Slush Rush, Choice Scarf (speed boost only), Lagging Tail, Tailwind (effect only), Trick Room (effect only)
+		  Implements: Unburden, Quick Feet, Stall, Klutz (speed items), (ability70?), Sand Rush, (ability9E?), Gale Wings [gen 6], Slush Rush, Choice Scarf (speed boost), Lagging Tail, Tailwind (effect), Trick Room (effect)
 		  Relies on: weather refactor, returns 0 sometimes instead of 1 or 2
-		  Required knowledge: DisableStruct byte 18, BattleMove byte A
+		  Optional knowledge: DisableStruct byte 18, BattleMove byte A
 		  Glitch: Stall and Trick Room are in wrong order, Stall goes first in Trick Room (probably doesn't matter in P/D itself)
 - 015910: Entirety of HandleEndTurn_FinishBattle + extra fn j207370 (see 05disasm/05bakpe)
 		  Required knowledge: j02023F89 (viable), j020241E4 (viable)
 - 015CA0: Entirety of HandleAction_UseMove (see 06disasm/06bakpe)
-		  Relies on: B_ACTION_SAFARI_WATCH_CAREFULLY changed
+		  Implements: Storm Drain (redirection), Mold Breaker+ (vs redirection)
+		  Relies on: gChosenActionByBattler changed to something else
+		  Note: test deeply - incomprehensible code
 		  
