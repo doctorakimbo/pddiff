@@ -19,9 +19,9 @@ abilities:
 + 0x5F = Quick Feet
 + 0x64 = Stall
 + 0x67 = Klutz
-- 0x68 = Mold Breaker
++ 0x68 = Mold Breaker
 = 0x70 = ???
-- 0x72 = Storm Drain
++ 0x72 = Storm Drain
 + 0x92 = Sand Rush
 = 0x9E = ???
 = (0xA2~0xA4) = Turboblaze
@@ -86,3 +86,4 @@ grafics:
 		  Required knowledge: j0203FE00
 		  Relies on: Safari Ball ID change
 - 017594: Entirety of sub_017594 (see 08disasm/08bakpe)
+		  
