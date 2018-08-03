@@ -1,0 +1,75 @@
+TrySetCantSelectMoveBattleScript()
+{
+	limitations = 0;
+	move = gBattleMons[gActiveBattler].moves[gBattleBufferB[gActiveBattler][2]];
+
+	if(gDisableStructs[gActiveBattler].disabledMove == move && move != MOVE_NONE)
+	{
+		gBattleScripting.battler = gActiveBattler;
+		gCurrentMove = move;
+		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingDisabledMove;
+		limitations++;
+	}
+
+	if(move == gLastMoves[gActiveBattler] && move != MOVE_STRUGGLE && (gBattleMons[gActiveBattler].status2 & STATUS2_TORMENT))
+	{
+		CancelMultiTurnMoves(gActiveBattler);
+		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingTormentedMove;
+		limitations++;
+	}
+
+	if(gDisableStructs[gActiveBattler].tauntTimer1 != 0 && gBattleMoves[move].power == 0)
+	{
+		gCurrentMove = move;
+		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedMoveTaunt;
+		limitations++;
+	}
+
+	if(GetImprisonedMovesCount(gActiveBattler, move))
+	{
+		gCurrentMove = move;
+		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingImprisonedMove;
+		limitations++;
+	}
+
+	holdEffect = GetHoldEffect(gBattleMons[gActiveBattler].item);
+
+	if(gBattleMons[gActiveBattler].ability != ABILITY_KLUTZ)
+	{
+		gPotentialItemEffectBattler = gActiveBattler;
+		
+		if(holdEffect >= 0x44 && holdEffect <= HOLD_EFFECT_CHOICE_SCARF)
+		{
+			choicedMove = &gBattleStruct->choicedMove[gActiveBattler];
+			
+			if(*choicedMove != MOVE_NONE && *choicedMove != 0xFFFF && *choicedMove != move)
+			{
+				gCurrentMove = *choicedMove;
+				gLastUsedItem = gBattleMons[gActiveBattler].item;
+				gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedMoveChoiceItem;
+				limitations++;
+			}
+		}
+
+		if(holdEffect == HOLD_EFFECT_ASSAULT_VEST && gBattleMoves[move].power == 0)
+		{
+			gCurrentMove = move;
+			gLastUsedItem = gBattleMons[gActiveBattler].item;
+			gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedMoveAssaultVest;
+			limitations++;
+		}
+	}
+
+	if(gBattleMons[gActiveBattler].pp[gBattleBufferB[gActiveBattler][2]] == 0)
+	{
+		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingMoveWithNoPP;
+		limitations++;
+	}
+
+	return limitations;
+}
+
+BattleScript_SelectingNotAllowedMoveAssaultVest: @016F4C_J
+(raw 11 98 01 44)
+printselectionstring 0x198
+endselectionscript

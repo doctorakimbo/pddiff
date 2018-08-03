@@ -1,0 +1,19 @@
+pt1:
+if(gBattleMons[battlerId].item == ITEM_ENIGMA_BERRY) 
+	holdEffect = gEnigmaBerries[battlerId].holdEffect;
+else
+	holdEffect = ItemId_GetHoldEffect(gBattleMons[battlerId].item);
+
+goto lbl_62
+
+pt2:
+if(gDisableStructs[battlerId].tauntTimer1 && check & MOVE_LIMITATION_TAUNT && gBattleMoves[gBattleMons[battlerId].moves[i]].power == 0)
+	unusableMoves |= gBitTable[i];
+
+goto lbl_150
+
+pt3:
+if(holdEffect == HOLD_EFFECT_CHOICE_BAND && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != gBattleMons[battlerId].moves[i])
+	unusableMoves |= gBitTable[i];
+	
+goto lbl_1B4

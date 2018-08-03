@@ -1,0 +1,19 @@
+pt1:
+if(gBattleMons[battlerId].ability == ABILITY_KLUTZ)
+	holdEffect = HOLD_EFFECT_NONE;
+else
+	holdEffect = ItemId_GetHoldEffect(gBattleMons[battlerId].item);
+
+goto lbl_5C
+
+pt2:
+if(gBattleMons[battlerId].ability != 0x52 && gDisableStructs[battlerId].tauntTimer1 && check & MOVE_LIMITATION_TAUNT && gBattleMoves[gBattleMons[battlerId].moves[i]].power == 0)
+	unusableMoves |= gBitTable[i];
+	
+goto lbl_150
+
+pt3:
+if(holdEffect >= 0x44 && holdEffect <= HOLD_EFFECT_CHOICE_SCARF && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != gBattleMons[battlerId].moves[i])
+	unusableMoves |= gBitTable[i];
+	
+goto lbl_1B4

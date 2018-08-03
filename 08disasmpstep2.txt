@@ -1,0 +1,72 @@
+r6 = 0
+r7 = (*gActiveBattler * 0x58) + gBattleMons
+r8 = *((*gActiveBattler * 512) + gBattleBufferB + 2)
+r4 = *((r8 * 2) + r7 + 0xC)
+
+if(*((*gActiveBattler * 0x1C) + gDisableStructs + 4) == r4 && r4 != 0)
+{
+	*(gBattleScripting = 0x17) = *gActiveBattler
+	*gCurrentMove = r4
+	*((*gActiveBattler * 4) + data_02023D80) = data_081D8C5A
+	r6++
+}
+
+if(r4 == *((*gActiveBattler * 2) + data_02023D98) && r4 != 0xA5 && *(r7 + 0x50) < 0)
+{
+	CancelMultiTurnMoves(*gActiveBattler)
+	*((*gActiveBattler * 4) + data_02023D80) = data_081D8EB7
+	r6++
+}
+
+if(*((*gActiveBattler * 0x1C) + gDisableStructs + 0x13) << 0x1C != 0 && *((r4 * 0xC) + gBattleMoves + 1) == 0)
+{
+	*gCurrentMove = r4
+	*((*gActiveBattler * 4) + data_02023D80) = data_081D8EC6
+	r6++
+}
+
+if(GetImprisonedMovesCount(*gActiveBattler, r4) << 0x18 != 0)
+{
+	*gCurrentMove = r4
+	*((*gActiveBattler * 4) + data_02023D80) = data_081D8F9F
+	r6++
+}
+
+r3 = GetHoldEffect(*(r7 + 0x2E))
+
+if(*(r7 + 0x20) != 0x67)
+{
+	*data_02023D6F = *gActiveBattler
+	
+	if(r3 >= 0x44 && r3 <= 0x46)
+	{
+		r2 = *((*gActiveBattler * 2) + *gBattleStruct + 0xC8)
+		
+		if(r2 != 0 && r2 != 0xFFFF && r2 != r4)
+		{
+			*gCurrentMove = r2
+			*gLastUsedItem = *(r7 + 0x2E)
+			*((*gActiveBattler * 4) + data_02023D80) = data_081D963D
+			r6++
+		}
+	}
+
+	if(r3 == 0x52 && *((r4 * 0xC) + gBattleMoves + 1) == 0)
+	{
+		*gCurrentMove = r4
+		*gLastUsedItem = *(r7 + 0x2E)
+		*((*gActiveBattler * 4) + data_02023D80) = data_08016F4C
+		r6++
+	}
+}
+
+if(*(r7 + r8 + 0x24) == 0)
+{
+	*((*gActiveBattler * 4) + data_02023D80) = data_081D8EA4
+	r6++
+}
+
+return r6
+
+data_16F4C:
+11 98 01 44

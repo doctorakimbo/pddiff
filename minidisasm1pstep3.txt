@@ -1,0 +1,28 @@
+pt1:
+if(r1.0x20 == 0x67)
+	r0 = 0
+else
+{
+	s5 = r3
+	r0 = GetHoldEffect(r1.0x2E)
+}
+
+goto lbl_5C
+
+pt2:
+if(s0 != 0x52)
+{
+	if(gDisableStructs[r8].0x13)
+		goto lbl_150
+}
+
+if(r3 & 0x10 != 0 && gBattleMoves[r5].1 == 0)
+	r4 |= *r6
+
+goto lbl_150
+
+pt3:
+if(s0 >= 0x44 && s0 <= 0x46 && *s1 != 0 && r1 != 0xFFFF && r1 != *r5)
+	r4 |= *r6
+	
+goto lbl_1B4

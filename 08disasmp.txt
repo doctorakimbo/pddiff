@@ -1,3 +1,187 @@
 lbl1: @16DA4
 r6 = 0
-r7 = (data_158)
+r7 = gBattleMons
+r5 = gActiveBattler
+r5 = *r5
+r0 = 0x58
+r0 *= r5
+r7 += r0
+r1 = gBattleBufferB
+r0 = r5 * 512
+r0 += r1
+r0 = *(r0 + 2)
+r8 = r0
+r0 *= 2
+r0 += r7
+r4 = *(r0 + 0xC)
+r1 = gDisableStructs
+r0 = 0x1C
+r0 *= r5
+r0 += r1
+r0 = *(r0 + 4)
+if(r0 == r4) goto lbl2
+
+if(r4 == 0) goto lbl2
+
+r0 = gBattleScripting
+*(r0 = 0x17) = r5
+r0 = gCurrentMove
+*r0 = r4
+r1 = data_02023D80
+r0 = r5 * 4
+r0 += r1
+r1 = data_081D8C5A
+*r0 = r1
+r6++
+goto lbl2
+
+lbl2:
+r1 = data_02023D98
+r0 = r5 * 2
+r0 += r1
+r0 = *r0
+if(r4 != r0) goto lbl3
+
+if(r4 == 0xA5) goto lbl3
+
+r0 = *(r7 + 0x50)
+if(r0 >= 0) goto lbl3
+
+r0 = r5
+CancelMultiTurnMoves()
+r1 = data_02023D80
+r0 = r5 * 4
+r0 += r1
+r1 = data_081D8EB7
+*r0 = r1
+r6++
+goto lbl3
+
+lbl3:
+r2 = gDisableStructs
+r0 = 0x1C
+r0 *= r5
+r0 += r2
+r0 = *(r0 + 0x13)
+r0 <<= 0x1C
+if(r0 == 0) goto lbl4
+
+r0 = gBattleMoves
+r1 = 0xC
+r1 *= r4
+r1 += r0
+r0 = *(r1 + 1)
+if(r0 != 0) goto lbl4
+
+r0 = gCurrentMove
+*r0 = r4
+r1 = data_02023D80
+r0 = r5 * 4
+r0 += r1
+r1 = data_081D8EC6
+*r0 = r1
+r6++
+goto lbl4
+
+lbl4:
+r0 = r5
+r1 = r4
+GetImprisonedMovesCount()
+r0 <<= 0x18
+if(r0 == 0) goto lbl5
+
+r0 = gCurrentMove
+*r0 = r4
+r1 = data_02023D80
+r0 = r5 * 4
+r0 += r1
+r1 = data_081D8F9F
+*r0 = r1
+r6++
+goto lbl5
+
+lbl5:
+r0 = *(r7 + 0x2E)
+GetHoldEffect()
+r3 = r0
+r0 = r7
+r0 += 0x20
+r0 = *r0
+if(r0 == 0x67) goto lbl7
+
+r0 = data_02023D6F
+*r0 = r5
+if(r3 < 0x44) goto lbl6
+
+if(r3 > 0x46) goto lbl6
+
+r1 = gBattleStruct
+r1 = *r1
+r0 = r5 * 2
+r0 += 0xC8
+r0 += r1
+r2 = *r0
+if(r2 == 0) goto lbl6
+
+r0 = 0xFFFF
+if(r2 == r0) goto lbl6
+
+if(r2 == r4) goto lbl6
+
+r0 = gCurrentMove
+*r0 = r2
+r2 = gLastUsedItem
+r0 = *(r7 + 0x2E)
+*r2 = r0
+r1 = data_02023D80
+r0 = r5 * 4
+r0 += r1
+r1 = data_081D963D
+*r0 = r1
+r6++
+goto lbl6
+
+lbl6:
+if(r3 != 0x52) goto lbl7
+
+r0 = gBattleMoves
+r1 = 0xC
+r1 *= r4
+r1 += r0
+r0 = *(r1 + 1)
+if(r0 != 0) goto lbl7
+
+r0 = gCurrentMove
+*r0 = r4
+r2 = gLastUsedItem
+r0 = *(r7 + 0x2E)
+*r2 = r0
+r1 = data_02023D80
+r0 = r5 * 4
+r0 += r1
+r1 = data_08016F4C
+*r0 = r1
+r6++
+goto lbl7
+
+lbl7:
+r0 = r7
+r0 += r8
+r0 += 0x24
+r0 = *r0
+if(r0 != 0) goto lbl8
+
+r1 = data_02023D80
+r0 = r5 * 4
+r0 += r1
+r1 = data_081D8EA4
+*r0 = r1
+r6++
+goto lbl8
+
+lbl8:
+r0 = r6
+return r0
+
+data_16F4C:
+11 98 01 44

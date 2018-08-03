@@ -53,7 +53,7 @@ r0 += r1
 r0 = *r0
 if(r4 != r0) goto lbl3
 
-if(r4 == 0) goto lbl3
+if(r4 == 0xA5) goto lbl3
 
 r1 = gBattleMons
 r0 = 0x58
@@ -64,7 +64,7 @@ r0 = *r0
 if(r0 >= 0) goto lbl3
 
 r0 = r2
-fn_172E8()
+CancelMultiTurnMoves()
 r1 = data_02023D80
 r0 = *r5
 r0 *= 4
@@ -111,7 +111,7 @@ lbl4:
 r5 = gActiveBattler
 r0 = *r5
 r1 = r4
-fn_17A64()
+GetImprisonedMovesCount()
 r0 <<= 0x18
 if(r0 == 0) goto lbl5
 

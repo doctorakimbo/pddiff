@@ -1,0 +1,57 @@
+r6 = 0
+r4 = gBattleMons[gActiveBattler].0xC[gBattleBufferB[gActiveBattler][2]]
+r8 = gBattleStruct[gActiveBattler].0xC8
+
+if(gDisableStructs[gActiveBattler].4 == r4 && r4 != 0)
+{
+	gBattleScripting.0x17 = gActiveBattler
+	gCurrentMove = r4
+	data_02023D80[gActiveBattler] = data_081D8C5A // record size = 4
+	r6 = 1
+}
+
+if(r4 == data_02023D98[gActiveBattler] && r4 != 0xA5 && gBattleMons[gActiveBattler].0x50 < 0) // record size = 2
+{
+	CancelMultiTurnMoves(gActiveBattler)
+	data_02023D80[gActiveBattler] = data_081D8EB7
+	r6++
+}
+
+if(gDisableStructs[gActiveBattler].0x13 << 0x1C != 0 && gBattleMoves[r4].1 == 0)
+{
+	gCurrentMove = r4
+	data_02023D80[gActiveBattler] = data_081D8EC6
+	r6++
+}
+
+if(GetImprisonedMovesCount(gActiveBattler, r4) << 0x18 != 0)
+{
+	gCurrentMove = r4
+	data_02023D80[gActiveBattler] = data_081D8F9F
+	r6++
+}
+
+r1 = gBattleMons[gActiveBattler]
+
+if(r1.0x2E == 0xAF)
+	r3 = gEnigmaBerries[gActiveBattler].7
+else
+	r3 = GetHoldEffect(r1.0x2E)
+
+data_02023D6F = gActiveBattler
+
+if(r3 == 0x1D && r8 != 0 && r8 != 0xFFFF && r8 != r4)
+{
+	gCurrentMove = r8
+	gLastUsedItem = gBattleMons[gActiveBattler].0x2E
+	data_02023D80[gActiveBattler] = data_081D963D
+	r6++
+}
+
+if(gBattleMons[gActiveBattler].0x24[gBattleBufferB[gActiveBattler][2]]) == 0)
+{
+	data_02023D80[gActiveBattler] = data_081D8EA4
+	r6++
+}
+
+return r6

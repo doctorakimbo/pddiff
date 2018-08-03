@@ -1,0 +1,61 @@
+pt1:
+r0 = *(r1 + 0x2E)
+if(r0 != 0xAF) goto pt1_2
+
+r2 = gEnigmaBerries
+r1 = r7 * 8
+r0 = r1 - r7
+r0 *= 4
+r0 += r2
+r0 = *(r0 + 7)
+s0 = r0
+goto lbl_62
+
+pt1_2:
+r0 = *(r1 + 0x2E)
+s5 = r3
+GetHoldEffect()
+s0 = r0
+r1 = r7 * 8
+r3 = s5
+goto lbl_62
+
+pt2:
+r0 = gDisableStructs
+r0 += r8
+r0 = *(r0 + 0x13)
+r0 <<= 0x1C
+if(r0 == 0) goto lbl_150
+
+r0 = 0x10
+r0 &= r3
+if(r0 == 0) goto lbl_150
+
+r2 = gBattleMoves
+r1 = *r5
+r0 = r1 * 2
+r0 += r1
+r0 *= 4
+r0 += r2
+r0 = *(r0 + 1)
+if(r0 != 0) goto lbl_150
+
+r0 = *r6
+r4 |= r0
+
+pt3:
+r2 = s0
+if(r2 != 0x1D) goto lbl_1B4
+
+r0 = s1
+r1 = *r0
+if(r1 == 0) goto lbl_1B4
+
+r0 = 0xFFFF
+if(r1 == r0) goto lbl_1B4
+
+r2 = *r5
+if(r1 == r2) goto lbl_1B4
+
+r0 = *r6
+r4 |= r0

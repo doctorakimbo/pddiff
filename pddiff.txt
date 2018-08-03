@@ -15,6 +15,7 @@ A0 0B 06 09
 (stench actual desc: 71C9A4)
 ("the pkmn" -> "it"; if "it" would be at the beginning, skip it)
 abilities:
+- 0x52 = (ignore taunt?)
 + 0x54 = Unburden
 + 0x5F = Quick Feet
 + 0x64 = Stall
@@ -30,12 +31,20 @@ abilities:
 + 0xCA = Slush Rush
 
 item effects:
+0x1D = (not Choice Band)
+(0x44~0x45) = Choice Band
+(0x44~0x45) = Choice Specs
 0x46 = Choice Scarf
 0x4A = Lagging Tail
+0x52 = Assault Vest
 
 pokeball types:
+0x04 = (not Safari Ball)
 0x05 = Safari Ball
 0x11 = Park Ball
+
+battle strings (ADD ??? TO ALL):
+- 0x198 = "The effects of the [ITEM] prevent status moves from being used!"
 
 grafics:
 - D0051C (C0051C old, EB8990 new)
@@ -55,35 +64,51 @@ grafics:
 
 - repoint 1D9015 -> 1052EE0 (BattleScript_FocusPunchSetUp) - do it itself later
 
-- 006884: ptr 217818 (gUnusedJapaneseFireRedLeafGreenMaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
-- 0069F0: ptr 227B30 (gUnusedJapaneseFireRedLeafGreenFemaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
+= 006884: ptr 217818 (gUnusedJapaneseFireRedLeafGreenMaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
+= 0069F0: ptr 227B30 (gUnusedJapaneseFireRedLeafGreenFemaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
 		  (wait until playthrough - is this the equivalent of removing gender colors?)
-- 008CF8, 008D2C: 0A -> 0C (pkmnnamelength)
-- 00960C: 36 -> 33 (some sort of link-related graphics function?, see 1disasm)
-- 00D311: 68 -> 47 and 00D320: 4C 2B 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (j252400, see 02disasm))
+= 008CF8, 008D2C: 0A -> 0C (pkmnnamelength)
+= 00960C: 36 -> 33 (some sort of link-related graphics function?, see 1disasm)
+= 00D311: 68 -> 47 and
+  00D320: 4C 2B 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (j252400, see 02disasm))
 		  Implements: need more info
 		  Required knowledge: j0203B900, j0203C00D, j0203D500
-- 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
-- 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC: 0B -> 0D (pkmnnamelength)
-- 011688: 0E 49 -> 10 47 and 011C68: 4C 2B 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
+= 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
+= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC: 0B -> 0D (pkmnnamelength)
+= 011688: 0E 49 -> 10 47 and
+  011C68: 4C 2B 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: Pokemon name length, something else - need more info
 		  Required knowledge: j02023F8C (viable), j020385E2, unknown data table at j1400000
-- 0124EB: 80 -> 60 (store weather as fullword)
-- 014CD8: Entirety of GetWhoStrikesFirst (+added GetSpeedStat, GetPriority, +mysteryfunc) (see 04disasm/04disasm2/04bakpe)
+= 0124EB: 80 -> 60 (store weather as fullword)
+= 014CD8: Entirety of GetWhoStrikesFirst (+added GetSpeedStat, GetPriority, +mysteryfunc) (see 04disasm/04disasm2/04bakpe)
 		  Implements: Unburden, Quick Feet, Stall, Klutz (speed items), (ability70?), Sand Rush, (ability9E?), Gale Wings [gen 6], Slush Rush, Choice Scarf (speed boost), Lagging Tail, Tailwind (effect), Trick Room (effect)
 		  Relies on: weather refactor, returns 0 sometimes instead of 1 or 2
 		  Optional knowledge: DisableStruct byte 18, BattleMove byte A
 		  Glitch: Stall and Trick Room are in wrong order, Stall goes first in Trick Room (probably doesn't matter in P/D itself)
-- 015910: Entirety of HandleEndTurn_FinishBattle + extra fn j207370 (see 05disasm/05bakpe)
+= 015910: Entirety of HandleEndTurn_FinishBattle + extra fn j207370 (see 05disasm/05bakpe)
 		  Implements: EVs recalculated per battle (?)
 		  Required knowledge: j02023F89 (viable), j020241E4 (viable)
-- 015CA0: Entirety of HandleAction_UseMove (see 06disasm/06bakpe)
+= 015CA0: Entirety of HandleAction_UseMove (see 06disasm/06bakpe)
 		  Implements: Storm Drain (redirection), Mold Breaker+ (vs redirection)
 		  Relies on: gChosenActionByBattler changed to something else
 		  Note: test deeply - incomprehensible code
-- 016460: 0C 29 1B D8 0B 4A 0C 49 -> 00 00 00 00 0B 4A 97 46 and 016494: 74 3D 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jA231E0, see 07disasm))
+= 016460: 0C 29 1B D8 0B 4A 0C 49 -> 00 00 00 00 0B 4A 97 46 and
+  016494: 74 3D 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jA231E0, see 07disasm))
 		  Implements: new pokeballs (throw action)
 		  Required knowledge: j0203FE00
 		  Relies on: Safari Ball ID change
-- 017594: Entirety of sub_017594 (see 08disasm/08bakpe)
-		  
+- 017594: Entirety of TrySetCantSelectMoveBattleScript (see 08disasm/08bakpe)
+		  Implements: Klutz (move restriction items), Choice Specs (locking), Choice Scarf (locking), Assault Vest (move prevention)
+		  Relies on: Choice Band effect ID change
+- 0177C8: C8 8D AF 28 0E D1 06 4A F9 00 C8 1B 80 00 80 18 C0 79 00 90 0F E0 -> 08 1C 20 30 00 78 67 28 0C D1 00 20 10 E0 00 00 00 00 00 00 00 00
+  0177E8: B4 3E 02 02 -> 00 00 00 00
+  01783C, 01785C, 017878, 01790A, 01792A: 20 06 04 0E -> 00 00 00 00
+  0178BA: 20 06 04 0E 2F 48 40 44 C0 7C 00 07 00 28 10 D0 10 20 18 40 00 28 0C D0 2F 4A 29 88 48 00 40 18 80 00 80 18 40 78 00 28 03 D1 30 68 04 43 20 06 04 0E -> 00 00 00 00 00 9A 52 2A 05 D0 2D 48 40 44 C0 7C 00 07 00 28 0D D0 10 20 18 40 00 28 09 D0 2D 4A 29 88 0C 20 48 43 80 18 40 78 00 28 01 D1 30 68 04 43
+  01791C: 07 -> 05
+  017924: 03 -> 01
+  017930: 1D 2A 0D D1 01 98 01 88 00 29 09 D0 15 48 81 42 06 D0 2A 88 91 42 03 D0 30 68 04 43 20 06 04 0E -> 44 2A 0D D3 46 2A 0B D8 01 98 01 88 00 29 07 D0 14 48 81 42 04 D0 2A 88 91 42 01 D0 30 68 04 43
+		  Implements: (ability52?), Klutz (choice items), Choice Specs (locking), Choice Scarf (locking)
+		  Relies on: Choice Band effect ID change
+= 017BE0: D4 80 01 08 44 81 01 08 9C 81 01 08 20 82 01 08 -> 8A 80 01 08 50 81 01 08 E6 81 01 08 20 82 01 08
+  01801C: 48 46 00 28 00 D0 06 E1 62 46 11 68 C8 78 01 30 C8 70 FC E0 -> ??
+  018050: Large part of UpdateTurnCounters (see 09disasm/09bakpe)

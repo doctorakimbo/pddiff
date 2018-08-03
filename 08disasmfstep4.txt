@@ -1,0 +1,58 @@
+TrySetCantSelectMoveBattleScript()
+{
+	limitations = 0;
+	move = gBattleMons[gActiveBattler].moves[gBattleBufferB[gActiveBattler][2]];
+	choicedMove = &gBattleStruct->choicedMove[gActiveBattler];
+
+	if(gDisableStructs[gActiveBattler].disabledMove == move && move != MOVE_NONE)
+	{
+		gBattleScripting.battler = gActiveBattler;
+		gCurrentMove = move;
+		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingDisabledMove;
+		limitations = 1;
+	}
+
+	if(move == gLastMoves[gActiveBattler] && move != MOVE_STRUGGLE && (gBattleMons[gActiveBattler].status2 & STATUS2_TORMENT))
+	{
+		CancelMultiTurnMoves(gActiveBattler);
+		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingTormentedMove;
+		limitations++;
+	}
+
+	if(gDisableStructs[gActiveBattler].tauntTimer1 != 0 && gBattleMoves[move].power == 0)
+	{
+		gCurrentMove = move;
+		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedMoveTaunt;
+		limitations++;
+	}
+
+	if(GetImprisonedMovesCount(gActiveBattler, move))
+	{
+		gCurrentMove = move;
+		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingImprisonedMove;
+		limitations++;
+	}
+
+	if(gBattleMons[gActiveBattler].item == ITEM_ENIGMA_BERRY)
+		holdEffect = gEnigmaBerries[gActiveBattler].holdEffect;
+	else
+		holdEffect = GetHoldEffect(gBattleMons[gActiveBattler].item);
+
+	gPotentialItemEffectBattler = gActiveBattler;
+
+	if(holdEffect == HOLD_EFFECT_CHOICE_BAND && *choicedMove != MOVE_NONE && *choicedMove != 0xFFFF && *choicedMove != move)
+	{
+		gCurrentMove = *choicedMove;
+		gLastUsedItem = gBattleMons[gActiveBattler].item;
+		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedMoveChoiceItem;
+		limitations++;
+	}
+
+	if(gBattleMons[gActiveBattler].pp[gBattleBufferB[gActiveBattler][2]]) == 0)
+	{
+		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingMoveWithNoPP;
+		limitations++;
+	}
+
+	return limitations;
+}

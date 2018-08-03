@@ -1,0 +1,72 @@
+r6 = 0
+r7 = gBattleMons[gActiveBattler]
+r8 = gBattleBufferB[gActiveBattler][2]
+r4 = r7.0xC[r8]
+
+if(gDisableStructs[gActiveBattler].4 == r4 && r4 != 0)
+{
+	gBattleScripting.0x17 = gActiveBattler
+	gCurrentMove = r4
+	data_02023D80[gActiveBattler] = data_081D8C5A // record size = 4
+	r6++
+}
+
+if(r4 == data_02023D98[gActiveBattler] && r4 != 0xA5 && r7.0x50 < 0)
+{
+	CancelMultiTurnMoves(gActiveBattler)
+	data_02023D80[gActiveBattler] = data_081D8EB7 // record size = 4
+	r6++
+}
+
+if(gDisableStructs[gActiveBattler].0x13 << 0x1C != 0 && gBattleMoves[r4].1 == 0)
+{
+	gCurrentMove = r4
+	data_02023D80[gActiveBattler] = data_081D8EC6 // record size = 4
+	r6++
+}
+
+if(GetImprisonedMovesCount(gActiveBattler, r4) << 0x18 != 0)
+{
+	gCurrentMove = r4
+	data_02023D80[gActiveBattler] = data_081D8F9F
+	r6++
+}
+
+r3 = GetHoldEffect(r7.0x2E)
+
+if(r7.0x20 != 0x67)
+{
+	data_02023D6F = gActiveBattler
+	
+	if(r3 >= 0x44 && r3 <= 0x46)
+	{
+		r2 = gBattleStruct[gActiveBattler].0xC8
+		
+		if(r2 != 0 && r2 != 0xFFFF && r2 != r4)
+		{
+			gCurrentMove = r2
+			gLastUsedItem = r7.0x2E
+			data_02023D80[gActiveBattler] = data_081D963D
+			r6++
+		}
+	}
+
+	if(r3 == 0x52 && gBattleMoves[r4].1 == 0)
+	{
+		gCurrentMove = r4
+		gLastUsedItem = r7.0x2E
+		data_02023D80[gActiveBattler] = data_16F4C_J
+		r6++
+	}
+}
+
+if(r7.0x24[r8] == 0)
+{
+	data_02023D80[gActiveBattler] = data_081D8EA4
+	r6++
+}
+
+return r6
+
+data_16F4C_J:
+11 98 01 44

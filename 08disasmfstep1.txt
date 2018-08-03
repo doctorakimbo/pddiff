@@ -1,0 +1,215 @@
+r6 = 0
+r2 = gBattleMons
+r1 = gBattleBufferB
+r5 = gActiveBattler
+r3 = *r5
+r0 = r3 * 512
+r1 += 2
+r0 += r1
+r0 = *r0
+r0 *= 2
+r1 = 0x58
+r1 *= r3
+r0 += r1
+r2 += 0xC
+r0 += r2
+r4 = *r0
+r1 = gBattleStruct
+r0 = r3 * 2
+r0 += 0xC8
+r1 = *r1
+r1 += r0
+r8 = r1
+r1 = gDisableStructs
+r0 = r3 * 8
+r0 -= r3
+r0 *= 4
+r0 += r1
+r0 = *(r0 + 4)
+
+if(r0 == r4 && r4 != 0)
+{
+	r0 = gBattleScripting
+	*(r0 + 0x17) = r3
+	r0 = gCurrentMove
+	*r0 = r4
+	r1 = data_02023D80
+	r0 = *r5
+	r0 *= 4
+	r0 += r1
+	r1 = data_081D8C5A
+	*r0 = r1
+	r6 = 1
+}
+
+r1 = data_02023D98
+r5 = gActiveBattler
+r2 = *r5
+r0 = r2 * 2
+r0 += r1
+r0 = *r0
+
+if(r4 == r0 && r4 != 0xA5)
+{
+	r1 = gBattleMons
+	r0 = 0x58
+	r0 *= r2
+	r1 += 0x50
+	r0 += r1
+	r0 = *r0
+	
+	if(r0 < 0)
+	{
+		CancelMultiTurnMoves(r2)
+		r1 = data_02023D80
+		r0 = *r5
+		r0 *= 4
+		r0 += r1
+		r1 = data_081D8EB7
+		*r0 = r1
+		r0 = r6 + 1
+		r6 = r0
+	}
+}
+
+r2 = gDisableStructs
+r3 = gActiveBattler
+r1 = *r3
+r0 = r1 * 8
+r0 -= r1
+r0 *= 4
+r0 += r2
+r0 = *(r0 + 0x13)
+r0 <<= 0x1C
+
+if(r0 != 0)
+{
+	r0 = gBattleMoves
+	r1 = r4 * 2
+	r1 += r4
+	r1 *= 4
+	r1 += r0
+	r0 = *(r1 + 1)
+	
+	if(r0 == 0)
+	{
+		r0 = gCurrentMove
+		*r0 = r4
+		r1 = data_02023D80
+		r0 = *r3
+		r0 *= 4
+		r0 += r1
+		r1 = data_081D8EC6
+		*r0 = r1
+		r0 = r6 + 1
+		r6 = r0
+	}
+}
+
+r5 = gActiveBattler
+r0 = GetImprisonedMovesCount(*r5, r4)
+r0 <<= 0x18
+
+if(r0 != 0)
+{
+	r0 = gCurrentMove
+	*r0 = r4
+	r1 = data_02023D80
+	r0 = *r5
+	r0 *= 4
+	r0 += r1
+	r1 = data_081D8F9F
+	*r0 = r1
+	r0 = r6 + 1
+	r6 = r0
+}
+
+r1 = gBattleMons
+r2 = *r5
+r0 = 0x58
+r0 *= r2
+r1 += r0
+r0 = *(r1 + 0x2E)
+
+if(r0 == 0xAF)
+{
+	r1 = gEnigmaBerries
+	r0 = r2 * 8
+	r0 -= r2
+	r0 *= 4
+	r0 += r1
+	r3 = *(r0 + 7)
+}
+else
+{
+	r0 = GetHoldEffect(*(r1 + 0x2E))
+	r3 = r0
+}
+
+r2 = data_02023D6F
+r1 = gActiveBattler
+r0 = *r1
+*r2 = r0
+r7 = gBattleMons
+r5 = r1
+
+if(r3 == 0x1D)
+{
+	r0 = r8
+	r1 = *r0
+	r2 = r1
+	
+	if(r2 != 0)
+	{
+		r0 = 0xFFFF
+		
+		if(r2 != r0 && r2 != r4)
+		{
+			r0 = gCurrentMove
+			*r0 = r1
+			r2 = gLastUsedItem
+			r1 = *r5
+			r0 = 0x58
+			r0 *= r1
+			r0 += r7
+			r0 = *(r0 + 0x2E)
+			*r2 = r0
+			r1 = data_02023D80
+			r0 = *r5
+			r0 *= 4
+			r0 += r1
+			r1 = data_081D963D
+			*r0 = r1
+			r0 = r6 + 1
+			r6 = r0
+		}
+	}
+}
+
+r0 = gBattleBufferB
+r2 = *r5
+r1 = r2 * 512
+r0 += 2
+r1 += r0
+r0 = 0x58
+r0 *= r2
+r1 = *r1
+r0 += r1
+r1 = r7
+r1 += 0x24
+r0 += r1
+r0 = *r0
+
+if(r0 == 0)
+{
+	r1 = data_02023D80
+	r0 = r2 * 4
+	r0 += r1
+	r1 = data_081D8EA4
+	*r0 = r1
+	r0 = r6 + 1
+	r6 = r0
+}
+
+r0 = r6
+return r0
