@@ -57,7 +57,7 @@ r12 = r2
 r3 = r9
 if(r3 == 0) goto lbl4
 
-goto lbl(34E)
+goto lbl(E2 = 34E)
 
 lbl4:
 r1 = r12
@@ -72,7 +72,7 @@ lbl5:
 r0 = r9
 if(r0 == 0) goto lbl6
 
-goto lbl(34E)
+goto lbl(E2 = 34E)
 
 lbl6:
 r1 = r12
@@ -85,7 +85,7 @@ r0 = *r2
 r0 += 0xDB
 r3 = r9
 *r0 = r3
-goto lbl(346)
+goto lbl(DA = 346)
 
 lbl7: @177AC
 r2 = r12
@@ -148,7 +148,7 @@ r12 = r2
 r3 = r9
 if(r3 == 0) goto lbl10
 
-goto lbl(34E)
+goto lbl(E2 = 34E)
 
 lbl10:
 r0 = *r2
@@ -163,3 +163,60 @@ goto lbl5
 [garbagedata?]
 
 lbl13: @17860
+r1 = r12
+r5 = *r1
+r5 += 0xDB
+r4 = *r5
+if(r4 > 1) goto lbl4
+
+r3 = gActiveBattler
+r2 = gBattlerAttacker
+*r2 = r4
+*r3 = r4
+r1 = gSideTimers
+r0 = 0xC
+r0 *= r4
+r1 += r0
+r0 = *(r1 + 0xB)
+if(r0 == 0) goto lbl14
+
+r0--
+*(r1 + 0xB) = r0
+if(r0 != 0) goto lbl14
+
+r0 = data_0801782E_J
+BattleScriptExecute()
+r0 = 1
+r9 += r0
+goto lbl14
+
+lbl14:
+r4 = 1
+*r5 = r4
+goto lbl(DA = 346)
+
+battlescript at 1782E_J:
+10 91 01 12 40 00 3E
+
+lbl19: @1789A
+r3 = gTrickRoomActive
+r0 = *r3
+if(r0 == 0) goto lbl20
+
+r0--
+*r3 = r0
+if(r0 == 0) goto lbl21
+
+goto lbl20
+
+lbl20:
+goto lbl(96 = 302)
+
+lbl21:
+r0 = data_08017835_J
+goto lbl(8E = 2FA)
+
+battlescript at 17835_J:
+10 8F 01 12 40 00 3E
+
+lbl23(0 = 26C): @17960 !!!179F6!!!

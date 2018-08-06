@@ -15,7 +15,7 @@ A0 0B 06 09
 (stench actual desc: 71C9A4)
 ("the pkmn" -> "it"; if "it" would be at the beginning, skip it)
 abilities:
-- 0x52 = (ignore taunt?)
+= 0x52 = (ignore taunt)
 + 0x54 = Unburden
 + 0x5F = Quick Feet
 + 0x64 = Stall
@@ -30,31 +30,62 @@ abilities:
 + 0xB2 = Gale Wings
 + 0xCA = Slush Rush
 
+(old kid: 16F8C4, old item: 0x125)
 item effects:
-0x1D = (not Choice Band)
-(0x44~0x45) = Choice Band
-(0x44~0x45) = Choice Specs
-0x46 = Choice Scarf
-0x4A = Lagging Tail
-0x52 = Assault Vest
+= 0x1D = (not Choice Band)
++ 0x44 = Choice Specs
++ 0x45 = Choice Band
++ 0x46 = Choice Scarf
++ 0x4A = Lagging Tail
++ 0x52 = Assault Vest
+
+itemdata:
+all prices divided by 10
+shards: items pocket -> key items pocket (PDONLY)
+cheri-belue: mystery byte 02 = 01-23
+liechi-enigma: mystery byte 02 = 36-3D
+pomeg-tamato: type = other -> out of battle
+pomeg-tamato: battle usage = 0 -> 1
+pomeg-tamato: extra byte = 1A, 1B, 1C, 1E, 1F, 1D
+sitrus: effparam = 30 -> 254
+typeboosters: effparam = 10 -> 20
+leftovers: effparam = 10 -> 255
+sea incense: effparam = 5 -> 20
+lax incense: effparam = 5 -> 10
+changed fieldscriptptrs: pomeg-tamato
+changed battlescriptptrs: choice band, stick
 
 pokeball types:
-0x04 = (not Safari Ball)
-0x05 = Safari Ball
-0x11 = Park Ball
++ 0x01 = Ultra Ball -> Master Ball
++ 0x02 = Great Ball -> Ultra Ball
++ 0x03 = Poke Ball -> Great Ball
++ 0x04 = Safari Ball -> Poke Ball
++ 0x05 = Net Ball -> Safari Ball
++ 0x06 = Dive Ball -> Net Ball
++ 0x07 = Nest Ball -> Dive Ball
++ 0x08 = Repeat Ball -> Nest Ball
++ 0x09 = Timer Ball -> Repeat Ball
++ 0x0A = Luxury Ball -> Timer Ball
++ 0x0B = Premier Ball -> Luxury Ball
++ 0x0C = Premier Ball
++ 0x11 = Park Ball
 
-battle strings (ADD ??? TO ALL):
-- 0x198 = "The effects of the [ITEM] prevent status moves from being used!"
+battle strings (ADD 9 TO ALL, 0D77C8 = num):
+= 0x180 = "[PKMN]'s [ABILITY] nullified the effects of weather!"
+= 0x181 = "[PKMN]'s [ITEM] let it move first!"
+- 0x18F = 
+- 0x191 = 
++ 0x198 = "The effects of the [ITEM] prevent status moves from being used!"
 
 grafics:
-- D0051C (C0051C old, EB8990 new)
+= D0051C (C0051C old, EB8990 new)
 
 + expand rom to 2x
-- expand 1D65A8 (move scripts) from 214 entries to 256 (1065000?)
-- expand 245EE0 (species names) from 10 per to 12 per (1060BA0?)
-- expand 247094 (move names) from 355 entries/12 per to 680 entries/16 per (1000000)
++ expand 1D65A8 (move scripts) from 214 entries to 256 (1065000)
+= expand 245EE0 (species names) from 10 per to 12 per (1060BA0?)
+= expand 247094 (move names) from 355 entries/12 per to 680 entries/16 per (1000000)
 + expand 24FB08 (ability descriptions) from 78 entries to 232 (13FD000)
-- expand 24FC40 (ability names) from 78 entries/12 per to 232 entries/16 per (13FF000)
+= expand 24FC40 (ability names) from 78 entries/12 per to 232 entries/16 per (13FF000)
 + expand 25011C (battle script commands) from 248 entries to 256 (EB7A00)
 + expand 250C04 (move data) from 355 entries to 680 (1010000)
 + expand 26056C (ball sprites) from 12 entries to 26 (A23000)
@@ -62,7 +93,7 @@ grafics:
 + expand 3DB028 (item data) from 375 entries to 435 (10B0000)
 + expand 3D4038 (mon icon palettes) from 6 entries to 16 (jE40000, e1E40000)
 
-- repoint 1D9015 -> 1052EE0 (BattleScript_FocusPunchSetUp) - do it itself later
++ repoint 1D9015 -> 1052EE0 (BattleScript_FocusPunchSetUp) - do it itself later
 
 = 006884: ptr 217818 (gUnusedJapaneseFireRedLeafGreenMaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
 = 0069F0: ptr 227B30 (gUnusedJapaneseFireRedLeafGreenFemaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
@@ -96,11 +127,11 @@ grafics:
   016494: 74 3D 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jA231E0, see 07disasm))
 		  Implements: new pokeballs (throw action)
 		  Required knowledge: j0203FE00
-		  Relies on: Safari Ball ID change
-- 017594: Entirety of TrySetCantSelectMoveBattleScript (see 08disasm/08bakpe)
+		  Relies on: pokeball ID changes
++ 017594: Entirety of TrySetCantSelectMoveBattleScript (see 08disasm/08bakpe)
 		  Implements: Klutz (move restriction items), Choice Specs (locking), Choice Scarf (locking), Assault Vest (move prevention)
 		  Relies on: Choice Band effect ID change
-- 0177C8: C8 8D AF 28 0E D1 06 4A F9 00 C8 1B 80 00 80 18 C0 79 00 90 0F E0 -> 08 1C 20 30 00 78 67 28 0C D1 00 20 10 E0 00 00 00 00 00 00 00 00
++ 0177C8: C8 8D AF 28 0E D1 06 4A F9 00 C8 1B 80 00 80 18 C0 79 00 90 0F E0 -> 08 1C 20 30 00 78 67 28 0C D1 00 20 10 E0 00 00 00 00 00 00 00 00
   0177E8: B4 3E 02 02 -> 00 00 00 00
   01783C, 01785C, 017878, 01790A, 01792A: 20 06 04 0E -> 00 00 00 00
   0178BA: 20 06 04 0E 2F 48 40 44 C0 7C 00 07 00 28 10 D0 10 20 18 40 00 28 0C D0 2F 4A 29 88 48 00 40 18 80 00 80 18 40 78 00 28 03 D1 30 68 04 43 20 06 04 0E -> 00 00 00 00 00 9A 52 2A 05 D0 2D 48 40 44 C0 7C 00 07 00 28 0D D0 10 20 18 40 00 28 09 D0 2D 4A 29 88 0C 20 48 43 80 18 40 78 00 28 01 D1 30 68 04 43
