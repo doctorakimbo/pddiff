@@ -78,7 +78,7 @@ GetSpeedStat(battlerId)
 			return UINT_MAX;
 	}
 
-	if(gTrickRoomActive)
+	if(gTrickRoomTurns != 0)
 		return -speedStat;
 
 	if(ability == ABILITY_STALL)

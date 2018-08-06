@@ -1,0 +1,148 @@
+...
+case 4:
+	while(gBattleStruct->turnSideTracker < 2)
+	{
+		side = gBattleStruct->turnSideTracker;
+		gActiveBattler = gBattlerAttacker = gSideTimers[side].safeguardBattlerId;
+		
+		if(gSideStatuses[side] & SIDE_STATUS_SAFEGUARD)
+		{
+			if(--gSideTimers[side].safeguardTimer == 0)
+			{
+				gSideStatuses[side] &= ~SIDE_STATUS_SAFEGUARD;
+				BattleScriptExecute(BattleScript_SafeguardEnds);
+				effect++;
+			}
+		}
+
+		gBattleStruct->turnSideTracker++;
+		if(effect)
+			break;
+	}
+	
+	if(!effect)
+	{
+		gBattleStruct->turnCountersTracker++;
+		gBattleStruct->turnSideTracker = 0;
+	}
+	break;
+case 5:
+	while(gBattleStruct->turnSideTracker < gBattlersCount)
+	{
+		gActiveBattler = gBattlerByTurnOrder[gBattleStruct->turnSideTracker];
+
+		if(gWishFutureKnock[gActiveBattler].wishCounter != 0 && --gWishFutureKnock[gActiveBattler].wishCounter == 0 && gBattleMons[gActiveBattler].hp != 0)
+		{
+			gBattlerTarget = gActiveBattler;
+			BattleScriptExecute(BattleScript_WishComesTrue);
+			effect++;
+		}
+
+		gBattleStruct->turnSideTracker++;
+		if(effect)
+			break;	
+	}
+	
+	if(!effect)
+	{
+		gBattleStruct->turnCountersTracker++;
+	}
+	break;
+case 6:
+	if(gBattleWeather & WEATHER_RAIN_ANY)
+	{
+		if(!(gBattleWeather & WEATHER_RAIN_PERMANENT))
+		{
+			if(--gWishFutureKnock.weatherDuration == 0)
+			{
+				gBattleWeather &= ~WEATHER_RAIN_TEMPORARY;
+				gBattleWeather &= ~WEATHER_RAIN_DOWNPOUR;
+				gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+			}
+			else
+			{
+				if(gBattleWeather & WEATHER_RAIN_DOWNPOUR)
+					gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+				else
+					gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+			}
+		}
+		elseif(gBattleWeather & WEATHER_RAIN_DOWNPOUR)
+		{
+			gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+		}
+		else
+		{
+			gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+		}
+
+		gBattlescriptCurrInstr = BattleScript_RainContinuesOrEnds;
+		BattleScriptExecute(gBattlescriptCurrInstr);
+		effect++;
+	}
+	
+	goto lbl33
+case 7:
+	if(gBattleWeather & WEATHER_SANDSTORM_ANY)
+	{
+		if(!(gBattleWeather & WEATHER_SANDSTORM_PERMANENT) && --gWishFutureKnock.weatherDuration == 0)
+		{
+			gBattleWeather &= ~WEATHER_SANDSTORM_TEMPORARY;
+			gBattlescriptCurrInstr = BattleScript_SandStormHailEnds;
+		}
+		else
+		{
+			gBattlescriptCurrInstr = BattleScript_DamagingWeatherContinues;
+		}
+
+		gBattleScripting.animArg1 = B_ANIM_SANDSTORM_CONTINUES;
+		gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+		BattleScriptExecute(gBattlescriptCurrInstr);
+		effect++;
+	}
+	
+	goto lbl33
+case 8:
+	if(gBattleWeather & WEATHER_SUN_ANY)
+	{	
+		if(!(gBattleWeather & WEATHER_SUN_PERMANENT) && --gWishFutureKnock.weatherDuration == 0)
+		{
+			gBattleWeather &= ~WEATHER_SUN_TEMPORARY;
+			gBattlescriptCurrInstr = BattleScript_SunlightFaded;
+		}
+		else
+		{
+			gBattlescriptCurrInstr = BattleScript_SunlightContinues;
+		}
+			
+		BattleScriptExecute(gBattlescriptCurrInstr);
+		effect++;
+	}
+	
+	goto lbl33
+case 9:
+	if(gBattleWeather & WEATHER_HAIL)
+	{
+		if(--gWishFutureKnock.weatherDuration == 0)
+		{
+			gBattleWeather &= ~WEATHER_HAIL;
+			gBattlescriptCurrInstr = BattleScript_SandStormHailEnds;
+		}
+		else
+		{
+			gBattlescriptCurrInstr = BattleScript_DamagingWeatherContinues;
+		}
+
+		gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;
+		gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+
+		lbl31:
+		lbl32:
+		BattleScriptExecute(gBattlescriptCurrInstr);
+		effect++;
+	}
+
+	lbl33:
+	gBattleStruct->turnCountersTracker++;
+	break;
+...

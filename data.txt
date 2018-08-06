@@ -30,7 +30,7 @@ B8 3D 02 02: 18 3D 02 02: gLockedMoves
 C4 3D 02 02: 24 3D 02 02: gChosenMoveByBattler
 CC 3D 02 02: 2C 3D 02 02: gMoveResultFlags
 D0 3D 02 02: 30 3D 02 02: gHitMarker
-DE 3D 02 02: 3E 3D 02 02: ??????
+DE 3D 02 02: 3E 3D 02 02: gSideStatuses
 E4 3D 02 02: 44 3D 02 02: gSideTimers
 0C 3E 02 02: 6C 3D 02 02: gDisableStructs
 80 3E 02 02: E0 3D 02 02: gRandomTurnNumber
@@ -38,8 +38,8 @@ E4 3D 02 02: 44 3D 02 02: gSideTimers
 8C 3E 02 02: EC 3D 02 02: gProtectStructs
 CC 3E 02 02: 2C 3E 02 02: gSpecialStatuses
 1C 3F 02 02: 7C 3E 02 02: gBattleWeather
-1E 3F 02 02: 7E 3E 02 02: gWishFutureKnock (FR) / gTrickRoomActive (PD)
-20 3F 02 02: 80 3E 02 02: ??????
+1E 3F 02 02: 7E 3E 02 02: gTrickRoomTurns (PD)
+20 3F 02 02: 80 3E 02 02: gWishFutureKnock
 54 3F 02 02: B4 3E 02 02: gEnigmaBerries
 C4 3F 02 02: 24 3F 02 02: gBattleScripting
 E8 3F 02 02: 48 3F 02 02: gBattleStruct
@@ -63,7 +63,9 @@ funcs:
 015A30 = FreeResetData_ReturnToOvOrDoEvolutions
 0172E8 = CancelMultiTurnMoves/GetImprisonedMovesCount
 017A64 = GetImprisonedMovesCount/CancelMultiTurnMoves
+019F18 = ???
 01BBE4 = BattleScriptExecute
+01BC68 = ???
 01D05C = GetMoveTarget
 01FEE8 = GetBattlerTurnOrderNum
 03E47C = CalculateMonStats

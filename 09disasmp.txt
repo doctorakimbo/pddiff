@@ -1,4 +1,4 @@
-lbl1: @0176F4
+lbl1: @0176F4 //case 5
 r1 = r12
 r0 = *r1
 r0 += 0xDB
@@ -57,7 +57,7 @@ r12 = r2
 r3 = r9
 if(r3 == 0) goto lbl4
 
-goto lbl(E2 = 34E)
+goto lbl_34E
 
 lbl4:
 r1 = r12
@@ -72,7 +72,7 @@ lbl5:
 r0 = r9
 if(r0 == 0) goto lbl6
 
-goto lbl(E2 = 34E)
+goto lbl_34E
 
 lbl6:
 r1 = r12
@@ -85,7 +85,7 @@ r0 = *r2
 r0 += 0xDB
 r3 = r9
 *r0 = r3
-goto lbl(DA = 346)
+goto lbl_346
 
 lbl7: @177AC
 r2 = r12
@@ -148,7 +148,7 @@ r12 = r2
 r3 = r9
 if(r3 == 0) goto lbl10
 
-goto lbl(E2 = 34E)
+goto lbl_34E
 
 lbl10:
 r0 = *r2
@@ -193,7 +193,7 @@ goto lbl14
 lbl14:
 r4 = 1
 *r5 = r4
-goto lbl(DA = 346)
+goto lbl_346
 
 battlescript at 1782E_J:
 10 91 01 12 40 00 3E
@@ -210,13 +210,125 @@ if(r0 == 0) goto lbl21
 goto lbl20
 
 lbl20:
-goto lbl(96 = 302)
+goto lbl28
 
 lbl21:
 r0 = data_08017835_J
-goto lbl(8E = 2FA)
+goto lbl27
 
 battlescript at 17835_J:
 10 8F 01 12 40 00 3E
 
-lbl23(0 = 26C): @17960 !!!179F6!!!
+lbl23(0 = 26C): @17960
+r3 = gBattleWeather
+r2 = *r3
+r0 = 3
+r0 &= r2
+if(r0 == 0) goto lbl11
+
+r0 = 2
+r0 &= r2
+if(r0 != 0) goto lbl24
+
+r1 = gBattleWeather
+r1 += 0x2C
+r0 = *r1
+r0--
+*r1 = r0
+if(r0 != 0) goto lbl24
+
+r0 = 0xFFFE
+r0 &= r2
+*r3 = r0
+r5 = 1
+goto lbl25
+
+lbl24:
+r5 = 0
+goto lbl25
+
+lbl25:
+r4 = data_081D8A64
+goto lbl26
+
+lbl11:
+r0 = 0xC
+r0 &= r2
+if(r0 == 0) goto lbl12
+
+r0 = 8
+r4 = 0xFFFB
+r5 = 0
+r6 = 0xC
+goto lbl16
+
+lbl12:
+r0 = 0x30
+r0 &= r2
+if(r0 == 0) goto lbl15
+
+r0 = 0x20
+r4 = 0xFFEF
+r5 = 1
+r6 = 0xB
+goto lbl16
+
+lbl15:
+r0 = 0xC0
+r0 &= r2
+if(r0 == 0) goto lbl28
+
+r0 = 0x80
+r4 = 0xFFBF
+r5 = 2
+r6 = 0xD
+goto lbl16
+
+lbl16:
+r0 &= r2
+if(r0 != 0) goto lbl17
+
+r1 = gBattleWeather
+r1 += 0x2C
+r0 = *r1
+r0--
+*r1 = r0
+if(r0 == 0) goto lbl18
+
+goto lbl17
+
+lbl17:
+r4 = data_081D8A7F
+goto lbl22
+
+lbl18:
+r4 &= r2
+*r3 = r4
+r4 = data_081D8B01
+goto lbl22
+
+lbl22:
+r0 = gBattleScripting
+*(r0 + 0x10) = r6
+goto lbl26
+
+lbl26:
+r0 = gBattleCommunication
+*(r0 + 5) = r5
+r0 = r4
+goto lbl27
+
+lbl27:
+BattleScriptExecute()
+r0 = 1
+r9 += r0
+goto lbl28
+
+lbl28: @179F6
+r2 = gBattleStruct
+r1 = *r2
+r0 = *(r1 + 3)
+r0++
+*(r1 + 3) = r0
+r12 = r2
+goto lbl_346

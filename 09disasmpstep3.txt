@@ -1,0 +1,164 @@
+...
+case 4:
+	while(gBattleStruct->turnSideTracker < 2)
+	{
+		side = gBattleStruct->turnSideTracker;
+		gActiveBattler = gBattlerAttacker = gSideTimers[side].safeguardBattlerId;
+		
+		if(gSideStatuses[side] & SIDE_STATUS_SAFEGUARD)
+		{
+			if(--gSideTimers[side].safeguardTimer == 0)
+			{
+				gSideStatuses[side] &= ~SIDE_STATUS_SAFEGUARD;
+				BattleScriptExecute(BattleScript_SafeguardEnds);
+				effect++;
+			}
+		}
+
+		gBattleStruct->turnSideTracker++;
+		if(effect)
+			break;
+	}
+	
+	if(!effect)
+	{
+		gBattleStruct->turnCountersTracker++;
+		gBattleStruct->turnSideTracker = 0;
+	}
+	break;
+case 5:
+	while(gBattleStruct->turnSideTracker < gBattlersCount)
+	{
+		gActiveBattler = gBattlerByTurnOrder[gBattleStruct->turnSideTracker];
+
+		if(gWishFutureKnock[gActiveBattler].wishCounter != 0 && --gWishFutureKnock[gActiveBattler].wishCounter == 0 && gBattleMons[gActiveBattler].hp != 0)
+		{
+			gBattlerTarget = gActiveBattler;
+			BattleScriptExecute(BattleScript_WishComesTrue);
+			effect++;
+		}
+
+		gBattleStruct->turnSideTracker++;
+		if(effect)
+			break;	
+	}
+
+	if(!effect)
+	{
+		gBattleStruct->turnCountersTracker++;
+		gBattleStruct->turnSideTracker = 0;
+	}
+	break;
+case 6:
+	side = gBattleStruct->turnSideTracker;
+
+	if(side < 2)
+	{
+		gBattlerAttacker = side;
+		gActiveBattler = side;
+		
+		if(gSideTimers[side].tailwindTimer != 0 && --gSideTimers[side].tailwindTimer == 0)
+		{
+			BattleScriptExecute(BattleScript_TailwindEnds);
+			effect++;
+		}
+		
+		gBattleStruct->turnSideTracker = 1;
+	}
+	elseif(!effect)
+	{
+		gBattleStruct->turnCountersTracker++;
+		gBattleStruct->turnSideTracker = 0;
+	}
+	break;
+
+	BattleScript_TailwindEnds:
+	(10 91 01 12 40 00 3E)
+	printstring STRINGID_TAILWINDPETEREDOUT
+	waitmessage 0x40
+	end
+	
+case 7:
+	if(gTrickRoomTurns != 0 && --gTrickRoomTurns == 0)
+	{
+		BattleScriptExecute(BattleScript_TrickRoomEnds);
+		effect++;
+	}
+	
+	gBattleStruct->turnCountersTracker++;
+	break;
+
+	BattleScript_TrickRoomEnds:
+	(10 8F 01 12 40 00 3E)
+	printstring STRINGID_TWISTEDDIMRETURNED
+	waitmessage 0x40
+	end
+	
+case 8:
+	if(gBattleWeather & WEATHER_RAIN_ANY)
+	{
+		if(!(gBattleWeather & WEATHER_RAIN_PERMANENT) && --gWishFutureKnock.weatherDuration == 0)
+		{
+			gBattleWeather &= ~WEATHER_RAIN_TEMPORARY;
+			gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+		}
+		else
+		{
+			gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+		}
+		
+		BattleScriptExecute(BattleScript_RainContinuesOrEnds);
+		effect++;
+	}
+	else
+	{
+		if(gBattleWeather & WEATHER_SANDSTORM_ANY)
+		{
+			permWeather = WEATHER_SANDSTORM_PERMANENT;
+			removeWeather = ~WEATHER_SANDSTORM_TEMPORARY;
+			multiString = 0;
+			battleAnim = B_ANIM_SANDSTORM_CONTINUES;
+		}
+		else
+		{
+			if(gBattleWeather & WEATHER_SUN_ANY)
+			{
+				permWeather = WEATHER_SUN_PERMANENT;
+				removeWeather = ~WEATHER_SUN_TEMPORARY
+				multiString = 1;
+				battleAnim = B_ANIM_SUN_CONTINUES;
+			}
+			else
+			{
+				if(gBattleWeather & WEATHER_HAIL_ANY)
+				{
+					permWeather = WEATHER_HAIL_PERMANENT;
+					removeWeather = ~WEATHER_HAIL_TEMPORARY;
+					multiString = 2;
+					battleAnim = B_ANIM_HAIL_CONTINUES;
+				}
+				else
+					continue;
+			}
+		}
+
+		if(!(gBattleWeather & permWeather) && --gWishFutureKnock.weatherDuration == 0)
+		{
+			gBattleWeather &= removeWeather;
+			gBattleScriptCurrInstr = BattleScript_SandStormHailEnds;
+		}
+		else
+		{
+			gBattleScriptCurrInstr = BattleScript_DamagingWeatherContinues;
+		}
+		
+		gBattleScripting.animArg1 = battleAnim;
+		gBattleCommunication[MULTISTRING_CHOOSER] = multiString;
+		BattleScriptExecute(gBattleScriptCurrInstr);
+		effect++;
+	}
+	// fallthrough
+case 9:
+	gBattleStruct->turnCountersTracker++;
+	break;
+...

@@ -1,0 +1,90 @@
+lbl1: @1834C
+r1 = (data_50)
+r3 = *r6
+r0 = r3 * 4
+r0 += r1
+r0 = *r0
+r1 = 0x80
+r1 *= 8
+r0 &= r1
+if(r0 != 0) goto lbl2
+
+goto lbl(8C6)
+
+lbl2:
+r0 = (data_54)
+r1 = 0x58
+r1 *= r3
+r0 += r1
+r2 = *(r0 + 0x28)
+r5 = *(r0 + 0x2C)
+if(r2 != r5) goto lbl3
+
+goto lbl(8C6)
+
+lbl3:
+if(r2 != 0) goto lbl4
+
+goto lbl(8C6)
+
+lbl4:
+r1 = (data_58)
+r0 = *(r0 + 0x2C)
+r0 /= 16
+*r1 = r0
+if(r0 != 0) goto lbl5
+
+r0 = 1
+*r1 = r0
+goto lbl5
+
+lbl5:
+r0 = *r1
+rsb r0, 0
+*r1 = r0
+r0 = (data_5C)
+goto lbl(8B8)
+
+lbl7: @183AC
+r1 = *r6
+r0 = 0
+s0 = r0
+r0 = 1
+r2 = 0
+r3 = 0
+fn_19F18()
+r0 <<= 0x18
+if(r0 != 0) goto lbl8
+
+goto lbl(8C6)
+
+lbl8:
+goto lbl(8BC)
+
+lbl9: @183CA
+r1 = *r6
+r0 = 1
+r2 = 0
+fn_1BC68()
+r0 <<= 0x18
+if(r0 != 0) goto lbl11
+
+goto lbl(8C6)
+
+lbl11:
+goto lbl(8BC)
+
+lbl12(96): @183E2
+r1 = *r6
+r0 = 1
+r2 = 1
+fn_1BC68()
+r0 <<= 0x18
+if(r0 != 0) goto lbl13
+
+goto lbl(8C6)
+
+lbl13:
+goto lbl(8BC)
+
+lbl14(AE): @183FA
