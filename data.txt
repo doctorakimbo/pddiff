@@ -2,6 +2,7 @@ addr e: addr j: desc
 
 74 29 02 02: E4 28 02 02: gBattle_BG0_X
 76 29 02 02: E6 28 02 02: gBattle_BG0_Y
+B8 2A 02 02: 28 2A 02 02: ??????
 4C 2B 02 02: AC 2A 02 02: gBattleTypeFlags
 C4 33 02 02: 24 33 02 02: gBattleBufferB
 C4 3B 02 02: 24 3B 02 02: gActiveBattler
@@ -15,6 +16,7 @@ E4 3B 02 02: 44 3B 02 02: gBattleMons
 49 3D 02 02: A9 3C 02 02: gChosenMovePos
 4A 3D 02 02: AA 3C 02 02: gCurrentMove
 4C 3D 02 02: AC 3C 02 02: gChosenMove
+50 3D 02 02: B0 3C 02 02: ??????
 68 3D 02 02: C8 3C 02 02: gLastUsedItem
 6B 3D 02 02: CB 3C 02 02: gBattlerAttacker
 6C 3D 02 02: CC 3C 02 02: gBattlerTarget
@@ -32,6 +34,7 @@ CC 3D 02 02: 2C 3D 02 02: gMoveResultFlags
 D0 3D 02 02: 30 3D 02 02: gHitMarker
 DE 3D 02 02: 3E 3D 02 02: gSideStatuses
 E4 3D 02 02: 44 3D 02 02: gSideTimers
+FC 3D 02 02: 5C 3D 02 02: ??????
 0C 3E 02 02: 6C 3D 02 02: gDisableStructs
 80 3E 02 02: E0 3D 02 02: gRandomTurnNumber
 82 3E 02 02: E2 3D 02 02: gBattleCommunication

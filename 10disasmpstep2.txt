@@ -1,0 +1,270 @@
+...
+case 0:
+	if(!(*(*r6 * 4 + data_02023DFC) & 0x400)) break
+	
+	r4 = (*r6 * 0x58) + gBattleMons
+	r3 = *(r4 + 0x28)
+	r5 = *(r4 + 0x2C)
+	
+	if(r3 == r5 || r3 == 0) break
+	
+	r0 = *(r4 + 0x20)
+	
+	if(r0 != 0x67)
+		r0 = GetHoldEffect(*(r4 + 0x2E))
+	
+	r3 = r0
+	r0 = r5 / 16
+	
+	if(r3 == 0x51)
+		r0 = (r0 * 13) / 10
+	
+	if(r0 == 0)
+		r0 = 1
+	
+	r1 = 
+	*data_02023D50 = -r0
+	BattleScriptExecute(data_081D8F0C)
+	r9++
+	break
+case 1:
+	r1 = *r6
+	s0 = 0
+	r0 = 1
+	r2 = 0
+	r3 = 0
+	sub_8019F18()
+	
+	if(r0 << 0x18 == 0) break
+
+	r9++
+	break
+case 2:
+	r1 = *r6
+	r0 = 1
+	sub_801BC68()
+	
+	if(r0 << 0x18 == 0) break
+
+	r9++
+	break
+case 3:
+	r1 = *(*r6 * 4 + data_02023DFC)
+	
+	if(!(r1 & 4) || *((r1 & 3) * 0x58 + gBattleMons + 0x28) == 0) break
+	
+	r3 = (*r6 * 0x58) + gBattleMons
+	
+	if(*(r3 + 0x28) == 0 || *(r3 + 0x20) == 0x62) break
+	
+	r0 = *(r3 + 0x2C) / 8
+	
+	if(r0 != 0)
+		r0 = 1
+	
+	*data_02023D50 = r0
+	*gBattlerTarget = r1 & 3
+	*(gBattleScripting + 0x10) = r1 & 3
+	*(gBattleScripting + 0x11) = *r6
+	BattleScriptExecute(data_081D8B4D)
+	r9++
+	break
+case 4:
+	r3 = (*r6 * 0x58) + gBattleMons
+	
+	if(!(*(r3 + 0x4C) & 8) || *(r3 + 0x28) == 0) break
+
+	r1 = *(r3 + 0x20)
+	
+	if(r1 == 0x62) break
+	
+	if(r1 == 0x5A)
+	{
+		r0 = *(r3 + 0x2C)
+		
+		if(r0 == *(r3 + 0x28)) break
+
+		r0 /= 8
+		
+		if(r0 == 0)
+			r0 = 1
+		
+		*data_02023D50 = -r0
+		BattleScriptExecute(script_17D90_J)
+	}
+	else
+	{
+		r0 = *(r3 + 0x2C) / 8
+		
+		if(r0 == 0)
+			r0 = 1
+		
+		*data_02023D50 = r0
+		BattleScriptExecute(data_081D9053)
+	}
+	
+	r9++
+	break
+case 5:
+	r3 = (*r6 * 0x58) + gBattleMons
+	r2 = *(r3 + 0x4C)
+	
+	if(!(r2 & 0x80) || *(r3 + 0x28) == 0) break
+
+	r1 = *(r3 + 0x20)
+	
+	if(r1 == 0x62) break
+	
+	if(r1 == 0x5A)
+	{
+		r0 = *(r3 + 0x2C)
+		
+		if(r0 == *(r3 + 0x28)) break
+
+		r0 /= 8
+		
+		if(r0 == 0)
+			r0 = 1
+		
+		*data_02023D50 = -r0
+		BattleScriptExecute(script_17D90_J)
+	}
+	else
+	{
+		if(r2 / 256 != 0xF)
+		{
+			r2 += 256
+			*(r3 + 0x4C) = r2
+		}
+
+		r0 = *(r3 + 0x2C) / 16
+		
+		if(r0 == 0)
+			r0 = 1
+		
+		*data_02023D50 = r0 * (r2 / 256)
+		BattleScriptExecute(data_081D9053)
+	}
+	
+	r9++
+	break
+case 6:
+	r3 = (*r6 * 0x58) + gBattleMons
+	
+	if(!(*(r3 + 0x4C) & 0x10) || *(r3 + 0x28) == 0) break
+	
+	r1 = *(r3 + 0x20)
+	
+	if(r1 == 0x62) break
+	
+	if(r1 == 0x55)
+		r0 = *(r3 + 0x2C) / 32
+	else
+		r0 = *(r3 + 0x2C) / 16
+
+	if(r0 == 0)
+		r0 = 1
+	
+	*data_02023D50 = r0
+	BattleScriptExecute(data_081D9075)
+	r9++
+	break
+case 7:
+	r3 = (*r6 * 0x58) + gBattleMons
+	
+	if(!(*(r3 + 0x50) & 0x8000000) || *(r3 + 0x28) == 0) break
+
+	if(!(*(r3 + 0x4C) & 7))
+	{
+		*(r3 + 0x50) &= 0xF7FFFFFF
+		break
+	}
+	
+	if(*(r3 + 0x20) == 0x62) break
+
+	r0 = *(r3 + 0x2C) / 4
+	
+	if(r0 == 0)
+		r0 = 1
+	
+	*data_02023D50 = r0
+	BattleScriptExecute(data_081D9155)
+	r9++
+	break
+case 8:
+	r3 = (*r6 * 0x58) + gBattleMons
+	
+	if(!(*(r3 + 0x50) & 0x10000000) || *(r3 + 0x28) == 0 || *(r3 + 0x20) == 0x62) break
+	
+	r0 = *(r3 + 0x2C) / 4
+	
+	if(r0 == 0)
+		r0 = 1
+	
+	*data_02023D50 = r0
+	BattleScriptExecute(data_081D9166)
+	r9++
+	break
+case 9: 
+	r7 = (*r6 * 0x58) + gBattleMons
+	
+	if(!(*(r7 + 0x50) & 0xE000) || *(r7 + 0x28) == 0) break
+
+	*data_02022AB8 = 0xFD
+	*(data_02022AB8 + 1) = 2
+	r2 = (*r6 * 2) + *gBattleStruct
+	*(data_02022AB8 + 2) = *(r2 + 4)
+	*(data_02022AB8 + 4) = 0xFF
+	r0 = *(r7 + 0x50) + 0xFFFFE000
+	*(r7 + 0x50) = r0
+	
+	if(!(r0 & 0xE000))
+	{
+		BattleScriptExecute(data_081D9136)
+	}
+	else
+	{
+		*(gBattleScripting + 0x10) = *(r2 + 4)
+		
+		if(*(r7 + 0x20) == 0x62) break
+		
+		r4 = (*(*r6 + *gBattleStruct + 0x14) * 0x58) + gBattleMons
+		r0 = GetHoldEffect(*(r4 + 0x2E))
+		r1 = *(r7 + 0x2C)
+		r4 = *(r4 + 0x20)
+		
+		if(r4 != 0x67 && r0 == 0x4F)
+			r0 = r1 / 6
+		else
+			r0 = r1 / 8
+		
+		if(r0 != 0)
+			r0 = 1
+		
+		*data_02023D50 = r0
+		BattleScriptExecute(data_081D9124)
+	}
+	
+	r9++
+	break
+...
+case 12:
+	r2 = 1
+	r1 = *r6
+	r0 = 1
+	sub_801BC68()
+	
+	if(r0 << 0x18 == 0) break
+
+	r9++
+	break
+...
+
+
+
+
+
+
+
+script_17D90_J:
+10 33 01 12 40 00 35 (30 3D 02 02)_J 00 01 00 00 0B 01 0C 01 3E

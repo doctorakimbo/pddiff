@@ -1,5 +1,5 @@
 lbl1: @1834C
-r1 = (data_50)
+r1 = data_02023DFC
 r3 = *r6
 r0 = r3 * 4
 r0 += r1
@@ -9,10 +9,10 @@ r1 *= 8
 r0 &= r1
 if(r0 != 0) goto lbl2
 
-goto lbl(8C6)
+goto lbl_8C6
 
 lbl2:
-r0 = (data_54)
+r0 = gBattleMons
 r1 = 0x58
 r1 *= r3
 r0 += r1
@@ -20,15 +20,15 @@ r2 = *(r0 + 0x28)
 r5 = *(r0 + 0x2C)
 if(r2 != r5) goto lbl3
 
-goto lbl(8C6)
+goto lbl_8C6
 
 lbl3:
 if(r2 != 0) goto lbl4
 
-goto lbl(8C6)
+goto lbl_8C6
 
 lbl4:
-r1 = (data_58)
+r1 = data_02023D50
 r0 = *(r0 + 0x2C)
 r0 /= 16
 *r1 = r0
@@ -42,8 +42,8 @@ lbl5:
 r0 = *r1
 rsb r0, 0
 *r1 = r0
-r0 = (data_5C)
-goto lbl(8B8)
+r0 = data_081D8F0C
+goto lbl53
 
 lbl7: @183AC
 r1 = *r6
@@ -56,7 +56,7 @@ fn_19F18()
 r0 <<= 0x18
 if(r0 != 0) goto lbl8
 
-goto lbl(8C6)
+goto lbl_8C6
 
 lbl8:
 goto lbl(8BC)
@@ -69,12 +69,12 @@ fn_1BC68()
 r0 <<= 0x18
 if(r0 != 0) goto lbl11
 
-goto lbl(8C6)
+goto lbl_8C6
 
 lbl11:
 goto lbl(8BC)
 
-lbl12(96): @183E2
+lbl12: @183E2
 r1 = *r6
 r0 = 1
 r2 = 1
@@ -82,9 +82,417 @@ fn_1BC68()
 r0 <<= 0x18
 if(r0 != 0) goto lbl13
 
-goto lbl(8C6)
+goto lbl_8C6
 
 lbl13:
 goto lbl(8BC)
 
-lbl14(AE): @183FA
+lbl14: @183FA
+r0 = data_02023DFC
+r2 = *r6
+r1 = r2 * 4
+r1 += r0
+r1 = *r1
+r0 = 4
+r0 &= r1
+if(r0 != 0) goto lbl15
+
+goto lbl_8C6
+
+lbl15:
+r3 = gBattleMons
+r5 = 3
+r5 &= r1
+r1 = 0x58
+r0 = r5
+r0 *= r1
+r0 += r3
+r0 = *(r0 + 0x28)
+if(r0 != 0) goto lbl16
+
+goto lbl_8C6
+
+lbl16:
+r0 = r2
+r0 *= r1
+r0 += r3
+r0 = *(r0 + 0x28)
+if(r0 != 0) goto lbl17
+
+goto lbl_8C6
+
+lbl17:
+r0 = gBattlerTarget
+*r0 = r5
+r2 = data_02023D50
+r0 = *r6
+r0 *= r1
+r0 += r3
+r0 = *(r0 + 0x2C)
+r0 /= 8
+*r2 = r0
+if(r0 != 0) goto lbl18
+
+r0 = 1
+*r2 = r0
+goto lbl18
+
+lbl18:
+r1 = gBattleScripting
+*(r1 + 0x10) = r5
+r0 = *r4
+*(r1 + 0x11) = r0
+r0 = data_081D8B4D
+goto lbl53
+
+lbl19: @18478
+r2 = gBattleMons
+r1 = *r6
+r0 = 0x58
+r3 = r1
+r3 *= r0
+r0 = r2
+r0 += 0x4C
+r0 += r3
+r0 = *r0
+r1 = 8
+r0 &= r1
+if(r0 != 0) goto lbl20
+
+goto lbl_8C6
+
+lbl20:
+r1 = r3 + r2
+r0 = *(r1 + 0x28)
+if(r0 != 0) goto lbl21
+
+goto lbl_8C6
+
+lbl21:
+r2 = data_02023D50
+r0 = *(r1 + 0x2C)
+r0 /= 8
+*r2 = r0
+if(r0 != 0) goto lbl22
+
+r0 = 1
+*r2 = r0
+goto lbl22
+
+r0 = data_081D9053
+goto lbl53
+
+lbl26: @184C0
+r4 = gBattleMons
+r0 = *r6
+r7 = 0x58
+r8 = r7
+r2 = r8
+r2 *= r0
+r3 = r4
+r3 += 0x4C
+r0 = r2 + r3
+r0 = *r0
+r1 = 0x80
+r0 &= r1
+if(r0 != 0) goto lbl27
+
+goto lbl_8C6
+
+lbl27:
+r1 = r2 + r4
+r0 = *(r1 + 0x28)
+if(r0 != 0) goto lbl28
+
+goto lbl_8C6
+
+lbl28:
+r5 = data_02023D50
+r0 = *(r1 + 0x2C)
+r0 /= 16
+*r5 = r0
+if(r0 != 0) goto lbl29
+
+r0 = 1
+*r5 = r0
+goto lbl29
+
+lbl29:
+r0 = *r6
+r1 = r8
+r1 *= r0
+r0 = r1
+r2 = r0 + r3
+r1 = *r2
+r4 = 0xF0
+r4 *= 16
+r0 = r1
+r0 &= r4
+if(r0 == r4) goto lbl30
+
+r7 = 0x80
+r7 *= 2
+r0 = r1 + r7
+*r2 = r0
+goto lbl30
+
+r0 = *r6
+r1 = r8
+r1 *= r0
+r0 = r1
+r0 += r3
+r0 = *r0
+r0 &= r4
+r0 /= 256
+r1 = *r5
+r0 *= r1
+*r5 = r0
+r0 = data_081D9053
+goto lbl53
+
+lbl31: @18540
+r2 = gBattleMons
+r1 = *r6
+r0 = 0x58
+r3 = r1
+r3 *= r0
+r0 = r2
+r0 += 0x4C
+r0 += r3
+r0 = *r0
+r1 = 0x10
+r0 &= r1
+if(r0 != 0) goto lbl32
+
+goto lbl_8C6
+
+lbl32:
+r1 = r3 + r2
+r0 = *(r1 + 0x28)
+if(r0 != 0) goto lbl33
+
+goto lbl_8C6
+
+lbl33:
+r2 = data_02023D50
+r0 = *(r1 + 0x2C)
+r0 /= 8
+*r2 = r0
+if(r0 != 0) goto lbl34
+
+r0 = 1
+*r2 = r0
+goto lbl34
+
+lbl34:
+r0 = data_081D9075
+goto lbl53
+
+lbl37: @18588
+r4 = gBattleMons
+r1 = *r6
+r0 = 0x58
+r1 *= r0
+r0 = r4
+r0 += 0x50
+r5 = r1 + r0
+r2 = *r5
+r0 = 0x80
+r0 <<= 0x14
+r0 &= r2
+if(r0 != 0) goto lbl38
+
+goto lbl_8C6
+
+lbl38:
+r3 = r1 + r4
+r0 = *(r3 + 0x28)
+if(r0 != 0) goto lbl39
+
+goto lbl_8C6
+
+lbl39:
+r0 = r4
+r0 += 0x4C
+r0 += r1
+r0 = *r0
+r1 = 7
+r0 &= r1
+if(r0 == 0) goto lbl41
+
+r1 = data_02023D50
+r0 = *(r3 + 0x2C)
+r0 /= 4
+*r1 = r0
+if(r0 != 0) goto lbl40
+
+r0 = 1
+*r1 = r0
+goto lbl40
+
+lbl40:
+r0 = data_081D9155
+goto lbl53
+
+lbl41:
+r0 = 0xF7FFFFFF
+r2 &= r0
+*r5 = r2
+goto lbl_8C6
+
+lbl42: @185EC
+r2 = gBattleMons
+r1 = *r6
+r0 = 0x58
+r3 = r1
+r3 *= r0
+r0 = r2
+r0 += 0x50
+r0 += r3
+r0 = *r0
+r1 = 0x80
+r1 <<= 0x15
+r0 &= r1
+if(r0 != 0) goto lbl43
+
+goto lbl_8C6
+
+lbl43:
+r1 = r3 + r2
+r0 = *(r1 + 0x28)
+if(r0 != 0) goto lbl44
+
+goto lbl_8C6
+
+lbl44:
+r2 = data_02023D50
+r0 = *(r1 + 0x2C)
+r0 /= 4
+*r2 = r0
+if(r0 != 0) goto lbl45
+
+r0 = 1
+*r2 = r0
+r0 = data_081D9166
+goto lbl53
+
+lbl46: @18634
+r3 = gBattleMons
+r8 = r3
+r0 = *r6
+r3 = 0x58
+r1 = r0
+r1 *= r3
+r5 = 0x50
+r5 += r8
+r10 = r5
+r4 = r1 + r5
+r2 = *r4
+r5 = 0xE0
+r5 *= 256
+r0 = r2
+r0 &= r5
+if(r0 != 0) goto lbl47
+
+goto lbl_8C6
+
+lbl47:
+r7 = r8
+r0 = r1 + r7
+r0 = *(r0 + 0x28)
+if(r0 != 0) goto lbl48
+
+goto lbl_8C6
+
+lbl48:
+r1 = 0xFFFFE000
+r0 = r2 + r1
+*r4 = r0
+r4 = *r6
+r0 = r4
+r0 *= r3
+r0 += r10
+r0 = *r0
+r0 &= r5
+if(r0 == 0) goto lbl49
+
+r1 = gBattleScripting
+r0 = gBattleStruct
+r2 = *r0
+r0 = r4 * 2
+r0 += r2
+r0 = *(r0 + 4)
+*(r1 + 0x10) = r0
+r0 = *r6
+r0 *= 2
+r0 += r2
+r0 = *(r0 + 5)
+*(r1 + 0x11) = r0
+r1 = data_02022AB8
+r0 = 0xFD
+*r1 = r0
+r0 = 2
+*(r1 + 1) = r0
+r0 = *r6
+r0 *= 2
+r0 += r2
+r0 = *(r0 + 4)
+*(r1 + 2) = r0
+r0 = *r6
+r0 *= 2
+r0 += r2
+r0 = *(r0 + 5)
+*(r1 + 3) = r0
+r0 = 0xFF
+*(r1 + 4) = r0
+r1 = gBattleScriptCurrInstr
+r0 = data_081D9124
+*r1 = r0
+r2 = data_02023D50
+r0 = *r6
+r0 *= r3
+r0 += r8
+r0 = *(r0 + 0x2C)
+r0 /= 16
+*r2 = r0
+if(r0 != 0) goto lbl50
+
+r0 = 1
+*r2 = r0
+goto lbl50
+
+lbl49:
+r2 = data_02022AB8
+r0 = 0xFD
+*r2 = r0
+r0 = 2
+*(r2 + 1) = r0
+r1 = *r6
+r0 = gBattleStruct
+r3 = *r0
+r1 *= 2
+r1 += r3
+r0 = *(r1 + 4)
+*(r2 + 2) = r0
+r0 = *r6
+r0 *= 2
+r0 += r3
+r0 = *(r0 + 5)
+*(r2 + 3) = r0
+r0 = 0xFF
+*(r2 + 4) = r0
+r1 = gBattleScriptCurrInstr
+r0 = data_081D9136
+*r1 = r0
+goto lbl50
+
+lbl50:
+r0 = *r1
+goto lbl53
+
+lbl53:
+BattleScriptExecute()
+r0 = r9
+r0++
+r9 = r0
+goto lbl_8C6
