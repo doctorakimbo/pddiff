@@ -17,7 +17,10 @@ A0 0B 06 09
 abilities:
 = 0x52 = (ignore taunt)
 + 0x54 = Unburden
+- 0x55 = Heatproof
+- 0x5A = Poison Heal
 + 0x5F = Quick Feet
+- 0x62 = Magic Guard
 + 0x64 = Stall
 + 0x67 = Klutz
 + 0x68 = Mold Breaker
@@ -37,6 +40,8 @@ item effects:
 + 0x45 = Choice Band
 + 0x46 = Choice Scarf
 + 0x4A = Lagging Tail
+- 0x4F = Binding Band
+- 0X51 = Big Root
 + 0x52 = Assault Vest
 
 itemdata:
@@ -112,7 +117,7 @@ grafics:
 		  Required knowledge: j02023F8C (viable), j020385E2, unknown data table at j1400000
 = 0124EB: 80 -> 60 (store weather as fullword)
 = 014CD8: Entirety of GetWhoStrikesFirst (+added GetSpeedStat, GetPriority, +mysteryfunc) (see 04disasm/04disasm2/04bakpe)
-		  Implements: Unburden, Quick Feet, Stall, Klutz (speed items), (ability70?), Sand Rush, (ability9E?), Gale Wings [gen 6], Slush Rush, Choice Scarf (speed boost), Lagging Tail, Tailwind (effect), Trick Room (effect)
+		  Implements: Unburden, Quick Feet, Stall, Klutz (speed items), (ability70?), Sand Rush, (ability9E?), Gale Wings [gen 6], Slush Rush, Choice Scarf (speed boost), Lagging Tail, Tailwind (effect), Trick Room (effect), paralysis 1/2 speed
 		  Relies on: weather refactor, returns 0 sometimes instead of 1 or 2
 		  Optional knowledge: DisableStruct byte 18, BattleMove byte A
 		  Glitch: Stall and Trick Room are in wrong order, Stall goes first in Trick Room (probably doesn't matter in P/D itself)
@@ -138,22 +143,16 @@ grafics:
   01791C: 07 -> 05
   017924: 03 -> 01
   017930: 1D 2A 0D D1 01 98 01 88 00 29 09 D0 15 48 81 42 06 D0 2A 88 91 42 03 D0 30 68 04 43 20 06 04 0E -> 44 2A 0D D3 46 2A 0B D8 01 98 01 88 00 29 07 D0 14 48 81 42 04 D0 2A 88 91 42 01 D0 30 68 04 43
-		  Implements: (ability52?), Klutz (choice items), Choice Specs (locking), Choice Scarf (locking)
+		  Implements: (ability52?), Klutz (choice item locking), Choice Specs (locking), Choice Scarf (locking)
 		  Relies on: Choice Band effect ID change
 = 017BE0: D4 80 01 08 44 81 01 08 9C 81 01 08 -> 8A 80 01 08 50 81 01 08 E6 81 01 08
   01801C: 48 46 00 28 00 D0 06 E1 62 46 11 68 C8 78 01 30 C8 70 FC E0 -> A0 E7 10 9A 01 12 40 00 3E 10 98 01 12 40 00 3E 00 00 00 00
-  018050: Large part of UpdateTurnCounters (+unknown battlescript) (see 09disasm/09bakpe)
+  018050: Large part of DoFieldEndTurnEffects (+unknown battlescript) (see 09disasm/09bakpe)
 		  Implements: Tailwind (upkeep), Trick Room (upkeep)
 		  Relies on: weather refactor; BattleScript_SandStormHailEnds/BattleScript_DamagingWeatherContinues work with sun; params are changed (6 = rain -> tailwind, 7 = sand -> trick room, 8 = sun -> all weather, 9 = hail -> nop)
 		  Note: check if tailwind works on both sides, code's weird
 = 018308: FA 83 01 08 78 84 01 08 C0 84 01 08 40 85 01 08 88 85 01 08 EC 85 01 08 34 86 01 08 -> E2 83 01 08 3A 84 01 08 76 84 01 08 94 85 01 08 D4 85 01 08 1E 86 01 08 58 86 01 08
   018344: E2 83 01 08 -> C6 83 01 08
-  01834C: Large part of TurnBasedEffects (see 10disasm/10bakpe, needs to be merged with my taunt msg code)
-  
-  first 10 in table+ (0:1834C, 1:183AC, 2:183CA, 12:(183E2), 3:183FA, 4:18478, 5:184C0, 6:18540, 7:18588, 8:185EC, 9:18634)
-					 (0:17B5C, 1:17BBC, 12:(17BD6), 2:17BDA, 3:17BF2, 4:17C4A, 5:17C86, 6:17DA4, 7:17DE4, 8:17E2E, 9:17E68)
-  
-
-  
-  
-  
+  01834C: Large part of DoBattlerEndTurnEffects (see 10disasm/10bakpe)
+		  Implements: Heatproof (burn damage), Poison Heal, Magic Guard (end-of-turn status damage), Klutz (the item effects here), Binding Band, Big Root (ingrain), burn 1/16 damage, wrap 1/8 damage
+- 

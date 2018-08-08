@@ -1,25 +1,27 @@
 ...
 case 0:
-	if(!(data_02023DFC[r6] & 0x400) || gBattleMons[r6].0x28 == gBattleMons[r6].0x2C || gBattleMons[r6].0x28 == 0) break // size 4
+	if((data_02023DFC[r6] & 0x400) && gBattleMons[r6].0x28 != gBattleMons[r6].0x2C || gBattleMons[r6].0x28 != 0) // size 4
+	{
+		r0 = gBattleMons[r6].0x20
+		
+		if(r0 != 0x67)
+			r0 = GetHoldEffect(gBattleMons[r6].0x2E)
+		
+		r3 = r0
+		r0 = gBattleMons[r6].0x2C / 16
+		
+		if(r3 == 0x51)
+			r0 = (r0 * 13) / 10
+		
+		if(r0 == 0)
+			r0 = 1
+		
+		*data_02023D50 = -r0
+		BattleScriptExecute(data_081D8F0C)
+		r9++
+	}
 	
-	r0 = gBattleMons[r6].0x20
-	
-	if(r0 != 0x67)
-		r0 = GetHoldEffect(gBattleMons[r6].0x2E)
-	
-	r3 = r0
-	r0 = gBattleMons[r6].0x2C / 16
-	
-	if(r3 == 0x51)
-		r0 = (r0 * 13) / 10
-	
-	if(r0 == 0)
-		r0 = 1
-	
-	*data_02023D50 = -r0
-	BattleScriptExecute(data_081D8F0C)
-	r9++
-	break
+	break;
 case 1:
 	r1 = *r6
 	s0 = 0
@@ -28,176 +30,190 @@ case 1:
 	r3 = 0
 	sub_8019F18()
 	
-	if(r0 << 0x18 == 0) break
-
-	r9++
-	break
+	if(r0 << 0x18 != 0)
+		r9++
+	
+	break;
 case 2:
 	r1 = *r6
 	r0 = 1
 	r2 = 0
 	sub_801BC68()
 	
-	if(r0 << 0x18 == 0) break
-
-	r9++
-	break
+	if(r0 << 0x18 != 0)
+		r9++
+	
+	break;
 case 3:
-	if(!(data_02023DFC[r6] & 4) || gBattleMons[data_02023DFC[r6] & 3].0x28 == 0 || *(gBattleMons[r6] + 0x28) == 0 || *(gBattleMons[r6] + 0x20) == 0x62) break
-	
-	r0 = *(gBattleMons[r6] + 0x2C) / 8
-	
-	if(r0 != 0)
-		r0 = 1
-	
-	*data_02023D50 = r0
-	*gBattlerTarget = data_02023DFC[r6] & 3
-	*(gBattleScripting + 0x10) = data_02023DFC[r6] & 3
-	*(gBattleScripting + 0x11) = *r6
-	BattleScriptExecute(data_081D8B4D)
-	r9++
-	break
-case 4:	
-	if(!(gBattleMons[r6].0x4C & 8) || gBattleMons[r6].0x28 == 0 || gBattleMons[r6].0x20 == 0x62) break
-	
-	if(gBattleMons[r6].0x20 == 0x5A)
+	if((data_02023DFC[r6] & 4) && gBattleMons[data_02023DFC[r6] & 3].0x28 != 0 && *(gBattleMons[r6] + 0x28) != 0 && *(gBattleMons[r6] + 0x20) != 0x62)
 	{
-		if(gBattleMons[r6].0x2C == gBattleMons[r6].0x28) break
-
-		r0 = gBattleMons[r6].0x2C / 8
-		
-		if(r0 == 0)
-			r0 = 1
-		
-		*data_02023D50 = -r0
-		BattleScriptExecute(script_17D90_J)
-	}
-	else
-	{
-		r0 = gBattleMons[r6].0x2C / 8
-		
-		if(r0 == 0)
-			r0 = 1
-		
-		*data_02023D50 = r0
-		BattleScriptExecute(data_081D9053)
-	}
-	
-	r9++
-	break
-case 5:
-	if(!(gBattleMons[r6].0x4C & 0x80) || gBattleMons[r6].0x28 == 0 || gBattleMons[r6].0x20 == 0x62) break
-	
-	if(gBattleMons[r6].0x20 == 0x5A)
-	{
-		if(gBattleMons[r6].0x2C == gBattleMons[r6].0x28) break
-
-		r0 = gBattleMons[r6].0x2C / 8
-		
-		if(r0 == 0)
-			r0 = 1
-		
-		*data_02023D50 = -r0
-		BattleScriptExecute(script_17D90_J)
-	}
-	else
-	{
-		if(gBattleMons[r6].0x4C / 0x100 != 0xF)
-			gBattleMons[r6].0x4C += 0x100
-
-		r0 = gBattleMons[r6].0x2C / 16
-		
-		if(r0 == 0)
-			r0 = 1
-		
-		*data_02023D50 = r0 * (gBattleMons[r6].0x4C / 0x100)
-		BattleScriptExecute(data_081D9053)
-	}
-	
-	r9++
-	break
-case 6:
-	if(!(gBattleMons[r6].0x4C & 0x10) || gBattleMons[r6].0x28 == 0 || gBattleMons[r6].0x20 == 0x62) break
-	
-	if(gBattleMons[r6].0x20 == 0x55)
-		r0 = gBattleMons[r6].0x2C / 32
-	else
-		r0 = gBattleMons[r6].0x2C / 16
-
-	if(r0 == 0)
-		r0 = 1
-	
-	*data_02023D50 = r0
-	BattleScriptExecute(data_081D9075)
-	r9++
-	break
-case 7:
-	if(!(gBattleMons[r6].0x50 & 0x8000000) || gBattleMons[r6].0x28 == 0) break
-
-	if(!(gBattleMons[r6].0x4C & 7))
-	{
-		gBattleMons[r6].0x50 &= 0xF7FFFFFF
-		break
-	}
-	
-	if(gBattleMons[r6].0x20 == 0x62) break
-
-	r0 = gBattleMons[r6].0x2C / 4
-	
-	if(r0 == 0)
-		r0 = 1
-	
-	*data_02023D50 = r0
-	BattleScriptExecute(data_081D9155)
-	r9++
-	break
-case 8:
-	if(!(gBattleMons[r6].0x50 & 0x10000000) || gBattleMons[r6].0x28 == 0 || gBattleMons[r6].0x20 == 0x62) break
-	
-	r0 = gBattleMons[r6].0x2C / 4
-	
-	if(r0 == 0)
-		r0 = 1
-	
-	*data_02023D50 = r0
-	BattleScriptExecute(data_081D9166)
-	r9++
-	break
-case 9: 
-	if(!(gBattleMons[r6].0x50 & 0xE000) || gBattleMons[r6].0x28 == 0) break
-
-	data_02022AB8[0] = 0xFD
-	data_02022AB8[1] = 2
-	data_02022AB8[2] = gBattleStruct[r6].4
-	data_02022AB8[3] = gBattleStruct[r6].5
-	data_02022AB8[4] = 0xFF
-	gBattleMons[r6].0x50 += 0xFFFFE000
-	
-	if(!(gBattleMons[r6].0x50 & 0xE000))
-	{
-		BattleScriptExecute(data_081D9136)
-	}
-	else
-	{
-		gBattleScripting.0x10 = gBattleStruct[r6].4
-		gBattleScripting.0x11 = gBattleStruct[r6].5
-		
-		if(gBattleMons[r6].0x20 == 0x62) break
-		
-		if(gBattleMons[gBattleStruct[r6].0x14].0x20 != 0x67 && GetHoldEffect(gBattleMons[gBattleStruct[r6].0x14].0x2E) == 0x4F)
-			r0 = gBattleMons[r6].0x2C / 6
-		else
-			r0 = gBattleMons[r6].0x2C / 8
+		r0 = *(gBattleMons[r6] + 0x2C) / 8
 		
 		if(r0 != 0)
 			r0 = 1
 		
 		*data_02023D50 = r0
-		BattleScriptExecute(data_081D9124)
+		*gBattlerTarget = data_02023DFC[r6] & 3
+		*(gBattleScripting + 0x10) = data_02023DFC[r6] & 3
+		*(gBattleScripting + 0x11) = *r6
+		BattleScriptExecute(data_081D8B4D)
+		r9++
 	}
 	
-	r9++
-	break
+	break;
+case 4:	
+	if((gBattleMons[r6].0x4C & 8) && gBattleMons[r6].0x28 != 0 && gBattleMons[r6].0x20 != 0x62)
+	{
+		if(gBattleMons[r6].0x20 == 0x5A)
+		{
+			if(gBattleMons[r6].0x2C != gBattleMons[r6].0x28)
+			{
+				r0 = gBattleMons[r6].0x2C / 8
+				
+				if(r0 == 0)
+					r0 = 1
+				
+				*data_02023D50 = -r0
+				BattleScriptExecute(BattleScript_17D90_J)
+			}
+		}
+		else
+		{
+			r0 = gBattleMons[r6].0x2C / 8
+			
+			if(r0 == 0)
+				r0 = 1
+			
+			*data_02023D50 = r0
+			BattleScriptExecute(data_081D9053)
+		}
+		
+		r9++
+	}
+	break;
+case 5:
+	if((gBattleMons[r6].0x4C & 0x80) && gBattleMons[r6].0x28 != 0 && gBattleMons[r6].0x20 != 0x62)
+	{
+		if(gBattleMons[r6].0x20 == 0x5A)
+		{
+			if(gBattleMons[r6].0x2C != gBattleMons[r6].0x28)
+			{
+				r0 = gBattleMons[r6].0x2C / 8
+				
+				if(r0 == 0)
+					r0 = 1
+				
+				*data_02023D50 = -r0
+				BattleScriptExecute(script_17D90_J)
+			}
+		}
+		else
+		{
+			if(gBattleMons[r6].0x4C / 0x100 != 0xF)
+				gBattleMons[r6].0x4C += 0x100
+
+			r0 = gBattleMons[r6].0x2C / 16
+			
+			if(r0 == 0)
+				r0 = 1
+			
+			*data_02023D50 = r0 * (gBattleMons[r6].0x4C / 0x100)
+			BattleScriptExecute(data_081D9053)
+		}
+		
+		r9++
+	}
+	
+	break;
+case 6:
+	if((gBattleMons[r6].0x4C & 0x10) && gBattleMons[r6].0x28 != 0 && gBattleMons[r6].0x20 != 0x62)
+	{
+		if(gBattleMons[r6].0x20 == 0x55)
+			r0 = gBattleMons[r6].0x2C / 32
+		else
+			r0 = gBattleMons[r6].0x2C / 16
+
+		if(r0 == 0)
+			r0 = 1
+		
+		*data_02023D50 = r0
+		BattleScriptExecute(data_081D9075)
+		r9++
+	}
+	
+	break;
+case 7:
+	if((gBattleMons[r6].0x50 & 0x8000000) && gBattleMons[r6].0x28 != 0)
+	{
+		if((gBattleMons[r6].0x4C & 7))
+			gBattleMons[r6].0x50 &= 0xF7FFFFFF
+		
+		elseif(gBattleMons[r6].0x20 != 0x62)
+		{
+			r0 = gBattleMons[r6].0x2C / 4
+			
+			if(r0 == 0)
+				r0 = 1
+			
+			*data_02023D50 = r0
+			BattleScriptExecute(data_081D9155)
+			r9++
+		}
+	}
+	
+	break;
+case 8:
+	if((gBattleMons[r6].0x50 & 0x10000000) && gBattleMons[r6].0x28 != 0 && gBattleMons[r6].0x20 != 0x62)
+	{
+		r0 = gBattleMons[r6].0x2C / 4
+		
+		if(r0 == 0)
+			r0 = 1
+		
+		*data_02023D50 = r0
+		BattleScriptExecute(data_081D9166)
+		r9++
+	}
+	
+	break;
+case 9: 
+	if((gBattleMons[r6].0x50 & 0xE000) && gBattleMons[r6].0x28 != 0)
+	{
+		data_02022AB8[0] = 0xFD
+		data_02022AB8[1] = 2
+		data_02022AB8[2] = gBattleStruct[r6].4
+		data_02022AB8[3] = gBattleStruct[r6].5
+		data_02022AB8[4] = 0xFF
+		gBattleMons[r6].0x50 += 0xFFFFE000
+		
+		if(!(gBattleMons[r6].0x50 & 0xE000))
+		{
+			BattleScriptExecute(data_081D9136)
+			r9++
+		}
+		else
+		{
+			gBattleScripting.0x10 = gBattleStruct[r6].4
+			gBattleScripting.0x11 = gBattleStruct[r6].5
+			
+			if(gBattleMons[r6].0x20 != 0x62)
+			{
+				if(gBattleMons[gBattleStruct[r6].0x14].0x20 != 0x67 && GetHoldEffect(gBattleMons[gBattleStruct[r6].0x14].0x2E) == 0x4F)
+					r0 = gBattleMons[r6].0x2C / 6
+				else
+					r0 = gBattleMons[r6].0x2C / 8
+				
+				if(r0 != 0)
+					r0 = 1
+				
+				*data_02023D50 = r0
+				BattleScriptExecute(data_081D9124)
+				r9++
+			}
+		}
+	}
+	
+	break;
 ...
 case 12:
 	r2 = 1
@@ -205,17 +221,15 @@ case 12:
 	r0 = 1
 	sub_801BC68()
 	
-	if(r0 << 0x18 == 0) break
-
-	r9++
-	break
+	if(r0 << 0x18 != 0)
+		r9++
+	
+	break;
 ...
 
 
 
 
 
-
-
-script_17D90_J:
+BattleScript_17D90_J:
 10 33 01 12 40 00 35 (30 3D 02 02)_J 00 01 00 00 0B 01 0C 01 3E
