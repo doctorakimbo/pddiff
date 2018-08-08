@@ -1,0 +1,42 @@
+if(!(gBattleMons[gBattlerAttacker].0x4C & 0x20))
+	goto lbl_A0
+
+if(Random() % 4 == 0)
+{
+	if(gBattleMoves[gCurrentMove].effect == 0x7D)
+		goto lbl_466
+
+	gBattleScriptCurrInstr = script_1D9080
+	gHitMarker |= 0x200
+}
+else
+{
+	gBattleMons[gBattlerAttacker].0x4C) &= ~0x21
+	fn_174CC()
+	gBattleScriptCurrInstr = script_1D908D
+	gBattleCommunication.5 = r4
+}
+
+goto lbl_98
+
+...
+
+script_17D49_J: // BattleScript_MoveUsedFlinched
+(10 4A 00 12 40 00 1E 01 50 5B 7D 01 08 28 0A A9 1B 08 2E 3E 3F 02 02 13 89 41 0A A9 1B 08 29 00 E7 3D 02 02 02 0A A9 1B 08 47 45 01 01 34 3F 02 02 10 99 01 12 40 00 28 0A A9 1B 08)
+printstring STRINGID_PKMNFLINCHED
+waitmessage 0x40
+jumpifability CMP_NOT_EQUAL, 0x50, 17D5B_J
+goto BattleScript_MoveEnd
+
+script_17D5B_J: // BattleScript_MoveUsedFlinchedSteadfast
+setstatchanger STAT_SPEED, 1, FALSE
+statbuffchange MOVE_EFFECT_AFFECTS_USER | 0x1, BattleScript_MoveEnd
+jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_MoveEnd
+setgraphicalstatchangevalues
+playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+printstring 0x199
+waitmessage 0x40
+goto BattleScript_MoveEnd
+
+script_18539:
+10 4A 00 12 40 00 1E 01 50 4B 85 01 08 28 4E 69 1D 08 2E DE 3F 02 02 13 89 41 4E 69 1D 08 29 00 87 3E 02 02 02 4E 69 1D 08 47 45 01 01 D4 3F 02 02 10 99 01 12 40 00 28 4E 69 1D 08

@@ -38,6 +38,7 @@ FC 3D 02 02: 5C 3D 02 02: gStatuses3
 0C 3E 02 02: 6C 3D 02 02: gDisableStructs
 80 3E 02 02: E0 3D 02 02: gRandomTurnNumber
 82 3E 02 02: E2 3D 02 02: gBattleCommunication
+87 3E 02 02: E7 3D 02 02: cMULTISTRING_CHOOSER
 8C 3E 02 02: EC 3D 02 02: gProtectStructs
 CC 3E 02 02: 2C 3E 02 02: gSpecialStatuses
 1C 3F 02 02: 7C 3E 02 02: gBattleWeather
@@ -45,6 +46,8 @@ CC 3E 02 02: 2C 3E 02 02: gSpecialStatuses
 20 3F 02 02: 80 3E 02 02: gWishFutureKnock
 54 3F 02 02: B4 3E 02 02: gEnigmaBerries
 C4 3F 02 02: 24 3F 02 02: gBattleScripting
+D4 3F 02 02: 2E 3F 02 02: sB_ANIM_ARG1
+DE 3F 02 02: 3E 3F 02 02: sSTATCHANGER
 E8 3F 02 02: 48 3F 02 02: gBattleStruct
 		   : 89 3F 02 02: ?????? (within parameters, viable)
 		   : 8C 3F 02 02: ?????? (within parameters, viable)
@@ -60,11 +63,12 @@ E8 3F 02 02: 48 3F 02 02: gBattleStruct
 7C 53 00 03: CC 53 00 03: gCB2_AfterEvolution
 		   
 		   
-funcs:
+funcs e,j,desc:
 008D84 = StringCopy
 011100 = BattleMainCB2
 015A30 = FreeResetData_ReturnToOvOrDoEvolutions
 0172E8 = CancelMultiTurnMoves
+017544 = BattleScriptPushCursor
 017A64 = GetImprisonedMovesCount
 019F18 = AbilityBattleEffects
 01BBE4 = BattleScriptExecute
@@ -72,6 +76,7 @@ funcs:
 01D05C = GetMoveTarget
 01FEE8 = GetBattlerTurnOrderNum
 03E47C = CalculateMonStats
+03ECEC = CalculateBaseDamage
 04037C = SetMonData
 043A70 = CheckPartyPokerus
 043AD8 = CheckPartyHasHadPokerus
@@ -82,16 +87,19 @@ funcs:
 0751C4 = GetBattlerSide
 0751D8 = GetBattlerPosition
 0751E8 = GetBattlerAtPosition
-09A924 = GetHoldEffect
+09A924 = 09A330 = GetHoldEffect
 09A948 = GetHoldEffectParam
 0C71D0 = RecordAbilityBattle
 1E3BA8 = call r0
-1E4018 = division
+1E4018 = 1C7F38 = division
 1E460C = division
+1E4684 = 1C85A4 = modulus
 
 j01456A = GetSpeedStat
 j0146B8 = GetPriority
 j014734 = unknown_uncalled_func (disasm if needed)
+j019678 = unknown_uncalled_func (disasm if needed)
+j0196D4 = unknown_uncalled_func (disasm if needed)
 
 data:
 25DEAD = gStatStageRatios

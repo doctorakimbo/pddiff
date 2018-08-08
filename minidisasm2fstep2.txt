@@ -1,0 +1,20 @@
+if(!(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x4C) & 0x20))
+	goto lbl_A0
+
+if(Random() % 5 == 0)
+{
+	if(*((*gCurrentMove * 0xC) + gBattleMoves) == 0x7D)
+		goto lbl_466
+
+	*gBattleScriptCurrInstr = script_1D9080
+	*gHitMarker |= 0x200
+}
+else
+{
+	*((*gBattlerAttacker * 0x58) + gBattleMons + 0x4C) &= ~0x21
+	fn_174CC()
+	*gBattleScriptCurrInstr = script_1D908D
+	*(gBattleCommunication + 5) = r4
+}
+
+goto lbl_98

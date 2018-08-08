@@ -1,0 +1,61 @@
+r1 = gBattleMons
+r7 = gBattlerAttacker
+r0 = *r7
+r6 = 0x58
+r0 *= r6
+r5 = r1
+r5 += 0x4C
+r0 += r5
+r0 = *r0
+r1 = 0x20
+r0 &= r1
+
+if(r0 == 0)
+	goto lbl_A0
+
+r4 = Random() % 5
+
+if(r4 == 0)
+{
+	r2 = gBattleMoves
+	r0 = gCurrentMove
+	r1 = *r0
+	r0 = r1 * 2
+	r0 += r1
+	r0 *= 4
+	r0 += r2
+	r0 = *r0
+
+	if(r0 == 0x7D)
+		goto lbl_466
+
+	r1 = gBattleScriptCurrInstr
+	r0 = script_1D9080
+	*r1 = r0
+	r2 = gHitMarker
+	r0 = *r2
+	r1 = 0x80
+	r1 *= 4
+	r0 |= r1
+	*r2 = r0
+}
+else
+{
+	r0 = *r7
+	r2 = r0
+	r2 *= r6
+	r2 += r5
+	r0 = *r2
+	r1 = 0x21
+	r1 = -r1
+	r0 &= r1
+	*r2 = r0
+	fn_174CC()
+	r1 = gBattleScriptCurrInstr
+	r0 = script_1D908D
+	*r1 = r0
+	r0 = gBattleCommunication
+	*(r0 + 5) = r4
+}
+
+goto lbl_98

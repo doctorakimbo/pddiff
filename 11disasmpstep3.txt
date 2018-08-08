@@ -1,0 +1,34 @@
+if(gBattleMons[gBattlerAttacker].0x50 & 7)
+{
+	gBattleMons[gBattlerAttacker].0x50--
+
+	if(gBattleMons[gBattlerAttacker].0x50 != 0)
+	{
+		if(Random() % 3 == 0)
+		{
+			gBattleCommunication.5 = 1
+			gBattlerTarget = gBattlerAttacker
+			gBattleMoveDamage = CalculateBaseDamage(gBattleMons[gBattlerAttacker], gBattleMons[gBattlerAttacker], 1, 0, 0x28, 0, gBattlerAttacker, gBattlerAttacker)
+			gProtectStructs[gBattlerAttacker].1 |= 1
+			gHitMarker |= 0x800000
+		}
+		else
+		{
+			gBattleCommunication.5 = 0
+			BattleScriptPushCursor();
+		}
+		
+		gBattleScriptCurrInstr = script_1D90D3
+	}
+	else
+	{
+		BattleScriptPushCursor();
+		gBattleScriptCurrInstr = script_1D9116
+	}
+	
+	r9 = 1
+	r8 = gBattleStruct
+}
+
+r1 = *r8
+goto lbl_37C

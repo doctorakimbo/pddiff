@@ -1,0 +1,37 @@
+if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x50) & 7)
+{
+	*((*gBattlerAttacker * 0x58) + gBattleMons + 0x50)--
+
+	if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x50) & 7)
+	{
+		if(Random() & 1 == 0)
+		{
+			*(gBattleCommunication + 5) = 1
+			*gBattlerTarget = *gBattlerAttacker
+			*gBattleMoveDamage = CalculateBaseDamage((*gBattlerAttacker * 0x58) + gBattleMons, (*gBattlerAttacker * 0x58) + gBattleMons, 1, 0, 0x28, r2, *gBattlerAttacker, *gBattlerAttacker)
+			*((*gBattlerAttacker * 0x10) + gProtectStructs + 1) |= 1
+			*gHitMarker |= 0x800000
+		}
+		else
+		{
+			*(gBattleCommunication + 5) = 0
+			BattleScriptPushCursor();
+		}
+		
+		r1 = gBattleScriptCurrInstr
+		r0 = script_1D90D3
+	}
+	else
+	{
+		BattleScriptPushCursor();
+		r1 = gBattleScriptCurrInstr
+		r0 = script_1D9116
+	}
+
+	*r1 = r0
+	r9 = 1
+	r8 = gBattleStruct
+}
+
+r1 = *r8
+goto lbl_37C

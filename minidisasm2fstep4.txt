@@ -1,0 +1,28 @@
+if(!(gBattleMons[gBattlerAttacker].0x4C & 0x20))
+	goto lbl_A0
+
+if(Random() % 5 == 0)
+{
+	if(gBattleMoves[gCurrentMove].effect == 0x7D)
+		goto lbl_466
+
+	gBattleScriptCurrInstr = script_1D9080
+	gHitMarker |= 0x200
+}
+else
+{
+	gBattleMons[gBattlerAttacker].0x4C) &= ~0x21
+	fn_174CC()
+	gBattleScriptCurrInstr = script_1D908D
+	gBattleCommunication.5 = r4
+}
+
+goto lbl_98
+
+...
+
+script_1D90B1: // BattleScript_MoveUsedFlinched
+(10 4A 00 12 40 00 28 4E 69 1D 08)
+printstring STRINGID_PKMNFLINCHED
+waitmessage 0x40
+goto 1D694E
