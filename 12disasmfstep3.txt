@@ -1,0 +1,45 @@
+r5 = 0
+
+if(gBattleMons[arg1].0 == 0x181 && gBattleMons[arg1].0x20 == 0x3B && gBattleMons[arg1].0x28 != 0)
+{
+	if(AbilityBattleEffects(0x13, 0, 0xD, 0, 0) != 0 || AbilityBattleEffects(0x13, 0, 0x4D, 0, 0) != 0 && gBattleMons[arg1].0x21 != 0 && gBattleMons[arg1].0x22 != 0)
+	{
+		gBattleMons[arg1].0x21 = 0
+		gBattleMons[arg1].0x22 = 0
+		return 1
+	}
+	elseif(AbilityBattleEffects(0x13, 0, 0xD, 0, 0) != 0 || AbilityBattleEffects(0x13, 0, 0x4D, 0, 0) != 0)
+	{
+		return 0
+	}
+}
+
+if(!(gBattleWeather & 0xE7) && gBattleMons[arg1].0x21 != 0 && gBattleMons[arg1].0x22 != 0)
+{
+	gBattleMons[arg1].0x21 = 0
+	gBattleMons[arg1].0x22 = 0
+	r5 = 1
+}
+
+if((gBattleWeather & 0x60) && gBattleMons[arg1].0x21 != 0xA && gBattleMons[arg1].0x22 != 0xA)
+{
+	gBattleMons[arg1].0x21 = 0xA
+	gBattleMons[arg1].0x22 = 0xA
+	r5 = 2
+}
+
+if((gBattleWeather & 0x7) && gBattleMons[arg1].0x21 != 0xB && gBattleMons[arg1].0x22 != 0xB)
+{
+	gBattleMons[arg1].0x21 = 0xB
+	gBattleMons[arg1].0x22 = 0xB
+	r5 = 3
+}
+
+if((gBattleWeather & 0x80) && gBattleMons[arg1].0x21 != 0xF && gBattleMons[arg1].0x22 != 0xF)
+{
+	gBattleMons[arg1].0x21 = 0xF
+	gBattleMons[arg1].0x22 = 0xF
+	r5 = 3
+}
+
+return r5

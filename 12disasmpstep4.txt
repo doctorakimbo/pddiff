@@ -1,0 +1,41 @@
+TerubimDataTypeChange(battler)
+{
+	formChange = TERUBIM_NO_CHANGE;
+
+	if(gBattleMons[battler].species != SPECIES_TERUBIM || gBattleMons[battler].ability != ABILITY_FORECAST || gBattleMons[battler].hp == 0)
+		return TERUBIM_NO_CHANGE;
+		
+	if(!WEATHER_HAS_EFFECT)
+	{
+		formChange = TERUBIM_TO_NORMAL;
+		newType = TYPE_NORMAL;
+	}
+	elseif(gBattleWeather & WEATHER_RAIN_ANY)
+	{
+		formChange = TERUBIM_TO_ICE;
+		newType = TYPE_ICE;
+	}
+	elseif(gBattleWeather & WEATHER_SANDSTORM_ANY)
+	{
+		formChange = TERUBIM_TO_NORMAL;
+		newType = TYPE_NORMAL;
+	}
+	elseif(gBattleWeather & WEATHER_SUN_ANY)
+	{
+		formChange = TERUBIM_TO_FIRE;
+		newType = TYPE_FIRE;
+	}
+	elseif(gBattleWeather & WEATHER_HAIL_ANY)
+	{
+		formChange = TERUBIM_TO_WATER;
+		newType = TYPE_WATER;
+	}
+	
+	if(!IS_BATTLER_OF_TYPE(battler, newType))
+	{
+		SET_BATTLER_TYPE(battler, newType);
+		return formChange;
+	}
+	else
+		return TERUBIM_NO_CHANGE;
+}

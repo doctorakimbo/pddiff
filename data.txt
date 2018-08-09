@@ -66,14 +66,19 @@ E8 3F 02 02: 48 3F 02 02: gBattleStruct
 funcs e,j,desc:
 008D84 = StringCopy
 011100 = BattleMainCB2
+014734_J = ?????
 015A30 = FreeResetData_ReturnToOvOrDoEvolutions
 0172E8 = CancelMultiTurnMoves
 017544 = BattleScriptPushCursor
 017A64 = GetImprisonedMovesCount
-019F18 = AbilityBattleEffects
-01BBE4 = BattleScriptExecute
+019DAC = CastformDataTypeChange (FR) / TerubimDataTypeChange (PD)
+0196D4_J = ?????
+019F18 = 019728 = AbilityBattleEffects
+01BBE4 = 01B3F4 = BattleScriptExecute
+01BC24 = 01B434 = ?????
 01BC68 = ItemBattleEffects
 01D05C = GetMoveTarget
+01EB68_J = ?????
 01FEE8 = GetBattlerTurnOrderNum
 03E47C = CalculateMonStats
 03ECEC = CalculateBaseDamage
@@ -87,6 +92,8 @@ funcs e,j,desc:
 0751C4 = GetBattlerSide
 0751D8 = GetBattlerPosition
 0751E8 = GetBattlerAtPosition
+07A6F8_J = ?????
+07AF98 = ?????
 09A924 = 09A330 = GetHoldEffect
 09A948 = GetHoldEffectParam
 0C71D0 = RecordAbilityBattle

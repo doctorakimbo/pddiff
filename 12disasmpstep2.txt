@@ -1,0 +1,37 @@
+if(*((arg1 * 0x58) + gBattleMons) == 0x181 && *(((arg1 * 0x58) + gBattleMons) + 0x20) == 0x3B && *(((arg1 * 0x58) + gBattleMons) + 0x28) != 0)
+{
+	if(AbilityBattleEffects(0x13, 0, 0xD, 0, 0) << 0x18 != 0 || AbilityBattleEffects(0x13, 0, 0x4D, 0, 0) << 0x18 != 0)
+	{
+		r4 = 1
+		r3 = 0
+	}
+	elseif(*gBattleWeather & 3)
+	{
+		r4 = 4
+		r3 = 0xF
+	}
+	elseif(*gBattleWeather & 0xC)
+	{
+		r4 = 1
+		r3 = 0
+	}
+	elseif(*gBattleWeather & 0x30)
+	{
+		r4 = 2
+		r3 = 0xA
+	}
+	elseif(*gBattleWeather & 0xC0)
+	{
+		r4 = 3
+		r3 = 0xB
+	}
+	
+	if(*(((arg1 * 0x58) + gBattleMons) + 0x21) != r3 && *(((arg1 * 0x58) + gBattleMons) + 0x22) != r3)
+	{
+		*(((arg1 * 0x58) + gBattleMons) + 0x21) = r3
+		*(((arg1 * 0x58) + gBattleMons) + 0x22) = r3
+		return r5
+	}
+}
+
+return 0

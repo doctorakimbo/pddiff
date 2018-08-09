@@ -1,12 +1,12 @@
 lbl1: @195BC
 r6 = r0
 r5 = 0
-r1 = (data_B0)
+r1 = gBattleMons
 r0 = 0x58
 r0 = r6
 r6 = r0 + r1
 r1 = *r6
-r0 = (data_B4)
+r0 = 0x181
 if(r1 != r0) goto lbl7
 
 r0 = r6
@@ -35,7 +35,7 @@ AbilityBattleEffects()
 r0 <<= 0x18
 if(r0 != 0) goto lbl2
 
-r1 = (data_B8)
+r1 = gBattleWeather
 r4 = *r1
 r0 = 3
 r0 &= r4

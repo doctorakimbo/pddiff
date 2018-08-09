@@ -1,12 +1,12 @@
 lbl1: @19DAC
 r6 = r0
 r5 = 0
-r1 = (data_70)
+r1 = gBattleMons
 r0 = 0x58
 r0 = r6
 r4 = r0 + r1
 r1 = *r4
-r0 = (data_74)
+r0 = 0x181
 if(r1 != r0) goto lbl4
 
 r0 = r4
@@ -78,14 +78,14 @@ r0 = 0
 goto lbl10
 
 lbl5:
-r1 = (data_164)
+r1 = gBattleWeather
 r0 = *r1
 r2 = 0xE7
 r2 &= r0
 r4 = r1
 if(r2 != 0) goto lbl6
 
-r1 = (data_168)
+r1 = gBattleMons
 r0 = 0x58
 r0 *= r6
 r1 += r0
@@ -109,7 +109,7 @@ r0 = 0x60
 r0 &= r1
 if(r0 == 0) goto lbl7
 
-r1 = (data_168)
+r1 = gBattleMons
 r0 = 0x58
 r0 *= r6
 r1 += r0
@@ -134,7 +134,7 @@ r0 = 7
 r0 &= r1
 if(r0 == 0) goto lbl8
 
-r1 = (data_168)
+r1 = gBattleMons
 r0 = 0x58
 r0 *= r6
 r1 += r0
@@ -159,7 +159,7 @@ r0 = 0x80
 r0 &= r1
 if(r0 == 0) goto lbl9
 
-r1 = (data_168)
+r1 = gBattleMons
 r0 = 0x58
 r0 *= r6
 r1 += r0

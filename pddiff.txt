@@ -150,7 +150,7 @@ grafics:
 = 017BE0: D4 80 01 08 44 81 01 08 9C 81 01 08 -> 8A 80 01 08 50 81 01 08 E6 81 01 08
   01801C: 48 46 00 28 00 D0 06 E1 62 46 11 68 C8 78 01 30 C8 70 FC E0 -> A0 E7 10 9A 01 12 40 00 3E 10 98 01 12 40 00 3E 00 00 00 00
   018050: Large part of DoFieldEndTurnEffects (+unknown battlescript) (see 09disasm)
-		  Implements: Tailwind (upkeep), Trick Room (upkeep)
+		  Implements: Tailwind (upkeep), Trick Room (upkeep), permahail
 		  Relies on: weather refactor; BattleScript_SandStormHailEnds/BattleScript_DamagingWeatherContinues work with sun; params are changed (6 = rain -> tailwind, 7 = sand -> trick room, 8 = sun -> all weather, 9 = hail -> nop)
 		  Note: check if tailwind works on both sides, code's weird
 (CHECK POISON HEAL MSG FIRST) 018308: FA 83 01 08 78 84 01 08 C0 84 01 08 40 85 01 08 88 85 01 08 EC 85 01 08 34 86 01 08 -> E2 83 01 08 3A 84 01 08 76 84 01 08 94 85 01 08 D4 85 01 08 1E 86 01 08 58 86 01 08
@@ -163,5 +163,8 @@ grafics:
 - repoint 1D90B1 -> 18539 (BattleScript_MoveUsedFlinched) (10 4A 00 12 40 00 1E 01 50 4B 85 01 08 28 4E 69 1D 08 2E DE 3F 02 02 13 89 41 4E 69 1D 08 29 00 87 3E 02 02 02 4E 69 1D 08 47 45 01 01 D4 3F 02 02 10 99 01 12 40 00 28 4E 69 1D 08) (implements steadfast)
 - 019814: Part of AtkCanceller_UnableToUseMove (see 11disasm)
 		  Implements: 50% -> 33% confusion hit chance
-= 019DAC: Entirety of sub_19DAC (+added mysteryfunc x2)(see 12disasm)
-          Implements: 
+= 019DAC: Entirety of CastformDataTypeChange (+added mysteryfunc x2) (see 12disasm)
+          Implements: part of weather refactor
+		  Glitch: Might cause castform/terubim to "change" when sand starts/ends; might have done it wrong, check if rain=ice and hail=water accidentally
+= 01A088: Most of AbilityBattleEffects (see 13disasm)
+		  (1A088-1B374) (19898_J-1AB84_J)

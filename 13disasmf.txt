@@ -1,0 +1,481 @@
+(refs: r4, r8, r10, s1)
+
+lbl1: @1A088
+r1 = gBattleMoves
+r0 = r4 * 2
+r0 += r4
+r0 *= 4
+r0 += r1
+r5 = *(r0 + 2)
+r0 = gBattleTypeFlags
+r0 = *r0
+r1 = 0xA0
+r1 <<= 8
+r0 &= r1
+r1 = 0x80
+r1 <<= 8
+if(r0 != r1) goto lbl3
+
+r1 = r8
+r0 = *r1
+if(r0 != 0x16) goto lbl2
+
+goto lbl_17E6
+
+lbl2:
+if(r0 != 0x32) goto lbl3
+
+goto lbl_17E6
+
+lbl3:
+r2 = s1
+if(r2 < 0x13) goto lbl4
+
+goto lbl_17CA
+
+lbl4:
+r0 = r2 * 4
+r1 = switchtable1
+r0 += r1
+r0 = *r0
+goto r0
+
+switchtable1:
+00: lbl5
+01: lbl46
+02: 1A600
+03: 1A698
+04: 1A8B8
+05: 1B010
+06: (1B374)
+07: (1B3C8)
+08: (1B450)
+09: (1B4D4)
+0A: (1B6FC)
+0B: (1B518)
+0C: (1B740)
+0D: (1B79C)
+0E: (1B7F8)
+0F: (1B90C)
+10: (1B9A8)
+11: (1BA04)
+12: (1BB78)
+13: (1B8B4)
+
+lbl5: @1A12C
+r2 = gBattlerAttacker
+r0 = gBattlersCount
+r1 = *r2
+r3 = r0
+r4 = *r3
+if(r1 < r4) goto lbl6
+
+r0 = r10
+*r2 = r0
+goto lbl6
+
+lbl6:
+r1 = r8
+r0 = *r1
+if(r0 != 0x2D) goto lbl7
+
+goto lbl27
+
+lbl7:
+if(r0 > 0x2D) goto lbl13
+
+if(r0 != 0xD) goto lbl8
+
+goto lbl38
+
+lbl8:
+if(r0 > 0xD) goto lbl10
+
+if(r0 != 2) goto lbl9
+
+goto lbl25
+
+lbl9:
+goto lbl_17CA
+
+lbl10:
+if(r0 != 0x16) goto lbl11
+
+goto lbl31
+
+lbl11:
+if(r0 != 0x24) goto lbl12
+
+goto lbl35
+
+lbl12:
+goto lbl_17CA
+
+lbl13:
+if(r0 != 0x46) goto lbl14
+
+goto lbl29
+
+lbl14:
+if(r0 > 0x46) goto lbl16
+
+if(r0 != 0x3B) goto lbl15
+
+goto lbl33
+
+lbl15:
+goto lbl_17CA
+
+lbl16:
+if(r0 != 0x4D) goto lbl17
+
+goto lbl38
+
+lbl17:
+if(r0 == 0xFF) goto lbl18
+
+goto lbl_17CA
+
+lbl18:
+fn_7AF98()
+r0 -= 3
+if(r0 > 0xA) goto lbl23
+
+r0 *= 4
+r1 = switchtable2
+r0 += r1
+r0 = *r0
+goto r0
+
+switchtable2:
+0: lbl19
+1: lbl23
+2: lbl19
+3: lbl23
+4: lbl23
+5: lbl20
+6: lbl23
+7: lbl23
+8: lbl23
+9: lbl21
+A: lbl19
+
+lbl19:
+r2 = gBattleWeather
+r1 = *r2
+r0 = 7
+r0 &= r1
+if(r0 != r1) goto lbl23
+
+r0 = 5
+*r2 = r0
+r1 = gBattleScripting
+r0 = 0xA
+*(r1 + 0x10) = r0
+r2 = r10
+*(r1 + 0x17) = r2
+goto lbl22
+
+lbl20:
+r3 = gBattleWeather
+r2 = 0x18
+r0 = r2
+r0 &= r1
+if(r0 != 0) goto lbl23
+
+*r3 = r2
+r1 = gBattleScripting
+r0 = 0xC
+*(r1 + 0x10) = r0
+r3 = r10
+*(r1 + 0x17) = r0
+goto lbl22
+
+lbl21:
+r3 = gBattleWeather
+r1 = *r3
+r2 = 0x60
+r0 = r2
+r0 &= r1
+if(r0 != 0) goto lbl23
+
+*r3 = r2
+r1 = gBattleScripting
+r0 = 0xB
+*(r1 + 0x10) = r0
+r4 = r10
+*(r1 + 0x17) = r0
+
+lbl22:
+r0 = r9
+r0++
+r9 = r0
+goto lbl23
+
+lbl23:
+r0 = r9
+if(r0 != 0) goto lbl24
+
+goto lbl_17E6
+
+lbl24:
+fn_7AF98()
+r1 = gBattleCommunication
+*(r1 + 5) = r0
+r0 = data_081D8B1F
+fn_1BC24()
+goto lbl_17CA
+
+lbl25:
+r2 = gBattleWeather
+r1 = *r2
+r0 = 4
+r0 &= r1
+if(r0 == 0) goto lbl26
+
+goto lbl_17CA
+
+lbl26:
+r0 = 5
+*r2 = r0
+r0 = data_081D927F
+fn_1BC24()
+r0 = gBattleScripting
+r1 = r10
+*(r0 + 0x17) = r1
+goto lbl_177A
+
+lbl27:
+r2 = gBattleWeather
+r1 = *r2
+r0 = 0x10
+r0 &= r1
+if(r0 == 0) goto lbl28
+
+goto lbl_17CA
+
+lbl28:
+r0 = 0x18
+*r2 = r0
+r0 = data_081D92BF
+fn_1BC24()
+r0 = gBattleScripting
+r2 = r10
+*(r0 + 0x17) = r2
+goto lbl_177A
+
+lbl29:
+r2 = gBattleWeather
+r1 = *r2
+r0 = 0x40
+r0 &= r1
+if(r0 == 0) goto lbl30
+
+goto lbl_17CA
+
+lbl30:
+r0 = 0x60
+*r2 = r0
+r0 = data_081D9379
+fn_1BC24()
+r0 = gBattleScripting
+r3 = r10
+*(r0 + 0x17) = r3
+goto lbl_177A
+
+lbl31:
+r0 = gSpecialStatuses
+r4 = r10
+r2 = r4 * 4
+r1 = r2 + 4
+r1 *= 4
+r3 = r1 + r0
+r0 = *r3
+r0 <<= 0x1C
+if(r0 >= 0) goto lbl32
+
+goto lbl_17CA
+
+lbl32:
+r1 = gStatuses3
+r1 += r2
+r0 = *r1
+r2 = 0x80
+r2 <<= 0xC
+r0 |= r2
+*r1 = r0
+r0 = *r3
+r1 = 8
+goto lbl37
+
+lbl33:
+r0 = r10
+CastformDataTypeChange()
+r9 = r0
+if(r0 == 0) goto lbl34
+
+goto lbl_17E6
+
+lbl34:
+r0 = data_081D92F8
+fn_1BC24()
+r0 = gBattleScripting
+r1 = r10
+*(r0 + 0x17) = r1
+goto lbl_168A
+
+lbl35:
+r0 = gSpecialStatuses
+r3 = r10
+r2 = r3 * 4
+r1 = r2 + r3
+r1 *= 4
+r3 = r1 + r0
+r0 = *r3
+r0 <<= 0x1B
+if(r0 >= 0) goto lbl36
+
+goto lbl_17CA
+
+lbl36:
+r1 = gStatuses3
+r1 += r2
+r0 = *r1
+r2 = 0x80
+r2 <<= 0xD
+r0 |= r2
+*r1 = r0
+r0 = *r3
+r1 = 0x10
+goto lbl37
+
+lbl37:
+r0 |= r1
+*r3 = r0
+goto lbl_17CA
+
+lbl38:
+r4 = 0
+r3 = *r3
+if(r4 < r3) goto lbl38
+
+goto lbl_17CA
+
+lbl38:
+r0 = r4
+CastformDataTypeChange()
+r9 = r0
+if(r0 == 0) goto lbl39
+
+goto lbl_1680
+
+lbl39:
+r0 = r4 + 1
+r4 = r0
+r0 = gBattlersCount
+r0 = *r0
+if(r4 < r0) goto lbl38
+
+goto lbl_17CA
+
+lbl46: @1A3E0
+r7 = (data_30)
+r0 = 0x58
+r6 = r10
+r6 *= r0
+r4 = r6 + r7
+r0 = *(r4 + 0x28)
+if(r0 != 0) goto lbl47
+
+goto lbl_17CA
+
+lbl47:
+r0 = (data_34)
+r1 = r10
+*r0 = r1
+r2 = r8
+r5 = *r2
+if(r5 == 0x2C) goto lbl51
+
+if(r5 > 0x2C) goto lbl49
+
+if(r5 != 3) goto lbl48
+
+goto lbl(1AC)
+
+lbl48:
+goto lbl_17CA
+
+lbl49:
+if(r5 != 0x36) goto lbl50
+
+goto lbl(1F8)
+
+lbl50:
+if(r5 == 0x3D) goto lbl57
+
+goto lbl_17CA
+
+lbl51:
+r0 = 0
+s0 = r0
+r0 = 0x13
+r1 = 0
+r2 = 0xD
+r3 = 0
+AbilityBattleEffects()
+if(r0 == 0) goto lbl52
+
+goto lbl_17CA
+
+lbl52:
+r0 = 0
+s0 = r0
+r0 = 0x13
+r1 = 0
+r2 = 0x4D
+r3 = 0
+AbilityBattleEffects()
+r0 <<= 0x18
+if(r0 == 0) goto lbl53
+
+goto lbl_17CA
+
+lbl53:
+r0 = (data_BC)
+r1 = *r0
+r0 = 7
+r0 &= r1
+if(r0 != 0) goto lbl54
+
+goto lbl_17CA
+
+lbl54:
+*(r4 + 0x2C) = r0
+*(r4 + 0x28) = r3
+if(r0 > r3) goto lbl55
+
+goto lbl_17CA
+
+lbl55:
+r0 = r8
+*r0 = r5
+r0 = (data_C0)
+fn_1BC24()
+r1 = (data_C4)
+r0 = *(r4 + 0x2C)
+r0 /= 16
+*r1 = r0
+if(r0 != 0) goto lbl56
+
+r0 = 1
+*r1 = r0
+goto lbl56
+
+lbl56:
+r0 = *r1
+r0 = -r0
+*r1 = r0
+goto lbl_177A
+
+lbl57(C8):
