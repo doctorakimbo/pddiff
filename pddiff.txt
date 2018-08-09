@@ -41,8 +41,8 @@ item effects:
 + 0x45 = Choice Band
 + 0x46 = Choice Scarf
 + 0x4A = Lagging Tail
-- 0x4F = Binding Band
-- 0X51 = Big Root
++ 0x4F = Binding Band
++ 0X51 = Big Root
 + 0x52 = Assault Vest
 
 itemdata:
