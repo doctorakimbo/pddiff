@@ -15,13 +15,13 @@ A0 0B 06 09
 (stench actual desc: 71C9A4)
 ("the pkmn" -> "it"; if "it" would be at the beginning, skip it)
 abilities:
-- 0x50 = Steadfast
++ 0x50 = Steadfast
 = 0x52 = (ignore taunt)
 + 0x54 = Unburden
-- 0x55 = Heatproof
-- 0x5A = Poison Heal
++ 0x55 = Heatproof
++ 0x5A = Poison Heal
 + 0x5F = Quick Feet
-- 0x62 = Magic Guard
++ 0x62 = Magic Guard
 + 0x64 = Stall
 + 0x67 = Klutz
 + 0x68 = Mold Breaker
@@ -34,7 +34,7 @@ abilities:
 + 0xB2 = Gale Wings
 + 0xCA = Slush Rush
 
-(old kid: 16F8C4, old item: 0x125)
+(old kid: 16F8C4, old item: 0x125, route 4)
 item effects:
 = 0x1D = (not Choice Band)
 + 0x44 = Choice Specs
@@ -82,7 +82,7 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 - 0x18F = "The twisted dimensions returned to normal!"
 - 0x191 = "[Your/The opposing] team's Tailwind petered out!"
 + 0x198 = "The effects of the [ITEM] prevent status moves from being used!"
-- 0x199 = "[PKMN]'s [ABILITY] raised its Speed! (placeholder)"
++ 0x199 = "[PKMN]'s [ABILITY] raised its Speed! (placeholder)"
 
 grafics:
 = D0051C (C0051C old, EB8990 new)
@@ -153,15 +153,15 @@ grafics:
 		  Implements: Tailwind (upkeep), Trick Room (upkeep), permahail
 		  Relies on: weather refactor; BattleScript_SandStormHailEnds/BattleScript_DamagingWeatherContinues work with sun; params are changed (6 = rain -> tailwind, 7 = sand -> trick room, 8 = sun -> all weather, 9 = hail -> nop)
 		  Note: check if tailwind works on both sides, code's weird
-(CHECK POISON HEAL MSG FIRST) 018308: FA 83 01 08 78 84 01 08 C0 84 01 08 40 85 01 08 88 85 01 08 EC 85 01 08 34 86 01 08 -> E2 83 01 08 3A 84 01 08 76 84 01 08 94 85 01 08 D4 85 01 08 1E 86 01 08 58 86 01 08
++ 018308: FA 83 01 08 78 84 01 08 C0 84 01 08 40 85 01 08 88 85 01 08 EC 85 01 08 34 86 01 08 -> E2 83 01 08 3A 84 01 08 76 84 01 08 94 85 01 08 D4 85 01 08 1E 86 01 08 58 86 01 08
   018344: E2 83 01 08 -> C6 83 01 08
   01834C: Large part of DoBattlerEndTurnEffects (+unknown battlescript) (see 10disasm)
 		  Implements: Heatproof (burn damage), Poison Heal, Magic Guard (end-of-turn status damage), Klutz (the item effects here), Binding Band, Big Root (ingrain), 1/8 -> 1/16 burn damage, 1/16 -> 1/8 wrap damage
-- 0194E0: 16 49 17 4F 38 78 58 26 70 43 0D 1C 4C 35 40 19 00 68 20 21 08 40 00 28 42 D0 2B F0 E5 FC 00 04 00 0C 05 21 CB F1 BE F8 00 04 04 0C 00 2C 23 D0 0C 4A 0D 48 01 88 48 00 40 18 80 00 80 18 00 78 7D 28 00 D1 0F E2 09 49 09 48 08 60 09 4A 10 68 80 21 89 00 08 43 10 60 1E E0 00 00 -> 16 4D 17 4F 38 78 58 26 70 43 40 19 C0 6C 20 21 08 40 00 28 44 D0 2B F0 E7 FC 04 21 CB F1 C2 F8 00 28 29 D0 0F 4A 10 48 01 88 0C 20 48 43 80 18 00 78 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 7D 28 00 D1 0E E2 08 49 09 48 08 60 09 4A 10 68 80 21 89 00 08 43 10 60 1D E0
++ 0194E0: 16 49 17 4F 38 78 58 26 70 43 0D 1C 4C 35 40 19 00 68 20 21 08 40 00 28 42 D0 2B F0 E5 FC 00 04 00 0C 05 21 CB F1 BE F8 00 04 04 0C 00 2C 23 D0 0C 4A 0D 48 01 88 48 00 40 18 80 00 80 18 00 78 7D 28 00 D1 0F E2 09 49 09 48 08 60 09 4A 10 68 80 21 89 00 08 43 10 60 1E E0 00 00 -> 16 4D 17 4F 38 78 58 26 70 43 40 19 C0 6C 20 21 08 40 00 28 44 D0 2B F0 E7 FC 04 21 CB F1 C2 F8 00 28 29 D0 0F 4A 10 48 01 88 0C 20 48 43 80 18 00 78 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 7D 28 00 D1 0E E2 08 49 09 48 08 60 09 4A 10 68 80 21 89 00 08 43 10 60 1D E0
   019558: 38 78 02 1C 72 43 52 19 10 68 21 21 49 42 08 40 10 60 FD F7 EB FF 06 49 06 48 08 60 06 48 44 71 -> 3A 78 72 43 52 19 D0 6C 21 21 49 42 08 40 D0 64 FD F7 EC FF 06 49 07 48 08 60 07 49 00 20 48 71
 		  Implements: 20% -> 25% thaw chance
-- repoint 1D90B1 -> 18539 (BattleScript_MoveUsedFlinched) (10 4A 00 12 40 00 1E 01 50 4B 85 01 08 28 4E 69 1D 08 2E DE 3F 02 02 13 89 41 4E 69 1D 08 29 00 87 3E 02 02 02 4E 69 1D 08 47 45 01 01 D4 3F 02 02 10 99 01 12 40 00 28 4E 69 1D 08) (implements steadfast)
-- 019814: Part of AtkCanceller_UnableToUseMove (see 11disasm)
++ repoint 1D90B1 -> 18539 (BattleScript_MoveUsedFlinched) (10 4A 00 12 40 00 1E 01 50 4B 85 01 08 28 4E 69 1D 08 2E DE 3F 02 02 13 89 41 4E 69 1D 08 29 00 87 3E 02 02 02 4E 69 1D 08 47 45 01 01 D4 3F 02 02 10 A2 01 12 40 00 28 4E 69 1D 08) (implements steadfast)
++ 019814: Part of AtkCanceller_UnableToUseMove (see 11disasm)
 		  Implements: 50% -> 33% confusion hit chance
 = 019DAC: Entirety of CastformDataTypeChange (+added mysteryfunc x2) (see 12disasm)
           Implements: part of weather refactor
