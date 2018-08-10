@@ -49,6 +49,7 @@ C4 3F 02 02: 24 3F 02 02: gBattleScripting
 D4 3F 02 02: 2E 3F 02 02: sB_ANIM_ARG1
 DE 3F 02 02: 3E 3F 02 02: sSTATCHANGER
 E8 3F 02 02: 48 3F 02 02: gBattleStruct
+F4 3F 02 02: 54 3F 02 02: ??????
 		   : 89 3F 02 02: ?????? (within parameters, viable)
 		   : 8C 3F 02 02: ?????? (within parameters, viable)
 		   : E4 41 02 02: ?????? (within parameters, viable)
@@ -65,14 +66,19 @@ E8 3F 02 02: 48 3F 02 02: gBattleStruct
 		   
 funcs e,j,desc:
 008D84 = StringCopy
+00DFF0 = ?????
 011100 = BattleMainCB2
+0146B8_J = ?????
 014734_J = ?????
 015A30 = FreeResetData_ReturnToOvOrDoEvolutions
+017248 = ?????
+016A58_J = ?????
 0172E8 = CancelMultiTurnMoves
 017544 = BattleScriptPushCursor
 017A64 = GetImprisonedMovesCount
 019DAC = CastformDataTypeChange (FR) / TerubimDataTypeChange (PD)
 0196D4_J = ?????
+019EF4 = ?????
 019F18 = 019728 = AbilityBattleEffects
 01BBE4 = 01B3F4 = BattleScriptExecute
 01BC24 = 01B434 = ?????
