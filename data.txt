@@ -12,12 +12,14 @@ DE 3B 02 02: 3E 3B 02 02: gBattlerByTurnOrder
 E2 3B 02 02: 42 3B 02 02: gCurrentTurnActionNumber
 E3 3B 02 02: 43 3B 02 02: gCurrentActionFuncId
 E4 3B 02 02: 44 3B 02 02: gBattleMons
+30 3C 02 02: 90 3B 02 02: ?????
 48 3D 02 02: A8 3C 02 02: gCurrMovePos
 49 3D 02 02: A9 3C 02 02: gChosenMovePos
 4A 3D 02 02: AA 3C 02 02: gCurrentMove
 4C 3D 02 02: AC 3C 02 02: gChosenMove
 50 3D 02 02: B0 3C 02 02: gBattleMoveDamage
 68 3D 02 02: C8 3C 02 02: gLastUsedItem
+6A 3D 02 02: CA 3C 02 02: ?????
 6B 3D 02 02: CB 3C 02 02: gBattlerAttacker
 6C 3D 02 02: CC 3C 02 02: gBattlerTarget
 6F 3D 02 02: CF 3C 02 02: gPotentialItemEffectBattler
@@ -66,28 +68,25 @@ F4 3F 02 02: 54 3F 02 02: ??????
 		   
 funcs e,j,desc:
 008D84 = StringCopy
-00DFF0 = ?????
+00DFF0 = EmitSetMonData
 011100 = BattleMainCB2
-0146B8_J = ?????
-014734_J = ?????
 015A30 = FreeResetData_ReturnToOvOrDoEvolutions
-017248 = ?????
-016A58_J = ?????
+017248 = 016A58 = MarkBufferBankForExecution
 0172E8 = CancelMultiTurnMoves
-017544 = BattleScriptPushCursor
+017544 = 016D54 = BattleScriptPushCursor
 017A64 = GetImprisonedMovesCount
 019DAC = CastformDataTypeChange (FR) / TerubimDataTypeChange (PD)
-0196D4_J = ?????
-019EF4 = ?????
 019F18 = 019728 = AbilityBattleEffects
 01BBE4 = 01B3F4 = BattleScriptExecute
-01BC24 = 01B434 = ?????
+01BC24 = 01B434 = BattleScriptPushCursorAndCallback
 01BC68 = ItemBattleEffects
 01D05C = GetMoveTarget
 01EB68_J = ?????
 01FEE8 = GetBattlerTurnOrderNum
+027612_J = ?????
 03E47C = CalculateMonStats
 03ECEC = CalculateBaseDamage
+03F78C = GetGenderFromSpeciesAndPersonality
 04037C = SetMonData
 043A70 = CheckPartyPokerus
 043AD8 = CheckPartyHasHadPokerus
@@ -98,8 +97,7 @@ funcs e,j,desc:
 0751C4 = GetBattlerSide
 0751D8 = GetBattlerPosition
 0751E8 = GetBattlerAtPosition
-07A6F8_J = ?????
-07AF98 = ?????
+07AF98 = 07A6F8 = GetCurrentWeather
 09A924 = 09A330 = GetHoldEffect
 09A948 = GetHoldEffectParam
 0C71D0 = RecordAbilityBattle
