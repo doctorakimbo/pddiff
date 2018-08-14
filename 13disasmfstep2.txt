@@ -1,27 +1,9 @@
 (refs: r4, r5, r8, r9, r10, s1, s2, s3, s4, s5)
 ...
-r1 = gBattleMoves
-r0 = r4 * 2
-r0 += r4
-r0 *= 4
-r0 += r1
-r5 = *(r0 + 2)
-r0 = gBattleTypeFlags
-r0 = *r0
-r1 = 0xA0
-r1 <<= 8
-r0 &= r1
-r1 = 0x80
-r1 <<= 8
+r5 = *((r4 * 0xC) + gBattleMoves + 2)
 
-if(r0 == r1)
-{
-	r1 = r8
-	r0 = *r1
-	
-	if(r0 == 0x16 || r0 == 0x32)
-		goto lblend5
-}
+if(*gBattleTypeFlags & 0xA000 == 0x8000 && (*r8 == 0x16 || *r8 == 0x32))
+	goto lblend5
 
 r2 = s1
 
@@ -30,879 +12,355 @@ if(r2 >= 0x13)
 
 switch(r2)
 {
-case 0:
-	r2 = gBattlerAttacker
-	r0 = gBattlersCount
-	r1 = *r2
-	r3 = r0
-	r4 = *r3
+case 0:	
+	if(*gBattlerAttacker >= *gBattlersCount)
+		*gBattlerAttacker = r10
 	
-	if(r1 >= r4)
+	if(*r8 == 0x2D && !(*gBattleWeather & 0x10))
 	{
-		r0 = r10
-		*r2 = r0
+		*gBattleWeather = 0x18
+		BattleScriptPushCursorAndCallback(data_081D92BF)
+		*(gBattleScripting + 0x17) = r10
+		goto lblend3
 	}
-
-	r1 = r8
-	r0 = *r1
-	
-	if(r0 == 0x2D)
+	elseif(*r8 == 0xD || *r8 == 0x4D)
 	{
-		r2 = gBattleWeather
-		r1 = *r2
-		r0 = 0x10
-		r0 &= r1
+		for(i = 0; i < *gBattlersCount; i++)
+		{
+			r9 = CastformDataTypeChange(i)
+			
+			if(r9 != 0)
+				goto lblend1
+		}
+	}
+	elseif(*r8 == 2 && !(*gBattleWeather & 4))
+	{
+		*gBattleWeather = 5
+		BattleScriptPushCursorAndCallback(data_081D927F)
+		*(gBattleScripting + 0x17) = r10
+		goto lblend3
+	}
+	elseif(*r8 == 0x16 && (*((((r10 * 4) + 4) * 4) + gSpecialStatuses) << 0x1C) >= 0)
+	{
+		*((r10 * 4) + gStatuses3) |= 0x80000
+		r0 = *((((r10 * 4) + 4) * 4) + gSpecialStatuses)
+		r1 = 8
+		goto lbl37
+	}
+	elseif(*r8 == 0x24 && (*((r10 * 0x14) + gSpecialStatuses) << 0x1B) >= 0)
+	{
+		*((r10 * 4) + gStatuses3) |= 0x100000
+		r0 = *((r10 * 0x14) + gSpecialStatuses)
+		r1 = 0x10
+		goto lbl37
+
+		lbl37:
+		r0 |= r1
+	}
+	elseif(*r8 == 0x46 && !(*gBattleWeather & 0x40))
+	{
+		*gBattleWeather = 0x60
+		BattleScriptPushCursorAndCallback(data_081D9379)
+		*(gBattleScripting + 0x17) = r10
+		goto lblend3
+	}
+	elseif(*r8 == 0x3B)
+	{
+		r9 = CastformDataTypeChange(r10)
 		
-		if(r0 == 0)
-		{
-			r0 = 0x18
-			*r2 = r0
-			BattleScriptPushCursorAndCallback(data_081D92BF)
-			r0 = gBattleScripting
-			r2 = r10
-			*(r0 + 0x17) = r2
-			goto lblend3
-		}
-	}
-	elseif(r0 <= 0x2D)
-	{
-		if(r0 == 0xD)
-		{
-			lbl38:
-			r4 = 0
-			r3 = *r3
-			
-			if(r4 < r3)
-			{
-				do
-				{
-					r0 = CastformDataTypeChange(r4)
-					r9 = r0
-					
-					if(r0 != 0)
-						goto lblend1
-
-					r0 = r4 + 1
-					r4 = r0
-					r0 = gBattlersCount
-					r0 = *r0
-				} while(r4 < r0)
-			}
-		}
-		elseif(r0 <= 0xD)
-		{
-			if(r0 == 2)
-			{
-				r2 = gBattleWeather
-				r1 = *r2
-				r0 = 4
-				r0 &= r1
-				
-				if(r0 == 0)
-				{
-					r0 = 5
-					*r2 = r0
-					BattleScriptPushCursorAndCallback(data_081D927F)
-					r0 = gBattleScripting
-					r1 = r10
-					*(r0 + 0x17) = r1
-					goto lblend3
-				}
-			}
-		}
-		elseif(r0 == 0x16)
-		{
-			r0 = gSpecialStatuses
-			r4 = r10
-			r2 = r4 * 4
-			r1 = r2 + 4
-			r1 *= 4
-			r3 = r1 + r0
-			r0 = *r3
-			r0 <<= 0x1C
-			
-			if(r0 >= 0)
-			{
-				r1 = gStatuses3
-				r1 += r2
-				r0 = *r1
-				r2 = 0x80
-				r2 <<= 0xC
-				r0 |= r2
-				*r1 = r0
-				r0 = *r3
-				r1 = 8
-				goto lbl37
-			}
-		}
-		elseif(r0 == 0x24)
-		{
-			r0 = gSpecialStatuses
-			r3 = r10
-			r2 = r3 * 4
-			r1 = r2 + r3
-			r1 *= 4
-			r3 = r1 + r0
-			r0 = *r3
-			r0 <<= 0x1B
-			
-			if(r0 < 0)
-				goto lblend4
-			
-			r1 = gStatuses3
-			r1 += r2
-			r0 = *r1
-			r2 = 0x80
-			r2 <<= 0xD
-			r0 |= r2
-			*r1 = r0
-			r0 = *r3
-			r1 = 0x10
-			goto lbl37
-
-			lbl37:
-			r0 |= r1
-			*r3 = r0
-		}
-	}
-	elseif(r0 == 0x46)
-	{
-		r2 = gBattleWeather
-		r1 = *r2
-		r0 = 0x40
-		r0 &= r1
+		if(r9 != 0)
+			goto lblend5
 		
-		if(r0 == 0)
-		{
-			r0 = 0x60
-			*r2 = r0
-			BattleScriptPushCursorAndCallback(data_081D9379)
-			r0 = gBattleScripting
-			r3 = r10
-			*(r0 + 0x17) = r3
-			goto lblend3
-		}
+		BattleScriptPushCursorAndCallback(data_081D92F8)
+		*(gBattleScripting + 0x17) = r10
+		goto lblend2
 	}
-	elseif(r0 <= 0x46)
+	elseif(*r8 == 0xFF)
 	{
-		if(r0 == 0x3B)
+		switch(GetCurrentWeather())
 		{
-			r0 = CastformDataTypeChange(r10)
-			r9 = r0
-			
-			if(r0 != 0)
-				goto lblend5
-			
-			BattleScriptPushCursorAndCallback(data_081D92F8)
-			r0 = gBattleScripting
-			r1 = r10
-			*(r0 + 0x17) = r1
-			goto lblend2
-		}
-	}
-	else
-	{
-		if(r0 == 0x4D)
-			goto lbl38
-
-		if(r0 == 0xFF)
-		{
-			r0 = GetCurrentWeather()
-			
-			if(r0 <= 0xD)
+		case 3:
+		case 5:
+		case D:
+			if(*gBattleWeather & 7 == *gBattleWeather)
 			{
-				switch(r0)
-				{
-				case 3:
-				case 5:
-				case D:
-					r2 = gBattleWeather
-					r1 = *r2
-					r0 = 7
-					r0 &= r1
-
-					if(r0 == r1)
-					{
-						r0 = 5
-						*r2 = r0
-						r1 = gBattleScripting
-						r0 = 0xA
-						*(r1 + 0x10) = r0
-						r2 = r10
-						*(r1 + 0x17) = r2
-						goto lbl22
-					}
-					
-					break
-				case 8:
-					r3 = gBattleWeather
-					r2 = 0x18
-					r0 = r2
-					r0 &= r1
-					
-					if(r0 == 0)
-					{
-						*r3 = r2
-						r1 = gBattleScripting
-						r0 = 0xC
-						*(r1 + 0x10) = r0
-						r3 = r10
-						*(r1 + 0x17) = r0
-						goto lbl22
-					}
-					
-					break
-				case C:
-					r3 = gBattleWeather
-					r1 = *r3
-					r2 = 0x60
-					r0 = r2
-					r0 &= r1
-					
-					if(r0 == 0)
-					{
-						*r3 = r2
-						r1 = gBattleScripting
-						r0 = 0xB
-						*(r1 + 0x10) = r0
-						r4 = r10
-						*(r1 + 0x17) = r0
-						goto lbl22
-
-						lbl22:
-						r0 = r9
-						r0++
-						r9 = r0
-					}
-				}
+				*gBattleWeather = 5
+				*(gBattleScripting + 0x10) = 0xA
+				*(gBattleScripting + 0x17) = r10
+				goto lbl22
 			}
 			
-			r0 = r9
+			break
+		case 8:
+			if(!(*gBattleWeather & 0x18))
+			{
+				*gBattleWeather = 0x18
+				*(gBattleScripting + 0x10) = 0xC
+				*(gBattleScripting + 0x17) = r10
+				goto lbl22
+			}
 			
-			if(r0 == 0)
-				goto lblend5
+			break
+		case C:
+			if(!(*gBattleWeather & 0x60))
+			{
+				*gBattleWeather = 0x60
+				*(gBattleScripting + 0x10) = 0xB
+				*(gBattleScripting + 0x17) = r10
+				goto lbl22
 
-			r0 = GetCurrentWeather()
-			r1 = gBattleCommunication
-			*(r1 + 5) = r0
-			BattleScriptPushCursorAndCallback(data_081D8B1F)
+				lbl22:
+				r9++
+			}
 		}
+		
+		if(r9 == 0)
+			goto lblend5
+		
+		*(gBattleCommunication + 5) = GetCurrentWeather()
+		BattleScriptPushCursorAndCallback(data_081D8B1F)
 	}
 	
 	goto lblend4
 case 1:
-	r7 = gBattleMons
-	r0 = 0x58
-	r6 = r10
-	r6 *= r0
-	r4 = r6 + r7
-	r0 = *(r4 + 0x28)
+	r6 = r10 * 0x58
+	r4 = r6 + gBattleMons
 	
-	if(r0 == 0)
+	if(*(r4 + 0x28) == 0)
 	{
-		r0 = gBattlerAttacker
-		r1 = r10
-		*r0 = r1
-		r2 = r8
-		r5 = *r2
+		*gBattlerAttacker = r10
 		
-		if(r5 == 0x2C)
+		if(*r8 == 0x2C && !AbilityBattleEffects(0x13, 0, 0xD, 0, 0) && !(AbilityBattleEffects(0x13, 0, 0x4D, 0, 0) << 0x18) && *gBattleWeather & 7 && *(r4 + 0x2C) > *(r4 + 0x28))
 		{
-			r0 = 0
-			r0 = AbilityBattleEffects(0x13, 0, 0xD, 0, r0)
+			BattleScriptPushCursorAndCallback(data_081D92AB)
+			*gBattleMoveDamage = *(r4 + 0x2C) / 16
 			
-			if(r0 == 0)
-			{
-				r0 = 0
-				r0 = AbilityBattleEffects(0x13, 0, 0x4D, 0, r0)
-				r0 <<= 0x18
-				
-				if(r0 == 0)
-				{
-					r0 = gBattleWeather
-					r1 = *r0
-					r0 = 7
-					r0 &= r1
-					
-					if(r0 != 0)
-					{
-						*(r4 + 0x2C) = r0
-						*(r4 + 0x28) = r3
-						
-						if(r0 > r3)
-						{
-							r0 = r8
-							*r0 = r5
-							BattleScriptPushCursorAndCallback(data_081D92AB)
-							r1 = gBattleMoveDamage
-							r0 = *(r4 + 0x2C)
-							r0 /= 16
-							*r1 = r0
-							
-							if(r0 == 0)
-							{
-								r0 = 1
-								*r1 = r0
-							}
-							
-							r0 = *r1
-							r0 = -r0
-							*r1 = r0
-							goto lblend3
-						}
-					}
-				}
-			}
-		}
-		elseif(r5 > 0x2C)
-		{
-			if(r5 == 0x36)
-			{
-				r2 = gDisableStructs
-				r0 = *r0
-				r1 = r0 * 8
-				r1 -= r0
-				r1 *= 4
-				r1 += r2
-				r3 = *(r1 + 0x18)
-				r0 = r3
-				r2 = 1
-				r2 ^= r0
-				r0 = 2
-				r0 = -r0
-				r0 &= r3
-				r0 |= r2
-				*(r1 + 0x18) = r0
-			}
-			elseif(r5 == 0x3D)
-			{
-				r0 = r7
-				r0 += 0x4C
-				r5 = r6 + r0
-				r0 = *r5
-				
-				if(r0 != 0)
-				{
-					r4 = Random() % 3
-					
-					if(r4 == 0)
-					{
-						r0 = *r5
-						r1 = 0x88
-						r0 &= r1
-						
-						if(r0 != 0)
-							StringCopy(gBattleTextBuff1, data_08250094)
-
-						r0 = *r5
-						r1 = 7
-						r0 &= r1
-						
-						if(r0 != 0)
-							StringCopy(gBattleTextBuff1, data_0825009C)
-
-						r0 = *r5
-						r1 = 0x40
-						r0 &= r1
-						
-						if(r0 != 0)
-							StringCopy(gBattleTextBuff1, data_082500A4)
-
-						r0 = *r5
-						r1 = 0x10
-						r0 &= r1
-						
-						if(r0 != 0)
-							StringCopy(gBattleTextBuff1, data_082500AC)
-						
-						r0 = *r5
-						r1 = 0x20
-						r0 &= r1
-						
-						if(r0 != 0)
-							StringCopy(gBattleTextBuff1, data_082500B4)
-						
-						*r5 = r4
-						r1 = r7
-						r1 += 0x50
-						r1 += r6
-						r0 = *r1
-						r2 = 0xF7FFFFFF
-						r0 &= r2
-						*r1 = r0
-						r0 = gBattleScripting
-						r4 = gActiveBattler
-						r1 = r10
-						*r4 = r1
-						*(r0 + 0x17) = r1
-						BattleScriptPushCursorAndCallback(data_081D92D3)
-						s0 = r5
-						r0 = 0
-						r1 = 0x28
-						r2 = 0
-						r3 = 4
-						EmitSetMonData()
-						r0 = *r4
-						MarkBufferBankForExecution()
-						goto lblend3
-					}
-				}
-			}
-		}
-		elseif(r5 == 3)
-		{
-			r2 = *(r4 + 0x1B)
-			r0 = 0x1B
-			r0 = *(r4 + r0)
+			if(*gBattleMoveDamage == 0)
+				*gBattleMoveDamage = 1
 			
-			if(r0 > 0xB)
+			*r1 = -*r1
+			goto lblend3
+		}
+		elseif(*r8 == 0x36)
+		{
+			r3 = *((*gBattlerAttacker * 0x1C) + gDisableStructs + 0x18)
+			*((*gBattlerAttacker * 0x1C) + gDisableStructs + 0x18) = (r3 & 0xFFFFFFFE) | (r3 ^ 1)
+		}
+		elseif(*r8 == 0x3D)
+		{
+			r5 = r6 + gBattleMons + 0x4C
+			
+			if(*r5 != 0)
 			{
-				r0 = gDisableStructs
-				r3 = r10
-				r1 = r3 * 8
-				r1 -= r3
-				r1 *= 4
-				r1 += r0
-				r0 = *(r1 + 0x16)
+				r4 = Random() % 3
 				
-				if(r0 == 2)
+				if(r4 == 0)
 				{
-					r0 = r2 + 1
-					r1 = 0
-					*(r4 + 0x1B) = r0
-					r4 = gBattleScripting
-					r0 = 0x11
-					*(r4 + 0x10) = r0
-					*(r4 + 0x11) = r0
-					BattleScriptPushCursorAndCallback(data_081D9293)
-					r0 = r10
-					*(r4 + 0x17) = r0
+					if(*r5 & 0x88)
+						StringCopy(gBattleTextBuff1, data_08250094)
+						
+					if(*r5 & 7)
+						StringCopy(gBattleTextBuff1, data_0825009C)
+
+					if(*r5 & 40)
+						StringCopy(gBattleTextBuff1, data_082500A4)
+					
+					if(*r5 & 0x10)
+						StringCopy(gBattleTextBuff1, data_082500AC)
+					
+					if(*r5 & 0x20)
+						StringCopy(gBattleTextBuff1, data_082500B4)
+					
+					*r5 = r4
+					*(r6 + gBattleMons + 0x50) &= 0xF7FFFFFF
+					*gActiveBattler = r10
+					*(gBattleScripting + 0x17) = r10
+					BattleScriptPushCursorAndCallback(data_081D92D3)
+					s0 = r5
+					r0 = 0
+					r1 = 0x28
+					r2 = 0
+					r3 = 4
+					EmitSetMonData()
+					r0 = *r4
+					MarkBufferBankForExecution()
 					goto lblend3
 				}
 			}
 		}
+		elseif(*r8 == 3 && *(r4 + 0x1B) > 0xB && *((r10 * 0x1C) + gDisableStructs + 0x16) == 2)
+		{
+			*(r4 + 0x1B)++
+			*(gBattleScripting + 0x10) = 0x11
+			*(gBattleScripting + 0x11) = 0x11
+			BattleScriptPushCursorAndCallback(data_081D9293)
+			*(gBattleScripting + 0x17) = r10
+			goto lblend3
+		}
 	}
 	
 	goto lblend4
-case 2:
-	r1 = r8
-	r0 = *r1
-	
-	if(r0 == 0x2B)
+case 2:	
+	if(*r8 == 0x2B)
 	{
 		r5 = 0
-		r0 = data_08250104
-		r2 = *r0
-		r3 = 0xFFFF
-		r1 = r0
 		
-		if(r2 != r3)
+		for(r2 = data_08250104; *r2 != r4; r2 += 2)
 		{
-			if(r2 != r4)
-			{
-				r2 = r1
-				
-				do
-				{
-					r2 += 2
-					r5++
-					r0 = *r2
-					
-					if(r0 == r3)
-						goto lblend4
-				} while(r0 != r4)
-			}
+			r5++
 			
-			r0 = r5 * 2
-			r0 += r1
-			r1 = *r0
-			r0 = 0xFFFF
+			if(*r2 == 0xFFFF)
+				goto lblend4
+		}
+		
+		if(*((r5 * 2) + data_08250104) != 0xFFFF)
+		{
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x50) & 0x1000)
+				*gHitMarker |= 0x800
 			
-			if(r1 != r0)
-			{
-				r1 = gBattleMons
-				r0 = gBattlerAttacker
-				r2 = *r0
-				r0 = 0x58
-				r0 *= r2
-				r1 += 0x50
-				r0 += r1
-				r0 = *r0
-				r1 = 0x80
-				r1 *= 0x20
-				r0 &= r1
-				
-				if(r0 != 0)
-				{
-					r0 = gHitMarker
-					r1 = *r0
-					r2 = 0x80
-					r2 *= 0x10
-					r1 |= r2
-					*r0 = r1
-				}
-				
-				r1 = gBattleScriptCurrInstr
-				r0 = data_081D946E
-				*r1 = r0
-				r2 = 1
-				r9 = r2
-			}
-		}	
+			*gBattleScriptCurrInstr = data_081D946E
+			r9 = 1
+		}
 	}
 	
 	goto lblend4
 case 3:
 	if(r4 != 0)
 	{
-		r3 = r8
-		r0 = *r3
-		
-		if(r0 == 0xB)
+		if(((*r8 == 0xB && r5 == 0xB) || (*r8 == 0xA && r5 == 0xD)) && *((r4 * 0xC) + gBattleMoves + 1) != 0)
 		{
-			if(r5 == 0xB)
-			{
-				r0 = gBattleMoves
-				r1 = r4 * 2
-				r1 += r4
-				r1 *= 4
-				r1 += r0
-				r0 = *(r1 + 1)
-				
-				if(r0 != 0)
-				{
-					r1 = gProtectStructs
-					r0 = gBattlerAttacker
-					r0 = *r0
-					r0 *= 16
-					r0 += r1
-					r0 = *(r0 + 2)
-					r0 <<= 0x1C
-					
-					if(r0 < 0)
-					{
-						r1 = gBattleScriptCurrInstr
-						r0 = data_081D93BE
-					}
-					else
-					{
-						r1 = gBattleScriptCurrInstr
-						r0 = data_081D93BD
-					}
-					
-					*r1 = r0
-					r0 = 1
-					goto lbl114
-				}
-			}
+			if((*((*gBattlerAttacker * 0x10) + gProtectStructs + 2) << 0x1C) < 0)
+				*gBattleScriptCurrInstr = data_081D93BE
+			else
+				*gBattleScriptCurrInstr = data_081D93BD
 			
-			goto lbl115
+			r9 = 1
 		}
-		
-		if(r0 <= 0xB)
+		elseif(*r8 == 0x12 && r5 == 0xA && !(*((r10 * 0x58) + gBattleMons + 0x4C) & 0x20))
 		{
-			if(r0 == 0xA)
+			if(!(*((r10 * 4) + *(*data_02023FF4 + 4)) & 1))
 			{
-				if(r5 == 0xD)
-				{
-					r0 = gBattleMoves
-					r1 = r4 * 2
-					r1 += r4
-					r1 *= 4
-					r1 += r0
-					r0 = *(r1 + 1)
-					
-					if(r0 != 0)
-					{
-						r1 = gProtectStructs
-						r0 = gBattlerAttacker
-						r0 = *r0
-						r0 *= 16
-						r0 += r1
-						r0 = *(r0 + 2)
-						r0 <<= 0x1C
-						
-						if(r0 < 0)
-						{
-							r1 = gBattleScriptCurrInstr
-							r0 = data_081D93BE
-						}
-						else
-						{
-							r1 = gBattleScriptCurrInstr
-							r0 = data_081D93BD
-						}
-						
-						*r1 = r0
-						r4 = 1
-						r9 = r4
-					}
-				}
-			}
-			
-			goto lbl115
-		}
-		
-		lbl97:
-		if(r0 == 0x12)
-		{
-			if(r5 == 0xA)
-			{
-				r1 = gBattleMons
-				r0 = 0x58
-				r2 = r10
-				r2 *= r0
-				r0 = r2
-				r1 += 0x4C
-				r0 += r1
-				r0 = *r0
-				r1 = 0x20
-				r0 &= r1
+				*(gBattleCommunication + 5) = 0
 				
-				if(r0 == 0)
-				{
-					r2 = data_02023FF4
-					r0 = *r2
-					r0 = *(r0 + 4)
-					r3 = r10
-					r1 = r3 * 4
-					r0 += r1
-					r3 = *r0
-					r4 = 1
-					r3 &= r4
-					r5 = r1
-					
-					if(r3 == 0)
-					{
-						r0 = gBattleCommunication
-						*(r0 + 5) = r3
-						r1 = gProtectStructs
-						r0 = gBattlerAttacker
-						r0 = *r0
-						r0 *= 16
-						r0 += r1
-						r0 = *(r0 + 2)
-						r0 <<= 0x1C
-						
-						if(r0 <= 0)
-						{
-							r1 = gBattleScriptCurrInstr
-							r0 = data_081D93F7
-						}
-						else
-						{
-							r1 = gBattleScriptCurrInstr
-							r0 = data_081D93F6
-						}
-						
-						*r1 = r0
-						*r2 = r0
-						r1 = *(r0 + 4)
-						r1 += r5
-						r0 = *r1
-						r2 = 1
-						r0 |= r2
-						*r1 = r0
-						r4 = 2
-						r9 = r4
-					}
-					else
-					{
-						r0 = gBattleCommunication
-						*(r0 + 5) = r4
-						r1 = gProtectStructs
-						r0 = gBattlerAttacker
-						r0 = *r0
-						r0 *= 16
-						r0 += r1
-						r0 = *(r0 + 2)
-						r0 <<= 0x1C
-						
-						if(r0 < 0)
-						{
-							r1 = gBattleScriptCurrInstr
-							r0 = data_081D93F7
-						}
-						else
-						{
-							r1 = gBattleScriptCurrInstr
-							r0 = data_081D93F6
-						}
-						
-						*r1 = r0
-						r0 = 2
-						goto lbl114
-					}
-				}
-			}
-		}
-
-		goto lbl115
-
-		lbl114:
-		r9 = r0
-
-		lbl115:
-		r1 = r9
-		
-		if(r1 == 1)
-		{
-			r1 = gBattleMons
-			r0 = 0x58
-			r2 = r10
-			r2 *= r0
-			r0 = r2
-			r1 += r0
-			r0 = *(r1 + 0x2C)
-			r3 = *(r1 + 0x28)
-			
-			if(r0 == r3)
-			{
-				r1 = gProtectStructs
-				r0 = gBattlerAttacker
-				r0 = *r0
-				r0 *= 16
-				r0 += r1
-				r0 = *(r0 + 2)
-				r0 <<= 0x1C
-				
-				if(r0 < 0)
-				{
-					r1 = gBattleScriptCurrInstr
-					r0 = data_081D93E1
-					*r1 = r0
-				}
+				if((*((*gBattlerAttacker * 0x10) + gProtectStructs + 2) << 0x1C) <= 0)
+					r0 = data_081D93F7
 				else
-				{
-					r1 = gBattleScriptCurrInstr
-					r0 = data_081D93E0
-					*r1 = r0
-				}
+					r0 = data_081D93F6
+				
+				*gBattleScriptCurrInstr = r0
+				*data_02023FF4 = r0
+				*((r10 * 4) + *(r0 + 4)) |= 1
+				r9 = 2
 			}
 			else
 			{
-				r2 = (data_21C)
-				r0 = *(r1 + 0x2C)
-				r0 /= 4
-				*r2 = r0
+				if((*((*gBattlerAttacker * 0x10) + gProtectStructs + 2) << 0x1C) < 0)
+					*gBattleScriptCurrInstr = data_081D93F7
+				else
+					*gBattleScriptCurrInstr = data_081D93F6
 				
-				if(r0 == 0)
-				{
-					r4 = r9
-					*r2 = r4
-				}
+				r9 = 2
+			}
+		}
+		
+		if(r9 == 1)
+		{
+			r1 = (r10 * 0x58) + gBattleMons
+			
+			if(*(r1 + 0x2C) == *(r1 + 0x28))
+			{
+				if(*((*gBattlerAttacker * 0x10) + gProtectStructs + 2) << 0x1C < 0)
+					*gBattleScriptCurrInstr = data_081D93E1
+				else
+					*gBattleScriptCurrInstr = data_081D93E0
+			}
+			else
+			{
+				*gBattleMoveDamage = *(r1 + 0x2C) / 4
 				
-				r0 = *r2
-				r0 = -r0
-				*r2 = r0
+				if(*gBattleMoveDamage == 0)
+					*gBattleMoveDamage = 1
+				
+				*gBattleMoveDamage = -*gBattleMoveDamage
 			}
 		}
 	}
 	
 	goto lblend4
 case 4:
-	r1 = r8
-	r0 = *r1
-	
-	if(r0 >= 0x38)
-		goto lblend4
-	
-	switch(r0)
+	if(!(*gMoveResultFlags & 0x29))
 	{
-	case 10:
-		r0 = gMoveResultFlags
-		r1 = *r0
-		r0 = 0x29
-		r0 &= r1
-		
-		if(r0 == 0)
+		switch(*r8)
 		{
-			if(r4 != 0xA5)
+		case 10:
+			if(r4 != 0xA5 && *((r4 * 0xC) + gBattleMoves + 1) != 0)
 			{
-				r0 = gBattleMoves
-				r1 = r4 * 2
-				r1 += r4
-				r1 *= 4
-				r1 += r0
-				r0 = *(r1 + 1)
+				r2 = gSpecialStatuses
+				r0 = gBattlerTarget
+				r1 = *r0
+				r0 = r1 * 4
+				r0 += r1
+				r1 = r0 * 4
+				r0 = r2
+				r0 += 8
+				r0 += r1
+				r0 = *r0
+				
+				if(r0 != 0) goto lbl126
+
+				r0 = r2
+				r0 += 0xC
+				r0 += r1
+				r0 = *r0
 				
 				if(r0 != 0)
 				{
-					r2 = gSpecialStatuses
-					r0 = gBattlerTarget
-					r1 = *r0
-					r0 = r1 * 4
-					r0 += r1
-					r1 = r0 * 4
+					lbl126:
+					r1 = gBattleMons
+					r0 = 0x58
+					r2 = r10
+					r2 *= r0
 					r0 = r2
-					r0 += 8
-					r0 += r1
-					r0 = *r0
+					r1 += r0
+					r3 = r1
+					r3 += 0x21
+					r0 = *r3
 					
-					if(r0 != 0) goto lbl126
-
-					r0 = r2
-					r0 += 0xC
-					r0 += r1
-					r0 = *r0
-					
-					if(r0 != 0)
+					if(r0 != r5)
 					{
-						lbl126:
-						r1 = gBattleMons
-						r0 = 0x58
-						r2 = r10
-						r2 *= r0
-						r0 = r2
-						r1 += r0
-						r3 = r1
-						r3 += 0x21
-						r0 = *r3
+						r2 = r1
+						r2 += 0x22
+						r0 = *r2
 						
 						if(r0 != r5)
 						{
-							r2 = r1
-							r2 += 0x22
-							r0 = *r2
+							r0 = *(r1 + 0x28)
 							
-							if(r0 != r5)
+							if(r0 != 0)
 							{
-								r0 = *(r1 + 0x28)
-								
-								if(r0 != 0)
-								{
-									*r3 = r5
-									*r2 = r5
-									r1 = gBattleTextBuff1
-									r0 = 0xFD
-									*r1 = r0
-									r0 = 3
-									*(r1 + 1) = r0
-									*(r1 + 2) = r5
-									r0 = 0xFF
-									*(r1 + 3) = r0
-									BattleScriptPushCursor()
-									r1 = gBattleScriptCurrInstr
-									r0 = data_081D949C
-									*r1 = r0
-									goto lblend3
-								}
+								*r3 = r5
+								*r2 = r5
+								r1 = gBattleTextBuff1
+								r0 = 0xFD
+								*r1 = r0
+								r0 = 3
+								*(r1 + 1) = r0
+								*(r1 + 2) = r5
+								r0 = 0xFF
+								*(r1 + 3) = r0
+								BattleScriptPushCursor()
+								r1 = gBattleScriptCurrInstr
+								r0 = data_081D949C
+								*r1 = r0
+								goto lblend3
 							}
 						}
 					}
 				}
 			}
-		}
-		
-		break
-	case 18:
-		r0 = gMoveResultFlags
-		r1 = *r0
-		r0 = 0x29
-		r0 &= r1
-		
-		if(r0 == 0)
-		{
+			
+			break
+		case 18:
 			r1 = gBattleMons
 			r0 = gBattlerAttacker
 			r2 = *r0
@@ -971,17 +429,9 @@ case 4:
 					}
 				}
 			}
-		}
-		
-		break
-	case 1B:
-		r0 = gMoveResultFlags
-		r1 = *r0
-		r0 = 0x29
-		r0 &= r1
-		
-		if(r0 == 0)
-		{
+			
+			break
+		case 1B:
 			r1 = gBattleMons
 			r0 = gBattlerAttacker
 			r2 = *r0
@@ -1072,17 +522,9 @@ case 4:
 					}
 				}
 			}
-		}
-		
-		break
-	case 26:
-		r0 = gMoveResultFlags
-		r1 = *r0
-		r0 = 0x29
-		r0 &= r1
-		
-		if(r0 == 0)
-		{
+			
+			break
+		case 26:
 			r1 = gBattleMons
 			r0 = gBattlerAttacker
 			r2 = *r0
@@ -1155,17 +597,9 @@ case 4:
 					}
 				}
 			}
-		}
-		
-		break
-	case 9:
-		r0 = gMoveResultFlags
-		r1 = *r0
-		r0 = 0x29
-		r0 &= r1
-		
-		if(r0 == 0)
-		{
+			
+			break
+		case 9:
 			r1 = gBattleMons
 			r0 = gBattlerAttacker
 			r2 = *r0
@@ -1239,17 +673,9 @@ case 4:
 					}
 				}
 			}
-		}
-		
-		break
-	case 31:
-		r0 = gMoveResultFlags
-		r1 = *r0
-		r0 = 0x29
-		r0 &= r1
-		
-		if(r0 == 0)
-		{
+			
+			break
+		case 31:
 			r1 = gBattleMons
 			r0 = gBattlerAttacker
 			r2 = *r0
@@ -1323,17 +749,9 @@ case 4:
 					}
 				}
 			}
-		}
-		
-		break
-	case 38:
-		r0 = gMoveResultFlags
-		r1 = *r0
-		r0 = 0x29
-		r0 &= r1
-		
-		if(r0 == 0)
-		{
+			
+			break
+		case 38:
 			r5 = gBattleMons
 			r7 = gBattlerAttacker
 			r1 = *r7
@@ -1787,5 +1205,4 @@ if(r9 != 0)
 }
 
 lblend5:
-r0 = r9
-return r0
+return r9
