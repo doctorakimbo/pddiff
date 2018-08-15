@@ -95,7 +95,7 @@ funcs e,j,desc:
 0751C4 = 074968 = GetBattlerSide
 0751D8 = GetBattlerPosition
 0751E8 = GetBattlerAtPosition
-07AF98 = 07A6F8 = GetCurrentWeather
+07AF98 = 07A6F8 = weather_get_current
 09A924 = 09A330 = GetHoldEffect
 09A948 = 09A354 = GetHoldEffectParam
 0C71D0 = RecordAbilityBattle

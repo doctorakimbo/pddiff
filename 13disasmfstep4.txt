@@ -1,0 +1,496 @@
+(carryover: r4, gLastUsedAbility, r9, battler, caseID, speciesAtk, speciesDef, pidAtk, pidDef)
+...
+if(gBattleTypeFlags & 0xA000 == 0x8000 && (gLastUsedAbility == 0x16 || gLastUsedAbility == 0x32))
+	return r9
+
+switch(caseID)
+{
+case ABILITYEFFECT_ON_SWITCHIN:
+	if(gBattlerAttacker >= gBattlersCount)
+		gBattlerAttacker = battler;
+	
+	switch(gLastUsedAbility)
+	{
+	case ABILITYEFFECT_SWITCH_IN_WEATHER:
+		switch(weather_get_current())
+		{
+		case 3:
+		case 5:
+		case 0xD:
+			if(!(gBattleWeather & WEATHER_RAIN_ANY))
+			{
+				gBattleWeather = (WEATHER_RAIN_TEMPORARY | WEATHER_RAIN_PERMANENT);
+				gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;
+				gBattleScripting.battler = battler;
+				effect++;
+			}
+			
+			break;
+		case 8:
+			if(!(gBattleWeather & WEATHER_SANDSTORM_ANY))
+			{
+				gBattleWeather = (WEATHER_SANDSTORM_PERMANENT | WEATHER_SANDSTORM_TEMPORARY);
+				gBattleScripting.animArg1 = B_ANIM_SANDSTORM_CONTINUES;
+				gBattleScripting.battler = battler;
+				effect++;
+			}
+			
+			break;
+		case 0xC:
+			if(!(gBattleWeather & WEATHER_SUN_ANY))
+			{
+				gBattleWeather = (WEATHER_SUN_PERMANENT | WEATHER_SUN_TEMPORARY);
+				gBattleScripting.animArg1 = B_ANIM_SUN_CONTINUES;
+				gBattleScripting.battler = battler;
+				effect++;
+			}
+		}
+		
+		if(!effect)
+			return 0
+		
+		gBattleCommunication[MULTISTRING_CHOOSER] = weather_get_current();
+		BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherStarts);
+		
+		break;
+	case ABILITY_DRIZZLE:
+		if(!(gBattleWeather & WEATHER_RAIN_PERMANENT))
+		{
+			gBattleWeather = (WEATHER_RAIN_PERMANENT | WEATHER_RAIN_TEMPORARY);
+			BattleScriptPushCursorAndCallback(BattleScript_DrizzleActivates);
+			gBattleScripting.battler = battler;
+			effect++;
+		}
+		
+		break;
+	case ABILITY_SAND_STREAM:
+		if(!(gBattleWeather & WEATHER_SANDSTORM_PERMANENT))
+		{
+			gBattleWeather = (WEATHER_SANDSTORM_PERMANENT | WEATHER_SANDSTORM_TEMPORARY);
+			BattleScriptPushCursorAndCallback(BattleScript_SandstreamActivates);
+			gBattleScripting.battler = battler;
+			effect++;
+		}
+		
+		break;
+	case ABILITY_DROUGHT:
+		if(!(gBattleWeather & WEATHER_SUN_PERMANENT))
+		{
+			gBattleWeather = (WEATHER_SUN_PERMANENT | WEATHER_SUN_TEMPORARY);
+			BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates)
+			gBattleScripting.battler = battler;
+			effect++;
+		}
+		
+		break;
+	case ABILITY_INTIMIDATE:
+		if(!(gSpecialStatuses[battler].intimidatedMon))
+		{
+			gStatuses3[battler] |= STATUS3_INTIMIDATE_POKES;
+			gSpecialStatuses[battler].intimidatedMon = 1;
+		}
+		
+		break;
+	case ABILITY_FORECAST:
+		effect = CastformDataTypeChange(battler);
+		
+		if(effect == 0)
+			return 0
+		
+		BattleScriptPushCursorAndCallback(BattleScript_CastformChange);
+		gBattleScripting.battler = battler;
+		*(&gBattleStruct->formToChangeInto) = effect - 1;
+		
+		break;
+	case ABILITY_TRACE:
+		if(gSpecialStatuses[battler].traced)
+		{
+			gStatuses3[battler] |= STATUS3_TRACE;
+			gSpecialStatuses[battler].traced = 1;
+		}
+		
+		break;
+	case 0xD:
+	case 0x4D:
+		for(i = 0; i < gBattlersCount; i++)
+		{
+			r9 = CastformDataTypeChange(i)
+			
+			if(r9 != 0)
+			{
+				BattleScriptPushCursorAndCallback(BattleScript_CastformChange);
+				gBattleScripting.battler = r4
+				*(&gBattleStruct->formToChangeInto) = r9 - 1
+				goto lblend
+			}
+		}
+	}
+	
+	break
+case 1:
+	if(gBattleMons[battler].0x28 != 0)
+	{
+		gBattlerAttacker = battler
+		
+		if(gLastUsedAbility == 0x2C && !AbilityBattleEffects(0x13, 0, 0xD, 0, 0) && !(AbilityBattleEffects(0x13, 0, 0x4D, 0, 0) << 0x18) && gBattleWeather & WEATHER_RAIN_ANY && gBattleMons[battler].0x2C > gBattleMons[battler].0x28)
+		{
+			BattleScriptPushCursorAndCallback(data_081D92AB)
+			gBattleMoveDamage = gBattleMons[battler].0x2C / 16
+			
+			if(gBattleMoveDamage == 0)
+				gBattleMoveDamage = 1
+			
+			gBattleMoveDamage = -gBattleMoveDamage
+			r9++
+		}
+		elseif(gLastUsedAbility == 0x36)
+			gDisableStructs[gBattlerAttacker].0x18 = (gDisableStructs[gBattlerAttacker].0x18 & 0xFFFFFFFE) | (gDisableStructs[gBattlerAttacker].0x18 ^ 1)
+		elseif(gLastUsedAbility == 0x3D && gBattleMons[battler].0x4C != 0 && Random() % 3 == 0)
+		{
+			if(gBattleMons[battler].0x4C & 0x88)
+				StringCopy(gBattleTextBuff1, data_08250094)
+				
+			if(gBattleMons[battler].0x4C & 7)
+				StringCopy(gBattleTextBuff1, data_0825009C)
+
+			if(gBattleMons[battler].0x4C & 40)
+				StringCopy(gBattleTextBuff1, data_082500A4)
+			
+			if(gBattleMons[battler].0x4C & 0x10)
+				StringCopy(gBattleTextBuff1, data_082500AC)
+			
+			if(gBattleMons[battler].0x4C & 0x20)
+				StringCopy(gBattleTextBuff1, data_082500B4)
+			
+			gBattleMons[battler].0x4C = 0
+			gBattleMons[battler].0x50 &= 0xF7FFFFFF
+			gActiveBattler = battler
+			gBattleScripting.battler = battler;
+			BattleScriptPushCursorAndCallback(data_081D92D3)
+			s0 = &(gBattleMons[battler].0x4C)
+			r0 = 0
+			r1 = 0x28
+			r2 = 0
+			r3 = 4
+			EmitSetMonData()
+			r0 = *r4
+			MarkBufferBankForExecution()
+			r9++
+		}
+		elseif(gLastUsedAbility == 3 && gBattleMons[battler].0x1B > 0xB && gDisableStructs[battler].0x16 == 2)
+		{
+			gBattleMons[battler].0x1B++
+			gBattleScripting.animArg1 = 0x11
+			gBattleScripting.0x11 = 0x11
+			BattleScriptPushCursorAndCallback(data_081D9293)
+			gBattleScripting.battler = battler;
+			r9++
+		}
+	}
+	
+	break
+case 2:	
+	if(gLastUsedAbility == 0x2B)
+	{
+		r5 = 0
+		
+		for(i = data_08250104; *i != r4; i += 2)
+		{
+			r5++
+			
+			if(*i == 0xFFFF)
+				goto lblend
+		}
+		
+		if(data_08250104[r5] != 0xFFFF)
+		{
+			if(gBattleMons[gBattlerAttacker].0x50 & 0x1000)
+				gHitMarker |= 0x800
+			
+			gBattleScriptCurrInstr = data_081D946E
+			r9 = 1
+		}
+	}
+	
+	break
+case 3:
+	if(r4 != 0)
+	{
+		if(((gLastUsedAbility == 0xB && gBattleMoves[r4].2 == 0xB) || (gLastUsedAbility == 0xA && gBattleMoves[r4].2 == 0xD)) && gBattleMoves[r4].1 != 0)
+		{
+			if((gProtectStructs[gBattlerAttacker].2 << 0x1C) < 0)
+				gBattleScriptCurrInstr = data_081D93BE
+			else
+				gBattleScriptCurrInstr = data_081D93BD
+			
+			r9 = 1
+		}
+		elseif(gLastUsedAbility == 0x12 && gBattleMoves[r4].2 == 0xA && !(gBattleMons[battler].0x4C & 0x20))
+		{
+			if(!(*((battler * 4) + *(*data_02023FF4 + 4)) & 1))
+			{
+				gBattleCommunication.5 = 0
+				
+				if((gProtectStructs[gBattlerAttacker].2 << 0x1C) <= 0)
+					r0 = data_081D93F7
+				else
+					r0 = data_081D93F6
+				
+				gBattleScriptCurrInstr = r0
+				data_02023FF4 = r0
+				*((battler * 4) + *(*data_02023FF4 + 4)) |= 1
+				r9 = 2
+			}
+			else
+			{
+				if((gProtectStructs[gBattlerAttacker].2 << 0x1C) < 0)
+					gBattleScriptCurrInstr = data_081D93F7
+				else
+					gBattleScriptCurrInstr = data_081D93F6
+				
+				r9 = 2
+			}
+		}
+		
+		if(r9 == 1)
+		{
+			r1 = gBattleMons[battler]
+			
+			if(gBattleMons[battler].0x2C == gBattleMons[battler].0x28)
+			{
+				if(gProtectStructs[gBattlerAttacker].2 << 0x1C < 0)
+					gBattleScriptCurrInstr = data_081D93E1
+				else
+					gBattleScriptCurrInstr = data_081D93E0
+			}
+			else
+			{
+				gBattleMoveDamage = gBattleMons[battler].0x2C / 4
+				
+				if(gBattleMoveDamage == 0)
+					gBattleMoveDamage = 1
+				
+				gBattleMoveDamage = -gBattleMoveDamage
+			}
+		}
+	}
+	
+	break
+case 4:
+	if(!(gMoveResultFlags & 0x29) && gSpecialStatuses[gBattlerTarget].8 != 0 && gSpecialStatuses[gBattlerTarget].0xC != 0)
+	{
+		switch(gLastUsedAbility)
+		{
+		case 0x10:
+			if(r4 != 0xA5 && gBattleMoves[r4].1 != 0 && gBattleMons[battler].0x21 != gBattleMoves[r4].2 && gBattleMons[battler].0x22 != gBattleMoves[r4].2 && gBattleMons[battler].0x28 != 0)
+			{
+				gBattleMons[battler].0x21 = gBattleMoves[r4].2
+				gBattleMons[battler].0x22 = gBattleMoves[r4].2
+				gBattleTextBuff1[0] = 0xFD
+				gBattleTextBuff1[1] = 3
+				gBattleTextBuff1[2] = gBattleMoves[r4].2
+				gBattleTextBuff1[3] = 0xFF
+				BattleScriptPushCursor()
+				gBattleScriptCurrInstr = data_081D949C
+				r9++
+			}
+			
+			break
+		case 0x18:
+			if(gBattleMons[gBattlerAttacker].0x28 != 0 && (gProtectStructs[gBattlerAttacker].1 << 0x1F) == 0 && gBattleMoves[r4].8 & 1)
+			{
+				gBattleMoveDamage = gBattleMons[gBattlerAttacker].0x2C / 16
+				
+				if(gBattleMoveDamage == 0)
+					gBattleMoveDamage = 1
+
+				BattleScriptPushCursor()
+				gBattleScriptCurrInstr = data_081D94A3
+				r9++
+			}
+			
+			break
+		case 0x1B:
+			if(gBattleMons[gBattlerAttacker].0x28 != 0 && (gProtectStructs[gBattlerAttacker].1 << 0x1F) == 0 && gBattleMoves[r4].8 & 1 && ((Random() % 0xA) << 0x10) == 0)
+			{
+				do
+				{
+					gBattleCommunication.3 = Random() & 3
+				} while(gBattleCommunication.3 == 0)
+				
+				if(gBattleCommunication.3 == 3)
+					gBattleCommunication.3 += 2
+				
+				gBattleCommunication.3 += 0x40
+				BattleScriptPushCursor()
+				gBattleScriptCurrInstr = data_081D94CB
+				gHitMarker |= 0x2000
+				r9++
+			}
+			
+			break
+		case 0x26:
+			if(gBattleMons[gBattlerAttacker].0x28 != 0 && (gProtectStructs[gBattlerAttacker].1 << 0x1F) == 0 && gBattleMoves[r4].8 & 1 && ((Random() % 0xA) << 0x10) == 0)
+			{
+				gBattleCommunication.3 = 0x42
+				BattleScriptPushCursor()
+				gBattleScriptCurrInstr = data_081D94CB
+				gHitMarker |= 0x2000
+				r9++
+			}
+			
+			break
+		case 9:
+			if(gBattleMons[gBattlerAttacker].0x28 != 0 && (gProtectStructs[gBattlerAttacker].1 << 0x1F) == 0 && gBattleMoves[r4].8 & 1 && ((Random() % 0xA) << 0x10) == 0)
+			{
+				gBattleCommunication.3 = 0x45
+				BattleScriptPushCursor()
+				gBattleScriptCurrInstr = data_081D94CB
+				gHitMarker |= 0x2000
+				r9++
+			}
+			
+			break
+		case 0x31:
+			if(gBattleMons[gBattlerAttacker].0x28 != 0 && (gProtectStructs[gBattlerAttacker].1 << 0x1F) == 0 && gBattleMoves[r4].8 & 1 && ((Random() % 0xA) << 0x10) == 0)
+			{
+				gBattleCommunication.3 = 0x43
+				BattleScriptPushCursor()
+				gBattleScriptCurrInstr = data_081D94CB
+				gHitMarker |= 0x2000
+				r9++
+			}
+			
+			break
+		case 0x38:
+			if(gBattleMons[gBattlerAttacker].0x28 != 0 && (gProtectStructs[gBattlerAttacker].1 << 0x1F) == 0 && gBattleMoves[r4].8 & 1 && gBattleMons[gBattlerTarget].0x28 != 0 && ((Random() % 3) << 0x10) == 0 && gBattleMons[gBattlerAttacker].0x20 != 0xC && (GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) << 0x18) != (GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) << 0x18) && !(gBattleMons[gBattlerAttacker].0x50 & 0xF0000) && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != 0xFF && GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) != 0xFF)
+			{
+				gBattleMons[gBattlerAttacker].0x50 |= (gBitTable[gBattlerTarget] << 0x10)
+				BattleScriptPushCursor()
+				gBattleScriptCurrInstr = data_081D94BE
+				r9++
+			}
+		}
+	}
+	
+	break
+case 5:
+	r4 = 0
+	battler = 0
+	
+	if(battler < gBattlersCount)
+	{
+		lbl181:
+		switch(gBattleMons[battler].0x20)
+		{
+		case 0x11:
+			if(gBattleMons[battler].0x4C & (data_168_oops))
+			{
+				r0 = gBattleTextBuff1
+				r1 = data_08250094
+				goto lbl195
+			}
+			
+			break
+		case 0x14:
+			if(gBattleMons[battler].0x50 & 7)
+			{
+				StringCopy(gBattleTextBuff1, data_082500BC)
+				r9 = 2
+				goto lbl199
+			}
+			
+			break
+		case 7:
+			if(gBattleMons[battler].0x4C & 40)
+			{
+				r0 = gBattleTextBuff1
+				r1 = data_082500A4
+				goto lbl195
+			}
+			
+			break
+		case 0xF:
+		case 0x48:
+			if(gBattleMons[battler].0x4C & 7)
+			{
+				gBattleMons[battler].0x50 &= 0xF7FFFFFF
+				StringCopy(gBattleTextBuff1, data_0825009C)
+				r9 = 1
+				goto lbl199
+			}
+			
+			break
+		case 0x29:
+			if(gBattleMons[battler].0x4C & 0x10)
+			{
+				StringCopy(gBattleTextBuff1, data_082500AC)
+				r9 = 1
+				goto lbl199
+			}
+			
+			break
+		case 0x28:
+			if(gBattleMons[battler].0x4C & 0x20)
+			{
+				r0 = gBattleTextBuff1
+				r1 = data_082500B4
+				
+				lbl195:
+				StringCopy(r0, r1)
+				r9 = 1
+				goto lbl199
+			}
+		case 0xC:
+			if(gBattleMons[battler].0x50 & 0xF0000)
+			{
+				StringCopy(gBattleTextBuff1, data_082500C4)
+				r9 = 3
+			}
+		}
+
+		lbl198:
+		if(r9 == 0)
+		{
+			battler++
+			
+			if(battler < gBattlersCount)
+				goto lbl181
+		}
+		else
+		{
+			lbl199:
+			if(r9 == 2)
+				gBattleMons[battler].0x50 &= 0xFFFFFFF7
+			elseif(r9 == 3)
+				gBattleMons[battler].0x50 &= 0xFFF0FFFF
+			elseif(r9 == 1)
+				gBattleMons[battler].0x4C = 0
+			
+			BattleScriptPushCursor()
+			gBattleScriptCurrInstr = data_081D94D1
+			gBattleScripting.battler = battler;
+			gActiveBattler = battler
+			s0 = data_02023C30[gActiveBattler]
+			r0 = 0
+			r1 = 0x28
+			r2 = 0
+			r3 = 4
+			EmitSetMonData()
+			r0 = gActiveBattler
+			MarkBufferBankForExecution()
+			return r9
+		}
+	}
+	
+	break
+...
+}
+
+lblend:
+r4 = r9
+
+if(r9 != 0 && caseID <= 0xB && data_02023D6A != 0xFF)
+	RecordAbilityBattle(battler, data_02023D6A)
+
+return r9

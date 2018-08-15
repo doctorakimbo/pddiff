@@ -167,4 +167,4 @@ grafics:
           Implements: part of weather refactor
 		  Glitch: Might cause castform/terubim to "change" when sand starts/ends; might have done it wrong, check if rain=ice and hail=water accidentally
 = 01A088: Most of AbilityBattleEffects + j14734 + j196D4 + j1EB68 + j27612 (see 13disasm)
-		  (1A088-1B374) (19898_J-1AB84_J)
+		  Relies on: weather refactor
