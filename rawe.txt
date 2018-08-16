@@ -1,0 +1,240 @@
+00 69 1D 08 'BattleScript_EffectHit
+6D 69 1D 08 'BattleScript_EffectSleep
+DC 69 1D 08 'BattleScript_EffectPoisonHit
+E7 69 1D 08 'BattleScript_EffectAbsorb
+55 6A 1D 08 'BattleScript_EffectBurnHit
+60 6A 1D 08 'BattleScript_EffectFreezeHit
+6B 6A 1D 08 'BattleScript_EffectParalyzeHit
+76 6A 1D 08 'BattleScript_EffectExplosion
+F6 6A 1D 08 'BattleScript_EffectDreamEater
+5F 6B 1D 08 'BattleScript_EffectMirrorMove
+77 6B 1D 08 'BattleScript_EffectAttackUp
+82 6B 1D 08 'BattleScript_EffectDefenseUp
+00 69 1D 08 'BattleScript_EffectHit (SpeedUp)
+8D 6B 1D 08 'BattleScript_EffectSpecialAttackUp
+00 69 1D 08 'BattleScript_EffectHit (SpecialDefenseUp)
+00 69 1D 08 'BattleScript_EffectHit (AccuracyUp)
+98 6B 1D 08 'BattleScript_EffectEvasionUp
+00 69 1D 08 'BattleScript_EffectHit (AlwaysHit)
+E1 6B 1D 08 'BattleScript_EffectAttackDown
+EC 6B 1D 08 'BattleScript_EffectDefenseDown
+F7 6B 1D 08 'BattleScript_EffectSpeedDown
+00 69 1D 08 'BattleScript_EffectHit (SpecialAttackDown)
+00 69 1D 08 'BattleScript_EffectHit (SpecialDefenseDown)
+02 6C 1D 08 'BattleScript_EffectAccuracyDown
+0D 6C 1D 08 'BattleScript_EffectEvasionDown
+72 6C 1D 08 'BattleScript_EffectHaze
+83 6C 1D 08 'BattleScript_EffectBide
+97 6C 1D 08 'BattleScript_EffectRampage
+B1 6C 1D 08 'BattleScript_EffectRoar
+D9 6C 1D 08 'BattleScript_EffectMultiHit
+9D 6D 1D 08 'BattleScript_EffectConversion
+B2 6D 1D 08 'BattleScript_EffectFlinchHit
+BD 6D 1D 08 'BattleScript_EffectRestoreHp
+E0 6D 1D 08 'BattleScript_EffectToxic
+69 6E 1D 08 'BattleScript_EffectPayDay
+74 6E 1D 08 'BattleScript_EffectLightScreen
+7D 6E 1D 08 'BattleScript_EffectTriAttack
+88 6E 1D 08 'BattleScript_EffectRest
+D0 6E 1D 08 'BattleScript_EffectOHKO
+01 6F 1D 08 'BattleScript_EffectRazorWind
+82 6F 1D 08 'BattleScript_EffectSuperFang
+99 6F 1D 08 'BattleScript_EffectDragonRage
+C8 6F 1D 08 'BattleScript_EffectTrap
+00 69 1D 08 'BattleScript_EffectHit (HighCritical)
+F9 6F 1D 08 'BattleScript_EffectDoubleHit
+11 70 1D 08 'BattleScript_EffectRecoilIfMiss
+62 70 1D 08 'BattleScript_EffectMist
+75 70 1D 08 'BattleScript_EffectFocusEnergy
+92 70 1D 08 'BattleScript_EffectRecoil
+AB 70 1D 08 'BattleScript_EffectConfuse
+F8 70 1D 08 'BattleScript_EffectAttackUp2
+03 71 1D 08 'BattleScript_EffectDefenseUp2
+0E 71 1D 08 'BattleScript_EffectSpeedUp2
+19 71 1D 08 'BattleScript_EffectSpecialAttackUp2
+24 71 1D 08 'BattleScript_EffectSpecialDefenseUp2
+00 69 1D 08 'BattleScript_EffectHit (AccuracyUp2)
+00 69 1D 08 'BattleScript_EffectHit (EvasionUp2)
+2F 71 1D 08 'BattleScript_EffectTransform
+42 71 1D 08 'BattleScript_EffectAttackDown2
+4D 71 1D 08 'BattleScript_EffectDefenseDown2
+58 71 1D 08 'BattleScript_EffectSpeedDown2
+00 69 1D 08 'BattleScript_EffectHit (SpecialAttackDown2)
+63 71 1D 08 'BattleScript_EffectSpecialDefenseDown2
+00 69 1D 08 'BattleScript_EffectHit (AccuracyDown2)
+00 69 1D 08 'BattleScript_EffectHit (EvasionDown2)
+6E 71 1D 08 'BattleScript_EffectReflect
+81 71 1D 08 'BattleScript_EffectPoison
+E2 71 1D 08 'BattleScript_EffectParalyze
+5F 72 1D 08 'BattleScript_EffectAttackDownHit
+6A 72 1D 08 'BattleScript_EffectDefenseDownHit
+75 72 1D 08 'BattleScript_EffectSpeedDownHit
+80 72 1D 08 'BattleScript_EffectSpecialAttackDownHit
+8B 72 1D 08 'BattleScript_EffectSpecialDefenseDownHit
+96 72 1D 08 'BattleScript_EffectAccuracyDownHit
+00 69 1D 08 'BattleScript_EffectHit (EvasionDownHit)
+A1 72 1D 08 'BattleScript_EffectSkyAttack
+C9 72 1D 08 'BattleScript_EffectConfuseHit
+D4 72 1D 08 'BattleScript_EffectTwineedle
+00 69 1D 08 'BattleScript_EffectHit (VitalThrow)
+EC 72 1D 08 'BattleScript_EffectSubstitute
+2F 73 1D 08 'BattleScript_EffectRecharge
+4D 73 1D 08 'BattleScript_EffectRage
+74 73 1D 08 'BattleScript_EffectMimic
+9A 73 1D 08 'BattleScript_EffectMetronome
+AE 73 1D 08 'BattleScript_EffectLeechSeed
+D5 73 1D 08 'BattleScript_EffectSplash
+E7 73 1D 08 'BattleScript_EffectDisable
+03 74 1D 08 'BattleScript_EffectLevelDamage
+1B 74 1D 08 'BattleScript_EffectPsywave
+33 74 1D 08 'BattleScript_EffectCounter
+49 74 1D 08 'BattleScript_EffectEncore
+65 74 1D 08 'BattleScript_EffectPainSplit
+9C 74 1D 08 'BattleScript_EffectSnore
+D6 74 1D 08 'BattleScript_EffectConversion2
+EB 74 1D 08 'BattleScript_EffectLockOn
+0D 75 1D 08 'BattleScript_EffectSketch
+00 69 1D 08 'BattleScript_EffectHit (Unused60)
+2C 75 1D 08 'BattleScript_EffectSleepTalk
+6E 75 1D 08 'BattleScript_EffectDestinyBond
+7F 75 1D 08 'BattleScript_EffectFlail
+85 75 1D 08 'BattleScript_EffectSpite
+00 69 1D 08 'BattleScript_EffectHit (FalseSwipe)
+A1 75 1D 08 'BattleScript_EffectHealBell
+00 69 1D 08 'BattleScript_EffectHit (QuickAttack)
+E6 75 1D 08 'BattleScript_EffectTripleKick
+C9 76 1D 08 'BattleScript_EffectThief
+D4 76 1D 08 'BattleScript_EffectMeanLook
+06 77 1D 08 'BattleScript_EffectNightmare
+40 77 1D 08 'BattleScript_EffectMinimize
+4D 77 1D 08 'BattleScript_EffectCurse
+00 69 1D 08 'BattleScript_EffectHit (Unused6e)
+16 78 1D 08 'BattleScript_EffectProtect
+29 78 1D 08 'BattleScript_EffectSpikes
+3E 78 1D 08 'BattleScript_EffectForesight
+56 78 1D 08 'BattleScript_EffectPerishSong
+97 78 1D 08 'BattleScript_EffectSandstorm
+16 78 1D 08 'BattleScript_EffectProtect (Endure)
+A0 78 1D 08 'BattleScript_EffectRollout
+BB 78 1D 08 'BattleScript_EffectSwagger
+19 79 1D 08 'BattleScript_EffectFuryCutter
+38 79 1D 08 'BattleScript_EffectAttract
+54 79 1D 08 'BattleScript_EffectReturn
+62 79 1D 08 'BattleScript_EffectPresent
+54 79 1D 08 'BattleScript_EffectReturn (Frustration)
+6E 79 1D 08 'BattleScript_EffectSafeguard
+77 79 1D 08 'BattleScript_EffectThawHit
+82 79 1D 08 'BattleScript_EffectMagnitude
+95 79 1D 08 'BattleScript_EffectBatonPass
+00 69 1D 08 'BattleScript_EffectHit (Pursuit)
+C2 79 1D 08 'BattleScript_EffectRapidSpin
+CD 79 1D 08 'BattleScript_EffectSonicboom
+00 69 1D 08 'BattleScript_EffectHit (Unused83)
+FC 79 1D 08 'BattleScript_EffectMorningSun
+FC 79 1D 08 'BattleScript_EffectMorningSun (Synthesis)
+FC 79 1D 08 'BattleScript_EffectMorningSun (Moonlight)
+09 7A 1D 08 'BattleScript_EffectHiddenPower
+10 7A 1D 08 'BattleScript_EffectRainDance
+28 7A 1D 08 'BattleScript_EffectSunnyDay
+31 7A 1D 08 'BattleScript_EffectDefenseUpHit
+3C 7A 1D 08 'BattleScript_EffectAttackUpHit
+47 7A 1D 08 'BattleScript_EffectAllStatsUpHit
+00 69 1D 08 'BattleScript_EffectHit (Unused8d)
+52 7A 1D 08 'BattleScript_EffectBellyDrum
+74 7A 1D 08 'BattleScript_EffectPsychUp
+89 7A 1D 08 'BattleScript_EffectMirrorCoat
+9F 7A 1D 08 'BattleScript_EffectSkullBash
+EE 7A 1D 08 'BattleScript_EffectTwister
+13 7B 1D 08 'BattleScript_EffectEarthquake
+97 7B 1D 08 'BattleScript_EffectFutureSight
+AE 7B 1D 08 'BattleScript_EffectGust
+CD 7B 1D 08 'BattleScript_EffectStomp
+E3 7B 1D 08 'BattleScript_EffectSolarbeam
+39 7C 1D 08 'BattleScript_EffectThunder
+4D 7C 1D 08 'BattleScript_EffectTeleport
+8A 7C 1D 08 'BattleScript_EffectBeatUp
+E1 7C 1D 08 'BattleScript_EffectSemiInvulnerable
+8C 7D 1D 08 'BattleScript_EffectDefenseCurl
+AE 7D 1D 08 'BattleScript_EffectSoftboiled
+DF 7D 1D 08 'BattleScript_EffectFakeOut
+16 7E 1D 08 'BattleScript_EffectUproar
+36 7E 1D 08 'BattleScript_EffectStockpile
+49 7E 1D 08 'BattleScript_EffectSpitUp
+8B 7E 1D 08 'BattleScript_EffectSwallow
+00 69 1D 08 'BattleScript_EffectHit (UnusedA3)
+A8 7E 1D 08 'BattleScript_EffectHail
+B1 7E 1D 08 'BattleScript_EffectTorment
+CD 7E 1D 08 'BattleScript_EffectFlatter
+2B 7F 1D 08 'BattleScript_EffectBurn
+9F 7F 1D 08 'BattleScript_EffectMemento
+42 80 1D 08 'BattleScript_EffectFacade
+5C 80 1D 08 'BattleScript_EffectFocusPunch
+6E 80 1D 08 'BattleScript_EffectSmellingsalt
+98 80 1D 08 'BattleScript_EffectFollowMe
+A9 80 1D 08 'BattleScript_EffectNaturePower
+B6 80 1D 08 'BattleScript_EffectCharge
+C7 80 1D 08 'BattleScript_EffectTaunt
+E3 80 1D 08 'BattleScript_EffectHelpingHand
+F8 80 1D 08 'BattleScript_EffectTrick
+26 81 1D 08 'BattleScript_EffectRolePlay
+42 81 1D 08 'BattleScript_EffectWish
+52 81 1D 08 'BattleScript_EffectAssist
+69 81 1D 08 'BattleScript_EffectIngrain
+7E 81 1D 08 'BattleScript_EffectSuperpower
+89 81 1D 08 'BattleScript_EffectMagicCoat
+9E 81 1D 08 'BattleScript_EffectRecycle
+B3 81 1D 08 'BattleScript_EffectRevenge
+B9 81 1D 08 'BattleScript_EffectBrickBreak
+0A 82 1D 08 'BattleScript_EffectYawn
+63 82 1D 08 'BattleScript_EffectKnockOff
+6E 82 1D 08 'BattleScript_EffectEndeavor
+A9 82 1D 08 'BattleScript_EffectEruption
+AF 82 1D 08 'BattleScript_EffectSkillSwap
+CB 82 1D 08 'BattleScript_EffectImprison
+E0 82 1D 08 'BattleScript_EffectRefresh
+F7 82 1D 08 'BattleScript_EffectGrudge
+0C 83 1D 08 'BattleScript_EffectSnatch
+24 83 1D 08 'BattleScript_EffectLowKick
+34 83 1D 08 'BattleScript_EffectSecretPower
+3A 83 1D 08 'BattleScript_EffectDoubleEdge
+45 83 1D 08 'BattleScript_EffectTeeterDance
+55 6A 1D 08 'BattleScript_EffectBurnHit (BlazeKick)
+F3 83 1D 08 'BattleScript_EffectMudSport
+0A 84 1D 08 'BattleScript_EffectPoisonFang
+15 84 1D 08 'BattleScript_EffectWeatherBall
+1B 84 1D 08 'BattleScript_EffectOverheat
+26 84 1D 08 'BattleScript_EffectTickle
+AD 84 1D 08 'BattleScript_EffectCosmicPower
+11 85 1D 08 'BattleScript_EffectSkyUppercut
+1F 85 1D 08 'BattleScript_EffectBulkUp
+DC 69 1D 08 'BattleScript_EffectPoisonHit (PoisonTail)
+F3 83 1D 08 'BattleScript_EffectWaterSport
+83 85 1D 08 'BattleScript_EffectCalmMind
+FB 85 1D 08 'BattleScript_EffectDragonDance
+5F 86 1D 08 'BattleScript_EffectCamouflage
+
+
+BattleScript_Minimize:
+	attackcanceler
+	setminimize
+	setstatchanger STAT_EVASION, 1, FALSE
+	goto BattleScript_EffectStatUpAfterAtkCanceler
+
+02023DD0 = gHitMarker
+02023E85 = cEFFECT_CHOOSER
+02023E87 = cMULTISTRING_CHOOSER
+02023F1C = gBattleWeather
+02023FD2 = sDMG_MULTIPLIER
+02023FD8 = sMOVEEND_STATE
+02023FDA = sMULTIHIT_EFFECT
+02023FDE = sSTATCHANGER
+02023FDF = sFIELD_1B
+
+1D6947 = BattleScript_HitFromTryFaintMon
+1D694E = BattleScript_MoveEnd
+1D695E = BattleScript_PrintMoveMissed
+1D6B9E = BattleScript_EffectStatUp
+1D6B9F = BattleScript_EffectStatUpAfterAtkCanceler
+1D6CEC = BattleScript_MultiHitLoop
+1D85E7 = BattleScript_CantRaiseMultipleStats
+3FE57C = gStatUpStringIds

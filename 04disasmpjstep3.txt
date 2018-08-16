@@ -51,13 +51,11 @@ GetSpeedStat(battlerId)
 
 	if(gSideTimers[battlerId % 2].tailwindTimer)
 		speedStat *= 2;
-
-	mysteryvar = gDisableStructs[battlerId].bit18; // ???
 	
-	if(ability == ABILITY_UNBURDEN && mysteryvar == 2 && gBattleMons[battlerId].item == ITEM_NONE)
+	if(ability == ABILITY_UNBURDEN && gDisableStructs[battler].unburden == UNBURDEN_ACTIVATED && gBattleMons[battlerId].item == ITEM_NONE)
 		speedStat *= 2;
 
-	if(ability == 0x70 && mysteryvar != 0)
+	if(ability == ABILITY_SLOW_START && gDisableStructs[battler].slowStartTimer != 0)
 		speedStat /= 2;
 
 	holdEffect = GetHoldEffect(gBattleMons[battlerId].item);

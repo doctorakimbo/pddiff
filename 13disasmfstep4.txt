@@ -1,496 +1,500 @@
-(carryover: r4, gLastUsedAbility, r9, battler, caseID, speciesAtk, speciesDef, pidAtk, pidDef)
+(carryover: move, gLastUsedAbility, effect, battler, caseID, speciesAtk, speciesDef, pidAtk, pidDef)
 ...
-if(gBattleTypeFlags & 0xA000 == 0x8000 && (gLastUsedAbility == 0x16 || gLastUsedAbility == 0x32))
-	return r9
-
-switch(caseID)
+if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDATE || gLastUsedAbility != ABILITY_RUN_AWAY?))
 {
-case ABILITYEFFECT_ON_SWITCHIN:
-	if(gBattlerAttacker >= gBattlersCount)
-		gBattlerAttacker = battler;
-	
-	switch(gLastUsedAbility)
-	{
-	case ABILITYEFFECT_SWITCH_IN_WEATHER:
-		switch(weather_get_current())
-		{
-		case 3:
-		case 5:
-		case 0xD:
-			if(!(gBattleWeather & WEATHER_RAIN_ANY))
-			{
-				gBattleWeather = (WEATHER_RAIN_TEMPORARY | WEATHER_RAIN_PERMANENT);
-				gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;
-				gBattleScripting.battler = battler;
-				effect++;
-			}
-			
-			break;
-		case 8:
-			if(!(gBattleWeather & WEATHER_SANDSTORM_ANY))
-			{
-				gBattleWeather = (WEATHER_SANDSTORM_PERMANENT | WEATHER_SANDSTORM_TEMPORARY);
-				gBattleScripting.animArg1 = B_ANIM_SANDSTORM_CONTINUES;
-				gBattleScripting.battler = battler;
-				effect++;
-			}
-			
-			break;
-		case 0xC:
-			if(!(gBattleWeather & WEATHER_SUN_ANY))
-			{
-				gBattleWeather = (WEATHER_SUN_PERMANENT | WEATHER_SUN_TEMPORARY);
-				gBattleScripting.animArg1 = B_ANIM_SUN_CONTINUES;
-				gBattleScripting.battler = battler;
-				effect++;
-			}
-		}
-		
-		if(!effect)
-			return 0
-		
-		gBattleCommunication[MULTISTRING_CHOOSER] = weather_get_current();
-		BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherStarts);
-		
-		break;
-	case ABILITY_DRIZZLE:
-		if(!(gBattleWeather & WEATHER_RAIN_PERMANENT))
-		{
-			gBattleWeather = (WEATHER_RAIN_PERMANENT | WEATHER_RAIN_TEMPORARY);
-			BattleScriptPushCursorAndCallback(BattleScript_DrizzleActivates);
-			gBattleScripting.battler = battler;
-			effect++;
-		}
-		
-		break;
-	case ABILITY_SAND_STREAM:
-		if(!(gBattleWeather & WEATHER_SANDSTORM_PERMANENT))
-		{
-			gBattleWeather = (WEATHER_SANDSTORM_PERMANENT | WEATHER_SANDSTORM_TEMPORARY);
-			BattleScriptPushCursorAndCallback(BattleScript_SandstreamActivates);
-			gBattleScripting.battler = battler;
-			effect++;
-		}
-		
-		break;
-	case ABILITY_DROUGHT:
-		if(!(gBattleWeather & WEATHER_SUN_PERMANENT))
-		{
-			gBattleWeather = (WEATHER_SUN_PERMANENT | WEATHER_SUN_TEMPORARY);
-			BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates)
-			gBattleScripting.battler = battler;
-			effect++;
-		}
-		
-		break;
-	case ABILITY_INTIMIDATE:
-		if(!(gSpecialStatuses[battler].intimidatedMon))
-		{
-			gStatuses3[battler] |= STATUS3_INTIMIDATE_POKES;
-			gSpecialStatuses[battler].intimidatedMon = 1;
-		}
-		
-		break;
-	case ABILITY_FORECAST:
-		effect = CastformDataTypeChange(battler);
-		
-		if(effect == 0)
-			return 0
-		
-		BattleScriptPushCursorAndCallback(BattleScript_CastformChange);
-		gBattleScripting.battler = battler;
-		*(&gBattleStruct->formToChangeInto) = effect - 1;
-		
-		break;
-	case ABILITY_TRACE:
-		if(gSpecialStatuses[battler].traced)
-		{
-			gStatuses3[battler] |= STATUS3_TRACE;
-			gSpecialStatuses[battler].traced = 1;
-		}
-		
-		break;
-	case 0xD:
-	case 0x4D:
-		for(i = 0; i < gBattlersCount; i++)
-		{
-			r9 = CastformDataTypeChange(i)
-			
-			if(r9 != 0)
-			{
-				BattleScriptPushCursorAndCallback(BattleScript_CastformChange);
-				gBattleScripting.battler = r4
-				*(&gBattleStruct->formToChangeInto) = r9 - 1
-				goto lblend
-			}
-		}
-	}
-	
-	break
-case 1:
-	if(gBattleMons[battler].0x28 != 0)
-	{
-		gBattlerAttacker = battler
-		
-		if(gLastUsedAbility == 0x2C && !AbilityBattleEffects(0x13, 0, 0xD, 0, 0) && !(AbilityBattleEffects(0x13, 0, 0x4D, 0, 0) << 0x18) && gBattleWeather & WEATHER_RAIN_ANY && gBattleMons[battler].0x2C > gBattleMons[battler].0x28)
-		{
-			BattleScriptPushCursorAndCallback(data_081D92AB)
-			gBattleMoveDamage = gBattleMons[battler].0x2C / 16
-			
-			if(gBattleMoveDamage == 0)
-				gBattleMoveDamage = 1
-			
-			gBattleMoveDamage = -gBattleMoveDamage
-			r9++
-		}
-		elseif(gLastUsedAbility == 0x36)
-			gDisableStructs[gBattlerAttacker].0x18 = (gDisableStructs[gBattlerAttacker].0x18 & 0xFFFFFFFE) | (gDisableStructs[gBattlerAttacker].0x18 ^ 1)
-		elseif(gLastUsedAbility == 0x3D && gBattleMons[battler].0x4C != 0 && Random() % 3 == 0)
-		{
-			if(gBattleMons[battler].0x4C & 0x88)
-				StringCopy(gBattleTextBuff1, data_08250094)
-				
-			if(gBattleMons[battler].0x4C & 7)
-				StringCopy(gBattleTextBuff1, data_0825009C)
+	GET_MOVE_TYPE(move, moveType);
 
-			if(gBattleMons[battler].0x4C & 40)
-				StringCopy(gBattleTextBuff1, data_082500A4)
-			
-			if(gBattleMons[battler].0x4C & 0x10)
-				StringCopy(gBattleTextBuff1, data_082500AC)
-			
-			if(gBattleMons[battler].0x4C & 0x20)
-				StringCopy(gBattleTextBuff1, data_082500B4)
-			
-			gBattleMons[battler].0x4C = 0
-			gBattleMons[battler].0x50 &= 0xF7FFFFFF
-			gActiveBattler = battler
-			gBattleScripting.battler = battler;
-			BattleScriptPushCursorAndCallback(data_081D92D3)
-			s0 = &(gBattleMons[battler].0x4C)
-			r0 = 0
-			r1 = 0x28
-			r2 = 0
-			r3 = 4
-			EmitSetMonData()
-			r0 = *r4
-			MarkBufferBankForExecution()
-			r9++
-		}
-		elseif(gLastUsedAbility == 3 && gBattleMons[battler].0x1B > 0xB && gDisableStructs[battler].0x16 == 2)
-		{
-			gBattleMons[battler].0x1B++
-			gBattleScripting.animArg1 = 0x11
-			gBattleScripting.0x11 = 0x11
-			BattleScriptPushCursorAndCallback(data_081D9293)
-			gBattleScripting.battler = battler;
-			r9++
-		}
-	}
-	
-	break
-case 2:	
-	if(gLastUsedAbility == 0x2B)
+	switch(caseID)
 	{
-		r5 = 0
+	case ABILITYEFFECT_ON_SWITCHIN:
+		if(gBattlerAttacker >= gBattlersCount)
+			gBattlerAttacker = battler;
 		
-		for(i = data_08250104; *i != r4; i += 2)
-		{
-			r5++
-			
-			if(*i == 0xFFFF)
-				goto lblend
-		}
-		
-		if(data_08250104[r5] != 0xFFFF)
-		{
-			if(gBattleMons[gBattlerAttacker].0x50 & 0x1000)
-				gHitMarker |= 0x800
-			
-			gBattleScriptCurrInstr = data_081D946E
-			r9 = 1
-		}
-	}
-	
-	break
-case 3:
-	if(r4 != 0)
-	{
-		if(((gLastUsedAbility == 0xB && gBattleMoves[r4].2 == 0xB) || (gLastUsedAbility == 0xA && gBattleMoves[r4].2 == 0xD)) && gBattleMoves[r4].1 != 0)
-		{
-			if((gProtectStructs[gBattlerAttacker].2 << 0x1C) < 0)
-				gBattleScriptCurrInstr = data_081D93BE
-			else
-				gBattleScriptCurrInstr = data_081D93BD
-			
-			r9 = 1
-		}
-		elseif(gLastUsedAbility == 0x12 && gBattleMoves[r4].2 == 0xA && !(gBattleMons[battler].0x4C & 0x20))
-		{
-			if(!(*((battler * 4) + *(*data_02023FF4 + 4)) & 1))
-			{
-				gBattleCommunication.5 = 0
-				
-				if((gProtectStructs[gBattlerAttacker].2 << 0x1C) <= 0)
-					r0 = data_081D93F7
-				else
-					r0 = data_081D93F6
-				
-				gBattleScriptCurrInstr = r0
-				data_02023FF4 = r0
-				*((battler * 4) + *(*data_02023FF4 + 4)) |= 1
-				r9 = 2
-			}
-			else
-			{
-				if((gProtectStructs[gBattlerAttacker].2 << 0x1C) < 0)
-					gBattleScriptCurrInstr = data_081D93F7
-				else
-					gBattleScriptCurrInstr = data_081D93F6
-				
-				r9 = 2
-			}
-		}
-		
-		if(r9 == 1)
-		{
-			r1 = gBattleMons[battler]
-			
-			if(gBattleMons[battler].0x2C == gBattleMons[battler].0x28)
-			{
-				if(gProtectStructs[gBattlerAttacker].2 << 0x1C < 0)
-					gBattleScriptCurrInstr = data_081D93E1
-				else
-					gBattleScriptCurrInstr = data_081D93E0
-			}
-			else
-			{
-				gBattleMoveDamage = gBattleMons[battler].0x2C / 4
-				
-				if(gBattleMoveDamage == 0)
-					gBattleMoveDamage = 1
-				
-				gBattleMoveDamage = -gBattleMoveDamage
-			}
-		}
-	}
-	
-	break
-case 4:
-	if(!(gMoveResultFlags & 0x29) && gSpecialStatuses[gBattlerTarget].8 != 0 && gSpecialStatuses[gBattlerTarget].0xC != 0)
-	{
 		switch(gLastUsedAbility)
 		{
-		case 0x10:
-			if(r4 != 0xA5 && gBattleMoves[r4].1 != 0 && gBattleMons[battler].0x21 != gBattleMoves[r4].2 && gBattleMons[battler].0x22 != gBattleMoves[r4].2 && gBattleMons[battler].0x28 != 0)
+		case ABILITYEFFECT_SWITCH_IN_WEATHER:
+			switch(weather_get_current())
 			{
-				gBattleMons[battler].0x21 = gBattleMoves[r4].2
-				gBattleMons[battler].0x22 = gBattleMoves[r4].2
-				gBattleTextBuff1[0] = 0xFD
-				gBattleTextBuff1[1] = 3
-				gBattleTextBuff1[2] = gBattleMoves[r4].2
-				gBattleTextBuff1[3] = 0xFF
-				BattleScriptPushCursor()
-				gBattleScriptCurrInstr = data_081D949C
-				r9++
-			}
-			
-			break
-		case 0x18:
-			if(gBattleMons[gBattlerAttacker].0x28 != 0 && (gProtectStructs[gBattlerAttacker].1 << 0x1F) == 0 && gBattleMoves[r4].8 & 1)
-			{
-				gBattleMoveDamage = gBattleMons[gBattlerAttacker].0x2C / 16
-				
-				if(gBattleMoveDamage == 0)
-					gBattleMoveDamage = 1
-
-				BattleScriptPushCursor()
-				gBattleScriptCurrInstr = data_081D94A3
-				r9++
-			}
-			
-			break
-		case 0x1B:
-			if(gBattleMons[gBattlerAttacker].0x28 != 0 && (gProtectStructs[gBattlerAttacker].1 << 0x1F) == 0 && gBattleMoves[r4].8 & 1 && ((Random() % 0xA) << 0x10) == 0)
-			{
-				do
+			case 3:
+			case 5:
+			case 0xD:
+				if(!(gBattleWeather & WEATHER_RAIN_ANY))
 				{
-					gBattleCommunication.3 = Random() & 3
-				} while(gBattleCommunication.3 == 0)
+					gBattleWeather = (WEATHER_RAIN_TEMPORARY | WEATHER_RAIN_PERMANENT);
+					gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;
+					gBattleScripting.battler = battler;
+					effect++;
+				}
 				
-				if(gBattleCommunication.3 == 3)
-					gBattleCommunication.3 += 2
+				break;
+			case 8:
+				if(!(gBattleWeather & WEATHER_SANDSTORM_ANY))
+				{
+					gBattleWeather = (WEATHER_SANDSTORM_PERMANENT | WEATHER_SANDSTORM_TEMPORARY);
+					gBattleScripting.animArg1 = B_ANIM_SANDSTORM_CONTINUES;
+					gBattleScripting.battler = battler;
+					effect++;
+				}
 				
-				gBattleCommunication.3 += 0x40
-				BattleScriptPushCursor()
-				gBattleScriptCurrInstr = data_081D94CB
-				gHitMarker |= 0x2000
-				r9++
+				break;
+			case 0xC:
+				if(!(gBattleWeather & WEATHER_SUN_ANY))
+				{
+					gBattleWeather = (WEATHER_SUN_PERMANENT | WEATHER_SUN_TEMPORARY);
+					gBattleScripting.animArg1 = B_ANIM_SUN_CONTINUES;
+					gBattleScripting.battler = battler;
+					effect++;
+				}
 			}
 			
-			break
-		case 0x26:
-			if(gBattleMons[gBattlerAttacker].0x28 != 0 && (gProtectStructs[gBattlerAttacker].1 << 0x1F) == 0 && gBattleMoves[r4].8 & 1 && ((Random() % 0xA) << 0x10) == 0)
+			if(effect)
 			{
-				gBattleCommunication.3 = 0x42
-				BattleScriptPushCursor()
-				gBattleScriptCurrInstr = data_081D94CB
-				gHitMarker |= 0x2000
-				r9++
+				gBattleCommunication[MULTISTRING_CHOOSER] = weather_get_current();
+				BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherStarts);
 			}
 			
-			break
-		case 9:
-			if(gBattleMons[gBattlerAttacker].0x28 != 0 && (gProtectStructs[gBattlerAttacker].1 << 0x1F) == 0 && gBattleMoves[r4].8 & 1 && ((Random() % 0xA) << 0x10) == 0)
+			break;
+		case ABILITY_DRIZZLE:
+			if(!(gBattleWeather & WEATHER_RAIN_PERMANENT))
 			{
-				gBattleCommunication.3 = 0x45
-				BattleScriptPushCursor()
-				gBattleScriptCurrInstr = data_081D94CB
-				gHitMarker |= 0x2000
-				r9++
+				gBattleWeather = (WEATHER_RAIN_PERMANENT | WEATHER_RAIN_TEMPORARY);
+				BattleScriptPushCursorAndCallback(BattleScript_DrizzleActivates);
+				gBattleScripting.battler = battler;
+				effect++;
 			}
 			
-			break
-		case 0x31:
-			if(gBattleMons[gBattlerAttacker].0x28 != 0 && (gProtectStructs[gBattlerAttacker].1 << 0x1F) == 0 && gBattleMoves[r4].8 & 1 && ((Random() % 0xA) << 0x10) == 0)
+			break;
+		case ABILITY_SAND_STREAM:
+			if(!(gBattleWeather & WEATHER_SANDSTORM_PERMANENT))
 			{
-				gBattleCommunication.3 = 0x43
-				BattleScriptPushCursor()
-				gBattleScriptCurrInstr = data_081D94CB
-				gHitMarker |= 0x2000
-				r9++
+				gBattleWeather = (WEATHER_SANDSTORM_PERMANENT | WEATHER_SANDSTORM_TEMPORARY);
+				BattleScriptPushCursorAndCallback(BattleScript_SandstreamActivates);
+				gBattleScripting.battler = battler;
+				effect++;
 			}
 			
-			break
-		case 0x38:
-			if(gBattleMons[gBattlerAttacker].0x28 != 0 && (gProtectStructs[gBattlerAttacker].1 << 0x1F) == 0 && gBattleMoves[r4].8 & 1 && gBattleMons[gBattlerTarget].0x28 != 0 && ((Random() % 3) << 0x10) == 0 && gBattleMons[gBattlerAttacker].0x20 != 0xC && (GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) << 0x18) != (GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) << 0x18) && !(gBattleMons[gBattlerAttacker].0x50 & 0xF0000) && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != 0xFF && GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) != 0xFF)
+			break;
+		case ABILITY_DROUGHT:
+			if(!(gBattleWeather & WEATHER_SUN_PERMANENT))
 			{
-				gBattleMons[gBattlerAttacker].0x50 |= (gBitTable[gBattlerTarget] << 0x10)
-				BattleScriptPushCursor()
-				gBattleScriptCurrInstr = data_081D94BE
-				r9++
+				gBattleWeather = (WEATHER_SUN_PERMANENT | WEATHER_SUN_TEMPORARY);
+				BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates)
+				gBattleScripting.battler = battler;
+				effect++;
+			}
+			
+			break;
+		case ABILITY_INTIMIDATE:
+			if(!(gSpecialStatuses[battler].intimidatedMon))
+			{
+				gStatuses3[battler] |= STATUS3_INTIMIDATE_POKES;
+				gSpecialStatuses[battler].intimidatedMon = 1;
+			}
+			
+			break;
+		case ABILITY_FORECAST:
+			effect = CastformDataTypeChange(battler);
+			
+			if(effect)
+			{
+				BattleScriptPushCursorAndCallback(BattleScript_CastformChange);
+				gBattleScripting.battler = battler;
+				*(&gBattleStruct->formToChangeInto) = effect - 1;
+			}
+			
+			break;
+		case ABILITY_TRACE:
+			if(gSpecialStatuses[battler].traced)
+			{
+				gStatuses3[battler] |= STATUS3_TRACE;
+				gSpecialStatuses[battler].traced = 1;
+			}
+			
+			break;
+		case ABILITY_CLOUD_NINE:
+		case ABILITY_AIR_LOCK:
+			for(target1 = 0; target1 < gBattlersCount; target1++)
+			{
+				effect = CastformDataTypeChange(target1);
+				
+				if(effect)
+				{
+					BattleScriptPushCursorAndCallback(BattleScript_CastformChange);
+					gBattleScripting.battler = target1;
+					*(&gBattleStruct->formToChangeInto) = effect - 1;
+					break;
+				}
 			}
 		}
-	}
-	
-	break
-case 5:
-	r4 = 0
-	battler = 0
-	
-	if(battler < gBattlersCount)
-	{
-		lbl181:
-		switch(gBattleMons[battler].0x20)
+		
+		break;
+	case ABILITYEFFECT_ENDTURN:
+		if(gBattleMons[battler].hp != 0)
 		{
-		case 0x11:
-			if(gBattleMons[battler].0x4C & (data_168_oops))
-			{
-				r0 = gBattleTextBuff1
-				r1 = data_08250094
-				goto lbl195
-			}
+			gBattlerAttacker = battler;
 			
-			break
-		case 0x14:
-			if(gBattleMons[battler].0x50 & 7)
+			switch(gLastUsedAbility)
 			{
-				StringCopy(gBattleTextBuff1, data_082500BC)
-				r9 = 2
-				goto lbl199
-			}
-			
-			break
-		case 7:
-			if(gBattleMons[battler].0x4C & 40)
-			{
-				r0 = gBattleTextBuff1
-				r1 = data_082500A4
-				goto lbl195
-			}
-			
-			break
-		case 0xF:
-		case 0x48:
-			if(gBattleMons[battler].0x4C & 7)
-			{
-				gBattleMons[battler].0x50 &= 0xF7FFFFFF
-				StringCopy(gBattleTextBuff1, data_0825009C)
-				r9 = 1
-				goto lbl199
-			}
-			
-			break
-		case 0x29:
-			if(gBattleMons[battler].0x4C & 0x10)
-			{
-				StringCopy(gBattleTextBuff1, data_082500AC)
-				r9 = 1
-				goto lbl199
-			}
-			
-			break
-		case 0x28:
-			if(gBattleMons[battler].0x4C & 0x20)
-			{
-				r0 = gBattleTextBuff1
-				r1 = data_082500B4
+			case ABILITY_RAIN_DISH:
+				if(WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_RAIN_ANY) && gBattleMons[battler].maxHP > gBattleMons[battler].hp)
+				{
+					BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
+					gBattleMoveDamage = gBattleMons[battler].maxHP / 16;
+					
+					if(gBattleMoveDamage == 0)
+						gBattleMoveDamage = 1;
+					
+					gBattleMoveDamage = -gBattleMoveDamage;
+					effect++;
+				}
 				
-				lbl195:
-				StringCopy(r0, r1)
-				r9 = 1
-				goto lbl199
-			}
-		case 0xC:
-			if(gBattleMons[battler].0x50 & 0xF0000)
-			{
-				StringCopy(gBattleTextBuff1, data_082500C4)
-				r9 = 3
-			}
-		}
+				break
+			case ABILITY_SHED_SKIN:
+				if((gBattleMons[battler].status1 & STATUS1_ANY) && (Random() % 3) == 0)
+				{
+					if(gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
+						StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
+						
+					if(gBattleMons[battler].status1 & STATUS1_SLEEP)
+						StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
 
-		lbl198:
-		if(r9 == 0)
-		{
-			battler++
-			
-			if(battler < gBattlersCount)
-				goto lbl181
+					if(gBattleMons[battler].status1 & STATUS1_PARALYSIS)
+						StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
+					
+					if(gBattleMons[battler].status1 & STATUS1_BURN)
+						StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
+					
+					if(gBattleMons[battler].status1 & STATUS1_FREEZE)
+						StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+					
+					gBattleMons[battler].status1 = 0;
+					gBattleMons[battler].status2 &= ~(STATUS2_NIGHTMARE);
+					gBattleScripting.battler = gActiveBattler = battler;
+					BattleScriptPushCursorAndCallback(BattleScript_ShedSkinActivates);
+					EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
+					MarkBattlerForControllerExec(gActiveBattler);
+					effect++;
+				}
+				
+				break
+			case ABILITY_SPEED_BOOST:
+				if(gBattleMons[battler].statStages[STAT_SPEED] < 0xC && gDisableStructs[battler].isFirstTurn != 2)
+				{
+					gBattleMons[battler].statStages[STAT_SPEED]++;
+					gBattleScripting.animArg1 = 0x11;
+					gBattleScripting.animArg2 = 0x11;
+					BattleScriptPushCursorAndCallback(BattleScript_SpeedBoostActivates);
+					gBattleScripting.battler = battler;
+					effect++
+				}
+				
+				break;
+			case ABILITY_TRUANT:
+				gDisableStructs[gBattlerAttacker].truantCounter ^= 1;
+			}
 		}
-		else
+		
+		break
+	case ABILITYEFFECT_MOVES_BLOCK:	
+		if(gLastUsedAbility == ABILITY_SOUNDPROOF)
 		{
-			lbl199:
-			if(r9 == 2)
-				gBattleMons[battler].0x50 &= 0xFFFFFFF7
-			elseif(r9 == 3)
-				gBattleMons[battler].0x50 &= 0xFFF0FFFF
-			elseif(r9 == 1)
-				gBattleMons[battler].0x4C = 0
+			for(i = 0; sSoundMovesTable[i] != 0xFFFF; i++)
+			{
+				if(sSoundMovesTable[i] == move)
+					break;
+			}
 			
-			BattleScriptPushCursor()
-			gBattleScriptCurrInstr = data_081D94D1
-			gBattleScripting.battler = battler;
-			gActiveBattler = battler
-			s0 = data_02023C30[gActiveBattler]
-			r0 = 0
-			r1 = 0x28
-			r2 = 0
-			r3 = 4
-			EmitSetMonData()
-			r0 = gActiveBattler
-			MarkBufferBankForExecution()
-			return r9
+			if(sSoundMovesTable[i] != 0xFFFF)
+			{
+				if(gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
+					gHitMarker |= HITMARKER_NO_PPDEDUCT;
+				
+				gBattleScriptCurrInstr = BattleScript_SoundproofProtected;
+				effect = 1;
+			}
 		}
+		
+		break;
+	case ABILITYEFFECT_ABSORBING:
+		if(move)
+		{
+			switch(gLastUsedAbility)
+			{
+			case ABILITY_VOLT_ABSORB:
+				if(moveType == TYPE_ELECTRIC && gBattleMoves[move].power != 0)
+				{
+					if(gProtectStructs[gBattlerAttacker].notFirstStrike)
+						gBattleScriptCurrInstr = BattleScript_MoveHPDrain;
+					else
+						gBattleScriptCurrInstr = BattleScript_MoveHPDrain_PPLoss;
+					
+					effect = 1;
+				}
+				
+				break
+			case ABILITY_WATER_ABSORB:
+				if(moveType == TYPE_WATER && gBattleMoves[move].power != 0)
+				{
+					if(gProtectStructs[gBattlerAttacker].notFirstStrike)
+						gBattleScriptCurrInstr = BattleScript_MoveHPDrain;
+					else
+						gBattleScriptCurrInstr = BattleScript_MoveHPDrain_PPLoss;
+					
+					effect = 1;
+				}
+				
+				break
+			case ABILITY_FLASH_FIRE:
+				if(moveType == TYPE_FIRE && !(gBattleMons[battler].status1 & STATUS1_FREEZE))
+				{
+					if(!(gBattleResources->flags->flags[battler] & UNKNOWN_FLAG_FLASH_FIRE))
+					{
+						gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+						
+						if(gProtectStructs[gBattlerAttacker].notFirstStrike)
+							gBattlescriptCurrInstr = BattleScript_FlashFireBoost;
+						else
+							gBattlescriptCurrInstr = BattleScript_FlashFireBoostPPLoss;
+						
+						data_02023FF4 = gBattlescriptCurrInstr
+						*((battler * 4) + *(*data_02023FF4 + 4)) |= UNKNOWN_FLAG_FLASH_FIRE;
+						effect = 2;
+					}
+					else
+					{
+						gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+					
+						if(gProtectStructs[gBattlerAttacker].notFirstStrike)
+							gBattleScriptCurrInstr = BattleScript_FlashFireBoost;
+						else
+							gBattleScriptCurrInstr = BattleScript_FlashFireBoostPPLoss;
+						
+						effect = 2;
+					}
+				}
+			}
+			
+			if(effect == 1)
+			{
+				if(gBattleMons[battler].maxHP == gBattleMons[battler].hp)
+				{
+					if(gProtectStructs[gBattlerAttacker].notFirstStrike)
+						gBattleScriptCurrInstr = BattleScript_MonMadeMoveUseless;
+					else
+						gBattleScriptCurrInstr = BattleScript_MonMadeMoveUselessPPLoss;
+				}
+				else
+				{
+					gBattleMoveDamage = gBattleMons[battler].maxHP / 4;
+					
+					if(gBattleMoveDamage == 0)
+						gBattleMoveDamage = 1;
+					
+					gBattleMoveDamage = -gBattleMoveDamage;
+				}
+			}
+		}
+		
+		break;
+	case ABILITYEFFECT_CONTACT:
+		if(!(gMoveResultFlags & RESULT_NO_EFFECT) && TARGET_TURN_DAMAGED)
+		{
+			switch(gLastUsedAbility)
+			{
+			case ABILITY_COLOR_CHANGE:
+				if(move != MOVE_STRUGGLE && gBattleMoves[move].power != 0 && !IS_BATTLER_OF_TYPE(battler, moveType) && gBattleMons[battler].hp != 0)
+				{
+					SET_BATTLER_TYPE(battler, moveType);
+					PREPARE_TYPE_BUFFER(gBattleTextBuff1, moveType);
+					BattleScriptPushCursor();
+					gBattleScriptCurrInstr = BattleScript_ColorChangeActivates;
+					effect++;
+				}
+				
+				break;
+			case ABILITY_ROUGH_SKIN:
+				if(gBattleMons[gBattlerAttacker].hp != 0 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
+				{
+					gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
+					
+					if(gBattleMoveDamage == 0)
+						gBattleMoveDamage = 1;
+
+					BattleScriptPushCursor();
+					gBattleScriptCurrInstr = BattleScript_RoughSkinActivates;
+					effect++;
+				}
+				
+				break
+			case ABILITY_EFFECT_SPORE:
+				if(gBattleMons[gBattlerAttacker].hp != 0 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT) && (Random() % 10) == 0)
+				{
+					do
+					{
+						gBattleCommunication[MOVE_EFFECT_BYTE] = Random() & 3;
+					} while(gBattleCommunication[MOVE_EFFECT_BYTE] == 0);
+					
+					if(gBattleCommunication[MOVE_EFFECT_BYTE] == MOVE_EFFECT_BURN)
+						gBattleCommunication[MOVE_EFFECT_BYTE] += 2; // MOVE_EFFECT_PARALYSIS
+					
+					gBattleCommunication[MOVE_EFFECT_BYTE] += MOVE_AFFECTS_USER;
+					BattleScriptPushCursor();
+					gBattleScriptCurrInstr = BattleScript_ApplySecondaryEffect;
+					gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+					effect++;
+				}
+				
+				break
+			case ABILITY_POISON_POINT:
+				if(gBattleMons[gBattlerAttacker].hp != 0 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT) && (Random() % 10) == 0)
+				{
+					gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_AFFECTS_USER | MOVE_EFFECT_POISON;
+					BattleScriptPushCursor();
+					gBattleScriptCurrInstr = BattleScript_ApplySecondaryEffect;
+					gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+					effect++;
+				}
+				
+				break
+			case ABILITY_STATIC:
+				if(gBattleMons[gBattlerAttacker].hp != 0 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT) && (Random() % 10) == 0)
+				{
+					gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_AFFECTS_USER | MOVE_EFFECT_PARALYSIS;
+					BattleScriptPushCursor();
+					gBattleScriptCurrInstr = BattleScript_ApplySecondaryEffect;
+					gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+					effect++;
+				}
+				
+				break
+			case ABILITY_FLAME_BODY:
+				if(gBattleMons[gBattlerAttacker].hp != 0 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT) && (Random() % 10) == 0)
+				{
+					gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_AFFECTS_USER | MOVE_EFFECT_BURN;
+					BattleScriptPushCursor();
+					gBattleScriptCurrInstr = BattleScript_ApplySecondaryEffect;
+					gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+					effect++;
+				}
+				
+				break
+			case ABILITY_CUTE_CHARM:
+				if(gBattleMons[gBattlerAttacker].hp != 0 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT) && gBattleMons[gBattlerTarget].hp != 0 && (Random() % 3) == 0 && gBattleMons[gBattlerAttacker].ability != ABILITY_OBLIVIOUS && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_INFATUATION) && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != 0xFF && GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) != 0xFF)
+				{
+					gBattleMons[gBattlerAttacker].status2 |= STATUS2_INFATUATED_WITH(gBattlerTarget);
+					BattleScriptPushCursor();
+					gBattleScriptCurrInstr = BattleScript_CuteCharmActivates;
+					effect++;
+				}
+			}
+		}
+		
+		break
+	case ABILITYEFFECT_IMMUNITY:
+		r4 = 0
+		
+		for(battler = 0; battler < gBattlersCount; battler++)
+        {
+			lbl181:
+			switch(gBattleMons[battler].ability)
+			{
+			case ABILITY_IMMUNITY:
+				if(gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON | STATUS1_TOXIC_COUNTER))
+				{
+					StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
+					effect = 1;
+				}
+				
+				break
+			case ABILITY_OWN_TEMPO:
+				if(gBattleMons[battler].status2 & STATUS2_CONFUSION)
+				{
+					StringCopy(gBattleTextBuff1, gStatusConditionString_ConfusionJpn);
+					effect = 2;
+				}
+				
+				break
+			case ABILITY_LIMBER:
+				if(gBattleMons[battler].status1 & STATUS1_PARALYSIS)
+				{
+					StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
+					effect = 1;
+				}
+				
+				break
+			case ABILITY_INSOMNIA:
+			case ABILITY_VITAL_SPIRIT:
+				if(gBattleMons[battler].status1 & STATUS1_SLEEP)
+				{
+					gBattleMons[battler].status2 &= ~(STATUS2_NIGHTMARE);
+					StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
+					effect = 1;
+				}
+				
+				break
+			case ABILITY_WATER_VEIL:
+				if(gBattleMons[battler].status1 & STATUS1_BURN)
+				{
+					StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
+					effect = 1;
+				}
+				
+				break
+			case ABILITY_MAGMA_ARMOR:
+				if(gBattleMons[battler].status1 & STATUS1_FREEZE)
+				{
+					StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+					effect = 1;
+				}
+			case ABILITY_OBLIVIOUS:
+				if(gBattleMons[battler].status2 & STATUS2_INFATUATION)
+				{
+					StringCopy(gBattleTextBuff1, gStatusConditionString_LoveJpn);
+					effect = 3;
+				}
+			}
+			
+			if(effect)
+			{
+				switch(effect)
+				{
+				case 1:
+					gBattleMons[battler].status1 = 0;
+					break
+				case 2:
+					gBattleMons[battler].status2 &= ~(STATUS2_CONFUSION);
+					break
+				case 3:
+					gBattleMons[battler].status2 &= ~(STATUS2_INFATUATION);
+				}
+				
+				BattleScriptPushCursor();
+				gBattleScriptCurrInstr = BattleScript_AbilityCuredStatus;
+				gBattleScripting.battler = battler;
+				gActiveBattler = battler;
+				EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, data_02023C30[gActiveBattler]);
+				MarkBattlerForControllerExec(gActiveBattler);
+				return effect;
+			}
+		}
+		
+		break;
+	...
 	}
-	
-	break
-...
+
+	lblend:
+	if(effect && caseID <= ABILITYEFFECT_CHECK_OTHER_SIDE && gLastUsedAbility != 0xFF)
+		RecordAbilityBattle(battler, gLastUsedAbility);
 }
 
-lblend:
-r4 = r9
+return effect;
 
-if(r9 != 0 && caseID <= 0xB && data_02023D6A != 0xFF)
-	RecordAbilityBattle(battler, data_02023D6A)
 
-return r9
+
+
+script_1D9293: // BattleScript_SpeedBoostActivates
+45 01 01 D4 3F 02 02 10 C2 00 12 40 00 3F
+playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+printstring STRINGID_PKMNRAISEDSPEED
+waitmessage 0x40
+end3

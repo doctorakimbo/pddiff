@@ -19,7 +19,7 @@ E4 3B 02 02: 44 3B 02 02: gBattleMons
 4C 3D 02 02: AC 3C 02 02: gChosenMove
 50 3D 02 02: B0 3C 02 02: gBattleMoveDamage
 68 3D 02 02: C8 3C 02 02: gLastUsedItem
-6A 3D 02 02: CA 3C 02 02: ?????
+6A 3D 02 02: CA 3C 02 02: gLastUsedAbility
 6B 3D 02 02: CB 3C 02 02: gBattlerAttacker
 6C 3D 02 02: CC 3C 02 02: gBattlerTarget
 6F 3D 02 02: CF 3C 02 02: gPotentialItemEffectBattler
@@ -50,8 +50,9 @@ CC 3E 02 02: 2C 3E 02 02: gSpecialStatuses
 C4 3F 02 02: 24 3F 02 02: gBattleScripting
 D4 3F 02 02: 2E 3F 02 02: sB_ANIM_ARG1
 DE 3F 02 02: 3E 3F 02 02: sSTATCHANGER
+DF 3F 02 02: 3F 3F 02 02: sSTAT_ANIM_PLAYED (FRPD) / sSECOND_STATCHANGER (PD)
 E8 3F 02 02: 48 3F 02 02: gBattleStruct
-F4 3F 02 02: 54 3F 02 02: ??????
+F4 3F 02 02: 54 3F 02 02: gBattleResources
 		   : 89 3F 02 02: ?????? (within parameters, viable)
 		   : 8C 3F 02 02: ?????? (within parameters, viable)
 		   : E4 41 02 02: ?????? (within parameters, viable)
@@ -71,7 +72,7 @@ funcs e,j,desc:
 00DFF0 = EmitSetMonData
 011100 = BattleMainCB2
 015A30 = FreeResetData_ReturnToOvOrDoEvolutions
-017248 = 016A58 = MarkBufferBankForExecution
+017248 = 016A58 = MarkBattlerForControllerExec
 0172E8 = CancelMultiTurnMoves
 017544 = 016D54 = BattleScriptPushCursor
 017A64 = GetImprisonedMovesCount
@@ -113,6 +114,7 @@ j01EB68 = ?????
 j027612 = ?????
 
 data:
+250104 = sSoundMovesTable
 25DEAD = gStatStageRatios
 25E45C = gBitTable
 
