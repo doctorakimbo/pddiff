@@ -1855,7 +1855,7 @@ r0 = gBattleCommunication
 *(r0 + 3) = r4
 BattleScriptPushCursor()
 r1 = gBattleScriptCurrInstr
-r0 = data_081D94D1
+r0 = data_081D94CE
 *r1 = r0
 r2 = gHitMarker
 r0 = *r2

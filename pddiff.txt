@@ -17,29 +17,39 @@ A0 0B 06 09
 abilities:
 - 0x4E = Motor Drive <CHANGE STENCH DESC> <[pkmn]'s Nature Power turned into [move]!>
 + 0x50 = Steadfast
-= 0x52 = (ignore taunt)
+= 0x52 = (ignores taunt)
 - 0x53 = Anger Point
 + 0x54 = Unburden
 + 0x55 = Heatproof
 - 0x57 = Dry Skin
+- 0x58 = Download
 + 0x5A = Poison Heal
 - 0x5D = Hydration
 + 0x5F = Quick Feet
 + 0x62 = Magic Guard
 + 0x64 = Stall
+- 0x66 = Leaf Guard
 + 0x67 = Klutz
 + 0x68 = Mold Breaker
 - 0x6A = Aftermath
+- 0x6B = Anticipation
+- 0x6C = Forewarn
 - 0x70 = Slow Start
 + 0x72 = Storm Drain
 - 0x73 = Ice Body
+- 0x75 = Snow Warning
+- 0x77 = Frisk
+= 0x7F = (activates on entry, targeting pkmn directly opposite)
 - 0x82 = Cursed Body
+- 0x83 = Healer
+- 0x85 = Weak Armor
 - 0x8D = Moody
 - 0x8E = Overcoat
 - 0x8F = Poison Touch
 + 0x92 = Sand Rush
 - 0x96 = Imposter
 - 0x97 = Infiltrator
+- 0x98 = Mummy
 - 0x9A = Justified
 - 0x9B = Rattled
 - 0x9D = Sap Sipper
@@ -47,9 +57,12 @@ abilities:
 - 0xA0 = Iron Barbs
 = (0xA2~0xA4) = Turboblaze
 = (0xA2~0xA4) = Teravolt
+- 0xA5 = Aroma Veil
 - 0xAD = Sweet Veil
 - 0xB0 = Gooey
 + 0xB2 = Gale Wings
+- 0xB6 = Flower Veil
+- 0xB9 = Bulletproof
 - 0xC0 = Stamina
 - 0xC3 = Compaction
 + 0xCA = Slush Rush
@@ -65,6 +78,7 @@ item effects:
 + 0x45 = Choice Band
 + 0x46 = Choice Scarf
 + 0x4A = Lagging Tail
+- 0x4B = weather rocks (effectparam = weather ID)
 - 0x4D = Safe Goggles
 + 0x4F = Binding Band
 + 0X51 = Big Root
@@ -102,30 +116,30 @@ pokeball types:
 + 0x11 = Park Ball
 
 battle strings (ADD 9 TO ALL, 0D77C8 = num):
-- 0xC2 = (might have changed?) <DON'T ADD 9>
-- 0xEB = "[PKMN]'s [ABILITY] made it hail! (placeholder)" <DON'T ADD 9>
-= 0x180 = "[PKMN]'s [ABILITY] nullified the effects of weather!"
+! 0xC2 = "[PKMN]'s [ABILITY] [CHANGED] its [STAT]!" <DON'T ADD 9> <REFACTOR LATER>
+! 0xEB = "[PKMN]'s [ABILITY] made it hail! (placeholder)" <DON'T ADD 9>
+= 0x180 = "[PKMN]'s [ABILITY] nullified the effects of weather!" <ADD THIS AFTER IMPORTING ABILITYBATTLEEFFECTS>
 = 0x181 = "[PKMN]'s [ITEM] let it move first!"
-- 0x184 = "The [ITEM] blocked the move! (placeholder - research)"
-- 0x185 = "[PKMN] breaks the mold! (placeholder)"
-- 0x186 = "[PKMN] is exerting its pressure! (placeholder)"
-- 0x187 = "[PKMN] can't get it going because of its [ABILITY]!"
-- 0x188 = "[PKMN] finally got its act together!"
-- 0x189 = ???
-- 0x18A = ???
-- 0x18B = ???
-- 0x18C = ???
-- 0x18D = ???
+! 0x184 = "The [ITEM] blocked the move! (placeholder - research)"
+! 0x185 = "[PKMN] breaks the mold!"
+! 0x186 = "[PKMN] is exerting its pressure!"
+! 0x187 = "[PKMN] can't get it going because of its [ABILITY]!"
+! 0x188 = "[PKMN] finally got its act together!"
+! 0x189 = "[PKMN]'s [ABILITY] alerted it to [MOVE]!"
+! 0x18A = "[PKMN]'s [ABILITY] made it shudder!"
+! 0x18B = "[ATTACKER] frisked [DEFENDER] and found its [ITEM]!"
+! 0x18C = "[Your/The opposing] team was protected by [ABILITY]! (placeholder)"
+= 0x18D = (ability 7F activation msg)
 ! 0x18F = "The twisted dimensions returned to normal!"
 ! 0x191 = "[Your/The opposing] team's Tailwind petered out!"
-- 0x192 = "[PKMN]'s [ABILITY] maxed its Attack! (placeholder)"
-- 0x193 = "[DEFENDER]'s [ABILITY] disabled [ATTACKER]'s [MOVE]! (placeholder)"
-- 0x194 = "[PKMN]'s Ability became Mummy!"
-- 0x195 = "[DEFENDER]'s [ABILITY] hurt [ATTACKER]! (placeholder)"
-- 0x196 = ???
+! 0x192 = "[PKMN]'s [ABILITY] maxed its Attack! (placeholder)"
+! 0x193 = "[DEFENDER]'s [ABILITY] disabled [ATTACKER]'s [MOVE]! (placeholder)"
+! 0x194 = "[PKMN]'s Ability became Mummy!"
+! 0x195 = "[DEFENDER]'s [ABILITY] hurt [ATTACKER]! (placeholder)"
+! 0x196 = "[DEFENDER]'s [ABILITY] lowered [ATTACKER]'s [STAT]! (placeholder)"
 + 0x198 = "The effects of the [ITEM] prevent status moves from being used!"
 + 0x199 = "[PKMN]'s [ABILITY] raised its Speed! (placeholder)"
-- 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]! (placeholder)"
+! 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]! (placeholder)"
 
 grafics:
 = D0051C (C0051C old, EB8990 new)
@@ -161,8 +175,8 @@ grafics:
 		  Implements: Pokemon name length, something else - need more info
 		  Required knowledge: j02023F8C (viable), j020385E2, unknown data table at j1400000
 = 0124EB: 80 -> 60 (store weather as fullword)
-= 014CD8: Entirety of GetWhoStrikesFirst (+added GetSpeedStat, GetPriority, +mysteryfunc) (see 04disasm/04disasm2)
-		  Implements: Unburden, Quick Feet, Stall, Klutz (speed items), (ability70?), Sand Rush, (ability9E?), Gale Wings [gen 6], Slush Rush, Choice Scarf (speed boost), Lagging Tail, Tailwind (effect), Trick Room (effect), 1/4 -> 1/2 paralysis speed cut
+= 014CD8: Entirety of GetWhoStrikesFirst (+added GetSpeedStat, GetPriority, GetAbilityValues) (see 04disasm/04disasm2)
+		  Implements: Unburden (effect), Quick Feet, Stall, Klutz (speed items), Slow Start (effect), Sand Rush, Prankster, Gale Wings [gen 6], Slush Rush, Choice Scarf (speed boost), Lagging Tail, Tailwind (effect), Trick Room (effect), 1/4 -> 1/2 paralysis speed cut
 		  Relies on: weather refactor, BattleMove refactor, returns 0 sometimes instead of 1 or 2
 		  Glitch: Stall and Trick Room are in wrong order, Stall goes first in Trick Room (probably doesn't matter in P/D itself)
 = 015910: Entirety of HandleEndTurn_FinishBattle + extra fn j207370 (see 05disasm)
@@ -194,7 +208,7 @@ grafics:
   018050: Large part of DoFieldEndTurnEffects (+unknown battlescript) (see 09disasm)
 		  Implements: Tailwind (upkeep), Trick Room (upkeep), permahail
 		  Relies on: weather refactor; BattleScript_SandStormHailEnds/BattleScript_DamagingWeatherContinues work with sun; params are changed (6 = rain -> tailwind, 7 = sand -> trick room, 8 = sun -> all weather, 9 = hail -> nop)
-		  Note: check if tailwind works on both sides, code's weird
+		  Glitch?: check if tailwind works on both sides, code's weird
 + 018308: FA 83 01 08 78 84 01 08 C0 84 01 08 40 85 01 08 88 85 01 08 EC 85 01 08 34 86 01 08 -> E2 83 01 08 3A 84 01 08 76 84 01 08 94 85 01 08 D4 85 01 08 1E 86 01 08 58 86 01 08
   018344: E2 83 01 08 -> C6 83 01 08
   01834C: Large part of DoBattlerEndTurnEffects (+unknown battlescript) (see 10disasm)
@@ -205,8 +219,12 @@ grafics:
 + repoint 1D90B1 -> 18539 (BattleScript_MoveUsedFlinched) (10 4A 00 12 40 00 1E 01 50 4B 85 01 08 28 4E 69 1D 08 2E DE 3F 02 02 13 89 41 4E 69 1D 08 29 00 87 3E 02 02 02 4E 69 1D 08 47 45 01 01 D4 3F 02 02 10 A2 01 12 40 00 28 4E 69 1D 08) (implements steadfast)
 + 019814: Part of AtkCanceller_UnableToUseMove (see 11disasm)
 		  Implements: 50% -> 33% confusion hit chance
-= 019DAC: Entirety of CastformDataTypeChange (+added mysteryfunc x2) (see 12disasm)
+= 019DAC: Entirety of CastformDataTypeChange (+added mysteryfunc, +GetAbilityUserOnSameSide) (see 12disasm)
           Implements: part of weather refactor
-		  Glitch: Might cause castform/terubim to "change" when sand starts/ends; might have done it wrong, check if rain=ice and hail=water accidentally
-= 01A088: Most of AbilityBattleEffects + j14734 + j196D4 + j1EB68 + j27612 (see 13disasm)
+		  Glitch?: Might cause castform/terubim to "change" when sand starts/ends; might have done it wrong, check if rain=ice and hail=water accidentally
+= 01A088: Most of AbilityBattleEffects (see 13disasm)
+		  Implements: Stench flinch chance, Lightning Rod boost/immunity, Pressure message, Motor Drive, Anger Point, Unburden (activation), Dry Skin (rain/water healing/immunity), Download, Hydration, Magic Guard (vs contact damage abilities), Klutz (the item effects here), Mold Breaker (message), Mold Breaker+ (vs move-subset immunities/absorbing immunities), Aftermath, Anticipation, Forewarn, Slow Start (upkeep), Storm Drain (boost/immunity), Ice Body, Snow Warning, Frisk, (ability7F), Cursed Body, Healer, Weak Armor, Moody, Overcoat (vs powder), Poison Touch, Imposter, Infiltrator (getting affected by hit-reaction abilities when hitting through Substitute), Mummy, Justified, Rattled, Sap Sipper, Iron Barbs, Aroma Veil, Sweet Veil, Gooey, Flower Veil (vs Gooey/Tangling Hair), Bulletproof, Stamina, Water Compaction, Dazzling, Queenly Majesty, Tangling Hair, weather rocks (on abilities), Safety Goggles (vs powder), grass-type powder immunity, dark-type prankster immunity, user affected by hit-reaction abilities when its sound moves hit through Substitute
 		  Relies on: weather refactor, BattleMove refactor, cloud nine/intimidate id change????, gSpecialStatuses[battler].intimidatedMon?
+		  Requires in future: GetWeatherTurns (e01F358, j01EB68), CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
+		  Optional knowledge: BattleMove.typeFlags2.bit2
+= 

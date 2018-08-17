@@ -68,8 +68,8 @@ F4 3F 02 02: 54 3F 02 02: gBattleResources
 		   
 		   
 funcs e,j,desc:
-008D84 = StringCopy
-00DFF0 = EmitSetMonData
+008D84 = 008900 = StringCopy
+00DFF0 = 00D9E4 = EmitSetMonData
 011100 = BattleMainCB2
 015A30 = FreeResetData_ReturnToOvOrDoEvolutions
 017248 = 016A58 = MarkBattlerForControllerExec
@@ -103,16 +103,16 @@ funcs e,j,desc:
 1E3BA8 = call r0
 1E4018 = 1C7F38 = division
 1E460C = division
-1E4684 = 1C85A4 = modulus
+1E4684 = 1C85A4 = modulus2F4, 1B8F0
 
-j01456A = GetSpeedStat
-j0146B8 = GetPriority
-j014734 = unknown_uncalled_func (disasm if needed)
-j019678 = unknown_uncalled_func (disasm if needed)
-j0196D4 = unknown_uncalled_func (disasm if needed)
-j01EB68 = ?????
-j027612 = ?????
-
+014D4A = 01456A = GetSpeedStat
+014E98 = 0146B8 = GetPriority
+014F14 = 014734 = GetAbilityValues
+019E68 = 019678 = unknown_uncalled_func (disasm if needed)
+019EC4 = 0196D4 = GetAbilityUserOnSameSide
+01F358 = 01EB68 = GetWeatherTurns (unimplemented)
+027E3A = 027612 = CheckLeafGuardAndFlowerVeil (unimplemented)
+add38
 data:
 250104 = sSoundMovesTable
 25DEAD = gStatStageRatios
@@ -139,23 +139,25 @@ new weather: 8765 4321
 8 = WEATHER_HAIL_PERMANENT
 
 SideTimer:
-0xB = fieldB (FR) -> tailwindTimer (PD)
+0xB = tailwindTimer
 
 DisableStruct:
-0x18 = ???
+0x18 = unburden / slowStartTimer
 
 BattleMove:
-0x9 = typeFlags
-0xA = ???
+0x9 = [NEW] typeFlags1
+0xA = [NEW] typeFlags2
 
-BattleMove.typeFlags: 8765 4321
+BattleMove.typeFlags1: 4321
 1 = FLAG_SOUND_MOVE
-2 = 
+2 = FLAG_BALLISTIC_MOVE
 3 = FLAG_POWDER_MOVE
-4 = 
-5 = 
-6 = 
-7 = 
-8 = 
+4 = FLAG_MENTAL_MOVE
+
+BattleMove.typeFlags2: 4321
+1 = 
+2 = (checked by weak armor)
+3 = (checked by prankster)
+4 = (either empty or checked by prankster)
 
 POCKET_POKE_BALLS = 3 in FR
