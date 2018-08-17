@@ -15,12 +15,13 @@ A0 0B 06 09
 (stench actual desc: 71C9A4)
 ("the pkmn" -> "it"; if "it" would be at the beginning, skip it)
 abilities:
-- 0x4E = Motor Drive
+- 0x4E = Motor Drive <CHANGE STENCH DESC> <[pkmn]'s Nature Power turned into [move]!>
 + 0x50 = Steadfast
 = 0x52 = (ignore taunt)
 - 0x53 = Anger Point
 + 0x54 = Unburden
 + 0x55 = Heatproof
+- 0x57 = Dry Skin
 + 0x5A = Poison Heal
 - 0x5D = Hydration
 + 0x5F = Quick Feet
@@ -34,17 +35,28 @@ abilities:
 - 0x73 = Ice Body
 - 0x82 = Cursed Body
 - 0x8D = Moody
+- 0x8E = Overcoat
+- 0x8F = Poison Touch
 + 0x92 = Sand Rush
 - 0x96 = Imposter
+- 0x97 = Infiltrator
 - 0x9A = Justified
 - 0x9B = Rattled
 - 0x9D = Sap Sipper
-= 0x9E = ???
+- 0x9E = Prankster
 - 0xA0 = Iron Barbs
 = (0xA2~0xA4) = Turboblaze
 = (0xA2~0xA4) = Teravolt
+- 0xAD = Sweet Veil
+- 0xB0 = Gooey
 + 0xB2 = Gale Wings
+- 0xC0 = Stamina
+- 0xC3 = Compaction
 + 0xCA = Slush Rush
+- 0xCB = Long Reach
+= 0xD6 = Dazzling/RegalMajesty
+= 0xDB = RegalMajesty/Dazzling
+- 0xDD = TanglingHair
 
 (old kid: 16F8C4, old item: 0x125, route 4)
 item effects:
@@ -94,9 +106,9 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 - 0xEB = "[PKMN]'s [ABILITY] made it hail! (placeholder)" <DON'T ADD 9>
 = 0x180 = "[PKMN]'s [ABILITY] nullified the effects of weather!"
 = 0x181 = "[PKMN]'s [ITEM] let it move first!"
-- 0x184 = "The [ITEM] blocked the powder move! (placeholder)"
+- 0x184 = "The [ITEM] blocked the move! (placeholder - research)"
 - 0x185 = "[PKMN] breaks the mold! (placeholder)"
-- 0x186 = ???
+- 0x186 = "[PKMN] is exerting its pressure! (placeholder)"
 - 0x187 = "[PKMN] can't get it going because of its [ABILITY]!"
 - 0x188 = "[PKMN] finally got its act together!"
 - 0x189 = ???
@@ -106,14 +118,14 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 - 0x18D = ???
 ! 0x18F = "The twisted dimensions returned to normal!"
 ! 0x191 = "[Your/The opposing] team's Tailwind petered out!"
-- 0x192 = "[PKMN]'s [ABILITY] maximized its Attack! (placeholder)"
+- 0x192 = "[PKMN]'s [ABILITY] maxed its Attack! (placeholder)"
 - 0x193 = "[DEFENDER]'s [ABILITY] disabled [ATTACKER]'s [MOVE]! (placeholder)"
 - 0x194 = "[PKMN]'s Ability became Mummy!"
-- 0x195 = ???
+- 0x195 = "[DEFENDER]'s [ABILITY] hurt [ATTACKER]! (placeholder)"
 - 0x196 = ???
 + 0x198 = "The effects of the [ITEM] prevent status moves from being used!"
 + 0x199 = "[PKMN]'s [ABILITY] raised its Speed! (placeholder)"
-- 0x19C = ???
+- 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]! (placeholder)"
 
 grafics:
 = D0051C (C0051C old, EB8990 new)
@@ -151,8 +163,7 @@ grafics:
 = 0124EB: 80 -> 60 (store weather as fullword)
 = 014CD8: Entirety of GetWhoStrikesFirst (+added GetSpeedStat, GetPriority, +mysteryfunc) (see 04disasm/04disasm2)
 		  Implements: Unburden, Quick Feet, Stall, Klutz (speed items), (ability70?), Sand Rush, (ability9E?), Gale Wings [gen 6], Slush Rush, Choice Scarf (speed boost), Lagging Tail, Tailwind (effect), Trick Room (effect), 1/4 -> 1/2 paralysis speed cut
-		  Relies on: weather refactor, returns 0 sometimes instead of 1 or 2
-		  Optional knowledge: BattleMove byte A
+		  Relies on: weather refactor, BattleMove refactor, returns 0 sometimes instead of 1 or 2
 		  Glitch: Stall and Trick Room are in wrong order, Stall goes first in Trick Room (probably doesn't matter in P/D itself)
 = 015910: Entirety of HandleEndTurn_FinishBattle + extra fn j207370 (see 05disasm)
 		  Implements: EVs recalculated per battle (?)
@@ -198,4 +209,4 @@ grafics:
           Implements: part of weather refactor
 		  Glitch: Might cause castform/terubim to "change" when sand starts/ends; might have done it wrong, check if rain=ice and hail=water accidentally
 = 01A088: Most of AbilityBattleEffects + j14734 + j196D4 + j1EB68 + j27612 (see 13disasm)
-		  Relies on: weather refactor, cloud nine/intimidate id change????, ABILITYEFFECT_ADDED_EFFECT_CHANCE as possible state, gSpecialStatuses[battler].intimidatedMon?
+		  Relies on: weather refactor, BattleMove refactor, cloud nine/intimidate id change????, gSpecialStatuses[battler].intimidatedMon?

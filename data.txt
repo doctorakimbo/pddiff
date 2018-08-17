@@ -145,6 +145,17 @@ DisableStruct:
 0x18 = ???
 
 BattleMove:
+0x9 = typeFlags
 0xA = ???
+
+BattleMove.typeFlags: 8765 4321
+1 = FLAG_SOUND_MOVE
+2 = 
+3 = FLAG_POWDER_MOVE
+4 = 
+5 = 
+6 = 
+7 = 
+8 = 
 
 POCKET_POKE_BALLS = 3 in FR

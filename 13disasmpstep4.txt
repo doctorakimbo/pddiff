@@ -51,24 +51,24 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 			
 			break;
 		case ABILITY_DRIZZLE:
-			weatherToCheck = WEATHER_RAIN_ANY
-			newWeather = WEATHER_RAIN_TEMPORARY
-			weatherScript = BattleScript_DrizzleActivates
+			weatherToCheck = WEATHER_RAIN_ANY;
+			newWeather = WEATHER_RAIN_TEMPORARY;
+			weatherScript = BattleScript_DrizzleActivates;
 			goto lbl45
 		case ABILITY_SAND_STREAM:
-			weatherToCheck = WEATHER_SANDSTORM_ANY
-			newWeather = WEATHER_SANDSTORM_TEMPORARY
-			weatherScript = BattleScript_SandstreamActivates
+			weatherToCheck = WEATHER_SANDSTORM_ANY;
+			newWeather = WEATHER_SANDSTORM_TEMPORARY;
+			weatherScript = BattleScript_SandstreamActivates;
 			goto lbl45
 		case ABILITY_DROUGHT:
-			weatherToCheck = WEATHER_SUN_ANY
-			newWeather = WEATHER_SUN_TEMPORARY
-			weatherScript = BattleScript_DroughtActivates
+			weatherToCheck = WEATHER_SUN_ANY;
+			newWeather = WEATHER_SUN_TEMPORARY;
+			weatherScript = BattleScript_DroughtActivates;
 			goto lbl45
 		case 0x75:
-			weatherToCheck = WEATHER_HAIL_ANY
-			newWeather = WEATHER_HAIL_TEMPORARY
-			weatherScript = BattleScript_SnowWarningActivates
+			weatherToCheck = WEATHER_HAIL_ANY;
+			newWeather = WEATHER_HAIL_TEMPORARY;
+			weatherScript = BattleScript_SnowWarningActivates;
 			goto lbl45
 			
 			lbl45:
@@ -135,7 +135,7 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 		case ABILITY_MOLD_BREAKER:
 			stringID = 0;
 			goto lbl19
-		case 0x2E:
+		case ABILITY_PRESSURE:
 			stringID = 1;
 			goto lbl19
 		case 0x7F:
@@ -171,12 +171,12 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 
 					lbl19:
 					gBattleCommunication[MULTISTRING_CHOOSER] = stringID;
-					battleScript = script_1A5C0_J
+					battleScript = BattleScript_PrintAbilityMessage;
 				}
 				else
 				{
 					sSTATCHANGER = r0
-					gBattlerTarget = battler
+					gBattlerTarget = battler;
 					battleScript = BattleScript_AbilityStatBoostActivates;
 				}
 				
@@ -204,7 +204,7 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 			switch(gLastUsedAbility)
 			{
 			case ABILITY_RAIN_DISH:
-			case 0x57:
+			case ABILITY_DRY_SKIN:
 			case ABILITY_HYDRATION:
 			case ABILITY_ICE_BODY:
 				if(WEATHER_HAS_EFFECT)
@@ -224,7 +224,7 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 							BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
 							damage = gBattleMons[battler].maxHP;
 							
-							if(gLastUsedAbility != 0x57)
+							if(gLastUsedAbility != ABILITY_DRY_SKIN)
 								damage /= 2;
 								
 							damage /= 8;
@@ -327,73 +327,72 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 				if(gDisableStructs[battler].slowStartTimer != 0 && --gDisableStructs[battler].slowStartTimer == 0)
 				{
 					gBattleCommunication[MULTISTRING_CHOOSER] = 3;
-					BattleScriptPushCursorAndCallback(script_1A5C0_J)
+					BattleScriptPushCursorAndCallback(BattleScript_PrintAbilityMessage);
 				}
 
 				effect++;
 				
 				break;
 			default:
-				if(fn_196D4_J(battler, 0x83) != 0)
+				if(fn_196D4_J(battler, 0x83))
 					goto lbl61
 			}
 		}
 		
 		break
 	case ABILITYEFFECT_MOVES_BLOCK:
-		r6 = 0
+		flagToCheck = 0;
 		
-		if(gBattleMons[gBattlerAttacker].ability == 0x9E && (gBattleMoves[move].0xA & 4) && !(gBattleMoves[move].6 & 0x50) && IS_BATTLER_OF_TYPE(arg1, TYPE_DARK))
+		if(gBattleMons[gBattlerAttacker].ability == 0x9E && (gBattleMoves[move].0xA & 4) && !(gBattleMoves[move].target & MOVE_TARGET_USER | MOVE_TARGET_OPPONENTS_FIELD) && IS_BATTLER_OF_TYPE(arg1, TYPE_DARK))
 			goto lbl93
 		
 		if(gBattleMons[gBattlerTarget].ability == 0xD6 || gBattleMons[gBattlerTarget].ability == 0xDB)
 		{
 			if(GetPriority(gBattlerAttacker) > 0)
 			{
-				battleScript = script_1AA20_J
+				battleScript = BattleScript_PriorityBlockerActivates;
 				goto lbl94
 			}
 		}
 		elseif(IS_BATTLER_OF_TYPE(arg1, TYPE_GRASS))
-			r6 = 4
+			flagToCheck = FLAG_POWDER_MOVE;
 
-		gLastUsedItem = gBattleMons[gBattlerTarget].item
+		gLastUsedItem = gBattleMons[gBattlerTarget].item;
 		
-		if(gBattleMons[gBattlerTarget].ability != ABILITY_KLUTZ && gBattleMons[gBattlerTarget].item != 0x46)
-			r6 = 4
+		if(gBattleMons[gBattlerTarget].ability != ABILITY_KLUTZ && GetHoldEffect(gBattleMons[gBattlerTarget].item) == ITEM_EFFECT_SAFETY_GOGGLES)
+			flagToCheck = FLAG_POWDER_MOVE;
 		
 		if(gBattleMons[gBattlerAttacker].ability != ABILITY_MOLD_BREAKER && gBattleMons[gBattlerAttacker].ability - 0xA3 >= 1)
 		{
-			if(gBattleMons[gBattlerTarget].ability == 0x8E)
-				r6 = 4
+			if(gBattleMons[gBattlerTarget].ability == ABILITY_OVERCOAT)
+				flagToCheck = FLAG_POWDER_MOVE;
 			elseif(gBattleMons[gBattlerTarget].ability == ABILITY_SOUNDPROOF)
-				r6++
+				flagToCheck = FLAG_SOUND_MOVE;
 			elseif(gBattleMons[gBattlerTarget].ability == 0xB9)
-				r6 += 2
+				flagToCheck = 2;
 			elseif(gBattleMons[gBattlerTarget].ability == 0xA5 || fn_196D4_J(gBattlerTarget, 0xA5) != 0)
-				r6 += 8
+				flagToCheck = 8;
 		}
 		
-		r6 &= gBattleMoves[move].9
-		
-		if(r6 != 0)
+		if(gBattleMoves[move].typeFlags & flagToCheck)
 		{
 			if(gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
 				gHitMarker |= HITMARKER_NO_PPDEDUCT;
 			
-			if(r6 == 8)
+			if(flagToCheck == 8)
 				battleScript = script_1AA30_J
-			elseif(r6 == 4)
+			elseif(flagToCheck == FLAG_POWDER_MOVE)
 			{
 				if(GetHoldEffect(gBattleMons[gBattlerTarget].item) == ITEM_EFFECT_SAFETY_GOGGLES)
 					battleScript = BattleScript_GogglesDoSomething;
-				
-				if(gBattleMons[gBattlerTarget].ability != 0x8E)
+				elseif(gBattleMons[gBattlerTarget].ability != ABILITY_OVERCOAT)
 				{
 					lbl93:
 					gMoveResultFlags = MOVE_RESULT_DOESNT_AFFECT_FOE;
 					battleScript = BattleScript_PrintMoveMissed;
 				}
+				else
+					battleScript = BattleScript_SoundproofProtected;
 			}
 			else
 				battleScript = BattleScript_SoundproofProtected;
@@ -414,15 +413,15 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 				
 				switch(gLastUsedAbility)
 				{
-				case ABILITY_VOLT_ABSORB:
-				case 0x57:
+				case ABILITY_WATER_ABSORB:
+				case ABILITY_DRY_SKIN:
 					lbl97:
-					if(moveType == TYPE_ELECTRIC)
+					if(moveType == TYPE_WATER)
 						goto lbl102
 						
 					break
-				case ABILITY_WATER_ABSORB:
-					if(moveType == TYPE_WATER)
+				case ABILITY_VOLT_ABSORB:
+					if(moveType == TYPE_ELECTRIC)
 						goto lbl102
 						
 					break
@@ -516,7 +515,7 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 		
 		break
 	case ABILITYEFFECT_CONTACT:
-		if(!(gMoveResultFlags & RESULT_NO_EFFECT) && (gBattleMons[gBattlerAttacker].ability == 0x97 || (gBattleMons[move].9 & 1) || !(gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)) && TARGET_TURN_DAMAGED)
+		if(!(gMoveResultFlags & RESULT_NO_EFFECT) && (gBattleMons[gBattlerAttacker].ability == ABILITY_INFILTRATOR || (gBattleMons[move].typeFlags & FLAG_SOUND_MOVE) || !(gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)) && TARGET_TURN_DAMAGED)
 		{
 			switch(gLastUsedAbility)
 			{
@@ -561,11 +560,11 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 				}
 				
 				break
-			case 0xC0:
+			case ABILITY_STAMINA:
 				firstBoost = 0x12; // +1 Defense
 				goto lbl136
-			case 0xC3:
-				if(moveType == TYPE_ELECTRIC)
+			case ABILITY_WATER_COMPACTION:
+				if(moveType == TYPE_WATER)
 				{
 					firstBoost = 0x22; // +2 Defense
 					goto lbl136
@@ -604,12 +603,9 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 			case ABILITY_CURSED_BODY:
 				if(gBattleMons[gBattlerAttacker].hp != 0 && (Random() % 3) == 0)
 				{
-					move = 0;
-					
-					while(gBattleMons[gBattlerAttacker].0xC[move] != gChosenMove)
+					for(move = 0; move < 3; move++)
 					{
-						move++;
-						if(move > 3)
+						if(gBattleMons[gBattlerAttacker].moves[move] == gChosenMove)
 							goto lblend
 					}
 					
@@ -622,7 +618,7 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 						gDisableStructs[gBattlerAttacker].disabledMove = move;
 						gDisableStructs[gBattlerAttacker].disableTimer = 0x44;
 						gBattleCommunication[MULTISTRING_CHOOSER] = 8;
-						battleScript = script_1A5C9_J
+						battleScript = BattleScript_PrintAbilityContactMessage;
 						goto lbl144
 						
 						lbl144:
@@ -635,7 +631,7 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 				break;
 			default:
 				lbl145:
-				if((gBattleMoves[move].flags & FLAG_MAKES_CONTACT) && gBattleMons[gBattlerAttacker].ability != 0xCB && gBattleMons[gBattlerAttacker].hp != 0 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg)
+				if((gBattleMoves[move].flags & FLAG_MAKES_CONTACT) && gBattleMons[gBattlerAttacker].ability != ABILITY_LONG_REACH && gBattleMons[gBattlerAttacker].hp != 0 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg)
 				{
 					switch(gLastUsedAbility)
 					{
@@ -659,13 +655,13 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 						{
 							gBattleMons[gBattlerAttacker].ability = ABILITY_MUMMY;
 							gBattleCommunication[MULTISTRING_CHOOSER] = 9;
-							battleScript = script_1A5C9_J
+							battleScript = BattleScript_PrintAbilityContactMessage;
 							goto lbl160
 						}
 						
 						break
-					case 0xB0:
-					case 0xDD:
+					case ABILITY_GOOEY:
+					case ABILITY_TANGLING_HAIR:
 						if(gBattleMons[gBattlerAttacker].ability != ABILITY_CLEAR_BODY && gBattleMons[gBattlerAttacker].ability != ABILITY_WHITE_SMOKE && gSideTimers[gBattlerAttacker & 1].mistTimer == 0 && fn_27612_J(gBattlerAttacker) != 0xB6)
 						{
 							sSTATCHANGER = 0x93; // -1 Speed
@@ -683,7 +679,7 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 								damage = 1;
 							
 							gBattleMoveDamage = damage;
-							battleScript = script_19E88_J
+							battleScript = BattleScript_AftermathActivates;
 							goto lbl160
 
 							lbl160:
@@ -694,7 +690,7 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 						
 						break;
 					case ABILITY_EFFECT_SPORE:
-						if(gBattleMons[gBattlerAttacker].ability != 0x8E && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS) && (gBattleMons[gBattlerAttacker].ability == ABILITY_KLUTZ || GetHoldEffect(gBattleMons[gBattlerAttacker].item) != ITEM_EFFECT_SAFETY_GOGGLES) && (Random() % 10) == 0)
+						if(gBattleMons[gBattlerAttacker].ability != ABILITY_OVERCOAT && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS) && (gBattleMons[gBattlerAttacker].ability == ABILITY_KLUTZ || GetHoldEffect(gBattleMons[gBattlerAttacker].item) != ITEM_EFFECT_SAFETY_GOGGLES) && (Random() % 10) == 0)
 						{
 							moveEffect = Random() % 3;
 							
@@ -776,7 +772,7 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 				goto lbl188
 			case ABILITY_INSOMNIA:
 			case ABILITY_VITAL_SPIRIT:
-			case 0xAD:
+			case ABILITY_SWEET_VEIL:
 				lbl183:
 				conditionString = gStatusConditionString_SleepJpn;
 				
@@ -830,7 +826,7 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 				
 				break
 			default:
-				if(fn_196D4_J(battler, 0xAD) != 0)
+				if(fn_196D4_J(battler, ABILITY_SWEET_VEIL))
 					goto lbl183
 		}
 
@@ -841,12 +837,12 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 		{
 			chanceNumerator = 1; // 10% chance
 			
-			if(gLastUsedAbility == 0x8F)
+			if(gLastUsedAbility == ABILITY_POISON_TOUCH)
 			{
 				moveEffect = MOVE_EFFECT_POISON;
 				chanceNumerator = 3; // 30% chance
 			}
-			elseif(gLastUsedAbility == 1)
+			elseif(gLastUsedAbility == ABILITY_STENCH)
 			{
 				moveEffect = MOVE_EFFECT_FLINCH;
 				chanceNumerator = 1; // 10% chance
@@ -864,7 +860,7 @@ if(gBattleTypeFlags & 0xA000 != 0x8000 && (gLastUsedAbility != ABILITY_INTIMIDAT
 	}
 
 	lblend:
-	if(effect && caseID <= ABILITYEFFECT_CHECK_OTHER_SIDE && gLastUsedAbility != 0xFF)
+	if(effect && caseID <= ABILITYEFFECT_CHECK_OTHER_SIDE && gLastUsedAbility != ABILITYEFFECT_SWITCH_IN_WEATHER)
 		RecordAbilityBattle(battler, gLastUsedAbility);
 }
 
@@ -990,7 +986,7 @@ fn_27612_J(arg1)
 {
 	if(gBattleMons[gBattlerAttacker].ability != ABILITY_MOLD_BREAKER && gBattleMons[gBattlerAttacker].ability - 0xA3 >= 1)
 	{
-		if(IS_BATTLER_OF_TYPE(arg1, 0xC) && (gBattleMons[arg1].ability == 0xB6 || fn_196D4_J(arg1, 0xB6) != 0))
+		if(IS_BATTLER_OF_TYPE(arg1, 0xC) && (gBattleMons[arg1].ability == 0xB6 || fn_196D4_J(arg1, 0xB6)))
 			return 0xB6
 		elseif(gBattleMons[arg1].ability == 0x66 && (gBattleWeather & 0x30)
 			return 0x66
@@ -1084,13 +1080,13 @@ waitmessage 0x40
 BattleScript_???End:
 return
 
-script_19E88_J:
+BattleScript_AftermathActivates: @19E88_J
 (35 30 3D 02 02 00 01 10 00 0B 01 0C 01 10 95 01 12 40 00 19 01 00 00 00 00 00 3C) = 
 (35 D0 3D 02 02 00 01 10 00 0B 01 0C 01 10 95 01 12 40 00 19 01 00 00 00 00 00 3C)
 orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_x100000
 healthbarupdate BS_TARGET
 datahpupdate BS_TARGET
-printstring 0x195
+printstring STRINGID_XHURTBYYSAFTERMATH
 waitmessage 0x40
 tryfaintmon BS_TARGET, FALSE, NULL
 return
@@ -1113,24 +1109,24 @@ printstring STRINGID_PKMNRAISEDSPEED???
 waitmessage 0x40
 goto BattleScript_MoveEnd
 
-script_1A5C0_J:
+BattleScript_PrintAbilityMessage: @1A5C0_J
 (13 D2 A5 01 08 12 40 00 3F) = 
 (13 XX XX XX 08 12 40 00 3F)
-printfromtable datatable_1A5D2_J
+printfromtable AbilityMessageTable
 waitmessage 0x40
 end3
 
-script_1A5C9_J:
+BattleScript_PrintAbilityContactMessage: @1A5C9_J
 (13 D2 A5 01 08 12 40 00 3C) = 
 (13 XX XX XX 08 12 40 00 3C)
-printfromtable datatable_1A5D2_J
+printfromtable AbilityMessageTable
 waitmessage 0x40
 return
 
-datatable_1A5D2_J:
+AbilityMessageTable: @1A5D2_J
 85 01 86 01 87 01 88 01 89 01 8A 01 8B 01 8D 01 93 01 94 01
 0: STRINGID_PKMNBREAKSTHEMOLD
-1: 186
+1: STRINGID_PKMNEXERTINGPRESSURE
 2: STRINGID_PKMNCANTGETITGOING
 3: STRINGID_PKMNGOTITSACTTOGETHER
 4: 189
@@ -1140,13 +1136,13 @@ datatable_1A5D2_J:
 8: STRINGID_CURSEDBODYDISABLED
 9: STRINGID_ABILITYBECAMEMUMMY
 
-script_1AA20_J:
+BattleScript_PriorityBlockerActivates: @1AA20_J
 (02 03 39 20 00 10 9C 01 12 40 00 28 0A A9 1B 08) = 
 (02 03 39 20 00 10 9C 01 12 40 00 28 ?? ?? ?? 08)
 attackstring
 ppreduce
 pause 0x20
-printstring 0x19C
+printstring STRINGID_PKMNSXBLOCKSUSEOFY
 waitmessage 0x40
 goto BattleScript_MoveEnd
 
