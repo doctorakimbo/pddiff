@@ -1000,7 +1000,7 @@ end3
 
 BattleScript_ImposterActivates: @19AB8_J
 (9B 29 00 E7 3D 02 02 01 CE 9A 01 08 09 0A 13 80 45 3C 08 12 40 00 3F) = 
-(9B 29 00 87 3E 02 02 01 XX XX XX 08 09 0A 13 B4 E5 3F 08 12 40 00 3F)
+(9B 29 00 87 3E 02 02 01 BE A2 01 08 09 0A 13 B4 E5 3F 08 12 40 00 3F)
 transformdataexecution
 jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 1, BattleScript_ImposterEnd
 attackanimation
@@ -1013,19 +1013,19 @@ end3
 
 BattleScript_AbilityTwoStatBoostsActivate: @19AD0_J
 (41 10 9E 01 08 3F) = 
-(41 XX XX XX 08 3F)
+(41 00 A6 01 08 3F)
 call BattleScript_AbilityTwoStatBoosts
 end3
 
 BattleScript_AbilityStatBoostActivates: @19AD6_J
 (41 39 9E 01 08 3F) = 
-(41 XX XX XX 08 3F)
+(41 29 A6 01 08 3F)
 call BattleScript_AbilityStatBoost
 end3
 
 BattleScript_AbilityTwoStatBoosts: @19E10_J
 (89 01 2F 9E 01 08 29 00 E7 3D 02 02 02 2F 9E 01 08 47 45 00 01 34 3F 02 02 10 C2 00 12 40 00 31 3E 3F 02 02 3F 3F 02 02 01) = 
-(89 01 XX XX XX 08 29 00 87 3E 02 02 02 XX XX XX 08 47 45 00 01 D4 3F 02 02 10 C2 00 12 40 00 31 DE 3F 02 02 DF 3F 02 02 01)
+(89 01 1F A6 01 08 29 00 87 3E 02 02 02 1F A6 01 08 47 45 00 01 D4 3F 02 02 10 C2 00 12 40 00 31 DE 3F 02 02 DF 3F 02 02 01)
 statbuffchange 0x1, BattleScript_AbilityTwoStatBoosts_SecondBoost
 jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 2, BattleScript_AbilityTwoStatBoosts_SecondBoost
 setgraphicalstatchangevalues
@@ -1039,7 +1039,7 @@ goto BattleScript_AbilityStatBoost
 
 BattleScript_AbilityStatBoost: @19E39_J
 (89 01 58 9E 01 08 29 00 E7 3D 02 02 02 58 9E 01 08 47 45 00 01 34 3F 02 02 10 C2 00 12 40 00 3C) = 
-(89 01 XX XX XX 08 29 00 87 3E 02 02 02 XX XX XX 08 47 45 00 01 D4 3F 02 02 10 C2 00 12 40 00 3C)
+(89 01 48 A6 01 08 29 00 87 3E 02 02 02 48 A6 01 08 47 45 00 01 D4 3F 02 02 10 C2 00 12 40 00 3C)
 statbuffchange 0x1, BattleScript_AbilityStatBoostEnd
 jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 2, BattleScript_AbilityStatBoostEnd
 setgraphicalstatchangevalues
@@ -1052,7 +1052,7 @@ return
 
 BattleScript_AngerPointActivates: @19E59_J
 (47 45 00 01 34 3F 02 02 10 92 01 12 40 00 3C) = 
-(47 45 00 01 D4 3F 02 02 10 92 01 12 40 00 3C)
+(47 45 00 01 D4 3F 02 02 10 9B 01 12 40 00 3C)
 setgraphicalstatchangevalues
 playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 printstring STRINGID_ANGERPOINTMAXIMIZED
@@ -1061,7 +1061,7 @@ return
 
 BattleScript_StatChangeContactAbilityActivates: @19E68_J
 (89 41 87 9E 01 08 29 00 E7 3D 02 02 02 87 9E 01 08 47 45 01 01 34 3F 02 02 10 96 01 12 40 00 3C) = 
-(89 41 XX XX XX 08 29 00 87 3E 02 02 02 XX XX XX 08 47 45 01 01 D4 3F 02 02 10 96 01 12 40 00 3C)
+(89 41 77 A6 01 08 29 00 87 3E 02 02 02 77 A6 01 08 47 45 01 01 D4 3F 02 02 10 9F 01 12 40 00 3C)
 statbuffchange MOVE_EFFECT_AFFECTS_USER | 0x1, BattleScript_???End
 jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 2, BattleScript_???End
 setgraphicalstatchangevalues
@@ -1074,7 +1074,7 @@ return
 
 BattleScript_AftermathActivates: @19E88_J
 (35 30 3D 02 02 00 01 10 00 0B 01 0C 01 10 95 01 12 40 00 19 01 00 00 00 00 00 3C) = 
-(35 D0 3D 02 02 00 01 10 00 0B 01 0C 01 10 95 01 12 40 00 19 01 00 00 00 00 00 3C)
+(35 D0 3D 02 02 00 01 10 00 0B 01 0C 01 10 9E 01 12 40 00 19 01 00 00 00 00 00 3C)
 orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_x100000
 healthbarupdate BS_TARGET
 datahpupdate BS_TARGET
@@ -1085,7 +1085,7 @@ return
 
 BattleScript_ImmunityBoostAbilityActivate: @1A005_J
 (02 89 01 0A A9 1B 08 29 01 E7 3D 02 02 02 25 A0 01 08 39 20 00 10 47 01 12 40 00 28 0A A9 1B 08 47 45 00 01 34 3F 02 02 10 C2 00 12 40 00 28 0A A9 1B 08) = 
-(02 89 01 ?? ?? ?? 08 29 01 87 3E 02 02 02 XX XX XX 08 39 20 00 10 47 01 12 40 00 28 0A A9 1B 08 47 45 00 01 D4 3F 02 02 10 C2 00 12 40 00 28 ?? ?? ?? 08)
+(02 89 01 4E 69 1D 08 29 01 87 3E 02 02 02 15 A8 01 08 39 20 00 10 47 01 12 40 00 28 4E 69 1D 08 47 45 00 01 D4 3F 02 02 10 C2 00 12 40 00 28 4E 69 1D 08)
 attackstring
 statbuffchange 0x1, BattleScript_MoveEnd
 jumpifbyte CMP_NOT_EQUAL, cMULTISTRING_CHOOSER, 2, BattleScript_ImmunityBoostAbilityRaiseStat
@@ -1103,20 +1103,21 @@ goto BattleScript_MoveEnd
 
 BattleScript_PrintAbilityMessage: @1A5C0_J
 (13 D2 A5 01 08 12 40 00 3F) = 
-(13 XX XX XX 08 12 40 00 3F)
+(13 C2 AD 01 08 12 40 00 3F)
 printfromtable AbilityMessageTable
 waitmessage 0x40
 end3
 
 BattleScript_PrintAbilityContactMessage: @1A5C9_J
 (13 D2 A5 01 08 12 40 00 3C) = 
-(13 XX XX XX 08 12 40 00 3C)
+(13 C2 AD 01 08 12 40 00 3C)
 printfromtable AbilityMessageTable
 waitmessage 0x40
 return
 
 AbilityMessageTable: @1A5D2_J
-85 01 86 01 87 01 88 01 89 01 8A 01 8B 01 8D 01 93 01 94 01
+(85 01 86 01 87 01 88 01 89 01 8A 01 8B 01 8D 01 93 01 94 01) =
+(8E 01 8F 01 90 01 91 01 92 01 93 01 94 01 96 01 9C 01 9D 01)
 0: STRINGID_PKMNBREAKSTHEMOLD
 1: STRINGID_PKMNEXERTINGPRESSURE
 2: STRINGID_PKMNCANTGETITGOING
@@ -1130,7 +1131,7 @@ AbilityMessageTable: @1A5D2_J
 
 BattleScript_PriorityBlockerActivates: @1AA20_J
 (02 03 39 20 00 10 9C 01 12 40 00 28 0A A9 1B 08) = 
-(02 03 39 20 00 10 9C 01 12 40 00 28 ?? ?? ?? 08)
+(02 03 39 20 00 10 A5 01 12 40 00 28 4E 69 1D 08)
 attackstring
 ppreduce
 pause 0x20
@@ -1140,7 +1141,7 @@ goto BattleScript_MoveEnd
 
 BattleScript_TeamMoveBlockerActivates: @1AA30_J
 (02 03 39 20 00 10 8C 01 12 40 00 28 0A A9 1B 08) = 
-(02 03 39 20 00 10 8C 01 12 40 00 28 ?? ?? ?? 08)
+(02 03 39 20 00 10 95 01 12 40 00 28 4E 69 1D 08)
 attackstring
 ppreduce
 pause 0x20
@@ -1150,7 +1151,7 @@ goto BattleScript_MoveEnd
 
 BattleScript_GogglesDoSomething: @1AA40_J
 (02 03 39 20 00 10 84 01 12 40 00 28 0A A9 1B 08) = 
-(02 03 39 20 00 10 84 01 12 40 00 28 ?? ?? ?? 08)
+(02 03 39 20 00 10 8D 01 12 40 00 28 4E 69 1D 08)
 attackstring
 ppreduce
 pause 0x20

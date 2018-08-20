@@ -80,16 +80,16 @@ funcs e,j,desc:
 019F18 = 019728 = AbilityBattleEffects
 01BBE4 = 01B3F4 = BattleScriptExecute
 01BC24 = 01B434 = BattleScriptPushCursorAndCallback
-01BC68 = ItemBattleEffects
+01BC68 = 01B478 = ItemBattleEffects
 01D05C = GetMoveTarget
 01FEE8 = GetBattlerTurnOrderNum
 03E47C = CalculateMonStats
 03ECEC = CalculateBaseDamage
-03F78C = GetGenderFromSpeciesAndPersonality
+03F78C = 03EEF8 = GetGenderFromSpeciesAndPersonality
 04037C = SetMonData
 043A70 = CheckPartyPokerus
 043AD8 = CheckPartyHasHadPokerus
-044EC8 = Random
+044EC8 = 04448C = Random
 06E6D0 = FlagGet
 070E44 = BeginFastPaletteFade
 071AB4 = FadeOutMapMusic
@@ -103,7 +103,7 @@ funcs e,j,desc:
 1E3BA8 = call r0
 1E4018 = 1C7F38 = division
 1E460C = division
-1E4684 = 1C85A4 = modulus2F4, 1B8F0
+1E4684 = 1C85A4 = modulus
 
 014D4A = 01456A = GetSpeedStat
 014E98 = 0146B8 = GetPriority
@@ -112,7 +112,7 @@ funcs e,j,desc:
 019EC4 = 0196D4 = GetAbilityUserOnSameSide
 01F358 = 01EB68 = GetWeatherTurns (unimplemented)
 027E3A = 027612 = CheckLeafGuardAndFlowerVeil (unimplemented)
-add38
+
 data:
 250104 = sSoundMovesTable
 25DEAD = gStatStageRatios

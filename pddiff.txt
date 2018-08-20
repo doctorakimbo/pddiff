@@ -178,6 +178,7 @@ grafics:
 = 014CD8: Entirety of GetWhoStrikesFirst (+added GetSpeedStat, GetPriority, GetAbilityValues) (see 04disasm/04disasm2)
 		  Implements: Unburden (effect), Quick Feet, Stall, Klutz (speed items), Slow Start (effect), Sand Rush, Prankster, Gale Wings [gen 6], Slush Rush, Choice Scarf (speed boost), Lagging Tail, Tailwind (effect), Trick Room (effect), 1/4 -> 1/2 paralysis speed cut
 		  Relies on: weather refactor, BattleMove refactor, returns 0 sometimes instead of 1 or 2
+		  Optional knowledge: BattleMove.typeFlags2.bit3, bit4
 		  Glitch: Stall and Trick Room are in wrong order, Stall goes first in Trick Room (probably doesn't matter in P/D itself)
 = 015910: Entirety of HandleEndTurn_FinishBattle + extra fn j207370 (see 05disasm)
 		  Implements: EVs recalculated per battle (?)
@@ -226,5 +227,6 @@ grafics:
 		  Implements: Stench flinch chance, Lightning Rod boost/immunity, Pressure message, Motor Drive, Anger Point, Unburden (activation), Dry Skin (rain/water healing/immunity), Download, Hydration, Magic Guard (vs contact damage abilities), Klutz (the item effects here), Mold Breaker (message), Mold Breaker+ (vs move-subset immunities/absorbing immunities), Aftermath, Anticipation, Forewarn, Slow Start (upkeep), Storm Drain (boost/immunity), Ice Body, Snow Warning, Frisk, (ability7F), Cursed Body, Healer, Weak Armor, Moody, Overcoat (vs powder), Poison Touch, Imposter, Infiltrator (getting affected by hit-reaction abilities when hitting through Substitute), Mummy, Justified, Rattled, Sap Sipper, Iron Barbs, Aroma Veil, Sweet Veil, Gooey, Flower Veil (vs Gooey/Tangling Hair), Bulletproof, Stamina, Water Compaction, Dazzling, Queenly Majesty, Tangling Hair, weather rocks (on abilities), Safety Goggles (vs powder), grass-type powder immunity, dark-type prankster immunity, user affected by hit-reaction abilities when its sound moves hit through Substitute
 		  Relies on: weather refactor, BattleMove refactor, cloud nine/intimidate id change????, gSpecialStatuses[battler].intimidatedMon?
 		  Requires in future: GetWeatherTurns (e01F358, j01EB68), CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
-		  Optional knowledge: BattleMove.typeFlags2.bit2
-= 
+		  Optional knowledge: BattleMove.typeFlags2.bit2, bit3
+= 01BC68: Entirety of ItemBattleEffects (see 14disasm)
+	(01BC68 - 01CFE4) (01B478 - 01C7F4)
