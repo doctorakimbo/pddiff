@@ -1,1 +1,168 @@
 lbl1: @1BC68
+s2 = r0
+r7 = r1
+r6 = r2
+r0 = 0
+r10 = r0
+r1 = 0
+s3 = r1
+s1 = r1
+r4 = gLastUsedItem
+r1 = gBattleMons
+r0 = 0x58
+r0 *= r7
+r0 += r1
+r0 = *(r0 + 0x2E)
+*r4 = r0
+if(r0 != 0xAF) goto lbl2
+
+r1 = gEnigmaBerries
+r0 = r7 * 8
+r0 -= r7
+r0 *= 4
+r0 += r1
+r5 = *(r0 + 7)
+r0 = *(r0 + 0x1A)
+goto lbl3
+
+lbl2:
+r0 = *r4
+GetHoldEffect()
+r5 = r0
+r0 = *r4
+GetHoldEffectParam()
+goto lbl3
+
+lbl3:
+r9 = r0
+r1 = gBattleMons
+r0 = gBattlerAttacker
+r2 = *r0
+r0 = 0x58
+r0 *= r2
+r0 += r1
+r0 = *(r0 + 0x2E)
+s5 = r0
+if(r0 != 0xAF) goto lbl4
+
+r1 = gEnigmaBerries
+r0 = r2 * 8
+r0 -= r2
+r0 *= 4
+r0 += r1
+r3 = *(r0 + 7)
+r8 = r3
+r0 = *(r0 + 0x1A)
+goto lbl5
+
+lbl4:
+r0 = s5
+GetHoldEffect()
+r8 = r0
+r0 = s5
+GetHoldEffectParam()
+goto lbl5
+
+lbl5:
+s4 = r0
+r2 = gBattleMons
+r0 = gBattlerTarget
+r1 = *r0
+r0 = 0x58
+r0 *= r1
+r0 += r2
+r4 = *(r0 + 0x2E)
+if(r0 == 0xAF) goto lbl6
+
+r0 = r4
+GetHoldEffect()
+r0 = r4
+GetHoldEffectParam()
+goto lbl6
+
+lbl6:
+r0 = s2
+if(r0 < 4) goto lbl7
+
+goto lbl(1CFA6)
+
+lbl7:
+r0 *= 4
+r1 = jumptable1
+r0 += r1
+r0 = *r0
+goto r0
+
+jumptable1: @1BD60
+0: lbl10
+1: lbl29
+2: lbl(1CFA6)
+3: lbl(1C9FC)
+4: lbl(1CE4C)
+
+lbl10: @1BD74
+if(r5 == 0x17) goto lbl12
+
+if(r5 == 0x20) goto lbl11
+
+goto lbl(1CFA6)
+
+lbl11:
+r0 = gBattleStruct
+r0 = *r0
+r0 += 0x4A
+r1 = 2
+*r0 = r1
+goto lbl(1CFA6)
+
+lbl12:
+r1 = gBattleMons
+r8 = r1
+r0 = 0x58
+r1 = r7
+r1 *= r0
+r0 = r8
+r0 += 0x18
+r1 += r0
+r2 = 6
+r3 = 7
+r10 = r3
+goto lbl13
+
+lbl13:
+r0 = 0
+r0 = *(r1 + r0)
+if(r0 > 5) goto lbl14
+
+*r1 = r2
+r5 = 5
+s3 = r5
+goto lbl14
+
+lbl14:
+r1++
+r0 = 1
+r0 = -r0
+r10 += r0
+r3 = r10
+if(r3 >= 0) goto lbl13
+
+r5 = s3
+if(r5 != 0) goto lbl15
+
+goto lbl(1CFA6)
+
+lbl15:
+r0 = gBattleScripting
+*(r0 + 0x17) = r7
+r0 = gPotentialItemEffectBattler
+*r0 = r7
+r1 = gActiveBattler
+r0 = gBattlerAttacker
+*r0 = r7
+*r1 = r7
+r0 = data_081D95D9
+BattleScriptExecute()
+goto lbl(1CFA6)
+
+lbl29: @1BE04

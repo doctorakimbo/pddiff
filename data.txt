@@ -12,6 +12,7 @@ DE 3B 02 02: 3E 3B 02 02: gBattlerByTurnOrder
 E2 3B 02 02: 42 3B 02 02: gCurrentTurnActionNumber
 E3 3B 02 02: 43 3B 02 02: gCurrentActionFuncId
 E4 3B 02 02: 44 3B 02 02: gBattleMons
+04 3C 02 02: 64 3B 02 02: ?????
 30 3C 02 02: 90 3B 02 02: ?????
 48 3D 02 02: A8 3C 02 02: gCurrMovePos
 49 3D 02 02: A9 3C 02 02: gChosenMovePos
@@ -58,6 +59,7 @@ F4 3F 02 02: 54 3F 02 02: gBattleResources
 		   : E4 41 02 02: ?????? (within parameters, viable)
 		   : E2 85 03 02: ??????
            : 00 B9 03 02: ??????
+		   : 50 B9 03 02: ??????
 		   : 0D C0 03 02: ??????
            : 00 D5 03 02: ??????
 		   : 00 FE 03 02: ??????
@@ -110,6 +112,7 @@ funcs e,j,desc:
 014F14 = 014734 = GetAbilityValues
 019E68 = 019678 = unknown_uncalled_func (disasm if needed)
 019EC4 = 0196D4 = GetAbilityUserOnSameSide
+?????? = 01C510 = ?????
 01F358 = 01EB68 = GetWeatherTurns (unimplemented)
 027E3A = 027612 = CheckLeafGuardAndFlowerVeil (unimplemented)
 
