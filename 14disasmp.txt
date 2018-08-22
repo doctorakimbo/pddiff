@@ -118,22 +118,22 @@ r0 = gBattlerAttacker
 r1 = gActiveBattler
 *r0 = r7
 *r1 = r7
-fn_1C510()
+fn_1C510_J()
 if(r0 == 1) goto lbl22
 
 if(r5 != 1) goto lbl11
 
-goto lbl(1B660)
+goto lbl35
 
 lbl11:
 if(r5 != 7) goto lbl12
 
-goto lbl(1B6AC)
+goto lbl41
 
 lbl12:
 if(r5 > 8) goto lbl13
 
-goto lbl(1BAEA)
+goto lbl146
 
 lbl13:
 if(r5 != 9) goto lbl14
@@ -141,44 +141,44 @@ if(r5 != 9) goto lbl14
 goto lbl(1BB78)
 
 lbl14:
-if(r5 != 0xE) goto lbl15
+if(r5 > 0xE) goto lbl15
 
-goto lbl(1B7D4)
+goto lbl91
 
 lbl15:
 if(r5 != 0xF) goto lbl16
 
-goto lbl(1B866)
+goto lbl99
 
 lbl16:
 if(r5 != 0x10) goto lbl17
 
-goto lbl(1B8B2)
+goto lbl104
 
 lbl17:
 if(r5 != 0x11) goto lbl18
 
-goto lbl(1B8EC)
+goto lbl108
 
 lbl18:
 if(r5 != 0x12) goto lbl19
 
-goto lbl(1B926)
+goto lbl112
 
 lbl19:
 if(r5 != 0x13) goto lbl20
 
-goto lbl(1B9A4)
+goto lbl117
 
 lbl20:
 if(r5 != 0x14) goto lbl21
 
-goto lbl(1B9F0)
+goto lbl122
 
 lbl21:
 if(r5 != 0x15) goto lbl22
 
-goto lbl(1BA2A)
+goto lbl127
 
 lbl22:
 if(r5 == 0x17) goto lbl25
@@ -239,6 +239,673 @@ BattleScriptExecute()
 goto lbl23
 
 lbl29: @1B5FE
+r1 = gBattleMons
+r8 = r1
+r0 = 0x58
+r0 *= r7
+r0 += r1
+r1 = 0x20
+r1 = *(r0 + r1)
+if(r1 == 0x67) goto lbl30
+
+r0 = *(r0 + 0x28)
+if(r0 != 0) goto lbl31
+
+goto lbl30
+
+lbl30:
+goto lbl23
+
+lbl31:
+if(r6 != 0) goto lbl30
+
+r0 ^= r0
+r1 = data_0203B950
+*r1 = r0
+r0 = r5
+r0 -= 0x17
+if(r0 != 0) goto lbl32
+
+goto lbl51
+
+lbl32:
+if(r0 != 5) goto lbl33
+
+goto lblx1
+
+lbl33:
+if(r0 != 0x14) goto lbl34
+
+goto lbl55
+
+lbl34:
+goto lbl56
+
+lbl35: @1B660
+r0 = 0x58
+r0 *= r7
+r1 = r8
+r2 = r0 + r1
+r0 = *(r2 + 0x2C)
+r1 = *(r2 + 0x28)
+r0 /= 2
+if(r1 < r0) goto lbl36
+
+goto lbl23
+
+lbl36:
+if(r6 == 0) goto lbl37
+
+goto lbl23
+
+lbl37:
+r4 = gBattleMoveDamage
+r5 = r9
+if(r5 != 0xFE) goto lbl38
+
+r0 = *(r2 + 0x2C)
+r5 = r0 / 4
+goto lbl39
+
+lbl38:
+if(r5 != 0xFF) goto lbl39
+r5 = *(r2 + 0x2C)
+goto lbl39
+
+lbl39:
+*r4 = r5
+r3 = *(r2 + 0x28)
+r0 = r3 + r5
+r1 = *(r2 + 0x2C)
+if(r0 <= r1) goto lbl40
+
+r0 = r1 - r3
+*r4 = r0
+goto lbl40
+
+lbl40:
+r0 = *r4
+r0 = -r0
+*r4 = r0
+r0 = data_081D95EF
+BattleScriptExecute()
+goto lbl97
+
+lbl41: @1B6AC
+if(r6 != 0) goto lbl42
+
+fn_1C640_J()
+if(r0 == 1) goto lbl42
+
+fn_1C6FC_J()
+r5 = r10
+r1 = gBattleMons
+r2 = 0x58
+r2 *= r7
+r1 += r2
+r1 += 0x24
+r1 = *(r1 + r5)
+r2 = &s3
+*r2 = r1
+r1 = 0x11
+r1 += r5
+EmitSetMonData()
+r0 = data_081D960C
+BattleScriptExecute()
+r0 = 3
+s3 = r0
+
+lbl42:
+goto lbl23
+
+lbl51: @1B6E4
+r0 = gBattleMons
+r1 = 0x58
+r1 *= r7
+r0 += 0x18
+r1 += r0
+r2 = 6
+r3 = 7
+r10 = r3
+goto lbl52
+
+lbl52:
+r0 = 0
+r0 = *(r1 + r0)
+if(r0 > 5) goto lbl53
+
+*r1 = r2
+r5 = 5
+s3 = r5
+goto lbl53
+
+lbl53:
+r1++
+r0 = 1
+r0 = -r0
+r10 += r0
+r3 = r10
+if(r3 > 0) goto lbl52
+
+r5 = 8
+r10 = r5
+r0 = s3
+if(r0 != 0) goto lbl54
+
+goto lbl42
+
+lbl54:
+r0 = gBattleScripting
+*(r0 + 0x17) = r7
+r0 = gBattlerAttacker
+*(r0 + 4) = r7
+r1 = gActiveBattler
+*r0 = r7
+*r1 = r7
+r0 = data_081D95D9
+BattleScriptExecute()
+goto lbl56
+
+lbl55: @1B732
+r5 = 4
+r0 = 0x58
+r0 *= r7
+r2 = r8
+r1 = r0 + r2
+if(r6 == 0) goto lbl57
+
+goto lbl56
+
+lbl56:
+goto lbl(1BD06)
+
+lbl57:
+r3 = gBattleMoveDamage
+r2 = r9
+if(r2 == 0xFF) goto lbl58
+
+r0 = 0x21
+r4 = r0 + r1
+r0 = *r4
+if(r0 == r2) goto lbl58
+
+r0 = *(r4 + 1)
+if(r0 == r2) goto lbl58
+
+r5 = 3
+goto lbl58
+
+lbl58:
+r2 = *(r1 + 0x28)
+r0 = *(r1 + 0x2C)
+if(r5 == 3) goto lbl59
+
+if(r2 bcc r0) goto lbl59
+
+goto lbl56
+
+lbl59:
+r0 /= r5
+*r3 = r0
+if(r0 != 0) goto lbl60
+
+r0 = 1
+*r3 = r0
+goto lbl60
+
+if(r5 == 3) goto lbl62
+
+r2 = *(r1 + 0x28)
+r0 = *r3
+r0 += r2
+r1 = *(r1 + 0x2C)
+if(r0 <= r1) goto lbl61
+
+r0 = r1 - r2
+*r3 = r0
+goto lbl61
+
+r0 = *r3
+r0 = -r0
+*r3 = r0
+r0 = data_081D961C
+goto lbl63
+
+lbl62:
+r0 = data_0801B7B0_J
+goto lbl63
+
+lbl63:
+BattleScriptExecute()
+r0 = 4
+s3 = r0
+r0 = r7
+r1 = r5
+fn_C7208()
+goto lbl56
+
+lbl91: @1B7D4
+r4 = r5
+r4 -= 0xA
+r3 = r5 * 4
+r3 -= 0x10
+r3 += s0
+r1 = 0x58
+r5 = r7
+r5 *= r1
+*r3 = r5
+r5 = r8
+fn_207450_J()
+r2 /= 2
+if(r1 < r2) goto lbl92
+
+goto lbl(1C502)
+
+lbl92:
+if(r6 == 0) goto lbl93
+
+goto lbl(1C502)
+
+lbl93:
+r1 = gBattleTextBuff1
+r2 = 0xFD
+*r1 = r2
+r2 = 8
+*(r1 + 1) = r2
+*(r1 + 2) = r4
+r2 = 0xFF
+*(r1 + 3) = r2
+r0 = *(r5 + 0x2C)
+r1 = r9
+r6 = r3
+divide()
+r3 = gBattleMoveDamage
+*r3 = r0
+if(r0 != 0) goto lbl94
+
+r0 = 1
+*r3 = r0
+goto lbl94
+
+lbl94:
+r2 = *(r5 + 0x28)
+r0 = *r3
+r0 += r2
+r1 = *(r5 + 0x2C)
+if(r0 <= r1) goto lbl95
+
+r0 = r1 - r2
+*r3 = r0
+goto lbl95
+
+lbl95:
+r0 = *r3
+r0 = -r0
+*r3 = r0
+r0 = r8
+r0 += 0x48
+r2 = *r6
+r0 += r2
+r0 = *r0
+r1 = r4
+fn_44234()
+if(r0 >= 0) goto lbl96
+
+r0 = data_081D964F
+BattleScriptExecute()
+goto lbl97
+
+lbl96:
+r0 = data_081D95EF
+BattleScriptExecute()
+goto lbl97
+
+lbl97:
+r3 = 4
+s3 = r3
+goto lbl(1C502)
+
+lbl99: @1B866
+fn_1C5D6_J()
+if(r4 <= r0) goto lbl101
+
+goto lbl100
+
+lbl100:
+goto lbl(1C502)
+
+lbl101:
+if(r6 == 0) goto lbl102
+
+goto lbl100
+
+lbl102:
+r0 = 0x19
+r0 = *(r5 + r0)
+if(r0 <= 0xB) goto lbl103
+
+goto lbl100
+
+lbl103:
+r1 = gBattleTextBuff1
+r2 = 0xFD
+*r1 = r2
+r0 = 5
+*(r1 + 1) = r0
+r0 = 1
+*(r1 + 2) = r0
+r0 = 0xFF
+*(r1 + 3) = r0
+r1 = data_02022AC8
+*r1 = r2
+*(r1 + 1) = r6
+r0 = 0xD2
+*(r1 + 2) = r0
+*(r1 + 3) = r6
+r0 -= 0xD3
+*(r1 + 4) = r0
+r0 = gBattlerAttacker
+*(r0 + 3) = r7
+r1 = gBattleScripting
+r0 = 0x11
+*(r1 + 0x1A) = r0
+r0 = 0xF
+goto lbl121
+
+lbl104: @1B8B2
+fn_1C5D6_J()
+if(r4 <= r0) goto lbl105
+
+goto lbl100
+
+lbl105:
+if(r6 == 0) goto lbl106
+
+goto lbl100
+
+lbl106:
+r0 = 0x1A
+r0 = *(r5 + r0)
+if(r0 <= 0xB) goto lbl107
+
+goto lbl100
+
+lbl107:
+r1 = gBattleTextBuff1
+r0 = 0xFD
+*r1 = r0
+r0 = 5
+*(r1 + 1) = r0
+r0 = 2
+*(r1 + 2) = r0
+r0 = 0xFF
+*(r1 + 3) = r0
+r0 = gBattlerAttacker
+*(r0 + 3) = r7
+r1 = gBattleScripting
+r0 = 0x12
+*(r1 + 0x1A) = r0
+r0 = 0x10
+goto lbl116
+
+lbl108: @1B8EC
+fn_1C5D6_J()
+if(r4 <= r0) goto lbl109
+
+goto lbl100
+
+lbl109:
+if(r6 == 0) goto lbl110
+
+goto lbl100
+
+lbl110:
+r0 = 0x1B
+r0 = *(r5 + r0)
+if(r0 <= 0xB) goto lbl111
+
+goto lbl100
+
+lbl111:
+r1 = gBattleTextBuff1
+r0 = 0xFD
+*r1 = r0
+r0 = 5
+*(r1 + 1) = r0
+r0 = 3
+*(r1 + 2) = r0
+r0 = 0xFF
+*(r1 + 3) = r0
+r0 = gBattlerAttacker
+*(r0 + 3) = r7
+r1 = gBattleScripting
+r0 = 0x13
+*(r1 + 0x1A) = r0
+r0 = 0x11
+goto lbl116
+
+lbl112: @1B926
+fn_1C5D6_J()
+if(r4 <= r0) goto lbl113
+
+goto lbl100
+
+lbl113:
+if(r6 == 0) goto lbl114
+
+goto lbl100
+
+lbl114:
+r0 = 0x1C
+r0 = *(r5 + r0)
+if(r0 <= 0xB) goto lbl115
+
+goto lbl100
+
+lbl115:
+r1 = gBattleTextBuff1
+r0 = 0xFD
+*r1 = r0
+r0 = 5
+*(r1 + 1) = r0
+r0 = 4
+*(r1 + 2) = r0
+r0 = 0xFF
+*(r1 + 3) = r0
+r0 = gBattlerAttacker
+*(r0 + 3) = r7
+r1 = gBattleScripting
+r0 = 0x14
+*(r1 + 0x1A) = r0
+r0 = 0x12
+goto lbl116
+
+lbl116:
+*(r1 + 0x10) = r0
+*(r1 + 0x11) = r6
+r0 = data_081D9679
+BattleScriptExecute()
+r2 = 5
+s3 = r2
+goto lbl100
+
+lbl117: @1B9A4
+fn_1C5D6_J()
+if(r4 <= r0) goto lbl118
+
+goto lbl100
+
+lbl118:
+if(r6 == 0) goto lbl119
+
+goto lbl100
+
+lbl119:
+r0 = 0x1D
+r0 = *(r5 + r0)
+if(r0 <= 0xB) goto lbl120
+
+goto lbl100
+
+lbl120:
+r1 = gBattleTextBuff1
+r0 = 0xFD
+*r1 = r0
+r0 = 5
+*(r1 + 1) = r0
+*(r1 + 2) = r0
+r0 = 0xFF
+*(r1 + 3) = r0
+r0 = gBattlerAttacker
+*(r0 + 3) = r7
+r1 = gBattleScripting
+r0 = 0x15
+*(r1 + 0x1A) = r0
+r0 = 0x13
+goto lbl121
+
+lbl121:
+*(r1 + 0x10) = r0
+*(r1 + 0x11) = r6
+r0 = data_081D9679
+BattleScriptExecute()
+r5 = 5
+s3 = r5
+goto lbl124
+
+lbl122: @1B9F0
+fn_1C5D6_J()
+if(r4 <= r0) goto lbl123
+
+goto lbl124
+
+lbl123:
+if(r6 == 0) goto lbl125
+
+goto lbl124
+
+lbl124:
+goto lbl(1C502)
+
+lbl125:
+r0 = 0x50
+r1 = r5 + r0
+r2 = *r1
+r3 = 0x80
+r3 << 0xD
+r0 = r2
+r0 &= r3
+if(r0 == 0) goto lbl126
+
+goto lbl(1C502)
+
+lbl126:
+r2 |= r3
+*r1 = r2
+r0 = data_081D9694
+BattleScriptExecute()
+r2 = 2
+s3 = r2
+goto lbl(1C502)
+
+lbl127: @1BA2A
+if(r6 == 0) goto lbl128
+
+goto lbl(1C502)
+
+lbl128:
+fn_1C5D6_J()
+if(r4 <= r0) goto lbl129
+
+goto lbl(1C502)
+
+lbl129:
+r0 = 0
+r10 = r0
+r0 = r5
+r0 += 0x19
+r0 = *r0
+if(r0 <= 0xB) goto lbl131
+
+r1 = r5
+r1 += 0x19
+goto lbl130
+
+lbl130:
+r1++
+r2 = 1
+r10 += r2
+r3 = r10
+if(r3 > 4) goto lbl131
+
+r0 = 0
+r0 = *(r1 + r0)
+if(r0 > 0xB) goto lbl130
+
+goto lbl131
+
+lbl131:
+r5 = r10
+if(r5 != 5) goto lbl132
+
+goto lbl(1C502)
+
+lbl132:
+r0 = 0x58
+r0 *= r7
+r4 = r0 + 1
+r5 = data_02023BFC
+goto lbl133
+
+lbl133:
+Random()
+r1 = 5
+modulus()
+r10 = r0
+r0 += r4
+r0 += r5
+r0 = *r0
+if(r0 == 0xC) goto lbl133
+
+r1 = gBattleTextBuff1
+r2 = 0
+r3 = 0xFD
+*r1 = r3
+r0 = 5
+*(r1 + 1) = r0
+r0 = r10
+r0++
+*(r1 + 2) = r0
+r0 = 0xFF
+*(r1 + 3) = r0
+r0 = data_02022AC8
+*r0 = r3
+*(r0 + 1) = r2
+r1 = 0xD1
+*(r0 + 2) = r1
+*(r0 + 3) = r2
+*(r0 + 4) = r2
+r1 = 0xD2
+*(r0 + 5) = r1
+*(r0 + 6) = r2
+r1 = 0xD3
+*(r0 + 7) = r1
+r0 = gBattlerAttacker
+*(r0 + 3) = r7
+r1 = gBattleScripting
+r0 = r10
+r0 += 0x21
+*(r1 + 0x1A) = r0
+r0 += 6
+*(r1 + 0x10) = r0
+*(r1 + 0x11) = r2
+r0 = data_081D9679
+BattleScriptExecute()
+r0 = 5
+s3 = r0
+goto lbl(1C502)
+
+lbl146: @1BAEA
 
 
 
@@ -271,18 +938,33 @@ lbl29: @1B5FE
 
 
 
+lblx1: @1BCD0
+r0 = 0x58
+r1 = r7
+r1 *= r0
+r0 = r8
+r0 += 0x50
+r1 += r0
+r2 = *r1
+r0 = 0xF0
+r0 << 0xC
+r0 &= r2
+if(r0 == 0) goto lbl(1BD06)
 
-
-
-
-
-
-
-
-
-
-
-
+r0 = ~0xF0000
+r2 &= r0
+*r1 = r2
+r0 = gBattleTextBuff1
+r1 = data_083C47C7_J
+StringCopy()
+r0 = data_081D95BF
+BattleScriptExecute()
+r1 = gBattleCommunication
+r0 = 0
+*(r1 + 5) = r0
+r1 = 2
+s3 = r1
+goto lbl(1BD06)
 
 
 
@@ -320,3 +1002,176 @@ goto lbl_1C510_4
 
 lbl_1C510_4:
 return r0
+
+
+
+fn_1C5D6_J:
+r0 = 0x58
+r0 *= r7
+r3 = r8
+r5 = r0 + r3
+r4 = *(r5 + 0x28)
+r0 = *(r5 + 0x2C)
+r1 = r9
+r2 = 0x20
+r2 = *(r5 + r2)
+if(r2 != 0x52) goto lbl_1C5D6_2
+
+r1 /= 2
+if(r1 != 0) goto lbl_1C5D6_2
+
+r1 = 1
+goto lbl_1C5D6_2
+
+lbl_1C5D6_2:
+divide()
+return r0
+
+
+
+fn_1C640_J:
+r0 = r7
+GetBattlerSide()
+if(r0 != 0) goto lbl_1C640_2
+
+r1 = data_02023BCE
+r0 = r7 * 2
+r0 += r1
+r1 = *r0
+r0 = 0x64
+r1 *= r0
+r0 = data_02024284
+goto lbl_1C640_3
+
+lbl_1C640_2:
+r1 = data_02023BCE
+r0 = r7 * 2
+r0 += r1
+r1 = *r0
+r0 = 0x64
+r1 *= r0
+r0 = data_0202402C
+goto lbl_1C640_3
+
+lbl_1C640_3:
+r4 = r1 + r0
+r1 = 0
+r10 = r1
+r5 = &s1
+goto lbl_1C640_4
+
+lbl_1C640_4:
+r1 = r10
+r1 = 0xD
+r0 = r4
+fn_3FBE8()
+r6 = r0
+r1 = r10
+r1 += 0x11
+r0 = r4
+fn_3FBE8()
+*r5 = r0
+r0 = r4
+r1 = 0x15
+fn_3FBE8()
+r1 = r0
+if(r6 == 0) goto lbl_1C640_5
+
+r0 = *r5
+if(r0 == 0) goto lbl_1C640_6
+
+lbl_1C640_5:
+r2 = 1
+r10 += r2
+r3 = r10
+if(r3 <= 3) goto lbl_1C640_4
+
+lbl_1C640_6:
+r5 = r10
+if(r5 == 4) goto lbl_1C640_10
+
+r2 = r5
+r0 = r6
+fn_4101C()
+r2 = r0
+r0 = &s1
+r0 = *r0
+r3 = r9
+r1 = r0 + r3
+if(r1 <= r2) goto lbl_1C640_8
+
+r0 = &s1
+r1 = r2
+*r0 = r1
+goto lbl_1C640_9
+
+lbl_1C640_8:
+r0 = &s1
+*r0 = r1
+goto lbl_1C640_9
+
+lbl_1C640_9:
+r0 = gBattleMons
+r2 = 0x58
+r2 *= r7
+r0 += r2
+r0 = 0x24
+*(r0 + r5) = r1
+r1 = gBattleTextBuff1
+r0 = 0xFD
+*r1 = r0
+r0 = 2
+*(r1 + 1) = r0
+*(r1 + 2) = r6
+r0 = r6 >> 8
+*(r1 + 3) = r0
+r0 = 0xFF
+*(r1 + 4) = r0
+r0 = 0
+goto lbl_1C640_11
+
+lbl_1C640_10:
+r0 = 1
+goto lbl_1C640_11
+
+lbl_1C640_11:
+return r0
+
+
+
+fn_1C6FC_J:
+r1 = data_02023BCE
+r0 = r7 * 2
+r0 += r1
+r1 = *r0
+r4 = 0x64
+r4 *= r1
+r0 = r7
+GetBattlerSide()
+if(r0 != 0) goto lbl_1C6FC_2
+
+r0 = data_02024284
+goto lbl_1C6FC_3
+
+lbl_1C6FC_2:
+r0 = data_0202402C
+goto lbl_1C6FC_3
+
+lbl_1C6FC_3:
+r0 += r4
+return r0
+
+
+
+fn_207450_J:
+r2 = *(r5 + 0x2C)
+r1 = 0x20
+r1 = *(r5 + r1)
+if(r1 == 0x52) goto lbl_207450_2
+
+r2 /= 2
+goto lbl_207450_2
+
+lbl_207450_2:
+r1 = *(r5 + 0x28)
+return

@@ -180,9 +180,10 @@ grafics:
 		  Relies on: weather refactor, BattleMove refactor, returns 0 sometimes instead of 1 or 2
 		  Optional knowledge: BattleMove.typeFlags2.bit3, bit4
 		  Glitch: Stall and Trick Room are in wrong order, Stall goes first in Trick Room (probably doesn't matter in P/D itself)
-= 015910: Entirety of HandleEndTurn_FinishBattle + extra fn j207370 (see 05disasm)
+= 015910: Entirety of HandleEndTurn_FinishBattle (see 05disasm)
 		  Implements: EVs recalculated per battle (?)
 		  Required knowledge: j02023F89 (viable), j020241E4 (viable)
+		  Requires in future: extra fn j207370
 = 015CA0: Entirety of HandleAction_UseMove (see 06disasm)
 		  Implements: Storm Drain (redirection), Mold Breaker+ (vs redirection)
 		  Relies on: gChosenActionByBattler changed to something else
@@ -231,3 +232,4 @@ grafics:
 = 01BC68: Entirety of ItemBattleEffects (see 14disasm)
 	(01BC68 - 01CFE4) (01B478 - 01C7F4)
 		  Required knowledge: j0203B950
+		  Requires in future: j207370
