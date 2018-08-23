@@ -80,7 +80,9 @@ funcs e,j,desc:
 015A30 = FreeResetData_ReturnToOvOrDoEvolutions
 017248 = 016A58 = MarkBattlerForControllerExec
 0172E8 = CancelMultiTurnMoves
+017520 = 016D30 = ?????
 017544 = 016D54 = BattleScriptPushCursor
+01756C = 016D7C = ?????
 017A64 = GetImprisonedMovesCount
 019DAC = CastformDataTypeChange (FR) / TerubimDataTypeChange (PD)
 019F18 = 019728 = AbilityBattleEffects
@@ -89,6 +91,7 @@ funcs e,j,desc:
 01BC68 = 01B478 = ItemBattleEffects
 01D05C = GetMoveTarget
 01FEE8 = GetBattlerTurnOrderNum
+01FF20 = 01F730 = ?????
 03E47C = CalculateMonStats
 03ECEC = CalculateBaseDamage
 03F78C = 03EEF8 = GetGenderFromSpeciesAndPersonality
@@ -121,6 +124,7 @@ funcs e,j,desc:
 019E68 = 019678 = unknown_uncalled_func (disasm if needed)
 019EC4 = 0196D4 = GetAbilityUserOnSameSide
 ?????? = 01C510 = ?????
+?????? = 01C5A8 = ?????
 ?????? = 01C5D6 = ?????
 ?????? = 01C640 = ?????
 ?????? = 01C6FC = ?????
@@ -128,6 +132,7 @@ funcs e,j,desc:
 027E3A = 027612 = CheckLeafGuardAndFlowerVeil (unimplemented)
 ?????? = 207370 = ?????
 ?????? = 207450 = ?????
+?????? = 207470 = ?????
 
 data:
 250104 = sSoundMovesTable

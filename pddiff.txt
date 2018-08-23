@@ -232,4 +232,4 @@ grafics:
 = 01BC68: Entirety of ItemBattleEffects (see 14disasm)
 	(01BC68 - 01CFE4) (01B478 - 01C7F4)
 		  Required knowledge: j0203B950
-		  Requires in future: j207370
+		  Requires in future: j207450, j207470
