@@ -80,9 +80,9 @@ funcs e,j,desc:
 015A30 = FreeResetData_ReturnToOvOrDoEvolutions
 017248 = 016A58 = MarkBattlerForControllerExec
 0172E8 = CancelMultiTurnMoves
-017520 = 016D30 = ?????
+017520 = 016D30 = BattleScriptPush
 017544 = 016D54 = BattleScriptPushCursor
-01756C = 016D7C = ?????
+01756C = 016D7C = BattleScriptPop
 017A64 = GetImprisonedMovesCount
 019DAC = CastformDataTypeChange (FR) / TerubimDataTypeChange (PD)
 019F18 = 019728 = AbilityBattleEffects
@@ -95,12 +95,12 @@ funcs e,j,desc:
 03E47C = CalculateMonStats
 03ECEC = CalculateBaseDamage
 03F78C = 03EEF8 = GetGenderFromSpeciesAndPersonality
-03FBE8 = 03F354 = ?????
+03FBE8 = 03F354 = GetMonData
 04037C = 03FA70 = EmitSetMonData
-04101C = 04070C = ?????
+04101C = 04070C = CalculatePPWithBonus
 043A70 = CheckPartyPokerus
 043AD8 = CheckPartyHasHadPokerus
-044234 = 04387C = ?????
+044234 = 04387C = GetFlavorRelationByPersonality
 044EC8 = 04448C = Random
 06E6D0 = FlagGet
 070E44 = BeginFastPaletteFade
