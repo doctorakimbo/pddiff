@@ -34,7 +34,7 @@ HandleEndTurn_FinishBattle()
 		
 		for(i = *data_02023F89_J - 1; i != 0; i--)
 		{
-			r0 = data_020241E4_J[i]; // record size: 0x64
+			r0 = gPlayerParty[i];
 			fn_207370_PD(r0, i * 0x64);
 		}
 	}
@@ -64,7 +64,7 @@ fn_207370_PD(pkmn, arg1)
 		r1 = 0x64
 		svc(6)
 		r4 = r0
-		r0 = data_020241E4_J
+		r0 = gPlayerParty
 		r1 = ((1 << (r4 - 1)) | (1 << (r4 + 1))) & 0x3F
 		beq lbl11
 

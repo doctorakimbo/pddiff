@@ -85,13 +85,13 @@ CreateNPCTrainerParty(*party, trainerNum)
 			}
 		}
 		
-		if(*data_020385E2 <= 0x2E6)
+		if(*data_020385E2_J <= 0x2E6)
 		{
-			src = data_09400000[*data_020385E2]; // record size 4
+			src = data_09400000_J[*data_020385E2_J]; // record size 4
 			
 			if(src != 0)
 			{
-				for(dest = data_02023F8C; dest != data_020241E4; dest += 4)
+				for(dest = gEnemyParty; dest != gPlayerParty; dest += 4)
 				{ 
 					*dest = *src;
 					src += 4;

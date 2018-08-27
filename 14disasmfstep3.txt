@@ -584,7 +584,7 @@ ItemBattleEffects(arg0, arg1, arg2)
 				
 				if(s3 == 1)
 				{
-					s0 = (arg1 * 0x58) + data_02023C30
+					s0 = data_02023C30[arg1]
 					r0 = 0
 					r1 = 0x28
 					r2 = 0
@@ -771,7 +771,7 @@ ItemBattleEffects(arg0, arg1, arg2)
 			gBattleScripting.0x17 = r7
 			gPotentialItemEffectBattler = r7
 			gActiveBattler = r7
-			s0 = (*gActiveBattler * 0x58) + data_02023C30
+			s0 = data_02023C30[gActiveBattler]
 			r0 = 0
 			r1 = 0x28
 			r2 = 0
@@ -784,26 +784,26 @@ ItemBattleEffects(arg0, arg1, arg2)
 	case 4:
 		if(gBattleMoveDamage != 0)
 		{
-			if(r8 == 0x2E && !(*gMoveResultFlags & 0x29) && (*((*gBattlerTarget * 0x14) + gSpecialStatuses + 8) != 0 || *((*gBattlerTarget * 0x14) + gSpecialStatuses + 0xC) != 0) && ((Random() % 0x64) bcc r9) && (*((*gCurrentMove * 0xC) + gBattleMoves + 8) & 0x20) && *(*gBattlerTarget * 0x58 + gBattleMons + 0x28) != 0)
+			if(r8 == 0x2E && !(gMoveResultFlags & 0x29) && (gSpecialStatuses[gBattlerTarget].8 != 0 || gSpecialStatuses[gBattlerTarget].0xC != 0) && ((Random() % 0x64) bcc r9) && (gBattleMoves[gCurrentMove].8 & 0x20) && gBattleMons[gBattlerTarget].0x28 != 0)
 			{
-				*(gBattleCommunication + 3) = 8
+				gBattleCommunication.3 = 8
 				BattleScriptPushCursor()
 				r0 = 0
 				r1 = 0
 				sub_801FF20()
 				BattleScriptPop()
 			}
-			elseif(r8 == 0x3E && !(*gMoveResultFlags & 0x29) && *((*gBattlerTarget * 0x14) + gSpecialStatuses + 4) != 0 && *((*gBattlerTarget * 0x14) + gSpecialStatuses + 4) != 0xFF && *gBattlerAttacker != *gBattlerTarget && *((*gBattlerAttacker * 0x58) + gBattleMons + 0x28) != *((*gBattlerAttacker * 0x58) + gBattleMons + 0x2C) && *((*gBattlerAttacker * 0x58) + gBattleMons + 0x28) != 0)
+			elseif(r8 == 0x3E && !(gMoveResultFlags & 0x29) && gSpecialStatuses[gBattlerTarget].4 != 0 && gSpecialStatuses[gBattlerTarget].4 != 0xFF && gBattlerAttacker != gBattlerTarget && gBattleMons[gBattlerAttacker].0x28 != gBattleMons[gBattlerAttacker].0x2C && gBattleMons[gBattlerAttacker].0x28 != 0)
 			{
 				gLastUsedItem = s5
-				*gPotentialItemEffectBattler = *gBattlerAttacker
-				gBattleScripting.0x17 = *gBattlerAttacker
-				gBattleMoveDamage = -*((*gBattlerTarget * 0x14) + gSpecialStatuses + 4) / s4
+				gPotentialItemEffectBattler = gBattlerAttacker
+				gBattleScripting.0x17 = gBattlerAttacker
+				gBattleMoveDamage = -gSpecialStatuses[gBattlerTarget].4 / s4
 				
 				if(gBattleMoveDamage == 0)
 					gBattleMoveDamage = -1
 				
-				*((*gBattlerTarget * 0x14) + gSpecialStatuses + 4) = 0
+				gSpecialStatuses[gBattlerTarget].4 = 0
 				BattleScriptPushCursor()
 				gBattleScriptCurrInstr = data_081D9622
 				s3++

@@ -17,7 +17,7 @@ A0 0B 06 09
 abilities:
 + 0x4E = Motor Drive
 + 0x50 = Steadfast
-= 0x52 = (ignores taunt)
++ 0x52 = Gluttony
 + 0x53 = Anger Point
 + 0x54 = Unburden
 + 0x55 = Heatproof
@@ -39,7 +39,8 @@ abilities:
 + 0x73 = Ice Body
 + 0x75 = Snow Warning
 + 0x77 = Frisk
-= 0x7F = (activates on entry, targeting pkmn directly opposite)
++ 0x7D = Sheer Force
++ 0x7F = Unnerve
 + 0x82 = Cursed Body
 + 0x83 = Healer
 + 0x85 = Weak Armor
@@ -71,9 +72,10 @@ abilities:
 = 0xDB = RegalMajesty/Dazzling
 + 0xDD = TanglingHair
 
-(old kid: 16F8C4, old item: 0x125, route 4)
+(old kid: 16F8C4, old item: 0x125, route 4, fix wildmons route15)
 item effects:
 = 0x1D = (not Choice Band)
++ 0x2B = Leftovers if effectparam is 0xFF, otherwise Black Sludge (effectparam = type that heals)
 + 0x44 = Choice Specs
 + 0x45 = Choice Band
 + 0x46 = Choice Scarf
@@ -83,6 +85,7 @@ item effects:
 + 0x4F = Binding Band
 + 0X51 = Big Root
 + 0x52 = Assault Vest
++ 0x54 = Life Orb (effectparam = 1/X HP lost)
 
 itemdata:
 all prices divided by 10
@@ -120,7 +123,7 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0xEB = "[PKMN]'s [ABILITY] made it hail! (placeholder)" <DON'T ADD 9>
 = 0x180 = "[PKMN]'s [ABILITY] nullified the effects of weather!" <ADD THIS AFTER IMPORTING ABILITYBATTLEEFFECTS>
 = 0x181 = "[PKMN]'s [ITEM] let it move first!"
-! 0x184 = "The [ITEM] blocked the move! (placeholder - research)"
+! 0x184 = "[PKMN] is not affected by [MOVE] thanks to its [ITEM]!"
 ! 0x185 = "[PKMN] breaks the mold!"
 ! 0x186 = "[PKMN] is exerting its pressure!"
 ! 0x187 = "[PKMN] can't get it going because of its [ABILITY]!"
@@ -129,7 +132,7 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0x18A = "[PKMN]'s [ABILITY] made it shudder!"
 ! 0x18B = "[ATTACKER] frisked [DEFENDER] and found its [ITEM]!"
 ! 0x18C = "[Your/The opposing] team was protected by [ABILITY]! (placeholder)"
-= 0x18D = (ability 7F activation msg)
+! 0x18D = "[PKMN]'s [ABILITY] makes [your/the opposing] team too nervous to eat Berries! (placeholder)"
 ! 0x18F = "The twisted dimensions returned to normal!"
 ! 0x191 = "[Your/The opposing] team's Tailwind petered out!"
 ! 0x192 = "[PKMN]'s [ABILITY] maxed its Attack! (placeholder)"
@@ -140,6 +143,7 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 + 0x198 = "The effects of the [ITEM] prevent status moves from being used!"
 + 0x199 = "[PKMN]'s [ABILITY] raised its Speed! (placeholder)"
 ! 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]! (placeholder)"
+! 0x19E = "[PKMN] is hurt by its [ITEM]!"
 
 grafics:
 = D0051C (C0051C old, EB8990 new)
@@ -173,7 +177,7 @@ grafics:
 = 011688: 0E 49 -> 10 47 and
   011C68: 4C 2B 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: Pokemon name length, something else - need more info
-		  Required knowledge: j02023F8C (viable), j020385E2, unknown data table at j1400000
+		  Required knowledge: j020385E2, unknown data table at j1400000
 = 0124EB: 80 -> 60 (store weather as fullword)
 = 014CD8: Entirety of GetWhoStrikesFirst (+added GetSpeedStat, GetPriority, GetAbilityValues) (see 04disasm/04disasm2)
 		  Implements: Unburden (effect), Quick Feet, Stall, Klutz (speed items), Slow Start (effect), Sand Rush, Prankster, Gale Wings [gen 6], Slush Rush, Choice Scarf (speed boost), Lagging Tail, Tailwind (effect), Trick Room (effect), 1/4 -> 1/2 paralysis speed cut
@@ -182,7 +186,7 @@ grafics:
 		  Glitch: Stall and Trick Room are in wrong order, Stall goes first in Trick Room (probably doesn't matter in P/D itself)
 = 015910: Entirety of HandleEndTurn_FinishBattle (see 05disasm)
 		  Implements: EVs recalculated per battle (?)
-		  Required knowledge: j02023F89 (viable), j020241E4 (viable)
+		  Required knowledge: j02023F89 (viable)
 		  Requires in future: extra fn j207370
 = 015CA0: Entirety of HandleAction_UseMove (see 06disasm)
 		  Implements: Storm Drain (redirection), Mold Breaker+ (vs redirection)
@@ -203,7 +207,7 @@ grafics:
   01791C: 07 -> 05
   017924: 03 -> 01
   017930: 1D 2A 0D D1 01 98 01 88 00 29 09 D0 15 48 81 42 06 D0 2A 88 91 42 03 D0 30 68 04 43 20 06 04 0E -> 44 2A 0D D3 46 2A 0B D8 01 98 01 88 00 29 07 D0 14 48 81 42 04 D0 2A 88 91 42 01 D0 30 68 04 43
-		  Implements: (ability52?), Klutz (choice item locking), Choice Specs (locking), Choice Scarf (locking)
+		  Implements: Klutz (choice item locking), Choice Specs (locking), Choice Scarf (locking)
 		  Relies on: Choice Band effect ID change
 = 017BE0: D4 80 01 08 44 81 01 08 9C 81 01 08 -> 8A 80 01 08 50 81 01 08 E6 81 01 08
   01801C: 48 46 00 28 00 D0 06 E1 62 46 11 68 C8 78 01 30 C8 70 FC E0 -> A0 E7 10 9A 01 12 40 00 3E 10 98 01 12 40 00 3E 00 00 00 00
@@ -225,11 +229,13 @@ grafics:
           Implements: part of weather refactor
 		  Glitch?: Might cause castform/terubim to "change" when sand starts/ends; might have done it wrong, check if rain=ice and hail=water accidentally
 = 01A088: Most of AbilityBattleEffects (see 13disasm)
-		  Implements: Stench flinch chance, Lightning Rod boost/immunity, Pressure message, Motor Drive, Anger Point, Unburden (activation), Dry Skin (rain/water healing/immunity), Download, Hydration, Magic Guard (vs contact damage abilities), Klutz (the item effects here), Mold Breaker (message), Mold Breaker+ (vs move-subset immunities/absorbing immunities), Aftermath, Anticipation, Forewarn, Slow Start (upkeep), Storm Drain (boost/immunity), Ice Body, Snow Warning, Frisk, (ability7F), Cursed Body, Healer, Weak Armor, Moody, Overcoat (vs powder), Poison Touch, Imposter, Infiltrator (getting affected by hit-reaction abilities when hitting through Substitute), Mummy, Justified, Rattled, Sap Sipper, Iron Barbs, Aroma Veil, Sweet Veil, Gooey, Flower Veil (vs Gooey/Tangling Hair), Bulletproof, Stamina, Water Compaction, Dazzling, Queenly Majesty, Tangling Hair, weather rocks (on abilities), Safety Goggles (vs powder), grass-type powder immunity, dark-type prankster immunity, user affected by hit-reaction abilities when its sound moves hit through Substitute
+		  Implements: Stench flinch chance, Lightning Rod boost/immunity, Pressure message, Motor Drive, Anger Point, Unburden (activation), Dry Skin (rain/water healing/immunity), Download, Hydration, Magic Guard (vs contact damage abilities), Klutz (the item effects here), Mold Breaker (message), Mold Breaker+ (vs move-subset immunities/absorbing immunities), Aftermath, Anticipation, Forewarn, Slow Start (upkeep), Storm Drain (boost/immunity), Ice Body, Snow Warning, Frisk, Unnerve (message), Cursed Body, Healer, Weak Armor, Moody, Overcoat (vs powder), Poison Touch, Imposter, Infiltrator (getting affected by hit-reaction abilities when hitting through Substitute), Mummy, Justified, Rattled, Sap Sipper, Iron Barbs, Aroma Veil, Sweet Veil, Gooey, Flower Veil (vs Gooey/Tangling Hair), Bulletproof, Stamina, Water Compaction, Dazzling, Queenly Majesty, Tangling Hair, weather rocks (on abilities), Safety Goggles (vs powder), grass-type powder immunity, dark-type prankster immunity, user affected by hit-reaction abilities when its sound moves hit through Substitute
 		  Relies on: weather refactor, BattleMove refactor, cloud nine/intimidate id change????, gSpecialStatuses[battler].intimidatedMon?
 		  Requires in future: GetWeatherTurns (e01F358, j01EB68), CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Optional knowledge: BattleMove.typeFlags2.bit2, bit3
-= 01BC68: Entirety of ItemBattleEffects (see 14disasm)
-	(01BC68 - 01CFE4) (01B478 - 01C7F4)
+= 01BC68: Entirety of ItemBattleEffects (+ CheckUnnerve, IsAffectedBySheerForce, GetPinchThreshholdFromParam, GetMoveWithNoPP, GetPartyIndex) (see 14disasm)
+		  Implements: Klutz (berries, Amulet Coin, Leftovers, White Herb, Mental Herb, the item effects here), Sheer Force (Life Orb/Shell Bell glitch), Unnerve (effect), modern Sitrus Berry, Black Sludge, Life Orb, status cure items/white herb consumed immediately
 		  Required knowledge: j0203B950
-		  Requires in future: j207450, j207470
+		  Requires in future: GetPinchThreshhold (j207450), PushScriptInstr (j207470)
+		  Glitch?: white herb/amulet coin might not work unless unnerve IS active
+= 
