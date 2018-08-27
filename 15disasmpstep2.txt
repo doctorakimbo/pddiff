@@ -1,0 +1,121 @@
+lbl1: @1CF70
+r0 = *data_02023E8A
+
+if(r0 != 0)
+{
+	*gCurrentActionFuncId = 0xC
+	return
+}
+
+if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x28) != 0 && *gHitMarker & 0x200)
+{
+	*gHitMarker |= 0x80000
+	*gBattleScriptCurrInstr = data_081D694E
+	return
+}
+
+sub_80192D4()
+
+if(r0 != 0)
+	return
+
+if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x24 + *gCurrMovePos) == 0 && *gCurrentMove != 0xA5 && !(*gHitMarker & 0x800200) && !(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x50) & 0x1000))
+{
+	*gMoveResultFlags |= 1
+	*gBattleScriptCurrInstr = data_081D8EA8
+	return
+}
+
+if((*gBattlerAttacker * 0x58) + gBattleMons + 0x20 == 0xB8)
+{
+	*gHitMarker &= 0x800
+	bne lbl6
+
+	if(*gCurrentMove != 0xA5 && *((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) != *((*gCurrentMove * 0xC) + gBattleMoves + 2) && *((*gBattlerAttacker * 0x58) + gBattleMons + 0x22) != *((*gCurrentMove * 0xC) + gBattleMoves + 2))
+	{
+		*((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) = *((*gCurrentMove * 0xC) + gBattleMoves + 2)
+		*((*gBattlerAttacker * 0x58) + gBattleMons + 0x22) = *((*gCurrentMove * 0xC) + gBattleMoves + 2)
+		*gBattleTextBuff1 = 0xFD
+		*(gBattleTextBuff1 + 1) = 3
+		*(gBattleTextBuff1 + 2) = *((*gCurrentMove * 0xC) + gBattleMoves + 2)
+		*(gBattleTextBuff1 + 3) = 0xFF
+		*(gBattleScripting + 0x17) = *gBattlerAttacker
+		BattleScriptPushCursor()
+		*gBattleScriptCurrInstr = data_081D949C
+		return
+	}
+}
+
+lbl6:
+if(AbilityBattleEffects(2, *gBattlerTarget, 0, 0, *((*gCurrentMove * 0xC) + gBattleMoves + 2)))
+	return
+
+*gHitMarker &= ~0x800000
+
+if(!(*gHitMarker & 0x2000000) && !(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x50) & 0x1000))
+{
+	sub_801D438()
+	r2 = r0
+	
+	if(r2 != 0)
+	{
+		if(r2 == 2)
+		{
+			*gBattlerTarget |= 1
+			return
+		}
+		else
+		{
+			*gHitMarker |= 0x2000000
+			return
+		}
+	}
+}
+
+*gHitMarker |= 0x2000000
+
+if(((!(*((*gBattlerTarget * 0x10) + gProtectStructs) & 0x800) && *((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) != 0x68 && *((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) - 0xA3 >= 1 && *((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 0x9C) || (*((*gBattlerTarget * 0x10) + gProtectStructs) << 0x1B) < 0) && (*((*gCurrentMove * 0xC) + gBattleMoves + 8) & 4))
+{
+	PressurePPLose(*gBattlerAttacker, *gBattlerTarget, 0x115)
+	*((*gBattlerTarget * 0x10) + gProtectStructs) &= ~0x10
+	BattleScriptPushCursor()
+	*gBattleScriptCurrInstr = script_1D2A4_J
+	return
+}
+
+if(*((*gCurrentMove * 0xC) + gBattleMoves + 8) & 8)
+{
+	for(i = 0; i < *gBattlersCount; i++)
+	{
+		if((*((*(i + gBattlerByTurnOrder) * 0x10) + gProtectStructs) << 0x1A) < 0)
+		{
+			*(gBattleScripting + 0x17) = *(i + gBattlerByTurnOrder)
+			PressurePPLose(*gBattlerAttacker, *(i + gBattlerByTurnOrder), 0x121)
+			*((*(i + gBattlerByTurnOrder) * 0x10) + gProtectStructs) &= ~0x20
+			BattleScriptPushCursor()
+			*gBattleScriptCurrInstr = data_081D8FC2
+			return
+		}
+	}
+}
+
+if((*((*gBattlerTarget * 0x14) + gSpecialStatuses) << 0x1E) < 0)
+{
+	*((*gBattlerTarget * 0x14) + gSpecialStatuses) &= ~0x2
+	RecordAbilityBattle(*gBattlerTarget, *((*gBattlerTarget * 0x58) + gBattleMons + 0x20))
+	BattleScriptPushCursor()
+	*gBattleScriptCurrInstr = data_081D938D
+	return
+}
+
+if((*((*gBattlerTarget * 0x10) + gProtectStructs) << 0x1F) != 0 && (*((*gCurrentMove * 0xC) + gBattleMoves + 8) & 2) && (*gCurrentMove != 0xAE || *((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == 7 || *((*gBattlerAttacker * 0x58) + gBattleMons + 0x22) == 7) && (!IsTwoTurnsMove(*gCurrentMove) || (*((*gBattlerAttacker * 0x58) + gBattleMons + 0x50) & 0x1000)))
+{
+	CancelMultiTurnMoves(*gBattlerAttacker)
+	*gMoveResultFlags |= 1
+	*((*gBattlerTarget * 2) + data_02023DA0) = 0
+	*((*gBattlerTarget * 2) + data_02023DA8) = 0
+	*(gBattleCommunication + 6) = 1
+}
+
+(*gBattleScriptCurrInstr)++
+return

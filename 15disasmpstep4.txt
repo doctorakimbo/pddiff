@@ -1,0 +1,144 @@
+atk00_attackcanceler()
+{
+	if(gBattleOutcome != 0)
+	{
+		gCurrentActionFuncId = B_ACTION_FINISHED;
+		return;
+	}
+
+	if(gBattleMons[gBattlerAttacker].hp == 0 && !(gHitMarker & HITMARKER_NO_ATTACKSTRING))
+	{
+		gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
+		gBattleScriptCurrInstr = BattleScript_MoveEnd;
+		return;
+	}
+
+	if(AtkCanceller_UnableToUseMove())
+		return;
+
+	if(!gBattleMons[gBattlerAttacker].pp[gCurrMovePos] && gCurrentMove != MOVE_STRUGGLE && !(gHitMarker & 0x800200) && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
+	{
+		gMoveResultFlags |= MOVE_RESULT_MISSED;
+		gBattleScriptCurrInstr = BattleScript_NoPPForMove;
+		return;
+	}
+
+	if(gBattleMons[gBattlerAttacker].ability == ABILITY_PROTEAN)
+	{
+		r0 = gHitMarker & HITMARKER_NO_PPDEDUCT
+		bne lbl6
+
+		if(gCurrentMove != MOVE_STRUGGLE && !IS_BATTLER_OF_TYPE(gBattlerAttacker, gBattleMoves[gCurrentMove].type))
+		{
+			SET_BATTLER_TYPE(gBattlerAttacker, gBattleMoves[gCurrentMove].type);
+			PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMoves[gCurrentMove].type);
+			gBattleScripting.battler = gBattlerAttacker;
+			BattleScriptPushCursor();
+			gBattleScriptCurrInstr = data_081D949C
+			return;
+		}
+	}
+
+	lbl6:
+	if(AbilityBattleEffects(ABILITYEFFECT_MOVES_BLOCK, gBattlerTarget, 0, 0, 0))
+		return;
+
+	gHitMarker &= ~(HITMARKER_x800000);
+
+	if(!(gHitMarker & HITMARKER_OBEYS) && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
+	{
+		i = isMonDisobedient();
+		
+		if(i != 0)
+		{
+			if(i == 2)
+			{
+				gHitMarker |= HITMARKER_OBEYS;
+				return;
+			}
+			else
+			{
+				gBattlerTarget |= MOVE_RESULT_MISSED;
+				return;
+			}
+		}
+	}
+
+	gHitMarker |= HITMARKER_OBEYS;
+
+	if(((!(gProtectStructs[gBattlerTarget] & 0x800) && gBattleMons[gBattlerAttacker].ability != ABULITY_MOLD_BREAKER && gBattleMons[gBattlerAttacker].ability - 0xA3 >= 1 && gBattleMons[gBattlerTarget].ability == ABILITY_MAGIC_BOUNCE)) || (gProtectStructs[gBattlerTarget].bounceMove && (gBattleMoves[gCurrentMove].flags & FLAG_MAGICCOAT_AFFECTED))))
+	{
+		PressurePPLose(gBattlerAttacker, gBattlerTarget, MOVE_MAGIC_COAT);
+		gProtectStructs[gBattlerTarget].bounceMove = 0;
+		BattleScriptPushCursor();
+		gBattleScriptCurrInstr = BattleScript_MagicCoatOrMagicBounce;
+		return;
+	}
+
+	if(gBattleMoves[gCurrentMove].flags & FLAG_SNATCH_AFFECTED)
+	{
+		for(i = 0; i < gBattlersCount; i++)
+		{
+			if(gProtectStructs[gBattlerByTurnOrder[i]].stealMove)
+			{
+				gBattleScripting.0x17 = gBattlerByTurnOrder[i]
+				PressurePPLose(gBattlerAttacker, gBattlerByTurnOrder[i], MOVE_SNATCH);
+				gProtectStructs[gBattlerByTurnOrder[i]].stealMove = 0;
+				BattleScriptPushCursor();
+				gBattleScriptCurrInstr = BattleScript_SnatchedMove;
+				return;
+			}
+		}
+	}
+
+	if(gSpecialStatuses[gBattlerTarget].lightningRodRedirected)
+	{
+		gSpecialStatuses[gBattlerTarget].lightningRodRedirected = 0;
+		RecordAbilityBattle(gBattlerTarget, gBattleMons[gBattlerTarget].ability);
+		BattleScriptPushCursor();
+		gBattleScriptCurrInstr = BattleScript_TookAttack;
+		return;
+	}
+
+	if(DEFENDER_IS_PROTECTED && (gCurrentMove != MOVE_CURSE || IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST)) && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)))
+	{
+		CancelMultiTurnMoves(gBattlerAttacker);
+		gMoveResultFlags |= MOVE_RESULT_MISSED;
+		gLastLandedMoves[gBattlerTarget] = 0;
+		gLastHitByType[gBattlerTarget] = 0;
+		gBattleCommunication[6] = 1;
+	}
+
+	gBattleScriptCurrInstr++;
+	return;
+}
+
+BattleScript_MagicCoatOrMagicBounce: @1D2A4_J = 1DA94
+(02 03 39 20 00 1E 00 9C B8 D2 01 08 10 BE 00 28 BB D2 01 08 10 9B 01 12 40 00 35 30 3D 02 02 00 0C 80 00 76 01 01 3C) = 
+(02 03 39 20 00 1E 00 9C A8 DA 01 08 10 BE 00 28 AB DA 01 08 10 A4 01 12 40 00 35 D0 3D 02 02 00 0C 80 00 76 01 01 3C)
+attackstring
+ppreduce
+pause 0x20
+jumpifability CMP_EQUAL, ABILITY_MAGIC_BOUNCE, BattleScript_MagicBounce
+printstring STRINGID_PKMNMOVEBOUNCED
+goto BattleScript_MagicCoatOrMagicBounce_End
+
+BattleScript_MagicBounce:
+printstring STRINGID_PKMNABILITYBOUNCED
+goto BattleScript_MagicCoatOrMagicBounce_End
+
+BattleScript_MagicCoatOrMagicBounce_End:
+waitmessage 0x40
+orword gHitMarker, HITMARKER_ATTACKSTRING_PRINTED | HITMARKER_NO_PPDEDUCT | HITMARKER_x800000
+setmagiccoattarget BS_ATTACKER
+return
+
+(compare to BattleScript_MagicCoatBounce):
+attackstring
+ppreduce
+pause 0x20
+printstring STRINGID_PKMNMOVEBOUNCED
+waitmessage 0x40
+orword gHitMarker, HITMARKER_ATTACKSTRING_PRINTED | HITMARKER_NO_PPDEDUCT | HITMARKER_x800000
+setmagiccoattarget BS_ATTACKER
+return

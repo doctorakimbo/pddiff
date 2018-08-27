@@ -1,0 +1,118 @@
+atk00_attackcanceler()
+{
+	if(data_02023E8A != 0)
+	{
+		gCurrentActionFuncId = 0xC
+		return;
+	}
+
+	if(gBattleMons[gBattlerAttacker].0x28 != 0 && (gHitMarker & 0x200))
+	{
+		gHitMarker |= 0x80000
+		gBattleScriptCurrInstr = data_081D694E
+		return;
+	}
+
+	if(sub_80192D4() != 0)
+		return
+
+	if(gBattleMons[gBattlerAttacker].0x24[gCurrMovePos] == 0 && gCurrentMove.0 != 0xA5 && !(gHitMarker & 0x800200) && !(gBattleMons[gBattlerAttacker].0x50 & 0x1000))
+	{
+		gMoveResultFlags |= 1
+		gBattleScriptCurrInstr = data_081D8EA8
+		return;
+	}
+
+	if(gBattleMons[gBattlerAttacker].0x20 == 0xB8)
+	{
+		gHitMarker &= 0x800
+		bne lbl6
+
+		if(gCurrentMove != 0xA5 && gBattleMons[gBattlerAttacker].0x21 != gBattleMoves[gCurrentMove].2 && gBattleMons[gBattlerAttacker].0x22 != gBattleMoves[gCurrentMove].2)
+		{
+			gBattleMons[gBattlerAttacker].0x21 = gBattleMoves[gCurrentMove].2
+			gBattleMons[gBattlerAttacker].0x22 = gBattleMoves[gCurrentMove].2
+			gBattleTextBuff1[0] = 0xFD
+			gBattleTextBuff1[1] = 3
+			gBattleTextBuff1[2] = gBattleMoves[gCurrentMove].2
+			gBattleTextBuff1[3] = 0xFF
+			gBattleScripting.0x17 = gBattlerAttacker
+			BattleScriptPushCursor()
+			gBattleScriptCurrInstr = data_081D949C
+			return;
+		}
+	}
+
+	lbl6:
+	if(AbilityBattleEffects(2, gBattlerTarget, 0, 0, gBattleMoves[gCurrentMove].2))
+		return;
+
+	gHitMarker &= ~0x800000
+
+	if(!(gHitMarker & 0x2000000) && !(gBattleMons[gBattlerAttacker].0x50 & 0x1000))
+	{
+		r2 = sub_801D438()
+		
+		if(r2 != 0)
+		{
+			if(r2 == 2)
+			{
+				gBattlerTarget |= 1
+				return;
+			}
+			else
+			{
+				gHitMarker |= 0x2000000
+				return;
+			}
+		}
+	}
+
+	gHitMarker |= 0x2000000
+
+	if(((!(gProtectStructs[gBattlerTarget].0 & 0x800) && gBattleMons[gBattlerAttacker].0x20 != 0x68 && gBattleMons[gBattlerAttacker].0x20 - 0xA3 >= 1 && gBattleMons[gBattlerTarget].0x20 == 0x9C) || (gProtectStructs[gBattlerTarget].0 << 0x1B) < 0) && (gBattleMoves[gCurrentMove].8 & 4))
+	{
+		PressurePPLose(gBattlerAttacker, gBattlerTarget, 0x115)
+		gProtectStructs[gBattlerTarget].0 &= ~0x10
+		BattleScriptPushCursor()
+		gBattleScriptCurrInstr = script_1D2A4_J
+		return;
+	}
+
+	if(gBattleMoves[gCurrentMove].8 & 8)
+	{
+		for(i = 0; i < gBattlersCount; i++)
+		{
+			if((gProtectStructs[gBattlerByTurnOrder[i]] << 0x1A) < 0)
+			{
+				gBattleScripting.0x17 = gBattlerByTurnOrder[i]
+				PressurePPLose(gBattlerAttacker, gBattlerByTurnOrder[i], 0x121)
+				gProtectStructs[gBattlerByTurnOrder[i]].0 &= ~0x20
+				BattleScriptPushCursor()
+				gBattleScriptCurrInstr = data_081D8FC2
+				return;
+			}
+		}
+	}
+
+	if((gSpecialStatuses[gBattlerTarget].0 << 0x1E) < 0)
+	{
+		gSpecialStatuses[gBattlerTarget].0 &= ~0x2
+		RecordAbilityBattle(gBattlerTarget, gBattleMons[gBattlerTarget].0x20)
+		BattleScriptPushCursor()
+		gBattleScriptCurrInstr = data_081D938D
+		return;
+	}
+
+	if((gProtectStructs[gBattlerTarget].0 << 0x1F) != 0 && (gBattleMoves[gCurrentMove].8 & 2) && (gCurrentMove.0 != 0xAE || gBattleMons[gBattlerAttacker].0x21 == 7 == 7 || gBattleMons[gBattlerAttacker].0x22 == 7) && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].0x50 & 0x1000)))
+	{
+		CancelMultiTurnMoves(gBattlerAttacker)
+		gMoveResultFlags |= 1
+		data_02023DA0[gBattlerTarget] = 0
+		data_02023DA8[gBattlerTarget] = 0
+		gBattleCommunication.6 = 1
+	}
+
+	gBattleScriptCurrInstr++
+	return;
+}

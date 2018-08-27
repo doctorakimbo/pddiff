@@ -35,6 +35,8 @@ FC 3B 02 02: 5C 3B 02 02: gBattleMons.statStages
 7C 3D 02 02: DC 3C 02 02: gChosenActionByBattler (FR) / ?????? (PD)
 80 3D 02 02: E0 3C 02 02: gSelectionBattleScripts
 98 3D 02 02: F8 3C 02 02: gLastMoves
+A0 3D 02 02: 00 3D 02 02: gLastLandedMoves
+A8 3D 02 02: 08 3D 02 02: gLastHitByType
 B8 3D 02 02: 18 3D 02 02: gLockedMoves
 C4 3D 02 02: 24 3D 02 02: gChosenMoveByBattler
 CC 3D 02 02: 2C 3D 02 02: gMoveResultFlags
@@ -47,6 +49,7 @@ FC 3D 02 02: 5C 3D 02 02: gStatuses3
 82 3E 02 02: E2 3D 02 02: gBattleCommunication
 85 3E 02 02: E5 3D 02 02: cEFFECT_CHOOSER
 87 3E 02 02: E7 3D 02 02: cMULTISTRING_CHOOSER
+8A 3E 02 02: EA 3D 02 02: gBattleOutcome
 8C 3E 02 02: EC 3D 02 02: gProtectStructs
 CC 3E 02 02: 2C 3E 02 02: gSpecialStatuses
 1C 3F 02 02: 7C 3E 02 02: gBattleWeather
@@ -79,20 +82,24 @@ funcs e,j,desc:
 00DFF0 = 00D9E4 = BtlController_EmitSetMonData
 011100 = BattleMainCB2
 015A30 = FreeResetData_ReturnToOvOrDoEvolutions
+016EC8 = 0166D8 = PressurePPLose
 017248 = 016A58 = MarkBattlerForControllerExec
-0172E8 = CancelMultiTurnMoves
+0172E8 = 016AF8 = CancelMultiTurnMoves
 017520 = 016D30 = BattleScriptPush
 017544 = 016D54 = BattleScriptPushCursor
 01756C = 016D7C = BattleScriptPop
 017A64 = GetImprisonedMovesCount
+0192D4 = 018AE4 = AtkCanceller_UnableToUseMove
 019DAC = CastformDataTypeChange (FR) / TerubimDataTypeChange (PD)
 019F18 = 019728 = AbilityBattleEffects
 01BBE4 = 01B3F4 = BattleScriptExecute
 01BC24 = 01B434 = BattleScriptPushCursorAndCallback
 01BC68 = 01B478 = ItemBattleEffects
 01D05C = GetMoveTarget
+01D438 = 01CC48 = isMonDisobedient
 01FEE8 = GetBattlerTurnOrderNum
 01FF20 = 01F730 = SetMoveEffect
+02A1C0 = 029998 = IsTwoTurnsMove
 03E47C = CalculateMonStats
 03ECEC = CalculateBaseDamage
 03F78C = 03EEF8 = GetGenderFromSpeciesAndPersonality
@@ -112,7 +119,7 @@ funcs e,j,desc:
 07AF98 = 07A6F8 = weather_get_current
 09A924 = 09A330 = GetHoldEffect
 09A948 = 09A354 = GetHoldEffectParam
-0C71D0 = RecordAbilityBattle
+0C71D0 = 0C83AC = RecordAbilityBattle
 0C7208 = 0C83E4 = RecordItemEffectBattle
 1E3BA8 = call r0
 1E4018 = 1C7F38 = division

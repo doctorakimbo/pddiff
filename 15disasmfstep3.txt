@@ -1,0 +1,94 @@
+atk00_attackcanceler()
+{
+	if(data_02023E8A != 0)
+	{
+		gCurrentActionFuncId = 0xC
+		return;
+	}
+
+	if(gBattleMons[gBattlerAttacker].0x28 != 0 && (gHitMarker & 0x200))
+	{
+		gHitMarker |= 0x80000
+		gBattleScriptCurrInstr = data_081D694E
+		return;
+	}
+
+	r2 = sub_80192D4()
+
+	if(r2 != 0 || AbilityBattleEffects(2, gBattlerTarget, 0, 0, r2))
+		return;
+
+	if(gBattleMons[gBattlerAttacker].0x24[gCurrMovePos] == 0 && gCurrentMove.0 != 0xA5 && !(gHitMarker & 0x800200) && !(gBattleMons[gBattlerAttacker].0x50 & 0x1000))
+	{
+		gBattleScriptCurrInstr = data_081D8EA8
+		gMoveResultFlags |= 1
+		return;
+	}
+
+	gHitMarker &= ~0x800000
+
+	if(!(gHitMarker & 0x2000000) && !(gBattleMons[gBattlerAttacker].0x50 & 0x1000))
+	{
+		r2 = sub_801D438()
+		
+		if(r2 != 0)
+		{
+			if(r2 == 2)
+			{
+				gBattlerTarget |= 1
+				return;
+			}
+			else
+			{
+				gHitMarker |= 0x2000000
+				return;
+			}
+		}
+	}
+
+	gHitMarker |= 0x2000000
+
+	if((gProtectStructs[gBattlerTarget].0 << 0x1B) < 0 && (gBattleMoves[gCurrentMove].8 & 4))
+	{
+		PressurePPLose(gBattlerAttacker, gBattlerTarget, 0x115)
+		gProtectStructs[gBattlerTarget].0 &= ~0x10
+		BattleScriptPushCursor()
+		gBattleScriptCurrInstr = data_081D8FAA
+		return;
+	}
+
+	for(i = 0; i < gBattlersCount; i++)
+	{
+		if((gProtectStructs[gBattlerByTurnOrder[i]] << 0x1A) < 0 && (gBattleMoves[gCurrentMove].8 & 8))
+		{
+			PressurePPLose(gBattlerAttacker, gBattlerByTurnOrder[i], 0x121)
+			gProtectStructs[gBattlerByTurnOrder[i]].0 &= ~0x20
+			gBattleScripting.0x17 = gBattlerByTurnOrder[i]
+			BattleScriptPushCursor()
+			gBattleScriptCurrInstr = data_081D8FC2
+			return;
+		}
+	}
+
+	if((gSpecialStatuses[gBattlerTarget].0 << 0x1E) < 0)
+	{
+		gSpecialStatuses[gBattlerTarget].0 &= ~0x2
+		gLastUsedAbility = 0x1F
+		BattleScriptPushCursor()
+		gBattleScriptCurrInstr = data_081D938D
+		RecordAbilityBattle(gBattlerTarget, gLastUsedAbility)
+		return;
+	}
+
+	if((gProtectStructs[gBattlerTarget].0 << 0x1F) != 0 && !(gBattleMoves[gCurrentMove].8 & 2) && (gCurrentMove.0 != 0xAE || gBattleMons[gBattlerAttacker].0x21 == 7 == 7 || gBattleMons[gBattlerAttacker].0x22 == 7) && (gCurrentMove.0 == 0 || (gBattleMons[gBattlerAttacker].0x50 & 0x1000)))
+	{
+		CancelMultiTurnMoves(gBattlerAttacker)
+		gMoveResultFlags |= 1
+		data_02023DA0[gBattlerTarget] = 0
+		data_02023DA8[gBattlerTarget] = 0
+		gBattleCommunication.6 = 1
+	}
+
+	gBattleScriptCurrInstr++
+	return;
+}

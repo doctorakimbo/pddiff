@@ -53,6 +53,7 @@ abilities:
 + 0x98 = Mummy
 + 0x9A = Justified
 + 0x9B = Rattled
+- 0x9C = Magic Bounce
 + 0x9D = Sap Sipper
 + 0x9E = Prankster
 + 0xA0 = Iron Barbs
@@ -63,6 +64,7 @@ abilities:
 + 0xB0 = Gooey
 + 0xB2 = Gale Wings
 + 0xB6 = Flower Veil
+- 0xB8 = Protean
 + 0xB9 = Bulletproof
 + 0xC0 = Stamina
 + 0xC3 = Compaction
@@ -142,6 +144,7 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0x196 = "[DEFENDER]'s [ABILITY] lowered [ATTACKER]'s [STAT]! (placeholder)"
 + 0x198 = "The effects of the [ITEM] prevent status moves from being used!"
 + 0x199 = "[PKMN]'s [ABILITY] raised its Speed! (placeholder)"
+- 0x19B = "[PKMN]'s [ABILITY] bounced [MOVE] back! (placeholder)"
 ! 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]! (placeholder)"
 ! 0x19E = "[PKMN] is hurt by its [ITEM]!"
 
@@ -238,4 +241,26 @@ grafics:
 		  Required knowledge: j0203B950
 		  Requires in future: GetPinchThreshhold (j207450), PushScriptInstr (j207470)
 		  Glitch?: white herb/amulet coin might not work unless unnerve IS active
-= 
+! 01D402: 97 -> FC (PDONLY, makes mew not disobey)
+- 01D760: Entirety of atk00_attackcanceler (see 15disasm)
+		  Implements: Magic Bounce, Protean, Mold Breaker+ (vs Magic Bounce)
+		  Glitch: If the Magic Bounce user has Magic Coat, Magic Bounce activating against a Pressure user will deduct 1 PP from Magic Coat
+= 01DC7C: Entirety of AccuracyCalcHelper (see 16disasm)
+		  
+= 01DDC4 -> 01DE30: Entirety of atk01_accuracycheck (see 17disasm)
+		  
+= 01E1D8: Entirety of atk02_attackstring (see 18disasm)
+		  
+next: j1DC18
+
+commands that changed address:
+01: 01D5D4 -> 01D640
+08: 01EAC4 -> 01EBA4
+0C: 01EE94 -> 01EEB0
+1D: 020EC8 -> 020E94
+84: 0270A4 -> 027080
+88: 0273A0 -> 027350
+8D: 0279A8 -> 0279A0
+AA: 029BA0 -> 168F08
+D9: 02BE48 -> EB8130
+F8 - FF new
