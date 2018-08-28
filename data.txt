@@ -62,15 +62,17 @@ DE 3F 02 02: 3E 3F 02 02: sSTATCHANGER
 DF 3F 02 02: 3F 3F 02 02: sSTAT_ANIM_PLAYED (FRPD) / sSECOND_STATCHANGER (PD)
 E8 3F 02 02: 48 3F 02 02: gBattleStruct
 F4 3F 02 02: 54 3F 02 02: gBattleResources
-29 40 02 02: 89 3F 02 02: ?????? (within parameters, viable)
+29 40 02 02: 89 3F 02 02: ?????? (within parameters, viable) (HandleEndTurn_FinishBattle: used as index to gPlayerParty in loop)
 2C 40 02 02: 8C 3F 02 02: gEnemyParty
 84 42 02 02: E4 41 02 02: gPlayerParty
-		   : E2 85 03 02: ??????
-           : 00 B9 03 02: ??????
-		   : 50 B9 03 02: ??????
-		   : 0D C0 03 02: ??????
-           : 00 D5 03 02: ??????
-		   : 00 FE 03 02: ??????
+		   : E2 85 03 02: ?????? (CreateNPCTrainerParty: checked if less than 2E6, then used as index to copy data_09400000_J into gEnemyParty)
+           : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
+		   : 50 B9 03 02: ?????? (ItemBattleEffects: zeroed at start of cases 0 (first entry) and 1 (end of turn)
+								 (ItemBattleEffects: checked if set to this battler before executing case 3 (after move?))
+								 (atk01_accuracycheck: ???)
+		   : 0D C0 03 02: ?????? (sub_8032768: zeroed)
+           : 00 D5 03 02: ?????? (sub_8032768: zeroed starting from here to 0203D600)
+		   : 00 FE 03 02: ?????? (HandleAction_UseItem: set to gItemData[gLastUsedItem].type)
 		   
 84 4F 00 03: C4 4F 00 03: gBattleMainFunc
 90 4F 00 03: D0 4F 00 03: gBattleResults
@@ -97,6 +99,9 @@ funcs e,j,desc:
 01BC68 = 01B478 = ItemBattleEffects
 01D05C = GetMoveTarget
 01D438 = 01CC48 = isMonDisobedient
+01DB10 = 01D320 = JumpIfMoveFailed
+01DC10 = 01D420 = JumpIfMoveAffectedByProtect
+01EAB8 = 01E2C8 = ?????
 01FEE8 = GetBattlerTurnOrderNum
 01FF20 = 01F730 = SetMoveEffect
 02A1C0 = 029998 = IsTwoTurnsMove
@@ -121,6 +126,7 @@ funcs e,j,desc:
 09A948 = 09A354 = GetHoldEffectParam
 0C71D0 = 0C83AC = RecordAbilityBattle
 0C7208 = 0C83E4 = RecordItemEffectBattle
+0EB2E0 = 0EC28C = ?????
 1E3BA8 = call r0
 1E4018 = 1C7F38 = division
 1E460C = division
@@ -144,6 +150,7 @@ funcs e,j,desc:
 
 data:
 250104 = sSoundMovesTable
+2504FC = 25CF04 = 
 25DEAD = gStatStageRatios
 25E45C = gBitTable
 

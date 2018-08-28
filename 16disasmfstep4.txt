@@ -1,0 +1,49 @@
+AccuracyCalcHelper(move)
+{
+	if((gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS) && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
+	{
+		JumpIfMoveFailed(7, move);
+		return TRUE;
+	}
+	
+	if(!(gHitMarker & HITMARKER_IGNORE_ON_AIR) && (gStatuses3[gBattlerTarget] & STATUS3_ON_AIR))
+	{
+		gMoveResultFlags |= MOVE_RESULT_MISSED;
+		JumpIfMoveFailed(7, move);
+		return TRUE;
+	}
+		
+	gHitMarker &= ~HITMARKER_IGNORE_ON_AIR;
+
+	if(!(gHitMarker & HITMARKER_IGNORE_UNDERGROUND) && (gStatuses3[gBattlerTarget]) & STATUS3_UNDERGROUND))
+	{
+		gMoveResultFlags |= MOVE_RESULT_MISSED;
+		JumpIfMoveFailed(7, move);
+		return TRUE;
+	}
+	
+	gHitMarker &= ~HITMARKER_IGNORE_UNDERGROUND;
+	
+	if(!(gHitMarker & HITMARKER_IGNORE_UNDERWATER) && (gStatuses3[gBattlerTarget] & STATUS3_UNDERWATER))
+	{
+		gMoveResultFlags |= MOVE_RESULT_MISSED;
+		JumpIfMoveFailed(7, move);
+		return TRUE;
+	}
+
+	gHitMarker &= ~HITMARKER_IGNORE_UNDERWATER;
+	
+	if(WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_RAIN_ANY) && gBattleMoves[move].effect == EFFECT_THUNDER)
+	{
+		JumpIfMoveFailed(7, move);
+		return TRUE;
+	}
+	
+	if(gBattleMoves[move].effect == EFFECT_ALWAYS_HIT || gBattleMoves[move].effect == EFFECT_VITAL_THROW)
+	{
+		JumpIfMoveFailed(7, move);
+		return TRUE;
+	}
+	
+	return FALSE;
+}

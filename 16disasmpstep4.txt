@@ -1,0 +1,100 @@
+AccuracyCalcHelper(move)
+{
+	if(gBattleMons[gBattlerAttacker].ability == ABILITY_NO_GUARD || gBattleMons[gBattlerTarget].ability == ABILITY_NO_GUARD)
+	{
+		JumpIfMoveFailed(7, move);
+		return TRUE;
+	}
+	
+	if(move == MOVE_TOXIC && IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_POISON))
+	{
+		JumpIfMoveFailed(7, move);
+		return TRUE;
+	}
+	
+	if((gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS) && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
+	{
+		JumpIfMoveFailed(7, move);
+		return TRUE;
+	}
+	
+	if(!(gHitMarker & HITMARKER_IGNORE_ON_AIR) && (gStatuses3[gBattlerTarget] & STATUS3_ON_AIR))
+	{
+		gMoveResultFlags |= MOVE_RESULT_MISSED;
+		JumpIfMoveFailed(7, move);
+		return TRUE;
+	}
+
+	if(!(gHitMarker & HITMARKER_IGNORE_UNDERGROUND) && (gStatuses3[gBattlerTarget] & STATUS3_UNDERGROUND))
+	{
+		gMoveResultFlags |= MOVE_RESULT_MISSED;
+		JumpIfMoveFailed(7, move);
+		return TRUE;
+	}
+	
+	if(!(gHitMarker & HITMARKER_IGNORE_UNDERWATER) && (gStatuses3[gBattlerTarget] & STATUS3_UNDERWATER))
+	{
+		gMoveResultFlags |= MOVE_RESULT_MISSED;
+		JumpIfMoveFailed(7, move);
+		return TRUE;
+	}
+
+	gHitMarker &= ~(HITMARKER_IGNORE_ON_AIR | HITMARKER_IGNORE_UNDERGROUND | HITMARKER_IGNORE_UNDERWATER);
+	
+	if((gStatuses3[gBattlerTarget] & STATUS3_MINIMIZED) && gBattleMoves[move].effect == EFFECT_FLINCH_MINIMIZE_HIT)
+	{
+		JumpIfMoveFailed(7, move);
+		return TRUE;
+	}
+
+	if(WEATHER_HAS_EFFECT)
+	{
+		if((gBattleWeather & WEATHER_RAIN_ANY) && (gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_0xEE)) // EFFECT_HURRICANE
+		{
+			JumpIfMoveFailed(7, move);
+			return TRUE;
+		}
+
+		if((gBattleWeather & WEATHER_HAIL_ANY) && move == MOVE_BLIZZARD)
+		{
+			JumpIfMoveFailed(7, move);
+			return TRUE;
+		}
+	}
+
+	if(move == MOVE_STRUGGLE)
+	{
+		JumpIfMoveFailed(7, move);
+		return TRUE;
+	}
+	
+	for(i = 0; i < 0x10; i++)
+	{
+		if(gBattleMoves[move].effect == WontMissMoveEffectsTable[i])
+		{
+			JumpIfMoveFailed(7, move);
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
+WontMissMoveEffectsTable: @1D5F0_J
+11 1A 37 38 3F 4E 52 5B 5E 68 71 B2 B7 BB C0 C3
+- EFFECT_ALWAYS_HIT
+- EFFECT_BIDE
+- not(EFFECT_ACCURACY_UP_2)
+- not(EFFECT_EVASION_UP_2)
+- not(EFFECT_ACCURACY_DOWN_2)
+- EFFECT_VITAL_THROW
+- EFFECT_MIMIC
+- EFFECT_PAIN_SPLIT
+- EFFECT_LOCK_ON
+- not(EFFECT_TRIPLE_KICK)
+- EFFECT_FORESIGHT
+- EFFECT_ROLE_PLAY
+- EFFECT_MAGIC_COAT
+- EFFECT_YAWN
+- EFFECT_IMPRISON
+- EFFECT_SNATCH

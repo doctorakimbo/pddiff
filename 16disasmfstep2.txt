@@ -1,0 +1,49 @@
+AccuracyCalcHelper(arg0)
+{
+	if((*((*gBattlerTarget * 4) + gStatuses3) & 0x18) && *((*gBattlerTarget * 0x1C) + gDisableStructs + 0x15) == *gBattlerAttacker)
+	{
+		JumpIfMoveFailed(7, arg0)
+		return 1
+	}
+	
+	if(!(*gHitMarker & 0x10000) && (*((*gBattlerTarget * 4) + gStatuses3) & 0x40))
+	{
+		*gMoveResultFlags |= 1
+		JumpIfMoveFailed(7, arg0)
+		return 1
+	}
+		
+	*gHitMarker &= ~0x10000
+
+	if(!(*gHitMarker & 0x20000) && (*((*gBattlerTarget * 4) + gStatuses3) & 0x80))
+	{
+		*gMoveResultFlags |= 1
+		JumpIfMoveFailed(7, arg0)
+		return 1
+	}
+	
+	*gHitMarker &= ~0x20000
+	
+	if(!(*gHitMarker & 0x40000) && (*((*gBattlerTarget * 4) + gStatuses3) & 0x40000))
+	{
+		*gMoveResultFlags |= 1
+		JumpIfMoveFailed(7, arg0)
+		return 1
+	}
+
+	*gHitMarker &= ~0x40000
+	
+	if(!AbilityBattleEffects(0x13, 0, 0xD, 0, 0) && !AbilityBattleEffects(0x13, 0, 0x4D, 0, 0) && (*gBattleWeather & 7) && *((arg0 * 0xC) + gBattleMoves) == 0x98)
+	{
+		JumpIfMoveFailed(7, arg0)
+		return 1
+	}
+	
+	if(*((arg0 * 0xC) + gBattleMoves) == 0x11 || *((arg0 * 0xC) + gBattleMoves) == 0x7E)
+	{
+		JumpIfMoveFailed(7, arg0)
+		return 1
+	}
+	
+	return 0
+}

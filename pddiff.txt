@@ -27,6 +27,7 @@ abilities:
 + 0x5D = Hydration
 + 0x5F = Quick Feet
 + 0x62 = Magic Guard
+- 0x63 = No Guard
 + 0x64 = Stall
 + 0x66 = Leaf Guard
 + 0x67 = Klutz
@@ -88,6 +89,13 @@ item effects:
 + 0X51 = Big Root
 + 0x52 = Assault Vest
 + 0x54 = Life Orb (effectparam = 1/X HP lost)
+
+move effects:
+= 0x37 = (won't miss)
+= 0x38 = (won't miss)
+= 0x3F = (won't miss)
+= 0x68 = (won't miss)
+= 0xEE = Hurricane
 
 itemdata:
 all prices divided by 10
@@ -178,7 +186,7 @@ grafics:
 = 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
 = 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC: 0B -> 0D (pkmnnamelength)
 = 011688: 0E 49 -> 10 47 and
-  011C68: 4C 2B 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
+  0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: Pokemon name length, something else - need more info
 		  Required knowledge: j020385E2, unknown data table at j1400000
 = 0124EB: 80 -> 60 (store weather as fullword)
@@ -246,9 +254,10 @@ grafics:
 		  Implements: Magic Bounce, Protean, Mold Breaker+ (vs Magic Bounce)
 		  Glitch: If the Magic Bounce user has Magic Coat, Magic Bounce activating against a Pressure user will deduct 1 PP from Magic Coat
 = 01DC7C: Entirety of AccuracyCalcHelper (see 16disasm)
-		  
+		  Implements: No Guard, the following not missing: Toxic from poison-types, Stomp on Minimize, Hurricane in rain, Blizzard in hail, Struggle, Bide, Mimic, Pain Split, Lock-On, Foresight, Role Play, Yawn, Imprison, Magic Coat (?), Snatch (?), (effect37), (effect38), (effect3F), (effect68)
+		  Relies on: weather refactor
 = 01DDC4 -> 01DE30: Entirety of atk01_accuracycheck (see 17disasm)
-		  
+		  Relies on: weather refactor, GetAbilityUserOnSameSide()
 = 01E1D8: Entirety of atk02_attackstring (see 18disasm)
 		  
 next: j1DC18
