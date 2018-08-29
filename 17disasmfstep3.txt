@@ -1,0 +1,104 @@
+atk01_accuracycheck()
+{
+	r6 = (*(gBattleScriptCurrInstr + 6) * 0x100) | *(gBattleScriptCurrInstr + 5)
+
+	if((gBattleTypeFlags & 0x10) && !fn_EB2E0(1) && data_0820D60C[r6].1 != 0 && GetBattlerSide(gBattlerAttacker) == 0)
+	{
+		JumpIfMoveFailed(7, r6)
+		return
+	}
+	
+	if((gBattleTypeFlags & 0x10) && !fn_EB2E0(2) && gBattleMoves[r6].1 == 0 && GetBattlerSide(gBattlerAttacker) == 0)
+	{
+		JumpIfMoveFailed(7, r6)
+		return
+	}
+
+	if(gBattleTypeFlags & 0x10000)
+	{
+		JumpIfMoveFailed(7, r6)
+		return
+	}
+
+	if(r6 + 2 <= 1)
+	{	
+		if((gStatuses3[gBattlerTarget] & 0x18) && r6 == 0xFFFF && gDisableStructs[gBattlerTarget].0x15 == gBattlerAttacker)
+			gBattleScriptCurrInstr += 7
+		elseif(gStatuses3[gBattlerTarget] & 0x400C0)
+			gBattleScriptCurrInstr = (*(gBattleScriptCurrInstr + 4) * 0x1000000) | (*(gBattleScriptCurrInstr + 3) * 0x10000) | (*(gBattleScriptCurrInstr + 2) * 0x100) | *(gBattleScriptCurrInstr + 1)
+		elseif(!JumpIfMoveAffectedByProtect(0))
+			gBattleScriptCurrInstr += 7
+	}
+	else
+	{
+		if(r6 == 0)
+			r6 = gCurrentMove
+		
+		if(gBattleStruct.0x13 != 0)
+			r10 = gBattleStruct.0x13 & 0x3F
+		else
+			r10 = gBattleMoves[r6].2
+		
+		if(JumpIfMoveAffectedByProtect(r6) && AccuracyCalcHelper(r6))
+		{
+			if(gBattleMons[gBattlerTarget].0x50 & 0x20000000)
+				r5 = gBattleMons[gBattlerAttacker].0x1E
+			else
+				r5 = 6 + gBattleMons[gBattlerAttacker].0x1E - gBattleMons[gBattlerTarget].0x1F
+			
+			if(r5 < 0)
+				r5 = 0
+			
+			if(r5 > 0xC)
+				r5 = 0xC
+			
+			if(!AbilityBattleEffects(0x13, 0, 0xD, 0, 0) && !AbilityBattleEffects(0x13, 0, 0x4D, 0, 0) && (gBattleWeather & 0x60) && gBattleMoves[r6] == 0x98)
+				r8 = 50
+			else
+				r8 = gBattleMoves[r6].3
+			
+			r4 = r8 * (data_082504FC[r5][0] / data_082504FC[r5][1])
+			
+			if(gBattleMons[gBattlerAttacker].0x20 == 0xE)
+				r4 *= (130 / 100)
+			
+			if(!AbilityBattleEffects(0x13, 0, 0xD, 0, 0) && !AbilityBattleEffects(0x13, 0, 0x4D, 0, 0) && gBattleMons[gBattlerTarget].0x20 == 8 && (gBattleWeather & 0x18))
+				r4 *= (80 / 100)
+			
+			if(gBattleMons[gBattlerAttacker].0x20 == 0x37 && r10 <= 8)
+				r4 *= (80 / 100)
+			
+			if(gBattleMons[gBattlerTarget].0x2E == 0xAF)
+			{
+				r5 = gEnigmaBerries[gBattlerTarget].7
+				r2 = gEnigmaBerries[gBattlerTarget].0x1A
+			}
+			else
+			{
+				r5 = GetHoldEffect(gBattleMons[gBattlerTarget].0x2E)
+				r2 = GetHoldEffectParam(gBattleMons[gBattlerTarget].0x2E)
+			}
+
+			gPotentialItemEffectBattler = gBattlerTarget
+			
+			if(r5 == 0x16)
+				r4 *= ((r2 - 100) / 100)
+			
+			if((Random() / 100) + 1 > r4)
+			{
+				gMoveResultFlags |= 1
+				
+				if(gBattleTypeFlags & 1 && (gBattleMoves[r6].6 == 8 || gBattleMoves[r6].6 == 0x20))
+					gBattleCommunication.6 = 2
+				else
+					gBattleCommunication.6 = 0
+				
+				CheckWonderGuardAndLevitate()
+			}
+			
+			JumpIfMoveFailed(7, r6)
+		}
+	}
+
+	return
+}

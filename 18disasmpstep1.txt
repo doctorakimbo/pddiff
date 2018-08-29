@@ -1,0 +1,79 @@
+r0 = gCurrentMove
+r0 = *r0
+
+if(r0 != 0)
+{
+	r1 = gBattlerAttacker
+	r1 = *r1
+	r2 = 1
+	r2 &= r1
+	
+	if(r2 != 1)
+	{
+		r1 *= 2
+		r2 = gBattlerPartyIndexes
+		r1 = *(r2 + r1)
+		r2 = 0xC
+		r1 *= r2
+		r2 = data_0203B970_J
+		r1 += r2
+		r2 = 0
+		
+		do
+		{
+			r3 = *(r1 + r2)
+			
+			if(r3 == 0)
+			{
+				*(r1 + r2) = r0
+				r0 = 0
+				r2 /= 2
+				r2 += 8
+				*(r1 + r2) = r0
+				return
+			}
+
+			if(r3 == r0)
+			{
+				r2 /= r2
+				r2 += 8
+				r0 = *(r1 + r2)
+				
+				if(r0 != 0xFF)
+				{
+					r0++
+					*(r1 + r2) = r0
+					return
+				}
+			}
+
+			r2 += 2
+		} while(r2 < 8)
+
+		r4 = 0xFF
+		r5 = 0
+
+		do
+		{
+			r3 = *(r1 + r2)
+			
+			if(r3 < r4)
+			{
+				r4 = r3
+				r5 = r2
+				r5 -= 8
+			}
+			
+			r2++
+		} while(r2 < 0xC)
+
+		r2 = r5 * 2
+		*(r1 + r2) = r0
+		r0 = 0
+		r2 /= 2
+		r2 += 8
+		*(r1 + r2) = r0
+	}
+}
+
+return

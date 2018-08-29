@@ -1,0 +1,33 @@
+fn_207790_J()
+{
+	if(gCurrentMove != 0 && (gBattlerAttacker & BIT_SIDE) != B_SIDE_OPPONENT)
+	{
+		for(i = 0; i < 4; i++)
+		{
+			if(data_0203B970_J[gBattlerPartyIndexes[gBattlerAttacker]].field1[i] == 0)
+			{
+				data_0203B970_J[gBattlerPartyIndexes[gBattlerAttacker]].field1[i] = gCurrentMove;
+				data_0203B970_J[gBattlerPartyIndexes[gBattlerAttacker]].field2[i] = 0;
+				return;
+			}
+			elseif(data_0203B970_J[gBattlerPartyIndexes[gBattlerAttacker]].field1[i] == gCurrentMove && data_0203B970_J[gBattlerPartyIndexes[gBattlerAttacker]].field2[i] != 0xFF)
+			{
+				data_0203B970_J[gBattlerPartyIndexes[gBattlerAttacker]].field2[i]++;
+				return;
+			}
+		}
+		
+		index = 0;
+
+		for(i = 0; i < 4; i++)
+		{
+			if(data_0203B970_J[gBattlerPartyIndexes[gBattlerAttacker]].field2[i] < 0xFF)
+				index = i;
+		}
+		
+		data_0203B970_J[gBattlerPartyIndexes[gBattlerAttacker]].field1[index] = gCurrentMove;
+		data_0203B970_J[gBattlerPartyIndexes[gBattlerAttacker]].field2[index] = 0;
+	}
+
+	return
+}

@@ -1,0 +1,104 @@
+atk01_accuracycheck()
+{
+	move = T2_READ_16(gBattleScriptCurrInstr + 5);
+	
+	if(gBattleTypeFlags & 0x10000)
+	{
+		JumpIfMoveFailed(7, move);
+		return;
+	}
+
+	if(move == NO_ACC_CALC || move == NO_ACC_CALC_CHECK_LOCK_ON)
+	{
+		if(AccuracyCalcHelper(gCurrentMove))
+		{
+			gStatuses3[gBattlerTarget] |= 8
+			gDisableStructs[gBattlerTarget].battlerWithSureHit = gBattlerAttacker;
+		}
+		elseif(gStatuses3[gBattlerTarget] & (STATUS3_ON_AIR | STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
+			gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+		elseif(!JumpIfMoveAffectedByProtect(0))
+			gBattleScriptCurrInstr += 7;
+	}
+	else
+	{
+		if(move == 0)
+			move = gCurrentMove;
+
+		if(gBattleStruct->dynamicMoveType)
+			moveFieldA = gBattleStruct->dynamicMoveType;
+		else
+			moveFieldA = gBattleMoves[move].typeFlags2;
+			
+		if(JumpIfMoveAffectedByProtect(move))
+            return;
+        if(AccuracyCalcHelper(move))
+            return;
+			
+		moveAcc = gBattleMoves[move].accuracy;
+		
+		if(WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY) && gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_HURRICANE))
+			moveAcc = 50;
+		
+		if(gBattleMons[gBattlerAttacker].ability != ABILITY_MOLD_BREAKER && gBattleMons[gBattlerAttacker].ability - 0xA3 >= 1 && gBattleMons[gBattlerTarget].ability == ABILITY_UNAWARE)
+			buff = 6;
+		else
+			buff = gBattleMons[gBattlerAttacker].statStages[STAT_ACC];
+		
+		if(gBattleMons[gBattlerAttacker].ability != ABILITY_UNAWARE && (gBattleMons[gBattlerTarget].statStages[STAT_EVASION] <= 6 || (!(gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT) && gBattleMons[gBattlerAttacker].ability != ABILITY_KEEN_EYE)))
+			buff += 6 - gBattleMons[gBattlerTarget].statStages[STAT_EVASION];
+		
+		if(buff < 0)
+			buff = 0;
+		
+		if(buff > 0xC)
+			buff = 0xC;
+		
+		calc = moveAcc * (sAccuracyStageRatios[buff].dividend / sAccuracyStageRatios[buff].divisor);
+		
+		if(gBattleMons[gBattlerAttacker].ability != ABILITY_KLUTZ && GetHoldEffect(gBattleMons[gBattlerAttacker].item) == ITEM_EFFECT_ACCURACY_UP)
+			calc *= ((100 + GetHoldEffectParam(gBattleMons[gBattlerAttacker].item)) / 100);
+		
+		if(gBattleMons[gBattlerAttacker].ability == ABILITY_COMPOUND_EYES)
+			calc *= (130 / 100);
+		elseif(gBattleMons[gBattlerAttacker].ability == ABILITY_HUSTLE && (moveFieldA & 1))
+			calc *= (80 / 100);
+		
+		if(gBattleMons[gBattlerAttacker].ability == ABILITY_VICTORY_STAR || GetAbilityUserOnSameSide(gBattlerAttacker, ABILITY_VICTORY_STAR))
+		{
+			calc *= (110 / 100);
+			
+			if(gBattleMons[gBattlerAttacker].ability != ABILITY_MOLD_BREAKER && gBattleMons[gBattlerAttacker].ability - 0xA3 >= 1 && gBattleMons[gBattlerTarget].ability == ABILITY_WONDER_SKIN && (moveFieldA & 4))
+				calc *= (60 / 100);
+		}
+		elseif(gBattleMons[gBattlerTarget].ability == ABILITY_TANGLED_FEET && (gBattleMons[gBattlerTarget].status2 & STATUS2_CONFUSION))
+			calc *= (80 / 100);
+		elseif(WEATHER_HAS_EFFECT && ((gBattleMons[gBattlerTarget].ability == ABILITY_SAND_VEIL && (gBattleWeather & WEATHER_SANDSTORM_ANY)) || (gBattleMons[gBattlerTarget].ability == ABILITY_SNOW_CLOAK && (gBattleWeather & ABILITY_HAIL_ANY))))
+			calc *= (80 / 100);
+		
+		if(gBattleMons[gBattlerTarget].ability != ABILITY_KLUTZ && GetHoldEffect(gBattleMons[gBattlerTarget].item) == HOLD_EFFECT_EVASION_UP)
+			calc *= ((GetHoldEffectParam(gBattleMons[gBattlerTarget].item) - 100) / 100);
+		
+		gPotentialItemEffectBattler = gBattlerTarget;
+		
+		if(((Random() % 100) + 1) > calc)
+		{
+			gMoveResultFlags |= MOVE_RESULT_MISSED;
+			
+			if((gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && (gBattleMoves[move].target == MOVE_TARGET_BOTH || gBattleMoves[move].target == MOVE_TARGET_FOES_AND_ALLY))
+				gBattleCommunication[6] = 2;
+			else
+				gBattleCommunication[6] = 0;
+			
+			CheckWonderGuardAndLevitate();
+		}
+		else
+		{
+			data_0203B950_J = (1 << gBattlerTarget);
+		}
+		
+		JumpIfMoveFailed(7, move);
+	}
+
+	return;
+}

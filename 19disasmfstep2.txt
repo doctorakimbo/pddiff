@@ -1,0 +1,58 @@
+atk04_critcalc()
+{
+	if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x2E) == 0xAF)
+		r6 = *((*gBattlerAttacker * 0x1C) + gEnigmaBerries + 7)
+	else
+		r6 = GetHoldEffect()
+
+	*gPotentialItemEffectBattler = *gBattlerAttacker
+	r5 = (-(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x50) & 0x100000) >> 0x1F) & 2
+
+	if(*((*gCurrentMove * 0xC) + gBattleMoves) == 0x2B)
+		r5++
+
+	r0 = r5
+
+	if(*((*gCurrentMove * 0xC) + gBattleMoves) == 0x4B)
+		r0++
+
+	if(*((*gCurrentMove * 0xC) + gBattleMoves) == 0xC8)
+		r0++
+
+	r2 = r0
+
+	if(*((*gCurrentMove * 0xC) + gBattleMoves) == 0xD1)
+		r2++
+
+	r1 = 0
+
+	if(r6 == 0x3F && *((*gBattlerAttacker * 0x58) + gBattleMons) == 0x71)
+		r1++
+
+	r5 = r1 * 2
+	r3 = 0
+
+	if(r6 == 0x42 && *((*gBattlerAttacker * 0x58) + gBattleMons) == 0x53)
+		r3 = 1
+
+	r1 = r3 * 2
+
+	if(r6 == 0x29)
+		r0 = r2 + r5 + 1
+	else
+		r0 = r2 + r5
+
+	r0 += r1
+	r5 = r0
+
+	if(r5 >= 4)
+		r5 = 4
+
+	if(*((*gBattlerTarget * 0x58) + gBattleMons + 0x20) != 4 && *((*gBattlerTarget * 0x58) + gBattleMons + 0x20) != 0x4B && !(*((*gBattlerAttacker * 4) + gStatuses3) & 0x8000) && !(*gBattleTypeFlags & 0x200) && (Random() % *((r5 * 2) + data_08250530)) == 0 && (!(*gBattleTypeFlags & 0x10) || !fn_EB2E0(1)) && !(*gBattleTypeFlags & 0x10000))
+		*gCritMultiplier = 2
+	else
+		*gCritMultiplier = 1
+	
+	(*gBattleScriptCurrInstr)++
+	return
+}

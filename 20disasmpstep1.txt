@@ -1,0 +1,18 @@
+atk05_damagecalc
+{
+	r0 = CalculateBaseDamage((*gBattlerAttacker * 0x58) + gBattleMons, (*gBattlerTarget * 0x58) + gBattleMons, *gCurrentMove, *(((GetBattlerPosition(*gBattlerTarget) & 1) * 2) + gSideStatuses), *data_02023F50, *(*gBattleStruct + 0x13), *gBattlerAttacker, *gBattlerTarget)
+	
+	
+	
+	if(*gCritMultiplier == 2)
+	{
+		if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x61)
+			*gBattleMoveDamage = (r0 * 2) + r0 / 4
+		else
+			*gBattleMoveDamage = r0 + (r0 / 2)
+	}
+	else
+		*gBattleMoveDamage = r0
+	
+	(*gBattleScriptCurrInstr)++
+}

@@ -1,0 +1,70 @@
+lbl1: @207790
+r0 = gCurrentMove
+r0 = *r0
+if(r0 == 0) goto lbl7
+
+r1 = gBattlerAttacker
+r1 = *r1
+r2 = 1
+r2 &= r1
+if(r2 == 1) goto lbl7
+
+r1 *= 2
+r2 = gBattlerPartyIndexes
+r1 = *(r2 + r1)
+r2 = 0xC
+r1 *= r2
+r2 = data_0203B970_J
+r1 += r2
+r2 = 0
+goto lbl2
+
+lbl2:
+r3 = *(r1 + r2)
+if(r3 == 0) goto lbl5
+
+if(r3 == r0) goto lbl6
+
+r2 += 2
+if(r2 < 8) goto lbl2
+
+r4 = 0xFF
+r5 = 0
+goto lbl3
+
+lbl3:
+r3 = *(r1 + r2)
+if(r3 >= r4) goto lbl4
+
+r4 = r3
+r5 = r2
+r5 -= 8
+goto lbl4
+
+lbl4:
+r2++
+if(r2 < 0xC) goto lbl3
+
+r2 = r5 * 2
+goto lbl5
+
+lbl5:
+*(r1 + r2) = r0
+r0 = 0
+r2 /= 2
+r2 += 8
+*(r1 + r2) = r0
+goto lbl7
+
+lbl6:
+r2 /= r2
+r2 += 8
+r0 = *(r1 + r2)
+if(r0 == 0xFF) goto lbl7
+
+r0++
+*(r1 + r2) = r0
+goto lbl7
+
+lbl7:
+return

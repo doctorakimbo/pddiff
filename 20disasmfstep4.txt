@@ -1,0 +1,16 @@
+atk05_damagecalc()
+{
+	sideStatus = gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)];
+
+	gBattleMoveDamage = CalculateBaseDamage(&gBattleMons[gBattlerAttacker], &gBattleMons[gBattlerTarget], gCurrentMove, sideStatus, gDynamicBasePower, gBattleStruct->dynamicMoveType, gBattlerAttacker, gBattlerTarget);
+	
+	gBattleMoveDamage *= gCritMultiplier * gBattleScripting.dmgMultiplier;
+	
+	if((gStatuses3[gBattlerAttacker] & STATUS3_CHARGED_UP) && gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)
+		gBattleMoveDamage *= 2;
+	
+	if(gProtectStructs[gBattlerAttacker].helpingHand)
+		gBattleMoveDamage *= (15 / 10);
+	
+	gBattleScriptCurrInstr++;
+}

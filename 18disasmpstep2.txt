@@ -1,0 +1,33 @@
+fn_207790_J()
+{
+	if(*gCurrentMove != 0 && !(*gBattlerAttacker & 1))
+	{
+		for(r2 = 0; r2 < 8; r2 += 2)
+		{
+			if(*((*((*gBattlerAttacker * 2) + gBattlerPartyIndexes) * 0xC) + data_0203B970_J + r2) == 0)
+			{
+				*((*((*gBattlerAttacker * 2) + gBattlerPartyIndexes) * 0xC) + data_0203B970_J + r2) = *gCurrentMove
+				*((*((*gBattlerAttacker * 2) + gBattlerPartyIndexes) * 0xC) + data_0203B970_J + (r2 / 2) + 8) = 0
+				return
+			}
+			elseif(*((*((*gBattlerAttacker * 2) + gBattlerPartyIndexes) * 0xC) + data_0203B970_J + r2) == *gCurrentMove && *((*((*gBattlerAttacker * 2) + gBattlerPartyIndexes) * 0xC) + data_0203B970_J + (r2 / 2) + 8)) != 0xFF)
+			{
+				*((*((*gBattlerAttacker * 2) + gBattlerPartyIndexes) * 0xC) + data_0203B970_J + r2) = *((*((*gBattlerAttacker * 2) + gBattlerPartyIndexes) * 0xC) + data_0203B970_J + (r2 / 2) + 8)) + 1
+				return
+			}
+		}
+		
+		r5 = 0
+
+		for(; r2 < 0xC; r2++)
+		{
+			if(*((*((*gBattlerAttacker * 2) + gBattlerPartyIndexes) * 0xC) + data_0203B970_J + r2) < 0xFF)
+				r5 = r2 - 8
+		}
+		
+		*((*((*gBattlerAttacker * 2) + gBattlerPartyIndexes) * 0xC) + data_0203B970_J + (r5 * 2)) = *gCurrentMove
+		*((*((*gBattlerAttacker * 2) + gBattlerPartyIndexes) * 0xC) + data_0203B970_J + (r5 + 8)) = 0
+	}
+
+	return
+}

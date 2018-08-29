@@ -1,0 +1,56 @@
+lbl1: @1DDAC
+r4 = gSideStatuses
+r5 = gBattlerTarget
+r0 = *r5
+GetBattlerPosition()
+r1 = 1
+r1 &= r0
+r1 *= 2
+r1 += r4
+r3 = *r1
+r6 = gBattlerAttacker
+r0 = *r6
+s2 = r0
+r4 = 0x58
+r0 *= r4
+r2 = gBattleMons
+r0 += r2
+r1 = *r5
+s3 = r1
+r1 *= r4
+r1 += r2
+r7 = gCurrentMove
+r2 = *r7
+r4 = data_02023F50
+r4 = *r4
+s0 = r4
+r4 = gBattleStruct
+r4 = *r4
+r4 = *(r4 + 0x13)
+s1 = r4
+r4 = r0
+CalculateBaseDamage()
+r3 = r0
+r1 = gCritMultiplier
+r1 = *r1
+if(r1 != 2) goto lbl2
+
+r3 = r0 / 2
+r3 += r0
+r4 += 0x20
+r1 = *r4
+if(r1 != 0x61) goto lbl2
+
+r3 = r0 / 4
+r0 *= 2
+r3 += r0
+
+goto lbl2
+
+lbl2:
+r4 = gBattleMoveDamage
+*r4 = r3
+r1 = gBattleScriptCurrInstr
+r0 = *r1
+r0++
+*r1 = r0

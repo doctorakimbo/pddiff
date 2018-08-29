@@ -1,0 +1,52 @@
+atk04_critcalc()
+{
+	item = gBattleMons[gBattlerAttacker].item;
+	
+	if(item == ITEM_ENIGMA_BERRY)
+		holdEffect = gEnigmaBerries[gBattlerAttacker].holdEffect;
+	else
+		holdEffect = GetHoldEffect(item);
+
+	gPotentialItemEffectBattler = gBattlerAttacker;
+	
+	critChance = (gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY);
+
+	for(i = 0; i < 5; i++)
+	{
+		if(CritMovesTable[i] == gBattleMoves[gCurrentMove].effect)
+			critChance++; // EFFECT_ALWAYS_CRIT shows up three times, guaranteeing +3 crit
+	}
+
+	if(gBattleMons[gBattlerAttacker].ability != ABILITY_KLUTZ)
+	{
+		if(holdEffect == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
+			critChance += 2;
+		
+		if(holdEffect == HOLD_EFFECT_STICK && gBattleMons[gBattlerAttacker].species == SPECIES_FARFETCHD)
+			critChance += 2;
+		
+		if(holdEffect == HOLD_EFFECT_SCOPE_LENS)
+			critChance++;
+	}
+
+	if(gBattleMons[gBattlerAttacker].ability == 0x69)
+		critChance++;
+
+	if(critChance > 3)
+		critChance = 3;
+	
+	if((gBattleMons[gBattlerAttacker].ability == ABILITY_MOLD_BREAKER || gBattleMons[gBattlerAttacker].ability - 0xA3 < 1 || (gBattleMons[gBattlerTarget].ability != ABILITY_BATTLE_ARMOR && gBattleMons[gBattlerTarget].ability != ABILITY_SHELL_ARMOR)) && !(gStatuses3[gBattlerAttacker] & STATUS3_CANT_SCORE_A_CRIT) && !(gBattleTypeFlags & (BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FIRST_BATTLE)) && !(Random() % sCriticalHitChance[critChance]) && (!(gBattleTypeFlags & 0x10) || !fn_EB2E0(1)))
+		gCritMultiplier = 2;
+	else
+		gCritMultiplier = 1;
+	
+	gBattleScriptCurrInstr++;
+}
+
+CritMovesTable: @1DCC0_J
+4B 2B E1 E1 E1
+- EFFECT_SKY_ATTACK
+- EFFECT_HIGH_CRITICAL
+- EFFECT_ALWAYS_CRIT
+- EFFECT_ALWAYS_CRIT
+- EFFECT_ALWAYS_CRIT

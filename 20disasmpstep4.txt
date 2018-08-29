@@ -1,0 +1,18 @@
+atk05_damagecalc()
+{
+	sideStatus = gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)];
+
+	damage = CalculateBaseDamage(&gBattleMons[gBattlerAttacker], &gBattleMons[gBattlerTarget], gCurrentMove, sideStatus, gDynamicBasePower, gBattleStruct->dynamicMoveType, gBattlerAttacker, gBattlerTarget);
+	
+	if(gCritMultiplier == 2)
+	{
+		if(gBattleMons[gBattlerAttacker].ability == ABILITY_SNIPER)
+			gBattleMoveDamage = (damage * 2) + (damage / 4);
+		else
+			gBattleMoveDamage = damage + (damage / 2);
+	}
+	else
+		gBattleMoveDamage = damage;
+	
+	gBattleScriptCurrInstr++;
+}
