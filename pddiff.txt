@@ -27,7 +27,7 @@ abilities:
 + 0x5D = Hydration
 + 0x5F = Quick Feet
 + 0x62 = Magic Guard
-- 0x63 = No Guard
++ 0x63 = No Guard
 + 0x64 = Stall
 + 0x66 = Leaf Guard
 + 0x67 = Klutz

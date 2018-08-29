@@ -1,207 +1,50 @@
 atk01_accuracycheck()
 {
-	r0 = gBattleScriptCurrInstr
-	r0 = *r0
-	r6 = *(r0 + 5)
-	r0 = *(r0 + 6)
-	r0 *= 0x100
-	r6 |= r0
-	r0 = gBattleTypeFlags
-	r0 = *r0
-	r1 = 0x80
-	r1 *= 0x200
-	r0 &= r1
-
-	if(r0 != 0)
+	r6 = (*(*gBattleScriptCurrInstr + 6) * 0x100) | *(*gBattleScriptCurrInstr + 5)
+	
+	if(*gBattleTypeFlags & 0x10000)
 	{
 		JumpIfMoveFailed(7, r6)
 		return
 	}
 
-	r0 = r6 + 2
-
-	if(r0 <= 1)
+	if(r6 + 2 <= 1)
 	{
-		r0 = gCurrentMove
-		r0 = AccuracyCalcHelper(*r0)
-		r2 = gStatuses3
-		r3 = gBattlerAttacker
-		
-		if(r0 != 0)
+		if(AccuracyCalcHelper(*gCurrentMove))
 		{
-			r4 = *(r3 + 1)
-			r0 = r4 * 4
-			r2 += r0
-			r1 = *r2
-			r0 = 8
-			r1 |= r0
-			*r2 = r1
-			r2 = gDisableStructs
-			r0 = 0x1C
-			r0 *= r4
-			r2 += r0
-			r0 = *r3
-			*(r2 + 0x15) = r0
+			*((*gBattlerTarget * 4) + gStatuses3) |= 8
+			*((*gBattlerTarget * 0x1C) + gDisableStructs + 0x15) = *gBattlerAttacker
 			return
 		}
-
-		r0 = *(r3 + 1)
-		r0 *= 4
-		r0 += r2
-		r0 = *r0
-		r1 = 0x400C0
-		r0 &= r1
-		
-		if(r0 != 0)
-		{
-			r3 = gBattleScriptCurrInstr
-			r2 = *r3
-			r1 = *(r2 + 1)
-			r0 = *(r2 + 2)
-			r0 *= 0x100
-			r1 |= r0
-			r0 = *(r2 + 3)
-			r0 *= 0x10000
-			r1 |= r0
-			r0 = *(r2 + 4)
-			r0 *= 0x1000000
-			r1 |= r0
-			*r3 = r1
-			return
-		}
-		
-		r0 = JumpIfMoveAffectedByProtect(0)
-		
-		if(r0 == 0)
-		{
-			r1 = gBattleScriptCurrInstr
-			r0 = *r1
-			r0 += 7
-			*r1 = r0
-		}
-		
-		return
-	}
-
-	if(r6 == 0)
-	{
-		r0 = gCurrentMove
-		r6 = *r0
-	}
-
-	r0 = gBattleStruct
-	r0 = *r0
-	r0 = *(r0 + 0x13)
-
-	if(r0 != 0)
-	{
-		r1 = 0x3F
-		r2 &= r0
-		r10 = r2
+		elseif(*((*gBattlerTarget * 4) + gStatuses3) & 0x400C0)
+			*gBattleScriptCurrInstr = (*(*gBattleScriptCurrInstr + 4) * 0x1000000) | (*(*gBattleScriptCurrInstr + 3) * 0x10000) | (*(*gBattleScriptCurrInstr + 2) * 0x100) | *(*gBattleScriptCurrInstr + 1)
+		elseif(!JumpIfMoveAffectedByProtect(0))
+			*gBattleScriptCurrInstr += 7
 	}
 	else
 	{
-		r1 = gBattleMoves
-		r0 = 0xC
-		r0 *= r6
-		r0 += r1
-		r0 = *(r0 + 0xA)
-		r10 = r0
-	}
-	
-	JumpIfMoveAffectedByProtect(r6)
+		if(r6 == 0)
+			r6 = *gCurrentMove
 
-	if(r0 != 0)
-	{
-		r0 = AccuracyCalcHelper(r6)
+		if(*(*gBattleStruct + 0x13) != 0)
+			r10 = *(*gBattleStruct + 0x13) & 0x3F
+		else
+			r10 = *((r6 * 0xC) + gBattleMoves + 0xA)
 		
-		if(r0 != 0)
+		if(JumpIfMoveAffectedByProtect(r6) && AccuracyCalcHelper(r6))
 		{
-			r1 = gBattleMoves
-			r0 = 0xC
-			r0 *= r6
-			r7 = r0 + r1
-			r3 = *(r7 + 3)
-			r8 = r3
-			r0 = AbilityBattleEffects(0x13, 0, 0xD, 0, 0)
+			if(!AbilityBattleEffects(0x13, 0, 0xD, 0, 0) && !AbilityBattleEffects(0x13, 0, 0x4D, 0, 0) && (*gBattleWeather & 0x30) && (*((r6 * 0xC) + gBattleMoves) == 0x98 || *((r6 * 0xC) + gBattleMoves) == 0xEE))
+				r8 = 0x32
+			else
+				r8 = *((r6 * 0xC) + gBattleMoves + 3)
 			
-			if(r0 == 0)
-			{
-				r0 = AbilityBattleEffects(0x13, 0, 0x4D, 0, 0)
-				
-				if(r0 == 0)
-				{
-					r0 = gBattleWeather
-					r1 = *r0
-					r0 = 0x30
-					r0 &= r1
-					
-					if(r0 != 0)
-					{				
-						r0 = *r7
-						
-						if(r0 == 0x98 || r0 == 0xEE)
-						{
-							r0 = 0x32
-							r8 = r0
-						}
-					}
-				}
-			}
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) != 0x68 && *((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) - 0xA3 >= 1 && *((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 0x6D)
+				r2 = 6
+			else
+				r2 = *((*gBattlerAttacker * 0x58) + gBattleMons + 0x1E)
 			
-			r3 = gBattleMons
-			r0 = gBattlerAttacker
-			r0 = *r0
-			r2 = 0x58
-			r0 *= r2
-			r0 += r3
-			r4 = r0
-			r0 += 0x20
-			r7 = *r0
-			r0 = *(r4 + 0x2E)
-			r9 = r0
-			r0 = gBattlerAttacker
-			r0 = *(r0 + 1)
-			r0 *= r2
-			r0 += r3
-			r5 = r0
-			r1 = r7
-			
-			if(r1 != 0x68)
-			{
-				r1 -= 0xA3
-				
-				if(r1 >= 1)
-				{
-					r0 += 0x20
-					r0 = *r0
-					
-					if(r0 == 0x6D)
-						r2 = 6
-				}
-			}
-			elseany
-				r2 = *(r4 + 0x1E)
-			
-			r3 = *(r5 + 0x1F)
-			
-			if(r7 != 0x6D)
-			{
-				if(r3 <= 6)
-					goto lbl23
-
-				r0 = *(r5 + 0x50)
-				r1 = 0x80
-				r1 << 0x16
-				r1 &= r0
-				
-				if(r1 == 0 && r7 != 0x33)
-				{
-					lbl23:
-					r2 += 6
-					r2 -= r3
-				}
-			}
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) != 0x6D && (*((*gBattlerTarget * 0x58) + gBattleMons + 0x1F) <= 6 || (!(*((*gBattlerTarget * 0x58) + gBattleMons + 0x50) & 0x20000000) && *((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) != 0x33)))
+				r2 += 6 - *((*gBattlerTarget * 0x58) + gBattleMons + 0x1F)
 			
 			if(r2 < 0)
 				r2 = 0
@@ -209,206 +52,47 @@ atk01_accuracycheck()
 			if(r2 > 0xC)
 				r2 = 0xC
 			
-			r0 = data_082504FC
-			r2 *= 4
-			r2 += r0
-			r1 = *r2
-			r0 = r8
-			r0 *= r1
-			r1 = *(r2 + 1)
-			svc(6)
-			r4 = r0
-			r0 = GetHoldEffect(r9)
+			r4 = r8 * (*(*(r2 * 4) + data_082504FC) / *((r2 * 4) + data_082504FC + 1))
 			
-			if(r7 != 0x67 && r0 == 0x47)
-			{
-				r0 = GetHoldEffectParam(r9)
-				r2 = 0x64
-				r0 += r2
-				r0 *= r4
-				r1 = 0x64
-				svc(6)
-				r4 = r0
-			}
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) != 0x67 && GetHoldEffect(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x2E)) == 0x47)
+				r4 *= ((0x64 + GetHoldEffectParam(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x2E))) / 0x64)
 			
-			if(r7 == 0xE)
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0xE)
+				r4 *= (0x82 / 0x64)
+			elseif(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x37 && (r10 & 1))
+				r4 *= (0x50 / 0x64)
+			
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0xA2 || GetAbilityUserOnSameSide(*gBattlerAttacker, 0xA2))
 			{
-				r0 = 0x82
-				r0 *= r4
-				r1 = 0x64
-				svc(6)
-				r4 = r0
-			}
-			elseif(r7 == 0x37)
-			{
-				r1 = r10
-				r2 = 1
-				r1 &= r2
+				r4 *= (0x6E / 0x64)
 				
-				if(r1 != 0)
-				{
-					r0 = 0x50
-					r0 *= r4
-					r1 = 0x64
-					svc(6)
-					r4 = r0
-				}
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) != 0x68 && *((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) - 0xA3 >= 1 && *((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 0x93 && (r10 & 4))
+					r4 *= (0x3C / 0x64)
 			}
+			elseif(*((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 0x4C && (*((*gBattlerTarget * 0x58) + gBattleMons + 0x50) & 7))
+				r4 *= (0x50 / 0x64)
+			elseif(!AbilityBattleEffects(0x13, 0, 0xD, 0, 0) && !AbilityBattleEffects(0x13, 0, 0x4D, 0, 0) && ((*((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 8 && (*gBattleWeather & 0xC)) || (*((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 0x51 && (*gBattleWeather & 0xC0))))
+				r4 *= (0x50 / 0x64)
 			
-			if(r7 == 0xA2) goto lbl31
-
-			r0 = gBattlerAttacker
-			r0 = GetAbilityUserOnSameSide(*r0, 0xA2)
+			if(*((*gBattlerTarget * 0x58) + gBattleMons + 0x20) != 0x67 && GetHoldEffect(*((*gBattlerTarget * 0x58) + gBattleMons + 0x2E)) == 0x16)
+				r4 *= ((GetHoldEffectParam(*((*gBattlerTarget * 0x58) + gBattleMons + 0x2E)) - 0x64) / 0x64)
 			
-			if(r0 != 0) goto lbl31
+			*gPotentialItemEffectBattler = *gBattlerTarget
 			
-			goto lbl32
-
-			lbl31:
-			r0 = 0x6E
-			r0 *= r4
-			r1 = 0x64
-			svc(6)
-			r4 = r0
-			r3 += r5
-			r5 += 0x20
-			r5 = *r5
-			r0 = *(r3 + 0x2E)
-			r9 = r0
-			if(r7 == 0x68) goto lbl38
-
-			r7 -= 0xA3
-			if(r7 < 1) goto lbl38
-
-			if(r5 == 0x93)
+			if((Random() / 0x64) + 1 > r4)
 			{
-				r1 = r10
-				r2 = 4
-				r1 &= r2
+				*gMoveResultFlags |= 1
 				
-				if(r1 != 0)
-				{
-					r0 = 0x3C
-					goto lbl37
-				}
-			}
-
-			lbl32:
-			if(r5 != 0x4C) goto lbl33
-
-			r0 = *(r3 + 0x50)
-			r1 = 7
-			r0 &= r1
-			if(r0 == 0) goto lbl33
-
-			goto lbl36
-
-			lbl33:
-			r0 = AbilityBattleEffects(0x13, 0, 0xD, 0, 0)
-			
-			if(r0 == 0)
-			{
-				r0 = AbilityBattleEffects(0x13, 0, 0x4D, 0, 0)
+				if(*gBattleTypeFlags & 1 && (*((r6 * 0xC) + gBattleMoves + 6) == 8 || *((r6 * 0xC) + gBattleMoves + 6) == 0x20))
+					*(gBattleCommunication + 6) = 2
+				else
+					*(gBattleCommunication + 6) = 0
 				
-				if(r0 == 0)
-				{
-					r1 = gBattleWeather
-					r1 = *r1
-					
-					if(r5 != 8)
-					{
-						if(r5 != 0x51) goto lbl38
-
-						r0 = 0xC0
-						goto lbl35
-					}
-					else
-						r0 = 0xC
-
-					lbl35:
-					r0 &= r1
-					
-					if(r0 != 0)
-					{
-						lbl36:
-						r0 = 0x50
-						goto lbl37
-
-						lbl37:
-						r4 *= (r0 / 0x64)
-					}
-				}
-			}
-
-			lbl38:
-			r0 = GetHoldEffect(r9)
-			
-			if(r5 != 0x67)
-			{
-				if(r0 == 0x16)
-				{
-					r0 = GetHoldEffectParam(r9)
-					r2 = 0x64
-					r0 -= r2
-					r0 *= r4
-					r1 = 0x64
-					svc(6)
-					r4 = r0
-				}
-			}
-			
-			r1 = gBattlerTarget
-			r0 = gPotentialItemEffectBattler
-			r1 = *r1
-			*r0 = r1
-			r0 = Random()
-			r1 = 0x64
-			svc(6)
-			r0 = r1 + 1
-			
-			if(r0 > r4)
-			{
-				r2 = gMoveResultFlags
-				r0 = *r2
-				r1 = 1
-				r0 |= r1
-				*r2 = r0
-				r0 = gBattleTypeFlags
-				r0 = *r0
-				r1 = 1
-				r0 &= r1
-				
-				if(r0 != 0)
-				{
-					r1 = gBattleMoves
-					r0 = 0xC
-					r0 *= r6
-					r0 += r1
-					r0 = *(r0 + 6)
-					
-					if(r0 == 8 || r0 == 0x20)
-					{
-						r1 = gBattleCommunication
-						r0 = 2
-					}
-				}
-				elseany
-				{
-					r1 = gBattleCommunication
-					r0 = 0
-				}
-				
-				*(r1 + 6) = r0
 				CheckWonderGuardAndLevitate()
 			}
 			else
 			{
-				r0 = 1
-				r1 = gBattlerAttacker
-				r1 = *(r1 + 1)
-				r0 <<= r1
-				r1 = data_0203B950_J
-				*r1 = r0
+				*data_0203B950_J = (1 << *gBattlerTarget)
 			}
 			
 			JumpIfMoveFailed(7, r6)
