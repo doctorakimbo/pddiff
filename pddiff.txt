@@ -15,10 +15,10 @@ A0 0B 06 09
 (stench actual desc: 71D9FE)
 ("the pkmn" -> "it"; if "it" would be at the beginning, skip it)
 abilities:
-- 0x4C = Tangled Feet
++ 0x4C = Tangled Feet
 + 0x4E = Motor Drive
 + 0x50 = Steadfast
-- 0x51 = Snow Cloak
++ 0x51 = Snow Cloak
 + 0x52 = Gluttony
 + 0x53 = Anger Point
 + 0x54 = Unburden
@@ -28,18 +28,18 @@ abilities:
 + 0x5A = Poison Heal
 + 0x5D = Hydration
 + 0x5F = Quick Feet
-- 0x61 = Sniper
++ 0x61 = Sniper
 + 0x62 = Magic Guard
 + 0x63 = No Guard
 + 0x64 = Stall
 + 0x66 = Leaf Guard
 + 0x67 = Klutz
 + 0x68 = Mold Breaker
-- 0x69 = Super Luck
++ 0x69 = Super Luck
 + 0x6A = Aftermath
 + 0x6B = Anticipation
 + 0x6C = Forewarn
-- 0x6D = Unaware
++ 0x6D = Unaware
 + 0x70 = Slow Start
 + 0x72 = Storm Drain
 + 0x73 = Ice Body
@@ -54,7 +54,7 @@ abilities:
 + 0x8E = Overcoat
 + 0x8F = Poison Touch
 + 0x92 = Sand Rush
-- 0x93 = Wonder Skin
+= 0x93 = (lowers moves with typeFlags2 & 4 to 60% accuracy)
 + 0x96 = Imposter
 + 0x97 = Infiltrator
 + 0x98 = Mummy
@@ -64,7 +64,7 @@ abilities:
 + 0x9D = Sap Sipper
 + 0x9E = Prankster
 + 0xA0 = Iron Barbs
-- 0xA2 = Victory Star
++ 0xA2 = Victory Star
 = 0xA3 = Turboblaze/Teravolt
 = 0xA4 = Teravolt/Turboblaze
 + 0xA5 = Aroma Veil
@@ -89,12 +89,12 @@ item effects:
 + 0x44 = Choice Specs
 + 0x45 = Choice Band
 + 0x46 = Choice Scarf
-- 0x47 = Wide Lens (Zoom Lens?)
++ 0x47 = Wide Lens
 + 0x4A = Lagging Tail
 + 0x4B = weather rocks (effectparam = weather ID)
-+ 0x4D = Safe Goggles
++ 0x4D = Safety Wear
 + 0x4F = Binding Band
-+ 0X51 = Big Root
++ 0x51 = Big Root
 + 0x52 = Assault Vest
 + 0x54 = Life Orb (effectparam = 1/X HP lost)
 
@@ -266,15 +266,15 @@ grafics:
 		  Implements: No Guard, the following not missing: Toxic from poison-types, Stomp on Minimize, Hurricane in rain, Blizzard in hail, Struggle, Bide, Mimic, Pain Split, Lock-On, Foresight, Role Play, Yawn, Imprison, Magic Coat (?), Snatch (?), (effect37), (effect38), (effect3F), (effect68)
 		  Relies on: weather refactor
 = 01DDC4 -> 01DE30 (repoint): Entirety of atk01_accuracycheck (see 17disasm)
-		  Implements: Keen Eye ignoring evasion, Tangled Feet, Snow Cloak, Klutz (vs acc/evasion), Mold Breaker+ (vs acc/evasion), Unaware (acc/evasion), Wonder Skin, Victory Star, Wide Lens (Zoom Lens?), Hurricane acc- in sun, removes some first-battle code
+		  Implements: Keen Eye ignoring evasion, Tangled Feet, Snow Cloak, Klutz (vs acc/evasion), Mold Breaker+ (vs acc/evasion), Unaware (acc/evasion), (ability93), Victory Star, Wide Lens, Hurricane acc- in sun, removes some first-battle code
 		  Relies on: weather refactor, BattleMove refactor, GetAbilityUserOnSameSide()
 		  Required knowledge: j0203B950
 		  Optional knowledge: BattleMove.typeFlags2.bit2, bit3
-		  Glitch?: Wonder Skin might not work unless Victory Star is active on the other side
+		  Glitch?: (ability93) might not work unless Victory Star is active on the other side
 = 01E1D8: Shift entirety of atk02_attackstring down one line to make call to extra func j207790 first (see 18disasm)
 		  Implements: Possibly tracks number of times each of player's moves are used?
 		  Required knowledge: j0203B970
-- 01E408: Entirety of atk04_critcalc (see 19disasm) (ALSO 250530: 10 00 08 00 04 00 03 00 02 00 -> 18 00 08 00 02 00 01 00 01 00)
++ 01E408: Entirety of atk04_critcalc (see 19disasm) (ALSO 250530: 10 00 08 00 04 00 03 00 02 00 -> 18 00 08 00 02 00 01 00 01 00)
 		  Implements: Klutz (vs crit boost items), Mold Breaker+ (vs Shell Armor), Super Luck, Frost Breath, modern crit stages
 		  Removes (now unused?): Poison Tail/Blaze Kick crit+
 = 01E59C: Entirety of atk05_damagecalc (see 20disasm)
