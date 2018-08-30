@@ -1,0 +1,158 @@
+atk06_typecalc()
+{
+	if(*gCurrentMove != 0xA5)
+	{
+		if(*(*gBattleStruct + 0x13) != 0)
+			r3 = *(*gBattleStruct + 0x13) & 0x3F
+		else
+			r3 = *((*gCurrentMove * 0xC) + gBattleMoves + 2)
+		
+		if(r3 != 0)
+		{
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x96)
+				r3 = 0
+			
+			r8 = r3
+		}
+		else
+		{
+			r8 = 0
+
+			do
+			{
+				r3++
+				
+				if(*(data_08168CB4_J + r3) == 0xFF)
+					goto lbl8
+			} while(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) != *(data_08168CB4_J + r3))
+			
+			r8 = r3
+		}
+
+		lbl8:
+		if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == r8 || *((*gBattlerAttacker * 0x58) + gBattleMons + 0x22) == r8)
+		{
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x5B)
+				*gBattleMoveDamage = *gBattleMoveDamage * 2
+			else
+				*gBattleMoveDamage = *gBattleMoveDamage + (*gBattleMoveDamage / 2)
+		}
+		
+		if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) != 0x68 && *((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) - 0xA3 >= 1 && *((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 0x1A && r8 == 4)
+		{
+			*gMoveResultFlags |= 9
+			r0 = 4
+			goto lbl26
+		}
+		else
+		{
+			r4 = 0
+			
+			if((*((*gBattlerTarget * 0x58) + gBattleMons + 0x21) == 0xF || *((*gBattlerTarget * 0x58) + gBattleMons + 0x22) == 0xF) && *gCurrentMove == 0x149)
+				ModulateDmgByType(0)
+			else
+			{
+				lbl20:
+				if(*(r4 + data_0824F050) != 0xFF)
+				{
+					if(*(r4 + data_0824F050) == 0xFE)
+					{
+						if(*(r4 + data_0824F050) == r8 && (*(*(r4 + data_0824F050) + 1) == *((*gBattlerTarget * 0x58) + gBattleMons + 0x21) || *(*(r4 + data_0824F050) + 1) == *((*gBattlerTarget * 0x58) + gBattleMons + 0x22)))
+							ModulateDmgByType(*(*(r4 + data_0824F050) + 2))
+
+						r4 += 3
+						goto lbl20
+					}
+					
+					if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) != 0x71 && !(*((*gBattlerTarget * 0x58) + gBattleMons + 0x50) & 0x2000000000))
+					{
+						r4 += 3
+						goto lbl20
+					}
+				}
+			}
+			
+			if((*gMoveResultFlags & 2) && *((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) != 0x67 && GetHoldEffect(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x2E)) == 0x4C)
+				*gBattleMoveDamage *= (0xC / 0xA)
+
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x6E && (*gMoveResultFlags & 4))
+				*gBattleMoveDamage *= 2
+
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) != 0x68 && *((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) - 0xA3 >= 1)
+			{
+				if((*((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 0x6F || *((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 0x74) && (*gMoveResultFlags & 2))
+					*gBattleMoveDamage -= (*gBattleMoveDamage / 4)
+
+				if(*((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 0x19 && AttacksThisTurn(*gBattlerAttacker, *gCurrentMove) == 2 && !(*gMoveResultFlags & 2) && *((*gCurrentMove * 0xC) + gBattleMoves + 1) != 0)
+				{
+					*gMoveResultFlags |= 1
+					r0 = 3
+					goto lbl26
+
+					lbl26:
+					*(gBattleCommunication + 6) = r0
+					*gLastUsedAbility = *((*gBattlerTarget * 0x58) + gBattleMons + 0x20)
+					*((*gBattlerTarget * 2) + gLastLandedMoves) = 0
+					*((*gBattlerTarget * 2) + gLastHitByType) = 0
+					RecordAbilityBattle(*gBattlerTarget, *gLastUsedAbility)
+				}
+			}
+		}
+		
+		if(*gMoveResultFlags & 8)
+			*((*gBattlerAttacker * 0x10) + gProtectStructs + 1) |= 2
+		
+		if(!(*gMoveResultFlags & 0x29))
+		{
+			r0 = (*gBattlerAttacker * 0x58) + gBattleMons
+			r1 = r8
+			fn_1EB20_J()
+			
+			if(r0 != 0 && GetHoldEffectParam(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x2E)) bcs 0x1E) // >= ? <= ?
+			{
+				r0 = *gBattlerAttacker
+				fn_1F4DC_J()
+				(*gBattleScriptCurrInstr)++
+				BattleScriptPushCursor()
+				*gBattleScriptCurrInstr = script_1F552_J
+				return
+			}
+		}
+	}
+	
+	(*gBattleScriptCurrInstr)++
+}
+
+
+
+
+fn_1EB20_J(arg0, arg1) @1EB20_J
+{
+	if(*(arg0 + 0x20) != 0x67)
+	{
+		*gLastUsedItem = *(arg0 + 0x2E)
+		
+		for(i = 0; i < 0x22; i++)
+		{
+			if(*(data_0821A8D4_J + i + 0) == GetHoldEffect(*(arg0 + 0x2E)) && *(data_0821A8D4_J + i + 1) == arg1)
+				return 1
+		}
+	}
+	
+	return r0
+}
+
+
+
+
+fn_1F4DC_J(arg0) @1F4DC_J
+{
+	if(*data_02023D7C != 0xFF) // gChosenActionByBattler (FR) / ?????? (PD)
+	{
+		*gActiveBattler = arg0
+		*((*gActiveBattler * 2) + *gBattleStruct + 0xB8) = *((*gActiveBattler * 0x58) + gBattleMons + 0x2E)
+		*((*gActiveBattler * 0x58) + gBattleMons + 0x2E) = 0
+		BtlController_EmitSetMonData(0, 2, 0, 2, (*gActiveBattler * 0x58) + gBattleMons + 0x2E)
+		MarkBattlerForControllerExec(*gActiveBattler)
+	}
+}

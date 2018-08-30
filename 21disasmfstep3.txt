@@ -1,0 +1,61 @@
+atk06_typecalc()
+{
+	if(gCurrentMove != 0xA5)
+	{
+		if(gBattleStruct->0x13 != 0)
+			r8 = gBattleStruct->0x13 & 0x3F
+		else
+			r8 = gBattleMoves[gCurrentMove].2
+		
+		if(gBattleMons[gBattlerAttacker].0x21 == r8 || gBattleMons[gBattlerAttacker].0x22 == r8)
+			gBattleMoveDamage = gBattleMoveDamage * (15 / 10)
+		
+		if(gBattleMons[gBattlerTarget].0x20 == 0x1A && r8 == 4)
+		{
+			gLastUsedAbility = gBattleMons[gBattlerTarget].0x20
+			gMoveResultFlags |= 9
+			gLastLandedMoves[gBattlerTarget] = 0
+			gLastHitByType[gBattlerTarget] = 0
+			gBattleCommunication[6] = r8
+			RecordAbilityBattle(gBattlerTarget, gLastUsedAbility)
+		}
+		else
+		{
+			r3 = 1
+
+			lbl19:
+			if(data_0824F050[r3].0 != 0xFF)
+			{
+				if(data_0824F050[r3].0 == 0xFE && data_0824F050[r3].0 == r8)
+				{
+					if(data_0824F050[r3].1 == gBattleMons[gBattlerTarget].0x21)
+						ModulateDmgByType(data_0824F050[r3].2)
+					
+					if(data_0824F050[r3].1 == gBattleMons[gBattlerTarget].0x22 && gBattleMons[gBattlerTarget].0x21 != data_0824F050[r3].1)
+						ModulateDmgByType(data_0824F050[r3].2)
+				}
+				
+				if(!(gBattleMons[gBattlerTarget].0x50 & 0x2000000000))
+				{
+					r3++
+					goto lbl19
+				}
+			}
+		}
+		
+		if(gBattleMons[gBattlerTarget].0x20 == 0x19 && AttacksThisTurn(gBattlerAttacker, gCurrentMove) == 2 && (!(gMoveResultFlags & 2) || (gMoveResultFlags & 6)) && gBattleMoves[gCurrentMove].1 != 0)
+		{
+			gLastUsedAbility = gBattleMons[gBattlerTarget].0x20
+			gMoveResultFlags |= 1
+			gLastLandedMoves[gBattlerTarget] = 0
+			gLastHitByType[gBattlerTarget] = 0
+			gBattleCommunication[6] = 3
+			RecordAbilityBattle(gBattlerTarget, gLastUsedAbility)
+		}
+		
+		if(gMoveResultFlags & 8)
+			gProtectStructs[gBattlerAttacker].1 |= 2
+	}
+	
+	gBattleScriptCurrInstr++
+}

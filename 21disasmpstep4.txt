@@ -1,0 +1,171 @@
+atk06_typecalc()
+{
+	if(gCurrentMove == MOVE_STRUGGLE)
+	{
+		gBattleScriptCurrInstr++;
+		return;
+	}
+	
+	GET_MOVE_TYPE(gCurrentMove, rawMoveType);
+	
+	if(rawMoveType == TYPE_NORMAL)
+	{
+		while(gBattleMons[gBattlerAttacker].ability != table_168CB4_J[rawMoveType])
+		{
+			if(table_168CB4_J[rawMoveType] == 0xFF)
+				break;
+				
+			rawMoveType++;
+		}
+		
+		if(table_168CB4_J[rawMoveType] != 0xFF)
+			moveType = rawMoveType;
+		else
+			moveType = TYPE_NORMAL;
+	}
+	else
+	{
+		if(gBattleMons[gBattlerAttacker].ability == ABILITY_NORMALIZE)
+			rawMoveType = TYPE_NORMAL;
+		else
+			moveType = rawMoveType;
+	}
+	
+	if(IS_BATTLER_OF_TYPE(gBattlerAttacker, moveType))
+	{
+		if(gBattleMons[gBattlerAttacker].ability == ABILITY_ADAPTABILITY)
+			gBattleMoveDamage = gBattleMoveDamage * 2;
+		else
+			gBattleMoveDamage = gBattleMoveDamage + (gBattleMoveDamage / 2);
+	}
+	
+	if(gBattleMons[gBattlerAttacker].ability != ABILITY_MOLD_BREAKER && gBattleMons[gBattlerAttacker].ability - 0xA3 >= 1 && gBattleMons[gBattlerTarget].ability == ABILITY_LEVITATE && moveType == TYPE_GROUND)
+	{
+		gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
+		gBattleCommunication[6] = TYPE_GROUND;
+		gLastUsedAbility = gBattleMons[gBattlerTarget].ability;
+		gLastLandedMoves[gBattlerTarget] = 0;
+		gLastHitByType[gBattlerTarget] = 0;
+		RecordAbilityBattle(gBattlerTarget, gLastUsedAbility);
+	}
+	else
+	{
+		i = 0;
+		
+		if(IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_ICE) && gCurrentMove == MOVE_SHEER_COLD)
+			ModulateDmgByType(TYPE_MUL_NO_EFFECT);
+		else
+		{
+			while(TYPE_EFFECT_ATK_TYPE(i) != TYPE_ENDTABLE)
+			{
+				if(TYPE_EFFECT_ATK_TYPE(i) == TYPE_FORESIGHT)
+				{
+					if(gBattleMons[gBattlerAttacker].ability == ABILITY_SCRAPPY || (gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT))
+						break;
+						
+					i += 3;
+					continue;
+				}
+				elseif(TYPE_EFFECT_ATK_TYPE(i) == moveType && IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_EFFECT_DEF_TYPE(i)))
+					ModulateDmgByType(TYPE_EFFECT_MULTIPLIER(i));
+
+				i += 3;
+				continue;
+			}
+		}
+		
+		if((gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE) && gBattleMons[gBattlerAttacker].ability != ABILITY_KLUTZ && GetHoldEffect(gBattleMons[gBattlerAttacker].item) == ITEM_EFFECT_EXPERT_BELT)
+			gBattleMoveDamage *= (12 / 10);
+
+		if(gBattleMons[gBattlerAttacker].ability) == ABILITY_TINTED_LENS && (gMoveResultFlags & MOVE_RESULT_NOT_VERY_EFFECTIVE))
+			gBattleMoveDamage *= 2;
+
+		if(gBattleMons[gBattlerAttacker].ability != ABILITY_MOLD_BREAKER && gBattleMons[gBattlerAttacker].ability - 0xA3 >= 1)
+		{
+			if((gBattleMons[gBattlerTarget].ability == 0x6F || gBattleMons[gBattlerTarget].ability == 0x74) && (gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE))
+				gBattleMoveDamage -= (gBattleMoveDamage / 4);
+
+			if(gBattleMons[gBattlerTarget].ability == ABILITY_WONDER_GUARD && AttacksThisTurn(gBattlerAttacker, gCurrentMove) == 2 && !(gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE) && gBattleMoves[gCurrentMove].power)
+			{
+				gMoveResultFlags |= MOVE_RESULT_MISSED;
+				gBattleCommunication[6] = 3;
+				gLastUsedAbility = ABILITY_WONDER_GUARD;
+				gLastLandedMoves[gBattlerTarget] = 0;
+				gLastHitByType[gBattlerTarget] = 0;
+				RecordAbilityBattle(gBattlerTarget, gLastUsedAbility);
+			}
+		}
+	}
+	
+	if(gMoveResultFlags & MOVE_RESULT_DOESNT_AFFECT_FOE)
+		gProtectStructs[gBattlerAttacker].targetNotAffected = 1;
+	
+	if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
+	{
+		if(HasItemWithTypeEffect(gBattleMons[gBattlerAttacker], moveType) && GetHoldEffectParam(gBattleMons[gBattlerAttacker].item) bcs 0x1E) // >= ? <= ?
+		{
+			ConsumeItem(gBattlerAttacker);
+			gBattleScriptCurrInstr++;
+			BattleScriptPushCursor();
+			gBattleScriptCurrInstr = script_1F552_J;
+			return;
+		}
+	}
+	
+	gBattleScriptCurrInstr++;
+}
+
+
+
+
+table_168CB4_J:
+00 00 AE 00 00 00 00 00 00 B5 00 00 00 CE 00 B7 00 00 FF
+TYPE_FLYING = ABILITY_AERILATE
+TYPE_FAIRY = ABILITY_PIXILATE
+TYPE_ELECTRIC = ABILITY_GALVANIZE
+TYPE_ICE = ABILITY_REFRIGERATE
+
+
+
+
+HasItemWithTypeEffect(mon, type) @1EB20_J
+{
+	if(mon.ability != ABILITY_KLUTZ)
+	{
+		gLastUsedItem = mon.item;
+		
+		for(i = 0; i < 0x11; i++)
+		{
+			if(sHoldEffectToType[i][0] == GetHoldEffect(mon.item) && sHoldEffectToType[i][1] == type)
+				return TRUE;
+		}
+	}
+	
+	return FALSE;
+}
+
+
+
+
+ConsumeItem(mon) @1F4DC_J
+{
+	if(gChosenActionByBattler != B_ACTION_NONE) // or data_02023D7C != 0xFF???
+	{
+		gActiveBattler = mon;
+		gBattleStruct->usedHeldItems[gActiveBattler] = gBattleMons[gActiveBattler].item;
+		gBattleMons[gActiveBattler].item = 0;
+		BtlController_EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gActiveBattler].item);
+		MarkBattlerForControllerExec(gActiveBattler);
+	}
+}
+
+
+
+
+script_1F552_J: @1F552_J
+(45 01 07 00 00 00 00 10 97 01 12 40 00 3C) = 
+(45 01 07 00 00 00 00 10 A0 01 12 40 00 3C)
+playanimation BS_ATTACKER, B_ANIM_ITEM_EFFECT, NULL
+printstring 0x1A0
+waitmessage 0x40
+return

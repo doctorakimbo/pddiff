@@ -26,8 +26,10 @@ abilities:
 + 0x57 = Dry Skin
 + 0x58 = Download
 + 0x5A = Poison Heal
+- 0x5B = Adaptability
 + 0x5D = Hydration
 + 0x5F = Quick Feet
+- 0x60 = Normalize
 + 0x61 = Sniper
 + 0x62 = Magic Guard
 + 0x63 = No Guard
@@ -40,9 +42,13 @@ abilities:
 + 0x6B = Anticipation
 + 0x6C = Forewarn
 + 0x6D = Unaware
+- 0x6E = Tinted Lens
+- 0x6F = Solid Rock/Filter
 + 0x70 = Slow Start
+- 0x71 = Scrappy
 + 0x72 = Storm Drain
 + 0x73 = Ice Body
+- 0x74 = Filter/Solid Rock
 + 0x75 = Snow Warning
 + 0x77 = Frisk
 + 0x7D = Sheer Force
@@ -69,22 +75,27 @@ abilities:
 = 0xA4 = Teravolt/Turboblaze
 + 0xA5 = Aroma Veil
 + 0xAD = Sweet Veil
+- 0xAE = Aerilate
 + 0xB0 = Gooey
 + 0xB2 = Gale Wings
+- 0xB5 = Pixilate
 + 0xB6 = Flower Veil
+- 0xB7 = Refrigerate
 + 0xB8 = Protean
 + 0xB9 = Bulletproof
 + 0xC0 = Stamina
 + 0xC3 = Compaction
 + 0xCA = Slush Rush
 + 0xCB = Long Reach
+- 0xCE = Galvanize
 = 0xD6 = Dazzling/RegalMajesty
 = 0xDB = RegalMajesty/Dazzling
 + 0xDD = TanglingHair
 
 (old kid: 16F8C4, old item: 0x125, route 4, fix wildmons route15)
 item effects:
-= 0x1D = (not Choice Band)
+= typebooster IDs: (if effectparam bcs 0x1E, consumed when move of same type used (+ other effect?); otherwise typeboosters as normal)
+= 0x1D = "Polkadot Bow"
 + 0x2B = Leftovers if effectparam is 0xFF, otherwise Black Sludge (effectparam = type that heals)
 + 0x44 = Choice Specs
 + 0x45 = Choice Band
@@ -92,6 +103,7 @@ item effects:
 + 0x47 = Wide Lens
 + 0x4A = Lagging Tail
 + 0x4B = weather rocks (effectparam = weather ID)
+- 0x4C = Expert Belt
 + 0x4D = Safety Wear
 + 0x4F = Binding Band
 + 0x51 = Big Root
@@ -159,6 +171,7 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0x194 = "[PKMN]'s Ability became Mummy!"
 ! 0x195 = "[DEFENDER]'s [ABILITY] hurt [ATTACKER]! (placeholder)"
 ! 0x196 = "[DEFENDER]'s [ABILITY] lowered [ATTACKER]'s [STAT]! (placeholder)"
+! 0x197 = ???
 + 0x198 = "The effects of the [ITEM] prevent status moves from being used!"
 + 0x199 = "[PKMN]'s [ABILITY] raised its Speed! (placeholder)"
 + 0x19B = "[PKMN]'s [ABILITY] bounced [MOVE] back! (placeholder)"
@@ -281,10 +294,17 @@ grafics:
 		  Implements: Sniper, 2x -> 1.5x crit damage
 		  Removes (presumably moved to CalculateBaseDamage): gBattleScripting.dmgMultiplier, Charge boost, Helping Hand boost
 		  Relies on: above being moved to CalculateBaseDamage
-= 01E848 (j1E058): Entirety of atk06_typecalc (FINISH 20DISASM FIRST)
+= 01E848: Entirety of atk06_typecalc (see 21disasm) (ALSO 25DEEE: 00 00 -> 1D 09)
+		  Implements:
+		  Relies on: gChosenActionByBattler changed to something else
+= 01EDF4: Entirety of TypeCalc (finish previous entry first)
+= 01EFCC: Entirety of AI_TypeCalc
+= 01F0C8: Entirety of Unused_ApplyRandomDmgMultiplier
+= 01F104: Entirety of atk07_adjustnormaldamage
+= 01F2B4: Entirety of atk08_adjustnormaldamage2
 
-
-next: j1E2C8
+curr: j1E604 - j1EC50
+next: j1EDBA?
 
 commands that changed address:
 08: 01EAC4 -> 01EBA4

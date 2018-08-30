@@ -1,0 +1,63 @@
+atk06_typecalc()
+{
+	r3 = 0
+
+	if(*gCurrentMove != 0xA5)
+	{
+		if(*(*gBattleStruct + 0x13) != 0)
+			r8 = *(*gBattleStruct + 0x13) & 0x3F
+		else
+			r8 = *((*gCurrentMove * 0xC) + gBattleMoves + 2)
+		
+		if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == r8 || *((*gBattlerAttacker * 0x58) + gBattleMons + 0x22) == r8)
+			*gBattleMoveDamage = *gBattleMoveDamage * (0xF / 0xA)
+		
+		if(*(*gBattlerTarget * 0x58 + gBattleMons + 0x20) == 0x1A && r8 == 4)
+		{
+			*gLastUsedAbility = *(*gBattlerTarget * 0x58 + gBattleMons + 0x20)
+			*gMoveResultFlags |= 9
+			*((*gBattlerTarget * 2) + gLastLandedMoves) = 0
+			*((*gBattlerTarget * 2) + gLastHitByType) = 0
+			*(gBattleCommunication + 6) = r8
+			RecordAbilityBattle(*gBattlerTarget, *gLastUsedAbility)
+		}
+		else
+		{
+			r3 += 3
+
+			lbl19:
+			if(*(r3 + data_0824F050) != 0xFF)
+			{
+				if(*(r3 + data_0824F050) == 0xFE && *(r3 + data_0824F050) == r8)
+				{
+					if(*((r3 + 1) + data_0824F050) == *(*gBattlerTarget * 0x58 + gBattleMons + 0x21))
+						ModulateDmgByType(*((r3 + 2) + data_0824F050))
+					
+					if(*((r3 + 1) + data_0824F050) == *((*gBattlerTarget * 0x58) + gBattleMons + 0x22) && *((*gBattlerTarget * 0x58) + gBattleMons + 0x21) != *((r3 + 1) + data_0824F050))
+						ModulateDmgByType(*((r3 + 2) + data_0824F050))
+				}
+				
+				if(!(*((*gBattlerTarget * 0x58) + data_0824F050 + 0x50) & 0x2000000000))
+				{
+					r3 += 3
+					goto lbl19
+				}
+			}
+		}
+		
+		if(*((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 0x19 && AttacksThisTurn(*gBattlerAttacker, *gCurrentMove) == 2 && (!(*gMoveResultFlags & 2) || (*gMoveResultFlags & 6)) && *((*gCurrentMove * 0xC) + gBattleMoves + 1) != 0)
+		{
+			*gLastUsedAbility = *((*gBattlerTarget * 0x58) + gBattleMons + 0x20)
+			*gMoveResultFlags |= 1
+			*((*gBattlerTarget * 2) + gLastLandedMoves) = 0
+			*((*gBattlerTarget * 2) + gLastHitByType) = 0
+			*(gBattleCommunication + 6) = 3
+			RecordAbilityBattle(*gBattlerTarget, *gLastUsedAbility)
+		}
+		
+		if(*gMoveResultFlags & 8)
+			*((*gBattlerAttacker * 0x10) + gProtectStructs + 1) |= 2
+	}
+	
+	(*gBattleScriptCurrInstr)++
+}
