@@ -1,0 +1,46 @@
+TypeCalc(move, attacker, defender)
+{
+	flags = 0
+	
+	if(move == MOVE_STRUGGLE)
+		return 0
+		
+	moveType = gBattleMoves[move].type;
+	
+	if(IS_BATTLER_OF_TYPE(attacker, moveType))
+		gBattleMoveDamage *= (15 / 10);
+	
+	if(gBattleMons[defender].ability == ABILITY_LEVITATE && moveType == TYPE_GROUND)
+		flags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
+	else
+	{
+		i = 0;
+		
+		while(TYPE_EFFECT_ATK_TYPE(i) != TYPE_ENDTABLE)
+		{
+			if(TYPE_EFFECT_ATK_TYPE(i) == TYPE_FORESIGHT)
+			{
+				if(gBattleMons[defender].status2 & STATUS2_FORESIGHT)
+					break;
+					
+                i += 3;
+                continue;
+			}
+			elseif(TYPE_EFFECT_ATK_TYPE(i) == moveType)
+			{
+				if(TYPE_EFFECT_DEF_TYPE(i) == gBattleMons[defender].type1)
+					ModulateDmgByType2(TYPE_EFFECT_MULTIPLIER(i), move, flags);
+				
+				if(TYPE_EFFECT_DEF_TYPE(i) == gBattleMons[defender].type2 && gBattleMons[defender].type1 != gBattleMons[defender].type2)
+					ModulateDmgByType2(TYPE_EFFECT_MULTIPLIER(i), move, flags);
+			}
+			
+			i += 3;
+		}
+	}
+	
+	if(gBattleMons[defender].ability == ABILITY_WONDER_GUARD && !(flags & MOVE_RESULT_MISSED) && AttacksThisTurn(attacker, move) == 2 && (!(flags & MOVE_RESULT_SUPER_EFFECTIVE) || ((flags & (MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE)) == (MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE))) && gBattleMoves[move].power)
+		flags |= MOVE_RESULT_MISSED;
+	
+	return flags;
+}

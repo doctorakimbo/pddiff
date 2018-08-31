@@ -1,0 +1,459 @@
+lbl1: @1E604
+r10 = r0
+s1 = r1
+s5 = r2
+r5 = gBattleMons
+r3 = 0x58
+r2 *= r3
+r2 += r5
+r9 = r2
+r1 *= r3
+r1 += r5
+r8 = r1
+r0 = 0
+r1 = s0
+*r1 = r0
+r2 = r10
+if(r0 != 0xA5) goto lbl2
+
+goto lbl22
+
+lbl2:
+r1 = gBattleMoves
+r3 = r10
+r0 = 0xC
+r0 *= r3
+s3 = r0
+r0 += r1
+r1 = *r0
+r3 = r8
+if(r1 != 0x87) goto lbl4
+
+r0 = *(r3 + 0x14)
+r4 = 0
+r2 = 0
+goto lbl3
+
+lbl3:
+r1 = 1
+r3 = 5
+r3 *= r4
+r1 << r3
+r1 &= r0
+r3 -= r4
+r1 >> r3
+r2 |= r1
+r4++
+if(r4 != 6) goto lbl3
+
+r0 = r2 * 0x10
+r1 = 0x3F
+divide?()
+r0++
+goto lbl7
+
+lbl4:
+r0 = *(r0 + 2)
+r3 += 0x20
+r1 = *r3
+r3 = AteAbilityConversionTable
+r4 = 0
+if(r1 == 0x60) goto lbl6
+
+if(r0 != 0) goto lbl7
+
+goto lbl5
+
+lbl5:
+r4++
+r2 = *(r3 + r4)
+if(r2 == 0xFF) goto lbl7
+
+if(r2 != r1) goto lbl5
+
+goto lbl6
+
+lbl6:
+r0 = r4
+goto lbl7
+
+lbl7:
+s2 = r0
+r3 = r8
+r3 += 0x20
+r1 = *(r3 + 1)
+if(r0 == r1) goto lbl8
+
+r1 = *(r3 + 2)
+if(r0 != r1) goto lbl11
+
+goto lbl8
+
+lbl8:
+r4 = gBattleMoveDamage
+r1 = *r4
+r0 = *r3
+if(r0 != 0x5B) goto lbl9
+
+r0 = r1 * 2
+goto lbl10
+
+lbl9:
+r0 = r1 / 2
+r0 += r1
+goto lbl10
+
+lbl10:
+*r4 = r0
+goto lbl11
+
+lbl11:
+r2 = r9
+r2 += 0x20
+r0 = *r2
+r1 = r10
+r2 = *(r2 + 1)
+r3 = *(r2 + 2)
+fn_251DA0_J()
+if(r0 == 0) goto lbl12
+
+r1 = 9
+r0 = s0
+r0 = *r0
+r0 |= r1
+r1 = s0
+*r1 = r0
+goto lbl20
+
+lbl12:
+r4 = data_0820BF24_J
+goto lbl13
+
+lbl13:
+r0 = *r4
+if(r0 == 0xFF) goto lbl20
+
+if(r0 == 0xFE) goto lbl15
+
+r2 = s2
+if(r0 != r2) goto lbl16
+
+r5 = *(r4 + 1)
+r2 = r9
+r2 += 0x21
+r6 = *r2
+r7 = *(r2 + 1)
+if(r5 == r6) goto lbl14
+
+if(r5 != r7) goto lbl16
+
+if(r6 == r7) goto lbl16
+
+goto lbl14
+
+lbl14:
+r0 = *(r4 + 2)
+r1 = r10
+r2 = s0
+fn_1ED3C()
+goto lbl15
+
+lbl15:
+r1 = r9
+r1 += 0x50
+r0 = *(r0 + r1)
+r1 = 0x2000000000
+r0 &= r1
+if(r0 == 0) goto lbl16
+
+r1 = r8
+r1 += 0x20
+r0 = *r1
+if(r0 != 0x71) goto lbl20
+
+goto lbl16
+
+lbl16:
+r4 += 3
+goto lbl13
+
+lbl20:
+r0 = r9
+r0 += 0x20
+r0 = *r0
+if(r0 != 0x19) goto lbl21
+
+r0 = s0
+r1 = *r0
+r0 = 3
+r0 &= r1
+if(r0 != 0) goto lbl21
+
+r1 = s3
+r0 = gBattleMoves
+r1 += r0
+r0 = *(r1 + 1)
+if(r0 == 0) goto lbl21
+
+r0 = s0
+r1 = 1
+r1 |= r3
+*r0 = r1
+goto lbl21
+
+lbl21:
+r4 = gBattleMoveDamage
+r7 = r9
+r3 = r8
+r3 += 0x20
+r0 = s0
+r0 = *r0
+r1 = 0x29
+r0 &= r1
+if(r0 != 0) goto lbl22
+
+r0 = s1
+r1 = s5
+r2 = s2
+r3 = s0
+r3 = *r3
+fn_2076B0_J()
+goto lbl22
+
+lbl22:
+return r0
+
+
+
+
+fn_2076B0_J:
+s0 = r3
+s5 = r1
+s1 = r0
+s2 = r2
+r7 = 0x58
+r0 *= r7
+r7 *= r1
+r3 = gBattleMons
+r7 += r3
+r3 += r0
+r4 = gBattleMoveDamage
+r6 = *r3
+r5 = 0x20
+r5 = *(r7 + r5)
+if(r6 == 0x67) goto lbl_fn1_2
+
+r0 = *(r3 + 0xE)
+GetHoldEffect()
+if(r0 != 0x4C) goto lbl_fn1_2
+
+r0 = s0
+r0 = *r0
+r1 = 2
+r0 &= r1
+if(r0 == 0) goto lbl_fn1_2
+
+r1 = *r4
+r1 = 0xC
+r0 *= r1
+r1 = 0xA
+divide?()
+*r4 = r0
+goto lbl_fn1_2
+
+lbl_fn1_2:
+if(r5 == 0x67) goto lbl_fn1_4
+
+r0 = 0x10
+r1 = s5
+r2 = 0x7F
+r3 = 0
+push r3
+AbilityBattleEffects()
+pop r3
+if(r0 != 0) goto lbl_fn1_4
+
+r0 = *(r7 + 0x2E)
+GetHoldEffectParam()
+if(r0 != 0) goto lbl_fn1_4
+
+r0 = r7
+r1 = s2
+HasItemWithTypeEffect()
+if(r0 == 0) goto lbl_fn1_4
+
+r0 = s2
+if(r0 == 0) goto lbl_fn1_3
+
+r0 = s0
+r0 = *r0
+r1 = 2
+r0 &= r1
+if(r0 == 0) goto lbl_fn1_4
+
+goto lbl_fn1_3
+
+lbl_fn1_3:
+r1 = *r4
+r1 /= 2
+*r4 = r1
+goto lbl_fn1_4
+
+lbl_fn1_4:
+r0 = s0
+r0 = *r0
+if(r6 != 0x6E) goto lbl_fn1_5
+
+r1 = 4
+r1 &= r0
+if(r1 == 0) goto lbl_fn1_5
+
+r1 = *r4
+r1 *= 2
+*r4 = r1
+goto lbl_fn1_5
+
+lbl_fn1_5:
+if(r6 == 0x68) goto lbl_fn1_7
+
+r6 -= 0xA3
+if(r6 <= 1) goto lbl_fn1_7
+
+if(r5 == 0x6F) goto lbl_fn1_6
+
+if(r5 != 0x74) goto lbl_fn1_7
+
+goto lbl_fn1_6
+
+lbl_fn1_6:
+r1 = *r4
+r3 = r1 / 4
+r1 -= r3
+*r4 = r1
+goto lbl_fn1_7
+
+lbl_fn1_7:
+return
+
+
+
+
+fn_251DA0_J:
+r4 = r0
+r5 = r2
+r6 = r3
+r0 = 0xC
+r0 *= r1
+r1 = gBattleMoves
+r0 += r1
+r1 = *(r0 + 2)
+if(r1 != 4) goto lbl_fn2_2
+
+if(r4 == 0x1A) goto lbl_fn2_14
+
+goto lbl_fn2_2
+
+lbl_fn2_2:
+if(r1 != 0xD) goto lbl_fn2_3
+
+if(r4 == 0xA) goto lbl_fn2_14
+
+if(r4 == 0x1F) goto lbl_fn2_14
+
+if(r4 == 0x4E) goto lbl_fn2_14
+
+goto lbl_fn2_3
+
+lbl_fn2_3:
+if(r1 != 0xB) goto lbl_fn2_4
+
+if(r4 == 0xB) goto lbl_fn2_14
+
+if(r4 == 0x57) goto lbl_fn2_14
+
+if(r4 == 0x72) goto lbl_fn2_14
+
+goto lbl_fn2_4
+
+lbl_fn2_4:
+if(r1 != 0xA) goto lbl_fn2_5
+
+if(r4 == 0x12) goto lbl_fn2_14
+
+goto lbl_fn2_5
+
+lbl_fn2_5:
+if(r1 != 0xC) goto lbl_fn2_6
+
+if(r4 == 0x9D) goto lbl_fn2_14
+
+goto lbl_fn2_6
+
+lbl_fn2_6:
+if(r4 == 0xD6) goto lbl_fn2_7
+
+if(r4 == 0xDB) goto lbl_fn2_8
+
+goto lbl_fn2_7
+
+lbl_fn2_7:
+r2 = *r0
+if(r2 == 0x67) goto lbl_fn2_14
+
+goto lbl_fn2_8
+
+lbl_fn2_8:
+r2 = *(r0 + 9)
+if(r4 != 0xB9) goto lbl_fn2_9
+
+r1 = 2
+r1 &= r2
+if(r1 != 0) goto lbl_fn2_14
+
+goto lbl_fn2_9
+
+lbl_fn2_9:
+if(r4 == 0x8E) goto lbl_fn2_10
+
+r0 = 0xC
+if(r0 == r5) goto lbl_fn2_10
+
+if(r0 != r6) goto lbl_fn2_11
+
+goto lbl_fn2_10
+
+lbl_fn2_10:
+r1 = 4
+r1 &= r2
+if(r1 != 0) goto lbl_fn2_14
+
+goto lbl_fn2_11
+
+lbl_fn2_11:
+if(r4 != 0xA5) goto lbl_fn2_12
+
+r1 = 8
+r1 &= r2
+if(r1 != 0) goto lbl_fn2_14
+
+goto lbl_fn2_12
+
+lbl_fn2_12:
+if(r4 != 0x2B) goto lbl_fn2_13
+
+r1 = 1
+r1 &= r2
+if(r1 != 0) goto lbl_fn2_14
+
+goto lbl_fn2_13
+
+lbl_fn2_13:
+r0 = 0
+goto lbl_fn2_15
+
+lbl_fn2_14:
+r0 = 1
+goto lbl_fn2_15
+
+lbl_fn2_15:
+return r0
