@@ -26,10 +26,10 @@ abilities:
 + 0x57 = Dry Skin
 + 0x58 = Download
 + 0x5A = Poison Heal
-- 0x5B = Adaptability
++ 0x5B = Adaptability
 + 0x5D = Hydration
 + 0x5F = Quick Feet
-- 0x60 = Normalize
++ 0x60 = Normalize
 + 0x61 = Sniper
 + 0x62 = Magic Guard
 + 0x63 = No Guard
@@ -42,13 +42,13 @@ abilities:
 + 0x6B = Anticipation
 + 0x6C = Forewarn
 + 0x6D = Unaware
-- 0x6E = Tinted Lens
-- 0x6F = Solid Rock/Filter
++ 0x6E = Tinted Lens
+= 0x6F = Solid Rock/Filter
 + 0x70 = Slow Start
-- 0x71 = Scrappy
++ 0x71 = Scrappy
 + 0x72 = Storm Drain
 + 0x73 = Ice Body
-- 0x74 = Filter/Solid Rock
+= 0x74 = Filter/Solid Rock
 + 0x75 = Snow Warning
 + 0x77 = Frisk
 + 0x7D = Sheer Force
@@ -75,19 +75,19 @@ abilities:
 = 0xA4 = Teravolt/Turboblaze
 + 0xA5 = Aroma Veil
 + 0xAD = Sweet Veil
-- 0xAE = Aerilate
++ 0xAE = Aerilate
 + 0xB0 = Gooey
 + 0xB2 = Gale Wings
-- 0xB5 = Pixilate
++ 0xB5 = Pixilate
 + 0xB6 = Flower Veil
-- 0xB7 = Refrigerate
++ 0xB7 = Refrigerate
 + 0xB8 = Protean
 + 0xB9 = Bulletproof
 + 0xC0 = Stamina
 + 0xC3 = Compaction
 + 0xCA = Slush Rush
 + 0xCB = Long Reach
-- 0xCE = Galvanize
++ 0xCE = Galvanize
 = 0xD6 = Dazzling/RegalMajesty
 = 0xDB = RegalMajesty/Dazzling
 + 0xDD = TanglingHair
@@ -103,7 +103,7 @@ item effects:
 + 0x47 = Wide Lens
 + 0x4A = Lagging Tail
 + 0x4B = weather rocks (effectparam = weather ID)
-- 0x4C = Expert Belt
++ 0x4C = Expert Belt
 + 0x4D = Safety Wear
 + 0x4F = Binding Band
 + 0x51 = Big Root
@@ -171,7 +171,7 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0x194 = "[PKMN]'s Ability became Mummy!"
 ! 0x195 = "[DEFENDER]'s [ABILITY] hurt [ATTACKER]! (placeholder)"
 ! 0x196 = "[DEFENDER]'s [ABILITY] lowered [ATTACKER]'s [STAT]! (placeholder)"
-! 0x197 = ???
+= 0x197 = (typeboost bcs 1E effect)
 + 0x198 = "The effects of the [ITEM] prevent status moves from being used!"
 + 0x199 = "[PKMN]'s [ABILITY] raised its Speed! (placeholder)"
 + 0x19B = "[PKMN]'s [ABILITY] bounced [MOVE] back! (placeholder)"
@@ -279,7 +279,7 @@ grafics:
 		  Implements: No Guard, the following not missing: Toxic from poison-types, Stomp on Minimize, Hurricane in rain, Blizzard in hail, Struggle, Bide, Mimic, Pain Split, Lock-On, Foresight, Role Play, Yawn, Imprison, Magic Coat (?), Snatch (?), (effect37), (effect38), (effect3F), (effect68)
 		  Relies on: weather refactor
 = 01DDC4 -> 01DE30 (repoint): Entirety of atk01_accuracycheck (see 17disasm)
-		  Implements: Keen Eye ignoring evasion, Tangled Feet, Snow Cloak, Klutz (vs acc/evasion), Mold Breaker+ (vs acc/evasion), Unaware (acc/evasion), (ability93), Victory Star, Wide Lens, Hurricane acc- in sun, removes some first-battle code
+		  Implements: Keen Eye ignoring evasion, Tangled Feet, Snow Cloak, Klutz (acc/evasion items), Mold Breaker+ (vs acc/evasion), Unaware (acc/evasion), (ability93), Victory Star, Wide Lens, Hurricane acc- in sun, removes some first-battle code
 		  Relies on: weather refactor, BattleMove refactor, GetAbilityUserOnSameSide()
 		  Required knowledge: j0203B950
 		  Optional knowledge: BattleMove.typeFlags2.bit2, bit3
@@ -288,15 +288,17 @@ grafics:
 		  Implements: Possibly tracks number of times each of player's moves are used?
 		  Required knowledge: j0203B970
 + 01E408: Entirety of atk04_critcalc (see 19disasm) (ALSO 250530: 10 00 08 00 04 00 03 00 02 00 -> 18 00 08 00 02 00 01 00 01 00)
-		  Implements: Klutz (vs crit boost items), Mold Breaker+ (vs Shell Armor), Super Luck, Frost Breath, modern crit stages
+		  Implements: Klutz (crit boost items), Mold Breaker+ (vs Shell Armor), Super Luck, Frost Breath, modern crit stages
 		  Removes (now unused?): Poison Tail/Blaze Kick crit+
 = 01E59C: Entirety of atk05_damagecalc (see 20disasm)
 		  Implements: Sniper, 2x -> 1.5x crit damage
 		  Removes (presumably moved to CalculateBaseDamage): gBattleScripting.dmgMultiplier, Charge boost, Helping Hand boost
 		  Relies on: above being moved to CalculateBaseDamage
 = 01E848: Entirety of atk06_typecalc (see 21disasm) (ALSO 25DEEE: 00 00 -> 1D 09)
-		  Implements:
+		  Implements: Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Levitate, Wonder Guard, Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Galvanize (type change), "Polkadot Bow" <move this text to damage formula>, Expert Belt, (typeboost items with param bcs 1E), ice immunity to sheer cold
 		  Relies on: gChosenActionByBattler changed to something else
+		  Requires in future: HasItemWithTypeEffect (j1EB20), ConsumeItem (j1F4DC)
+		  Note: check wonder guard vs canceled se (elec on water/ground, fire on rock/grass)
 = 01EDF4: Entirety of TypeCalc (finish previous entry first)
 = 01EFCC: Entirety of AI_TypeCalc
 = 01F0C8: Entirety of Unused_ApplyRandomDmgMultiplier
