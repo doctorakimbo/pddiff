@@ -1,0 +1,145 @@
+TypeCalc(move, attacker, defender)
+{
+	flags = 0
+	
+	if(move == MOVE_STRUGGLE)
+		return 0
+	
+	if(gBattleMoves[move].effect == EFFECT_HIDDEN_POWER)
+	{
+		r2 = 0
+
+		for(r4 = 0; r4 != 6; r4++)
+		{
+			r2 |= ((gBattleMons[attacker].hpIV & (1 << (r4 * 5))) >> (r4 * 4))
+		}
+		
+		moveType = ((r2 * 0x10) / 0x3F) + 1
+	}
+	else
+	{
+		moveType = gBattleMoves[move].type;
+		
+		if(gBattleMons[attacker].ability == ABILITY_NORMALIZE)
+			moveType = TYPE_NORMAL;
+		elseif(moveType == TYPE_NORMAL)
+		{
+			type = TYPE_NORMAL;
+		
+			do
+			{
+				type++;
+				ateAbility = AteAbilityConversionTable[type];
+				
+				if(ateAbility == 0xFF)
+					break;
+			} while(ateAbility != gBattleMons[attacker].ability)
+			
+			if(ateAbility == 0xFF)
+				moveType = TYPE_NORMAL;
+			else
+				moveType = type;
+		}
+	}
+	
+	if(IS_BATTLER_OF_TYPE(attacker, moveType))
+	{
+		if(gBattleMons[attacker].ability == ABILITY_ADAPTABILITY)
+			gBattleMoveDamage *= 2;
+		else
+			gBattleMoveDamage += (gBattleMoveDamage / 2);
+	}
+	
+	if(IsMoveBlockedByAbility(gBattleMons[defender].ability, move, gBattleMons[defender].type1, gBattleMons[defender].type2))
+		flags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
+	else
+	{
+		i = 0
+		
+		while(TYPE_EFFECT_ATK_TYPE(i) != TYPE_ENDTABLE)
+		{
+			if(TYPE_EFFECT_ATK_TYPE(i) == TYPE_FORESIGHT)
+			{
+				if((gBattleMons[defender].status2 & STATUS2_FORESIGHT) || gBattleMons[attacker].ability == ABILITY_SCRAPPY)
+					break;
+					
+                i += 3;
+                continue;
+			}
+			elseif(TYPE_EFFECT_ATK_TYPE(i) == moveType)
+			{
+				if(TYPE_EFFECT_DEF_TYPE(i) == gBattleMons[defender].type1)
+					ModulateDmgByType2(TYPE_EFFECT_MULTIPLIER(i), move, flags);
+				
+				if(TYPE_EFFECT_DEF_TYPE(i) == gBattleMons[defender].type2 && gBattleMons[defender].type1 != gBattleMons[defender].type2)
+					ModulateDmgByType2(TYPE_EFFECT_MULTIPLIER(i), move, flags);
+			}
+			
+			i += 3;
+		}
+	}
+	
+	if(gBattleMons[defender].ability == ABILITY_WONDER_GUARD && !(flags & (MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_MISSED)) && gBattleMoves[move].power)
+		flags |= MOVE_RESULT_MISSED;
+	
+	if(!(flags & MOVE_RESULT_NO_EFFECT))
+		RunTypeEffectivenessBasedAbilities(flags, attacker, defender, moveType);
+	
+	return flags;
+}
+
+
+
+
+RunTypeEffectivenessBasedAbilities(flags, attacker, defender, moveType) @2076B0_J
+{
+	if(gBattleMons[attacker].ability != ABILITY_KLUTZ && GetHoldEffect(gBattleMons[attacker].item) == ITEM_EFFECT_EXPERT_BELT && (flags & MOVE_RESULT_SUPER_EFFECTIVE))
+		gBattleMoveDamage *= (12 / 10);
+
+	if(gBattleMons[defender].ability != ABILITY_KLUTZ && !AbilityBattleEffects(ABILITYEFFECT_COUNT_OTHER_SIDE, defender, ABILITY_UNNERVE, 0, flags) && GetHoldEffectParam(gBattleMons[defender].item) == 0 && HasItemWithTypeEffect(gBattleMons[defender], moveType) && (moveType == TYPE_NORMAL || (flags & MOVE_RESULT_SUPER_EFFECTIVE)))
+		gBattleMoveDamage /= 2;
+
+	if(gBattleMons[attacker].ability == ABILITY_TINTED_LENS && (flags & MOVE_RESULT_NOT_VERY_EFFECTIVE))
+		gBattleMoveDamage *= 2;
+
+	if(gBattleMons[attacker].ability != ABILITY_MOLD_BREAKER && gBattleMons[attacker].ability - 0xA3 > 1 && (gBattleMons[defender].ability == 0x6F || gBattleMons[defender].ability == 0x74) && (flags & MOVE_RESULT_SUPER_EFFECTIVE))
+		gBattleMoveDamage -= (gBattleMoveDamage / 4);
+}
+
+
+
+
+IsMoveBlockedByAbility(defAbility, move, defType1, defType2) @251DA0_J
+{
+	if(gBattleMoves[move].type == TYPE_GROUND && defAbility == ABILITY_LEVITATE)
+		return TRUE;
+	
+	if(gBattleMoves[move].type == TYPE_ELECTRIC && (defAbility == ABILITY_VOLT_ABSORB || defAbility == ABILITY_LIGHTNING_ROD || defAbility == ABILITY_MOTOR_DRIVE))
+		return TRUE;
+
+	if(gBattleMoves[move].type == TYPE_WATER && (defAbility == ABILITY_WATER_ABSORB || defAbility == ABILITY_DRY_SKIN || defAbility == ABILITY_STORM_DRAIN))
+		return TRUE;
+
+	if(gBattleMoves[move].type == TYPE_FIRE && defAbility == ABILITY_FLASH_FIRE)
+		return TRUE;
+
+	if(gBattleMoves[move].type == TYPE_GRASS && defAbility == ABILITY_SAP_SIPPER)
+		return TRUE;
+	
+	if((defAbility == 0xD6 || defAbility == 0xDB) && gBattleMoves[move].effect == EFFECT_QUICK_ATTACK)
+		return TRUE;
+	
+	if(defAbility == ABILITY_BULLETPROOF && (gBattleMoves[move].typeFlags1 & FLAG_BALLISTIC_MOVE))
+		return TRUE;
+
+	if(defAbility == ABILITY_OVERCOAT || (defType1 == TYPE_GRASS || defType2 == TYPE_GRASS) && (gBattleMoves[move].typeFlags1 & FLAG_POWDER_MOVE))
+		return TRUE;
+	
+	if(defAbility == ABILITY_AROMA_VEIL && (gBattleMoves[move].typeFlags1 & FLAG_MENTAL_MOVE))
+		return TRUE;
+	
+	if(defAbility == ABILITY_SOUNDPROOF && (gBattleMoves[move].typeFlags1 & FLAG_SOUND_MOVE))
+		return TRUE;
+
+	return FALSE;
+}

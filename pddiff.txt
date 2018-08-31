@@ -94,7 +94,6 @@ abilities:
 
 (old kid: 16F8C4, old item: 0x125, route 4, fix wildmons route15)
 item effects:
-= typebooster IDs: (if effectparam bcs 0x1E, consumed when move of same type used (+ other effect?); otherwise typeboosters as normal)
 = 0x1D = "Polkadot Bow"
 + 0x2B = Leftovers if effectparam is 0xFF, otherwise Black Sludge (effectparam = type that heals)
 + 0x44 = Choice Specs
@@ -267,7 +266,6 @@ grafics:
 		  Requires in future: GetWeatherTurns (e01F358, j01EB68), CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Optional knowledge: BattleMove.typeFlags2.bit2, bit3
 = 01BC68: Entirety of ItemBattleEffects (+ CheckUnnerve, IsAffectedBySheerForce, GetPinchThreshholdFromParam, GetMoveWithNoPP, GetPartyIndex) (see 14disasm)
-		  Implements: Klutz (berries, Amulet Coin, Leftovers, White Herb, Mental Herb, Shell Bell, the item effects here), Sheer Force (Life Orb/Shell Bell glitch), Unnerve (effect), modern Sitrus Berry, Black Sludge, Life Orb, status cure items/white herb consumed immediately
 		  Required knowledge: j0203B950
 		  Requires in future: GetPinchThreshhold (j207450), PushScriptInstr (j207470)
 		  Glitch?: white herb/amulet coin might not work unless unnerve IS active
@@ -297,15 +295,9 @@ grafics:
 = 01E848: Entirety of atk06_typecalc (see 21disasm) (ALSO 25DEEE: 00 00 -> 1D 09)
 		  Implements: Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Levitate, Wonder Guard, Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Galvanize (type change), "Polkadot Bow" <move this text to damage formula>, Expert Belt, (typeboost items with param bcs 1E), ice immunity to sheer cold
 		  Relies on: gChosenActionByBattler changed to something else
-		  Requires in future: HasItemWithTypeEffect (j1EB20), ConsumeItem (j1F4DC)
 		  Note: check wonder guard vs canceled se (elec on water/ground, fire on rock/grass)
-= 01EDF4: Entirety of TypeCalc (finish previous entry first)
-= 01EFCC: Entirety of AI_TypeCalc
-= 01F0C8: Entirety of Unused_ApplyRandomDmgMultiplier
 = 01F104: Entirety of atk07_adjustnormaldamage
-= 01F2B4: Entirety of atk08_adjustnormaldamage2
 
-curr: j1E604 - j1EC50
 next: j1EDBA?
 
 commands that changed address:

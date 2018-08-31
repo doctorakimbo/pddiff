@@ -107,6 +107,7 @@ funcs e,j,desc:
 01DC10 = 01D420 = JumpIfMoveAffectedByProtect
 01E770 = 01DF80 = ModulateDmgByType
 01EAB8 = 01E2C8 = CheckWonderGuardAndLevitate
+01ED3C = 01E54C = ModulateDmgByType2
 01FEE8 = GetBattlerTurnOrderNum
 01FF20 = 01F730 = SetMoveEffect
 02A1C0 = 029998 = IsTwoTurnsMove
@@ -146,13 +147,15 @@ funcs e,j,desc:
 01CDC6 = 01C5D6 = GetPinchThreshholdFromParam
 01CE30 = 01C640 = GetMoveWithNoPP
 01CEEC = 01C6FC = GetPartyIndex
-?????? = 01EB20 = HasItemWithTypeEffect (unimplemented)
+01F310 = 01EB20 = HasItemWithTypeEffect (unimplemented)
 01F358 = 01EB68 = GetWeatherTurns (unimplemented)
-?????? = 01F4DC = ConsumeItem (unimplemented)
+01FCCC = 01F4DC = ConsumeItem (unimplemented)
 027E3A = 027612 = CheckLeafGuardAndFlowerVeil (unimplemented)
 ?????? = 207370 = ????? (unimplemented)
 ?????? = 207450 = GetPinchThreshhold (unimplemented)
 ?????? = 207470 = PushScriptInstr (unimplemented)
+?????? = 2076B0 = RunTypeEffectivenessBasedAbilities (unimplemented)
+?????? = 251DA0 = IsMoveBlockedByAbility (unimplemented)
 
 data:
 21A8D4 = sHoldEffectToType

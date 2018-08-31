@@ -1,0 +1,53 @@
+TypeCalc(arg0, arg1, arg2)
+{
+	*s0 = 0
+	
+	if(arg0 == 0xA5)
+		return 0
+	
+	if(*((arg1 * 0x58) + gBattleMons + 0x21) == *((arg0 * 0xC) + gBattleMoves + 2) || *((arg1 * 0x58) + gBattleMons + 0x22) == *((arg0 * 0xC) + gBattleMoves + 2))
+		*gBattleMoveDamage *= (0xF / 0xA)
+	
+	if(*((arg2 * 0x58) + gBattleMons + 0x20) == 0x1A && *((arg0 * 0xC) + gBattleMoves + 2) == 4)
+		*s0 |= 9
+	else
+	{
+		r8 = 0
+		
+		lbl18:
+		if(*(r8 + data_24F050) != 0xFF)
+		{
+			if(*(r8 + data_24F050) == 0xFE)
+			{
+				if(!(*((arg2 * 0x58) + gBattleMons + 0x50) & 0x2000000000))
+				{
+					r8 += 3
+					goto lbl18
+				}
+			}
+			else
+			{
+				lbl15:
+				r1 = r8
+				
+				if(*(r1 + data_24F050) == *((arg0 * 0xC) + gBattleMoves + 2))
+				{
+					if(*(r1 + data_24F050 + 1) == *((arg2 * 0x58) + gBattleMons + 0x21))
+						ModulateDmgByType2(*(r8 + data_24F050 + 2), arg0, s0)
+					
+					if(*(r1 + data_24F050 + 1) == *((arg2 * 0x58) + gBattleMons + 0x22) && *((arg2 * 0x58) + gBattleMons + 0x21 != *((arg2 * 0x58) + gBattleMons + 0x22))
+						ModulateDmgByType2(*(r8 + data_24F050 + 2), arg0, s0)
+				}
+				
+				r8 += 3
+				goto lbl18
+			}
+		}
+	}
+	
+	if(*((arg2 * 0x58) + gBattleMons + 0x20) == 0x19 && !(*s0 & 1) && AttacksThisTurn(s0, arg0) == 2 && (!(*s0 & 2) || (r0 & 6) == 6) && *((arg0 * 0xC) + gBattleMoves + 1) != 0)
+		*s0 |= 1
+
+	lbl22:
+	return *s0
+}
