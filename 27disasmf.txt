@@ -1,0 +1,458 @@
+lbl1: @1F684
+r0 = gBattleControllerExecFlags
+r0 = *r0
+if(r0 == 0) goto lbl2
+
+goto lbl30
+
+lbl2:
+r0 = gBattleStruct
+r0 = *r0
+r1 = *(r0 + 0x13)
+if(r1 == 0) goto lbl3
+
+r0 = 0x40
+r0 &= r1
+if(r0 != 0) goto lbl3
+
+r6 = 0x3F
+r6 &= r1
+goto lbl4
+
+lbl3:
+r2 = gBattleMoves
+r0 = gCurrentMove
+r1 = *r0
+r0 = r1 * 2
+r0 += r1
+r0 *= 4
+r0 += r2
+r6 = *(r0 + 2)
+goto lbl4
+
+lbl4:
+r0 = gMoveResultFlags
+r1 = *r0
+r0 = 0x29
+r0 &= r1
+if(r0 == 0) goto lbl5
+
+goto lbl28
+
+lbl5:
+r0 = gBattleScriptCurrInstr
+r0 = *r0
+r0 = *(r0 + 1)
+GetBattlerForBattleScript()
+r7 = gActiveBattler
+*r7 = r0
+r1 = gBattleMons
+r2 = *r7
+r0 = 0x58
+r0 *= r2
+r1 += 0x50
+r0 += r1
+r0 = *r0
+r1 = 0x1000000
+r0 &= r1
+if(r0 == 0) goto lbl11
+
+r0 = gDisableStructs
+r1 = r2 * 8
+r1 -= r2
+r1 *= 4
+r4 = r1 + r0
+r1 = *(r4 + 0xA)
+r12 = r0
+if(r1 == 0) goto lbl11
+
+r0 = gHitMarker
+r3 = *r0
+r0 = 0x100
+r3 &= r0
+if(r3 != 0) goto lbl11
+
+r5 = r1
+r6 = gBattleMoveDamage
+r4 = *r6
+if(r5 < r4) goto lbl7
+
+r0 = gSpecialStatuses
+r1 = r2 * 4
+r1 += r2
+r1 *= 4
+r0 += 4
+r1 += r0
+r0 = *r1
+if(r0 != 0) goto lbl6
+
+*r1 = r4
+goto lbl6
+
+lbl6:
+r0 = *r7
+r1 = r0 * 8
+r1 -= r0
+r1 *= 4
+r1 += r12
+r2 = *r6
+r0 = *(r1 + 0xA)
+r0 -= r2
+*(r1 + 0xA) = r0
+r1 = data_02023D54
+r0 = *r6
+*r1 = r0
+goto lbl9
+
+lbl7:
+r0 = gSpecialStatuses
+r1 = r2 * 4
+r1 += r2
+r1 *= 4
+r0 += 4
+r1 += r0
+r0 = *r1
+if(r0 != 0) goto lbl8
+
+*r1 = r5
+goto lbl8
+
+lbl8:
+r2 = data_02023D54
+r1 = *r7
+r0 = r1 * 8
+r0 -= r1
+r0 *= 4
+r0 += r12
+r0 = *(r0 + 0xA)
+*r2 = r0
+r1 = *r7
+r0 = r1 * 8
+r0 -= r1
+r0 *= 4
+r0 += r12
+*(r0 + 0xA) = r3
+goto lbl9
+
+lbl9:
+r0 = gActiveBattler
+r1 = *r0
+r0 = r1 * 8
+r0 -= r1
+r0 *= 4
+r0 += r12
+r0 = *(r0 + 0xA)
+if(r0 == 0) goto lbl10
+
+goto lbl29
+
+lbl10:
+r4 = gBattleScriptCurrInstr
+r0 = *r4
+r0 += 2
+*r4 = r0
+BattleScriptPushCursor()
+r0 = script_1D9526
+*r4 = r0
+goto lbl30
+
+lbl11:
+r0 = gHitMarker
+r2 = *r0
+r1 = ~0x100
+r2 &= r1
+*r0 = r2
+r1 = gBattleMoveDamage
+r5 = *r1
+r12 = r0
+r7 = r1
+if(r5 >= 0) goto lbl13
+
+r4 = gBattleMons
+r2 = gActiveBattler
+r0 = *r2
+r3 = 0x58
+r1 = r0
+r1 *= r3
+r1 += r4
+r0 = *(r1 + 0x28)
+r0 -= r5
+*(r1 + 0x28) = r0
+r0 = *r2
+r0 *= r3
+r1 = r0 + r4
+r3 = *(r1 + 0x2C)
+r0 = *(r1 + 0x28)
+r5 = r2
+if(r0 > r3) goto lbl12
+
+goto lbl27
+
+lbl12:
+*(r1 + 0x28) = r3
+goto lbl27
+
+lbl13:
+r0 = 0x20
+r0 &= r2
+if(r0 == 0) goto lbl14
+
+r0 = ~0x20
+r2 &= r0
+r0 = r12
+*r0 = r2
+r5 = gActiveBattler
+goto lbl17
+
+lbl14:
+r0 = data_02023D58
+r2 = gActiveBattler
+r1 = *r2
+r1 *= 4
+r1 += r0
+r0 = *r1
+r0 += r5
+*r1 = r0
+r0 = gBattleScriptCurrInstr
+r0 = *r0
+r0 = *(r0 + 1)
+r5 = r2
+if(r0 != 0) goto lbl15
+
+r1 = data_02023DD8
+r0 = *r5
+r0 += r1
+r1 = gBattlerAttacker
+goto lbl16
+
+lbl15:
+r1 = data_02023DD8
+r0 = *r5
+r0 += r1
+r1 = gBattlerTarget
+goto lbl16
+
+lbl16:
+r1 = *r1
+*r0 = r1
+goto lbl17
+
+lbl17:
+r4 = gBattleMons
+r0 = *r5
+r3 = 0x58
+r0 *= r3
+r2 = r0 + r4
+r0 = *(r2 + 0x28)
+r1 = *r7
+if(r0 <= r1) goto lbl18
+
+r0 -= r1
+*(r2 + 0x28) = r0
+r0 = data_02023D54
+*r0 = r1
+r7 = r0
+goto lbl19
+
+lbl18:
+r2 = data_02023D54
+*r2 = r0
+r0 = *r5
+r0 *= r3
+r0 += r4
+r1 = 0
+*(r0 + 0x28) = r1
+r7 = r2
+goto lbl19
+
+lbl19:
+r2 = gSpecialStatuses
+r1 = *r5
+r0 = r1 * 4
+r0 += r1
+r0 *= 4
+r0 += r2
+r1 = r2 + 4
+r3 = r0 + r1
+r0 = *r3
+r4 = r2
+if(r0 != 0) goto lbl20
+
+r1 = r12
+r0 = *r1
+r1 = 0x100000
+r0 &= r1
+if(r0 != 0) goto lbl20
+
+r0 = *r7
+*r3 = r0
+goto lbl20
+
+lbl20:
+if(r6 > 8) goto lbl24
+
+r1 = r12
+r0 = *r1
+r1 = 0x100000
+r0 &= r1
+if(r0 != 0) goto lbl23
+
+r0 = gCurrentMove
+r0 = *r0
+if(r0 == 0xDC) goto lbl23
+
+r3 = gProtectStructs
+r0 = *r5
+r0 *= 0x10
+r1 = r3 + 4
+r0 += r1
+r2 = *r7
+*r0 = r2
+r1 = *r5
+r0 = r1 * 4
+r0 += r1
+r0 *= 4
+r1 = r4
+r1 += 8
+r0 += r1
+*r0 = r2
+r0 = gBattleScriptCurrInstr
+r0 = *r0
+r0 = *(r0 + 1)
+if(r0 != 0) goto lbl21
+
+r0 = *r5
+r0 *= 0x10
+r0 += r3
+r2 = gBattlerAttacker
+goto lbl22
+
+lbl21:
+r0 = *r5
+r0 *= 0x10
+r0 += r3
+r2 = gBattlerTarget
+goto lbl22
+
+lbl22:
+r1 = *r2
+*(r0 + 0xC) = r1
+r1 = *r5
+r0 = r1 * 4
+r0 += r1
+r0 *= 4
+r0 += r4
+r1 = *r2
+*(r0 + 0x10) = r1
+goto lbl27
+
+lbl23:
+if(r6 < 8) goto lbl27
+
+goto lbl24
+
+lbl24:
+r1 = r12
+r0 = *r1
+r1 = 0x100000
+r0 &= r1
+if(r0 != 0) goto lbl27
+
+r3 = gProtectStructs
+r0 = *r5
+r0 *= 0x10
+r1 = r3
+r1 += 8
+r0 += r1
+r2 = *r7
+*r0 = r2
+r1 = *r5
+r0 = r1 * 4
+r0 += r1
+r0 *= 4
+r1 = r4
+r1 += 0xC
+r0 += r1
+*r0 = r2
+r0 = gBattleScriptCurrInstr
+r0 = *r0
+r0 = *(r0 + 1)
+if(r0 != 0) goto lbl25
+
+r0 = *r5
+r0 *= 0x10
+r0 += r3
+r2 = gBattlerAttacker
+goto lbl26
+
+lbl25:
+r0 = *r5
+r0 *= 0x10
+r0 += r3
+r2 = gBattlerTarget
+goto lbl26
+
+lbl26:
+r1 = *r2
+*(r0 + 0xD) = r1
+r1 = *r5
+r0 = r1 * 4
+r0 += r1
+r0 *= 4
+r0 += r4
+r1 = *r2
+*(r0 + 0x11) = r1
+goto lbl27
+
+lbl27:
+r1 = r12
+r0 = *r1
+r1 = ~0x100000
+r0 &= r1
+r1 = r12
+*r1 = r0
+r1 = *r5
+r0 = 0x58
+r0 *= r1
+r1 = gBattleMons.hp
+r0 += r1
+s0 = r0
+r0 = 0
+r1 = 0x2A
+r2 = 0
+r3 = 2
+BtlController_EmitSetMonData()
+r0 = *r5
+MarkBattlerForControllerExec()
+goto lbl29
+
+lbl28:
+r0 = gBattleScriptCurrInstr
+r0 = *r0
+r0 = *(r0 + 1)
+GetBattlerForBattleScript()
+r1 = gActiveBattler
+*r1 = r0
+r2 = gSpecialStatuses
+r1 = *r1
+r0 = r1 * 4
+r0 += r1
+r0 *= 4
+r2 += 4
+r1 = r0 + r2
+r0 = *r1
+if(r0 != 0) goto lbl29
+
+r0 = 0xFFFF
+*r1 = r0
+goto lbl29
+
+lbl29:
+r1 = gBattleScriptCurrInstr
+r0 = *r1
+r0 += 2
+*r1 = r0
+goto lbl30
+
+lbl30:
+(end)

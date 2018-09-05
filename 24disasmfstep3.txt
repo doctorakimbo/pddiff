@@ -1,0 +1,44 @@
+atk07_adjustnormaldamage()
+{
+	if(gBattleMoveDamage != 0)
+	{
+		gBattleMoveDamage *= ((0x64 - (Random() & 0xF)) / 0x64)
+		
+		if(gBattleMoveDamage == 0)
+			gBattleMoveDamage = 1
+	}
+	
+	if(gBattleMons[gBattlerTarget].0x2E == 0xAF)
+	{
+		r4 = gEnigmaBerries[gBattlerTarget].7
+		r6 = gEnigmaBerries[gBattlerTarget].0x1A
+	}
+	else
+	{
+		r4 = GetHoldEffect(gBattleMons[gBattlerTarget].0x2E)
+		r6 = GetHoldEffectParam(gBattleMons[gBattlerTarget].0x2E)
+	}
+	
+	gPotentialItemEffectBattler = gBattlerTarget
+	
+	if(r4 == 0x27 && (Random() % 0x64) bcc r6)
+	{
+		RecordItemEffectBattle(gBattlerTarget, 0x27)
+		gSpecialStatuses[gBattlerTarget].0x14 |= 0x80
+	}
+	
+	if(!(gBattleMons[gBattlerTarget].0x50 & 0x1000000) && (gBattleMoves[gCurrentMove].0 == 0x65 || (gProtectStructs[gBattlerTarget] << 0x1E) < 0 || (gSpecialStatuses[gBattlerTarget].0x14 >> 7) != 0) && gBattleMons[gBattlerTarget].0x28 <= gBattleMoveDamage)
+	{
+		gBattleMoveDamage = gBattleMons[gBattlerTarget].0x28 - 1
+		
+		if((gProtectStructs[gBattlerTarget] << 0x1E) < 0)
+			gMoveResultFlags |= 0x40
+		elseif((gSpecialStatuses[gBattlerTarget].0x14 >> 7) != 0)
+		{
+			gMoveResultFlags |= 0x80
+			gLastUsedItem = gBattleMons[gBattlerTarget].0x2E
+		}
+	}
+	
+	gBattleScriptCurrInstr++
+}

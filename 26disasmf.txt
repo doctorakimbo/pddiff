@@ -1,0 +1,86 @@
+lbl1: @1F5A8
+r0 = gBattleControllerExecFlags
+r0 = *r0
+if(r0 != 0) goto lbl5
+
+r0 = gMoveResultFlags
+r1 = *r0
+r0 = 0x29
+r0 &= r1
+if(r0 != 0) goto lbl4
+
+r0 = gBattleScriptCurrInstr
+r0 = *r0
+r0 = *(r0 + 1)
+fn_16E24()
+r2 = gActiveBattler
+*r2 = r0
+r1 = gBattleMons
+r2 = *r2
+r0 = 0x58
+r0 *= r2
+r1 += 0x50
+r0 += r1
+r0 = *r0
+r1 = 0x1000000
+r0 &= r1
+if(r0 == 0) goto lbl2
+
+r0 = gDisableStructs
+r1 = r2 * 8
+r1 -= r2
+r1 *= 4
+r1 += r0
+r0 = *(r1 + 0xA)
+if(r0 == 0) goto lbl2
+
+r0 = gHitMarker
+r0 = *r0
+r1 = 0x100
+r0 &= r1
+if(r0 != 0) goto lbl2
+
+r0 = 0x80
+r1 = r2
+fn_173AC()
+goto lbl(1EE72)
+
+lbl2:
+r0 = gBattleMoveDamage
+r0 = *r0
+r1 = 0x1027
+if(r0 > r1) goto lbl3
+
+r1 = r0
+goto lbl3
+
+lbl3:
+r0 = 0
+fn_E5EC()
+r4 = gActiveBattler
+r0 = *r4
+MarkBattlerForControllerExec()
+r0 = *r4
+GetBattlerSide()
+if(r0 != 0) goto lbl4
+
+r0 = gBattleMoveDamage
+r0 = *r0
+if(r0 <= 0) goto lbl4
+
+r0 = gBattleResults
+r1 = *(r0 + 5)
+r2 = 1
+r1 |= r2
+*(r0 + 5) = r1
+goto lbl4
+
+lbl4:
+r1 = gBattleScriptCurrInstr
+r0 = *r1
+r0 += 2
+*r1 = r0
+goto lbl5
+
+lbl5:
+(end)

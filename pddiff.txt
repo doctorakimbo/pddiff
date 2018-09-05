@@ -97,6 +97,7 @@ item effects:
 = typebooster IDs: (if effectparam = 0, type-resist berries; if effectparam >= 30, consumed when move of same type used (+ other effect?); otherwise typeboosters as normal)
 = 0x1D = "Polkadot Bow"
 + 0x2B = Leftovers if effectparam is 0xFF, otherwise Black Sludge (effectparam = type that heals)
+- 0x43 = Focus Sash
 + 0x44 = Choice Specs
 + 0x45 = Choice Band
 + 0x46 = Choice Scarf
@@ -154,6 +155,7 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0xEB = "[PKMN]'s [ABILITY] made it hail! (placeholder)" <DON'T ADD 9>
 = 0x180 = "[PKMN]'s [ABILITY] nullified the effects of weather!" <ADD THIS AFTER IMPORTING ABILITYBATTLEEFFECTS>
 = 0x181 = "[PKMN]'s [ITEM] let it move first!"
+! 0x183 = "The [ITEM] weakened [MOVE]'s power!"
 ! 0x184 = "[PKMN] is not affected by [MOVE] thanks to its [ITEM]!"
 ! 0x185 = "[PKMN] breaks the mold!"
 ! 0x186 = "[PKMN] is exerting its pressure!"
@@ -306,22 +308,28 @@ grafics:
 		  Glitch?: Solid Rock might be 3/4 to ALL damage
 = 01EFCC: Entirety of AI_TypeCalc (see 23disasm)
 		  Implements: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Storm Drain (immunity), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Bulletproof, Dazzling, Queenly Majesty, grass-type powder immunity
+		  Relies on: battleMove refactor
 		  Requires in future: IsMoveBlockedByAbility (j251DA0)
 		  Notes: Of the three, only atk06_typecalc contains the Mold Breaker functionality (besides vs Solid Rock)/Sheer Cold immunity/(bcs 0x1E items), only TypeCalc contains the Hidden Power calc/non-Levitate ability immunities/type-resist berries, and AI_TypeCalc doesn't have anything but the immunity abilities (no Mold Breaker even); not sure what this implies
 = 01F104: Entirety of atk07_adjustnormaldamage (+HasItemWithTypeEffect, GetWeatherTurns) (see 24disasm)
-		  Implements: 
-		  Requires in future: ConsumeItem (e01FCCC, j01F4DC), ??? (j168C88), ??? (j168C9C), script_1F543_J (e1FD33), AteAbilityConversionTable (j168CB4)
+		  Implements: Klutz (Focus Band, the item effects here), Mold Breaker+ (vs Sturdy), Unnerve (type-resist berries), Infiltrator (foe can endure when hit through Substitute), Focus Sash, type-resist berries, foe can endure when hit by sound moves through Substitute
+		  Relies on: BattleMove refactor
+		  Requires in future: ConsumeItem (e01FCCC, j01F4DC), ClearFocusBand (j168C88), SetFocusBand (j168C9C), BattleScript_ConsumeDamageReductionBerry (e1FD33, j1F543), AteAbilityConversionTable (j168CB4)
 		  Glitch: Pointer to AteAbilityConversionTable (j168CB4) instead points to j168CA4
 = 01F2B4 -> 01F394 (repoint): Entirety of atk08_adjustnormaldamage2 (see 25disasm)
-		  Implements: 
-		  Relies on: atk07_adjustnormaldamage
+		  Implements: Klutz (enduring (Focus) items), Mold Breaker+ (vs Sturdy), Infiltrator (foe can endure when hit through Substitute), Focus Sash, foe can endure when hit by sound moves through Substitute
+		  Relies on: atk07_adjustnormaldamage, BattleMove refactor
 		  Note: Actually just calls atk07_adjustnormaldamage with gCurrentMove set to 0
+= 01F5A8: Entirety of atk0B_healthbarupdate (see 26disasm)
+		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute
+		  Relies on: BattleMove refactor
+		  Note: Removes 10000 hard damage limit, might break something?
+= 01F684 -> 01F6A0 (repoint): Entirety of atk0C_datahpupdate
+		  
 
-curr: j1E914, j1EAC4 -> j1EBA4
-next: j1EDBA?
+next: j1F3BC?
 
 commands that changed address:
-0C: 01EE94 -> 01EEB0
 1D: 020EC8 -> 020E94
 84: 0270A4 -> 027080
 88: 0273A0 -> 027350

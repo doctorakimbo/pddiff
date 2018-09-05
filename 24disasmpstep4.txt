@@ -1,0 +1,128 @@
+atk07_adjustnormaldamage()
+{
+	ApplyRandomDmgMultiplier();
+	
+	param = GetHoldEffectParam(gBattleMons[gBattlerTarget].item);
+	holdEffect = GetHoldEffect(gBattleMons[gBattlerTarget].item);
+	gPotentialItemEffectBattler = gBattlerTarget;
+	
+	if(gBattleMons[gBattlerTarget].ability != ABILITY_KLUTZ)
+	{
+		if(holdEffect == HOLD_EFFECT_FOCUS_SASH)
+		{
+			if(gBattleMons[gBattlerTarget].maxHP == gBattleMons[gBattlerTarget].hp && gBattleMons[gBattlerTarget].hp < gBattleMoveDamage)
+			{
+				RecordItemEffectBattle(gBattlerTarget, HOLD_EFFECT_FOCUS_SASH);
+				SetFocusBand();
+			}
+			else
+				ClearFocusBand();
+		}
+		elseif(holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param)
+		{
+			RecordItemEffectBattle(gBattlerTarget, HOLD_EFFECT_FOCUS_BAND);
+			SetFocusBand();
+		}
+		elseif(param == 0 && gCurrentMove != MOVE_NONE && gCurrentMove != MOVE_STRUGGLE)
+		{
+			rawType = gBattleMoves[gCurrentMove].type;
+			
+			if(gBattleStruct->dynamicMoveType)
+				rawType = gBattleStruct->dynamicMoveType & 0x3F;
+			
+			if(rawType != TYPE_NORMAL)
+			{
+				if(gBattleMons[gBattlerAttacker].ability == ABILITY_NORMALIZE)
+					type = TYPE_NORMAL;
+			}
+			else
+			{
+				type = TYPE_NORMAL;
+
+				do
+				{
+					type++;
+					
+					if(AteAbilityConversionTable_WrongPtr[type] == 0xFF)
+						break;
+				} while(gBattleMons[gBattlerAttacker].ability != AteAbilityConversionTable_WrongPtr[type]);
+				
+				if(AteAbilityConversionTable_WrongPtr[type] == 0xFF)
+					type = TYPE_NORMAL;
+			}
+			
+			if(HasItemWithTypeEffect(gBattleMons[gBattlerTarget], type) && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) && (type == TYPE_NORMAL || (gMoveResultFlags & RESULT_SUPER_EFFECTIVE)) && !AbilityBattleEffects(ABILITYEFFECT_COUNT_OTHER_SIDE, gBattlerTarget, ABILITY_UNNERVE, 0, 0))
+			{
+				if(gBattleMoveDamage > 1)
+					gBattleMoveDamage /= 2;
+				
+				ConsumeItem(gBattlerTarget);
+				gBattleScriptCurrInstr++;
+				BattleScriptPushCursor();
+				gBattleScriptCurrInstr = BattleScript_ConsumeDamageReductionBerry;
+			}
+		}
+	}
+	
+	if((gBattleMons[gBattlerAttacker].ability == ABILITY_INFILTRATOR || (gBattleMoves[gCurrentMove].typeFlags1 & FLAG_SOUND_MOVE) || !(gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)) && gBattleMons[gBattlerAttacker].ability != ABILITY_MOLD_BREAKER && (gBattleMons[gBattlerAttacker].ability - 0xA3) >= 1 && gBattleMons[gBattlerTarget].ability == ABILITY_STURDY && gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP)
+	{
+		if(gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
+			goto lbl17
+		else
+			goto lbl18
+	}
+	
+	if(gProtectStructs[gBattlerTarget].endured)
+	{
+		lbl17:
+		gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
+	}
+	else
+	{
+		lbl18:
+		if(gBattleMoves[gCurrentMove].effect != EFFECT_FALSE_SWIPE)
+		{
+			if(gSpecialStatuses[gBattlerTarget].focusBanded)
+				gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
+			else
+				goto lbl20
+		}
+	}
+	
+	if(gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
+		gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
+
+	lbl20:
+	gBattleScriptCurrInstr++;
+}
+
+
+
+
+
+ClearFocusBand() @168C88_J
+{
+	gSpecialStatuses[gBattlerTarget].focusBanded = 0;
+}
+
+
+
+
+
+SetFocusBand() @168C9C_J
+{
+	gSpecialStatuses[gBattlerTarget].focusBanded = 1;
+}
+
+
+
+
+
+BattleScript_ConsumeDamageReductionBerry: @1F543_J
+(02 45 00 07 00 00 00 00 10 83 01 12 40 00 3C) = 
+(02 45 00 07 00 00 00 00 10 8C 01 12 40 00 3C)
+attackstring
+playanimation BS_TARGET, B_ANIM_ITEM_EFFECT, NULL
+printstring 0x18C
+waitmessage 0x40
+return

@@ -1,0 +1,129 @@
+atk07_adjustnormaldamage()
+{
+	gBattleMoveDamage *= ((0x64 - (Random() & 0xF)) / 0x64)
+	
+	if(gBattleMoveDamage == 0)
+		gBattleMoveDamage = 1
+	
+	r8 = GetHoldEffectParam(gBattleMons[gBattlerTarget].0x2E)
+	r1 = GetHoldEffect(gBattleMons[gBattlerTarget].0x2E)
+	gPotentialItemEffectBattler = gBattlerTarget
+	
+	if(gBattleMons[gBattlerTarget].0x20 != 0x67)
+	{
+		if(r1 == 0x43)
+		{
+			if(gBattleMons[gBattlerTarget].0x2C == gBattleMons[gBattlerTarget].0x28 && gBattleMons[gBattlerTarget].0x28 < gBattleMoveDamage)
+			{
+				RecordItemEffectBattle(gBattlerTarget, 0x43)
+				fn_168C9C_J()
+			}
+			else
+				fn_168C88_J()
+		}
+		else
+		{
+			if(r1 == 0x27 && (Random() % 0x64) bcc r8)
+			{
+				RecordItemEffectBattle(gBattlerTarget, 0x27)
+				fn_168C9C_J()
+			}
+			elseif(r8 == 0 && gCurrentMove != 0 && gCurrentMove != 0xA5)
+			{
+				r1 = gBattleMoves[gCurrentMove].2
+				
+				if(gBattleStruct->0x13 != 0)
+					r1 = gBattleStruct->0x13 & 0x3F
+				
+				if(r1 != 0)
+				{
+					if(gBattleMons[gBattlerAttacker].0x20 == 0x60)
+						r1 = 0
+				}
+				else
+				{
+					r8 = r1
+
+					do
+					{
+						r1++
+						
+						if(AteAbilityConversionTable_WrongPtr[r1] == 0xFF)
+							goto lbl11
+					} while(gBattleMons[gBattlerAttacker].0x20 != AteAbilityConversionTable_WrongPtr[r1])
+				}
+				
+				r8 = r1
+
+				lbl11:
+				if(HasItemWithTypeEffect(gBattleMons[gBattlerTarget], r8) && !(gMoveResultFlags & 0x29) && (r8 == 0 || (r1 & 2)) && !AbilityBattleEffects(0x10, gBattlerTarget, 0x7F, 0, 0))
+				{
+					if(gBattleMoveDamage > 1)
+						gBattleMoveDamage /= 2
+					
+					ConsumeItem(gBattlerTarget)
+					gBattleScriptCurrInstr++
+					BattleScriptPushCursor()
+					gBattleScriptCurrInstr = script_1F543_J
+				}
+			}
+		}
+	}
+
+	lbl14:
+	if((gBattleMons[gBattlerAttacker].0x20 == 0x97 || (gBattleMoves[gCurrentMove].9 & 1) || !(gBattleMons[gBattlerTarget].0x50 & 0x1000000)) && gBattleMons[gBattlerAttacker].0x20 != 0x68 && (gBattleMons[gBattlerAttacker].0x20 - 0xA3) >= 1 && gBattleMons[gBattlerTarget].0x20 == 5 && gBattleMons[gBattlerTarget].0x28 == gBattleMons[gBattlerTarget].0x2C)
+	{
+		if(gBattleMons[gBattlerTarget].0x28 <= gBattleMoveDamage)
+			goto lbl17
+		else
+			goto lbl18
+	}
+	
+	if((gProtectStructs[gBattlerTarget] << 0x1E) < 0)
+	{
+		lbl17:
+		gMoveResultFlags |= 0x40
+	}
+	else
+	{
+		lbl18:
+		if(gBattleMoves[gCurrentMove].0 != 0x65)
+		{
+			if((gSpecialStatuses[gBattlerTarget].0x14 >> 7) != 0)
+				gMoveResultFlags |= 0x80
+			else
+				goto lbl20
+		}
+	}
+	
+	if(gBattleMons[gBattlerTarget].0x28 <= gBattleMoveDamage)
+		gBattleMoveDamage = gBattleMons[gBattlerTarget].0x28 - 1
+
+	lbl20:
+	gBattleScriptCurrInstr++
+}
+
+
+
+
+
+fn_168C88_J()
+{
+	gSpecialStatuses[gBattlerTarget].0x14 &= 0x7F
+}
+
+
+
+
+
+fn_168C9C_J()
+{
+	gSpecialStatuses[gBattlerTarget].0x14 |= 0x80
+}
+
+
+
+
+
+script_1F543_J:
+(02 45 00 07 00 00 00 00 10 83 01 12 40 00 3C)

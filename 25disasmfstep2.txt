@@ -1,0 +1,45 @@
+atk08_adjustnormaldamage2()
+{
+	if(*gBattleMoveDamage != 0)
+	{
+		*gBattleMoveDamage *= ((0x64 - (Random() & 0xF)) / 0x64)
+		
+		if(*gBattleMoveDamage == 0)
+			*gBattleMoveDamage = 1
+	}
+
+	if(*((*gBattlerTarget * 0x58) + gBattleMons + 0x2E) == 0xAF)
+	{
+		r4 = *((*gBattlerTarget * 7) + gEnigmaBerries + 7)
+		r6 = *((*gBattlerTarget * 7) + gEnigmaBerries + 0x1A)
+	}
+	else
+	{
+		r4 = GetHoldEffect(*((*gBattlerTarget * 0x58) + gBattleMons + 0x2E))
+		r6 = GetHoldEffectParam(*((*gBattlerTarget * 0x58) + gBattleMons + 0x2E))
+	}
+	
+	*gPotentialItemEffectBattler = *gBattlerTarget
+	
+	if(r4 == 0x27 && (Random() % 0x64) bcc r6)
+	{
+		RecordItemEffectBattle(*gBattlerTarget, 0x27)
+		*((*gBattlerTarget * 0x14) + gSpecialStatuses) |= 0x80
+	}
+	
+	if(!(*((*gBattlerTarget * 0x58) + gBattleMons + 0x50) & 0x1000000) && ((*((*gBattlerTarget * 0x10) + gProtectStructs) << 0x1E) < 0 || (*((*gBattlerTarget * 0x14) + gSpecialStatuses) >> 7) != 0) && *((*gBattlerTarget * 0x58) + gBattleMons + 0x28) <= *gBattleMoveDamage)
+	{	
+		*gBattleMoveDamage = *((*gBattlerTarget * 0x58) + gBattleMons + 0x28) - 1
+		
+		if((*((*gBattlerTarget * 0x10) + gProtectStructs) << 0x1E) < 0)
+			*gMoveResultFlags |= 0x40
+		
+		if((*((*gBattlerTarget * 0x14) + gSpecialStatuses) >> 7) != 0)
+		{
+			*gMoveResultFlags |= 0x80
+			*gLastUsedItem = *((*gBattlerTarget * 0x58) + gBattleMons + 0x2E)
+		}
+	}
+
+	(*gBattleScriptCurrInstr)++
+}

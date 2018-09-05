@@ -1,0 +1,326 @@
+atk07_adjustnormaldamage()
+{
+	r1 = gBattleMoves
+	r0 = gCurrentMove
+	r0 = *r0
+	r2 = 0xC
+	r0 *= r2
+	r0 += r1
+	r9 = r0
+	Random()
+	r1 = 0xF
+	r0 &= r1
+	r1 = 0x64
+	r1 -= r0
+	r4 = gBattleMoveDamage
+	r0 = *r4
+	r0 *= r1
+	r1 = 0x64
+	divide()
+	
+	if(r0 == 0)
+		r0 = 1
+	
+	*r4 = r0
+	r2 = gBattleMons
+	r5 = gBattlerAttacker
+	r0 = *r5
+	r1 = 0x58
+	r0 *= r1
+	r0 += r2
+	r0 += 0x20
+	r6 = *r0
+	r5 = *(r5 + 1)
+	r1 *= r5
+	r7 = r1 + r2
+	r0 = *(r7 + 0x2E)
+	GetHoldEffectParam()
+	r8 = r0
+	r0 = *(r7 + 0x2E)
+	GetHoldEffect()
+	r1 = r0
+	r2 = gBattlerAttacker
+	*(r2 + 4) = r5
+	r0 = r7
+	r0 += 0x20
+	r4 = *r0
+	
+	if(r4 != 0x67)
+	{
+		if(r1 == 0x43)
+		{
+			r2 = *(r7 + 0x28)
+			r0 = *(r7 + 0x2C)
+			
+			if(r0 == r2)
+			{
+				r0 = gBattleMoveDamage
+				r0 = *r0
+				
+				if(r2 < r0)
+					goto lbl5
+			}
+			
+			fn_168C88_J()
+		}
+		else
+		{
+			if(r1 == 0x27)
+			{
+				Random()
+				r1 = 0x64
+				modulus()
+				
+				if(r0 bcc r8)
+				{
+					r1 = 0x27
+
+					lbl5:
+					r0 = r5
+					RecordItemEffectBattle()
+					fn_168C9C_J()
+				}
+			}
+			else
+			{
+				r0 = r8
+				
+				if(r0 == 0)
+				{
+					r2 = gCurrentMove
+					r0 = *r2
+					
+					if(r0 != 0 && r0 != 0xA5)
+					{
+						r0 = r9
+						r1 = *(r0 + 2)
+						r0 = gBattleStruct
+						r0 = *r0
+						r0 = *(r0 + 0x13)
+						
+						if(r0 != 0)
+						{
+							r1 = 0x3F
+							r1 &= r0
+						}
+						
+						if(r1 != 0)
+						{
+							if(r6 == 0x60)
+								r1 = 0
+							
+							goto lbl10
+						}
+						
+						r8 = r1
+
+						do
+						{
+							r1++
+							r2 = AteAbilityConversionTable_WrongPtr
+							r0 = *(r2 + r1)
+							
+							if(r0 == 0xFF)
+								goto lbl11
+						} while(r6 != r0)
+
+						lbl10:
+						r8 = r1
+
+						lbl11:
+						r0 = r7
+						r1 = r8
+						HasItemWithTypeEffect()
+						
+						if(r0 != 0)
+						{
+							r2 = gMoveResultFlags
+							r1 = *r2
+							r0 = 0x29
+							r0 &= r1
+							
+							if(r0 == 0)
+							{
+								r0 = r8
+								if(r0 == 0) goto lbl12
+
+								r0 = 2
+								r0 &= r1
+								if(r0 != 0) goto lbl12
+
+								goto lbl14
+
+								lbl12:
+								r0 = 0x10
+								r1 = r5
+								r2 = 0x7F
+								r3 = 0
+								s0 = r3
+								AbilityBattleEffects()
+								
+								if(r0 == 0)
+								{
+									r1 = gBattleMoveDamage
+									r0 = *r1
+									
+									if(r0 > 1)
+									{
+										r0 /= 2
+										*r1 = r0
+									}
+									
+									r0 = r5
+									ConsumeItem()
+									r1 = gBattleScriptCurrInstr
+									r0 = *r1
+									r0++
+									*r1 = r0
+									BattleScriptPushCursor()
+									r1 = gBattleScriptCurrInstr
+									r0 = script_1F543_J
+									*r1 = r0
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	lbl14:
+	if(r6 == 0x97) goto lbl15
+
+	r0 = r9
+	r0 = *(r0 + 9)
+	r1 = 1
+	r0 &= r1
+	if(r0 != 0) goto lbl15
+
+	r1 = *(r7 + 0x50)
+	r0 = 0x1000000
+	r1 &= r0
+	if(r1 == 0) goto lbl15
+
+	goto lbl20
+
+	lbl15:
+	if(r6 != 0x68)
+	{
+		r6 -= 0xA3
+		
+		if(r6 >= 1 && r4 == 5)
+		{
+			r0 = *(r7 + 0x28)
+			r1 = *(r7 + 0x2C)
+			
+			if(r0 == r1)
+			{
+				r1 = gBattleMoveDamage
+				r1 = *r1
+				
+				if(r0 <= r1)
+					goto lbl17
+				else
+					goto lbl18
+			}
+		}
+	}
+	
+	r0 = gProtectStructs
+	r1 = r5 * 0x10
+	r0 += r1
+	r0 = *r0
+	r0 << 0x1E
+	
+	if(r0 < 0)
+	{
+		lbl17:
+		r0 = gMoveResultFlags
+		r1 = *r0
+		r2 = 0x40
+		r1 |= r2
+		*r0 = r1
+		goto lbl19
+	}
+	else
+	{
+		lbl18:
+		r0 = r9
+		r0 = *r0
+		
+		if(r0 != 0x65)
+		{
+			r0 = gSpecialStatuses
+			r1 = 0x14
+			r1 *= r5
+			r1 += r0
+			r0 = *r1
+			r0 >> 7
+			
+			if(r0 == 0)
+				goto lbl20
+
+			r2 = gMoveResultFlags
+			r0 = *r2
+			r1 = 0x80
+			r0 |= r1
+			*r2 = r0
+		}
+	}
+	
+	r1 = *(r7 + 0x28)
+	r2 = gBattleMoveDamage
+	r0 = *r2
+	
+	if(r1 <= r0)
+	{
+		r0 = r1 - 1
+		*r2 = r0
+	}
+
+	lbl20:
+	r1 = gBattleScriptCurrInstr
+	r0 = *r1
+	r0++
+	*r1 = r0
+}
+
+
+
+
+
+fn_168C88_J()
+{
+	r2 = gSpecialStatuses
+	r0 = 0x14
+	r0 *= r5
+	r0 += r2
+	r1 = *r0
+	r2 = 0x7F
+	r1 &= r2
+	*r0 = r1
+}
+
+
+
+
+
+fn_168C9C_J()
+{
+	r2 = gSpecialStatuses
+	r0 = 0x14
+	r0 *= r5
+	r0 += r2
+	r1 = *r0
+	r2 = 0x80
+	r1 |= r2
+	*r0 = r1
+}
+
+
+
+
+
+script_1F543_J:
+(02 45 00 07 00 00 00 00 10 83 01 12 40 00 3C)

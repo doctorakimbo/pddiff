@@ -16,12 +16,15 @@ E3 3B 02 02: 43 3B 02 02: gCurrentActionFuncId
 E4 3B 02 02: 44 3B 02 02: gBattleMons
 FC 3B 02 02: 5C 3B 02 02: gBattleMons.statStages
 04 3C 02 02: 64 3B 02 02: gBattleMons.ability
+0C 3C 02 02: 6C 3B 02 02: gBattleMons.hp
 30 3C 02 02: 90 3B 02 02: gBattleMons.status1
 48 3D 02 02: A8 3C 02 02: gCurrMovePos
 49 3D 02 02: A9 3C 02 02: gChosenMovePos
 4A 3D 02 02: AA 3C 02 02: gCurrentMove
 4C 3D 02 02: AC 3C 02 02: gChosenMove
 50 3D 02 02: B0 3C 02 02: gBattleMoveDamage
+54 3D 02 02: B4 3C 02 02: ?????
+58 3D 02 02: B8 3C 02 02: ?????
 68 3D 02 02: C8 3C 02 02: gLastUsedItem
 6A 3D 02 02: CA 3C 02 02: gLastUsedAbility
 6B 3D 02 02: CB 3C 02 02: gBattlerAttacker
@@ -41,6 +44,7 @@ B8 3D 02 02: 18 3D 02 02: gLockedMoves
 C4 3D 02 02: 24 3D 02 02: gChosenMoveByBattler
 CC 3D 02 02: 2C 3D 02 02: gMoveResultFlags
 D0 3D 02 02: 30 3D 02 02: gHitMarker
+D8 3D 02 02: 38 3D 02 02: ?????
 DE 3D 02 02: 3E 3D 02 02: gSideStatuses
 E4 3D 02 02: 44 3D 02 02: gSideTimers
 FC 3D 02 02: 5C 3D 02 02: gStatuses3
@@ -86,11 +90,14 @@ F4 3F 02 02: 54 3F 02 02: gBattleResources
 funcs e,j,desc:
 008D84 = 008900 = StringCopy
 00DFF0 = 00D9E4 = BtlController_EmitSetMonData
+00E5EC = 00DFA0 = BtlController_EmitHealthBarUpdate
 011100 = BattleMainCB2
 015A30 = FreeResetData_ReturnToOvOrDoEvolutions
+016E24 = 016634 = GetBattlerForBattleScript
 016EC8 = 0166D8 = PressurePPLose
 017248 = 016A58 = MarkBattlerForControllerExec
 0172E8 = 016AF8 = CancelMultiTurnMoves
+0173AC = 016BBC = PrepareStringBattle
 017520 = 016D30 = BattleScriptPush
 017544 = 016D54 = BattleScriptPushCursor
 01756C = 016D7C = BattleScriptPop

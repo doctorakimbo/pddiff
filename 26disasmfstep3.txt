@@ -1,0 +1,30 @@
+atk0B_healthbarupdate()
+{
+	if(gBattleControllerExecFlags == 0)
+	{
+		if(!(gMoveResultFlags & 0x29))
+		{
+			r0 = *(gBattleScriptCurrInstr + 1)
+			sub_8016E24()
+			gActiveBattler = r0
+			
+			if((gBattleMons[gActiveBattler].0x50 & 0x1000000) && gDisableStructs[gActiveBattler].0xA != 0 && !(gHitMarker & 0x100))
+				PrepareStringBattle(0x80, gActiveBattler)
+			else
+			{
+				r1 = 0x1027
+				
+				if(*gBattleMoveDamage <= r1)
+					r1 = gBattleMoveDamage
+				
+				BtlController_EmitHealthBarUpdate(0, r1)
+				MarkBattlerForControllerExec(gActiveBattler)
+				
+				if(GetBattlerSide(gActiveBattler) == 0 && gBattleMoveDamage > 0)
+					gBattleResults.5 |= 1
+			}
+		}
+		
+		gBattleScriptCurrInstr += 2
+	}
+}

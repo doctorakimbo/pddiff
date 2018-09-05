@@ -1,0 +1,26 @@
+atk0B_healthbarupdate()
+{
+	if(gBattleControllerExecFlags)
+		return;
+	
+	if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
+	{
+		gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
+		
+		if((gBattleMons[gActiveBattler].status2 & STATUS2_SUBSTITUTE) && gDisableStructs[gActiveBattler].substituteHP && !(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE))
+			PrepareStringBattle(STRINGID_SUBSTITUTEDAMAGED, gActiveBattler);
+		else
+		{
+			if(gBattleMoveDamage > 10000)
+				gBattleMoveDamage = 10000;
+			
+			BtlController_EmitHealthBarUpdate(0, gBattleMoveDamage);
+			MarkBattlerForControllerExec(gActiveBattler);
+			
+			if(GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER && gBattleMoveDamage > 0)
+				gBattleResults.unk5_0 = 1;
+		}
+	}
+	
+	gBattleScriptCurrInstr += 2;
+}
