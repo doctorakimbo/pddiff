@@ -1,0 +1,42 @@
+AI_TypeCalc(move, targetSpecies, targetAbility)
+{
+	flags = 0;
+	type1 = gBaseStats[targetSpecies].type1;
+	type2 = gBaseStats[targetSpecies].type2;
+
+	if(move == MOVE_STRUGGLE)
+		return 0;
+		
+	moveType = gBattleMoves[move].type;
+
+	if(targetAbility == ABILITY_LEVITATE && moveType == TYPE_GROUND)
+		flags = MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE;
+	else
+	{
+		i = 0;
+	
+		while(TYPE_EFFECT_ATK_TYPE(i) != TYPE_ENDTABLE)
+		{
+			if(TYPE_EFFECT_ATK_TYPE(i) == TYPE_FORESIGHT)
+			{
+				i += 3;
+				continue;
+			}
+			
+			if(TYPE_EFFECT_ATK_TYPE(i) == moveType)
+				if(TYPE_EFFECT_DEF_TYPE(i) == type1)
+					ModulateDmgByType2(TYPE_EFFECT_MULTIPLIER(i), move, &flags);
+				
+				if(TYPE_EFFECT_DEF_TYPE(i) == type2 && type1 != type2)
+					ModulateDmgByType2(TYPE_EFFECT_MULTIPLIER(i), move, &flags);
+			}
+			
+			i += 3;
+		}
+	}
+
+	if(targetAbility == ABILITY_WONDER_GUARD && (!(flags & MOVE_RESULT_SUPER_EFFECTIVE) || ((flags & (MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE)) == (MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE))) && gBattleMoves[move].power)
+		flags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
+	
+	return flags;
+}

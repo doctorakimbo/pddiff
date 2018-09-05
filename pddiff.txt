@@ -264,7 +264,7 @@ grafics:
 = 01A088: Most of AbilityBattleEffects (see 13disasm)
 		  Implements: Stench flinch chance, Lightning Rod boost/immunity, Pressure message, Motor Drive, Anger Point, Unburden (activation), Dry Skin (rain/water healing/immunity), Download, Hydration, Magic Guard (vs contact damage abilities), Klutz (the item effects here), Mold Breaker (message), Mold Breaker+ (vs move-subset immunities/absorbing immunities), Aftermath, Anticipation, Forewarn, Slow Start (upkeep), Storm Drain (boost/immunity), Ice Body, Snow Warning, Frisk, Unnerve (message), Cursed Body, Healer, Weak Armor, Moody, Overcoat (vs powder), Poison Touch, Imposter, Infiltrator (getting affected by hit-reaction abilities when hitting through Substitute), Mummy, Justified, Rattled, Sap Sipper, Iron Barbs, Aroma Veil, Sweet Veil, Gooey, Flower Veil (vs Gooey/Tangling Hair), Bulletproof, Stamina, Water Compaction, Dazzling, Queenly Majesty, Tangling Hair, weather rocks (on abilities), Safety Goggles (vs powder), grass-type powder immunity, dark-type prankster immunity, user affected by hit-reaction abilities when its sound moves hit through Substitute
 		  Relies on: weather refactor, BattleMove refactor, cloud nine/intimidate id change????, gSpecialStatuses[battler].intimidatedMon?
-		  Requires in future: GetWeatherTurns (e01F358, j01EB68), CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
+		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Optional knowledge: BattleMove.typeFlags2.bit2, bit3
 = 01BC68: Entirety of ItemBattleEffects (+ CheckUnnerve, IsAffectedBySheerForce, GetPinchThreshholdFromParam, GetMoveWithNoPP, GetPartyIndex) (see 14disasm)
 		  Implements: Klutz (berries, Amulet Coin, Leftovers, White Herb, Mental Herb, Shell Bell, the item effects here), Sheer Force (Life Orb/Shell Bell glitch), Unnerve (Gen3 berries), modern Sitrus Berry, Black Sludge, Life Orb, status cure items/white herb consumed immediately
@@ -297,24 +297,30 @@ grafics:
 = 01E848: Entirety of atk06_typecalc (see 21disasm) (ALSO 25DEEE: 00 00 -> 1D 09)
 		  Implements: Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Levitate, Wonder Guard, Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Galvanize (type change), "Polkadot Bow" <move this text to damage formula>, Expert Belt, (typeboost items with param bcs 1E), ice immunity to sheer cold
 		  Relies on: gChosenActionByBattler changed to something else
-		  Requires in future: HasItemWithTypeEffect (e01F310, j01EB20), ConsumeItem (e01FCCC, j01F4DC), script_1F552_J (e1FD42), AteAbilityConversionTable (j168CB4)
+		  Requires in future: ConsumeItem (e01FCCC, j01F4DC), script_1F552_J (e1FD42), AteAbilityConversionTable (j168CB4)
 		  Note: check wonder guard vs canceled se (elec on water/ground, fire on rock/grass)
 = 01EDF4: Entirety of TypeCalc (see 22disasm)
-		  Implements: (above minus notes), Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Storm Drain (immunity), Unnerve (type-resist berries), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Bulletproof, Galvanize (type change), Dazzling, Queenly Majesty, Expert Belt, type-resist berries, grass-type powder immunity
+		  Implements: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Storm Drain (immunity), Unnerve (type-resist berries), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Bulletproof, Galvanize (type change), Dazzling, Queenly Majesty, Expert Belt, type-resist berries, grass-type powder immunity
 		  Relies on: battleMove refactor
-		  Requires in future: HasItemWithTypeEffect (e01F310, j01EB20), RunTypeEffectivenessBasedAbilities (j2076B0), IsMoveBlockedByAbility (j251DA0), AteAbilityConversionTable (j168CB4)
+		  Requires in future: RunTypeEffectivenessBasedAbilities (j2076B0), IsMoveBlockedByAbility (j251DA0), AteAbilityConversionTable (j168CB4)
 		  Glitch?: Solid Rock might be 3/4 to ALL damage
-		  Notes: Of the two, only atk06_typecalc contains the Mold Breaker functionality (besides vs Solid Rock)/Sheer Cold immunity/(bcs 0x1E items), and only TypeCalc contains the Hidden Power calc/non-Levitate ability immunities/type-resist berries; not sure what this implies
 = 01EFCC: Entirety of AI_TypeCalc (see 23disasm)
-		  
-= 01F104: Entirety of atk07_adjustnormaldamage
-= 01F2B4 -> 01F394 (repoint): Entirety of atk08_adjustnormaldamage2
+		  Implements: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Storm Drain (immunity), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Bulletproof, Dazzling, Queenly Majesty, grass-type powder immunity
+		  Requires in future: IsMoveBlockedByAbility (j251DA0)
+		  Notes: Of the three, only atk06_typecalc contains the Mold Breaker functionality (besides vs Solid Rock)/Sheer Cold immunity/(bcs 0x1E items), only TypeCalc contains the Hidden Power calc/non-Levitate ability immunities/type-resist berries, and AI_TypeCalc doesn't have anything but the immunity abilities (no Mold Breaker even); not sure what this implies
+= 01F104: Entirety of atk07_adjustnormaldamage (+HasItemWithTypeEffect, GetWeatherTurns) (see 24disasm)
+		  Implements: 
+		  Requires in future: ConsumeItem (e01FCCC, j01F4DC), ??? (j168C88), ??? (j168C9C), script_1F543_J (e1FD33), AteAbilityConversionTable (j168CB4)
+		  Glitch: Pointer to AteAbilityConversionTable (j168CB4) instead points to j168CA4
+= 01F2B4 -> 01F394 (repoint): Entirety of atk08_adjustnormaldamage2 (see 25disasm)
+		  Implements: 
+		  Relies on: atk07_adjustnormaldamage
+		  Note: Actually just calls atk07_adjustnormaldamage with gCurrentMove set to 0
 
-curr: j1E8D8, (cmd08)
+curr: j1E914, j1EAC4 -> j1EBA4
 next: j1EDBA?
 
 commands that changed address:
-08: 01EAC4 -> 01EBA4
 0C: 01EE94 -> 01EEB0
 1D: 020EC8 -> 020E94
 84: 0270A4 -> 027080

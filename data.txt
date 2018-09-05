@@ -151,6 +151,8 @@ funcs e,j,desc:
 01F358 = 01EB68 = GetWeatherTurns (unimplemented)
 01FCCC = 01F4DC = ConsumeItem (unimplemented)
 027E3A = 027612 = CheckLeafGuardAndFlowerVeil (unimplemented)
+?????? = 168C88 = ????? (unimplemented)
+?????? = 168C9C = ????? (unimplemented)
 ?????? = 207370 = ????? (unimplemented)
 ?????? = 207450 = GetPinchThreshhold (unimplemented)
 ?????? = 207470 = PushScriptInstr (unimplemented)
@@ -161,6 +163,7 @@ data:
 21A8D4 = sHoldEffectToType
 250104 = sSoundMovesTable
 2504FC = 25CF04 = sAccuracyStageRatios
+254784 = gBaseStats
 25DEAD = gStatStageRatios
 25E45C = gBitTable
 

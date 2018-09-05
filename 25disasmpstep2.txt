@@ -1,0 +1,5 @@
+atk08_adjustnormaldamage2()
+{
+	*gCurrentMove = 0
+	atk07_adjustnormaldamage()
+}

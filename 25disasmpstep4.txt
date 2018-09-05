@@ -1,0 +1,5 @@
+atk08_adjustnormaldamage2()
+{
+	gCurrentMove = MOVE_NONE;
+	atk07_adjustnormaldamage();
+}

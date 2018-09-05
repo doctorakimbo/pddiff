@@ -1,0 +1,6 @@
+lbl1: @1EBA4
+r1 = gCurrentMove
+r0 = 0
+*r1 = r0
+atk07_adjustnormaldamage()
+(end)

@@ -1,0 +1,32 @@
+AI_TypeCalc(arg0, arg1, arg2)
+{
+	r7 = 0
+	s0 = 0
+
+	if(arg0 == 0xA5)
+		return 0
+
+	if(arg2 == 0x1A && gBattleMoves[arg0].2 == 4)
+		s0 = 9
+	else
+	{
+		while(sTypeEffectivenessTable[r7][0] != 0xFF)
+		{
+			if(sTypeEffectivenessTable[r7][0] != 0xFE && sTypeEffectivenessTable[r7][0] == gBattleMoves[arg0].2)
+			{
+				if(sTypeEffectivenessTable[r7][1] == data_08254784[arg1].6)
+					ModulateDmgByType2(sTypeEffectivenessTable[r7][2], arg0, s0)
+				
+				if(sTypeEffectivenessTable[r7][1] == data_08254784[arg1].7 && data_08254784[arg1].6 != data_08254784[arg1].7)
+					ModulateDmgByType2(sTypeEffectivenessTable[r7][2], arg0, s0)
+			}
+			
+			r7 += 3
+		}
+	}
+
+	if(arg2 == 0x19 && (!(s0 & 2) || (s0 & 6) == 6) && gBattleMoves[arg0].1)
+		s0 |= 8
+	
+	return s0
+}
