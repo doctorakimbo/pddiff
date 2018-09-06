@@ -1,0 +1,119 @@
+atk0F_resultmessage()
+{
+	r3 = 0
+	
+	if(gBattleControllerExecFlags)
+		return
+	
+	if((gMoveResultFlags & 1) && (!(gMoveResultFlags & 8) || (gBattleCommunication[6] >= 2))
+	{
+		r3 = data_083FE514[gBattleCommunication[6]]
+		gBattleCommunication[7] = 1
+	}
+	else
+	{
+		gBattleCommunication[7] = 1
+		r0 = (gMoveResultFlags & 0xFE)
+		
+		if(r0 == 0x10)
+		{
+			PrepareStringBattle(0xDA, gBattlerAttacker)
+			gBattleScriptCurrInstr++
+			return
+		}
+		elseif(r0 > 0x10)
+		{
+			if(r0 == 0x40)
+			{
+				PrepareStringBattle(0x99, gBattlerAttacker)
+				gBattleScriptCurrInstr++
+				return
+			}
+			elseif(r0 > 0x40)
+			{
+				if(r0 == 0x80)
+				{
+					gLastUsedItem = gBattleMons[gBattlerTarget].0x2E
+					gPotentialItemEffectBattler = gBattlerTarget
+					gMoveResultFlags &= 0x3F
+					BattleScriptPushCursor()
+					gBattleScriptCurrInstr = data_081D9641
+					return
+				}
+			}
+			elseif(r0 != 0x20)
+			{
+				PrepareStringBattle(0xE5, gBattlerAttacker)
+				gBattleScriptCurrInstr++
+				return
+			}
+		}
+		else
+		{
+			if(r0 == 4)
+			{
+				PrepareStringBattle(0xDD, gBattlerAttacker)
+				gBattleScriptCurrInstr++
+				return
+			}
+			elseif(r0 > 4)
+			{
+				if(r0 == 8)
+				{
+					PrepareStringBattle(0x1B, gBattlerAttacker)
+					gBattleScriptCurrInstr++
+					return
+				}
+			}
+			elseif(r0 == 2)
+			{
+				PrepareStringBattle(0xDE, gBattlerAttacker)
+				gBattleScriptCurrInstr++
+				return
+			}
+		}
+		
+		if(gMoveResultFlags & 8)
+		{
+			PrepareStringBattle(0x1B, gBattlerAttacker)
+			gBattleScriptCurrInstr++
+			return
+		}
+		elseif(gMoveResultFlags & 0x10)
+		{
+			gMoveResultFlags &= (0xEF & 0xFD & 0xFB)
+			BattleScriptPushCursor()
+			gBattleScriptCurrInstr = data_081D8FE4
+			return
+		}
+		elseif(gMoveResultFlags & 0x40)
+		{
+			gMoveResultFlags &= 0x3F
+			BattleScriptPushCursor()
+			gBattleScriptCurrInstr = data_081D8FDD
+			return
+		}
+		elseif(gMoveResultFlags & 0x80)
+		{
+			gLastUsedItem = gLastUsedItem = gBattleMons[gBattlerTarget].0x2E
+			gPotentialItemEffectBattler = gBattlerTarget
+			gMoveResultFlags &= 0x3F
+			BattleScriptPushCursor()
+			gBattleScriptCurrInstr = data_081D9641
+			return
+		}
+		if(gMoveResultFlags & 0x20)
+		{
+			PrepareStringBattle(0xE5, gBattlerAttacker)
+			gBattleScriptCurrInstr++
+			return
+		}
+		else
+			gBattleCommunication[7] = r0
+	}
+	
+	if(r3 != 0)
+		PrepareStringBattle(r3, gBattlerAttacker)
+	
+	gBattleScriptCurrInstr++
+}

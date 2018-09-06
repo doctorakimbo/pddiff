@@ -1,0 +1,124 @@
+atk0F_resultmessage()
+{
+	r3 = 0
+	
+	if(*gBattleControllerExecFlags)
+		return
+	
+	if((*gMoveResultFlags & 1) && (!(*gMoveResultFlags & 8) || (*(gBattleCommunication + 6) >= 2))
+	{
+		r3 = *((*(gBattleCommunication + 6) * 2) + data_083FE514)
+		*(gBattleCommunication + 7) = 1
+	}
+	else
+	{
+		*(gBattleCommunication + 7) = 1
+		r0 = (*gMoveResultFlags & 0xFE)
+		
+		if(r0 == 0x10)
+		{
+			r3 = 0xDA
+			goto lbl23
+		}
+		elseif(r0 > 0x10)
+		{
+			if(r0 == 0x40)
+			{
+				r3 = 0x99
+				goto lbl23
+			}
+			elseif(r0 > 0x40)
+			{
+				if(r0 == 0x80)
+				{
+					*gLastUsedItem = *((*gBattlerTarget * 0x58) + gBattleMons + 0x2E)
+					*gPotentialItemEffectBattler = *gBattlerTarget
+					*gMoveResultFlags &= 0x3F
+					BattleScriptPushCursor()
+					r0 = data_081D9641
+					goto lbl25
+				}
+				else
+					goto lbl14
+			}
+			else
+			{
+				if(r0 == 0x20)
+					goto lbl14
+				else
+					goto lbl20
+			}
+		}
+		else
+		{
+			if(r0 == 4)
+			{
+				r3 = 0xDD
+				goto lbl23
+			}
+			elseif(r0 > 4)
+			{
+				if(r0 == 8)
+					goto lbl15
+				else
+					goto lbl14
+			}
+			elseif(r0 == 2)
+			{
+				r3 = 0xDE
+				goto lbl23
+			}
+		}
+
+		lbl14:
+		if(*gMoveResultFlags & 8)
+		{
+			lbl15:
+			r3 = 0x1B
+			goto lbl23
+		}
+		elseif(*gMoveResultFlags & 0x10)
+		{
+			*gMoveResultFlags &= (0xEF & 0xFD & 0xFB)
+			BattleScriptPushCursor()
+			r0 = data_081D8FE4
+			goto lbl25
+		}
+		elseif(*gMoveResultFlags & 0x40)
+		{
+			*gMoveResultFlags &= 0x3F
+			BattleScriptPushCursor()
+			r0 = data_081D8FDD
+			goto lbl25
+		}
+		elseif(*gMoveResultFlags & 0x80)
+		{
+			*gLastUsedItem = *gLastUsedItem = *((*gBattlerTarget * 0x58) + gBattleMons + 0x2E)
+			*gPotentialItemEffectBattler = *gBattlerTarget
+			*gMoveResultFlags &= 0x3F
+			BattleScriptPushCursor()
+			r0 = data_081D9641
+			goto lbl25
+		}
+		if(*gMoveResultFlags & 0x20)
+		{
+			lbl20:
+			r3 = 0xE5
+			goto lbl23
+		}
+		else
+			*(gBattleCommunication + 7) = r0
+	}
+
+	lbl22:
+	if(r3 != 0)
+	{
+		lbl23:
+		PrepareStringBattle(r3, *gBattlerAttacker)
+	}
+	
+	r0 = *gBattleScriptCurrInstr + 1
+
+	lbl25:
+	*gBattleScriptCurrInstr = r0
+}

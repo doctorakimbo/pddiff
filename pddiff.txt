@@ -298,8 +298,8 @@ grafics:
 		  Relies on: above being moved to CalculateBaseDamage
 = 01E848: Entirety of atk06_typecalc (see 21disasm) (ALSO 25DEEE: 00 00 -> 1D 09)
 		  Implements: Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Levitate, Wonder Guard, Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Galvanize (type change), "Polkadot Bow" <move this text to damage formula>, Expert Belt, (typeboost items with param bcs 1E), ice immunity to sheer cold
-		  Relies on: gChosenActionByBattler changed to something else
-		  Requires in future: ConsumeItem (e01FCCC, j01F4DC), script_1F552_J (e1FD42), AteAbilityConversionTable (j168CB4)
+		  Relies on: ConsumeItem (e01FCCC, j01F4DC), script_1F552_J (e1FD42), gChosenActionByBattler changed to something else
+		  Requires in future: AteAbilityConversionTable (j168CB4)
 		  Note: check wonder guard vs canceled se (elec on water/ground, fire on rock/grass)
 = 01EDF4: Entirety of TypeCalc (see 22disasm)
 		  Implements: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Storm Drain (immunity), Unnerve (type-resist berries), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Bulletproof, Galvanize (type change), Dazzling, Queenly Majesty, Expert Belt, type-resist berries, grass-type powder immunity
@@ -313,8 +313,8 @@ grafics:
 		  Notes: Of the three, only atk06_typecalc contains the Mold Breaker functionality (besides vs Solid Rock)/Sheer Cold immunity/(bcs 0x1E items), only TypeCalc contains the Hidden Power calc/non-Levitate ability immunities/type-resist berries, and AI_TypeCalc doesn't have anything but the immunity abilities (no Mold Breaker even); not sure what this implies
 = 01F104: Entirety of atk07_adjustnormaldamage (+HasItemWithTypeEffect, GetWeatherTurns) (see 24disasm)
 		  Implements: Klutz (Focus Band, the item effects here), Mold Breaker+ (vs Sturdy), Unnerve (type-resist berries), Infiltrator (foe can endure when hit through Substitute), Focus Sash, type-resist berries, foe can endure when hit by sound moves through Substitute
-		  Relies on: BattleMove refactor
-		  Requires in future: ConsumeItem (e01FCCC, j01F4DC), ClearFocusBand (j168C88), SetFocusBand (j168C9C), BattleScript_ConsumeDamageReductionBerry (e1FD33, j1F543), AteAbilityConversionTable (j168CB4)
+		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_ConsumeDamageReductionBerry (e1FD33, j1F543), BattleMove refactor
+		  Requires in future: ClearFocusBand (j168C88), SetFocusBand (j168C9C), AteAbilityConversionTable (j168CB4)
 		  Glitch: Pointer to AteAbilityConversionTable (j168CB4) instead points to j168CA4
 = 01F2B4 -> 01F394 (repoint): Entirety of atk08_adjustnormaldamage2 (see 25disasm)
 		  Implements: Klutz (enduring (Focus) items), Mold Breaker+ (vs Sturdy), Infiltrator (foe can endure when hit through Substitute), Focus Sash, foe can endure when hit by sound moves through Substitute
@@ -324,14 +324,42 @@ grafics:
 		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute
 		  Relies on: BattleMove refactor
 		  Note: Removes 10000 hard damage limit, might break something?
-= 01F684 -> 01F6A0 (repoint): Entirety of atk0C_datahpupdate
+= 01F684 -> 01F6A0 (repoint): Entirety of atk0C_datahpupdate (see 27disasm)
 		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute, (j0203B950?)
 		  Relies on: BattleMove refactor
 		  Required knowledge: j0203B950
 		  Glitch?: special moves might not be set properly (moveType >= 8 when moveType is now a P/S signifier)
-= 
+= 01FBA0: Entirety of atk0F_resultmessage (+ConsumeItem, BattleScript_ConsumeDamageReductionBerry, script_1F552_J) (see 28disasm)
+		  Implements: Focus Sash (consumption on use)
+		  Relies on: gChosenActionByBattler changed to something else
+= 01FF20: Parts of sub_1FF20 (see 29disasm)
+  020376: 60 -> 30 (weather refactor - sun)
+  0203E4: (see 29disasm)
+  020596: 0B 4A 0B 49 0B 78 58 21 4B 43 4C 32 9B 18 03 21 01 40 02 31 18 68 08 43 18 60 16 E0 -> ?(03 21 A8 F1 FC FB 83 1C 15 E0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00)? <FIX LATER>
+  0206A2: 4B 46 19 78 58 20 41 43 40 46 50 30 09 18 0A 4A F3 78 98 00 80 18 09 68 00 68 01 40 00 29 01 D0 00 F0 13 FD D8 -> ?(00 00 4B 46 19 78 58 20 48 43 41 46 0B 18 0A 49 F2 78 90 00 40 18 19 6D 00 68 01 40 00 29 01 D0 00 F0 13 FD D0)? <FIX LATER>
+  0207A4: ptr 0A 11 02 08 -> 8C 0F 02 08
+  02082C: (see 29disasm)
 
-next: j1F3BC?
+prev:
+j1F730-j1F900
+j1FB80
+j1FBF4-j1FCB8
+j1FDA0-j1FDC0
+j1FEB0-j1FEE0
+j1FFB4 ptr: 02091A -> 02079C
+
+curr:
+j20030-j200D0
+j200FE-j200FF
+j20230-j20340
+j20380 ptr: 1BAB8D -> 0229DE
+j203C4 ptr: 1BAC1E -> 0229EF
+j20408 ptr: 1BAB8D -> 0229DE
+j2044C ptr: 1BAC1E -> 0229EF
+j20720-j20730
+j20780-j207D0
+
+next: j20934
 
 commands that changed address:
 1D: 020EC8 -> 020E94

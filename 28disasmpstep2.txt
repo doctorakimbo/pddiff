@@ -1,0 +1,97 @@
+atk0F_resultmessage()
+{
+	r3 = 0
+	
+	if(*gBattleControllerExecFlags)
+		return
+	
+	if((*gMoveResultFlags & 1) && (!(*gMoveResultFlags & 8) || (*(gBattleCommunication + 6) >= 2))
+	{
+		r3 = *((*(gBattleCommunication + 6) * 2) + data_083FE514)
+		*(gBattleCommunication + 7) = 1
+	}
+	else
+	{
+		*(gBattleCommunication + 7) = 1
+		r0 = (*gMoveResultFlags & 0xFE)
+		
+		if(r0 == 0x40)
+		{
+			r3 = 0x99
+			goto lbl19
+		}
+		elseif(r0 == 0x10)
+		{
+			r3 = 0xDA
+			goto lbl19
+		}
+		elseif(r0 == 4)
+		{
+			r3 = 0xDD
+			goto lbl19
+		}
+		elseif(r0 == 2)
+		{
+			r3 = 0xDE
+			goto lbl19
+		}
+		elseif(*gMoveResultFlags & 8)
+		{
+			r3 = 0x1B
+			goto lbl19
+		}
+		elseif(*gMoveResultFlags & 0x20)
+		{
+			r3 = 0xE5
+			goto lbl19
+		}
+		elseif(*gMoveResultFlags & 0x10)
+		{
+			r4 = data_081D8FE4
+			r0 = 0xE9
+			goto lbl16
+		}
+		elseif(*gMoveResultFlags & 0x40)
+		{
+			r4 = data_081D8FDD
+			goto lbl15
+		}
+		elseif(*gMoveResultFlags & 0x80)
+		{
+			*gLastUsedItem = *((*gBattlerTarget * 0x58) + gBattleMons + 0x2E)
+			*gPotentialItemEffectBattler = *gBattlerTarget
+			
+			if(GetHoldEffect(*((*gBattlerTarget * 0x58) + gBattleMons + 0x2E)) == 0x43)
+				ConsumeItem(*gBattlerTarget)
+			
+			r4 = data_081D9641
+			goto lbl15
+		}
+		else
+			*(gBattleCommunication + 7) = r0
+	}
+	
+	if(r3 != 0)
+	{
+		lbl19:
+		PrepareStringBattle(r3, *gBattlerAttacker)
+	}
+
+	lbl20:
+	r4 = *gBattleScriptCurrInstr + 1
+
+	lbl21:
+	*gBattleScriptCurrInstr = r4
+	return
+	
+	// can't get to this point
+
+	lbl15:
+	r0 = 0x3F
+	goto lbl16
+
+	lbl16:
+	*gMoveResultFlags &= r0
+	BattleScriptPushCursor()
+	goto lbl21
+}
