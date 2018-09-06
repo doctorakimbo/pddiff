@@ -97,7 +97,7 @@ item effects:
 = typebooster IDs: (if effectparam = 0, type-resist berries; if effectparam >= 30, consumed when move of same type used (+ other effect?); otherwise typeboosters as normal)
 = 0x1D = "Polkadot Bow"
 + 0x2B = Leftovers if effectparam is 0xFF, otherwise Black Sludge (effectparam = type that heals)
-- 0x43 = Focus Sash
++ 0x43 = Focus Sash
 + 0x44 = Choice Specs
 + 0x45 = Choice Band
 + 0x46 = Choice Scarf
@@ -325,7 +325,11 @@ grafics:
 		  Relies on: BattleMove refactor
 		  Note: Removes 10000 hard damage limit, might break something?
 = 01F684 -> 01F6A0 (repoint): Entirety of atk0C_datahpupdate
-		  
+		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute, (j0203B950?)
+		  Relies on: BattleMove refactor
+		  Required knowledge: j0203B950
+		  Glitch?: special moves might not be set properly (moveType >= 8 when moveType is now a P/S signifier)
+= 
 
 next: j1F3BC?
 

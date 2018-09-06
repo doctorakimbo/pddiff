@@ -51,303 +51,102 @@ atk0C_datahpupdate()
 		return
 	}
 	
-	r0 = gHitMarker
-	r2 = *r0
-	r1 = ~0x100
-	r2 &= r1
-	*r0 = r2
-	r1 = gBattleMoveDamage
-	r5 = *r1
-	r12 = r0
-	r7 = r1
+	*gHitMarker &= ~0x100
 	
-	if(r5 < 0)
+	if(*gBattleMoveDamage < 0)
 	{
-		r4 = gBattleMons
-		r2 = gActiveBattler
-		r1 = *r2
-		r3 = 0x58
-		r1 *= r3
-		r1 += r4
-		r0 = *(r1 + 0x28)
-		r0 -= r5
-		*(r1 + 0x28) = r0
-		r0 = *r2
-		r0 *= r3
-		r1 = r0 + r4
-		r3 = *(r1 + 0x2C)
-		r0 = *(r1 + 0x28)
-		r5 = r2
+		*((*gActiveBattler + 0x58) + gBattleMons + 0x28) -= *gBattleMoveDamage
 		
-		if(r0 <= r3)
-			*(r1 + 0x28) = r3
+		if(*((*gActiveBattler * 0x58) + gBattleMons + 0x28) <= *((*gActiveBattler * 0x58) + gBattleMons + 0x2C))
+			*((*gActiveBattler * 0x58) + gBattleMons + 0x28) = *((*gActiveBattler * 0x58) + gBattleMons + 0x2C)
 		
 		goto lbl27
 	}
 	
-	r0 = 0x20
-	r0 &= r2
-	
-	if(r0 != 0)
+	if(*gHitMarker & 0x20)
 	{
-		r0 = ~0x20
-		r2 &= r0
-		r0 = r12
-		*r0 = r2
-		r5 = gActiveBattler
+		*gHitMarker &= ~0x20
 	}
 	else
 	{
-		r0 = data_02023D58
-		r2 = gActiveBattler
-		r1 = *r2
-		r1 *= 4
-		r1 += r0
-		r0 = *r1
-		r0 += r5
-		*r1 = r0
-		r0 = gBattleScriptCurrInstr
-		r0 = *r0
-		r0 = *(r0 + 1)
-		r5 = r2
+		*((*gActiveBattler * 4) + data_02023D58) += *gBattleMoveDamage
 		
-		if(r0 == 0)
-		{
-			r1 = data_02023DD8
-			r0 = *r5
-			r0 += r1
-			r1 = gBattlerAttacker
-		}
+		if(*(*gBattleScriptCurrInstr + 1) == 0)
+			*(*gActiveBattler + data_02023DD8) = *gBattlerAttacker
 		else
-		{
-			r1 = data_02023DD8
-			r0 = *r5
-			r0 += r1
-			r1 = gBattlerTarget
-		}
-		
-		r1 = *r1
-		*r0 = r1
+			*(*gActiveBattler + data_02023DD8) = *gBattlerTarget
 	}
 	
-	r4 = gBattleMons
-	r0 = *r5
-	r3 = 0x58
-	r0 *= r3
-	r2 = r0 + r4
-	r0 = *(r2 + 0x28)
-	r1 = *r7
-	
-	if(r0 > r1)
+	if(*((*gActiveBattler * 0x58) + gBattleMons + 0x28) > *gBattleMoveDamage)
 	{
-		r0 -= r1
-		*(r2 + 0x28) = r0
-		r0 = data_02023D54
-		*r0 = r1
-		r7 = r0
+		*((*gActiveBattler * 0x58) + gBattleMons + 0x28) -= *gBattleMoveDamage
+		*data_02023D54 = *gBattleMoveDamage
 	}
 	else
 	{
-		r2 = data_02023D54
-		*r2 = r0
-		r0 = *r5
-		r0 *= r3
-		r0 += r4
-		r1 = 0
-		*(r0 + 0x28) = r1
-		r7 = r2
+		*data_02023D54 = *((*gActiveBattler * 0x58) + gBattleMons + 0x28)
+		*((*gActiveBattler * 0x58) + gBattleMons + 0x28) = 0
 	}
 	
-	r2 = gSpecialStatuses
-	r1 = *r5
-	r0 = r1 * 4
-	r0 += r1
-	r0 *= 4
-	r0 += r2
-	r1 = r2 + 4
-	r3 = r0 + r1
-	r0 = *r3
-	r4 = r2
-	
-	if(r0 == 0)
-	{
-		r1 = r12
-		r0 = *r1
-		r1 = 0x100000
-		r0 &= r1
-		
-		if(r0 == 0)
-		{
-			r0 = *r7
-			*r3 = r0
-		}
-	}
+	if(*((*gActiveBattler * 0x14) + gSpecialStatuses + 4) == 0 && !(*gHitMarker & 0x100000))
+		*((*gActiveBattler * 0x14) + gSpecialStatuses + 4) = *data_02023D54
 	
 	if(r6 <= 1)
 	{
-		r1 = r12
-		r0 = *r1
-		r1 = 0x100000
-		r0 &= r1
-		
-		if(r0 == 0)
+		if(!(*gHitMarker & 0x100000) && *gCurrentMove != 0xDC)
 		{
-			r0 = gCurrentMove
-			r0 = *r0
+			*((*gActiveBattler * 0x10) + gProtectStructs + 4) = *data_02023D54
+			*((*gActiveBattler * 0x14) + gSpecialStatuses + 8) = *data_02023D54
 			
-			if(r0 != 0xDC)
+			if(*(*gBattleScriptCurrInstr + 1) == 0)
 			{
-				r3 = gProtectStructs
-				r0 = *r5
-				r0 *= 0x10
-				r1 = r3 + 4
-				r0 += r1
-				r2 = *r7
-				*r0 = r2
-				r1 = *r5
-				r0 = r1 * 4
-				r0 += r1
-				r0 *= 4
-				r1 = r4
-				r1 += 8
-				r0 += r1
-				*r0 = r2
-				r0 = gBattleScriptCurrInstr
-				r0 = *r0
-				r0 = *(r0 + 1)
-				
-				if(r0 == 0)
-				{
-					r0 = *r5
-					r0 *= 0x10
-					r0 += r3
-					r2 = gBattlerAttacker
-				}
-				else
-				{
-					r0 = *r5
-					r0 *= 0x10
-					r0 += r3
-					r2 = gBattlerTarget
-				}
-				
-				r1 = *r2
-				*(r0 + 0xC) = r1
-				r1 = *r5
-				r0 = r1 * 4
-				r0 += r1
-				r0 *= 4
-				r0 += r4
-				r1 = *r2
-				*(r0 + 0x10) = r1
-				goto lbl27
+				*((*gActiveBattler * 0x10) + gProtectStructs + 0xC) = *gBattlerAttacker
+				*(*gActiveBattler * 0x14 + gSpecialStatuses + 0x10) = *gBattlerAttacker
 			}
+			else
+			{
+				*((*gActiveBattler * 0x10) + gProtectStructs + 0xC) = *gBattlerTarget
+				*(*gActiveBattler * 0x14 + gSpecialStatuses + 0x10) = *gBattlerTarget
+			}
+			
+			goto lbl27
 		}
 		
 		if(r6 < 8)
 			goto lbl27
 	}
 	
-	r1 = r12
-	r0 = *r1
-	r1 = 0x100000
-	r0 &= r1
-	
-	if(r0 == 0)
+	if(!(*gHitMarker & 0x100000))
 	{
-		r3 = gProtectStructs
-		r0 = *r5
-		r0 *= 0x10
-		r1 = r3
-		r1 += 8
-		r0 += r1
-		r2 = *r7
-		*r0 = r2
-		r1 = *r5
-		r0 = r1 * 4
-		r0 += r1
-		r0 *= 4
-		r1 = r4
-		r1 += 0xC
-		r0 += r1
-		*r0 = r2
-		r0 = gBattleScriptCurrInstr
-		r0 = *r0
-		r0 = *(r0 + 1)
+		*((*gActiveBattler * 0x10) + gProtectStructs + 8) = *data_02023D54
+		*((*gActiveBattler * 0x14) + gSpecialStatuses + 0xC) = *data_02023D54
 		
-		if(r0 == 0)
+		if(*(*gBattleScriptCurrInstr + 1) == 0)
 		{
-			r0 = *r5
-			r0 *= 0x10
-			r0 += r3
-			r2 = gBattlerAttacker
+			*((*gActiveBattler * 0x10) + gProtectStructs + 0xD) = *gBattlerAttacker
+			*((*gActiveBattler * 0x14) + gSpecialStatuses + 0x11) = *gBattlerAttacker
 		}
 		else
 		{
-			r0 = *r5
-			r0 *= 0x10
-			r0 += r3
-			r2 = gBattlerTarget
+			*((*gActiveBattler * 0x10) + gProtectStructs + 0xD) = *gBattlerTarget
+			*((*gActiveBattler * 0x14) + gSpecialStatuses + 0x11) = *gBattlerTarget
 		}
-		
-		r1 = *r2
-		*(r0 + 0xD) = r1
-		r1 = *r5
-		r0 = r1 * 4
-		r0 += r1
-		r0 *= 4
-		r0 += r4
-		r1 = *r2
-		*(r0 + 0x11) = r1
 	}
 
 	lbl27:
-	r1 = r12
-	r0 = *r1
-	r1 = ~0x100000
-	r0 &= r1
-	r1 = r12
-	*r1 = r0
-	r1 = *r5
-	r0 = gBattleMoveDamage
-	r0 = *r0
+	*gHitMarker &= ~0x100000
 	
-	if(r0 > 0)
+	if(*gBattleMoveDamage > 0)
 	{
-		r2 = data_0203B950_J
-		r0 = *r2
-		r3 = 1
-		r3 <<= r1
-		r0 |= r3
-		*r2 = r0
-		r0 = gBattleMons.ability
-		r3 = 0x58
-		r3 *= r1
-		r0 += r3
-		r3 = *r0
+		*data_0203B950_J |= (1 << *gActiveBattler)
 		
-		if(r3 == 0x7F)
-		{
-			r3 = *(r0 + 8)
-			
-			if(r3 == 0)
-			{
-				r3 = 0xF
-				*r2 = r3
-			}
-		}
+		if(*((*gActiveBattler * 0x58) + gBattleMons.ability) == 0x7F && *((*gActiveBattler * 0x58) + gBattleMons.ability + 8) == 0)
+			*data_0203B950_J = 0xF
 	}
 	
-	r0 = 0x58
-	r0 *= r1
-	r1 = gBattleMons.hp
-	r0 += r1
-	BtlController_EmitSetMonData(0, 0x2A, 0, 2, r0)
-	MarkBattlerForControllerExec(*r5)
+	BtlController_EmitSetMonData(0, 0x2A, 0, 2, (*gActiveBattler * 0x58) + gBattleMons.hp)
+	MarkBattlerForControllerExec(*gActiveBattler)
 
 	lbl29:
-	r1 = gBattleScriptCurrInstr
-	r0 = *r1
-	r0 += 2
-	*r1 = r0
+	*gBattleScriptCurrInstr += 2
 }

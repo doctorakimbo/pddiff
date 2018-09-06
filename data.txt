@@ -23,8 +23,8 @@ FC 3B 02 02: 5C 3B 02 02: gBattleMons.statStages
 4A 3D 02 02: AA 3C 02 02: gCurrentMove
 4C 3D 02 02: AC 3C 02 02: gChosenMove
 50 3D 02 02: B0 3C 02 02: gBattleMoveDamage
-54 3D 02 02: B4 3C 02 02: ?????
-58 3D 02 02: B8 3C 02 02: ?????
+54 3D 02 02: B4 3C 02 02: gHpDealt
+58 3D 02 02: B8 3C 02 02: gTakenDmg
 68 3D 02 02: C8 3C 02 02: gLastUsedItem
 6A 3D 02 02: CA 3C 02 02: gLastUsedAbility
 6B 3D 02 02: CB 3C 02 02: gBattlerAttacker
@@ -44,7 +44,7 @@ B8 3D 02 02: 18 3D 02 02: gLockedMoves
 C4 3D 02 02: 24 3D 02 02: gChosenMoveByBattler
 CC 3D 02 02: 2C 3D 02 02: gMoveResultFlags
 D0 3D 02 02: 30 3D 02 02: gHitMarker
-D8 3D 02 02: 38 3D 02 02: ?????
+D8 3D 02 02: 38 3D 02 02: gTakenDmgByBattler
 DE 3D 02 02: 3E 3D 02 02: gSideStatuses
 E4 3D 02 02: 44 3D 02 02: gSideTimers
 FC 3D 02 02: 5C 3D 02 02: gStatuses3
@@ -74,7 +74,8 @@ F4 3F 02 02: 54 3F 02 02: gBattleResources
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
 		   : 50 B9 03 02: ?????? (ItemBattleEffects: zeroed at start of cases 0 (first entry) and 1 (end of turn))
 								 (ItemBattleEffects: checked if set to this battler before executing case 3 (after move?))
-								 (atk01_accuracycheck: set to the target if the move doesn't miss (only if accuracy was checked at all))
+								 (atk01_accuracycheck: set to only the target if the move doesn't miss (only if accuracy was checked at all))
+								 (atk0C_datahpupdate: add the active battler if damage was dealt; set to all battlers if pkmn with Unnerve faints)
 		   : 70 B9 03 02: ?????? (appears to be an array of unknown objects; first field is a 4-entry array of 2 bytes each, second field is a 4-entry array of 1 byte each)
 								 (atk02_attackstring: when player attacks: insert [gCurrentMove, 0] into the first empty slot for the mon, or increment the field2 of the first entry where field1 = gCurrentMove and field2 != 0xFF, whichever comes first)
 								 (atk02_attackstring: when player attacks: if neither of the above is available, insert [gCurrentMove, 0] into the last slot where field2 != 0xFF; if even that fails, insert it into the first slot)
@@ -212,9 +213,9 @@ BattleMove.typeFlags1: 4321
 4 = FLAG_MENTAL_MOVE
 
 BattleMove.typeFlags2: 4321
-1 = (checked by hustle)
+1 = (checked by hustle, p/s split?)
 2 = (checked by weak armor)
-3 = (checked by prankster/wonder skin)
+3 = (checked by prankster/(ability93))
 4 = 
 
 BattleMove.typeFlags3: 4321

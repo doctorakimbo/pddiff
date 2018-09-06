@@ -1,0 +1,147 @@
+atk0C_datahpupdate()
+{
+	if(gBattleControllerExecFlags)
+		return
+	
+	if(gBattleStruct->0x13 != 0 && !(gBattleStruct->0x13 & 0x40))
+		r6 = gBattleStruct->0x13 & 0x3F
+	else
+		r6 = gBattleMoves[gCurrentMove].0xA
+	
+	if(gMoveResultFlags & 0x29)
+	{
+		gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+		
+		if(gSpecialStatuses[gActiveBattler].4 == 0)
+			gSpecialStatuses[gActiveBattler].4 = 0xFFFF
+		
+		goto lbl29
+	}
+	
+	gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+	
+	if(gBattleMons[gBattlerAttacker].0x20 != 0x97 && !(gBattleMoves[gCurrentMove].9 & 1) && (gBattleMons[gActiveBattler].0x50 & 0x1000000) && gDisableStructs[gActiveBattler].0xA != 0 && !(gHitMarker & 0x100))
+	{
+		if(gDisableStructs[gActiveBattler].0xA >= gBattleMoveDamage)
+		{
+			if(gSpecialStatuses[gActiveBattler].4 == 0)
+				gSpecialStatuses[gActiveBattler].4 = gBattleMoveDamage
+			
+			gDisableStructs[gActiveBattler].0xA -= gBattleMoveDamage
+			data_02023D54 = gBattleMoveDamage
+		}
+		else
+		{	
+			if(gSpecialStatuses[gActiveBattler].4 == 0)
+				gSpecialStatuses[gActiveBattler].4 = gDisableStructs[gActiveBattler].0xA
+			
+			data_02023D54 = gDisableStructs[gActiveBattler].0xA
+			gDisableStructs[gActiveBattler].0xA = 0
+		}
+		
+		if(gDisableStructs[gActiveBattler].0xA != 0)
+			goto lbl29
+		
+		gBattleScriptCurrInstr += 2
+		BattleScriptPushCursor()
+		gBattleScriptCurrInstr = script_1D9526
+		return
+	}
+	
+	gHitMarker &= ~0x100
+	
+	if(gBattleMoveDamage < 0)
+	{
+		gBattleMons[gActiveBattler].0x28 -= gBattleMoveDamage
+		
+		if(gBattleMons[gActiveBattler].0x28 <= gBattleMons[gActiveBattler].0x2C)
+			gBattleMons[gActiveBattler].0x28 = gBattleMons[gActiveBattler].0x2C
+		
+		goto lbl27
+	}
+	
+	if(gHitMarker & 0x20)
+		gHitMarker &= ~0x20
+	else
+	{
+		data_02023D58[gActiveBattler] += gBattleMoveDamage
+		
+		if(gBattleScriptCurrInstr[1] == 0)
+			data_02023DD8[gActiveBattler] = gBattlerAttacker
+		else
+			data_02023DD8[gActiveBattler] = gBattlerTarget
+	}
+	
+	if(gBattleMons[gActiveBattler].0x28 > gBattleMoveDamage)
+	{
+		gBattleMons[gActiveBattler].0x28 -= gBattleMoveDamage
+		data_02023D54 = gBattleMoveDamage
+	}
+	else
+	{
+		data_02023D54 = gBattleMons[gActiveBattler].0x28
+		gBattleMons[gActiveBattler].0x28 = 0
+	}
+	
+	if(gSpecialStatuses[gActiveBattler].4 == 0 && !(gHitMarker & 0x100000))
+		gSpecialStatuses[gActiveBattler].4 = data_02023D54
+	
+	if(r6 <= 1)
+	{
+		if(!(gHitMarker & 0x100000) && gCurrentMove != 0xDC)
+		{
+			gProtectStructs[gActiveBattler].4 = data_02023D54
+			gSpecialStatuses[gActiveBattler].8 = data_02023D54
+			
+			if(gBattleScriptCurrInstr[1] == 0)
+			{
+				gProtectStructs[gActiveBattler].0xC = gBattlerAttacker
+				gSpecialStatuses[gActiveBattler].0x10 = gBattlerAttacker
+			}
+			else
+			{
+				gProtectStructs[gActiveBattler].0xC = gBattlerTarget
+				gSpecialStatuses[gActiveBattler].0x10 = gBattlerTarget
+			}
+			
+			goto lbl27
+		}
+		
+		if(r6 < 8)
+			goto lbl27
+	}
+	
+	if(!(gHitMarker & 0x100000))
+	{
+		gProtectStructs[gActiveBattler].8 = data_02023D54
+		gSpecialStatuses[gActiveBattler].0xC = data_02023D54
+		
+		if(gBattleScriptCurrInstr[1] == 0)
+		{
+			gProtectStructs[gActiveBattler].0xD = gBattlerAttacker
+			gSpecialStatuses[gActiveBattler].0x11 = gBattlerAttacker
+		}
+		else
+		{
+			gProtectStructs[gActiveBattler].0xD = gBattlerTarget
+			gSpecialStatuses[gActiveBattler].0x11 = gBattlerTarget
+		}
+	}
+
+	lbl27:
+	gHitMarker &= ~0x100000
+	
+	if(gBattleMoveDamage > 0)
+	{
+		data_0203B950_J |= (1 << gActiveBattler)
+		
+		if(gBattleMons[gActiveBattler].ability == 0x7F && gBattleMons[gActiveBattler].hp == 0)
+			data_0203B950_J = 0xF
+	}
+	
+	BtlController_EmitSetMonData(0, 0x2A, 0, 2, &gBattleMons[gActiveBattler].hp)
+	MarkBattlerForControllerExec(gActiveBattler)
+
+	lbl29:
+	gBattleScriptCurrInstr += 2
+}
