@@ -406,3 +406,52 @@ goto r0
 
 
 lbl_part5: @2003C
+r0 = gBattlerAttacker
+r0 = *r0
+r2 = 0x58
+r0 *= r2
+r0 += r8
+r0 += 0x20
+r6 = r3
+if(r0 == 0x68) goto lbl2
+
+r0 -= 0xA3
+if(r0 <= 1) goto lbl2
+
+r3 += 0x20
+r1 = *r3
+if(r1 != 0x27) goto lbl3
+
+if(r4 == 1) goto lbl2
+
+if(r5 != 0x80) goto lbl4
+
+goto lbl2
+
+lbl2:
+r0 = gLastUsedAbility
+*r0 = r1
+r0 = r9
+r0 = *r0
+RecordAbilityBattle()
+r1 = gBattleScriptCurrInstr
+r0 = data_081D9452
+*r1 = r0
+goto lbl_+11EA
+
+lbl3:
+r0 = r9
+r0 = *r0
+GetBattlerTurnOrderNum()
+r1 = gCurrentTurnActionNumber
+r1 = *r1
+if(r0 <= r1) goto lbl4
+
+r1 = 8
+r0 = *(r6 + 0x50)
+r0 |= r1
+*(r6 + 0x50) = r0
+goto lbl4
+
+lbl4:
+goto lbl_+11CC
