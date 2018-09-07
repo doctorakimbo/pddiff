@@ -382,6 +382,11 @@ r0 = *r0
 goto r0
 
 // switchtable[1] = lbl_part5
+// switchtable[3] = lbl_part6
+// switchtable[6] = lbl_part7
+// switchtable[7] = lbl_part8
+// switchtable[0x1D] = lbl_part9
+// switchtable[0x1F] = lbl_part10
 // switchtable[0x30] = lbl_+11EA
 
 
@@ -444,3 +449,278 @@ r0 = *r0
 r1 |= r0
 *r2 = r1
 goto lbl_+11CC
+
+
+
+
+
+lbl_part6: @208B8
+r3 = r9
+r0 = *r3
+r5 = 0x58
+r0 *= r5
+r4 = r8
+r4 += 0x50
+r2 = r0 + r4
+r1 = *r2
+r0 = 0x70
+r0 &= r1
+if(r0 == 0) goto lbl2
+
+goto lbl_+11CC
+
+lbl2:
+r0 = 0x1000
+r1 |= r0
+*r2 = r1
+r1 = gLockedMoves
+r0 = *r3
+r0 *= 2
+r0 += r1
+r1 = gCurrentMove
+r1 = *r1
+*r0 = r1
+Random()
+r2 = r9
+r1 = *r2
+r2 += r1
+r2 *= r5
+r2 += r4
+r1 = 3
+r1 &= r0
+r1 += 2
+r1 *= 0x10
+r0 = *r2
+r0 |= r1
+*r2 = r0
+r4 = gBattleScriptCurrInstr
+r0 = *r4
+r0++
+BattleScriptPush()
+r1 = data_0825062C
+r0 = gBattleCommunication
+r0 = *(r0 + 3)
+r0 *= 4
+r0 += r1
+r0 = *r0
+goto lbl_+11E8
+
+
+
+
+
+lbl_part7: @20A20
+r3 = r9
+r0 = *r3
+r6 = 0x58
+r0 *= r6
+r4 = r8
+r4 += 0x50
+r0 += r4
+r5 = *r0
+r0 = 0xE000
+r5 &= r0
+if(r5 == 0) goto lbl2
+
+goto lbl_+11CC
+
+lbl2:
+Random()
+r2 = r9
+r1 = *r2
+r2 = r1
+r2 *= r6
+r2 += r4
+r1 = 3
+r1 &= r0
+r1 += 3
+r1 *= 0x2000
+r0 = *r2
+r0 |= r1
+*r2 = r0
+r3 = r9
+r1 = *r3
+r2 = gBattleStruct
+r0 = *r2
+r1 *= 2
+r1 += r0
+r6 = gCurrentMove
+r0 = *r6
+*(r1 + 4) = r0
+r1 = *r3
+r0 = *r2
+r1 *= 2
+r1 += r0
+r0 = *r6
+r0 *= 0x100
+*(r1 + 5) = r0
+r1 = *r3
+r0 = *r2
+r1 += r0
+r0 = gBattlerAttacker
+r0 = *r0
+*(r1 + 0x14) = r0
+r4 = gBattleScriptCurrInstr
+r0 = *r4
+r0++
+BattleScriptPush()
+r1 = data_0825062C
+r2 = gBattleCommunication
+r0 = *(r2 + 3)
+r0 *= 4
+r0 += r1
+r0 = *r0
+*r4 = r0
+*(r2 + 5) = r5
+r3 = data_083FE664
+r0 = *r3
+r4 = *r6
+if(r0 != r4) goto lbl3
+
+goto lbl_+11EA
+
+lbl3:
+r1 = r2
+r2 = r6
+goto lbl4
+
+lbl4:
+r0 = *(r1 + 5)
+r0++
+*(r1 + 5) = r0
+if(r0 <= 4) goto lbl5
+
+goto lbl_+11EA
+
+lbl5:
+r0 = *(r1 + 5)
+r0 *= 2
+r0 += r3
+r0 = *r0
+r4 = *r2
+if(r0 != r4) goto lbl4
+
+goto lbl_+11EA
+
+
+
+
+
+lbl_part8: @20AEC
+r1 = gBattleMoveDamage
+r0 = gHpDealt
+r0 = *r0
+if(r0 >= 0) goto lbl2
+
+r0 += 3
+goto lbl2
+
+lbl2:
+r0 /= 4
+*r1 = r0
+if(r0 != 0) goto lbl3
+
+r0 = 1
+*r1 = r0
+goto lbl3
+
+lbl3:
+r4 = gBattleScriptCurrInstr
+r0 = *r4
+r0++
+BattleScriptPush()
+r1 = data_0825062C
+r0 = gBattleCommunication
+r0 = *(r0 + 3)
+r0 *= 4
+r0 += r1
+r0 = *r0
+goto lbl_+11E8
+
+
+
+
+
+script_part1: @1D6BD1
+(45 02 01 D4 3F 02 02 13 7C E5 3F 08 12 40 00 3C)
+
+
+
+
+
+script_part2: @1D6C62
+(45 02 01 D4 3F 02 02 13 88 E5 3F 08 12 40 00 3C)
+
+
+
+
+
+lbl_part9: @20F00
+r6 = gBattlerTarget
+r0 = *r6
+r2 = 0x58
+r0 *= r2
+r1 = r8
+r1 += 0x4C
+r5 = r0 + r1
+r4 = *r5
+r0 = 0x40
+r0 &= r4
+if(r0 != 0) goto lbl2
+
+goto lbl_+11CC
+
+lbl2:
+r0 = ~0x40
+r4 &= r0
+*r5 = r4
+r4 = gActiveBattler
+r0 = *r6
+*r4 = r0
+r0 = *r4
+r0 *= r2
+r0 += r1
+s0 = r0
+r0 = 0
+r1 = 0x28
+r2 = 0
+r3 = 4
+BtlController_EmitSetMonData()
+r0 = *r4
+MarkBattlerForControllerExec()
+r4 = gBattleScriptCurrInstr
+r0 = *r4
+r0++
+BattleScriptPush()
+r0 = data_081D9177
+goto lbl_+11E8
+
+
+
+
+
+lbl_part10: @20F78
+r4 = gBattleMoveDamage
+r0 = gHpDealt
+r0 = *r0
+r1 = 3
+divide()
+*r4 = r0
+if(r0 != 0) goto lbl2
+
+r0 = 1
+*r4 = r0
+goto lbl2
+
+lbl2:
+r4 = gBattleScriptCurrInstr
+r0 = *r4
+r0++
+BattleScriptPush()
+r1 = data_0825062C
+r0 = gBattleCommunication
+r0 = *(r0 + 3)
+r0 *= 4
+r0 += r1
+r0 = *r0
+goto lbl_+11E8

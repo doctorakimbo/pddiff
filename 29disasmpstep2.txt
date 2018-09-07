@@ -1,0 +1,232 @@
+sub_1FF20(arg0, arg1)
+{
+	r10 = 0
+	s1 = 1
+	
+	if(*(gBattleCommunication + 3) & 0x40)
+	{
+		*gEffectBattler = *gBattlerAttacker
+		*(gBattleCommunication + 3) &= 0xBF
+		r7 = 0x40
+		*(gBattleScripting + 0x17) = *gBattlerTarget
+	}
+	else
+	{
+		*gEffectBattler = *gBattlerTarget
+		r7 = 0
+		*(gBattleScripting + 0x17) = *gBattlerAttacker
+	}
+	
+	if((!(*gBattleTypeFlags & 0x10000) || *(gBattleCommunication + 3) == 1 || GetBattlerSide(*gEffectBattler) != 1) && (*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x68 || (*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) - 0xA3) <= 1 || *((*gEffectBattler * 0x58) + gBattleMons + 0x20) != 0x13 || (*gHitMarker & 0x2000) || arg0 != 0 || *(gBattleCommunication + 3) > 9) && (*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x97 || (((*((*gCurrentMove * 0xC) + gBattleMoves + 9) & 1) || (*((*gEffectBattler * 0x58) + gBattleMons + 0x50) & 0x1000000)) && (!(*(((GetBattlerPosition(*gEffectBattler) & 1) * 2) + gSideStatuses) & 0x20) || (*gHitMarker & 0x2000) || arg0 != 0 || *(gBattleCommunication + 3) > 7))) && (*((*gEffectBattler * 0x58) + gBattleMons + 0x28) != 0 || *(gBattleCommunication + 3) == 0xB || *(gBattleCommunication + 3) == 0x1F))
+	{
+		if(*(gBattleCommunication + 3) >= 6)
+		{
+			if(!CheckLeafGuardAndFlowerVeil(*gEffectBattler))
+			{
+				switch(*((*(gBattleCommunication + 3) * 4) + data_0825053C))
+				{
+				case 8:
+					goto lbl_+26C
+				case 0x10:
+					goto lbl_+350
+				case 0x20:
+					goto lbl_+426
+				case 0x40:
+					if(*((*gEffectBattler * 0x58) + gBattleMons + 0x21) != 0xD && *((*gEffectBattler * 0x58) + gBattleMons + 0x22) != 0xD)
+					{
+						if(*((*gEffectBattler * 0x58) + gBattleMons + 0x20) == 7)
+						{
+							if(arg0 == 1 || arg1 == 0x80)
+							{
+								*gLastUsedAbility = 7
+								RecordAbilityBattle(*gEffectBattler, 7)
+								BattleScriptPush(*gBattleScriptCurrInstr + 1)
+								r0 = data_081D942C
+								goto lbl_+2A0
+							}
+						}
+						elseif(*((*gEffectBattler * 0x58) + gBattleMons + 0x4C) == 0)
+							r10 = 1
+					}
+					
+					break;
+				case 0x80:
+					goto lbl_+520
+				case 7:
+					if(*((*gEffectBattler * 0x58) + gBattleMons + 0x20) != 0xAD && !GetAbilityUserOnSameSide(*gEffectBattler, 0xAD))
+					{
+						if(*((*gEffectBattler * 0x58) + gBattleMons + 0x20) == 0x2B)
+							goto lbl_+218
+						
+						for(*gActiveBattler = 0; *gActiveBattler < *gBattlersCount; (*gActiveBattler)++)
+						{
+							if(*((*gEffectBattler * 0x58) + gBattleMons + 0x50) & 0x70)
+								break
+						}
+
+						goto lbl_+224
+					}
+					
+					break;
+				}
+			}
+			
+			if(r10 == 1)
+				goto lbl_+774
+				
+			BattleScriptPush(*gBattleScriptCurrInstr + 1)
+			r3 = *((*(gBattleCommunication + 3) * 4) + data_0825053C)
+			
+			if(r3 == 7)
+				r3 = (Random() % 3) + 2
+			
+			*((*gEffectBattler * 0x58) + gBattleMons + 0x4C) |= r3
+			goto lbl_+6C0
+		}
+		
+		if(*((*gEffectBattler * 0x58) + gBattleMons + 0x50) & *((*(gBattleCommunication + 3) * 4) + data_0825053C))
+			goto lbl_+11CC
+		
+		switch(*(gBattleCommunication + 3) - 7)
+		{
+		...
+		case 1:
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x68 || (*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) - 0xA3) <= 1)
+			{
+				*gLastUsedAbility = 0x27
+				RecordAbilityBattle(*gEffectBattler, *((*gEffectBattler * 0x58) + gBattleMons + 0x20))
+				*gBattleScriptCurrInstr = data_081D9452
+			}
+			else
+			{
+				if(*((*gEffectBattler * 0x58) + gBattleMons + 0x20) == 0x27)
+				{
+					if(arg0 == 1 || arg1 == 0x80)
+					{
+						*gLastUsedAbility = 0x27
+						RecordAbilityBattle(*gEffectBattler, *((*gEffectBattler * 0x58) + gBattleMons + 0x20))
+						*gBattleScriptCurrInstr = data_081D9452
+					}
+					else
+						goto lbl_+11CC
+				}
+				else
+				{
+					if(GetBattlerTurnOrderNum(*gEffectBattler) > *gCurrentTurnActionNumber)
+						*((*gEffectBattler * 0x58) + gBattleMons + 0x50) |= 8
+					
+					goto lbl_+11CC
+				}
+			}
+			
+			break;
+		...
+		case 3:
+			if(!(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x50) & 0x70))
+				goto lbl_+11CC
+			
+			*((*gBattlerAttacker * 0x58) + gBattleMons + 0x50) |= 0x1000
+			*((*gBattlerAttacker * 2) + gLockedMoves) = *gCurrentMove
+			*((*gBattlerAttacker * 0x58) + gBattleMons + 0x50) |= (((Random() & 3) + 2) * 0x10)
+			BattleScriptPush(gBattleScriptCurrInstr + 1)
+			*gBattleScriptCurrInstr = *((*(gBattleCommunication + 3) * 4) + data_0825062C)
+			break;
+		...
+		case 6:
+			if(*((*gEffectBattler * 0x58) + gBattleMons + 0x50) & 0xE000)
+				goto lbl_+11CC
+			
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) != 0x67 && GetHoldEffect(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x2E)) == 0x4E)
+				r1 = 7
+			else
+				r1 = (Random() & 1) + 5
+			
+			*((*gEffectBattler * 0x58) + gBattleMons + 0x50) |= (r1 * 0x2000)
+			*((*gEffectBattler * 2) + *gBattleStruct + 4) = *gCurrentMove
+			*(*gEffectBattler + *gBattleStruct + 0x14) = *gBattlerAttacker
+			BattleScriptPush(*gBattleScriptCurrInstr + 1)
+			*gBattleScriptCurrInstr = data_081BD1E8_J
+
+			for(*(gBattleCommunication + 5) = 0; *(gBattleCommunication + 5) <= 6; (*(gBattleCommunication + 5))++)
+			{
+				if(*(*(gBattleCommunication + 5) + data_09303552_J) == *gCurrentMove)
+					break;
+			}
+
+			break;
+		case 7:
+			if(*gCurrentMove == 0xA5)
+			{
+				r0 = *((*gEffectBattler * 0x58) + gBattleMons + 0x2C) / 4
+				goto lbl_part10_5
+			}
+			else
+			{
+				r1 = 4
+				goto lbl_part10_2
+			}
+		...
+		case 0x1D:
+			if(!(*((*gBattlerTarget * 0x58) + gBattleMons + 0x4C) & 0xFF))
+				goto lbl_+11CC
+			
+			*((*gBattlerTarget * 0x58) + gBattleMons + 0x4C) &= -0xFF
+			*gActiveBattler = *gBattlerTarget
+			BtlController_EmitSetMonData(0, 0x28, 0, 4, *((*gBattlerTarget * 0x58) + gBattleMons + 0x4C))
+			MarkBattlerForControllerExec(*gActiveBattler)
+			BattleScriptPush(*gBattleScriptCurrInstr + 1)
+			*gBattleScriptCurrInstr = data_081D9177
+			break;
+		...
+		case 0x1F:
+			r1 = 3
+			goto lbl_part10_2
+			
+			lbl_part10_1:
+			r1 = 2
+
+			lbl_part10_2:
+			if(*((*gEffectBattler * 0x58) + gBattleMons + 0x20) == 0x45 || *((*gEffectBattler * 0x58) + gBattleMons + 0x20) == 0x62)
+				goto lbl_+11CC
+
+			lbl_part10_4:
+			r0 = *gHpDealt / r1
+
+			lbl_part10_5:
+			if(r0 == 0)
+				r0 = 1
+			
+			*gBattleMoveDamage = r0
+			BattleScriptPush(*gBattleScriptCurrInstr + 1)
+			*gBattleScriptCurrInstr = data_081BD212_J
+			break;
+		...
+		case 0x30:
+			goto lbl_part10_1
+		...
+		}
+	}
+	else
+	{
+		lbl_+11CC:
+		(*gBattleScriptCurrInstr)++
+	}
+	
+	return
+}
+
+
+
+
+
+script_part1: @0229DE_J
+(47 45 02 01 34 3F 02 02 13 48 45 3C 08 12 40 00 3C) = 
+(47 45 02 01 D4 3F 02 02 13 7C E5 3F 08 12 40 00 3C)
+
+
+
+
+
+script_part2: @0229EF_J
+(47 45 02 01 34 3F 02 02 13 54 45 3C 08 12 40 00 3C) = 
+(47 45 02 01 D4 3F 02 02 13 88 E5 3F 08 12 40 00 3C)

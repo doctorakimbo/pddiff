@@ -1,0 +1,241 @@
+sub_1FF20(arg0, arg1)
+{
+	r10 = 0
+	s1 = 1
+	
+	if(gBattleCommunication[3] & 0x40)
+	{
+		gEffectBattler = gBattlerAttacker
+		gBattleCommunication[3] &= 0xBF
+		r7 = 0x40
+		gBattleScripting->0x17 = gBattlerTarget
+	}
+	else
+	{
+		gEffectBattler = gBattlerTarget
+		r7 = 0
+		gBattleScripting->0x17 = gBattlerAttacker
+	}
+	
+	if((!(gBattleTypeFlags & 0x10000) || gBattleCommunication[3] == 1 || GetBattlerSide(gEffectBattler) != 1) && (gBattleMons[gBattlerAttacker].0x20 == 0x68 || (gBattleMons[gBattlerAttacker].0x20 - 0xA3) <= 1 || gBattleMons[gEffectBattler].0x20 != 0x13 || (gHitMarker & 0x2000) || arg0 != 0 || gBattleCommunication[3] > 9) && (gBattleMons[gBattlerAttacker].0x20 == 0x97 || (((gBattleMoves[gCurrentMove].9 & 1) || (gBattleMons[gEffectBattler].0x50 & 0x1000000)) && (!(gSideStatuses[GetBattlerPosition(gEffectBattler) & 1] & 0x20) || (gHitMarker & 0x2000) || arg0 != 0 || gBattleCommunication[3] > 7))) && (gBattleMons[gEffectBattler].0x28 != 0 || gBattleCommunication[3] == 0xB || gBattleCommunication[3] == 0x1F))
+	{
+		if(gBattleCommunication[3] >= 6)
+		{
+			if(!CheckLeafGuardAndFlowerVeil(gEffectBattler))
+			{
+				switch(data_0825053C[gBattleCommunication[3]])
+				{
+				case 8:
+					goto lbl_+26C
+				case 0x10:
+					goto lbl_+350
+				case 0x20:
+					goto lbl_+426
+				case 0x40:
+					if(gBattleMons[gEffectBattler].0x21 != 0xD && gBattleMons[gEffectBattler].0x22 != 0xD)
+					{
+						if(gBattleMons[gEffectBattler].0x20 == 7)
+						{
+							if(arg0 == 1 || arg1 == 0x80)
+							{
+								gLastUsedAbility = 7
+								RecordAbilityBattle(gEffectBattler, 7)
+								BattleScriptPush(gBattleScriptCurrInstr + 1)
+								r0 = data_081D942C
+								goto lbl_+2A0
+							}
+						}
+						elseif(gBattleMons[gEffectBattler].0x4C == 0)
+							r10 = 1
+					}
+					
+					break;
+				case 0x80:
+					goto lbl_+520
+				case 7:
+					if(gBattleMons[gEffectBattler].0x20 != 0xAD && !GetAbilityUserOnSameSide(gEffectBattler, 0xAD))
+					{
+						if(gBattleMons[gEffectBattler].0x20 == 0x2B)
+							goto lbl_+218
+						
+						for(gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
+						{
+							if(gBattleMons[gEffectBattler].0x50 & 0x70)
+								break
+						}
+
+						goto lbl_+224
+					}
+					
+					break;
+				}
+			}
+			
+			if(r10 == 1)
+				goto lbl_+774
+				
+			BattleScriptPush(gBattleScriptCurrInstr + 1)
+			r3 = data_0825053C[gBattleCommunication[3]]
+			
+			if(r3 == 7)
+				r3 = (Random() % 3) + 2
+			
+			gBattleMons[gEffectBattler].0x4C |= r3
+			goto lbl_+6C0
+		}
+		
+		if(gBattleMons[gEffectBattler].0x50 & data_0825053C[gBattleCommunication[3]])
+			goto lbl_+11CC
+		
+		switch(gBattleCommunication[3])
+		{
+		...
+		case 8:
+			if(gBattleMons[gBattlerAttacker].0x20 == 0x68 || (gBattleMons[gBattlerAttacker].0x20 - 0xA3) <= 1)
+			{
+				gLastUsedAbility = 0x27
+				RecordAbilityBattle(gEffectBattler, gBattleMons[gEffectBattler].0x20)
+				gBattleScriptCurrInstr = data_081D9452
+			}
+			else
+			{
+				if(gBattleMons[gEffectBattler].0x20 == 0x27)
+				{
+					if(arg0 == 1 || arg1 == 0x80)
+					{
+						gLastUsedAbility = 0x27
+						RecordAbilityBattle(gEffectBattler, gBattleMons[gEffectBattler].0x20)
+						gBattleScriptCurrInstr = data_081D9452
+					}
+					else
+						goto lbl_+11CC
+				}
+				else
+				{
+					if(GetBattlerTurnOrderNum(gEffectBattler) > gCurrentTurnActionNumber)
+						gBattleMons[gEffectBattler].0x50 |= 8
+					
+					goto lbl_+11CC
+				}
+			}
+			
+			break;
+		...
+		case 0xA:
+			if(!(gBattleMons[gBattlerAttacker].0x50 & 0x70))
+				goto lbl_+11CC
+			
+			gBattleMons[gBattlerAttacker].0x50 |= 0x1000
+			gLockedMoves[gBattlerAttacker] = gCurrentMove
+			gBattleMons[gBattlerAttacker].0x50 |= (((Random() & 3) + 2) * 0x10)
+			BattleScriptPush(gBattleScriptCurrInstr + 1)
+			gBattleScriptCurrInstr = data_0825062C[gBattleCommunication[3]]
+			break;
+		...
+		case 0xD:
+			if(gBattleMons[gEffectBattler].0x50 & 0xE000)
+				goto lbl_+11CC
+			
+			if(gBattleMons[gBattlerAttacker].0x20 != 0x67 && GetHoldEffect(gBattleMons[gBattlerAttacker].0x2E) == 0x4E)
+				r1 = 7
+			else
+				r1 = (Random() & 1) + 5
+			
+			gBattleMons[gEffectBattler].0x50 |= (r1 * 0x2000)
+			gBattleStruct->4[gEffectBattler] = gCurrentMove
+			gBattleStruct->14[gEffectBattler] = gBattlerAttacker
+			BattleScriptPush(gBattleScriptCurrInstr + 1)
+			gBattleScriptCurrInstr = data_081BD1E8_J
+
+			for(gBattleCommunication[5] = 0; gBattleCommunication[5] <= 6; gBattleCommunication[5]++)
+			{
+				if(data_09303552_J[gBattleCommunication[5]] == gCurrentMove)
+					break;
+			}
+
+			break;
+		case 0xE:
+			if(gCurrentMove == 0xA5)
+			{
+				r0 = gBattleMons[gEffectBattler].0x2C / 4
+				goto lbl_part10_5
+			}
+			else
+			{
+				r1 = 4
+				goto lbl_part10_2
+			}
+		...
+		case 0x24:
+			if(!(gBattleMons[gBattlerTarget].0x4C & 0xFF))
+				goto lbl_+11CC
+			
+			gBattleMons[gBattlerTarget].0x4C &= -0xFF
+			gActiveBattler = gBattlerTarget
+			BtlController_EmitSetMonData(0, 0x28, 0, 4, gBattleMons[gBattlerTarget].0x4C)
+			MarkBattlerForControllerExec(gActiveBattler)
+			BattleScriptPush(gBattleScriptCurrInstr + 1)
+			gBattleScriptCurrInstr = data_081D9177
+			break;
+		...
+		case 0x26:
+			r1 = 3
+			goto lbl_part10_2
+			
+			lbl_part10_1:
+			r1 = 2
+
+			lbl_part10_2:
+			if(gBattleMons[gEffectBattler].0x20 == 0x45 || gBattleMons[gEffectBattler].0x20 == 0x62)
+				goto lbl_+11CC
+
+			lbl_part10_4:
+			r0 = gHpDealt / r1
+
+			lbl_part10_5:
+			if(r0 == 0)
+				r0 = 1
+			
+			gBattleMoveDamage = r0
+			BattleScriptPush(gBattleScriptCurrInstr + 1)
+			gBattleScriptCurrInstr = data_081BD212_J
+			break;
+		...
+		case 0x37:
+			goto lbl_part10_1
+		...
+		}
+	}
+	else
+	{
+		lbl_+11CC:
+		gBattleScriptCurrInstr++
+	}
+	
+	return
+}
+
+
+
+
+
+script_part1: @0229DE_J
+(47 45 02 01 34 3F 02 02 13 48 45 3C 08 12 40 00 3C) = 
+(47 45 02 01 D4 3F 02 02 13 7C E5 3F 08 12 40 00 3C)
+setgraphicalstatchangevalues
+playanimation BS_EFFECT_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+printfromtable 083FE57C
+waitmessage
+return
+
+
+
+
+script_part2: @0229EF_J
+(47 45 02 01 34 3F 02 02 13 54 45 3C 08 12 40 00 3C) = 
+(47 45 02 01 D4 3F 02 02 13 88 E5 3F 08 12 40 00 3C)
+setgraphicalstatchangevalues
+playanimation BS_EFFECT_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+printfromtable 083FE588
+waitmessage
+return

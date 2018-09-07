@@ -171,6 +171,8 @@ data:
 21A8D4 = sHoldEffectToType
 250104 = sSoundMovesTable
 2504FC = 25CF04 = sAccuracyStageRatios
+25053C = sStatusFlagsForMoveEffects
+25062C = sMoveEffectBS_Ptrs
 254784 = gBaseStats
 25DEAD = gStatStageRatios
 25E45C = gBitTable

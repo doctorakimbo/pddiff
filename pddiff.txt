@@ -106,10 +106,15 @@ item effects:
 + 0x4B = weather rocks (effectparam = weather ID)
 + 0x4C = Expert Belt
 + 0x4D = Safety Wear
+- 0x4E = Grip Claw
 + 0x4F = Binding Band
 + 0x51 = Big Root
 + 0x52 = Assault Vest
 + 0x54 = Life Orb (effectparam = 1/X HP lost)
+
+moves:
+= 0x28C = Magma Storm/Infestation
+= 0x28E = Infestation/Magma Storm
 
 move effects:
 = 0x37 = (won't miss)
@@ -179,6 +184,8 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 + 0x19B = "[PKMN]'s [ABILITY] bounced [MOVE] back! (placeholder)"
 ! 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]! (placeholder)"
 ! 0x19E = "[PKMN] is hurt by its [ITEM]!"
+= 0x20E = "[PKMN] became trapped by swirling magma!"/"[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"
+= 0x20F = "[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"/"[PKMN] became trapped by swirling magma!"
 
 grafics:
 = D0051C (C0051C old, EB8990 new)
@@ -195,6 +202,8 @@ grafics:
 + expand 2605CC (ball sprite palettes) from 12 entries to 26 (A230F0)
 + expand 3DB028 (item data) from 375 entries to 435 (10B0000)
 + expand 3D4038 (mon icon palettes) from 6 entries to 16 (jE40000, e1E40000)
+- expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
+- expand 3FE664 (trapping moves) from 6 entries to 8 (1303552)
 
 + repoint 1D9015 -> 1052EE0 (BattleScript_FocusPunchSetUp) - do it itself later
 
@@ -332,33 +341,25 @@ grafics:
 = 01FBA0: Entirety of atk0F_resultmessage (+ConsumeItem, BattleScript_ConsumeDamageReductionBerry, script_1F552_J) (see 28disasm)
 		  Implements: Focus Sash (consumption on use)
 		  Relies on: gChosenActionByBattler changed to something else
-= 01FF20: Parts of sub_1FF20 (see 29disasm)
-  020376: 60 -> 30 (weather refactor - sun)
-  0203E4: (see 29disasm)
-  020596: 0B 4A 0B 49 0B 78 58 21 4B 43 4C 32 9B 18 03 21 01 40 02 31 18 68 08 43 18 60 16 E0 -> ?(03 21 A8 F1 FC FB 83 1C 15 E0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00)? <FIX LATER>
-  0206A2: 4B 46 19 78 58 20 41 43 40 46 50 30 09 18 0A 4A F3 78 98 00 80 18 09 68 00 68 01 40 00 29 01 D0 00 F0 13 FD D8 -> ?(00 00 4B 46 19 78 58 20 48 43 41 46 0B 18 0A 49 F2 78 90 00 40 18 19 6D 00 68 01 40 00 29 01 D0 00 F0 13 FD D0)? <FIX LATER>
-  0207A4: ptr 0A 11 02 08 -> 8C 0F 02 08
-  02082C: (see 29disasm)
+= 01FF20: Parts of SetMoveEffect (see 29disasm)
+= 020376: 60 -> 30 (weather refactor - sun)
+= 0203E4: (see 29disasm)
+= 020596: 0B 4A 0B 49 0B 78 58 21 4B 43 4C 32 9B 18 03 21 01 40 02 31 18 68 08 43 18 60 16 E0 -> ?(03 21 A8 F1 FC FB 83 1C 15 E0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00)? <FIX LATER>
+= 0206A2: 4B 46 19 78 58 20 41 43 40 46 50 30 09 18 0A 4A F3 78 98 00 80 18 09 68 00 68 01 40 00 29 01 D0 00 F0 13 FD D8 -> ?(00 00 4B 46 19 78 58 20 48 43 41 46 0B 18 0A 49 F2 78 90 00 40 18 19 6D 00 68 01 40 00 29 01 D0 00 F0 13 FD D0)? <FIX LATER>
+= 0207A4: ptr 0A 11 02 08 -> 8C 0F 02 08
+		  Implements: 50% recoil effect
+		  Relies on: changes at 020F78
+= 02082C: (see 29disasm)
+= 0208B8: (see 29disasm)
+= 020A20: (see 29disasm)
+= 020AEC: (see 29disasm)
+= 020B70, 020BF8: ptr D1 6B 1D 08 -> XX XX XX 08 (j0229DE)
+= 020BB4, 020C3C: ptr 62 6C 1D 08 -> XX XX XX 08 (j0229EF)
+		  Implements: need more info
+		  Requires in future: script_229DE_J, script_229EF_J
+= 020F00: (see 29disasm)
+= 020F78: (see 29disasm) (last part of SetMoveEffect)
 
-prev:
-j1F730-j1F900
-j1FB80
-j1FBF4-j1FCB8
-j1FDA0-j1FDC0
-j1FEB0-j1FEE0
-j1FFB4 ptr: 02091A -> 02079C
-j20030-j200D0
-
-curr:
-j200C8-j20144
-j20230-j202FC
-j202FC-j20340
-j20380 ptr: 1BAB8D -> 0229DE
-j203C4 ptr: 1BAC1E -> 0229EF
-j20408 ptr: 1BAB8D -> 0229DE
-j2044C ptr: 1BAC1E -> 0229EF
-j20710-j20770
-j20788-j207C8
 
 next: j20934
 

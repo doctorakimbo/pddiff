@@ -1,0 +1,207 @@
+SetMoveEffect(primary, certain)
+{
+	statusChanged = FALSE;
+	affectsUser = 0;
+	noSunCanFreeze = TRUE;
+	
+	if(gBattleCommunication[MOVE_EFFECT_BYTE] & MOVE_EFFECT_AFFECTS_USER)
+	{
+		gEffectBattler = gBattlerAttacker;
+		gBattleCommunication[MOVE_EFFECT_BYTE] &= ~(MOVE_EFFECT_AFFECTS_USER);
+		affectsUser = MOVE_EFFECT_AFFECTS_USER;
+		gBattleScripting.battler = gBattlerTarget;
+	}
+	else
+	{
+		gEffectBattler = gBattlerTarget;
+		gBattleScripting.battler = gBattlerAttacker;
+	}
+	
+	if((gBattleTypeFlags & 0x10000) && gBattleCommunication[MOVE_EFFECT_BYTE] != 1 && GetBattlerSide(gEffectBattler) == 1)
+		INCREMENT_RESET_RETURN
+		
+	if(gBattleMons[gEffectBattler].ability == ABILITY_SHIELD_DUST && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD) && !primary && gBattleCommunication[MOVE_EFFECT_BYTE] <= 9)
+		INCREMENT_RESET_RETURN
+		
+	if((gSideStatuses[GET_BATTLER_SIDE(gEffectBattler)] & SIDE_STATUS_SAFEGUARD) && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD) && !primary && gBattleCommunication[MOVE_EFFECT_BYTE] <= 7)
+		INCREMENT_RESET_RETURN
+		
+	if(gBattleMons[gEffectBattler].hp == 0 && gBattleCommunication[MOVE_EFFECT_BYTE] != MOVE_EFFECT_PAYDAY && gBattleCommunication[MOVE_EFFECT_BYTE] != MOVE_EFFECT_STEAL_ITEM)
+		INCREMENT_RESET_RETURN
+		
+	if((gBattleMons[gEffectBattler].status2 & STATUS2_SUBSTITUTE) && affectsUser != MOVE_EFFECT_AFFECTS_USER)
+		INCREMENT_RESET_RETURN
+	
+	if(gBattleCommunication[MOVE_EFFECT_BYTE] <= 6)
+	{
+		switch(sStatusFlagsForMoveEffects[gBattleCommunication[MOVE_EFFECT_BYTE]])
+		{
+		case 7:
+			if(gBattleMons[gEffectBattler].ability == ABILITY_SOUNDPROOF)
+				goto lbl_+218
+			
+			for(gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
+			{
+				if(gBattleMons[gEffectBattler].status2 & STATUS2_UPROAR)
+					break
+			}
+
+			goto lbl_+224
+		case STATUS1_POISON:
+			goto lbl_+26C
+		case STATUS1_BURN:
+			goto lbl_+350
+		case STATUS1_FREEZE:
+			goto lbl_+426
+		case STATUS1_PARALYSIS:
+			if(gBattleMons[gEffectBattler].ability == ABILITY_LIMBER)
+			{
+				if(primary == TRUE || certain == MOVE_EFFECT_CERTAIN)
+				{
+					gLastUsedAbility = ABILITY_LIMBER;
+					RecordAbilityBattle(gEffectBattler, ABILITY_LIMBER);
+					BattleScriptPush(gBattleScriptCurrInstr + 1);
+					gBattlescriptCurrInstr = BattleScript_PRLZPrevention;
+					goto lbl_+2A0
+				}
+			}
+			elseif(gBattleMons[gEffectBattler].status1 == 0)
+				statusChanged = TRUE;
+
+			break;
+		case STATUS1_TOXIC_POISON:
+			goto lbl_+520
+		}
+		
+		if(!statusChanged)
+			goto lbl_+774
+		
+		BattleScriptPush(gBattleScriptCurrInstr + 1);
+		
+		if(sStatusFlagsForMoveEffects[gBattleCommunication[MOVE_EFFECT_BYTE]] == STATUS1_SLEEP)
+			gBattleMons[gEffectBattler].status1 |= ((Random() & 3) + 2); // range 2-5
+		else
+			gBattleMons[gEffectBattler].status1 |= sStatusFlagsForMoveEffects[gBattleCommunication[MOVE_EFFECT_BYTE]];
+		
+		goto lbl_+6C0
+	}
+	
+	if(gBattleMons[gEffectBattler].status2 & sStatusFlagsForMoveEffects[gBattleCommunication[MOVE_EFFECT_BYTE]])
+		gBattleScriptCurrInstr++;
+	else
+	{
+		switch(gBattleCommunication[MOVE_EFFECT_BYTE])
+		{
+		...
+		case MOVE_EFFECT_FLINCH:
+			if(gBattleMons[gEffectBattler].ability == ABILITY_INNER_FOCUS)
+			{
+				if(primary == TRUE || certain == MOVE_EFFECT_CERTAIN)
+				{
+					gLastUsedAbility = ABILITY_INNER_FOCUS;
+					RecordAbilityBattle(gEffectBattler, ABILITY_INNER_FOCUS);
+					gBattleScriptCurrInstr = BattleScript_FlinchPrevention;
+				}
+				else
+					gBattleScriptCurrInstr++;
+			}
+			else
+			{
+				if(GetBattlerTurnOrderNum(gEffectBattler) > gCurrentTurnActionNumber)
+					gBattleMons[gEffectBattler].status2 |= sStatusFlagsForMoveEffects[gBattleCommunication[MOVE_EFFECT_BYTE]];
+
+				gBattleScriptCurrInstr++;
+			}
+			
+			break;
+		case MOVE_EFFECT_UPROAR:
+			if(!(gBattleMons[gEffectBattler].status2 & STATUS2_UPROAR))
+			{
+				gBattleMons[gEffectBattler].status2 |= STATUS2_MULTIPLETURNS;
+				gLockedMoves[gEffectBattler] = gCurrentMove;
+				gBattleMons[gEffectBattler].status2 |= ((Random() & 3) + 2) << 4;
+				BattleScriptPush(gBattleScriptCurrInstr + 1);
+				gBattleScriptCurrInstr = sMoveEffectBS_Ptrs[gBattleCommunication[MOVE_EFFECT_BYTE]];
+			}
+			else
+				gBattleScriptCurrInstr++;
+			break;
+		...
+		case MOVE_EFFECT_WRAP:
+			if(gBattleMons[gEffectBattler].status2 & STATUS2_WRAPPED)
+				gBattleScriptCurrInstr++;
+			else
+			{
+				gBattleMons[gEffectBattler].status2 |= ((Random() & 3) + 3) << 0xD; // range 3-6
+				*(gBattleStruct->wrappedMove + gEffectBattler * 2 + 0) = gCurrentMove;
+				*(gBattleStruct->wrappedMove + gEffectBattler * 2 + 1) = gCurrentMove >> 8;
+				*(gBattleStruct->wrappedBy + gEffectBattler) = gBattlerAttacker;
+				BattleScriptPush(gBattleScriptCurrInstr + 1);
+				gBattleScriptCurrInstr = sMoveEffectBS_Ptrs[gBattleCommunication[MOVE_EFFECT_BYTE]];
+				
+				for(gBattleCommunication[MULTISTRING_CHOOSER] = 0; gBattleCommunication[MULTISTRING_CHOOSER] <= 4; gBattleCommunication[MULTISTRING_CHOOSER]++)
+				{
+					if(gTrappingMoves[gBattleCommunication[MULTISTRING_CHOOSER]] == gCurrentMove)
+						break;
+				}
+			}
+			
+			break;
+		case MOVE_EFFECT_RECOIL_25:
+			gBattleMoveDamage = gHpDealt / 4;
+			
+			if(gBattleMoveDamage == 0)
+				gBattleMoveDamage = 1;
+			
+			BattleScriptPush(gBattleScriptCurrInstr + 1);
+			gBattleScriptCurrInstr = sMoveEffectBS_Ptrs[gBattleCommunication[MOVE_EFFECT_BYTE]];
+			break;
+		...
+		case MOVE_EFFECT_REMOVE_PARALYSIS:
+			if(!(gBattleMons[gBattlerTarget].status1 & STATUS1_PARALYSIS))
+				gBattleScriptCurrInstr++;
+			else
+			{
+				gBattleMons[gBattlerTarget].status1 &= ~(STATUS1_PARALYSIS);
+				gActiveBattler = gBattlerTarget;
+				BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gBattlerTarget].status1);
+				MarkBattlerForControllerExec(gActiveBattler);
+				BattleScriptPush(gBattleScriptCurrInstr + 1);
+				gBattleScriptCurrInstr = BattleScript_TargetPRLZHeal;
+			}
+			break;
+		...
+		case MOVE_EFFECT_RECOIL_33:
+			gBattleMoveDamage = gHpDealt / 3;
+			
+			if(gBattleMoveDamage == 0)
+				gBattleMoveDamage = 1;
+			
+			BattleScriptPush(gBattleScriptCurrInstr + 1);
+			gBattleScriptCurrInstr = sMoveEffectBS_Ptrs[gBattleCommunication[MOVE_EFFECT_BYTE]];
+			break;
+		...
+		}
+	}
+}
+
+
+
+
+
+script_part1: @1D6BD1
+(45 02 01 D4 3F 02 02 13 7C E5 3F 08 12 40 00 3C)
+playanimation BS_EFFECT_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+printfromtable 083FE57C
+waitmessage
+return
+
+
+
+
+script_part2: @1D6C62
+(45 02 01 D4 3F 02 02 13 88 E5 3F 08 12 40 00 3C)
+playanimation BS_EFFECT_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+printfromtable 083FE588
+waitmessage
+return

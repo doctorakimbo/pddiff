@@ -1,0 +1,661 @@
+sub_1FF20()
+{
+	r4 = r0
+	r5 = r1
+	r0 = 0
+	r10 = r0
+	r7 = 0
+	r1 = 1
+	s1 = r1
+	r6 = gBattleCommunication
+	r2 = gEffectBattler
+	r1 = gBattlerAttacker
+	r3 = *(r6 + 3)
+	r0 = 0x40
+	r0 &= r3
+	
+	if(r0 != 0)
+	{
+		r0 = *r1
+		*r2 = r0
+		r0 = 0xBF
+		r0 &= r3
+		*(r6 + 3) = r0
+		r7 = 0x40
+		r0 = *(r1 + 1)
+	}
+	else
+	{
+		r0 = *(r1 + 1)
+		*r2 = r0
+		r0 = *r1
+	}
+	
+	r1 = gBattleScripting
+	*(r1 + 0x17) = r0
+	r0 = gBattleTypeFlags
+	r0 = *r0
+	r1 = 0x10000
+	r0 &= r1
+	if(r0 == 0) goto lbl4
+
+	r0 = *(r6 + 3)
+	if(r0 == 1) goto lbl4
+
+	r0 = *r2
+	GetBattlerSide()
+	if(r0 != 1) goto lbl4
+
+	goto lbl_+11CC
+
+	lbl4:
+	r3 = gBattleMons
+	r0 = gBattlerAttacker
+	r0 = *r0
+	r1 = 0x58
+	r0 *= r1
+	r0 += r3
+	r0 += 0x20
+	r0 = *r0
+	r8 = r0
+	if(r0 == 0x68) goto lbl5
+
+	r0 -= 0xA3
+	if(r0 < 1) goto lbl5
+
+	r2 = gEffectBattler
+	r0 = *r2
+	r0 *= r1
+	r0 += r3
+	r0 += 0x20
+	r0 = *r0
+	if(r0 != 0x13) goto lbl5
+
+	r0 = gHitMarker
+	r0 = *r0
+	r1 = 0x2000
+	r0 &= r1
+	if(r0 != 0) goto lbl5
+
+	if(r4 != 0) goto lbl5
+
+	r0 = *(r6 + 3)
+	if(r0 > 9) goto lbl5
+
+	goto lbl_+11CC
+
+	lbl5:
+	r0 = r8
+	if(r0 == 0x97) goto lbl7
+
+	r2 = gBattleMoves
+	r0 = gCurrentMove
+	r0 = *r0
+	r1 = 0xC
+	r0 *= r1
+	r0 += r2
+	r0 = *(r0 + 9)
+	r1 = 1
+	r0 &= r1
+	if(r0 != 0) goto lbl6
+
+	r2 = gEffectBattler
+	r0 = *r2
+	r1 = 0x58
+	r0 *= r1
+	r0 += r3
+	r0 = *(r0 + 0x50)
+	r1 = 0x1000000
+	r0 &= r1
+	if(r0 != 0) goto lbl6
+
+	goto lbl_+11CC
+
+	lbl6:
+	r2 = gEffectBattler
+	r0 = *r2
+	GetBattlerPosition()
+	r2 = gSideStatuses
+	r1 = 1
+	r1 &= r0
+	r1 *= 2
+	r1 += r2
+	r1 = *r1
+	r0 = 0x20
+	r0 &= r1
+	if(r0 == 0) goto lbl7
+
+	r0 = gHitMarker
+	r0 = *r0
+	r1 = 0x2000
+	r0 &= r1
+	if(r0 != 0) goto lbl7
+
+	if(r4 != 0) goto lbl7
+
+	r0 = *(r6 + 3)
+	if(r0 > 7) goto lbl7
+
+	goto lbl_+11CC
+
+	lbl7:
+	r3 = gBattleMons
+	r2 = gEffectBattler
+	r1 = *r2
+	r0 = 0x58
+	r0 *= r1
+	r0 += r3
+	r0 = *(r0 + 0x28)
+	r9 = r2
+	r8 = r3
+	if(r0 != 0) goto lbl9
+
+	r0 = *(r6 + 3)
+	if(r0 == 0xB) goto lbl9
+
+	if(r0 == 0x1F) goto lbl9
+
+	goto lbl_+11CC
+
+	lbl9:
+	r0 = *(r6 + 3)
+	
+	if(r0 >= 6)
+	{
+		r0 = *r2
+		CheckLeafGuardAndFlowerVeil()
+		
+		if(r0 == 0)
+		{
+			r1 = data_0825053C
+			r0 = *(r6 + 3)
+			r0 *= 4
+			r0 += r1
+			r0 = *r0
+			
+			if(r0 == 8)
+				goto lbl_+26C
+			elseif(r0 == 0x10)
+				goto lbl_+350
+			elseif(r0 == 0x20)
+				goto lbl_+426
+			elseif(r0 == 0x40)
+			{
+				r3 = r9
+				r2 = *r3
+				r0 = 0x58
+				r2 *= r0
+				r2 += r8
+				r0 += 0x20
+				r1 = *(r0 + 1)
+				
+				if(r1 != 0xD)
+				{
+					r1 = *(r0 + 2)
+					
+					if(r1 != 0xD)
+					{
+						r1 = *r0
+
+						if(r1 == 7)
+						{
+							if(r4 == 1 || r5 == 0x80)
+							{
+								r0 = gLastUsedAbility
+								*r0 = r1
+								r0 = *r3
+								r1 = 7
+								RecordAbilityBattle()
+								r4 = gBattleScriptCurrInstr
+								r0 = *r4
+								r0++
+								BattleScriptPush()
+								r0 = data_081D942C
+								goto lbl_+2A0
+							}
+						}
+						else
+						{
+							r0 = *(r2 + 0x4C)
+							
+							if(r0 == 0)
+							{
+								r4 = 1
+								r10 = r4
+							}
+						}
+					}
+				}
+				
+				goto lbl_part3
+			}
+			elseif(r0 == 0x80)
+				goto lbl_+520
+			elseif(r0 == 7)
+			{
+				r2 = r9
+				r1 = *r2
+				r0 = 0x58
+				r0 *= r1
+				r0 += r8
+				r0 += 0x20
+				r4 = *r0
+				if(r4 == 0xAD) goto lbl_part3
+
+				r0 = *r2
+				r1 = 0xAD
+				GetAbilityUserOnSameSide()
+				if(r0 != 0) goto lbl_part3
+
+				goto lbl20
+
+				lbl20:
+				if(r4 == 0x2B)
+					goto lbl_+218
+
+				r0 = gActiveBattler
+				r1 = 0
+				*r0 = r1
+				r1 = gBattlersCount
+				r3 = *r1
+				r7 = r0
+				r12 = r1
+				
+				if(r3 != 0)
+				{
+					r4 = r8
+					r0 = *(r4 + 0x50)
+					r1 = 0x70
+					r0 &= r1
+					
+					if(r0 == 0)
+					{
+						r1 = r7
+						r6 = r8
+						r6 += 0x50
+						r5 = 0x58
+						r4 = 0x70
+
+						do
+						{
+							r0 = *r1
+							r0++
+							*r1 = r0
+							
+							if(r0 bcs r3)
+								break
+
+							r0 = *r7
+							r0 *= r5
+							r0 += r6
+							r0 = *r0
+							r0 &= r4
+						} while(r0 == 0)
+					}
+				}
+
+				goto lbl_+224
+			}
+		}
+
+		goto lbl_part3
+
+
+
+
+
+		lbl_part3: @1FD80
+		r1 = r10
+		
+		if(r1 == 1)
+			goto lbl_+774
+			
+		r0 = gBattleScriptCurrInstr
+		r0 = *r0
+		r0++
+		BattleScriptPush()
+		r1 = data_0825053C
+		r0 = gBattleCommunication
+		r0 = *(r0 + 3)
+		r0 *= 4
+		r0 += r1
+		r3 = *r0
+		
+		if(r3 == 7)
+		{
+			Random()
+			r1 = 3
+			modulus()
+			r3 = r0 + 2
+		}
+		
+		r2 = gBattleMons
+		r0 = gEffectBattler
+		r1 = *r0
+		r0 = 0x58
+		r1 *= r0
+		r2 += 0x4C
+		r1 += r2
+		r0 = *r1
+		r0 |= r3
+		*r1 = r0
+		goto lbl_+6C0
+	}
+	
+	r3 = r9
+	r1 = *r3
+	r0 = 0x58
+	r0 *= r1
+	r1 = r8
+	r3 = r1 + r0
+	r1 = data_0825053C
+	r2 = *(r6 + 3)
+	r0 = r2 * 4
+	r0 += r1
+	r1 = *(r3 + 0x50)
+	r0 = *r0
+	r1 &= r0
+	
+	if(r1 != 0)
+		goto lbl_+11CC
+	
+	r0 = r2 - 7
+	
+	switch(r0)
+	{
+	...
+	case 1:
+		r0 = gBattlerAttacker
+		r0 = *r0
+		r2 = 0x58
+		r0 *= r2
+		r0 += r8
+		r0 += 0x20
+		r6 = r3
+		if(r0 == 0x68) goto lbl2
+
+		r0 -= 0xA3
+		if(r0 <= 1) goto lbl2
+
+		r3 += 0x20
+		r1 = *r3
+		
+		if(r1 == 0x27)
+		{
+			if(r4 == 1 || r5 == 0x80)
+			{
+				lbl2:
+				r0 = gLastUsedAbility
+				*r0 = r1
+				r0 = r9
+				r0 = *r0
+				RecordAbilityBattle()
+				r1 = gBattleScriptCurrInstr
+				r0 = data_081D9452
+				*r1 = r0
+			}
+			else
+				goto lbl_+11CC
+		}
+		else
+		{
+			r0 = r9
+			r0 = *r0
+			GetBattlerTurnOrderNum()
+			r1 = gCurrentTurnActionNumber
+			r1 = *r1
+			
+			if(r0 > r1)
+			{
+				r1 = 8
+				r0 = *(r6 + 0x50)
+				r0 |= r1
+				*(r6 + 0x50) = r0
+			}
+			
+			goto lbl_+11CC
+		}
+		
+		break;
+	...
+	case 3:
+		r3 = gBattlerAttacker
+		r0 = *r3
+		r5 = 0x58
+		r0 *= r5
+		r4 = r8
+		r4 += 0x50
+		r2 = r0 + r4
+		r1 = *r2
+		r0 = 0x70
+		r0 &= r1
+		if(r0 == 0)
+			goto lbl_+11CC
+		
+		r0 = 0x1000
+		r1 |= r0
+		*r2 = r1
+		r1 = gLockedMoves
+		r0 = *r3
+		r0 *= 2
+		r0 += r1
+		r1 = gCurrentMove
+		r1 = *r1
+		*r0 = r1
+		Random()
+		r2 = gBattlerAttacker
+		r1 = *r2
+		r2 += r1
+		r2 *= r5
+		r2 += r4
+		r1 = 3
+		r1 &= r0
+		r1 += 2
+		r1 *= 0x10
+		r0 = *r2
+		r0 |= r1
+		*r2 = r0
+		r4 = gBattleScriptCurrInstr
+		r0 = *r4
+		r0++
+		BattleScriptPush()
+		r1 = data_0825062C
+		r0 = gBattleCommunication
+		r0 = *(r0 + 3)
+		r0 *= 4
+		r0 += r1
+		r0 = *r0
+		*r4 = r0
+		break;
+	...
+	case 6:
+		r6 = r3
+		r5 = *(r6 + 0x50)
+		r0 = 0xE000
+		r5 &= r0
+		
+		if(r5 != 0)
+			goto lbl_+11CC
+		
+		r0 = gBattlerAttacker
+		r0 = *r0
+		r1 = 0x58
+		r0 *= r1
+		r0 += r8
+		r0 += 0x20
+		r1 = *r0
+		
+		if(r1 != 0x67)
+		{
+			r0 = *(r0 + 0xE)
+			GetHoldEffect()
+			
+			if(r0 == 0x4E)
+				r1 = 7
+		}
+		elseany
+		{
+			Random()
+			r1 = 1
+			r1 &= r0
+			r1 += 5
+		}
+		
+		r1 *= 0x2000
+		r0 = *(r6 + 0x50)
+		r0 |= r1
+		*(r6 + 0x50) = r0
+		r2 = r9
+		r2 = *r2
+		r3 = gBattleStruct
+		r3 = *r3
+		r1 = r2 * 2
+		r1 += r3
+		r6 = gCurrentMove
+		r0 = *r6
+		*(r1 + 4) = r0
+		r1 = r3 + r2
+		r0 = gBattlerAttacker
+		r0 = *r0
+		*(r1 + 0x14) = r0
+		r4 = gBattleScriptCurrInstr
+		r0 = *r4
+		r0++
+		BattleScriptPush()
+		r0 = data_081BD1E8_J
+		*r4 = r0
+		r2 = gBattleCommunication
+		*(r2 + 5) = r5
+		r3 = data_09303552_J
+
+		do
+		{
+			r0 = *(r3 + r5)
+			r4 = *r6
+			
+			if(r0 == r4)
+				break;
+
+			r0 = *(r2 + 5)
+			r0++
+			*(r2 + 5) = r0
+			r5 = r0 * 2
+		} while(r0 <= 6)
+
+		break;
+	case 7:
+		r0 = gCurrentMove
+		r0 = *r0
+		
+		if(r0 == 0xA5)
+		{
+			r0 = *(r3 + 0x2C)
+			r0 /= 4
+			goto lbl_part10_5
+		}
+		else
+		{
+			r1 = 4
+			goto lbl_part10_2
+		}
+	...
+	case 0x1D:
+		r6 = gBattlerTarget
+		r0 = *r6
+		r2 = 0x58
+		r0 *= r2
+		r1 = r8
+		r1 += 0x4C
+		r5 = r0 + r1
+		r4 = *r5
+		r0 = 0xFF
+		r0 &= r4
+		
+		if(r0 == 0)
+			goto lbl_+11CC
+		
+		r0 = 0xFF
+		r0 = -r0
+		r4 &= r0
+		*r5 = r4
+		r4 = gActiveBattler
+		r0 = *r6
+		*r4 = r0
+		r0 = *r4
+		r0 *= r2
+		r0 += r1
+		s0 = r0
+		r0 = 0
+		r1 = 0x28
+		r2 = 0
+		r3 = 4
+		BtlController_EmitSetMonData()
+		r0 = *r4
+		MarkBattlerForControllerExec()
+		r4 = gBattleScriptCurrInstr
+		r0 = *r4
+		r0++
+		BattleScriptPush()
+		r0 = data_081D9177
+		*r4 = r0
+		break;
+	...
+	case 0x1F:
+		r1 = 3
+
+		lbl_part10_2:
+		r3 += 0x20
+		r0 = *r3
+		
+		if(r0 == 0x45 || r0 == 0x62)
+			goto lbl_+11CC
+
+		lbl_part10_4:
+		r0 = gHpDealt
+		r0 = *r0
+		divide()
+
+		lbl_part10_5:
+		if(r0 == 0)
+			r0 = 1
+		
+		r1 = gBattleMoveDamage
+		*r1 = r0
+		r4 = gBattleScriptCurrInstr
+		r0 = *r4
+		r0++
+		BattleScriptPush()
+		r0 = data_081BD212_J
+		*r4 = r0
+		break;
+	...
+	case 0x30:
+		goto lbl_part10_4
+	...
+	}
+	
+	return
+	
+	lbl_+11CC:
+	r1 = gBattleScriptCurrInstr
+	r0 = *r1
+	r0++
+	*r1 = r0
+	return
+}
+
+
+
+
+
+script_part1: @0229DE_J
+(47 45 02 01 34 3F 02 02 13 48 45 3C 08 12 40 00 3C) = 
+(47 45 02 01 D4 3F 02 02 13 7C E5 3F 08 12 40 00 3C)
+
+
+
+
+
+script_part2: @0229EF_J
+(47 45 02 01 34 3F 02 02 13 54 45 3C 08 12 40 00 3C) = 
+(47 45 02 01 D4 3F 02 02 13 88 E5 3F 08 12 40 00 3C)
