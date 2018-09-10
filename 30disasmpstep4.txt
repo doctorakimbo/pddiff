@@ -1,0 +1,55 @@
+atk15_seteffectwithchance()
+{
+	percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance;
+
+	if(gBattleMons[gBattlerAttacker].ability == ABILITY_SERENE_GRACE)
+		percentChance *= 2;
+
+	if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) && gBattleCommunication[MOVE_EFFECT_BYTE])
+	{
+		if(gBattleMons[gBattlerAttacker].ability == ABILITY_SHEER_FORCE && (gBattleMoves[gCurrentMove].typeFlags3 & FLAG_SECONDARY_EFFECT))
+		{
+			switch(gBattleCommunication[MOVE_EFFECT_BYTE] & ~(MOVE_EFFECT_CERTAIN)
+			{
+				case MOVE_EFFECT_STATUS1_ANY:
+				case MOVE_EFFECT_CONFUSION:
+				case MOVE_EFFECT_FLINCH:
+				case MOVE_EFFECT_TRI_ATTACK:
+				case MOVE_EFFECT_STAT_MINUS_1_ANY:
+				case MOVE_EFFECT_STAT_MINUS_2_ANY:
+				case (MOVE_EFFECT_STAT_PLUS_1_ANY | MOVE_EFFECT_AFFECTS_USER):
+				case (MOVE_EFFECT_ALL_STATS_UP | MOVE_EFFECT_AFFECTS_USER):
+				case (MOVE_EFFECT_STAT_PLUS_2_ANY | MOVE_EFFECT_AFFECTS_USER):
+					gBattleScriptCurrInstr++; // remove effect
+				default:
+					goto lbl3 // do effect despite Sheer Force
+			}
+		}
+		else
+		{
+			lbl3:
+			if(gBattleCommunication[MOVE_EFFECT_BYTE] & MOVE_EFFECT_CERTAIN)
+			{
+				gBattleCommunication[MOVE_EFFECT_BYTE] &= ~(MOVE_EFFECT_CERTAIN);
+				SetMoveEffect(0, MOVE_EFFECT_CERTAIN);
+			}
+			else
+			{
+				if(Random() % 100 < percentChance)
+				{
+					if(percentChance >= 100)
+						SetMoveEffect(0, MOVE_EFFECT_CERTAIN);
+					else
+						SetMoveEffect(0, 0);
+				}
+				else
+					gBattleScriptCurrInstr++;
+			}
+		}
+	}
+	else
+		gBattleScriptCurrInstr++;
+	
+	gBattleCommunication[MOVE_EFFECT_BYTE] = 0;
+	gBattleScripting.multihitMoveEffect = 0;
+}

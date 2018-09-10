@@ -1,0 +1,23 @@
+atk15_seteffectwithchance()
+{
+	if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x20)
+		r4 = *((*gCurrentMove * 0xC) + gBattleMoves + 5) * 2
+	else
+		r4 = *((*gCurrentMove * 0xC) + gBattleMoves + 5)
+	
+	if((*(gBattleCommunication + 3) & 0x80) && !(*gMoveResultFlags & 0x29))
+		*(gBattleCommunication + 3) &= 0x7F
+
+	if(Random() % 100 <= r4 && *(gBattleCommunication + 3) != 0 && !(*gMoveResultFlags & 0x29))
+	{
+		if(r4 > 0x63)
+			SetMoveEffect(0, 0x80)
+		else
+			SetMoveEffect(0, 0)
+	}
+	else
+		(*gBattleScriptCurrInstr)++
+	
+	*(gBattleCommunication + 3) = 0
+	*(gBattleScripting + 0x16) = 0
+}

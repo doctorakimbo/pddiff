@@ -17,7 +17,7 @@ SetMoveEffect(primary, certain)
 		gBattleScripting.battler = gBattlerAttacker;
 	}
 	
-	if((gBattleTypeFlags & 0x10000) && gBattleCommunication[MOVE_EFFECT_BYTE] != 1 && GetBattlerSide(gEffectBattler) == 1)
+	if((gBattleTypeFlags & 0x10000) && gBattleCommunication[MOVE_EFFECT_BYTE] != MOVE_EFFECT_SLEEP && GetBattlerSide(gEffectBattler) == B_SIDE_OPPONENT)
 		INCREMENT_RESET_RETURN
 		
 	if(gBattleMons[gEffectBattler].ability == ABILITY_SHIELD_DUST && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD) && !primary && gBattleCommunication[MOVE_EFFECT_BYTE] <= 9)
@@ -36,7 +36,7 @@ SetMoveEffect(primary, certain)
 	{
 		switch(sStatusFlagsForMoveEffects[gBattleCommunication[MOVE_EFFECT_BYTE]])
 		{
-		case 7:
+		case STATUS1_SLEEP:
 			if(gBattleMons[gEffectBattler].ability == ABILITY_SOUNDPROOF)
 				goto lbl_+218
 			

@@ -1,0 +1,23 @@
+atk15_seteffectwithchance()
+{
+	if(gBattleMons[gBattlerAttacker].ability == ABILITY_SERENE_GRACE)
+		percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance * 2;
+	else
+		percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance;
+	
+	if((gBattleCommunication[MOVE_EFFECT_BYTE] & MOVE_EFFECT_CERTAIN) && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
+		gBattleCommunication[MOVE_EFFECT_BYTE] &= ~(MOVE_EFFECT_CERTAIN);
+
+	if(Random() % 100 < percentChance && gBattleCommunication[MOVE_EFFECT_BYTE] && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
+	{
+		if(percentChance >= 100)
+			SetMoveEffect(0, MOVE_EFFECT_CERTAIN);
+		else
+			SetMoveEffect(0, 0);
+	}
+	else
+		gBattleScriptCurrInstr++;
+	
+	gBattleCommunication[MOVE_EFFECT_BYTE] = 0;
+	gBattleScripting.multihitMoveEffect = 0;
+}

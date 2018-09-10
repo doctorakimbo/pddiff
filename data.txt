@@ -227,3 +227,4 @@ BattleMove.typeFlags3: 4321
 4 = 
 
 POCKET_POKE_BALLS = 3 in FR
+MOVE_EFFECT_RECOIL_50 = 0x37

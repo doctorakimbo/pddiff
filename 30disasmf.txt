@@ -1,0 +1,97 @@
+lbl1: @21124
+r2 = gBattleMons
+r0 = gBattlerAttacker
+r1 = *r0
+r0 = 0x58
+r0 *= r1
+r0 += r2
+r0 += 0x20
+r0 = *r0
+if(r0 != 0x20) goto lbl2
+
+r2 = gBattleMoves
+r0 = gCurrentMove
+r1 = *r0
+r0 = r1 * 2
+r0 += r1
+r0 *= 4
+r0 += r2
+r0 = *(r0 + 5)
+r4 = r0 * 2
+goto lbl3
+
+lbl2:
+r2 = gBattleMoves
+r0 = gCurrentMove
+r1 = *r0
+r0 = r1 * 2
+r0 += r1
+r0 *= 4
+r0 += r2
+r4 = *(r0 + 5)
+goto lbl3
+
+lbl3:
+r3 = gBattleCommunication
+r2 = *(r3 + 3)
+r0 = 0x80
+r0 &= r2
+if(r0 == 0) goto lbl4
+
+r0 = gMoveResultFlags
+r1 = *r0
+r0 = 0x29
+r0 &= r1
+if(r0 != 0) goto lbl4
+
+r0 = 0x7F
+r0 &= r2
+*(r3 + 3) = r0
+goto lbl5
+
+lbl4:
+Random()
+r1 = 0x64
+modulus()
+if(r0 > r4) goto lbl8
+
+r0 = gBattleCommunication
+r0 = *(r0 + 3)
+if(r0 == 0) goto lbl8
+
+r0 = gMoveResultFlags
+r1 = *r0
+r0 = 0x29
+r0 &= r1
+if(r0 != 0) goto lbl8
+
+if(r4 <= 0x63) goto lbl6
+
+goto lbl5
+
+lbl5:
+r0 = 0
+r1 = 0x80
+SetMoveEffect()
+goto lbl9
+
+lbl6:
+r0 = 0
+r1 = 0
+SetMoveEffect()
+goto lbl9
+
+lbl8:
+r1 = gBattleScriptCurrInstr
+r0 = *r1
+r0++
+*r1 = r0
+goto lbl9
+
+lbl9:
+r0 = gBattleCommunication
+r1 = 0
+*(r0 + 3) = r1
+r0 = gBattleScripting
+*(r0 + 0x16) = r1
+(end)
