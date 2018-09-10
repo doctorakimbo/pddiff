@@ -1,0 +1,67 @@
+atk19_tryfaintmon()
+{
+	if(gBattleScriptCurrInstr[2] != 0)
+	{
+		gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1]);
+		
+		if(gHitMarker & HITMARKER_FAINTED(gActiveBattler))
+		{
+			BS_ptr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+			BattleScriptPop();
+			gBattleScriptCurrInstr = BS_ptr;
+			gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_SPIKES_DAMAGED);
+			goto lbl_2E6
+		}
+		else
+			goto lbl_2E0
+	}
+	
+	if(gBattleScriptCurrInstr[1] == BS_ATTACKER)
+	{
+		gActiveBattler = gBattlerAttacker;
+		battlerId = gBattlerTarget;
+		BS_ptr = BattleScript_FaintAttacker;
+	}
+	else
+	{
+		gActiveBattler = gBattlerTarget;
+		battlerId = gBattlerAttacker;
+		BS_ptr = BattleScript_FaintTarget;
+	}
+	
+	if(!(gAbsentBattlerFlags & gBitTable[gActiveBattler]) && gBattleMons[gActiveBattler].hp == 0)
+	{
+		gHitMarker |= HITMARKER_FAINTED(gActiveBattler);
+		BattleScriptPush(gBattleScriptCurrInstr + 7);
+		gBattleScriptCurrInstr = BS_ptr;
+		
+		if(GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER) 
+		{
+			gHitMarker |= HITMARKER_x400000;
+			
+			if(gBattleResults.playerFaintCounter < 0xFF)
+				gBattleResults.playerFaintCounter++;
+			
+			AdjustFriendshipOnBattleFaint(gActiveBattler);
+			goto lbl_180
+		}
+		else
+			goto lbl_148
+	}
+	else
+		goto lbl_2E0
+	...
+}
+
+
+
+
+BattleScript_FaintTarget: @1D8684
+(56 00 39 40 00 1A 00 1B 00 10 1D 00 10 30 01 3C)
+playfaintcry BS_TARGET
+pause 0x40
+dofaintanimation BS_TARGET
+cleareffectsonfaint BS_TARGET
+printstring STRINGID_TARGETFAINTED
+printstring STRINGID_EMPTYSTRING3
+return

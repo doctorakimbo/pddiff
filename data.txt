@@ -62,7 +62,7 @@ CC 3E 02 02: 2C 3E 02 02: gSpecialStatuses
 50 3F 02 02: B0 3E 02 02: gDynamicBasePower
 54 3F 02 02: B4 3E 02 02: gEnigmaBerries
 C4 3F 02 02: 24 3F 02 02: gBattleScripting
-D4 3F 02 02: 2E 3F 02 02: sB_ANIM_ARG1
+D4 3F 02 02: 34 3F 02 02: sB_ANIM_ARG1
 DE 3F 02 02: 3E 3F 02 02: sSTATCHANGER
 DF 3F 02 02: 3F 3F 02 02: sSTAT_ANIM_PLAYED (FRPD) / sSECOND_STATCHANGER (PD)
 E8 3F 02 02: 48 3F 02 02: gBattleStruct
@@ -120,6 +120,7 @@ funcs e,j,desc:
 01FF20 = 01F730 = SetMoveEffect
 02A1C0 = 029998 = IsTwoTurnsMove
 02A224 = 0299FC = AttacksThisTurn
+02E228 = 02DA24 = AdjustFriendshipOnBattleFaint
 03E47C = CalculateMonStats
 03ECEC = 03E458 = CalculateBaseDamage
 03F78C = 03EEF8 = GetGenderFromSpeciesAndPersonality

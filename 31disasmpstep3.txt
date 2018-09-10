@@ -1,0 +1,63 @@
+atk19_tryfaintmon()
+{
+	if(gBattleScriptCurrInstr[2] != 0)
+	{
+		gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+		
+		if(gHitMarker & (gBitTable[gActiveBattler] << 0x1C))
+		{
+			r4 = gBattleScriptCurrInstr[3] | (gBattleScriptCurrInstr[4] << 8) | (gBattleScriptCurrInstr[5] << 0x10) | (gBattleScriptCurrInstr[6] << 0x18)
+			BattleScriptPop()
+			gBattleScriptCurrInstr = r4
+			gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~0x200
+			goto lbl_2E6
+		}
+		else
+			goto lbl_2E0
+	}
+	
+	if(gBattleScriptCurrInstr[1] == 1)
+	{
+		r0 = gBattlerAttacker
+		r1 = gBattlerTarget
+		r4 = data_081D8674
+	}
+	else
+	{
+		r0 = gBattlerTarget
+		r1 = gBattlerAttacker
+		r4 = script_1
+	}
+	
+	gActiveBattler = r0
+	r9 = r1
+	r8 = gActiveBattler
+	
+	if(!(gAbsentBattlerFlags & gBitTable[gActiveBattler]) && gBattleMons[gActiveBattler].0x28 == 0)
+	{
+		gHitMarker |= (gBitTable[gActiveBattler] << 0x1C)
+		BattleScriptPush(gBattleScriptCurrInstr + 7)
+		gBattleScriptCurrInstr = r4
+		
+		if(GetBattlerSide(gActiveBattler) == 0) 
+		{
+			gHitMarker |= 0x400000
+			
+			if(gBattleResults <= 0xFE)
+				gBattleResults++
+			
+			sub_802E228(gActiveBattler)
+			goto lbl_180
+		}
+		else
+			goto lbl_148
+	}
+	else
+		goto lbl_2E0
+	...
+}
+
+
+
+
+script_1: @20B28_J, 21318

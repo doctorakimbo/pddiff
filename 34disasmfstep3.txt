@@ -1,0 +1,47 @@
+atk1E_jumpifability()
+{
+	if(gBattleScriptCurrInstr[1] == 8)
+	{
+		r4 = AbilityBattleEffects(0xD, gBattlerAttacker, gBattleScriptCurrInstr[2], 0, 0)
+		
+		if(r4 != 0)
+		{
+			gLastUsedAbility = gBattleScriptCurrInstr[2]
+			gBattleScriptCurrInstr = gBattleScriptCurrInstr[3] + (gBattleScriptCurrInstr[4] << 8) + (gBattleScriptCurrInstr[5] << 0x10) + (gBattleScriptCurrInstr[6] << 0x18)
+			r4--
+			RecordAbilityBattle(r4, gLastUsedAbility)
+			gBattleScripting.0x15 = r4
+		}
+		else
+			gBattleScriptCurrInstr += 7
+	}
+	elseif(gBattleScriptCurrInstr[1] == 9)
+	{
+		r4 = AbilityBattleEffects(0xC, gBattlerAttacker, gBattleScriptCurrInstr[2], 0, 0)
+		
+		if(r4 != 0) 
+		{
+			gLastUsedAbility = gBattleScriptCurrInstr[2]
+			gBattleScriptCurrInstr = gBattleScriptCurrInstr[3] + (gBattleScriptCurrInstr[4] << 8) + (gBattleScriptCurrInstr[5] << 0x10) + (gBattleScriptCurrInstr[6] << 0x18)
+			r4--
+			RecordAbilityBattle(r4, gLastUsedAbility)
+			gBattleScripting.0x15 = r4
+		}
+		else
+			gBattleScriptCurrInstr += 7
+	}
+	else
+	{
+		r4 = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+		
+		if(gBattleMons[r4].0x20 == gBattleScriptCurrInstr[2])
+		{
+			gLastUsedAbility = gBattleMons[r4].0x20
+			gBattleScriptCurrInstr = gBattleScriptCurrInstr[3] + (gBattleScriptCurrInstr[4] << 8) + (gBattleScriptCurrInstr[5] << 0x10) + (gBattleScriptCurrInstr[6] << 0x18)
+			RecordAbilityBattle(r4, gLastUsedAbility)
+			gBattleScripting.0x15 = r4
+		}
+		else
+			gBattleScriptCurrInstr += 7
+	}
+}

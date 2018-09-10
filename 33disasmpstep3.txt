@@ -1,0 +1,21 @@
+atk1D_jumpifstatus2()
+{
+	r4 = fn_20EFE_J(&gBattleScriptCurrInstr[2])
+	r3 = fn_20EFE_J(&gBattleScriptCurrInstr[6])
+	r0 = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+	
+	if(!(gBattleMons[r0].0x50 & r4) || gBattleMons[r0].0x28 == 0 || (r4 == 0x1000000 && (gBattleMons[gBattlerAttacker].0x20 == 0x97 || (gBattleMoves[gCurrentMove].9 & 1))))
+		r3 = gBattleScriptCurrInstr + 0xA
+	elseif()
+		r3 = gBattleScriptCurrInstr + 0xA
+
+	gBattleScriptCurrInstr = r3
+}
+
+
+
+
+fn_20EFE_J(arg0)
+{
+	return arg0[0] + (arg0[1] << 8) + (arg0[2] << 0x10) + (arg0[3] << 0x18)
+}

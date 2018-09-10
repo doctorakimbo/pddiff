@@ -1,0 +1,93 @@
+atk1E_jumpifability()
+{
+	r6 = gBattleScriptCurrInstr
+	r2 = *r6
+	r5 = *(r2 + 2)
+	r1 = *(r2 + 3)
+	r0 = *(r2 + 4)
+	r0 <<= 8
+	r1 += r0
+	r0 = *(r2 + 5)
+	r0 <<= 0x10
+	r1 += r0
+	r0 = *(r2 + 6)
+	r0 <<= 0x18
+	r7 = r1 + r0
+	r0 = *(r2 + 1)
+	
+	if(r0 == 8)
+	{
+		r0 = 0xD
+		goto lbl3
+	}
+	elseif(r0 == 9)
+	{
+		r0 = 0xC
+		goto lbl3
+	}
+	else
+		goto lbl4
+
+	lbl3:
+	r1 = gBattlerAttacker
+	r3 = 0
+	r4 = AbilityBattleEffects(r0, *r1, r5, r3, r3)
+	
+	if(r4 != 0)
+	{
+		r1 = gLastUsedAbility
+		*r1 = r5
+		*r6 = r7
+		r4--
+		r0 = r4
+		r1 = *r1
+		goto lbl7
+	}
+	else
+		goto lbl8
+	
+	lbl4:
+	r4 = GetBattlerForBattleScript(r0)
+	r1 = gBattleMons
+	r0 = 0x58
+	r0 *= r4
+	r0 += r1
+	r0 += 0x20
+	r1 = *r0
+	
+	if(r1 != r5)
+	{
+		if(r5 == 7 || r5 == 0x11 || r5 == 0x28 || r5 == 0x29)
+		{
+			r0 = CheckLeafGuardAndFlowerVeil(r4)
+			
+			if(r0 != 0)
+				r5 = r0
+			else
+				goto lbl8
+		}
+		else
+			goto lbl8
+	}
+	
+	r0 = gLastUsedAbility
+	*r0 = r5
+	*r6 = r7
+	r1 = *r0
+	r0 = r4
+	goto lbl7
+
+	lbl7:
+	RecordAbilityBattle(r0, r1)
+	r0 = gBattleScripting
+	*(r0 + 15) = r4
+	goto lbl9
+
+	lbl8:
+	r0 = *r6
+	r0 += r7
+	*r6 = r0
+	goto lbl9
+
+	lbl9:
+}

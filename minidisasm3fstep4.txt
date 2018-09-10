@@ -1,0 +1,18 @@
+atk47_setgraphicalstatchangevalues()
+{
+	value = 0;
+	buffval = GET_STAT_BUFF_VALUE2(gBattleScripting.statChanger);
+
+	if(buffval == (SET_STAT_BUFF_VALUE(1) | STAT_BUFF_NEGATIVE))
+		value = 0x16;
+	elseif(buffval == (SET_STAT_BUFF_VALUE(2) | STAT_BUFF_NEGATIVE))
+		value = 0x2E;
+	elseif(buffval == SET_STAT_BUFF_VALUE(2))
+		value = 0x27;
+	elseif(buffval == SET_STAT_BUFF_VALUE(1))
+		value = 0xF;
+
+	gBattleScripting.animArg1 = GET_STAT_BUFF_ID(gBattleScripting.statChanger) + value - 1;
+	gBattleScripting.animArg2 = 0;
+	gBattleScriptCurrInstr++;
+}

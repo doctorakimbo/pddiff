@@ -1,0 +1,11 @@
+atk1C_jumpifstatus()
+{
+	r4 = fn_20EFE_J(&gBattleScriptCurrInstr[2])
+	r3 = fn_20EFE_J(&gBattleScriptCurrInstr[6])
+	r0 = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+	
+	if(!(gBattleMons[r0].0x4C & r4) || gBattleMons[r0].0x28 == 0)
+		r3 = gBattleScriptCurrInstr + 0xA
+	
+	gBattleScriptCurrInstr = r3
+}

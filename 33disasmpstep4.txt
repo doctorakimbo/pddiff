@@ -1,0 +1,19 @@
+atk1D_jumpifstatus2()
+{
+	flags = fn_20EFE_J(&gBattleScriptCurrInstr + 2);
+	jumpPtr = fn_20EFE_J(&gBattleScriptCurrInstr + 6);
+	battlerId = GetBattlerForBattleScript(gBattleScriptCurrInstr[1]);
+	
+	if(!(gBattleMons[battlerId].status2 & flags) || gBattleMons[battlerId].hp == 0 || (flags == STATUS2_SUBSTITUTE && (gBattleMons[gBattlerAttacker].ability == ABILITY_INFILTRATOR || (gBattleMoves[gCurrentMove].typeFlags1 & FLAG_SOUND_MOVE))))
+		jumpPtr = gBattleScriptCurrInstr + 10;
+
+	gBattleScriptCurrInstr = jumpPtr;
+}
+
+
+
+
+fn_20EFE_J(arg0)
+{
+	return T2_READ_32(arg0);
+}

@@ -1,0 +1,11 @@
+atk1C_jumpifstatus()
+{
+	flags = fn_20EFE_J(&gBattleScriptCurrInstr + 2);
+	jumpPtr = fn_20EFE_J(&gBattleScriptCurrInstr + 6);
+	battlerId = GetBattlerForBattleScript(gBattleScriptCurrInstr[1]);
+	
+	if(!(gBattleMons[battlerId].status1 & flags) || gBattleMons[battlerId].hp == 0)
+		jumpPtr = gBattleScriptCurrInstr + 10;
+	
+	gBattleScriptCurrInstr = jumpPtr;
+}

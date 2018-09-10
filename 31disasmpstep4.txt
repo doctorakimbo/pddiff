@@ -1,0 +1,79 @@
+atk19_tryfaintmon()
+{
+	if(gBattleScriptCurrInstr[2] != 0)
+	{
+		gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1]);
+		
+		if(gHitMarker & HITMARKER_FAINTED(gActiveBattler))
+		{
+			BS_ptr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+			BattleScriptPop();
+			gBattleScriptCurrInstr = BS_ptr;
+			gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_SPIKES_DAMAGED);
+			goto lbl_2E6
+		}
+		else
+			goto lbl_2E0
+	}
+	
+	if(gBattleScriptCurrInstr[1] == BS_ATTACKER)
+	{
+		gActiveBattler = gBattlerAttacker;
+		battlerId = gBattlerTarget;
+		BS_ptr = BattleScript_FaintAttacker;
+	}
+	else
+	{
+		gActiveBattler = gBattlerTarget;
+		battlerId = gBattlerAttacker;
+		BS_ptr = BattleScript_FaintTarget_New;
+	}
+	
+	if(!(gAbsentBattlerFlags & gBitTable[gActiveBattler]) && gBattleMons[gActiveBattler].hp == 0)
+	{
+		gHitMarker |= HITMARKER_FAINTED(gActiveBattler);
+		BattleScriptPush(gBattleScriptCurrInstr + 7);
+		gBattleScriptCurrInstr = BS_ptr;
+		
+		if(GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER) 
+		{
+			gHitMarker |= HITMARKER_x400000;
+			
+			if(gBattleResults.playerFaintCounter < 0xFF)
+				gBattleResults.playerFaintCounter++;
+			
+			AdjustFriendshipOnBattleFaint(gActiveBattler);
+			goto lbl_180
+		}
+		else
+			goto lbl_148
+	}
+	else
+		goto lbl_2E0
+	...
+}
+
+
+
+
+BattleScript_FaintTarget_New: @20B28_J, 21318
+(56 00 39 40 00 1A 00 1B 00 10 1D 00 10 30 01 1E 01 99 3F 0B 02 08 3C 2E 3E 3F 02 02 11 89 41 64 0B 02 08 29 00 E7 3D 02 02 02 64 0B 02 08 47 45 01 01 34 3F 02 02 10 99 01 12 40 00 3C) = 
+(56 00 39 40 00 1A 00 1B 00 10 1D 00 10 30 01 1E 01 99 2F 13 02 08 3C 2E DE 3F 02 02 11 89 41 54 13 02 08 29 00 87 3E 02 02 02 64 0B 02 08 47 45 01 01 D4 3F 02 02 10 A2 01 12 40 00 3C)
+playfaintcry BS_TARGET
+pause 0x40
+dofaintanimation BS_TARGET
+cleareffectsonfaint BS_TARGET
+printstring STRINGID_TARGETFAINTED
+printstring STRINGID_EMPTYSTRING3
+jumpifability BS_ATTACKER, 0x99, BattleScript_FaintTarget_MoxieBoost
+return
+
+BattleScript_FaintTarget_MoxieBoost:
+setstatchanger STAT_ATK, 1, FALSE
+statbuffchange MOVE_EFFECT_AFFECTS_USER | 0x1, BattleScript_FaintTarget_End
+jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 2, BattleScript_FaintTarget_End
+setgraphicalstatchangevalues
+playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+printstring STRINGID_PKMNSABILITYRAISEDSTAT
+waitmessage 0x40
+return

@@ -64,6 +64,7 @@ abilities:
 + 0x96 = Imposter
 + 0x97 = Infiltrator
 + 0x98 = Mummy
+- 0x99 = Moxie
 + 0x9A = Justified
 + 0x9B = Rattled
 + 0x9C = Magic Bounce
@@ -180,7 +181,7 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0x196 = "[DEFENDER]'s [ABILITY] lowered [ATTACKER]'s [STAT]! (placeholder)"
 = 0x197 = (typeboost bcs 1E effect)
 + 0x198 = "The effects of the [ITEM] prevent status moves from being used!"
-+ 0x199 = "[PKMN]'s [ABILITY] raised its Speed! (placeholder)"
+- 0x199 = "[PKMN]'s [ABILITY] raised its [STAT]! (placeholder)" <REFACTOR LATER>
 + 0x19B = "[PKMN]'s [ABILITY] bounced [MOVE] back! (placeholder)"
 ! 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]! (placeholder)"
 ! 0x19E = "[PKMN] is hurt by its [ITEM]!"
@@ -212,13 +213,13 @@ grafics:
 		  (wait until playthrough - is this the equivalent of removing gender colors?)
 = 008CF8, 008D2C: 0A -> 0C (pkmnnamelength)
 = 00960C: 36 -> 33 (some sort of link-related graphics function?, see 1disasm)
-= 00D311: 68 -> 47 and
+= 00D311: 68 -> 47
   00D320: 4C 2B 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (j252400, see 02disasm))
 		  Implements: need more info
 		  Required knowledge: j0203B900, j0203C00D, j0203D500
 = 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
 = 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC: 0B -> 0D (pkmnnamelength)
-= 011688: 0E 49 -> 10 47 and
+= 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: Pokemon name length, something else - need more info
 		  Required knowledge: j020385E2, unknown data table at j1400000
@@ -236,7 +237,7 @@ grafics:
 		  Implements: Storm Drain (redirection), Mold Breaker+ (vs redirection)
 		  Relies on: gChosenActionByBattler changed to something else
 		  Note: test deeply - incomprehensible code
-= 016460: 0C 29 1B D8 0B 4A 0C 49 -> 00 00 00 00 0B 4A 97 46 and
+= 016460: 0C 29 1B D8 0B 4A 0C 49 -> 00 00 00 00 0B 4A 97 46
   016494: 74 3D 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jA231E0, see 07disasm))
 		  Implements: new pokeballs (throw action)
 		  Required knowledge: j0203FE00
@@ -383,14 +384,33 @@ grafics:
 = 021124: Entirety of atk15_seteffectwithchance (see 30disasm)
 		  Implements: Sheer Force (secondary effect removal)
 		  Relies on: BattleMove refactor
-= (RECOMPILE PREVIOUS FIRST)
+- 0212AC: Large part of atk19_tryfaintmon (see 31disasm)
+		  Implements: Moxie
+= 021640: Entirety of atk1C_jumpifstatus (see 32disasm)
+		  Implements: Makes room for expanded atk1D_jumpifstatus2
+		  Requires in future: fn_20EFE_J
+= 0216B8 -> 021624 (repoint): Entirety of atk1D_jumpifstatus2 (+fn_20EFE_J) (see 33disasm)
+		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute
+		  Relies on: BattleMove refactor
+= 021730: Entirety of atk1E_jumpifability (see 34disasm)
+		  Implements: Leaf Guard, Flower Veil
+		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
+- 021818: Entirety of atk1F_jumpifsideaffecting (see 35disasm)
+		  Implements: Infiltrator (vs Safeguard)
+- 022FCE: 20 -> 80
+  022FD0: 0D D0 -> 06 DA
+  022FD4: 04 DC -> 0B DA
+  022FE7: D0 -> DA
+		  Implements: Correct stat animations for drastically/severely
+= 02301C: Entirety of atk48_playstatchangeanimation (see 36disasm)
+		  
 
 
-curr: j20934-j20A20
-next: j20AC6
+
+curr: j2281C-j22A10
+next: j22B28
 
 commands that changed address:
-1D: 020EC8 -> 020E94
 84: 0270A4 -> 027080
 88: 0273A0 -> 027350
 8D: 0279A8 -> 0279A0

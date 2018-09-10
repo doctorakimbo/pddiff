@@ -1,0 +1,92 @@
+lbl1: @21730
+r6 = gBattleScriptCurrInstr
+r2 = *r6
+r5 = *(r2 + 2)
+r8 = r5
+r1 = *(r2 + 3)
+r0 = *(r2 + 4)
+r0 <<= 8
+r1 += r0
+r0 = *(r2 + 5)
+r0 <<= 0x10
+r1 += r0
+r0 = *(r2 + 6)
+r0 <<= 0x18
+r7 = r1 + r0
+r0 = *(r2 + 1)
+if(r0 != 8) goto lbl2
+
+r0 = gBattlerAttacker
+r1 = *r0
+r0 = 0
+s0 = r0
+r0 = 0xD
+r2 = r5
+r3 = 0
+AbilityBattleEffects()
+r4 = r0
+if(r4 == 0) goto lbl8
+
+r1 = gLastUsedAbility
+*r1 = r5
+*r6 = r7
+r4--
+r0 = r4
+r1 = *r1
+goto lbl7
+
+lbl2:
+if(r0 != 9) goto lbl4
+
+r0 = gBattlerAttacker
+r1 = *r0
+r0 = 0
+s0 = r0
+r0 = 0xC
+r2 = r5
+r3 = 0
+AbilityBattleEffects()
+r4 = r0
+if(r4 == 0) goto lbl8
+
+r1 = gLastUsedAbility
+*r1 = r5
+*r6 = r7
+r4--
+r0 = r4
+r1 = *r1
+goto lbl7
+
+lbl4:
+r0 = *(r2 + 1)
+GetBattlerForBattleScript()
+r4 = r0
+r1 = gBattleMons
+r0 = 0x58
+r0 *= r4
+r0 += r1
+r0 = 0x20
+r1 = *r0
+if(r1 != r8) goto lbl8
+
+r0 = gLastUsedAbility
+*r0 = r1
+*r6 = r7
+r1 = *r0
+r0 = r4
+goto lbl7
+
+lbl7:
+RecordAbilityBattle()
+r0 = gBattleScripting
+*(r0 + 0x15) = r4
+goto lbl9
+
+lbl8:
+r0 = *r6
+r0 += 7
+*r6 = r0
+goto lbl9
+
+lbl9:
+(end)

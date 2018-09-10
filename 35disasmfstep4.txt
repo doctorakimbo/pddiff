@@ -1,0 +1,15 @@
+atk1F_jumpifsideaffecting()
+{
+	if(gBattleScriptCurrInstr[1] == BS_ATTACKER)
+		side = GET_BATTLER_SIDE(gBattlerAttacker);
+	else
+		side = GET_BATTLER_SIDE(gBattlerTarget);
+
+	flags = T2_READ_16(gBattlescriptCurrInstr + 2);
+	jumpPtr = T2_READ_PTR(gBattlescriptCurrInstr + 4);
+	
+	if(gSideStatuses[side] & flags)
+		gBattleScriptCurrInstr = jumpPtr;
+	else
+		gBattleScriptCurrInstr += 8;
+}

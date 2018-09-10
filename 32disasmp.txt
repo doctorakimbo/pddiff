@@ -1,0 +1,33 @@
+lbl1: @20E50
+r5 = gBattleScriptCurrInstr
+r2 = *r5
+r2 += 2
+fn_20EFE_J()
+r4 = r0
+r2 += 4
+fn_20EFE_J()
+r3 = r0
+r0 = *r5
+r0 = *(r0 + 1)
+GetBattlerForBattleScript()
+r2 = gBattleMons
+r1 = 0x58
+r0 *= r1
+r2 += r0
+r0 = *(r2 + 0x4C)
+r0 &= r4
+if(r0 == 0) goto lbl2
+
+r0 = *(r2 + 0x28)
+if(r0 != 0) goto lbl3
+
+goto lbl2
+
+lbl2:
+r3 = *r5
+r3 += 0xA
+goto lbl3
+
+lbl3:
+*r5 = r3
+(end)

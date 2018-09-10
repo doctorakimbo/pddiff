@@ -1,0 +1,11 @@
+atk1D_jumpifstatus2()
+{
+	r0 = GetBattlerForBattleScript(*(*gBattleScriptCurrInstr + 1))
+	r4 = *(*gBattleScriptCurrInstr + 2) + (*(*gBattleScriptCurrInstr + 3) << 8) + (*(*gBattleScriptCurrInstr + 4) << 0x10) + (*(*gBattleScriptCurrInstr + 5) << 0x18)
+	r3 = *(*gBattleScriptCurrInstr + 6) + (*(*gBattleScriptCurrInstr + 7) << 8) + (*(*gBattleScriptCurrInstr + 8) << 0x10) + (*(*gBattleScriptCurrInstr + 9) << 0x18)
+	
+	if((*((r0 * 0x58) + gBattleMons + 0x50) & r4) && *((r0 * 0x58) + gBattleMons + 0x28) != 0)
+		*gBattleScriptCurrInstr = r3
+	else
+		*gBattleScriptCurrInstr += 0xA
+}

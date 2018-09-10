@@ -1,0 +1,48 @@
+atk1E_jumpifability()
+{
+	ability = gBattlescriptCurrInstr[2];
+	jumpPtr = T2_READ_PTR(gBattlescriptCurrInstr + 3);
+
+	if(gBattleScriptCurrInstr[1] == BS_ATTACKER_SIDE)
+	{
+		battlerId = AbilityBattleEffects(ABILITYEFFECT_CHECK_BATTLER_SIDE, gBattlerAttacker, ability, 0, 0);
+		
+		if(battlerId)
+		{
+			gLastUsedAbility = ability;
+			gBattleScriptCurrInstr = jumpPtr;
+			RecordAbilityBattle(battlerId - 1, gLastUsedAbility);
+			gBattleScripting.battlerWithAbility = battlerId - 1;
+		}
+		else
+			gBattleScriptCurrInstr += 7;
+	}
+	elseif(gBattleScriptCurrInstr[1] == BS_NOT_ATTACKER_SIDE)
+	{
+		battlerId = AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, gBattlerAttacker, ability, 0, 0)
+		
+		if(battlerId) 
+		{
+			gLastUsedAbility = ability;
+			gBattleScriptCurrInstr = jumpPtr;
+			RecordAbilityBattle(battlerId - 1, gLastUsedAbility);
+			gBattleScripting.battlerWithAbility = battlerId - 1;
+		}
+		else
+			gBattleScriptCurrInstr += 7;
+	}
+	else
+	{
+		battlerId = GetBattlerForBattleScript(gBattleScriptCurrInstr[1]);
+		
+		if(gBattleMons[battlerId].ability == ability)
+		{
+			gLastUsedAbility = ability;
+			gBattleScriptCurrInstr = jumpPtr;
+			RecordAbilityBattle(battlerId, gLastUsedAbility);
+			gBattleScripting.battlerWithAbility = battlerId;
+		}
+		else
+			gBattleScriptCurrInstr += 7;
+	}
+}

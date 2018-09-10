@@ -1,0 +1,71 @@
+lbl1: @20E94
+r5 = gBattleScriptCurrInstr
+r2 = *r5
+r2 += 2
+fn_20EFE_J()
+r4 = r0
+r2 += 4
+fn_20EFE_J()
+r3 = r0
+r0 = *r5
+r0 = *(r0 + 1)
+GetBattlerForBattleScript()
+r6 = gBattleMons
+r1 = 0x58
+r0 *= r1
+r2 = r0 + r6
+r0 = *(r2 + 0x50)
+r0 &= r4
+if(r0 == 0) goto lbl2
+
+r0 = *(r2 + 0x28)
+if(r0 == 0) goto lbl2
+
+r0 = 0x1000000
+if(r0 != r4) goto lbl3
+
+r0 = gBattlerAttacker
+r0 = *r0
+r0 *= r1
+r2 = r0 + r6
+r2 += 0x20
+r0 = *r2
+if(r0 == 0x97) goto lbl2
+
+r6 = gBattleMoves
+r0 = gCurrentMove
+r0 = *r0
+r1 = 0xC
+r0 *= r1
+r0 += r6
+r0 = *(r0 + 9)
+r1 = 1
+r0 &= r1
+if(r0 == 0) goto lbl3
+
+goto lbl2
+
+lbl2:
+r3 = *r5
+r3 += 0xA
+goto lbl3
+
+lbl3:
+*r5 = r3
+(end)
+
+
+
+
+fn_20EFE_J:
+r0 = *r2
+r1 = *(r2 + 1)
+r1 <<= 8
+r0 += r1
+r1 = *(r2 + 2)
+r1 <<= 0x10
+r0 += r1
+r1 = *(r2 + 3)
+r1 <<= 0x18
+r0 += r1
+return r0

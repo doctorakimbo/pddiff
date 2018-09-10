@@ -1,0 +1,74 @@
+lbl1: @2281C
+r6 = 0
+r7 = 0
+r8 = r7
+r5 = (data_188)
+r0 = *r5
+r0 = *(r0 + 1)
+GetBattlerForBattleScript()
+r1 = (data_18C)
+*r1 = r0
+r2 = (data_190)
+r1 = 0x58
+r0 *= r1
+r0 += r2
+r9 = r0
+r1 = *r5
+r4 = *(r1 + 2)
+r5 = *(r1 + 3)
+r0 += 0x20
+r0 = *r0
+if(r0 != 0x7E) goto lbl2
+
+r0 = 1
+goto lbl2
+
+lbl2:
+r5 ^= r0
+r0 = 1
+r0 &= r5
+if(r0 == 0) goto lbl(F6)
+
+if(r4 == 0) goto lbl(E2)
+
+r0 = 1
+r0 &= r4
+if(r0 == 0) goto lbl(DA)
+
+r0 = 8
+r0 &= r5
+if(r0 != 0) goto lbl(BE)
+
+r2 = (data_190)
+r0 = (data_194)
+r0 = *r0
+r1 = 0x58
+r0 *= r1
+r0 += r2
+r0 += 0x20
+r3 = *r0
+if(r3 == 0x97) goto lbl3
+
+r0 = (data_18C)
+r0 = *r0
+GetBattlerPosition()
+r1 = 1
+r0 &= r1
+r2 = (data_198)
+r1 = 0xC
+r0 *= r1
+r0 += r2
+r0 = *(r0 + 4)
+if(r0 != 0) goto lbl(DA)
+
+goto lbl3
+
+lbl3:
+if(r3 == 0x97) goto lbl(BE)
+
+r3 -= 0xA3
+if(r3 <= 1) goto lbl(BE)
+
+r0 = r9
+r0 += 0x20
+r0 = *r0

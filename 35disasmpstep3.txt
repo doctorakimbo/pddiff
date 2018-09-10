@@ -1,0 +1,16 @@
+atk1F_jumpifsideaffecting()
+{
+	if(gBattleScriptCurrInstr[1] == 1)
+		r1 = gBattlerAttacker
+	else
+		r1 = gBattlerTarget
+	
+	r4 = GetBattlerPosition(r1) & 1
+	r2 = gBattleScriptCurrInstr[2] | (gBattleScriptCurrInstr[3] << 8)
+	r5 = gBattleScriptCurrInstr[4] + (gBattleScriptCurrInstr[5] << 8) + (gBattleScriptCurrInstr[6] << 0x10) + (gBattleScriptCurrInstr[7] << 0x18)
+	
+	if(gBattleMons[gBattlerAttacker].ability != 0x97 && (gSideStatuses[r4] & r2))
+		gBattleScriptCurrInstr = r5
+	else
+		gBattleScriptCurrInstr += 8
+}

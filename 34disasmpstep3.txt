@@ -1,0 +1,53 @@
+atk1E_jumpifability()
+{
+	r5 = gBattleScriptCurrInstr[2]
+	
+	if(gBattleScriptCurrInstr[1] == 8)
+	{
+		r0 = 0xD
+		goto lbl3
+	}
+	elseif(gBattleScriptCurrInstr[1] == 9)
+	{
+		r0 = 0xC
+		goto lbl3
+	}
+	else
+	{
+		r4 = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+		
+		if(gBattleMons[r4].0x20 != r5)
+		{
+			if(r5 == 7 || r5 == 0x11 || r5 == 0x28 || r5 == 0x29)
+			{
+				r0 = CheckLeafGuardAndFlowerVeil(r4)
+				
+				if(r0 != 0)
+					r5 = r0
+				else
+					gBattleScriptCurrInstr += 7
+			}
+			else
+				gBattleScriptCurrInstr += 7
+		}
+		
+		gLastUsedAbility = r5
+		gBattleScriptCurrInstr = gBattleScriptCurrInstr[3] + (gBattleScriptCurrInstr[4] << 8) + (gBattleScriptCurrInstr[5] << 0x10) + (gBattleScriptCurrInstr[6] << 0x18)
+		RecordAbilityBattle(r4, gLastUsedAbility)
+		gBattleScripting.0x15 = r4
+	}
+
+	lbl3:
+	r4 = AbilityBattleEffects(r0, gBattlerAttacker, r5, 0, 0)
+	
+	if(r4 != 0)
+	{
+		gLastUsedAbility = r5
+		gBattleScriptCurrInstr = gBattleScriptCurrInstr[3] + (gBattleScriptCurrInstr[4] << 8) + (gBattleScriptCurrInstr[5] << 0x10) + (gBattleScriptCurrInstr[6] << 0x18)
+		r4--
+		RecordAbilityBattle(r4, gLastUsedAbility)
+		gBattleScripting.0x15 = r4
+	}
+	else
+		gBattleScriptCurrInstr += 7
+}

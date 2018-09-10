@@ -1,0 +1,11 @@
+atk1D_jumpifstatus2()
+{
+	battlerId = GetBattlerForBattleScript(gBattleScriptCurrInstr[1]);
+	flags = T2_READ_32(gBattlescriptCurrInstr + 2);
+	jumpPtr = T2_READ_PTR(gBattlescriptCurrInstr + 6);
+	
+	if((gBattleMons[battlerId].status2 & flags) && gBattleMons[battlerId].hp)
+		gBattleScriptCurrInstr = jumpPtr;
+	else
+		gBattleScriptCurrInstr += 10;
+}
