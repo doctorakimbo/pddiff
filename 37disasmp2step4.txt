@@ -1,0 +1,9 @@
+if(!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE) && (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && !gProtectStructs[gBattlerAttacker].chargingTurn && fn_1588C_J(&gBattleMoves[gCurrentMove]) == 8 && !(gHitMarker & HITMARKER_NO_ATTACKSTRING))
+{
+	if(gChosenActionByBattler != 4 && gBattleMons[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerTarget)))].hp != 0) // 02023D7C???
+		MoveValuesCleanUp();
+	
+	gHitMarker |= HITMARKER_NO_ATTACKSTRING;
+}
+
+goto lbl_233AC

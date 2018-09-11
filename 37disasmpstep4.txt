@@ -1,0 +1,113 @@
+(prev: s1, s2, s3)
+
+...
+switch(gBattleScripting.atk49_state)
+{
+case ATK49_RAGE:
+	if((gBattleMons[gBattlerTarget].status2 & STATUS2_RAGE) && gBattleMons[gBattlerTarget].hp != 0 && ((gBattlerAttacker ^ gBattlerTarget) & 1) && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) && TARGET_TURN_DAMAGED && gBattleMoves[gCurrentMove].power && gBattleMons[gBattlerTarget].statStages[STAT_ATK] <= 0xB)
+	{
+		gBattleMons[gBattlerTarget].statStages[STAT_ATK]++;
+		BattleScriptPushCursor();
+		gBattleScriptCurrInstr = BattleScript_RageIsBuilding;
+		effect = TRUE;
+	}
+	
+	gBattleScripting.atk49_state++;
+	break;
+case ATK49_DEFROST:
+	if((gBattleMons[gBattlerTarget].status1 & STATUS1_FREEZE) && gBattleMons[gBattlerTarget].hp != 0 && gBattlerAttacker != gBattlerTarget && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) && TARGET_TURN_DAMAGED && moveType == TYPE_FIRE)
+	{
+		gBattleMons[gBattlerTarget].status1 &= ~(STATUS1_FREEZE);
+		gActiveBattler = gBattlerTarget;
+		BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gBattlerTarget].status1);
+		MarkBattlerForControllerExec(gBattlerTarget);
+		BattleScriptPushCursor();
+		gBattleScriptCurrInstr = BattleScript_DefrostedViaFireMove;
+		effect = TRUE;
+	}
+	
+	gBattleScripting.atk49_state++;
+	break;
+case ATK49_ABILITY_EFFECT_CHANCE:
+	if(AbilityBattleEffects(ABILITYEFFECT_ADDED_EFFECT_CHANCE, gBattlerAttacker, 0, 0, 0))
+		effect = TRUE;
+	
+	gBattleScripting.atk49_state++;
+	break;
+case ATK49_SYNCHRONIZE_TARGET:
+	if(AbilityBattleEffects(ABILITYEFFECT_SYNCHRONIZE, gBattlerTarget, 0, 0, 0))
+		effect = TRUE;
+	
+	gBattleScripting.atk49_state++;
+	break;
+case ATK49_MOVE_END_ABILITIES:
+	if(AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, 0, 0, 0))
+		effect = TRUE;
+	
+	gBattleScripting.atk49_state++;
+	break;
+case ATK49_STATUS_IMMUNITY_ABILITIES:
+	if(AbilityBattleEffects(ABILITYEFFECT_IMMUNITY, 0, 0, 0, 0))
+		effect = TRUE;
+	else
+		gBattleScripting.atk49_state++;
+	
+	break;
+case ATK49_SYNCHRONIZE_ATTACKER:
+	if(AbilityBattleEffects(ABILITYEFFECT_ATK_SYNCHRONIZE, gBattlerAttacker, 0, 0, 0))
+		effect = TRUE;
+	
+	gBattleScripting.atk49_state++;
+	break;
+case ATK49_CHOICE_MOVE:
+	if((gHitMarker & HITMARKER_OBEYS) && gBattleMons[gBattlerAttacker].ability != ABILITY_KLUTZ && holdEffectAtk >= HOLD_EFFECT_CHOICE_SPECS && holdEffectAtk <= HOLD_EFFECT_CHOICE_SCARF && (*choicedMoveAtk == 0 || *choicedMoveAtk == 0xFFFF) && gChosenMove != MOVE_STRUGGLE && (gChosenMove != MOVE_BATON_PASS || (gMoveResultFlags & MOVE_RESULT_FAILED)))
+	{
+		for(i = 0xC; i < 0x16; i += 2)
+		{
+			if(gBattleMons[gBattlerAttacker].(i) == gChosenMove)
+				goto lbl34
+		} 
+
+		*choicedMoveAtk = gChosenMove;
+	}
+
+	lbl34:
+	gBattleScripting.atk49_state++;
+	break;
+case ATK49_CHANGED_ITEMS:
+	for(i = 0; i < gBattlersCount; i++)
+	{
+		if(&gBattleStruct->changedItems[i] != 0)
+		{
+			gBattleMons[i].item = &gBattleStruct->changedItems[i];
+			&gBattleStruct->changedItems[i] = 0;
+		}
+	}
+	
+	gBattleScripting.atk49_state++;
+	break;
+...
+case ATK49_ITEM_EFFECTS_ALL:
+	if(ItemBattleEffects(ITEMEFFECT_MOVE_END, 0, FALSE))
+		effect = TRUE;
+	else
+		gBattleScripting.atk49_state++;
+	
+	break;
+case 0xD:
+	if(ItemBattleEffects(2, gBattlerTarget, FALSE)) //??????????????????
+		effect = TRUE;
+	
+	gBattleScripting.atk49_state++;
+	break;
+case ATK49_KINGSROCK_SHELLBELL:
+	if(ItemBattleEffects(ITEMEFFECT_KINGSROCK_SHELLBELL, 0, FALSE))
+		effect = TRUE;
+	
+	gBattleScripting.atk49_state++;
+	break;
+...
+}
+
+goto lbl_233B4
+...

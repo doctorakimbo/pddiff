@@ -1,0 +1,131 @@
+(prev: r12, s1, s2, s3)
+
+...
+switch(*(r12 + 0x20))
+{
+case 0:
+	if((gBattleMons[gBattlerTarget].0x50 & 0x800000) && gBattleMons[gBattlerTarget].0x28 != 0 && gBattlerAttacker != gBattlerTarget && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget) && !(gMoveResultFlags & 0x29) && (gSpecialStatuses[gBattlerTarget].8 != 0 || gSpecialStatuses[gBattlerTarget].0xC != 0) && gBattleMoves[gCurrentMove].1 != 0 && gBattleMons[gBattlerTarget].0x19 < 0xC)
+	{
+		gBattleMons[gBattlerTarget].0x19++
+		BattleScriptPushCursor()
+		gBattleScriptCurrInstr = data_081D8C48
+		goto lbl46
+	}
+	
+	gBattleScripting.0x14++
+	r12 = gBattleScripting
+	break;
+case 1:
+	if((gBattleMons[gBattlerTarget].0x4C & 0x20) && gBattleMons[gBattlerTarget].0x28 != 0 && gBattlerAttacker != gBattlerTarget && gSpecialStatuses[gBattlerTarget].0xC != 0 && !(gMoveResultFlags & 0x29) && s1 == 0xA)
+	{
+		gBattleMons[gBattlerTarget].0x4C &= ~0x20
+		gActiveBattler = gBattlerTarget
+		BtlController_EmitSetMonData(0, 0x28, 0, 4, &gBattleMons[gBattlerTarget].0x4C)
+		MarkBattlerForControllerExec(gActiveBattler)
+		BattleScriptPushCursor()
+		gBattleScriptCurrInstr = data_081D9098
+		r10 = 1
+	}
+	
+	gBattleScripting.0x14++
+	r12 = gBattleScripting
+	break;
+case 2:
+	if(AbilityBattleEffects(7, gBattlerTarget, 0, 0, 0))
+		r10 = 1
+	
+	gBattleScripting.0x14++
+	r12 = gBattleScripting
+	break;
+case 3:
+	r0 = AbilityBattleEffects(4, gBattlerTarget, 0, 0, 0)
+	goto lbl45
+case 4:
+	if(AbilityBattleEffects(5, 0, 0, 0, 0))
+		r10 = 1
+	else
+		gBattleScripting.0x14++
+	
+	r12 = gBattleScripting
+	break;
+case 5:
+	if(AbilityBattleEffects(8, gBattlerAttacker, 0, 0, 0))
+		r10 = 1
+	
+	gBattleScripting.0x14++
+	r12 = gBattleScripting
+	break;
+case 6:
+	if((gHitMarker & 0x2000000) && s2 == 0x1D && gChosenMove != 0xA5 && (*s3 == 0 || *s3 == 0xFFFF))
+	{
+		if(gChosenMove != 0xE2 || (gMoveResultFlags & 0x20))
+			*s3 = gChosenMove
+		else
+		{
+			*(r12 + 0x14)++
+			break;
+		}
+	}
+	
+	r4 = 0
+	
+	while(gBattleMons[gBattlerAttacker].0xC[r4] != *s3)
+	{
+		r4++
+		
+		if(r4 > 3)
+			break;
+	}
+	
+	if(r4 == 4)
+		*s3 = 0
+	
+	*(r12 + 0x14)++
+	break;
+case 7:
+	r4 = 0
+	r3 = 0xD0
+	r2 = gBattleMons
+
+	while(r4 < *gBattlersCount)
+	{
+		if(r1 != 0)
+		{
+			*(r2 + 0x2E) = *(*gBattleStruct + r3)
+			*(*gBattleStruct + r3) = 0
+		}
+		
+		r3 += 2
+		r2 += 0x58
+		r4++
+	}
+	
+	*(r12 + 0x14)++
+	break;
+...
+case 0xB:
+	if(ItemBattleEffects(3, 0, 0))
+		r10 = 1
+	else
+		gBattleScripting.0x14++
+	
+	r12 = gBattleScripting
+	break;
+case 0xC:
+	r0 = ItemBattleEffects(4, 0, 0)
+
+	lbl45:
+	if(r0 != 0)
+	{
+		lbl46:
+		r10 = 1
+	}
+	
+	gBattleScripting.0x14++
+	r12 = gBattleScripting
+	break;
+...
+}
+
+goto lbl_23BB4
+...

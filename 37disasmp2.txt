@@ -1,0 +1,65 @@
+lbl1: @23328
+r5 = gHitMarker
+r2 = *r5
+r0 = 0x80000
+r0 &= r2
+if(r0 != 0) goto lbl_233AC
+
+r0 = gBattleTypeFlags
+r0 = *r0
+r1 = 1
+r0 &= r1
+if(r0 == 0) goto lbl_233AC
+
+r1 = gProtectStructs
+r0 = gBattlerAttacker
+r0 = *r0
+r0 *= 0x10
+r0 += r1
+r0 = *(r0 + 1)
+r0 <<= 0x1D
+if(r0 < 0) goto lbl_233AC
+
+r0 = gBattleMoves
+r9 = r0
+r1 = gCurrentMove
+r8 = r1
+r0 = *r1
+r1 = 0xC
+r1 *= r0
+r1 += r9
+fn_1588C_J()
+if(r0 != 8) goto lbl_233AC
+
+r6 = 0x200
+r4 = r6
+r4 &= r2
+if(r4 != 0) goto lbl_233AC
+
+r7 = gBattlerTarget
+r0 = *r7
+GetBattlerPosition()
+r1 = 2
+r0 ^= r1
+GetBattlerAtPosition()
+r2 = r0
+r1 = gBattleMons
+r0 = *(r7 + 0x10)
+if(r0 == 4) goto lbl2
+
+r0 = 0x58
+r0 *= r2
+r0 += r1
+r0 = *(r0 + 0x28)
+if(r0 == 0) goto lbl2
+
+fn_232F0()
+goto lbl2
+
+lbl2:
+r0 = *r5
+r0 |= r6
+*r5 = r0
+r2 = gBattleScripting
+r12 = r2
+goto lbl_23BAC

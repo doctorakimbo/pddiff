@@ -1,0 +1,133 @@
+(prev: r12, s1, s2, s3)
+
+...
+switch(*(r12 + 0x20))
+{
+case 0:
+	if((*((*gBattlerTarget * 0x58) + gBattleMons + 0x50) & 0x800000) && *((*gBattlerTarget * 0x58) + gBattleMons + 0x28) != 0 && ((*gBattlerAttacker ^ *gBattlerTarget) & 1) && !(*gMoveResultFlags & 0x29) && (*((*gBattlerTarget * 0x14) + gSpecialStatuses + 8) != 0 || *((*gBattlerTarget * 0x14) + gSpecialStatuses + 0xC) != 0) && *((*gCurrentMove * 0xC) + gBattleMoves + 1) != 0 && *((*gBattlerTarget * 0x58) + gBattleMons + 0x19) != 0xC)
+	{
+		*((*gBattlerTarget * 0x58) + gBattleMons + 0x19)++
+		BattleScriptPushCursor()
+		*gBattleScriptCurrInstr = data_081D8C48
+		r10 = 1
+	}
+	
+	*(gBattleScripting + 0x14)++
+	r12 = gBattleScripting
+	break;
+case 1:
+	if((*((*gBattlerTarget * 0x58) + gBattleMons + 0x4C) & 0x20) && *((*gBattlerTarget * 0x58) + gBattleMons + 0x28) != 0 && *gBattlerAttacker != *gBattlerTarget && !(*gMoveResultFlags & 0x29) && (*((*gBattlerTarget * 0x14) + gSpecialStatuses + 8) != 0 || *((*gBattlerTarget * 0x14) + gSpecialStatuses + 0xC) != 0) && s1 == 0xA
+	{
+		*((*gBattlerTarget * 0x58) + gBattleMons + 0x4C) &= ~0x20
+		*gActiveBattler = *gBattlerTarget
+		BtlController_EmitSetMonData(0, 0x28, 0, 4, (*gBattlerTarget * 0x58) + gBattleMons + 0x4C)
+		MarkBattlerForControllerExec(*gBattlerTarget)
+		BattleScriptPushCursor()
+		*gBattleScriptCurrInstr = data_081D9098
+		r10 = 1
+	}
+	
+	*(gBattleScripting + 0x14)++
+	r12 = gBattleScripting
+	break;
+case 2:
+	if(AbilityBattleEffects(0x14, *gBattlerAttacker, 0, 0, 0))
+		r10 = 1
+	
+	*(gBattleScripting + 0x14)++
+	r12 = gBattleScripting
+	break;
+case 3:
+	if(AbilityBattleEffects(7, *gBattlerTarget, 0, 0, 0))
+		r10 = 1
+	
+	*(gBattleScripting + 0x14)++
+	r12 = gBattleScripting
+	break;
+case 4:
+	if(AbilityBattleEffects(4, *gBattlerTarget, 0, 0, 0))
+		r10 = 1
+	
+	*(gBattleScripting + 0x14)++
+	r12 = gBattleScripting
+	break;
+case 5:
+	if(AbilityBattleEffects(5, 0, 0, 0, 0))
+		r10 = 1
+	else
+		*(gBattleScripting + 0x14)++
+	
+	r12 = gBattleScripting
+	break;
+case 6:
+	if(AbilityBattleEffects(8, *gBattlerAttacker, 0, 0, 0))
+		r10 = 1
+	
+	*(gBattleScripting + 0x14)++
+	r12 = gBattleScripting
+	break;
+case 7:
+	if((*gHitMarker & 0x2000000) && *((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) != 0x67 && s2 bcs 0x44 && s2 <= 0x46 && (*s3 == 0 || *s3 == 0xFFFF) && *gChosenMove != 0xA5 && (*gChosenMove != 0xE2 || (*gMoveResultFlags & 0x20)))
+	{
+		r3 = 0xC
+
+		while(*((*gBattlerAttacker * 0x58) + gBattleMons + r3) != *gChosenMove)
+		{
+			r3 += 2
+			
+			if(r3 > 0x14)
+				goto lbl34
+		} 
+
+		*s3 = *gChosenMove
+	}
+
+	lbl34:
+	*(gBattleScripting + 0x14)++
+	r12 = gBattleScripting
+	break;
+case 8:
+	r4 = 0
+	
+	while(r4 < *gBattlersCount)
+	{
+		if(*(*gBattleStruct + 0xD0 + (r4 * 2)) != 0)
+		{
+			*((r4 * 0x58) + gBattleMons + 0x2E) = *(*gBattleStruct + 0xD0 + (r4 * 2))
+			*(*gBattleStruct + 0xD0 + (r4 * 2)) = 0
+		}
+		
+		r4++
+	}
+	
+	*(gBattleScripting + 0x14)++
+	r12 = gBattleScripting
+	break;
+...
+case 0xC:
+	if(ItemBattleEffects(3, 0, 0))
+		r10 = 1
+	else
+		*(gBattleScripting + 0x14)++
+	
+	r12 = gBattleScripting
+	break;
+case 0xD:
+	if(ItemBattleEffects(2, *gBattlerTarget, 0))
+		r10 = 1
+	
+	*(gBattleScripting + 0x14)++
+	r12 = gBattleScripting
+	break;
+case 0xE:
+	if(ItemBattleEffects(4, *gBattlerAttacker, 0))
+		r10 = 1
+	
+	*(gBattleScripting + 0x14)++
+	r12 = gBattleScripting
+	break;
+...
+}
+
+goto lbl_233B4
+...

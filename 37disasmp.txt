@@ -1,0 +1,401 @@
+(prev: r12, s1, s2, s3)
+
+lbl1: @22B62
+r3 = r12
+r0 = *(r3 + 0x20)
+if(r0 <= 0x13) goto lbl2
+
+goto lbl_233B4
+
+lbl2:
+r0 *= 4
+r1 = switchtable
+r0 += r1
+r0 = *r0
+goto r0
+
+switchtable:
+00: lbl3
+01: lbl12
+02: lbl19
+03: lbl21
+04: lbl23
+05: lbl25
+06: lbl27
+07: lbl29
+08: lbl36
+09: 22F02
+0A: 22F38
+0B: 22FD8
+0C: lbl40
+0D: lbl42
+0E: lbl44
+0F: 2301C
+10: 23060
+11: 23240
+12: 23328
+13: 233B4
+
+lbl3: @22BCC
+r4 = gBattleMons
+r3 = gBattlerTarget
+r3 = *r3
+r0 = 0x58
+r0 *= r3
+r4 += r0
+r0 = *(r4 + 0x50)
+r1 = 0x800000
+r0 &= r1
+if(r0 == 0) goto lbl5
+
+r0 = *(r4 + 0x28)
+if(r0 == 0) goto lbl5
+
+r0 = gBattlerAttacker
+r0 = *r0
+r0 ^= r3
+r1 = 1
+r0 &= r1
+if(r0 == 0) goto lbl5
+
+r0 = gMoveResultFlags
+r1 = *r0
+r0 = 0x29
+r0 &= r1
+if(r0 != 0) goto lbl5
+
+r2 = gSpecialStatuses
+r0 = 0x20
+r0 *= r3
+r2 += r0
+r0 = *(r2 + 8)
+if(r0 != 0) goto lbl4
+
+r0 = *(r2 + 0xC)
+if(r0 == 0) goto lbl5
+
+goto lbl4
+
+lbl4:
+r2 = gBattleMoves
+r0 = gCurrentMove
+r0 = *r0
+r1 = 0xC
+r0 *= r1
+r0 += r2
+r0 = *(r0 + 1)
+if(r0 == 0) goto lbl5
+
+r0 = *(r4 + 0x19)
+if(r0 == 0xC) goto lbl5
+
+r0++
+*(r4 + 0x19) = r0
+BattleScriptPushCursor()
+r1 = gBattleScriptCurrInstr
+r0 = data_081D8C48
+*r1 = r0
+r0 = 1
+r10 = r0
+goto lbl5
+
+lbl5:
+goto lbl_22FC8
+
+lbl12: @22C44
+r4 = gBattleMons
+r5 = gBattlerTarget
+r5 = *r5
+r0 = 0x58
+r0 *= r5
+r4 += r0
+r3 = *(r4 + 0x4C)
+r0 = 0x20
+r0 &= r3
+if(r0 == 0) goto lbl(22CBE)
+
+r0 = *(r4 + 0x28)
+if(r0 == 0) goto lbl(22CBE)
+
+r0 = gBattlerAttacker
+r0 = *r0
+if(r0 == r5) goto lbl(22CBE)
+
+r0 = gMoveResultFlags
+r1 = *r0
+r0 = 0x29
+r0 &= r1
+if(r0 != 0) goto lbl(22CBE)
+
+r2 = gSpecialStatuses
+r0 = 0x20
+r0 *= r5
+r2 += r0
+r0 = *(r2 + 8)
+if(r0 != 0) goto lbl13
+
+r0 = *(r2 + 0xC)
+if(r0 == 0) goto lbl(22CBE)
+
+goto lbl13
+
+lbl13:
+r0 = s1
+if(r0 != 0xA) goto lbl(22CBE)
+
+r0 = ~0x20
+r3 &= r0
+*(r4 + 0x4C) = r3
+r0 = gActiveBattler
+*r0 = r5
+r4 += 0x4C
+s0 = r4
+r0 = 0
+r1 = 0x28
+r2 = 0
+r3 = 4
+BtlController_EmitSetMonData()
+r0 = *r5
+MarkBattlerForControllerExec()
+BattleScriptPushCursor()
+r1 = gBattleScriptCurrInstr
+r0 = data_081D9098
+*r1 = r0
+r0 = 1
+r10 = r0
+goto lbl14
+
+lbl14:
+goto lbl_22FC8
+
+lbl19: @22CC0
+r1 = gBattlerAttacker
+r1 = *r1
+r0 = 0x14
+r2 = 0
+r3 = 0
+s0 = r3
+AbilityBattleEffects()
+if(r0 == 0) goto lbl20
+
+r0 = 1
+r10 = r0
+goto lbl20
+
+lbl20:
+goto lbl_22FC8
+
+lbl21: @22CDC
+r1 = gBattlerTarget
+r1 = *r1
+r0 = 7
+r2 = 0
+r3 = 0
+s0 = r3
+AbilityBattleEffects()
+if(r0 == 0) goto lbl22
+
+r0 = 1
+r10 = r0
+goto lbl22
+
+lbl22:
+goto lbl_22FC8
+
+lbl23: @22CF8
+r1 = gBattlerTarget
+r1 = *r1
+r0 = 4
+r2 = 0
+r3 = 0
+s0 = r3
+AbilityBattleEffects()
+if(r0 == 0) goto lbl24
+
+r0 = 1
+r10 = r0
+goto lbl24
+
+lbl24:
+goto lbl_22FC8
+
+lbl25: @22D14
+r0 = 5
+r1 = 0
+r2 = 0
+r3 = 0
+s0 = r3
+AbilityBattleEffects()
+if(r0 != 0) goto lbl26
+
+goto lbl_22FC8
+
+lbl26:
+r0 = 1
+r10 = r0
+r1 = gBattleScripting
+r12 = r1
+goto lbl_233B4
+
+lbl27: @22D34
+r1 = gBattlerAttacker
+r1 = *r1
+r0 = 8
+r2 = 0
+r3 = 0
+s0 = r3
+AbilityBattleEffects()
+if(r0 == 0) goto lbl28
+
+r0 = 1
+r10 = r0
+goto lbl28
+
+lbl28:
+goto lbl_22FC8
+
+lbl29: @22DE4
+r0 = gHitMarker
+r0 = *r0
+r1 = 0x2000000
+r0 &= r1
+if(r0 == 0) goto lbl34
+
+r4 = gBattleMons
+r0 = gBattlerAttacker
+r0 = *r0
+r1 = 0x58
+r0 *= r1
+r4 += r0
+r0 = r4
+r0 += 0x20
+r0 = *r0
+if(r0 == 0x67) goto lbl34
+
+r0 = s2
+if(r0 bcc 0x44) goto lbl34
+
+if(r0 > 0x46) goto lbl34
+
+r5 = s3
+r0 = *r5
+if(r0 == 0) goto lbl30
+
+r1 = 0xFFFF
+if(r0 != r1) goto lbl34
+
+goto lbl30
+
+lbl30:
+r2 = gChosenMove
+r2 = *r2
+if(r2 == 0xA5) goto lbl34
+
+if(r2 != 0xE2) goto lbl31
+
+r0 = gMoveResultFlags
+r0 = *r0
+r1 = 0x20
+r0 &= r1
+if(r0 == 0) goto lbl34
+
+goto lbl31
+
+lbl31:
+r3 = 0xC
+goto lbl33
+
+lbl32:
+r3 += 2
+if(r3 > 0x14) goto lbl34
+
+goto lbl33
+
+lbl33:
+r0 = *(r4 + r3)
+if(r0 != r2) goto lbl32
+
+*r5 = r0
+goto lbl34
+
+lbl34:
+goto lbl_22FC8
+
+lbl36: @22E4C
+r4 = 0
+goto lbl37
+
+lbl37:
+r0 = gBattlersCount
+r0 = *r0
+if(r4 < r0) goto lbl38
+
+goto lbl_22FC8
+
+lbl38:
+r3 = gBattleStruct
+r3 = *r3
+r3 += 0xD0
+r0 = r4 * 2
+r3 += r0
+r1 = *r3
+if(r1 == 0) goto lbl39
+
+r2 = gBattleMons
+r0 = 0x58
+r0 *= r4
+r2 += r0
+*(r2 + 0x2E) = r1
+r0 = 0
+*r3 = r0
+goto lbl39
+
+lbl39:
+r4++
+goto lbl38
+
+lbl40: @22E7A
+r0 = 3
+r1 = 0
+r2 = 0
+ItemBattleEffects()
+if(r0 != 0) goto lbl41
+
+goto lbl_22FC8
+
+lbl41:
+r0 = 1
+r10 = r0
+r1 = gBattleScripting
+r12 = r1
+goto lbl_233B4
+
+lbl42: @22E96
+r1 = gBattlerTarget
+r1 = *r1
+r0 = 2
+r2 = 0
+ItemBattleEffects()
+if(r0 == 0) goto lbl43
+
+r0 = 1
+r10 = r0
+goto lbl43
+
+lbl43:
+goto lbl_22FC8
+
+lbl44: @22EAE
+r1 = gBattlerAttacker
+r1 = *r1
+r0 = 4
+r2 = 0
+ItemBattleEffects()
+if(r0 == 0) goto lbl45
+
+r0 = 1
+r10 = r0
+goto lbl45
+
+lbl45:
+goto lbl_22FC8

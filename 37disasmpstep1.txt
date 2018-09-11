@@ -1,0 +1,345 @@
+(prev: r12, s1, s2, s3)
+
+...
+r3 = r12
+
+switch(*(r3 + 0x20))
+{
+case 0:
+	r4 = gBattleMons
+	r3 = gBattlerTarget
+	r3 = *r3
+	r0 = 0x58
+	r0 *= r3
+	r4 += r0
+	r0 = *(r4 + 0x50)
+	r1 = 0x800000
+	r0 &= r1
+	
+	if(r0 != 0)
+	{
+		r0 = *(r4 + 0x28)
+		
+		if(r0 != 0)
+		{
+			r0 = gBattlerAttacker
+			r0 = *r0
+			r0 ^= r3
+			r1 = 1
+			r0 &= r1
+			
+			if(r0 != 0)
+			{
+				r0 = gMoveResultFlags
+				r1 = *r0
+				r0 = 0x29
+				r0 &= r1
+				
+				if(r0 == 0)
+				{
+					r2 = gSpecialStatuses
+					r0 = 0x20
+					r0 *= r3
+					r2 += r0
+					r0 = *(r2 + 8)
+					if(r0 != 0) goto lbl4
+
+					r0 = *(r2 + 0xC)
+					
+					if(r0 == 0)
+					{
+						lbl4:
+						r2 = gBattleMoves
+						r0 = gCurrentMove
+						r0 = *r0
+						r1 = 0xC
+						r0 *= r1
+						r0 += r2
+						r0 = *(r0 + 1)
+						
+						if(r0 != 0)
+						{
+							r0 = *(r4 + 0x19)
+							
+							if(r0 != 0xC)
+							{
+								r0++
+								*(r4 + 0x19) = r0
+								BattleScriptPushCursor()
+								r1 = gBattleScriptCurrInstr
+								r0 = data_081D8C48
+								*r1 = r0
+								r0 = 1
+								r10 = r0
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	goto lbl_22FC8
+case 1:
+	r4 = gBattleMons
+	r5 = gBattlerTarget
+	r5 = *r5
+	r0 = 0x58
+	r0 *= r5
+	r4 += r0
+	r3 = *(r4 + 0x4C)
+	r0 = 0x20
+	r0 &= r3
+	
+	if(r0 != 0)
+	{
+		r0 = *(r4 + 0x28)
+		
+		if(r0 != 0)
+		{
+			r0 = gBattlerAttacker
+			r0 = *r0
+			
+			if(r0 != r5)
+			{
+				r0 = gMoveResultFlags
+				r1 = *r0
+				r0 = 0x29
+				r0 &= r1
+				
+				if(r0 == 0)
+				{
+					r2 = gSpecialStatuses
+					r0 = 0x20
+					r0 *= r5
+					r2 += r0
+					r0 = *(r2 + 8)
+					if(r0 != 0) goto lbl13
+
+					r0 = *(r2 + 0xC)
+					
+					if(r0 != 0)
+					{
+						lbl13:
+						r0 = s1
+						
+						if(r0 == 0xA)
+						{
+							r0 = ~0x20
+							r3 &= r0
+							*(r4 + 0x4C) = r3
+							r0 = gActiveBattler
+							*r0 = r5
+							r4 += 0x4C
+							BtlController_EmitSetMonData(0, 0x28, 0, 4, r4)
+							MarkBattlerForControllerExec(*r5)
+							BattleScriptPushCursor()
+							r1 = gBattleScriptCurrInstr
+							r0 = data_081D9098
+							*r1 = r0
+							r0 = 1
+							r10 = r0
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	goto lbl_22FC8
+case 2:
+	r1 = gBattlerAttacker
+	r0 = AbilityBattleEffects(0x14, *r1, 0, 0, 0)
+	
+	if(r0 != 0)
+	{
+		r0 = 1
+		r10 = r0
+	}
+	
+	goto lbl_22FC8
+case 3:
+	r1 = gBattlerTarget
+	r0 = AbilityBattleEffects(7, *r1, 0, 0, 0)
+	
+	if(r0 != 0)
+	{
+		r0 = 1
+		r10 = r0
+	}
+	
+	goto lbl_22FC8
+case 4:
+	r1 = gBattlerTarget
+	AbilityBattleEffects(4, *r1, 0, 0, 0)
+	
+	if(r0 != 0)
+	{
+		r0 = 1
+		r10 = r0
+	}
+	
+	goto lbl_22FC8
+case 5:
+	AbilityBattleEffects(5, 0, 0, 0, 0)
+	
+	if(r0 == 0)
+		goto lbl_22FC8
+
+	r0 = 1
+	r10 = r0
+	r1 = gBattleScripting
+	r12 = r1
+	break;
+case 6:
+	r1 = gBattlerAttacker
+	AbilityBattleEffects(8, *r1, 0, 0, 0)
+	
+	if(r0 != 0)
+	{
+		r0 = 1
+		r10 = r0
+	}
+	
+	goto lbl_22FC8
+case 7:
+	r0 = gHitMarker
+	r0 = *r0
+	r1 = 0x2000000
+	r0 &= r1
+	
+	if(r0 != 0)
+	{
+		r4 = gBattleMons
+		r0 = gBattlerAttacker
+		r0 = *r0
+		r1 = 0x58
+		r0 *= r1
+		r4 += r0
+		r0 = r4
+		r0 += 0x20
+		r0 = *r0
+		
+		if(r0 != 0x67)
+		{
+			r0 = s2
+			
+			if(r0 bcs 0x44)
+			{
+				if(r0 <= 0x46)
+				{
+					r5 = s3
+					r0 = *r5
+					if(r0 == 0) goto lbl30
+
+					r1 = 0xFFFF
+					
+					if(r0 == r1)
+					{
+						lbl30:
+						r2 = gChosenMove
+						r2 = *r2
+						
+						if(r2 != 0xA5)
+						{
+							if(r2 != 0xE2) goto lbl31
+
+							r0 = gMoveResultFlags
+							r0 = *r0
+							r1 = 0x20
+							r0 &= r1
+							
+							if(r0 != 0)
+							{
+								lbl31:
+								r3 = 0xC
+								goto lbl33
+
+								do
+								{
+									r3 += 2
+									if(r3 > 0x14) goto lbl34
+
+									lbl33:
+									r0 = *(r4 + r3)
+								} while(r0 != r2)
+
+								*r5 = r0
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	lbl34:
+	goto lbl_22FC8
+case 8:
+	r4 = 0
+	r0 = gBattlersCount
+	r0 = *r0
+	
+	while(r4 < r0)
+	{
+		r3 = gBattleStruct
+		r3 = *r3
+		r3 += 0xD0
+		r0 = r4 * 2
+		r3 += r0
+		r1 = *r3
+		
+		if(r1 != 0)
+		{
+			r2 = gBattleMons
+			r0 = 0x58
+			r0 *= r4
+			r2 += r0
+			*(r2 + 0x2E) = r1
+			r0 = 0
+			*r3 = r0
+		}
+		
+		r4++
+	}
+	
+	goto lbl_22FC8
+...
+case 0xC:
+	r0 = ItemBattleEffects(3, 0, 0)
+	
+	if(r0 == 0)
+		goto lbl_22FC8
+	
+	r0 = 1
+	r10 = r0
+	r1 = gBattleScripting
+	r12 = r1
+	break;
+case 0xD:
+	r1 = gBattlerTarget
+	r0 = ItemBattleEffects(2, *r1, 0)
+	
+	if(r0 != 0)
+	{
+		r0 = 1
+		r10 = r0
+	}
+	
+	goto lbl_22FC8
+case 0xE:
+	r1 = gBattlerAttacker
+	ItemBattleEffects(4, *r1, 0)
+	
+	if(r0 != 0)
+	{
+		r0 = 1
+		r10 = r0
+	}
+	
+	goto lbl_22FC8
+...
+}
+
+goto lbl_233B4
+...

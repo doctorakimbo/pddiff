@@ -1,0 +1,9 @@
+if(!(gHitMarker & 0x80000) && (gBattleTypeFlags & 1) && (gProtectStructs[gBattlerAttacker].1 << 0x1D) >= 0 && fn_1588C_J(&gBattleMoves[gCurrentMove]) == 8 && (gHitMarker & 0x200))
+{
+	if(gChosenActionByBattler != 4 && gBattleMons[GetBattlerAtPosition(GetBattlerPosition(gBattlerTarget) ^ 2)].0x28 != 0) // 02023D7C???
+		fn_232F0()
+	
+	gHitMarker |= 0x200
+}
+
+goto lbl_233AC

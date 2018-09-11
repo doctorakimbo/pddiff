@@ -72,8 +72,8 @@ F4 3F 02 02: 54 3F 02 02: gBattleResources
 84 42 02 02: E4 41 02 02: gPlayerParty
 		   : E2 85 03 02: ?????? (CreateNPCTrainerParty: checked if less than 2E6, then used as index to copy from table data_09400000_J into gEnemyParty)
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
-		   : 50 B9 03 02: ?????? (ItemBattleEffects: zeroed at start of cases 0 (first entry) and 1 (end of turn))
-								 (ItemBattleEffects: checked if set to this battler before executing case 3 (after move?))
+		   : 50 B9 03 02: ?????? (ItemBattleEffects: zeroed at start of cases ITEMEFFECT_ON_SWITCH_IN and ITEMEFFECT_TURN_END)
+								 (ItemBattleEffects: checked if set to this battler before executing case ITEMEFFECT_MOVE_END)
 								 (atk01_accuracycheck: set to only the target if the move doesn't miss (only if accuracy was checked at all))
 								 (atk0C_datahpupdate: add the active battler if damage was dealt; set to all battlers if pkmn with Unnerve faints)
 		   : 70 B9 03 02: ?????? (appears to be an array of unknown objects; first field is a 4-entry array of 2 bytes each, second field is a 4-entry array of 1 byte each)
@@ -119,6 +119,7 @@ funcs e,j,desc:
 01ED3C = 01E54C = ModulateDmgByType2
 01FEE8 = 01F6F8 = GetBattlerTurnOrderNum
 01FF20 = 01F730 = SetMoveEffect
+0232F0 = 022AF0 = ?????
 02A1C0 = 029998 = IsTwoTurnsMove
 02A224 = 0299FC = AttacksThisTurn
 02E228 = 02DA24 = AdjustFriendshipOnBattleFaint
