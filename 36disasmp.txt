@@ -2,13 +2,13 @@ lbl1: @2281C
 r6 = 0
 r7 = 0
 r8 = r7
-r5 = (data_188)
+r5 = gBattleScriptCurrInstr
 r0 = *r5
 r0 = *(r0 + 1)
 GetBattlerForBattleScript()
-r1 = (data_18C)
+r1 = gActiveBattler
 *r1 = r0
-r2 = (data_190)
+r2 = gBattleMons
 r1 = 0x58
 r0 *= r1
 r0 += r2
@@ -27,20 +27,23 @@ lbl2:
 r5 ^= r0
 r0 = 1
 r0 &= r5
-if(r0 == 0) goto lbl(F6)
+if(r0 == 0) goto lbl12
 
-if(r4 == 0) goto lbl(E2)
+if(r4 == 0) goto lbl10
 
+goto lblx
+
+lblx:
 r0 = 1
 r0 &= r4
-if(r0 == 0) goto lbl(DA)
+if(r0 == 0) goto lbl9
 
 r0 = 8
 r0 &= r5
-if(r0 != 0) goto lbl(BE)
+if(r0 != 0) goto lbl7
 
-r2 = (data_190)
-r0 = (data_194)
+r2 = gBattleMons
+r0 = gBattlerAttacker
 r0 = *r0
 r1 = 0x58
 r0 *= r1
@@ -49,26 +52,188 @@ r0 += 0x20
 r3 = *r0
 if(r3 == 0x97) goto lbl3
 
-r0 = (data_18C)
+r0 = gActiveBattler
 r0 = *r0
 GetBattlerPosition()
 r1 = 1
 r0 &= r1
-r2 = (data_198)
+r2 = gSideTimers
 r1 = 0xC
 r0 *= r1
 r0 += r2
 r0 = *(r0 + 4)
-if(r0 != 0) goto lbl(DA)
+if(r0 != 0) goto lbl9
 
 goto lbl3
 
 lbl3:
-if(r3 == 0x97) goto lbl(BE)
+if(r3 == 0x97) goto lbl7
 
 r3 -= 0xA3
-if(r3 <= 1) goto lbl(BE)
+if(r3 <= 1) goto lbl7
 
 r0 = r9
 r0 += 0x20
 r0 = *r0
+if(r0 == 0x1D) goto lbl9
+
+if(r0 == 0x49) goto lbl9
+
+if(r0 != 0x33) goto lbl4
+
+if(r7 == 6) goto lbl9
+
+goto lbl4
+
+lbl4:
+if(r0 != 0x34) goto lbl5
+
+if(r7 == 1) goto lbl9
+
+goto lbl5
+
+lbl5:
+if(r0 != 0x91) goto lbl6
+
+if(r7 == 2) goto lbl9
+
+goto lbl6
+
+lbl6:
+r0 = gActiveBattler
+r0 = *r0
+CheckLeafGuardAndFlowerVeil()
+if(r0 == 0xB6) goto lbl9
+
+goto lbl7
+
+lbl7:
+r0 = r9
+r0 += r7
+r0 = *(r0 + 0x18)
+if(r0 <= 0) goto lbl9
+
+r1 = 0x15
+r0 = 2
+r0 &= r5
+if(r0 == 0) goto lbl8
+
+r1 = 0x2D
+goto lbl8
+
+r1 += r7
+r8 = r1
+r6++
+goto lbl9
+
+lbl9:
+r4 /= 2
+r7++
+if(r4 != 0) goto lblx
+
+goto lbl10
+
+lbl10:
+if(r6 <= 1) goto lbl17
+
+r1 = 0x39
+r0 = 2
+r0 &= r5
+if(r0 == 0) goto lbl11
+
+r1 = 0x3A
+goto lbl11
+
+lbl11:
+r8 = r1
+goto lbl17
+
+lbl12:
+if(r4 == 0) goto lbl15
+
+goto lbly
+
+lbly:
+r0 = 1
+r0 &= r4
+if(r0 == 0) goto lbl14
+
+r0 = r9
+r0 += r7
+r0 = *(r0 + 0x18)
+if(r0 > 0xB) goto lbl14
+
+r1 = 0xE
+r0 = 2
+r0 &= r5
+if(r0 == 0) goto lbl13
+
+r1 = 0x26
+goto lbl13
+
+lbl13:
+r8 = r1
+r6++
+goto lbl14
+
+lbl14:
+r4 /= 2
+r7++
+if(r4 != 0) goto lbly
+
+goto lbl15
+
+lbl15:
+if(r6 <= 1) goto lbl17
+
+r1 = 0x37
+r0 = 2
+r0 &= r5
+if(r0 == 0) goto lbl16
+
+r1 = 0x38
+goto lbl16
+
+lbl16:
+r8 = r1
+goto lbl17
+
+lbl17:
+r0 = 4
+r0 &= r5
+if(r0 == 0) goto lbl18
+
+if(r6 <= 1) goto lbl19
+
+goto lbl18
+
+lbl18:
+if(r6 == 0) goto lbl19
+
+r4 = gBattleScripting
+r0 = *(r4 + 0x1B)
+if(r0 != 0) goto lbl19
+
+r0 = 0
+r1 = 1
+r2 = r8
+fn_EB28()
+r0 = gActiveBattler
+r0 = *r0
+MarkBattlerForControllerExec()
+r0 = 4
+r0 &= r5
+if(r0 == 0) goto lbl19
+
+if(r6 <= 1) goto lbl19
+
+r0 = 1
+*(r4 + 0x1B) = r0
+goto lbl19
+
+lbl19:
+r1 = gBattleScriptCurrInstr
+r0 = *r1
+r0 += 4
+*r1 = r0
+(end)

@@ -1,0 +1,115 @@
+atk48_playstatchangeanimation()
+{
+	currStat = 0;
+	statAnimId = 0;
+	changeableStatsCount = 0;
+	
+	gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1]);
+	statsToCheck = gBattleScriptCurrInstr[2];
+	statChange = gBattleScriptCurrInstr[3];
+	
+	if(gBattleMons[gActiveBattler].ability == ABILITY_CONTRARY)
+		statChange ^= ATK48_STAT_NEGATIVE;
+	
+	if(statChange & ATK48_STAT_NEGATIVE)
+	{
+		while(statsToCheck != 0)
+		{
+			if(
+				(
+					(statsToCheck & 1)
+					&&
+					(
+						(statChange & ATK48_DONT_CHECK_LOWER)
+						||
+						(
+							(
+								gBattleMons[gBattlerAttacker].ability == ABILITY_INFILTRATOR
+								||
+								gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].mistTimer == 0
+							)
+							&&
+							(
+								gBattleMons[gBattlerAttacker].ability == ABILITY_INFILTRATOR_WRONG
+								||
+								gBattleMons[gBattlerAttacker].ability - 0xA3 <= 1
+								||
+								(
+									gBattleMons[gActiveBattler].ability != ABILITY_CLEAR_BODY
+									&&
+									gBattleMons[gActiveBattler].ability != ABILITY_WHITE_SMOKE
+									&&
+									!(gBattleMons[gActiveBattler].ability == ABILITY_KEEN_EYE && currStat == STAT_ACC)
+									&&
+									!(gBattleMons[gActiveBattler].ability == ABILITY_HYPER_CUTTER && currStat == STAT_ATK)
+									&&
+									!(gBattleMons[gActiveBattler].ability == ABILITY_BIG_PECKS && currStat == STAT_DEF)
+									&&
+									CheckLeafGuardAndFlowerVeil(gActiveBattler) != ABILITY_FLOWER_VEIL
+								)
+							)
+						)
+					)
+				)
+				&& 
+				gBattleMons[gActiveBattler].statStages[currStat] > 0
+			  )
+			{
+				if(statChange & ATK48_STAT_BY_TWO)
+					statAnimId = 0x2D + currStat;
+				else
+					statAnimId = 0x15 + currStat;
+				
+				changeableStatsCount++;
+			}
+			
+			statsToCheck >>= 1;
+			currStat++;
+		}
+
+		if(changeableStatsCount > 1)
+		{
+			if(statChange & ATK48_STAT_BY_TWO)
+				statAnimId = 0x3A;
+			else
+				statAnimId = 0x39;
+		}
+	}
+	else
+	{
+		while(statsToCheck != 0)
+		{
+			if((statsToCheck & 1) && gBattleMons[gActiveBattler].statStages[currStat] < 0xC)
+			{
+				if(statChange & ATK48_STAT_BY_TWO)
+					statAnimId = 0x26 + currStat;
+				else
+					statAnimId = 0xE + currStat;
+					
+				changeableStatsCount++;
+			}
+			
+			statsToCheck >>= 1;
+			currStat++;
+		}
+		
+		if(changeableStatsCount > 1)
+		{
+			if(statChange & ATK48_STAT_BY_TWO)
+				statAnimId = 0x38;
+			else
+				statAnimId = 0x37;
+		}
+	}
+
+	if((!(statChange & ATK48_ONLY_MULTIPLE) || changeableStatsCount > 1) && changeableStatsCount != 0 && !gBattleScripting.statAnimPlayed)
+	{
+		BtlController_EmitBattleAnimation(0, B_ANIM_STATS_CHANGE, statAnimId);
+		MarkBattlerForControllerExec(gActiveBattler);
+
+		if((statChange & ATK48_ONLY_MULTIPLE) && changeableStatsCount > 1)
+			gBattleScripting.statAnimPlayed = TRUE;
+	}
+	
+	gBattleScriptCurrInstr += 4;
+}

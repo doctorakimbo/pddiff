@@ -1,0 +1,221 @@
+atk48_playstatchangeanimation()
+{
+	r6 = 0
+	r7 = 0
+	r8 = r7
+	r5 = gBattleScriptCurrInstr
+	r0 = *r5
+	r0 = GetBattlerForBattleScript(*(r0 + 1))
+	r1 = gActiveBattler
+	*r1 = r0
+	r2 = gBattleMons
+	r1 = 0x58
+	r0 *= r1
+	r0 += r2
+	r9 = r0
+	r1 = *r5
+	r4 = *(r1 + 2)
+	r5 = *(r1 + 3)
+	r0 += 0x20
+	r0 = *r0
+	
+	if(r0 == 0x7E)
+		r0 = 1
+	
+	r5 ^= r0
+	r0 = 1
+	r0 &= r5
+	
+	if(r0 != 0)
+	{
+		while(r4 != 0)
+		{
+			r0 = 1
+			r0 &= r4
+			
+			if(r0 != 0)
+			{
+				r0 = 8
+				r0 &= r5
+				if(r0 != 0) goto lbl7
+
+				r2 = gBattleMons
+				r0 = gBattlerAttacker
+				r0 = *r0
+				r1 = 0x58
+				r0 *= r1
+				r0 += r2
+				r0 += 0x20
+				r3 = *r0
+				if(r3 == 0x97) goto lbl3
+
+				r0 = gActiveBattler
+				r0 = GetBattlerPosition(*r0)
+				r1 = 1
+				r0 &= r1
+				r2 = gSideTimers
+				r1 = 0xC
+				r0 *= r1
+				r0 += r2
+				r0 = *(r0 + 4)
+				if(r0 != 0) goto lbl9
+
+				goto lbl3
+
+				lbl3:
+				if(r3 == 0x97) goto lbl7
+
+				r3 -= 0xA3
+				if(r3 <= 1) goto lbl7
+
+				r0 = r9
+				r0 += 0x20
+				r0 = *r0
+				if(r0 == 0x1D) goto lbl9
+
+				if(r0 == 0x49) goto lbl9
+
+				if(r0 != 0x33) goto lbl4
+
+				if(r7 == 6) goto lbl9
+
+				goto lbl4
+
+				lbl4:
+				if(r0 != 0x34) goto lbl5
+
+				if(r7 == 1) goto lbl9
+
+				goto lbl5
+
+				lbl5:
+				if(r0 != 0x91) goto lbl6
+
+				if(r7 == 2) goto lbl9
+
+				goto lbl6
+
+				lbl6:
+				r0 = gActiveBattler
+				r0 = CheckLeafGuardAndFlowerVeil(*r0)
+				if(r0 == 0xB6) goto lbl9
+
+				goto lbl7
+
+				lbl7:
+				r0 = r9
+				r0 += r7
+				r0 = *(r0 + 0x18)
+				
+				if(r0 > 0)
+				{
+					r1 = 0x15
+					r0 = 2
+					r0 &= r5
+					
+					if(r0 != 0)
+						r1 = 0x2D
+
+					r1 += r7
+					r8 = r1
+					r6++
+				}
+			}
+
+			lbl9:
+			r4 /= 2
+			r7++
+		}
+
+		if(r6 > 1)
+		{
+			r1 = 0x39
+			r0 = 2
+			r0 &= r5
+			
+			if(r0 != 0)
+				r1 = 0x3A
+			
+			r8 = r1
+		}
+	}
+	else
+	{
+		while(r4 != 0)
+		{
+			r0 = 1
+			r0 &= r4
+			
+			if(r0 != 0)
+			{
+				r0 = r9
+				r0 += r7
+				r0 = *(r0 + 0x18)
+				
+				if(r0 <= 0xB)
+				{
+					r1 = 0xE
+					r0 = 2
+					r0 &= r5
+					
+					if(r0 != 0)
+						r1 = 0x26
+					
+					r8 = r1
+					r6++
+				}
+			}
+			
+			r4 /= 2
+			r7++
+		}
+		
+		if(r6 > 1)
+		{
+			r1 = 0x37
+			r0 = 2
+			r0 &= r5
+			
+			if(r0 != 0)
+				r1 = 0x38
+			
+			r8 = r1
+		}
+	}
+	
+	r0 = 4
+	r0 &= r5
+	if(r0 == 0) goto lbl18
+
+	if(r6 <= 1) goto lbl19
+
+	goto lbl18
+
+	lbl18:
+	if(r6 != 0)
+	{
+		r4 = gBattleScripting
+		r0 = *(r4 + 0x1B)
+		
+		if(r0 == 0)
+		{
+			BtlController_EmitBattleAnimation(0, 1, r8)
+			r0 = gActiveBattler
+			MarkBattlerForControllerExec(*r0)
+			r0 = 4
+			r0 &= r5
+
+			if(r0 != 0 && r6 > 1)
+			{
+				r0 = 1
+				*(r4 + 0x1B) = r0
+			}
+		}
+	}
+
+	lbl19:
+	r1 = gBattleScriptCurrInstr
+	r0 = *r1
+	r0 += 4
+	*r1 = r0
+}

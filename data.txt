@@ -92,6 +92,7 @@ funcs e,j,desc:
 008D84 = 008900 = StringCopy
 00DFF0 = 00D9E4 = BtlController_EmitSetMonData
 00E5EC = 00DFA0 = BtlController_EmitHealthBarUpdate
+00EB28 = 00E4DC = BtlController_EmitBattleAnimation
 011100 = BattleMainCB2
 015A30 = FreeResetData_ReturnToOvOrDoEvolutions
 016E24 = 016634 = GetBattlerForBattleScript

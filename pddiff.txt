@@ -52,6 +52,7 @@ abilities:
 + 0x75 = Snow Warning
 + 0x77 = Frisk
 + 0x7D = Sheer Force
+- 0x7E = Contrary
 + 0x7F = Unnerve
 + 0x82 = Cursed Body
 + 0x83 = Healer
@@ -59,12 +60,13 @@ abilities:
 + 0x8D = Moody
 + 0x8E = Overcoat
 + 0x8F = Poison Touch
+- 0x91 = Big Pecks
 + 0x92 = Sand Rush
 = 0x93 = (lowers moves with typeFlags2 & 4 to 60% accuracy)
 + 0x96 = Imposter
 + 0x97 = Infiltrator
 + 0x98 = Mummy
-- 0x99 = Moxie
++ 0x99 = Moxie
 + 0x9A = Justified
 + 0x9B = Rattled
 + 0x9C = Magic Bounce
@@ -181,7 +183,7 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0x196 = "[DEFENDER]'s [ABILITY] lowered [ATTACKER]'s [STAT]! (placeholder)"
 = 0x197 = (typeboost bcs 1E effect)
 + 0x198 = "The effects of the [ITEM] prevent status moves from being used!"
-- 0x199 = "[PKMN]'s [ABILITY] raised its [STAT]! (placeholder)" <REFACTOR LATER>
++ 0x199 = "[PKMN]'s [ABILITY] raised its [STAT]! (placeholder)" <REFACTOR LATER>
 + 0x19B = "[PKMN]'s [ABILITY] bounced [MOVE] back! (placeholder)"
 ! 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]! (placeholder)"
 ! 0x19E = "[PKMN] is hurt by its [ITEM]!"
@@ -344,7 +346,7 @@ grafics:
 		  Implements: Focus Sash (consumption on use)
 		  Relies on: gChosenActionByBattler changed to something else
 = 01FF20: Parts of SetMoveEffect (see 29disasm)
-		  Implements: Leaf Guard (vs secondary effects), Mold Breaker (vs Shield Dust), Infiltrator (secondary effects working through Substitute), Sweet Veil (vs secondary effects), Flower Veil (vs secondary effects), secondary effects of sound moves working through Substitute
+		  Implements: Leaf Guard (vs secondary effects), Mold Breaker (vs Shield Dust), Infiltrator (secondary effects working through Substitute), Sweet Veil (vs secondary effects), Flower Veil (vs secondary-effect status), secondary effects of sound moves working through Substitute
 		  Relies on: BattleMove refactor, changes at 0206A2
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Note: check moves like Superpower when user has sub, appears to be removed
@@ -384,7 +386,7 @@ grafics:
 = 021124: Entirety of atk15_seteffectwithchance (see 30disasm)
 		  Implements: Sheer Force (secondary effect removal)
 		  Relies on: BattleMove refactor
-- 0212AC: Large part of atk19_tryfaintmon (see 31disasm)
++ 0212AC: Large part of atk19_tryfaintmon (see 31disasm)
 		  Implements: Moxie
 = 021640: Entirety of atk1C_jumpifstatus (see 32disasm)
 		  Implements: Makes room for expanded atk1D_jumpifstatus2
@@ -393,18 +395,20 @@ grafics:
 		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute
 		  Relies on: BattleMove refactor
 = 021730: Entirety of atk1E_jumpifability (see 34disasm)
-		  Implements: Leaf Guard, Flower Veil
+		  Implements: Leaf Guard, Flower Veil (vs status)
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
-- 021818: Entirety of atk1F_jumpifsideaffecting (see 35disasm)
++ 021818: Entirety of atk1F_jumpifsideaffecting (see 35disasm)
 		  Implements: Infiltrator (vs Safeguard)
-- 022FCE: 20 -> 80
++ 022FCE: 20 -> 80
   022FD0: 0D D0 -> 06 DA
   022FD4: 04 DC -> 0B DA
   022FE7: D0 -> DA
 		  Implements: Correct stat animations for drastically/severely
-= 02301C: Entirety of atk48_playstatchangeanimation (see 36disasm)
-		  
-
+= 02301C: Entirety of atk48_playstatchangeanimation (+ extra data?)(see 36disasm)
+		  Implements: Mold Breaker+ (vs stat-reduction prevention abilities), Contrary, Big Pecks, Infiltrator (vs Mist), Flower Veil (vs stat reduction)
+		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
+		  Glitch: 0x67 (Mold Breaker) is instead 0x97, test mold breaker vs clear body
+= (FINISH PREVIOUS)
 
 
 curr: j2281C-j22A10

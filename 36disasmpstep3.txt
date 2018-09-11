@@ -1,0 +1,78 @@
+atk48_playstatchangeanimation()
+{
+	r6 = 0
+	r7 = 0
+	r8 = 0
+	gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+	r4 = gBattleScriptCurrInstr[2]
+	r0 = gBattleMons[gActiveBattler].0x20
+	
+	if(r0 == 0x7E)
+		r0 = 1
+	
+	r5 = gBattleScriptCurrInstr[3] ^ r0
+	
+	if(r5 & 1)
+	{
+		while(r4 != 0)
+		{
+			if(((r4 & 1) && ((r5 & 8) || (gBattleMons[gBattlerAttacker].0x20 == 0x97 || gSideTimers[GetBattlerPosition(gActiveBattler) & 1].4 == 0 && (gBattleMons[gBattlerAttacker].0x20 == 0x97 || gBattleMons[gBattlerAttacker].0x20 - 0xA3 <= 1 || (gBattleMons[gActiveBattler].0x20 != 0x1D && gBattleMons[gActiveBattler].0x20 != 0x49 && (gBattleMons[gActiveBattler].0x20 != 0x33 || r7 != 6) && (gBattleMons[gActiveBattler].0x20 != 0x34 || r7 != 1) && (gBattleMons[gActiveBattler].0x20 != 0x91 || r7 != 2) && CheckLeafGuardAndFlowerVeil(gActiveBattler) != 0xB6))))) && gBattleMons[gActiveBattler].0x18[r7] > 0)
+			{
+				if(r5 & 2)
+					r8 = 0x2D + r7
+				else
+					r8 = 0x15 + r7
+				
+				r6++
+			}
+			
+			r4 /= 2
+			r7++
+		}
+
+		if(r6 > 1)
+		{
+			if(r5 & 2)
+				r8 = 0x3A
+			else
+				r8 = 0x39
+		}
+	}
+	else
+	{
+		while(r4 != 0)
+		{
+			if((r4 & 1) && gBattleMons[gActiveBattler].0x18[r7] < 0xC)
+			{
+				if(r5 & 2)
+					r8 = 0x26
+				else
+					r8 = 0xE
+					
+				r6++
+			}
+			
+			r4 /= 2
+			r7++
+		}
+		
+		if(r6 > 1)
+		{
+			if(r5 & 2)
+				r8 = 0x38
+			else
+				r8 = 0x37
+		}
+	}
+
+	if((!(r5 & 4) || r6 > 1) && r6 != 0 && gBattleScripting.0x1B == 0)
+	{
+		BtlController_EmitBattleAnimation(0, 1, r8)
+		MarkBattlerForControllerExec(gActiveBattler)
+
+		if(!(r5 & 4) && r6 > 1)
+			gBattleScripting.0x1B = 1
+	}
+	
+	gBattleScriptCurrInstr += 4
+}

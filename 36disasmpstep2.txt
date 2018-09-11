@@ -1,0 +1,97 @@
+atk48_playstatchangeanimation()
+{
+	r6 = 0
+	r7 = 0
+	r8 = 0
+	*gActiveBattler = GetBattlerForBattleScript(*(*gBattleScriptCurrInstr + 1))
+	r4 = *(*gBattleScriptCurrInstr + 2)
+	r0 = *((*gActiveBattler * 0x58) + gBattleMons + 0x20)
+	
+	if(r0 == 0x7E)
+		r0 = 1
+	
+	r5 = *(*gBattleScriptCurrInstr + 3) ^ r0
+	
+	if(r5 & 1)
+	{
+		while(r4 != 0)
+		{
+			if(r4 & 1)
+			{
+				if(r5 & 8) goto lbl7
+				
+				r3 = *((*gBattlerAttacker * 0x58) + gBattleMons + 0x20)
+				
+				if(r3 == 0x97 || *(((GetBattlerPosition(*gActiveBattler) & 1) * 0xC) + gSideTimers + 4) == 0)
+				{
+					if(r3 == 0x97 || r3 - 0xA3 <= 1) goto lbl7
+
+					r0 = *((*gActiveBattler * 0x58) + gBattleMons + 0x20)
+					
+					if(r0 != 0x1D && r0 != 0x49 && (r0 != 0x33 || r7 != 6) && (r0 != 0x34 || r7 != 1) && (r0 != 0x91 || r7 != 2) && CheckLeafGuardAndFlowerVeil(*gActiveBattler) != 0xB6)
+					{
+						lbl7:
+						if(*((*gActiveBattler * 0x58) + gBattleMons + r7 + 0x18) > 0)
+						{
+							if(r5 & 2)
+								r1 = 0x2D
+							else
+								r1 = 0x15
+							
+							r8 = r1 + r7
+							r6++
+						}
+					}
+				}
+			}
+			
+			r4 /= 2
+			r7++
+		}
+
+		if(r6 > 1)
+		{
+			if(r5 & 2)
+				r8 = 0x3A
+			else
+				r8 = 0x39
+		}
+	}
+	else
+	{
+		while(r4 != 0)
+		{
+			if((r4 & 1) && *((*gActiveBattler * 0x58) + gBattleMons + r7 + 0x18) < 0xC)
+			{
+				if(r5 & 2)
+					r8 = 0x26
+				else
+					r8 = 0xE
+					
+				r6++
+			}
+			
+			r4 /= 2
+			r7++
+		}
+		
+		if(r6 > 1)
+		{
+			if(r5 & 2)
+				r8 = 0x38
+			else
+				r8 = 0x37
+		}
+	}
+
+	if((!(r5 & 4) || r6 > 1) && r6 != 0 && *(gBattleScripting + 0x1B) == 0)
+	{
+		BtlController_EmitBattleAnimation(0, 1, r8)
+		MarkBattlerForControllerExec(*gActiveBattler)
+
+		if(!(r5 & 4) && r6 > 1)
+			*(gBattleScripting + 0x1B) = 1
+	}
+	
+	*gBattleScriptCurrInstr += 4
+}

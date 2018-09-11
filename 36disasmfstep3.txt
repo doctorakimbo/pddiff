@@ -1,0 +1,88 @@
+atk48_playstatchangeanimation()
+{
+	r7 = 0
+	r8 = 0
+	gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+	r4 = gBattleScriptCurrInstr[2]
+	r5 = gBattleScriptCurrInstr[3]
+	r3 = 0
+	
+	if(r5 & 1)
+	{
+		if(r5 & 2)
+			r1 = 0x2D
+		else
+			r1 = 0x15
+		
+		if(r4 != 0)
+		{
+			r5 = r1 << 0x10
+
+			do
+			{
+				if(((r4 & 1) && ((r5 & 8) || (gSideTimers[GetBattlerPosition(gActiveBattler) & 1].4 == 0 && gBattleMons[gActiveBattler].0x20 != 0x1D && gBattleMons[gActiveBattler].0x20 != 0x49 && (gBattleMons[gActiveBattler].0x20 != 0x33 || r7 != 6) && (gBattleMons[gActiveBattler].0x20 != 0x34 || r7 != 1)))) && gBattleMons[gActiveBattler].statStages[r7] > 0)
+				{
+					r8 = r5 >> 0x10
+					r3++
+				}
+				
+				r4 /= 2
+				r5 += 0x10000
+				r7++
+			} while(r4 != 0)
+		}
+		
+		if(r3 > 1)
+		{
+			if(r5 & 2)
+				r8 = 0x3A
+			else
+				r8 = 0x39
+		}
+	}
+	else
+	{
+		if(r5 & 2)
+			r1 = 0x26
+		else
+			r1 = 0xE
+		
+		if(gBattleScriptCurrInstr[2] != 0)
+		{
+			r2 = r1 << 0x10
+
+			do
+			{
+				if((r4 & 1) && gBattleMons[gActiveBattler].statStages[r7] < 0xC)
+				{
+					r1 = r2 >> 0x10
+					r8 = 1
+					r3++
+				}
+				
+				r4 /= 2
+				r2 += 0x10000
+				r7++
+			} while(r4 != 0)
+		}
+		
+		if(r3 > 1)
+		{
+			if(r5 & 2)
+				r8 = 0x38
+			else
+				r8 = 0x37
+		}
+	}
+	
+	if((!(r5 & 4) || r3 > 1) && r3 != 0 && gBattleScripting.0x1B == 0)
+	{
+		BtlController_EmitBattleAnimation(0, 1, r8)
+		MarkBattlerForControllerExec(gActiveBattler)
+		
+		if(!(r5 & 4) && r3 > 1)
+			gBattleScripting.0x1B = 1
+	}
+	
+	gBattleScriptCurrInstr += 4
+}

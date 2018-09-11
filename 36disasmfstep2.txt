@@ -1,0 +1,108 @@
+atk48_playstatchangeanimation()
+{
+	r7 = 0
+	r8 = 0
+	r2 = gActiveBattler
+	*r2 = GetBattlerForBattleScript(*(*gBattleScriptCurrInstr + 1))
+	r4 = *(*gBattleScriptCurrInstr + 2)
+	r3 = 0
+	
+	if(*(*gBattleScriptCurrInstr + 3) & 1)
+	{
+		if(*(*gBattleScriptCurrInstr + 3) & 2)
+			r1 = 0x2D
+		else
+			r1 = 0x15
+		
+		if(*(*gBattleScriptCurrInstr + 2) != 0)
+		{
+			r5 = r1 << 0x10
+
+			do
+			{
+				if(r4 & 1)
+				{
+					if(*(*gBattleScriptCurrInstr + 3) & 8)
+					{
+						r0 = (*gActiveBattler * 0x58) + r7
+						goto lbl6
+					}
+					
+					if(*(((GetBattlerPosition(*gActiveBattler) & 1) * 0xC) + gSideTimers + 4) == 0)
+					{
+						r0 = *((*gActiveBattler * 0x58) + gBattleMons + 0x20)
+						
+						if(r0 != 0x1D && r0 != 0x49 && (r0 != 0x33 || r7 != 6) && (r0 != 0x34 || r7 != 1))
+						{
+							r0 = r2 + r7
+
+							lbl6:
+							if(*(r0 + gBattleMons.statStages) > 0)
+							{
+								r8 = r5 >> 0x10
+								r3++
+							}
+						}
+					}
+				}
+				
+				r4 /= 2
+				r5 += 0x10000
+				r7++
+			} while(r4 != 0)
+		}
+		
+		if(r3 > 1)
+		{
+			if(*(*gBattleScriptCurrInstr + 3) & 2)
+				r8 = 0x3A
+			else
+				r8 = 0x39
+		}
+	}
+	else
+	{
+		if(*(*gBattleScriptCurrInstr + 3) & 2)
+			r1 = 0x26
+		else
+			r1 = 0xE
+		
+		if(*(*gBattleScriptCurrInstr + 2) != 0)
+		{
+			r2 = r1 << 0x10
+
+			do
+			{
+				if((r4 & 1) && *((*gActiveBattler * 0x58) + r7 + gBattleMons.statStages) < 0xC)
+				{
+					r1 = r2 >> 0x10
+					r8 = 1
+					r3++
+				}
+				
+				r4 /= 2
+				r2 += 0x10000
+				r7++
+			} while(r4 != 0)
+		}
+		
+		if(r3 > 1)
+		{
+			if(*(*gBattleScriptCurrInstr + 3) & 2)
+				r8 = 0x38
+			else
+				r8 = 0x37
+		}
+	}
+	
+	if((!(*(*gBattleScriptCurrInstr + 3) & 4) || r3 > 1) && r3 != 0 && *(gBattleScripting + 0x1B) == 0)
+	{
+		BtlController_EmitBattleAnimation(0, 1, r8)
+		MarkBattlerForControllerExec(*gActiveBattler)
+		
+		if((*(*gBattleScriptCurrInstr + 3) & 4) && r3 > 1)
+			*(gBattleScripting + 0x1B) = 1
+	}
+	
+	*gBattleScriptCurrInstr += 4
+}
