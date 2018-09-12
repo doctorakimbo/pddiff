@@ -52,7 +52,7 @@ abilities:
 + 0x75 = Snow Warning
 + 0x77 = Frisk
 + 0x7D = Sheer Force
-- 0x7E = Contrary
++ 0x7E = Contrary
 + 0x7F = Unnerve
 + 0x82 = Cursed Body
 + 0x83 = Healer
@@ -60,7 +60,7 @@ abilities:
 + 0x8D = Moody
 + 0x8E = Overcoat
 + 0x8F = Poison Touch
-- 0x91 = Big Pecks
++ 0x91 = Big Pecks
 + 0x92 = Sand Rush
 = 0x93 = (lowers moves with typeFlags2 & 4 to 60% accuracy)
 + 0x96 = Imposter
@@ -235,7 +235,7 @@ grafics:
 		  Implements: EVs recalculated per battle (?)
 		  Required knowledge: j02023F89 (viable)
 		  Requires in future: extra fn j207370
-= 015CA0: Entirety of HandleAction_UseMove (see 06disasm)
+= 015CA0: Entirety of HandleAction_UseMove (+CheckSwitchToSpreadMoveScript, BattleScript_EffectSpreadMove) (see 06disasm)
 		  Implements: Storm Drain (redirection), Mold Breaker+ (vs redirection)
 		  Relies on: gChosenActionByBattler changed to something else
 		  Note: test deeply - incomprehensible code
@@ -412,10 +412,10 @@ grafics:
   02337C: C4 33 02 08 A0 34 02 08 5C 35 02 08 80 35 02 08 98 35 02 08 C0 35 02 08 E4 35 02 08 8C 36 02 08 02 37 02 08 38 37 02 08 D8 37 02 08 CC 36 02 08 EC 36 02 08 1C 38 02 08 60 38 02 08 40 3A 02 08 28 3B 02 08 B4 3B 02 08 2D 4E 2E 4D 2B 78 58 27 -> CC 33 02 08 44 34 02 08 C0 34 02 08 DC 34 02 08 F8 34 02 08 14 35 02 08 34 35 02 08 E4 35 02 08 4C 36 02 08 02 37 02 08 38 37 02 08 D8 37 02 08 7A 36 02 08 96 36 02 08 AE 36 02 08 1C 38 02 08 60 38 02 08 40 3A 02 08 28 3B 02 08 B4 3B 02 08
   0233C4 -> 0233CC (repoint): Large part of atk49_moveend (see 37disasm)
   023B28: Another part of atk49_moveend (see 37disasm2)
-		  Implements: Stench flinch chance, Klutz (choice item locking), Poison Touch, Choice Specs (locking), Choice Scarf (locking) 
-		  Relies on: AbilityBattleEffects/ItemBattleEffects new cases, Choice Band effect ID change, gChosenActionByBattler changed to something else
+		  Implements: Stench flinch chance, Klutz (choice item locking), Poison Touch, Choice Specs (locking), Choice Scarf (locking), non-hardcoded spread moves
+		  Relies on: AbilityBattleEffects/ItemBattleEffects new cases, Choice Band effect ID change, gChosenActionByBattler changed to something else, CheckSwitchToSpreadMoveScript (j1588C, e16078), BattleScript_EffectSpreadMove (j158B0, e1609C)
 		  Notes: Inert call to ItemBattleEffects (arg 2)?
-= 
+= 023E88: Entirety of atk4B_returnatktoball (see 38disasm)
 
 
 
@@ -424,8 +424,8 @@ grafics:
 
 		  
 
-curr: j2335E
-next: 
+curr: j23688
+next: j236D8
 
 commands that changed address:
 84: 0270A4 -> 027080

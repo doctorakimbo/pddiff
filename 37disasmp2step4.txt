@@ -1,4 +1,4 @@
-if(!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE) && (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && !gProtectStructs[gBattlerAttacker].chargingTurn && fn_1588C_J(&gBattleMoves[gCurrentMove]) == 8 && !(gHitMarker & HITMARKER_NO_ATTACKSTRING))
+if(!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE) && (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && !gProtectStructs[gBattlerAttacker].chargingTurn && CheckSwitchToSpreadMoveScript(gBattleMoves[gCurrentMove]) == MOVE_TARGET_BOTH && !(gHitMarker & HITMARKER_NO_ATTACKSTRING))
 {
 	if(gChosenActionByBattler != 4 && gBattleMons[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerTarget)))].hp != 0) // 02023D7C???
 		MoveValuesCleanUp();
@@ -7,3 +7,89 @@ if(!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE) && (gBattleTypeFlags & BATTLE_TY
 }
 
 goto lbl_233AC
+
+
+
+
+
+CheckSwitchToSpreadMoveScript(move) @1588C_J = 16078_E
+{
+	if(move.target == MOVE_TARGET_FOES_AND_ALLY && gBattleScriptCurrInstr == script_1BA910_J)
+		gBattleScriptCurrInstr = BattleScript_SpreadMoveJumpInPoint;
+
+	return move.target;
+}
+
+
+
+
+script_1BA910_J: @1BA910_J
+(49 00 00 3D)
+moveend 0x0, 0x0
+end
+
+
+
+
+BattleScript_EffectSpreadMove: @158B0_J = 1609C_E
+(00 02 03 C2 25 2A 01 AA 3C 02 02 39 00 EF 58 01 08 21 00 00 00 04 00 01 E0 58 01 08 35 30 3D 02 02 00 00 04 00 2E 32 3F 02 02 02 28 EF 58 01 08 38 30 3D 02 02 00 00 04 00 2E 32 3F 02 02 01 01 28 59 01 08 00 00 04 05 06 07 09 0A 0E 5C 00 3A 0B 00 0C 00 0D 12 40 00 0F 12 40 00 10 30 01 12 01 00 19 00 00 00 00 00 00 2E 38 3F 02 02 00 49 02 12 7A B4 58 01 08 3D 39 20 00 06 0E 0F 12 40 00 28 19 59 01 08) = 
+(00 02 03 C2 25 2A 01 4A 3D 02 02 39 00 DB 60 01 08 21 00 00 00 04 00 01 CC 60 01 08 35 D0 3D 02 02 00 00 04 00 2E D2 3F 02 02 02 28 DB 60 01 08 38 D0 3D 02 02 00 00 04 00 2E D2 3F 02 02 01 01 14 61 01 08 00 00 04 05 06 07 09 0A 0E 5C 00 3A 0B 00 0C 00 0D 12 40 00 0F 12 40 00 10 30 01 12 01 00 19 00 00 00 00 00 00 2E D8 3F 02 02 00 49 02 12 7A A0 60 01 08 3D 39 20 00 06 0E 0F 12 40 00 28 05 61 01 08)
+
+BattleScript_EffectSpreadMove:
+attackcanceler
+attackstring
+ppreduce
+selectfirstvalidtarget
+goto BattleScript_SpreadMoveLoop
+
+BattleScript_SpreadMoveLoop:
+movevaluescleanup
+jumpifnotmove MOVE_SURF, BattleScript_DoSpreadMove
+jumpifnostatus3 BS_TARGET, STATUS3_UNDERWATER, BattleScript_SpreadMoveNoSurfBonus
+orword gHitMarker, HITMARKER_IGNORE_UNDERWATER
+setbyte sDMG_MULTIPLIER, 0x2
+goto BattleScript_DoSpreadMove
+
+BattleScript_SpreadMoveNoSurfBonus:
+bicword gHitMarker, HITMARKER_IGNORE_UNDERWATER
+setbyte sDMG_MULTIPLIER, 0x1
+goto BattleScript_DoSpreadMove
+
+BattleScript_DoSpreadMove:
+accuracycheck BattleScript_SpreadMoveMissed, ACC_CURR_MOVE
+critcalc
+damagecalc
+typecalc
+adjustnormaldamage
+attackanimation
+waitanimation
+effectivenesssound
+hitanimation BS_TARGET
+waitstate
+healthbarupdate BS_TARGET
+datahpupdate BS_TARGET
+critmessage
+waitmessage 0x40
+resultmessage
+waitmessage 0x40
+printstring STRINGID_EMPTYSTRING3
+waitmessage 0x1
+tryfaintmon BS_TARGET, FALSE, NULL
+goto BattleScript_SpreadMoveEndThisHit
+
+BattleScript_SpreadMoveEndThisHit:
+setbyte sMOVEEND_STATE, 0x0
+goto BattleScript_SpreadMoveJumpInPoint
+
+BattleScript_SpreadMoveJumpInPoint: @1591F_J
+moveend 0x2, 0x12
+jumpifnexttargetvalid BattleScript_SpreadMoveLoop
+end
+
+BattleScript_SpreadMoveMissed:
+pause 0x20
+typecalc
+effectivenesssound
+resultsmessage
+waitmessage 0x40
+goto BattleScript_SpreadMoveEndThisHit
