@@ -1,0 +1,11 @@
+atk4C_getswitchedmondata()
+{
+	if(gBattleControllerExecFlags == 0)
+	{
+		gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+		gBattlerPartyIndexes[gActiveBattler] = gBattleStruct.0x5C[gActiveBattler]
+		fn_DFA4(0, 0, gBitTable[gBattlerPartyIndexes[gActiveBattler]])
+		MarkBattlerForControllerExec(gActiveBattler)
+		gBattleScriptCurrInstr += 2
+	}
+}

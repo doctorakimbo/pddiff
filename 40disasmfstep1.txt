@@ -1,0 +1,157 @@
+atk69_adjustsetdamage()
+{
+	r7 = gBattleMons
+	r6 = gBattlerTarget
+	r2 = *r6
+	r5 = 0x58
+	r0 = r2
+	r0 *= r5
+	r1 = r0 + r7
+	r0 = *(r1 + 0x2E)
+
+	if(r0 == 0xAF)
+	{
+		r1 = gEnigmaBerries
+		r0 = r2 * 8
+		r0 -= r2
+		r0 *= 4
+		r0 += r1
+		r4 = *(r0 + 7)
+		r6 = *(r0 + 0x1A)
+	}
+	else
+	{
+		r4 = GetHoldEffect(*(r1 + 0x2E))
+		r0 = *r6
+		r0 *= r5
+		r0 += r7
+		r6 = GetHoldEffectParam(*(r0 + 0x2E))
+	}
+
+	r1 = gPotentialItemEffectBattler
+	r5 = gBattlerTarget
+	r0 = *r5
+	*r1 = r0
+
+	if(r4 == 0x27)
+	{
+		r0 = Random() % 100
+		
+		if(r0 bcc r6)
+		{
+			RecordItemEffectBattle(*r5, 0x27)
+			r2 = gSpecialStatuses
+			r1 = *r5
+			r0 = r1 * 4
+			r0 += r1
+			r0 *= 4
+			r0 += r2
+			r1 = *r0
+			r2 = 0x80
+			r1 |= r2
+			*r0 = r1
+		}
+	}
+
+	r2 = gBattleMons
+	r3 = gBattlerTarget
+	r4 = *r3
+	r0 = 0x58
+	r0 *= r4
+	r1 = r2
+	r1 += 0x50
+	r0 += r1
+	r1 = *r0
+	r0 = 0x1000000
+	r1 &= r0
+	r5 = r2
+
+	if(r1 == 0)
+	{
+		r2 = gBattleMoves
+		r0 = gCurrentMove
+		r1 = *r0
+		r0 = r1 * 2
+		r0 += r1
+		r0 *= 4
+		r0 += r2
+		r0 = *r0
+		if(r0 == 0x65) goto lbl6
+
+		r0 = gProtectStructs
+		r1 = r4 * 0x10
+		r1 += r0
+		r0 = *r1
+		r0 <<= 0x1E
+		if(r0 < 0) goto lbl6
+
+		r0 = gSpecialStatuses
+		r1 = r4 * 4
+		r1 += r4
+		r1 *= 4
+		r1 += r0
+		r0 = *r1
+		r0 /= 0x80
+		
+		if(r0 != 0)
+		{
+			r0 = *r3
+			r4 = 0x58
+			r0 *= r4
+			r0 += r5
+			r1 = *(r0 + 0x28)
+			r2 = gBattleMoveDamage
+			r0 = *r2
+			
+			if(r1 <= r0)
+			{
+				r0 = r1 - 1
+				*r2 = r0
+				r1 = gProtectStructs
+				r3 = *r3
+				r0 = r3 * 0x10
+				r0 += r1
+				r0 = *r0
+				r0 <<= 0x1E
+				
+				if(r0 < 0)
+				{
+					r0 = gMoveResultFlags
+					r1 = *r0
+					r2 = 0x40
+					r1 |= r2
+					*r0 = r1
+				}
+				else
+				{
+					r0 = gSpecialStatuses
+					r1 = r3 * 4
+					r1 += r3
+					r1 *= 4
+					r1 += r0
+					r0 /= 0x80
+					
+					if(r0 != 0)
+					{
+						r2 = gMoveResultFlags
+						r0 = *r2
+						r1 = 0x80
+						r0 |= r1
+						*r2 = r0
+						r1 = gLastUsedItem
+						r0 = *r3
+						r0 *= r4
+						r0 += r5
+						r0 = *(r0 + 0x2E)
+						*r1 = r0
+					}
+				}
+			}
+		}
+	}
+
+	r1 = gBattleScriptCurrInstr
+	r0 = *r1
+	r0++
+	*r1 = r0
+}

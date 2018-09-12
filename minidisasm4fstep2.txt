@@ -1,0 +1,24 @@
+*gActiveBattler = GetBattlerForBattleScript(*(*gBattleScriptCurrInstr + 1))
+fn_174B8(*gActiveBattler)
+*gHitMarker = bic(*gHitMarker, (*((*gActiveBattler * 4) + gBitTable) << 0x1C))
+*((*gActiveBattler * 0x14) + gSpecialStatuses) &= ~0x40
+
+if(!(*((GetBattlerSide(*gActiveBattler) * 2) + gSideStatuses) & 0x200) && !(*((GetBattlerSide(*gActiveBattler) * 2) + gSideStatuses) & 0x10) && *((*gActiveBattler * 0x58) + gBattleMons + 0x21) != 2 && *((*gActiveBattler * 0x58) + gBattleMons + 0x22) != 2 && *((*gActiveBattler * 0x58) + gBattleMons + 0x20) != 0x1A)
+{
+	*((GetBattlerSide(*gActiveBattler) * 2) + gSideStatuses) |= 0x200
+	*gBattleMoveDamage = *((*gActiveBattler * 0x58) + gBattleMons + 0x2C) / ((5 - *((GetBattlerSide(*gActiveBattler) * 0xC) + gSideTimers + 0xA)) * 2)
+	
+	if(*gBattleMoveDamage == 0)
+		*gBattleMoveDamage = 1
+	
+	*(gBattleScripting + 0x17) = *gActiveBattler
+	
+	if(*(*gBattleScriptCurrInstr + 1) == 0)
+		*gBattleScriptCurrInstr = data_081D8CBE
+	elseif(*(*gBattleScriptCurrInstr + 1) == 1) 
+		*gBattleScriptCurrInstr = data_081D8C87
+	else
+		*gBattleScriptCurrInstr = data_081D8CF5
+	
+	goto lbl_250C6
+}

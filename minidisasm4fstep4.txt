@@ -1,0 +1,27 @@
+gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1]);
+fn_174B8(gActiveBattler);
+gHitMarker = &= ~(HITMARKER_FAINTED(gActiveBattler));
+gSpecialStatuses[gActiveBattler].flag40 = 0;
+
+if(!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES_DAMAGED) && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES) && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_FLYING) && gBattleMons[gActiveBattler].ability != ABILITY_LEVITATE)
+{
+	gSideStatuses[GetBattlerSide(gActiveBattler)] |= SIDE_STATUS_SPIKES_DAMAGED;
+	
+	spikesDmg = ((5 - gSideTimers[GetBattlerSide(gActiveBattler)].spikesAmount) * 2);
+	gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / spikesDmg;
+	
+	if(gBattleMoveDamage == 0)
+		gBattleMoveDamage = 1;
+	
+	gBattleScripting.battler = gActiveBattler;
+	BattleScriptPushCursor();
+	
+	if(gBattlescriptCurrInstr[1] == BS_TARGET)
+		gBattlescriptCurrInstr = BattleScript_SpikesOnTarget;
+	elseif(gBattlescriptCurrInstr[1] == BS_ATTACKER)
+		gBattlescriptCurrInstr = BattleScript_SpikesOnAttacker;
+	else
+		gBattlescriptCurrInstr = BattleScript_SpikesOnFaintedBattler;
+	
+	goto lbl_250C6
+}

@@ -1,0 +1,93 @@
+atk6A_removeitem()
+{
+	r6 = gBattleScriptCurrInstr
+	r0 = *r6
+	r0 = GetBattlerForBattleScript(*(r0 + 1))
+	r5 = gActiveBattler
+	*r5 = r0
+	r4 = r0
+	r1 = gBattleStruct
+	r0 = r4 * 2
+	r0 += 0xB8
+	r1 = *r1
+	r1 += r0
+	r2 = gBattleMons
+	r2 += 0x20
+	r3 = 0x58
+	r4 *= r3
+	r7 = r4 + r2
+	r0 = *(r7 + 0x2E)
+	*r1 = r0
+	r4 = r0
+	r0 = 0
+	*(r7 + 0x2E) = 0
+	r7 += 0x2E
+	BtlController_EmitSetMonData(r0, 2, 0, 2, r7)
+	MarkBattlerForControllerExec(*r5)
+	r0 = *r6
+	r0 += r2
+	*r6 = r0
+	r0 = GetHoldEffect(*r4)
+	
+	if(r0 <= 0x15 && r0 != 0)
+		fn_1C5FC_J()
+}
+
+
+
+
+fn_1C5FC_J()
+{
+	r5 = gActiveBattler
+	r7 = *r5
+	r0 = 0x58
+	r0 *= r7
+	r1 = gBattleMons
+	r5 = r0 + r1
+	r1 = 0x20
+	r1 = *(r5 + r1)
+	
+	if(r1 == 0xBA)
+	{
+		r4 = gBattleMoveDamage
+		r1 = *(r5 + 0x28)
+		r0 = *(r5 + 0x2C)
+		
+		if(r1 < r0)
+		{
+			r1 = 3
+			svc(6)
+			r6 = r0
+			*r4 = r0
+			r3 = *(r5 + 0x28)
+			r0 += r3
+			r1 = *(r5 + 0x2C)
+			
+			if(r0 > r1)
+			{
+				r0 = r1 - r3
+				*r4 = r0
+			}
+		}
+	}
+	
+	r0 = *r4
+	r0 = -r0
+	*r4 = r0
+	PushScriptInstr(script_1C728_J)
+}
+
+
+
+
+script_1C728_J: 
+(45 0A 07 00 00 00 00 10 9D 01 12 40 00 35 30 3D 02 02 00 01 00 00 0B 0A 0C 0A 6A 0A 3C) = 
+(45 0A 07 00 00 00 00 10 A6 01 12 40 00 35 D0 3D 02 02 00 01 00 00 0B 0A 0C 0A 6A 0A 3C)
+playanimation BS_SCRIPTING, B_ANIM_ITEM_EFFECT, NULL
+printstring 0x19D
+waitmessage 0x40
+orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+healthbarupdate BS_SCRIPTING
+datahpupdate BS_SCRIPTING
+removeitem BS_SCRIPTING
+return

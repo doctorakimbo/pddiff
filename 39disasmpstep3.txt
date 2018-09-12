@@ -1,0 +1,15 @@
+atk4C_getswitchedmondata()
+{
+	if(gBattleControllerExecFlags == 0)
+	{
+		gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+		gBattlerPartyIndexes[gActiveBattler] = gBattleStruct.0x5C[gActiveBattler]
+		
+		if(!(gActiveBattler & 1)) // if is on player's side
+			data_0203B964_J |= (1 << gBattlerPartyIndexes[gActiveBattler])
+		 
+		fn_DFA4(0, 0, gBitTable[gBattlerPartyIndexes[gActiveBattler]])
+		MarkBattlerForControllerExec(gActiveBattler)
+		gBattleScriptCurrInstr += 2
+	}
+}

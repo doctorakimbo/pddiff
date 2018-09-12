@@ -1,0 +1,11 @@
+atk4C_getswitchedmondata()
+{
+	if(gBattleControllerExecFlags)
+        return;
+		
+	gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1]);
+	gBattlerPartyIndexes[gActiveBattler] = *(gBattleStruct->monToSwitchIntoId + gActiveBattler);
+	BtlController_EmitGetMonData(0, REQUEST_ALL_BATTLE, gBitTable[gBattlerPartyIndexes[gActiveBattler]]);
+	MarkBattlerForControllerExec(gActiveBattler);
+	gBattleScriptCurrInstr += 2;
+}

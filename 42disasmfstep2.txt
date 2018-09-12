@@ -1,0 +1,18 @@
+atk7A_jumpifnexttargetvalid()
+{
+	if(*gBattleTypeFlags & 1)
+	{
+		lbl2:
+		*gBattlerTarget++
+		if(*gBattlerTarget == *gBattlerAttacker) goto lbl2
+
+		if(*gAbsentBattlerFlags & *((*gBattlerTarget * 4) + gBitTable)) goto lbl2
+		
+		if(*gBattlerTarget bcc *gBattlersCount)
+			*gBattleScriptCurrInstr = *(*gBattleScriptCurrInstr + 1) | (*(*gBattleScriptCurrInstr + 2) << 8) | (*(*gBattleScriptCurrInstr + 3) << 0x10) | (*(*gBattleScriptCurrInstr + 4) << 0x18)
+		else
+			*gBattleScriptCurrInstr += 5
+	}
+	else
+		*gBattleScriptCurrInstr += 5
+}

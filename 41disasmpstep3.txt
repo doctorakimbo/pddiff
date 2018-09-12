@@ -1,0 +1,46 @@
+atk6A_removeitem()
+{ 
+	gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+	*((gActiveBattler * 2) + *gBattleStruct + 0xB8) = gBattleMons[gActiveBattler].0x4E
+	gBattleMons[gActiveBattler].0x4E = 0
+	BtlController_EmitSetMonData(0, 2, 0, 2, &gBattleMons[gActiveBattler].0x4E)
+	MarkBattlerForControllerExec(gActiveBattler)
+	gBattleScriptCurrInstr += 2
+	
+	r0 = GetHoldEffect(gBattleMons[gActiveBattler].0x4E)
+	
+	if(r0 <= 0x15 && r0 != 0)
+		fn_1C5FC_J()
+}
+
+
+
+
+fn_1C5FC_J()
+{
+	if(gBattleMons[gActiveBattler].0x20 == 0xBA && gBattleMons[gActiveBattler].0x28 < gBattleMons[gActiveBattler].0x2C)
+	{
+		gBattleMoveDamage = gBattleMons[gActiveBattler].0x2C / 3
+		
+		if(gBattleMons[gActiveBattler].0x28 + gBattleMoveDamage > gBattleMons[gActiveBattler].0x2C)
+			gBattleMoveDamage = gBattleMons[gActiveBattler].0x2C - gBattleMons[gActiveBattler].0x28
+	}
+	
+	gBattleMoveDamage = -gBattleMoveDamage
+	PushScriptInstr(script_1C728_J)
+}
+
+
+
+
+script_1C728_J: 
+(45 0A 07 00 00 00 00 10 9D 01 12 40 00 35 30 3D 02 02 00 01 00 00 0B 0A 0C 0A 6A 0A 3C) = 
+(45 0A 07 00 00 00 00 10 A6 01 12 40 00 35 D0 3D 02 02 00 01 00 00 0B 0A 0C 0A 6A 0A 3C)
+playanimation BS_SCRIPTING, B_ANIM_ITEM_EFFECT, NULL
+printstring 0x19D
+waitmessage 0x40
+orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+healthbarupdate BS_SCRIPTING
+datahpupdate BS_SCRIPTING
+removeitem BS_SCRIPTING
+return

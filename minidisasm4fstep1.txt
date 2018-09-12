@@ -1,0 +1,131 @@
+r6 = gBattleScriptCurrInstr
+r0 = *r6
+r0 = GetBattlerForBattleScript(*(r0 + 1))
+r4 = gActiveBattler
+*r4 = r0
+r0 = *r4
+fn_174B8()
+r2 = gHitMarker
+r1 = gBitTable
+r0 = *r4
+r0 *= 4
+r0 += r1
+r1 = *r0
+r1 <<= 0x1C
+r0 = *r2
+bic r0, r1
+*r2 = r0
+r2 = gBattleMoveDamage
+r0 = *r4
+r1 = r0 * 4
+r1 += r0
+r1 *= 4
+r1 += r2
+r2 = *r1
+r0 = ~0x40
+r0 &= r2
+*r1 = r0
+r0 = GetBattlerSide(*r4)
+r5 = gSideStatuses
+r0 *= 2
+r0 += r5
+r1 = *r0
+r0 = 0x200
+r8 = r0
+r0 &= r1
+
+if(r0 == 0)
+{
+	r0 = GetBattlerSide(*r4)
+	r0 *= 2
+	r0 += r5
+	r1 = *r0
+	r0 = 0x10
+	r0 &= r1
+	
+	if(r0 == 0)
+	{
+		r1 = gBattleMons
+		r9 = r1
+		r2 = *r4
+		r7 = 0x58
+		r0 = r2
+		r0 *= r7
+		r1 += r0
+		r0 = r1
+		r0 += 0x21
+		r0 = *r0
+		
+		if(r0 != 2)
+		{
+			r0 = r1
+			r0 += 0x22
+			r0 = *r0
+			
+			if(r0 != 2)
+			{
+				r0 = r1
+				r0 += 0x20
+				r0 = *r0
+				
+				if(r0 != 0x1A)
+				{
+					r0 = GetBattlerSide(r2)
+					r0 *= 2
+					r0 += r5
+					r2 = *r0
+					r1 = r8
+					r1 |= r2
+					*r0 = r1
+					r0 = GetBattlerSide(*r4)
+					r2 = gSideTimers
+					r1 = r0 * 2
+					r1 += r0
+					r1 *= 4
+					r1 += r2
+					r0 = *(r1 + 0xA)
+					r1 = 5
+					r1 -= r0
+					r1 *= 2
+					r5 = gBattleMoveDamage
+					r0 = *r4
+					r0 *= r7
+					r0 += r9
+					*r5 = *(r0 + 0x2C) / r1
+					
+					if(r0 == 0)
+					{
+						r0 = 1
+						*r5 = r0
+					}
+					
+					r0 = gBattleScripting
+					r1 = *r4
+					*(r0 + 0x17) = r1
+					BattleScriptPushCursor()
+					r0 = *r6
+					r0 = *(r0 + 1)
+					
+					if(r0 == 0)
+					{
+						r0 = data_081D8CBE
+						*r6 = r0
+						goto lbl_250C6
+					}
+					elseif(r0 == 1)
+					{
+						r0 = data_081D8C87
+						*r6 = r0
+					}
+					else
+					{
+						r0 = data_081D8CF5
+						*r6 = r0
+					}
+					
+					goto lbl_250C6
+				}
+			}
+		}
+	}
+}

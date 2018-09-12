@@ -1,0 +1,49 @@
+atk6A_removeitem()
+{ 
+	gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1]);
+	
+	gBattleStruct->usedHeldItems[gActiveBattler] = gBattleMons[gActiveBattler].0x4E;
+	gBattleMons[gActiveBattler].0x4E = 0;
+	
+	BtlController_EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gActiveBattler].0x4E);
+	MarkBattlerForControllerExec(gActiveBattler);
+	
+	gBattleScriptCurrInstr += 2;
+	
+	effect = GetHoldEffect(gBattleMons[gActiveBattler].0x4E)
+	
+	if(effect <= HOLD_EFFECT_RANDOM_STAT_UP && effect != 0) // item is berry
+		CheckAndRunCheekPouch()
+}
+
+
+
+
+CheckAndRunCheekPouch() @1C5FC_J, 1CDEC_E
+{
+	if(gBattleMons[gActiveBattler].ability == ABILITY_CHEEK_POUCH && gBattleMons[gActiveBattler].hp < gBattleMons[gActiveBattler].maxHP)
+	{
+		gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 3;
+		
+		if(gBattleMons[gActiveBattler].hp + gBattleMoveDamage > gBattleMons[gActiveBattler].maxHP)
+			gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP - gBattleMons[gActiveBattler].hp;
+		
+		gBattleMoveDamage = -gBattleMoveDamage;
+		PushScriptInstr(BattleScript_CheekPouchHeals);
+	}
+}
+
+
+
+
+BattleScript_CheekPouchHeals: @1C728_J
+(45 0A 07 00 00 00 00 10 9D 01 12 40 00 35 30 3D 02 02 00 01 00 00 0B 0A 0C 0A 6A 0A 3C) = 
+(45 0A 07 00 00 00 00 10 A6 01 12 40 00 35 D0 3D 02 02 00 01 00 00 0B 0A 0C 0A 6A 0A 3C)
+playanimation BS_SCRIPTING, B_ANIM_ITEM_EFFECT, NULL
+printstring 0x19D
+waitmessage 0x40
+orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+healthbarupdate BS_SCRIPTING
+datahpupdate BS_SCRIPTING
+removeitem BS_SCRIPTING
+return

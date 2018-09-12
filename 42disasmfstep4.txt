@@ -1,0 +1,22 @@
+atk7A_jumpifnexttargetvalid()
+{
+	jumpPtr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+	
+	if(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+	{
+		for(gBattlerTarget++; ; gBattlerTarget++)
+		{
+			if(gBattlerTarget == gBattlerAttacker)
+				continue;
+			if(!(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
+				break;
+		}
+		
+		if(gBattlerTarget >= gBattlersCount)
+            gBattlescriptCurrInstr += 5;
+        else
+            gBattlescriptCurrInstr = jumpPtr;
+	}
+	else
+		gBattleScriptCurrInstr += 5;
+}

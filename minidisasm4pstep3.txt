@@ -1,0 +1,24 @@
+gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+fn_174B8(gActiveBattler)
+gHitMarker = bic(gHitMarker, (gBitTable[gActiveBattler] << 0x1C))
+gSpecialStatuses[gActiveBattler] &= ~0x40
+
+if(!(gSideStatuses[GetBattlerSide(gActiveBattler)] & 0x200) && !(gSideStatuses[GetBattlerSide(gActiveBattler)] & 0x10) && gBattleMons[gActiveBattler].0x21 != 2 && gBattleMons[gActiveBattler].0x22 != 2 && gBattleMons[gActiveBattler].0x20 != 0x1A && gBattleMons[gActiveBattler].0x20 != 0x62)
+{
+	gSideStatuses[GetBattlerSide(gActiveBattler)] |= 0x200
+	gBattleMoveDamage = gBattleMons[gActiveBattler].0x2C / ((5 - gSideTimers[GetBattlerSide(gActiveBattler)].0xA) * 2)
+	
+	if(gBattleMoveDamage == 0)
+		gBattleMoveDamage = 1
+	
+	gBattleScripting.0x17 = gActiveBattler
+	
+	if(gBattleScriptCurrInstr[1] == 0)
+		gBattleScriptCurrInstr = data_081D8CBE
+	elseif(gBattleScriptCurrInstr[1] == 1) 
+		gBattleScriptCurrInstr = data_081D8C87
+	else
+		gBattleScriptCurrInstr = data_081D8CF5
+	
+	goto lbl_250C6
+}

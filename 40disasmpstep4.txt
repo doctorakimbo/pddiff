@@ -1,0 +1,55 @@
+atk69_adjustsetdamage()
+{
+	param = GetHoldEffectParam(gBattleMons[gBattlerTarget].item);
+	holdEffect = GetHoldEffect(gBattleMons[gBattlerTarget].item);
+	gPotentialItemEffectBattler = gBattlerTarget;
+	
+	if(gBattleMons[gBattlerTarget].ability != ABILITY_KLUTZ)
+	{
+		if(holdEffect == HOLD_EFFECT_FOCUS_SASH)
+		{
+			if(gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP && gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
+			{
+				RecordItemEffectBattle(gBattlerTarget, holdEffect);
+				SetFocusBand();
+			}
+			else
+				ClearFocusBand();
+		}
+		elseif(holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param)
+		{
+			RecordItemEffectBattle(gBattlerTarget, holdEffect);
+			SetFocusBand();
+		}
+	}
+
+	if(!(gBattleMons[gBattlerTarget].status2 && STATUS2_SUBSTITUTE))
+	{
+		if(gBattleMons[gBattlerAttacker].ability != ABILITY_MOLD_BREAKER && (gBattleMons[gBattlerAttacker].ability - 0xA3) > 1 && gBattleMons[gBattlerTarget].ability == ABILITY_STURDY && gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP)
+		{
+			if(gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
+			{
+				gProtectStructs[gBattlerTarget].endured = 1;
+				gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
+				gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
+			}
+		}
+		elseif(!gProtectStructs[gBattlerTarget].endured || !gSpecialStatuses[gBattlerTarget].focusBanded)
+		{
+			if(gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
+			{
+				gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
+				
+				if(gProtectStructs[gBattlerTarget].endured)
+					gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
+				elseif(gSpecialStatuses[gBattlerTarget].focusBanded)
+				{
+					gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
+					gLastUsedItem = gBattleMons[gBattlerTarget].item;
+				}
+			}
+		}
+	}
+	
+	gBattleScriptCurrInstr++
+}

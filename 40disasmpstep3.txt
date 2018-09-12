@@ -1,0 +1,55 @@
+atk69_adjustsetdamage()
+{
+	r6 = GetHoldEffectParam(gBattleMons[gBattlerTarget].0x2E)
+	r1 = GetHoldEffect(gBattleMons[gBattlerTarget].0x2E)
+	gPotentialItemEffectBattler = gBattlerTarget
+	
+	if(gBattleMons[gBattlerTarget].0x20 != 0x67)
+	{
+		if(r1 == 0x43)
+		{
+			if(gBattleMons[gBattlerTarget].0x2C == gBattleMons[gBattlerTarget].0x28 && gBattleMons[gBattlerTarget].0x28 <= gBattleMoveDamage)
+				goto lbl4
+			else
+				ClearFocusBand()
+		}
+		elseif(r1 == 0x27 && (Random() % 100) bcc r6)
+		{
+			r1 = 0x27
+
+			lbl4:
+			RecordItemEffectBattle(gBattlerTarget, r1)
+			SetFocusBand()
+		}
+	}
+
+	if(!(gBattleMons[gBattlerTarget].0x50 && 0x1000000))
+	{
+		if(gBattleMons[gBattlerAttacker].0x20 != 0x68 && (gBattleMons[gBattlerAttacker].0x20 - 0xA3) > 1 && gBattleMons[gBattlerTarget].0x20 == 5 && gBattleMons[gBattlerTarget].0x28 == gBattleMons[gBattlerTarget].0x2C)
+		{
+			if(gBattleMons[gBattlerTarget].0x28 <= gBattleMoveDamage)
+			{
+				gProtectStructs[gBattlerTarget] |= 2
+				goto lbl7
+			}
+		}
+		elseif((gProtectStructs[gBattlerTarget] << 0x1E) < 0 || (gSpecialStatuses[gBattlerTarget] >> 7) != 0)
+		{
+			lbl7:
+			if(gBattleMons[gBattlerTarget].0x28 <= gBattleMoveDamage)
+			{
+				gBattleMoveDamage = gBattleMons[gBattlerTarget].0x28 - 1
+				
+				if((gProtectStructs[gBattlerTarget] << 0x1E) < 0)
+					gMoveResultFlags |= 0x40
+				elseif((gSpecialStatuses[gBattlerTarget] >> 7) != 0)
+				{
+					gMoveResultFlags |= 0x80
+					gLastUsedItem = gBattleMons[gBattlerTarget].0x2E
+				}
+			}
+		}
+	}
+	
+	gBattleScriptCurrInstr++
+}

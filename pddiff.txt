@@ -57,6 +57,7 @@ abilities:
 + 0x82 = Cursed Body
 + 0x83 = Healer
 + 0x85 = Weak Armor
+- 0x8C = Telepathy
 + 0x8D = Moody
 + 0x8E = Overcoat
 + 0x8F = Poison Touch
@@ -86,6 +87,7 @@ abilities:
 + 0xB7 = Refrigerate
 + 0xB8 = Protean
 + 0xB9 = Bulletproof
+- 0xBA = Cheek Pouch
 + 0xC0 = Stamina
 + 0xC3 = Compaction
 + 0xCA = Slush Rush
@@ -186,6 +188,7 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 + 0x199 = "[PKMN]'s [ABILITY] raised its [STAT]! (placeholder)" <REFACTOR LATER>
 + 0x19B = "[PKMN]'s [ABILITY] bounced [MOVE] back! (placeholder)"
 ! 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]! (placeholder)"
+! 0x19D = "[PKMN] restored HP using its [ABILITY]! (placeholder)"
 ! 0x19E = "[PKMN] is hurt by its [ITEM]!"
 = 0x20E = "[PKMN] became trapped by swirling magma!"/"[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"
 = 0x20F = "[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"/"[PKMN] became trapped by swirling magma!"
@@ -281,7 +284,7 @@ grafics:
 		  Relies on: weather refactor, BattleMove refactor, cloud nine/intimidate id change????, gSpecialStatuses[battler].intimidatedMon?
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Optional knowledge: BattleMove.typeFlags2.bit2, bit3
-= 01BC68: Entirety of ItemBattleEffects (+ CheckUnnerve, IsAffectedBySheerForce, GetPinchThreshholdFromParam, GetMoveWithNoPP, GetPartyIndex) (see 14disasm)
+= 01BC68: Entirety of ItemBattleEffects (+ CheckUnnerve, IsAffectedBySheerForce, GetPinchThreshholdFromParam, GetMoveWithNoPP, GetPartyIndex, CheckAndRunCheekPouch) (see 14disasm)
 		  Implements: Magic Guard (Life Orb), Klutz (berries, Amulet Coin, Leftovers, White Herb, Mental Herb, Shell Bell, the item effects here), Sheer Force (Life Orb/Shell Bell glitch), Unnerve (Gen3 berries), modern Sitrus Berry, Black Sludge, Life Orb, status cure items/white herb consumed immediately
 		  Required knowledge: j0203B950
 		  Requires in future: GetPinchThreshhold (j207450), PushScriptInstr (j207470)
@@ -295,7 +298,7 @@ grafics:
 		  Relies on: weather refactor
 = 01DDC4 -> 01DE30 (repoint): Entirety of atk01_accuracycheck (see 17disasm)
 		  Implements: Keen Eye ignoring evasion, Tangled Feet, Snow Cloak, Klutz (acc/evasion items), Mold Breaker+ (vs acc/evasion), Unaware (acc/evasion), (ability93), Victory Star, Wide Lens, Hurricane acc- in sun, removes some first-battle code
-		  Relies on: weather refactor, BattleMove refactor, GetAbilityUserOnSameSide()
+		  Relies on: weather refactor, BattleMove refactor, GetAbilityUserOnSameSide
 		  Required knowledge: j0203B950
 		  Optional knowledge: BattleMove.typeFlags2.bit2, bit3
 		  Glitch?: (ability93) might not work unless Victory Star is active on the other side
@@ -419,17 +422,32 @@ grafics:
 		  Implements: need more info
 		  Required knowledge: j203B960
 		  Requires in future: extra fn j2058E0
-= (prev first)
-
-
-
-
+= 023ED8: Entirety of atk4C_getswitchedmondata (see 39disasm)
+		  Implements: need more info
+		  Required knowledge: j203B964
+- 024EC0: 18 08 1C 21 30 00 78 02 28 5E D0 08 1C 22 30 00 78 02 28 59 D0 08 1C 20 30 00 78 1A 28 54 D0 -> 18 20 31 48 78 02 28 5F D0 88 78 02 28 5C D0 08 78 1A 28 59 D0 62 28 57 D0 00 00 00 00 00 00
+		  Implements: Magic Guard (vs Spikes)
+- 025A0E: 05 -> 06 (+1 max digits for money)
+= 025FE0: Entirety of atk69_adjustsetdamage (see 40disasm)
+		  Implements: modern Sturdy, Klutz (enduring (Focus) items), Mold Breaker+ (vs Sturdy), Focus Sash
+		  Requires in future: ClearFocusBand (j168C88), SetFocusBand (j168C9C)
+		  Notes: False Swipe appears to be removed, check; check that infiltrating set-damage moves hit through sub
+= 02615C: Entirety of atk6A_removeitem (see 41disasm)
+		  Implements: Cheek Pouch
+		  Relies on: CheckAndRunCheekPouch (j1C5FC, e1CDEC), BattleScript_CheekPouchHeals (j1C728)
+		  Requires in future: PushScriptInstr (j207470)
+		  Glitch?: .item is off by 20, items aren't removed???
+= 027220: Entirety of atk7A_jumpifnexttargetvalid (see 42disasm)
+		  Implements: Telepathy
+		  Relies on: GetAbilityUserOnSameSide
+= 0274A8: Entirety of atk7D_setrain
+= 0274FC: Entirety of atk7E_setreflect
 
 
 		  
 
-curr: j23688
-next: j236D8
+curr: j26C80-j26CD4, j26CD4-j26DA0
+next: j26E60
 
 commands that changed address:
 84: 0270A4 -> 027080

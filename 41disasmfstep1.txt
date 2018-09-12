@@ -1,0 +1,35 @@
+atk6A_removeitem()
+{
+	r6 = gBattleScriptCurrInstr
+	r0 = *r6
+	r0 = GetBattlerForBattleScript(*(r0 + 1))
+	r5 = gActiveBattler
+	*r5 = r0
+	r1 = gBattleStruct
+	r4 = *r5
+	r0 = r4 * 2
+	r0 += 0xB8
+	r1 = *r1
+	r1 += r0
+	r2 = gBattleMons
+	r3 = 0x58
+	r0 = r4
+	r0 *= r3
+	r0 += r2
+	r0 = *(r0 + 0x2E)
+	*r1 = r0
+	r0 = *r5
+	r0 *= r3
+	r0 += r2
+	r1 = 0
+	*(r0 + 0x2E) = r1
+	r0 = *r5
+	r0 *= r3
+	r2 += 0x2E
+	r0 += r2
+	BtlController_EmitSetMonData(0, 2, 0, 2, r0)
+	MarkBattlerForControllerExec(*r5)
+	r0 = *r6
+	r0 += r2
+	*r6 = r0
+}
