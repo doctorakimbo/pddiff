@@ -416,6 +416,10 @@ grafics:
 		  Relies on: AbilityBattleEffects/ItemBattleEffects new cases, Choice Band effect ID change, gChosenActionByBattler changed to something else, CheckSwitchToSpreadMoveScript (j1588C, e16078), BattleScript_EffectSpreadMove (j158B0, e1609C)
 		  Notes: Inert call to ItemBattleEffects (arg 2)?
 = 023E88: Entirety of atk4B_returnatktoball (see 38disasm)
+		  Implements: need more info
+		  Required knowledge: j203B960
+		  Requires in future: extra fn j2058E0
+= (prev first)
 
 
 

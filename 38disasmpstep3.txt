@@ -1,0 +1,31 @@
+atk4B_returnatktoball()
+{
+	gActiveBattler = gBattlerAttacker;
+	fn_2058E0_J()
+	
+	if(gHitMarker & HITMARKER_FAINTED(gActiveBattler))
+	{
+		BtlController_EmitReturnMonToBall(0, 0);
+		MarkBattlerForControllerExec(gActiveBattler);
+	}
+	
+	gBattleScriptCurrInstr++;
+}
+
+
+
+
+
+fn_2058E0_J()
+{
+	if(!(gActiveBattler & 1)) // on player's side
+	{
+		if(data_0203B960_J < 6)
+		{
+			if(data_0203B960_J != 5)
+				data_0203B960_J++
+			
+			data_0203B960_J++
+		}
+	}
+}

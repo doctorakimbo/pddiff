@@ -1,0 +1,12 @@
+atk4B_returnatktoball()
+{
+	gActiveBattler = gBattlerAttacker;
+
+	if(gHitMarker & HITMARKER_FAINTED(gActiveBattler))
+	{
+		BtlController_EmitReturnMonToBall(0, 0);
+		MarkBattlerForControllerExec(gActiveBattler);
+	}
+	
+	gBattleScriptCurrInstr++;
+}

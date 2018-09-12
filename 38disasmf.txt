@@ -1,0 +1,29 @@
+lbl1: @23E88
+r4 = gActiveBattler
+r0 = gBattlerAttacker
+r0 = *r0
+*r4 = r0
+r2 = gHitMarker
+r1 = gBitTable
+r0 = *r4
+r0 *= 4
+r0 += r1
+r1 = *r0
+r1 << 0x1C
+r0 = *r2
+r0 &= r1
+if(r0 != 0) goto lbl2
+
+r0 = 0
+r1 = 0
+fn_E0B4()
+r0 = *r4
+MarkBattlerForControllerExec()
+goto lbl2
+
+lbl2:
+r1 = gBattleScriptCurrInstr
+r0 = *r1
+r0++
+*r1 = r0
+(end)

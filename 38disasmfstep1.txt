@@ -1,0 +1,29 @@
+atk4B_returnatktoball()
+{
+	r4 = gActiveBattler
+	r0 = gBattlerAttacker
+	r0 = *r0
+	*r4 = r0
+	r2 = gHitMarker
+	r1 = gBitTable
+	r0 = *r4
+	r0 *= 4
+	r0 += r1
+	r1 = *r0
+	r1 << 0x1C
+	r0 = *r2
+	r0 &= r1
+
+	if(r0 != 0)
+	{
+		r0 = 0
+		r1 = 0
+		fn_E0B4()
+		MarkBattlerForControllerExec(*r4)
+	}
+
+	r1 = gBattleScriptCurrInstr
+	r0 = *r1
+	r0++
+	*r1 = r0
+}
