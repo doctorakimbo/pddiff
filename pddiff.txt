@@ -57,7 +57,7 @@ abilities:
 + 0x82 = Cursed Body
 + 0x83 = Healer
 + 0x85 = Weak Armor
-- 0x8C = Telepathy
++ 0x8C = Telepathy
 + 0x8D = Moody
 + 0x8E = Overcoat
 + 0x8F = Poison Touch
@@ -87,7 +87,7 @@ abilities:
 + 0xB7 = Refrigerate
 + 0xB8 = Protean
 + 0xB9 = Bulletproof
-- 0xBA = Cheek Pouch
++ 0xBA = Cheek Pouch
 + 0xC0 = Stamina
 + 0xC3 = Compaction
 + 0xCA = Slush Rush
@@ -282,7 +282,7 @@ grafics:
 = 01A088: Most of AbilityBattleEffects (see 13disasm)
 		  Implements: Stench flinch chance, Lightning Rod boost/immunity, Pressure message, Motor Drive, Anger Point, Unburden (activation), Dry Skin (rain/water healing/immunity), Download, Hydration, Magic Guard (vs contact damage abilities), Klutz (the item effects here), Mold Breaker (message), Mold Breaker+ (vs move-subset immunities/absorbing immunities), Aftermath, Anticipation, Forewarn, Slow Start (upkeep), Storm Drain (boost/immunity), Ice Body, Snow Warning, Frisk, Unnerve (message), Cursed Body, Healer, Weak Armor, Moody, Overcoat (vs powder), Poison Touch, Imposter, Infiltrator (getting affected by hit-reaction abilities when hitting through Substitute), Mummy, Justified, Rattled, Sap Sipper, Iron Barbs, Aroma Veil, Sweet Veil, Gooey, Flower Veil (vs Gooey/Tangling Hair), Bulletproof, Stamina, Water Compaction, Dazzling, Queenly Majesty, Tangling Hair, weather rocks (on abilities), Safety Goggles (vs powder), grass-type powder immunity, dark-type prankster immunity, user affected by hit-reaction abilities when its sound moves hit through Substitute
 		  Relies on: weather refactor, BattleMove refactor, cloud nine/intimidate id change????, gSpecialStatuses[battler].intimidatedMon?
-		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
+		  Requires in future: GetAbilityUserOnSameSide, GetWeatherTurns, CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Optional knowledge: BattleMove.typeFlags2.bit2, bit3
 = 01BC68: Entirety of ItemBattleEffects (+ CheckUnnerve, IsAffectedBySheerForce, GetPinchThreshholdFromParam, GetMoveWithNoPP, GetPartyIndex, CheckAndRunCheekPouch) (see 14disasm)
 		  Implements: Magic Guard (Life Orb), Klutz (berries, Amulet Coin, Leftovers, White Herb, Mental Herb, Shell Bell, the item effects here), Sheer Force (Life Orb/Shell Bell glitch), Unnerve (Gen3 berries), modern Sitrus Berry, Black Sludge, Life Orb, status cure items/white herb consumed immediately
@@ -425,9 +425,9 @@ grafics:
 = 023ED8: Entirety of atk4C_getswitchedmondata (see 39disasm)
 		  Implements: need more info
 		  Required knowledge: j203B964
-- 024EC0: 18 08 1C 21 30 00 78 02 28 5E D0 08 1C 22 30 00 78 02 28 59 D0 08 1C 20 30 00 78 1A 28 54 D0 -> 18 20 31 48 78 02 28 5F D0 88 78 02 28 5C D0 08 78 1A 28 59 D0 62 28 57 D0 00 00 00 00 00 00
++ 024EC0: 08 1C 21 30 00 78 02 28 5E D0 08 1C 22 30 00 78 02 28 59 D0 08 1C 20 30 00 78 1A 28 54 D0 -> 20 31 48 78 02 28 5F D0 88 78 02 28 5C D0 08 78 1A 28 59 D0 62 28 57 D0 00 00 00 00 00 00
 		  Implements: Magic Guard (vs Spikes)
-- 025A0E: 05 -> 06 (+1 max digits for money)
++ 025A0E: 05 -> 06 (+1 max digits for money)
 = 025FE0: Entirety of atk69_adjustsetdamage (see 40disasm)
 		  Implements: modern Sturdy, Klutz (enduring (Focus) items), Mold Breaker+ (vs Sturdy), Focus Sash
 		  Requires in future: ClearFocusBand (j168C88), SetFocusBand (j168C9C)
@@ -440,8 +440,10 @@ grafics:
 = 027220: Entirety of atk7A_jumpifnexttargetvalid (see 42disasm)
 		  Implements: Telepathy
 		  Relies on: GetAbilityUserOnSameSide
-= 0274A8: Entirety of atk7D_setrain
-= 0274FC: Entirety of atk7E_setreflect
+= 0274A8: Entirety of atk7D_setrain (see 43disasm)
+		  Implements: Damp Rock (manual rain), Klutz (Damp Rock manual rain)
+		  Relies on: GetWeatherTurns, weather refactor
+= 0274FC: Entirety of atk7E_setreflect (see 44disasm) (FINISH PREV)
 
 
 		  

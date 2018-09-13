@@ -1,0 +1,34 @@
+atk7D_setrain()
+{
+	r3 = gBattleWeather
+	r1 = *r3
+	r0 = 3
+	r0 &= r1
+	
+	if(r0 != 0)
+	{
+		r2 = gMoveResultFlags
+		r0 = *r2
+		r1 = 1
+		r0 |= r1
+		*r2 = r0
+		r0 = 2
+	}
+	else
+	{
+		r1 = 1
+		*r3 = r1
+		r0 = gBattlerAttacker
+		r0 = GetWeatherTurns(*r0)
+		r3 = gBattleWeather
+		r3 += 0x2C
+		*r3 = r0
+	}
+	
+	r1 = gBattleCommunication
+	*(r1 + 5) = r0
+	r1 = gBattleScriptCurrInstr
+	r0 = *r1
+	r0++
+	*r1 = r0
+}

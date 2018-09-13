@@ -1,0 +1,16 @@
+atk7D_setrain()
+{
+	if(gBattleWeather & 7)
+	{
+		gMoveResultFlags |= 1
+		gBattleCommunication.5 = 2
+	}
+	else
+	{
+		gBattleWeather = 1
+		gBattleCommunication.5 = 0
+		*(gWishFutureKnock + 0x1C) = 5
+	}
+	
+	gBattleScriptCurrInstr++
+}

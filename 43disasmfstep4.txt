@@ -1,0 +1,16 @@
+atk7D_setrain()
+{
+	if(gBattleWeather & WEATHER_RAIN_ANY)
+	{
+		gMoveResultFlags |= MOVE_RESULT_MISSED;
+		gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+	}
+	else
+	{
+		gBattleWeather = WEATHER_RAIN_TEMPORARY;
+		gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+		gWishFutureKnock.weatherDuration = 5;
+	}
+	
+	gBattleScriptCurrInstr++
+}

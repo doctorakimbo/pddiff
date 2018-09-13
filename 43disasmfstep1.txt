@@ -1,0 +1,35 @@
+atk7D_setrain()
+{
+	r2 = gBattleWeather
+	r0 = *r2
+	r1 = 7
+	r1 &= r0
+	
+	if(r1 != 0)
+	{
+		r2 = gMoveResultFlags
+		r0 = *r2
+		r1 = 1
+		r0 |= r1
+		*r2 = r0
+		r1 = gBattleCommunication
+		r0 = 2
+		*(r1 + 5) = r0
+	}
+	else
+	{
+		r0 = 1
+		*r2 = r0
+		r0 = gBattleCommunication
+		*(r0 + 5) = r1
+		r0 = gWishFutureKnock
+		r0 += 0x1C
+		r1 = 5
+		*r0 = r1
+	}
+	
+	r1 = gBattleScriptCurrInstr
+	r0 = *r1
+	r0++
+	*r1 = r0
+}
