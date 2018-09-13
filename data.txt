@@ -135,6 +135,7 @@ funcs e,j,desc:
 02E228 = 02DA24 = AdjustFriendshipOnBattleFaint
 03E47C = CalculateMonStats
 03ECEC = 03E458 = CalculateBaseDamage
+03F5B4 = 03ED20 = CountAliveMonsInBattle
 03F78C = 03EEF8 = GetGenderFromSpeciesAndPersonality
 03FBE8 = 03F354 = GetMonData
 04037C = 03FA70 = SetMonData
@@ -156,6 +157,7 @@ funcs e,j,desc:
 0C7208 = 0C83E4 = RecordItemEffectBattle
 1E3BA8 = call r0
 1E4018 = 1C7F38 = division
+1E460C = 1C852C = division
 1E4684 = 1C85A4 = modulus
 
 014D4A = 01456A = GetSpeedStat
@@ -169,9 +171,9 @@ funcs e,j,desc:
 01CDEC = 01C5FC = CheckAndRunCheekPouch
 01CE30 = 01C640 = GetMoveWithNoPP
 01CEEC = 01C6FC = GetPartyIndex
-01F310 = 01EB20 = HasItemWithTypeEffect (unimplemented)
-01F358 = 01EB68 = GetWeatherTurns (unimplemented)
-01FCCC = 01F4DC = ConsumeItem (unimplemented)
+01F310 = 01EB20 = HasItemWithTypeEffect
+01F358 = 01EB68 = GetWeatherTurns
+01FCCC = 01F4DC = ConsumeItem
 027E3A = 027612 = CheckLeafGuardAndFlowerVeil (unimplemented)
 ?????? = 168C88 = ClearFocusBand (unimplemented)
 ?????? = 168C9C = SetFocusBand (unimplemented)

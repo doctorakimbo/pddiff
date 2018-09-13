@@ -1,1 +1,85 @@
 lbl1: @274FC
+r6 = gBattlerAttacker
+r0 = *r6
+GetBattlerPosition()
+r4 = gSideStatuses
+r5 = 1
+r1 = r5
+r1 &= r0
+r1 *= 2
+r1 += r4
+r1 = *r1
+r0 = r5
+r0 &= r1
+if(r0 == 0) goto lbl2
+
+r2 = gMoveResultFlags
+r0 = *r2
+r1 = 1
+r0 |= r1
+*r2 = r0
+r1 = gBattleCommunication
+r0 = 0
+goto lbl4
+
+lbl2:
+r0 = *r6
+GetBattlerPosition()
+r1 = r5
+r1 &= r0
+r1 *= 2
+r1 += r4
+r0 = *r1
+r2 = 1
+r0 |= r2
+*r1 = r0
+r0 = *r6
+GetBattlerPosition()
+r4 = gSideTimers
+r1 = r5
+r1 &= r0
+r0 = r1 * 2
+r0 += r1
+r0 *= 4
+r0 += r4
+r1 = 5
+*r0 = r1
+r0 = *r6
+GetBattlerPosition()
+r1 = r5
+r1 &= r0
+r0 = r1 * 2
+r0 += r1
+r0 *= 4
+r0 += r4
+r1 = *r6
+*(r0 + 1) = r1
+r0 = gBattleTypeFlags
+r0 = *r0
+r0 &= r5
+if(r0 == 0) goto lbl3
+
+r0 = 1
+fn_3F5B4()
+r1 = r0
+if(r1 != 2) goto lbl3
+
+r0 = gBattleCommunication
+*(r0 + 5) = r1
+goto lbl5
+
+lbl3:
+r1 = gBattleCommunication
+r0 = 1
+goto lbl4
+
+lbl4:
+*(r1 + 5) = r0
+goto lbl5
+
+lbl5:
+r1 = gBattleScriptCurrInstr
+r0 = *r1
+r0++
+*r1 = r0
+(end)

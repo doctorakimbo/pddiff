@@ -1,0 +1,60 @@
+lbl1: @27350
+r4 = gBattleScriptCurrInstr
+r3 = gBattleMons
+r0 = gBattlerAttacker
+r0 = *r0
+r2 = 0x58
+r0 *= r2
+r5 = r0 + r3
+r0 = r5
+r0 += 0x20
+r0 = *r0
+if(r0 != 0x62) goto lbl2
+
+r1 = gBattlerTarget
+r1 = *r1
+r1 *= r2
+r3 += r1
+r3 += 0x20
+r1 = *r3
+if(r1 != 0x40) goto lbl2
+
+r0 = BattleScript_HitFromTryFaintMon
+goto lbl6
+
+lbl2:
+if(r0 == 0x67) goto lbl3
+
+r0 = *(r5 + 0x2E)
+GetHoldEffect()
+goto lbl3
+
+lbl3:
+r3 = r0
+r5 = gBattleMoveDamage
+r0 = *(r5 + 4)
+r0 /= 2
+if(r3 != 0x51) goto lbl4
+
+r1 = 0xD
+r0 *= r1
+r1 = 0xA
+divide()
+goto lbl4
+
+lbl4:
+if(r0 != 0) goto lbl5
+
+r0 = 1
+goto lbl5
+
+lbl5:
+r0 = -r0
+*r5 = r0
+r0 = *r4
+r0++
+goto lbl6
+
+lbl6:
+*r4 = r0
+(end)

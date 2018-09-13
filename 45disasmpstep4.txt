@@ -1,0 +1,47 @@
+atk80_manipulatedamage()
+{
+	switch(gBattleScriptCurrInstr[1])
+	{
+	case ATK80_DMG_CHANGE_SIGN:
+		gBattleMoveDamage = -gBattleMoveDamage;
+		break;
+	case ATK80_DMG_HALVED: // old: ATK80_DMG_HALF_BY_TWO_NOT_MORE_THAN_HALF_MAX_HP
+		gBattleMoveDamage = gBattleMoveDamage / 2;
+		
+		if(gBattleMoveDamage == 0)
+			gBattleMoveDamage = 1
+			
+		break;
+	case ATK80_DMG_DOUBLED:
+		gBattleMoveDamage = gBattleMoveDamage * 2;
+		break;
+	case ATK80_DMG_TRIPLED:
+		gBattleMoveDamage = gBattleMoveDamage * 3;
+		break;
+	case ATK80_DMG_DIVIDED_BY_THREE:
+		gBattleMoveDamage = gBattleMoveDamage / 3;
+		
+		if(gBattleMoveDamage == 0)
+			gBattleMoveDamage = 1;
+			
+		break;
+	case 5:
+		if(gBattleMons[gBattlerAttacker].ability == ABILITY_MAGIC_GUARD)
+		{
+			r0 = data_081D694E // not used
+			gBattleScriptCurrInstr += 2;
+			return;
+		}
+		else
+		{
+			gBattleMoveDamage = gBattleMons[gBattlerTarget].maxHP / 2;
+			
+			if(gBattleMoveDamage == 0)
+				gBattleMoveDamage = 1;
+		}
+		
+		break;
+	}
+	
+	gBattleScriptCurrInstr += 2;
+}

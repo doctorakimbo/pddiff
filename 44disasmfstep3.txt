@@ -1,0 +1,22 @@
+atk7E_setreflect()
+{
+	if(gSideStatuses[GetBattlerPosition(gBattlerAttacker) & 1] & 1)
+	{
+		gMoveResultFlags |= 1
+		gBattleCommunication.5 = 0
+	}
+	else
+	{
+		gSideStatuses[GetBattlerPosition(gBattlerAttacker) & 1] |= 1
+		gSideTimers[GetBattlerPosition(gBattlerAttacker) & 1][0] = 5
+		gSideTimers[GetBattlerPosition(gBattlerAttacker) & 1][1] = gBattlerAttacker
+		
+		if((gBattleTypeFlags & 1) && fn_3F5B4(1) == 2)
+			gBattleCommunication.5 = 2
+		else
+			gBattleCommunication.5 = 1
+	}
+
+	lbl5:
+	gBattleScriptCurrInstr++
+}

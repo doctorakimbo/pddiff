@@ -1,0 +1,23 @@
+atk88_negativedamage()
+{
+	if(gBattleMons[gBattlerAttacker].ability == ABILITY_MAGIC_GUARD && gBattleMons[gBattlerTarget].ability == ABILITY_LIQUID_OOZE)
+		gBattleScriptCurrInstr = BattleScript_HitFromTryFaintMon
+	else
+	{
+		if(gBattleMons[gBattlerAttacker].ability != ABILITY_KLUTZ)
+			holdEffect = GetHoldEffect(gBattleMons[gBattlerAttacker].item)
+		else
+			holdEffect = 0;
+		
+		gBattleMoveDamage = gHpDealt / 2;
+		
+		if(holdEffect == HOLD_EFFECT_BIG_ROOT)
+			gBattleMoveDamage *= (13 / 10);
+		
+		if(gBattleMoveDamage == 0)
+			gBattleMoveDamage = 1;
+		
+		gBattleMoveDamage = -gBattleMoveDamage;
+		gBattleScriptCurrInstr++;
+	}
+}

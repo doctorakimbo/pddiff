@@ -1,0 +1,9 @@
+atk88_negativedamage()
+{
+	gBattleMoveDamage = -(gHpDealt + (gHpDealt >> 0x1F)) / 2
+	
+	if(gBattleMoveDamage == 0)
+		gBattleMoveDamage = -1
+	
+	gBattleScriptCurrInstr++
+}

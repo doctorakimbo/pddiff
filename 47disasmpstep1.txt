@@ -1,0 +1,60 @@
+atk84_jumpifcantmakeasleep()
+{
+	r5 = gBattleScriptCurrInstr
+	r1 = *r5
+	r4 = T2_READ_PTR(*(r1 + 1))
+	r6 = gBattlerTarget
+	r0 = *r6
+	UproarWakeUpCheck()
+	
+	if(r0 == 0)
+	{
+		r1 = gBattleMons
+		r6 = *r6
+		r0 = 0x58
+		r0 *= r6
+		r0 += r1
+		r0 += 0x20
+		r7 = *r0
+		
+		if(r7 == 0xF || r7 == 0x48 || r7 == 0xAD) goto lbl4
+
+		r0 = *r6
+		r1 = 0xAD
+		GetAbilityUserOnSameSide()
+
+		if(r7 == 0) goto lbl3
+
+		r7 = 0xAD
+		goto lbl4
+
+		lbl3:
+		r2 = gCurrentMove
+		r0 = *r2
+		if(r0 == 0x9C) goto lbl6
+
+		r0 = r6
+		CheckLeafGuardAndFlowerVeil()
+		if(r0 == 0) goto lbl6
+
+		r7 = r0
+		goto lbl4
+
+		lbl4:
+		r2 = gLastUsedAbility
+		*r2 = r7
+		r1 = gBattleCommunication
+		*(r1 + 5) = 2
+		r0 = r6
+		r1 = *r2
+		RecordAbilityBattle()
+	}
+	else
+		*r5 = r4
+
+	return
+	lbl6:
+	r0 = *r5
+	r0 += 5
+	*r5 = r0
+}

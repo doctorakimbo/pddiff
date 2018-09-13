@@ -1,0 +1,24 @@
+atk80_manipulatedamage()
+{
+	switch(gBattleScriptCurrInstr[1])
+	{
+	case ATK80_DMG_CHANGE_SIGN:
+		gBattleMoveDamage = -gBattleMoveDamage;
+		break;
+	case ATK80_DMG_HALF_BY_TWO_NOT_MORE_THAN_HALF_MAX_HP:
+		gBattleMoveDamage /= 2;
+		
+		if(gBattleMoveDamage == 0)
+			gBattleMoveDamage = 1;
+		
+		if(gBattleMoveDamage > gBattleMons[gBattlerTarget].maxHP / 2)
+			gBattleMoveDamage = gBattleMons[gBattlerTarget].maxHP / 2;
+		
+		break;
+	case ATK80_DMG_DOUBLED:
+		gBattleMoveDamage *= 2;
+		break;
+	}
+	
+	gBattleScriptCurrInstr += 2;
+}

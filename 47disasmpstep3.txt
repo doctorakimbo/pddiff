@@ -1,0 +1,36 @@
+atk84_jumpifcantmakeasleep()
+{
+	if(!UproarWakeUpCheck(gBattlerTarget))
+	{
+		ability = gBattleMons[gBattlerTarget].0x20
+		
+		if(ability != 0xF && ability != 0x48 && ability != 0xAD)
+		{
+			if(GetAbilityUserOnSameSide(gBattlerTarget, 0xAD))
+				ability = 0xAD
+			else
+			{
+				if(gCurrentMove == 0x9C)
+				{
+					gBattleScriptCurrInstr += 5
+					return;
+				}
+				
+				ability = CheckLeafGuardAndFlowerVeil(gBattlerTarget)
+				
+				if(!ability)
+				{
+					gBattleScriptCurrInstr += 5
+					return;
+				}
+			}
+		}
+		
+		gLastUsedAbility = ability;
+		gBattleCommunication[5] = 2
+		RecordAbilityBattle(gBattlerTarget, gLastUsedAbility)
+		gBattleScriptCurrInstr = T2_READ_PTR(gBattleScriptCurrInstr[1])
+	}
+	else
+		gBattleScriptCurrInstr = T2_READ_PTR(gBattleScriptCurrInstr[1])
+}

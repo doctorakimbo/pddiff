@@ -1,0 +1,74 @@
+lbl1: @26E60
+r5 = gBattleMoveDamage
+r0 = *r5
+r4 = gBattleScriptCurrInstr
+r2 = *r4
+r2 = *(r2 + 1)
+if(r2 == 0) goto lbl3
+
+if(r2 == 1) goto lbl4
+
+if(r2 == 2) goto lbl5
+
+if(r2 == 3) goto lbl6
+
+if(r2 == 4) goto lbl7
+
+if(r2 != 5) goto lbl10
+
+r2 = gBattleMons
+r0 = gBattlerAttacker
+r0 = *r0
+r1 = 0x58
+r1 *= r0
+r1 += r2
+r0 = r1
+r0 += 0x20
+r0 = *r0
+if(r0 != 0x62) goto lbl2
+
+r0 = data_081BA90A_J
+goto lbl10
+
+lbl2:
+r0 = *(r1 + 0x2C)
+r0 /= 2
+goto lbl8
+
+lbl3:
+r0 = -r0
+goto lbl9
+
+lbl4:
+r0 /= 2
+goto lbl8
+
+lbl5:
+r0 *= 2
+goto lbl9
+
+lbl6:
+r1 = r0 * 2
+r0 += r1
+goto lbl9
+
+lbl7:
+r1 = 3
+divide()
+goto lbl8
+
+lbl8:
+if(r0 != 0) goto lbl9
+
+r0 = 1
+goto lbl9
+
+lbl9:
+*r5 = r0
+goto lbl10
+
+lbl10:
+r0 = *r4
+r0++
+*r4 = r0
+(end)

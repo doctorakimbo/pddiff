@@ -1,0 +1,68 @@
+lbl1: @27BFC
+r8 = r3
+r6 = r0
+r7 = r1
+r5 = r2
+r0 = 0
+r9 = r0
+r10 = r0
+r0 = 0x40
+r0 &= r5
+if(r0 == 0) goto lbl2
+
+r0 = gActiveBattler
+r1 = gBattlerAttacker
+goto lbl3
+
+lbl2:
+r0 = gActiveBattler
+r1 = gBattlerTarget
+goto lbl3
+
+lbl3:
+r1 = *r1
+*r0 = r1
+r0 = 0xBF
+r5 &= r0
+r0 = 0x80
+r0 &= r5
+if(r0 == 0) goto lbl4
+
+r0 = r9
+r0++
+r9 = r0
+goto lbl4
+
+lbl4:
+r0 = 0x7F
+r5 &= r0
+r0 = 0x20
+r0 &= r5
+if(r0 == 0) goto lbl5
+
+r0 = r10
+r0++
+r10 = r0
+goto lbl5
+
+lbl5:
+r0 = 0xDF
+r5 &= r0
+r1 = gBattleTextBuff1
+r4 = 0
+r2 = 0xFD
+*r1 = r2
+r0 = 5
+*(r1 + 1) = r0
+*(r1 + 2) = r7
+r3 = 1
+r3 = -r3
+r12 = r3
+r0 = 0xFF
+*(r1 + 3) = r0
+r0 = r6 << 0x18
+if(r0 < 0) goto lbl6
+
+goto lbl(27F6C)
+
+lbl6:

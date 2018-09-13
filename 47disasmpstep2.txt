@@ -1,0 +1,42 @@
+atk84_jumpifcantmakeasleep()
+{
+	if(!UproarWakeUpCheck(*gBattlerTarget))
+	{
+		r7 = *((*gBattlerTarget * 0x58) + gBattleMons + 0x20)
+		
+		if(r7 != 0xF && r7 != 0x48 && r7 != 0xAD)
+		{
+			if(GetAbilityUserOnSameSide(*gBattlerTarget, 0xAD))
+				*gLastUsedAbility = 0xAD
+			else
+			{
+				if(*gCurrentMove == 0x9C)
+				{
+					*gBattleScriptCurrInstr += 5
+					return;
+				}
+				
+				r0 = CheckLeafGuardAndFlowerVeil(*gBattlerTarget)
+				
+				if(!r0)
+				{
+					*gBattleScriptCurrInstr += 5
+					return;
+				}
+
+				*gLastUsedAbility = r0
+			}
+		}
+		else
+		{
+			*gBattleScriptCurrInstr += 5
+			return;
+		}
+		
+		*(gBattleCommunication + 5) = 2
+		RecordAbilityBattle(*gBattlerTarget, *gLastUsedAbility)
+		*gBattleScriptCurrInstr = T2_READ_PTR(*(*gBattleScriptCurrInstr + 1))
+	}
+	else
+		*gBattleScriptCurrInstr = T2_READ_PTR(*(*gBattleScriptCurrInstr + 1))
+}

@@ -1,0 +1,16 @@
+atk84_jumpifcantmakeasleep()
+{
+	jumpPtr = T1_READ_PTR(gBattleScriptCurrInstr[1]);
+
+	if(UproarWakeUpCheck(gBattlerTarget))
+        gBattlescriptCurrInstr = jumpPtr;
+	elseif(gBattleMons[gBattlerTarget].ability == ABILITY_INSOMNIA || gBattleMons[gBattlerTarget].ability == ABILITY_VITAL_SPIRIT)
+	{
+		gLastUsedAbility = gBattleMons[gBattlerTarget].ability;
+		gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+		gBattleScriptCurrInstr = jumpPtr;
+		RecordAbilityBattle(gBattlerTarget, gLastUsedAbility);
+	}
+	else
+		gBattleScriptCurrInstr += 5;
+}

@@ -1,0 +1,28 @@
+UproarWakeUpCheck(arg0)
+{
+	r2 = 0
+	
+	while(r2 < *gBattlersCount)
+	{
+		if((*((r2 * 0x58) + gBattleMons + 0x50) & 0x70) && *((arg0 * 0x58) + gBattleMons + 0x20) != 0x2B)
+		{
+			*(gBattleScripting + 0x17) = r2
+			
+			if(*gBattlerTarget == 0xFF)
+				*gBattlerTarget = r2
+			elseif(*gBattlerTarget != r2)
+				*(gBattleCommunication + 5) = 1
+			else
+				*(gBattleCommunication + 5) = 0
+			
+			break;
+		}
+		
+		r2++
+	}
+	
+	if(r2 != *gBattlersCount)
+		return 1
+	else
+		return 0
+}

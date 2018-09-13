@@ -1,0 +1,32 @@
+atk84_jumpifcantmakeasleep()
+{
+	jumpPtr = T1_READ_PTR(gBattleScriptCurrInstr[1]);
+
+	if(UproarWakeUpCheck(gBattlerTarget))
+		gBattleScriptCurrInstr = jumpPtr;
+	else
+	{
+		ability = gBattleMons[gBattlerTarget].ability;
+		
+		if(ability != ABILITY_INSOMNIA && ability != ABILITY_VITAL_SPIRIT && ability != ABILITY_SWEET_VEIL)
+		{
+			if(GetAbilityUserOnSameSide(gBattlerTarget, ABILITY_SWEET_VEIL))
+				ability = ABILITY_SWEET_VEIL;
+			else
+			{
+				ability = CheckLeafGuardAndFlowerVeil(gBattlerTarget);
+				
+				if(gCurrentMove == MOVE_REST || !ability)
+				{
+					gBattleScriptCurrInstr += 5;
+					return;
+				}
+			}
+		}
+		
+		gLastUsedAbility = ability;
+		gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+		RecordAbilityBattle(gBattlerTarget, gLastUsedAbility);
+		gBattleScriptCurrInstr = jumpPtr;
+	}	
+}

@@ -1,0 +1,30 @@
+atk7E_setreflect()
+{
+	if(*(((GetBattlerPosition(*gBattlerAttacker) & 1) * 2) + gSideStatuses) & 1)
+	{
+		*gMoveResultFlags |= 1
+		r1 = gBattleCommunication
+		r0 = 0
+	}
+	else
+	{
+		*(((GetBattlerPosition(*gBattlerAttacker) & 1) * 2) + gSideStatuses) |= 1
+		*(((GetBattlerPosition(*gBattlerAttacker) & 1) * 0xC) + gSideTimers) = 5
+		*(((GetBattlerPosition(*gBattlerAttacker) & 1) * 0xC) + gSideTimers + 1) = *gBattlerAttacker
+		
+		if((*gBattleTypeFlags & 1) && fn_3F5B4(1) == 2)
+		{
+			*(gBattleCommunication + 5) = 2
+			goto lbl5
+		}
+		
+		r1 = gBattleCommunication
+		r0 = 1
+	}
+	
+	*(r1 + 5) = r0
+	goto lbl5
+
+	lbl5:
+	*gBattleScriptCurrInstr++
+}

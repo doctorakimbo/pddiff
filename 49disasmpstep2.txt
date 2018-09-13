@@ -1,0 +1,23 @@
+atk88_negativedamage()
+{
+	if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x62 && *((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 0x40)
+		*gBattleScriptCurrInstr = BattleScript_HitFromTryFaintMon
+	elseany
+	{
+		if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) != 0x67)
+			r3 = GetHoldEffect(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x2E))
+		else
+			r3 = 0
+		
+		r0 = *gHpDealt / 2
+		
+		if(r3 == 0x51)
+			r0 *= (13 / 10)
+		
+		if(r0 == 0)
+			r0 = 1
+		
+		*r5 = -gBattleMoveDamage
+		*gBattleScriptCurrInstr++
+	}
+}

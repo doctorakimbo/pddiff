@@ -113,6 +113,7 @@ item effects:
 + 0x4D = Safety Wear
 + 0x4E = Grip Claw
 + 0x4F = Binding Band
+- 0x50 = Light Clay
 + 0x51 = Big Root
 + 0x52 = Assault Vest
 + 0x54 = Life Orb (effectparam = 1/X HP lost)
@@ -443,17 +444,37 @@ grafics:
 = 0274A8: Entirety of atk7D_setrain (see 43disasm)
 		  Implements: Damp Rock (manual rain), Klutz (Damp Rock manual rain)
 		  Relies on: GetWeatherTurns, weather refactor
-= 0274FC: Entirety of atk7E_setreflect (see 44disasm) (FINISH PREV)
-
-
+- 0274FC: Entirety of atk7E_setreflect (see 44disasm)
+		  Implements: Light Clay (Reflect), Klutz (Light Clay on Reflect)
+- 027688: Entirety of atk80_manipulatedamage (see 45disasm)
+		  Implements: Magic Guard (blocks unknown effect), modern High Jump Kick, others not known yet
+		  Note: script_1D694E loaded but never used
+= 027830: Entirety of UproarWakeUpCheck (see 46disasm)
+		  Implements: Makes room for expanded atk84_jumpifcantmakeasleep
+= 0278CC -> 0278A8 (repoint): Entirety of atk84_jumpifcantmakeasleep (see 47disasm)
+		  Implements: Leaf Guard (sleep), Sweet Veil, Flower Veil (sleep)
+		  Relies on: GetAbilityUserOnSameSide
+		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
+		  Glitch?: Leaf Guard doesn't prevent Rest
+- 027AE4: Entirety of atk87_stockpiletohpheal (see 48disasm)
+		  Implements: Makes room for expanded atk88_negativedamage
+- 027BC8 -> 027B78 (repoint): Entirety of atk88_negativedamage (see 49disasm)
+		  Implements: Magic Guard (vs Liquid Ooze), Big Root (draining moves), Klutz (Big Root on draining moves)
+= 027BFC: Entirety of ChangeStatBuffs (see 50disasm)
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
 		  
 
-curr: j26C80-j26CD4, j26CD4-j26DA0
-next: j26E60
+curr: j273D4-j27858
+next: j27968
 
 commands that changed address:
-84: 0270A4 -> 027080
-88: 0273A0 -> 027350
 8D: 0279A8 -> 0279A0
 AA: 029BA0 -> 168F08
 D9: 02BE48 -> EB8130

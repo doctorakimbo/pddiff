@@ -1,0 +1,17 @@
+atk84_jumpifcantmakeasleep()
+{
+	if(!UproarWakeUpCheck(gBattlerTarget))
+	{
+		if(gBattleMons[gBattlerTarget].0x20 == 0xF || gBattleMons[gBattlerTarget].0x20 == 0x48)
+		{
+			gLastUsedAbility = gBattleMons[gBattlerTarget].0x20
+			gBattleCommunication[5] = 2
+			gBattleScriptCurrInstr = T2_READ_PTR(gBattleScriptCurrInstr[1])
+			RecordAbilityBattle(gBattlerTarget, gLastUsedAbility)
+		}
+		else
+			gBattleScriptCurrInstr += 5
+	}
+	else
+		gBattleScriptCurrInstr = T2_READ_PTR(gBattleScriptCurrInstr[1])
+}

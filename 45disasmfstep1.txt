@@ -1,0 +1,53 @@
+atk80_manipulatedamage()
+{
+	r1 = gBattleScriptCurrInstr
+	r0 = *r1
+	r2 = *(r0 + 1)
+	r4 = r1
+	
+	switch(r2)
+	{
+	case 0:
+		r1 = gBattleMoveDamage
+		r0 = *r1
+		r0 = -r0
+		goto lbl7
+	case 1:
+		r3 = gBattleMoveDamage
+		r0 = *r3
+		r1 >>= 0x1F
+		r0 += r1
+		r0 /= 2
+		*r3 = r0
+		
+		if(r0 == 0)
+			*r3 = r2
+			
+		r2 = gBattleMons
+		r0 = gBattlerTarget
+		r1 = *r0
+		r0 = 0x58
+		r0 *= r1
+		r0 += r2
+		r0 = *(r0 + 0x2C)
+		r1 = r0 / 2
+		r0 = *r3
+		
+		if(r1 < r0)
+			*r3 = r1
+		
+		break;
+	case 2:
+		r1 = gBattleMoveDamage
+		r0 = *r1
+		r0 *= 2
+
+		lbl7:
+		*r1 = r0
+		break;
+	}
+	
+	r0 = *r4
+	r0 += 2
+	*r4 = r0
+}

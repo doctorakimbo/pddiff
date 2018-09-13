@@ -1,0 +1,67 @@
+lbl1: @27008
+r5 = gBattleMons
+r1 = 0x58
+r0 *= r1
+r0 += r5
+r0 += 0x20
+r3 = *r0
+r2 = 0
+r0 = gBattlersCount
+r4 = *r0
+if(r2 >= r4) goto lbl7
+
+goto lbl2
+
+lbl2:
+r0 = 0x58
+r0 *= r2
+r0 += r5
+r0 = *(r0 + 0x50)
+r1 = 0x70
+r0 &= r1
+if(r0 == 0) goto lbl6
+
+if(r3 == 0x2B) goto lbl6
+
+r0 = gBattleScripting
+*(r0 + 0x17) = r2
+r1 = gBattlerTarget
+r0 = *r1
+if(r0 != 0xFF) goto lbl3
+
+*r1 = r2
+goto lbl7
+
+lbl3:
+if(r0 == r2) goto lbl4
+
+r0 = 1
+goto lbl5
+
+lbl4:
+r0 = 0
+goto lbl5
+
+lbl5:
+r1 = gBattleCommunication
+*(r1 + 5) = r0
+goto lbl7
+
+lbl6:
+r2++
+if(r2 < r4) goto lbl2
+
+goto lbl7
+
+lbl7:
+if(r2 == r4) goto lbl8
+
+r0 = 1
+goto lbl9
+
+lbl8:
+r0 = 0
+goto lbl9
+
+lbl9:
+return r0
