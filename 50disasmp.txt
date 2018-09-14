@@ -92,3 +92,84 @@ if(r0 < 0) goto lbl9
 goto lbl(2772E)
 
 lbl9:
+r2 = gBattleMons
+r0 = gBattlerAttacker
+r0 = *r0
+r1 = gBattlerTarget
+r1 = *r1
+if(r0 != r1) goto lbl10
+
+r10 = r2
+goto lbl(276C0)
+
+lbl10:
+r1 = 0x58
+r0 *= r1
+r0 += r2
+r0 += 0x20
+r4 = *r0
+if(r4 == 0x97) goto lbl12
+
+r0 = *r3
+GetBattlerPosition()
+r1 = 1
+r1 &= r0
+r0 = 0xC
+r0 *= r1
+r2 = gSideTimers
+r0 += r2
+r0 = *(r0 + 4)
+if(r0 == 0) goto lbl12
+
+r2 = r9
+if(r2 != 0) goto lbl12
+
+if(r5 != 1) goto lbl14
+
+r2 = gSpecialStatuses
+r6 = gActiveBattler
+r1 = *r6
+r0 = 0x14
+r0 *= r1
+r4 = r0 + r2
+r0 = *r4
+r0 <<= 0x1F
+if(r0 == 0) goto lbl11
+
+r0 = r8
+goto lbl13
+
+lbl11:
+r0 = r8
+BattleScriptPush()
+r1 = gBattleScripting
+r0 = *r6
+*(r1 + 0x17) = r0
+r1 = *r4
+r2 = 1
+r1 |= r2
+*r4 = r1
+r0 = script_1D8C3E
+goto lbl13
+
+lbl12:
+r0 = r10
+if(r0 == 1) goto lbl15
+
+r0 = 0
+JumpIfMoveAffectedByProtect()
+if(r0 == 0) goto lbl15
+
+r0 = script_1D7DF2
+goto lbl13
+
+lbl13:
+r1 = gBattleScriptCurrInstr
+*r1 = r0
+goto lbl14
+
+lbl14:
+r0 = 1
+goto lbl(2783A)
+
+lbl15:
