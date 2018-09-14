@@ -89,7 +89,7 @@ r0 = 0xFF
 r0 = r6 << 0x18
 if(r0 < 0) goto lbl9
 
-goto lbl(2772E)
+goto lbl32
 
 lbl9:
 r2 = gBattleMons
@@ -100,7 +100,7 @@ r1 = *r1
 if(r0 != r1) goto lbl10
 
 r10 = r2
-goto lbl(276C0)
+goto lbl27
 
 lbl10:
 r1 = 0x58
@@ -170,6 +170,352 @@ goto lbl14
 
 lbl14:
 r0 = 1
-goto lbl(2783A)
+goto lbl43
 
 lbl15:
+r2 = gBattleMons
+r10 = r2
+r0 = r9
+if(r0 != 0) goto lbl20
+
+if(r4 == 0x68) goto lbl20
+
+r4 -= 0xA3
+if(r4 <= 1) goto lbl20
+
+r1 = gActiveBattler
+r0 = *r1
+r3 = 0x58
+r0 *= r3
+r0 += r2
+r0 += 0x20
+r4 = *r0
+if(r4 != 0x13) goto lbl16
+
+if(r5 == 0) goto lbl22
+
+goto lbl16
+
+lbl16:
+if(r4 != 0x33) goto lbl17
+
+if(r7 == 6) goto lbl24
+
+goto lbl17
+
+lbl17:
+if(r4 != 0x34) goto lbl18
+
+if(r7 == 1) goto lbl24
+
+goto lbl18
+
+lbl18:
+if(r4 != 0x91) goto lbl19
+
+if(r7 == 2) goto lbl24
+
+goto lbl19
+
+lbl19:
+if(r4 == 0x1D) goto lbl21
+
+if(r4 == 0x49) goto lbl21
+
+r4 = 0xB6
+r0 = *r1
+CheckLeafGuardAndFlowerVeil()
+if(r0 == 0xB6) goto lbl21
+
+goto lbl20
+
+lbl20:
+goto lbl27
+
+lbl21:
+if(r5 != 1) goto lbl22
+
+r2 = gSpecialStatuses
+r0 = *r1
+r1 = 0x14
+r0 *= r1
+r0 += r2
+r0 = *r0
+r0 <<= 0x1F
+if(r0 == 0) goto lbl23
+
+r0 = gBattleScriptCurrInstr
+r1 = r8
+*r0 = r1
+goto lbl22
+
+lbl22:
+r0 = 1
+goto lbl43
+
+lbl23:
+r0 = r8
+BattleScriptPush()
+r0 = script_1D9416
+r1 = gBattleScriptCurrInstr
+*r1 = r0
+r2 = gActiveBattler
+r1 = gBattleScripting
+r0 = *r2
+*(r1 + 0x17) = r0
+r1 = gLastUsedAbility
+*r1 = r4
+r1 = r4
+RecordAbilityBattle()
+r2 = gSpecialStatuses
+r3 = gActiveBattler
+r1 = *r3
+r0 = 0x14
+r0 *= r1
+r0 += r2
+r1 = *r0
+r2 = 1
+r1 |= r2
+*r0 = r1
+r0 = 1
+goto lbl43
+
+lbl24:
+if(r5 != 1) goto lbl26
+
+r0 = r8
+BattleScriptPush()
+r0 = script_1D947E
+if(r4 != 0xB6) goto lbl25
+
+r0 = script_22A00_J
+goto lbl25
+
+lbl25:
+r1 = gBattleScriptCurrInstr
+*r1 = r0
+r2 = gActiveBattler
+r1 = gBattleScripting
+r0 = *r2
+*(r1 + 0x17) = r0
+r1 = gLastUsedAbility
+*r1 = r4
+r1 = r4
+RecordAbilityBattle()
+goto lbl26
+
+lbl26:
+r0 = 1
+goto lbl43
+
+lbl27:
+r3 = gBattleTextBuff2
+r0 = 0xFD
+*r3 = r0
+r4 = 0
+r2 = 1
+r1 = 0x70
+r1 &= r6
+r6 = -r1
+r6 >>= 4
+if(r1 bcc 0x30) goto lbl28
+
+r0 = 0xD6
+goto lbl29
+
+lbl28:
+if(r1 != 0x20) goto lbl30
+
+r0 = 0xD3
+goto lbl29
+
+lbl29:
+*(r3 + 1) = r4
+*(r3 + 2) = r0
+*(r3 + 3) = r4
+r2 = 4
+goto lbl30
+
+lbl30:
+r0 = r2 + r3
+*r0 = r4
+r2++
+r1 = r2 + r3
+r0 = 0xD4
+*r1 = r0
+r2++
+r0 = r2 + r3
+*r0 = r4
+r2++
+r1 = r2 + r3
+r0 = 0xFF
+*r1 = r0
+r4 = gActiveBattler
+r2 = *r4
+r0 = 0x58
+r0 *= r2
+r1 = r10
+r1 += r0
+r0 = r7 + r1
+r0 = *(r0 + 0x18)
+if(r0 == 0) goto lbl37
+
+r1 = 0
+r0 = gBattlerTarget
+r0 = *r0
+r3 = gBattleCommunication
+r8 = r3
+if(r0 != r2) goto lbl31
+
+r1 = 1
+goto lbl31
+
+lbl31:
+r4 = r8
+*(r4 + 5) = r1
+goto lbl38
+
+lbl32:
+r6 = r0 >> 0x1C
+r0 = 7
+r6 &= r0
+r3 = gBattleTextBuff2
+*r3 = r2
+r2 = 1
+if(r6 bcc r3) goto lbl33
+
+r0 = 0xD5
+goto lbl33
+
+lbl33:
+if(r6 != 2) goto lbl35
+
+r0 = 0xD1
+goto lbl34
+
+lbl34:
+*(r3 + 1) = r4
+*(r3 + 2) = r0
+*(r3 + 3) = r4
+goto lbl35
+
+lbl35:
+r0 = r2 + r3
+*r0 = r4
+r2++
+r1 = r2 + r3
+r0 = 0xD2
+*r1 = r0
+r2++
+r0 = r2 + r3
+*r0 = r4
+r2++
+r1 = r2 + r3
+r0 = *r1
+r2 = r12
+r0 |= r2
+*r1 = r0
+r2 = gBattleMons
+r4 = gActiveBattler
+r3 = *r4
+r0 = 0x58
+r0 *= r3
+r1 = r0 + r2
+r0 = r7 + r1
+r0 = *(r0 + 0x18)
+r10 = r2
+if(r0 != 0xC) goto lbl37
+
+r1 = 0
+r0 = gBattlerTarget
+r0 = *r0
+r2 = gBattleCommunication
+r8 = r2
+if(r0 != r3) goto lbl36
+
+r1 = 1
+goto lbl36
+
+lbl36:
+*(r2 + 5) = r1
+goto lbl37
+
+lbl37:
+r0 = 2
+r1 = gBattleCommunication
+*(r1 + 5) = r0
+r8 = r1
+goto lbl38
+
+lbl38:
+r2 = gActiveBattler
+r0 = *r2
+r4 = 0x58
+r1 = r0
+r1 *= r4
+r1 += r7
+r3 = r10
+r3 += 0x18
+r1 += r3
+r0 = r6
+r6 = *r1
+r0 += r6
+*r1 = r0
+r0 = *r2
+r0 *= r4
+r0 += r7
+r1 = r0 + r3
+r0 = 0
+r0 = *(r1 + r0)
+if(r0 >= 0) goto lbl39
+
+r0 = 0
+*r1 = r0
+goto lbl39
+
+lbl39:
+r1 = gActiveBattler
+r0 = *r1
+r0 *= r4
+r0 += r7
+r1 = r0 + r3
+r0 = 0
+r0 = *(r1 + r0)
+if(r0 <= 0xC) goto lbl40
+
+r0 = 0xC
+*r1 = r0
+goto lbl40
+
+lbl40:
+r2 = r8
+r0 = *(r2 + 5)
+if(r0 != 2) goto lbl42
+
+r3 = 1
+r3 &= r5
+if(r3 == 0) goto lbl41
+
+r0 = gMoveResultFlags
+r1 = *r0
+r2 = 1
+r1 |= r2
+*r0 = r1
+goto lbl41
+
+lbl41:
+r4 = r8
+r0 = *(r4 + 5)
+if(r0 != 2) goto lbl42
+
+if(r3 != 0) goto lbl42
+
+r0 = 1
+goto lbl43
+
+lbl42:
+r0 = 0
+goto lbl43
+
+lbl43:
+return r0

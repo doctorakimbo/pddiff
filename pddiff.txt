@@ -23,6 +23,7 @@ abilities:
 + 0x53 = Anger Point
 + 0x54 = Unburden
 + 0x55 = Heatproof
+- 0x56 = Simple
 + 0x57 = Dry Skin
 + 0x58 = Download
 + 0x5A = Poison Heal
@@ -163,6 +164,8 @@ pokeball types:
 
 battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0xC2 = "[PKMN]'s [ABILITY] [CHANGED] its [STAT]!" <DON'T ADD 9> <REFACTOR LATER>
+! 0xD5 = "drastically " <DON'T ADD 9>
+! 0xD6 = "severely " <DON'T ADD 9> (what happens to the old D5 and D6?)
 ! 0xEB = "[PKMN]'s [ABILITY] made it hail! (placeholder)" <DON'T ADD 9>
 = 0x180 = "[PKMN]'s [ABILITY] nullified the effects of weather!" <ADD THIS AFTER IMPORTING ABILITYBATTLEEFFECTS>
 = 0x181 = "[PKMN]'s [ITEM] let it move first!"
@@ -175,7 +178,7 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0x189 = "[PKMN]'s [ABILITY] alerted it to [MOVE]!"
 ! 0x18A = "[PKMN]'s [ABILITY] made it shudder!"
 ! 0x18B = "[ATTACKER] frisked [DEFENDER] and found its [ITEM]!"
-! 0x18C = "[Your/The opposing] team was protected by [ABILITY]! (placeholder)"
+! 0x18C = "[Your/The opposing] team was protected by [PKMN]'s [ABILITY]! (placeholder)"
 ! 0x18D = "[PKMN]'s [ABILITY] makes [your/the opposing] team too nervous to eat Berries! (placeholder)"
 ! 0x18F = "The twisted dimensions returned to normal!"
 ! 0x191 = "[Your/The opposing] team's Tailwind petered out!"
@@ -408,7 +411,7 @@ grafics:
   022FD4: 04 DC -> 0B DA
   022FE7: D0 -> DA
 		  Implements: Correct stat animations for drastically/severely
-= 02301C: Entirety of atk48_playstatchangeanimation (+ extra data?)(see 36disasm)
+= 02301C: Entirety of atk48_playstatchangeanimation (+BattleScript_FlowerVeilProtects)(see 36disasm)
 		  Implements: Mold Breaker+ (vs stat-reduction prevention abilities), Contrary, Big Pecks, Infiltrator (vs Mist), Flower Veil (vs stat reduction)
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Glitch: 0x68 (Mold Breaker) is instead 0x97, test mold breaker vs clear body
@@ -461,8 +464,12 @@ grafics:
 = 027BC8 -> 027B78 (repoint): Entirety of atk88_negativedamage (see 49disasm)
 		  Implements: Magic Guard (vs Liquid Ooze), Big Root (draining moves), Klutz (Big Root on draining moves)
 		  Note: something about the above two causes a crash, figure out later
-= 027BFC: Entirety of ChangeStatBuffs (see 50disasm)
-		  
+= 027BFC: Entirety of ChangeStatBuffs (+CheckLeafGuardAndFlowerVeil) (see 50disasm)
+		  Implements: Simple, Mold Breaker+ (vs stat-reduction prevention abilities), Contrary, Big Pecks, Infiltrator (vs Mist), "drastically/severely"
+		  Relies on: BattleScript_FlowerVeilProtects (j22A00, e23200)
+		  Glitch?: Flower Veil msg called at wrong time
+= 028190: Entirety of atk8C_confuseifrepeatingattackends (see 51disasm)
+= 0281D0 -> 0281C8 (repoint): 
 		  
 		  
 		  
@@ -472,11 +479,10 @@ grafics:
 		  
 		  
 
-curr: j273D4-j27858
-next: j27968
+curr: j27968, j279A8 -> j279A0 (-279F4)
+next: (+j27ae0: repoint ptr) j28014
 
 commands that changed address:
-8D: 0279A8 -> 0279A0
 AA: 029BA0 -> 168F08
 D9: 02BE48 -> EB8130
 F8 - FF new
