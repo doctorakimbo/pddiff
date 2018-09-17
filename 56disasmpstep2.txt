@@ -1,0 +1,98 @@
+sub_8028CF0()
+{
+	if((*gBattleTypeFlags & 0xA000) != 0x8000 || GetBattlerSide(*gBattlerAttacker) != 1)
+	{
+		if(AbilityBattleEffects(0x13, 0, 0xD, 0, 0) == 0 && AbilityBattleEffects(0x13, 0, 0x4D, 0, 0) == 0)
+		{
+			while(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x67) {} // probably not right
+
+			if(GetHoldEffect(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x2E)) == 0x4D) goto lbl12
+
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x62) goto lbl12
+
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x8E) goto lbl12
+
+			if(*gBattleWeather & 0xC)
+			{
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 8) goto lbl12
+
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x92) goto lbl12
+
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x9F) goto lbl12
+				
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == 5) goto lbl12
+
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == 8) goto lbl12
+
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == 4) goto lbl12
+				
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x22) == 5) goto lbl12
+
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x22) == 8) goto lbl12
+
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x22) == 4) goto lbl12
+			}
+			else
+			{
+				if(!(*gBattleWeather & 0xC0)) goto lbl8
+
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x51) lbl12
+
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x73) lbl12
+
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0xCA) lbl12
+				
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == 0xF) goto lbl12
+				
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x22) == 0xF) goto lbl12
+			}
+			
+			if(*((*gBattlerAttacker * 4) + gStatuses3) & 0x80) goto lbl12
+
+			if(*((*gBattlerAttacker * 4) + gStatuses3) & 0x40000)
+			{
+				lbl8:
+				if(!(*gBattleWeather) & 0x30) goto lbl14
+
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x57 || *((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x5E)
+					r2 = 3
+				else
+					goto lbl12
+			}
+			else
+				r2 = 4
+			
+			*gBattleMoveDamage = *((*gBattlerAttacker * 0x58) + gBattleMons + 0x2C) >> r2
+			
+			if(*gBattleMoveDamage == 0)
+			{
+				*gBattleMoveDamage = 1
+				goto lbl13
+			}
+			else
+				goto lbl14
+
+			lbl12:
+			r1 = gBattleMoveDamage
+			r0 = 0
+			goto lbl13
+
+			lbl13:
+			*r1 = r0
+			goto lbl14
+
+			lbl14:
+			r0 = gAbsentBattlerFlags
+			goto lbl15
+		}
+
+		lbl15:
+		if(r0 & *((*gBattlerAttacker * 4) + gBitTable))
+			*gBattleMoveDamage = 0
+		
+		r0 = *gBattleScriptCurrInstr
+	}
+	
+	r0++
+	*r1 = r0
+}

@@ -1,0 +1,93 @@
+atk93_tryKO()
+{
+	if(gBattleMons[gBattlerTarget].0x2E == 0xAF)
+	{
+		r4 = gEnigmaBerries[gBattlerTarget].7
+		r6 = gEnigmaBerries[gBattlerTarget].0x1A
+	}
+	else
+	{
+		r4 = GetHoldEffect(gBattleMons[gBattlerTarget].0x2E)
+		r6 = GetHoldEffectParam(gBattleMons[gBattlerTarget].0x2E)
+	}
+	
+	gPotentialItemEffectBattler = gBattlerTarget
+	
+	if(r4 == 0x27 && (Random() % 100) bcc r6)
+	{
+		RecordItemEffectBattle(gBattlerTarget, 0x27)
+		gSpecialStatuses[gBattlerTarget] |= 0x80
+	}
+	
+	if(gBattleMons[gBattlerTarget].0x20 == 5)
+	{
+		gMoveResultFlags |= 1
+		gLastUsedAbility = gBattleMons[gBattlerTarget].0x20
+		gBattleScriptCurrInstr = script_1D93A1
+		RecordAbilityBattle(gBattlerTarget, 5)
+	}
+	else
+	{
+		if(!(gStatuses3[gBattlerTarget] & 0x18))
+		{
+			if(((Random() % 100) + 1) < gBattleMons[gBattlerAttacker].0x2A - gBattleMons[gBattlerTarget].0x2A + gBattleMoves[gCurrentMove].3)
+			{
+				r4 = 1
+				
+				if(gBattleMons[gBattlerAttacker].0x2A bcs gBattleMons[gBattlerTarget].0x2A)
+					goto lbl10
+			}
+		}
+		else
+		{
+			if(gDisableStructs[gBattlerTarget].0x15 == gBattlerAttacker && gBattleMons[gBattlerAttacker].0x2A bcs gBattleMons[gBattlerTarget].0x2A)
+				goto lbl11
+			
+			if(((Random() % 100) + 1) < ((gBattlerAttacker * 0x58) + gBattleMons + 0x2A) - gBattleMons[gBattlerTarget].0x2A + gBattleMoves[gCurrentMove].3 && gBattleMons[gBattlerAttacker].0x2A bcs gBattleMons[gBattlerTarget].0x2A)
+				r4 = 1
+			else
+				r4 = 0
+			
+			lbl10:
+			if(r4 != 0)
+			{
+				lbl11:
+				if((gProtectStructs[gBattlerTarget] << 0x1E) < 0)
+				{
+					gBattleMoveDamage = gBattleMons[gBattlerTarget].0x28 - 1
+					gMoveResultFlags |= 0x40
+				}
+				else
+				{
+					if((gSpecialStatuses[gBattlerTarget] >> 7) != 0)
+					{
+						gBattleMoveDamage = gBattleMons[gBattlerTarget].0x28 - 1
+						gMoveResultFlags |= 0x80
+						gLastUsedItem = gBattleMons[gBattlerTarget].0x2E
+						goto lbl15
+					}
+					else
+					{
+						gBattleMoveDamage = gBattleMons[gBattlerTarget].0x28
+						gMoveResultFlags |= 0x10
+					}
+				}
+				
+				gBattleScriptCurrInstr += 5
+				goto lbl19
+			}
+		}
+		
+		gMoveResultFlags |= 1
+		
+		if(gBattleMons[gBattlerTarget].0x2A bcs gBattleMons[gBattlerAttacker].0x2A)
+			gBattleCommunication[5] = 0
+		else
+			gBattleCommunication[5] = 1
+		
+		gBattleScriptCurrInstr = T1_READ_PTR(gBattleScriptCurrInstr[1])
+		goto lbl19
+	}
+	
+	lbl19:
+}

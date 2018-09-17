@@ -1,0 +1,62 @@
+atk96_weatherdamage()
+{
+	if((gBattleTypeFlags & 0xA000) != 0x8000 || GetBattlerSide(gBattlerAttacker) != 1)
+	{
+		if(WEATHER_HAS_EFFECT)
+		{
+			while(gBattleMons[gBattlerAttacker].ability == ABILITY_KLUTZ) {} // probably not right
+
+			if(GetHoldEffect(gBattleMons[gBattlerAttacker].item) != HOLD_EFFECT_SAFETY_GOGGLES && gBattleMons[gBattlerAttacker].ability != ABILITY_MAGIC_GUARD && gBattleMons[gBattlerAttacker].ability != ABILITY_OVERCOAT)
+			{
+				if(gBattleWeather & WEATHER_SANDSTORM_ANY)
+				{
+					if(gBattleMons[gBattlerAttacker].ability != ABILITY_SAND_VEIL && gBattleMons[gBattlerAttacker].ability != ABILITY_SAND_RUSH && gBattleMons[gBattlerAttacker].ability != ABILITY_SAND_FORCE && gBattleMons[gBattlerAttacker].type1 != TYPE_ROCK && gBattleMons[gBattlerAttacker].type1 != TYPE_STEEL && gBattleMons[gBattlerAttacker].type1 != TYPE_GROUND && gBattleMons[gBattlerAttacker].type2 != TYPE_ROCK && gBattleMons[gBattlerAttacker].type2 != TYPE_STEEL && gBattleMons[gBattlerAttacker].type2 != TYPE_GROUND && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND) && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))
+					{
+						gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
+						
+						if(gBattleMoveDamage == 0)
+							gBattleMoveDamage = 1;
+					}
+					else
+						gBattleMoveDamage = 0;
+				}
+				elseif(gBattleWeather & WEATHER_HAIL_ANY)
+				{
+					if(gBattleMons[gBattlerAttacker].ability != ABILITY_SNOW_CLOAK && gBattleMons[gBattlerAttacker].ability != ABILITY_ICE_BODY && gBattleMons[gBattlerAttacker].ability != ABILITY_SLUSH_RUSH && gBattleMons[gBattlerAttacker].type1 != TYPE_ICE && gBattleMons[gBattlerAttacker].type2 != TYPE_ICE && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND) && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))
+					{
+						gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
+						
+						if(gBattleMoveDamage == 0)
+							gBattleMoveDamage = 1;
+					}
+					else
+						gBattleMoveDamage = 0;
+				}
+				elseif(gBattleWeather & WEATHER_SUN_ANY) 
+				{
+					if(gBattleMons[gBattlerAttacker].ability == ABILITY_DRY_SKIN || gBattleMons[gBattlerAttacker].ability == ABILITY_SOLAR_POWER)
+					{
+						gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 8;
+						
+						if(gBattleMoveDamage == 0)
+							gBattleMoveDamage = 1;
+					}
+					else
+						gBattleMoveDamage = 0;
+				}
+			}
+			else
+				gBattleMoveDamage = 0;
+
+			lbl14:
+			r0 = gAbsentBattlerFlags
+		}
+		
+		if(*r0 & gBitTable[gBattlerAttacker])
+			gBattleMoveDamage = 0;
+		
+		r0 = gBattleScriptCurrInstr
+	}
+	
+	*r1 = r0 + 1
+}

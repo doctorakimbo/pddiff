@@ -1,0 +1,92 @@
+lbl1: @28E90
+r4 = gBattlerAttacker
+r0 = *r4
+GetBattlerSide()
+if(r0 != 0) goto lbl2
+
+r1 = gBattlerPartyIndexes
+r0 = *r4
+r0 *= 2
+r0 += r1
+r1 = *r0
+r0 = 0x64
+r1 *= r0
+r0 = gPlayerParty
+goto lbl3
+
+r1 = gBattlerPartyIndexes
+r0 = *r4
+r0 *= 2
+r0 += r1
+r1 = *r0
+r0 = 0x64
+r1 *= r0
+r0 = gEnemyParty
+goto lbl3
+
+lbl3:
+r5 = r1 + r0
+r4 = gBattlerTarget
+r0 = *r4
+GetBattlerSide()
+if(r0 != 0) goto lbl4
+
+r1 = gBattlerPartyIndexes
+r0 = *r4
+r0 *= 2
+r0 += r1
+r1 = *r0
+r0 = 0x64
+r1 *= r0
+r0 = gPlayerParty
+goto lbl5
+
+r1 = gBattlerPartyIndexes
+r0 = *r4
+r0 *= 2
+r0 += r1
+r1 = *r0
+r0 = 0x64
+r1 *= r0
+r0 = gEnemyParty
+goto lbl5
+
+lbl5:
+r4 = r1 + r0
+r0 = r5
+r1 = 0xB
+GetMonData()
+r10 = r0
+r0 = r5
+r1 = 0
+GetMonData()
+r9 = r0
+r0 = r4
+r1 = 0xB
+GetMonData()
+r8 = r0
+r0 = r4
+r1 = 0
+GetMonData()
+r7 = r0
+r5 = gBattlerTarget
+r0 = *r5
+r6 = 0x58
+r0 *= r6
+r1 = gBattleMons
+r0 += r1
+r0 += 0x20
+r2 = *r0
+if(r2 != 0xC) goto lbl6
+
+r1 = gBattleScriptCurrInstr
+r0 = script_1D9444
+*r1 = r0
+r0 = gLastUsedAbility
+*r0 = r2
+r0 = *r5
+r1 = 0xC
+RecordAbilityBattle()
+goto lbl(2902C)
+
+lbl6:

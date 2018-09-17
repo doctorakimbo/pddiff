@@ -30,6 +30,7 @@ abilities:
 + 0x5B = Adaptability
 + 0x5C = Skill Link
 + 0x5D = Hydration
+- 0x5E = Solar Power
 + 0x5F = Quick Feet
 + 0x60 = Normalize
 + 0x61 = Sniper
@@ -75,6 +76,7 @@ abilities:
 + 0x9C = Magic Bounce
 + 0x9D = Sap Sipper
 + 0x9E = Prankster
+- 0x9F = Sand Force
 + 0xA0 = Iron Barbs
 + 0xA2 = Victory Star
 = 0xA3 = Turboblaze/Teravolt
@@ -477,6 +479,22 @@ grafics:
 + 02883C: Entirety of atk92_setlightscreen (see 53disasm)
 		  Implements: Light Clay (Light Screen), Klutz (Light Clay on Light Screen)
 = 028908: Entirety of atk93_tryKO (see 54disasm)
+		  Implements: Klutz (enduring (Focus) items vs OHKO moves), Mold Breaker+ (vs Sturdy for OHKO moves), Focus Sash (OHKO moves), Sheer Cold lower accuracy from non-Ice-types
+		  Requires in future: ClearFocusBand (j168C88), SetFocusBand (j168C9C)
+		  Glitch?: Subtracting 0x10 instead of 10 means Sheer Cold is 14% accuracy when used by non-Ice-types, should be 20% (check online, maybe wrong)
+= 028C98: Entirety of atk95_setsandstorm (see 55disasm)
+		  Implements: Smooth Rock (manual sand), Klutz (Smooth Rock manual sand)
+		  Relies on: GetWeatherTurns, weather refactor
+= 028CF0: Entirety of atk96_weatherdamage (see 56disasm)
+		  Implements: Snow Cloak (hail immunity), Dry Skin (sun HP loss), Solar Power (HP loss), Magic Guard (vs weather damage), Ice Body (hail immunity), Overcoat (vs weather), Sand Rush (sand immunity), Sand Force (sand immunity), Slush Rush (hail immunity), Safety Goggles (vs weather), Klutz (Safety Goggles vs weather)
+		  Relies on: weather refactor
+		  Note: Test heavily, incomprehensible code
+= 028E90: Entirety of sub_8028E90 (see 57disasm)
+		  
+		  
+		  
+		  
+		  
 		  
 		  
 		  
@@ -484,8 +502,8 @@ grafics:
 		  
 		  
 
-curr: j28014-j280E0, j280E0-j28434
-next: j28470
+curr: j28668-j28820
+next: j28F34 (1byte), j28FB9 (1byte), j29318 (2byte), j29330 (2byte), j29451 (1byte), j29468 (2byte), j29A18 (1byte), j29D3E (2byte), j2AAAC
 
 commands that changed address:
 AA: 029BA0 -> 168F08

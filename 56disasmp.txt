@@ -1,0 +1,200 @@
+lbl1: @284C8
+r0 = gBattleTypeFlags
+r0 = *r0
+r1 = 0xA000
+r0 &= r1
+r1 = 0x8000
+if(r0 != r1) goto lbl2
+
+r0 = gBattlerAttacker
+r0 = *r0
+GetBattlerSide()
+if(r0 != 1) goto lbl2
+
+goto lbl17
+
+lbl2:
+r0 = 0
+s0 = r0
+r0 = 0x13
+r1 = 0
+r2 = 0xD
+r3 = 0
+AbilityBattleEffects()
+if(r0 == 0) goto lbl3
+
+goto lbl15
+
+lbl3:
+s0 = r0
+r0 = 0x13
+r1 = 0
+r2 = 0x4D
+r3 = 0
+AbilityBattleEffects()
+if(r0 == 0) goto lbl4
+
+goto lbl15
+
+lbl4:
+r0 = gBattleMons
+r2 = gBattlerAttacker
+r2 = *r2
+r1 = 0x58
+r1 *= r2
+r5 = r1 + r0
+r0 = r5
+r0 += 0x20
+r4 = *r0
+goto lbl5
+
+lbl5:
+if(r4 == 0x67) goto lbl5
+
+r0 = *(r5 + 0x2E)
+GetHoldEffect()
+if(r0 == 0x4D) goto lbl12
+
+if(r4 == 0x62) goto lbl12
+
+if(r4 == 0x8E) goto lbl12
+
+r2 = gBattleWeather
+r3 = *r2
+r0 = 0xC
+r0 &= r3
+if(r0 == 0) goto lbl6
+
+if(r4 == 8) goto lbl12
+
+if(r4 == 0x92) goto lbl12
+
+if(r4 == 0x9F) goto lbl12
+
+r0 = r5
+r0 += 0x21
+r0 = *r0
+if(r0 == 5) goto lbl12
+
+if(r0 == 8) goto lbl12
+
+if(r0 == 4) goto lbl12
+
+r0 = r5
+r0 += 0x22
+r0 = *r0
+if(r0 == 5) goto lbl12
+
+if(r0 == 8) goto lbl12
+
+if(r0 == 4) goto lbl12
+
+goto lbl7
+
+lbl6:
+r0 = 0xC0
+r0 &= r3
+if(r0 == 0) goto lbl8
+
+if(r4 == 0x51) lbl12
+
+if(r4 == 0x73) lbl12
+
+if(r4 == 0xCA) lbl12
+
+r0 = r5
+r0 += 0x21
+r0 = *r0
+if(r0 == 0xF) goto lbl12
+
+r0 = r5
+r0 += 0x22
+r0 = *r0
+if(r0 == 0xF) goto lbl12
+
+goto lbl7
+
+lbl7:
+r0 = gStatuses3
+r2 = gBattlerAttacker
+r2 = *r2
+r1 = r2 * 4
+r1 += r0
+r1 = *r1
+r0 = 0x80
+r0 &= r1
+if(r0 != 0) goto lbl12
+
+r0 = 0x40000
+r1 &= r0
+if(r1 == 0) goto lbl10
+
+goto lbl8
+
+lbl8:
+r0 = 0x30
+r0 &= r3
+if(r0 == 0) goto lbl14
+
+if(r4 == 0x57) goto lbl9
+
+if(r4 != 0x5E) goto lbl12
+
+goto lbl9
+
+lbl9:
+r2 = 3
+goto lbl11
+
+lbl10:
+r2 = 4
+goto lbl11
+
+lbl11:
+r1 = gBattleMoveDamage
+r0 = *(r5 + 0x2C)
+r0 >>= r2
+*r1 = r0
+if(r0 != 0) goto lbl14
+
+r0 = 1
+goto lbl13
+
+lbl12:
+r1 = gBattleMoveDamage
+r0 = 0
+goto lbl13
+
+lbl13:
+*r1 = r0
+goto lbl14
+
+lbl14:
+r5 = gBattlerAttacker
+r0 = gAbsentBattlerFlags
+goto lbl15
+
+lbl15:
+r1 = *r0
+r2 = gBitTable
+r0 = *r5
+r0 *= 4
+r0 += r2
+r0 = *r0
+r1 &= r0
+if(r1 == 0) goto lbl16
+
+r1 = gBattleMoveDamage
+r0 = 0
+*r1 = r0
+goto lbl16
+
+lbl16:
+r1 = gBattleScriptCurrInstr
+r0 = *r1
+goto lbl17
+
+lbl17:
+r0++
+*r1 = r0
+(end)

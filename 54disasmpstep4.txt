@@ -1,0 +1,84 @@
+atk93_tryKO()
+{
+	param = GetHoldEffectParam(gBattleMons[gBattlerTarget].item);
+	holdEffect = GetHoldEffect(gBattleMons[gBattlerTarget].item);
+	
+	gPotentialItemEffectBattler = gBattlerTarget;
+	
+	if(gBattleMons[gBattlerTarget].ability != ABILITY_KLUTZ)
+	{
+		if(holdEffect == HOLD_EFFECT_FOCUS_SASH)
+		{
+			if(gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP)
+			{
+				RecordItemEffectBattle(gBattlerTarget, HOLD_EFFECT_FOCUS_SASH);
+				SetFocusBand();
+			}
+			else
+				ClearFocusBand();
+		}
+		elseif(holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param)
+		{
+			RecordItemEffectBattle(gBattlerTarget, HOLD_EFFECT_FOCUS_BAND);
+			SetFocusBand();
+		}
+	}
+	
+	if(gBattleMons[gBattlerAttacker].ability != ABILITY_MOLD_BREAKER && gBattleMons[gBattlerAttacker].ability - 0xA3 > 1 && gBattleMons[gBattlerTarget].ability == ABILITY_STURDY)
+	{
+		gMoveResultFlags |= MOVE_RESULT_MISSED;
+		gLastUsedAbility = ABILITY_STURDY;
+		gBattleScriptCurrInstr = BattleScript_SturdyPreventsOHKO;
+		RecordAbilityBattle(gBattlerTarget, ABILITY_STURDY);
+	}
+	else
+	{
+		if((gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS) && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
+			sureHit = TRUE;
+		else
+			sureHit = FALSE;
+		
+		if(gBattleMons[gBattlerTarget].level > gBattleMons[gBattlerAttacker].level)
+		{
+			gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+			gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+			return
+		}
+
+		if(!sureHit)
+		{
+			acc = gBattleMoves[gCurrentMove].accuracy;
+			
+			if(gCurrentMove == MOVE_SHEER_COLD && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ICE))
+				acc -= 0x10;
+			
+			chance = acc + gBattleMons[gBattlerAttacker].level - gBattleMons[gBattlerTarget].level;
+			
+			if(((Random() % 100) + 1) >= chance)
+			{
+				gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+				gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+				return
+			}
+		}
+		
+		if(gProtectStructs[gBattlerTarget].endured)
+		{
+			gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
+			gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
+		}
+		elseif(gSpecialStatuses[gBattlerTarget].focusBanded)
+		{
+			gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
+			gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
+			gLastUsedItem = gBattleMons[gBattlerTarget].item;
+		}
+		else
+		{
+			gBattleMoveDamage = gBattleMons[gBattlerTarget].hp;
+			gMoveResultFlags |= MOVE_RESULT_ONE_HIT_KO;
+		}
+		
+		gBattleScriptCurrInstr += 5;
+	}
+}

@@ -1,0 +1,43 @@
+atk96_weatherdamage()
+{
+	if((gBattleTypeFlags & 0xA000) != 0x8000 || GetBattlerSide(gBattlerAttacker) != 1)
+	{
+		if(WEATHER_HAS_EFFECT)
+		{
+			if(gBattleWeather & WEATHER_SANDSTORM_ANY)
+			{
+				if(gBattleMons[gBattlerAttacker].type1 != TYPE_ROCK && gBattleMons[gBattlerAttacker].type1 != TYPE_STEEL && gBattleMons[gBattlerAttacker].type1 != TYPE_GROUND && gBattleMons[gBattlerAttacker].type2 != TYPE_ROCK && gBattleMons[gBattlerAttacker].type2 != TYPE_STEEL && gBattleMons[gBattlerAttacker].type2 != TYPE_GROUND && gBattleMons[gBattlerAttacker].ability != ABILITY_SAND_VEIL && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND) && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))
+				{
+					gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
+					
+					if(gBattleMoveDamage == 0)
+						gBattleMoveDamage = 1;
+				}
+				else
+					gBattleMoveDamage = 0;
+			}
+			
+			if(gBattleWeather & WEATHER_HAIL_ANY)
+			{
+				if(gBattleMons[gBattlerAttacker].type1 != TYPE_ICE && gBattleMons[gBattlerAttacker].type2 != TYPE_ICE && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND) && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))
+				{
+					gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
+					
+					if(gBattleMoveDamage == 0)
+						gBattleMoveDamage = 1;
+				}
+				else
+					gBattleMoveDamage = 0;
+			}
+		}
+		else
+			gBattleMoveDamage = 0;
+		
+		if(gAbsentBattlerFlags & gBitTable[gBattlerAttacker])
+			gBattleMoveDamage = 0;
+	}
+	else
+		gBattleMoveDamage = 0;
+		
+	gBattleScriptCurrInstr++;
+}

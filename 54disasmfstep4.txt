@@ -1,0 +1,85 @@
+atk93_tryKO()
+{
+	if(gBattleMons[gBattlerTarget].item == ITEM_ENIGMA_BERRY)
+	{
+		holdEffect = gEnigmaBerries[gBattlerTarget].holdEffect;
+		param = gEnigmaBerries[gBattlerTarget].holdEffectParam;
+	}
+	else
+	{
+		holdEffect = GetHoldEffect(gBattleMons[gBattlerTarget].item);
+		param = GetHoldEffectParam(gBattleMons[gBattlerTarget].item);
+	}
+	
+	gPotentialItemEffectBattler = gBattlerTarget;
+	
+	if(holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param)
+	{
+		RecordItemEffectBattle(gBattlerTarget, HOLD_EFFECT_FOCUS_BAND);
+		gSpecialStatuses[gBattlerTarget].focusBanded = 1;
+	}
+	
+	if(gBattleMons[gBattlerTarget].ability == ABILITY_STURDY)
+	{
+		gMoveResultFlags |= MOVE_RESULT_MISSED;
+		gLastUsedAbility = ABILITY_STURDY;
+		gBattleScriptCurrInstr = BattleScript_SturdyPreventsOHKO;
+		RecordAbilityBattle(gBattlerTarget, ABILITY_STURDY);
+	}
+	else
+	{
+		if(!(gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS))
+		{
+			chance = gBattleMoves[gCurrentMove].accuracy + gBattleMons[gBattlerAttacker].level - gBattleMons[gBattlerTarget].level;
+			
+			if(((Random() % 100) + 1) < chance && gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)
+				chance = TRUE;
+			else
+				chance = FALSE;
+		}
+		elseif(gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker && gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)
+			chance = TRUE;
+		else
+		{
+			chance = gBattleMoves[gCurrentMove].accuracy + gBattleMons[gBattlerAttacker].level - gBattleMons[gBattlerTarget].level;
+			
+			if(((Random() % 100) + 1) < chance && gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)
+				chance = TRUE;
+			else
+				chance = FALSE;
+		}
+		
+		if(chance)
+		{
+			if(gProtectStructs[gBattlerTarget].endured)
+			{
+				gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
+				gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
+			}
+			elseif(gSpecialStatuses[gBattlerTarget].focusBanded)
+			{
+				gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
+                gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
+                gLastUsedItem = gBattleMons[gBattlerTarget].item;
+			}
+			else
+			{
+				gBattleMoveDamage = gBattleMons[gBattlerTarget].hp;
+                gMoveResultFlags |= MOVE_RESULT_ONE_HIT_KO;
+			}
+			
+			gBattleScriptCurrInstr += 5;
+		}
+		else
+		{
+			gMoveResultFlags |= MOVE_RESULT_MISSED;
+			
+			if(gBattleMons[gBattlerTarget].level >= gBattleMons[gBattlerAttacker].level)
+				gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+			else
+				gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+			
+			gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+		}
+	}
+}

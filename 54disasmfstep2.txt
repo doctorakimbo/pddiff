@@ -1,0 +1,114 @@
+atk93_tryKO()
+{
+	if(*((*gBattlerTarget * 0x58) + gBattleMons + 0x2E) == 0xAF)
+	{
+		r4 = *((*gBattlerTarget * 0x1C) + gEnigmaBerries + 7)
+		r6 = *((*gBattlerTarget * 0x1C) + gEnigmaBerries + 0x1A)
+	}
+	else
+	{
+		r4 = GetHoldEffect(*((*gBattlerTarget * 0x58) + gBattleMons + 0x2E))
+		r6 = GetHoldEffectParam(*((*gBattlerTarget * 0x58) + gBattleMons + 0x2E))
+	}
+	
+	*gPotentialItemEffectBattler = *gBattlerTarget
+	
+	if(r4 == 0x27 && (Random() % 100) bcc r6)
+	{
+		RecordItemEffectBattle(*gBattlerTarget, 0x27)
+		*((*gBattlerTarget * 0x14) + gSpecialStatuses) |= 0x80
+	}
+	
+	if(*((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 5)
+	{
+		*gMoveResultFlags |= 1
+		*gLastUsedAbility = *((*gBattlerTarget * 0x58) + gBattleMons + 0x20)
+		*gBattleScriptCurrInstr = script_1D93A1
+		RecordAbilityBattle(*gBattlerTarget, 5)
+	}
+	else
+	{
+		if(!(*(*gBattlerTarget * 4) + gStatuses3) & 0x18))
+		{
+			if(((Random() % 100) + 1) < *((*gBattlerAttacker * 0x58) + gBattleMons + 0x2A) - *((*gBattlerTarget * 0x58) + gBattleMons + 0x2A) + *((*gCurrentMove * 0xC) + gBattleMoves + 3))
+			{
+				r4 = 1
+				
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x2A) bcs *((*gBattlerTarget * 0x58) + gBattleMons + 0x2A))
+					goto lbl10
+			}
+		}
+		else
+		{
+			if(*((*gBattlerTarget * 0x1C) + gDisableStructs + 0x15) != *gBattlerAttacker) goto lbl8
+			
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x2A) bcc *((*gBattlerTarget * 0x58) + gBattleMons + 0x2A)) goto lbl8
+
+			goto lbl11
+
+			lbl8:
+			if(((Random() % 100) + 1) >= ((*gBattlerAttacker * 0x58) + gBattleMons + 0x2A) - *((*gBattlerTarget * 0x58) + gBattleMons + 0x2A) + *((*gCurrentMove * 0xC) + gBattleMoves + 3)) goto lbl9
+
+			r4 = 1
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x2A) bcc *((*gBattlerTarget * 0x58) + gBattleMons + 0x2A)) goto lbl9
+
+			goto lbl10
+
+			lbl9:
+			r4 = 0
+			goto lbl10
+
+			lbl10:			
+			if(r4 != 0)
+			{
+				lbl11:
+				if((*((*gBattlerTarget * 0x10) + gProtectStructs) << 0x1E) < 0)
+				{
+					*gBattleMoveDamage = *((*gBattlerTarget * 0x58) + gBattleMons + 0x28) - 1
+					r0 = *gMoveResultFlags
+					r1 = 0x40
+				}
+				else
+				{
+					if((*((*gBattlerTarget * 0x14) + gSpecialStatuses) >> 7) != 0)
+					{
+						*gBattleMoveDamage = *((*gBattlerTarget * 0x58) + gBattleMons + 0x28) - 1
+						*gMoveResultFlags |= 0x80
+						*gLastUsedItem = *((*gBattlerTarget * 0x58) + gBattleMons + 0x2E)
+						goto lbl15
+					}
+					
+					*gBattleMoveDamage = *((*gBattlerTarget * 0x58) + gBattleMons + 0x28)
+					r0 = *gMoveResultFlags
+					r1 = 0x10
+				}
+				
+				*gMoveResultFlags = r0 | r1
+				goto lbl15
+
+				lbl15:
+				*gBattleScriptCurrInstr += 5
+				goto lbl19
+			}
+		}
+		
+		*gMoveResultFlags |= 1
+		
+		if(*((*gBattlerTarget * 0x58) + gBattleMons + 0x2A) bcs *((*gBattlerAttacker * 0x58) + gBattleMons + 0x2A))
+		{
+			r1 = gBattleCommunication
+			r0 = 0
+		}
+		else
+		{
+			r1 = gBattleCommunication
+			r0 = 1
+		}
+		
+		*(r1 + 5) = r0
+		*gBattleScriptCurrInstr = T1_READ_PTR(*(*gBattleScriptCurrInstr + 1))
+		goto lbl19
+	}
+	
+	lbl19:
+}

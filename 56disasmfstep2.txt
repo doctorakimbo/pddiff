@@ -1,0 +1,59 @@
+sub_8028CF0()
+{
+	if((*gBattleTypeFlags & 0xA000) != 0x8000 || GetBattlerSide(*gBattlerAttacker) != 1)
+	{
+		if(AbilityBattleEffects(0x13, 0, 0xD, 0, 0) == 0 && AbilityBattleEffects(0x13, 0, 0x4D, 0, 0) == 0)
+		{
+			if(*gBattleWeather & 0x18)
+			{
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == 5 || *((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == 8 || *((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == 4 || *((*gBattlerAttacker * 0x58) + gBattleMons + 0x22) == 5 || *((*gBattlerAttacker * 0x58) + gBattleMons + 0x22) == 8 || *((*gBattlerAttacker * 0x58) + gBattleMons + 0x22) == 4 || *((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 8 || (*((*gBattlerAttacker * 4) + gStatuses3) & 0x80) || (*((*gBattlerAttacker * 4) + gStatuses3) & 0x40000))
+				{
+					r1 = gBattleMoveDamage
+					r0 = 0
+					goto lbl6
+				}
+				else
+				{
+					*gBattleMoveDamage = *((*gBattlerAttacker * 0x58) + gBattleMons + 0x2C) / 0x10
+					
+					if(*gBattleMoveDamage == 0)
+					{
+						*gBattleMoveDamage = 1
+						goto lbl6
+					}
+					else
+						goto lbl7
+				}
+
+				lbl6:
+				*r1 = r0
+			}
+			
+			lbl7:
+			if(*gBattleWeather & 0x80)
+			{
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == 0xF || *((*gBattlerAttacker * 0x58) + gBattleMons + 0x22) == 0xF || (*((*gBattlerAttacker * 4) + gStatuses3) & 0x80) || (*((*gBattlerAttacker * 4) + gStatuses3) & 0x40000))
+					*gBattleMoveDamage = 0
+				else
+				{
+					*gBattleMoveDamage = *((*gBattlerAttacker * 0x58) + gBattleMons + 0x2C) / 0x10
+					
+					if(*gBattleMoveDamage == 0)
+						*gBattleMoveDamage = 1
+				}
+			}
+		}
+		else
+			*gBattleMoveDamage = 0
+		
+		if(*gAbsentBattlerFlags & *((*gBattlerAttacker * 4) + gBitTable))
+		{
+			lbl11:
+			*gBattleMoveDamage = 0
+		}
+		
+		*gBattleScriptCurrInstr++
+	}
+	else
+		goto lbl11
+}
