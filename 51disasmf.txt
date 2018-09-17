@@ -1,0 +1,24 @@
+lbl1: @28190
+r1 = gBattleMons
+r0 = gBattlerAttacker
+r2 = *r0
+r0 = 0x58
+r0 *= r2
+r1 += 0x50
+r0 += r1
+r0 = *r0
+r1 = 0xC00
+r0 &= r1
+if(r0 != 0) goto lbl2
+
+r1 = gBattleCommunication
+r0 = 0x75
+*(r1 + 3) = r0
+goto lbl2
+
+lbl2:
+r1 = gBattleScriptCurrInstr
+r0 = *r1
+r0++
+*r1 = r0
+(end)

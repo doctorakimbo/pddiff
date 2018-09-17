@@ -1,0 +1,18 @@
+atk8D_setmultihitcounter()
+{
+	gMultiHitCounter = gBattleScriptCurrInstr[1];
+	gBattleScriptCurrInstr += 2;
+	
+	if(gMultiHitCounter == 0)
+	{
+		gMultiHitCounter = Random() & 3;
+		
+		if(gMultiHitCounter > 1)
+			gMultiHitCounter = (Random() & 3) + 2;
+		else
+			gMultiHitCounter += 2;
+		
+		if(gBattleMons[gBattlerAttacker].ability == ABILITY_SKILL_LINK)
+			gMultiHitCounter = 5;
+	}
+}

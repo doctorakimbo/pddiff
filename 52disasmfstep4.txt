@@ -1,0 +1,16 @@
+atk8D_setmultihitcounter()
+{
+	if(gBattleScriptCurrInstr[1] == 0)
+	{
+		gMultiHitCounter = Random() & 3;
+		
+		if(gMultiHitCounter > 1)
+			gMultiHitCounter = (Random() & 3) + 2;
+		else
+			gMultiHitCounter += 2;
+	}
+	else
+		gMultiHitCounter = gBattleScriptCurrInstr[1];
+	
+	gBattleScriptCurrInstr += 2;
+}

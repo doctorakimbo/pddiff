@@ -1,0 +1,36 @@
+lbl1: @279A0
+r2 = gBattleScriptCurrInstr
+r1 = *r2
+r0 = *(r1 + 1)
+r1 += 2
+*r2 = r1
+if(r0 != 0) goto lbl3
+
+Random()
+r4 = 3
+r0 &= r4
+if(r0 <= 1) goto lbl2
+
+Random()
+r0 &= r4
+goto lbl2
+
+lbl2:
+r0 += 2
+r3 = gBattleMons
+r2 = gBattlerAttacker
+r1 = *r2
+r2 = 0x58
+r1 *= r2
+r1 += r3
+r1 += 0x20
+r1 = *r1
+if(r1 != 0x5C) goto lbl3
+
+r0 = 5
+goto lbl3
+
+lbl3:
+r1 = gMultiHitCounter
+*r1 = r0
+(end)

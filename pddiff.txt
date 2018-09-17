@@ -23,11 +23,12 @@ abilities:
 + 0x53 = Anger Point
 + 0x54 = Unburden
 + 0x55 = Heatproof
-- 0x56 = Simple
++ 0x56 = Simple
 + 0x57 = Dry Skin
 + 0x58 = Download
 + 0x5A = Poison Heal
 + 0x5B = Adaptability
++ 0x5C = Skill Link
 + 0x5D = Hydration
 + 0x5F = Quick Feet
 + 0x60 = Normalize
@@ -215,6 +216,7 @@ grafics:
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
 + expand 3FE664 (trapping moves) from 6 entries to 8 (1303552)
 
++ repoint 1D8C10 -> 1051B20 (BattleScript_SuccessForceOut) - do it itself later
 + repoint 1D9015 -> 1052EE0 (BattleScript_FocusPunchSetUp) - do it itself later
 
 = 006884: ptr 217818 (gUnusedJapaneseFireRedLeafGreenMaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
@@ -468,10 +470,13 @@ grafics:
 		  Implements: Simple, Mold Breaker+ (vs stat-reduction prevention abilities), Contrary, Big Pecks, Infiltrator (vs Mist), "drastically/severely"
 		  Relies on: BattleScript_FlowerVeilProtects (j22A00, e23200)
 		  Glitch?: Flower Veil msg called at wrong time
-= 028190: Entirety of atk8C_confuseifrepeatingattackends (see 51disasm)
-= 0281D0 -> 0281C8 (repoint): 
-		  
-		  
++ 028190: Entirety of atk8C_confuseifrepeatingattackends (see 51disasm)
+		  Implements: Makes room for expanded atk8D_setmultihitcounter
++ 0281D0 -> 0281C8 (repoint): Entirety of atk8D_setmultihitcounter (see 52disasm)
+		  Implements: Skill Link
++ 02883C: Entirety of atk92_setlightscreen (see 53disasm)
+		  Implements: Light Clay (Light Screen), Klutz (Light Clay on Light Screen)
+= 028908: Entirety of atk93_tryKO (see 54disasm)
 		  
 		  
 		  
@@ -479,8 +484,8 @@ grafics:
 		  
 		  
 
-curr: j27968, j279A8 -> j279A0 (-279F4)
-next: (+j27ae0: repoint ptr) j28014
+curr: j28014-j280E0, j280E0-j28434
+next: j28470
 
 commands that changed address:
 AA: 029BA0 -> 168F08

@@ -1,0 +1,20 @@
+atk8D_setmultihitcounter()
+{
+	r0 = *(*gBattleScriptCurrInstr + 1)
+	*gBattleScriptCurrInstr += 2
+	
+	if(r0 == 0)
+	{
+		r0 = Random() & 3
+		
+		if(r0 > 1)
+			r0 = Random() & 3
+		
+		r0 += 2
+		
+		if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x20) == 0x5C)
+			r0 = 5
+	}
+	
+	*gMultiHitCounter = r0
+}
