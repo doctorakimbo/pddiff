@@ -30,7 +30,7 @@ abilities:
 + 0x5B = Adaptability
 + 0x5C = Skill Link
 + 0x5D = Hydration
-- 0x5E = Solar Power
++ 0x5E = Solar Power
 + 0x5F = Quick Feet
 + 0x60 = Normalize
 + 0x61 = Sniper
@@ -76,7 +76,7 @@ abilities:
 + 0x9C = Magic Bounce
 + 0x9D = Sap Sipper
 + 0x9E = Prankster
-- 0x9F = Sand Force
++ 0x9F = Sand Force
 + 0xA0 = Iron Barbs
 + 0xA2 = Victory Star
 = 0xA3 = Turboblaze/Teravolt
