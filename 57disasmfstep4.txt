@@ -1,0 +1,44 @@
+atk97_tryinfatuating()
+{
+	if(GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
+		monAttacker = gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]]
+	else
+		monAttacker = gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker]]
+	
+	if(GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER)
+		monTarget = gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]
+	else
+		monTarget = gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]]
+	
+	speciesAttacker = GetMonData(monAttacker, MON_DATA_SPECIES)
+	personalityAttacker = GetMonData(monAttacker, MON_DATA_PERSONALITY)
+	speciesTarget = GetMonData(monTarget, MON_DATA_SPECIES)
+	personalityTarget = GetMonData(monTarget, MON_DATA_PERSONALITY)
+	
+	if(gBattleMons[gBattlerTarget].ability == ABILITY_OBLIVIOUS)
+	{
+		gBattleScriptCurrInstr = BattleScript_ObliviousPreventsAttraction;
+		gLastUsedAbility = ABILITY_OBLIVIOUS;
+		RecordAbilityBattle(gBattlerTarget, ABILITY_OBLIVIOUS);
+	}
+	else
+	{
+		if(GetGenderFromSpeciesAndPersonality(speciesAttacker, personalityAttacker) == GetGenderFromSpeciesAndPersonality(speciesTarget, personalityTarget) || (gBattleMons[gBattlerTarget].status2 & STATUS2_INFATUATION) || GetGenderFromSpeciesAndPersonality(speciesAttacker, personalityAttacker) == MON_GENDERLESS || GetGenderFromSpeciesAndPersonality(speciesTarget, personalityTarget) == MON_GENDERLESS)
+			gBattleScriptCurrInstr = T1_READ_PTR(gBattleScriptCurrInstr + 1);
+		else
+		{
+			gBattleMons[gBattlerTarget].status2 |= STATUS2_INFATUATED_WITH(gBattlerAttacker);
+			gBattleScriptCurrInstr += 5;
+		}
+	}
+}
+
+
+
+
+BattleScript_ObliviousPreventsAttraction: @1D9444
+(39 20 00 10 C8 00 12 40 00 28 4E 69 1D 08)
+pause 0x20
+printstring STRINGID_PKMNPREVENTSROMANCEWITH
+waitmessage 0x40
+goto BattleScript_MoveEnd

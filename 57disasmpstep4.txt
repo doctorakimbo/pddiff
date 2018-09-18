@@ -1,0 +1,60 @@
+atk97_tryinfatuating()
+{
+	if((gBattlerAttacker & BIT_SIDE) == B_SIDE_PLAYER)
+		monAttacker = gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]]
+	else
+		monAttacker = gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker]]
+	
+	if((gBattlerTarget & BIT_SIDE) == B_SIDE_PLAYER)
+		monTarget = gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]
+	else
+		monTarget = gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]]
+	
+	if(gBattleMons[gBattlerTarget].ability == ABILITY_OBLIVIOUS)
+	{
+		gBattleScriptCurrInstr = BattleScript_PreventAttraction;
+		gLastUsedAbility = ABILITY_OBLIVIOUS;
+		RecordAbilityBattle(gBattlerTarget, ABILITY_OBLIVIOUS);
+	}
+	else
+	{
+		if(GetBoxMonGender(monTarget) == GetBoxMonGender(monAttacker) || GetBoxMonGender(monTarget) == MON_GENDERLESS || GetBoxMonGender(monAttacker) == MON_GENDERLESS)
+		{
+			gBattleScriptCurrInstr = T1_READ_PTR(gBattleScriptCurrInstr + 2);
+			return;
+		}
+		
+		if(gBattleScriptCurrInstr[1] != 1)
+		{
+			if(gBattleMons[gBattlerTarget].status2 & STATUS2_INFATUATION)
+			{
+				gBattleScriptCurrInstr = T1_READ_PTR(gBattleScriptCurrInstr + 2);
+				return;
+			}
+			else
+				gBattleMons[gBattlerTarget].status2 |= STATUS2_INFATUATED_WITH(gBattlerAttacker);
+		}
+		
+		gBattleScriptCurrInstr += 6;
+	}
+}
+
+
+
+
+BattleScript_PreventAttraction: @1050260_J, 1050260_E
+(39 20 00 2A 00 AA 3C 02 02 57 02 76 02 05 09 1E 00 0C 81 02 05 09 10 C8 00 12 40 00 28 0A A9 1B 08 10 47 01 12 40 00 28 0A A9 1B 08) = 
+(39 20 00 2A 00 4A 3D 02 02 57 02 76 02 05 09 1E 00 0C 81 02 05 09 10 C8 00 12 40 00 28 4E 69 1D 08 10 47 01 12 40 00 28 4E 69 1D 08)
+pause 0x20
+jumpifhalfword CMP_EQUAL, gCurrentMove, 0x257, BattleScript_PreventAttraction_Move257OrNotOblivious
+jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_PreventAttraction_Oblivious
+
+BattleScript_PreventAttraction_Move257OrNotOblivious:
+printstring STRINGID_PKMNPREVENTSROMANCEWITH
+waitmessage 0x40
+goto BattleScript_MoveEnd
+
+BattleScript_PreventAttraction_Oblivious:
+printstring STRINGID_PKMNSXMADEYUSELESS
+waitmessage 0x40
+goto BattleScript_MoveEnd

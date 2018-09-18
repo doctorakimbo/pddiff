@@ -87,6 +87,67 @@ r0 = gLastUsedAbility
 r0 = *r5
 r1 = 0xC
 RecordAbilityBattle()
-goto lbl(2902C)
+goto lbl9
 
 lbl6:
+r0 = r10
+r1 = r9
+GetGenderFromSpeciesAndPersonality()
+r4 = r0
+r0 = r8
+r1 = r7
+GetGenderFromSpeciesAndPersonality()
+if(r4 == r0) goto lbl7
+
+r0 = *r5
+r0 *= r6
+r4 = gBattleMons
+r4 += 0x50
+r0 += r4
+r0 = *r0
+r1 = 0xF0000
+r0 &= r1
+if(r0 != 0) goto lbl7
+
+r0 = r10
+r1 = r9
+GetGenderFromSpeciesAndPersonality()
+if(r0 == 0xFF) goto lbl7
+
+r0 = r8
+r1 = r7
+GetGenderFromSpeciesAndPersonality()
+if(r0 != 0xFF) goto lbl8
+
+goto lbl7
+
+lbl7:
+r3 = gBattleScriptCurrInstr
+r2 = *r3
+r1 = T1_READ_PTR(*(r2 + 1))
+*r3 = r1
+goto lbl9
+
+lbl8:
+r0 = *r5
+r2 = r0
+r2 *= r6
+r2 += r4
+r1 = gBitTable
+r0 = gBattlerAttacker
+r0 = *r0
+r0 *= 4
+r0 += r1
+r1 = *r0
+r1 <<= 0x10
+r0 = *r2
+r0 |= r1
+*r2 = r0
+r1 = gBattleScriptCurrInstr
+r0 = *r1
+r0 += 5
+*r1 = r0
+goto lbl9
+
+lbl9:
+(end)

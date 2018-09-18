@@ -1,0 +1,42 @@
+lbl1: @2929C
+if(gDisableStructs[gBattlerTarget].disabledMove == 0 && i != 4 && gBattleMons[gBattlerTarget].pp[i] != 0)
+{
+	PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerTarget].moves[i])
+	
+	gDisableStructs[gBattlerTarget].disabledMove = gBattleMons[gBattlerTarget].moves[i];
+	gDisableStructs[gBattlerTarget].disableTimer1 = 4;
+	gDisableStructs[gBattlerTarget].disableTimer2 = 5;
+	gBattleScriptCurrInstr += 5;
+}
+
+goto lbl1_X1
+
+
+
+
+
+
+lbl2: @293FC
+if(gDisableStructs[gBattlerTarget].encoredMove == 0 && i != 4 && gBattleMons[gBattlerTarget].pp[i] != 0)
+{
+	gDisableStructs[gBattlerTarget].encoredMove = gBattleMons[gBattlerTarget].moves[i];
+	gDisableStructs[gBattlerTarget].encoredMovePos = i;
+	gDisableStructs[gBattlerTarget].encoreTimer1 = 3;
+	gDisableStructs[gBattlerTarget].encoreTimer2 = 4;
+	gBattleScriptCurrInstr += 5;
+}
+
+goto lbl2_X1
+
+
+
+
+
+
+lbl3: @29D36
+ppToDeduct = 4;
+
+if(ppToDeduct > gBattleMons[gBattlerTarget].pp[i])
+	ppToDeduct = gBattleMons[gBattlerTarget].pp[i];
+
+goto lbl3_X1

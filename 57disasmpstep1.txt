@@ -1,0 +1,112 @@
+sub_8028E90()
+{
+	r7 = 1
+	r4 = gBattlerAttacker
+	r6 = *r4
+	r1 = gBattlerPartyIndexes
+	r0 = r6 * 2
+	r0 += r1
+	r1 = *r0
+	r0 = 0x64
+	r1 *= r0
+	r6 &= r7
+	
+	bne 
+		r0 = gPlayerParty
+	else
+		r0 = gEnemyParty
+	
+	r5 = r1 + r0
+	r6 = *(r4 + 1)
+	r1 = gBattlerPartyIndexes
+	r0 = r6 * 2
+	r0 += r1
+	r1 = *r0
+	r0 = 0x64
+	r1 *= r0
+	r6 &= r7
+	
+	bne
+		r0 = gPlayerParty
+	else
+		r0 = gEnemyParty
+	
+	r4 = r1 + r0
+	r3 = gLastUsedAbility
+	r0 = *(r3 + 2)
+	r1 = 0x58
+	r0 *= r1
+	r1 = gBattleMons
+	r0 += r1
+	r0 += 0x20
+	r2 = *r0
+	
+	if(r2 == 0xC)
+	{
+		r1 = gBattleScriptCurrInstr
+		r0 = script_1050260_J
+		*r1 = r0
+		*r3 = r2
+		RecordAbilityBattle(*(r3 + 2), 0xC)
+	}
+	else
+	{
+		r4 = GetBoxMonGender(r4)
+		r0 = GetBoxMonGender(r5)
+		if(r4 == r0) goto lbl7
+
+		if(r4 == 0xFF) goto lbl7
+
+		if(r0 == 0xFF) goto lbl7
+
+		r5 = gBattlerAttacker
+		r6 = 0x58
+		r3 = gBattleScriptCurrInstr
+		r2 = *r3
+		r1 = *(r2 + 1)
+		if(r1 == 1) goto lbl9
+
+		r0 = *(r5 + 1)
+		r0 *= r6
+		r4 = gBattleMons
+		r4 += 0x50
+		r0 += r4
+		r0 = *r0
+		r1 = 0xF0000
+		r0 &= r1
+		bne lbl7
+
+		goto lbl8
+
+		lbl7:
+		r3 = gBattleScriptCurrInstr
+		r2 = *r3
+		r1 = T1_READ_PTR(*(r2 + 2))
+		goto lbl10
+
+		lbl8:
+		r2 = *(r5 + 1)
+		r2 *= r6
+		r2 += r4
+		r1 = gBitTable
+		r0 = gBattlerAttacker
+		r0 = *r0
+		r0 *= 4
+		r0 += r1
+		r1 = *r0
+		r1 <<= 0x10
+		r0 = *r2
+		r0 |= r1
+		*r2 = r0
+		goto lbl9
+
+		lbl9:
+		r1 = gBattleScriptCurrInstr
+		r0 = *r1
+		r0 += 6
+		*r1 = r0
+		goto lbl10
+
+		lbl10:
+	}
+}

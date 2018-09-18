@@ -1,0 +1,45 @@
+lbl1: @2929C
+if(*((*r6 * 0x1C) + r8 + 4) == 0 && r4 != 4 && *((*r6 * 0x58) + r4 + r9 + 0x24) != 0)
+{
+	*gBattleTextBuff1 = 0xFD
+	*(gBattleTextBuff1 + 1) = 2
+	*(gBattleTextBuff1 + 2) = *((*r6 * 0x58) + (r4 * 2) + r9 + 0xC)
+	*(gBattleTextBuff1 + 3) = *((*r6 * 0x58) + (r4 * 2) + r9 + 0xC) >> 8
+	*(gBattleTextBuff1 + 4) = 0xFF
+	*((*r6 * 0x1C) + r8 + 4) = *((*r6 * 0x58) + (r4 * 2) + r9 + 0xC)
+	*((*r6 * 0x1C) + r8 + 0xB) &= (~(0xF) | 4)
+	*((*r6 * 0x1C) + r8 + 0xB) &= (0x50 | 0xF)
+	*gBattleScriptCurrInstr += 5
+}
+
+goto lbl1_X1
+
+
+
+
+
+
+lbl2: @293FC
+if(*((*r4 * 0x1C) + r9 + 6) == 0 && r5 != 4 && *((*r4 * 0x58) + r5 + r10 + 0x24) != 0)
+{
+	*((*r4 * 0x1C) + r9 + 6) = *((*r4 * 0x58) + (r5 * 2) + r10 + 0xC)
+	*((*r4 * 0x1C) + r9 + 0xC) = r5
+	*((*r4 * 0x1C) + r9 + 0xE) &= (~(0xF) | 3)
+	*((*r6 * 0x1C) + r9 + 0xE) &= (0x40 | 0xF)
+	*gBattleScriptCurrInstr += 5
+}
+
+goto lbl2_X1
+
+
+
+
+
+
+lbl3: @29D36
+r6 = 4
+
+if(r6 > *((*r4 * r9) + r7 + r10))
+	r6 = *((*r4 * r9) + r7 + r10)
+
+goto lbl3_X1

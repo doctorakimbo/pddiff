@@ -136,6 +136,7 @@ funcs e,j,desc:
 03E47C = CalculateMonStats
 03ECEC = 03E458 = CalculateBaseDamage
 03F5B4 = 03ED20 = CountAliveMonsInBattle
+03F730 = 03EE9C = GetBoxMonGender
 03F78C = 03EEF8 = GetGenderFromSpeciesAndPersonality
 03FBE8 = 03F354 = GetMonData
 04037C = 03FA70 = SetMonData

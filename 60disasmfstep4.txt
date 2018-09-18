@@ -1,0 +1,17 @@
+atkC2_selectfirstvalidtarget()
+{
+	gBattlerTarget = 0;
+
+	if(gBattlersCount != 0)
+	{
+		for(; gBattlerTarget < gBattlersCount; gBattlerTarget++)
+		{
+			if(gBattlerTarget == gBattlerAttacker)
+				continue;
+			if(!(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
+				break;
+		}
+	}
+	
+	gBattleScriptCurrInstr++;
+}

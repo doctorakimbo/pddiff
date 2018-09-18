@@ -1,0 +1,20 @@
+atkC2_selectfirstvalidtarget()
+{
+	gBattlerTarget = 0
+	
+	if(gBattlersCount != 0)
+	{
+		if(gBattlerAttacker == 2 && GetAbilityUserOnSameSide(gBattlerAttacker, 0x8C))
+			gBattlerTarget = 1
+		
+		do
+		{
+			if(gBattlerTarget != gBattlerAttacker && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
+				break;
+			
+			gBattlerTarget++
+		} while(gBattlerTarget < gBattlersCount)
+	}
+	
+	gBattleScriptCurrInstr++
+}

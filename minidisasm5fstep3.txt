@@ -1,0 +1,45 @@
+lbl1: @29AC4
+if(r8[r6].4 == 0 && r4 != 4 && r9[r6].0x24[r4] != 0)
+{ 
+	gBattleTextBuff1[0] = 0xFD
+	gBattleTextBuff1[1] = 2
+	gBattleTextBuff1[2] = r9[r6].0xC[r4]
+	gBattleTextBuff1[3] = r9[r6].0xC[r4] >> 8
+	gBattleTextBuff1[4] = 0xFF
+	r8[r6].4 = r9[r6].0xC[r4]
+	r8[r6].0xB &= (~(0xF) | ((Random() & 3) + 2))
+	r8[r6].0xB &= ((r8[r6].0xB * 0x10) | 0xF)
+	*gBattleScriptCurrInstr += 5
+}
+
+goto lbl1_X1
+
+
+
+
+
+
+lbl2: @29C24
+if(r9[r4].6 == 0 && r5 != 4 && r10[r4].0x24[r5] != 0)
+{
+	r9[r4].6 = r10[r4].0xC[r5]
+	r9[r4].0xC = r5
+	r9[r4].0xE &= (~(0xF) | ((Random() & 3) + 3))
+	r9[r4].0xE &= ((r9[r4].0xE * 0x10) | 0xF)
+	*gBattleScriptCurrInstr += 5
+}
+
+goto lbl2_X1
+
+
+
+
+
+
+lbl3: @2A55E
+r6 = (Random() & 3) + 2
+
+if(r6 > *((*r4 * r9) + r7 + r10))
+	r6 = *((*r4 * r9) + r7 + r10)
+
+goto lbl3_X1

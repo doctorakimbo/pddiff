@@ -1,0 +1,40 @@
+sub_8028E90()
+{
+	if(*gBattlerAttacker & 1)
+		r5 = (*((*gBattlerAttacker * 2) + gBattlerPartyIndexes) * 0x64) + gPlayerParty
+	else
+		r5 = (*((*gBattlerAttacker * 2) + gBattlerPartyIndexes) * 0x64) + gEnemyParty
+	
+	if(*gBattlerTarget & 1)
+		r4 = (*((*gBattlerTarget * 2) + gBattlerPartyIndexes) * 0x64) + gPlayerParty
+	else
+		r4 = (*((*gBattlerTarget * 2) + gBattlerPartyIndexes) * 0x64) + gEnemyParty
+	
+	if(*((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 0xC)
+	{
+		*gBattleScriptCurrInstr = script_1050260_J
+		*gLastUsedAbility = 0xC
+		RecordAbilityBattle(*gBattlerTarget, 0xC)
+	}
+	else
+	{
+		if(GetBoxMonGender(r4) == GetBoxMonGender(r5) || GetBoxMonGender(r4) == 0xFF || GetBoxMonGender(r5) == 0xFF)
+		{
+			*gBattleScriptCurrInstr = T1_READ_PTR(*(*gBattleScriptCurrInstr + 2))
+			return
+		}
+		
+		if(*(*gBattleScriptCurrInstr + 1) != 1)
+		{
+			if(*((*gBattlerTarget * 0x58) + gBattleMons + 0x50) & 0xF0000)
+			{
+				*gBattleScriptCurrInstr = T1_READ_PTR(*(*gBattleScriptCurrInstr + 2))
+				return
+			}
+			else
+				*((*gBattlerTarget * 0x58) + gBattleMons + 0x50) |= (*((*gBattlerAttacker * 4) + gBitTable) << 0x10)
+		}
+		
+		*gBattleScriptCurrInstr += 6
+	}
+}

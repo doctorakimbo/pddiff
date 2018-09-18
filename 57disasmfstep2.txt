@@ -1,0 +1,34 @@
+sub_8028E90()
+{
+	if(GetBattlerSide(*gBattlerAttacker) == 0)
+		r5 = (*((*gBattlerAttacker * 2) + gBattlerPartyIndexes) * 0x64) + gPlayerParty
+	else
+		r5 = (*((*gBattlerAttacker * 2) + gBattlerPartyIndexes) * 0x64) + gEnemyParty
+	
+	if(GetBattlerSide(*gBattlerTarget) == 0)
+		r4 = (*((*gBattlerTarget * 2) + gBattlerPartyIndexes) * 0x64) + gPlayerParty
+	else
+		r4 = (*((*gBattlerTarget * 2) + gBattlerPartyIndexes) * 0x64) + gEnemyParty
+	
+	r10 = GetMonData(r5, 0xB)
+	r9 = GetMonData(r5, 0)
+	r8 = GetMonData(r4, 0xB)
+	r7 = GetMonData(r4, 0)
+	
+	if(*((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 0xC)
+	{
+		*gBattleScriptCurrInstr = script_1D9444
+		*gLastUsedAbility = 0xC
+		RecordAbilityBattle(*gBattlerTarget, 0xC)
+	}
+	else
+	{
+		if(GetGenderFromSpeciesAndPersonality(r10, r9) == GetGenderFromSpeciesAndPersonality(r8, r7) || (*((*gBattlerTarget * 0x58) + gBattleMons + 0x50) & 0xF0000) || GetGenderFromSpeciesAndPersonality(r10, r9) == 0xFF || GetGenderFromSpeciesAndPersonality(r8, r7) == 0xFF)
+			*gBattleScriptCurrInstr = T1_READ_PTR(*(*gBattleScriptCurrInstr + 1))
+		else
+		{
+			*((*gBattlerTarget * 0x58) + gBattleMons + 0x50) |= (*((*gBattlerAttacker * 4) + gBitTable) << 0x10)
+			*gBattleScriptCurrInstr += 5
+		}
+	}
+}

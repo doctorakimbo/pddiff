@@ -1,0 +1,17 @@
+atkC2_selectfirstvalidtarget()
+{
+	*gBattlerTarget = 0
+	
+	if(*gBattlersCount != 0)
+	{
+		do
+		{
+			if(*gBattlerTarget != *gBattlerAttacker && !(*gAbsentBattlerFlags & *((*gBattlerTarget * 4) + gBitTable)))
+				break;
+			
+			*gBattlerTarget++
+		} while(*gBattlerTarget bcc *gBattlersCount)
+	}
+	
+	*gBattleScriptCurrInstr++
+}

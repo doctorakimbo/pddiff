@@ -1,0 +1,34 @@
+sub_8028E90()
+{
+	if(GetBattlerSide(gBattlerAttacker) == 0)
+		r5 = gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]]
+	else
+		r5 = gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker]]
+	
+	if(GetBattlerSide(gBattlerTarget) == 0)
+		r4 = gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]
+	else
+		r4 = gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]]
+	
+	r10 = GetMonData(r5, 0xB)
+	r9 = GetMonData(r5, 0)
+	r8 = GetMonData(r4, 0xB)
+	r7 = GetMonData(r4, 0)
+	
+	if(gBattleMons[gBattlerTarget].0x20 == 0xC)
+	{
+		gBattleScriptCurrInstr = script_1D9444
+		gLastUsedAbility = 0xC
+		RecordAbilityBattle(gBattlerTarget, 0xC)
+	}
+	else
+	{
+		if(GetGenderFromSpeciesAndPersonality(r10, r9) == GetGenderFromSpeciesAndPersonality(r8, r7) || (gBattleMons[gBattlerTarget].0x50 & 0xF0000) || GetGenderFromSpeciesAndPersonality(r10, r9) == 0xFF || GetGenderFromSpeciesAndPersonality(r8, r7) == 0xFF)
+			gBattleScriptCurrInstr = T1_READ_PTR(gBattleScriptCurrInstr[1])
+		else
+		{
+			gBattleMons[gBattlerTarget].0x50 |= (gBitTable[gBattlerAttacker] << 0x10)
+			gBattleScriptCurrInstr += 5
+		}
+	}
+}

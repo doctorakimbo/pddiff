@@ -1,0 +1,50 @@
+lbl1: @2AF40
+r6 = gBattlerTarget
+r1 = 0
+*r6 = r1
+r1 = gBattlersCount
+r4 = *r1
+if(r4 == 0) goto lbl4
+
+r0 = gBattlerAttacker
+r5 = *r0
+r0 = gBitTable
+r12 = r0
+r7 = gAbsentBattlerFlags
+if(r5 != 2) goto lbl2
+
+r0 = 2
+r1 = 0x8C
+GetAbilityUserOnSameSide()
+r2 = 0
+if(r0 != 0) goto lbl3
+
+goto lbl2
+
+lbl2:
+r2 = *r6
+if(r2 == r5) goto lbl3
+
+r0 = *r7
+r1 = *r6
+r1 *= 4
+r1 += r12
+r1 = *r1
+r0 &= r1
+if(r0 == 0) goto lbl4
+
+goto lbl3
+
+lbl3:
+r0 = r2 + 1
+*r6 = r0
+if(r0 bcc r4) goto lbl2
+
+goto lbl4
+
+lbl4:
+r1 = r8
+r0 = *r1
+r0++
+*r1 = r0
+(end)

@@ -1,0 +1,20 @@
+atkC2_selectfirstvalidtarget()
+{
+	gBattlerTarget = 0;
+	
+	if(gBattlersCount != 0)
+	{
+		if(gBattlerAttacker == B_POSITION_PLAYER_RIGHT && GetAbilityUserOnSameSide(gBattlerAttacker, ABILITY_TELEPATHY))
+			gBattlerTarget = B_POSITION_OPPONENT_LEFT;
+		
+		for(; gBattlerTarget < gBattlersCount; gBattlerTarget++)
+		{
+			if(gBattlerTarget == gBattlerAttacker)
+				continue;
+			if(!(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
+				break;
+		}
+	}
+	
+	gBattleScriptCurrInstr++;
+}

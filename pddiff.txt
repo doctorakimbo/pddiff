@@ -167,6 +167,7 @@ pokeball types:
 
 battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0xC2 = "[PKMN]'s [ABILITY] [CHANGED] its [STAT]!" <DON'T ADD 9> <REFACTOR LATER>
+! 0xC8 = (special message for move ID 257?) <DON'T ADD 9> <probably refactor later to not remove the old C8, "prevents romance">
 ! 0xD5 = "drastically " <DON'T ADD 9>
 ! 0xD6 = "severely " <DON'T ADD 9> (what happens to the old D5 and D6?)
 ! 0xEB = "[PKMN]'s [ABILITY] made it hail! (placeholder)" <DON'T ADD 9>
@@ -218,8 +219,11 @@ grafics:
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
 + expand 3FE664 (trapping moves) from 6 entries to 8 (1303552)
 
+= repoint 02A3C8 -> j168F08 (atkAA_setdestinybond) - need part at destination removed first + ASM can't be repointed without decompilation + do it itself later
+= repoint 02C670 ->  EB8130 (atkD9_scaledamagebyhealthratio) - ASM can't be repointed without decompilation + do it itself later
 + repoint 1D8C10 -> 1051B20 (BattleScript_SuccessForceOut) - do it itself later
 + repoint 1D9015 -> 1052EE0 (BattleScript_FocusPunchSetUp) - do it itself later
+! repoint 1D9444 -> 1050260 (BattleScript_ObliviousPreventsAttraction) - script done, import during atk97_tryinfatuating
 
 = 006884: ptr 217818 (gUnusedJapaneseFireRedLeafGreenMaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
 = 0069F0: ptr 227B30 (gUnusedJapaneseFireRedLeafGreenFemaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
@@ -489,10 +493,30 @@ grafics:
 		  Implements: Snow Cloak (hail immunity), Dry Skin (sun HP loss), Solar Power (HP loss), Magic Guard (vs weather damage), Ice Body (hail immunity), Overcoat (vs weather), Sand Rush (sand immunity), Sand Force (sand immunity), Slush Rush (hail immunity), Safety Goggles (vs weather), Klutz (Safety Goggles vs weather)
 		  Relies on: weather refactor
 		  Note: Test heavily, incomprehensible code
-= 028E90: Entirety of sub_8028E90 (see 57disasm)
-		  
-		  
-		  
+= 028E90: Entirety of atk97_tryinfatuating (see 57disasm)
+		  Implements: refactors to include extra param (if set to 1, skip actually infatuating) - makes it usable as a JumpIfCantInfatuate(); unknown message for move ID 257
+		  Relies on: battlescripts change to accomodate above
+- 02975C: B1 -> FF (allows Metronome to select moves up to 0x1FF - Note: there are even more moves than that)
+- 0297E1: 01 -> 03 (allows Metronome to select from up to 0x3FF moves - but only up to 0x1FF can be selected, see above)
+- 029B40: 02 32 -> 04 22
+  029B58: CB 7A -> 05 23 (Disable always lasts 4 turns)
+- 029C79: 32 -> 22
+  029C90: 8B 7B -> 04 23 (Encore always lasts 3 turns)
+= 02A240: 60 -> 30 (weather refactor - sun)
+- 02A566: 8E 1C -> 04 26 (Spite always removes 4 PP)
+= 02B2D4: Entirety of atkBB_setsunny (see 58disasm)
+		  Implements: Heat Rock (manual sun), Klutz (Heat Rock manual sun)
+		  Relies on: GetWeatherTurns, weather refactor
+= 02B5F2: 60 -> 30 (weather refactor - sun)
+- 02B678: Entirety of atkC1_hiddenpowercalc (see 59disasm)
+		  Implements: Hidden Power = 60 power, Hidden Power Fairy (!)
+= 02B774: Entirety of atkC2_selectfirstvalidtarget (see 60disasm)
+		  Implements: Telepathy
+		  Relies on: GetAbilityUserOnSameSide
+= 02BC74: Entirety of atkC8_sethail (see 61disasm)
+		  Implements: Icy Rock (manual hail), Klutz (Icy Rock manual hail)
+		  Relies on: GetWeatherTurns, weather refactor
+= 02BFC4: Part of atkD0_settaunt (see 62disasm)
 		  
 		  
 		  
@@ -502,10 +526,5 @@ grafics:
 		  
 		  
 
-curr: j28668-j28820
-next: j28F34 (1byte), j28FB9 (1byte), j29318 (2byte), j29330 (2byte), j29451 (1byte), j29468 (2byte), j29A18 (1byte), j29D3E (2byte), j2AAAC
-
-commands that changed address:
-AA: 029BA0 -> 168F08
-D9: 02BE48 -> EB8130
-F8 - FF new
+curr: j2B79C
+next: j2C274
