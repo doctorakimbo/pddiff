@@ -1,0 +1,22 @@
+atkE8_settypebasedhalvers()
+{
+	if(*((*gCurrentMove * 0xC) + gBattleMoves) == 0xC9)
+	{
+		r5 = 0
+		r4 = 0x10000
+	}
+	else
+	{
+		r5 = 1
+		r4 = 0x20000
+	}
+	
+	if(!(*((*gBattlerAttacker * 4) + gStatuses3) & r4))
+	{
+		*((*gBattlerAttacker * 4) + gStatuses3 |= r4
+		*(gBattleCommunication + 5) = r5
+		*gBattleScriptCurrInstr += 5
+	}
+	else
+		*gBattleScriptCurrInstr = T1_READ_PTR(*(*gBattleScriptCurrInstr + 1))
+}

@@ -1,0 +1,27 @@
+atkE2_switchoutabilities()
+{
+	gActiveBattler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1]);
+	
+	switch(gBattleMons[gActiveBattler].ability)
+    {
+	case ABILITY_NATURAL_CURE:
+		gBattleMons[gActiveBattler].status1 = 0;
+		
+		BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, gBitTable[*(gBattleStruct->field_58 + gActiveBattler)], 4, &gBattleMons[gActiveBattler].status1);
+		MarkBattlerForControllerExec(gActiveBattler);
+		
+		break;
+	case ABILITY_REGENERATOR:
+		gBattleMons[gActiveBattler].hp += (gBattleMons[gActiveBattler].maxHP / 3);
+		
+		if(gBattleMons[gActiveBattler].hp > gBattleMons[gActiveBattler].maxHP)
+			gBattleMons[gActiveBattler].hp = gBattleMons[gActiveBattler].maxHP;
+		
+		BtlController_EmitSetMonData(0, REQUEST_HP_BATTLE, gBitTable[*(gBattleStruct->field_58 + gActiveBattler)], 2, &gBattleMons[gActiveBattler].hp);
+		MarkBattlerForControllerExec(gActiveBattler);
+		
+		break;
+	}
+	
+	gBattleScriptCurrInstr += 2;
+}

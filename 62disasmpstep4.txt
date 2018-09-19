@@ -1,0 +1,12 @@
+if(gBattleMons[gBattlerTarget].ability == ABILITY_OBLIVIOUS)
+	gBattleScriptCurrInstr = script_1D9470; // BattleScript_SoundproofProtected + 2
+elseif(gDisableStructs[gBattlerTarget].tauntTimer1 == 0)
+{
+	gDisableStructs[gBattlerTarget].tauntTimer1 = 3;
+	gDisableStructs[gBattlerTarget].tauntTimer2 = 2;
+	gBattleScriptCurrInstr += 5;
+}
+else
+	goto lbl_2
+
+goto lbl_3

@@ -1,0 +1,22 @@
+atkE8_settypebasedhalvers()
+{
+	if(gBattleMoves[gCurrentMove].effect == EFFECT_MUD_SPORT)
+	{
+		result = 0;
+		status3 = STATUS3_MUDSPORT;
+	}
+	else
+	{
+		result = 1;
+		status3 = STATUS3_WATERSPORT;
+	}
+	
+	if(!(gStatuses3[gBattlerAttacker] & status3))
+	{
+		gStatuses3[gBattlerAttacker] |= status3;
+		gBattleCommunication[MULTISTRING_CHOOSER] = result;
+		gBattleScriptCurrInstr += 5;
+	}
+	else
+		gBattleScriptCurrInstr = T1_READ_PTR(gBattleScriptCurrInstr[1]);
+}

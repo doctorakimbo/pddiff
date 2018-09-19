@@ -53,6 +53,7 @@ abilities:
 + 0x73 = Ice Body
 = 0x74 = Filter/Solid Rock
 + 0x75 = Snow Warning
+- 0x76 = Honey Gather
 + 0x77 = Frisk
 + 0x7D = Sheer Force
 + 0x7E = Contrary
@@ -64,6 +65,7 @@ abilities:
 + 0x8D = Moody
 + 0x8E = Overcoat
 + 0x8F = Poison Touch
+- 0x90 = Regenerator
 + 0x91 = Big Pecks
 + 0x92 = Sand Rush
 = 0x93 = (lowers moves with typeFlags2 & 4 to 60% accuracy)
@@ -122,9 +124,35 @@ item effects:
 + 0x52 = Assault Vest
 + 0x54 = Life Orb (effectparam = 1/X HP lost)
 
+item IDs:
+- 0x1AE = Honey
+
 moves:
+(Mirror Move, Assist, "Conversion?", "Aeroblast?", and "Sacred Fire?" can't be called by metronome)
+= 0x181 = (can't be called by metronome)
+= 0x1BA = (can't be called by metronome)
+= 0x1E6 = (can't be called by metronome)
+= 0x207 = (can't be copied by mimic or called by metronome)
+= 0x23A = (can't be called by metronome)
+= 0x253 = (can't be called by metronome)
+= 0x254 = (can't be called by metronome)
+= 0x255 = (can't be called by metronome)
+= 0x256 = (can't be called by metronome)
+= 0x257 = (special message in atk97_tryinfatuating)
+= 0x25E = (can't be called by metronome)
+= 0x25F = (can't be called by metronome)
+= 0x260 = (can't be called by metronome)
+= 0x261 = (can't be called by metronome)
+= 0x262 = (can't be called by metronome)
+= 0x26C = (can't be called by metronome)
+= 0x26D = (can't be called by metronome)
 = 0x28C = Magma Storm/Infestation
 = 0x28E = Infestation/Magma Storm
+= 0x294 = (can't be called by metronome)
+= 0x2A4 = (can't be called by metronome)
+= 0x2A5 = (can't be called by metronome)
+= 0x2A7 = (can't be called by metronome)
+= 0x2A8 = (can't be called by metronome)
 
 move effects:
 = 0x37 = (won't miss)
@@ -211,6 +239,8 @@ grafics:
 + expand 24FB08 (ability descriptions) from 78 entries to 232 (13FD000)
 = expand 24FC40 (ability names) from 78 entries/12 per to 232 entries/16 per (13FF000)
 + expand 25011C (battle script commands) from 248 entries to 256 (EB7A00)
+= expand 2507E8 (uncopiable moves) from 4 entries (mimic) / 19 entries (metronome) to 5 entries (mimic) / 44 entries (metronome) (j20CA40, eUNKNOWN)
+- expand 250848 (pickup table) from 16 entries to 10 subtables of varying size (1528150)
 + expand 250C04 (move data) from 355 entries to 680 (1010000)
 + expand 26056C (ball sprites) from 12 entries to 26 (A23000)
 + expand 2605CC (ball sprite palettes) from 12 entries to 26 (A230F0)
@@ -516,7 +546,33 @@ grafics:
 = 02BC74: Entirety of atkC8_sethail (see 61disasm)
 		  Implements: Icy Rock (manual hail), Klutz (Icy Rock manual hail)
 		  Relies on: GetWeatherTurns, weather refactor
-= 02BFC4: Part of atkD0_settaunt (see 62disasm)
+- 02BFC4: Part of atkD0_settaunt (see 62disasm)
+		  Implements: Oblivious Taunt immunity, Taunt 2->3 turns
+- 02CCC0: Entirety of atkE2_switchoutabilities (see 63disasm)
+		  Implements: Regenerator
+- 02CD3C: Entirety of atkE3_jumpifhasnohp (see 64disasm)
+		  Implements: Makes room for expanded atkE2_switchoutabilities
+- 02CE48: Entirety of atkE5_pickup (see 65disasm)
+		  Implements: Honey Gather, modern pickup tables
+		  Requires first: data_1528150
+- 02CFD8: Entirety of atkE8_settypebasedhalvers (+ uncalled mysteryfunc) (see 66disasm)
+		  Implements: Makes room for mysteryfunc
+= 02D0D0: 07 -> 03
+  02D0EC: 18 -> 0C
+  02D100: 60 -> 30
+  02D114: 80 -> C0 (part of weather refactor)
+= 02D500, 02D6A0, 02D71C: 68 3D 02 02 -> 00 FE 03 02 (see 67disasm)
+= 02D508: Part of sub_802D434 (see 67disasm)
+= 02D636: 19 49 -> AF 46
+  02D698: E4 3B 02 02 -> 54 AB EE 08 (jumps to fn at EEAB54, then back; see 67disasm)
+= 02D764: 28 88 -> AF 46
+  02D7B8: 68 3D 02 02 -> 30 AB EE 08 (jumps to fn at EEAB30, then back; see 67disasm)
+  
+		  
+		  
+		  
+		  
+		  
 		  
 		  
 		  
@@ -526,5 +582,5 @@ grafics:
 		  
 		  
 
-curr: j2B79C
-next: j2C274
+curr: j2CCB0-j2CD40
+next: j2E1F8

@@ -1,0 +1,44 @@
+sub_802CE48()
+{
+	for(r7 = 0; r7 <= 5; r7++)
+	{
+		r5 = GetMonData((r7 * 0x64) + gPlayerParty, 0x41)
+		r6 = (GetMonData((r7 * 0x64) + gPlayerParty, 0x38) - 1) / 0xA
+	
+		if(GetMonData((r7 * 0x64) + gPlayerParty, 0xC) == 0 && r5 != 0 && r5 != 0x19C && r6 <= 9)
+		{
+			r0 = fn_40D7C((r7 * 0x64) + gPlayerParty, 0x2E)
+			
+			if(r0 == 0x35)
+			{
+				if(Random() % 0xA == 0)
+				{
+					r1 = Random() % 0x64
+					r2 = *((r6 * 4) + data_528150_J)
+
+					while(true)
+					{
+						r3 = *(r2 + 2)
+						
+						if(r3 <= r1 && r3 != 0xFF)
+							goto lbl5
+
+						r2 += 4
+					}
+				}
+			}
+			elseif(r0 == 0x76)
+			{
+				if(((r6 + 1) * 5) >= Random() % 0x64)
+				{
+					r2 = &(0x1AE)
+
+					lbl5:
+					SetMonData((r7 * 0x64) + gPlayerParty, 0xC, r2)
+				}
+			}
+		}
+	}
+
+	*gBattleScriptCurrInstr++
+}

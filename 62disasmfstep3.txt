@@ -1,0 +1,10 @@
+if(gDisableStructs[gBattlerTarget].0x13 == 0) 
+{
+	gDisableStructs[gBattlerTarget].0x13 &= ~(0xF) | 2
+	gDisableStructs[gBattlerTarget].0x13 &= 0xF | 0x20
+	gBattleScriptCurrInstr += 5
+}
+else
+	goto lbl_2
+	
+goto lbl_3

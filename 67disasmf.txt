@@ -1,0 +1,73 @@
+lbl1: @2D4DC
+r0 = gLastUsedItem
+r0 = *r0
+if(r0 != 5) goto lbl2
+
+r0 = gBattleStruct
+r0 = *r0
+r0 += 0x7C
+r0 = *r0
+r1 = r0 * 4
+r1 += r0
+r0 = r1 * 0x100
+r0 -= r1
+r1 = 0x64
+divide()
+r5 = r0
+goto lbl3
+
+
+
+
+
+
+lbl2: @2D508
+r3 = data_254784
+r2 = gBattleMons
+r1 = *r6
+r0 = 0x58
+r0 *= r1
+r0 += r2
+r1 = *r0
+r0 = r1 * 8
+r0 -= r1
+r0 *= 4
+r0 += r3
+r5 = *(r0 + 8)
+goto lbl3
+
+lbl3:
+r2 = gLastUsedItem
+r0 = *r2
+if(r0 > 5) goto lbl4
+
+goto lbl_+144
+
+lbl4:
+r0 -= 6
+if(r0 <= 6) goto lbl5
+
+goto lbl_+14E
+
+lbl5:
+r0 *= 4
+r1 = data_2D54C
+r0 += r1
+r0 = *r0
+goto r0
+
+
+
+
+
+
+lbl???: @2D67A
+09 49 08 88 05 28 1C D0 01 28 10 D1 07 48 41 79 02 22 11 43 41 71 14 E0 00 00 92 08 25 08 E4 3B 02 02 6C 3D 02 02 68 3D 02 02 90 4F 00 03
+
+
+
+
+
+
+lbl???: @2D6BC
+FE 2E 2F D9 00 20 04 21 E0 F7 66 FD 0E 48 00 78 E9 F7 BC FD 0D 49 0E 48 08 60 0E 49 0E 48 00 78 40 00 40 18 01 88 64 20 48 43 0C 49 40 18 0C 4A 26 21 12 F0 45 FE 13 F0 A3 FA 00 06 00 0E 06 28 57 D0 6B E0 90 4F 00 03 C4 3B 02 02 74 3D 02 02 42 9A 1D 08 CE 3B 02 02 6C 3D 02 02 2C 40 02 02 68 3D 02 02

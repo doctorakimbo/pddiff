@@ -1,0 +1,11 @@
+if(*((*gBattlerTarget * 0x58) + gBattleMons + 0x20) == 0xC)
+	*gBattleScriptCurrInstr = script_1D9470 // BattleScript_SoundproofProtected + 2
+elseif(*((*gBattlerTarget * 0x1C) + gDisableStructs + 0x13) == 0)
+{
+	*(*((*gBattlerTarget * 0x1C) + gDisableStructs + 0x13) + 0x13) |= 0x23
+	*gBattleScriptCurrInstr += 5
+}
+else
+	goto lbl_2
+
+goto lbl_3

@@ -140,6 +140,7 @@ funcs e,j,desc:
 03F78C = 03EEF8 = GetGenderFromSpeciesAndPersonality
 03FBE8 = 03F354 = GetMonData
 04037C = 03FA70 = SetMonData
+040D7C = 040470 = GetMonAbility
 04101C = 04070C = CalculatePPWithBonus
 043A70 = CheckPartyPokerus
 043AD8 = CheckPartyHasHadPokerus
@@ -175,7 +176,8 @@ funcs e,j,desc:
 01F310 = 01EB20 = HasItemWithTypeEffect
 01F358 = 01EB68 = GetWeatherTurns
 01FCCC = 01F4DC = ConsumeItem
-027E3A = 027612 = CheckLeafGuardAndFlowerVeil (unimplemented)
+027E3A = 027612 = CheckLeafGuardAndFlowerVeil
+02D05C = 02C834 = unknown_uncalled_func (disasm if needed)
 ?????? = 168C88 = ClearFocusBand (unimplemented)
 ?????? = 168C9C = SetFocusBand (unimplemented)
 ?????? = 2058E0 = ????? (unimplemented)

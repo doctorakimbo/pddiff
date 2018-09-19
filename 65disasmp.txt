@@ -1,0 +1,92 @@
+lbl1: @2C620
+r7 = 0
+goto lbl2
+
+lbl2:
+r0 = 0x64
+r0 *= r7
+r4 = gPlayerParty
+r4 += r0
+r0 = r4
+r1 = 0xC
+GetMonData()
+if(r0 != 0) goto lbl6
+
+r0 = r4
+r1 = 0x41
+GetMonData()
+if(r0 == 0) goto lbl6
+
+r1 = 0x19C
+if(r0 == r1) goto lbl6
+
+r5 = r0
+r0 = r4
+r1 = 0x38
+GetMonData()
+r0--
+r1 = 0xA
+svc(6)
+if(r0 > 9) goto lbl6
+
+r6 = r0
+r0 = r4
+r1 = 0x2E
+fn_40D7C()
+if(r0 == 0x35) goto lbl3
+
+if(r0 != 0x76) goto lbl6
+
+Random()
+r1 = 0x64
+svc(6)
+r5 = r1
+r0 = r6 + 1
+r1 = 5
+r0 *= r1
+if(r0 < r5) goto lbl6
+
+r2 = 0x1AE
+s0 = r0
+r2 = &s0
+goto lbl5
+
+lbl3:
+Random()
+r1 = 0xA
+svc(6)
+if(r1 != 0) goto lbl6
+
+Random()
+r1 = 0x64
+svc(6)
+r0 = r6 * 4
+r2 = data_528150_J
+r2 = *(r2 + r0)
+r0 = 0
+goto lbl4
+
+lbl4:
+r3 = *(r2 + 2)
+if(r3 > r1) goto lbl5
+
+if(r3 == 0xFF) goto lbl5
+
+r2 += 4
+goto lbl4
+
+lbl5:
+r0 = r4
+r1 = 0xC
+SetMonData()
+goto lbl6
+
+lbl6:
+r7++
+if(r7 <= 5) goto lbl2
+
+r1 = gBattleScriptCurrInstr
+r0 = *r1
+r0++
+*r1 = r0
+(end)

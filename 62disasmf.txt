@@ -1,1 +1,33 @@
 lbl1: @2BFC4
+r4 = gDisableStructs
+r3 = gBattlerTarget
+r0 = *r3
+r1 = r0 * 8
+r1 -= r0
+r1 *= 4
+r2 = r1 + r4
+r1 = *(r2 + 0x13)
+if(r0 != 0) goto lbl_4
+
+r0 = 0x10
+r0 = -r0
+r0 &= r1
+r1 = 2
+r0 |= r1
+*(r2 + 0x13) = r0
+r1 = *r3
+r0 = r1 * 8
+r0 -= r1
+r0 *= 4
+r0 += r4
+r2 = *(r0 + 0x13)
+r1 = 0xF
+r1 &= r2
+r2 = 0x20
+r1 |= r2
+*(r0 + 0x13) = r1
+r1 = gBattleScriptCurrInstr
+r0 = *r1
+r0++
+*r1 = r0
+goto lbl_5

@@ -1,0 +1,31 @@
+atkE8_settypebasedhalvers()
+{
+	r4 = 0
+
+	if(gBattleMoves[gCurrentMove] == 0xC9)
+	{
+		if(!(gStatuses3[gBattlerAttacker] & 0x10000))
+		{
+			gStatuses3[gBattlerAttacker] |= 0x10000
+			gBattleCommunication[5] = 0
+			goto lbl4
+		}
+	}
+	else
+	{
+		if(!(gStatuses3[gBattlerAttacker] & 0x20000))
+		{
+			gStatuses3[gBattlerAttacker] |= 0x20000
+			gBattleCommunication[5] = 1
+			r4 = 1
+		}
+	}
+	
+	if(r4 != 0)
+	{
+		lbl4:
+		gBattleScriptCurrInstr += 5
+	}
+	else
+		gBattleScriptCurrInstr = T1_READ_PTR(gBattleScriptCurrInstr[1])
+}

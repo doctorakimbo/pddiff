@@ -1,0 +1,81 @@
+lbl1: @2CCB4
+r0 = data_0203FE00_J
+r0 = *r0
+if(r0 != 5) goto lbl2
+
+r0 = gBattleStruct
+r0 = *r0
+r0 += 0x7C
+r0 = *r0
+r1 = r0 * 4
+r1 += r0
+r0 = r1 * 0x100
+r0 -= r1
+r1 = 0x64
+divide()
+r5 = r0
+goto lbl3
+
+
+
+
+
+
+lbl2: @2CCE0
+r3 = data_254784
+r2 = gBattleMons
+r1 = *r6
+r0 = 0x58
+r0 *= r1
+r0 += r2
+r1 = *r0
+r0 = r1 * 8
+r0 -= r1
+r0 *= 4
+r0 += r3
+r5 = *(r0 + 8)
+goto lbl3
+
+lbl3:
+r2 = data_0203FE00_J
+r0 = gBattleTypeFlags
+r0 = *r0
+if(r0 < 0x80) goto lbl4
+
+r0 = 5
+*r2 = r0
+goto lbl4
+
+lbl4:
+r0 = *r2
+if(r0 > 5) goto lbl5
+
+goto lbl_+144
+
+lbl5:
+r0 -= 6
+if(r0 <= 0xFF) goto lbl6
+
+goto lbl_+14E
+
+lbl6:
+r0 *= 4
+r1 = data_A23260_J
+r0 += r1
+r0 = *r0
+goto r0
+
+
+
+
+
+
+lbl???: @2CE52
+
+
+
+
+
+
+
+lbl???: @2CE94

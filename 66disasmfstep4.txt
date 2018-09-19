@@ -1,0 +1,28 @@
+atkE8_settypebasedhalvers()
+{
+	worked = FALSE;
+
+	if(gBattleMoves[gCurrentMove].effect == EFFECT_MUD_SPORT)
+	{
+		if(!(gStatuses3[gBattlerAttacker] & STATUS3_MUDSPORT))
+		{
+			gStatuses3[gBattlerAttacker] |= STATUS3_MUDSPORT;
+			gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+			worked = TRUE;
+		}
+	}
+	else
+	{
+		if(!(gStatuses3[gBattlerAttacker] & STATUS3_WATERSPORT))
+		{
+			gStatuses3[gBattlerAttacker] |= STATUS3_WATERSPORT;
+			gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+			worked = TRUE;
+		}
+	}
+	
+	if(worked)
+		gBattleScriptCurrInstr += 5;
+	else
+		gBattleScriptCurrInstr = T1_READ_PTR(gBattleScriptCurrInstr[1]);
+}

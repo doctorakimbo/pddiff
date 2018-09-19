@@ -1,0 +1,36 @@
+atkE2_switchoutabilities()
+{
+	*gActiveBattler = GetBattlerForBattleScript(*(*gBattleScriptCurrInstr + 1))
+	
+	if(*((*gActiveBattler * 0x58) + gBattleMons + 0x20) == 0x1E)
+	{
+		r6 = (*gActiveBattler * 0x58) + gBattleMons + 0x4C
+		*r6 = 0
+		r1 = 0x28
+		r3 = 4
+		goto lbl4
+	}
+	
+	if(*((*gActiveBattler * 0x58) + gBattleMons + 0x20) == 0x90)
+	{
+		r0 = *((*gActiveBattler * 0x58) + gBattleMons + 0x28) + (*((*gActiveBattler * 0x58) + gBattleMons + 0x2C) / 3)
+		
+		if(r0 > *((*gActiveBattler * 0x58) + gBattleMons + 0x2C))
+			r0 = *((*gActiveBattler * 0x58) + gBattleMons + 0x2C)
+		
+		r6 = (*gActiveBattler * 0x58) + gBattleMons + 0x28
+		*r6 = r0
+		r1 = 0x2A
+		r3 = 2
+		goto lbl4
+	}
+	
+	goto lbl5
+
+	lbl4:
+	BtlController_EmitSetMonData(0, r1, *((*(*gBattleStruct + *gActiveBattler + 0x58) * 4) + gBitTable), r3, r6)
+	MarkBattlerForControllerExec(*gActiveBattler)
+
+	lbl5:
+	*gBattleScriptCurrInstr += 2
+}

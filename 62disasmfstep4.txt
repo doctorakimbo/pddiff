@@ -1,0 +1,10 @@
+if(gDisableStructs[gBattlerTarget].tauntTimer1 == 0) 
+{
+	gDisableStructs[gBattlerTarget].tauntTimer1 = 2;
+	gDisableStructs[gBattlerTarget].tauntTimer2 = 2;
+	gBattleScriptCurrInstr += 5;
+}
+else
+	goto lbl_2
+	
+goto lbl_3

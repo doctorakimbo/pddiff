@@ -1,0 +1,32 @@
+atkE5_pickup()
+{
+	for(i = 0; i < 6; i++)
+	{
+		species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2);
+		heldItem = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
+		lvlDivBy10 = (GetMonData(&gPlayerParty[i], MON_DATA_LEVEL) - 1) / 10;
+	
+		if(heldItem == ITEM_NONE && species != 0 && species != SPECIES_EGG && lvlDivBy10 <= 9)
+		{
+			ability = GetMonAbility(&gPlayerParty[i]);
+			
+			if(ability == ABILITY_PICKUP && Random() % 10 == 0)
+			{
+				rand = Random() % 100;
+
+				for(j = 0; data_528150_J[lvlDivBy10][j].probability != 0xFF; j++)
+				{
+					if(data_528150_J[lvlDivBy10][j].probability > rand)
+					{
+						SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &data_528150_J[lvlDivBy10][j].item);
+						break;
+					}
+				}
+			}
+			elseif(ability == ABILITY_HONEY_GATHER && ((lvlDivBy10 + 1) * 5) >= Random() % 100) // 5% chance + 5% for each 10 levels, max 50%
+				SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &(ITEM_HONEY));
+		}
+	}
+
+	gBattleScriptCurrInstr++;
+}

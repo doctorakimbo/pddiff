@@ -1,0 +1,48 @@
+lbl1: @2CCC0
+r5 = gBattleScriptCurrInstr
+r0 = *r5
+r0 = *(r0 + 1)
+GetBattlerForBattleScript()
+r4 = gActiveBattler
+*r4 = r0
+r3 = gBattleMons
+r0 = *r4
+r6 = 0x58
+r1 = r0
+r1 *= r6
+r0 = r1 + r3
+r0 += 0x20
+r0 = *r0
+if(r0 != 0x1E) goto lbl2
+
+r3 = 0x4C
+r1 += r3
+r0 = 0
+*r1 = r0
+r2 = gBitTable
+r1 = *r4
+r0 = gBattleStruct
+r0 = *r0
+r0 += r1
+r0 += 0x58
+r0 = *r0
+r0 *= 4
+r0 += r2
+r2 = *r0
+r0 = r1
+r0 *= r6
+r0 += r3
+s0 = r0
+r0 = 0
+r1 = 0x28
+r3 = 4
+BtlController_EmitSetMonData()
+r0 = *r4
+MarkBattlerForControllerExec()
+goto lbl2
+
+lbl2:
+r0 = *r5
+r0 += 2
+*r5 = r0
+(end)
