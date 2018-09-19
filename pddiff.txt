@@ -496,19 +496,19 @@ grafics:
 = 028E90: Entirety of atk97_tryinfatuating (see 57disasm)
 		  Implements: refactors to include extra param (if set to 1, skip actually infatuating) - makes it usable as a JumpIfCantInfatuate(); unknown message for move ID 257
 		  Relies on: battlescripts change to accomodate above
-- 02975C: B1 -> FF (allows Metronome to select moves up to 0x1FF - Note: there are even more moves than that)
-- 0297E1: 01 -> 03 (allows Metronome to select from up to 0x3FF moves - but only up to 0x1FF can be selected, see above)
-- 029B40: 02 32 -> 04 22
++ 02975C: B1 -> FF (allows Metronome to select moves up to 0x1FF - Note: there are even more moves than that)
++ 0297E1: 01 -> 03 (allows Metronome to select from up to 0x3FF moves - but only up to 0x1FF can be selected, see above)
++ 029B40: 02 32 -> 04 22
   029B58: CB 7A -> 05 23 (Disable always lasts 4 turns)
-- 029C79: 32 -> 22
++ 029C79: 32 -> 22
   029C90: 8B 7B -> 04 23 (Encore always lasts 3 turns)
 = 02A240: 60 -> 30 (weather refactor - sun)
-- 02A566: 8E 1C -> 04 26 (Spite always removes 4 PP)
++ 02A566: 8E 1C -> 04 26 (Spite always removes 4 PP)
 = 02B2D4: Entirety of atkBB_setsunny (see 58disasm)
 		  Implements: Heat Rock (manual sun), Klutz (Heat Rock manual sun)
 		  Relies on: GetWeatherTurns, weather refactor
 = 02B5F2: 60 -> 30 (weather refactor - sun)
-- 02B678: Entirety of atkC1_hiddenpowercalc (see 59disasm)
++ 02B678: Entirety of atkC1_hiddenpowercalc (see 59disasm)
 		  Implements: Hidden Power = 60 power, Hidden Power Fairy (!)
 = 02B774: Entirety of atkC2_selectfirstvalidtarget (see 60disasm)
 		  Implements: Telepathy
