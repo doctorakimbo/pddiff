@@ -191,7 +191,9 @@ pokeball types:
 + 0x0A = Luxury Ball -> Timer Ball
 + 0x0B = Premier Ball -> Luxury Ball
 + 0x0C = Premier Ball
-+ 0x11 = Park Ball
+= 0x11 = (uses SafariBallThrow)
+- 0x14 = Heavy Ball
+- 0x16 = Love Ball
 
 battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0xC2 = "[PKMN]'s [ABILITY] [CHANGED] its [STAT]!" <DON'T ADD 9> <REFACTOR LATER>
@@ -278,7 +280,6 @@ grafics:
 		  Glitch: Stall and Trick Room are in wrong order, Stall goes first in Trick Room (probably doesn't matter in P/D itself)
 = 015910: Entirety of HandleEndTurn_FinishBattle (see 05disasm)
 		  Implements: EVs recalculated per battle (?)
-		  Required knowledge: j02023F89 (viable)
 		  Requires in future: extra fn j207370
 = 015CA0: Entirety of HandleAction_UseMove (+CheckSwitchToSpreadMoveScript, BattleScript_EffectSpreadMove) (see 06disasm)
 		  Implements: Storm Drain (redirection), Mold Breaker+ (vs redirection)
@@ -287,7 +288,7 @@ grafics:
 = 016460: 0C 29 1B D8 0B 4A 0C 49 -> 00 00 00 00 0B 4A 97 46
   016494: 74 3D 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jA231E0, see 07disasm))
 		  Implements: new pokeballs (throw action)
-		  Required knowledge: j0203FE00
+		  Required knowledge: gLastUsedItemType (j0203FE00)
 		  Relies on: pokeball ID changes
 + 017594: Entirety of TrySetCantSelectMoveBattleScript (see 08disasm)
 		  Implements: Klutz (move restriction items), Choice Specs (locking), Choice Scarf (locking), Assault Vest (move prevention)
@@ -561,11 +562,20 @@ grafics:
   02D100: 60 -> 30
   02D114: 80 -> C0 (part of weather refactor)
 = 02D500, 02D6A0, 02D71C: 68 3D 02 02 -> 00 FE 03 02 (see 67disasm)
-= 02D508: Part of sub_802D434 (see 67disasm)
+		  Implements: Need more info
+		  Required knowledge: gLastUsedItemType (j0203FE00)
+= 02D508: Part of sub_802D434 (+ add part at A23260_J) (see 67disasm)
+		  Implements: (ballD), (ballE), (ballF), (ball10), (ball11), (ball12), Friend Ball, Heavy Ball, (ball15), Love Ball, (ball17), (ball18), (ball19), (ball1A), (ball1B), (ball1C), (ball1D), (ball1E), (ball1F)
+		  Required knowledge: gLastUsedItemType (j0203FE00), j02023FE0, j02023FF8, j0202429C, j02026D47, j02026D6C, j03004FE3, j03005542
+		  Relies on: 02D500, etc
+		  Glitch?: Love Ball is boosted if pkmn are different genders, but "genderless" is counted as a third gender
 = 02D636: 19 49 -> AF 46
   02D698: E4 3B 02 02 -> 54 AB EE 08 (jumps to fn at EEAB54, then back; see 67disasm)
-= 02D764: 28 88 -> AF 46
+  02D764: 28 88 -> AF 46
   02D7B8: 68 3D 02 02 -> 30 AB EE 08 (jumps to fn at EEAB30, then back; see 67disasm)
+		  Implements: critical capture
+		  Relies on: 02D500, etc
+		  Required knowledge: gLastUsedItemType (j0203FE00), gCritCapture (j0203FE04)
   
 		  
 		  

@@ -1,0 +1,207 @@
+...
+if(data_0203FE00_J == 5)
+	r5 = (gBattleStruct->0x7C * 0x4FB) / 0x64
+else
+	r5 = gBaseStats[gBattleMons[r6].0x1C].8
+
+if(gBattleTypeFlags >= 0x80)
+	data_0203FE00_J = 5
+
+if(data_0203FE00_J > 5)
+{
+	switch(data_0203FE00_J)
+	{
+	...
+	case 0xD:
+		r4 = 0xA
+		
+		if(data_03004FE3_J == 0)
+			r4 += 0x1E
+		
+		break;
+	case 0xE:
+		if(data_03005542_J >= 6 && data_03005542_J < 0x15)
+		{
+			if(data_02036D47_J == 4)
+				r4 = 0x23
+			else
+				r4 = 0xA
+		}
+		else
+			r4 = 0x23
+		
+		break;
+	case 0xF:
+		r0 = (gBattleStruct->0x7C * 0x4FB)
+		r1 = 0x64
+		r4 = 0xFF
+		
+		break;
+	case 0x10:
+	case 0x19:
+	case 0x1A:
+	case 0x1B:
+	case 0x1C:
+	case 0x1D:
+	case 0x1E:
+	case 0x1F:
+		r4 = gItemData[gLastUsedItem].0x24
+		
+		break;
+	case 0x18:
+		for(r1 = 0; r1 <= 0xC; r1++)
+		{
+			if(table_A24300[r1] == *(gBattleMons + 0x58))
+				goto lblz10
+		}
+
+		r4 = 0xA
+		break;
+
+		lblz10:
+		r4 = 0x28
+		break;
+		
+		table_A24300:
+		1D 00 1E 00 1F 00 20 00 21 00 22 00 23 00 24 00 28 00 29 00 3B 01 3C 01
+	case 0x11:
+	case 0x12:
+		for(r3 = 0; r3 != 0x28; r3 += 4)
+		{
+			if(data_21615C_J[gBattleMons].r3 == 0x5E0007) // record size 28
+				goto lblz14
+		}
+
+		r4 = 0xA
+		break;
+
+		lblz14:
+		r4 = 0x28
+		break;
+	case 0x14:
+		r0 = *((*(gBattleMons + 0x58) * 0x1C) + data_40ED20_J + 8)
+		
+		if(r0 >= 0x800)
+			r5 -= 0x14
+		elseif(r0 > 0xC00)
+			r5 += 0x14
+		elseif(r0 > 0x1000)
+			r5 += 0x28
+		else
+			r5 += 0x1E
+		
+		r4 = 0xA
+		
+		break;
+	case 0x13:
+		data_02023FF8_J = 0xC8
+		SetMonData(gEnemyParty, 0x20, &data_02023FF8_J)
+		r4 = 0xA
+		
+		break;
+	case 0x15:
+		r0 = data_0202429C_J
+		
+		if(r0 <= r4)
+			r4 = 0xA
+		elseif(r0 <= (data_02023FE0_J * 2))
+			r4 = 0x14
+		elseif(r0 <= (data_02023FE0_J * 4))
+			r4 = 0x28
+		else
+			r4 = 0x50
+		
+		break;
+	case 0x16:
+		r3 = GetGenderFromSpeciesAndPersonality(*gBattleMons, *(gBattleMons + 0x48))
+		
+		if(GetGenderFromSpeciesAndPersonality(*gBattleMons, *(gBattleMons + 0x48 + 0x58)) != 0x58)
+			r4 = 0x50
+		else
+			r4 = 0xA
+			
+		break;
+	case 0x17:
+		r4 = 0xA
+		
+		if(data_02036D6C_J == 1)
+			r4 += 0x14
+		
+		break;
+	}
+}
+else
+	r4 = data_250892[gLastUsedItem - 2] // record size 2
+
+if(Random() % 0x7D0 <= ((pokedex_count(1) * 0x64) / 0x182))
+	data_0203FE04_J = 1
+else
+	data_0203FE04_J = 0
+
+r6 = (((r5 * r4) / 0xA) * (gBattleMons[gBattlerTarget].0x2C * 3) - (gBattleMons[gBattlerTarget].0x28 * 2)) / (gBattleMons[gBattlerTarget].0x2C * 3)
+
+if(gBattleMons[gBattlerTarget].0x4C & 0x27)
+	r6 *= 2
+
+if(gBattleMons[gBattlerTarget].0x4C & 0xD8)
+	r6 *= (0xF / 0xA)
+
+if(data_0203FE00_J != 5)
+{
+	if(data_0203FE00_J == 1)
+		gBattleResults.5 |= 2
+	elseif(gBattleResults.0x34[gLastUsedItem] <= 0xFF)
+		gBattleResults.0x34[gLastUsedItem]++
+}
+
+if(r6 > 0xFE)
+{
+	BtlController_EmitBallThrowAnim(0, 4)
+	MarkBattlerForControllerExec(gActiveBattler)
+	gBattleScriptCurrInstr = script_1D9A42
+	SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], 0x26, data_0203FE00_J)
+	
+	if(CalculatePlayerPartyCount() == 6)
+		goto lbl18
+	else
+		goto lbl19
+}
+
+r6 = 0xFFFF0 / sqrt(sqrt((0xFF0000 / r6))
+
+for(r4 = 0; r4 <= 3; r4++)
+{
+	if(Random() bcs r6)
+		break;
+}
+
+if(data_0203FE04_J != 0 && r4 >= 2)
+	r4 = 4
+
+if(data_0203FE00_J == 1)
+	r4 = 4
+
+BtlController_EmitBallThrowAnim(0, r4)
+MarkBattlerForControllerExec(gActiveBattler)
+
+if(r4 == 4)
+{
+	gBattleScriptCurrInstr = script_1D9A42
+	SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], 0x26, data_0203FE00_J)
+	
+	if(CalculatePlayerPartyCount() == 6)
+	{
+		lbl18:
+		gBattleCommunication[5] = 0
+	}
+	else
+	{
+		lbl19:
+		gBattleCommunication[5] = 1
+	}
+}
+else
+{
+	gBattleCommunication[5] = r4
+	gBattleScriptCurrInstr = script_1D9A93
+}

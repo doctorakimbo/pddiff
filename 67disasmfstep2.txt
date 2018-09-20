@@ -1,0 +1,82 @@
+...
+if(*gLastUsedItem == 5)
+	r5 = (*(*gBattleStruct + 0x7C) * 0x4FB) / 0x64
+else
+	r5 = *((*((*r6 * 0x58) + gBattleMons) * 0x1C) + gBaseStats + 8)
+
+if(*gLastUsedItem > 5)
+{
+	switch(*gLastUsedItem)
+	{
+	...
+	}
+}
+else
+	r4 = *((*gLastUsedItem - 2) + data_250892)
+
+r6 = (((r5 * r4) / 0xA) * (*((*gBattlerTarget * 0x58) + gBattleMons + 0x2C) * 3) - (*((*gBattlerTarget * 0x58) + gBattleMons + 0x28) * 2)) / (*((*gBattlerTarget * 0x58) + gBattleMons + 0x2C) * 3)
+
+if(*((*gBattlerTarget * 0x58) + gBattleMons + 0x4C) & 0x27)
+	r6 *= 2
+
+if(*((*gBattlerTarget * 0x58) + gBattleMons + 0x4C) & 0xD8)
+	r6 *= (0xF / 0xA)
+
+if(*gLastUsedItem != 5)
+{
+	if(*gLastUsedItem == 1)
+		*(gBattleResults + 5) |= 2
+	elseif(*(*gLastUsedItem + gBattleResults + 0x34) <= 0xFE)
+		*(*gLastUsedItem + gBattleResults + 0x34)++
+}
+
+if(r6 > 0xFE)
+{
+	BtlController_EmitBallThrowAnim(0, 4)
+	MarkBattlerForControllerExec(*gActiveBattler)
+	*gBattleScriptCurrInstr = script_1D9A42
+	SetMonData((*((*gBattlerTarget * 2) + gBattlerPartyIndexes) * 0x64) + gEnemyParty, 0x26, gLastUsedItem)
+	
+	if(CalculatePlayerPartyCount() == 6)
+		goto lbl18
+	else
+		goto lbl19
+}
+
+r6 = 0xFFFF0 / sqrt(sqrt((0xFF0000 / r6))
+r4 = 0
+goto lbl15
+
+for(r4 = 0; r4 <= 3; r4++)
+{
+	if(Random() bcs r6)
+		break;
+}
+
+if(*gLastUsedItem == 1)
+	r4 = 4
+
+BtlController_EmitBallThrowAnim(0, r4)
+MarkBattlerForControllerExec(*gActiveBattler)
+
+if(r4 == 4)
+{
+	*gBattleScriptCurrInstr = script_1D9A42
+	SetMonData((*((*gBattlerTarget * 2) + gBattlerPartyIndexes) * 0x64) + gEnemyParty, 0x26, gLastUsedItem)
+	
+	if(CalculatePlayerPartyCount() == 6)
+	{
+		lbl18:
+		*(gBattleCommunication + 5) = 0
+	}
+	else
+	{
+		lbl19:
+		*(gBattleCommunication + 5) = 1
+	}
+}
+else
+{
+	*(gBattleCommunication + 5) = r4
+	*gBattleScriptCurrInstr = script_1D9A93
+}

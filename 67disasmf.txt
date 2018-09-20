@@ -47,7 +47,7 @@ lbl4:
 r0 -= 6
 if(r0 <= 6) goto lbl5
 
-goto lbl_+14E
+goto lbl???z
 
 lbl5:
 r0 *= 4
@@ -61,8 +61,67 @@ goto r0
 
 
 
-lbl???: @2D67A
-09 49 08 88 05 28 1C D0 01 28 10 D1 07 48 41 79 02 22 11 43 41 71 14 E0 00 00 92 08 25 08 E4 3B 02 02 6C 3D 02 02 68 3D 02 02 90 4F 00 03
+lbl???z: @2D62A
+r0 = r5
+r0 *= r4
+r1 = 0xA
+divide()
+r5 = gBattleMons
+r1 = gBattlerTarget
+r2 = *r1
+r1 = 0x58
+r4 = r2
+r4 *= r1
+r3 = r4 + r5
+r2 = *(r3 + 0x2C)
+r1 = r2 * 2
+r1 += r2
+r2 = *(r3 + 0x28)
+r2 *= 2
+r2 = r1 - r2
+r0 *= r2
+divide()
+r6 = 0
+r5 = 0x4C
+r4 += r5
+r4 = *r4
+r0 = 0x27
+r0 &= r4
+if(r0 == 0) goto lbl???2
+
+r6 *= 2
+goto lbl???2
+
+lbl???2:
+r0 = 0xD8
+r4 &= r0
+if(r4 == 0) goto lbl???3
+
+r0 = r6 * 0x10
+r0 -= r6
+r1 = 0xA
+divide()
+r6 = r0
+goto lbl???3
+
+
+
+
+
+
+lbl???3: @2D67A
+r1 = gLastUsedItem
+r0 = *r1
+if(r0 == 5) goto lbl_+1E0
+
+if(r0 != 1) goto lbl_+1CC
+
+r0 = gBattleResults
+r1 = *(r0 + 5)
+r2 = 2
+r1 |= r2
+*(r0 + 5) = r1
+goto lbl_+1E0
 
 
 
@@ -70,4 +129,44 @@ lbl???: @2D67A
 
 
 lbl???: @2D6BC
-FE 2E 2F D9 00 20 04 21 E0 F7 66 FD 0E 48 00 78 E9 F7 BC FD 0D 49 0E 48 08 60 0E 49 0E 48 00 78 40 00 40 18 01 88 64 20 48 43 0C 49 40 18 0C 4A 26 21 12 F0 45 FE 13 F0 A3 FA 00 06 00 0E 06 28 57 D0 6B E0 90 4F 00 03 C4 3B 02 02 74 3D 02 02 42 9A 1D 08 CE 3B 02 02 6C 3D 02 02 2C 40 02 02 68 3D 02 02
+if(r6 <= 0xFE) goto lbl_+244
+
+r0 = 0
+r1 = 4
+fn_E194()
+r0 = gActiveBattler
+r0 = *r0
+MarkBattlerForControllerExec()
+r1 = gBattleScriptCurrInstr
+r0 = script_1D9A42
+*r1 = r0
+r1 = gBattlerPartyIndexes
+r0 = gBattlerTarget
+r0 = *r0
+r0 *= 2
+r0 += r1
+r1 = *r0
+r0 = 0x64
+r0 *= r1
+r1 = gEnemyParty
+r0 += r1
+r2 = gLastUsedItem
+r1 = 0x26
+SetMonData()
+fn_40C3C()
+if(r0 == 6) goto lbl_+2D2
+
+goto lbl_+2FC
+
+
+
+
+
+
+lbl???: @2D762
+r5 = gLastUsedItem
+r0 = *r5
+if(r0 != 1) goto lbl_+290
+
+r4 = 4
+goto lbl_+290

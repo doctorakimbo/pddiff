@@ -1,0 +1,77 @@
+...
+if(gLastUsedItem == ITEM_SAFARI_BALL)
+	catchRate = gBattleStruct->safariCatchFactor * (1275 / 100);
+else
+	catchRate = gBaseStats[gBattleMons[gBattlerTarget].species].catchRate;
+
+if(gLastUsedItem > ITEM_SAFARI_BALL)
+{
+	switch(gLastUsedItem)
+	{
+	...
+	}
+}
+else
+	ballMultiplier = sBallCatchBonuses[gLastUsedItem - 2];
+
+odds = (((catchRate * ballMultiplier) / 10) * (gBattleMons[gBattlerTarget].maxHP * 3) - (gBattleMons[gBattlerTarget].hp * 2)) / (gBattleMons[gBattlerTarget].maxHP * 3)
+
+if(gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
+	odds *= 2;
+
+if(gBattleMons[gBattlerTarget].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON))
+	odds *= (15 / 10);
+
+if(gLastUsedItem != ITEM_SAFARI_BALL)
+{
+	if(gLastUsedItem == ITEM_MASTER_BALL)
+		gBattleResults.usedMasterBall = TRUE;
+	elseif(gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL] < 0xFF)
+		gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL]++;
+}
+
+if(odds > 254)
+{
+	BtlController_EmitBallThrowAnim(0, BALL_3_SHAKES_SUCCESS);
+	MarkBattlerForControllerExec(gActiveBattler);
+	gBattleScriptCurrInstr = BattleScript_SuccessBallThrow;
+	SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
+	
+	if(CalculatePlayerPartyCount() == 6)
+		gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+	else
+		gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+}
+else
+{
+	odds = Sqrt(Sqrt(16711680 / odds));
+	odds = 1048560 / odds;
+
+	for(shakes = 0; shakes <= 3; shakes++)
+	{
+		if(Random() < odds)
+			break;
+	}
+
+	if(gLastUsedItem == ITEM_MASTER_BALL)
+		shakes = BALL_3_SHAKES_SUCCESS;
+
+	BtlController_EmitBallThrowAnim(0, shakes);
+	MarkBattlerForControllerExec(gActiveBattler);
+
+	if(shakes == BALL_3_SHAKES_SUCCESS)
+	{
+		gBattleScriptCurrInstr = BattleScript_SuccessBallThrow;
+		SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
+		
+		if(CalculatePlayerPartyCount() == 6)
+			gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+		else
+			gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+	}
+	else
+	{
+		gBattleCommunication[MULTISTRING_CHOOSER] = shakes;
+		gBattleScriptCurrInstr = BattleScript_ShakeBallThrow;
+	}
+}

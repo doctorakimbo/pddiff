@@ -1,0 +1,200 @@
+...
+if(gLastUsedItemType == BALL_EFFECT_SAFARI_BALL)
+	catchRate = gBattleStruct->safariCatchFactor * (1275 / 100);
+else
+	catchRate = gBaseStats[gBattleMons[gBattlerTarget].species].catchRate;
+
+if(gBattleTypeFlags >= 0x80)
+	gLastUsedItemType = BALL_EFFECT_SAFARI_BALL;
+
+if(gLastUsedItemType > BALL_EFFECT_SAFARI_BALL)
+{
+	switch(gLastUsedItemType)
+	{
+	...
+	case 0xD:
+		if(data_03004FE3_J == 0)
+			ballMultiplier = 40;
+		else
+			ballMultiplier = 10;
+		
+		break;
+	case 0xE:
+		if(data_03005542_J < 6 || data_03005542_J >= 0x15)
+			ballMultiplier = 35;
+		elseif(data_02036D47_J == 4)
+			ballMultiplier = 35;
+		else
+			ballMultiplier = 10;
+		
+		break;
+	case 0xF:
+		r0 = (gBattleStruct->safariCatchFactor * 0x4FB)
+		r1 = 0x64
+		ballMultiplier = 255;
+		
+		break;
+	case 0x10:
+	case 0x19:
+	case 0x1A:
+	case 0x1B:
+	case 0x1C:
+	case 0x1D:
+	case 0x1E:
+	case 0x1F:
+		ballMultiplier = gItemData[gLastUsedItem].secondaryId; // IMPORTANT!!! - DIFFERENT ADDRESS
+		
+		break;
+	case 0x18:
+		for(i = 0; i <= 0xC; i++)
+		{
+			if(table_A24300[i] == gBattleMons[B_POSITION_OPPONENT_LEFT].species)
+			{
+				ballMultiplier = 40;
+				break;
+			}
+		}
+		else
+			ballMultiplier = 10;
+		
+		break;
+		
+		table_A24300:
+		1D 00 1E 00 1F 00 20 00 21 00 22 00 23 00 24 00 28 00 29 00 3B 01 3C 01
+		= 29, 30, 31, 32, 33, 34, 35, 36, 40, 41, 315, 316
+	case 0x11:
+	case 0x12:
+		for(r3 = 0; r3 <= 0x9; r3++)
+		{
+			if(gEvolutionTable[gBattleMons[B_POSITION_PLAYER_LEFT].species][r3] == 0x5E0007) // record size 28 x 4
+			{
+				ballMultiplier = 40;
+				break;
+			}
+		}
+		else
+			ballMultiplier = 10;
+			
+		break;
+	case BALL_EFFECT_HEAVY_BALL:
+		weight = gPokedexEntries[gBattleMons[B_POSITION_OPPONENT_LEFT].species].weight; // IMPORTANT!!! - DIFFERENT ADDRESS
+		
+		if(weight < 0x800)
+			catchRate -= 20;
+		elseif(weight < 0xC00)
+			catchRate += 20;
+		elseif(weight < 0x1000)
+			catchRate += 30;
+		else
+			catchRate += 40;
+		
+		ballMultiplier = 10;
+		
+		break;
+	case BALL_EFFECT_FRIEND_BALL:
+		data_02023FF8_J = 200
+		SetMonData(gEnemyParty, MON_DATA_FRIENDSHIP, &data_02023FF8_J)
+		ballMultiplier = 10;
+		
+		break;
+	case 0x15:
+		r0 = data_0202429C_J
+		
+		if(r0 <= data_02023FE0_J)
+			ballMultiplier = 10;
+		elseif(r0 <= (data_02023FE0_J * 2))
+			ballMultiplier = 20;
+		elseif(r0 <= (data_02023FE0_J * 4))
+			ballMultiplier = 40;
+		else
+			ballMultiplier = 80;
+		
+		break;
+	case BALL_EFFECT_LOVE_BALL:
+		if(GetGenderFromSpeciesAndPersonality(gBattleMons[B_POSITION_PLAYER_LEFT].species, gBattleMons[B_POSITION_PLAYER_LEFT].personality) != GetGenderFromSpeciesAndPersonality(gBattleMons[B_POSITION_OPPONENT_LEFT].species, gBattleMons[B_POSITION_OPPONENT_LEFT].personality))
+			ballMultiplier = 80;
+		else
+			ballMultiplier = 10;
+			
+		break;
+	case 0x17:
+		if(data_02036D6C_J == 1)
+			ballMultiplier = 30;
+		else
+			ballMultiplier = 10;
+		
+		break;
+	}
+}
+else
+	ballMultiplier = sBallCatchBonuses[gLastUsedItem - 2];
+
+if((Random() % 2000) <= (100 * (pokedex_count(1) / 386)))
+	gCritCapture = TRUE;
+else
+	gCritCapture = FALSE;
+
+odds = (((catchRate * ballMultiplier) / 10) * (gBattleMons[gBattlerTarget].maxHP * 3) - (gBattleMons[gBattlerTarget].hp * 2)) / (gBattleMons[gBattlerTarget].maxHP * 3)
+
+if(gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
+	odds *= 2;
+
+if(gBattleMons[gBattlerTarget].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON))
+	odds *= (15 / 10);
+
+if(gLastUsedItemType != BALL_EFFECT_SAFARI_BALL)
+{
+	if(gLastUsedItemType == BALL_EFFECT_MASTER_BALL)
+		gBattleResults.usedMasterBall = TRUE;
+	elseif(gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL] < 0xFF)
+		gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL]++;
+}
+
+if(odds > 254)
+{
+	BtlController_EmitBallThrowAnim(0, BALL_3_SHAKES_SUCCESS);
+	MarkBattlerForControllerExec(gActiveBattler);
+	gBattleScriptCurrInstr = BattleScript_SuccessBallThrow;
+	SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItemType)
+	
+	if(CalculatePlayerPartyCount() == 6)
+		gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+	else
+		gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+}
+else
+{
+	odds = Sqrt(Sqrt(16711680 / odds));
+	odds = 1048560 / odds;
+
+	for(shakes = 0; shakes <= 3; shakes++)
+	{
+		if(Random() < odds)
+			break;
+	}
+
+	if(gCritCapture && shakes >= 2)
+		shakes = BALL_3_SHAKES_SUCCESS;
+
+	if(gLastUsedItemType == BALL_EFFECT_MASTER_BALL)
+		shakes = BALL_3_SHAKES_SUCCESS;
+
+	BtlController_EmitBallThrowAnim(0, shakes);
+	MarkBattlerForControllerExec(gActiveBattler);
+
+	if(shakes == BALL_3_SHAKES_SUCCESS)
+	{
+		gBattleScriptCurrInstr = BattleScript_SuccessBallThrow;
+		SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItemType)
+		
+		if(CalculatePlayerPartyCount() == 6)
+			gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+		else
+			gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+	}
+	else
+	{
+		gBattleCommunication[MULTISTRING_CHOOSER] = shakes;
+		gBattleScriptCurrInstr = BattleScript_ShakeBallThrow;
+	}
+}
