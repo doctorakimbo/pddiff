@@ -1,0 +1,35 @@
+sub_8038744()
+{
+	r0 = gBattleStruct->0x92[GetBattlerPosition(gActiveBattler) / 2]
+	
+	if(r0 == 6)
+	{
+		r4 = sub_8039E3C()
+		
+		if(r4 == 6)
+		{
+			if(!(gBattleTypeFlags & 1))
+				r6 = r5 = GetBattlerAtPosition(1)
+			else
+			{
+				r6 = GetBattlerAtPosition(1)
+				r5 = GetBattlerAtPosition(3)
+			}
+			
+			for(r4 = 0; r4 <= 5; r4++)
+			{
+				if(GetMonData(&gEnemyParty[r4], 0x39) != 0 && gBattlerPartyIndexes[r6] != r4 && gBattlerPartyIndexes[r5] != r4)
+					break;
+			}
+		}
+	}
+	else
+	{
+		r4 = gBattleStruct->0x92[GetBattlerPosition(gActiveBattler) / 2]
+		gBattleStruct->0x92[GetBattlerPosition(gActiveBattler) / 2] = 6
+	}
+	
+	gBattleStruct->0x5C[gActiveBattler] = r4
+	BtlController_EmitChosenMonReturnValue(1, r4, 0)
+	OpponentBufferExecCompleted()
+}

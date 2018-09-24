@@ -1,0 +1,3 @@
+MoveSelectionCreateCursorAt(cursorPosition, arg1) {}
+
+MoveSelectionDestroyCursorAt(cursorPosition) {}

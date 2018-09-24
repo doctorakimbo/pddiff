@@ -1,0 +1,33 @@
+OpponentHandleChoosePokemon()
+{
+	if(gBattleStruct->AI_monToSwitchIntoId[GetBattlerPosition(gActiveBattler) / 2] == PARTY_SIZE)
+	{
+		chosenMonId = GetMostSuitableMonToSwitchInto();
+		
+		if(chosenMonId == PARTY_SIZE)
+		{
+			if(!(gBattleTypeFlags & 1))
+				r6 = r5 = GetBattlerAtPosition(1)
+			else
+			{
+				r6 = GetBattlerAtPosition(1)
+				r5 = GetBattlerAtPosition(3)
+			}
+			
+			for(chosenMonId = 0; chosenMonId <= 5; chosenMonId++)
+			{
+				if(GetMonData(&gEnemyParty[chosenMonId], 0x39) != 0 && gBattlerPartyIndexes[r6] != chosenMonId && gBattlerPartyIndexes[r5] != chosenMonId)
+					break;
+			}
+		}
+	}
+	else
+	{
+		chosenMonId = gBattleStruct->AI_monToSwitchIntoId[GetBattlerPosition(gActiveBattler) / 2]
+		gBattleStruct->AI_monToSwitchIntoId[GetBattlerPosition(gActiveBattler) / 2] = PARTY_SIZE
+	}
+	
+	gBattleStruct->0x5C[gActiveBattler] = chosenMonId
+	BtlController_EmitChosenMonReturnValue(1, chosenMonId, 0)
+	OpponentBufferExecCompleted()
+}

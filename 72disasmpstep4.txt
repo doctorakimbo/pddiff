@@ -1,0 +1,413 @@
+OpponentHandleChoosePokemon()
+{
+	chosenMonId = &gBattleStruct->AI_monToSwitchIntoId[(gActiveBattler & 1) / 2]
+	
+	if(chosenMonId == PARTY_SIZE && (gActiveBattler & 1) != 0)
+		chosenMonId = fn_2061DC_J()
+	
+	if(chosenMonId = PARTY_SIZE)
+	{
+		chosenMonId = GetMostSuitableMonToSwitchInto();
+		
+		if(chosenMonId == PARTY_SIZE)
+		{
+			if(!(gBattleTypeFlags & 1))
+				r6 = r5 = GetBattlerAtPosition(1)
+			else
+			{
+				r6 = GetBattlerAtPosition(1)
+				r5 = GetBattlerAtPosition(3)
+			}
+			
+			for(chosenMonId = 0; chosenMonId <= 5; chosenMonId++)
+			{
+				if(GetMonData(&gEnemyParty[chosenMonId], 0x39) != 0 && gBattlerPartyIndexes[r6] != chosenMonId && gBattlerPartyIndexes[r5] != chosenMonId)
+					break;
+			}
+		}
+	}
+	else
+	{
+		chosenMonId = gBattleStruct->AI_monToSwitchIntoId[GetBattlerPosition(gActiveBattler) / 2]
+		gBattleStruct->AI_monToSwitchIntoId[GetBattlerPosition(gActiveBattler) / 2] = PARTY_SIZE
+	}
+	
+	gBattleStruct->0x5C[gActiveBattler] = chosenMonId
+	BtlController_EmitChosenMonReturnValue(1, chosenMonId, 0)
+	OpponentBufferExecCompleted()
+}
+
+
+
+
+
+
+
+fn_2061DC_J()
+{
+	r0 = fn_20649C_J()
+	r1 = 6
+	
+	if(r0 != 0)
+	{
+		{r0, r1} = fn_206334_J()
+		
+		if(r0 != 1)
+		{
+			{r0, r1} = fn_2060FC_J()
+			
+			if(r1 == 6 || r0 <= 0x8C)
+			{
+				r1 = fn_206164_J()
+				
+				if(r1 == 6)
+					{r0, r1} = fn_2066CC_J(gBattleMons, *(gBattleMons + (0x58 * 2)), 1)
+			}
+		}
+	}
+	
+	*arg0 = r1
+	return r0
+}
+
+
+
+
+
+
+
+fn_20649C_J()
+{
+	if(gBattleTypeFlags & 0x100)
+		r0 = *data_0203BFF4_J
+	else
+		r0 = data_1FDFD8_J[data_020385E2_J].0x20 // data_1FDFD8_J record size: 0x20
+	
+	return ((r0 >> 0xA) & 1)
+}
+
+
+
+
+
+
+
+fn_206334_J()
+{
+	{r0, r1} = fn_2063A4_J()
+
+	if(r0 == 1)
+	{
+		for(r6 = 0; r6 <= 1; r6++)
+		{
+			for(r5 = 0; r5 <= 3; r5++)
+			{
+				if(*(((0x58 * 2) * r6) + gBattleMons + 0xC + (r5 * 2)) == 0x208)
+					return {0, (r5 * 2)}
+			}
+		}
+
+		r7 = 0
+
+		lbl4:
+		r7 = fn_205D96_J(r7, 1)
+		
+		if(r7 != 6)
+		{
+			for(r6 = 0; r6 < 4; r6++)
+			{
+				if(GetMonData(&gEnemyParty[r7], r6 + 0xD) == 0x208)
+					return {1, r7}
+			}
+
+			r7++
+			if(r7 < 6) goto lbl4
+		}
+		
+		r1 = r6 + 0xD
+	}
+	
+	return {0, r1}
+}
+
+
+
+
+
+
+
+fn_2060FC_J()
+{
+	s0 = 6
+	r6 = 0
+
+	for(r7 = 0; r7 != 6; r7++)
+	{
+		if(*(gBattleWeather + 2) & 0xFE)
+		{
+			r7 = fn_205D96_J(r7, 1)
+			
+			if(r7 == 6)
+				break;
+			
+			r4 = &gEnemyParty[r7]
+			
+			if(GetMonData(r4, 0x3D) <= 0x64)
+			{
+				r5 = GetMonData(r4, 0x3B)
+				r0 = GetMonData(r4, 0x3E)
+				
+				if(r0 < r5)
+					r0 = r5
+				
+				if(r6 < r0)
+				{
+					r6 = r0
+					s0 = r7
+				}
+			}
+		}
+	}
+	
+	return {r6, s0}
+}
+
+
+
+
+
+
+
+fn_206164_J()
+{
+	for(r7 = 0; r7 != 6; r7++)
+	{
+		r7 = fn_205D96_J(r7, 1)
+		
+		if(r7 == 6)
+			break;
+		
+		r0 = GetMonAbility(&gEnemyParty[r7])
+		
+		if(!(gBattleWeather & 3) && r0 == 2)
+			break;
+		elseif(!(gBattleWeather & 0xC) && r0 == 0x2D)
+			break;
+		elseif(!(gBattleWeather & 0x30) && r0 == 0x46)
+			break;
+		elseif(!(gBattleWeather & 0xC0) && r0 == 0x75)
+			break;
+	}
+	
+	return r7
+}
+
+
+
+
+
+
+
+fn_2066CC_J(arg0, arg1, arg2)
+{
+	s1 = 0xFFFFFF
+	s2 = 6
+
+	for(r7 = 0; r7 != 6; r7++)
+	{
+		r7 = fn_205D96_J(r7, arg2)
+		
+		if(r7 == 6)
+			break;
+		
+		if(arg2 != 0)
+			r6 = gEnemyParty
+		else
+		{
+			if(!(gBattleTypeFlags & 1) || r7 != 1)
+			{
+				if(r7 != 0 && !(*data_0203B964_J & (1 << r7)))
+					continue;
+			}
+			
+			r6 = gPlayerParty
+		}
+		
+		s0 = GetMonData(&r6[r7], 0xB)
+		s4 = GetMonAbility(&r6[r7])
+		
+		
+		if(arg0 != 0)
+			r6 = fn_206292_J(arg0, s0, s4)
+		else
+			r6 = 0xA
+		
+		if(arg1 != 0)
+			r0 = fn_206292_J(arg1, s0, s4)
+		else
+			r0 = 0xA
+		
+		r0 = r6 * (r0 / 0xA)
+		
+		if(r0 <= s1)
+		{
+			s1 = r0
+			s2 = r7
+		}
+	}
+	
+	return {s1, s2}
+}
+
+
+
+
+
+
+
+fn_2063A4_J()
+{
+	r4 = *(gBattleWeather + 2) & 0xFE
+	
+	if(r4 != 0)
+		r4 = 1
+	
+	r5 = 0
+	s1 = 0
+
+	for(r6 = 0; r6 < 6; r6++)
+	{
+		if(GetMonData(&gEnemyParty[r6], 0x39) != 0 && GetMonData(&gEnemyParty[r6], 0x2D) == 0)
+		{
+			s1 += GetMonData(s0, 0x3D)
+			r5++
+		}
+	}
+	
+	return {((((s1 / r5) - 0x64) >> 0x1F) ^ r4), (s1 % r5)}
+}
+
+
+
+
+
+
+
+fn_205D96_J(arg0, arg1)
+{
+	for(r7 = arg0; r7 < 6; r7++)
+	{
+		r0 = fn_205D8A_J(arg1)
+		r4 = &r0[r7]
+		
+		if(GetMonData(r4, 0x39) != 0 && GetMonData(r4, 0x2D) != 1 && *((arg1 * 2) + gBattlerPartyIndexes) != r7)
+		{
+			if(gBattleTypeFlags & 1)
+			{
+				if(gBattlerPartyIndexes[arg1 ^ 2] == r7)
+					goto lbl4
+
+				if(arg1 == 0)
+					break;
+			}
+			
+			if(gBattleStruct->0x5C != r7)
+			{
+				if(!(gBattleTypeFlags & 1))
+					break;
+				
+				if(gBattleStruct->0x5D != r7)
+					break;
+			}
+		}
+	}
+	
+	return r7
+}
+
+
+
+
+
+
+
+fn_206292_J(arg0, arg1, arg2)
+{
+	// data_21118C_J record size: 0x1C
+
+	s0 = fn_252248_J(data_21118C_J[arg0].6, data_21118C_J[arg1].6, arg2)
+	
+	if(data_21118C_J[arg1].6 != data_21118C_J[arg1].7)
+		s0 *= (fn_252248_J(data_21118C_J[arg0].6, data_21118C_J[arg1].7, arg2) / 0xA)
+	
+	if(data_21118C_J[arg0].6 != data_21118C_J[arg0].7)
+	{
+		s1 = fn_252248_J(data_21118C_J[arg0].7, data_21118C_J[arg1].6, arg2)
+		
+		if(data_21118C_J[arg1].6 != data_21118C_J[arg1].7)
+			s1 *= (fn_252248_J(data_21118C_J[arg0].7, data_21118C_J[arg1].7), arg2) / 0xA)
+	}
+	else
+		s1 = 0xA
+	
+	r2 = 0
+	r3 = 0
+	
+	if(s0 != 0xA)
+	{
+		if(s0 < 0xA)
+			r3++
+		else
+			r2++
+	}
+	
+	if(s1 != 0xA)
+	{
+		if(s1 < 0xA)
+			r3++
+		else
+			r2++
+	}
+	
+	return (0xA + (r2 * 0x10) - (r3 * 4))
+}
+
+
+
+
+
+
+
+fn_205D8A_J(arg0)
+{
+	if(arg0 != 0)
+		return gEnemyParty
+	else
+		return gPlayerParty
+}
+
+
+
+
+
+
+
+fn_252248_J(arg0, arg1, arg2)
+{
+	if(arg0 == 0xD && (arg2 == 0xA || arg2 == 0x1F || arg2 == 0x4E))
+		return 0
+	elseif(arg0 == 0xB && (arg2 == 0xB || arg2 == 0x57 || arg2 == 0x72))
+		return 0
+	elseif(arg0 == 0xA && arg2 == 0x12)
+		return 0
+	elseif(arg0 == 0xC && arg2 == 0x9D)
+		return 0
+	
+	for(r4 = 0; data_20BF24_J[r4].0 != 0xFF; r4++)
+	{
+		if(data_20BF24_J[r4].0 == arg0 && data_20BF24_J[r4].1 == arg1)
+			return data_20BF24_J[r4].2
+	}
+	
+	return 0xA
+}

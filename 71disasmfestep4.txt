@@ -1,0 +1,17 @@
+MoveSelectionCreateCursorAt(cursorPosition, arg1)
+{
+	src[0] = arg1 + 1;
+	src[1] = arg1 + 1;
+
+	CopyToBgTilemapBufferRect_ChangePalette(0, src, ((cursorPosition & 1) * 9) + 1, (cursorPosition & 2) + 0x37, 1, 2, 0x11);
+	CopyBgTilemapBufferToVram(0);
+}
+
+MoveSelectionDestroyCursorAt(cursorPosition)
+{
+	src[0] = 0x20;
+	src[1] = 0x20;
+	
+	CopyToBgTilemapBufferRect_ChangePalette(0, src, ((cursorPosition & 1) * 9) + 1, (cursorPosition & 2) + 0x37, 1, 2, 0x11);
+	CopyBgTilemapBufferToVram(0);
+}

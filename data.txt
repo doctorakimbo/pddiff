@@ -119,6 +119,7 @@ FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
 								 (fn_EB8398_J: Use ratio of this[battler].8[moveId] to this[battler].0xC[moveId] to obtain a result)
 								 (fn_EB8398_J: Use gBattleMoves[this[battler].0[moveId]] to select a sprite)
 								 (fn_EB85EE_J: Something about this[gBattleResources + 4])
+		   : F4 BF 03 02: ??????
 		   : 0D C0 03 02: ?????? (sub_8032768: zeroed)
 		   : 00 D3 03 02: ?????? (Appears to be an array of characters)
 								 (fn_EB8398_J: Set this[0] to data_0203BF70_J[battler].8[moveId])
@@ -150,6 +151,8 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 		   
 		   
 funcs e,j,desc:
+0020BC = 0020BC = CopyBgTilemapBufferToVram
+002228 = 002228 = CopyToBgTilemapBufferRect_ChangePalette
 006F8C = 006B08 = CreateSprite
 0071EC = 006D68 = CreateSpriteAndAnimate
 007804 = 007380 = DestroySpriteAndFreeResources
@@ -163,6 +166,7 @@ funcs e,j,desc:
 00E0B4 = 00DAA8 = BtlController_EmitReturnMonToBall
 00E194 = 00DB88 = BtlController_EmitBallThrowAnim
 00E5EC = 00DFA0 = BtlController_EmitHealthBarUpdate
+00E874 = 00E228 = BtlController_EmitChosenMonReturnValue
 00EB28 = 00E4DC = BtlController_EmitBattleAnimation
 011100 = BattleMainCB2
 015A30 = FreeResetData_ReturnToOvOrDoEvolutions
@@ -194,6 +198,8 @@ funcs e,j,desc:
 02A224 = 0299FC = AttacksThisTurn
 02E228 = 02DA24 = AdjustFriendshipOnBattleFaint
 030A14 = 030180 = MoveSelectionDestroyCursorAt
+036530 = 035CA4 = OpponentBufferExecCompleted
+039E3C = 0395A8 = GetMostSuitableMonToSwitchInto
 03E47C = CalculateMonStats
 03ECEC = 03E458 = CalculateBaseDamage
 03F5B4 = 03ED20 = CountAliveMonsInBattle
@@ -249,11 +255,22 @@ funcs e,j,desc:
 ?????? = 168C88 = ClearFocusBand (unimplemented)
 ?????? = 168C9C = SetFocusBand (unimplemented)
 ?????? = 2058E0 = ????? (unimplemented)
+?????? = 205D8A = ????? (unimplemented)
+?????? = 205D96 = ????? (unimplemented)
+?????? = 2060FC = ????? (unimplemented)
+?????? = 206164 = ????? (unimplemented)
+?????? = 2061DC = ????? (unimplemented)
+?????? = 206292 = ????? (unimplemented)
+?????? = 206334 = ????? (unimplemented)
+?????? = 2063A4 = ????? (unimplemented)
+?????? = 20649C = ????? (unimplemented)
+?????? = 2066CC = ????? (unimplemented)
 ?????? = 207370 = ????? (unimplemented)
 ?????? = 207450 = GetPinchThreshhold (unimplemented)
 ?????? = 207470 = PushScriptInstr (unimplemented)
 ?????? = 2076B0 = RunTypeEffectivenessBasedAbilities (unimplemented)
 ?????? = 251DA0 = IsMoveBlockedByAbility (unimplemented)
+?????? = 252248 = ????? (unimplemented)
 
 data:
 21A8D4 = sHoldEffectToType

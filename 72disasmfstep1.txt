@@ -1,0 +1,89 @@
+sub_8038744()
+{
+	r6 = gActiveBattler
+	r0 = GetBattlerPosition(*r6)
+	r0 /= 2
+	r5 = gBattleStruct
+	r1 = *r5
+	r0 += r1
+	r0 += 0x92
+	r0 = *r0
+	
+	if(r0 == 6)
+	{
+		sub_8039E3C()
+		r4 = r0
+		
+		if(r4 == 6)
+		{
+			r0 = gBattleTypeFlags
+			r0 = *r0
+			r1 = 1
+			r0 &= r1
+			
+			if(r0 == 0)
+			{
+				r5 = GetBattlerAtPosition(1)
+				r6 = r5
+			}
+			else
+			{
+				r6 = GetBattlerAtPosition(1)
+				r5 = GetBattlerAtPosition(3)
+			}
+			
+			for(r4 = 0; r4 <= 5; r4++)
+			{
+				r0 = 0x64
+				r0 *= r4
+				r1 = gEnemyParty
+				r0 += r1
+				r0 = GetMonData(r0, 0x39)
+				
+				if(r0 != 0)
+				{
+					r1 = gBattlerPartyIndexes
+					r0 = r6 * 2
+					r0 += r1
+					r0 = *r0
+					
+					if(r4 != r0)
+					{
+						r0 = r5 * 2
+						r0 += r1
+						r0 = *r0
+						
+						if(r4 != r0)
+							break;
+					}
+				}
+			}
+		}
+	}
+	else
+	{
+		r0 = GetBattlerPosition(*r6)
+		r0 /= 2
+		r1 = *r5
+		r0 += r1
+		r0 += 0x92
+		r4 = *r0
+		r0 = GetBattlerPosition(*r6)
+		r0 /= 2
+		r1 = *r5
+		r0 += r1
+		r0 += 0x92
+		r1 = 6
+		*r0 = r1
+	}
+	
+	r0 = gActiveBattler
+	r0 = *r0
+	r1 = gBattleStruct
+	r1 = *r1
+	r0 += r1
+	r0 += 0x5C
+	*r0 = r4
+	BtlController_EmitChosenMonReturnValue(1, r4, 0)
+	OpponentBufferExecCompleted()
+}
