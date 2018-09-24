@@ -1,0 +1,20 @@
+lbl1: @2EF58
+r0 = gMain
+r1 = *(r0 + 0x2E)
+r0 = 5
+r0 &= r1
+if(r0 == 0) goto lbl2
+
+goto lbl3
+
+lbl2:
+...
+
+lbl3: @2F34C
+r0 = gMain
+r1 = *(r0 + 0x2E)
+r0 = 2
+r0 &= r1
+if(r0 == 0) goto lbl(2F3C8)
+
+...

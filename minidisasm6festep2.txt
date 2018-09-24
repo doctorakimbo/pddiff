@@ -1,0 +1,10 @@
+MoveSelectionDisplayMoveType()
+{
+	r3 = StringCopy(gDisplayedStringBattle, data_3FE76A)
+	*r3 = 0xFC
+	*(r3 + 1) = 6
+	*(r3 + 2) = 1
+	r3 = StringCopy(*(r3 + 3), data_3FE770)
+	StringCopy(r3, (*((*((*gActiveBattler * 0x200) + gBattleBufferA[4] + (*((gBattleResources + 4) + *gActiveBattler) * 2)) * 0xC) + data_250C04 + 2) * 7) + data_24F1A0)
+	BattlePutTextOnWindow(gDisplayedStringBattle, 8)
+}

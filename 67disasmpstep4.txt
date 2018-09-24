@@ -4,7 +4,7 @@ if(gLastUsedItemType == BALL_EFFECT_SAFARI_BALL)
 else
 	catchRate = gBaseStats[gBattleMons[gBattlerTarget].species].catchRate;
 
-if(gBattleTypeFlags >= 0x80)
+if(gBattleTypeFlags >= BATTLE_TYPE_SAFARI)
 	gLastUsedItemType = BALL_EFFECT_SAFARI_BALL;
 
 if(gLastUsedItemType > BALL_EFFECT_SAFARI_BALL)
@@ -12,14 +12,14 @@ if(gLastUsedItemType > BALL_EFFECT_SAFARI_BALL)
 	switch(gLastUsedItemType)
 	{
 	...
-	case 0xD:
-		if(data_03004FE3_J == 0)
+	case BALL_EFFECT_QUICK_BALL:
+		if(gBattleResults.battleTurnCounter == 0)
 			ballMultiplier = 40;
 		else
 			ballMultiplier = 10;
 		
 		break;
-	case 0xE:
+	case BALL_EFFECT_DUSK_BALL:
 		if(data_03005542_J < 6 || data_03005542_J >= 0x15)
 			ballMultiplier = 35;
 		elseif(data_02036D47_J == 4)
@@ -28,24 +28,18 @@ if(gLastUsedItemType > BALL_EFFECT_SAFARI_BALL)
 			ballMultiplier = 10;
 		
 		break;
-	case 0xF:
+	case BALL_EFFECT_PARK_BALL:
 		r0 = (gBattleStruct->safariCatchFactor * 0x4FB)
 		r1 = 0x64
 		ballMultiplier = 255;
 		
 		break;
 	case 0x10:
-	case 0x19:
-	case 0x1A:
-	case 0x1B:
-	case 0x1C:
-	case 0x1D:
-	case 0x1E:
-	case 0x1F:
+	case 0x19-0x1F: // not used
 		ballMultiplier = gItemData[gLastUsedItem].secondaryId; // IMPORTANT!!! - DIFFERENT ADDRESS
 		
 		break;
-	case 0x18:
+	case BALL_EFFECT_FAST_BALL:
 		for(i = 0; i <= 0xC; i++)
 		{
 			if(table_A24300[i] == gBattleMons[B_POSITION_OPPONENT_LEFT].species)
@@ -66,7 +60,7 @@ if(gLastUsedItemType > BALL_EFFECT_SAFARI_BALL)
 	case 0x12:
 		for(r3 = 0; r3 <= 0x9; r3++)
 		{
-			if(gEvolutionTable[gBattleMons[B_POSITION_PLAYER_LEFT].species][r3] == 0x5E0007) // record size 28 x 4
+			if(gEvolutionTable[gBattleMons[B_POSITION_PLAYER_LEFT].species][r3] == 0x5E0007)
 			{
 				ballMultiplier = 40;
 				break;
@@ -97,14 +91,12 @@ if(gLastUsedItemType > BALL_EFFECT_SAFARI_BALL)
 		ballMultiplier = 10;
 		
 		break;
-	case 0x15:
-		r0 = data_0202429C_J
-		
-		if(r0 <= data_02023FE0_J)
+	case BALL_EFFECT_LEVEL_BALL:
+		if(gPlayerParty[1].level <= gEnemyParty[0].level)
 			ballMultiplier = 10;
-		elseif(r0 <= (data_02023FE0_J * 2))
+		elseif(gPlayerParty[1].level <= (gEnemyParty[0].level * 2))
 			ballMultiplier = 20;
-		elseif(r0 <= (data_02023FE0_J * 4))
+		elseif(gPlayerParty[1].level <= (gEnemyParty[0].level * 4))
 			ballMultiplier = 40;
 		else
 			ballMultiplier = 80;
@@ -117,7 +109,7 @@ if(gLastUsedItemType > BALL_EFFECT_SAFARI_BALL)
 			ballMultiplier = 10;
 			
 		break;
-	case 0x17:
+	case BALL_EFFECT_LURE_BALL:
 		if(data_02036D6C_J == 1)
 			ballMultiplier = 30;
 		else

@@ -1,0 +1,16 @@
+MoveSelectionDisplayMoveNames()
+{
+	gNumberOfMovesToChoose = 0;
+	moveInfo = &gBattleBufferA[gActiveBattler][4];
+	
+	for(i = 0; i <= 3; i++)
+	{
+		MoveSelectionDestroyCursorAt(i);
+		StringCopy(gDisplayedStringBattle, data_083FE770)
+		StringAppend(gDisplayedStringBattle, gMoveNames[moveInfo->moves[i]]) // curr size: 7
+		BattlePutTextOnWindow(gDisplayedStringBattle, i + 3);
+		
+		if(moveInfo->moves[i] != 0)
+			gNumberOfMovesToChoose++;
+	}
+}

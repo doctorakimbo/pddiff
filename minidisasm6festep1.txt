@@ -1,0 +1,40 @@
+MoveSelectionDisplayMoveType()
+{
+	r5 = gActiveBattler
+	r4 = *r5
+	r4 *= 0x200
+	r0 = gBattleBufferA[4]
+	r4 += r0
+	r6 = gDisplayedStringBattle
+	r3 = StringCopy(r6, data_3FE76A)
+	r0 = 0xFC
+	*r3 = r0
+	r3++
+	r0 = 6
+	*r3 = r0
+	r3++
+	r0 = 1
+	*r3 = r0
+	r3++
+	r3 = StringCopy(r3, data_3FE770)
+	r2 = data_250C04
+	r1 = gBattleResources + 4
+	r0 = *r5
+	r0 += r1
+	r0 = *r0
+	r0 *= 2
+	r4 += r0
+	r1 = *r4
+	r0 = r1 * 2
+	r0 += r1
+	r0 *= 4
+	r0 += r2
+	r0 = *(r0 + 2)
+	r1 = r0 * 8
+	r1 -= r0
+	r0 = data_24F1A0
+	StringCopy(r3, r1 + r0)
+	r0 = r6
+	r1 = 8
+	BattlePutTextOnWindow()
+}

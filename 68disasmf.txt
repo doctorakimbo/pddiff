@@ -1,0 +1,11 @@
+lbl1: @2EA10
+(identical)
+
+lbl2: @2ED9C
+r0 = *r0
+r1 = 0x1B
+309CC()
+r0 = data_3FE7A0
+r1 = 0xB
+d87bc()
+...

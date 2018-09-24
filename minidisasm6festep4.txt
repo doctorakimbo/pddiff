@@ -1,0 +1,15 @@
+MoveSelectionDisplayMoveType()
+{
+	moveInfo = &gBattleBufferA[gActiveBattler][4];
+
+	txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType)
+	txtPtr[0] = EXT_CTRL_CODE_BEGIN;
+	txtPtr++;
+	txtPtr[0] = 6;
+	txtPtr++;
+	txtPtr[0] = 1;
+	txtPtr++;
+	txtPtr = StringCopy(txtPtr, data_3FE770)
+	StringCopy(txtPtr, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]].type]); // gTypeNames record size: 7
+	BattlePutTextOnWindow(gDisplayedStringBattle, 8);
+}

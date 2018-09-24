@@ -1,0 +1,40 @@
+sub_8030830()
+{
+	r0 = gActiveBattler
+	r1 = *r0
+	r1 *= 0x200
+	r3 = data_02022BC8
+	r2 = data_03004FF8
+	r0 = 0
+	*r2 = r0
+	r5 = 0
+	r6 = data_0202298C
+	r4 = r1 + r3
+	r7 = r2
+
+	do
+	{
+		MoveSelectionDestroyCursorAt(r5)
+		StringCopy(r6, data_083FE770)
+		r1 = *r4
+		r0 = 0xD
+		r1 *= r0
+		r0 = gMoveNames
+		r1 += r0
+		StringAppend(r6, r1)
+		r1 = r5 + 3
+		r0 = r6
+		sub_80D87BC()
+		r0 = *r4
+
+		if(r0 != 0)
+		{
+			r0 = *r7
+			r0++
+			*r7 = r0
+		}
+
+		r4 += 2
+		r5++
+	} while(r5 <= 3)
+}

@@ -1,0 +1,8 @@
+MoveSelectionDisplayMoveType()
+{
+	moveInfo = &gBattleBufferA[gActiveBattler][4];
+
+	StringCopy(gDisplayedStringBattle, data_3C46FF_J)
+	StringAppend(gDisplayedStringBattle, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]].type]) // gTypeNames record size: 5
+	BattlePutTextOnWindow(gDisplayedStringBattle, 0xA);
+}

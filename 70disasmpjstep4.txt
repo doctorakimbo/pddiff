@@ -1,0 +1,379 @@
+MoveSelectionDisplayMoveNames()
+{
+	gNumberOfMovesToChoose = 0;
+	moveInfo = &gBattleBufferA[gActiveBattler][4];
+	
+	for(i = 0; i <= 3; i++)
+	{
+		MoveSelectionDestroyCursorAt(i);
+		StringCopy(gDisplayedStringBattle, data_083FE770)
+		StringAppend(gDisplayedStringBattle, gMoveNames[moveInfo->moves[i]]) // curr size: 16
+		PrintMoveName(i + 3);
+		
+		if(moveInfo->moves[i] != 0)
+			gNumberOfMovesToChoose++;
+	}
+}
+
+
+
+
+
+
+PrintMoveName(moveId)
+{
+	BattlePutTextOnWindow(gDisplayedStringBattle, moveId);
+	fn_EB8398_J(i, gActiveBattler)
+}
+
+
+
+
+
+
+fn_EB8398_J(moveId, battler)
+{
+	*data_0203BF70_J = battler
+
+	if(moveId == 0)
+	{
+		fn_EB873C_J()
+		LoadPalette(data_08EB8768_J, 0x51, 0x10)
+		LoadSpritePalette(data_08EB8778_J)
+		fn_EB856A_J()
+	}
+	
+	ConvertIntToDecimalStringN(data_0203D300_J, *((battler * 0x200) + data_0203BF70_J + moveId + 8), 1, 2)
+	*(data_0203D300_J + 2) = CHAR_SLASH
+	ConvertIntToDecimalStringN(data_0203D300_J + 3, *((battler * 0x200) + data_0203BF70_J + moveId + 0xC), 1, 2)
+	r2 = 0
+	r0 = *((battler * 0x200) + data_0203BF70_J + moveId + 8)
+	r1 = *((battler * 0x200) + data_0203BF70_J + moveId + 0xC)
+	
+	if(r1 != 0)
+	{
+		r1 /= 2
+		
+		if(r0 <= r1)
+		{
+			r1 /= 2
+			
+			if(r0 <= r1)
+			{
+				if(r0 == 0)
+					r2++
+				
+				r2++
+			}
+			
+			r2++
+		}
+		
+		r2 *= 2
+		r2++
+		*(data_0203D340_J + 1) = r2
+		*(data_0203D340_J + 2) = r2 + 1
+		*data_0203D340_J = 0
+		box_print(moveId + 3, 0, 0x18, 0xA, data_0203D340_J, r2, data_0203D300_J)
+		*data_0203D420_J = data_E95DDC
+		*(data_0203D420_J + 4) = 0x100
+		*(data_0203D420_J + 6) = 0x78A0 + moveId
+		LoadSpriteSheet(data_0203D420_J)
+		fn_1E5E78((moveId * 0x20) + data_0203D380_J, data_08EB8780_J, 0x18)
+		*((moveId * 0x20) + data_0203D380_J) += moveId
+		sprite = CreateSprite(r0, ((moveId & 1) * 0x70) + 0x68, ((moveId & 2) * 0xC) + 0x74, 0)
+		*(data_0203BF30_J + moveId) = sprite
+		*(data_0203BF30_J + 4) = moveId
+		fn_EB851C_J(gBattleMoves[*((battler * 0x200) + data_0203BF70_J + (moveId * 2))].type + 1, sprite)
+	}
+	
+	return
+}
+
+
+
+
+
+
+fn_EB873C_J()
+{
+	if(*(data_0203BF30_J + 4) != 0)
+	{
+		for(i = 0; i <= *(data_0203BF30_J + 4); i++)
+		{
+			DestroySpriteAndFreeResources((*(data_0203BF30_J + i) * 0x44) + gSprites)
+		}
+	}
+	
+	*data_0203BF30_J = 0
+	*(data_0203BF30_J + 4) = 0
+	return
+}
+
+
+
+
+
+
+fn_EB856A_J()
+{
+	*(data_0203BF40_J + 2) = 0
+
+	if(*(data_0203BF40_J + 4) != 1)
+	{
+		*(data_0203BF40_J + 4) = 1
+		*(data_0203BF40_J + 1) = LoadSpritePalette(data_EB8880_J)
+		*data_0203BF40_J = LoadSpritePalette(data_EB8888_J)
+		*(data_0203BF40_J + 2) = 0
+		LoadSpriteSheet(data_EB8890_J)
+		CreateSpriteAndAnimate(data_EB87A0_J, 8, 0x67, 0)
+		CreateSpriteAndAnimate(data_EB87B8_J, 0x72, 0x67, 0)
+		CreateSpriteAndAnimate(data_EB87D0_J, 8, 0x67, 0)
+		CreateSpriteAndAnimate(data_EB87E8_J, 0x72, 0x67, 0)
+		CreateSpriteAndAnimate(data_EB8800_J, 8, 0x67, 0)
+		CreateSpriteAndAnimate(data_EB8818_J, 0x72, 0x67, 0)
+		CreateSpriteAndAnimate(data_EB8830_J, 8, 0x67, 0)
+		CreateSpriteAndAnimate(data_EB8848_J, 0x72, 0x67, 0)
+	}
+
+	return
+}
+
+data_EB8880_J:
+30 89 EB 08 30 80 00 00
+= SpritePalette
+{
+	data = data_EB8930_J
+	tag = 8030
+}
+
+data_EB8888_J:
+70 89 EB 08 31 80 00 00
+= SpritePalette
+{
+	data = data_EB8970_J
+	tag = 8031
+}
+
+data_EB8890_J:
+50 89 EB 08 20 00 40 80
+= SpriteSheet
+{
+	data = data_EB8950_J
+	size = 0x20
+	tag = 8040
+}
+
+data_EB87A0_J:
+40 80 30 80 60 88 EB 08 E4 11 1F 08 00 00 00 00 F0 11 1F 08 81 86 EB 08 =
+40 80 30 80 60 88 EB 08 F0 1C 23 08 00 00 00 00 FC 1C 23 08 81 86 EB 08
+= SpriteTemplate
+{
+	tileTag = 8040
+	paletteTag = 8030
+	oam = data_EB8860_J
+	anims = data_1F11E4_J
+	images = NULL
+	affineAnims = data_1F11F0_J
+	callback = fn_EB8680_J
+}
+
+data_EB87B8_J:
+40 80 30 80 68 88 EB 08 E4 11 1F 08 00 00 00 00 F0 11 1F 08 87 86 EB 08 =
+40 80 30 80 68 88 EB 08 F0 1C 23 08 00 00 00 00 FC 1C 23 08 87 86 EB 08
+= SpriteTemplate
+{
+	tileTag = 8040
+	paletteTag = 8030
+	oam = data_EB8868_J
+	anims = data_1F11E4_J
+	images = NULL
+	affineAnims = data_1F11F0_J
+	callback = fn_EB8686_J
+}
+
+data_EB87D0_J:
+40 80 30 80 70 88 EB 08 E4 11 1F 08 00 00 00 00 F0 11 1F 08 8D 86 EB 08 =
+40 80 30 80 70 88 EB 08 F0 1C 23 08 00 00 00 00 FC 1C 23 08 8D 86 EB 08
+= SpriteTemplate
+{
+	tileTag = 8040
+	paletteTag = 8030
+	oam = data_EB8870_J
+	anims = data_1F11E4_J
+	images = NULL
+	affineAnims = data_1F11F0_J
+	callback = fn_EB868C_J
+}
+
+data_EB87E8_J:
+40 80 30 80 78 88 EB 08 E4 11 1F 08 00 00 00 00 F0 11 1F 08 93 86 EB 08 = 
+40 80 30 80 78 88 EB 08 F0 1C 23 08 00 00 00 00 FC 1C 23 08 93 86 EB 08
+= SpriteTemplate
+{
+	tileTag = 8040
+	paletteTag = 8030
+	oam = data_EB8878_J
+	anims = data_1F11E4_J
+	images = NULL
+	affineAnims = data_1F11F0_J
+	callback = fn_EB8692_J
+}
+
+data_EB8800_J:
+40 80 30 80 60 88 EB 08 E4 11 1F 08 00 00 00 00 F0 11 1F 08 05 87 EB 08 = 
+40 80 30 80 60 88 EB 08 F0 1C 23 08 00 00 00 00 FC 1C 23 08 05 87 EB 08
+= SpriteTemplate
+{
+	tileTag = 8040
+	paletteTag = 8030
+	oam = data_EB8860_J
+	anims = data_1F11E4_J
+	images = NULL
+	affineAnims = data_1F11F0_J
+	callback = fn_EB8704_J
+}
+
+data_EB8818_J:
+40 80 30 80 68 88 EB 08 E4 11 1F 08 00 00 00 00 F0 11 1F 08 0B 87 EB 08 = 
+40 80 30 80 68 88 EB 08 F0 1C 23 08 00 00 00 00 FC 1C 23 08 0B 87 EB 08
+= SpriteTemplate
+{
+	tileTag = 8040
+	paletteTag = 8030
+	oam = data_EB8868_J
+	anims = data_1F11E4_J
+	images = NULL
+	affineAnims = data_1F11F0_J
+	callback = fn_EB870A_J
+}
+
+data_EB8830_J:
+40 80 30 80 70 88 EB 08 E4 11 1F 08 00 00 00 00 F0 11 1F 08 11 87 EB 08 = 
+40 80 30 80 70 88 EB 08 F0 1C 23 08 00 00 00 00 FC 1C 23 08 11 87 EB 08
+= SpriteTemplate
+{
+	tileTag = 8040
+	paletteTag = 8030
+	oam = data_EB8870_J
+	anims = data_1F11E4_J
+	images = NULL
+	affineAnims = data_1F11F0_J
+	callback = fn_EB8710_J
+}
+
+data_EB8848_J:
+40 80 30 80 78 88 EB 08 E4 11 1F 08 00 00 00 00 F0 11 1F 08 17 87 EB 08 = 
+40 80 30 80 78 88 EB 08 F0 1C 23 08 00 00 00 00 FC 1C 23 08 17 87 EB 08
+= SpriteTemplate
+{
+	tileTag = 8040
+	paletteTag = 8030
+	oam = data_EB8878_J
+	anims = data_1F11E4_J
+	images = NULL
+	affineAnims = data_1F11F0_J
+	callback = fn_EB8716_J
+}
+
+fn_EB8680_J(arg0)
+{
+	fn_EB85EE_J(arg0, 0)
+}
+
+fn_EB8686_J(arg0)
+{
+	fn_EB85EE_J(arg0, 1)
+}
+
+fn_EB868C_J(arg0)
+{
+	fn_EB85EE_J(arg0, 2)
+}
+
+fn_EB8692_J(arg0)
+{
+	fn_EB85EE_J(arg0, 3)
+}
+
+fn_EB85EE_J(arg0, arg1)
+{
+	r4 = gMoveSelectionCursor[data_0203BF70_J]
+	*(arg0 + 0x1C) = (r4 & 1) * 0x70
+	*(arg0 + 0x1C + 1) = (((r4 & 2) / 2) * 0x18) + (((arg1 & 2) / 2) * 0x12)
+
+	if(*(data_0203BF40_J + 2) != 0)
+		r2 = *data_0203BF40_J
+	else
+		r2 = *(data_0203BF40_J + 1)
+
+	r0 = (*(arg0 + 4) & 0x3FF) | (r2 * 0x1000)
+
+	if(*(data_0203BF40_J + 2) != 0 && gMoveSelectionCursor[data_0203BF70_J] == *data_03004FF4)
+		r0 |= 0x400
+
+	*(arg0 + 4) = r0
+
+	if(*(data_02020024_J + 1) == 0 || *data_02020024_J == 2 || *gCurrentActionFuncId == 0xA)
+	{
+		DestroySpriteAndFreeResources(arg0)
+		*(data_0203BF40_J + 4) = 0
+	}
+
+	return
+}
+
+fn_EB8704_J(arg0)
+{
+	fn_EB8698_J(arg0, 0)
+}
+
+fn_EB870A_J(arg0)
+{
+	fn_EB8698_J(arg0, 1)
+}
+
+fn_EB8710_J(arg0)
+{
+	fn_EB8698_J(arg0, 2)
+}
+
+fn_EB8716_J(arg0)
+{
+	fn_EB8698_J(arg0, 3)
+}
+
+fn_EB8698_J(arg0, arg1)
+{
+	*(arg0 + 0x1C) = (*data_03004FF4 & 1) * 0x70
+	*(arg0 + 0x1C + 1) = (((*data_03004FF4 & 2) / 2) * 0x18) + (((arg1 & 2) / 2) * 0x12)
+	r0 = (*(arg0 + 4) & 0x3FF) | (*(data_0203BF40_J + 1) * 0x1000)
+	
+	if(*(data_0203BF40_J + 2) != 1)
+		r0 |= 0x400
+
+	*(arg0 + 4) = r0
+	
+	if(*(data_02020024_J + 1) == 0 || *data_02020024_J == 2 || *gCurrentActionFuncId == 0xA)
+		DestroySpriteAndFreeResources(arg0)
+	
+	return
+}
+
+
+
+
+
+
+
+
+fn_EB851C_J(arg0, sprite)
+{
+	// IMPORTANT: DEPENDENT ON VALUE AT 107DAC (411AFC_J -> 411C1C_J)
+	// IMPORTANT: DEPENDENT ON VALUE AT 107DB0
+	// data_452C94 record size 4, data_E95DDC size 0x20
+	// btw OBJ_VRAM0 = 00 00 01 06
+	fn_1E5E78(&data_E95DDC[data_452C94[arg0].2], ((gSprites[sprite].4 & 0x3FF) * 0x20) + OBJ_VRAM0, 0x80)
+	fn_1E5E78((((gSprites[sprite].4 & 0x3FF) + 4) * 0x20) + OBJ_VRAM0, &data_E95DDC[data_452C94[arg0].2 + 0x10], 0x80)
+	return
+}

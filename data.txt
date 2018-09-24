@@ -1,10 +1,14 @@
 addr e: addr j: desc
 
+		   : 24 00 02 02: ????? (valid)
+3C 06 02 02: B8 05 02 02: gSprites
 74 29 02 02: E4 28 02 02: gBattle_BG0_X
 76 29 02 02: E6 28 02 02: gBattle_BG0_Y
+8C 29 02 02: FC 28 02 02: gDisplayedStringBattle
 B8 2A 02 02: 28 2A 02 02: gBattleTextBuff1
 C8 2A 02 02: 38 2A 02 02: gBattleTextBuff2
 4C 2B 02 02: AC 2A 02 02: gBattleTypeFlags
+C8 2B 02 02: 28 2B 02 02: gBattleBufferA[4]
 C4 33 02 02: 24 33 02 02: gBattleBufferB
 C4 3B 02 02: 24 3B 02 02: gActiveBattler
 C8 3B 02 02: 28 3B 02 02: gBattleControllerExecFlags
@@ -73,15 +77,16 @@ DE 3F 02 02: 3E 3F 02 02: sSTATCHANGER
 DF 3F 02 02: 3F 3F 02 02: sSTAT_ANIM_PLAYED (FRPD) / sSECOND_STATCHANGER (PD)
 E8 3F 02 02: 48 3F 02 02: gBattleStruct
 F4 3F 02 02: 54 3F 02 02: gBattleResources
+FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
 29 40 02 02: 89 3F 02 02: gPlayerPartyCount
 2C 40 02 02: 8C 3F 02 02: gEnemyParty
-		   : E0 3F 02 02: ?????? (gEnemyParty + 0x54)
-		   : F8 3F 02 02: ?????? (gEnemyParty + 0x6C)
+80 40 02 02: E0 3F 02 02: gEnemyParty.level
+		   : F8 3F 02 02: (gEnemyParty.friendship, but this is different in english)
 84 42 02 02: E4 41 02 02: gPlayerParty
-		   : 9C 42 02 02: ?????? (gPlayerParty + 0x54)
-		   : 47 6D 03 02: ??????
-		   : 6C 6D 03 02: ??????
-		   : E2 85 03 02: ?????? (CreateNPCTrainerParty: checked if less than 2E6, then used as index to copy from table data_09400000_J into gEnemyParty)
+3C 43 02 02: 9C 42 02 02: gPlayerParty[1].level
+		   : 47 6D 03 02: ?????? (atkEF_handleballthrow: Dusk Ball boosted if this is 4) (gTileset?)
+		   : 6C 6D 03 02: ?????? (atkEF_handleballthrow: Lure Ball boosted if this is 1) (gIsPlayerFishing?)
+		   : E2 85 03 02: ?????? (CreateNPCTrainerParty: checked if less than 0x2E6, then used as index to copy from table data_09400000_J into gEnemyParty)
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
 		   : 50 B9 03 02: ?????? (appears to be an array of bits, one for each battler)
 								 (ItemBattleEffects: all cleared at start of cases ITEMEFFECT_ON_SWITCH_IN and ITEMEFFECT_TURN_END)
@@ -94,20 +99,65 @@ F4 3F 02 02: 54 3F 02 02: gBattleResources
 		   : 70 B9 03 02: ?????? (appears to be an array of unknown objects; first field is a 4-entry array of 2 bytes each, second field is a 4-entry array of 1 byte each)
 								 (atk02_attackstring: when player attacks: insert [gCurrentMove, 0] into the first empty slot for the mon, or increment the field2 of the first entry where field1 = gCurrentMove and field2 != 0xFF, whichever comes first)
 								 (atk02_attackstring: when player attacks: if neither of the above is available, insert [gCurrentMove, 0] into the last slot where field2 != 0xFF; if even that fails, insert it into the first slot)
+		   : 30 BF 03 02: ?????? (appears to be (0-3) array of ptrs to Sprites, (4) int)
+								 (fn_EB8398_J: Set this[moveId] to the created sprite)
+								 (fn_EB8398_J: Set this.4 to moveId)
+								 (fn_EB873C_J: If this.4 != 0, destroy all four sprites)
+								 (fn_EB873C_J: Set this[0] to 0 and this.4 to 0)
+		   : 40 BF 03 02: ?????? (appears to be a data structure of at least 3 bytes)
+								 (HandleMoveSwitching: Set this.2 to 0 if (gMain.newKeys & (A_BUTTON | SELECT_BUTTON)) || (gMain.newKeys & (B_BUTTON | SELECT_BUTTON)); 1 otherwise)
+								 (fn_EB856A_J: Set this.2 to 0)
+								 (fn_EB856A_J: If this.4 != 1, set this.4 to 1 and load palettes into this.0 and this.1)
+								 (fn_EB85EE_J: If this.2 != 0, do something with this.0; otherwise do same to this.1)
+								 (fn_EB85EE_J: If this.2 != 0, add 0x400 to something)
+								 (fn_EB85EE_J: If something, set this.4 to 0)
+								 (fn_EB8698_J: Set something to something something this.1)
+								 (fn_EB8698_J: If this.2 != 0, add 0x400 to something)
+		   : 70 BF 03 02: ?????? (fn_EB8398_J: Set this.0 to the battler)
+								 (fn_EB8398_J: Get this[battler].8[moveId] and set data_0203D300_J[0] to it)
+								 (fn_EB8398_J: Get this[battler].0xC[moveId] and set data_0203D300_J[3] to it)
+								 (fn_EB8398_J: Use ratio of this[battler].8[moveId] to this[battler].0xC[moveId] to obtain a result)
+								 (fn_EB8398_J: Use gBattleMoves[this[battler].0[moveId]] to select a sprite)
+								 (fn_EB85EE_J: Something about this[gBattleResources + 4])
 		   : 0D C0 03 02: ?????? (sub_8032768: zeroed)
+		   : 00 D3 03 02: ?????? (Appears to be an array of characters)
+								 (fn_EB8398_J: Set this[0] to data_0203BF70_J[battler].8[moveId])
+								 (fn_EB8398_J: Set this[2] to CHAR_SLASH)
+								 (fn_EB8398_J: Set this[3] to data_0203BF70_J[battler].0xC[moveId])
+								 (fn_EB8398_J: Print the full contents)
+		   : 40 D3 03 02: ?????? (Appears to be an array of ints)
+								 (fn_EB8398_J: Set this[1] to the ratio from earlier)
+								 (fn_EB8398_J: Set this[2] to (the ratio from earlier) + 1)
+								 (fn_EB8398_J: Set this[0] to 0)
+								 (fn_EB8398_J: Use the full contents as an argument to box_print)
+		   : 80 D3 03 02: ?????? (Appears to be an array of record size 0x20)
+								 (fn_EB8398_J: Call fn_1E5E78 with this[moveId] as one parameter)
+								 (fn_EB8398_J: Add moveId to this[moveId])
+		   : 20 D4 03 02: ?????? (Appears to be a SpriteSheet object)
+							     (fn_EB8398_J: Set to {data = data_E95DDC, size = 0x100, tag = (0x78A0 + moveId)} then call LoadSpriteSheet())
            : 00 D5 03 02: ?????? (sub_8032768: zeroed starting from here to 0203D600)
 		   : 00 FE 03 02: gLastUsedItemType
 		   : 04 FE 03 02: gCritCapture
 		   
+F0 30 00 03: 30 31 00 03: gMain
 84 4F 00 03: C4 4F 00 03: gBattleMainFunc
 90 4F 00 03: D0 4F 00 03: gBattleResults
-		   : E3 4F 00 03: ?????
+A3 4F 00 03: E3 4F 00 03: gBattleResults.battleTurnCounter
+F4 4F 00 03: 34 50 00 03: ?????? (valid)
+F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 7C 53 00 03: CC 53 00 03: gCB2_AfterEvolution
-		   : 42 55 00 03: ?????
+		   : 42 55 00 03: ?????? (atkEF_handleballthrow: Dusk Ball boosted if less than 6 or greater than 20) (gTime.hour?)
 		   
 		   
 funcs e,j,desc:
+006F8C = 006B08 = CreateSprite
+0071EC = 006D68 = CreateSpriteAndAnimate
+007804 = 007380 = DestroySpriteAndFreeResources
+0086DC = 008258 = LoadSpriteSheet
+008928 = 0084A4 = LoadSpritePalette
 008D84 = 008900 = StringCopy
+008DA4 = 008920 = StringAppend
+008E78 = 0089F4 = ConvertIntToDecimalStringN
 00DFA4 = 00D998 = BtlController_EmitGetMonData
 00DFF0 = 00D9E4 = BtlController_EmitSetMonData
 00E0B4 = 00DAA8 = BtlController_EmitReturnMonToBall
@@ -143,6 +193,7 @@ funcs e,j,desc:
 02A1C0 = 029998 = IsTwoTurnsMove
 02A224 = 0299FC = AttacksThisTurn
 02E228 = 02DA24 = AdjustFriendshipOnBattleFaint
+030A14 = 030180 = MoveSelectionDestroyCursorAt
 03E47C = CalculateMonStats
 03ECEC = 03E458 = CalculateBaseDamage
 03F5B4 = 03ED20 = CountAliveMonsInBattle
@@ -157,7 +208,8 @@ funcs e,j,desc:
 043AD8 = CheckPartyHasHadPokerus
 044234 = 04387C = GetFlavorRelationByPersonality
 044EC8 = 04448C = Random
-06E6D0 = FlagGet
+06E6D0 = 06DEC4 = FlagGet
+0703EC = 06FB90 = LoadPalette
 070E44 = BeginFastPaletteFade
 071AB4 = FadeOutMapMusic
 0751C4 = 074968 = GetBattlerSide
@@ -169,11 +221,14 @@ funcs e,j,desc:
 09A948 = 09A354 = GetHoldEffectParam
 0C71D0 = 0C83AC = RecordAbilityBattle
 0C7208 = 0C83E4 = RecordItemEffectBattle
+0D87BC = 0D980C = BattlePutTextOnWindow
+12E51C = 12ED24 = box_print
 1E3B9C = square root
 1E3BA8 = call r0
 1E4018 = 1C7F38 = division
 1E460C = 1C852C = division
 1E4684 = 1C85A4 = modulus
+1E5E78 = 1C9D98 = ?????
 
 014D4A = 01456A = GetSpeedStat
 014E98 = 0146B8 = GetPriority

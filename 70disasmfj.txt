@@ -1,0 +1,43 @@
+lbl1: @2FFB0
+r0 = gActiveBattler
+r1 = *r0
+r1 *= 0x200
+r3 = data_02022BC8
+r2 = data_03004FF8
+r0 = 0
+*r2 = r0
+r5 = 0
+r6 = data_0202298C
+r4 = r1 + r3
+r7 = r2
+goto lbl2
+
+lbl2:
+r0 = r5
+fn_30A14()
+r0 = r6
+r1 = data_083FE770
+StringCopy()
+r1 = *r4
+r1 *= 8
+r0 = data_08247094
+r1 += r0
+r0 = r6
+fn_8DA4()
+r1 = r5 + 3
+r0 = r6
+fn_D87BC()
+r0 = *r4
+if(r0 == 0) goto lbl3
+
+r0 = *r7
+r0++
+*r7 = r0
+goto lbl3
+
+lbl3:
+r4 += 2
+r5++
+if(r5 <= 3) goto lbl2
+
+(end)

@@ -1,0 +1,5 @@
+MoveSelectionDisplayMoveType()
+{
+	StringCopy(gDisplayedStringBattle, data_3C46FF_J)
+	StringAppend(gDisplayedStringBattle, (*((*((*gActiveBattler * 0x200) + gBattleBufferA[4] + (*((gBattleResources + 4) + *gActiveBattler) * 2)) * 0xC) + data_20D60C_J + 2) * 6) + data_20C074_J)
+}

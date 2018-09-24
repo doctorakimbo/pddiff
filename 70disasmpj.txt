@@ -1,0 +1,574 @@
+lbl1: @2FFB0
+r0 = gActiveBattler
+r1 = *r0
+r1 *= 0x200
+r3 = data_02022BC8
+r2 = data_03004FF8
+r0 = 0
+*r2 = r0
+r5 = 0
+r6 = data_0202298C
+r4 = r1 + r3
+r7 = r2
+goto lbl2
+
+lbl2:
+r0 = r5
+fn_30A14()
+r0 = r6
+r1 = data_083FE770
+StringCopy()
+r1 = *r4
+r1 *= 0x10
+r0 = data_09000000_J
+r1 += r0
+r0 = r6
+fn_8DA4()
+r1 = r5 + 3
+JumpToEB8380J()
+r0 = *r4
+if(r0 == 0) goto lbl3
+
+r0 = *r7
+r0++
+*r7 = r0
+goto lbl3
+
+lbl3:
+r4 += 2
+r5++
+if(r5 <= 3) goto lbl2
+
+(end)
+
+
+
+
+
+
+JumpToEB8380J: @1833C0_J
+r4 = fn_EB8380_J
+goto r4
+return
+
+
+
+
+
+
+fn_EB8380_J: @EB8380_J
+r0 = r6
+r7 = fn_D87BC
+ExecFarFn()
+r0 = r5
+r1 = gActiveBattler
+r1 = *r1
+fn_EB8398_J()
+return
+
+
+
+
+
+
+
+
+ExecFarFn: @EB8766_J
+goto r7
+return
+
+
+
+
+
+
+fn_EB8398_J: @EB8398_J
+r4 = r0
+r5 = r1
+r0 = data_0203BF70_J
+*r0 = r5
+r1 *= 0x200
+r6 = r0 + r1
+if(r4 != 0) goto lbl2
+
+fn_EB873C_J()
+r0 = data_08EB8768_J
+r1 = 0x51
+r2 = 0x10
+r7 = fn_703EC
+ExecFarFn()
+r0 = data_08EB8778_J
+r7 = fn_8928
+ExecFarFn()
+fn_EB856A_J()
+goto lbl2
+
+lbl2:
+r0 = data_0203D300_J
+r1 = r6 + r4
+r1 = *(r1 + 8)
+r2 = 1
+r3 = 2
+r7 = fn_8E78
+ExecFarFn()
+r0 = 0xBA
+r1 = data_0203D300_J
+*(r1 + 2) = r0
+r1 = r6 + r4
+r1 = *(r1 + 0xC)
+r2 = 1
+r3 = 2
+r0 = data_0203D300_J
+r0 += 3
+r7 = fn_8E78
+ExecFarFn()
+r2 = 0
+r1 = r6 + r4
+r0 = *(r1 + 8)
+r1 = r6 + r4
+r1 = *(r1 + 0xC)
+if(r1 == 0) goto lbl6
+
+r1 /= 2
+if(r0 > r1) goto lbl5
+
+r1 /= 2
+if(r0 > r1) goto lbl4
+
+if(r0 != 0) goto lbl3
+
+r2++
+goto lbl3
+
+lbl3:
+r2++
+goto lbl4
+
+lbl4:
+r2++
+goto lbl5
+
+lbl5:
+r2 *= 2
+r2++
+r3 = r2 + 1
+r1 = data_0203D340_J
+*(r1 + 1) = r2
+*(r1 + 2) = r3
+r2 = 0
+*r1 = r2
+s0 = r1
+s1 = r2
+r1 = data_0203D300_J
+s2 = r1
+r0 = r4 + 3
+r1 = 0
+r2 = 0x18
+r3 = 0xA
+r7 = fn_12E51C
+ExecFarFn()
+r0 = data_0203D420_J
+r1 = data_E95DDC
+*r0 = r1
+r1 = 0x100
+*(r0 + 4) = r1
+r1 = 0x78A0
+r1 += r4
+*(r0 + 6) = r1
+r7 = fn_86DC
+ExecFarFn()
+r0 = data_0203D380_J
+r1 = r4
+r2 = 0x20
+r1 *= r2
+r0 += r1
+r1 = data_08EB8780_J
+r2 = 0x18
+r7 = fn_1E5E78
+ExecFarFn()
+r0 = data_0203D380_J
+r1 = r4
+r2 = 0x20
+r1 *= r2
+r0 += r1
+r1 = *r0
+r1 += r4
+*r0 = r1
+r1 = r4
+r2 = 1
+r1 &= r2
+r1 *= 2
+r2 = 0x38
+r1 *= r2
+r1 += 0x68
+r2 = r4
+r3 = 2
+r2 &= r3
+r3 = 0xC
+r2 *= r3
+r2 += 0x74
+r3 = 0
+r7 = fn_6F8C
+ExecFarFn()
+r1 = data_0203BF30_J
+*(r1 + r4) = r0
+*(r1 + 4) = r4
+r1 = r0
+r0 = r6
+r2 = r4
+r2 *= 2
+r0 = *(r0 + r2)
+r2 = 0xC
+r0 *= r2
+r2 = &gBattleMoves
+r2 = *r2
+r0 += r2
+r0 = *(r0 + 2)
+r0++
+fn_EB851C_J()
+goto lbl6
+
+lbl6:
+return
+
+
+
+
+
+
+fn_EB873C_J: @EB873C_J
+r4 = data_0203BF30_J
+r5 = *(r4 + 4)
+if(r5 == 0) goto lbl3
+
+r6 ^= r6
+goto lbl2
+
+lbl2:
+r0 = *(r4 + r6)
+r1 = 0x44
+r0 *= r1
+r2 = data_020205B8_J
+r0 += r2
+r7 = fn_7804
+ExecFarFn()
+r6++
+if(r6 <= r5) goto lbl2
+
+goto lbl3
+
+lbl3:
+r0 = 0
+*r4 = r0
+*(r4 + 4) = r0
+return
+
+
+
+
+
+
+fn_EB856A_J: @EB856A_J
+r4 = data_0203BF40_J
+r0 = 0
+*(r4 + 2) = r0
+r0 = *(r4 + 4)
+if(r0 == 1) goto lbl2
+
+r0 = 1
+*(r4 + 4) = r0
+r0 = data_EB8880_J
+r7 = fn_8928
+ExecFarFn()
+*(r4 + 1) = r0
+r0 = data_EB8888_J
+r7 = fn_8928
+*r4 = r0
+r0 = 0
+*(r4 + 2) = r0
+r0 = data_EB8890_J
+r7 = fn_86DC
+ExecFarFn()
+r0 = data_EB87A0_J
+fn_EB85CE_J()
+r0 = data_EB87B8_J
+fn_EB85DE_J()
+r0 = data_EB87D0_J
+fn_EB85CE_J()
+r0 = data_EB87E8_J
+fn_EB85DE_J()
+r0 = data_EB8800_J
+fn_EB85CE_J()
+r0 = data_EB8818_J
+fn_EB85DE_J()
+r0 = data_EB8830_J
+fn_EB85CE_J()
+r0 = data_EB8848_J
+fn_EB85DE_J()
+goto lbl2
+
+lbl2:
+return
+
+
+
+
+
+
+fn_EB851C_J: @EB851C_J
+r4 = r0
+r5 = r1
+r0 *= 4
+r2 = &data_452C94 // IMPORTANT: DEPENDENT ON VALUE AT 107DAC (411AFC_J -> 411C1C_J)
+r2 = *r2
+r0 += r2
+r0 = *(r0 + 2)
+r0 *= 0x20
+r2 = &data_E95DDC // IMPORTANT: DEPENDENT ON VALUE AT 107DB0
+r2 = *r2
+r1 = r0 + r2
+r4 = r1
+r0 = data_020205B8_J
+r2 = 0x44
+r2 *= r5
+r0 += r2
+r0 = *(r0 + 4)
+r2 = 0x3FF
+r0 &= r2
+r0 *= 0x20
+r2 = data_06010000_J
+r0 += r2
+r5 = r0
+r2 = 0x80
+r7 = fn_1E5E78
+ExecFarFn()
+r1 = r4
+r0 = 0x200
+r1 += r0
+r0 = r5
+r0 += 0x80
+r2 = 0x80
+r7 = fn_1E5E78
+ExecFarFn()
+return
+
+
+
+
+
+
+fn_EB85CE_J: @EB85CE_J
+r1 = 8
+r2 = 0x67
+r3 = 0
+r7 = fn_71EC
+ExecFarFn()
+return
+
+
+
+
+
+
+fn_EB85DE_J: @EB85DE_J
+r1 = 0x72
+r2 = 0x67
+r3 = 0
+r7 = fn_71EC
+ExecFarFn()
+return
+
+
+
+
+
+
+fn_EB8680_J:
+r1 = 0
+r2 = fn_EB85EE_J
+goto r2
+
+fn_EB8686_J:
+r1 = 1
+r2 = fn_EB85EE_J
+goto r2
+
+fn_EB868C_J:
+r1 = 2
+r2 = fn_EB85EE_J
+goto r2
+
+fn_EB8692_J:
+r1 = 3
+r2 = fn_EB85EE_J
+goto r2
+
+fn_EB85EE_J:
+r6 = r0
+r0 = r1
+r4 = gBattleResources + 4
+r1 = data_0203BF70_J
+r1 = *r1
+r4 += r1
+r4 = *r4
+r1 = 1
+r2 = 2
+r1 &= r4
+r2 &= r4
+r2 /= 2
+r3 = 0x70
+r1 *= r3
+r3 = 0x18
+r2 *= r3
+r4 = 2
+r4 &= r0
+r4 /= 2
+r5 = 0x12
+r4 *= r5
+r2 += r4
+r0 = 0x1C
+r0 += r6
+*r0 = r1
+*(r0 + 1) = r2
+r0 = *(r6 + 4)
+r1 = data_0203BF40_J
+r2 = *(r1 + 2)
+if(r2 == 0) goto lbl2
+
+r2 = *r1
+goto lbl3
+
+lbl2:
+r2 = *(r1 + 1)
+goto lbl3
+
+lbl3:
+r2 *= 0x1000
+r3 = 0x3FF
+r0 &= r3
+r0 |= r2
+r1 = data_0203BF40_J
+r2 = *(r1 + 2)
+if(r2 == 0) goto lbl4
+
+r1 = gBattleResources + 4
+r2 = data_0203BF70_J
+r2 = *r2
+r1 = *(r1 + r2)
+r2 = data_03004FF4
+r2 = *r2
+if(r1 != r2) goto lbl4
+
+r1 = 0x400
+r0 |= r1
+goto lbl4
+
+lbl4:
+*(r6 + 4) = r0
+r1 = data_02020024_J
+r0 = *(r1 + 1)
+if(r0 == 0) goto lbl5
+
+r0 = *r1
+if(r0 == 2) goto lbl5
+
+r1 = gCurrentActionFuncId
+r0 = *r1
+if(r0 != 0xA) goto lbl6
+
+goto lbl5
+
+lbl5:
+r0 = r6
+r7 = DestroySpriteAndFreeResources
+CallFarFunc()
+r1 = data_0203BF40_J
+r0 = 0
+*(r1 + 4) = r0
+goto lbl6
+
+lbl6:
+(end)
+
+fn_EB8704_J:
+r1 = 0
+r2 = fn_EB8698_J
+goto r2
+
+fn_EB870A_J:
+r1 = 1
+r2 = fn_EB8698_J
+goto r2
+
+fn_EB8710_J:
+r1 = 2
+r2 = fn_EB8698_J
+goto r2
+
+fn_EB8716_J:
+r1 = 3
+r2 = fn_EB8698_J
+goto r2
+
+fn_EB8698_J:
+r6 = r0
+r0 = r1
+r4 = data_03004FF4
+r4 = *r4
+r1 = 1
+r2 = 2
+r1 &= r4
+r2 &= r4
+r2 /= 2
+r3 = 0x70
+r1 *= r3
+r3 = 0x18
+r2 *= r3
+r4 = 2
+r4 &= r0
+r4 /= 2
+r5 = 0x12
+r4 *= r5
+r2 += r4
+r0 = 0x1C
+r0 += r6
+*r0 = r1
+*(r0 + 1) = r2
+r0 = *(r6 + 4)
+r1 = data_0203BF40_J
+r2 = *(r1 + 1)
+r2 *= 0x1000
+r3 = 0x3FF
+r0 &= r3
+r0 |= r2
+r1 = data_0203BF40_J
+r2 = *(r1 + 2)
+if(r2 == 1) goto lbl2
+
+r1 = 0x400
+r0 |= r1
+goto lbl2
+
+lbl2:
+*(r6 + 4) = r0
+r1 = data_02020024_J
+r0 = *(r1 + 1)
+if(r0 == 0) goto lbl3
+
+r0 = *r1
+if(r0 == 2) goto lbl3
+
+r1 = gCurrentActionFuncId
+r0 = *r1
+if(r0 != 0xA) goto lbl4
+
+goto lbl3
+
+lbl3:
+r0 = r6
+r7 = DestroySpriteAndFreeResources
+CallFarFunc()
+goto lbl4
+
+lbl4:
+(end)

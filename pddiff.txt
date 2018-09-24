@@ -191,9 +191,17 @@ pokeball types:
 + 0x0A = Luxury Ball -> Timer Ball
 + 0x0B = Premier Ball -> Luxury Ball
 + 0x0C = Premier Ball
-= 0x11 = (uses SafariBallThrow)
-- 0x14 = Heavy Ball
-- 0x16 = Love Ball
++ 0x0D = Quick Ball
++ 0x0E = Dusk Ball
++ 0x0F = Park Ball
+= 0x11 = (Moon Ball effect, uses SafariBallThrow)
+= 0x12 = (Moon Ball effect, uses BallThrow)
++ 0x13 = Friend Ball
++ 0x14 = Heavy Ball
++ 0x15 = Level Ball
++ 0x16 = Love Ball
++ 0x17 = Lure Ball
++ 0x18 = Fast Ball
 
 battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0xC2 = "[PKMN]'s [ABILITY] [CHANGED] its [STAT]!" <DON'T ADD 9> <REFACTOR LATER>
@@ -238,6 +246,7 @@ grafics:
 + expand 1D65A8 (move scripts) from 214 entries to 256 (1065000)
 = expand 245EE0 (species names) from 10 per to 12 per (1060BA0?)
 = expand 247094 (move names) from 355 entries/12 per to 680 entries/16 per (1000000)
+= expand 24F1A0 (type names) from 18 entries/7 per to 19 entries/9 per (j411E1C, e1411E1C)
 + expand 24FB08 (ability descriptions) from 78 entries to 232 (13FD000)
 = expand 24FC40 (ability names) from 78 entries/12 per to 232 entries/16 per (13FF000)
 + expand 25011C (battle script commands) from 248 entries to 256 (EB7A00)
@@ -557,6 +566,7 @@ grafics:
 		  Implements: Honey Gather, modern pickup tables
 + 02CFD8: Entirety of atkE8_settypebasedhalvers (+ uncalled mysteryfunc) (see 66disasm)
 		  Implements: Makes room for mysteryfunc
+		  GLITCH!: Honey Gather picks up item 0 instead of Honey
 = 02D0D0: 07 -> 03
   02D0EC: 18 -> 0C
   02D100: 60 -> 30
@@ -565,10 +575,13 @@ grafics:
 		  Implements: Need more info
 		  Required knowledge: gLastUsedItemType (j0203FE00)
 = 02D508: Part of sub_802D434 (+ add part at A23260_J) (see 67disasm)
-		  Implements: (ballD), (ballE), (ballF), (ball10), (ball11), (ball12), Friend Ball, Heavy Ball, (ball15), Love Ball, (ball17), (ball18), (ball19), (ball1A), (ball1B), (ball1C), (ball1D), (ball1E), (ball1F)
-		  Required knowledge: gLastUsedItemType (j0203FE00), j02023FE0, j02023FF8, j0202429C, j02026D47, j02026D6C, j03004FE3, j03005542
+		  Implements: Quick Ball (gen 6), Dusk Ball (gen 6), Park Ball, (ball10), (ball11), (ball12), Friend Ball, Heavy Ball, Level Ball, Love Ball, Lure Ball (gen 6), Fast Ball, ensures ball thrown in Safari Zone is Safari Ball
+		  Required knowledge: gLastUsedItemType (j0203FE00), j02023FE0, j02023FF8, j0202429C, j02026D47, j02026D6C, j03005542
 		  Relies on: 02D500, etc
+		  Note: Fast Ball has manual table (A24300), different for base patch and P/D
+		  Note: Check again - ball10 currently has secondaryId of 0, making it never work
 		  Glitch?: Love Ball is boosted if pkmn are different genders, but "genderless" is counted as a third gender
+		  Glitch?: Level Ball might check the level of the second pkmn in player's party
 = 02D636: 19 49 -> AF 46
   02D698: E4 3B 02 02 -> 54 AB EE 08 (jumps to fn at EEAB54, then back; see 67disasm)
   02D764: 28 88 -> AF 46
@@ -576,10 +589,24 @@ grafics:
 		  Implements: critical capture
 		  Relies on: 02D500, etc
 		  Required knowledge: gLastUsedItemType (j0203FE00), gCritCapture (j0203FE04)
-  
-		  
-		  
-		  
++ 02EA10: Entirety of HandleInputChooseMove (see 68disasm)
+		  Implements: Removes the "switch which?" text when moving moves in battle with SELECT
+= 02EF58: Entirety of HandleMoveSwitching (see 69disasm)
+		  Implements: Need more info
+		  Required knowledge: j0203BF40
+= 030830: Entirety of MoveSelectionDisplayMoveNames (see 70disasm)
+		  Implements: Need more info
+		  Required knowledge: j02020024, j0203BF30, j0203BF40, j0203BF70, j0203D300, j0203D340, j0203D380, j0203D480
++ 0308B8: A7 F0 80 FF -> 00 00 00 00
+		  Implements: Removes "PP" for battle move summary; in JP, also makes "Move Type/" -> "Type/", but that's already true
++ 030924: A7 F0 4A FF -> 00 00 00 00
+		  Implements: Removes PP numbers for battle move summary
+= 030990: 1A 09 -> 00 00
+  0309A0: A7 F0 0C FF -> 00 00 00 00
+		  Implements: Removes "Type/" + type names for battle move summary
+		  Relies on: expanded type names
+= 0309CC: Entirety of MoveSelectionCreateCursorAt (see 71disasm)
+= 030A14: Entirety of MoveSelectionDestroyCursorAt (see 71disasm)
 		  
 		  
 		  
@@ -591,5 +618,5 @@ grafics:
 		  
 		  
 
-curr: j2CCB0-j2CD40
-next: j2E1F8
+curr: j30138-j301C0
+next: j338C4 (repointer), j3449C

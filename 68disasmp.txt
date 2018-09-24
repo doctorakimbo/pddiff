@@ -1,0 +1,8 @@
+lbl1: @2E1EC
+(identical)
+
+lbl2: @2E4E2
+r0 = *r0
+r1 = 0x1B
+30138()
+...

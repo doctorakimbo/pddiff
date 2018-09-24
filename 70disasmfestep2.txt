@@ -1,0 +1,18 @@
+sub_8030830()
+{
+	*data_03004FF8 = 0
+	r4 = (*gActiveBattler * 0x200) + data_02022BC8
+
+	for(r5 = 0; r5 <= 3; r5++)
+	{
+		MoveSelectionDestroyCursorAt(r5)
+		StringCopy(data_0202298C, data_083FE770)
+		StringAppend(data_0202298C, (*r4 * 0xD) + gMoveNames)
+		sub_80D87BC(data_0202298C, r5 + 3)
+
+		if(*r4 != 0)
+			*data_03004FF8++
+
+		r4 += 2
+	}
+}

@@ -1,0 +1,266 @@
+sub_8030830()
+{
+	*data_03004FF8 = 0
+	r4 = (*gActiveBattler * 0x200) + data_02022BC8
+	
+	for(r5 = 0; r5 <= 3; r5++)
+	{
+		MoveSelectionDestroyCursorAt(r5)
+		StringCopy(data_0202298C, data_083FE770)
+		StringAppend(data_0202298C, (*r4 * 0x10) + gMoveNames)
+		fn_EB8380_J(r5 + 3)
+		
+		if(*r4 != 0)
+			*data_03004FF8++
+		
+		r4 += 2
+	}
+}
+
+
+
+
+
+
+fn_EB8380_J(r1)
+{
+	sub_80D87BC(data_0202298C, r1)
+	fn_EB8398_J(r5, *gActiveBattler)
+}
+
+
+
+
+
+
+fn_EB8398_J(arg0, arg1)
+{
+	*data_0203BF70_J = arg1
+
+	if(arg0 == 0)
+	{
+		fn_EB873C_J()
+		LoadPalette(data_08EB8768_J, 0x51, 0x10)
+		LoadSpritePalette(data_08EB8778_J)
+		fn_EB856A_J()
+	}
+	
+	ConvertIntToDecimalStringN(data_0203D300_J, *((arg1 * 0x200) + data_0203BF70_J + arg0 + 8), 1, 2)
+	*(data_0203D300_J + 2) = 0xBA
+	ConvertIntToDecimalStringN(data_0203D300_J + 3, *((arg1 * 0x200) + data_0203BF70_J + arg0 + 0xC), 1, 2)
+	r2 = 0
+	r0 = *((arg1 * 0x200) + data_0203BF70_J + arg0 + 8)
+	r1 = *((arg1 * 0x200) + data_0203BF70_J + arg0 + 0xC)
+	
+	if(r1 != 0)
+	{
+		r1 /= 2
+		
+		if(r0 <= r1)
+		{
+			r1 /= 2
+			
+			if(r0 <= r1)
+			{
+				if(r0 == 0)
+					r2++
+				
+				r2++
+			}
+			
+			r2++
+		}
+		
+		r2 *= 2
+		r2++
+		*(data_0203D340_J + 1) = r2
+		*(data_0203D340_J + 2) = r2 + 1
+		*data_0203D340_J = 0
+		s0 = data_0203D340_J
+		s1 = r2
+		s2 = data_0203D300_J
+		r0 = arg0 + 3
+		r1 = 0
+		r2 = 0x18
+		r3 = 0xA
+		box_print()
+		*data_0203D420_J = data_E95DDC
+		*(data_0203D420_J + 4) = 0x100
+		*(data_0203D420_J + 6) = 0x78A0 + arg0
+		LoadSpriteSheet(data_0203D420_J)
+		r0 = (arg0 * 0x20) + data_0203D380_J
+		r1 = data_08EB8780_J
+		r2 = 0x18
+		fn_1E5E78()
+		*((arg0 * 0x20) + data_0203D380_J) += arg0
+		r0 = CreateSprite(r0, ((arg0 & 1) * 0x70) + 0x68, ((arg0 & 2) * 0xC) + 0x74, 0)
+		*(data_0203BF30_J + arg0) = r0
+		*(data_0203BF30_J + 4) = arg0
+		fn_EB851C_J(*((*((arg1 * 0x200) + data_0203BF70_J + (arg0 * 2)) * 0xC) + gBattleMoves + 2) + 1, r0)
+	}
+	
+	return
+}
+
+
+
+
+
+
+fn_EB873C_J()
+{
+	if(*(data_0203BF30_J + 4) != 0)
+	{
+		for(r6 = 0; r6 <= *(data_0203BF30_J + 4); r6++)
+		{
+			DestroySpriteAndFreeResources((*(data_0203BF30_J + r6) * 0x44) + data_020205B8_J)
+			r6++
+		}
+	}
+	
+	*data_0203BF30_J = 0
+	*(data_0203BF30_J + 4) = 0
+	return
+}
+
+
+
+
+
+
+fn_EB856A_J()
+{
+	*(data_0203BF40_J + 2) = 0
+
+	if(*(data_0203BF40_J + 4) != 1)
+	{
+		*(data_0203BF40_J + 4) = 1
+		*(data_0203BF40_J + 1) = LoadSpritePalette(data_EB8880_J)
+		*data_0203BF40_J = LoadSpritePalette(data_EB8888_J)
+		*(data_0203BF40_J + 2) = 0
+		LoadSpriteSheet(data_EB8890_J)
+		CreateSpriteAndAnimate(data_EB87A0_J, 8, 0x67, 0)
+		CreateSpriteAndAnimate(data_EB87B8_J, 0x72, 0x67, 0)
+		CreateSpriteAndAnimate(data_EB87D0_J, 8, 0x67, 0)
+		CreateSpriteAndAnimate(data_EB87E8_J, 0x72, 0x67, 0)
+		CreateSpriteAndAnimate(data_EB8800_J, 8, 0x67, 0)
+		CreateSpriteAndAnimate(data_EB8818_J, 0x72, 0x67, 0)
+		CreateSpriteAndAnimate(data_EB8830_J, 8, 0x67, 0)
+		CreateSpriteAndAnimate(data_EB8848_J, 0x72, 0x67, 0)
+	}
+
+	return
+}
+
+
+
+
+
+
+fn_EB851C_J(arg0, arg1)
+{
+	// IMPORTANT: DEPENDENT ON VALUE AT 107DAC (411AFC_J -> 411C1C_J)
+	// IMPORTANT: DEPENDENT ON VALUE AT 107DB0
+	r0 = (*((arg0 * 4) + data_452C94 + 2) * 0x20) + data_E95DDC
+	r4 = r0
+	r1 = ((*((arg1 * 0x44) + data_020205B8_J + 4) & 0x3FF) * 0x20) + data_06010000_J
+	r5 = r1
+	r2 = 0x80
+	fn_1E5E78()
+	r1 = r4 + 0x200
+	r0 = r5 + 0x80
+	r2 = 0x80
+	fn_1E5E78()
+	return
+}
+
+
+
+
+
+
+fn_EB8680_J()
+{
+	fn_EB85EE_J(0)
+}
+
+fn_EB8686_J()
+{
+	fn_EB85EE_J(1)
+}
+
+fn_EB868C_J()
+{
+	fn_EB85EE_J(2)
+}
+
+fn_EB8692_J()
+{
+	fn_EB85EE_J(3)
+}
+
+fn_EB85EE_J(arg0)
+{
+	r0 = r1
+	r4 = *((gBattleResources + 4) + *data_0203BF70_J)
+	*(arg0 + 0x1C) = (r4 & 1) * 0x70
+	*(arg0 + 0x1C + 1) = (((r4 & 2) / 2) * 0x18) + (((r0 & 2) / 2) * 0x12)
+
+	if(*(data_0203BF40_J + 2) != 0)
+		r2 = *data_0203BF40_J
+	else
+		r2 = *(data_0203BF40_J + 1)
+
+	r0 = (*(arg0 + 4) & 0x3FF) | (r2 * 0x1000)
+
+	if(*(data_0203BF40_J + 2) != 0 && *((gBattleResources + 4) + *data_0203BF70_J) == *data_03004FF4)
+		r0 |= 0x400
+
+	*(arg0 + 4) = r0
+
+	if(*(data_02020024_J + 1) == 0 || *data_02020024_J == 2 || *gCurrentActionFuncId == 0xA)
+	{
+		DestroySpriteAndFreeResources(arg0)
+		*(data_0203BF40_J + 4) = 0
+	}
+
+	return
+}
+
+fn_EB8704_J()
+{
+	fn_EB8698_J(0)
+}
+
+fn_EB870A_J()
+{
+	fn_EB8698_J(1)
+}
+
+fn_EB8710_J()
+{
+	fn_EB8698_J(2)
+}
+
+fn_EB8716_J()
+{
+	fn_EB8698_J(3)
+}
+
+fn_EB8698_J(arg0)
+{
+	r0 = r1
+	*(arg0 + 0x1C) = (*data_03004FF4 & 1) * 0x70
+	*(arg0 + 0x1C + 1) = (((*data_03004FF4 & 2) / 2) * 0x18) + (((r0 & 2) / 2) * 0x12)
+	r0 = (*(arg0 + 4) & 0x3FF) | (*(data_0203BF40_J + 1) * 0x1000)
+	
+	if(*(data_0203BF40_J + 2) != 1)
+		r0 |= 0x400
+
+	*(arg0 + 4) = r0
+	
+	if(*(data_02020024_J + 1) == 0 || *data_02020024_J == 2 || *gCurrentActionFuncId == 0xA)
+		DestroySpriteAndFreeResources(arg0)
+	
+	return
+}

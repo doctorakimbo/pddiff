@@ -1,0 +1,512 @@
+sub_8030830()
+{
+	r0 = gActiveBattler
+	r1 = *r0
+	r1 *= 0x200
+	r3 = data_02022BC8
+	r2 = data_03004FF8
+	r0 = 0
+	*r2 = r0
+	r5 = 0
+	r6 = data_0202298C
+	r4 = r1 + r3
+	r7 = r2
+	
+	do
+	{
+		MoveSelectionDestroyCursorAt(r5)
+		StringCopy(r6, data_083FE770)
+		r1 = *r4
+		r1 *= 0x10
+		r0 = gMoveNames
+		r1 += r0
+		StringAppend(r6, r1)
+		r1 = r5 + 3
+		fn_EB8380_J()
+		r0 = *r4
+		
+		if(r0 != 0)
+		{
+			r0 = *r7
+			r0++
+			*r7 = r0
+		}
+		
+		r4 += 2
+		r5++
+	} while(r5 <= 3)
+}
+
+
+
+
+
+
+fn_EB8380_J()
+{
+	r0 = r6
+	sub_80D87BC()
+	r0 = r5
+	r1 = gActiveBattler
+	r1 = *r1
+	fn_EB8398_J()
+}
+
+
+
+
+
+
+fn_EB8398_J()
+{
+	r4 = r0
+	r5 = r1
+	r0 = data_0203BF70_J
+	*r0 = r5
+	r1 *= 0x200
+	r6 = r0 + r1
+
+	if(r4 == 0)
+	{
+		fn_EB873C_J()
+		LoadPalette(data_08EB8768_J, 0x51, 0x10)
+		LoadSpritePalette(data_08EB8778_J)
+		fn_EB856A_J()
+	}
+	
+	r1 = r6 + r4
+	ConvertIntToDecimalStringN(data_0203D300_J, *(r1 + 8), 1, 2)
+	r0 = 0xBA
+	r1 = data_0203D300_J
+	*(r1 + 2) = r0
+	r1 = r6 + r4
+	ConvertIntToDecimalStringN(data_0203D300_J + 3, *(r1 + 0xC), 1, 2)
+	r2 = 0
+	r1 = r6 + r4
+	r0 = *(r1 + 8)
+	r1 = r6 + r4
+	r1 = *(r1 + 0xC)
+	
+	if(r1 != 0)
+	{
+		r1 /= 2
+		
+		if(r0 <= r1)
+		{
+			r1 /= 2
+			
+			if(r0 <= r1)
+			{
+				if(r0 == 0)
+					r2++
+				
+				r2++
+			}
+			
+			r2++
+		}
+		
+		r2 *= 2
+		r2++
+		r3 = r2 + 1
+		r1 = data_0203D340_J
+		*(r1 + 1) = r2
+		*(r1 + 2) = r3
+		r2 = 0
+		*r1 = r2
+		s0 = r1
+		s1 = r2
+		r1 = data_0203D300_J
+		s2 = r1
+		r0 = r4 + 3
+		r1 = 0
+		r2 = 0x18
+		r3 = 0xA
+		box_print()
+		r0 = data_0203D420_J
+		r1 = data_E95DDC
+		*r0 = r1
+		r1 = 0x100
+		*(r0 + 4) = r1
+		r1 = 0x78A0
+		r1 += r4
+		*(r0 + 6) = r1
+		LoadSpriteSheet(r0)
+		r0 = data_0203D380_J
+		r1 = r4
+		r2 = 0x20
+		r1 *= r2
+		r0 += r1
+		r1 = data_08EB8780_J
+		r2 = 0x18
+		fn_1E5E78()
+		r0 = data_0203D380_J
+		r1 = r4
+		r2 = 0x20
+		r1 *= r2
+		r0 += r1
+		r1 = *r0
+		r1 += r4
+		*r0 = r1
+		r1 = r4
+		r2 = 1
+		r1 &= r2
+		r1 *= 2
+		r2 = 0x38
+		r1 *= r2
+		r2 = r4
+		r3 = 2
+		r2 &= r3
+		r3 = 0xC
+		r2 *= r3
+		r0 = CreateSprite(r0, r1 + 0x68, r2 + 0x74, 0)
+		r1 = data_0203BF30_J
+		*(r1 + r4) = r0
+		*(r1 + 4) = r4
+		r1 = r0
+		r0 = r6
+		r2 = r4
+		r2 *= 2
+		r0 = *(r0 + r2)
+		r2 = 0xC
+		r0 *= r2
+		r2 = &gBattleMoves
+		r2 = *r2
+		r0 += r2
+		r0 = *(r0 + 2)
+		r0++
+		fn_EB851C_J()
+	}
+	
+	return
+}
+
+
+
+
+
+
+fn_EB873C_J()
+{
+	r4 = data_0203BF30_J
+	r5 = *(r4 + 4)
+	
+	if(r5 != 0)
+	{
+		r6 ^= r6
+
+		do
+		{
+			r0 = *(r4 + r6)
+			r1 = 0x44
+			r0 *= r1
+			r2 = data_020205B8_J
+			DestroySpriteAndFreeResources(r0 + r2)
+			r6++
+		} while(r6 <= r5)
+	}
+	
+	r0 = 0
+	*r4 = r0
+	*(r4 + 4) = r0
+	return
+}
+
+
+
+
+
+
+fn_EB856A_J()
+{
+	r4 = data_0203BF40_J
+	r0 = 0
+	*(r4 + 2) = r0
+	r0 = *(r4 + 4)
+
+	if(r0 != 1)
+	{
+		r0 = 1
+		*(r4 + 4) = r0
+		LoadSpritePalette(data_EB8880_J)
+		*(r4 + 1) = r0
+		LoadSpritePalette(data_EB8888_J)
+		*r4 = r0
+		r0 = 0
+		*(r4 + 2) = r0
+		LoadSpriteSheet(data_EB8890_J)
+		r0 = data_EB87A0_J
+		fn_EB85CE_J()
+		r0 = data_EB87B8_J
+		fn_EB85DE_J()
+		r0 = data_EB87D0_J
+		fn_EB85CE_J()
+		r0 = data_EB87E8_J
+		fn_EB85DE_J()
+		r0 = data_EB8800_J
+		fn_EB85CE_J()
+		r0 = data_EB8818_J
+		fn_EB85DE_J()
+		r0 = data_EB8830_J
+		fn_EB85CE_J()
+		r0 = data_EB8848_J
+		fn_EB85DE_J()
+	}
+
+	return
+}
+
+
+
+
+
+
+fn_EB851C_J()
+{
+	r4 = r0
+	r5 = r1
+	r0 *= 4
+	r2 = &data_452C94 // IMPORTANT: DEPENDENT ON VALUE AT 107DAC (411AFC_J -> 411C1C_J)
+	r2 = *r2
+	r0 += r2
+	r0 = *(r0 + 2)
+	r0 *= 0x20
+	r2 = &data_E95DDC // IMPORTANT: DEPENDENT ON VALUE AT 107DB0
+	r2 = *r2
+	r1 = r0 + r2
+	r4 = r1
+	r0 = data_020205B8_J
+	r2 = 0x44
+	r2 *= r5
+	r0 += r2
+	r0 = *(r0 + 4)
+	r2 = 0x3FF
+	r0 &= r2
+	r0 *= 0x20
+	r2 = data_06010000_J
+	r0 += r2
+	r5 = r0
+	r2 = 0x80
+	fn_1E5E78()
+	r1 = r4
+	r0 = 0x200
+	r1 += r0
+	r0 = r5
+	r0 += 0x80
+	r2 = 0x80
+	fn_1E5E78()
+	return
+}
+
+
+
+
+
+
+fn_EB85CE_J()
+{
+	CreateSpriteAndAnimate(r0, 8, 0x67, 0)
+}
+
+
+
+
+
+
+fn_EB85DE_J()
+{
+	CreateSpriteAndAnimate(r0, 0x72, 0x67, 0)
+}
+
+
+
+
+
+
+fn_EB8680_J()
+{
+	fn_EB85EE_J(0)
+}
+
+fn_EB8686_J()
+{
+	fn_EB85EE_J(1)
+}
+
+fn_EB868C_J()
+{
+	fn_EB85EE_J(2)
+}
+
+fn_EB8692_J()
+{
+	fn_EB85EE_J(3)
+}
+
+fn_EB85EE_J()
+{
+	r6 = r0
+	r0 = r1
+	r4 = gBattleResources + 4
+	r1 = data_0203BF70_J
+	r1 = *r1
+	r4 += r1
+	r4 = *r4
+	r1 = 1
+	r2 = 2
+	r1 &= r4
+	r2 &= r4
+	r2 /= 2
+	r3 = 0x70
+	r1 *= r3
+	r3 = 0x18
+	r2 *= r3
+	r4 = 2
+	r4 &= r0
+	r4 /= 2
+	r5 = 0x12
+	r4 *= r5
+	r2 += r4
+	r0 = 0x1C
+	r0 += r6
+	*r0 = r1
+	*(r0 + 1) = r2
+	r0 = *(r6 + 4)
+	r1 = data_0203BF40_J
+	r2 = *(r1 + 2)
+
+	if(r2 != 0)
+		r2 = *r1
+	else
+		r2 = *(r1 + 1)
+
+	r2 *= 0x1000
+	r3 = 0x3FF
+	r0 &= r3
+	r0 |= r2
+	r1 = data_0203BF40_J
+	r2 = *(r1 + 2)
+
+	if(r2 != 0)
+	{
+		r1 = gBattleResources + 4
+		r2 = data_0203BF70_J
+		r2 = *r2
+		r1 = *(r1 + r2)
+		r2 = data_03004FF4
+		r2 = *r2
+		
+		if(r1 == r2)
+		{
+			r1 = 0x400
+			r0 |= r1
+		}
+	}
+
+	*(r6 + 4) = r0
+	r1 = data_02020024_J
+	r0 = *(r1 + 1)
+
+	if(r0 != 0)
+	{
+		r0 = *r1
+		
+		if(r0 != 2)
+		{
+			r1 = gCurrentActionFuncId
+			r0 = *r1
+			
+			if(r0 != 0xA)
+				return
+		}
+	}
+
+	DestroySpriteAndFreeResources(r6)
+	r1 = data_0203BF40_J
+	r0 = 0
+	*(r1 + 4) = r0
+	return
+}
+
+fn_EB8704_J()
+{
+	fn_EB8698_J(0)
+}
+
+fn_EB870A_J()
+{
+	fn_EB8698_J(1)
+}
+
+fn_EB8710_J()
+{
+	fn_EB8698_J(2)
+}
+
+fn_EB8716_J()
+{
+	fn_EB8698_J(3)
+}
+
+fn_EB8698_J()
+{
+	r6 = r0
+	r0 = r1
+	r4 = data_03004FF4
+	r4 = *r4
+	r1 = 1
+	r2 = 2
+	r1 &= r4
+	r2 &= r4
+	r2 /= 2
+	r3 = 0x70
+	r1 *= r3
+	r3 = 0x18
+	r2 *= r3
+	r4 = 2
+	r4 &= r0
+	r4 /= 2
+	r5 = 0x12
+	r4 *= r5
+	r2 += r4
+	r0 = 0x1C
+	r0 += r6
+	*r0 = r1
+	*(r0 + 1) = r2
+	r0 = *(r6 + 4)
+	r1 = data_0203BF40_J
+	r2 = *(r1 + 1)
+	r2 *= 0x1000
+	r3 = 0x3FF
+	r0 &= r3
+	r0 |= r2
+	r1 = data_0203BF40_J
+	r2 = *(r1 + 2)
+	
+	if(r2 != 1)
+	{
+		r1 = 0x400
+		r0 |= r1
+	}
+
+	*(r6 + 4) = r0
+	r1 = data_02020024_J
+	r0 = *(r1 + 1)
+	
+	if(r0 != 0)
+	{
+		r0 = *r1
+		
+		if(r0 != 2)
+		{
+			r1 = gCurrentActionFuncId
+			r0 = *r1
+			
+			if(r0 != 0xA)
+				return
+		}
+	}
+	
+	DestroySpriteAndFreeResources(r6)
+	return
+}
