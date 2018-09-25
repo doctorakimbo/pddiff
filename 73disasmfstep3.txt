@@ -1,0 +1,52 @@
+sub_803937C()
+{
+	if((HasSuperEffectiveMoveAgainstOpponents(1) == 0 || (Random() % 3) == 0) && gLastLandedMoves[gActiveBattler] != 0 && gLastLandedMoves[gActiveBattler] != 0xFFFF && gBattleMoves[gLastLandedMoves[gActiveBattler]].1 != 0)
+	{
+		if(gBattleTypeFlags & 1)
+		{
+			if(gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(GetBattlerPosition(gActiveBattler) ^ 2)])
+				r7 = gActiveBattler
+			else
+				r7 = GetBattlerAtPosition(GetBattlerPosition(gActiveBattler) ^ 2)
+		}
+		else
+			r7 = gActiveBattler
+		
+		r0 = gBattleMoves[gLastLandedMoves[gActiveBattler]].2
+		
+		if(r0 == 0xA)
+			r10 = 0x12
+		elseif(r0 == 0xB)
+			r10 = 0xB
+		elseif(r0 == 0xD)
+			r10 = 0xA
+		else
+			return 0
+		
+		if(gBattleMons[gActiveBattler].0x20 != r10)
+		{
+			for(r6 = 0; r6 <= 5; r6++)
+			{
+				if(GetMonData(&gEnemyParty[r6], 0x39) != 0 && GetMonData(&gEnemyParty[r6], 0x41) != 0 && GetMonData(&gEnemyParty[r6], 0x41) != 0x19C && r6 != gBattlerPartyIndexes[gActiveBattler] && r6 != gBattlerPartyIndexes[r7] && r6 != gBattleStruct->0x5C[gActiveBattler] && r6 != gBattleStruct->0x5C[r7])
+				{
+					if(GetMonData(&gEnemyParty[r6], 0x2E) != 0)
+						r0 = gBaseStats[GetMonData(&gEnemyParty[r6], 0xB)].0x17
+					else
+						r0 = gBaseStats[GetMonData(&gEnemyParty[r6], 0xB)].0x16
+					
+					if(r0 == r10)
+					{
+						if(Random() & 1)
+						{
+							gBattleStruct->0x92[GetBattlerPosition(gActiveBattler) / 2] = r6
+							fn_E848(1, 2, 0)
+							return 1
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	return 0
+}

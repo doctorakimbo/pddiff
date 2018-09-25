@@ -86,7 +86,8 @@ FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
 3C 43 02 02: 9C 42 02 02: gPlayerParty[1].level
 		   : 47 6D 03 02: ?????? (atkEF_handleballthrow: Dusk Ball boosted if this is 4) (gTileset?)
 		   : 6C 6D 03 02: ?????? (atkEF_handleballthrow: Lure Ball boosted if this is 1) (gIsPlayerFishing?)
-		   : E2 85 03 02: ?????? (CreateNPCTrainerParty: checked if less than 0x2E6, then used as index to copy from table data_09400000_J into gEnemyParty)
+		   : E2 85 03 02: ?????? (CreateNPCTrainerParty: checked if less than 0x2E6, if so, used as an index to copy data from table data_09400000_J into gEnemyParty)
+								 (CanUseNewAI: used as an index into gTrainers)
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
 		   : 50 B9 03 02: ?????? (appears to be an array of bits, one for each battler)
 								 (ItemBattleEffects: all cleared at start of cases ITEMEFFECT_ON_SWITCH_IN and ITEMEFFECT_TURN_END)
@@ -94,8 +95,7 @@ FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
 								 (atk01_accuracycheck: set the target's bit and clears others if the move doesn't miss (only if accuracy was checked at all))
 								 (atk0C_datahpupdate: set the active battler's bit if damage was dealt; set all battlers' bits if pkmn with Unnerve faints)
 		   : 60 B9 03 02: ?????? (atk4B_returnatktoball: adds 2 each time function is run for battler on player's side, max 6)
-		   : 64 B9 03 02: ?????? (appears to be an array of bits, one for each battler)
-								 (atk4C_getswitchedmondata: sets the active battler's bit if it's on the player's side)
+		   : 64 B9 03 02: gWasMonShown
 		   : 70 B9 03 02: ?????? (appears to be an array of unknown objects; first field is a 4-entry array of 2 bytes each, second field is a 4-entry array of 1 byte each)
 								 (atk02_attackstring: when player attacks: insert [gCurrentMove, 0] into the first empty slot for the mon, or increment the field2 of the first entry where field1 = gCurrentMove and field2 != 0xFF, whichever comes first)
 								 (atk02_attackstring: when player attacks: if neither of the above is available, insert [gCurrentMove, 0] into the last slot where field2 != 0xFF; if even that fails, insert it into the first slot)
@@ -119,7 +119,7 @@ FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
 								 (fn_EB8398_J: Use ratio of this[battler].8[moveId] to this[battler].0xC[moveId] to obtain a result)
 								 (fn_EB8398_J: Use gBattleMoves[this[battler].0[moveId]] to select a sprite)
 								 (fn_EB85EE_J: Something about this[gBattleResources + 4])
-		   : F4 BF 03 02: ??????
+		   : F4 BF 03 02: ?????? (CanUseNewAI: If gBattleTypeFlags & 0x100 (BATTLE_TYPE_BATTLE_TOWER?), read the AI flags from here)
 		   : 0D C0 03 02: ?????? (sub_8032768: zeroed)
 		   : 00 D3 03 02: ?????? (Appears to be an array of characters)
 								 (fn_EB8398_J: Set this[0] to data_0203BF70_J[battler].8[moveId])
@@ -166,6 +166,7 @@ funcs e,j,desc:
 00E0B4 = 00DAA8 = BtlController_EmitReturnMonToBall
 00E194 = 00DB88 = BtlController_EmitBallThrowAnim
 00E5EC = 00DFA0 = BtlController_EmitHealthBarUpdate
+00E848 = 00E1FC = BtlController_EmitTwoReturnValues
 00E874 = 00E228 = BtlController_EmitChosenMonReturnValue
 00EB28 = 00E4DC = BtlController_EmitBattleAnimation
 011100 = BattleMainCB2
@@ -199,6 +200,7 @@ funcs e,j,desc:
 02E228 = 02DA24 = AdjustFriendshipOnBattleFaint
 030A14 = 030180 = MoveSelectionDestroyCursorAt
 036530 = 035CA4 = OpponentBufferExecCompleted
+039698 = 038E04 = HasSuperEffectiveMoveAgainstOpponents
 039E3C = 0395A8 = GetMostSuitableMonToSwitchInto
 03E47C = CalculateMonStats
 03ECEC = 03E458 = CalculateBaseDamage
@@ -255,22 +257,29 @@ funcs e,j,desc:
 ?????? = 168C88 = ClearFocusBand (unimplemented)
 ?????? = 168C9C = SetFocusBand (unimplemented)
 ?????? = 2058E0 = ????? (unimplemented)
-?????? = 205D8A = ????? (unimplemented)
-?????? = 205D96 = ????? (unimplemented)
-?????? = 2060FC = ????? (unimplemented)
-?????? = 206164 = ????? (unimplemented)
-?????? = 2061DC = ????? (unimplemented)
-?????? = 206292 = ????? (unimplemented)
-?????? = 206334 = ????? (unimplemented)
-?????? = 2063A4 = ????? (unimplemented)
-?????? = 20649C = ????? (unimplemented)
-?????? = 2066CC = ????? (unimplemented)
+?????? = 205D8A = GetSideParty (unimplemented)
+?????? = 205D96 = GetFirstAllowableSwitchin (unimplemented)
+?????? = 205F48 = ????? (unimplemented)
+?????? = 205FDE = ????? (unimplemented)
+?????? = 2060FC = GetBestTrickRoomAttacker (unimplemented)
+?????? = 206164 = GetAvailableWeatherSetter (unimplemented)
+?????? = 2061DC = ChooseBestSwitchinNewAI (unimplemented)
+?????? = 206292 = GetMatchupScore (unimplemented)
+?????? = 206334 = ShouldUseTrickRoom (unimplemented)
+?????? = 2063A4 = IsTeamSlow (unimplemented)
+?????? = 20646C = ????? (unimplemented)
+?????? = 20649C = CanUseNewAI (unimplemented)
+?????? = 2066CC = GetBestMatchupScore (unimplemented)
 ?????? = 207370 = ????? (unimplemented)
 ?????? = 207450 = GetPinchThreshhold (unimplemented)
 ?????? = 207470 = PushScriptInstr (unimplemented)
 ?????? = 2076B0 = RunTypeEffectivenessBasedAbilities (unimplemented)
 ?????? = 251DA0 = IsMoveBlockedByAbility (unimplemented)
-?????? = 252248 = ????? (unimplemented)
+?????? = 251E40 = ????? (unimplemented)
+?????? = 251E8C = ????? (unimplemented)
+?????? = 251FD0 = ????? (unimplemented)
+?????? = 252058 = ????? (unimplemented)
+?????? = 252248 = GetTypeMatchup (unimplemented)
 
 data:
 21A8D4 = sHoldEffectToType
@@ -333,3 +342,4 @@ BattleMove.typeFlags3: 4321
 
 POCKET_POKE_BALLS = 3 in FR
 MOVE_EFFECT_RECOIL_50 = 0x37
+AI_SCRIPT_NEW_AI = (1 << 0xA)

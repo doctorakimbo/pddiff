@@ -1,0 +1,245 @@
+lbl1: @3937C
+r0 = 1
+fn_39698()
+if(r0 == 0) goto lbl2
+
+Random()
+r1 = 3
+modulus()
+if(r0 == 0) goto lbl2
+
+goto lbl25
+
+lbl2:
+r1 = gLastLandedMoves
+r5 = gActiveBattler
+r3 = *r5
+r0 = r3 * 2
+r4 = r0 + r1
+r1 = *r4
+if(r1 != 0) goto lbl3
+
+goto lbl25
+
+lbl3:
+r0 = 0xFFFF
+if(r1 != r0) goto lbl4
+
+goto lbl25
+
+lbl4:
+r2 = gBattleMoves
+r1 = *r4
+r0 = r1 * 2
+r0 += r1
+r0 *= 4
+r0 += r2
+r0 = *(r0 + 1)
+if(r0 != 0) goto lbl5
+
+goto lbl25
+
+lbl5:
+r0 = gBattleTypeFlags
+r0 = *r0
+r1 = 1
+r0 &= r1
+if(r0 == 0) goto lbl7
+
+r8 = r3
+r0 = r8
+GetBattlerPosition()
+r4 = 2
+r0 ^= r4
+GetBattlerAtPosition()
+r1 = gAbsentBattlerFlags
+r1 = *r1
+r2 = gBitTable
+r0 *= 4
+r0 += r2
+r0 = *r0
+r1 &= r0
+if(r1 == 0) goto lbl6
+
+r7 = *r5
+goto lbl8
+
+lbl6:
+r0 = *r5
+GetBattlerPosition()
+r0 ^= r4
+GetBattlerAtPosition()
+r7 = r0
+goto lbl8
+
+lbl7:
+r7 = r3
+r8 = r7
+goto lbl8
+
+lbl8:
+r3 = gBattleMoves
+r1 = gLastLandedMoves
+r2 = gActiveBattler
+r0 = *r2
+r0 *= 2
+r0 += r1
+r1 = *r0
+r0 = r1 * 2
+r0 += r1
+r0 *= 4
+r0 += r3
+r0 = *(r0 + 2)
+r1 = r2
+if(r0 != 0xA) goto lbl9
+
+r0 = 0x12
+goto lbl12
+
+lbl9:
+if(r0 != 0xB) goto lbl10
+
+r2 = 0xB
+r10 = r2
+goto lbl14
+
+lbl10:
+if(r0 == 0xD) goto lbl11
+
+goto lbl25
+
+lbl11:
+r0 = 0xA
+goto lbl12
+
+lbl12:
+r10 = r0
+goto lbl14
+
+lbl14:
+r2 = gBattleMons
+r1 = *r1
+r0 = 0x58
+r0 *= r1
+r0 += r2
+r0 += 0x20
+r0 = *r0
+if(r0 != r10) goto lbl16
+
+goto lbl25
+
+lbl15:
+r0 = gActiveBattler
+r0 = *r0
+GetBattlerPosition()
+r0 /= 2
+r1 = gBattleStruct
+r1 = *r1
+r0 += r1
+r0 += 0x92
+*r0 = r6
+r0 = 1
+r1 = 2
+r2 = 0
+fn_E848()
+r0 = 1
+goto lbl26
+
+lbl16:
+r6 = 0
+r2 = gBaseStats
+r9 = r2
+goto lbl17
+
+lbl17:
+r0 = 0x64
+r1 = r6
+r1 *= r0
+r0 = gEnemyParty
+r5 = r1 + r0
+r0 = r5
+r1 = 0x39
+GetMonData()
+if(r0 == 0) goto lbl24
+
+r0 = r5
+r1 = 0x41
+GetMonData()
+if(r0 == 0) goto lbl24
+
+r0 = r5
+r1 = 0x41
+GetMonData()
+r1 = 0x19C
+if(r0 == r1) goto lbl24
+
+r1 = gBattlerPartyIndexes
+r2 = r8
+r0 = r2 * 2
+r0 += r1
+r0 = *r0
+if(r6 == r0) goto lbl24
+
+r0 = r7 * 2
+r0 += r1
+r0 = *r0
+if(r6 == r0) goto lbl24
+
+r0 = gBattleStruct
+r1 = *r0
+r0 = r2 + r1
+r0 += 0x5C
+r0 = *r0
+if(r6 == r0) goto lbl24
+
+r0 = r7 + r1
+r0 += 0x5C
+r0 = *r0
+if(r6 == r0) goto lbl24
+
+r0 = r5
+r1 = 0xB
+GetMonData()
+r4 = r0
+r0 = r5
+r1 = 0x2E
+GetMonData()
+if(r0 == 0) goto lbl18
+
+r0 = r4 * 8
+r0 -= r4
+r0 *= 4
+r0 += r9
+r0 = *(r0 + 0x17)
+goto lbl19
+
+lbl18:
+r0 = r4 * 8
+r0 -= r4
+r0 *= 4
+r0 += r9
+r0 = *(r0 + 0x16)
+goto lbl19
+
+lbl19:
+if(r10 != r0) goto lbl24
+
+Random()
+r1 = 1
+r1 &= r0
+if(r1 != 0) goto lbl15
+
+goto lbl24
+
+lbl24:
+r6++
+if(r6 <= 5) goto lbl17
+
+goto lbl25
+
+lbl25:
+r0 = 0
+goto lbl26
+
+lbl26:
+return r0

@@ -3,7 +3,7 @@ OpponentHandleChoosePokemon()
 	chosenMonId = &gBattleStruct->AI_monToSwitchIntoId[(gActiveBattler & 1) / 2]
 	
 	if(chosenMonId == PARTY_SIZE && (gActiveBattler & BIT_SIDE) != B_SIDE_PLAYER)
-		chosenMonId = fn_2061DC_J(&chosenMonId)
+		ChooseBestSwitchinNewAI(&chosenMonId)
 	
 	if(chosenMonId = PARTY_SIZE)
 	{
@@ -43,31 +43,30 @@ OpponentHandleChoosePokemon()
 
 
 
-fn_2061DC_J(arg0)
+ChooseBestSwitchinNewAI(chosenMonId) @fn_2061DC_J
 {
-	r0 = fn_20649C_J()
-	r1 = 6
+	smart = CanUseNewAI();
+	index = PARTY_SIZE;
 	
-	if(r0 != 0)
+	if(smart)
 	{
-		{r0, r1} = fn_206334_J()
+		{useTrickRoom, index} = ShouldUseTrickRoom();
 		
-		if(r0 != 1)
+		if(!useTrickRoom)
 		{
-			{r0, r1} = fn_2060FC_J()
+			{bestStat, index} = GetBestTrickRoomAttacker();
 			
-			if(r1 == 6 || r0 <= 0x8C)
+			if(index == PARTY_SIZE || bestStat <= 140)
 			{
-				r1 = fn_206164_J()
+				index = GetAvailableWeatherSetter();
 				
-				if(r1 == 6)
-					{r0, r1} = fn_2066CC_J(gBattleMons, *(gBattleMons + (0x58 * 2)), 1)
+				if(index == PARTY_SIZE)
+					{, index} = GetBestMatchupScore(gBattleMons[B_POSITION_PLAYER_LEFT], gBattleMons[B_POSITION_PLAYER_RIGHT], TRUE);
 			}
 		}
 	}
 	
-	*arg0 = r1
-	return r0
+	*chosenMonId = index;
 }
 
 
@@ -76,14 +75,14 @@ fn_2061DC_J(arg0)
 
 
 
-fn_20649C_J()
+CanUseNewAI() @20649C_J
 {
-	if(gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER)
-		r0 = *data_0203BFF4_J
+	if(gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER) // 0x100 - possibly different meaning
+		flags = *data_0203BFF4_J
 	else
-		r0 = gTrainers[data_020385E2_J].0x14 // data_1FDFD8_J record size: 0x20
+		flags = gTrainers[data_020385E2_J].aiFlags // IMPORTANT: different value in english (0x14j -> 0x1Ce)
 	
-	return ((r0 >> 0xA) & 1)
+	return ((flags >> 0xA) & 1) // AI_SCRIPT_NEW_AI
 }
 
 
@@ -92,42 +91,35 @@ fn_20649C_J()
 
 
 
-fn_206334_J()
+ShouldUseTrickRoom() @206334_J
 {
-	{r0, r1} = fn_2063A4_J()
-
-	if(r0 == 1)
+	if(isTeamSlow)
 	{
-		for(r6 = 0; r6 <= 1; r6++)
+		for(i = B_POSITION_PLAYER_LEFT; i <= B_POSITION_PLAYER_RIGHT; i += BIT_FLANK)
 		{
-			for(r5 = 0; r5 <= 3; r5++)
+			for(j = 0; j <= 3; j++)
 			{
-				if(*(((0x58 * 2) * r6) + gBattleMons + 0xC + (r5 * 2)) == 0x208)
-					return {0, (r5 * 2)}
+				if(gBattleMons[i].moves[j] == MOVE_TRICK_ROOM)
+					return {FALSE, NULL};
 			}
 		}
 
-		r7 = 0
-
-		lbl4:
-		r7 = fn_205D96_J(r7, 1)
-		
-		if(r7 != 6)
+		for(i = 0; i < 6; i++)
 		{
-			for(r6 = 0; r6 < 4; r6++)
+			index = GetFirstAllowableSwitchin(i, TRUE);
+			
+			if(index == 6)
+				break;
+				
+			for(j = 0; j < 4; j++)
 			{
-				if(GetMonData(&gEnemyParty[r7], MON_DATA_MOVE1 + r6) == 0x208)
-					return {1, r7}
+				if(GetMonData(&gEnemyParty[index], MON_DATA_MOVE1 + j) == MOVE_TRICK_ROOM)
+					return {TRUE, index};
 			}
-
-			r7++
-			if(r7 < 6) goto lbl4
 		}
-		
-		r1 = r6 + 0xD
 	}
 	
-	return {0, r1}
+	return {FALSE, NULL}; // Technically return val 2 is garbage data, but it's never used anyway
 }
 
 
@@ -136,38 +128,40 @@ fn_206334_J()
 
 
 
-fn_2060FC_J()
+GetBestTrickRoomAttacker() @2060FC_J
 {
-	s0 = 6
-	r6 = 0
+	bestAttackerIndex = 6;
+	bestAttackingStat = 0;
 
-	for(r7 = 0; r7 != 6; r7++)
+	for(i = 0; i != 6; i++)
 	{
-		if(*(gBattleWeather + 2) & 0xFE)
+		if(gTrickRoomTurns & 0xFE)
 		{
-			r7 = fn_205D96_J(r7, 1)
+			index = GetFirstAllowableSwitchin(i, TRUE)
 			
-			if(r7 == 6)
+			if(index == PARTY_SIZE)
 				break;
 			
-			if(GetMonData(&gEnemyParty[r7], MON_DATA_SPEED) <= 100)
+			if(GetMonData(&gEnemyParty[index], MON_DATA_SPEED) <= 100)
 			{
-				r5 = GetMonData(&gEnemyParty[r7], MON_DATA_ATK)
-				r0 = GetMonData(&gEnemyParty[r7], MON_DATA_SPATK)
+				atk = GetMonData(&gEnemyParty[index], MON_DATA_ATK)
+				spAtk = GetMonData(&gEnemyParty[index], MON_DATA_SPATK)
 				
-				if(r0 < r5)
-					r0 = r5
+				if(spAtk < atk)
+					bestStat = atk;
+				else
+					bestStat = spAtk;
 				
-				if(r6 < r0)
+				if(bestAttackingStat < bestStat)
 				{
-					r6 = r0
-					s0 = r7
+					bestAttackingStat = bestStat;
+					bestAttackerIndex = index;
 				}
 			}
 		}
 	}
 	
-	return {r6, s0}
+	return {bestAttackingStat, bestAttackerIndex};
 }
 
 
@@ -176,28 +170,28 @@ fn_2060FC_J()
 
 
 
-fn_206164_J()
+GetAvailableWeatherSetter() @206164_J
 {
-	for(r7 = 0; r7 != 6; r7++)
+	for(i = 0; i != 6; i++)
 	{
-		r7 = fn_205D96_J(r7, 1)
+		index = GetFirstAllowableSwitchin(i, TRUE);
 		
-		if(r7 == 6)
+		if(index == PARTY_SIZE)
 			break;
 		
-		ability = GetMonAbility(&gEnemyParty[r7])
+		ability = GetMonAbility(&gEnemyParty[index])
 		
-		if(!(gBattleWeather & WEATHER_RAIN_ANY) && ability == 2)
-			break;
-		elseif(!(gBattleWeather & WEATHER_SANDSTORM_ANY) && ability == 0x2D)
-			break;
-		elseif(!(gBattleWeather & WEATHER_SUN_ANY) && ability == 0x46)
-			break;
-		elseif(!(gBattleWeather & WEATHER_HAIL_ANY) && ability == 0x75)
-			break;
+		if(!(gBattleWeather & WEATHER_RAIN_ANY) && ability == ABILITY_DRIZZLE)
+			return index;
+		elseif(!(gBattleWeather & WEATHER_SANDSTORM_ANY) && ability == ABILITY_SAND_STREAM)
+			return index;
+		elseif(!(gBattleWeather & WEATHER_SUN_ANY) && ability == ABILITY_DROUGHT)
+			return index;
+		elseif(!(gBattleWeather & WEATHER_HAIL_ANY) && ability == ABILITY_SNOW_WARNING)
+			return index;
 	}
 	
-	return r7
+	return PARTY_SIZE;
 }
 
 
@@ -206,55 +200,55 @@ fn_206164_J()
 
 
 
-fn_2066CC_J(arg0, arg1, arg2)
+GetBestMatchupScore(opponent1, opponent2, isEnemy) @fn_2066CC_J
 {
-	s1 = 0xFFFFFF
-	s2 = 6
+	// Actually WORST matchup score...for the opponent
+	bestMatchupScore = 0xFFFFFF;
+	bestMatchupIndex = 6;
 
 	for(i = 0; i != 6; i++)
 	{
-		r7 = fn_205D96_J(i, arg2)
+		index = GetFirstAllowableSwitchin(i, isEnemy);
 		
-		if(r7 == 6)
+		if(index == PARTY_SIZE)
 			break;
 		
-		if(arg2 != 0)
-			party = gEnemyParty
+		if(isEnemy)
+			party = gEnemyParty;
 		else
 		{
-			if(!(gBattleTypeFlags & 1) || r7 != 1)
+			if(!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE) || index != 1)
 			{
-				if(r7 != 0 && !(*data_0203B964_J & (1 << r7)))
+				if(index != 0 && !gWasMonShown[index])
 					continue;
 			}
 			
-			party = gPlayerParty
+			party = gPlayerParty;
 		}
 		
-		s0 = GetMonData(&party[r7], MON_DATA_SPECIES)
-		s4 = GetMonAbility(&party[r7])
+		thisMon = GetMonData(&party[index], MON_DATA_SPECIES)
+		ability = GetMonAbility(&party[index]);
 		
-		
-		if(arg0 != 0)
-			r6 = GetMatchupScore(arg0, s0, s4)
+		if(opponent1 != NULL)
+			score1 = GetMatchupScore(opponent1, thisMon, ability)
 		else
-			r6 = 10
+			score1 = 10;
 		
-		if(arg1 != 0)
-			r0 = GetMatchupScore(arg1, s0, s4)
+		if(opponent2 != 0)
+			score2 = GetMatchupScore(opponent2, thisMon, ability)
 		else
-			r0 = 10
+			score2 = 10;
 		
-		r0 = r6 * (r0 / 10)
+		score = (score1 * score2) / 10;
 		
-		if(r0 <= s1)
+		if(score < bestMatchupScore)
 		{
-			s1 = r0
-			s2 = r7
+			bestMatchupScore = score;
+			bestMatchupIndex = index;
 		}
 	}
 	
-	return {s1, s2}
+	return {bestMatchupScore, bestMatchupIndex};
 }
 
 
@@ -263,26 +257,28 @@ fn_2066CC_J(arg0, arg1, arg2)
 
 
 
-fn_2063A4_J()
+IsTeamSlow() @2063A4_J
 {
-	r4 = *(gBattleWeather + 2) & 0xFE
+	trickRoom = gTrickRoomTurns & 0xFE;
 	
-	if(r4 != 0)
-		r4 = 1
+	if(trickRoom)
+		trickRoom = 1;
 	
-	r5 = 0
-	s1 = 0
+	numBattlers = 0;
+	totalSpeed = 0;
 
-	for(r6 = 0; r6 < 6; r6++)
+	for(i = 0; i < 6; i++)
 	{
-		if(GetMonData(&gEnemyParty[r6], MON_DATA_HP) != 0 && !GetMonData(&gEnemyParty[r6], MON_DATA_IS_EGG))
+		if(GetMonData(&gEnemyParty[i], MON_DATA_HP) != 0 && !GetMonData(&gEnemyParty[i], MON_DATA_IS_EGG))
 		{
-			s1 += GetMonData(s0, MON_DATA_SPEED)
-			r5++
+			totalSpeed += GetMonData(&gEnemyParty[i], MON_DATA_SPEED);
+			numBattlers++;
 		}
 	}
 	
-	return {((((s1 / r5) - 0x64) >> 0x1F) ^ r4), (s1 % r5)}
+	averageSpeed = totalSpeed / numBattlers;
+	
+	return IS_NEGATIVE(averageSpeed - 100) ^ trickRoom;
 }
 
 
@@ -291,35 +287,38 @@ fn_2063A4_J()
 
 
 
-fn_205D96_J(arg0, arg1)
+GetFirstAllowableSwitchin(startIndex, isEnemy) @205D96_J
 {
-	for(r7 = arg0; r7 < 6; r7++)
+	for(i = startIndex; i < 6; i++)
 	{
-		party = GetSideParty(arg1);
+		party = GetSideParty(isEnemy);
 		
-		if(GetMonData(&party[r7], MON_DATA_HP) != 0 && !GetMonData(&party[r7], MON_DATA_IS_EGG) && gBattlerPartyIndexes[arg1] != r7)
+		if(GetMonData(&party[i], MON_DATA_HP) != 0 && !GetMonData(&party[i], MON_DATA_IS_EGG))
 		{
+			if(gBattlerPartyIndexes[isEnemy] == i)
+				continue;
+		
 			if(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
 			{
-				if(gBattlerPartyIndexes[arg1 ^ 2] == r7)
+				if(gBattlerPartyIndexes[isEnemy ^ BIT_FLANK] == i)
 					continue;
 
-				if(arg1 == 0)
+				if(!isEnemy)
 					break;
 			}
 			
-			if(gBattleStruct->monToSwitchIntoId[0] != r7)
+			if(gBattleStruct->monToSwitchIntoId[0] != i)
 			{
 				if(!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
 					break;
 				
-				if(gBattleStruct->monToSwitchIntoId[1] != r7)
+				if(gBattleStruct->monToSwitchIntoId[1] != i)
 					break;
 			}
 		}
 	}
 	
-	return r7
+	return i;
 }
 
 
@@ -364,7 +363,7 @@ GetMatchupScore(attacker, defender, defendAbility) @206292_J
 			goodMatchupCount++;
 	}
 	
-	return (10 + (goodMatchupCount * 0x10) - (badMatchupCount * 4));
+	return (10 + (goodMatchupCount * 16) - (badMatchupCount * 4));
 }
 
 
@@ -376,9 +375,9 @@ GetMatchupScore(attacker, defender, defendAbility) @206292_J
 GetSideParty(isEnemy) @205D8A_J
 {
 	if(isEnemy)
-		return gEnemyParty
+		return gEnemyParty;
 	else
-		return gPlayerParty
+		return gPlayerParty;
 }
 
 

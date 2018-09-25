@@ -133,6 +133,7 @@ move IDs:
 = 0x1BA = (can't be called by metronome)
 = 0x1E6 = (can't be called by metronome)
 = 0x207 = (can't be copied by mimic or called by metronome)
+- 0x208 = Trick Room
 = 0x23A = (can't be called by metronome)
 = 0x253 = (can't be called by metronome)
 = 0x254 = (can't be called by metronome)
@@ -473,11 +474,11 @@ grafics:
 		  Notes: Inert call to ItemBattleEffects (arg 2)?
 = 023E88: Entirety of atk4B_returnatktoball (see 38disasm)
 		  Implements: need more info
-		  Required knowledge: j203B960
+		  Required knowledge: j0203B960
 		  Requires in future: extra fn j2058E0
 = 023ED8: Entirety of atk4C_getswitchedmondata (see 39disasm)
 		  Implements: need more info
-		  Required knowledge: j203B964
+		  Required knowledge: gWasMonShown (j0203B964)
 + 024EC0: 08 1C 21 30 00 78 02 28 5E D0 08 1C 22 30 00 78 02 28 59 D0 08 1C 20 30 00 78 1A 28 54 D0 -> 20 31 48 78 02 28 5F D0 88 78 02 28 5C D0 08 78 1A 28 59 D0 62 28 57 D0 00 00 00 00 00 00
 		  Implements: Magic Guard (vs Spikes)
 + 025A0E: 05 -> 06 (+1 max digits for money)
@@ -613,25 +614,30 @@ grafics:
 		  Implements: Removes move selection cursor
 = 034D26: 0B -> 0D (pkmnnamelength)
 = 038744: Entirety of OpponentHandleChoosePokemon (see 72disasm)
+		  Implements: New level of smart AI (uses Trick Room when slow, switches in best Trick Room attacker, switches in weather setter when weather runs out, switches to get good type matchup)
+		  Relies on: new AI value
+		  Required knowledge: j020385E2, gWasMonShown (j0203B964), j0203BFF4
+		  Requires in future: GetSideParty (j205D8A), GetFirstAllowableSwitchin (j205D96), GetBestTrickRoomAttacker (j2060FC), GetAvailableWeatherSetter (j206164), ChooseBestSwitchinNewAI (j2061DC), GetMatchupScore (j206292), ShouldUseTrickRoom (j206334), IsTeamSlow (j2063A4), CanUseNewAI (j20649C), GetBestMatchupScore (j2066CC), GetTypeMatchup (j252248)
+- 03937C: Entirety of FindMonThatAbsorbsOpponentsMove (see 73disasm)
+		  Implements: AI understands new absorbing abilities (Lightning Rod, Motor Drive, Dry Skin, Storm Drain, Sap Sipper)
+= 039A80: Entirety of ShouldSwitch (see 74disasm)
+		  Implements: New level of smart AI (), Locks the type matchup switching behind the new level of smart AI
+		  Requires in future: CanUseNewAI (j20649C),
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
 		  
 
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-
-curr: j37EB0
-next: j38AFC
+curr: j391EC-j393F0
+next: j39C50

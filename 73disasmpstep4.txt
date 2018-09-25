@@ -1,0 +1,100 @@
+FindMonThatAbsorbsOpponentsMove()
+{
+	if(HasSuperEffectiveMoveAgainstOpponents(TRUE) && (Random() % 3) != 0)
+		return FALSE;
+	if(gLastLandedMoves[gActiveBattler] == 0)
+		return FALSE;
+	if(gLastLandedMoves[gActiveBattler] == 0xFFFF)
+		return FALSE;
+	if(gBattleMoves[gLastLandedMoves[gActiveBattler]].power == 0)
+		return FALSE;
+	
+	if(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+	{
+		battlerIn1 = gActiveBattler;
+	
+		if(gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))])
+			battlerIn2 = gActiveBattler
+		else
+			battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))
+	}
+	else
+	{
+		battlerIn1 = gActiveBattler;
+		battlerIn2 = gActiveBattler;
+	}
+	
+	if(gBattleMoves[gLastLandedMoves[gActiveBattler]].type == TYPE_FIRE)
+		absorbingTypeAbility = ABILITY_FLASH_FIRE;
+	elseif(gBattleMoves[gLastLandedMoves[gActiveBattler]].type == TYPE_WATER)
+		absorbingTypeAbility = ABILITY_WATER_ABSORB;
+	elseif(gBattleMoves[gLastLandedMoves[gActiveBattler]].type == TYPE_ELECTRIC)
+		absorbingTypeAbility = ABILITY_VOLT_ABSORB;
+	elseif(gBattleMoves[gLastLandedMoves[gActiveBattler]].type == TYPE_GRASS)
+		absorbingTypeAbility = ABILITY_SAP_SIPPER;
+	else
+		return FALSE;
+	
+	if(gBattleMons[gActiveBattler].ability == absorbingTypeAbility)
+		return FALSE;
+	
+	for(i = 0; i <= 5; i++)
+	{
+		if(GetMonData(&gEnemyParty[i], MON_DATA_HP) == 0)
+			continue;
+		if(GetMonData(&gEnemyParty[i], MON_DATA_IS_EGG))
+			continue;
+		if(i == gBattlerPartyIndexes[battlerIn1])
+			continue;
+		if(i == gBattlerPartyIndexes[battlerIn2])
+			continue;
+		if(i == gBattleStruct->monToSwitchIntoId[battlerIn1])
+			continue;
+		if(i == gBattleStruct->monToSwitchIntoId[battlerIn2])
+			continue;
+	
+		if(GetMonAbility(&gEnemyParty[i]) == absorbingTypeAbility)
+		{
+			if(Random() & 1)
+			{
+				gBattleStruct->AI_monToSwitchIntoId[gActiveBattler] = i;
+				BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
+				return TRUE;
+			}
+		}
+		else
+		{
+			if(absorbingTypeAbility == ABILITY_VOLT_ABSORB)
+			{
+				absorbingTypeAbility = ABILITY_LIGHTNING_ROD;
+				i--; // loop but don't increment
+				continue;
+			}
+			elseif(absorbingTypeAbility == ABILITY_LIGHTNING_ROD)
+			{
+				absorbingTypeAbility = ABILITY_MOTOR_DRIVE;
+				i--; // loop but don't increment
+				continue;
+			}
+			elseif(absorbingTypeAbility == ABILITY_MOTOR_DRIVE)
+				absorbingTypeAbility = ABILITY_VOLT_ABSORB;
+			
+			elseif(absorbingTypeAbility == ABILITY_WATER_ABSORB)
+			{
+				absorbingTypeAbility = ABILITY_DRY_SKIN;
+				i--; // loop but don't increment
+				continue;
+			}
+			elseif(absorbingTypeAbility == ABILITY_DRY_SKIN)
+			{
+				absorbingTypeAbility = ABILITY_STORM_DRAIN;
+				i--; // loop but don't increment
+				continue;
+			}
+			elseif(absorbingTypeAbility == ABILITY_STORM_DRAIN)
+				absorbingTypeAbility = ABILITY_WATER_ABSORB;
+		}
+	}
+	
+	return FALSE;
+}

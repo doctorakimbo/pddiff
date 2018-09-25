@@ -1,0 +1,22 @@
+if(availableToSwitch == 0)
+	return FALSE;
+if(fn_251E40_J())
+	return TRUE;
+if(ShouldSwitchIfPerishSong())
+	return TRUE;
+if(ShouldSwitchIfWonderGuard())
+	return TRUE;
+if(FindMonThatAbsorbsOpponentsMove())
+	return TRUE;
+if(ShouldSwitchIfNaturalCure())
+	return TRUE;
+if(HasSuperEffectiveMoveAgainstOpponents(FALSE))
+	return FALSE;
+if(AreStatsRaised())
+	return FALSE;
+if(!CanUseNewAI())
+	return FALSE;
+if(FindMonWithFlagsAndSuperEffective(MOVE_RESULT_DOESNT_AFFECT_FOE, 2) || FindMonWithFlagsAndSuperEffective(MOVE_RESULT_NOT_VERY_EFFECTIVE, 3))
+	return TRUE;
+	
+return FALSE;

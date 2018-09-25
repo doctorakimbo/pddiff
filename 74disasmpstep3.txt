@@ -1,0 +1,45 @@
+	r8 = 0;
+	...
+	for(i = 0; i <= 5; i++)
+	{
+		if(GetMonData(&gEnemyParty[i], 0x39) == 0)
+			continue;
+		if(GetMonData(&gEnemyParty[i], 0x41) == 0)
+			continue;
+		if(GetMonData(&gEnemyParty[i], 0x41) == 0x19C)
+			continue;
+		if(i == gBattlerPartyIndexes[gActiveBattler])
+			continue;
+		if(i == gBattlerPartyIndexes[gActiveBattler])
+			continue;
+		if(i == gBattleStruct->0x5C[gActiveBattler])
+			continue;
+		if(i == gBattleStruct->0x5C[gActiveBattler])
+			continue;
+		
+		r8++;
+	}
+	
+	if(r8 == 0)
+		return TRUE;
+	if(fn_251E40_J())
+		return TRUE;
+	if(fn_391EC())
+		return TRUE;
+	if(fn_3937C())
+		return TRUE;
+	if(fn_39598())
+		return TRUE;
+	if(HasSuperEffectiveMoveAgainstOpponents(FALSE))
+		return FALSE;
+	if(fn_397E0())
+		return FALSE;
+	if(!CanUseNewAI())
+		return FALSE;
+	if(fn_39828(8, 2))
+		return TRUE;
+	if(fn_39828(4, 3))
+		return TRUE;
+		
+	return FALSE;
+}
