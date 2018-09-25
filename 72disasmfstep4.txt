@@ -6,17 +6,17 @@ OpponentHandleChoosePokemon()
 		
 		if(chosenMonId == PARTY_SIZE)
 		{
-			if(!(gBattleTypeFlags & 1))
-				r6 = r5 = GetBattlerAtPosition(1)
+			if(!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
+				battler2 = battler1 = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
 			else
 			{
-				r6 = GetBattlerAtPosition(1)
-				r5 = GetBattlerAtPosition(3)
+				battler1 = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+				battler2 = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
 			}
 			
 			for(chosenMonId = 0; chosenMonId <= 5; chosenMonId++)
 			{
-				if(GetMonData(&gEnemyParty[chosenMonId], 0x39) != 0 && gBattlerPartyIndexes[r6] != chosenMonId && gBattlerPartyIndexes[r5] != chosenMonId)
+				if(GetMonData(&gEnemyParty[chosenMonId], MON_DATA_HP) != 0 && chosenMonId != gBattlerPartyIndexes[battler1] && chosenMonId != gBattlerPartyIndexes[battler2])
 					break;
 			}
 		}
@@ -27,7 +27,7 @@ OpponentHandleChoosePokemon()
 		gBattleStruct->AI_monToSwitchIntoId[GetBattlerPosition(gActiveBattler) / 2] = PARTY_SIZE
 	}
 	
-	gBattleStruct->0x5C[gActiveBattler] = chosenMonId
-	BtlController_EmitChosenMonReturnValue(1, chosenMonId, 0)
-	OpponentBufferExecCompleted()
+	gBattleStruct->monToSwitchIntoId[gActiveBattler] = chosenMonId;
+	BtlController_EmitChosenMonReturnValue(1, chosenMonId, NULL);
+	OpponentBufferExecCompleted();
 }

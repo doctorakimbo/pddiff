@@ -243,7 +243,7 @@ grafics:
 = D0051C (C0051C old, EB8990 new)
 
 + expand rom to 2x
-- expand 1C6EA8 (misc animations) from 23 entries to 24 (24th entry is 1C9989 - whirlwind animation) (104FF00)
++ expand 1C6EA8 (misc animations) from 23 entries to 24 (24th entry is 1C9989 - whirlwind animation) (104FF00)
 + expand 1D65A8 (move scripts) from 214 entries to 256 (1065000)
 = expand 245EE0 (species names) from 10 per to 12 per (1060BA0?)
 = expand 247094 (move names) from 355 entries/12 per to 680 entries/16 per (1000000)
@@ -603,13 +603,13 @@ grafics:
 		  Implements: Removes "PP" for battle move summary; in JP, also makes "Move Type/" -> "Type/", but that's already true
 + 030924: A7 F0 4A FF -> 00 00 00 00
 		  Implements: Removes PP numbers for battle move summary
-- 030990: 1A 09 -> 00 00
+= 030990: 09 1A -> 09 18
   0309A0: A7 F0 0C FF -> 00 00 00 00
 		  Implements: Removes "Type/" + type names for battle move summary
 		  Relies on: expanded type names
-- 0309CC: Entirety of MoveSelectionCreateCursorAt (see 71disasm)
++ 0309CC: Entirety of MoveSelectionCreateCursorAt (see 71disasm)
 		  Implements: Removes move selection cursor
-- 030A14: Entirety of MoveSelectionDestroyCursorAt (see 71disasm)
++ 030A14: Entirety of MoveSelectionDestroyCursorAt (see 71disasm)
 		  Implements: Removes move selection cursor
 = 034D26: 0B -> 0D (pkmnnamelength)
 = 038744: Entirety of OpponentHandleChoosePokemon (see 72disasm)
