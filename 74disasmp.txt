@@ -165,6 +165,171 @@ return r0
 
 
 fn_251E8C_J:
+r3 = gBattleMons
+r5 = gActiveBattler
+r4 = *r5
+r0 = 0x58
+r2 = r4
+r2 *= r0
+r0 = r2 + r3
+r6 = r0
+r0 += 0x20
+r0 = *r0
+if(r0 == 0x90) goto lbl7
+
+r0 = gBattleStruct
+r0 = *r0
+r0 += 0xC8
+r1 = r4 * 2
+r0 = *(r0 + r1)
+if(r0 != 0) goto lbl2
+
+r1 = 0x1C
+r1 *= r4
+r0 = gDisableStructs
+r1 += r0
+r0 = *(r1 + 6)
+if(r0 != 0) goto lbl2
+
+goto lbl10
+
+lbl2:
+r1 = gBattleMoves
+r2 = 0xC
+r2 *= r0
+r1 += r2
+r1 = *(r1 + 1)
+if(r1 == 0) goto lbl6
+
+r1 = gBattleMons
+r2 = 0x58
+r2 *= r4
+r1 += r2
+r1 += 0xC
+r7 = 0
+goto lbl3
+
+lbl3:
+r2 = *(r1 + r7)
+if(r0 == r2) goto lbl4
+
+r7 += 2
+if(r7 == 8) goto lbl6
+
+goto lbl3
+
+lbl4:
+r7 /= 2
+r1 += 0x18
+r2 = *(r1 + r7)
+if(r2 == 0) goto lbl6
+
+r7 = r0
+r0 = 0
+r1 = 0x58
+r1 *= r0
+r0 = gBattleMons
+r1 = *r0
+r2 = *(r0 + 0x28)
+if(r2 == 0) goto lbl5
+
+r0 += 0x20
+r2 = *r0
+r0 = r7
+fn_1E7DC_J()
+r1 = 0xC
+r1 &= r0
+if(r1 != 0) goto lbl6
+
+goto lbl5
+
+lbl5:
+r0 = 2
+r1 = 0x58
+r1 *= r0
+r0 = gBattleMons
+r0 += r1
+r1 = *r0
+r2 = *(r0 + 0x28)
+if(r2 = 0) goto lbl10
+
+r0 += 0x20
+r2 = *r0
+r0 = r7
+fn_1E7DC_J()
+r1 = 0xC
+r1 &= r0
+if(r0 == 0) goto lbl10
+
+goto lbl6
+
+lbl6:
+Random()
+r1 = 0xF
+r0 &= r1
+if(r0 == 0) goto lbl10
+
+goto lbl8
+
+lbl7:
+r0 = *(r6 + 0x28)
+r1 = *(r6 + 0x2C)
+r1 /= 2
+if(r0 > r1) goto lbl10
+
+Random()
+r1 = 1
+r0 &= r1
+if(r0 == 0) goto lbl10
+
+goto lbl8
+
+lbl8:
+fn_2060C0_J()
+r1 = gActiveBattler
+r1 = *r1
+fn_205C80_J()
+r6 = r0
+if(r6 != 6) goto lbl9
+
+fn_20621C_J()
+r6 = r0
+if(r6 != 6) goto lbl9
+
+r1 = gBattleMons
+r0 = *r1
+r1 += 0x58
+r1 += 0x58
+r1 = *r1
+r2 = 1
+GetBestMatchupScore()
+r6 = r1
+if(r0 >= 0xF) goto lbl10
+
+goto lbl9
+
+lbl9:
+r0 = *r5
+GetBattlerPosition()
+r0 /= 2
+r1 = gBattleStruct
+r1 = *r1
+r0 += r1
+r0 += 0x92
+*r0 = r6
+r0 = 1
+r1 = 2
+r2 = 0
+BtlController_EmitTwoReturnValues()
+r0 = 1
+goto lbl11
+
+lbl10:
+r0 = 0
+goto lbl11
+
+lbl11:
+return r0
 
 
 
@@ -210,3 +375,30 @@ fn_252058_J:
 
 
 fn_20646C_J:
+
+
+
+
+
+
+
+
+fn_2060C0_J:
+
+
+
+
+
+
+
+
+fn_205C80_J:
+
+
+
+
+
+
+
+
+fn_20621C_J

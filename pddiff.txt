@@ -133,7 +133,7 @@ move IDs:
 = 0x1BA = (can't be called by metronome)
 = 0x1E6 = (can't be called by metronome)
 = 0x207 = (can't be copied by mimic or called by metronome)
-- 0x208 = Trick Room
++ 0x208 = Trick Room
 = 0x23A = (can't be called by metronome)
 = 0x253 = (can't be called by metronome)
 = 0x254 = (can't be called by metronome)
@@ -591,7 +591,7 @@ grafics:
 		  Implements: critical capture
 		  Relies on: 02D500, etc
 		  Required knowledge: gLastUsedItemType (j0203FE00), gCritCapture (j0203FE04)
-+ 02EA10: Entirety of HandleInputChooseMove (see 68disasm)
+! 02EA10: Entirety of HandleInputChooseMove (see 68disasm)
 		  Implements: Removes the "switch which?" text when moving moves in battle with SELECT
 = 02EF58: Entirety of HandleMoveSwitching (see 69disasm)
 		  Implements: Need more info
@@ -600,17 +600,17 @@ grafics:
 		  Implements: Need more info
 		  Required knowledge: j02020024, j0203BF30, j0203BF40, j0203BF70, j0203D300, j0203D340, j0203D380, j0203D480
 		  Requires in future: fn_1833C0_J
-+ 0308B8: A7 F0 80 FF -> 00 00 00 00
+! 0308B8: A7 F0 80 FF -> 00 00 00 00
 		  Implements: Removes "PP" for battle move summary; in JP, also makes "Move Type/" -> "Type/", but that's already true
-+ 030924: A7 F0 4A FF -> 00 00 00 00
+! 030924: A7 F0 4A FF -> 00 00 00 00
 		  Implements: Removes PP numbers for battle move summary
 = 030990: 09 1A -> 09 18
   0309A0: A7 F0 0C FF -> 00 00 00 00
 		  Implements: Removes "Type/" + type names for battle move summary
 		  Relies on: expanded type names
-+ 0309CC: Entirety of MoveSelectionCreateCursorAt (see 71disasm)
+! 0309CC: Entirety of MoveSelectionCreateCursorAt (see 71disasm)
 		  Implements: Removes move selection cursor
-+ 030A14: Entirety of MoveSelectionDestroyCursorAt (see 71disasm)
+! 030A14: Entirety of MoveSelectionDestroyCursorAt (see 71disasm)
 		  Implements: Removes move selection cursor
 = 034D26: 0B -> 0D (pkmnnamelength)
 = 038744: Entirety of OpponentHandleChoosePokemon (see 72disasm)
@@ -618,10 +618,10 @@ grafics:
 		  Relies on: new AI value
 		  Required knowledge: j020385E2, gWasMonShown (j0203B964), j0203BFF4
 		  Requires in future: GetSideParty (j205D8A), GetFirstAllowableSwitchin (j205D96), GetBestTrickRoomAttacker (j2060FC), GetAvailableWeatherSetter (j206164), ChooseBestSwitchinNewAI (j2061DC), GetMatchupScore (j206292), ShouldUseTrickRoom (j206334), IsTeamSlow (j2063A4), CanUseNewAI (j20649C), GetBestMatchupScore (j2066CC), GetTypeMatchup (j252248)
-- 03937C: Entirety of FindMonThatAbsorbsOpponentsMove (see 73disasm)
++ 03937C: Entirety of FindMonThatAbsorbsOpponentsMove (see 73disasm)
 		  Implements: AI understands new absorbing abilities (Lightning Rod, Motor Drive, Dry Skin, Storm Drain, Sap Sipper)
 = 039A80: Entirety of ShouldSwitch (see 74disasm)
-		  Implements: New level of smart AI (), Locks the type matchup switching behind the new level of smart AI
+		  Implements: New level of smart AI (), locks switching for better type matchups behind the new level of smart AI
 		  Requires in future: CanUseNewAI (j20649C),
 		  
 		  
