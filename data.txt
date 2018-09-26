@@ -96,6 +96,7 @@ FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
 								 (atk0C_datahpupdate: set the active battler's bit if damage was dealt; set all battlers' bits if pkmn with Unnerve faints)
 		   : 60 B9 03 02: ?????? (atk4B_returnatktoball: adds 2 each time function is run for battler on player's side, max 6)
 		   : 64 B9 03 02: gWasMonShown
+		   : 65 B9 03 02: ??????
 		   : 70 B9 03 02: ?????? (appears to be an array of unknown objects; first field is a 4-entry array of 2 bytes each, second field is a 4-entry array of 1 byte each)
 								 (atk02_attackstring: when player attacks: insert [gCurrentMove, 0] into the first empty slot for the mon, or increment the field2 of the first entry where field1 = gCurrentMove and field2 != 0xFF, whichever comes first)
 								 (atk02_attackstring: when player attacks: if neither of the above is available, insert [gCurrentMove, 0] into the last slot where field2 != 0xFF; if even that fails, insert it into the first slot)
@@ -136,6 +137,7 @@ FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
 								 (fn_EB8398_J: Add moveId to this[moveId])
 		   : 20 D4 03 02: ?????? (Appears to be a SpriteSheet object)
 							     (fn_EB8398_J: Set to {data = data_E95DDC, size = 0x100, tag = (0x78A0 + moveId)} then call LoadSpriteSheet())
+		   : 80 D4 03 02: ??????
            : 00 D5 03 02: ?????? (sub_8032768: zeroed starting from here to 0203D600)
 		   : 00 FE 03 02: gLastUsedItemType
 		   : 04 FE 03 02: gCritCapture
@@ -190,10 +192,12 @@ funcs e,j,desc:
 01D438 = 01CC48 = IsMonDisobedient
 01DB10 = 01D320 = JumpIfMoveFailed
 01DC10 = 01D420 = JumpIfMoveAffectedByProtect
+01E68C = 01DE9C = AI_CalcDmg
 01E770 = 01DF80 = ModulateDmgByType
 01EAB8 = 01E2C8 = CheckWonderGuardAndLevitate
 01ED3C = 01E54C = ModulateDmgByType2
-?????? = 01E7DC = ?????
+01EDF4 = 01E604 = TypeCalc
+01EFCC = 01E7DC = AI_TypeCalc
 01FEE8 = 01F6F8 = GetBattlerTurnOrderNum
 01FF20 = 01F730 = SetMoveEffect
 02A1C0 = 029998 = IsTwoTurnsMove
@@ -238,6 +242,7 @@ funcs e,j,desc:
 1E460C = 1C852C = division
 1E4684 = 1C85A4 = modulus
 1E5E78 = 1C9D98 = ?????
+1E5ED8 = 1C9DF8 = ?????
 
 014D4A = 01456A = GetSpeedStat
 014E98 = 0146B8 = GetPriority
@@ -258,9 +263,13 @@ funcs e,j,desc:
 ?????? = 168C88 = ClearFocusBand (unimplemented)
 ?????? = 168C9C = SetFocusBand (unimplemented)
 ?????? = 2058E0 = ????? (unimplemented)
+?????? = 205B0C = ????? (unimplemented)
 ?????? = 205C80 = ????? (unimplemented)
+?????? = 205CF6 = ????? (unimplemented)
 ?????? = 205D8A = GetSideParty (unimplemented)
 ?????? = 205D96 = GetFirstAllowableSwitchin (unimplemented)
+?????? = 205E14 = ????? (unimplemented)
+?????? = 205EE8 = ????? (unimplemented)
 ?????? = 205F48 = ????? (unimplemented)
 ?????? = 205FDE = ????? (unimplemented)
 ?????? = 2060C0 = ????? (unimplemented)
@@ -271,8 +280,11 @@ funcs e,j,desc:
 ?????? = 206292 = GetMatchupScore (unimplemented)
 ?????? = 206334 = ShouldUseTrickRoom (unimplemented)
 ?????? = 2063A4 = IsTeamSlow (unimplemented)
-?????? = 20646C = ????? (unimplemented)
+?????? = 206418 = ????? (unimplemented)
 ?????? = 20649C = CanUseNewAI (unimplemented)
+?????? = 2064C6 = ????? (unimplemented)
+?????? = 2065CC = ????? (unimplemented)
+?????? = 206600 = ????? (unimplemented)
 ?????? = 2066CC = GetBestMatchupScore (unimplemented)
 ?????? = 207370 = ????? (unimplemented)
 ?????? = 207450 = GetPinchThreshhold (unimplemented)

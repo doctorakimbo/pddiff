@@ -622,7 +622,7 @@ grafics:
 		  Implements: AI understands new absorbing abilities (Lightning Rod, Motor Drive, Dry Skin, Storm Drain, Sap Sipper)
 = 039A80: Entirety of ShouldSwitch (see 74disasm)
 		  Implements: New level of smart AI (), locks switching for better type matchups behind the new level of smart AI
-		  Requires in future: CanUseNewAI (j20649C),
+		  Requires in future: GetSpeedStat (j1456A, e14D4A), GetSideParty (j205D8A), GetFirstAllowableSwitchin (j205D96), GetBestTrickRoomAttacker (j2060FC), GetAvailableWeatherSetter (j206164), CanUseNewAI (j20649C), GetBestMatchupScore (j2066CC), 
 		  
 		  
 		  
