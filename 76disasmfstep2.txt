@@ -1,0 +1,11 @@
+CreateMonWithNature(arg0, arg1, arg2, arg3)
+{
+	r5 = s11
+
+	do
+	{
+		r4 = Random() | (Random() << 0x10)
+	} while(GetNatureFromPersonality(r4) != r5)
+
+	CreateMon(arg0, arg1, arg2, arg3, 1, r4, 0, 0)
+}

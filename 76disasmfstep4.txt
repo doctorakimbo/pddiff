@@ -1,0 +1,9 @@
+CreateMonWithNature(mon, species, level, fixedIV, nature)
+{
+	do
+	{
+		personality = Random32();
+	} while(GetNatureFromPersonality(personality) != nature)
+
+	CreateMon(mon, species, level, fixedIV, 1, personality, OT_ID_PLAYER_ID, 0);
+}

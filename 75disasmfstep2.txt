@@ -1,0 +1,26 @@
+*((*gActiveBattler / 2) + *gBattleStruct + 0xC6) = 0
+
+if(*((*gActiveBattler * 0x1C) + gDisableStructs + 0x22) != 0)
+{
+	if(*r5 & 0xF)
+		*((*gActiveBattler / 2) + *gBattleStruct + 0xC6) |= 1
+	
+	if(*(r5 + 1) & 0xF0)
+		*((*gActiveBattler / 2) + *gBattleStruct + 0xC6) |= 2
+	
+	if(*(r5 + 1) & 0xF)
+		*((*gActiveBattler / 2) + *gBattleStruct + 0xC6) |= 4
+	
+	if(*(r5 + 2) & 0xF)
+		*((*gActiveBattler / 2) + *gBattleStruct + 0xC6) |= 8
+	
+	if(*(r5 + 2) & 0xF0)
+		*((*gActiveBattler / 2) + *gBattleStruct + 0xC6) |= 0x20
+	
+	if(*r5 & 0x30)
+		*((*gActiveBattler / 2) + *gBattleStruct + 0xC6) |= 0x80
+	
+	goto lbl_-1AE
+}
+
+goto lbl_+110

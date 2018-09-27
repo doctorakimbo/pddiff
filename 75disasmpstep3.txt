@@ -1,0 +1,36 @@
+gBattleStruct->0xC6[gActiveBattler / 2] = 0
+
+if(gDisableStructs[gActiveBattler].0x22 != 0)
+{
+	if(r5[0] & 0xF)
+		gBattleStruct->0xC6[gActiveBattler / 2] |= 1
+	
+	if(r5[1] & 0xF0)
+		gBattleStruct->0xC6[gActiveBattler / 2] |= 2
+	
+	if(r5[1] & 0xF)
+		gBattleStruct->0xC6[gActiveBattler / 2] |= 4
+	
+	if(r5[2] & 0xF)
+	{
+		if((r5[2] & 0xF) <= 7)
+			gBattleStruct->0xC6[gActiveBattler / 2] |= 8
+		else
+			gBattleStruct->0xC6[gActiveBattler / 2] |= 0x10
+	}
+	
+	if(r5[2] & 0xF0)
+	{
+		if(((r5[2] & 0xF0) / 0x10) <= 7)
+			gBattleStruct->0xC6[gActiveBattler / 2] |= 0x20
+		else
+			gBattleStruct->0xC6[gActiveBattler / 2] |= 0x40
+	}
+	
+	if(r5[0] & 0x30)
+		gBattleStruct->0xC6[gActiveBattler / 2] |= 0x80
+
+	goto lbl_-1AE
+}
+
+goto lbl_+110

@@ -1,0 +1,111 @@
+CreateMonWithNature(arg0, arg1, arg2, arg3)
+{
+	r5 = fn_251B30_J()
+
+	do
+	{
+		r4 = fn_251CF4_J()
+	} while(GetNatureFromPersonality(r4) != r5)
+
+	CreateMon(arg0, arg1, arg2, arg3, 1, r4, 0, 0)
+}
+
+
+
+
+
+
+fn_251B30_J()
+{
+	if(GetBoxMonData(gPlayerParty, 6, NULL) == 0 && GetMonAbility(gPlayerParty) == 0x1C)
+		return GetNatureFromPersonality(*gPlayerParty)
+	else
+		return GetNatureFromPersonality(Random())
+}
+
+
+
+
+
+
+fn_251CF4_J()
+{
+	if(fn_251B58_J())
+		return fn_251BA4_J(Random() & 7, fn_251CB6_J(Random()))
+	else
+		return fn_251CB6_J(Random() | (Random() << 0x10))
+}
+
+
+
+
+
+
+fn_251B58_J()
+{
+	r0 = 0x72
+	r1 = 1
+	sub_8099F40()
+	
+	if(r0 != 0)
+	{
+		if(Random() % 0x100 == 0)
+			return TRUE;
+		else
+			return FALSE;
+	}
+	else
+	{
+		if(fn_3915EC_J() == 0)
+			return TRUE;
+		else
+			return FALSE;
+	}
+}
+
+
+
+
+
+
+fn_251CB6_J(arg0)
+{
+	r4 = arg0
+	
+	if(GetMonAbility(gPlayerParty) == 0x38 && GetMonData(gPlayerParty, 0x2D) != 1)
+	{
+		r0 = GetBoxMonGender(gPlayerParty)
+		
+		if(r0 != 0xFF && Random() % 3 != 0)
+			r4 |= r0
+	}
+	
+	return r4
+}
+
+
+
+
+
+
+fn_251BA4_J(arg0, arg1)
+{
+	return (arg1 | ((arg0 ^ *(*data_0300504C_J + 0xA) ^ *(*data_0300504C_J + 0xC) ^ arg1) << 0x10))
+}
+
+
+
+
+
+
+fn_3915EC_J()
+{
+	r0 = 0x403E4710
+	sub_806E454()
+	r1 = *r0
+	
+	if(r1 != 0)
+		return Random() % r1
+	else
+		return Random()
+}

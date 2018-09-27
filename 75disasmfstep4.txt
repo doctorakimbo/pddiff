@@ -1,0 +1,28 @@
+...
+case AI_ITEM_X_STAT:
+	gBattleStruct->AI_itemFlags[gActiveBattler / 2] = 0;
+
+	if(gDisableStructs[gActiveBattler].isFirstTurn == 0)
+		break;
+		
+	if(itemEffects[0] & 0xF)
+		gBattleStruct->AI_itemFlags[gActiveBattler / 2] |= 0x1; // X Attack
+	
+	if(itemEffects[1] & 0xF0)
+		gBattleStruct->AI_itemFlags[gActiveBattler / 2] |= 0x2; // X Defense
+	
+	if(itemEffects[1] & 0xF)
+		gBattleStruct->AI_itemFlags[gActiveBattler / 2] |= 0x4; // X Speed
+	
+	if(itemEffects[2] & 0xF)
+		gBattleStruct->AI_itemFlags[gActiveBattler / 2] |= 0x8; // X Sp. Atk
+	
+	if(itemEffects[2] & 0xF0)
+		gBattleStruct->AI_itemFlags[gActiveBattler / 2] |= 0x20; // X Accuracy
+	
+	if(itemEffects[0] & 0x30)
+		gBattleStruct->AI_itemFlags[gActiveBattler / 2] |= 0x80; // Dire Hit
+
+	shouldUse = TRUE;
+	break;
+...

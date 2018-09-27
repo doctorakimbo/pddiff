@@ -1,0 +1,126 @@
+r4 = gActiveBattler
+r0 = *r4
+r0 /= 2
+r3 = gBattleStruct
+r1 = *r3
+r0 += r1
+r0 += 0xC6
+r1 = 0
+*r0 = r1
+r1 = gDisableStructs
+r2 = *r4
+r0 = r2 * 8
+r0 -= r2
+r0 *= 4
+r0 += r1
+r0 = *(r0 + 0x22)
+
+if(r0 != 0) 
+{
+	r1 = *r5
+	r6 = 0xF
+	r0 = r6
+	r0 &= r1
+	
+	if(r0 != 0)
+	{
+		r2 /= 2
+		r0 = *r3
+		r2 += r0
+		r2 += 0xC6
+		r0 = *r2
+		r1 = 1
+		r0 |= r1
+		*r2 = r0
+	}
+	
+	r1 = *(r5 + 1)
+	r7 = 0xF0
+	r0 += r7
+	r0 &= r1
+	
+	if(r0 != 0)
+	{
+		r0 = *r4
+		r0 /= 2
+		r1 = *r3
+		r0 += r1
+		r0 += 0xC6
+		r1 = *r0
+		r2 = 2
+		r1 |= r2
+		*r0 = r1
+	}
+	
+	r1 = *(r5 + 1)
+	r0 = r6
+	r0 &= r1
+	
+	if(r0 != 0)
+	{
+		r0 = *r4
+		r0 /= 2
+		r1 = *r3
+		r0 += r1
+		r0 += 0xC6
+		r1 = *r0
+		r2 = 4
+		r1 |= r2
+		*r0 = r1
+	}
+	
+	r1 = *(r5 + 2)
+	r0 = r6
+	r0 &= r1
+	
+	if(r0 != 0)
+	{
+		r0 = *r4
+		r0 /= 2
+		r1 = *r3
+		r0 += r1
+		r0 += 0xC6
+		r1 = *r0
+		r2 = 8
+		r1 |= r2
+		*r0 = r1
+	}
+	
+	r1 = *(r5 + 2)
+	r0 = r7
+	r0 &= r1
+	
+	if(r0 != 0)
+	{
+		r0 = *r4
+		r0 /= 2
+		r1 = *r3
+		r0 += r1
+		r0 += 0xC6
+		r1 = *r0
+		r2 = 0x20
+		r1 |= r2
+		*r0 = r1
+	}
+	
+	r1 = *r5
+	r0 = 0x30
+	r0 &= r1
+	
+	if(r0 != 0)
+	{
+		r0 = *r4
+		r0 /= 2
+		r1 = *r3
+		r0 += r1
+		r0 += 0xC6
+		r1 = *r0
+		r2 = 0x80
+		r1 |= r2
+		*r0 = r1
+	}
+	
+	goto lbl_-1AE
+}
+
+goto lbl_+110

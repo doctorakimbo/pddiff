@@ -1,6 +1,6 @@
 if(availableToSwitch == 0)
 	return FALSE;
-if(fn_251E40_J())
+if(ShouldSwitch_NewAI())
 	return TRUE;
 if(ShouldSwitchIfPerishSong())
 	return TRUE;
@@ -28,23 +28,23 @@ return FALSE;
 
 
 
-fn_251E40_J()
+ShouldSwitch_NewAI() @251E40_J
 {
 	data_0203B965 = 1
 
 	if(!CanUseNewAI())
 		return FALSE;
-	if(fn_251E8C_J())
+	if(ShouldSwitchIfLockedMoveOrRegenerator())
 		return TRUE;
-	if(fn_251FD0_J())
+	if(ShouldSwitchIfCurseOrYawn())
 		return TRUE;
-	if(fn_205F48_J())
+	if(ShouldSwitchIfTrickRoom())
 		return TRUE;
-	if(fn_205FDE_J())
+	if(ShouldSwitchIfWeatherTeam())
 		return TRUE;
-	if(fn_252058_J())
+	if(ShouldSwitchIfMightBeDoubleTargeted())
 		return TRUE;
-	if(fn_2064C6_J())
+	if(ShouldSwitchIfStallMon())
 		return TRUE;
 		
 	return FALSE;
@@ -57,9 +57,17 @@ fn_251E40_J()
 
 
 
-fn_251E8C_J()
+ShouldSwitchIfLockedMoveOrRegenerator() @251E8C_J
 {
-	if(gBattleMons[gActiveBattler].ability != 0x90)
+	if(gBattleMons[gActiveBattler].ability == ABILITY_REGENERATOR)
+	{
+		// 50% chance to switch if less than half HP and has Regenerator
+		if(gBattleMons[gActiveBattler].hp > (gBattleMons[gActiveBattler].maxHP / 2))
+			return FALSE;
+		if(Random() & 1 == 0)
+			return FALSE;
+	}
+	else
 	{
 		if(gBattleStruct->choicedMove[gActiveBattler])
 			lockedMove = gBattleStruct->choicedMove[gActiveBattler];
@@ -74,6 +82,7 @@ fn_251E8C_J()
 			{
 				if(lockedMove == gBattleMons[gActiveBattler].moves[i])
 				{
+					// 94% chance to switch if locked into move that opponents resist
 					if(gBattleMons[gActiveBattler].pp[i] != 0 && (!(AI_TypeCalc(i, gBattleMons[B_POSITION_PLAYER_LEFT].species, gBattleMons[B_POSITION_PLAYER_LEFT].ability) & (MOVE_RESULT_NOT_VERY_EFFECTIVE | MOVE_RESULT_DOESNT_AFFECT_FOE)) || gBattleMons[B_POSITION_PLAYER_LEFT].hp == 0))
 					{	
 						if(gBattleMons[B_POSITION_PLAYER_RIGHT].hp == 0)
@@ -87,14 +96,7 @@ fn_251E8C_J()
 			}
 		}
 		
-		if(Random() & 0xF == 0) // 6% chance
-			return FALSE;
-	}
-	else
-	{
-		if(gBattleMons[gActiveBattler].hp > (gBattleMons[gActiveBattler].maxHP / 2))
-			return FALSE;
-		if(Random() & 1 == 0) // 50% chance
+		if(Random() & 0xF == 0)
 			return FALSE;
 	}
 	
@@ -102,13 +104,13 @@ fn_251E8C_J()
 	
 	if(chosenMon == PARTY_SIZE)
 	{
-		chosenMon = fn_20621C_J(chosenMon)
+		chosenMon = GetSlowMonWithLowHP()
 		
 		if(chosenMon == PARTY_SIZE)
 		{
 			{score, chosenMon} = GetBestMatchupScore(gBattleMons[B_POSITION_PLAYER_LEFT].species, gBattleMons[B_POSITION_PLAYER_RIGHT].species, TRUE);
 			
-			if(score >= 15) // player mons' types are SE on AI's whole team
+			if(score >= 15) // player mons' types are SE on AI's whole team - don't even bother
 				return FALSE;
 		}
 	}
@@ -125,17 +127,18 @@ fn_251E8C_J()
 
 
 
-fn_251FD0_J()
+ShouldSwitchIfCurseOrYawn() @251FD0_J
 {
+	// 75% chance to switch if affected by Curse or Yawn
 	if(!(gBattleMons[gActiveBattler].status2 & STATUS2_CURSED) && !(gStatuses3[gActiveBattler] & STATUS3_YAWN))
 		return FALSE;
-	if(Random() & 3 == 0) // 25% chance
+	if(Random() & 3 == 0)
 		return FALSE;
 
 	chosenMon = GetMonThatCanWithstandBiggestAttack(GetAITarget(), gActiveBattler);
 	
 	if(chosenMon == PARTY_SIZE)
-		chosenMon = fn_20621C_J(chosenMon)
+		chosenMon = GetSlowMonWithLowHP()
 	
 	gBattleStruct->monToSwitchIntoId[gActiveBattler] = chosenMon;
 	BtlController_EmitTwoReturnValues(1, 2, 0)
@@ -149,36 +152,43 @@ fn_251FD0_J()
 
 
 
-fn_205F48_J()
+ShouldSwitchIfTrickRoom() @205F48_J
 {
-	if(!gTrickRoomActive)
-		return FALSE;
+	if(gTrickRoomActive)
+	{
+		// Don't switch if it can deal good damage
+		if(CanDoSevereDamage(gActiveBattler, GetAITarget(), CHECK_HALF_MAX_HP))
+			return FALSE;
+		
+		if(gBattleMons[gActiveBattler].attack < gBattleMons[gActiveBattler].spAttack)
+			highestAttackingStat = gBattleMons[gActiveBattler].spAttack;
+		else
+			highestAttackingStat = gBattleMons[gActiveBattler].attack;
+		
+		// Don't switch if attacking stat is high
+		if(highestAttackingStat >= 140)
+			return FALSE;
 
-	if(CanDoSevereDamage(gActiveBattler, GetAITarget(), CHECK_HALF_MAX_HP))
+		{otherMonsHighestAttackingStat, chosenMon} = GetBestTrickRoomAttacker();
+		
+		// Don't switch if there's no good Trick Room attackers on team
+		if(otherMonsHighestAttackingStat < 140)
+			return FALSE;
+		
+		// 12% chance to not switch
+		if(Random() & 7 == 0)
+			return FALSE;
+		
+		// 87% chance not to switch if last used move is SE on chosen mon
+		if(IsMoveSuperEffective(chosenMon, gLastMoves[GetAITarget()]) && (Random() & 7) != 0)
+			return FALSE;
+		
+		gBattleStruct->monToSwitchIntoId[gActiveBattler] = chosenMon;
+		BtlController_EmitTwoReturnValues(1, 2, 0)
+		return TRUE;
+	}
+	else
 		return FALSE;
-
-	r1 = gBattleMons[gActiveBattler].attack
-	r2 = gBattleMons[gActiveBattler].spAttack
-	
-	if(r1 < r2)
-		r1 = r2
-	
-	if(r1 >= 140)
-		return FALSE;
-
-	{r0, chosenMon} = GetBestTrickRoomAttacker()
-	
-	if(r0 < 140)
-		return FALSE;
-	if(Random() & 7 == 0) // 12% chance
-		return FALSE;
-
-	if(IsMoveSuperEffective(chosenMon, gLastMoves[GetAITarget()]) && (Random() & 7) != 0) // 87% chance
-		return FALSE;
-	
-	gBattleStruct->monToSwitchIntoId[gActiveBattler] = chosenMon;
-	BtlController_EmitTwoReturnValues(1, 2, 0)
-	return TRUE;
 }
 
 
@@ -188,45 +198,49 @@ fn_205F48_J()
 
 
 
-fn_205FDE_J()
+ShouldSwitchIfWeatherTeam() @205FDE_J
 {
 	chosenMon = GetAvailableWeatherSetter();
 	
-	if(chosenMon != PARTY_SIZE)
-	{
-		if(Random() & 7 != 0) // 87% chance
-		{
-			if(CanDoSevereDamage(gActiveBattler, 0, CHECK_IF_KO))
-				return FALSE;
-			if(CanDoSevereDamage(gActiveBattler, 1, CHECK_IF_KO))
-				return FALSE;
-		}
-		
-		if(!(gBattleWeather & 0xFF) && (Random() & 3) == 0) // 25% chance
-			return FALSE;
-	}
-	else
+	if(chosenMon == PARTY_SIZE)
 	{
 		ability = gBattleMons[gActiveBattler].ability;
 		
-		if(ability == 2)
-			weather = 3
-		elseif(ability == 0x2D)
-			weather = 0xC
-		elseif(ability == 0x46)
-			weather = 0x30
-		elseif(ability == 0x75)
-			weather = 0xC0
+		if(ability == ABILITY_DRIZZLE)
+			weather = WEATHER_RAIN_ANY;
+		elseif(ability == ABILITY_SAND_STREAM)
+			weather = WEATHER_SAND_ANY;
+		elseif(ability == ABILITY_DROUGHT)
+			weather = WEATHER_SUN_ANY;
+		elseif(ability == ABILITY_SNOW_WARNING)
+			weather = WEATHER_HAIL_ANY;
 		else
 			return FALSE;
 		
 		if(gBattleWeather & weather)
 			return FALSE;
 		
-		{NULL, chosenMon} = GetBestMatchupScore(gBattleMons[B_POSITION_PLAYER_LEFT].0, gBattleMons[B_POSITION_PLAYER_RIGHT].0, 1)
+		// Switch weather setter out if the weather ran out
+		{NULL, chosenMon} = GetBestMatchupScore(gBattleMons[B_POSITION_PLAYER_LEFT].species, gBattleMons[B_POSITION_PLAYER_RIGHT].species, 1)
+	}
+	else
+	{
+		// 87% chance to not switch if the current mon can KO
+		if(Random() & 7 != 0)
+		{
+			if(CanDoSevereDamage(gActiveBattler, B_POSITION_PLAYER_LEFT, CHECK_IF_KO))
+				return FALSE;
+			if(CanDoSevereDamage(gActiveBattler, B_POSITION_OPPONENT_LEFT, CHECK_IF_KO)) // should be B_POSITION_PLAYER_RIGHT
+				return FALSE;
+		}
+		
+		// 75% chance to switch to the weather setter if the weather ran out
+		if(!(gBattleWeather & WEATHER_ANY) && (Random() & 3) == 0)
+			return FALSE;
 	}
 	
-	if(Random() % 6 == 0) // 17% chance
+	// 17% chance to not switch
+	if(Random() % 6 == 0) 
 		return FALSE;
 
 	gBattleStruct->monToSwitchIntoId[gActiveBattler] = chosenMon;
@@ -241,12 +255,14 @@ fn_205FDE_J()
 
 
 
-fn_252058_J()
+ShouldSwitchIfMightBeDoubleTargeted() @252058_J
 {
-	r5 = 0
-	r6 = 0
-	s0 = 0
+	opposingMons = 0;
+	goodMoves = 0;
+	bestMoveOnAIActiveMon[B_POSITION_PLAYER_LEFT] = MOVE_NONE;
+	bestMoveOnAIActiveMon[B_POSITION_PLAYER_RIGHT] = MOVE_NONE;
 	
+	// Don't bother switching if slow and weakened
 	if((100 * ((gBattleMons[gActiveBattler].speed - 5) / gBattleMons[gActiveBattler].level)) < 290 && gBattleMons[gActiveBattler].hp <= (gBattleMons[gActiveBattler].maxHP / 2))
 		return FALSE;
 
@@ -255,15 +271,17 @@ fn_252058_J()
 		if(gBattleMons[i].hp == 0)
 			continue;
 
-		r5++
+		opposingMons++;
+		chosenMove = MOVE_NONE;
 		
 		if(!IsMonFasterThan(gActiveBattler, i))
 		{
-			if(!CanDoSevereDamage(gActiveBattler, i, CHECK_IF_KO))
+			// If player is faster, player can't KO AI, and (player doesn't have severely damaging move on AI, or AI can KO player), disregard player mon
+			if(!CanDoSevereDamage(i, gActiveBattler, CHECK_IF_KO))
 			{
-				{r0, r1} = CanDoSevereDamage(i, gActiveBattler, CHECK_HALF_MAX_HP)
+				{willSeverelyDamageThisMon, chosenMove} = CanDoSevereDamage(i, gActiveBattler, CHECK_HALF_MAX_HP)
 				
-				if(!r0)
+				if(!willSeverelyDamageThisMon)
 					continue;
 				if(CanDoSevereDamage(gActiveBattler, i, CHECK_IF_KO))
 					continue;
@@ -271,32 +289,35 @@ fn_252058_J()
 		}
 		else
 		{
+			// If AI is faster and can KO player mon, disregard player mon
 			if(CanDoSevereDamage(gActiveBattler, i, CHECK_IF_KO))
 				continue;
 
+			// If AI is faster, player can't KO AI, and (AI has severely damaging move on player, or player doesn't have severely damaging move on AI), disregard player mon
 			if(!CanDoSevereDamage(i, gActiveBattler, CHECK_IF_KO))
 			{
 				if(CanDoSevereDamage(gActiveBattler, i, CHECK_HALF_MAX_HP))
 					continue;
 				
-				{r0, r1} = CanDoSevereDamage(i, gActiveBattler, CHECK_HALF_MAX_HP)
+				{willSeverelyDamageThisMon, chosenMove} = CanDoSevereDamage(i, gActiveBattler, CHECK_HALF_MAX_HP)
 				
-				if(!r0)
+				if(!willSeverelyDamageThisMon)
 					continue;
 			}
 		}
 		
-		s0[i] = r1
-		r6++
+		bestMoveOnAIActiveMon[i] = chosenMove;
+		goodMoves++;
 	}
 	
-	if((Random() % (r5 + 1)) + 1 > r6)
+	// If two opponents that are both threatening, 33% chance to switch; otherwise never switch
+	if((Random() % (opposingMons + 1)) + 1 > goodMoves)
 		return FALSE;
 	
-	if(s0[B_POSITION_PLAYER_LEFT] != 0)
-		r4 = s0[B_POSITION_PLAYER_LEFT]
-	elseif(s0[B_POSITION_PLAYER_RIGHT] != 0)
-		r4 = s0[B_POSITION_PLAYER_RIGHT]
+	if(bestMoveOnAIActiveMon[B_POSITION_PLAYER_LEFT] != MOVE_NONE)
+		bestMove = bestMoveOnAIActiveMon[B_POSITION_PLAYER_LEFT]
+	elseif(bestMoveOnAIActiveMon[B_POSITION_PLAYER_RIGHT] != MOVE_NONE)
+		bestMove = bestMoveOnAIActiveMon[B_POSITION_PLAYER_RIGHT]
 	else
 		return FALSE;
 
@@ -307,7 +328,8 @@ fn_252058_J()
 		if(i == PARTY_SIZE)
 			break;
 		
-		if(AI_TypeCalc(r4, GetMonData(gEnemyParty[i], MON_DATA_SPECIES), GetMonAbility(gEnemyParty[i])) & MOVE_RESULT_DOESNT_AFFECT_FOE)
+		// switch to a mon that's immune to the threatening move
+		if(AI_TypeCalc(bestMove, GetMonData(gEnemyParty[i], MON_DATA_SPECIES), GetMonAbility(gEnemyParty[i])) & MOVE_RESULT_DOESNT_AFFECT_FOE)
 			goto lbl12
 	}
 	
@@ -318,17 +340,20 @@ fn_252058_J()
 		if(i == PARTY_SIZE)
 			return FALSE;
 
-		s0 = GetMonData(gEnemyParty[i], MON_DATA_HP)
+		hp = GetMonData(gEnemyParty[i], MON_DATA_HP)
 		
-		if(s0 > (s0 / 4) && (GetMonData(gEnemyParty[i], MON_DATA_MAX_HP) != s0 || GetHoldEffectParam(GetMonData(gEnemyParty[i], MON_DATA_HELD_ITEM)) != 0x43))
+		// don't switch to a mon with 1 HP or one that holds Focus Sash
+		// Should have been GetHoldEffect, not GetHoldEffectParam
+		if(hp > (hp / 4) && (hp != GetMonData(gEnemyParty[i], MON_DATA_MAX_HP) || GetHoldEffectParam(GetMonData(gEnemyParty[i], MON_DATA_HELD_ITEM)) != 0x43))
 		{
-			if(AI_TypeCalc(r4, GetMonData(gEnemyParty[i], MON_DATA_SPECIES), GetMonAbility(gEnemyParty[i])) & MOVE_RESULT_NOT_VERY_EFFECTIVE)
+			if(AI_TypeCalc(bestMove, GetMonData(gEnemyParty[i], MON_DATA_SPECIES), GetMonAbility(gEnemyParty[i])) & MOVE_RESULT_NOT_VERY_EFFECTIVE)
 				goto lbl12
 		}
 	}
 	
 	return FALSE;
 
+	// (100 - (data_0203B960_J * 6))% chance to switch
 	lbl12:
 	if((Random() % 16) <= data_0203B960_J)
 		return FALSE;
@@ -345,47 +370,53 @@ fn_252058_J()
 
 
 
-fn_2064C6_J()
+ShouldSwitchIfStallMon() @2064C6_J
 {
-	r5 = 0
-	r6 = 0
+	stallableMons = 0;
 	
-	if((100 * ((gBattleMons[gActiveBattler].speed - 5) / gBattleMons[gActiveBattler].level)) < 290 && gBattleMons[gActiveBattler].hp > (gBattleMons[gActiveBattler].maxHP / 2))
+	// Don't bother switching if slow and weakened
+	if((100 * ((gBattleMons[gActiveBattler].speed - 5) / gBattleMons[gActiveBattler].level)) < 290 && gBattleMons[gActiveBattler].hp <= (gBattleMons[gActiveBattler].maxHP / 2))
 		return FALSE;
 
 	for(i = B_POSITION_PLAYER_LEFT; i != 4; i += BIT_FLANK)
 	{
-		if(fn_2065CC_J(gActiveBattler))
+		// Don't switch if active mon has healing move
+		if(HasHealingMove(gActiveBattler))
 			continue;
-			
-		if(!fn_2065CC_J(i))
+		
+		if(!HasHealingMove(i))
 		{
+			// If player can't heal and (player has severely damaging move on AI, AI has severely damaging move on player, or AI has damaging move at all), disregard player mon
 			if(CanDoSevereDamage(i, gActiveBattler, CHECK_HALF_MAX_HP))
 				continue;
 			
-			{r0, r1} = CanDoSevereDamage(gActiveBattler, i, CHECK_HALF_MAX_HP)
+			{doesGoodDamage, damage} = CanDoSevereDamage(gActiveBattler, i, CHECK_HALF_MAX_HP)
 			
-			if(r0 == 1)
+			if(doesGoodDamage)
 				continue;
-			if(r1 > 0)
+			if(damage > 0)
 				continue;
 		}
+		// If player can heal and AI has severely damaging move on player, disregard this mon
 		elseif(CanDoSevereDamage(gActiveBattler, i, CHECK_HALF_MAX_HP))
 			continue;
 		
-		r6++
+		stallableMons++;
 	}
 	
-	if((Random() % (r5 + 1)) + 1 > r6)
+	// Don't switch if no stallable mons
+	if(stallableMons < 1)
 		return FALSE;
 
-	chosenMon = fn_205CF6_J(gActiveBattler, GetAITarget())
+	chosenMon = GetGoodStallMon(gActiveBattler, GetAITarget());
 	
+	// Don't switch if stallmon has low HP
 	if(chosenMon == PARTY_SIZE)
 		return FALSE;
-	
 	if(GetMonData(gEnemyParty[chosenMon], MON_DATA_HP) <= (GetMonData(gEnemyParty[chosenMon], MON_DATA_MAX_HP) / 4))
 		return FALSE;
+		
+	// (100 - (data_0203B960_J * 6))% chance to switch to stallmon
 	if((Random() % 16) <= data_0203B960_J)
 		return FALSE;
 
@@ -460,9 +491,9 @@ GetMonThatCanWithstandBiggestAttack(attacker, defender) @205C80_J
 
 
 
-fn_20621C_J(startIndex)
+GetSlowMonWithLowHP() @20621C_J
 {
-	for(i = startIndex; i < PARTY_SIZE; i++)
+	for(i = 0; i < PARTY_SIZE; i++)
 	{
 		i = GetFirstAllowableSwitchin(i, TRUE);
 		
@@ -510,9 +541,9 @@ CanDoSevereDamage(attacker, target, threshold) @205E14_J
 		
 		effect = gBattleMoves[gBattleMons[gBattlerAttacker].moves[i]].effect;
 		
-		if(effect == 0x29)
+		if(effect == EFFECT_MULTI_HIT)
 			gBattleMoveDamage *= 4;
-		elseif(effect == 0x2C)
+		elseif(effect == EFFECT_DOUBLE_HIT)
 			gBattleMoveDamage *= 2;
 		
 		if(gBattleMoveDamage > maxDamage)
@@ -522,15 +553,15 @@ CanDoSevereDamage(attacker, target, threshold) @205E14_J
 			gBattleMoveDamage = 1;
 		
 		if(threshold = CHECK_HALF_MAX_HP)
-			r1 = gBattleMons[gBattlerTarget].maxHP / 2
-		else
-			r1 = gBattleMons[gBattlerTarget].hp
+			hpThreshold = gBattleMons[gBattlerTarget].maxHP / 2;
+		else // CHECK_IF_KO
+			hpThreshold = gBattleMons[gBattlerTarget].hp;
 		
-		if(gBattleMoveDamage > r1)
-			return {1, gBattleMons[gBattlerAttacker].moves[i]};
+		if(gBattleMoveDamage > hpThreshold)
+			return {TRUE, gBattleMons[gBattlerAttacker].moves[i]};
 	}
 	
-	return {0, 100 * (maxDamage / gBattleMons[gBattlerAttacker].maxHP)};
+	return {FALSE, 100 * (maxDamage / gBattleMons[gBattlerAttacker].maxHP)};
 }
 
 
@@ -572,17 +603,17 @@ IsMonFasterThan(mon1, mon2) @205EE8_J
 
 
 
-fn_2065CC_J(mon)
+HasHealingMove(mon) @2065CC_J
 {
 	for(i = 0; i < 4; i++)
 	{
 		effect = gBattleMoves[gBattleMons[mon].moves[i]].effect;
 
-		if(effect == 0x20)
+		if(effect == EFFECT_RESTORE_HP)
 			return TRUE;
-		if(effect == 0x84)
+		if(effect == EFFECT_MORNING_SUN)
 			return TRUE;
-		if(effect == 0x9D)
+		if(effect == EFFECT_SOFTBOILED)
 			return TRUE;
 	}
 
@@ -596,10 +627,10 @@ fn_2065CC_J(mon)
 
 
 
-fn_205CF6_J(attacker, defender)
+GetGoodStallMon(AIMon, playerMon) @205CF6_J
 {
-	party = GetSideParty(attacker & BIT_SIDE);
-	CopyBytes(&gBackupMonData, &gBattleMons[defender], 0x58);
+	party = GetSideParty(AIMon & BIT_SIDE);
+	CopyBytes(&gBackupMonData, &gBattleMons[AIMon], 0x58);
 
 	for(i = 0; i < PARTY_SIZE; i++)
 	{
@@ -608,19 +639,20 @@ fn_205CF6_J(attacker, defender)
 		if(i == PARTY_SIZE)
 			break;
 		
-		CopyMonToBattleMon(&gBattleMons[attacker], &party[i])
+		CopyMonToBattleMon(&gBattleMons[AIMon], &party[i])
 		
-		if(CanDoSevereDamage(attacker, defender, CHECK_HALF_MAX_HP))
+		// return a mon that can't do good damage to the player, has a healing move and a damaging status move, and can't be 2HKO'd by the player
+		if(CanDoSevereDamage(AIMon, playerMon, CHECK_HALF_MAX_HP))
 			continue;
-		if(!fn_2065CC_J(attacker))
+		if(!HasHealingMove(AIMon))
 			continue;
-		if(!fn_206600_J(attacker, defender))
+		if(!HasDamagingStatusThatWorks(AIMon, playerMon))
 			continue;
-		if(!CanDoSevereDamage(attacker, defender, CHECK_HALF_MAX_HP))
+		if(!CanDoSevereDamage(playerMon, AIMon, CHECK_HALF_MAX_HP))
 			break;
 	}
 	
-	CopyBytes(&gBattleMons[defender], &gBackupMonData, 0x58);
+	CopyBytes(&gBattleMons[AIMon], &gBackupMonData, 0x58);
 	return i;
 }
 
@@ -678,7 +710,7 @@ CopyMonToBattleMon(destMonID, sourceMon) @205B0C_J
 
 
 
-fn_206600_J(attacker, defender)
+HasDamagingStatusThatWorks(attacker, defender) @206600_J
 {
 	if(gBattleMons[defender].status1 & STATUS1_ANY)
 		return FALSE;
@@ -690,40 +722,40 @@ fn_206600_J(attacker, defender)
 
 		effect = gBattleMoves[gBattleMons[attacker].moves[i]].effect
 		
-		if(effect == 0x21 || effect == 0x42)
+		if(effect == EFFECT_TOXIC || effect == EFFECT_POISON)
 		{
 			ability = gBattleMons[defender].ability;
 			
-			if(ability == 0x11)
+			if(ability == ABILITY_IMMUNITY)
 				continue;
-			if(ability == 0x5A)
+			if(ability == ABILITY_POISON_HEAL)
 				continue;
-			if(ability == 0x62)
+			if(ability == ABILITY_MAGIC_GUARD)
 				continue;
 
 			type1 = gBattleMons[defender].type1;
 			
-			if(type1 == 8)
+			if(type1 == TYPE_STEEL)
 				continue;
-			if(type1 == 3)
+			if(type1 == TYPE_POISON)
 				continue;
 
 			type2 = gBattleMons[defender].type2;
 			
-			if(type2 == 8)
+			if(type2 == TYPE_STEEL)
 				continue;
-			if(type2 == 3)
+			if(type2 == TYPE_POISON)
 				continue;
 			
 			return TRUE;
 		}
-		elseif(effect == 0xA7)
+		elseif(effect == EFFECT_WILL_O_WISP)
 		{
-			if(gBattleMons[defender].ability == 0x29)
+			if(gBattleMons[defender].ability == ABILITY_WATER_VEIL)
 				continue;
-			if(gBattleMons[defender].type1 == 0xA)
+			if(gBattleMons[defender].type1 == TYPE_FIRE)
 				continue;
-			if(gBattleMons[defender].type2 == 0xA)
+			if(gBattleMons[defender].type2 == TYPE_FIRE)
 				continue;
 			
 			return TRUE;

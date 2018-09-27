@@ -621,10 +621,18 @@ grafics:
 + 03937C: Entirety of FindMonThatAbsorbsOpponentsMove (see 73disasm)
 		  Implements: AI understands new absorbing abilities (Lightning Rod, Motor Drive, Dry Skin, Storm Drain, Sap Sipper)
 = 039A80: Entirety of ShouldSwitch (see 74disasm)
-		  Implements: New level of smart AI for when to switch (), locks switching for better type matchups behind the new level of smart AI
+		  Implements: New level of smart AI for when to switch (switches if: has Regenerator, locked into resisted move, cursed, yawned, has a good Trick Room attacker under Trick Room, weather setter is in battle when weather runs out, weather setter isn't in battle when weather runs out, has a mon that's immune when existing mon might get double-targetted, or has a good stallmon under good stall conditions), locks switching for better type matchups behind the new level of smart AI
 		  Relies on: GetSpeedStat (j1456A, e14D4A), new AI value
-		  Required knowledge: gBackupMonData (j0203D48)
-		  Requires in future: GetSideParty (j205D8A), GetFirstAllowableSwitchin (j205D96), GetBestTrickRoomAttacker (j2060FC), GetAvailableWeatherSetter (j206164), CanUseNewAI (j20649C), GetBestMatchupScore (j2066CC), 
+		  Required knowledge: gBackupMonData (j0203D48), j0203B960, j0203B965
+		  Requires in future: ShouldSwitchIfMightBeDoubleTargeted (j205058), CopyMonToBattleMon (j205B0C), GetMonThatCanWithstandBiggestAttack (j205C80), GetGoodStallMon (j205CF6), GetSideParty (j205D8A), GetFirstAllowableSwitchin (j205D96), CanDoSevereDamage (j205E14), IsMonFasterThan (j205EE8), ShouldSwitchIfTrickRoom (j205F48), ShouldSwitchIfWeatherTeam (j205FDE), GetAITarget (j2060C0), GetBestTrickRoomAttacker (j2060FC), GetAvailableWeatherSetter (j206164), GetSlowMonWithLowHP (j20621C), IsMoveSuperEffective (j206418), CanUseNewAI (j20649C), ShouldSwitchIfStallMon (j2064C6), HasHealingMove (j2065CC), HasDamagingStatusThatWorks (j206600), GetBestMatchupScore (j2066CC), ShouldSwitch_NewAI (j251E40), ShouldSwitchIfLockedMoveOrRegenerator (j251E8C), ShouldSwitchIfCurseOrYawn (j251FD0)
+		  Glitch?: (ShouldSwitchIfWeatherTeam) accidentally checks if it can KO the AI's left slot instead of the player's right
+		  Glitch?: (ShouldSwitchIfMightBeDoubleTargeted) checks ITEM_FOCUS_SASH in GetHoldEffectParam, not GetHoldEffect
+		  Glitch?: (GetAITarget) in doubles with both mons alive, it does checks on the AI's right slot instead of choosing a random player slot
+		  Glitch?: in general, uses raw stats when I assume they meant base stats
+= 03A4E8: Part of ShouldUseItem (see 75disasm)
+		  Implements: AI use of two new X items (one is X Sp. Def)
+		  Requires: new table entries for gItemEffectTable
+= 03DD98: Entirety of CreateMonWithNature (see 76disasm)
 		  
 		  
 		  
@@ -641,5 +649,5 @@ grafics:
 		  
 		  
 
-curr: j391EC-j393F0
-next: j39C50
+curr: j3D504-j3D56C
+next: j3DCD0 (2byte), j3DEA8 (2byte), IMPORTANT! 08 0C 25 08 -> 04 00 01 09, j3E192

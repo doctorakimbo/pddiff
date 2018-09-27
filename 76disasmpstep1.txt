@@ -1,0 +1,193 @@
+CreateMonWithNature()
+{
+	r9 = r0
+	r8 = r1
+	r7 = r2
+	r6 = r3
+	fn_251B30_J()
+	r5 = r0
+
+	do
+	{
+		fn_251CF4_J()
+		r4 = r0
+		fn_42EB4()
+	} while(r0 != r5)
+
+	s1 = r4
+	r0 = 1
+	s0 = r0
+	r0 = 0
+	s2 = r0
+	s3 = r0
+	r0 = r9
+	r1 = r8
+	r2 = r7
+	r3 = r6
+	fn_3DA54()
+	return r0
+}
+
+
+
+
+
+
+fn_251B30_J()
+{
+	r0 = gPlayerParty
+	r1 = 6
+	fn_3F4B0_J()
+	
+	if(r0 == 0)
+	{
+		r0 = GetMonAbility(gPlayerParty)
+		
+		if(r0 == 0x1C)
+		{
+			r0 = gPlayerParty
+			r0 = *r0
+		}
+	}
+	elseany
+		r0 = Random()
+	
+	fn_42EB4()
+	return r0
+}
+
+
+
+
+
+
+fn_251CF4_J()
+{
+	fn_251B58_J()
+	
+	if(r0 != 1)
+	{
+		r4 = Random() << 0x10
+		r0 = Random()
+		r0 |= r4
+		fn_251CB6_J()
+	}
+	else
+	{
+		r0 = Random()
+		fn_251CB6_J()
+		r4 = r0
+		r0 = Random()
+		r1 = 7
+		r0 &= r1
+		r1 = r4
+		fn_251BA4_J()
+	}
+	
+	return r0
+}
+
+
+
+
+
+
+fn_251B58_J()
+{
+	r0 = 0x72
+	r1 = 1
+	fn_99948_J()
+	
+	if(r0 != 0)
+	{
+		r0 = Random() % 0x100
+		if(r0 != 0) goto lbl4
+
+		lbl2:
+		r0 = 1
+		goto lbl5
+	}
+
+	lbl3:
+	fn_3915EC_J()
+	if(r0 == 0) goto lbl2
+
+	lbl4:
+	r0 = 0
+
+	lbl5:
+	return r0
+}
+
+
+
+
+
+
+fn_251CB6_J()
+{
+	r4 = r0
+	r0 = GetMonAbility(gPlayerParty)
+	
+	if(r0 == 0x38)
+	{
+		r0 = GetMonData(gPlayerParty, 0x2D)
+		
+		if(r0 != 1)
+		{
+			r0 = GetBoxMonGender(gPlayerParty)
+			
+			if(r0 != 0xFF)
+			{
+				r5 = r0
+				r1 = Random() % 3
+				
+				if(r1 != 0)
+				{
+					r0 = r5
+					r4 |= r0
+				}
+			}
+		}
+	}
+	
+	r0 = r4
+	return r0
+}
+
+
+
+
+
+
+fn_251BA4_J()
+{
+	r2 = data_0300504C_J
+	r2 = *r2
+	r3 = *(r2 + 0xA)
+	r2 = *(r2 + 0xC)
+	r3 ^= r2
+	r0 ^= r3
+	r0 ^= r1
+	r0 <<= 0x10
+	r0 |= r1
+	return r0
+}
+
+
+
+
+
+
+fn_3915EC_J()
+{
+	r0 = 0x403E4710
+	fn_6DC48_J()
+	r1 = *r0
+	r0 = Random()
+	
+	if(r1 != 0)
+		r0 = r0 % r1
+	
+	return r0
+}

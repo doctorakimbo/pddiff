@@ -95,8 +95,10 @@ FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
 								 (atk01_accuracycheck: set the target's bit and clears others if the move doesn't miss (only if accuracy was checked at all))
 								 (atk0C_datahpupdate: set the active battler's bit if damage was dealt; set all battlers' bits if pkmn with Unnerve faints)
 		   : 60 B9 03 02: ?????? (atk4B_returnatktoball: adds 2 each time function is run for battler on player's side, max 6)
+								 (ShouldSwitchIfMightBeDoubleTargeted: choose not to switch with a probability increasing the higher this gets)
+								 (ShouldSwitchIfStallMon: choose not to switch with a probability increasing the higher this gets)
 		   : 64 B9 03 02: gWasMonShown
-		   : 65 B9 03 02: ??????
+		   : 65 B9 03 02: ?????? (ShouldSwitch_NewAI: set to 1 when fn executed (always ran whenever it's possible to switch))
 		   : 70 B9 03 02: ?????? (appears to be an array of unknown objects; first field is a 4-entry array of 2 bytes each, second field is a 4-entry array of 1 byte each)
 								 (atk02_attackstring: when player attacks: insert [gCurrentMove, 0] into the first empty slot for the mon, or increment the field2 of the first entry where field1 = gCurrentMove and field2 != 0xFF, whichever comes first)
 								 (atk02_attackstring: when player attacks: if neither of the above is available, insert [gCurrentMove, 0] into the last slot where field2 != 0xFF; if even that fails, insert it into the first slot)
@@ -148,6 +150,7 @@ F0 30 00 03: 30 31 00 03: gMain
 A3 4F 00 03: E3 4F 00 03: gBattleResults.battleTurnCounter
 F4 4F 00 03: 34 50 00 03: ?????? (valid)
 F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
+		   : 4C 50 00 03: ?????? (valid)
 7C 53 00 03: CC 53 00 03: gCB2_AfterEvolution
 		   : 42 55 00 03: ?????? (atkEF_handleballthrow: Dusk Ball boosted if less than 6 or greater than 20) (gTime.hour?)
 		   
@@ -207,20 +210,24 @@ funcs e,j,desc:
 036530 = 035CA4 = OpponentBufferExecCompleted
 039698 = 038E04 = HasSuperEffectiveMoveAgainstOpponents
 039E3C = 0395A8 = GetMostSuitableMonToSwitchInto
+03DA54 = 03D1C0 = ?????
 03E47C = CalculateMonStats
 03ECEC = 03E458 = CalculateBaseDamage
 03F5B4 = 03ED20 = CountAliveMonsInBattle
 03F730 = 03EE9C = GetBoxMonGender
 03F78C = 03EEF8 = GetGenderFromSpeciesAndPersonality
 03FBE8 = 03F354 = GetMonData
+03FD44 = 03F4B0 = GetBoxMonData
 04037C = 03FA70 = SetMonData
 040C3C = 040330 = CalculatePlayerPartyCount
 040D7C = 040470 = GetMonAbility
 04101C = 04070C = CalculatePPWithBonus
+042EB4 = 0425A4 = GetNatureFromPersonality
 043A70 = CheckPartyPokerus
 043AD8 = CheckPartyHasHadPokerus
 044234 = 04387C = GetFlavorRelationByPersonality
 044EC8 = 04448C = Random
+06E454 = 06DC48 = 
 06E6D0 = 06DEC4 = FlagGet
 0703EC = 06FB90 = LoadPalette
 070E44 = BeginFastPaletteFade
@@ -230,6 +237,7 @@ funcs e,j,desc:
 0751E8 = 07498C = GetBattlerAtPosition
 07AF98 = 07A6F8 = weather_get_current
 088E8C = 088A68 = pokedex_count
+099F40 = 099948 = ?????
 09A924 = 09A330 = GetHoldEffect
 09A948 = 09A354 = GetHoldEffectParam
 0C71D0 = 0C83AC = RecordAbilityBattle
@@ -265,37 +273,43 @@ funcs e,j,desc:
 ?????? = 2058E0 = ????? (unimplemented)
 ?????? = 205B0C = CopyMonToBattleMon (unimplemented)
 ?????? = 205C80 = GetMonThatCanWithstandBiggestAttack (unimplemented)
-?????? = 205CF6 = ????? (unimplemented)
+?????? = 205CF6 = GetGoodStallMon (unimplemented)
 ?????? = 205D8A = GetSideParty (unimplemented)
 ?????? = 205D96 = GetFirstAllowableSwitchin (unimplemented)
 ?????? = 205E14 = CanDoSevereDamage (unimplemented)
 ?????? = 205EE8 = IsMonFasterThan (unimplemented)
-?????? = 205F48 = ????? (unimplemented)
-?????? = 205FDE = ????? (unimplemented)
+?????? = 205F48 = ShouldSwitchIfTrickRoom (unimplemented)
+?????? = 205FDE = ShouldSwitchIfWeatherTeam (unimplemented)
 ?????? = 2060C0 = GetAITarget (unimplemented)
 ?????? = 2060FC = GetBestTrickRoomAttacker (unimplemented)
 ?????? = 206164 = GetAvailableWeatherSetter (unimplemented)
 ?????? = 2061DC = ChooseBestSwitchinNewAI (unimplemented)
-?????? = 20621C = ????? (unimplemented)
+?????? = 20621C = GetSlowMonWithLowHP (unimplemented)
 ?????? = 206292 = GetMatchupScore (unimplemented)
 ?????? = 206334 = ShouldUseTrickRoom (unimplemented)
 ?????? = 2063A4 = IsTeamSlow (unimplemented)
 ?????? = 206418 = IsMoveSuperEffective (unimplemented)
 ?????? = 20649C = CanUseNewAI (unimplemented)
-?????? = 2064C6 = ????? (unimplemented)
-?????? = 2065CC = ????? (unimplemented)
-?????? = 206600 = ????? (unimplemented)
+?????? = 2064C6 = ShouldSwitchIfStallMon (unimplemented)
+?????? = 2065CC = HasHealingMove (unimplemented)
+?????? = 206600 = HasDamagingStatusThatWorks (unimplemented)
 ?????? = 2066CC = GetBestMatchupScore (unimplemented)
 ?????? = 207370 = ????? (unimplemented)
 ?????? = 207450 = GetPinchThreshhold (unimplemented)
 ?????? = 207470 = PushScriptInstr (unimplemented)
-?????? = 2076B0 = RunTypeEffectivenessBasedAbilities (unimplemented)
+?????? = 2076B0 = RunTypeEffectivenessBasedAbilities (unimplemented
+?????? = 251B30 = ????? (unimplemented)
+?????? = 251B58 = ????? (unimplemented)
+?????? = 251BA4 = ????? (unimplemented)
+?????? = 251CB6 = ????? (unimplemented)
+?????? = 251CF4 = ????? (unimplemented)
 ?????? = 251DA0 = IsMoveBlockedByAbility (unimplemented)
-?????? = 251E40 = ????? (unimplemented)
-?????? = 251E8C = ????? (unimplemented)
-?????? = 251FD0 = ????? (unimplemented)
-?????? = 252058 = ????? (unimplemented)
+?????? = 251E40 = ShouldSwitch_NewAI (unimplemented)
+?????? = 251E8C = ShouldSwitchIfLockedMoveOrRegenerator (unimplemented)
+?????? = 251FD0 = ShouldSwitchIfCurseOrYawn (unimplemented)
+?????? = 252058 = ShouldSwitchIfMightBeDoubleTargeted (unimplemented)
 ?????? = 252248 = GetTypeMatchup (unimplemented)
+?????? = 3915EC = ????? (unimplemented)
 
 data:
 21A8D4 = sHoldEffectToType
