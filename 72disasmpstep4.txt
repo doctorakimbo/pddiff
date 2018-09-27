@@ -43,7 +43,7 @@ OpponentHandleChoosePokemon()
 
 
 
-ChooseBestSwitchinNewAI(chosenMonId) @fn_2061DC_J
+ChooseBestSwitchinNewAI(chosenMonId) @2061DC_J
 {
 	smart = CanUseNewAI();
 	index = PARTY_SIZE;
@@ -200,7 +200,7 @@ GetAvailableWeatherSetter() @206164_J
 
 
 
-GetBestMatchupScore(opponent1, opponent2, isEnemy) @fn_2066CC_J
+GetBestMatchupScore(opponent1, opponent2, isEnemy) @2066CC_J
 {
 	// Actually WORST matchup score...for the opponent
 	bestMatchupScore = 0xFFFFFF;

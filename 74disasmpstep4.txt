@@ -59,28 +59,26 @@ fn_251E40_J()
 
 fn_251E8C_J()
 {
-	if(gBattleMons[gActiveBattler].0x20 != 0x90)
+	if(gBattleMons[gActiveBattler].ability != 0x90)
 	{
-		if(gBattleStruct->0xC8[gActiveBattler] != 0)
-			r0 = gBattleStruct->0xC8[gActiveBattler]
-		elseif(gDisableStructs[gActiveBattler].6 != 0)
-			r0 = gDisableStructs[gActiveBattler].6
+		if(gBattleStruct->choicedMove[gActiveBattler])
+			lockedMove = gBattleStruct->choicedMove[gActiveBattler];
+		elseif(gDisableStructs[gActiveBattler].encoredMove)
+			lockedMove = gDisableStructs[gActiveBattler].encoredMove;
 		else
 			return FALSE;
 		
-		if(gBattleMoves[r0].1 != 0)
+		if(gBattleMoves[lockedMove].power != 0)
 		{
-			r1 = gBattleMons[gActiveBattler].0xC
-			
-			for(r7 = 0; r7 != 8; r7 += 2)
+			for(i = 0; i < 4; i++)
 			{
-				if(r0 == *(r1 + r7))
+				if(lockedMove == gBattleMons[gActiveBattler].moves[i])
 				{
-					if(*(r1 + 0x18 + (r7 / 2)) != 0 && (!(AI_TypeCalc(r7, gBattleMons[0].0, gBattleMons[0].0x20) & 0xC) || gBattleMons[0].0x28 == 0))
+					if(gBattleMons[gActiveBattler].pp[i] != 0 && (!(AI_TypeCalc(i, gBattleMons[B_POSITION_PLAYER_LEFT].species, gBattleMons[B_POSITION_PLAYER_LEFT].ability) & (MOVE_RESULT_NOT_VERY_EFFECTIVE | MOVE_RESULT_DOESNT_AFFECT_FOE)) || gBattleMons[B_POSITION_PLAYER_LEFT].hp == 0))
 					{	
-						if(gBattleMons[2].0x28 == 0)
+						if(gBattleMons[B_POSITION_PLAYER_RIGHT].hp == 0)
 							return FALSE;
-						if(!(AI_TypeCalc(r7, gBattleMons[2].0, gBattleMons[0].0x20) & 0xC))
+						if(!(AI_TypeCalc(i, gBattleMons[B_POSITION_PLAYER_RIGHT].species, gBattleMons[B_POSITION_PLAYER_LEFT].ability) & (MOVE_RESULT_NOT_VERY_EFFECTIVE | MOVE_RESULT_DOESNT_AFFECT_FOE)))
 							return FALSE;
 					}
 					
@@ -89,33 +87,33 @@ fn_251E8C_J()
 			}
 		}
 		
-		if(Random() & 0xF == 0)
+		if(Random() & 0xF == 0) // 6% chance
 			return FALSE;
 	}
 	else
 	{
-		if(gBattleMons[gActiveBattler].0x28 > (gBattleMons[gActiveBattler].0x2C / 2))
+		if(gBattleMons[gActiveBattler].hp > (gBattleMons[gActiveBattler].maxHP / 2))
 			return FALSE;
-		if(Random() & 1 == 0)
+		if(Random() & 1 == 0) // 50% chance
 			return FALSE;
 	}
 	
-	r6 = fn_205C80_J(fn_2060C0_J(), gActiveBattler)
+	chosenMon = GetMonThatCanWithstandBiggestAttack(GetAITarget(), gActiveBattler)
 	
-	if(r6 == 6)
+	if(chosenMon == PARTY_SIZE)
 	{
-		r6 = fn_20621C_J(r6)
+		chosenMon = fn_20621C_J(chosenMon)
 		
-		if(r6 == 6)
+		if(chosenMon == PARTY_SIZE)
 		{
-			{r0, r6} = GetBestMatchupScore(gBattleMons[0].0, gBattleMons[2].0, 1)
+			{score, chosenMon} = GetBestMatchupScore(gBattleMons[B_POSITION_PLAYER_LEFT].species, gBattleMons[B_POSITION_PLAYER_RIGHT].species, TRUE);
 			
-			if(r0 >= 0xF)
+			if(score >= 15) // player mons' types are SE on AI's whole team
 				return FALSE;
 		}
 	}
 	
-	gBattleStruct->0x92[gActiveBattler] = r6
+	gBattleStruct->monToSwitchIntoId[gActiveBattler] = chosenMon;
 	BtlController_EmitTwoReturnValues(1, 2, 0)
 	return TRUE;
 }
@@ -129,17 +127,17 @@ fn_251E8C_J()
 
 fn_251FD0_J()
 {
-	if(!(gBattleMons[gActiveBattler].0x50 & 0x10000000) && !(gStatuses3[gActiveBattler] & 0x1800))
+	if(!(gBattleMons[gActiveBattler].status2 & STATUS2_CURSED) && !(gStatuses3[gActiveBattler] & STATUS3_YAWN))
 		return FALSE;
-	if(Random() & 3 == 0)
+	if(Random() & 3 == 0) // 25% chance
 		return FALSE;
 
-	r6 = fn_205C80_J(fn_2060C0_J(), gActiveBattler)
+	chosenMon = GetMonThatCanWithstandBiggestAttack(GetAITarget(), gActiveBattler);
 	
-	if(r6 == 6)
-		r6 = fn_20621C_J(r6)
+	if(chosenMon == PARTY_SIZE)
+		chosenMon = fn_20621C_J(chosenMon)
 	
-	gBattleStruct->0x92[gActiveBattler] = r6
+	gBattleStruct->monToSwitchIntoId[gActiveBattler] = chosenMon;
 	BtlController_EmitTwoReturnValues(1, 2, 0)
 	return TRUE;
 }
@@ -156,31 +154,29 @@ fn_205F48_J()
 	if(!gTrickRoomActive)
 		return FALSE;
 
-	{r0, NULL} = fn_205E14_J(gActiveBattler, fn_2060C0_J(), 1)
-	
-	if(r0 == 1)
+	if(CanDoSevereDamage(gActiveBattler, GetAITarget(), CHECK_HALF_MAX_HP))
 		return FALSE;
 
-	r1 = gBattleMons[gActiveBattler].2
-	r2 = gBattleMons[gActiveBattler].8
+	r1 = gBattleMons[gActiveBattler].attack
+	r2 = gBattleMons[gActiveBattler].spAttack
 	
 	if(r1 < r2)
 		r1 = r2
 	
-	if(r1 >= 0x8C)
+	if(r1 >= 140)
 		return FALSE;
 
-	{r0, r4} = GetBestTrickRoomAttacker()
+	{r0, chosenMon} = GetBestTrickRoomAttacker()
 	
-	if(r0 < 0x8C)
+	if(r0 < 140)
 		return FALSE;
-	if(Random() & 7 == 0)
+	if(Random() & 7 == 0) // 12% chance
 		return FALSE;
 
-	if(fn_206418_J(r4, gLastMoves[fn_2060C0_J()]) && (Random() & 7) != 0)
+	if(IsMoveSuperEffective(chosenMon, gLastMoves[GetAITarget()]) && (Random() & 7) != 0) // 87% chance
 		return FALSE;
 	
-	gBattleStruct->0x92[gActiveBattler] = r4
+	gBattleStruct->monToSwitchIntoId[gActiveBattler] = chosenMon;
 	BtlController_EmitTwoReturnValues(1, 2, 0)
 	return TRUE;
 }
@@ -194,53 +190,46 @@ fn_205F48_J()
 
 fn_205FDE_J()
 {
-	r0 = GetAvailableWeatherSetter()
+	chosenMon = GetAvailableWeatherSetter();
 	
-	if(r0 != 6)
+	if(chosenMon != PARTY_SIZE)
 	{
-		r4 = r0
-		
-		if(Random() & 7 != 0)
+		if(Random() & 7 != 0) // 87% chance
 		{
-			{r0, r1} = fn_205E14_J(gActiveBattler, 0, 0)
-			
-			if(r0 == 1)
+			if(CanDoSevereDamage(gActiveBattler, 0, CHECK_IF_KO))
 				return FALSE;
-
-			{r0, r1} = fn_205E14_J(gActiveBattler, 1, 0)
-			
-			if(r0 == 1)
+			if(CanDoSevereDamage(gActiveBattler, 1, CHECK_IF_KO))
 				return FALSE;
 		}
 		
-		if(!(gBattleWeather & 0xFF) && (Random() & 3) == 0)
+		if(!(gBattleWeather & 0xFF) && (Random() & 3) == 0) // 25% chance
 			return FALSE;
 	}
 	else
 	{
-		r0 = gBattleMons[gActiveBattler].0x20
+		ability = gBattleMons[gActiveBattler].ability;
 		
-		if(r0 == 2)
-			r0 = 3
-		elseif(r0 == 0x2D)
-			r0 = 0xC
-		elseif(r0 == 0x46)
-			r0 = 0x30
-		elseif(r0 == 0x75)
-			r0 = 0xC0
+		if(ability == 2)
+			weather = 3
+		elseif(ability == 0x2D)
+			weather = 0xC
+		elseif(ability == 0x46)
+			weather = 0x30
+		elseif(ability == 0x75)
+			weather = 0xC0
 		else
 			return FALSE;
 		
-		if(gBattleWeather & r0)
+		if(gBattleWeather & weather)
 			return FALSE;
 		
-		{, r4} = GetBestMatchupScore(gBattleMons[0].0, gBattleMons[2].0, 1)
+		{NULL, chosenMon} = GetBestMatchupScore(gBattleMons[B_POSITION_PLAYER_LEFT].0, gBattleMons[B_POSITION_PLAYER_RIGHT].0, 1)
 	}
 	
-	if(Random() % 6 == 0)
+	if(Random() % 6 == 0) // 17% chance
 		return FALSE;
 
-	gBattleStruct->0x92[gActiveBattler] = r4
+	gBattleStruct->monToSwitchIntoId[gActiveBattler] = chosenMon;
 	BtlController_EmitTwoReturnValues(1, 2, 0)
 	return TRUE;
 }
@@ -258,100 +247,82 @@ fn_252058_J()
 	r6 = 0
 	s0 = 0
 	
-	if((0x64 * ((gBattleMons[gActiveBattler].6 - 5) / gBattleMons[gActiveBattler].0x2A)) < 0x122 && gBattleMons[gActiveBattler].0x28 <= (gBattleMons[gActiveBattler].0x2C / 2))
+	if((100 * ((gBattleMons[gActiveBattler].speed - 5) / gBattleMons[gActiveBattler].level)) < 290 && gBattleMons[gActiveBattler].hp <= (gBattleMons[gActiveBattler].maxHP / 2))
 		return FALSE;
 
-	for(r4 = 0; r4 != 4; r4 += 2)
+	for(i = B_POSITION_PLAYER_LEFT; i != 4; i += BIT_FLANK)
 	{
-		if(gBattleMons[r4].0x28 == 0)
+		if(gBattleMons[i].hp == 0)
 			continue;
 
 		r5++
 		
-		if(!fn_205EE8_J(gActiveBattler, r4))
+		if(!IsMonFasterThan(gActiveBattler, i))
 		{
-			{r0, r1} = fn_205E14_J(gActiveBattler, r4, 0)
-			
-			if(r0 != 1)
+			if(!CanDoSevereDamage(gActiveBattler, i, CHECK_IF_KO))
 			{
-				{r0, r1} = fn_205E14_J(r4, gActiveBattler, 1)
+				{r0, r1} = CanDoSevereDamage(i, gActiveBattler, CHECK_HALF_MAX_HP)
 				
-				if(r0 == 0)
+				if(!r0)
 					continue;
-
-				s1 = r1
-				
-				{r0, r1} = fn_205E14_J(gActiveBattler, r4, 0)
-				
-				if(r0 == 1)
+				if(CanDoSevereDamage(gActiveBattler, i, CHECK_IF_KO))
 					continue;
-
-				r1 = s1
 			}
 		}
 		else
 		{
-			{r0, r1} = fn_205E14_J(gActiveBattler, r4, 0)
-			
-			if(r0 == 1)
+			if(CanDoSevereDamage(gActiveBattler, i, CHECK_IF_KO))
 				continue;
 
-			{r0, r1} = fn_205E14_J(r4, gActiveBattler, 0)
-			
-			if(r0 != 1)
+			if(!CanDoSevereDamage(i, gActiveBattler, CHECK_IF_KO))
 			{
-				{r0, r1} = fn_205E14_J(gActiveBattler, r4, 1)
-				
-				if(r0 == 1)
+				if(CanDoSevereDamage(gActiveBattler, i, CHECK_HALF_MAX_HP))
 					continue;
 				
-				{r0, r1} = fn_205E14_J(r4, gActiveBattler, 1)
+				{r0, r1} = CanDoSevereDamage(i, gActiveBattler, CHECK_HALF_MAX_HP)
 				
-				if(r0 != 1)
+				if(!r0)
 					continue;
 			}
 		}
 		
-		*(&s0 + r4) = r1
+		s0[i] = r1
 		r6++
 	}
 	
 	if((Random() % (r5 + 1)) + 1 > r6)
 		return FALSE;
 	
-	if(*(&s0 + 0) != 0)
-		r4 = *(&s0 + 0)
-	elseif(*(&s0 + 2) == 0)
-		r4 = *(&s0 + 2)
+	if(s0[B_POSITION_PLAYER_LEFT] != 0)
+		r4 = s0[B_POSITION_PLAYER_LEFT]
+	elseif(s0[B_POSITION_PLAYER_RIGHT] != 0)
+		r4 = s0[B_POSITION_PLAYER_RIGHT]
 	else
 		return FALSE;
 
-	for(r7 = 0; r7 < 6; r7++)
+	for(i = 0; i < PARTY_SIZE; i++)
 	{
-		r7 = GetFirstAllowableSwitchin(r7, 1)
+		i = GetFirstAllowableSwitchin(i, TRUE);
 		
-		if(r7 == 6)
+		if(i == PARTY_SIZE)
 			break;
-
-		r5 = gEnemyParty[r7]
 		
-		if(AI_TypeCalc(r4, GetMonData(r5, 0xB), GetMonAbility(r5)) & 8)
+		if(AI_TypeCalc(r4, GetMonData(gEnemyParty[i], MON_DATA_SPECIES), GetMonAbility(gEnemyParty[i])) & MOVE_RESULT_DOESNT_AFFECT_FOE)
 			goto lbl12
 	}
 	
-	for(r7 = 0; r7 < 6; r7++)
+	for(i = 0; i < PARTY_SIZE; i++)
 	{
-		r7 = GetFirstAllowableSwitchin(r7, 1)
+		i = GetFirstAllowableSwitchin(i, TRUE)
 		
-		if(r7 == 6)
+		if(i == PARTY_SIZE)
 			return FALSE;
 
-		r5 = gEnemyParty[r7]
-		s0 = GetMonData(r5, 0x39)
+		s0 = GetMonData(gEnemyParty[i], MON_DATA_HP)
 		
-		if(s0 > (s0 / 4) && (GetMonData(r5, 0x3A) != s0 || GetHoldEffectParam(GetMonData(r5, 0xC)) != 0x43))
+		if(s0 > (s0 / 4) && (GetMonData(gEnemyParty[i], MON_DATA_MAX_HP) != s0 || GetHoldEffectParam(GetMonData(gEnemyParty[i], MON_DATA_HELD_ITEM)) != 0x43))
 		{
-			if(AI_TypeCalc(r4, GetMonData(r5, 0xB), GetMonAbility(r5)) & 4)
+			if(AI_TypeCalc(r4, GetMonData(gEnemyParty[i], MON_DATA_SPECIES), GetMonAbility(gEnemyParty[i])) & MOVE_RESULT_NOT_VERY_EFFECTIVE)
 				goto lbl12
 		}
 	}
@@ -359,10 +330,10 @@ fn_252058_J()
 	return FALSE;
 
 	lbl12:
-	if((Random() % 0x10) <= data_0203B960_J)
+	if((Random() % 16) <= data_0203B960_J)
 		return FALSE;
 
-	gBattleStruct->0x92[gActiveBattler] = r7
+	gBattleStruct->monToSwitchIntoId[gActiveBattler] = i;
 	BtlController_EmitTwoReturnValues(1, 2, 0)
 	return TRUE;
 }
@@ -379,37 +350,28 @@ fn_2064C6_J()
 	r5 = 0
 	r6 = 0
 	
-	if((0x64 * ((gBattleMons[gActiveBattler].6 - 5) / gBattleMons[gActiveBattler].0x2A)) < 0x122 && gBattleMons[gActiveBattler].0x28 > (gBattleMons[gActiveBattler].0x2C / 2))
+	if((100 * ((gBattleMons[gActiveBattler].speed - 5) / gBattleMons[gActiveBattler].level)) < 290 && gBattleMons[gActiveBattler].hp > (gBattleMons[gActiveBattler].maxHP / 2))
 		return FALSE;
 
-	for(r4 = 0; r4 != 4; r4 += 2)
+	for(i = B_POSITION_PLAYER_LEFT; i != 4; i += BIT_FLANK)
 	{
 		if(fn_2065CC_J(gActiveBattler))
 			continue;
 			
-		if(!fn_2065CC_J(r4))
+		if(!fn_2065CC_J(i))
 		{
-			{r0, r1} = fn_205E14_J(r4, gActiveBattler, 1)
+			if(CanDoSevereDamage(i, gActiveBattler, CHECK_HALF_MAX_HP))
+				continue;
+			
+			{r0, r1} = CanDoSevereDamage(gActiveBattler, i, CHECK_HALF_MAX_HP)
 			
 			if(r0 == 1)
 				continue;
-
-			s0 = r0
-			
-			{r0, r1} = fn_205E14_J(gActiveBattler, r4, 1)
-			
-			if(r0 == 1)
-				continue;
-			if(r1 > s0)
+			if(r1 > 0)
 				continue;
 		}
-		else
-		{
-			{r0, r1} = fn_205E14_J(gActiveBattler, r4, 1)
-			
-			if(r0 == 1)
-				continue;
-		}
+		elseif(CanDoSevereDamage(gActiveBattler, i, CHECK_HALF_MAX_HP))
+			continue;
 		
 		r6++
 	}
@@ -417,19 +379,17 @@ fn_2064C6_J()
 	if((Random() % (r5 + 1)) + 1 > r6)
 		return FALSE;
 
-	r7 = fn_205CF6_J(gActiveBattler, fn_2060C0_J())
+	chosenMon = fn_205CF6_J(gActiveBattler, GetAITarget())
 	
-	if(r7 == 6)
+	if(chosenMon == PARTY_SIZE)
+		return FALSE;
+	
+	if(GetMonData(gEnemyParty[chosenMon], MON_DATA_HP) <= (GetMonData(gEnemyParty[chosenMon], MON_DATA_MAX_HP) / 4))
+		return FALSE;
+	if((Random() % 16) <= data_0203B960_J)
 		return FALSE;
 
-	r4 = gEnemyParty[r7]
-	
-	if(GetMonData(r4, 0x39) <= (GetMonData(r4, 0x3A) / 4))
-		return FALSE;
-	if((Random() % 0x10) <= data_0203B960_J)
-		return FALSE;
-
-	gBattleStruct->0x92[gActiveBattler] = r7
+	gBattleStruct->monToSwitchIntoId[gActiveBattler] = chosenMon;
 	BtlController_EmitTwoReturnValues(1, 2, 0)
 	return TRUE;
 }
@@ -441,22 +401,27 @@ fn_2064C6_J()
 
 
 
-fn_2060C0_J()
+GetAITarget() @2060C0_J
 {
 	r4 = 0
 	
-	if(gBattleMons[0].0x28 != 0)
+	if(gBattleMons[B_POSITION_PLAYER_LEFT].hp != 0)
 		r4 |= 1
 	
-	if(gBattleMons[2].0x28 != 0)
+	if(gBattleMons[B_POSITION_PLAYER_RIGHT].hp != 0)
 		r4 |= 2
 	
 	if(r4 == 3)
-		r0 = Random() & 1
+		r0 = Random() & 1 // INCORRECT VARIABLE
 	elseif(r4 == 1)
 		r4--
 	
 	return r4
+	// returns:
+		if r4 = 0, B_POSITION_PLAYER_LEFT
+		if r4 = 1, B_POSITION_PLAYER_LEFT
+		if r4 = 2, B_POSITION_PLAYER_RIGHT
+		if r4 = 3, B_POSITION_OPPONENT_RIGHT // should be random B_POSITION_PLAYER_LEFT or B_POSITION_PLAYER_RIGHT
 }
 
 
@@ -466,33 +431,26 @@ fn_2060C0_J()
 
 
 
-fn_205C80_J(arg0, arg1)
+GetMonThatCanWithstandBiggestAttack(attacker, defender) @205C80_J
 {
-	r5 = GetSideParty(arg1 & 1)
-	r1 = gBattleMons[arg1]
-	r0 = data_0203D480_J
-	r2 = 0x58
-	fn_1E5E78()
+	party = GetSideParty(attacker & BIT_SIDE);
+	CopyBytes(&gBackupMonData, &gBattleMons[defender], 0x58);
 	
-	for(r7 = 0; r7 < 6; r7++)
+	for(i = 0; i < PARTY_SIZE; i++)
 	{
-		r7 = GetFirstAllowableSwitchin(r7, 1)
+		i = GetFirstAllowableSwitchin(i, TRUE)
 		
-		if(r7 == 6)
+		if(i == PARTY_SIZE)
 			break;
 		
-		fn_205B0C_J(&gBattleMons[arg1], &r5[r7])
-		{r0, } = fn_205E14_J(arg0, arg1, 1)
+		CopyMonToBattleMon(&gBattleMons[defender], &party[i])
 		
-		if(r0 == 0)
+		if(!CanDoSevereDamage(attacker, defender, CHECK_HALF_MAX_HP))
 			break;
 	}
 	
-	r1 = (arg1 * 0x58) + gBattleMons
-	r0 = data_0203D480_J
-	r2 = 0x58
-	fn_1E5E78()
-	return r7
+	CopyBytes(&gBattleMons[defender], &gBackupMonData, 0x58);
+	return i;
 }
 
 
@@ -502,26 +460,25 @@ fn_205C80_J(arg0, arg1)
 
 
 
-fn_20621C_J(arg0)
+fn_20621C_J(startIndex)
 {
-	for(r7 = arg0; r7 < 6; r7++)
+	for(i = startIndex; i < PARTY_SIZE; i++)
 	{
-		r7 = GetFirstAllowableSwitchin(r7, 1)
+		i = GetFirstAllowableSwitchin(i, TRUE);
 		
-		if(r7 == 6)
+		if(i == PARTY_SIZE)
 			break;
-
-		r5 = gEnemyParty[r7]
 		
-		if(gBattleMons[0].0 != 0 && GetMonData(r5, 0x3D) > data_21118C_J[gBattleMons[0].0].3 + 0x20)
+		// incorrectly compares stat speed to base speed?
+		if(gBattleMons[B_POSITION_PLAYER_LEFT].species != 0 && GetMonData(gEnemyParty[i], MON_DATA_SPEED) > gBaseStats[gBattleMons[B_POSITION_PLAYER_LEFT].species].baseSpeed + 32)
 			continue;
-		if(gBattleMons[2].0 != 0 && GetMonData(r5, 0x3D) > data_21118C_J[gBattleMons[2].0].3 + 0x20)
+		if(gBattleMons[B_POSITION_PLAYER_RIGHT].species != 0 && GetMonData(gEnemyParty[i], MON_DATA_SPEED) > gBaseStats[gBattleMons[B_POSITION_PLAYER_RIGHT].species].baseSpeed + 32)
 			continue;
-		if(GetMonData(r5, 0x39) <= (GetMonData(r5, 0x3A) / 2))
+		if(GetMonData(gEnemyParty[i], MON_DATA_HP) <= (GetMonData(gEnemyParty[i], MON_DATA_MAX_HP) / 2))
 			break;
 	}
 	
-	return r7
+	return i;
 }
 
 
@@ -531,51 +488,49 @@ fn_20621C_J(arg0)
 
 
 
-fn_205E14_J(arg0, arg1, arg2)
+CanDoSevereDamage(attacker, target, threshold) @205E14_J
 {
-	s2 = 0
-	gBattlerAttacker = arg0
-	gBattlerTarget = arg1
+	maxDamage = 0;
+	gBattlerAttacker = attacker;
+	gBattlerTarget = target;
 
-	for(r7 = 0; r7 != 4; r7++)
+	for(i = 0; i < 4; i++)
 	{
-		s3 = gBattleMons[gBattlerAttacker].0x2C
-		s0 = gBattleMons[gBattlerAttacker].0xC[r7]
-		s1 = &gBattleMoves[gBattleMons[gBattlerAttacker].0xC[r7]]
-		
-		if(gBattleMoves[gBattleMons[gBattlerAttacker].0xC[r7]].1 <= 1)
+		if(gBattleMoves[gBattleMons[gBattlerAttacker].moves[i]].power <= 1)
 			continue;
 
-		gDynamicBasePower = 0
-		gBattleStruct->0x13 = 0
-		gBattleScripting.0xE = 1
-		gMoveResultFlags = 0
-		gCritMultiplier = 1
-		gCurrentMove = s0
-		r0 = AI_CalcDmg(gBattlerAttacker, gBattlerTarget, TRUE)
-		r0 = TypeCalc(gCurrentMove, gBattlerAttacker, gBattlerTarget)
+		gDynamicBasePower = 0;
+		gBattleStruct->dynamicMoveType = 0;
+		gBattleScripting.dmgMultiplier = 1;
+		gMoveResultFlags = 0;
+		gCritMultiplier = 1;
+		gCurrentMove = gBattleMons[gBattlerAttacker].moves[i];
+		AI_CalcDmg(gBattlerAttacker, gBattlerTarget, TRUE);
+		TypeCalc(gCurrentMove, gBattlerAttacker, gBattlerTarget);
 		
-		if(*s1 == 0x29)
-			gBattleMoveDamage *= 4
-		elseif(*s1 == 0x2C)
-			gBattleMoveDamage *= 2
+		effect = gBattleMoves[gBattleMons[gBattlerAttacker].moves[i]].effect;
 		
-		if(gBattleMoveDamage > s2)
-			s2 = gBattleMoveDamage
+		if(effect == 0x29)
+			gBattleMoveDamage *= 4;
+		elseif(effect == 0x2C)
+			gBattleMoveDamage *= 2;
+		
+		if(gBattleMoveDamage > maxDamage)
+			maxDamage = gBattleMoveDamage;
 		
 		if(gBattleMoveDamage == 0)
-			gBattleMoveDamage = 1
+			gBattleMoveDamage = 1;
 		
-		if(arg2 == 1)
-			r1 = gBattleMons[gBattlerTarget].0x2C / 2
+		if(threshold = CHECK_HALF_MAX_HP)
+			r1 = gBattleMons[gBattlerTarget].maxHP / 2
 		else
-			r1 = gBattleMons[gBattlerTarget].0x28
+			r1 = gBattleMons[gBattlerTarget].hp
 		
-		if(r1 <= gBattleMoveDamage)
-			return {s0, 1}
+		if(gBattleMoveDamage > r1)
+			return {1, gBattleMons[gBattlerAttacker].moves[i]};
 	}
 	
-	return {0, 0x64 * (s2 / s3)}
+	return {0, 100 * (maxDamage / gBattleMons[gBattlerAttacker].maxHP)};
 }
 
 
@@ -585,11 +540,11 @@ fn_205E14_J(arg0, arg1, arg2)
 
 
 
-fn_206418_J(arg0, arg1)
+IsMoveSuperEffective(monIndex, move) @206418_J
 {
-	r5 = gPlayerParty[arg0]
+	mon = gPlayerParty[monIndex];
 	
-	if(AI_TypeCalc(arg1, GetMonData(r5, 0xB), GetMonAbility(r5)) & 2)
+	if(AI_TypeCalc(move, GetMonData(mon, MON_DATA_SPECIES), GetMonAbility(mon)) & MOVE_RESULT_SUPER_EFFECTIVE)
 		return TRUE;
 	else
 		return FALSE;
@@ -602,9 +557,9 @@ fn_206418_J(arg0, arg1)
 
 
 
-fn_205EE8_J(arg0, arg1)
+IsMonFasterThan(mon1, mon2) @205EE8_J
 {
-	if(GetSpeedStat(arg1) < GetSpeedStat(arg0))
+	if(GetSpeedStat(mon2) < GetSpeedStat(mon1))
 		return TRUE;
 	else
 		return FALSE;
@@ -617,17 +572,17 @@ fn_205EE8_J(arg0, arg1)
 
 
 
-fn_2065CC_J(arg0)
+fn_2065CC_J(mon)
 {
-	for(r5 = 0; r5 < 8; r5 += 2)
+	for(i = 0; i < 4; i++)
 	{
-		r1 = gBattleMoves[gBattleMons[arg0].0xC[r5]].0
+		effect = gBattleMoves[gBattleMons[mon].moves[i]].effect;
 
-		if(r1 == 0x20)
+		if(effect == 0x20)
 			return TRUE;
-		if(r1 == 0x84)
+		if(effect == 0x84)
 			return TRUE;
-		if(r1 == 0x9D)
+		if(effect == 0x9D)
 			return TRUE;
 	}
 
@@ -641,43 +596,32 @@ fn_2065CC_J(arg0)
 
 
 
-fn_205CF6_J(arg0, arg1)
+fn_205CF6_J(attacker, defender)
 {
-	r5 = GetSideParty(arg0 & 1)
-	r1 = &gBattleMons[arg0]
-	r6 = r1
-	r0 = &data_0203D480_J
-	r2 = 0x58
-	fn_1E5E78()
+	party = GetSideParty(attacker & BIT_SIDE);
+	CopyBytes(&gBackupMonData, &gBattleMons[defender], 0x58);
 
-	for(r7 = 0; r7 < 6; r7++)
+	for(i = 0; i < PARTY_SIZE; i++)
 	{
-		r7 = GetFirstAllowableSwitchin(r7, 1)
+		i = GetFirstAllowableSwitchin(i, TRUE);
 		
-		if(r7 == 6)
+		if(i == PARTY_SIZE)
 			break;
 		
-		fn_205B0C_J(&gBattleMons[arg0], &r5[r7])
-		{r0, r1} = fn_205E14_J(arg0, arg1, 1)
+		CopyMonToBattleMon(&gBattleMons[attacker], &party[i])
 		
-		if(r0 == 1)
+		if(CanDoSevereDamage(attacker, defender, CHECK_HALF_MAX_HP))
 			continue;
-		if(!fn_2065CC_J(arg0))
+		if(!fn_2065CC_J(attacker))
 			continue;
-		if(!fn_206600_J(arg0, arg1))
+		if(!fn_206600_J(attacker, defender))
 			continue;
-
-		{r0, r1} = fn_205E14_J(arg0, arg1, 1)
-		
-		if(r0 == 0)
+		if(!CanDoSevereDamage(attacker, defender, CHECK_HALF_MAX_HP))
 			break;
 	}
 	
-	r0 = gBattleMons[arg0]
-	r1 = &data_0203D480_J
-	r2 = 0x58
-	fn_1E5E78()
-	return r7
+	CopyBytes(&gBattleMons[defender], &gBackupMonData, 0x58);
+	return i;
 }
 
 
@@ -687,43 +631,44 @@ fn_205CF6_J(arg0, arg1)
 
 
 
-fn_205B0C_J(arg0, arg1)
+CopyMonToBattleMon(destMonID, sourceMon) @205B0C_J
 {
-	r0 = arg0
+	r0 = destMonID
 	r1 = 0
 	r2 = 0x58
-	fn_1E5ED8()
+	fn_1E5ED8() // possibly fillWithBytes()?
 	
-	*(arg0 + 0) = GetMonData(arg1, 0xB)
-	*(arg0 + 2) = GetMonData(arg1, 0x3B)
-	*(arg0 + 4)  = GetMonData(arg1, 0x3C)
-	*(arg0 + 6) = GetMonData(arg1, 0x3D)
-	*(arg0 + 8)  = GetMonData(arg1, 0x3E)
-	*(arg0 + 0xA) = GetMonData(arg1, 0x3F)
-	*(arg0 + 0xC) = GetMonData(arg1, 0xD)
-	*(arg0 + 0xE) = GetMonData(arg1, 0xE)
-	*(arg0 + 0x10) = GetMonData(arg1, 0xF)
-	*(arg0 + 0x12) = GetMonData(arg1, 0x10)
-	*(arg0 + 0x14) = GetMonData(arg1, 0x27) | (GetMonData(arg1, 0x28) << 5) | (GetMonData(arg1, 0x29) << 0xA) | (GetMonData(arg1, 0x2A) << 0xF) | (GetMonData(arg1, 0x2B) << 0x14) | (GetMonData(arg1, 0x2C) << 0x19)
-	*(arg0 + 0x18) = 0x6060606
-	*(arg0 + 0x1C) = 0x6060606
-	*(arg0 + 0x20) = GetMonAbility(arg1)
-	*(arg0 + 0x21) = *((GetMonData(arg1, 0xB) * 0x1C) + data_21118C_J + 6)
-	*(arg0 + 0x22) = *((GetMonData(arg1, 0xB) * 0x1C) + data_21118C_J + 7)
-	*(arg0 + 0x24) = GetMonData(arg1, 0x11)
-	*(arg0 + 0x25) = GetMonData(arg1, 0x12)
-	*(arg0 + 0x26) = GetMonData(arg1, 0x13)
-	*(arg0 + 0x27) = GetMonData(arg1, 0x14)
-	*(arg0 + 0x28) = GetMonData(arg1, 0x39)
-	*(arg0 + 0x2A) = GetMonData(arg1, 0x38)
-	*(arg0 + 0x2B) = GetMonData(arg1, 0x20)
-	*(arg0 + 0x2C) = GetMonData(arg1, 0x3A)
-	*(arg0 + 0x2D) = GetMonData(arg1, 0xC)
-	*(arg0 + 0x30) = 0xFF
-	*(arg0 + 0x3C) = 0xFF
-	*(arg0 + 0x48) = GetMonData(arg1, 0)
-	*(arg0 + 0x54) = GetMonData(arg1, 1)
-	return
+	destMon = *destMonID;
+	
+	destMon.species = GetMonData(sourceMon, MON_DATA_SPECIES);
+	destMon.attack = GetMonData(sourceMon, MON_DATA_ATK);
+	destMon.defense  = GetMonData(sourceMon, MON_DATA_DEF);
+	destMon.speed = GetMonData(sourceMon, MON_DATA_SPEED);
+	destMon.spAttack  = GetMonData(sourceMon, MON_DATA_SPATK);
+	destMon.spDefense = GetMonData(sourceMon, MON_DATA_SPDEF);
+	destMon.moves[0] = GetMonData(sourceMon, MON_DATA_MOVE1);
+	destMon.moves[1] = GetMonData(sourceMon, MON_DATA_MOVE2);
+	destMon.moves[2] = GetMonData(sourceMon, MON_DATA_MOVE3);
+	destMon.moves[3] = GetMonData(sourceMon, MON_DATA_MOVE4);
+	destMon.ivs = GetMonData(sourceMon, MON_DATA_HP_IV) | (GetMonData(sourceMon, MON_DATA_ATK_IV) << 5) | (GetMonData(sourceMon, MON_DATA_DEF_IV) << 0xA) | (GetMonData(sourceMon, MON_DATA_SPEED_IV) << 0xF) | (GetMonData(sourceMon, MON_DATA_SPATK_IV) << 0x14) | (GetMonData(sourceMon, MON_DATA_SPDEF_IV) << 0x19);
+	destMon.statStages = 0x0606060606060606;
+	destMon.ability = GetMonAbility(sourceMon);
+	destMon.type1 = gBaseStats[(GetMonData(sourceMon, MON_DATA_SPECIES)].type1;
+	destMon.type2 = gBaseStats[(GetMonData(sourceMon, MON_DATA_SPECIES)].type2;
+	destMon.pp[0] = GetMonData(sourceMon, MON_DATA_PP1);
+	destMon.pp[1] = GetMonData(sourceMon, MON_DATA_PP2);
+	destMon.pp[2] = GetMonData(sourceMon, MON_DATA_PP3);
+	destMon.pp[3] = GetMonData(sourceMon, MON_DATA_PP4);
+	destMon.hp = GetMonData(sourceMon, MON_DATA_HP);
+	destMon.level = GetMonData(sourceMon, MON_DATA_LEVEL);
+	destMon.friendship = GetMonData(sourceMon, MON_DATA_FRIENDSHIP);
+	destMon.maxHP = GetMonData(sourceMon, MON_DATA_MAX_HP);
+	destMon.heldItem = GetMonData(sourceMon, MON_DATA_HELD_ITEM);
+	destMon.nickname = 0xFF;
+	destMon.otName = 0xFF;
+	destMon.personality = GetMonData(sourceMon, MON_DATA_PERSONALITY);
+	destMon.otId = GetMonData(sourceMon, MON_DATA_OT_ID);
+	return;
 }
 
 
@@ -733,53 +678,52 @@ fn_205B0C_J(arg0, arg1)
 
 
 
-fn_206600_J(arg0, arg1)
+fn_206600_J(attacker, defender)
 {
-	if(gBattleMons[arg1].0x4C & 0xFF)
+	if(gBattleMons[defender].status1 & STATUS1_ANY)
 		return FALSE;
 
-	for(r6 = 0; r6 < 8; r6 += 2)
+	for(i = 0; i < 4; i++)
 	{
-		if(gBattleMons[arg0].0x24[r6] == 0)
+		if(gBattleMons[attacker].pp[i] == 0)
 			continue;
 
-		r0 = gBattleMons[arg0].0xC[r6] * 0xC
-		r1 = gBattleMoves[gBattleMons[arg0].0xC[r6]].0
+		effect = gBattleMoves[gBattleMons[attacker].moves[i]].effect
 		
-		if(r0 == 0x21 || r0 == 0x42)
+		if(effect == 0x21 || effect == 0x42)
 		{
-			r0 = gBattleMons[arg1].0x20
+			ability = gBattleMons[defender].ability;
 			
-			if(r0 == 0x11)
+			if(ability == 0x11)
 				continue;
-			if(r0 == 0x5A)
+			if(ability == 0x5A)
 				continue;
-			if(r0 == 0x62)
+			if(ability == 0x62)
 				continue;
 
-			r0 = gBattleMons[arg1].0x21
+			type1 = gBattleMons[defender].type1;
 			
-			if(r0 == 8)
+			if(type1 == 8)
 				continue;
-			if(r0 == 3)
+			if(type1 == 3)
 				continue;
 
-			r0 = gBattleMons[arg1].0x22
+			type2 = gBattleMons[defender].type2;
 			
-			if(r0 == 8)
+			if(type2 == 8)
 				continue;
-			if(r0 == 3)
+			if(type2 == 3)
 				continue;
 			
 			return TRUE;
 		}
-		elseif(r0 == 0xA7)
+		elseif(effect == 0xA7)
 		{
-			if(gBattleMons[arg1].0x20 == 0x29)
+			if(gBattleMons[defender].ability == 0x29)
 				continue;
-			if(gBattleMons[arg1].0x21 == 0xA)
+			if(gBattleMons[defender].type1 == 0xA)
 				continue;
-			if(gBattleMons[arg1].0x22 == 0xA)
+			if(gBattleMons[defender].type2 == 0xA)
 				continue;
 			
 			return TRUE;

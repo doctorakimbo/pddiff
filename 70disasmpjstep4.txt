@@ -79,8 +79,8 @@ fn_EB8398_J(moveId, battler)
 		*(data_0203D420_J + 4) = 0x100
 		*(data_0203D420_J + 6) = 0x78A0 + moveId
 		LoadSpriteSheet(data_0203D420_J)
-		fn_1E5E78((moveId * 0x20) + data_0203D380_J, data_08EB8780_J, 0x18)
-		*((moveId * 0x20) + data_0203D380_J) += moveId
+		fn_1E5E78(data_0203D380_J[moveId], data_08EB8780_J, 0x18) // data_0203D380_J record size 0x20
+		data_0203D380_J[moveId] += moveId
 		sprite = CreateSprite(r0, ((moveId & 1) * 0x70) + 0x68, ((moveId & 2) * 0xC) + 0x74, 0)
 		*(data_0203BF30_J + moveId) = sprite
 		*(data_0203BF30_J + 4) = moveId
@@ -373,7 +373,7 @@ fn_EB851C_J(arg0, sprite)
 	// IMPORTANT: DEPENDENT ON VALUE AT 107DB0
 	// data_452C94 record size 4, data_E95DDC size 0x20
 	// btw OBJ_VRAM0 = 00 00 01 06
-	fn_1E5E78(&data_E95DDC[data_452C94[arg0].2], ((gSprites[sprite].4 & 0x3FF) * 0x20) + OBJ_VRAM0, 0x80)
-	fn_1E5E78((((gSprites[sprite].4 & 0x3FF) + 4) * 0x20) + OBJ_VRAM0, &data_E95DDC[data_452C94[arg0].2 + 0x10], 0x80)
+	CopyBytes(&data_E95DDC[data_452C94[arg0].2], &OBJ_VRAM0[gSprites[sprite].4 & 0x3FF], 0x80)
+	CopyBytes(&OBJ_VRAM0[gSprites[sprite].4 & 0x3FF], &data_E95DDC[data_452C94[arg0].2 + 0x10], 0x80)
 	return
 }
