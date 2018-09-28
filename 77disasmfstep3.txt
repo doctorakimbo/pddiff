@@ -1,0 +1,14 @@
+GiveBoxMonInitialMoveset(arg0)
+{
+	r4 = GetBoxMonData(arg0, 0xB, NULL)
+	r10 = GetLevelFromBoxMonExp(arg0)
+	
+	for(r3 = 0; data_25D7B4[r4][r3] != 0xFFFF; r3++) // data_25D7B4 record size: 2
+	{
+		if((data_25D7B4[r4][r3] & 0xFE00) > (r10 * 0x200))
+			break;
+		
+		if(GiveMoveToBoxMon(arg0, data_25D7B4[r4][r3] & 0x1FF) == 0xFFFF)
+			DeleteFirstMoveAndGiveMoveToBoxMon(arg0, data_25D7B4[r4][r3] & 0x1FF)
+	}
+}

@@ -1,0 +1,18 @@
+GiveBoxMonInitialMoveset(boxMon)
+{
+	species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
+	level = GetLevelFromBoxMonExp(boxMon);
+	
+	for(i = 0; gLevelUpLearnsets[species][i] != LEVEL_UP_END; i++) // gLevelUpLearnsets record size: 2
+	{
+		moveLevel = (gLevelUpLearnsets[species][i] & 0xFE00);
+	
+		if(moveLevel > (level << 9))
+			break;
+		
+		move = (gLevelUpLearnsets[species][i] & 0x1FF);
+		
+		if(GiveMoveToBoxMon(boxMon, move) == 0xFFFF)
+			DeleteFirstMoveAndGiveMoveToBoxMon(boxMon, move);
+	}
+}

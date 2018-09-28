@@ -1,6 +1,6 @@
-CreateMonWithNature(mon, species, level, fixedIV, notUsed) // now CreateMonWithoutNature
+CreateMonWithNature(mon, species, level, fixedIV, notUsed) // now CreateMonWithRandomNature
 {
-	nature = fn_251B30_J()
+	nature = GetNature_CheckSynchronize();
 
 	do
 	{
@@ -15,12 +15,12 @@ CreateMonWithNature(mon, species, level, fixedIV, notUsed) // now CreateMonWitho
 
 
 
-fn_251B30_J()
+GetNature_CheckSynchronize() @251B30_J
 {
 	if(GetBoxMonData(&gPlayerParty[0], MON_DATA_SANITY_BIT3, NULL) == 0 && GetMonAbility(&gPlayerParty[0]) == ABILITY_SYNCHRONIZE)
-		return GetNatureFromPersonality(gPlayerParty[0])
+		return GetNatureFromPersonality(&gPlayerParty[0]);
 	else
-		return GetNatureFromPersonality(Random())
+		return GetNatureFromPersonality(&Random());
 }
 
 
@@ -31,9 +31,9 @@ fn_251B30_J()
 fn_251CF4_J()
 {
 	if(fn_251B58_J())
-		return fn_251BA4_J(Random() & 7, fn_251CB6_J(Random()))
+		return fn_251BA4_J(Random() & 7, CuteCharmOverworldEffect(Random()))
 	else
-		return fn_251CB6_J(Random32())
+		return CuteCharmOverworldEffect(Random32());
 }
 
 
@@ -43,20 +43,16 @@ fn_251CF4_J()
 
 fn_251B58_J()
 {
-	r0 = 0x72
-	r1 = 1
-	sub_8099F40()
-	
-	if(r0 != 0)
+	if(CheckBagHasItem(0x72, 1))
 	{
-		if(Random() % 0x100 == 0)
+		if(Random() % 256 == 0) // 1/256 chance
 			return TRUE;
 		else
 			return FALSE;
 	}
 	else
 	{
-		if(fn_3915EC_J() == 0)
+		if(fn_3915EC_J() == 0) // 1/var_403E chance, or 1/65536 chance if var_403E = 0
 			return TRUE;
 		else
 			return FALSE;
@@ -68,19 +64,19 @@ fn_251B58_J()
 
 
 
-fn_251CB6_J(arg0)
+CuteCharmOverworldEffect(personality) @251CB6_J
 {
-	result = arg0
+	newPersonality = personality;
 	
 	if(GetMonAbility(&gPlayerParty) == ABILITY_CUTE_CHARM && !GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG))
 	{
 		gender = GetBoxMonGender(&gPlayerParty);
 		
 		if(gender != MON_GENDERLESS && Random() % 3 != 0)
-			result |= gender;
+			newPersonality |= gender;
 	}
 	
-	return result;
+	return newPersonality;
 }
 
 
@@ -88,9 +84,9 @@ fn_251CB6_J(arg0)
 
 
 
-fn_251BA4_J(arg0, arg1)
+fn_251BA4_J(arg0, personalityLowByte)
 {
-	return (arg1 | ((arg0 ^ data_0300504C_J[0xA] ^ data_0300504C_J[0xC] ^ arg1) << 0x10))
+	return CONCAT_BYTES(arg0 ^ personalityLowByte ^ gSaveBlock2Ptr.playerTrainerId, personalityLowByte);
 }
 
 
@@ -100,12 +96,10 @@ fn_251BA4_J(arg0, arg1)
 
 fn_3915EC_J()
 {
-	r0 = 0x403E4710
-	sub_806E454()
-	r1 = *r0
+	r1 = *GetVarPointer(0x403E)
 	
 	if(r1 != 0)
 		return Random() % r1
 	else
-		return Random()
+		return Random();
 }

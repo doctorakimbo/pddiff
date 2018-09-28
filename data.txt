@@ -78,6 +78,7 @@ DF 3F 02 02: 3F 3F 02 02: sSTAT_ANIM_PLAYED (FRPD) / sSECOND_STATCHANGER (PD)
 E8 3F 02 02: 48 3F 02 02: gBattleStruct
 F4 3F 02 02: 54 3F 02 02: gBattleResources
 FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
+28 40 02 02: 88 3F 02 02: ??????
 29 40 02 02: 89 3F 02 02: gPlayerPartyCount
 2C 40 02 02: 8C 3F 02 02: gEnemyParty
 80 40 02 02: E0 3F 02 02: gEnemyParty.level
@@ -150,7 +151,7 @@ F0 30 00 03: 30 31 00 03: gMain
 A3 4F 00 03: E3 4F 00 03: gBattleResults.battleTurnCounter
 F4 4F 00 03: 34 50 00 03: ?????? (valid)
 F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
-		   : 4C 50 00 03: ?????? (valid)
+0C 50 00 03: 4C 50 00 03: gSaveBlock2Ptr
 7C 53 00 03: CC 53 00 03: gCB2_AfterEvolution
 		   : 42 55 00 03: ?????? (atkEF_handleballthrow: Dusk Ball boosted if less than 6 or greater than 20) (gTime.hour?)
 		   
@@ -212,6 +213,9 @@ funcs e,j,desc:
 039E3C = 0395A8 = GetMostSuitableMonToSwitchInto
 03DA54 = 03D1C0 = CreateMon
 03E47C = CalculateMonStats
+03E830 = 03DF9C = GetLevelFromBoxMonExp
+03E8B0 = 03E01C = GiveMoveToBoxMon
+03EC40 = 03E3AC = DeleteFirstMoveAndGiveMoveToBoxMon
 03ECEC = 03E458 = CalculateBaseDamage
 03F5B4 = 03ED20 = CountAliveMonsInBattle
 03F730 = 03EE9C = GetBoxMonGender
@@ -227,7 +231,7 @@ funcs e,j,desc:
 043AD8 = CheckPartyHasHadPokerus
 044234 = 04387C = GetFlavorRelationByPersonality
 044EC8 = 04448C = Random
-06E454 = 06DC48 = 
+06E454 = 06DC48 = GetVarPointer
 06E6D0 = 06DEC4 = FlagGet
 0703EC = 06FB90 = LoadPalette
 070E44 = BeginFastPaletteFade
@@ -237,7 +241,7 @@ funcs e,j,desc:
 0751E8 = 07498C = GetBattlerAtPosition
 07AF98 = 07A6F8 = weather_get_current
 088E8C = 088A68 = pokedex_count
-099F40 = 099948 = ?????
+099F40 = 099948 = CheckBagHasItem
 09A924 = 09A330 = GetHoldEffect
 09A948 = 09A354 = GetHoldEffectParam
 0C71D0 = 0C83AC = RecordAbilityBattle
@@ -297,11 +301,11 @@ funcs e,j,desc:
 ?????? = 207370 = ????? (unimplemented)
 ?????? = 207450 = GetPinchThreshhold (unimplemented)
 ?????? = 207470 = PushScriptInstr (unimplemented)
-?????? = 2076B0 = RunTypeEffectivenessBasedAbilities (unimplemented
-?????? = 251B30 = ????? (unimplemented)
+?????? = 2076B0 = RunTypeEffectivenessBasedAbilities (unimplemented)
+?????? = 251B30 = GetNature_CheckSynchronize (unimplemented)
 ?????? = 251B58 = ????? (unimplemented)
 ?????? = 251BA4 = ????? (unimplemented)
-?????? = 251CB6 = ????? (unimplemented)
+?????? = 251CB6 = CuteCharmOverworldEffect (unimplemented)
 ?????? = 251CF4 = ????? (unimplemented)
 ?????? = 251DA0 = IsMoveBlockedByAbility (unimplemented)
 ?????? = 251E40 = ShouldSwitch_NewAI (unimplemented)
@@ -318,6 +322,7 @@ data:
 25053C = sStatusFlagsForMoveEffects
 25062C = sMoveEffectBS_Ptrs
 254784 = 21118C = gBaseStats
+25D7B4 = 21A1BC = gLevelUpLearnsets
 25DEAD = gStatStageRatios
 25E45C = gBitTable
 

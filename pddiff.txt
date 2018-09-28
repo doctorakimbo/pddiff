@@ -126,6 +126,7 @@ item effects:
 + 0x54 = Life Orb (effectparam = 1/X HP lost)
 
 item IDs:
+= 0x72 = (increases the chances of something personality-value related to 1/256 instead of 1/65536)
 + 0x1AE = Honey
 
 move IDs:
@@ -634,10 +635,15 @@ grafics:
 		  Implements: AI use of two new X items (one is X Sp. Def)
 		  Requires: new table entries for gItemEffectTable
 = 03DD98: Entirety of CreateMonWithNature (see 76disasm)
-		  
-		  
-		  
-		  
+		  Implements: Synchronize overworld effect, Cute Charm overworld effect, (item72), need more info (something to do with personality values)
+		  Required knowledge: var_403E
+		  Requires in future: GetNature_CheckSynchronize (j251B30), fn_251B58_J, fn_251BA4_J, CuteCharmOverworldEffect (j251CB6), fn_251CF4_J, fn_3915EC_J
+! 03E564, 03E73C: 2F 01 -> FC 00 (PDONLY, changes shedinja index to 252)
+= 03E192: Part of GiveBoxMonInitialMoveset (see 77disasm)
+		  Implements: Part of gLevelUpLearnsets refactor
+= 03EAFE, 03EB2E: 40 -> 80
+  03EB52: 40 00 40 18 01 88 0D 48 08 40 -> 80 00 40 18 40 88 00 00 00 00
+		  Implements: 
 		  
 		  
 		  
@@ -650,5 +656,5 @@ grafics:
 		  
 		  
 
-curr: j3D504-j3D56C
-next: j3DCD0 (2byte), j3DEA8 (2byte), j3E192
+curr: j3E26A (1byte), j3E29A (1byte), j3E2BE (1byte), j3E2C2 (1byte), j3E2C4 (4byte)
+next: j3E458

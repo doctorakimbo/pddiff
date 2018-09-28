@@ -1,0 +1,66 @@
+lbl1: @3E9E0
+r8 = r0
+r1 = 0xB
+r2 = 0
+GetBoxMonData()
+r4 = r0
+r0 = r8
+fn_3E830()
+r10 = r0
+r0 = data_25D7B4
+r6 = r4 * 4
+r0 += r6
+r0 = *r0
+r1 = *r0
+r2 = 0xFFFF0000
+r0 = r2 >> 0x10
+if(r1 == r0) goto lbl4
+
+r9 = r2
+r3 = 0
+goto lbl2
+
+lbl2:
+r0 = data_25D7B4
+r7 = r6 + r0
+r0 = *r7
+r0 += r3
+r2 = *r0
+r1 = 0xFE00
+r0 = r1
+r0 &= r2
+r4 = r10
+r1 = r4 * 0x200
+if(r0 > r1) goto lbl4
+
+r1 = 0x1FF
+r0 = r1
+r4 = r0
+r4 &= r2
+r0 = r8
+r1 = r4
+s0 = r3
+fn_3E8B0()
+r0 <<= 0x10
+r1 = r9
+r5 = r1 >> 0x10
+r3 = s0
+if(r0 != r9) goto lbl3
+
+r0 = r8
+r1 = r4
+fn_3EC40()
+r3 = s0
+goto lbl3
+
+lbl3:
+r3 += 2
+r0 = *r7
+r0 += r3
+r0 = *r0
+if(r0 != r5) goto lbl2
+
+goto lbl4
+
+lbl4:
+(end)
