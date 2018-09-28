@@ -6,6 +6,7 @@ F0 30 A2 08
 90 89 EB 08
 00 00 00 09
 00 00 01 09
+04 00 01 09
 A0 0B 06 09
 00 50 06 09
 00 00 0B 09
@@ -650,4 +651,4 @@ grafics:
 		  
 
 curr: j3D504-j3D56C
-next: j3DCD0 (2byte), j3DEA8 (2byte), IMPORTANT! 08 0C 25 08 -> 04 00 01 09, j3E192
+next: j3DCD0 (2byte), j3DEA8 (2byte), j3E192

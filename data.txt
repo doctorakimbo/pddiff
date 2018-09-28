@@ -210,7 +210,7 @@ funcs e,j,desc:
 036530 = 035CA4 = OpponentBufferExecCompleted
 039698 = 038E04 = HasSuperEffectiveMoveAgainstOpponents
 039E3C = 0395A8 = GetMostSuitableMonToSwitchInto
-03DA54 = 03D1C0 = ?????
+03DA54 = 03D1C0 = CreateMon
 03E47C = CalculateMonStats
 03ECEC = 03E458 = CalculateBaseDamage
 03F5B4 = 03ED20 = CountAliveMonsInBattle
