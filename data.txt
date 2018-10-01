@@ -78,7 +78,6 @@ DF 3F 02 02: 3F 3F 02 02: sSTAT_ANIM_PLAYED (FRPD) / sSECOND_STATCHANGER (PD)
 E8 3F 02 02: 48 3F 02 02: gBattleStruct
 F4 3F 02 02: 54 3F 02 02: gBattleResources
 FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
-28 40 02 02: 88 3F 02 02: ??????
 29 40 02 02: 89 3F 02 02: gPlayerPartyCount
 2C 40 02 02: 8C 3F 02 02: gEnemyParty
 80 40 02 02: E0 3F 02 02: gEnemyParty.level

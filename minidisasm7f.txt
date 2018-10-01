@@ -41,4 +41,24 @@ goto lblz
 
 
 
-lblz: @3EB48 (-3EB90)
+lblz: @3EB48
+r2 = data_02024022
+r0 = r12
+r1 = r3 + r0
+r0 = *r6
+r1 = *r1
+r0 *= 2
+r0 += r1
+r1 = *r0
+r0 = 0x1FF
+r0 &= r1
+*r2 = r0
+r0 = *r6
+r0++
+*r6 = r0
+r1 = *r2
+r0 = r8
+fn_3E89C()
+s0 = r0
+r0 = s0
+return r0
