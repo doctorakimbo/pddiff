@@ -1,1 +1,1060 @@
 lbl1: @3E458
+r6 = r0
+s1 = r1
+s3 = r3
+r1 = gBattleMoves
+r0 = 0xC
+r0 *= r2
+r2 = r0 + r1
+s2 = r2
+r0 = *(r2 + 0xA)
+r11 = r0
+r0 = s20
+if(r0 != 0) goto lbl3
+
+r0 = *(r2 + 1)
+goto lbl3
+
+lbl3:
+r4 = data_02024020
+*r4 = r0
+r1 = s21
+r0 = 0x3F
+r0 &= r1
+if(r1 != 0) goto lbl5
+
+r0 = *(r2 + 2)
+goto lbl5
+
+lbl5:
+r9 = r0
+r7 = *(r6 + 2)
+r0 = *(r6 + 8)
+r8 = r0
+r2 = s1
+r0 = *(r2 + 4)
+s5 = r0
+r0 = *(r2 + 0xA)
+s6 = r0
+r0 = r6
+r0 += 0x20
+r1 = *r0
+s9 = r1
+r2 += 0x20
+r0 = *r2
+s10 = r0
+if(r1 != 0x67) goto lbl6
+
+r0 = 0
+goto lbl7
+
+lbl6:
+r0 = *(r6 + 0x2E)
+GetHoldEffectParam()
+s8 = r0
+r0 = *(r6 + 0x2E)
+GetHoldEffect()
+goto lbl7
+
+lbl7:
+r10 = r0
+r0 = s10
+if(r0 != 0x67) goto lbl8
+
+r0 = 0
+goto lbl10
+
+lbl8:
+r5 = s1
+r0 = *(r5 + 0x2E)
+GetHoldEffectParam()
+s4 = r0
+r0 = *(r5 + 0x2E)
+GetHoldEffect()
+goto lbl10
+
+lbl10:
+s7 = r0
+r1 = gBattleScripting
+r1 = *(r1 + 0xE)
+r0 = *r4
+r0 *= r1
+*r4 = r0
+r5 = s9
+if(r5 != 0x65) goto lbl11
+
+r1 = *r4
+if(r1 > 0x3C) goto lbl11
+
+r0 = 0x96
+goto lbl14
+
+lbl11:
+r1 = 0
+if(r5 == 0x60) goto lbl13
+
+r2 = r9
+if(r2 != 0) goto lbl15
+
+goto lbl12
+
+lbl12:
+r1++
+r2 = data_168CB4_J
+r0 = *(r2 + r1)
+if(r0 == 0xFF) goto lbl15
+
+if(r5 != r0) goto lbl12
+
+goto lbl13
+
+lbl13:
+r9 = r1
+r1 = *r4
+r0 = 0x78
+goto lbl14
+
+lbl14:
+r0 *= r1
+r1 = 0x64
+divide()
+*r4 = r0
+goto lbl15
+
+lbl15:
+r1 = gStatuses3
+r3 = s22
+r0 = r3 * 4
+r0 += r1
+r0 = *r0
+r1 = 0x200
+r0 &= r1
+if(r0 == 0) goto lbl16
+
+r0 = r9
+if(r0 != 0xD) goto lbl16
+
+r0 = *r4
+r0 *= 2
+*r4 = r0
+goto lbl16
+
+lbl16:
+r1 = gProtectStructs
+r0 = r3 * 0x10
+r0 += r1
+r0 = *r0
+r0 <<= 0x1C
+if(r0 >= 0) goto lbl17
+
+r1 = *r4
+r0 = r1 / 2
+r1 += r0
+*r4 = r1
+goto lbl17
+
+lbl17:
+goto lbl18
+
+lbl18:
+r5 = r10
+r1 = r11
+r0 = 2
+r0 &= r1
+if(r0 != 0) goto lbl19
+
+if(r5 == 0x48) goto lbl21
+
+goto lbl20
+
+lbl19:
+if(r5 == 0x49) goto lbl21
+
+goto lbl20
+
+lbl20:
+r0 = r6
+r1 = r9
+HasItemWithTypeEffect()
+if(r0 == 0) goto lbl22
+
+goto lbl21
+
+lbl21:
+r0 = s8
+r0 += 0x64
+r4 = data_02024020
+r2 = *r4
+r0 *= r2
+r1 = 0x64
+divide()
+*r4 = r0
+goto lbl22
+
+lbl22:
+if(r5 != 0x45) goto lbl23
+
+r0 = r7 / 2
+r7 += r0
+goto lbl23
+
+lbl23:
+if(r5 != 0x44) goto lbl24
+
+r0 = r8
+r0 /= 2
+r8 += r0
+goto lbl24
+
+lbl24:
+r3 = gBattleTypeFlags
+r3 = *r3
+r0 = 0x100
+r3 &= r0
+r4 = *r6
+if(r5 != 0x22) goto lbl25
+
+if(r3 != 0) goto lbl25
+
+r0 = 0x197
+r0 = r4 - r0
+if(r0 > 1) goto lbl25
+
+r0 = r8
+r0 /= 2
+r8 += r0
+goto lbl25
+
+lbl25:
+if(r5 != 0x23) goto lbl27
+
+r0 = 0x175
+if(r4 != r0) goto lbl27
+
+r0 = r8
+r8 += r0
+goto lbl27
+
+lbl27:
+if(r5 != 0x2D) goto lbl29
+
+if(r4 != 0x19) goto lbl29
+
+r0 = r8
+r8 += r0
+r7 *= 2
+goto lbl29
+
+lbl29:
+if(r5 != 0x41) goto lbl30
+
+r4 -= 0x68
+if(r4 > 1) goto lbl30
+
+r7 *= 2
+goto lbl30
+
+lbl30:
+r5 = s7
+r2 = s1
+r4 = *r2
+if(r5 == 0x52) goto lbl31
+
+if(r5 != 0x53) goto lbl32
+
+r1 = data_21615C_J
+r0 = 0x28
+r0 *= r4
+r0 += r1
+r0 = *(r0 + 4)
+if(r0 == 0) goto lbl32
+
+r1 = s5
+r0 = r1 / 2
+r1 += r0
+s5 = r1
+goto lbl31
+
+lbl31:
+r1 = s6
+r0 = r1 / 2
+r1 += r0
+s6 = r1
+goto lbl32
+
+lbl32:
+if(r5 != 0x22) goto lbl33
+
+if(r3 != 0) goto lbl33
+
+r0 = 0x197
+r0 = r4 - r0
+if(r0 > 1) goto lbl33
+
+r1 = s6
+r0 = r1 / 2
+r1 += r0
+s6 = r1
+goto lbl33
+
+lbl33:
+if(r5 != 0x24) goto lbl34
+
+r0 = 0x175
+if(r4 != r0) goto lbl34
+
+r1 = s6
+r0 = r1 / 2
+r1 += r0
+s6 = r1
+goto lbl34
+
+lbl34:
+if(r5 != 0x40) goto lbl35
+
+if(r4 != 0x84) goto lbl35
+
+r1 = s5
+r0 = r1 / 2
+r1 += r0
+s5 = r1
+goto lbl35
+
+lbl35:
+r0 = s9
+if(r0 == 0x68) goto lbl(3e7b8)
+
+r0 -= 0xA3
+if(r0 <= 1) goto lbl(3e7b8)
+
+r2 = r9
+r3 = data_02024020
+r4 = s10
+if(r4 == 0x55) goto lbl36
+
+if(r4 != 0x2F) goto lbl38
+
+if(r2 == 0xF) goto lbl37
+
+goto lbl36
+
+lbl36:
+if(r2 != 0xA) goto lbl38
+
+goto lbl37
+
+lbl37:
+r0 = *r3
+r0 /= 2
+*r3 = r0
+goto lbl38
+
+lbl38:
+if(r4 != 0x57) goto lbl39
+
+if(r2 != 0xA) goto lbl39
+
+r1 = *r3
+r0 = r1 / 4
+r0 += r1
+*r3 = r0
+goto lbl39
+
+lbl39:
+if(r4 != 0x3F) goto lbl40
+
+r0 = s1
+r0 = *(r0 + 0x4C)
+if(r0 != 0) goto lbl41
+
+goto lbl40
+
+lbl40:
+if(r4 != 0xAC) goto lbl42
+
+r0 = data_02022B50
+r0 = *r0
+if(r0 > 1) goto lbl42
+
+goto lbl41
+
+lbl41:
+r1 = s5
+r0 = r1 / 2
+r0 += r1
+s5 = r0
+goto lbl42
+
+lbl42:
+r0 = 0xE
+r1 = 0
+r2 = 0xA6
+r3 = 0
+s0 = r3
+AbilityBattleEffects()
+r1 = r9
+r2 = 0
+r3 = 0xFD
+r4 = 1
+r5 = 3
+if(r1 == 0xD) goto lbl44
+
+if(r1 == 0xA) goto lbl44
+
+r2 = 0xB4
+r3 = 0
+r4 = 4
+r5 = 3
+if(r1 == 9) goto lbl43
+
+r2 = 0xAF
+if(r1 != 0x11) goto lbl45
+
+goto lbl43
+
+lbl43:
+if(r0 == 0) goto lbl44
+
+r4 = 3
+r5 = 4
+goto lbl44
+
+lbl44:
+r0 = 0xE
+r1 = 0
+s0 = r1
+AbilityBattleEffects()
+if(r0 == 0) goto lbl45
+
+r1 = r5
+r5 = data_02024020
+r0 = *r5
+r0 *= r4
+divide()
+*r5 = r0
+goto lbl45
+
+lbl45:
+r4 = s9
+if(r4 != 0x81) goto lbl46
+
+r0 = *(r6 + 0x2C)
+r1 = *(r6 + 0x28)
+r0 /= 2
+if(r0 <= r1) goto lbl46
+
+r0 = r8
+r0 /= 2
+r8 = r0
+goto lbl47
+
+lbl46:
+if(r4 != 0x70) goto lbl48
+
+r2 = gDisableStructs
+r0 = s11
+r1 = 0x1C
+r1 *= r0
+r1 += r2
+r0 = *(r1 + 0x18)
+if(r0 == 0) goto lbl48
+
+goto lbl47
+
+lbl47:
+r7 /= 2
+goto lbl48
+
+lbl48:
+if(r4 == 0x37) goto lbl49
+
+if(r4 != 0x3E) goto lbl50
+
+r0 = *(r6 + 0x4C)
+if(r0 == 0) goto lbl50
+
+goto lbl49
+
+lbl49:
+r0 = r7 / 2
+r7 += r0
+goto lbl50
+
+lbl50:
+if(r4 == 0x39) goto lbl51
+
+if(r4 != 0x3A) goto lbl53
+
+goto lbl51
+
+lbl51:
+r0 = 0x12
+r1 = s11
+r2 = 0x39
+r3 = 0
+s0 = r3
+AbilityBattleEffects()
+if(r0 != 0) goto lbl52
+
+r0 = 0x12
+r1 = s11
+r2 = 0x3A
+r3 = 0
+s0 = r3
+AbilityBattleEffects()
+if(r0 == 0) goto lbl53
+
+goto lbl52
+
+lbl52:
+r0 = r8
+r0 /= 2
+r8 += r0
+goto lbl53
+
+lbl53:
+r1 = r11
+r0 = 2
+r0 &= r1
+if(r0 == 0) goto lbl54
+
+r1 = 0x8A
+r3 = 0x10
+goto lbl56
+
+lbl54:
+r1 = 0x89
+r3 = 0x88
+if(r4 == 0x25) goto lbl55
+
+if(r4 != 0x4A) goto lbl56
+
+goto lbl55
+
+lbl55:
+r0 = 0xC8
+goto lbl74
+
+lbl56:
+if(r4 != r1) goto lbl57
+
+r0 = *(r6 + 0x4C)
+r0 &= r3
+if(r0 == 0) goto lbl57
+
+r0 = 0x96
+goto lbl74
+
+lbl57:
+r1 = r9
+if(r4 != 0x41) goto lbl58
+
+if(r1 == 0xC) goto lbl61
+
+goto lbl58
+
+lbl58:
+if(r4 != 0x42) goto lbl59
+
+if(r1 == 0xA) goto lbl61
+
+goto lbl59
+
+lbl59:
+if(r4 != 0x43) goto lbl60
+
+if(r1 == 0xB) goto lbl61
+
+goto lbl60
+
+lbl60:
+if(r4 != 0x44) goto lbl62
+
+if(r1 != 6) goto lbl62
+
+goto lbl61
+
+lbl61:
+r0 = *(r6 + 0x2C)
+r1 = 3
+divide()
+r1 = *(r6 + 0x28)
+if(r1 > r0) goto lbl62
+
+r0 = 0x96
+goto lbl74
+
+lbl62:
+if(r4 != 0x94) goto lbl65
+
+r0 = gBattleTypeFlags
+r0 = *r0
+r1 = 1
+r0 &= r1
+if(r0 != 0) goto lbl63
+
+r0 = 2
+goto lbl64
+
+lbl63:
+r0 = 0
+CountAliveMonsInBattle()
+goto lbl64
+
+lbl64:
+r1 = gCurrentTurnActionNumber
+r1 = *r1
+r0--
+if(r0 > r1) goto lbl65
+
+r0 = 0x82
+goto lbl74
+
+lbl65:
+if(r4 != 0x4F) goto lbl67
+
+r1 = s1
+r0 = *r1
+r1 = *(r1 + 0x48)
+GetGenderFromSpeciesAndPersonality()
+if(r0 == 0xFF) goto lbl67
+
+r4 = r0
+r0 = *r6
+r1 = *(r6 + 0x48)
+GetGenderFromSpeciesAndPersonality()
+if(r0 == 0xFF) goto lbl67
+
+if(r0 != r4) goto lbl66
+
+r0 = 0x7D
+goto lbl74
+
+lbl66:
+r0 = 0x4B
+goto lbl74
+
+lbl67:
+r3 = s2
+if(r4 != 0xA8) goto lbl68
+
+r2 = *(r3 + 8)
+r1 = 1
+r0 = 0x82
+goto lbl73
+
+lbl68:
+if(r4 != 0x7D) goto lbl69
+
+r2 = *(r3 + 0xB)
+r1 = 1
+r0 = 0x82
+goto lbl73
+
+lbl69:
+if(r4 != 0x78) goto lbl70
+
+r2 = *(r3 + 9)
+r1 = 0x80
+r0 = 0x78
+goto lbl73
+
+lbl70:
+if(r4 != 0x59) goto lbl71
+
+r2 = *(r3 + 9)
+r1 = 0x10
+r0 = 0x78
+goto lbl73
+
+lbl71:
+if(r4 != 0xAA) goto lbl72
+
+r2 = *(r3 + 9)
+r1 = 0x20
+r0 = 0x96
+goto lbl73
+
+lbl72:
+if(r4 != 0xBC) goto lbl75
+
+r2 = *(r3 + 9)
+r1 = 0x40
+r0 = 0x96
+goto lbl73
+
+lbl73:
+r1 &= r2
+if(r1 == 0) goto lbl75
+
+goto lbl74
+
+lbl74:
+r4 = data_02024020
+r1 = *r4
+r0 *= r1
+r1 = 0x64
+divide()
+*r4 = r0
+goto lbl75
+
+lbl75:
+goto lbl76
+
+lbl76:
+r0 = 0xE
+r1 = 0
+r2 = 0xD
+r3 = 0
+s0 = r3
+AbilityBattleEffects()
+if(r0 != 0) goto lbl83
+
+r0 = 0xE
+r1 = 0
+r2 = 0x4D
+r3 = 0
+s0 = r3
+AbilityBattleEffects()
+if(r0 != 0) goto lbl83
+
+r4 = s9
+r2 = gBattleWeather
+r1 = *r2
+r0 = 0xC
+r0 &= r1
+if(r0 == 0) goto lbl80
+
+r1 = s1
+r1 += 0x21
+r0 = *r1
+if(r0 == 5) goto lbl77
+
+r0 = *(r1 + 1)
+if(r0 != 5) goto lbl78
+
+goto lbl77
+
+lbl77:
+r1 = s6
+r0 = r1 / 2
+r1 += r0
+s6 = r1
+goto lbl78
+
+lbl78:
+if(r4 != 0x9F) goto lbl83
+
+r0 = r9
+if(r0 == 4) goto lbl79
+
+if(r0 == 5) goto lbl79
+
+if(r0 != 8) goto lbl83
+
+goto lbl79
+
+lbl79:
+r4 = data_02024020
+r1 = *r4
+r0 = 0x82
+r0 *= r1
+r1 = 0x64
+divide()
+*r4 = r0
+goto lbl83
+
+lbl80:
+r0 = 0x30
+r0 &= r1
+if(r0 == 0) goto lbl83
+
+if(r4 != 0x5E) goto lbl81
+
+r0 = r8
+r0 /= 2
+r8 += r0
+goto lbl81
+
+lbl81:
+if(r4 == 0x68) goto lbl82
+
+r4 -= 0xA3
+if(r4 <= 1) goto lbl82
+
+r0 = 0x11
+r1 = s23
+r2 = 0x7A
+r3 = 0
+s0 = r3
+AbilityBattleEffects()
+if(r0 == 0) goto lbl82
+
+r1 = s6
+r0 = r1 / 2
+r1 += r0
+s6 = r1
+goto lbl82
+
+lbl82:
+r0 = 0x11
+r1 = s22
+r2 = 0x7A
+r3 = 0
+s0 = r3
+AbilityBattleEffects()
+if(r0 == 0) goto lbl83
+
+r0 = r7 / 2
+r7 += r0
+goto lbl83
+
+lbl83:
+r1 = r11
+r0 = 2
+r0 &= r1
+if(r0 == 0) goto lbl84
+
+r5 = r8
+r0 = 0x1C
+goto lbl85
+
+lbl84:
+r5 = r7
+r0 = 0x19
+goto lbl85
+
+lbl85:
+r2 = *(r6 + r0)
+r7 = gStatStageRatios
+r0 = gCritMultiplier
+r4 = *r0
+r0 = s9
+if(r0 == 0x68) goto lbl86
+
+r0 -= 0xA3
+if(r0 <= 1) goto lbl86
+
+r0 = s10
+if(r0 == 0x6D) goto lbl89
+
+goto lbl86
+
+lbl86:
+if(r4 == 1) goto lbl87
+
+if(r2 <= 6) goto lbl89
+
+goto lbl87
+
+lbl87:
+r0 = r2 * 2
+r1 = r0 + r7
+r0 = *r1
+r0 *= r5
+r1 = *(r1 + 1)
+divide()
+r5 = r0
+goto lbl89
+
+lbl89:
+r0 = data_02024020
+r0 = *r0
+r5 *= r0
+r0 = r6
+r0 += 0x2A
+r0 = *r0
+r0 *= 2
+r1 = 5
+divide()
+r0 += 2
+r5 *= r0
+r0 = r11
+r1 = 1
+r0 &= r1
+r2 = data_02023F1F
+r3 = *r2
+if(r3 == 0) goto lbl90
+
+r0 ^= r1
+goto lbl90
+
+lbl90:
+if(r0 == 0) goto lbl91
+
+r1 = s6
+r0 = 0x1D
+goto lbl92
+
+lbl91:
+r1 = s5
+r0 = 0x1A
+goto lbl92
+
+lbl92:
+r2 = s1
+r2 = *(r2 + r0)
+r0 = s9
+if(r0 == 0x6D) goto lbl94
+
+if(r4 == 1) goto lbl93
+
+if(r2 > 5) goto lbl94
+
+goto lbl93
+
+lbl94:
+r0 = r2 * 2
+r2 = r0 + r7
+r0 = *r2
+r0 *= r1
+r1 = *(r2 + 1)
+divide()
+r1 = r0
+goto lbl95
+
+lbl95:
+r0 = r5
+divide()
+r1 = 0x32
+divide()
+r5 = r0
+r0 = gBattleTypeFlags
+r7 = *r0
+r0 = 1
+r7 &= r0
+r1 = r11
+r3 = 2
+r1 &= r3
+if(r1 != 0) goto lbl96
+
+r3 = 1
+r2 = s9
+if(r2 == 0x3E) goto lbl96
+
+r0 = *(r6 + 0x4C)
+r1 = 0x10
+r0 &= r1
+if(r0 == 0) goto lbl96
+
+r5 /= 2
+goto lbl96
+
+lbl96:
+if(r2 == 0x97) goto lbl98
+
+r1 = s3
+r1 &= r3
+if(r1 == 0) goto lbl98
+
+if(r4 != 1) goto lbl98
+
+if(r7 == 0) goto lbl97
+
+r0 = 2
+CountAliveMonsInBattle()
+if(r0 != 2) goto lbl97
+
+r0 = r5 * 2
+r1 = 3
+divide()
+r5 = r0
+goto lbl98
+
+lbl97:
+r5 /= 2
+goto lbl98
+
+lbl98:
+if(r7 == 0) goto lbl113
+
+r4 = s2
+r3 = *(r4 + 6)
+r7 = 1
+r0 = 2
+if(r3 == 8) goto lbl99
+
+if(r3 != 0x32) goto lbl113
+
+r7 = 2
+r0 = 0
+r3 = *r4
+if(r3 != 7) goto lbl99
+
+r7 = 3
+goto lbl99
+
+lbl99:
+CountAliveMonsInBattle()
+if(r0 <= r7) goto lbl113
+
+r0 = r5 / 4
+r5 -= r0
+goto lbl113
+
+lbl113:
+r0 = 0xE
+r1 = 0
+r2 = 0xD
+r3 = 0
+s0 = r3
+AbilityBattleEffects()
+if(r0 != 0) goto lbl(3ec68)
+
+r0 = 0xE
+r1 = 0
+r2 = 0x4D
+r3 = 0
+s0 = r3
+AbilityBattleEffects()
+if(r0 != 0) goto lbl(3ec68)
+
+r4 = gBattleWeather
+r4 = *r4
+r3 = r9
+r0 = 3
+r0 &= r4
+if(r0 == 0) goto lbl115
+
+if(r3 != 0xA) goto lbl114
+
+r5 /= 2
+goto lbl114
+
+lbl114:
+if(r3 != 0xB) goto lbl115
+
+r0 = r5 / 2
+r5 += r0
+goto lbl115
+
+lbl115:
+r0 = 0xCF
+r0 &= r4
+if(r0 == 0) goto lbl116
+
+r0 = gCurrentMove
+r0 = *r0
+if(r0 != 0x4C) goto lbl116
+
+r5 *= 2
+goto lbl116
+
+lbl116:
+r0 = 0x30
+r0 &= r4
+if(r0 == 0) goto lbl118
+
+if(r3 != 0xB) goto lbl117
+
+r5 /= 2
+goto lbl117
+
+lbl117:
+if(r3 != 0xA) goto lbl118
+
+r0 = r5 / 2
+r5 += r0
+goto lbl118
+
+lbl118: @3ec68

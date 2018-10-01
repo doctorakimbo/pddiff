@@ -8,6 +8,7 @@ addr e: addr j: desc
 B8 2A 02 02: 28 2A 02 02: gBattleTextBuff1
 C8 2A 02 02: 38 2A 02 02: gBattleTextBuff2
 4C 2B 02 02: AC 2A 02 02: gBattleTypeFlags
+50 2B 02 02: B0 2A 02 02: ??????
 C8 2B 02 02: 28 2B 02 02: gBattleBufferA[4]
 C4 33 02 02: 24 33 02 02: gBattleBufferB
 C4 3B 02 02: 24 3B 02 02: gActiveBattler
@@ -66,6 +67,7 @@ FC 3D 02 02: 5C 3D 02 02: gStatuses3
 CC 3E 02 02: 2C 3E 02 02: gSpecialStatuses
 1C 3F 02 02: 7C 3E 02 02: gBattleWeather
 1E 3F 02 02: 7E 3E 02 02: gTrickRoomTurns (PD)
+1F 3F 02 02: 7F 3E 02 02: ??????
 20 3F 02 02: 80 3E 02 02: gWishFutureKnock
 50 3F 02 02: B0 3E 02 02: gDynamicBasePower
 54 3F 02 02: B4 3E 02 02: gEnigmaBerries
@@ -78,6 +80,7 @@ DF 3F 02 02: 3F 3F 02 02: sSTAT_ANIM_PLAYED (FRPD) / sSECOND_STATCHANGER (PD)
 E8 3F 02 02: 48 3F 02 02: gBattleStruct
 F4 3F 02 02: 54 3F 02 02: gBattleResources
 FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
+20 40 02 02: 80 3F 02 02: ??????
 29 40 02 02: 89 3F 02 02: gPlayerPartyCount
 2C 40 02 02: 8C 3F 02 02: gEnemyParty
 80 40 02 02: E0 3F 02 02: gEnemyParty.level
@@ -201,6 +204,7 @@ funcs e,j,desc:
 01ED3C = 01E54C = ModulateDmgByType2
 01EDF4 = 01E604 = TypeCalc
 01EFCC = 01E7DC = AI_TypeCalc
+?????? = 01EB20 = ??????
 01FEE8 = 01F6F8 = GetBattlerTurnOrderNum
 01FF20 = 01F730 = SetMoveEffect
 02A1C0 = 029998 = IsTwoTurnsMove
