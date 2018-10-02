@@ -1057,4 +1057,79 @@ r0 = r5 / 2
 r5 += r0
 goto lbl118
 
-lbl118: @3ec68
+lbl118:
+r0 = gBattleResources
+r0 = *r0
+r0 = *(r0 + 4)
+r1 = s22
+r1 *= 4
+r0 += r1
+r0 = *r0
+r1 = 1
+r0 &= r1
+if(r0 == 0) goto lbl119
+
+if(r3 != 0xA) goto lbl119
+
+r0 = r5 / 2
+r5 += r0
+goto lbl119
+
+lbl119:
+r5 += 2
+r0 = s9
+if(r0 == 0x68) goto lbl122
+
+r0 -= 0xA3
+if(r0 <= 1) goto lbl122
+
+r0 = s23
+r1 = 0x84
+GetAbilityUserOnSameSide()
+if(r0 == 0) goto lbl120
+
+r0 = r5 / 4
+r5 += r0
+goto lbl120
+
+lbl120:
+r4 = s10
+if(r4 != 0x88) goto lbl121
+
+r1 = s1
+r0 = *(r1 + 0x2C)
+r1 = *(r1 + 0x28)
+if(r0 != r1) goto lbl121
+
+r5 /= 2
+goto lbl121
+
+lbl121:
+if(r4 != 0xB3) goto lbl122
+
+r0 = r11
+r1 = 2
+r0 &= r1
+if(r0 != 0) goto lbl122
+
+r5 /= 2
+goto lbl122
+
+lbl122:
+r4 = r10
+if(r4 != 0x54) goto lbl123
+
+r0 = s8
+r0 += 0x64
+r0 *= r5
+r1 = 0x64
+divide()
+r5 = r0
+goto lbl123
+
+lbl123:
+goto lbl124
+
+lbl124:
+r0 = r5
+return r0

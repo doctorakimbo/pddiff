@@ -1,0 +1,803 @@
+CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+{
+	r1 = gBattleMoves
+	r0 = 0xC
+	r0 *= arg2
+	r2 = r0 + r1
+	s2 = r2
+	r0 = *(r2 + 0xA)
+	r11 = r0
+	r0 = arg4
+	
+	if(r0 == 0)
+		r0 = *(r2 + 1)
+	
+	r4 = data_02024020
+	*r4 = r0
+	r1 = arg5
+	r0 = 0x3F
+	r0 &= r1
+	
+	if(r1 == 0)
+		r0 = *(r2 + 2)
+	
+	r9 = r0
+	r7 = *(arg0 + 2)
+	r0 = *(arg0 + 8)
+	r8 = r0
+	r2 = arg1
+	r0 = *(r2 + 4)
+	s5 = r0
+	r0 = *(r2 + 0xA)
+	s6 = r0
+	r0 = arg0
+	r0 += 0x20
+	r1 = *r0
+	s9 = r1
+	r2 += 0x20
+	r0 = *r2
+	s10 = r0
+	
+	if(r1 == 0x67)
+		r0 = 0
+	else
+	{
+		s8 = GetHoldEffectParam(*(arg0 + 0x2E))
+		r0 = GetHoldEffect(*(arg0 + 0x2E))
+	}
+	
+	r10 = r0
+	
+	if(s10 == 0x67)
+		r0 = 0
+	else
+	{
+		r5 = arg1
+		s4 = GetHoldEffectParam(*(r5 + 0x2E))
+		r0 = GetHoldEffect(*(r5 + 0x2E))
+	}
+	
+	s7 = r0
+	r1 = gBattleScripting
+	r1 = *(r1 + 0xE)
+	r0 = *r4
+	r0 *= r1
+	*r4 = r0
+	r5 = s9
+	if(r5 != 0x65) goto lbl11
+
+	r1 = *r4
+	if(r1 > 0x3C) goto lbl11
+
+	r0 = 0x96
+	goto lbl14
+
+	lbl11:
+	r1 = 0
+	
+	if(r5 != 0x60)
+	{
+		if(r9 != 0) goto lbl15
+
+		do
+		{
+			r1++
+			r2 = data_168CB4_J
+			r0 = *(r2 + r1)
+			if(r0 == 0xFF) goto lbl15
+		} while(r5 != r0)
+	}
+	
+	r9 = r1
+	r1 = *r4
+	r0 = 0x78
+	goto lbl14
+
+	lbl14:
+	r0 *= r1
+	*r4 = r0 / 0x64
+	goto lbl15
+
+	lbl15:
+	r1 = gStatuses3
+	r3 = arg6
+	r0 = r3 * 4
+	r0 += r1
+	r0 = *r0
+	r1 = 0x200
+	
+	if((r0 & r1) && r9 == 0xD)
+	{
+		r0 = *r4
+		r0 *= 2
+		*r4 = r0
+	}
+	
+	r1 = gProtectStructs
+	r0 = r3 * 0x10
+	r0 += r1
+	r0 = *r0
+	
+	if((r0 << 0x1C) < 0)
+	{
+		r1 = *r4
+		r0 = r1 / 2
+		r1 += r0
+		*r4 = r1
+	}
+	
+	r1 = r11
+	r0 = 2
+	
+	if(r0 & r1)
+	{
+		if(r10 == 0x49) goto lbl21
+
+		goto lbl20
+	}
+	else
+	{
+		if(r10 == 0x48) goto lbl21
+
+		goto lbl20
+	}
+	
+	lbl20:
+	if(HasItemWithTypeEffect(arg0, r9))
+	{
+		lbl21:
+		r0 = s8
+		r0 += 0x64
+		r4 = data_02024020
+		r2 = *r4
+		r0 *= r2
+		*r4 = r0 / 0x64
+	}
+	
+	if(r10 == 0x45)
+	{
+		r0 = r7 / 2
+		r7 += r0
+	}
+	
+	if(r10 == 0x44)
+	{
+		r0 = r8
+		r0 /= 2
+		r8 += r0
+	}
+	
+	r3 = gBattleTypeFlags
+	r3 = *r3
+	r0 = 0x100
+	r4 = *arg0
+	
+	if(r10 == 0x22 && !(r3 & r0))
+	{
+		r0 = 0x197
+		
+		if(r4 - r0 <= 1)
+		{
+			r0 = r8
+			r0 /= 2
+			r8 += r0
+		}
+	}
+	
+	if(r10 == 0x23 && r4 == 0x175)
+	{
+		r0 = r8
+		r8 += r0
+	}
+	
+	if(r10 == 0x2D && r4 == 0x19)
+	{
+		r0 = r8
+		r8 += r0
+		r7 *= 2
+	}
+	
+	if(r10 == 0x41 && r4 - 0x68 <= 1)
+		r7 *= 2
+	
+	r2 = arg1
+	r4 = *r2
+	if(s7 == 0x52) goto lbl31
+
+	if(s7 != 0x53) goto lbl32
+
+	r1 = data_21615C_J
+	r0 = 0x28
+	r0 *= r4
+	r0 += r1
+	if(*(r0 + 4) == 0) goto lbl32
+
+	r1 = s5
+	r0 = r1 / 2
+	r1 += r0
+	s5 = r1
+	goto lbl31
+
+	lbl31:
+	r1 = s6
+	r0 = r1 / 2
+	r1 += r0
+	s6 = r1
+	goto lbl32
+
+	lbl32:
+	if(s7 == 0x22 && r3 == 0)
+	{
+		r0 = 0x197
+		
+		if(r4 - r0 <= 1)
+		{
+			r1 = s6
+			r0 = r1 / 2
+			r1 += r0
+			s6 = r1
+		}
+	}
+	
+	if(s7 == 0x24 && r4 == 0x175)
+	{
+		r1 = s6
+		r0 = r1 / 2
+		r1 += r0
+		s6 = r1
+	}
+	
+	if(s7 == 0x40 && r4 == 0x84)
+	{
+		r1 = s5
+		r0 = r1 / 2
+		r1 += r0
+		s5 = r1
+	}
+	
+	if(s9 != 0x68 && s9 - 0xA3 > 1)
+	{
+		r3 = data_02024020
+		
+		if((s10 == 0x55 && r9 == 0xA) || (s10 == 0x2F && r9 == 0xF))
+		{
+			r0 = *r3
+			r0 /= 2
+			*r3 = r0
+		}
+			
+		if(s10 == 0x57 && r9 == 0xA)
+		{
+			r1 = *r3
+			r0 = r1 / 4
+			r0 += r1
+			*r3 = r0
+		}
+		
+		if(s10 != 0x3F) goto lbl40
+
+		r0 = arg1
+		
+		if(*(r0 + 0x4C) != 0) goto lbl41
+
+		lbl40:
+		if(s10 == 0xAC)
+		{
+			r0 = data_02022B50
+			
+			if(*r0 <= 1)
+			{
+				lbl41:
+				r1 = s5
+				r0 = r1 / 2
+				r0 += r1
+				s5 = r0
+			}
+		}
+	}
+	
+	r0 = 
+	r2 = 0
+	r3 = 0xFD
+	r4 = 1
+	r5 = 3
+	
+	if(r9 == 0xD || r9 == 0xA) goto lbl44
+
+	r2 = 0xB4
+	r3 = 0
+	r4 = 4
+	r5 = 3
+	
+	if(r9 == 9) goto lbl43
+
+	r2 = 0xAF
+	
+	if(r9 == 0x11)
+	{
+		lbl43:
+		if(AbilityBattleEffects(0xE, 0, 0xA6, 0, 0))
+		{
+			r4 = 3
+			r5 = 4
+			goto lbl44
+		}
+
+		lbl44:
+		if(AbilityBattleEffects(0xE, 0, r2, r3, 0))
+		{
+			r1 = r5
+			r5 = data_02024020
+			r0 = *r5
+			r0 *= r4
+			*r5 = r0 / r1
+		}
+	}
+	
+	r4 = s9
+	if(s9 != 0x81) goto lbl46
+
+	r0 = *(arg0 + 0x2C)
+	if(r0 / 2 <= *(arg0 + 0x28)) goto lbl46
+
+	r0 = r8
+	r0 /= 2
+	r8 = r0
+	goto lbl47
+
+	lbl46:
+	if(s9 == 0x70)
+	{
+		r2 = gDisableStructs
+		r0 = s11
+		r1 = 0x1C
+		r1 *= r0
+		r1 += r2
+		if(*(r1 + 0x18) != 0)
+		{
+			lbl47:
+			r7 /= 2
+		}
+	}
+	
+	if(s9 == 0x37 || (s9 == 0x3E && *(arg0 + 0x4C) != 0))
+	{
+		r0 = r7 / 2
+		r7 += r0
+	}
+	
+	if((s9 == 0x39 || s9 == 0x3A) && (AbilityBattleEffects(0x12, s11, 0x39, 0, 0) || AbilityBattleEffects(0x12, s11, 0x3A, 0, 0)))
+	{
+		r0 = r8
+		r0 /= 2
+		r8 += r0
+	}
+	
+	r1 = r11
+	r0 = 2
+	
+	if(r0 & r1)
+	{
+		r1 = 0x8A
+		r3 = 0x10
+	}
+	else
+	{
+		r1 = 0x89
+		r3 = 0x88
+		
+		if(s9 == 0x25 || s9 == 0x4A)
+		{
+			r0 = 0xC8
+			goto lbl74
+		}
+	}
+	
+	if(s9 == r1)
+	{
+		r0 = *(arg0 + 0x4C)
+		
+		if(r0 & r3)
+		{
+			r0 = 0x96
+			goto lbl74
+		}
+	}
+	
+	if(((s9 == 0x41 && r9 == 0xC) || (s9 == 0x42 && r9 == 0xA) || (s9 == 0x43 && r9 == 0xB) || (s9 == 0x44 && r9 == 6)) && *(arg0 + 0x28) <= (*(arg0 + 0x2C) / 3))
+	{
+		r0 = 0x96
+		goto lbl74
+	}
+	
+	if(s9 == 0x94)
+	{
+		r0 = gBattleTypeFlags
+		r0 = *r0
+		r1 = 1
+		
+		if(r0 & r1)
+			r0 = CountAliveMonsInBattle(0)
+		else
+			r0 = 2
+		
+		r1 = gCurrentTurnActionNumber
+		
+		if(r0 - 1 <= *r1)
+		{
+			r0 = 0x82
+			goto lbl74
+		}
+	}
+	
+	if(s9 == 0x4F)
+	{
+		r1 = arg1
+		r0 = GetGenderFromSpeciesAndPersonality(*r1, *(r1 + 0x48))
+		
+		if(r0 != 0xFF)
+		{
+			r4 = r0
+			r0 = GetGenderFromSpeciesAndPersonality(*arg0, *(arg0 + 0x48))
+			
+			if(r0 != 0xFF)
+			{
+				if(r0 == r4)
+					r0 = 0x7D
+				else
+					r0 = 0x4B
+				
+				goto lbl74
+			}
+		}
+	}
+
+	lbl67:
+	r3 = s2
+	
+	if(s9 == 0xA8)
+	{
+		r2 = *(r3 + 8)
+		r1 = 1
+		r0 = 0x82
+		goto lbl73
+	}
+	elseif(s9 == 0x7D)
+	{
+		r2 = *(r3 + 0xB)
+		r1 = 1
+		r0 = 0x82
+		goto lbl73
+	}
+	elseif(s9 == 0x78)
+	{
+		r2 = *(r3 + 9)
+		r1 = 0x80
+		r0 = 0x78
+		goto lbl73
+	}
+	elseif(s9 == 0x59)
+	{
+		r2 = *(r3 + 9)
+		r1 = 0x10
+		r0 = 0x78
+		goto lbl73
+	}
+	elseif(s9 == 0xAA)
+	{
+		r2 = *(r3 + 9)
+		r1 = 0x20
+		r0 = 0x96
+		goto lbl73
+	}
+	elseif(s9 == 0xBC)
+	{
+		r2 = *(r3 + 9)
+		r1 = 0x40
+		r0 = 0x96
+		goto lbl73
+	}
+	else
+		goto lbl75
+
+	lbl73:
+	if(r1 & r2)
+	{
+		lbl74:
+		r4 = data_02024020
+		r1 = *r4
+		r0 *= r1
+		*r4 = r0 / 0x64
+	}
+
+	lbl75:
+	r0 = 
+	
+	if(!AbilityBattleEffects(0xE, 0, 0xD, 0, 0) && !AbilityBattleEffects(0xE, 0, 0x4D, 0, 0))
+	{
+		r2 = gBattleWeather
+		r1 = *r2
+		r0 = 0xC
+		
+		if(r0 & r1)
+		{
+			r1 = arg1
+			r1 += 0x21
+			
+			if(*r1 == 5 || *(r1 + 1) == 5)
+			{
+				r1 = s6
+				r0 = r1 / 2
+				r1 += r0
+				s6 = r1
+			}
+			
+			if(s9 == 0x9F && (r9 == 4 || r9 == 5 || r9 == 8))
+			{
+				r4 = data_02024020
+				r1 = *r4
+				r0 = 0x82
+				r0 *= r1
+				*r4 = r0 / 0x64
+			}
+		}
+		else
+		{
+			r0 = 0x30
+			
+			if(r0 & r1)
+			{
+				if(s9 == 0x5E)
+				{
+					r0 = r8
+					r0 /= 2
+					r8 += r0
+				}
+				
+				if(s9 != 0x68 && s9 - 0xA3 > 1 && AbilityBattleEffects(0x11, arg7, 0x7A, 0, 0))
+				{
+					r1 = s6
+					r0 = r1 / 2
+					r1 += r0
+					s6 = r1
+				}
+				
+				if(AbilityBattleEffects(0x11, arg6, 0x7A, 0, 0))
+				{
+					r0 = r7 / 2
+					r7 += r0
+				}
+			}
+		}
+	}
+	
+	r1 = r11
+	r0 = 2
+	
+	if(r0 & r1)
+	{
+		r5 = r8
+		r0 = 0x1C
+	}
+	else
+	{
+		r5 = r7
+		r0 = 0x19
+	}
+	
+	r2 = *(arg0 + r0)
+	r7 = gStatStageRatios
+	r0 = gCritMultiplier
+	r4 = *r0
+	
+	if(s9 != 0x68 && s9 - 0xA3 > 1 && s10 == 0x6D && (r4 == 1 || r2 > 6))
+	{
+		r0 = r2 * 2
+		r1 = r0 + r7
+		r0 = *r1
+		r0 *= r5
+		r5 = r0 / *(r1 + 1)
+	}
+	
+	r0 = data_02024020
+	r0 = *r0
+	r5 *= r0
+	r0 = arg0
+	r0 += 0x2A
+	r0 = *r0
+	r0 *= 2
+	r0 /= 5
+	r0 += 2
+	r5 *= r0
+	r0 = r11
+	r1 = 1
+	r0 &= r1
+	r2 = data_02023F1F
+	
+	if(*r2 != 0)
+		r0 ^= r1
+	
+	if(r0 != 0)
+	{
+		r1 = s6
+		r0 = 0x1D
+	}
+	else
+	{
+		r1 = s5
+		r0 = 0x1A
+	}
+	
+	r2 = arg1
+	r2 = *(r2 + r0)
+
+	if(s9 != 0x6D && (r4 == 1 || r2 < 6))
+	{
+		r0 = r2 * 2
+		r2 = r0 + r7
+		r0 = *r2
+		r0 *= r1
+		r1 = r0 / *(r2 + 1)
+	}
+	
+	r0 = r5 / r1
+	r5 = r0 / 0x32
+	r0 = gBattleTypeFlags
+	r7 = *r0
+	r0 = 1
+	r7 &= r0
+	r1 = r11
+	r3 = 2
+	
+	if(!(r1 & r3))
+	{
+		r3 = 1
+		r2 = s9
+		
+		if(r2 != 0x3E)
+		{
+			r0 = *(arg0 + 0x4C)
+			r1 = 0x10
+			
+			if(r0 & r1)
+				r5 /= 2
+		}
+	}
+	
+	if(r2 != 0x97)
+	{
+		r1 = arg3
+		
+		if((r1 & r3) && r4 == 1)
+		{
+			if(r7 != 0 && CountAliveMonsInBattle(2) == 2)
+				r5 *= (2 / 3)
+			else
+				r5 /= 2
+		}
+	}
+	
+	if(r7 != 0)
+	{
+		r4 = s2
+		r7 = 1
+		r0 = 2
+		if(*(r4 + 6) == 8) goto lbl99
+
+		if(*(r4 + 6) == 0x32)
+		{
+			r7 = 2
+			r0 = 0
+			
+			if(*r4 == 7)
+				r7 = 3
+
+			lbl99:
+			if(CountAliveMonsInBattle(r0) > r7)
+			{
+				r0 = r5 / 4
+				r5 -= r0
+			}
+		}
+	}
+	
+	r0 = 
+	
+	if(!AbilityBattleEffects(0xE, 0, 0xD, 0, 0) && !AbilityBattleEffects(0xE, 0, 0x4D, 0, 0))
+	{
+		r4 = gBattleWeather
+		r4 = *r4
+		r3 = r9
+		r0 = 3
+		
+		if(r0 & r4)
+		{
+			if(r3 == 0xA)
+				r5 /= 2
+				
+			if(r3 == 0xB)
+			{
+				r0 = r5 / 2
+				r5 += r0
+			}
+		}
+		
+		r0 = 0xCF
+		
+		if(r0 & r4)
+		{
+			r0 = gCurrentMove
+			
+			if(*r0 == 0x4C)
+				r5 *= 2
+		}
+		
+		r0 = 0x30
+		
+		if(r0 & r4)
+		{
+			if(r3 == 0xB)
+				r5 /= 2
+				
+			if(r3 == 0xA)
+			{
+				r0 = r5 / 2
+				r5 += r0
+			}
+		}
+	}
+	
+	r0 = gBattleResources
+	r0 = *r0
+	r0 = *(r0 + 4)
+	r1 = arg6
+	r1 *= 4
+	r0 += r1
+	r0 = *r0
+	r1 = 1
+	
+	if((r0 & r1) && r3 == 0xA)
+	{
+		r0 = r5 / 2
+		r5 += r0
+	}
+	
+	r5 += 2
+	r0 = 
+	
+	if(s9 != 0x68 && s9 - 0xA3 > 1)
+	{
+		if(GetAbilityUserOnSameSide(arg7, 0x84))
+		{
+			r0 = r5 / 4
+			r5 += r0
+		}
+		
+		if(s10 == 0x88)
+		{
+			r1 = arg1
+			
+			if(*(r1 + 0x2C) == *(r1 + 0x28))
+				r5 /= 2
+		}
+		
+		if(s10 == 0xB3)
+		{
+			r0 = r11
+			r1 = 2
+			
+			if(!(r0 & r1))
+				r5 /= 2
+		}
+	}
+	
+	if(r10 == 0x54)
+	{
+		r0 = s8
+		r0 += 0x64
+		r0 *= r5
+		r5 = r0 / 0x64
+	}
+	
+	return r5
+}

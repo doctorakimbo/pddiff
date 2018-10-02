@@ -204,7 +204,6 @@ funcs e,j,desc:
 01ED3C = 01E54C = ModulateDmgByType2
 01EDF4 = 01E604 = TypeCalc
 01EFCC = 01E7DC = AI_TypeCalc
-?????? = 01EB20 = ??????
 01FEE8 = 01F6F8 = GetBattlerTurnOrderNum
 01FF20 = 01F730 = SetMoveEffect
 02A1C0 = 029998 = IsTwoTurnsMove
