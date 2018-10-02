@@ -18,6 +18,7 @@ A0 0B 06 09
 abilities:
 + 0x4C = Tangled Feet
 + 0x4E = Motor Drive
+- 0x4F = Rivalry
 + 0x50 = Steadfast
 + 0x51 = Snow Cloak
 + 0x52 = Gluttony
@@ -27,6 +28,7 @@ abilities:
 + 0x56 = Simple
 + 0x57 = Dry Skin
 + 0x58 = Download
+- 0x59 = (boosts extraFlags & 0x10 moves by 20%)
 + 0x5A = Poison Heal
 + 0x5B = Adaptability
 + 0x5C = Skill Link
@@ -38,6 +40,7 @@ abilities:
 + 0x62 = Magic Guard
 + 0x63 = No Guard
 + 0x64 = Stall
+- 0x65 = Technician
 + 0x66 = Leaf Guard
 + 0x67 = Klutz
 + 0x68 = Mold Breaker
@@ -56,12 +59,19 @@ abilities:
 + 0x75 = Snow Warning
 + 0x76 = Honey Gather
 + 0x77 = Frisk
+= 0x78 = (boosts extraFlags & 0x80 moves by 20%)
+- 0x7A = Flower Gift
 + 0x7D = Sheer Force
 + 0x7E = Contrary
 + 0x7F = Unnerve
+- 0x81 = Defeatist
 + 0x82 = Cursed Body
 + 0x83 = Healer
+- 0x84 = Friend Guard
 + 0x85 = Weak Armor
+- 0x88 = Multiscale
+- 0x89 = Toxic Boost
+- 0x8A = Flare Boost
 + 0x8C = Telepathy
 + 0x8D = Moody
 + 0x8E = Overcoat
@@ -70,6 +80,7 @@ abilities:
 + 0x91 = Big Pecks
 + 0x92 = Sand Rush
 = 0x93 = (lowers moves with typeFlags2 & 4 to 60% accuracy)
+- 0x94 = Analytic
 + 0x96 = Imposter
 + 0x97 = Infiltrator
 + 0x98 = Mummy
@@ -85,16 +96,24 @@ abilities:
 = 0xA3 = Turboblaze/Teravolt
 = 0xA4 = Teravolt/Turboblaze
 + 0xA5 = Aroma Veil
+- 0xA6 = Aura Break
+- 0xA8 = Tough Claws
+- 0xAA = (boosts extraFlags & 0x20 moves by 50%)
+- 0xAC = Grass Pelt
 + 0xAD = Sweet Veil
 + 0xAE = Aerilate
+- 0xAF = Dark Aura
 + 0xB0 = Gooey
 + 0xB2 = Gale Wings
+- 0xB3 = Fur Coat
+- 0xB4 = Fairy Aura
 + 0xB5 = Pixilate
 + 0xB6 = Flower Veil
 + 0xB7 = Refrigerate
 + 0xB8 = Protean
 + 0xB9 = Bulletproof
 + 0xBA = Cheek Pouch
+- 0xBC = (boosts extraFlags & 0x40 moves by 20%)
 + 0xC0 = Stamina
 + 0xC3 = Compaction
 + 0xCA = Slush Rush
@@ -106,7 +125,7 @@ abilities:
 
 (old kid: 16F8C4, old item: 0x125, route 4, fix wildmons route15)
 item effects:
-= typebooster IDs: (if effectparam = 0, type-resist berries; if effectparam >= 30, consumed when move of same type used (+ other effect?); otherwise typeboosters as normal)
+= typebooster IDs: (if effectparam = 0, type-resist berries; if effectparam >= 30, Gems; otherwise typeboosters as normal)
 = 0x1D = "Polkadot Bow"
 + 0x2B = Leftovers if effectparam is 0xFF, otherwise Black Sludge (effectparam = type that heals)
 + 0x43 = Focus Sash
@@ -114,6 +133,8 @@ item effects:
 + 0x45 = Choice Band
 + 0x46 = Choice Scarf
 + 0x47 = Wide Lens
+- 0x48 = Muscle Band
+- 0x49 = Wise Glasses
 + 0x4A = Lagging Tail
 + 0x4B = weather rocks (effectparam = weather ID)
 + 0x4C = Expert Belt
@@ -123,6 +144,7 @@ item effects:
 + 0x50 = Light Clay
 + 0x51 = Big Root
 + 0x52 = Assault Vest
+- 0x53 = Eviolite
 + 0x54 = Life Orb (effectparam = 1/X HP lost)
 
 item IDs:
@@ -287,9 +309,8 @@ grafics:
 		  Required knowledge: j020385E2, unknown data table at j1400000
 = 0124EB: 80 -> 60 (store weather as fullword)
 = 014CD8: Entirety of GetWhoStrikesFirst (+added GetSpeedStat, GetPriority, GetAbilityValues) (see 04disasm/04disasm2)
-		  Implements: Unburden (effect), Quick Feet, Stall, Klutz (speed items), Slow Start (effect), Sand Rush, Prankster, Gale Wings [gen 6], Slush Rush, Choice Scarf (speed boost), Lagging Tail, Tailwind (effect), Trick Room (effect), 1/4 -> 1/2 paralysis speed cut, removal of badge 3 bonus
+		  Implements: Unburden (effect), Quick Feet, Stall, Klutz (speed items), Slow Start (Speed reduction), Sand Rush, Prankster, Gale Wings [gen 6], Slush Rush, Choice Scarf (speed boost), Lagging Tail, Tailwind (effect), Trick Room (effect), 1/4 -> 1/2 paralysis speed cut, removal of badge 3 bonus
 		  Relies on: weather refactor, BattleMove refactor, returns 0 sometimes instead of 1 or 2
-		  Optional knowledge: BattleMove.typeFlags2.bit3, bit4
 		  Glitch: Stall and Trick Room are in wrong order, Stall goes first in Trick Room (probably doesn't matter in P/D itself)
 = 015910: Entirety of HandleEndTurn_FinishBattle (see 05disasm)
 		  Implements: EVs recalculated per battle (?)
@@ -339,7 +360,7 @@ grafics:
 		  Implements: Stench flinch chance, Lightning Rod boost/immunity, Pressure message, Motor Drive, Anger Point, Unburden (activation), Dry Skin (rain/water healing/immunity), Download, Hydration, Magic Guard (vs contact damage abilities), Klutz (the item effects here), Mold Breaker (message), Mold Breaker+ (vs move-subset immunities/absorbing immunities), Aftermath, Anticipation, Forewarn, Slow Start (upkeep), Storm Drain (boost/immunity), Ice Body, Snow Warning, Frisk, Unnerve (message), Cursed Body, Healer, Weak Armor, Moody, Overcoat (vs powder), Poison Touch, Imposter, Infiltrator (getting affected by hit-reaction abilities when hitting through Substitute), Mummy, Justified, Rattled, Sap Sipper, Iron Barbs, Aroma Veil, Sweet Veil, Gooey, Flower Veil (vs Gooey/Tangling Hair), Bulletproof, Stamina, Water Compaction, Dazzling, Queenly Majesty, Tangling Hair, weather rocks (on abilities), Safety Goggles (vs powder), grass-type powder immunity, dark-type prankster immunity, user affected by hit-reaction abilities when its sound moves hit through Substitute
 		  Relies on: weather refactor, BattleMove refactor, cloud nine/intimidate id change????, gSpecialStatuses[battler].intimidatedMon?
 		  Requires in future: GetAbilityUserOnSameSide, GetWeatherTurns, CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
-		  Optional knowledge: BattleMove.typeFlags2.bit2, bit3
+		  Note: Check Weak Armor vs Psyshock, might be wrong
 = 01BC68: Entirety of ItemBattleEffects (+ CheckUnnerve, IsAffectedBySheerForce, GetPinchThreshholdFromParam, GetMoveWithNoPP, GetPartyIndex, CheckAndRunCheekPouch) (see 14disasm)
 		  Implements: Magic Guard (Life Orb), Klutz (berries, Amulet Coin, Leftovers, White Herb, Mental Herb, Shell Bell, the item effects here), Sheer Force (Life Orb/Shell Bell glitch), Unnerve (Gen3 berries), modern Sitrus Berry, Black Sludge, Life Orb, status cure items/white herb consumed immediately
 		  Required knowledge: j0203B950
@@ -356,8 +377,8 @@ grafics:
 		  Implements: Keen Eye ignoring evasion, Tangled Feet, Snow Cloak, Klutz (acc/evasion items), Mold Breaker+ (vs acc/evasion), Unaware (acc/evasion), (ability93), Victory Star, Wide Lens, Hurricane acc- in sun, removes some first-battle code
 		  Relies on: weather refactor, BattleMove refactor, GetAbilityUserOnSameSide
 		  Required knowledge: j0203B950
-		  Optional knowledge: BattleMove.typeFlags2.bit2, bit3
 		  Glitch?: (ability93) might not work unless Victory Star is active on the other side
+		  Note: Check Hustle accuracy vs Psyshock, might be wrong
 = 01E1D8: Shift entirety of atk02_attackstring down one line to make call to extra func j207790 first (see 18disasm)
 		  Implements: Possibly tracks number of times each of player's moves are used?
 		  Required knowledge: j0203B970
@@ -366,12 +387,12 @@ grafics:
 		  Removes (now unused?): Poison Tail/Blaze Kick crit+
 = 01E59C: Entirety of atk05_damagecalc (see 20disasm)
 		  Implements: Sniper, 2x -> 1.5x crit damage
-		  Removes (presumably moved to CalculateBaseDamage): gBattleScripting.dmgMultiplier, Charge boost, Helping Hand boost
+		  Removes (moved to CalculateBaseDamage): gBattleScripting.dmgMultiplier, Charge boost, Helping Hand boost
 		  Relies on: above being moved to CalculateBaseDamage
 = 01E848: Entirety of atk06_typecalc (see 21disasm) (ALSO 25DEEE: 00 00 -> 1D 09)
-		  Implements: Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Levitate, Wonder Guard, Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Galvanize (type change), "Polkadot Bow" <move this text to damage formula>, Expert Belt, (typeboost items with param bcs 1E), ice immunity to sheer cold
+		  Implements: Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Levitate, Wonder Guard, Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Galvanize (type change), Expert Belt, (typeboost items with param bcs 1E), ice immunity to sheer cold
 		  Relies on: ConsumeItem (e01FCCC, j01F4DC), script_1F552_J (e1FD42), gChosenActionByBattler changed to something else
-		  Requires in future: AteAbilityConversionTable (j168CB4)
+		  Requires in future: HasItemWithTypeEffect, AteAbilityConversionTable (j168CB4)
 		  Note: check wonder guard vs canceled se (elec on water/ground, fire on rock/grass)
 = 01EDF4: Entirety of TypeCalc (see 22disasm)
 		  Implements: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Storm Drain (immunity), Unnerve (type-resist berries), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Bulletproof, Galvanize (type change), Dazzling, Queenly Majesty, Expert Belt, type-resist berries, grass-type powder immunity
@@ -645,8 +666,10 @@ grafics:
   03EB52: 40 00 40 18 01 88 0D 48 08 40 -> 80 00 40 18 40 88 00 00 00 00
 		  Implements: Part of gLevelUpLearnsets refactor
 = 03ECEC: Entirety of CalculateBaseDamage (see 78disasm)
-		  
-		  
+		  Implements: modern Plus/Minus, Rivalry, Heatproof (fire moves), Dry Skin (fire moves), (ability59), Solar Power (boost), Normalize (boost), Technician, Klutz (damage-boosting items), Mold Breaker (damage-reduction abilities, Unaware), Unaware (atk/def/spa/spd), Slow Start (Attack reduction), (ability78), Flower Gift (stat boosts), Sheer Force (boost), Defeatist, Friend Guard, Multiscale, Toxic Boost, Flare Boost, Analytic, Infiltrator (dual screens), Sand Force, Aura Break, Tough Claws, (abilityAA), Grass Pelt, Aerilate (boost), Dark Aura, Fur Coat, Fairy Aura, Pixilate (boost), Refrigerate (boost), (abilityBC), Galvanize (boost), "Polkadot Bow", Gems (boost), Choice Specs (boost), Muscle Band, Wise Glasses, Assault Vest (boost), Eviolite, Life Orb (boost), Wonder Room (effect), sandstorm Rock SpDef boost, modern spread reduction
+		  Relies on: weather refactor, BattleMove refactor, GetAbilityUserOnSameSide, HasItemWithTypeEffect
+		  Requires in future: AteAbilityConversionTable (j168CB4)
+		  Note: is that how spread reduction works? (only reduced if max targets exist)
 		  
 		  
 		  

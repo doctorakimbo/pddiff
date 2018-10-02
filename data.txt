@@ -8,7 +8,7 @@ addr e: addr j: desc
 B8 2A 02 02: 28 2A 02 02: gBattleTextBuff1
 C8 2A 02 02: 38 2A 02 02: gBattleTextBuff2
 4C 2B 02 02: AC 2A 02 02: gBattleTypeFlags
-50 2B 02 02: B0 2A 02 02: ??????
+50 2B 02 02: B0 2A 02 02: gBattleTerrain
 C8 2B 02 02: 28 2B 02 02: gBattleBufferA[4]
 C4 33 02 02: 24 33 02 02: gBattleBufferB
 C4 3B 02 02: 24 3B 02 02: gActiveBattler
@@ -67,7 +67,7 @@ FC 3D 02 02: 5C 3D 02 02: gStatuses3
 CC 3E 02 02: 2C 3E 02 02: gSpecialStatuses
 1C 3F 02 02: 7C 3E 02 02: gBattleWeather
 1E 3F 02 02: 7E 3E 02 02: gTrickRoomTurns (PD)
-1F 3F 02 02: 7F 3E 02 02: ??????
+1F 3F 02 02: 7F 3E 02 02: gWonderRoomTurns (PD)
 20 3F 02 02: 80 3E 02 02: gWishFutureKnock
 50 3F 02 02: B0 3E 02 02: gDynamicBasePower
 54 3F 02 02: B4 3E 02 02: gEnigmaBerries
@@ -80,7 +80,7 @@ DF 3F 02 02: 3F 3F 02 02: sSTAT_ANIM_PLAYED (FRPD) / sSECOND_STATCHANGER (PD)
 E8 3F 02 02: 48 3F 02 02: gBattleStruct
 F4 3F 02 02: 54 3F 02 02: gBattleResources
 FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
-20 40 02 02: 80 3F 02 02: ??????
+20 40 02 02: 80 3F 02 02: gBattleMovePower
 29 40 02 02: 89 3F 02 02: gPlayerPartyCount
 2C 40 02 02: 8C 3F 02 02: gEnemyParty
 80 40 02 02: E0 3F 02 02: gEnemyParty.level
@@ -324,6 +324,7 @@ data:
 25053C = sStatusFlagsForMoveEffects
 25062C = sMoveEffectBS_Ptrs
 254784 = 21118C = gBaseStats
+259754 = 21615C = gEvolutionTable
 25D7B4 = 21A1BC = gLevelUpLearnsets
 25DEAD = gStatStageRatios
 25E45C = gBitTable
@@ -355,19 +356,23 @@ DisableStruct:
 0x18 = unburden / slowStartTimer
 
 BattleMove:
-0x9 = [NEW] typeFlags1
-0xA = [NEW] typeFlags2
+0x9 = [NEW] extraFlags
+0xA = [NEW] categoryFlags
 0xB = [NEW] typeFlags3
 
-BattleMove.typeFlags1: 4321
+BattleMove.extraFlags: 8765 4321
 1 = FLAG_SOUND_MOVE
 2 = FLAG_BALLISTIC_MOVE
 3 = FLAG_POWDER_MOVE
 4 = FLAG_MENTAL_MOVE
+5 = 
+6 = 
+7 = 
+8 = 
 
-BattleMove.typeFlags2: 4321
-1 = (checked by hustle, p/s split?)
-2 = (checked by weak armor)
+BattleMove.categoryFlags: 4321
+1 = DOES_SPECIAL_DMG
+2 = SPECIAL_MOVE
 3 = (checked by prankster/(ability93))
 4 = 
 

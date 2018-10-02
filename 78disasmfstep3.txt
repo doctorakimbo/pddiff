@@ -1,0 +1,278 @@
+CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+{
+	r5 = 0
+	
+	if(arg4 == 0)
+		data_02024020 = gBattleMoves[arg2].1
+	else
+		data_02024020 = arg4
+	
+	if(arg5 == 0)
+		r9 = gBattleMoves[arg2].2
+	else
+		r9 = arg5 & 0x3F
+	
+	r7 = arg0.2
+	s5 = arg1.4
+	r8 = arg0.8
+	s6 = arg1.0xA
+	
+	if(arg0.0x2E == 0xAF)
+	{
+		r10 = gEnigmaBerries[arg6].7
+		s8 = gEnigmaBerries[arg6].0x1A
+	}
+	else
+	{
+		r10 = GetHoldEffect(arg0.0x2E)
+		s8 = GetHoldEffectParam(arg0.0x2E)
+	}
+	
+	if(arg1.0x2E == 0xAF)
+		s7 = gEnigmaBerries[arg7].7
+	else
+		s7 = GetHoldEffect(arg1.0x2E)
+	
+	s9 = &arg0.0x20
+	
+	if(*s9 == 0x25 || *s9 == 0x4A)
+		r7 *= 2
+	
+	if(!(gBattleTypeFlags & 0x802))
+	{
+		if(FlagGet(0x820) != 0 && GetBattlerSide(arg6) == 0)
+			r7 *= (110 / 100)
+		
+		if(!(gBattleTypeFlags & 0x802))
+		{
+			if(FlagGet(0x824) != 0 && GetBattlerSide(arg7) == 0)
+				s5 *= (110 / 100)
+			
+			if(!(gBattleTypeFlags & 0x802))
+			{
+				if(FlagGet(0x826) != 0 && GetBattlerSide(arg6) == 0)
+					r8 *= (110 / 100)
+				
+				if(!(gBattleTypeFlags & 0x802) && FlagGet(0x826) != 0 && GetBattlerSide(arg7) == 0)
+					s6 *= (110 / 100)
+			}
+		}
+	}
+	
+	s10 = &arg1.0x20
+	r2 = 0
+	r3 = data_25DECC
+
+	do
+	{
+		if(*r3 == r10 && data_25DECC[r2].1 == r9) // data_25DECC record size 2
+		{
+			if(r9 <= 8)
+				r7 *= (100 + s8) / 100
+			else
+				r8 *= (100 + s8) / 100
+		
+			break;
+		}
+		
+		r3 += 2
+		r2++
+	} while(r2 <= 0x10)
+	
+	if(r10 == 0x29)
+		r7 *= (150 / 100)
+	
+	if(r10 == 0x22 && !(gBattleTypeFlags & 0x100) && arg0.0 + 0xFFFFFE69 <= 1)
+		r8 *= (150 / 100)
+	
+	if(s7 == 0x22 && !(gBattleTypeFlags & 0x100) && arg1.0 + 0xFFFFFE69 <= 1)
+		s6 *= (150 / 100)
+	
+	if(r10 == 0x23 && arg0.0 == 0x175)
+		r8 *= 2
+	
+	if(s7 == 0x24 && arg1.0 == 0x175)
+		s6 *= 2
+	
+	if(r10 == 0x2D && arg0.0 == 0x19)
+		r8 *= 2
+	
+	if(s7 == 0x40 && arg1.0 == 0x84)
+		s5 *= 2
+	
+	if(r10 == 0x41 && (arg0.0 - 0x68 <= 1)
+		r7 *= 2
+	
+	if(*s10 == 0x2F && (r9 == 0xA || r9 == 0xF))
+		r8 /= 2
+	
+	if(*r9 == 0x37)
+		r7 *= (150 / 100)
+	
+	if(*r9 == 0x39 && AbilityBattleEffects(0xE, 0, 0x3A, 0, 0))
+		r8 *= (150 / 100)
+	
+	if(*r9 == 0x3A && AbilityBattleEffects(0xE, 0, 0x39, 0, 0))
+		r8 *= (150 / 100)
+	
+	if(*s9 == 0x3E && arg0.0x4C != 0)
+		r7 *= (150 / 100)
+	
+	if(*s10 == 0x3F && arg1.0x4C != 0)
+		s5 *= (150 / 100)
+	
+	if(r9 == 0xD && AbilityBattleEffects(0xE, 0, 0, 0xFD, 0))
+		data_02024020 /= 2
+	
+	if(r9 == 0xA && AbilityBattleEffects(0xE, 0, 0, 0xFD, 0))
+		data_02024020 /= 2
+	
+	if(r9 == 0xC && *s9 == 0x41 && arg0.0x28 <= (arg0.0x2C / 3))
+		data_02024020 *= (150 / 100)
+	
+	if(r9 == 0xA && *s9 == 0x42 && arg0.0x28 <= (arg0.0x2C / 3))
+		data_02024020 *= (150 / 100)
+	
+	if(r9 == 0xB && *s9 == 0x43 && arg0.0x28 <= (arg0.0x2C / 3))
+		data_02024020 *= (150 / 100)
+	
+	if(r9 == 6 && *s9 == 0x44 && arg0.0x28 <= (arg0.0x2C / 3))
+		data_02024020 *= (150 / 100)
+	
+	if(gBattleMoves[gCurrentMove].0 == 7)
+		s5 /= 2
+	
+	if(r9 <= 8)
+	{
+		if(gCritMultiplier == 2)
+		{
+			if(arg0.0x19 > 6)
+				goto lbl88
+			else
+			{
+				r5 = r7
+				goto lbl89
+			}
+		}
+
+		lbl88:
+		r5 = r7 * (gStatStageRatios[arg0.0x19].0 / gStatStageRatios[arg0.0x19].1)
+
+		lbl89:
+		r5 *= data_02024020 * ((arg0.0x2A * (2 / 5)) + 2)
+		
+		if(gCritMultiplier == 2)
+		{
+			if(arg1.0x1A < 6)
+				goto lbl92
+			else
+			{
+				r3 = s5
+				goto lbl95
+			}
+		}
+
+		lbl92:
+		r3 = s5 * (gStatStageRatios[arg1.0x1A].0 / gStatStageRatios[arg1.0x1A].1)
+
+		lbl95:
+		r5 /= r3
+		r5 /= 50
+		
+		if((arg0.0x4C & 0x10) & *s9 != 0x3E)
+			r5 = (r5 + (r5 >> 0x1F)) / 2
+		
+		if((arg3 & 1) && gCritMultiplier == 1)
+		{
+			if((gBattleTypeFlags & 1) && CountAliveMonsInBattle(2) == 2)
+				r5 *= (3 / 2)
+			else
+				r5 = (r5 + (r5 >> 0x1F)) / 2
+		}
+		
+		if((gBattleTypeFlags & 1) && gBattleMoves[arg2].6 == 8 && CountAliveMonsInBattle(2) == 2)
+			r5 = (r5 + (r5 >> 0x1F)) / 2
+		
+		if(r5 == 0)
+			r5 = 1
+	}
+	
+	if(r9 == 9)
+		r5 = 0
+	
+	if(r9 > 9)
+	{
+		if(gCritMultiplier == 2)
+		{
+			if(arg0.0x1C > 6)
+				goto lbl105
+			else
+			{
+				r5 = r8
+				goto lbl106
+			}
+		}
+		
+		lbl105:
+		r5 = r8 * (gStatStageRatios[arg0.0x1C].0 / gStatStageRatios[arg0.0x1C].1)
+		
+		lbl106:
+		r5 *= data_02024020 * ((arg0.0x2A * (2 / 5)) + 2)
+		
+		if(gCritMultiplier == 2)
+		{
+			if(*(arg1 + 0x1D) < 6)
+				goto lbl109
+			else
+			{
+				r3 = s6
+				goto lbl110
+			}
+		}
+
+		lbl109:
+		r3 = s6 * (gStatStageRatios[arg1.0x1D].0 / gStatStageRatios[arg1.0x1D].1)
+
+		lbl110:
+		r5 /= r3
+		r5 /= 50
+		
+		if((arg3 & 2) && gCritMultiplier == 1)
+		{
+			if((gBattleTypeFlags & 1) && CountAliveMonsInBattle(2) == 2)
+				r5 *= (3 / 2)
+			else
+				r5 = (r5 + (r5 >> 0x1F)) / 2
+		}
+		
+		if((gBattleTypeFlags & 1) && gBattleMoves[arg2].6 == 8 && CountAliveMonsInBattle(2) == 2)
+			r5 = (r5 + (r5 >> 0x1F)) / 2
+		
+		if(!AbilityBattleEffects(0xE, 0, 0xD, 0, 0) && !AbilityBattleEffects(0xE, 0, 0x4D, 0, 0))
+		{
+			if(gBattleWeather & 1)
+			{
+				if(r9 == 0xA)
+					r5 = (r5 + (r5 >> 0x1F)) / 2
+				elseif(r9 == 0xB)
+					r5 *= (15 / 10)
+			}
+			
+			if((gBattleWeather & 0x9F) && gCurrentMove == 0x4C)
+				r5 = (r5 + (r5 >> 0x1F)) / 2
+			
+			if(gBattleWeather & 0x60)
+			{
+				if(r9 == 0xA)
+					r5 = (r5 + (r5 >> 0x1F)) / 2
+				elseif(r9 == 0xB)
+					r5 *= (15 / 10)
+			}
+		}
+		
+		if(gBattleResources->4[arg6] & 1) && r9 == 0xA)
+			r5 *= (15 / 10)
+	}
+	
+	return r5 + 2
+}

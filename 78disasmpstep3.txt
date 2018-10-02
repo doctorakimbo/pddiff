@@ -1,41 +1,41 @@
 CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 {
 	if(arg4 == 0)
-		*data_02024020 = *((arg2 * 0xC) + gBattleMoves + 1)
+		data_02024020 = gBattleMoves[arg2].1
 	else
-		*data_02024020 = arg4
+		data_02024020 = arg4
 	
 	if(arg5 == 0)
-		r9 = *((arg2 * 0xC) + gBattleMoves + 2)
+		r9 = gBattleMoves[arg2].2
 	else
 		r9 = arg5 & 0x3F
 	
-	r7 = *(arg0 + 2)
-	r8 = *(arg0 + 8)
-	s5 = *(arg1 + 4)
-	s6 = *(arg1 + 0xA)
-	s9 = *(arg0 + 0x20)
-	s10 = *(arg1 + 0x20)
+	r7 = arg0.2
+	r8 = arg0.8
+	s5 = arg1.4
+	s6 = arg1.0xA
+	s9 = arg0.0x20
+	s10 = arg1.0x20
 	
-	if(*(arg0 + 0x20) == 0x67)
+	if(s9 == 0x67)
 		r10 = 0
 	else
 	{
-		s8 = GetHoldEffectParam(*(arg0 + 0x2E))
-		r10 = GetHoldEffect(*(arg0 + 0x2E))
+		s8 = GetHoldEffectParam(arg0.0x2E)
+		r10 = GetHoldEffect(arg0.0x2E)
 	}
 	
 	if(s10 == 0x67)
 		s7 = 0
 	else
 	{
-		s4 = GetHoldEffectParam(*(arg1 + 0x2E))
-		s7 = GetHoldEffect(*(arg1 + 0x2E))
+		s4 = GetHoldEffectParam(arg1.0x2E)
+		s7 = GetHoldEffect(arg1.0x2E)
 	}
 	
-	*data_02024020 *= *(gBattleScripting + 0xE)
+	data_02024020 *= gBattleScripting.0xE
 	
-	if(s9 == 0x65 && *data_02024020 <= 0x3C)
+	if(s9 == 0x65 && data_02024020 <= 60)
 	{
 		r0 = 0x96
 		goto lbl14
@@ -60,17 +60,17 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 	goto lbl14
 
 	lbl14:
-	*data_02024020 *= (r0 / 0x64)
+	data_02024020 *= (r0 / 0x64)
 	goto lbl15
 
 	lbl15:
-	if((*((arg6 * 4) + gStatuses3) & 0x200) && r9 == 0xD)
-		*data_02024020 *= 2
+	if((gStatuses3[arg6] & 0x200) && r9 == 0xD)
+		data_02024020 *= 2
 	
-	if((*((arg6 * 0x10) + gProtectStructs) << 0x1C) < 0)
-		*data_02024020 += (*data_02024020 / 2)
+	if((gProtectStructs[arg6] << 0x1C) < 0)
+		data_02024020 += (data_02024020 / 2)
 	
-	if(*((arg2 * 0xC) + gBattleMoves + 0xA) & 2)
+	if(gBattleMoves[arg2].0xA & 2)
 	{
 		if(r10 == 0x49) goto lbl21
 
@@ -87,7 +87,7 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 	if(HasItemWithTypeEffect(arg0, r9))
 	{
 		lbl21:
-		*data_02024020 *= (100 + s8) / 100
+		data_02024020 *= (100 + s8) / 100
 	}
 	
 	if(r10 == 0x45)
@@ -96,24 +96,24 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 	if(r10 == 0x44)
 		r8 += (r8 / 2)
 	
-	if(r10 == 0x22 && !(*gBattleTypeFlags & 0x100) && *arg0 - 0x197 <= 1)
+	if(r10 == 0x22 && !(gBattleTypeFlags & 0x100) && arg0.0 - 0x197 <= 1)
 		r8 += (r8 / 2)
 	
-	if(r10 == 0x23 && *arg0 == 0x175)
+	if(r10 == 0x23 && arg0.0 == 0x175)
 		r8 *= 2
 	
-	if(r10 == 0x2D && *arg0 == 0x19)
+	if(r10 == 0x2D && arg0.0 == 0x19)
 	{
 		r8 *= 2
 		r7 *= 2
 	}
 	
-	if(r10 == 0x41 && *arg0 - 0x68 <= 1)
+	if(r10 == 0x41 && arg0.0 - 0x68 <= 1)
 		r7 *= 2
 	
 	if(s7 == 0x52) goto lbl31
 
-	if(s7 == 0x53 && *((*arg1 * 0x28) + data_21615C_J + 4) != 0)
+	if(s7 == 0x53 && data_21615C_J[arg1].4 != 0) // data_21615C_J record size: 0x28
 	{
 		s5 += (s5 / 2)
 
@@ -121,28 +121,28 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 		s6 += (s6 / 2)
 	}
 	
-	if(s7 == 0x22 && *gBattleTypeFlags == 0 && *arg1 - 0x197 <= 1)
+	if(s7 == 0x22 && gBattleTypeFlags == 0 && arg1.0 - 0x197 <= 1)
 		s6 += (s6 / 2)
 	
-	if(s7 == 0x24 && *arg1 == 0x175)
+	if(s7 == 0x24 && arg1.0 == 0x175)
 		s6 += (s6 / 2)
 	
-	if(s7 == 0x40 && *arg1 == 0x84)
+	if(s7 == 0x40 && arg1.0 == 0x84)
 		s5 += (s5 / 2)
 	
 	if(s9 != 0x68 && s9 - 0xA3 > 1)
 	{
 		if((s10 == 0x55 && r9 == 0xA) || (s10 == 0x2F && r9 == 0xF))
-			*data_02024020 /= 2
+			data_02024020 /= 2
 			
 		if(s10 == 0x57 && r9 == 0xA)
-			*data_02024020 += (*data_02024020 / 4)
+			data_02024020 += (data_02024020 / 4)
 		
-		if(s10 == 0x3F && *(arg1 + 0x4C) != 0)
+		if(s10 == 0x3F && arg1.0x4C != 0)
 			goto lbl41
 
 		lbl40:
-		if(s10 == 0xAC && *data_02022B50 <= 1)
+		if(s10 == 0xAC && data_02022B50 <= 1)
 		{
 			lbl41:
 			s5 += (s5 / 2)
@@ -177,22 +177,22 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 
 		lbl44:
 		if(AbilityBattleEffects(0xE, 0, r2, r3, 0))
-			*data_02024020 *= (r4 / r5)
+			data_02024020 *= (r4 / r5)
 	}
 	
-	if(s9 == 0x81 && *(arg0 + 0x28) < (*(arg0 + 0x2C) / 2))
+	if(s9 == 0x81 && arg0.0x28 < (arg0.0x2C / 2))
 		r8 /= 2
 	
-	if(s9 == 0x70 && *((s11 * 0x1C) + gDisableStructs + 0x18) != 0)
+	if(s9 == 0x70 && gDisableStructs[arg6].0x18 != 0)
 		r7 /= 2
 	
-	if(s9 == 0x37 || (s9 == 0x3E && *(arg0 + 0x4C) != 0))
+	if(s9 == 0x37 || (s9 == 0x3E && arg0.0x4C != 0))
 		r7 += (r7 / 2)
 	
-	if((s9 == 0x39 || s9 == 0x3A) && (AbilityBattleEffects(0x12, s11, 0x39, 0, 0) || AbilityBattleEffects(0x12, s11, 0x3A, 0, 0)))
+	if((s9 == 0x39 || s9 == 0x3A) && (AbilityBattleEffects(0x12, arg6, 0x39, 0, 0) || AbilityBattleEffects(0x12, arg6, 0x3A, 0, 0)))
 		r8 += (r8 / 2)
 	
-	if(*((arg2 * 0xC) + gBattleMoves + 0xA) & 2)
+	if(gBattleMoves[arg2].0xA & 2)
 	{
 		r1 = 0x8A
 		r3 = 0x10
@@ -209,13 +209,13 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 		}
 	}
 	
-	if(s9 == r1 && (*(arg0 + 0x4C) & r3))
+	if(s9 == r1 && (arg0.0x4C & r3))
 	{
 		r0 = 0x96
 		goto lbl74
 	}
 	
-	if(((s9 == 0x41 && r9 == 0xC) || (s9 == 0x42 && r9 == 0xA) || (s9 == 0x43 && r9 == 0xB) || (s9 == 0x44 && r9 == 6)) && *(arg0 + 0x28) <= (*(arg0 + 0x2C) / 3))
+	if(((s9 == 0x41 && r9 == 0xC) || (s9 == 0x42 && r9 == 0xA) || (s9 == 0x43 && r9 == 0xB) || (s9 == 0x44 && r9 == 6)) && arg0.0x28 <= (arg0.0x2C / 3))
 	{
 		r0 = 0x96
 		goto lbl74
@@ -223,12 +223,12 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 	
 	if(s9 == 0x94)
 	{
-		if(*gBattleTypeFlags & 1)
+		if(gBattleTypeFlags & 1)
 			r0 = CountAliveMonsInBattle(0)
 		else
 			r0 = 2
 		
-		if(r0 - 1 <= *gCurrentTurnActionNumber)
+		if(r0 - 1 <= gCurrentTurnActionNumber)
 		{
 			r0 = 0x82
 			goto lbl74
@@ -237,12 +237,12 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 	
 	if(s9 == 0x4F)
 	{
-		r0 = GetGenderFromSpeciesAndPersonality(*arg1, *(arg1 + 0x48))
+		r0 = GetGenderFromSpeciesAndPersonality(arg1.0, arg1.0x48)
 		
 		if(r0 != 0xFF)
 		{
 			r4 = r0
-			r0 = GetGenderFromSpeciesAndPersonality(*arg0, *(arg0 + 0x48))
+			r0 = GetGenderFromSpeciesAndPersonality(arg0.0, arg0.0x48)
 			
 			if(r0 != 0xFF)
 			{
@@ -258,42 +258,42 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 	
 	if(s9 == 0xA8)
 	{
-		r2 = *((arg2 * 0xC) + gBattleMoves + 8)
+		r2 = gBattleMoves[arg2].8
 		r1 = 1
 		r0 = 0x82
 		goto lbl73
 	}
 	elseif(s9 == 0x7D)
 	{
-		r2 = *((arg2 * 0xC) + gBattleMoves + 0xB)
+		r2 = gBattleMoves[arg2].0xB
 		r1 = 1
 		r0 = 0x82
 		goto lbl73
 	}
 	elseif(s9 == 0x78)
 	{
-		r2 = *((arg2 * 0xC) + gBattleMoves + 9)
+		r2 = gBattleMoves[arg2].9
 		r1 = 0x80
 		r0 = 0x78
 		goto lbl73
 	}
 	elseif(s9 == 0x59)
 	{
-		r2 = *((arg2 * 0xC) + gBattleMoves + 9)
+		r2 = gBattleMoves[arg2].9
 		r1 = 0x10
 		r0 = 0x78
 		goto lbl73
 	}
 	elseif(s9 == 0xAA)
 	{
-		r2 = *((arg2 * 0xC) + gBattleMoves + 9)
+		r2 = gBattleMoves[arg2].9
 		r1 = 0x20
 		r0 = 0x96
 		goto lbl73
 	}
 	elseif(s9 == 0xBC)
 	{
-		r2 = *((arg2 * 0xC) + gBattleMoves + 9)
+		r2 = gBattleMoves[arg2].9
 		r1 = 0x40
 		r0 = 0x96
 		goto lbl73
@@ -305,21 +305,21 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 	if(r1 & r2)
 	{
 		lbl74:
-		*data_02024020 *= (r0 / 0x64)
+		data_02024020 *= (r0 / 0x64)
 	}
 
 	lbl75:
 	if(!AbilityBattleEffects(0xE, 0, 0xD, 0, 0) && !AbilityBattleEffects(0xE, 0, 0x4D, 0, 0))
 	{
-		if(*gBattleWeather & 0xC)
+		if(gBattleWeather & 0xC)
 		{
-			if(*(arg1 + 0x21) == 5 || *(arg1 + 0x22) == 5)
+			if(arg1.0x21 == 5 || arg1.0x22 == 5)
 				s6 += (s6 / 2)
 			
 			if(s9 == 0x9F && (r9 == 4 || r9 == 5 || r9 == 8))
-				*data_02024020 = (130 / 100)
+				data_02024020 = (130 / 100)
 		}
-		elseif(*gBattleWeather & 0x30)
+		elseif(gBattleWeather & 0x30)
 		{
 			if(s9 == 0x5E)
 				r8 += (r8 / 2)	
@@ -332,7 +332,7 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 		}
 	}
 	
-	if(*((arg2 * 0xC) + gBattleMoves + 0xA) & 2)
+	if(gBattleMoves[arg2].0xA & 2)
 	{
 		r5 = r8
 		r0 = 0x1C
@@ -343,12 +343,12 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 		r0 = 0x19
 	}
 	
-	if(s9 != 0x68 && s9 - 0xA3 > 1 && s10 == 0x6D && (*gCritMultiplier == 1 || *(arg0 + r0) > 6))
-		r5 *= (*((*(arg0 + r0) * 2) + gStatStageRatios) / *((*(arg0 + r0) * 2) + gStatStageRatios + 1))
+	if(s9 != 0x68 && s9 - 0xA3 > 1 && s10 == 0x6D && (gCritMultiplier == 1 || arg0.r0 > 6))
+		r5 *= (gStatStageRatios[arg0.r0].0 / gStatStageRatios[arg0.r0].1)
 	
-	r5 *= *data_02024020 * ((*(arg0 + 0x2A) * (2 / 5)) + 2)
+	r5 *= data_02024020 * ((arg0.0x2A * (2 / 5)) + 2)
 	
-	r0 = (*((arg2 * 0xC) + gBattleMoves + 0xA) & 1)
+	r0 = (gBattleMoves[arg2].0xA & 1)
 	
 	if(*data_02023F1F != 0)
 		r0 ^= 1
@@ -364,23 +364,23 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 		r0 = 0x1A
 	}
 
-	if(s9 != 0x6D && (*gCritMultiplier == 1 || *(arg1 + r0) < 6))
-		r1 *= (*((*(arg1 + r0) * 2) + gStatStageRatios) / *((*(arg1 + r0) * 2) + gStatStageRatios + 1))
+	if(s9 != 0x6D && (gCritMultiplier == 1 || *(arg1 + r0) < 6))
+		r1 *= (gStatStageRatios[arg1.r0].0 / gStatStageRatios[arg1.r0].1)
 	
 	r5 /= r1
 	r5 /= 50
-	r7 = (*gBattleTypeFlags & 1)
+	r7 = (gBattleTypeFlags & 1)
 	r3 = 2
 	
-	if(!(*((arg2 * 0xC) + gBattleMoves + 0xA) & 2))
+	if(!(gBattleMoves[arg2].0xA & 2))
 	{
 		r3 = 1
 		
-		if(s9 != 0x3E && ((*(arg0 + 0x4C) & 0x10))
+		if(s9 != 0x3E && ((arg0.0x4C & 0x10))
 			r5 /= 2
 	}
 	
-	if(s9 != 0x97 && (arg3 & r3) && *gCritMultiplier == 1)
+	if(s9 != 0x97 && (arg3 & r3) && gCritMultiplier == 1)
 	{
 		if(r7 != 0 && CountAliveMonsInBattle(2) == 2)
 			r5 *= (2 / 3)
@@ -393,14 +393,14 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 		r7 = 1
 		r0 = 2
 		
-		if(*((arg2 * 0xC) + gBattleMoves + 6) == 8) goto lbl99
+		if(gBattleMoves[arg2].6 == 8) goto lbl99
 
-		if(*((arg2 * 0xC) + gBattleMoves + 6) == 0x32)
+		if(gBattleMoves[arg2].6 == 0x32)
 		{
 			r7 = 2
 			r0 = 0
 			
-			if(*((arg2 * 0xC) + gBattleMoves) == 7)
+			if(gBattleMoves[arg2].0 == 7)
 				r7 = 3
 
 			lbl99:
@@ -411,7 +411,7 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 	
 	if(!AbilityBattleEffects(0xE, 0, 0xD, 0, 0) && !AbilityBattleEffects(0xE, 0, 0x4D, 0, 0))
 	{
-		if(*gBattleWeather & 3)
+		if(gBattleWeather & 3)
 		{
 			if(r9 == 0xA)
 				r5 /= 2
@@ -420,10 +420,10 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 				r5 += (r5 / 2)
 		}
 		
-		if((*gBattleWeather & 0xCF) && *gCurrentMove == 0x4C)
+		if((gBattleWeather & 0xCF) && gCurrentMove == 0x4C)
 			r5 *= 2
 		
-		if(*gBattleWeather & 0x30)
+		if(gBattleWeather & 0x30)
 		{
 			if(r9 == 0xB)
 				r5 /= 2
@@ -433,7 +433,7 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 		}
 	}
 	
-	if((*((arg6 * 4) + *(*gBattleResources + 4)) & 1) && r9 == 0xA)
+	if((gBattleResources->4[arg6] & 1) && r9 == 0xA)
 		r5 += (r5 / 2)
 	
 	r5 += 2
@@ -443,10 +443,10 @@ CalculateBaseDamage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 		if(GetAbilityUserOnSameSide(arg7, 0x84))
 			r5 += (r5 / 4)
 		
-		if(s10 == 0x88 && *(arg1 + 0x2C) == *(arg1 + 0x28))
+		if(s10 == 0x88 && arg1.0x28 == arg1.0x2C)
 			r5 /= 2
 		
-		if(s10 == 0xB3 && !(*((arg2 * 0xC) + gBattleMoves + 0xA) & 2))
+		if(s10 == 0xB3 && !(gBattleMoves[arg2].0xA & 2))
 			r5 /= 2
 	}
 	
