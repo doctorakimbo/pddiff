@@ -18,7 +18,7 @@ A0 0B 06 09
 abilities:
 + 0x4C = Tangled Feet
 + 0x4E = Motor Drive
-- 0x4F = Rivalry
++ 0x4F = Rivalry
 + 0x50 = Steadfast
 + 0x51 = Snow Cloak
 + 0x52 = Gluttony
@@ -28,7 +28,7 @@ abilities:
 + 0x56 = Simple
 + 0x57 = Dry Skin
 + 0x58 = Download
-- 0x59 = (boosts extraFlags & 0x10 moves by 20%)
+= 0x59 = Iron Fist/Reckless (boosts extraFlags & 0x10 moves by 20%)
 + 0x5A = Poison Heal
 + 0x5B = Adaptability
 + 0x5C = Skill Link
@@ -40,7 +40,7 @@ abilities:
 + 0x62 = Magic Guard
 + 0x63 = No Guard
 + 0x64 = Stall
-- 0x65 = Technician
++ 0x65 = Technician
 + 0x66 = Leaf Guard
 + 0x67 = Klutz
 + 0x68 = Mold Breaker
@@ -59,19 +59,19 @@ abilities:
 + 0x75 = Snow Warning
 + 0x76 = Honey Gather
 + 0x77 = Frisk
-= 0x78 = (boosts extraFlags & 0x80 moves by 20%)
-- 0x7A = Flower Gift
+= 0x78 = Reckless/Iron Fist (boosts extraFlags & 0x80 moves by 20%)
++ 0x7A = Flower Gift
 + 0x7D = Sheer Force
 + 0x7E = Contrary
 + 0x7F = Unnerve
-- 0x81 = Defeatist
++ 0x81 = Defeatist
 + 0x82 = Cursed Body
 + 0x83 = Healer
-- 0x84 = Friend Guard
++ 0x84 = Friend Guard
 + 0x85 = Weak Armor
-- 0x88 = Multiscale
-- 0x89 = Toxic Boost
-- 0x8A = Flare Boost
++ 0x88 = Multiscale
++ 0x89 = Toxic Boost
++ 0x8A = Flare Boost
 + 0x8C = Telepathy
 + 0x8D = Moody
 + 0x8E = Overcoat
@@ -80,7 +80,7 @@ abilities:
 + 0x91 = Big Pecks
 + 0x92 = Sand Rush
 = 0x93 = (lowers moves with typeFlags2 & 4 to 60% accuracy)
-- 0x94 = Analytic
++ 0x94 = Analytic
 + 0x96 = Imposter
 + 0x97 = Infiltrator
 + 0x98 = Mummy
@@ -96,24 +96,24 @@ abilities:
 = 0xA3 = Turboblaze/Teravolt
 = 0xA4 = Teravolt/Turboblaze
 + 0xA5 = Aroma Veil
-- 0xA6 = Aura Break
-- 0xA8 = Tough Claws
-- 0xAA = (boosts extraFlags & 0x20 moves by 50%)
-- 0xAC = Grass Pelt
++ 0xA6 = Aura Break
++ 0xA8 = Tough Claws
+= 0xAA = Mega Launcher/Strong Jaw (boosts extraFlags & 0x20 moves by 50%)
++ 0xAC = Grass Pelt
 + 0xAD = Sweet Veil
 + 0xAE = Aerilate
-- 0xAF = Dark Aura
++ 0xAF = Dark Aura
 + 0xB0 = Gooey
 + 0xB2 = Gale Wings
-- 0xB3 = Fur Coat
-- 0xB4 = Fairy Aura
++ 0xB3 = Fur Coat
++ 0xB4 = Fairy Aura
 + 0xB5 = Pixilate
 + 0xB6 = Flower Veil
 + 0xB7 = Refrigerate
 + 0xB8 = Protean
 + 0xB9 = Bulletproof
 + 0xBA = Cheek Pouch
-- 0xBC = (boosts extraFlags & 0x40 moves by 20%)
+= 0xBC = Strong Jaw/Mega Launcher (boosts extraFlags & 0x40 moves by 20%)
 + 0xC0 = Stamina
 + 0xC3 = Compaction
 + 0xCA = Slush Rush
@@ -125,16 +125,16 @@ abilities:
 
 (old kid: 16F8C4, old item: 0x125, route 4, fix wildmons route15)
 item effects:
-= typebooster IDs: (if effectparam = 0, type-resist berries; if effectparam >= 30, Gems; otherwise typeboosters as normal)
-= 0x1D = "Polkadot Bow"
++ typebooster IDs: (if effectparam = 0, type-resist berries; if effectparam >= 30, Gems; otherwise typeboosters as normal)
++ 0x1D = "Polkadot Bow"
 + 0x2B = Leftovers if effectparam is 0xFF, otherwise Black Sludge (effectparam = type that heals)
 + 0x43 = Focus Sash
 + 0x44 = Choice Specs
 + 0x45 = Choice Band
 + 0x46 = Choice Scarf
 + 0x47 = Wide Lens
-- 0x48 = Muscle Band
-- 0x49 = Wise Glasses
++ 0x48 = Muscle Band (effectparam = % boost)
++ 0x49 = Wise Glasses (effectparam = % boost)
 + 0x4A = Lagging Tail
 + 0x4B = weather rocks (effectparam = weather ID)
 + 0x4C = Expert Belt
@@ -144,7 +144,7 @@ item effects:
 + 0x50 = Light Clay
 + 0x51 = Big Root
 + 0x52 = Assault Vest
-- 0x53 = Eviolite
++ 0x53 = Eviolite
 + 0x54 = Life Orb (effectparam = 1/X HP lost)
 
 item IDs:
@@ -666,11 +666,11 @@ grafics:
   03EB52: 40 00 40 18 01 88 0D 48 08 40 -> 80 00 40 18 40 88 00 00 00 00
 		  Implements: Part of gLevelUpLearnsets refactor
 = 03ECEC: Entirety of CalculateBaseDamage (see 78disasm)
-		  Implements: modern Plus/Minus, Rivalry, Heatproof (fire moves), Dry Skin (fire moves), (ability59), Solar Power (boost), Normalize (boost), Technician, Klutz (damage-boosting items), Mold Breaker (damage-reduction abilities, Unaware), Unaware (atk/def/spa/spd), Slow Start (Attack reduction), (ability78), Flower Gift (stat boosts), Sheer Force (boost), Defeatist, Friend Guard, Multiscale, Toxic Boost, Flare Boost, Analytic, Infiltrator (dual screens), Sand Force, Aura Break, Tough Claws, (abilityAA), Grass Pelt, Aerilate (boost), Dark Aura, Fur Coat, Fairy Aura, Pixilate (boost), Refrigerate (boost), (abilityBC), Galvanize (boost), "Polkadot Bow", Gems (boost), Choice Specs (boost), Muscle Band, Wise Glasses, Assault Vest (boost), Eviolite, Life Orb (boost), Wonder Room (effect), sandstorm Rock SpDef boost, modern spread reduction
+		  Implements: modern Plus/Minus, Rivalry, Heatproof (fire moves), Dry Skin (fire moves), Iron Fist, Solar Power (boost), Normalize (boost), Technician, Klutz (damage-boosting items), Mold Breaker (damage-reduction abilities, Unaware), Unaware (atk/def/spa/spd), Slow Start (Attack reduction), Reckless, Flower Gift (stat boosts), Sheer Force (boost), Defeatist, Friend Guard, Multiscale, Toxic Boost, Flare Boost, Analytic, Infiltrator (dual screens), Sand Force, Aura Break, Tough Claws, Mega Launcher, Grass Pelt, Aerilate (boost), Dark Aura, Fur Coat, Fairy Aura, Pixilate (boost), Refrigerate (boost), Strong Jaw, Galvanize (boost), "Polkadot Bow", Gems (boost), Choice Specs (boost), Muscle Band, Wise Glasses, Assault Vest (boost), Eviolite, Life Orb (boost), Wonder Room (effect), sandstorm Rock SpDef boost, modern spread reduction
 		  Relies on: weather refactor, BattleMove refactor, GetAbilityUserOnSameSide, HasItemWithTypeEffect
 		  Requires in future: AteAbilityConversionTable (j168CB4)
 		  Note: is that how spread reduction works? (only reduced if max targets exist)
-		  
+= 
 		  
 		  
 		  
@@ -680,5 +680,5 @@ grafics:
 		  
 		  
 
-curr: j3E458-j3ED20
-next: j3F4D0
+curr: j3F4D0-j3F500
+next: j3F7A8
