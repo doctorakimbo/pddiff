@@ -1,0 +1,38 @@
+lblx: @3F7A6
+r0 = *(r5 + 2)
+r0 <<= 0x15
+r4 = r0 >> 0x1C
+goto lbl(3FA50)
+
+lbly: @3F7AE
+r0 = *(r5 + 3)
+goto lblzf
+
+lblzf: @3F86C
+r0 <<= 0x19
+r4 = r0 >> 0x1C
+goto lbl(3FA50)
+
+(3FA50) = 4035C
+return r4
+
+
+lblx: with r5[2] = fedc ba98 7654 3210, return a987 (metGame)
+lbly: with r5[3] = fedc ba98, return edcb (pokeball)
+
+
+
+
+
+
+lbl2x: @3FF34
+*(r5 + 2) = (*(r5 + 2) & 0xFFFFF87F) | ((*r4 & 0xF) << 7)
+goto lbl(401CE)
+
+lbl2y: @3FF4C
+*(r5 + 3) = (*(r5 + 3) & 0xFFFFFF87) | ((*r4 & 0xF) << 3)
+goto lbl(401CE)
+
+
+lbl2x: r4 = fedc ba98 7654 3210 -> get 3210 -> becomes ____ _321 0___ ____; r5[2] = fedc ba98 7654 3210 -> get fedc b___ _654 3210
+lbl2y: r4 = fedc ba98 7654 3210 -> get 3210 -> becomes ____ ____ _321 0___; r5[3] = fedc ba98 7654 3210 -> get fedc ba98 7___ _210

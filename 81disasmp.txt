@@ -1,0 +1,267 @@
+lbl1: @40284
+r8 = r0
+r0 = 0x4037
+fn_6E568()
+fn_CC79C()
+fn_8B9F4()
+r5 = r0
+goto lbl2
+
+lbl2:
+r6 = 0
+r7 = r5 << 0x18
+goto lbl3
+
+lbl3:
+r1 = r6
+r0 = r7 >> 0x18
+fn_8BD30()
+r4 = 0
+r0 = *(r4 + 0x24)
+if(r0 != 0) goto lbl5
+
+r0 = r8
+r1 = r4
+fn_3C5FA0_J()
+r0 = data_020370D6
+*r0 = r5
+r0 = data_020370D8
+*r0 = r6
+fn_CC7A8()
+if(r0 == r5) goto lbl4
+
+r0 = 0x843
+fn_6E6A8()
+goto lbl4
+
+lbl4:
+r1 = r5
+r0 = 0x4037
+fn_6E584()
+r0 = 1
+goto lbl7
+
+lbl5:
+r6++
+if(r6 <= 0x1D) goto lbl3
+
+r5++
+if(r5 != 0x17) goto lbl6
+
+r5 = 0
+goto lbl6
+
+lbl6:
+fn_8B9F4()
+if(r5 != r0) goto lbl2
+
+r0 = 2
+goto lbl7
+
+lbl7:
+return r0
+
+
+
+
+
+
+
+fn_3C5FA0_J:
+r4 = r0
+r5 = r1
+r1 = 0
+GetBoxMonData()
+*r5 = r0
+r0 = r4
+r1 = 1
+GetBoxMonData()
+*(r5 + 4) = r0
+r0 = r4
+r1 = 2
+r2 = 0xC
+r2 += r5
+GetBoxMonData()
+r0 = r4
+r1 = 0x27
+GetBoxMonData()
+r6 = r0
+r0 = r4
+r1 = 0x28
+GetBoxMonData()
+r0 <<= 5
+r6 |= r0
+r0 = r4
+r1 = 0x29
+GetBoxMonData()
+r0 <<= 0xA
+r6 |= r0
+r0 = r4
+r1 = 0x2A
+GetBoxMonData()
+r0 <<= 0xF
+r6 |= r0
+r0 = r4
+r1 = 0x2B
+GetBoxMonData()
+r0 <<= 0x14
+r6 |= r0
+r0 = r4
+r1 = 0x2C
+GetBoxMonData()
+r0 <<= 0x19
+r6 |= r0
+r0 = r4
+r1 = 0x2D
+GetBoxMonData()
+r0 <<= 0x1E
+r6 |= r0
+r0 = r4
+r1 = 0x2E
+GetBoxMonData()
+r7 = r0
+r0 <<= 0x1F
+r6 |= r0
+r0 = 8
+r0 += r5
+*r0 = r6
+r0 = r4
+r1 = 0x15
+GetBoxMonData()
+r1 = 0x13
+r1 += r5
+*r1 = r0
+r0 = r4
+r1 = 0x20
+GetBoxMonData()
+r1 = 0x14
+r1 += r5
+*r1 = r0
+r0 = r4
+r1 = 0x23
+GetBoxMonData()
+r1 = 0x15
+r1 += r5
+*r1 = r0
+r0 = r4
+r1 = 0x24
+GetBoxMonData()
+r1 = 0x16
+r1 += r5
+*r1 = r0
+r0 = r4
+r1 = 0x26
+GetBoxMonData()
+r1 = 0x17
+r1 += r5
+*r1 = r0
+r0 = r4
+r1 = 0x1A
+GetBoxMonData()
+r1 = 0x18
+r1 += r5
+*r1 = r0
+r0 = r4
+r1 = 0x1B
+GetBoxMonData()
+r1 = 0x19
+r1 += r5
+*r1 = r0
+r0 = r4
+r1 = 0x1C
+GetBoxMonData()
+r1 = 0x1A
+r1 += r5
+*r1 = r0
+r0 = r4
+r1 = 0x1D
+GetBoxMonData()
+r1 = 0x1B
+r1 += r5
+*r1 = r0
+r0 = r4
+r1 = 0x1E
+GetBoxMonData()
+r1 = 0x1C
+r1 += r5
+*r1 = r0
+r0 = r4
+r1 = 0x1F
+GetBoxMonData()
+r1 = 0x1D
+r1 += r5
+*r1 = r0
+r0 = r4
+r1 = 7
+r2 = 0x1E
+r2 += r5
+GetBoxMonData()
+r0 = r4
+r1 = 0xB
+GetBoxMonData()
+r1 = 0x24
+r1 += r5
+*r1 = r0
+r0 = r4
+r1 = 0xC
+GetBoxMonData()
+r6 = r0
+r0 = r4
+r1 = 8
+GetBoxMonData()
+r0 <<= 0xC
+r6 |= r0
+r2 = 0x26
+r2 += r5
+*r2 = r6
+r0 = r4
+r1 = 0xD
+GetBoxMonData()
+r6 = r0
+r0 = r4
+r1 = 0xE
+GetBoxMonData()
+r0 <<= 0xA
+r6 |= r0
+r0 = r4
+r1 = 0xF
+GetBoxMonData()
+r0 <<= 0x14
+r6 |= r0
+r0 = r4
+r1 = 0x10
+GetBoxMonData()
+r1 = r0 << 0x1E
+r6 |= r1
+r1 = 0x28
+r1 += r5
+*r1 = r6
+r0 >>= 2
+*(r1 + 4) = r0
+r0 = r4
+r1 = 0x19
+GetBoxMonData()
+r6 = r0
+r0 = r4
+r1 = 0x22
+GetBoxMonData()
+r0 <<= 0x15
+r6 |= r0
+r0 = r7
+if(r0 != 2) goto lbl2
+
+r0 <<= 0x16
+r6 |= r0
+goto lbl2
+
+lbl2:
+r1 = 0x2D
+r1 += r5
+r2 = r6
+*r1 = r2
+r2 = r6 >> 8
+*(r1 + 1) = r2
+r6 >>= 0x10
+*(r1 + 2) = r6
+r0 = r5
+return r0

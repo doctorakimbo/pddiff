@@ -1,0 +1,50 @@
+lbl1: @401FC
+r3 = fn_A23AE0_J
+goto r3
+return
+
+
+
+
+
+fn_A23AE0_J:
+(stack) = (return value)
+r3 = memcpy
+CallFarFn()
+if(r7 != 0x64) goto lbl3
+
+r3 = gLastUsedItemType
+r3 = *r3
+if(r3 != 0x10) goto lbl3
+
+r3 = gPlayerPartyCount
+r1 = *r3
+r10 = r1
+r1 = 1
+*r3 = r1
+r3 = lbl2
+(stack) = r3
+
+r1 = 0
+r8 = r1
+r1 = r0
+r10 = r1
+r6 = &s0
+r3 = fn_A134E_J
+goto lbl2
+
+lbl2:
+CallFarFn()
+r3 = gPlayerPartyCount
+r1 = r10
+*r3 = r1
+
+lbl3: 
+r3 = (stack)
+CallFarFn()
+
+
+
+
+CallFarFn: @A23B26_J
+goto r3

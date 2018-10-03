@@ -89,6 +89,8 @@ FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
 3C 43 02 02: 9C 42 02 02: gPlayerParty[1].level
 		   : 47 6D 03 02: ?????? (atkEF_handleballthrow: Dusk Ball boosted if this is 4) (gTileset?)
 		   : 6C 6D 03 02: ?????? (atkEF_handleballthrow: Lure Ball boosted if this is 1) (gIsPlayerFishing?)
+D6 70 03 02: 0A 70 03 02: ??????
+D8 70 03 02: 0C 70 03 02: ??????
 		   : E2 85 03 02: ?????? (CreateNPCTrainerParty: checked if less than 0x2E6, if so, used as an index to copy data from table data_09400000_J into gEnemyParty)
 								 (CanUseNewAI: used as an index into gTrainers)
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
@@ -222,9 +224,11 @@ funcs e,j,desc:
 03F5B4 = 03ED20 = CountAliveMonsInBattle
 03F730 = 03EE9C = GetBoxMonGender
 03F78C = 03EEF8 = GetGenderFromSpeciesAndPersonality
+03F940 = 03F0AC = GetSubstruct
 03FBE8 = 03F354 = GetMonData
 03FD44 = 03F4B0 = GetBoxMonData
 04037C = 03FA70 = SetMonData
+040B08 = 0401FC = CopyMon
 040C3C = 040330 = CalculatePlayerPartyCount
 040D7C = 040470 = GetMonAbility
 04101C = 04070C = CalculatePPWithBonus
@@ -232,8 +236,12 @@ funcs e,j,desc:
 043A70 = CheckPartyPokerus
 043AD8 = CheckPartyHasHadPokerus
 044234 = 04387C = GetFlavorRelationByPersonality
+0442D8 = 043920 = ?????
 044EC8 = 04448C = Random
 06E454 = 06DC48 = GetVarPointer
+06E568 = 06DD5C = ?????
+06E584 = 06DD78 = ?????
+06E6A8 = 06DE9C = ?????
 06E6D0 = 06DEC4 = FlagGet
 0703EC = 06FB90 = LoadPalette
 070E44 = BeginFastPaletteFade
@@ -243,11 +251,15 @@ funcs e,j,desc:
 0751E8 = 07498C = GetBattlerAtPosition
 07AF98 = 07A6F8 = weather_get_current
 088E8C = 088A68 = pokedex_count
+08B9F4 = 08B490 = ?????
+08BD30 = 08B7CC = ?????
 099F40 = 099948 = CheckBagHasItem
 09A924 = 09A330 = GetHoldEffect
 09A948 = 09A354 = GetHoldEffectParam
 0C71D0 = 0C83AC = RecordAbilityBattle
 0C7208 = 0C83E4 = RecordItemEffectBattle
+0CC79C = 0CD914 = ?????
+0CC7A8 = 0CD920 = ?????
 0D87BC = 0D980C = BattlePutTextOnWindow
 12E51C = 12ED24 = box_print
 1E3B9C = square root
@@ -255,7 +267,7 @@ funcs e,j,desc:
 1E4018 = 1C7F38 = division
 1E460C = 1C852C = division
 1E4684 = 1C85A4 = modulus
-1E5E78 = 1C9D98 = ?????
+1E5E78 = 1C9D98 = memcpy
 1E5ED8 = 1C9DF8 = ?????
 
 014D4A = 01456A = GetSpeedStat

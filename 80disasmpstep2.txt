@@ -1,0 +1,49 @@
+CopyMon(dest, src, size)
+{
+	fn_A23AE0_J(dest, src, size)
+}
+
+
+
+
+
+fn_A23AE0_J(dest, src, size)
+{
+	memcpy(dest, src, size)
+	
+	if(r7 == 0x64 && *gLastUsedItemType == BALL_TYPE_HEAL_BALL)
+	{
+		r10 = *gPlayerPartyCount
+		*gPlayerPartyCount = 1
+		
+		(fakefnstart)
+		(return value) = lbl2
+		r8 = 0
+		r10 = dest // doesn't affect previous r10
+		r6 = &s0
+		goto loc_A0076 // inside sp000_heal_pokemon
+		
+		lbl2:
+		*gPlayerPartyCount = r10
+	}
+}
+
+
+
+
+
+
+
+fake:
+r8 = 0
+r10 = dest
+r6 = &s0
+goto loc_A0076
+
+real:
+r8 = 0
+if(r8 bcs *gPlayerPartyCount) return
+
+r10 = gPlayerParty
+r6 = &s0
+goto loc_A0076

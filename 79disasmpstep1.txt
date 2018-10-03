@@ -1,0 +1,43 @@
+GetBoxMonData(arg0, arg1, arg2)
+{
+	r8 = r0
+	s0 = r1
+	r7 = r2
+	r4 = 0
+	r8 = r4
+	r10 = r4
+	r6 = 0
+	r5 = 0
+
+	if(r1 > 0xA) 
+	{
+		s0 = r0
+		r0 = *r0 % 0x18
+		r1 = s0
+		s0 = r0
+		r8 = fn_206776_J(r1, s0, 0)
+		r10 = fn_206776_J(r9, s0, 1)
+		r6 = fn_206776_J(r9, s0, 2)
+		r5 = fn_206776_J(r9, s0, 3)
+		goto lbl_+50
+		...
+	}
+
+	goto lbl_+7E
+	...
+
+
+
+
+
+
+
+
+fn_206776_J(arg0, arg1, arg2)
+{
+	r5 = r0
+	r0 = r1
+	r4 = r2
+	r6 = 0
+	goto loc_3F0BE
+	...

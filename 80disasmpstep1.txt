@@ -1,0 +1,74 @@
+CopyMon(dest, src, size)
+{
+	fn_A23AE0_J(dest, src, size)
+}
+
+
+
+
+
+fn_A23AE0_J(dest, src, size)
+{
+	(stack) = (return value)
+	memcpy(dest, src, size)
+	
+	if(r7 == 0x64)
+	{
+		r3 = gLastUsedItemType
+		r3 = *r3
+		
+		if(r3 == 0x10)
+		{
+			r3 = gPlayerPartyCount
+			r1 = *r3
+			r10 = r1
+			r1 = 1
+			*r3 = r1
+			r3 = lbl2
+			(stack) = r3
+
+			(fakefnstart)
+			r1 = 0
+			r8 = r1
+			r1 = dest
+			r10 = r1
+			r6 = &s0
+			r3 = loc_A0076 // inside sp000_heal_pokemon
+			goto lbl2
+
+			lbl2:
+			CallFarFn()
+			r3 = gPlayerPartyCount
+			r1 = r10
+			*r3 = r1
+		}
+	}
+	
+	goto (stack)
+}
+
+
+
+
+
+
+
+fake:
+r1 = 0
+r8 = r1
+r1 = dest
+r10 = r1
+r6 = &s0
+goto loc_A0076
+
+real:
+r0 = 0
+r8 = r0
+r0 = gPlayerPartyCount
+r0 = *r0
+if(r8 bcs r0) goto loc_A0104
+
+r1 = gPlayerParty
+r10 = r1
+r6 = &s0
+goto loc_A0076

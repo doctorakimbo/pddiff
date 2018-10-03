@@ -1,0 +1,67 @@
+lbl1: @40B90
+r8 = r0
+r0 = 0x4037
+fn_6E568()
+fn_CC79C()
+fn_8B9F4()
+r5 = r0
+goto lbl2
+
+lbl2:
+r6 = 0
+r7 = r5 << 0x18
+goto lbl3
+
+lbl3:
+r1 = r6
+r0 = r7 >> 0x18
+fn_8BD30()
+r4 = 0
+r1 = 0xB
+r2 = 0
+GetBoxMonData()
+if(r0 != 0) goto lbl5
+
+r0 = r8
+fn_442D8()
+r0 = r4
+r1 = r8
+r2 = 0x50
+CopyMon()
+r0 = data_020370D6
+*r0 = r5
+r0 = data_020370D8
+*r0 = r6
+fn_CC7A8()
+if(r0 == r5) goto lbl4
+
+r0 = 0x843
+fn_6E6A8()
+goto lbl4
+
+lbl4:
+r1 = r5
+r0 = 0x4037
+fn_6E584()
+r0 = 1
+goto lbl7
+
+lbl5:
+r6++
+if(r6 <= 0x1D) goto lbl3
+
+r5++
+if(r5 != 0xE) goto lbl6
+
+r5 = 0
+goto lbl6
+
+lbl6:
+fn_8B9F4()
+if(r5 != r0) goto lbl2
+
+r0 = 2
+goto lbl7
+
+lbl7:
+return r0

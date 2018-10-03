@@ -1,0 +1,4 @@
+CopyMon(dest, src, size)
+{
+	memcpy(dest, src, size)
+}

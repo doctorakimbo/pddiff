@@ -1,0 +1,39 @@
+GetBoxMonData(arg0, arg1, arg2)
+{
+	r9 = arg0
+	s0 = arg1
+	r7 = arg2
+	r4 = 0
+	r8 = 0
+	r10 = 0
+	r6 = 0
+	r5 = 0
+
+	if(arg1 > 0xA) 
+	{
+		r8 = GetSubstruct(arg0, *arg0, 0)
+		r10 = GetSubstruct(arg0, *arg0, 1)
+		r6 = GetSubstruct(arg0, *arg0, 2)
+		r5 = GetSubstruct(arg0, *arg0, 3)
+		goto lbl_+50
+		...
+	}
+		
+	goto lbl_+7E
+	...
+
+
+
+
+
+
+
+
+GetSubstruct(arg0, arg1, arg2)
+{
+	r5 = arg0
+	r0 = arg1 % 0x18
+	r4 = arg2
+	r6 = 0
+	goto loc_3F0BE
+	...
