@@ -1,0 +1,60 @@
+...
+pt1:
+if(gBattleMons[gActiveBattler].0x19 < 0xC)
+{
+	gBattleMons[gActiveBattler].0x19 += r3
+
+	if(gBattleMons[gActiveBattler].0x19 > 0xC)
+		gBattleMons[gActiveBattler].0x19 = 0xC
+	
+	goto lbly
+}
+else
+	goto lblx
+
+pt2:
+if(((*(s8 + s6) & 0xF0) << 0x18) != 0 && gBattleMons[gActiveBattler].0x1A < 0xC)
+{
+	gBattleMons[gActiveBattler].0x1A += ((*(s8 + s6) & 0xF0) >> 4)
+		
+	if(gBattleMons[gActiveBattler].0x1A > 0xC)
+		gBattleMons[gActiveBattler].0x1A = 0xC
+	
+	s7 = 0
+}
+
+if((*(s8 + s6) & 0xF) && gBattleMons[gActiveBattler].0x1B < 0xC)
+{
+	gBattleMons[gActiveBattler].0x1B += (*(s8 + s6) & 0xF)
+
+	if(gBattleMons[gActiveBattler].0x1B > 0xC)
+		gBattleMons[gActiveBattler].0x1B = 0xC
+	
+	s7 = 0
+}
+
+goto lblx
+
+pt3:
+if(((*(s8 + s6) & 0xF0) << 0x18) != 0 && gBattleMons[gActiveBattler].0x1E < 0xC)
+{
+	gBattleMons[gActiveBattler].0x1E += ((*(s8 + s6) & 0xF0) >> 4)
+
+	if(gBattleMons[gActiveBattler].0x1E > 0xC)
+		gBattleMons[gActiveBattler].0x1E = 0xC
+	
+	s7 = 0
+}
+
+if((*(s8 + s6) & 0xF) && gBattleMons[gActiveBattler].0x1C < 0xC)
+{
+	gBattleMons[gActiveBattler].0x1C += (*(s8 + s6) & 0xF)
+	
+	if(gBattleMons[gActiveBattler].0x1C > 0xC)
+		gBattleMons[gActiveBattler].0x1C = 0xC
+	
+	s7 = 0
+}
+
+goto lblx
+...

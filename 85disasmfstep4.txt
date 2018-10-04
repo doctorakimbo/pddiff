@@ -1,0 +1,39 @@
+sub_8042DA4(itemId)
+{
+	if(itemId == ITEM_ENIGMA_BERRY)
+	{
+		if(gMain.inBattle)
+			itemEffect = gEnigmaBerries[gBattlerInMenuId].itemEffect;
+		else
+			itemEffect = gSaveBlock1Ptr->enigmaBerry.itemEffect;
+	}
+	else
+		itemEffect = gItemEffectTable[itemId - 13];
+	
+	gPotentialItemEffectBattler = gBattlerInMenuId;
+
+	for(i = 0; i <= 2; i++)
+	{
+		if(itemEffect[i] & 0xF)
+			sub_8042D50(i * 2);
+		
+		if(itemEffect[i] & 0xF0)
+		{
+			if(i)
+				sub_8042D50((i * 2) + 1);
+			else
+			{
+				gBattlerAttacker = gBattlerInMenuId;
+				BattleStringExpandPlaceholdersToDisplayedString(gText_PkmnGettingPumped);
+			}
+		}
+	}
+	
+	if(itemEffect[3] & 0x80)
+	{
+		gBattlerAttacker = gBattlerInMenuId;
+		BattleStringExpandPlaceholdersToDisplayedString(gText_PkmnShroudedInMist);
+	}
+	
+	return gDisplayedStringBattle;
+}

@@ -1,0 +1,13 @@
+IsPokemonStorageFull()
+{
+	for(r5 = 0; r5 <= 0x16; r5++)
+	{
+		for(r4 = 0; r4 <= 0x1D; r4++)
+		{
+			if(GetBoxedMonPtr(r5, r4)[0x24] == 0)
+				return 0
+		}
+	}
+
+	return 1
+}

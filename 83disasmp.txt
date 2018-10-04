@@ -1,0 +1,91 @@
+lbl1: @40D58
+r5 = 0x19
+goto lbl15
+
+lbl4: @40D5C
+r0 = s8
+r1 = s6
+r2 = r0 + r1
+r1 = *r2
+r0 = 0xF0
+r0 &= r1
+r3 = r0 >> 4
+r6 = r2
+if(r3 == 0) goto lbl5
+
+r5 = 0x1A
+goto lbl15
+
+lbl5:
+r0 = *r6
+r3 = 0xF
+r3 &= r0
+if(r3 != 0) goto lbl6
+
+goto lbly
+
+r5 = 0x1B
+goto lbl15
+
+lbl10: @40D88
+r4 = s8
+r5 = s6
+r2 = r4 + r5
+r1 = *r2
+r0 = 0xF0
+r0 &= r1
+r3 = r0 >> 4
+r6 = r2
+if(r3 == 0) goto lbl12
+
+if(r3 <= 7) goto lbl11
+
+r3 -= 7
+r5 = 0x1F
+goto lbl15
+
+lbl11:
+r5 = 0x1E
+goto lbl15
+
+lbl12:
+r0 = *r6
+r3 = 0xF
+r3 &= r0
+if(r3 != 0) goto lbl13
+
+goto lblx
+
+lbl13:
+if(r3 <= 7) goto lbl14
+
+r3 -= 7
+r5 = 0x1D
+goto lbl15
+
+lbl14:
+r5 = 0x1C
+goto lbl15
+
+lbl15:
+r2 = gBattleMons
+r1 = gActiveBattler
+r0 = *r1
+r1 = 0x58
+r0 *= r1
+r4 = r0 + r2
+r2 = *(r4 + r5)
+r0 = *(r4 + r5)
+if(r0 <= 0xB) goto lbl16
+
+goto lblx
+
+lbl16:
+r0 = r2 + r3
+*(r4 + r5) = r0
+r0 = *(r4 + r5)
+if(r0 <= 0xC) goto lbl17
+
+r0 = 0xC
+*(r4 + r5) = r0
+goto lbly

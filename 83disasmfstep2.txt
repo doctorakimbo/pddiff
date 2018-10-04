@@ -1,0 +1,60 @@
+...
+pt1:
+if(*((*gActiveBattler * 0x58) + gBattleMons + 0x19) < 0xC)
+{
+	*((*gActiveBattler * 0x58) + gBattleMons + 0x19) += r3
+
+	if(*((*gActiveBattler * 0x58) + gBattleMons + 0x19) > 0xC)
+		*((*gActiveBattler * 0x58) + gBattleMons + 0x19) = 0xC
+	
+	goto lbly
+}
+else
+	goto lblx
+
+pt2:
+if(((*(s8 + s6) & 0xF0) << 0x18) != 0 && *((*gActiveBattler * 0x58) + gBattleMons + 0x1A) < 0xC)
+{
+	*((*gActiveBattler * 0x58) + gBattleMons + 0x1A) += ((*(s8 + s6) & 0xF0) >> 4)
+		
+	if(*((*gActiveBattler * 0x58) + gBattleMons + 0x1A) > 0xC)
+		*((*gActiveBattler * 0x58) + gBattleMons + 0x1A) = 0xC
+	
+	s7 = 0
+}
+
+if((*(s8 + s6) & 0xF) && *((*gActiveBattler * 0x58) + gBattleMons + 0x1B) < 0xC)
+{
+	*((*gActiveBattler * 0x58) + gBattleMons + 0x1B) += (*(s8 + s6) & 0xF)
+
+	if(*((*gActiveBattler * 0x58) + gBattleMons + 0x1B) > 0xC)
+		*((*gActiveBattler * 0x58) + gBattleMons + 0x1B) = 0xC
+	
+	s7 = 0
+}
+
+goto lblx
+
+pt3:
+if(((*(s8 + s6) & 0xF0) << 0x18) != 0 && *((*gActiveBattler * 0x58) + gBattleMons + 0x1E) < 0xC)
+{
+	*((*gActiveBattler * 0x58) + gBattleMons + 0x1E) += ((*(s8 + s6) & 0xF0) >> 4)
+
+	if(*((*gActiveBattler * 0x58) + gBattleMons + 0x1E) > 0xC)
+		*((*gActiveBattler * 0x58) + gBattleMons + 0x1E) = 0xC
+	
+	s7 = 0
+}
+
+if((*(s8 + s6) & 0xF) && *((*gActiveBattler * 0x58) + gBattleMons + 0x1C) < 0xC)
+{
+	*((*gActiveBattler * 0x58) + gBattleMons + 0x1C) += (*(s8 + s6) & 0xF)
+	
+	if(*((*gActiveBattler * 0x58) + gBattleMons + 0x1C) > 0xC)
+		*((*gActiveBattler * 0x58) + gBattleMons + 0x1C) = 0xC
+	
+	s7 = 0
+}
+
+goto lblx
+...

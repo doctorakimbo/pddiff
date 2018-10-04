@@ -71,6 +71,7 @@ CC 3E 02 02: 2C 3E 02 02: gSpecialStatuses
 20 3F 02 02: 80 3E 02 02: gWishFutureKnock
 50 3F 02 02: B0 3E 02 02: gDynamicBasePower
 54 3F 02 02: B4 3E 02 02: gEnigmaBerries
+5C 3F 02 02: BC 3E 02 02: gEnigmaBerries.itemEffect
 C4 3F 02 02: 24 3F 02 02: gBattleScripting
 D2 3F 02 02: 32 3F 02 02: sDMG_MULTIPLIER
 D4 3F 02 02: 34 3F 02 02: sB_ANIM_ARG1
@@ -80,6 +81,7 @@ DF 3F 02 02: 3F 3F 02 02: sSTAT_ANIM_PLAYED (FRPD) / sSECOND_STATCHANGER (PD)
 E8 3F 02 02: 48 3F 02 02: gBattleStruct
 F4 3F 02 02: 54 3F 02 02: gBattleResources
 FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
+04 40 02 02: 64 3F 02 02: gBattlerInMenuId
 20 40 02 02: 80 3F 02 02: gBattleMovePower
 29 40 02 02: 89 3F 02 02: gPlayerPartyCount
 2C 40 02 02: 8C 3F 02 02: gEnemyParty
@@ -155,6 +157,7 @@ F0 30 00 03: 30 31 00 03: gMain
 A3 4F 00 03: E3 4F 00 03: gBattleResults.battleTurnCounter
 F4 4F 00 03: 34 50 00 03: ?????? (valid)
 F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
+08 50 00 03: 48 50 00 03: gSaveBlock1Ptr
 0C 50 00 03: 4C 50 00 03: gSaveBlock2Ptr
 7C 53 00 03: CC 53 00 03: gCB2_AfterEvolution
 		   : 42 55 00 03: ?????? (atkEF_handleballthrow: Dusk Ball boosted if less than 6 or greater than 20) (gTime.hour?)
@@ -179,8 +182,6 @@ funcs e,j,desc:
 00E848 = 00E1FC = BtlController_EmitTwoReturnValues
 00E874 = 00E228 = BtlController_EmitChosenMonReturnValue
 00EB28 = 00E4DC = BtlController_EmitBattleAnimation
-011100 = BattleMainCB2
-015A30 = FreeResetData_ReturnToOvOrDoEvolutions
 016E24 = 016634 = GetBattlerForBattleScript
 016EC8 = 0166D8 = PressurePPLose
 017248 = 016A58 = MarkBattlerForControllerExec
@@ -232,6 +233,7 @@ funcs e,j,desc:
 040C3C = 040330 = CalculatePlayerPartyCount
 040D7C = 040470 = GetMonAbility
 04101C = 04070C = CalculatePPWithBonus
+042D50 = 042440 = ?????
 042EB4 = 0425A4 = GetNatureFromPersonality
 043A70 = CheckPartyPokerus
 043AD8 = CheckPartyHasHadPokerus
@@ -252,6 +254,7 @@ funcs e,j,desc:
 07AF98 = 07A6F8 = weather_get_current
 088E8C = 088A68 = pokedex_count
 08B9F4 = 08B490 = StorageGetCurrentBox
+08BA18 = 08B4B4 = GetBoxMonDataFromAnyBox
 08BD30 = 08B7CC = GetBoxedMonPtr
 099F40 = 099948 = CheckBagHasItem
 09A924 = 09A330 = GetHoldEffect
@@ -260,6 +263,7 @@ funcs e,j,desc:
 0C7208 = 0C83E4 = RecordItemEffectBattle
 0CC79C = 0CD914 = set_unknown_box_id
 0CC7A8 = 0CD920 = get_unknown_box_id
+0D77F4 = 0D8898 = BattleStringExpandPlaceholdersToDisplayedString
 0D87BC = 0D980C = BattlePutTextOnWindow
 12E51C = 12ED24 = box_print
 1E3B9C = square root
@@ -286,6 +290,7 @@ funcs e,j,desc:
 01FCCC = 01F4DC = ConsumeItem
 027E3A = 027612 = CheckLeafGuardAndFlowerVeil
 02D05C = 02C834 = unknown_uncalled_func (disasm if needed)
+041714 = 040E04 = ?????
 ?????? = 168C88 = ClearFocusBand (unimplemented)
 ?????? = 168C9C = SetFocusBand (unimplemented)
 ?????? = 2058E0 = ????? (unimplemented)

@@ -1,0 +1,48 @@
+sub_8042DA4(arg0)
+{
+	if(arg0 == 0xAF)
+	{
+		if(*(gMain + 0x439) & 2)
+			r7 = (*data_02024004 * 0x1C) + data_02023F5C
+		else
+			r7 = *data_03005008 + 0x3108
+	}
+	else
+		r7 = *(((arg0 - 0xD) * 4) + data_082528BC)
+	
+	*gPotentialItemEffectBattler = *data_02024004
+	r6 = 0
+
+	for(r5 = 0; r5 <= 2; r5++)
+	{
+		if(*(r7 + r5) & 0xF)
+		{
+			r0 = r6
+			sub_8042D50()
+		}
+		
+		if(*(r7 + r5) & 0xF0)
+		{
+			if(r5 != 0)
+			{
+				r0 = r6 + 1
+				sub_8042D50()
+			}
+			else
+			{
+				*gBattlerAttacker = *data_02024004
+				BattleStringExpandPlaceholdersToDisplayedString(data_083FBBE9)
+			}
+		}
+		
+		r6 += 2
+	}
+	
+	if(*(r7 + 3) & 0x80)
+	{
+		*gBattlerAttacker = *data_02024004
+		BattleStringExpandPlaceholdersToDisplayedString(data_083FBBB4)
+	}
+	
+	return gDisplayedStringBattle
+}

@@ -1,0 +1,83 @@
+sub_8042DA4(arg0)
+{
+	if(arg0 == 0xAF)
+	{
+		if(gMain[0x439] & 2)
+			r7 = data_02023F5C[data_02024004] // data_02023F5C size 1C
+		else
+			r7 = data_03005008[0x3108]
+	}
+	else
+		r7 = data_082528BC[arg0 - 0xD] // size 4
+	
+	gPotentialItemEffectBattler = data_02024004
+	r6 = 0
+
+	for(r5 = 0; r5 <= 2; r5++)
+	{
+		r3 = (r7[r5] & 0xF) // r7 size 1
+		
+		if(r3 != 0)
+		{
+			r0 = r6
+			fn_40E04_J()
+		}
+		
+		r3 = (r7[r5] & 0xF0) // r7 size 1
+		
+		if(r3 != 0)
+		{
+			if(r5 != 0)
+			{
+				r0 = r6 + 1
+				fn_40E04_J()
+			}
+			else
+			{
+				gBattlerAttacker = data_02024004
+				BattleStringExpandPlaceholdersToDisplayedString(data_083FBBE9)
+			}
+		}
+		
+		r6 += 2
+	}
+	
+	if(r7[3] & 0x80) // r7 size 1
+	{
+		gBattlerAttacker = data_02024004
+		BattleStringExpandPlaceholdersToDisplayedString(data_083FBBB4)
+	}
+	
+	return gDisplayedStringBattle
+}
+
+
+
+
+
+
+fn_40E04_J() @41714_E
+{
+	if(r0 == 4)
+	{
+		if(r3 > 7)
+			r4 = 1
+		else
+			r4 = 0
+	}
+	elseif(r0 == 5)
+	{
+		r3 >>= 4
+		
+		if(r3 > 7)
+			r4 = 1
+		else
+			r4 = 0
+	}
+	
+	gBattlerTarget = data_02024004
+	StringCopy(gBattleTextBuff1, data_083C38E8_J[data_0821A9F8_J[r0].r4]) // data_083C38E8_J size 4; r4 size 1
+	StringCopy(gBattleTextBuff2, data_083C30CC_J)
+	BattleStringExpandPlaceholdersToDisplayedString(data_083C310E_J)
+	return
+}

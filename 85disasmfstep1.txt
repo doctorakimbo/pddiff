@@ -1,0 +1,99 @@
+sub_8042DA4()
+{
+	if(r0 == 0xAF)
+	{
+		r0 = gMain
+		r1 = 0x439
+		r0 += r1
+		r1 = *r0
+		r0 = 2
+		r0 &= r1
+		
+		if(r0 != 0)
+		{
+			r2 = data_02024004
+			r1 = *r2
+			r0 = r1 * 8
+			r0 -= r1
+			r0 *= 4
+			r1 = data_02023F5C
+			r7 = r0 + r1
+		}
+		else
+		{
+			r0 = data_03005008
+			r0 = *r0
+			r1 = 0x3108
+			r7 = r0 + r1
+			r2 = data_02024004
+		}
+	}
+	else
+	{
+		r1 = data_082528BC
+		r0 -= 0xD
+		r0 *= 4
+		r0 += r1
+		r7 = *r0
+		r2 = data_02024004
+	}
+	
+	r1 = gPotentialItemEffectBattler
+	r0 = *r2
+	*r1 = r0
+	r0 = gBattlerAttacker
+	r8 = r0
+	r6 = 0
+
+	for(r5 = 0; r5 <= 2; r5++)
+	{
+		r4 = r7 + r5
+		r1 = *r4
+		r0 = 0xF
+		r0 &= r1
+		
+		if(r0 != 0)
+		{
+			r0 = r6
+			sub_8042D50()
+		}
+		
+		r1 = *r4
+		r0 = 0xF0
+		r0 &= r1
+		
+		if(r0 != 0)
+		{
+			if(r5 != 0)
+			{
+				r0 = r6 + 1
+				sub_8042D50()
+			}
+			else
+			{
+				r0 = data_02024004
+				r0 = *r0
+				r1 = r8
+				*r1 = r0
+				BattleStringExpandPlaceholdersToDisplayedString(data_083FBBE9)
+			}
+		}
+		
+		r6 += 2
+	}
+
+	r1 = *(r7 + 3)
+	r0 = 0x80
+	r0 &= r1
+	
+	if(r0 != 0)
+	{
+		r1 = gBattlerAttacker
+		r0 = data_02024004
+		r0 = *r0
+		*r1 = r0
+		BattleStringExpandPlaceholdersToDisplayedString(data_083FBBB4)
+	}
+	
+	return gDisplayedStringBattle
+}

@@ -1,0 +1,74 @@
+...
+pt1:
+stat = STAT_ATK;
+goto lbl15
+
+pt2:
+boostLevel = (itemEffect[cmdIndex] & 0xF0) >> 4;
+
+if(boostLevel)
+{
+	stat = STAT_DEF;
+	goto lbl15
+}
+
+boostLevel = itemEffect[cmdIndex] & 0xF;
+
+if(boostLevel)
+{
+	stat = STAT_SPEED;
+	goto lbl15
+}
+
+goto lbly
+
+pt3:
+boostLevel = (itemEffect[cmdIndex] & 0xF0) >> 4;
+
+if(boostLevel)
+{
+	if(boostLevel > 7)
+	{
+		boostLevel -= 7;
+		stat = STAT_EVASION;
+		goto lbl15
+	}
+	else
+	{
+		stat = STAT_ACC;
+		goto lbl15
+	}
+}
+
+boostLevel = itemEffect[cmdIndex] & 0xF;
+
+if(boostLevel)
+{
+	if(boostLevel > 7)
+	{
+		boostLevel -= 7;
+		stat = STAT_SPDEF;
+		goto lbl15
+	}
+	else
+	{
+		stat = STAT_SPATK;
+		goto lbl15
+	}
+}
+
+goto lblx
+
+lbl15:
+if(gBattleMons[gActiveBattler].statStages[stat] < 0xC)
+{
+	gBattleMons[gActiveBattler].statStages[stat] += boostLevel;
+
+	if(gBattleMons[gActiveBattler].statStages[stat] > 0xC)
+		gBattleMons[gActiveBattler].statStages[stat] = 0xC;
+
+	goto lbly
+}
+else	
+	goto lblx
+...

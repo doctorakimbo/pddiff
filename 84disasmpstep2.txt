@@ -1,0 +1,27 @@
+...
+s9++
+s0 = *(s9 + s8)
+
+if(*(s9 + s8) >= 0xFC) 
+{
+	if(*(s9 + s8) == 0xFF)
+		s0 = GetMonData(r8, 0x3A, NULL) - GetMonData(r8, 0x39, NULL)
+	elseif(*(s9 + s8) == 0xFE)
+	{
+		s0 = GetMonData(r8, 0x3A, NULL) / 2
+		
+		if(s0 == 0)
+			s0 = 1
+	}
+	elseif(*(s9 + s8) == 0xFD)
+		s0 = *(gBattleScripting + 0x23)
+	elseif(*(s9 + s8) == 0xFC)
+	{
+		s0 = GetMonData(r8, 0x3A, NULL) / 4
+		
+		if(s0 == 0)
+			s0 = 1
+	}
+}
+
+...

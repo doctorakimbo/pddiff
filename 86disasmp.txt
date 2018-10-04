@@ -1,0 +1,32 @@
+lbl1: @425B4
+r8 = r0
+r5 = r1
+r6 = r2
+r2 = 0
+r10 = r2
+r1 = 0xB
+GetMonData()
+r7 = r0
+r0 = r8
+r1 = 0xC
+r2 = 0
+GetMonData()
+r9 = r0
+GetHoldEffect()
+if(r0 != 0x26) goto lbl2
+
+if(r5 != 3) goto lbl(42638)
+
+goto lbl2
+
+lbl2:
+if(r5 == 0) goto lbl(4269c)
+
+if(r5 == 1) goto lbl(4263a)
+
+if(r5 > 3) goto lbl(42638)
+
+r5 = 0
+goto lbl3
+
+lbl3:

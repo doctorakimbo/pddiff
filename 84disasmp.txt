@@ -1,0 +1,57 @@
+lbl1: @41336
+r1 = s9
+r0 = r1 + 1
+s9 = r0
+r4 = s8
+r1 += r4
+r1 = *r1
+s0 = r1
+r0 = r1
+if(r0 < 0xFC) goto lbl7
+
+r5 = r0
+r0 = r8
+r1 = 0x3A
+r2 = 0
+GetMonData()
+r4 = r0
+r0 = r8
+r1 = 0x39
+r2 = 0
+GetMonData()
+if(r0 == 0xFF) goto lbl2
+
+if(r0 == 0xFE) goto lbl4
+
+if(r0 == 0xFD) goto lbl5
+
+if(r0 == 0xFC) goto lbl3
+
+goto lbl7
+
+lbl2:
+r4 -= r0
+s0 = r4
+goto lbl7
+
+lbl3:
+r4 /= 2
+goto lbl4
+
+lbl4:
+r0 = r4 / 2
+s0 = r0
+if(r0 != 0) goto lbl7
+
+r0 = 1
+goto lbl6
+
+lbl5:
+r0 = gBattleScripting
+r0 += 0x23
+r0 = *r0
+goto lbl6
+
+lbl6:
+s0 = r0
+goto lbl7

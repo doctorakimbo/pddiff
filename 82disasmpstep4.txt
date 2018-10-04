@@ -1,0 +1,13 @@
+IsPokemonStorageFull()
+{
+	for(i = 0; i <= 22; i++)
+	{
+		for(j = 0; j <= 30; j++)
+		{
+			if(GetBoxedMonPtr(i, j)[0x24] == SPECIES_NONE)
+				return FALSE;
+		}
+	}
+
+	return TRUE;
+}

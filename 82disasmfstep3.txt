@@ -1,0 +1,13 @@
+IsPokemonStorageFull()
+{
+	for(r6 = 0; r6 <= 0xD; r6++)
+	{
+		for(r4 = 0; r4 <= 0x1D; r4++)
+		{
+			if(GetBoxMonDataFromAnyBox(r6, r4, 0xB) == 0)
+				return 0
+		}
+	}
+
+	return 1
+}

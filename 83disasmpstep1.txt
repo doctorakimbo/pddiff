@@ -1,0 +1,106 @@
+...
+pt1:
+r5 = 0x19
+goto lbl15
+
+pt2:
+r0 = s8
+r1 = s6
+r2 = r0 + r1
+r1 = *r2
+r0 = 0xF0
+r0 &= r1
+r3 = r0 >> 4
+r6 = r2
+
+if(r3 != 0)
+{
+	r5 = 0x1A
+	goto lbl15
+}
+
+r0 = *r6
+r3 = 0xF
+r3 &= r0
+
+if(r3 != 0)
+{
+	r5 = 0x1B
+	goto lbl15
+}
+
+goto lbly
+
+pt3:
+r4 = s8
+r5 = s6
+r2 = r4 + r5
+r1 = *r2
+r0 = 0xF0
+r0 &= r1
+r3 = r0 >> 4
+r6 = r2
+
+if(r3 != 0)
+{
+	if(r3 > 7)
+	{
+		r3 -= 7
+		r5 = 0x1F
+		goto lbl15
+	}
+	else
+	{
+		r5 = 0x1E
+		goto lbl15
+	}
+}
+
+r0 = *r6
+r3 = 0xF
+r3 &= r0
+
+if(r3 != 0)
+{
+	if(r3 > 7)
+	{
+		r3 -= 7
+		r5 = 0x1D
+		goto lbl15
+	}
+	else
+	{
+		r5 = 0x1C
+		goto lbl15
+	}
+}
+
+goto lblx
+
+lbl15:
+r2 = gBattleMons
+r1 = gActiveBattler
+r0 = *r1
+r1 = 0x58
+r0 *= r1
+r4 = r0 + r2
+r2 = *(r4 + r5)
+r0 = *(r4 + r5)
+
+if(r0 <= 0xB)
+{
+	r0 = r2 + r3
+	*(r4 + r5) = r0
+	r0 = *(r4 + r5)
+
+	if(r0 > 0xC)
+	{
+		r0 = 0xC
+		*(r4 + r5) = r0
+	}
+
+	goto lbly
+}
+else	
+	goto lblx
+...

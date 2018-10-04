@@ -1,0 +1,77 @@
+lbl1: @42EC4
+r8 = r0
+r5 = r1
+r9 = r2
+r0 = 0
+r10 = r0
+r0 = r8
+r1 = 0xB
+r2 = 0
+GetMonData()
+r7 = r0
+r0 = r8
+r1 = 0xC
+r2 = 0
+GetMonData()
+r1 = &s0
+*r1 = r0
+r0 = r8
+r1 = 0
+r2 = 0
+GetMonData()
+r4 = r0
+r0 = r8
+r1 = 0x17
+r2 = 0
+GetMonData()
+s3 = r0
+r4 >>= 0x10
+s4 = r4
+r0 = &s0
+r0 = *r0
+if(r0 != 0xAF) goto lbl2
+
+r0 = gSaveBlock1Ptr
+r0 = *r0
+r1 = 0x311A
+r0 += r1
+r0 = *r0
+goto lbl3
+
+lbl2:
+GetHoldEffect()
+goto lbl3
+
+lbl3:
+if(r0 != 0x26) goto lbl4
+
+if(r5 == 3) goto lbl4
+
+r0 = 0
+goto lbl(431a4)
+
+lbl4:
+if(r5 != 1) goto lbl5
+
+goto lbl(4311e)
+
+lbl5:
+if(r5 > 1) goto lbl6
+
+if(r5 == 0) goto lbl8
+
+goto lbl(431a2)
+
+lbl6:
+if(r5 <= 3) goto lbl7
+
+goto lbl(431a2)
+
+lbl7:
+r2 = 0
+s1 = r2
+r3 = gEvolutionTable
+r6 = r7 * 4
+goto lbl(43182)
+
+lbl8:

@@ -1,0 +1,74 @@
+...
+pt1:
+r5 = 0x19
+goto lbl15
+
+pt2:
+r3 = (*(s8 + s6) & 0xF0) >> 4
+
+if(r3 != 0)
+{
+	r5 = 0x1A
+	goto lbl15
+}
+
+r3 = *(s8 + s6) & 0xF
+
+if(r3 != 0)
+{
+	r5 = 0x1B
+	goto lbl15
+}
+
+goto lbly
+
+pt3:
+r3 = (*(s8 + s6) & 0xF0) >> 4
+
+if(r3 != 0)
+{
+	if(r3 > 7)
+	{
+		r3 -= 7
+		r5 = 0x1F
+		goto lbl15
+	}
+	else
+	{
+		r5 = 0x1E
+		goto lbl15
+	}
+}
+
+r3 = *(s8 + s6) & 0xF
+
+if(r3 != 0)
+{
+	if(r3 > 7)
+	{
+		r3 -= 7
+		r5 = 0x1D
+		goto lbl15
+	}
+	else
+	{
+		r5 = 0x1C
+		goto lbl15
+	}
+}
+
+goto lblx
+
+lbl15:
+if(gBattleMons[gActiveBattler].r5 < 0xC)
+{
+	gBattleMons[gActiveBattler].r5 += r3
+
+	if(gBattleMons[gActiveBattler].r5 > 0xC)
+		gBattleMons[gActiveBattler].r5 = 0xC
+
+	goto lbly
+}
+else	
+	goto lblx
+...
