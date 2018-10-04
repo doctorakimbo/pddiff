@@ -219,7 +219,7 @@ pokeball types:
 + 0x0D = Quick Ball
 + 0x0E = Dusk Ball
 + 0x0F = Park Ball
-- 0x10 = Heal Ball
++ 0x10 = Heal Ball
 = 0x11 = (Moon Ball effect, uses SafariBallThrow)
 = 0x12 = (Moon Ball effect, uses BallThrow)
 + 0x13 = Friend Ball
@@ -686,8 +686,9 @@ grafics:
 		  Implements: Heal Ball
 		  Required knowledge: gLastUsedItemType (j0203FE00)
 = 040B90: Entirety of SendMonToPC (see 81disasm)
-		  
-		  
+		  Implements: Part of BoxPokemon refactor, allowing 14->22 boxes
+		  Requires in future: CopyMonToBox (j3C5FA0)
+= 
 		  
 		  
 		  

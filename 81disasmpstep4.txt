@@ -1,0 +1,76 @@
+SendMonToPC(mon)
+{
+	set_unknown_box_id(VarGet(VAR_STORAGE_UNKNOWN));
+	
+	boxNo = StorageGetCurrentBox();
+
+	do
+	{
+		for(boxPos = 0; boxPos <= 30; boxPos++)
+		{
+			checkingMon = GetBoxedMonPtr(boxNo, boxPos);
+			
+			if(checkingMon[0x24] == SPECIES_NONE)
+			{
+				CopyMonToBox(&mon->box, checkingMon);
+				gSpecialVar_MonBoxId = boxNo;
+				gSpecialVar_MonBoxPos = boxPos;
+				
+				if(get_unknown_box_id() != boxNo)
+					FlagClear(FLAG_SYS_STORAGE_UNKNOWN_FLAG);
+				
+				VarSet(VAR_STORAGE_UNKNOWN, boxNo);
+				return MON_GIVEN_TO_PC;
+			}
+		}
+
+		boxNo++;
+		
+		if(boxNo == 23)
+			boxNo = 0;
+	} while(boxNo != StorageGetCurrentBox());
+
+	return MON_CANT_GIVE;
+}
+
+
+
+
+
+
+
+CopyMonToBox(srcMon, destMon) @3C5FA0_J
+{
+	destMon[0] = GetBoxMonData(srcMon, MON_DATA_PERSONALITY, NULL);
+	destMon[4] = GetBoxMonData(srcMon, MON_DATA_OT_ID, NULL);
+	GetBoxMonData(srcMon, MON_DATA_NICKNAME, &destMon[0xC]);
+	destMon[8] = GetBoxMonData(srcMon, MON_DATA_HP_IV, NULL) | (GetBoxMonData(srcMon, MON_DATA_ATK_IV, NULL) << 5) | (GetBoxMonData(srcMon, MON_DATA_DEF_IV, NULL) << 0xA) | (GetBoxMonData(srcMon, MON_DATA_SPEED_IV, NULL) << 0xF) | (GetBoxMonData(srcMon, MON_DATA_SPATK_IV, NULL) << 0x14) | (GetBoxMonData(srcMon, MON_DATA_SPDEF_IV, NULL) << 0x19) | (GetBoxMonData(srcMon, MON_DATA_IS_EGG, NULL) << 0x1E) | (GetBoxMonData(srcMon, MON_DATA_ALT_ABILITY, NULL) << 0x1F);
+	destMon[0x13] = GetBoxMonData(srcMon, MON_DATA_PP_BONUSES, NULL);
+	destMon[0x14] = GetBoxMonData(srcMon, MON_DATA_FRIENDSHIP, NULL);
+	destMon[0x15] = GetBoxMonData(srcMon, MON_DATA_MET_LOCATION, NULL);
+	destMon[0x16] = GetBoxMonData(srcMon, MON_DATA_MET_LEVEL, NULL);
+	destMon[0x17] = GetBoxMonData(srcMon, MON_DATA_POKEBALL, NULL);
+	destMon[0x18] = GetBoxMonData(srcMon, MON_DATA_HP_EV, NULL);
+	destMon[0x19] = GetBoxMonData(srcMon, MON_DATA_ATK_EV, NULL);
+	destMon[0x1A] = GetBoxMonData(srcMon, MON_DATA_DEF_EV, NULL);
+	destMon[0x1B] = GetBoxMonData(srcMon, MON_DATA_SPEED_EV, NULL);
+	destMon[0x1C] = GetBoxMonData(srcMon, MON_DATA_SPATK_EV, NULL);
+	destMon[0x1D] = GetBoxMonData(srcMon, MON_DATA_SPDEF_EV, NULL);
+	GetBoxMonData(srcMon, MON_DATA_OT_NAME, &destMon[0x1E]);
+	destMon[0x24] = GetBoxMonData(srcMon, MON_DATA_SPECIES, NULL);
+	destMon[0x26] = GetBoxMonData(srcMon, MON_DATA_HELD_ITEM, NULL) | (GetBoxMonData(srcMon, MON_DATA_MARKINGS, NULL) << 0xC);
+	destMon[0x28] = GetBoxMonData(srcMon, MON_DATA_MOVE1, NULL) | (GetBoxMonData(srcMon, MON_DATA_MOVE2, NULL) << 0xA) | (GetBoxMonData(srcMon, MON_DATA_MOVE3, NULL) << 0x14) | (GetBoxMonData(srcMon, MON_DATA_MOVE4, NULL) << 0x1E);
+	destMon[0x2C] = (GetBoxMonData(srcMon, MON_DATA_MOVE4, NULL) >> 2);
+	
+	lastData = GetBoxMonData(srcMon, MON_DATA_EXP, NULL) | (GetBoxMonData(srcMon, MON_DATA_POKERUS, NULL) << 0x15);
+	altAbility = GetBoxMonData(srcMon, MON_DATA_ALT_ABILITY, NULL);
+	
+	if(altAbility == 2)
+		lastData |= (altAbility << 0x16);
+	
+	destMon[0x2D] = lastData;
+	destMon[0x2E] = (lastData >> 8);
+	destMon[0x2F] = (lastData >> 0x10);
+	
+	return destMon;
+}

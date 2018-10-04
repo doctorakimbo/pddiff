@@ -89,8 +89,8 @@ FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
 3C 43 02 02: 9C 42 02 02: gPlayerParty[1].level
 		   : 47 6D 03 02: ?????? (atkEF_handleballthrow: Dusk Ball boosted if this is 4) (gTileset?)
 		   : 6C 6D 03 02: ?????? (atkEF_handleballthrow: Lure Ball boosted if this is 1) (gIsPlayerFishing?)
-D6 70 03 02: 0A 70 03 02: ??????
-D8 70 03 02: 0C 70 03 02: ??????
+D6 70 03 02: 0A 70 03 02: gSpecialVar_MonBoxId
+D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 		   : E2 85 03 02: ?????? (CreateNPCTrainerParty: checked if less than 0x2E6, if so, used as an index to copy data from table data_09400000_J into gEnemyParty)
 								 (CanUseNewAI: used as an index into gTrainers)
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
@@ -236,12 +236,12 @@ funcs e,j,desc:
 043A70 = CheckPartyPokerus
 043AD8 = CheckPartyHasHadPokerus
 044234 = 04387C = GetFlavorRelationByPersonality
-0442D8 = 043920 = ?????
+0442D8 = 043920 = MonRestorePP
 044EC8 = 04448C = Random
 06E454 = 06DC48 = GetVarPointer
-06E568 = 06DD5C = ?????
-06E584 = 06DD78 = ?????
-06E6A8 = 06DE9C = ?????
+06E568 = 06DD5C = VarGet
+06E584 = 06DD78 = VarSet
+06E6A8 = 06DE9C = FlagClear
 06E6D0 = 06DEC4 = FlagGet
 0703EC = 06FB90 = LoadPalette
 070E44 = BeginFastPaletteFade
@@ -251,15 +251,15 @@ funcs e,j,desc:
 0751E8 = 07498C = GetBattlerAtPosition
 07AF98 = 07A6F8 = weather_get_current
 088E8C = 088A68 = pokedex_count
-08B9F4 = 08B490 = ?????
-08BD30 = 08B7CC = ?????
+08B9F4 = 08B490 = StorageGetCurrentBox
+08BD30 = 08B7CC = GetBoxedMonPtr
 099F40 = 099948 = CheckBagHasItem
 09A924 = 09A330 = GetHoldEffect
 09A948 = 09A354 = GetHoldEffectParam
 0C71D0 = 0C83AC = RecordAbilityBattle
 0C7208 = 0C83E4 = RecordItemEffectBattle
-0CC79C = 0CD914 = ?????
-0CC7A8 = 0CD920 = ?????
+0CC79C = 0CD914 = set_unknown_box_id
+0CC7A8 = 0CD920 = get_unknown_box_id
 0D87BC = 0D980C = BattlePutTextOnWindow
 12E51C = 12ED24 = box_print
 1E3B9C = square root
@@ -328,6 +328,7 @@ funcs e,j,desc:
 ?????? = 252058 = ShouldSwitchIfMightBeDoubleTargeted (unimplemented)
 ?????? = 252248 = GetTypeMatchup (unimplemented)
 ?????? = 3915EC = ????? (unimplemented)
+?????? = 3C5FA0 = CopyMonToBox (unimplemented)
 
 data:
 21A8D4 = sHoldEffectToType
@@ -393,6 +394,45 @@ BattleMove.typeFlags3: 4321
 2 = 
 3 = 
 4 = 
+
+BoxPokemon_Japanese:
+00 = personality
+04 = otId
+08 = vuts rqpo nmlk jihg fedc ba98 7654 3210
+	43210 = hpIV
+	98765 = attackIV
+	edcba = defenseIV
+	jihgf = speedIV
+	onmlk = spAttackIV
+	tsrqp = spDefenseIV
+	u = isEgg
+	v = altAbility
+0C = nickname[7]
+13 = ppBonuses
+14 = friendship
+15 = metLocation
+16 = metLevel
+17 = pokeball
+18 = hpEV
+19 = attackEV
+1A = defenseEV
+1B = speedEV
+1C = spAttackEV
+1D = spDefenseEV
+1E = otName[6]
+24 = species
+26 = fedc ba98 7654 3210
+	ba9876543210 = heldItem
+	fedc = markings
+28 = DCBA zyxw vuts rqpo nmlk jihg fedc ba98 7654 3210
+	9876543210 = moves[0]
+	jihgfedcba = moves[1]
+	tsrqponmlk = moves[2]
+	DCBAzyxwvu = moves[3]
+2D = nmlk jihg fedc ba98 7654 3210
+	kjihgfedcba9876543210 = experience
+	ml = pokerus
+	n = altAbility == 2?
 
 POCKET_POKE_BALLS = 3 in FR
 MOVE_EFFECT_RECOIL_50 = 0x37

@@ -1,0 +1,34 @@
+SendMonToPC(arg0)
+{
+	set_unknown_box_id(VarGet(0x4037))
+	r5 = StorageGetCurrentBox()
+
+	do
+	{
+		for(r6 = 0; r6 <= 0x1D; r6++)
+		{
+			r4 = GetBoxedMonPtr(r5, r6)
+			
+			if(GetBoxMonData(r4, 0xB, 0) == 0)
+			{
+				MonRestorePP(arg0)
+				CopyMon(r4, arg0, 0x50)
+				data_020370D6 = r5
+				data_020370D8 = r6
+				
+				if(r5 != get_unknown_box_id())
+					FlagClear(0x843)
+				
+				VarSet(0x4037, r5)
+				return 1
+			}
+		}
+
+		r5++
+		
+		if(r5 == 0xE)
+			r5 = 0
+	} while(r5 != StorageGetCurrentBox())
+
+	return 2
+}

@@ -1,0 +1,75 @@
+SendMonToPC(arg0)
+{
+	set_unknown_box_id(VarGet(0x4037))
+	r5 = StorageGetCurrentBox()
+
+	do
+	{
+		for(r6 = 0; r6 <= 0x1D; r6++)
+		{
+			r4 = GetBoxedMonPtr(r5, r6)
+			
+			if(r4.0x24 == 0)
+			{
+				fn_3C5FA0_J(arg0, r4)
+				data_020370D6 = r5
+				data_020370D8 = r6
+				
+				if(r5 != get_unknown_box_id())
+					FlagClear(0x843)
+				
+				VarSet(0x4037, r5)
+				return 1
+			}
+		}
+
+		r5++
+		
+		if(r5 == 0x17)
+			r5 = 0	
+	} while(r5 != StorageGetCurrentBox())
+
+	return 2
+}
+
+
+
+
+
+
+
+fn_3C5FA0_J(arg0, arg1)
+{
+	arg1.0 = GetBoxMonData(arg0, 0, NULL)
+	arg1.4 = GetBoxMonData(arg0, 1, NULL)
+	GetBoxMonData(arg0, 2, &arg1.0xC)
+	arg1.8 = GetBoxMonData(arg0, 0x27, NULL) | (GetBoxMonData(arg0, 0x28, NULL) << 5) | (GetBoxMonData(arg0, 0x29, NULL) << 0xA) | (GetBoxMonData(arg0, 0x2A, NULL) << 0xF) | (GetBoxMonData(arg0, 0x2B, NULL) << 0x14) | (GetBoxMonData(arg0, 0x2C, NULL) << 0x19) | (GetBoxMonData(arg0, 0x2D, NULL) << 0x1E) | (GetBoxMonData(arg0, 0x2E, NULL) << 0x1F)
+	arg1.0x13 = GetBoxMonData(arg0, 0x15, NULL)
+	arg1.0x14 = GetBoxMonData(arg0, 0x20, NULL)
+	arg1.0x15 = GetBoxMonData(arg0, 0x23, NULL)
+	arg1.0x16 = GetBoxMonData(arg0, 0x24, NULL)
+	arg1.0x17 = GetBoxMonData(arg0, 0x26, NULL)
+	arg1.0x18 = GetBoxMonData(arg0, 0x1A, NULL)
+	arg1.0x19 = GetBoxMonData(arg0, 0x1B, NULL)
+	arg1.0x1A = GetBoxMonData(arg0, 0x1C, NULL)
+	arg1.0x1B = GetBoxMonData(arg0, 0x1D, NULL)
+	arg1.0x1C = GetBoxMonData(arg0, 0x1E, NULL)
+	arg1.0x1D = GetBoxMonData(arg0, 0x1F, NULL)
+	GetBoxMonData(arg0, 7, &arg1.0x1E)
+	arg1.0x24 = GetBoxMonData(arg0, 0xB, NULL)
+	arg1.0x26 = GetBoxMonData(arg0, 0xC, NULL) | (GetBoxMonData(arg0, 8, NULL) << 0xC)
+	arg1.0x28 = GetBoxMonData(arg0, 0xD, NULL) | (GetBoxMonData(arg0, 0xE, NULL) << 0xA) | (GetBoxMonData(arg0, 0xF, NULL) << 0x14) | (GetBoxMonData(arg0, 0x10, NULL) << 0x1E)
+	arg1.0x2C = (GetBoxMonData(arg0, 0x10, NULL) >> 2)
+	
+	r6 = GetBoxMonData(arg0, 0x19, NULL) | (GetBoxMonData(arg0, 0x22, NULL) << 0x15)
+	r7 = GetBoxMonData(arg0, 0x2E, NULL)
+	
+	if(r7 == 2)
+		r6 |= (r7 << 0x16)
+	
+	arg1.0x2D = r6
+	arg1.0x2E = (r6 >> 8)
+	arg1.0x2F = (r6 >> 0x10)
+	
+	return arg1
+}
