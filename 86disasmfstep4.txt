@@ -1,0 +1,114 @@
+GetEvolutionTargetSpecies(mon, type, evolutionItem)
+{
+	targetSpecies = SPECIES_NONE;
+	species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+	beauty = GetMonData(mon, MON_DATA_BEAUTY, NULL);
+	upperPersonality = GetMonData(mon, MON_DATA_PERSONALITY, NULL) >> 16;
+	
+	if(heldItem == ITEM_ENIGMA_BERRY)
+		holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
+	else
+		holdEffect = GetHoldEffect(heldItem);
+	
+	if(holdEffect == HOLD_EFFECT_PREVENT_EVOLVE && type != 3)
+		return SPECIES_NONE;
+		
+	switch(type)
+	{
+	case 0:
+		level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+		friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, NULL);
+
+		for(i = 0; i <= EVOS_PER_MON; i++)
+		{
+			switch(gEvolutionTable[species][i].method)
+			{
+			case EVO_FRIENDSHIP:
+				if(friendship >= 220)
+					targetSpecies = gEvolutionTable[species][i].targetSpecies;
+
+				break;
+			case EVO_LEVEL:
+				if(gEvolutionTable[species][i].param <= level)
+					targetSpecies = gEvolutionTable[species][i].targetSpecies;
+
+				break;
+			case EVO_LEVEL_ATK_GT_DEF:
+				if(gEvolutionTable[species][i].param <= level && GetMonData(mon, MON_DATA_ATK, NULL) > GetMonData(mon, MON_DATA_DEF, NULL))
+					targetSpecies = gEvolutionTable[species][i].targetSpecies;
+				
+				break;
+			case EVO_LEVEL_ATK_EQ_DEF:
+				if(gEvolutionTable[species][i].param <= level && GetMonData(mon, MON_DATA_ATK, NULL) == GetMonData(mon, MON_DATA_DEF, NULL))
+					targetSpecies = gEvolutionTable[species][i].targetSpecies;
+				
+				break;
+			case EVO_LEVEL_ATK_LT_DEF:
+				if(gEvolutionTable[species][i].param <= level && GetMonData(mon, MON_DATA_ATK, NULL) < GetMonData(mon, MON_DATA_DEF, NULL))
+					targetSpecies = gEvolutionTable[species][i].targetSpecies;
+				
+				break;
+			case EVO_LEVEL_SILCOON:
+				if(gEvolutionTable[species][i].param <= level && (upperPersonality % 10) <= 4)
+					targetSpecies = gEvolutionTable[species][i].targetSpecies;
+				
+				break;
+			case EVO_LEVEL_CASCOON:
+				if(gEvolutionTable[species][i].param <= level && (upperPersonality % 10) > 4)
+					targetSpecies = gEvolutionTable[species][i].targetSpecies;
+				
+				break;
+			case EVO_LEVEL_NINJASK:
+				if(gEvolutionTable[species][i].param <= level)
+					targetSpecies = gEvolutionTable[species][i].targetSpecies;
+					
+				break;
+			case EVO_BEAUTY:
+				if(gEvolutionTable[species][i].param <= beauty)
+					targetSpecies = gEvolutionTable[species][i].targetSpecies;
+				
+				break;
+			}	
+		}
+		
+		break;
+	case 1:
+		for(i = 0; i <= EVOS_PER_MON; i++)
+		{
+			switch(gEvolutionTable[species][i].method)
+			{
+			case EVO_TRADE:
+				targetSpecies = gEvolutionTable[species][i].targetSpecies;
+				
+				break;
+			case EVO_TRADE_ITEM:
+				if(gEvolutionTable[species][i].param == heldItem)
+				{
+					targetSpecies = gEvolutionTable[species][i].targetSpecies;
+					
+					if(!IsMysteryEventEnabled() || targetSpecies <= 151)
+						SetMonData(mon, MON_DATA_HELD_ITEM, &NULL);
+				}
+				
+				break;
+			}
+		}
+		
+		break;
+	case 2:
+	case 3:
+		for(i = 0; i <= EVOS_PER_MON; i++)
+		{
+			if(gEvolutionTable[species][i].method == EVO_ITEM && gEvolutionTable[species][i].param == evolutionItem)
+			{
+				targetSpecies = gEvolutionTable[species][i].targetSpecies;
+				break;
+			}
+		}
+		
+		break;
+	}
+	
+	return targetSpecies;
+}

@@ -1,0 +1,9 @@
+SpeciesToCryId(species)
+{
+	if(arg0 <= 250)
+		return species;
+	elseif(arg0 < 276)
+		return 200;
+	else
+		return gSpeciesIdToCryId[species - 276];
+}

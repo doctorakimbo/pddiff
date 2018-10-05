@@ -1,0 +1,4 @@
+SpeciesToCryId(species)
+{
+	return data_865DE0_J[species + 1];
+}

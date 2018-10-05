@@ -48,30 +48,335 @@ if(r0 != 0x26) goto lbl4
 if(r5 == 3) goto lbl4
 
 r0 = 0
-goto lbl(431a4)
+goto lbl53
 
 lbl4:
 if(r5 != 1) goto lbl5
 
-goto lbl(4311e)
+goto lbl43
 
 lbl5:
 if(r5 > 1) goto lbl6
 
 if(r5 == 0) goto lbl8
 
-goto lbl(431a2)
+goto lbl52
 
 lbl6:
 if(r5 <= 3) goto lbl7
 
-goto lbl(431a2)
+goto lbl52
 
 lbl7:
 r2 = 0
 s1 = r2
 r3 = gEvolutionTable
 r6 = r7 * 4
-goto lbl(43182)
+goto lbl50
 
 lbl8:
+r0 = r8
+r1 = 0x38
+r2 = 0
+GetMonData()
+r9 = r0
+r0 = r8
+r1 = 0x20
+r2 = 0
+GetMonData()
+s2 = r0
+r0 = 0
+s1 = r0
+r6 = r7 * 4
+goto lbl9
+
+lbl9:
+r1 = gEvolutionTable
+r0 = s1
+r2 = r0 * 8
+r0 = r6 + r7
+r0 *= 8
+r0 += r2
+r0 += r1
+r0 = *r0
+r0--
+r3 = r1
+if(r0 <= 0xE) goto lbl10
+
+goto lbl41
+
+lbl10:
+r0 *= 4
+r1 = switchtable
+r0 += r1
+r0 = *r0
+goto r0
+
+switchtable:
+0: lbl11
+3: lbl13
+7: lbl14
+8: lbl15
+9: lbl16
+A: lbl18
+B: lbl19
+C: lbl21
+E: lbl22
+else: lbl41
+
+lbl11: @43000
+r1 = s2
+if(r1 > 0xDB) goto lbl12
+
+goto lbl41
+
+lbl12:
+r0 = r6 + r7
+r0 *= 8
+r0 += r2
+r0 += r3
+r0 = *(r0 + 4)
+r10 = r0
+goto lbl41
+
+lbl13: @43016
+r0 = r6 + r7
+r0 *= 8
+r0 += r2
+r1 = r0 + r3
+r0 = *(r1 + 2)
+if(r0 > r9) goto lbl41
+
+goto lbl23
+
+lbl14: @43026
+r0 = r6 + r7
+r0 *= 8
+r0 += r2
+r5 = r0 + r3
+r0 = *(r5 + 2)
+if(r0 > r9) goto lbl41
+
+r0 = r8
+r1 = 0x3B
+r2 = 0
+GetMonData()
+r4 = r0
+r0 = r8
+r1 = 0x3C
+r2 = 0
+GetMonData()
+if(r4 <= r0) goto lbl41
+
+goto lbl17
+
+lbl15: @43050
+r0 = r6 + r7
+r0 *= 8
+r0 += r2
+r5 = r0 + r3
+r0 = *(r5 + 2)
+if(r0 > r9) goto lbl41
+
+r0 = r8
+r1 = 0x3B
+r2 = 0
+GetMonData()
+r4 = r0
+r0 = r8
+r1 = 0x3C
+r2 = 0
+GetMonData()
+if(r4 != r0) goto lbl41
+
+goto lbl17
+
+lbl16: @4307A
+r0 = r6 + r7
+r0 *= 8
+r0 += r2
+r5 = r0 + r3
+r0 = *(r5 + 2)
+if(r0 > r9) goto lbl41
+
+r0 = r8
+r1 = 0x3B
+r2 = 0
+GetMonData()
+r4 = r0
+r0 = r8
+r1 = 0x3C
+r2 = 0
+GetMonData()
+if(r4 != r0) goto lbl41
+
+goto lbl17
+
+lbl17:
+r5 = *(r5 + 4)
+r10 = r5
+goto lbl41
+
+lbl18: @430A8
+r0 = r6 + r7
+r0 *= 8
+r0 += r2
+r4 = r0 + r3
+r0 = *(r4 + 2)
+if(r0 > r9) goto lbl41
+
+r0 = s4
+r1 = 0xA
+modulus()
+if(r0 > 4) goto lbl41
+
+goto lbl20
+
+lbl19: @430C8
+r0 = r6 + r7
+r0 *= 8
+r0 += r2
+r4 = r0 + r3
+r0 = *(r4 + 2)
+if(r0 > r9) goto lbl41
+
+r0 = s4
+r1 = 0xA
+modulus()
+if(r0 <= 4) goto lbl41
+
+goto lbl20
+
+lbl20:
+r4 = *(r4 + 4)
+r10 = r4
+goto lbl41
+
+lbl21: @430EC
+r0 = r6 + r7
+r0 *= 8
+r0 += r2
+r1 = r0 + r3
+r0 = *(r1 + 2)
+if(r0 > r9) goto lbl41
+
+goto lbl23
+
+lbl22: @430FC
+r0 = r6 + r7
+r0 *= 8
+r0 += r2
+r1 = r0 + r3
+r0 = *(r1 + 2)
+r2 = s3
+if(r0 > r2) goto lbl41
+
+goto lbl23
+
+lbl23:
+r1 = *(r1 + 4)
+r10 = r1
+goto lbl41
+
+lbl41: @43110
+r0 = s1
+r0++
+s1 = r0
+if(r0 > 4) goto lbl42
+
+goto lbl9
+
+lbl42:
+goto lbl52
+
+lbl43:
+r1 = 0
+s1 = r1
+r6 = r7 * 4
+r1 = gEvolutionTable
+r0 = r6 + r7
+r0 *= 8
+r4 = r0 + r1
+goto lbl44
+
+lbl44:
+r0 = *r4
+if(r0 == 5) goto lbl45
+
+if(r0 == 6) goto lbl46
+
+goto lbl48
+
+lbl45:
+r2 = *(r4 + 4)
+r10 = r2
+goto lbl48
+
+lbl46:
+r1 = *(r4 + 2)
+r0 = &s0
+r0 = *r0
+if(r1 != r0) goto lbl48
+
+r0 = *(r4 + 4)
+r10 = r0
+fn_6E25C()
+if(r0 != 0) goto lbl47
+
+r1 = r10
+if(r1 > 0x97) goto lbl48
+
+goto lbl47
+
+lbl47:
+r1 = 0
+r0 = &s0
+*r0 = r1
+r0 = 8
+r1 = 0xC
+r2 = &s0
+SetMonData()
+goto lbl48
+
+lbl48:
+r4 += 8
+r2 = s1
+r2++
+s1 = r2
+if(r2 <= 4) goto lbl44
+
+goto lbl52
+
+lbl49:
+r1 = *(r1 + 4)
+r0 = r1
+goto lbl52
+
+lbl50:
+r0 = r6 + r7
+r1 = s1
+r0 += r1
+r0 *= 8
+r1 = r0 + r3
+r0 = *r1
+if(r0 != 7) goto lbl51
+
+r0 = *(r1 + 2)
+if(r0 == r9) goto lbl49
+
+goto lbl51
+
+lbl51:
+r2 = s1
+r2++
+s1 = r2
+if(r2 <= 4) goto lbl50
+
+goto lbl52
+
+lbl52:
+r0 = r10
+goto lbl53
+
+lbl53:
+return r0

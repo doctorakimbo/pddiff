@@ -89,6 +89,7 @@ FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
 		   : F8 3F 02 02: (gEnemyParty.friendship, but this is different in english)
 84 42 02 02: E4 41 02 02: gPlayerParty
 3C 43 02 02: 9C 42 02 02: gPlayerParty[1].level
+A4 1D 03 02: D8 1C 03 02: ?????? (GetEvolutionTargetSpecies: used as index to find the mon to check against the parameter to EVO_TRADE_FOR_SPECIFIC_MON) (gTradePartnerSelectedMon?)
 		   : 47 6D 03 02: ?????? (atkEF_handleballthrow: Dusk Ball boosted if this is 4) (gTileset?)
 		   : 6C 6D 03 02: ?????? (atkEF_handleballthrow: Lure Ball boosted if this is 1) (gIsPlayerFishing?)
 D6 70 03 02: 0A 70 03 02: gSpecialVar_MonBoxId
@@ -160,7 +161,8 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 08 50 00 03: 48 50 00 03: gSaveBlock1Ptr
 0C 50 00 03: 4C 50 00 03: gSaveBlock2Ptr
 7C 53 00 03: CC 53 00 03: gCB2_AfterEvolution
-		   : 42 55 00 03: ?????? (atkEF_handleballthrow: Dusk Ball boosted if less than 6 or greater than 20) (gTime.hour?)
+		   : 40 55 00 03: ?????? (GetEvolutionTargetSpecies: EVO_FRIENDSHIP_DAY works when this.2 is less than 11; EVO_FRIENDSHIP_NIGHT works when this.2 is between 12 and 23 inclusive) (gLocalTime?)
+		   : 42 55 00 03: ?????? (atkEF_handleballthrow: Dusk Ball boosted if less than 6 or greater than 20) (gLocalTime.hours?)
 		   
 		   
 funcs e,j,desc:
@@ -233,13 +235,14 @@ funcs e,j,desc:
 040C3C = 040330 = CalculatePlayerPartyCount
 040D7C = 040470 = GetMonAbility
 04101C = 04070C = CalculatePPWithBonus
-042D50 = 042440 = ?????
 042EB4 = 0425A4 = GetNatureFromPersonality
 043A70 = CheckPartyPokerus
 043AD8 = CheckPartyHasHadPokerus
 044234 = 04387C = GetFlavorRelationByPersonality
 0442D8 = 043920 = MonRestorePP
 044EC8 = 04448C = Random
+055250 = 054B10 = GetDestinationWarpMapHeader
+06E25C = 06DA50 = IsMysteryEventEnabled
 06E454 = 06DC48 = GetVarPointer
 06E568 = 06DD5C = VarGet
 06E584 = 06DD78 = VarSet
@@ -438,6 +441,17 @@ BoxPokemon_Japanese:
 	kjihgfedcba9876543210 = experience
 	ml = pokerus
 	n = altAbility == 2?
+	
+evo methods:
+0x10 = EVO_LEVEL_GENDER - param = level
+0x11 = EVO_LOCATION - param = regionMapSectionId
+0x12 = EVO_MOVE_OR_MOVETYPE - param = move id if high bit 0, move type if high bit 1
+0x13 = EVO_LEVEL_WITH_ITEM_DAY - param = item id, or 0 for no item requirement
+0x14 = EVO_LEVEL_WITH_ITEM_NIGHT - param = item id, or 0 for no item requirement
+0x15 = EVO_MON_OR_MON_TYPE_IN_PARTY - param = mon species id if high bit 0, mon type if high bit 1
+0x16 = EVO_ITEM_GENDER - param = item id
+0x17 = EVO_TRADE_FOR_SPECIFIC_MON - param = mon species id
+0x18 = EVO_WEATHER - param = overworld weather id
 
 POCKET_POKE_BALLS = 3 in FR
 MOVE_EFFECT_RECOIL_50 = 0x37

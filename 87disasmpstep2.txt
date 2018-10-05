@@ -1,0 +1,4 @@
+SpeciesToCryId(arg0)
+{
+	return *(((arg0 + 1) * 2) + data_865DE0_J)
+}

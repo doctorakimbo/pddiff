@@ -1,0 +1,9 @@
+SpeciesToCryId(arg0)
+{
+	if(arg0 < 250)
+		return arg0	
+	elseif(arg0 <= 275)
+		return 200
+	else
+		return *(((arg0 + 0xFFFFFEEC) * 2) + data_2539D4)
+}

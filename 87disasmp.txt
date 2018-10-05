@@ -1,0 +1,9 @@
+lbl1: @429F4
+r1 = 0
+r2 = 1
+r1 += r2
+r0 = data_865DE0_J
+r1 *= 2
+r1 += r0
+r0 = *r1
+return r0

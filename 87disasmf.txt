@@ -1,0 +1,21 @@
+lbl1: @43304
+r1 = r0
+if(r1 <= 0xFA) goto lbl3
+
+r0 = 0x113
+if(r1 <= 0x113) goto lbl2
+
+r0 = data_2539D4
+r2 = 0xFFFFFEEC
+r1 += r2
+r1 *= 2
+r1 += r0
+r0 = *r1
+goto lbl3
+
+lbl2:
+r0 = 0xC8
+goto lbl3
+
+lbl3:
+return r0

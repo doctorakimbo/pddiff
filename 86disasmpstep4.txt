@@ -1,0 +1,238 @@
+GetEvolutionTargetSpecies(mon, type, evolutionItem)
+{
+	targetSpecies = SPECIES_NONE;
+	species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+	holdEffect = GetHoldEffect(heldItem);
+	
+	if(holdEffect != HOLD_EFFECT_PREVENT_EVOLVE || type == 3)
+	{
+		switch(type)
+		{
+		case 0:
+			if(species == 0)
+				maxval = 19;
+			else
+				maxval = EVOS_PER_MON;
+
+			for(i = 0; i <= maxval; i++)
+			{
+				level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+
+				// cases that have a parameter other than level, so level is attached as a second parameter if needed
+				if((gEvolutionTable[species][i].method <= EVO_ITEM && gEvolutionTable[species][i].method != EVO_LEVEL) || (gEvolutionTable[species][i].method > EVO_LEVEL_NINJASK && gEvolutionTable[species][i].method != EVO_LEVEL_GENDER))
+				{
+					if(level >= gEvolutionTable[species][i].alsoRequiredLevel)
+					{
+						switch(gEvolutionTable[species][i].method)
+						{
+						case EVO_FRIENDSHIP:
+							if(GetMonData(mon, MON_DATA_FRIENDSHIP, NULL) >= 220)
+								targetSpecies = gEvolutionTable[species][i].targetSpecies;
+								
+							break;
+						case EVO_FRIENDSHIP_DAY:
+						case EVO_FRIENDSHIP_NIGHT:
+						case EVO_LEVEL_WITH_ITEM_DAY:
+						case EVO_LEVEL_WITH_ITEM_NIGHT:
+							if(gEvolutionTable[species][i].method == EVO_FRIENDSHIP_NIGHT || gEvolutionTable[species][i].method == EVO_LEVEL_WITH_ITEM_NIGHT)
+								hour = data_03005540_J[2] - 12
+							else
+								hour = data_03005540_J[2]
+							
+							if(hour <= 11)
+							{
+								if(gEvolutionTable[species][i].method == EVO_LEVEL_WITH_ITEM_DAY || gEvolutionTable[species][i].method == EVO_LEVEL_WITH_ITEM_NIGHT)
+								{
+									if(gEvolutionTable[species][i].param == 0)
+										targetSpecies = gEvolutionTable[species][i].targetSpecies;
+									elseif(gEvolutionTable[species][i].param == heldItem) 
+									{
+										SetMonData(mon, MON_DATA_HELD_ITEM, &NULL);
+										targetSpecies = gEvolutionTable[species][i].targetSpecies;
+									}
+								}
+								elseif(GetMonData(mon, MON_DATA_FRIENDSHIP, NULL) >= 220)
+									targetSpecies = gEvolutionTable[species][i].targetSpecies;
+							}
+							
+							break;
+						case EVO_LOCATION:
+						case EVO_WEATHER:
+							header = GetDestinationWarpMapHeader();
+						
+							if(gEvolutionTable[species][i].method == EVO_WEATHER)
+								param = header.weather;
+							else
+								param = header.regionMapSectionId;
+							
+							if(gEvolutionTable[species][i].param == param)
+								targetSpecies = gEvolutionTable[species][i].targetSpecies;
+								
+							break;
+						case EVO_MOVE_OR_MOVETYPE:
+							for(i = MON_DATA_MOVE1; i <= MON_DATA_MOVE4; i++)
+							{
+								move = GetMonData(mon, i, NULL);
+								
+								if(move)
+								{
+									requiredParam = gEvolutionTable[species][i].param;
+									
+									if((requiredParam >> 0xF) != 0)
+										param = gBattleMoves[move].type;
+									else
+										param = move;
+									
+									if(param == requiredParam)
+									{
+										targetSpecies = gEvolutionTable[species][i].targetSpecies;
+										break;
+									}
+								}
+							}
+							
+							break;
+						case EVO_MON_OR_MON_TYPE_IN_PARTY:
+							for(j = 0; j <= 5; j++)
+							{
+								if(&gPlayerParty[j] != mon && GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL) != 0)
+								{
+									if((gEvolutionTable[species][i].param >> 0xF) != 0)
+									{
+										param = &gBaseStats[&gPlayerParty[j]].type1;
+										
+										if(gEvolutionTable[species][i].param == param)
+										{
+											targetSpecies = gEvolutionTable[species][i].targetSpecies;
+											break;
+										}
+										
+										param = gBaseStats[&gPlayerParty[j]].type2;
+									}
+									else
+										param = gPlayerParty[j].species;
+									
+									if(gEvolutionTable[species][i].param == param)
+									{
+										targetSpecies = gEvolutionTable[species][i].targetSpecies;
+										break;
+									}
+								}
+							}
+							
+							break;
+						case EVO_BEAUTY:
+							if(GetMonData(mon, MON_DATA_BEAUTY, NULL) >= gEvolutionTable[species][i].param)
+								targetSpecies = gEvolutionTable[species][i].targetSpecies;
+								
+							break;
+						}
+					}
+				}
+				elseif(level >= gEvolutionTable[species][i].param)
+				{
+					switch(gEvolutionTable[species][i].method)
+					{
+					case EVO_LEVEL:
+					case EVO_LEVEL_NINJASK:
+						targetSpecies = gEvolutionTable[species][i].targetSpecies;
+						break;
+					case EVO_LEVEL_GENDER:
+						if(GetBoxMonGender(mon) == gBaseStats[gEvolutionTable[species][i].targetSpecies].genderRatio)
+							targetSpecies = gEvolutionTable[species][i].targetSpecies;
+						
+						break;
+					case EVO_LEVEL_SILCOON:
+						if(GetMonData(mon, MON_DATA_PERSONALITY, NULL) % 10 < 5)
+							targetSpecies = gEvolutionTable[species][i].targetSpecies;
+						
+						break;
+					case EVO_LEVEL_CASCOON:
+						if(GetMonData(mon, MON_DATA_PERSONALITY, NULL) % 10 >= 5)
+							targetSpecies = gEvolutionTable[species][i].targetSpecies;
+						
+						break;
+					case EVO_LEVEL_ATK_GT_DEF:
+						if(GetMonData(mon, MON_DATA_ATK, NULL) > GetMonData(mon, MON_DATA_DEF, NULL))
+							targetSpecies = gEvolutionTable[species][i].targetSpecies;
+						
+						break;
+					case EVO_LEVEL_ATK_EQ_DEF:
+						if(GetMonData(mon, MON_DATA_ATK, NULL) == GetMonData(mon, MON_DATA_DEF, NULL))
+							targetSpecies = gEvolutionTable[species][i].targetSpecies;
+						
+						break;
+					case EVO_LEVEL_ATK_LT_DEF:
+						if(GetMonData(mon, MON_DATA_ATK, NULL) < GetMonData(mon, MON_DATA_DEF, NULL))
+							targetSpecies = gEvolutionTable[species][i].targetSpecies;
+						
+						break;
+					}
+				}
+			}
+			
+			break;
+		case 1:
+			if(species == 0)
+				maxval = 19;
+			else
+				maxval = EVOS_PER_MON;
+
+			for(i = 0; i <= maxval; i++)
+			{
+				switch(gEvolutionTable[species][i].method)
+				{
+				case EVO_TRADE:
+					targetSpecies = gEvolutionTable[species][i].targetSpecies;
+					break;
+				case EVO_TRADE_ITEM:
+					if(gEvolutionTable[species][i].param == heldItem)
+					{
+						SetMonData(mon, MON_DATA_HELD_ITEM, &NULL)
+						targetSpecies = gEvolutionTable[species][i].targetSpecies;
+					}
+					
+					break;
+				case EVO_TRADE_FOR_SPECIFIC_MON:
+					if(GetMonData(&gEnemyParty[*(data_02031DA4 + 1) - 6], MON_DATA_SPECIES, NULL) == gEvolutionTable[species][i].param)
+						targetSpecies = gEvolutionTable[species][i].targetSpecies;
+					
+					break;
+				}
+			}
+
+			break;
+		case 2:
+		case 3:
+			if(species == 0)
+				maxval = 19;
+			else
+				maxval = EVOS_PER_MON;
+
+			for(i = 0; i <= maxval; i++)
+			{
+				switch(gEvolutionTable[species][i].method)
+				{
+				case EVO_ITEM:
+					if(gEvolutionTable[species][i].param == evolutionItem)
+						targetSpecies = gEvolutionTable[species][i].targetSpecies;
+					
+					break;
+				case EVO_ITEM_GENDER:
+					if(gEvolutionTable[species][i].param == evolutionItem && GetBoxMonGender(mon) == gBaseStats[gEvolutionTable[species][i].targetSpecies].genderRatio)
+						targetSpecies = gEvolutionTable[species][i].targetSpecies;
+					
+					break;
+				}
+			}
+
+			break;
+		}
+	}
+	
+	if(!IsMysteryEventEnabled() && targetSpecies > 151)
+		SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+	
+	return targetSpecies;
+}

@@ -1,0 +1,290 @@
+GetEvolutionTargetSpecies(arg0, arg1, arg2)
+{
+	r10 = 0
+	r7 = GetMonData(arg0, 0xB, NULL)
+	r9 = GetMonData(arg0, 0xC, NULL)
+	r0 = GetHoldEffect(r9)
+	
+	if(r0 != 0x26 || arg1 == 3)
+	{
+		if(arg1 == 0)
+		{
+			r5 = 0
+
+			lbl15:
+			r6 = (((r7 * 5) + r5) * 8) + gEvolutionTable
+			
+			r4 = *r6
+			r0 = GetMonData(arg0, 0x38, NULL)
+			
+			if(r4 == 4) goto lbl23
+
+			if(r4 bcc 8) goto lbl16
+
+			if(r4 <= 0xD) goto lbl23
+
+			goto lbl16
+
+			lbl16:
+			if(r4 == 0x10) goto lbl23
+
+			if(r0 bcs *(r6 + 6))
+			{
+				if(r4 == 1) goto lbl19
+
+				r3 = r4 - 2
+				if(r3 <= 1) goto lbl17
+
+				r3 -= 0x11
+				if(r3 <= 1) goto lbl17
+
+				goto lbl29
+
+				lbl17:
+				r0 = *(data_03005540_J + 2)
+				
+				if(r3 != 1)
+					r0 -= 0xC
+				
+				if(r0 <= 0xB) 
+				{
+					if(r4 > 3)
+					{
+						if(*(r6 + 2) == 0)
+							goto lbl40
+
+						if(*(r6 + 2) == r9) 
+						{
+							SetMonData(arg0, 0xC, &NULL)
+							goto lbl40
+						}
+						else
+							goto lbl41
+					}
+					else
+					{
+						lbl19:
+						if(GetMonData(arg0, 0x20, NULL) > 0xDB)
+							goto lbl40
+						else
+							goto lbl41
+					}
+				}
+				else
+					goto lbl41
+			}
+			else
+				goto lbl41
+
+			lbl23:
+			if(r0 bcs *(r6 + 2)) 
+			{
+				if(r4 == 4 || r4 == 0xD)
+					goto lbl40
+
+				if(r4 == 0x10 && GetBoxMonGender(arg0) == *((*(r4 + 6) * 0x1C) + gBaseStats + 0x10))
+				{
+					r0 = GetMonData(arg0, 0, NULL) % 0xA
+					
+					if(r4 == 0xB && r0 bcs 5)
+						goto lbl40
+					
+					if(r4 == 0xC && r0 bcc 5)
+						goto lbl40
+
+					r4 = GetMonData(arg0, 0x3B, NULL)
+					r0 = GetMonData(arg0, 0x3C, NULL)
+					r3 = *r6
+					
+					if(r3 == 8 && r4 > r0)
+						goto lbl40
+					elseif(r3 == 9 && r4 > r0)
+						goto lbl40
+					elseif(r3 == 0xA)
+					{
+						if(r4 bcc r0)
+							goto lbl40
+						else
+							goto lbl41
+					}
+					else
+						goto lbl29
+				}
+			}
+			else
+				goto lbl41
+			
+			lbl29:
+			if(r4 == 0x11 || r4 == 0x18)
+			{
+				r0 = GetDestinationWarpMapHeader()
+				
+				if(r4 == 0x18)
+					r2 = *(r0 + 0x16)
+				else
+					r2 = *(r0 + 0x14)
+				
+				if(*(r6 + 2) == r2)
+					goto lbl40
+				else
+					goto lbl41
+			}
+			elseif(r4 == 0x12)
+			{
+				for(r4 = 0xD; r4 <= 0x10; r4++)
+				{
+					r0 = GetMonData(arg0, r4, NULL)
+					
+					if(r0 != 0)
+					{
+						r2 = *(r6 + 2)
+						r1 = r2 >> 0xF
+						
+						if(r1 != 0)
+						{
+							r1 = (r0 * 0xC) + gBattleMoves
+							r2 = *(r6 + 2)
+							r0 = *(r1 + 2)
+						}
+						
+						if(r0 == r2)
+							goto lbl40
+					}
+				}
+
+				goto lbl41
+			}
+			elseif(r4 == 0x15)
+			{
+				for(r4 = 0; r4 <= 5; r4++)
+				{
+					r0 = (r4 * 0x64) + gPlayerParty
+					
+					if(r0 != arg0 && GetMonData(r0, 0xB, NULL) != 0)
+					{
+						if((*(r6 + 2) >> 0xF) != 0)
+						{
+							r1 = (r0 * 0x1C) + gBaseStats
+							
+							if(*(r1 + 6) == *(r6 + 2))
+								goto lbl40
+
+							r0 = *(r1 + 7)
+						}
+						
+						if(r0 == *(r6 + 2))
+							goto lbl40
+					}
+				}
+				
+				goto lbl41
+			}
+			elseif(r4 == 0xF)
+			{
+				if(GetMonData(arg0, 0x17, NULL) bcs *(r6 + 2))
+					goto lbl40
+				else
+					goto lbl41
+			}
+
+			lbl40:
+			r10 = *(r6 + 4)
+
+			lbl41:
+			r5++
+			if(r7 == 0) goto lbl42
+
+			if(r5 <= 4) goto lbl42
+
+			goto lbl43
+
+			lbl42:
+			if(r5 <= 0x13) goto lbl15
+			
+			goto lbl43
+		}
+		elseif(arg1 == 1)
+		{
+			r5 = 0
+
+			lbl9:
+			r6 = (((r7 * 5) + r5) * 8) + gEvolutionTable
+			
+			if(*r6 == 5)
+				goto lbl11
+			elseif(*r6 == 0x17)
+			{
+				if(GetMonData(((*(data_02031CD8_J + 1) - 6) * 0x64) + gEnemyParty, 0xB, NULL) == *(r6 + 2))
+					goto lbl11
+				else
+					goto lbl12
+			}
+			elseif(*r6 == 6 && *(r6 + 2) == r9)
+			{
+				SetMonData(arg0, 0xC, &NULL)
+				goto lbl11
+			}
+			else
+				goto lbl12
+
+			lbl11:
+			r10 = *(r6 + 4)
+
+			lbl12:
+			r5++
+			if(r7 != 0) goto lbl13
+
+			if(r5 <= 0x17) goto lbl9
+
+			goto lbl13
+
+			lbl13:
+			if(r5 <= 4) goto lbl9
+
+			goto lbl43
+		}
+		elseif(arg1 <= 3)
+		{
+			r5 = 0
+
+			lbl3:
+			r4 = (((r7 * 5) + r5) * 8) + gEvolutionTable
+			
+			if(*r4 == 7)
+				goto lbl4
+
+			if(*r4 == 0x16)
+			{
+				if(GetBoxMonGender(arg0) == *((*(r4 + 4) * 0x1C) + gBaseStats + 0x10))
+					goto lbl4
+				else
+					goto lbl5
+			}
+			else
+				goto lbl5
+
+			lbl4:
+			if(*(r4 + 2) == arg2)
+				r10 = *(r4 + 4)
+
+			lbl5:
+			r5++
+			if(r7 != 0) goto lbl6
+
+			if(r5 <= 0x17) goto lbl3
+
+			goto lbl6
+
+			lbl6:
+			if(r5 <= 4) goto lbl3
+
+			goto lbl43
+		}
+	}
+
+	lbl43:
+	if(r10 > 0x97 && !IsMysteryEventEnabled())
+		SetMonData(arg0, 0xC, &r9)
+	
+	return r10
+}

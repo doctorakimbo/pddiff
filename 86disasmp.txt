@@ -15,18 +15,438 @@ r9 = r0
 GetHoldEffect()
 if(r0 != 0x26) goto lbl2
 
-if(r5 != 3) goto lbl(42638)
+if(r5 != 3) goto lbl7
 
 goto lbl2
 
 lbl2:
-if(r5 == 0) goto lbl(4269c)
+if(r5 == 0) goto lbl14
 
-if(r5 == 1) goto lbl(4263a)
+if(r5 == 1) goto lbl8
 
-if(r5 > 3) goto lbl(42638)
+if(r5 > 3) goto lbl7
 
 r5 = 0
 goto lbl3
 
 lbl3:
+r3 = gEvolutionTable
+r4 = r7 * 4
+r0 = r4 + r7
+r0 += r5
+r0 *= 8
+r4 = r0 + r3
+r0 = *r4
+if(r0 == 7) goto lbl4
+
+if(r0 != 0x16) goto lbl5
+
+r0 = *(r4 + 4)
+fn_4286E_J()
+if(r0 != r1) goto lbl5
+
+goto lbl4
+
+lbl4:
+r0 = *(r4 + 2)
+if(r0 != r6) goto lbl5
+
+r1 = *(r4 + 4)
+r10 = r1
+goto lbl5
+
+lbl5:
+r5++
+if(r7 != 0) goto lbl6
+
+if(r5 <= 0x17) goto lbl3
+
+goto lbl6
+
+lbl6:
+if(r5 <= 4) goto lbl3
+
+goto lbl7
+
+lbl7:
+goto lbl43
+
+lbl8:
+r5 = 0
+goto lbl9
+
+lbl9:
+r3 = gEvolutionTable
+r6 = r7 * 4
+r0 = r6 + r7
+r0 += r5
+r0 *= 8
+r6 = r0 + r3
+r0 = *r6
+if(r0 == 5) goto lbl11
+
+if(r0 == 0x17) goto lbl10
+
+if(r0 != 6) goto lbl12
+
+r0 = *(r6 + 2)
+if(r0 != r9) goto lbl12
+
+r2 = &s0
+r0 = 0
+*r2 = r0
+r0 = r8
+r1 = 0xC
+SetMonData()
+goto lbl11
+
+lbl10:
+r3 = gEnemyParty
+r0 = data_02031CD8_J
+r0 = *(r0 + 1)
+r0 -= 6
+r1 = 0x64
+r0 *= r1
+r0 += r3
+r1 = 0xB
+r2 = 0
+GetMonData()
+r2 = *(r6 + 2)
+if(r0 != r2) goto lbl12
+
+goto lbl11
+
+lbl11:
+r2 = *(r6 + 4)
+r10 = r2
+goto lbl12
+
+lbl12:
+r5++
+if(r7 != 0) goto lbl13
+
+if(r5 <= 0x17) goto lbl9
+
+goto lbl13
+
+lbl13:
+if(r5 <= 4) goto lbl9
+
+goto lbl43
+
+lbl14:
+r5 = 0
+goto lbl15
+
+lbl15:
+r3 = gEvolutionTable
+r6 = r7 * 4
+r0 = r6 + r7
+r0 += r5
+r0 *= 8
+r6 = r0 + r3
+r4 = *r6
+r0 = r8
+r1 = 0x38
+r2 = 0
+GetMonData()
+if(r4 == 4) goto lbl23
+
+if(r4 bcc 8) goto lbl16
+
+if(r4 <= 0xD) goto lbl23
+
+goto lbl16
+
+lbl16:
+if(r4 == 0x10) goto lbl23
+
+r2 = *(r6 + 6)
+if(r0 bcc r2) goto lbl20
+
+if(r4 == 1) goto lbl19
+
+r3 = r4 - 2
+if(r3 <= 1) goto lbl17
+
+r3 -= 0x11
+if(r3 > 1) goto lbl29
+
+goto lbl17
+
+lbl17:
+r0 = data_03005540_J
+r0 = *(r0 + 2)
+if(r3 == 1) goto lbl18
+
+r0 -= 0xC
+goto lbl18
+
+lbl18:
+if(r0 > 0xB) goto lbl20
+
+if(r4 > 3) goto lbl21
+
+goto lbl19
+
+lbl19:
+r0 = r8
+r1 = 0x20
+r2 = 0
+GetMonData()
+if(r0 > 0xDB) goto lbl22
+
+goto lbl20
+
+lbl20:
+goto lbl41
+
+lbl21:
+r0 = *(r6 + 2)
+if(r0 == 0) goto lbl22
+
+if(r0 != r9) goto lbl20
+
+r2 = &s0
+r0 = 0
+*r2 = r0
+r0 = r8
+r1 = 0xC
+SetMonData()
+goto lbl22
+
+lbl22:
+goto lbl40
+
+lbl23:
+r2 = *(r6 + 2)
+if(r0 bcc r2) goto lbl20
+
+if(r4 == 4) goto lbl22
+
+if(r4 == 0xD) goto lbl22
+
+if(r4 != 0x10) goto lbl24
+
+r0 = *(r6 + 4)
+fn_4286E_J()
+if(r0 == r1) goto lbl22
+
+goto lbl24
+
+lbl24:
+r0 = r8
+r1 = 0
+r2 = 0
+GetMonData()
+r1 = 0xA
+modulus()
+if(r4 != 0xB) goto lbl25
+
+if(r0 bcs 5) goto lbl40
+
+goto lbl25
+
+lbl25:
+if(r4 != 0xC) goto lbl26
+
+if(r0 bcc 5) goto lbl40
+
+goto lbl26
+
+lbl26:
+r0 = r8
+r1 = 0x3B
+r2 = 0
+GetMonData()
+r4 = r0
+r0 = r8
+r1 = 0x3C
+r2 = 0
+GetMonData()
+r3 = *r6
+if(r3 != 8) goto lbl27
+
+if(r4 > r0) goto lbl40
+
+goto lbl27
+
+lbl27:
+if(r3 != 9) goto lbl28
+
+if(r4 > r0) goto lbl40
+
+goto lbl28
+
+lbl28:
+if(r3 != 0xA) goto lbl29
+
+if(r4 bcc r0) goto lbl40
+
+goto lbl41
+
+lbl29:
+if(r4 == 0x11) goto lbl30
+
+if(r4 == 0x12) goto lbl32
+
+if(r4 == 0x15) goto lbl36
+
+if(r4 == 0x18) goto lbl30
+
+if(r4 != 0xF) goto lbl41
+
+r0 = r8
+r1 = 0x17
+r2 = 0
+GetMonData()
+r2 = *(r6 + 2)
+if(r0 bcc r2) goto lbl41
+
+goto lbl40
+
+lbl30:
+fn_54B10_J()
+r2 = *(r0 + 0x14)
+if(r4 != 0x18) goto lbl31
+
+r2 = *(r0 + 0x16)
+goto lbl31
+
+lbl31:
+r0 = *(r6 + 2)
+if(r0 != r2) goto lbl41
+
+goto lbl40
+
+lbl32:
+r4 = 0xD
+goto lbl33
+
+lbl33:
+r0 = r8
+r1 = r4
+r2 = 0
+GetMonData()
+if(r0 == 0) goto lbl35
+
+r2 = *(r6 + 2)
+r1 = r2 >> 0xF
+if(r1 == 0) goto lbl34
+
+r2 = gBattleMoves
+r1 = 0xC
+r1 *= r0
+r1 += r2
+r2 = *(r6 + 2)
+r0 = *(r1 + 2)
+goto lbl34
+
+lbl34:
+if(r0 == r2) goto lbl40
+
+goto lbl35
+
+lbl35:
+r4++
+if(r4 <= 0x10) goto lbl33
+
+goto lbl41
+
+lbl36:
+r4 = 0
+goto lbl37
+
+lbl37:
+r3 = gPlayerParty
+r0 = 0x64
+r0 *= r4
+r0 += r3
+if(r0 == r8) goto lbl39
+
+r1 = 0xB
+r2 = 0
+GetMonData()
+if(r0 == 0) goto lbl39
+
+r2 = *(r6 + 2)
+r1 = r2 >> 0xF
+if(r1 == 0) goto lbl38
+
+r2 = gBaseStats
+r1 = 0x1C
+r1 *= r0
+r1 += r2
+r2 = *(r6 + 2)
+r0 = *(r1 + 6)
+if(r0 == r2) goto lbl40
+
+r0 = *(r1 + 7)
+goto lbl38
+
+lbl38:
+if(r0 == r2) goto lbl40
+
+goto lbl39
+
+lbl39:
+r4++
+if(r4 <= 5) goto lbl37
+
+goto lbl41
+
+lbl40:
+r0 = *(r6 + 4)
+r10 = r0
+goto lbl41
+
+lbl41:
+r5++
+if(r7 == 0) goto lbl42
+
+if(r5 > 4) goto lbl43
+
+goto lbl42
+
+lbl42:
+if(r5 > 0x13) goto lbl43
+
+goto lbl15
+
+lbl43:
+r0 = r10
+if(r0 <= 0x97) goto lbl45
+
+fn_6E25C()
+if(r0 != 0) goto lbl44
+
+r2 = &s0
+r0 = r9
+*r2 = r0
+r0 = r8
+r1 = 0xC
+SetMonData()
+goto lbl44
+
+lbl44:
+r0 = r10
+goto lbl45
+
+lbl45:
+return r0
+
+
+
+
+
+
+fn_4286E_J:
+r2 = gBaseStats
+r1 = 0x1C
+r0 *= r1
+r0 += r2
+r4 = *(r0 + 0x10)
+r0 = r8
+GetBoxMonGender()
+r1 = r4
+return

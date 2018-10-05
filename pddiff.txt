@@ -702,32 +702,35 @@ grafics:
 + 041C46: Part of PokemonUseItemEffects (see 84disasm)
 		  Implements: Revive case 0xFC - restores 1/4 HP (new item?)
 		  Note: needs testing when item itself implemented
-= 042D50-042DA4: Completely removed?
+= 042D50-042DA4: Completely removed (replaced with fn_41714_E)
 = 042DA4: Entirety of sub_8042DA4 (see 85disasm)
 		  Implements: Messages for X Sp. Def and X Evasion
 		  Relies on: fn_41714_E
 = 042EC4: Entirety of GetEvolutionTargetSpecies (see 86disasm)
-		  
-= 043214: 
-= 043304: 
-
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
+		  Implements: new evolution methods (day/night happiness for FRLG, single-gender levelup, location-based, specific move, specific move type, level during day/night, level during day/night with item, specific mon in party, specific type in party, single-gender stone, trade for specific mon, overworld weather), allows species 0 to have 20 branched evolutions (??? need more info)
+		  Optional knowledge: e02031DA4
+		  Required knowledge: j03005540
+- 043214: CD 24 64 -> FF 24 A4 (410 -> 1020 maximum pkmn species?)
+= 043304: Entirety of SpeciesToCryId (see 87disasm)
 		  
 
-curr: j425B4-j428A4, j42904 (3byte), j429F4-j42A28
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+
+curr: j429F4-j42A28
 next: j42C74
