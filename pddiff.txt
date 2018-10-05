@@ -699,8 +699,9 @@ grafics:
   041668: Part of PokemonUseItemEffects (+fn_41714_E) (see 83disasm)
 		  Implements: X Sp. Def, X Evasion (effects)
 		  Relies on: new table entries for gItemEffectTable
-- 041C46: Part of PokemonUseItemEffects (see 84disasm)
++ 041C46: Part of PokemonUseItemEffects (see 84disasm)
 		  Implements: Revive case 0xFC - restores 1/4 HP (new item?)
+		  Note: needs testing when item itself implemented
 = 042D50-042DA4: Completely removed?
 = 042DA4: Entirety of sub_8042DA4 (see 85disasm)
 		  Implements: Messages for X Sp. Def and X Evasion
