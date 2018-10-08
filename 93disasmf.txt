@@ -1,0 +1,5 @@
+lbl1: @4442C
+r1 = r3 + r2
+r0 = *(r1 + 0xC)
+r1 = *(r1 + 0xE)
+if(r0 == r1) goto lbl(4443E)

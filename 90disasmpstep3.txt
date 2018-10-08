@@ -1,0 +1,41 @@
+GetMoveRelearnerMoves(arg0, arg1)
+{
+	r10 = 0
+	r7 = GetMonData(arg0, 0xB, NULL)
+	s3 = GetMonData(arg0, 0x38, NULL)
+
+	for(r5 = 0; r5 <= 3; r5++)
+		stack[r5] = GetMonData(arg0, 0xD + r5, NULL)
+
+	for(r5 = 0; r5 <= 0x17; r5++)
+	{
+		if(data_02021D10_J[r7][r5] == 0xFFFF)
+			break;
+	
+		if((data_02021D10_J[r7][r5].0 & 0xFE00) <= (s3 << 9))
+		{
+			for(r4 = 0; r4 <= 3; r4++)
+			{
+				if(stack[r4] == data_02021D10_J[r7][r5].2)
+					break;
+			} 
+			
+			if(r4 == 4)
+			{
+				for(r4 = 0; r4 < r10; r4++)
+				{
+					if(arg1[r4] == data_02021D10_J[r7][r5].2)
+						break;
+				}
+				
+				if(r4 == r10)
+				{
+					r10++
+					arg1[r4] = data_02021D10_J[r7][r5].2
+				}
+			}
+		}
+	}
+	
+	return r10
+}

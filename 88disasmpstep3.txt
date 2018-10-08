@@ -1,0 +1,47 @@
+MonGainEVs(arg0, arg1)
+{
+	r4 = 0
+	r7 = 0
+
+	for(r6 = 0; r6 <= 5; r6++)
+	{
+		stack[r6] = GetMonData(arg0, 0x1A + r6, NULL)
+		r7 += stack[r6]
+	}
+
+	for(r6 = 0; r6 <= 5; r6++)
+	{
+		if(r7 > 0x1FD)
+			break;
+		
+		r4 = gBaseStats[arg1].0xA >> (r6 * 2)
+		
+		s3 = GetMonData(arg0, 0xC, NULL)
+		
+		if(GetHoldEffect(s3) == 0x18)
+		{
+			if(GetHoldEffectParam(s3) == 0)
+				r4 *= 2
+			elseif(GetHoldEffectParam(s3) == r6 + 1)
+				r4 += 8
+		}
+		
+		if(CheckPartyHasHadPokerus(arg0, 0))
+			r4 *= 2
+		
+		if(r7 + r4 > 0x1FE)
+			r4 = 0x1FE - r7
+		
+		r0 = stack[r6] + r4
+		
+		if(r0 > 0xFC)
+		{
+			r0 = 0xFC
+			r4 = r0 - stack[r6]
+		}
+		
+		stack[r6] = r0
+		r7 += r4
+		SetMonData(arg0, 0x1A + r6, &stack[r6])
+	}
+}

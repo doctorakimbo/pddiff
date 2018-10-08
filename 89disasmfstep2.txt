@@ -1,0 +1,27 @@
+CheckPartyPokerus(arg0, arg1)
+{
+	r4 = arg1
+	r3 = 0
+	r6 = 1
+	r5 = 0
+	
+	if(r4 != 0)
+	{
+		do
+		{
+			if((r4 & 1) && (GetMonData((r3 * 0x64) + arg0, 0x22, NULL) & 0xF))
+				r5 |= r6
+			
+			r3++
+			r6 *= 2
+			r4 /= 2
+		} while(r4 != 0)
+	}
+	else
+	{
+		if(GetMonData(arg0, 0x22, NULL) & 0xF)
+			r5 = 1
+	}
+	
+	return r5
+}

@@ -1,0 +1,10 @@
+EvolutionRenameMon(mon, oldSpecies, newSpecies)
+{
+	GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
+	
+	// gSpeciesNames entry size 6
+	if(!StringCompare(gSpeciesNames[oldSpecies], gStringVar1))
+		SetMonData(mon, MON_DATA_NICKNAME, &gSpeciesNames[newSpecies]);
+	
+	return
+}

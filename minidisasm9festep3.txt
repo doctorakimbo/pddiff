@@ -1,0 +1,10 @@
+EvolutionRenameMon(arg0, arg1, arg2)
+{
+	GetMonData(arg0, 2, &data_02021CD0)
+	
+	// gSpeciesNames entry size 0xB
+	if(GetMonData(arg0, 3, &s0) == 2 && fn_8E28(&gSpeciesNames[arg1], &data_02021CD0) == 0)
+		SetMonData(arg0, 2, &gSpeciesNames[arg2])
+	
+	return
+}

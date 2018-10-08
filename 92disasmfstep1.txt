@@ -1,0 +1,10 @@
+switch(r0)
+{
+case 1:
+case 4:
+	return 0x128;
+case 7:
+	return 0x12B;
+default:
+	return 0x129;
+}

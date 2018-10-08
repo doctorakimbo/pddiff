@@ -1,0 +1,24 @@
+lbl1: @42C5C
+r7 = r0
+r4 = r1
+r6 = r2
+r5 = data_02021CD0
+r1 = 2
+r2 = r5
+GetMonData()
+r0 = r4 * 8
+r4 = gSpeciesNames
+r0 *= r4
+r1 = r5
+fn_8E28()
+if(r0 != 0) goto lbl2
+
+r2 = r6 * 8
+r2 += r4
+r0 += r7
+r1 = 2
+SetMonData()
+goto lbl2
+
+lbl2:
+return

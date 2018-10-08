@@ -1,0 +1,9 @@
+SpeciesToPokedexNum(species)
+{
+	species = SpeciesToNationalPokedexNum(species);
+
+	if(!IsMysteryEventEnabled() && species > 151)
+		return 0xFFFF;
+	else
+		return species;
+}

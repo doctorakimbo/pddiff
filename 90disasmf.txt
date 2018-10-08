@@ -1,0 +1,167 @@
+lbl1: @43C84
+r6 = r0
+s2 = r1
+r0 = 0
+r10 = r0
+r0 = r6
+r1 = 0xB
+r2 = 0
+GetMonData()
+r7 = r0
+r0 = r6
+r1 = 0x38
+r2 = 0
+GetMonData()
+s3 = r0
+r5 = 0
+r4 = &s0
+goto lbl2
+
+lbl2:
+r1 = r5
+r1 += 0xD
+r0 = r6
+r2 = 0
+GetMonData()
+*r4 = r0
+r4 += 2
+r5++
+if(r5 <= 3) goto lbl2
+
+r5 = 0
+r6 = gLevelUpLearnsets
+r1 = r7 * 4
+r2 = r1 + r6
+r3 = *r2
+r0 = *r3
+r4 = 0xFFFF
+s5 = r1
+if(r0 == r4) goto lbl10
+
+r9 = r2
+s4 = r3
+goto lbl3
+
+lbl3:
+r2 = r5 * 2
+r1 = s4
+r0 = r2 + r1
+r3 = *r0
+r0 = 0xFE00
+r0 &= r3
+r4 = s3
+r1 = r4 << 9
+r7 = r2
+r5++
+r12 = r5
+if(r0 > r1) goto lbl9
+
+r4 = 0
+r0 = &s0
+r1 = *r0
+r0 = 0x1FF
+r0 &= r3
+if(r1 == r0) goto lbl6
+
+r0 = s5
+r1 = gLevelUpLearnsets
+r6 = r0 + r1
+r2 = 0x1FF
+r8 = r2
+r3 = &s0
+r5 = r7
+goto lbl4
+
+lbl4:
+r3 += 2
+r4++
+if(r4 > 3) goto lbl6
+
+r0 = *r6
+r0 += r5
+r1 = *r0
+r2 = *r3
+r0 = r8
+r0 &= r1
+goto lbl5
+
+lbl5:
+if(r2 != r0) goto lbl4
+
+goto lbl6
+
+lbl6:
+if(r4 != 4) goto lbl9
+
+r4 = 0
+if(r4 >= r10) goto lbl8
+
+r1 = r9
+r0 = *r1
+r0 += r7
+r1 = *r0
+r0 = s2
+r2 = *r0
+r0 = 0x1FF
+r0 &= r1
+if(r2 == r0) goto lbl8
+
+r1 = s5
+r2 = gLevelUpLearnsets
+r6 = r1 + r2
+r0 = 0x1FF
+r8 = r0
+r3 = s2
+r5 = r7
+goto lbl7
+
+lbl7:
+r3 += 2
+r4++
+if(r4 >= r10) goto lbl8
+
+r0 = *r6
+r0 += r5
+r1 = *r0
+r2 = *r3
+r0 = r8
+r0 &= r1
+if(r2 != r0) goto lbl7
+
+goto lbl8
+
+lbl8:
+if(r4 != r10) goto lbl9
+
+r0 = r10
+r0++
+r10 = r0
+r2 = r4 * 2
+r1 = s2
+r2 += r1
+r4 = r9
+r0 = *r4
+r0 += r7
+r1 = *r0
+r0 = 0x1FF
+r0 &= r1
+*r2 = r0
+goto lbl9
+
+lbl9:
+r5 = r12
+if(r5 > 0x13) goto lbl10
+
+r1 = r9
+r0 = *r1
+r1 = r5 * 2
+r1 += r0
+r0 = *r1
+r2 = 0xFFFF
+if(r0 != r2) goto lbl3
+
+goto lbl10
+
+lbl10:
+r0 = r10
+return r0

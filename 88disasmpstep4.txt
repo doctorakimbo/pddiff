@@ -1,0 +1,47 @@
+MonGainEVs(mon, defeatedSpecies)
+{
+	evIncrease = 0;
+	totalEVs = 0;
+
+	for(i = 0; i <= NUM_STATS; i++)
+	{
+		evs[i] = GetMonData(mon, MON_DATA_HP_EV + i, NULL);
+		totalEVs += evs[i];
+	}
+
+	for(i = 0; i <= NUM_STATS; i++)
+	{
+		if(totalEVs >= MAX_TOTAL_EVS)
+			break;
+		
+		evIncrease = gBaseStats[defeatedSpecies].evYield[i];
+		
+		heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+		
+		if(GetHoldEffect(heldItem) == HOLD_EFFECT_MACHO_BRACE)
+		{
+			if(GetHoldEffectParam(heldItem) == 0)
+				evIncrease *= 2;
+			elseif(GetHoldEffectParam(heldItem) == i + 1)
+				evIncrease += 8;
+		}
+		
+		if(CheckPartyHasHadPokerus(mon, 0))
+			evIncrease *= 2;
+		
+		if(totalEVs + evIncrease > MAX_TOTAL_EVS)
+			evIncrease = MAX_TOTAL_EVS - totalEVs;
+		
+		newEV = evs[i] + evIncrease;
+		
+		if(newEV > 252)
+		{
+			newEV = 252;
+			evIncrease = 252 - evs[i];
+		}
+		
+		evs[i] = newEV;
+		totalEVs += evIncrease;
+		SetMonData(mon, MON_DATA_HP_EV + i, &evs[i]);
+	}
+}

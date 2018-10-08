@@ -1,0 +1,4 @@
+SpeciesToPokedexNum(species)
+{
+	return SpeciesToNationalPokedexNum(species);
+}

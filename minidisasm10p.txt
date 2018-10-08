@@ -1,0 +1,10 @@
+lbl1: @435DC
+r4 = r0
+r0 = r4
+fn_43298()
+r4 = r0
+r0 = r4
+goto lbl3
+
+lbl3:
+return r0

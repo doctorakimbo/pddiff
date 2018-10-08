@@ -1,0 +1,59 @@
+switchtable: @4367C
+0: lbl1
+1: lbl2
+2: lbl5
+3: lbl7
+4: lbl8
+5: lbl10
+6: lbl12
+7: lbl14
+
+lbl1: @4369C
+r0 = 0x12B
+goto lbl4
+
+lbl2: @436A4
+r0 = 0x128
+goto lbl4
+
+lbl4:
+return r0
+
+lbl5: @8532D8
+r0 = 0x14A
+goto lbl6
+
+lbl6:
+return r0
+
+lbl7: @8532D0
+r0 = 0x15B
+goto lbl6
+
+lbl8: @8D8F30
+r0 = 0x15A
+goto lbl9
+
+lbl9:
+return r0
+
+lbl10: @8664E0
+r0 = 0x154
+goto lbl11
+
+lbl11:
+return r0
+
+lbl12: @740058
+r0 = 0x10A
+goto lbl13
+
+lbl13:
+return r0
+
+lbl14: @8C0FA0
+r0 = 0x157
+goto lbl15
+
+lbl15:
+return r0

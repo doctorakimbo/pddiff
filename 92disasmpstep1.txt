@@ -1,0 +1,19 @@
+switch(r0)
+{
+case 0:
+	return 0x12B;
+case 1:
+	return 0x128;
+case 2:
+	return 0x14A;
+case 3:
+	return 0x15B;
+case 4:
+	return 0x15A;
+case 5:
+	return 0x154;
+case 6:
+	return 0x10A;
+case 7:
+	return 0x157;
+}

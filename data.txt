@@ -2,6 +2,9 @@ addr e: addr j: desc
 
 		   : 24 00 02 02: ????? (valid)
 3C 06 02 02: B8 05 02 02: gSprites
+D0 1C 02 02: 4C 1C 02 02: gStringVar1
+		   : 10 1D 02 02: ?????? (GetMoveRelearnerMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
+								 (GetNumberOfRelearnableMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
 74 29 02 02: E4 28 02 02: gBattle_BG0_X
 76 29 02 02: E6 28 02 02: gBattle_BG0_Y
 8C 29 02 02: FC 28 02 02: gDisplayedStringBattle
@@ -175,6 +178,7 @@ funcs e,j,desc:
 008928 = 0084A4 = LoadSpritePalette
 008D84 = 008900 = StringCopy
 008DA4 = 008920 = StringAppend
+008E28 = 0089A4 = StringCompare
 008E78 = 0089F4 = ConvertIntToDecimalStringN
 00DFA4 = 00D998 = BtlController_EmitGetMonData
 00DFF0 = 00D9E4 = BtlController_EmitSetMonData
@@ -236,13 +240,14 @@ funcs e,j,desc:
 040D7C = 040470 = GetMonAbility
 04101C = 04070C = CalculatePPWithBonus
 042EB4 = 0425A4 = GetNatureFromPersonality
+043298 = 042988 = SpeciesToNationalPokedexNum
 043A70 = CheckPartyPokerus
-043AD8 = CheckPartyHasHadPokerus
+043AD8 = 043194 = CheckPartyHasHadPokerus
 044234 = 04387C = GetFlavorRelationByPersonality
 0442D8 = 043920 = MonRestorePP
 044EC8 = 04448C = Random
 055250 = 054B10 = GetDestinationWarpMapHeader
-06E25C = 06DA50 = IsMysteryEventEnabled
+06E25C = 06DA50 = IsNationalPokedexEnabled
 06E454 = 06DC48 = GetVarPointer
 06E568 = 06DD5C = VarGet
 06E584 = 06DD78 = VarSet

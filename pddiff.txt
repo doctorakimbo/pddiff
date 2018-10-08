@@ -126,6 +126,7 @@ abilities:
 (old kid: 16F8C4, old item: 0x125, route 4, fix wildmons route15)
 item effects:
 + typebooster IDs: (if effectparam = 0, type-resist berries; if effectparam >= 30, Gems; otherwise typeboosters as normal)
+- 0x18 = Macho Brace if effectparam is 0, otherwise Power item (effectparam = stat ID)
 + 0x1D = "Polkadot Bow"
 + 0x2B = Leftovers if effectparam is 0xFF, otherwise Black Sludge (effectparam = type that heals)
 + 0x43 = Focus Sash
@@ -280,6 +281,7 @@ grafics:
 = expand 2507E8 (uncopiable moves) from 4 entries (mimic) / 19 entries (metronome) to 5 entries (mimic) / 44 entries (metronome) (j20CA40, eUNKNOWN)
 + expand 250848 (pickup table) from 16 entries to 10 subtables of varying size (1528150)
 + expand 250C04 (move data) from 355 entries to 680 (1010000)
+- expand 2539D4 (cry ids) to encompass all ids (865DE0)
 + expand 26056C (ball sprites) from 12 entries to 26 (A23000)
 + expand 2605CC (ball sprite palettes) from 12 entries to 26 (A230F0)
 + expand 3DB028 (item data) from 375 entries to 435 (10B0000)
@@ -667,7 +669,7 @@ grafics:
   03EB52: 40 00 40 18 01 88 0D 48 08 40 -> 80 00 40 18 40 88 00 00 00 00
 		  Implements: Part of gLevelUpLearnsets refactor
 = 03ECEC: Entirety of CalculateBaseDamage (see 78disasm)
-		  Implements: modern Plus/Minus, Rivalry, Heatproof (fire moves), Dry Skin (fire moves), Iron Fist, Solar Power (boost), Normalize (boost), Technician, Klutz (damage-boosting items), Mold Breaker (damage-reduction abilities, Unaware), Unaware (atk/def/spa/spd), Slow Start (Attack reduction), Reckless, Flower Gift (stat boosts), Sheer Force (boost), Defeatist, Friend Guard, Multiscale, Toxic Boost, Flare Boost, Analytic, Infiltrator (dual screens), Sand Force, Aura Break, Tough Claws, Mega Launcher, Grass Pelt, Aerilate (boost), Dark Aura, Fur Coat, Fairy Aura, Pixilate (boost), Refrigerate (boost), Strong Jaw, Galvanize (boost), "Polkadot Bow", Gems (boost), Choice Specs (boost), Muscle Band, Wise Glasses, Assault Vest (boost), Eviolite, Life Orb (boost), Wonder Room (effect), sandstorm Rock SpDef boost, modern spread reduction
+		  Implements: modern Plus/Minus, Rivalry, Heatproof (fire moves), Dry Skin (fire moves), Iron Fist, Solar Power (boost), Normalize (boost), Technician, Klutz (damage-boosting items), Mold Breaker (damage-reduction abilities, Unaware), Unaware (atk/def/spa/spd), Slow Start (Attack reduction), Reckless, Flower Gift (stat boosts), Sheer Force (boost), Defeatist, Friend Guard, Multiscale, Toxic Boost, Flare Boost, Analytic, Infiltrator (dual screens), Sand Force, Aura Break, Tough Claws, Mega Launcher, Grass Pelt, Aerilate (boost), Dark Aura, Fur Coat, Fairy Aura, Pixilate (boost), Refrigerate (boost), Strong Jaw, Galvanize (boost), "Polkadot Bow", Gems (gen 5 boost), Choice Specs (boost), Muscle Band, Wise Glasses, Assault Vest (boost), Eviolite, Life Orb (boost), Wonder Room (effect), sandstorm Rock SpDef boost, modern spread reduction
 		  Relies on: weather refactor, BattleMove refactor, GetAbilityUserOnSameSide, HasItemWithTypeEffect
 		  Requires in future: AteAbilityConversionTable (j168CB4)
 		  Note: is that how spread reduction works? (only reduced if max targets exist)
@@ -711,26 +713,38 @@ grafics:
 		  Optional knowledge: e02031DA4
 		  Required knowledge: j03005540
 - 043214: CD 24 64 -> FF 24 A4 (410 -> 1020 maximum pkmn species?)
-= 043304: Entirety of SpeciesToCryId (see 87disasm)
+- 043304: Entirety of SpeciesToCryId (see 87disasm)
+		  Implements: Allows forbiddenmons to get individual cries
+= 0435A6: 0B -> 10 (pkmnnamelength)
+- 043890: Entirety of MonGainEVs (see 88disasm)
+		  Implements: Power items, EV per-stat limit 255->252
+= 043A70: Entirety of CheckPartyPokerus (see 89disasm)
+		  Implements: need more info (reads only last bit of MON_DATA_POKERUS instead of last 4 bits)
+= 043C84: Entirety of GetMoveRelearnerMoves (see 90disasm)
+		  Implements: max level-up moves 20 -> 24, need more info (gLevelUpLearnsets -> *j02021D10)
+		  Required knowledge: j02021D10
+= 043DEE: 0E 48 84 46 -> 00 00 00 00
+  043E02: 1A 88 60 46 10 40 08 80 02 -> 58 88 00 00 00 00 08 80 04
+		  Implements: Part of gLevelUpLearnsets refactor
+= 043E2C: Entirety of GetNumberOfRelearnableMoves (see 91disasm)
+		  Implements: need more info (gLevelUpLearnsets -> *j02021D10)
+		  Required knowledge: j02021D10
+- 043FA6: 97 2C 04 D9 -> 00 00 04 E0
+		  Implements: species is always valid even before natdex
+! 044034: 62 40 04 08 5C 40 04 08 62 40 04 08 62 40 04 08 5C 40 04 08 62 40 04 08 62 40 04 08 54 40 04 08 -> 54 40 04 08 5C 40 04 08 D8 32 85 08 D0 32 85 08 30 8F 8D 08 E0 64 86 08 58 00 74 08 A0 0F 8C 08 (changes table to point to other scripts, see 92disasm)
+		  Implements: PDONLY, more trainer music
+		  Requires in future: all the pointed-to scripts
+= 04442C: 99 18 88 89 C9 89 88 42 -> 00 49 08 47 XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jE2EAD0, see 02disasm))
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
 		  
 
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-
-curr: j429F4-j42A28
-next: j42C74
+curr: j43A74
+next: j4448C

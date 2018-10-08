@@ -1,0 +1,19 @@
+lbl1: @43F90
+r4 = r0
+r0 = r4
+fn_43298()
+r4 = r0
+IsMysteryEventEnabled()
+if(r0 != 0) goto lbl2
+
+if(r4 <= 151) goto lbl2
+
+r0 = 0xFFFF
+goto lbl3
+
+lbl2:
+r0 = r4
+goto lbl3
+
+lbl3:
+return r0

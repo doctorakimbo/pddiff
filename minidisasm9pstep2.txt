@@ -1,0 +1,9 @@
+EvolutionRenameMon(arg0, arg1, arg2)
+{
+	GetMonData(arg0, 2, data_02021CD0)
+	
+	if(fn_8E28((arg1 * 8) + gSpeciesNames, data_02021CD0) == 0)
+		SetMonData(arg0, 2, (arg2 * 6) + gSpeciesNames)
+	
+	return
+}

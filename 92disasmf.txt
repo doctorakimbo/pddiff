@@ -1,0 +1,24 @@
+switchtable: @44034
+0: lbl3
+1: lbl2
+2: lbl3
+3: lbl3
+4: lbl2
+5: lbl3
+6: lbl3
+7: lbl1
+
+lbl1: @44054
+r0 = 0x12B
+goto lbl4
+
+lbl2: @4405C
+r0 = 0x128
+goto lbl4
+
+lbl3: @44062
+r0 = 0x129
+goto lbl4
+
+lbl4:
+return r0

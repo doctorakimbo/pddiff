@@ -1,0 +1,40 @@
+GetMoveRelearnerMoves(mon, moves)
+{
+	numMoves = 0
+	species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+
+	for(i = 0; i < 4; i++)
+		learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, NULL);
+
+	for(i = 0; i < 20; i++)
+	{
+		if(gLevelUpLearnsets[species][i] == 0xFFFF)
+			break;
+			
+		moveLevel = gLevelUpLearnsets[species][i] & 0xFE00;
+	
+		if(moveLevel <= (level << 9))
+		{
+			for(j = 0; j < 4; j++)
+			{
+				if(learnedMoves[j] == (gLevelUpLearnsets[species][i] & 0x1FF))
+					break;
+			}
+			
+			if(j == 4)
+			{
+				for(k = 0; k < numMoves; k++)
+				{
+					if(moves[k] == (gLevelUpLearnsets[species][i] & 0x1FF))
+						break;
+				}
+			
+				if(k == numMoves)
+					moves[numMoves++] = gLevelUpLearnsets[species][i] & 0x1FF;
+			}
+		}
+	}
+	
+	return numMoves;
+}
