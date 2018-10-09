@@ -1,0 +1,9 @@
+TakeSelectedPokemonMonFromDaycareShiftSlots(arg0, arg1)
+{
+	r0 = (arg1 * 0x8C) + arg0
+	fn_4565C()
+	r4 = r0
+	r0 = r5
+	fn_455AC()
+	return r4
+}

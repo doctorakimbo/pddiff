@@ -1,0 +1,6 @@
+TakeSelectedPokemonMonFromDaycareShiftSlots(daycare, slotId)
+{
+	species = TakeSelectedPokemonFromDaycare(&daycare->mons[slotId]);
+	ShiftDaycareSlots(daycare);
+	return species;
+}

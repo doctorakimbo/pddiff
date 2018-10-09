@@ -1,0 +1,36 @@
+TakeSelectedPokemonMonFromDaycareShiftSlots(arg0, arg1)
+{
+	r5 = r0
+	fn_453C4_J()
+	r0 = 0x8C
+	r0 *= r1
+	r0 += r5
+	fn_4565C()
+	r4 = r0
+	r0 = r5
+	fn_455AC()
+	return r4
+}
+
+
+
+
+
+fn_453C4_J()
+{
+	r4 = r1
+	r1 = data_0203C2AC_J
+	
+	if(r4 == 0)
+	{
+		r0 = *(r1 + 8)
+		*r1 = r0
+		r0 = *(r1 + 0xC)
+		*(r1 + 4) = r0
+	}
+	
+	r0 = 0
+	*(r1 + 8) = r0
+	*(r1 + 0xC) = r0
+	r1 = r4
+}

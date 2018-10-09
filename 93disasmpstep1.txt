@@ -1,0 +1,68 @@
+SetWildMonHeldItem()
+{
+	r0 = gBattleTypeFlags
+	r0 = *r0
+	r1 = 0x12008
+	r0 &= r1
+	
+	if(r0 == 0)
+	{
+		r5 = Random() % 0x64
+		r4 = gEnemyParty
+		r0 = GetMonData(r4, 0xB, NULL)
+		r2 = gBaseStats
+		r1 = r0 * 8
+		r1 -= r0
+		r3 = r1 * 4
+		r1 = r3 + r2
+		r0 = *(r1 + 0xC)
+		r1 = *(r1 + 0xE)
+		
+		if(r0 != r1)
+		{
+			s0 = r2
+			s1 = r3
+			s2 = r4
+
+			r4 = gPlayerParty
+			r0 = GetBoxMonData(r4, 0x2D, NULL)
+
+			if(r0 == 0)
+			{
+				r0 = GetMonAbility(r4)
+
+				if(r0 == 0xE)
+				{
+					r0 = 0x13
+					r1 = 0x4F
+				}
+			}
+			elseany
+			{
+				r0 = 0x2C
+				r1 = 0x5E
+			}
+			
+			r4 = s2
+			r3 = s1
+			r2 = s0
+			
+			if(r5 <= r0)
+				return
+
+			if(r5 > r1)
+			{
+				r2 += 0xE
+				r2 += r3
+				SetMonData(r4, 0xC, r2)
+				return
+			}
+		}
+		
+		r2 += 0xC
+		r2 += r3
+		SetMonData(r4, 0xC, r2)
+	}
+	
+	return
+}

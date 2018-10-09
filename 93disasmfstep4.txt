@@ -1,0 +1,23 @@
+SetWildMonHeldItem()
+{
+	if(!(gBattleTypeFlags & 0x12008))
+	{
+		rnd = Random() % 100;
+		species = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, NULL);
+		
+		if(gBaseStats[species].item1 == gBaseStats[species].item2)
+			SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gBaseStats[species].item1);
+		else
+		{
+			var1 = 44; // 45% chance (item1 or item2) = 40% chance item1
+			var2 = 94; // 5% chance (item2)
+		
+			if(rnd <= var1)
+				return;
+			if(rnd <= var2)
+				SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gBaseStats[species].item1);
+			else
+				SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gBaseStats[species].item2);
+		}
+	}
+}

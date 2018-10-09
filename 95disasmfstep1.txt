@@ -1,0 +1,14 @@
+StorePokemonInEmptyDaycareSlot(r0, r1)
+{
+	r5 = arg0
+	r4 = arg1
+	r0 = r4
+	fn_4549C()
+	r1 = 0x8C
+	r0 *= r1
+	r4 = r0
+	r0 = r5
+	r1 = r4
+	fn_454CC()
+	return r0
+}

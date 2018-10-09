@@ -1,0 +1,33 @@
+SetWildMonHeldItem()
+{
+	if(!(gBattleTypeFlags & 0x12008))
+	{
+		r4 = GetMonData(gEnemyParty, 0xB, NULL)
+		r5 = Random() % 0x64
+		
+		if(gBaseStats[r4].0xC != gBaseStats[r4].0xE)
+		{
+			if(GetBoxMonData(gPlayerParty, 0x2D, NULL) == 0 && GetMonAbility(gPlayerParty) == 0xE)
+			{
+				r0 = 19 // 20% chance
+				r1 = 79 // 20% chance
+			}
+			else
+			{
+				r0 = 44 // 45% chance
+				r1 = 94 // 5% chance
+			}
+			
+			if(r5 <= r0)
+				return
+
+			if(r5 > r1)
+			{
+				SetMonData(gEnemyParty, 0xC, &gBaseStats[r4].0xE)
+				return
+			}
+		}
+		
+		SetMonData(gEnemyParty, 0xC, &gBaseStats[r4].0xC)
+	}
+}

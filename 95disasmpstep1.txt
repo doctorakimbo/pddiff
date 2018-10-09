@@ -1,0 +1,42 @@
+StorePokemonInEmptyDaycareSlot(arg0, arg1)
+{
+	r5 = arg0
+	r4 = arg1
+	r0 = r4
+	fn_4549C()
+	{r0, r1} = fn_4539C_J(r0, r5)
+	r0 *= r1
+	r4 = r0
+	r0 = r5
+	r1 = r4
+	fn_454CC()
+	return r0
+}
+
+
+
+
+
+
+fn_4539C_J(arg0, arg1)
+{
+	r4 = arg0
+	r5 = arg1
+	
+	for(r6 = 0; r6 <= 3; r6++)
+	{
+		r1 = r6
+		r1 += 0xD
+		r0 = r5
+		GetMonData()
+		r1 = data_0203C2AC_J
+		r2 = r4 * 8
+		r1 += r2
+		r2 = r6 * 2
+		*(r1 + r2) = r0
+	}
+
+	r0 = r4
+	r1 = 0x8C
+	return {r4, 0x8C}
+}

@@ -1,0 +1,18 @@
+StorePokemonInEmptyDaycareSlot(mon, daycare)
+{
+	{slotId, NULL} = fn_4539C_J(Daycare_FindEmptySpot(daycare), mon);
+	StorePokemonInDaycare(mon, &daycare->mons[slotId]);
+}
+
+
+
+
+
+
+fn_4539C_J(slotId, mon)
+{
+	for(i = 0; i <= 3; i++)
+		data_0203C2AC_J[slotId][i] = GetMonData(mon, MON_DATA_MOVE1 + i, NULL); // data_0203C2AC_J: 8byte x 2byte
+	
+	return {slotId, 0x8C};
+}

@@ -1,0 +1,7 @@
+Random()
+{
+	gRngValue ^= (gRngValue << 13);
+	gRngValue ^= (gRngValue >> 17);
+	gRngValue ^= (gRngValue << 15);
+	return gRngValue >> 16;
+}

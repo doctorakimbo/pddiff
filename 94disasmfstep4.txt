@@ -1,0 +1,5 @@
+Random()
+{
+	gRngValue = (gRngValue * 1103515245) + 24691;
+	return gRngValue >> 16;
+}

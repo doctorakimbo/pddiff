@@ -1,0 +1,21 @@
+SetWildMonHeldItem()
+{
+	if(!(*gBattleTypeFlags & 0x12008))
+	{
+		r5 = Random() % 0x64
+		
+		if(*((GetMonData(gEnemyParty, 0xB, NULL) * 0x1C) + gBaseStats + 0xC) != *((GetMonData(gEnemyParty, 0xB, NULL) * 0x1C) + gBaseStats + 0xE))
+		{
+			if(r5 <= 0x2C)
+				return
+
+			if(r5 > 0x5E)
+			{
+				SetMonData(gEnemyParty, 0xC, (GetMonData(gEnemyParty, 0xB, NULL) * 0x1C) + gBaseStats + 0xE)
+				return
+			}
+		}
+		
+		SetMonData(gEnemyParty, 0xC, (GetMonData(gEnemyParty, 0xB, NULL) * 0x1C) + gBaseStats + 0xC)
+	}
+}

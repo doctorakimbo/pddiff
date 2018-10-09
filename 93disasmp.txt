@@ -1,10 +1,43 @@
-lbl1: @43A74
+lbl1: @43A3C
+r0 = gBattleTypeFlags
+r0 = *r0
+r1 = 0x12008
+r0 &= r1
+if(r0 != 0) goto lbl4
+
+Random()
+r1 = 0x64
+modulus()
+r5 = r0
+r4 = gEnemyParty
+r0 = r4
+r1 = 0xB
+r2 = 0
+GetMonData()
+r2 = gBaseStats
+r1 = r0 * 8
+r1 -= r0
+r3 = r1 * 4
 r1 = fn_E2EAD0_J
 goto r1
 
 lbl2: @43A86
+r2 += 0xC
+r2 += r3
+r0 = r4
+r1 = 0xC
+SetMonData()
+goto lbl4
 
+lbl3: @43AA4
+r2 += 0xE
+r2 += r3
+r0 = r4
+r1 = 0xC
+goto lbl4
 
+lbl4: @43AB0
+return
 
 
 
@@ -14,7 +47,7 @@ fn_E2EAD0_J:
 r1 = r3 + r2
 r0 = *(r1 + 0xC)
 r1 = *(r1 + 0xE)
-if(r0 == r1) goto lbl4
+if(r0 == r1) goto lblx4
 
 s0 = r2
 s1 = r3
@@ -27,43 +60,43 @@ r2 = 0
 r3 = fn_3F4B0_J
 fn_E2EB1A_J()
 
-if(r0 != 0) goto lbl2
+if(r0 != 0) goto lblx2
 
 r0 = r4
 r3 = fn_40470_J
 fn_E2EB1A_J()
 
-if(r0 != 0xE) goto lbl2
+if(r0 != 0xE) goto lblx2
 
 r0 = 0x13
 r1 = 0x4F
-goto lbl3
+goto lblx3
 
-lbl2:
+lblx2:
 r0 = 0x2C
 r1 = 0x5E
-goto lbl3
+goto lblx3
 
-lbl3:
+lblx3:
 r4 = s2
 r3 = s1
 r2 = s0
-if(r5 <= r0) goto lbl6
+if(r5 <= r0) goto lblx6
 
-if(r5 > r1) goto lbl5
+if(r5 > r1) goto lblx5
 
-goto lbl4
+goto lblx4
 
-lbl4:
-r0 = loc_43A86_J
+lblx4:
+r0 = lbl2
 goto r0
 
-lbl5:
-r0 = loc_43AA4_J
+lblx5:
+r0 = lbl3
 goto r0
 
-lbl6:
-r0 = loc_43AB0_J
+lblx6:
+r0 = lbl4
 goto r0
 
 

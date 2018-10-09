@@ -734,9 +734,20 @@ grafics:
 ! 044034: 62 40 04 08 5C 40 04 08 62 40 04 08 62 40 04 08 5C 40 04 08 62 40 04 08 62 40 04 08 54 40 04 08 -> 54 40 04 08 5C 40 04 08 D8 32 85 08 D0 32 85 08 30 8F 8D 08 E0 64 86 08 58 00 74 08 A0 0F 8C 08 (changes table to point to other scripts, see 92disasm)
 		  Implements: PDONLY, more trainer music
 		  Requires in future: all the pointed-to scripts
-= 04442C: 99 18 88 89 C9 89 88 42 -> 00 49 08 47 XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jE2EAD0, see 02disasm))
-		  
-		  
+= 04442C: 99 18 88 89 C9 89 88 42 -> 00 49 08 47 XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jE2EAD0, see 93disasm))
+		  Implements: Compound Eyes overworld effect
+- 044EC8: Entirety of Random (see 94disasm)
+		  Implements: New random function (unclear why)
+= 04555C: Entirety of StorePokemonInEmptyDaycareSlot (see 95disasm)
+		  Implements: need more info
+		  Required knowledge: j0203C2AC
+		  Requires in future: fn_4539C_J (e45DD8)
+= 045704: 09 06 09 0E -> 00 F0 7C FB
+		  Implements: Need more info
+		  Required knowledge: j0203C2AC
+		  Requires in future: fn_453C4_J (e45E00)
+= 045AC0: Entirety of InheritIVs (see 96disasm)
+		  Implements: 
 		  
 		  
 		  
@@ -746,5 +757,5 @@ grafics:
 		  
 		  
 
-curr: j43A74
-next: j4448C
+curr: j45084-j451EC
+next: j45214, j4528C (repoint same ptr); j4526A (1byte); j45288 (2byte); j452AC

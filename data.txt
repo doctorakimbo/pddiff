@@ -135,6 +135,9 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 								 (fn_EB85EE_J: Something about this[gBattleResources + 4])
 		   : F4 BF 03 02: ?????? (CanUseNewAI: If gBattleTypeFlags & 0x100 (BATTLE_TYPE_BATTLE_TOWER?), read the AI flags from here)
 		   : 0D C0 03 02: ?????? (sub_8032768: zeroed)
+		   : AC C2 03 02: ?????? (Appears to be a 2x4 array of move ids)
+								 (StorePokemonInEmptyDaycareSlot: Stores the deposited mon's moves in this[slotId])
+								 (TakeSelectedPokemonMonFromDaycareShiftSlots: Removes and shifts the mons' moves corresponding to the mons' placement)
 		   : 00 D3 03 02: ?????? (Appears to be an array of characters)
 								 (fn_EB8398_J: Set this[0] to data_0203BF70_J[battler].8[moveId])
 								 (fn_EB8398_J: Set this[2] to CHAR_SLASH)
@@ -161,6 +164,7 @@ F0 30 00 03: 30 31 00 03: gMain
 A3 4F 00 03: E3 4F 00 03: gBattleResults.battleTurnCounter
 F4 4F 00 03: 34 50 00 03: ?????? (valid)
 F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
+00 50 00 03: 40 50 00 03: gRngValue
 08 50 00 03: 48 50 00 03: gSaveBlock1Ptr
 0C 50 00 03: 4C 50 00 03: gSaveBlock2Ptr
 7C 53 00 03: CC 53 00 03: gCB2_AfterEvolution
@@ -246,6 +250,11 @@ funcs e,j,desc:
 044234 = 04387C = GetFlavorRelationByPersonality
 0442D8 = 043920 = MonRestorePP
 044EC8 = 04448C = Random
+04549C = 044A60 = Daycare_FindEmptySpot
+0454CC = 044A90 = StorePokemonInDaycare
+0455AC = 044B70 = ShiftDaycareSlots
+04565C = 044C20 = TakeSelectedPokemonFromDaycare
+045A78 = 04503C = ?????
 055250 = 054B10 = GetDestinationWarpMapHeader
 06E25C = 06DA50 = IsNationalPokedexEnabled
 06E454 = 06DC48 = GetVarPointer
@@ -277,6 +286,7 @@ funcs e,j,desc:
 1E3B9C = square root
 1E3BA8 = call r0
 1E4018 = 1C7F38 = division
+1E40F4 = 1C8014 = ?????
 1E460C = 1C852C = division
 1E4684 = 1C85A4 = modulus
 1E5E78 = 1C9D98 = memcpy
@@ -299,6 +309,8 @@ funcs e,j,desc:
 027E3A = 027612 = CheckLeafGuardAndFlowerVeil
 02D05C = 02C834 = unknown_uncalled_func (disasm if needed)
 041714 = 040E04 = ?????
+045DD8 = 04539C = ?????
+045E00 = 0453C4 = ?????
 ?????? = 168C88 = ClearFocusBand (unimplemented)
 ?????? = 168C9C = SetFocusBand (unimplemented)
 ?????? = 2058E0 = ????? (unimplemented)

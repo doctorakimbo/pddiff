@@ -1,0 +1,5 @@
+StorePokemonInEmptyDaycareSlot(mon, daycare)
+{
+	slotId = Daycare_FindEmptySpot(daycare);
+	StorePokemonInDaycare(mon, &daycare->mons[slotId];
+}

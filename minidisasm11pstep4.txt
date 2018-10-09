@@ -1,0 +1,24 @@
+TakeSelectedPokemonMonFromDaycareShiftSlots(daycare, slotId)
+{
+	fn_453C4_J();
+	
+	species = TakeSelectedPokemonFromDaycare(&daycare->mons[slotId]);
+	ShiftDaycareSlots(daycare);
+	return species;
+}
+
+
+
+
+
+fn_453C4_J()
+{
+	if(slotId == 0)
+	{
+		data_0203C2AC_J[0, 1] = data_0203C2AC_J[4, 5];
+		data_0203C2AC_J[2, 3] = data_0203C2AC_J[6, 7];
+	}
+	
+	data_0203C2AC_J[4, 5] = NULL;
+	data_0203C2AC_J[6, 7] = NULL;
+}

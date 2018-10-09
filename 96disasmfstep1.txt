@@ -1,0 +1,123 @@
+InheritIVs()
+{
+	r9 = r0
+	r8 = r1
+	r5 = 0
+	r1 = &s1
+	r7 = &s3
+	r2 = r1
+
+	for(r5 = 0; r5 <= 5; r5++)
+	{
+		r0 = r2 + r5
+		*r0 = r5
+	}
+	
+	r6 = r1
+
+	for(r5 = 0; r5 <= 2; r5++)
+	{
+		r0 = Random()
+		r1 = &s0
+		r4 = r1 + r5
+		r1 = 6
+		r1 -= r5
+		fn_1E40F4()
+		r0 += r6
+		r0 = *r0
+		*r4 = r0
+		r1 = *r4
+		r0 = r6
+		fn_45A78()
+	}
+	
+	r4 = 1
+
+	for(r5 = 0; r5 <= 2; r5++)
+	{
+		r0 = Random()
+		r1 = r7 + r5
+		r0 &= r4
+		*r1 = r0
+	}
+
+	r5 = 0
+
+	for(r5 = 0; r5 <= 2; r5++)
+	{
+		r1 = &s0
+		r0 = r1 + r5
+		r0 = *r0
+		
+		switch(r0)
+		{
+		case 0:
+			r0 = r7 + r5
+			r1 = *r0
+			r0 = 0x8C
+			r0 *= r1
+			r0 += r8
+			r0 = GetBoxMonData(r0, 0x27, NULL)
+			r2 = &s4
+			*r2 = r0
+			SetMonData(r9, 0x27, r2)
+			break;
+		case 1:
+			r4 = &s4
+			r0 = r7 + r5
+			r1 = *r0
+			r0 = 0x8C
+			r0 *= r1
+			r0 += r8
+			r1 = 0x28
+			r0 = GetBoxMonData(r0, 0x28, NULL)
+			*r4 = r0
+			SetMonData(r9, 0x28, r4)
+			break;
+		case 2:
+			r4 = &s4
+			r0 = r7 + r5
+			r1 = *r0
+			r0 = 0x8C
+			r0 *= r1
+			r0 += r8
+			r0 = GetBoxMonData(r0, 0x29, NULL)
+			*r4 = r0
+			SetMonData(r9, 0x29, r4)
+			break;
+		case 3:
+			r4 = &s4
+			r0 = r7 + r5
+			r1 = *r0
+			r0 = 0x8C
+			r0 *= r1
+			r0 += r8
+			r0 = GetBoxMonData(r0, 0x2A, NULL)
+			*r4 = r0
+			SetMonData(r9, 0x2A, r4)
+			break;
+		case 4:
+			r4 = &s4
+			r0 = r7 + r5
+			r1 = *r0
+			r0 = 0x8C
+			r0 *= r1
+			r0 += r8
+			r0 = GetBoxMonData(r0, 0x2B, NULL)
+			*r4 = r0
+			SetMonData(r9, 0x2B, r4)
+			break;
+		case 5:
+			r4 = &s4
+			r0 = r7 + r5
+			r1 = *r0
+			r0 = 0x8C
+			r0 *= r1
+			r0 += r8
+			r0 = GetBoxMonData(r0, 0x2C, NULL)
+			*r4 = r0
+			SetMonData(r9, 0x2C, r4)
+			break;
+		}
+	}
+}

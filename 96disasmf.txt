@@ -1,0 +1,171 @@
+lbl1: @45AC0
+r9 = r0
+r8 = r1
+r5 = 0
+r1 = &s1
+r7 = &s3
+r2 = r1
+goto lbl2
+
+lbl2:
+r0 = r2 + r5
+*r0 = r5
+r0 = r5 + 1
+r5 = r0
+if(r5 <= 5) goto lbl2
+
+r5 = 0
+r6 = r1
+goto lbl3
+
+lbl3:
+Random()
+r1 = &s0
+r4 = r1 + r5
+r1 = 6
+r1 -= r5
+fn_1E40F4()
+r0 += r6
+r0 = *r0
+*r4 = r0
+r1 = *r4
+r0 = r6
+fn_45A78()
+r0 = r5 + 1
+r5 = r0
+if(r5 <= 2) goto lbl3
+
+r5 = 0
+r4 = 1
+goto lbl4
+
+lbl4:
+Random()
+r1 = r7 + r5
+r0 &= r4
+*r1 = r0
+r0 = r5 + 1
+r5 = r0
+if(r5 <= 2) goto lbl4
+
+r5 = 0
+goto lbl5
+
+lbl5:
+r1 = &s0
+r0 = r1 + r5
+r0 = *r0
+if(r0 > 5) goto lbl13
+
+r0 *= 4
+r1 = switchtable
+r0 += r1
+r0 = *r0
+goto r0
+
+switchtable:
+0: lbl6
+1: lbl7
+2: lbl8
+3: lbl9
+4: lbl10
+5: lbl12
+
+lbl6: @45B64
+r0 = r7 + r5
+r1 = *r0
+r0 = 0x8C
+r0 *= r1
+r0 = r8
+r1 = 0x27
+GetBoxMonData()
+r2 = &s4
+*r2 = r0
+r0 = r9
+r1 = 0x27
+SetMonData()
+goto lbl13
+
+lbl7: @45B82
+r4 = &s4
+r0 = r7 + r5
+r1 = *r0
+r0 = 0x8C
+r0 *= r1
+r0 += r8
+r1 = 0x28
+GetBoxMonData()
+*r4 = r0
+r0 = r9
+r1 = 0x28
+goto lbl11
+
+lbl8: @45B9C
+r4 = &s4
+r0 = r7 + r5
+r1 = *r0
+r0 = 0x8C
+r0 *= r1
+r0 += r8
+r1 = 0x29
+GetBoxMonData()
+*r4 = r0
+r0 = r9
+r1 = 0x29
+goto lbl11
+
+lbl9: @45BB6
+r4 = &s4
+r0 = r7 + r5
+r1 = *r0
+r0 = 0x8C
+r0 *= r1
+r0 += r8
+r1 = 0x2A
+GetBoxMonData()
+*r4 = r0
+r0 = r9
+r1 = 0x2A
+goto lbl11
+
+lbl10: @45BD0
+r4 = &s4
+r0 = r7 + r5
+r1 = *r0
+r0 = 0x8C
+r0 *= r1
+r0 += r8
+r1 = 0x2B
+GetBoxMonData()
+*r4 = r0
+r0 = r9
+r1 = 0x2B
+goto lbl11
+
+lbl11:
+r2 = r4
+SetMonData()
+goto lbl13
+
+lbl12: @45BF0
+r4 = &s4
+r0 = r7 + r5
+r1 = *r0
+r0 = 0x8C
+r0 *= r1
+r0 += r8
+r1 = 0x2C
+GetBoxMonData()
+*r4 = r0
+r0 = r9
+r1 = 0x2C
+r2 = r4
+SetMonData()
+goto lbl13
+
+lbl13:
+r0 = r5 + 1
+r5 = r0
+if(r5 <= 2) goto lbl5
+
+(end)
