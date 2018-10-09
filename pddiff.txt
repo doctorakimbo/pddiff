@@ -126,7 +126,7 @@ abilities:
 (old kid: 16F8C4, old item: 0x125, route 4, fix wildmons route15)
 item effects:
 + typebooster IDs: (if effectparam = 0, type-resist berries; if effectparam >= 30, Gems; otherwise typeboosters as normal)
-- 0x18 = Macho Brace if effectparam is 0, otherwise Power item (effectparam = stat ID)
++ 0x18 = Macho Brace if effectparam is 0, otherwise Power item (effectparam = stat ID)
 + 0x1D = "Polkadot Bow"
 + 0x2B = Leftovers if effectparam is 0xFF, otherwise Black Sludge (effectparam = type that heals)
 + 0x43 = Focus Sash
@@ -281,7 +281,7 @@ grafics:
 = expand 2507E8 (uncopiable moves) from 4 entries (mimic) / 19 entries (metronome) to 5 entries (mimic) / 44 entries (metronome) (j20CA40, eUNKNOWN)
 + expand 250848 (pickup table) from 16 entries to 10 subtables of varying size (1528150)
 + expand 250C04 (move data) from 355 entries to 680 (1010000)
-- expand 2539D4 (cry ids) to encompass all ids (865DE0)
++ expand 2539D4 (cry ids) to encompass all ids (865DE0)
 + expand 26056C (ball sprites) from 12 entries to 26 (A23000)
 + expand 2605CC (ball sprite palettes) from 12 entries to 26 (A230F0)
 + expand 3DB028 (item data) from 375 entries to 435 (10B0000)
@@ -712,11 +712,11 @@ grafics:
 		  Implements: new evolution methods (day/night happiness for FRLG, single-gender levelup, location-based, specific move, specific move type, level during day/night, level during day/night with item, specific mon in party, specific type in party, single-gender stone, trade for specific mon, overworld weather), allows species 0 to have 20 branched evolutions (??? need more info)
 		  Optional knowledge: e02031DA4
 		  Required knowledge: j03005540
-- 043214: CD 24 64 -> FF 24 A4 (410 -> 1020 maximum pkmn species?)
-- 043304: Entirety of SpeciesToCryId (see 87disasm)
++ 043214: CD 24 64 -> FF 24 A4 (410 -> 1020 maximum pkmn species?)
++ 043304: Entirety of SpeciesToCryId (see 87disasm)
 		  Implements: Allows forbiddenmons to get individual cries
 = 0435A6: 0B -> 10 (pkmnnamelength)
-- 043890: Entirety of MonGainEVs (see 88disasm)
++ 043890: Entirety of MonGainEVs (see 88disasm)
 		  Implements: Power items, EV per-stat limit 255->252
 = 043A70: Entirety of CheckPartyPokerus (see 89disasm)
 		  Implements: need more info (reads only last bit of MON_DATA_POKERUS instead of last 4 bits)
@@ -729,7 +729,7 @@ grafics:
 = 043E2C: Entirety of GetNumberOfRelearnableMoves (see 91disasm)
 		  Implements: need more info (gLevelUpLearnsets -> *j02021D10)
 		  Required knowledge: j02021D10
-- 043FA6: 97 2C 04 D9 -> 00 00 04 E0
++ 043FA6: 97 2C 04 D9 -> 00 00 04 E0
 		  Implements: species is always valid even before natdex
 ! 044034: 62 40 04 08 5C 40 04 08 62 40 04 08 62 40 04 08 5C 40 04 08 62 40 04 08 62 40 04 08 54 40 04 08 -> 54 40 04 08 5C 40 04 08 D8 32 85 08 D0 32 85 08 30 8F 8D 08 E0 64 86 08 58 00 74 08 A0 0F 8C 08 (changes table to point to other scripts, see 92disasm)
 		  Implements: PDONLY, more trainer music
