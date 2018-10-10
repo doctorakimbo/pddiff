@@ -1,0 +1,45 @@
+InheritIVs(arg0, arg1)
+{
+	for(r5 = 0; r5 <= 5; r5++)
+		s1[r5] = r5
+
+	for(r5 = 0; r5 <= 2; r5++)
+	{
+		s0[r5] = s1[Random() % (6 - r5)]
+		RemoveIVIndexFromList(&s1, s0[r5])
+	}
+	
+	for(r5 = 0; r5 <= 2; r5++)
+		s3[r5] = Random() & 1
+
+	for(r5 = 0; r5 <= 2; r5++)
+	{
+		switch(s0[r5])
+		{
+		case 0:
+			s4 = GetBoxMonData(&arg1[s3[r5]], 0x27, NULL)
+			SetMonData(arg0, 0x27, &s4)
+			break;
+		case 1:
+			s4 = GetBoxMonData(&arg1[s3[r5]], 0x28, NULL)
+			SetMonData(arg0, 0x28, &s4)
+			break;
+		case 2:
+			s4 = GetBoxMonData(&arg1[s3[r5]], 0x29, NULL)
+			SetMonData(arg0, 0x29, &s4)
+			break;
+		case 3:
+			s4 = GetBoxMonData(&arg1[s3[r5]], 0x2A, NULL)
+			SetMonData(arg0, 0x2A, &s4)
+			break;
+		case 4:
+			s4 = GetBoxMonData(&arg1[s3[r5]], 0x2B, NULL)
+			SetMonData(arg0, 0x2B, &s4)
+			break;
+		case 5:
+			s4 = GetBoxMonData(&arg1[s3[r5]], 0x2C, NULL)
+			SetMonData(arg0, 0x2C, &s4)
+			break;
+		}
+	}
+}

@@ -254,7 +254,7 @@ funcs e,j,desc:
 0454CC = 044A90 = StorePokemonInDaycare
 0455AC = 044B70 = ShiftDaycareSlots
 04565C = 044C20 = TakeSelectedPokemonFromDaycare
-045A78 = 04503C = ?????
+045A78 = 04503C = RemoveIVIndexFromList
 055250 = 054B10 = GetDestinationWarpMapHeader
 06E25C = 06DA50 = IsNationalPokedexEnabled
 06E454 = 06DC48 = GetVarPointer
@@ -286,7 +286,7 @@ funcs e,j,desc:
 1E3B9C = square root
 1E3BA8 = call r0
 1E4018 = 1C7F38 = division
-1E40F4 = 1C8014 = ?????
+1E40F4 = 1C8014 = modulus
 1E460C = 1C852C = division
 1E4684 = 1C85A4 = modulus
 1E5E78 = 1C9D98 = memcpy
@@ -309,6 +309,7 @@ funcs e,j,desc:
 027E3A = 027612 = CheckLeafGuardAndFlowerVeil
 02D05C = 02C834 = unknown_uncalled_func (disasm if needed)
 041714 = 040E04 = ?????
+045BF0 = 0451B4 = GetStatFromPowerItem
 045DD8 = 04539C = ?????
 045E00 = 0453C4 = ?????
 ?????? = 168C88 = ClearFocusBand (unimplemented)
