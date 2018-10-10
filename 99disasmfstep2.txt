@@ -1,0 +1,37 @@
+sub_8046000(arg0, arg1)
+{
+	for(r4 = 0; r4 < 2; r4++)
+	{
+		r5 = (r4 * 0x8C) + arg0
+		r0 = GetBoxMonData(r5, 0xB)
+		*((r4 * 2) + &s0) = r0
+		
+		if(r0 == 0x84)
+		{
+			*arg1 = r4 ^ 1
+			*(arg1 + 1) = r4
+		}
+		elseif(GetBoxMonGender(r5) == 0xFE)
+		{
+			*arg1 = r4
+			*(arg1 + 1) = r4 ^ 1
+		}
+	}
+
+	r4 = GetEggSpecies(*((*arg1 * 2) + &s0))
+	
+	if(r4 == 0x1D && (*(arg0 + 0x118) & 0x8000))
+		r4 = 0x20
+	
+	if(r4 == 0x183 && (*(arg0 + 0x118) & 0x8000))
+		r4 = 0x182
+	
+	if(*((*(arg1 + 1) * 2) + &s0) == 0x84 && GetBoxMonGender((*arg1 * 0x8C) + arg0) != 0xFE)
+	{
+		r1 = *(arg1 + 1)
+		*(arg1 + 1) = *arg1
+		*arg1 = r1
+	}
+	
+	return r4
+}

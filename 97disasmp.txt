@@ -1,0 +1,149 @@
+lbl1: @45294
+r7 = r0
+r10 = r1
+r9 = r2
+r0 = 0
+s0 = r0
+r6 = 0
+r2 = data_0203D674_J
+r1 = 0
+goto lbl3
+
+lbl3:
+r0 = r6 * 2
+r0 += r2
+*r0 = r1
+r6++
+if(r6 <= 9) goto lbl3
+
+r6 = 0
+r2 = data_0203D600_J
+r1 = 0
+goto lbl4
+
+lbl4:
+r0 = r6 * 2
+r0 += r2
+*r0 = r1
+r0 = r6 + 1
+r6 = r0
+if(r6 <= 0x31) goto lbl4
+
+r0 = r7
+r1 = 0xB
+GetMonData()
+r1 = data_0203D600_J
+fn_43DD4()
+s1 = r0
+r6 = 0
+r1 = data_0203D664_J
+r8 = r1
+r1 = data_0203D674_J
+r0 = r7
+fn_45C28()
+r8 = r0
+r6 = 0
+goto lbl6
+
+lbl6:
+r0 = data_0203C2AC_J
+r1 = r6 * 2
+r2 = r1 + r0
+r1 = *r2
+r9 = r0
+if(r1 == 0) goto lbl9
+
+r5 = 0
+if(r5 bcs r8) goto lbl9
+
+r4 = r2
+r2 = 0xFFFF
+goto lbl7
+
+lbl7:
+r0 = data_0203D674_J
+r1 = r5 * 2
+r1 += r0
+r0 = *r4
+r1 = *r1
+if(r0 != r1) goto lbl8
+
+r1 = r0
+r0 = r7
+s2 = r2
+fn_3E89C()
+r2 = s2
+if(r0 != r2) goto lbl9
+
+r1 = *r4
+r0 = r7
+fn_3EB94()
+goto lbl9
+
+lbl8:
+r5++
+if(r5 bcc r8) goto lbl7
+
+goto lbl9
+
+lbl9:
+r6++
+r3 = data_0203D664_J
+r9 = r3
+if(r6 <= 7) goto lbl6
+
+r6 = 0
+goto lbl11
+
+lbl11:
+r0 = r6 * 2
+r1 = data_0203D600_J
+r0 = *(r1 + r0)
+r5 = 0
+goto lbl12
+
+lbl12:
+r1 = r5 * 2
+r2 = data_0203C2AC_J
+r1 = *(r2 + r1)
+if(r0 == r1) goto lbl13
+
+r5++
+if(r5 <= 3) goto lbl12
+
+goto lbl16
+
+lbl13:
+r5 = 0
+goto lbl14
+
+lbl14:
+r1 = r5 * 2
+r2 = data_0203C2B4_J
+r1 = *(r2 + r1)
+if(r0 == r1) goto lbl15
+
+r5++
+if(r5 <= 3) goto lbl14
+
+goto lbl16
+
+lbl15:
+r1 = r0
+r4 = r1
+r0 = r7
+fn_3E89C()
+r2 = 0xFFFF
+if(r0 != r2) goto lbl16
+
+r1 = r4
+r0 = r7
+fn_3EB94()
+goto lbl16
+
+lbl16:
+r6++
+r0 = s1
+if(r6 bcc r0) goto lbl11
+
+return

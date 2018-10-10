@@ -1,0 +1,94 @@
+sub_8046000(arg0, arg1)
+{
+	r8 = arg0
+	r6 = arg1
+	r7 = 1
+
+	for(r4 = 0; r4 <= 1; r4++)
+	{
+		r0 = 0x8C
+		r0 *= r4
+		r1 = r8
+		r5 = r1 + r0
+		r0 = GetBoxMonData(r5, 0xB)
+		r1 = r4 * 2
+		r1 += &s0
+		*r1 = r0
+		
+		if(r0 == 0x84)
+		{
+			r0 = r4
+			r0 ^= r7
+			*r6 = r0
+			*(r6 + 1) = r4
+		}
+		else
+		{
+			r0 = GetBoxMonGender(r5)
+			
+			if(r0 == 0xFE)
+			{
+				*r6 = r4
+				r0 = r4
+				r0 ^= r7
+				*(r6 + 1) = r0
+			}
+		}
+	}
+
+	r0 = *r6
+	r0 *= 2
+	r0 += &s0
+	r0 = *r0
+	GetEggSpecies()
+	r4 = r0
+	
+	if(r4 == 0x1D)
+	{
+		r0 = 0x118
+		r0 += r8
+		r1 = *r0
+		r0 = 0x8000
+		r0 &= r1
+		
+		if(r0 != 0)
+			r4 = 0x20
+	}
+	
+	r0 = 0x183
+	
+	if(r4 == r0)
+	{
+		r0 -= 0x6B
+		r0 += r8
+		r1 = *r0
+		r0 = 0x8000
+		r0 &= r1
+		
+		if(r0 != 0)
+			r4 = 0x182
+	}
+	
+	r0 = *(r6 + 1)
+	r0 *= 2
+	r0 += &s0
+	
+	if(r0 == 0x84)
+	{
+		r1 = *r6
+		r0 = 0x8C
+		r0 *= r1
+		r0 += r8
+		r0 = GetBoxMonGender(r0)
+		
+		if(r0 != 0xFE)
+		{
+			r1 = *(r6 + 1)
+			r0 = *r6
+			*(r6 + 1) = r0
+			r1 = *r6
+		}
+	}
+	
+	return r4
+}

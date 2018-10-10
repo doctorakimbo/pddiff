@@ -1,0 +1,34 @@
+sub_8046000(arg0, arg1)
+{
+	for(i = 0; i < 2; i++)
+	{ 
+		stack[i] = GetBoxMonData(arg0[i], 0xB)
+		
+		if(stack[i] == 0xB7)
+		{
+			arg1[0] = i ^ 1
+			arg1[1] = i
+		}
+		elseif(GetBoxMonGender(arg0[i]) == 0xFE)
+		{
+			arg1[0] = i
+			arg1[1] = i ^ 1
+		}
+	}
+	
+	r4 = GetEggSpecies(stack[arg1[0]])
+	
+	if(r4 == 0x1D && (arg0[2] & 0x8000))
+		r4 = 0x20
+	elseif(r4 == 0x20 && (arg0[2] & 0x8000))
+		r4 = 0x1D
+	elseif(r4 == 0x183 && (arg0[2] & 0x8000))
+		r4 = 0x182
+	elseif(r4 == 0x182 && (arg0[2] & 0x8000))
+		r4 = 0x183
+	
+	if(stack[arg1[1]] == 0xB7 && GetBoxMonGender(&arg0[arg1[0]]) != 0xFE)
+		swap(arg1[0], arg1[1])
+	
+	return r4
+}

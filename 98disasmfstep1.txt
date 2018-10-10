@@ -1,0 +1,32 @@
+sub_8045FA0(arg0, arg1)
+{
+	r4 = arg0
+	r5 = arg1
+	r1 = *r4
+	r7 = 0x168
+	if(r1 == r7) goto lbl2
+
+	r0 = 0x15E
+	if(r1 == r0) goto lbl2
+
+	goto lbl4
+
+	lbl2:
+	r6 = GetBoxMonData(r5, 0xC)
+	r0 = r5
+	r0 += 0x8C
+	r2 = GetBoxMonData(r0, 0xC)
+	r0 = *r4
+
+	if(r0 == r7 && r6 != 0xDD && r2 != 0xDD)
+		*r4 = 0xCA
+
+	r1 = *r4
+	r0 = 0x15E
+
+	if(r1 == r0 && r6 != 0xDC && r2 != 0xDC)
+		*r4 = 0xB7
+
+	lbl4:
+	return
+}

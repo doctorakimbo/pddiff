@@ -92,6 +92,11 @@ FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
 		   : F8 3F 02 02: (gEnemyParty.friendship, but this is different in english)
 84 42 02 02: E4 41 02 02: gPlayerParty
 3C 43 02 02: 9C 42 02 02: gPlayerParty[1].level
+F8 44 02 02: 58 44 02 02: ??????
+5C 45 02 02: BC 44 02 02: ??????
+64 45 02 02: C4 44 02 02: ??????
+6C 45 02 02: CC 44 02 02: ??????
+80 45 02 02: E0 44 02 02: ??????
 A4 1D 03 02: D8 1C 03 02: ?????? (GetEvolutionTargetSpecies: used as index to find the mon to check against the parameter to EVO_TRADE_FOR_SPECIFIC_MON) (gTradePartnerSelectedMon?)
 		   : 47 6D 03 02: ?????? (atkEF_handleballthrow: Dusk Ball boosted if this is 4) (gTileset?)
 		   : 6C 6D 03 02: ?????? (atkEF_handleballthrow: Lure Ball boosted if this is 1) (gIsPlayerFishing?)
@@ -135,9 +140,8 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 								 (fn_EB85EE_J: Something about this[gBattleResources + 4])
 		   : F4 BF 03 02: ?????? (CanUseNewAI: If gBattleTypeFlags & 0x100 (BATTLE_TYPE_BATTLE_TOWER?), read the AI flags from here)
 		   : 0D C0 03 02: ?????? (sub_8032768: zeroed)
-		   : AC C2 03 02: ?????? (Appears to be a 2x4 array of move ids)
-								 (StorePokemonInEmptyDaycareSlot: Stores the deposited mon's moves in this[slotId])
-								 (TakeSelectedPokemonMonFromDaycareShiftSlots: Removes and shifts the mons' moves corresponding to the mons' placement)
+		   : AC C2 03 02: gDaycareParentMoves
+		   : B4 C2 03 02: gDaycareParentMoves[1]
 		   : 00 D3 03 02: ?????? (Appears to be an array of characters)
 								 (fn_EB8398_J: Set this[0] to data_0203BF70_J[battler].8[moveId])
 								 (fn_EB8398_J: Set this[2] to CHAR_SLASH)
@@ -155,6 +159,9 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 							     (fn_EB8398_J: Set to {data = data_E95DDC, size = 0x100, tag = (0x78A0 + moveId)} then call LoadSpriteSheet())
 		   : 80 D4 03 02: gBackupMonData
            : 00 D5 03 02: ?????? (sub_8032768: zeroed starting from here to 0203D600)
+		   : 00 D6 03 02: sHatchedEggLevelUpMoves_New
+		   : 64 D6 03 02: ?????? (BuildEggMoveset: read but not used?)
+		   : 74 D6 03 02: sHatchedEggEggMoves_New
 		   : 00 FE 03 02: gLastUsedItemType
 		   : 04 FE 03 02: gCritCapture
 		   
@@ -229,7 +236,9 @@ funcs e,j,desc:
 03DA54 = 03D1C0 = CreateMon
 03E47C = CalculateMonStats
 03E830 = 03DF9C = GetLevelFromBoxMonExp
+03E89C = 03E008 = GiveMoveToMon
 03E8B0 = 03E01C = GiveMoveToBoxMon
+03EB94 = 03E300 = DeleteFirstMoveAndGiveMoveToMon
 03EC40 = 03E3AC = DeleteFirstMoveAndGiveMoveToBoxMon
 03ECEC = 03E458 = CalculateBaseDamage
 03F5B4 = 03ED20 = CountAliveMonsInBattle
@@ -247,6 +256,8 @@ funcs e,j,desc:
 043298 = 042988 = SpeciesToNationalPokedexNum
 043A70 = CheckPartyPokerus
 043AD8 = 043194 = CheckPartyHasHadPokerus
+043C2C = 043278 = CanMonLearnTMHM
+043DD4 = 043420 = GetLevelUpMovesBySpecies
 044234 = 04387C = GetFlavorRelationByPersonality
 0442D8 = 043920 = MonRestorePP
 044EC8 = 04448C = Random
@@ -254,7 +265,15 @@ funcs e,j,desc:
 0454CC = 044A90 = StorePokemonInDaycare
 0455AC = 044B70 = ShiftDaycareSlots
 04565C = 044C20 = TakeSelectedPokemonFromDaycare
+045970 = 044F34 = GetEggSpecies
 045A78 = 04503C = RemoveIVIndexFromList
+045AC0 = 045084 = ??????
+045C28 = 0451EC = GetEggMoves
+045CD0 = 045294 = ??????
+045F70 = 045534 = ??????
+045FA0 = 045564 = ??????
+046000 = 0455C4 = ??????
+046208 = 0457B4 = ??????
 055250 = 054B10 = GetDestinationWarpMapHeader
 06E25C = 06DA50 = IsNationalPokedexEnabled
 06E454 = 06DC48 = GetVarPointer
@@ -273,6 +292,7 @@ funcs e,j,desc:
 08B9F4 = 08B490 = StorageGetCurrentBox
 08BA18 = 08B4B4 = GetBoxMonDataFromAnyBox
 08BD30 = 08B7CC = GetBoxedMonPtr
+0937DC = 093210 = ??????
 099F40 = 099948 = CheckBagHasItem
 09A924 = 09A330 = GetHoldEffect
 09A948 = 09A354 = GetHoldEffectParam
@@ -282,6 +302,7 @@ funcs e,j,desc:
 0CC7A8 = 0CD920 = get_unknown_box_id
 0D77F4 = 0D8898 = BattleStringExpandPlaceholdersToDisplayedString
 0D87BC = 0D980C = BattlePutTextOnWindow
+125A78 = 1263C4 = ItemIdToBattleMoveId
 12E51C = 12ED24 = box_print
 1E3B9C = square root
 1E3BA8 = call r0

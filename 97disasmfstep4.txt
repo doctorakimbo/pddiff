@@ -1,0 +1,90 @@
+BuildEggMoveset(egg, father, mother)
+{
+	numSharedParentMoves = 0;
+
+	for(i = 0; i <= 3; i++)
+	{
+		sHatchedEggMotherMoves[i] = 0;
+		sHatchedEggFatherMoves[i] = 0;
+		sHatchedEggFinalMoves[i] = 0;
+	}
+
+	for(i = 0; i < EGG_MOVES_ARRAY_COUNT; i++)
+		sHatchedEggEggMoves[i] = 0;
+	
+	for(i = 0; i < EGG_LVL_UP_MOVES_ARRAY_COUNT; i++)
+		sHatchedEggLevelUpMoves[i] = 0;
+	
+	numLevelUpMoves = GetLevelUpMovesBySpecies(GetMonData(egg, MON_DATA_SPECIES), sHatchedEggLevelUpMoves);
+
+	for(i = 0; i < 4; i++)
+	{
+		sHatchedEggFatherMoves[i] = GetBoxMonData(father, MON_DATA_MOVE1 + i);
+		sHatchedEggMotherMoves[i] = GetBoxMonData(mother, MON_DATA_MOVE1 + i);
+	}
+	
+	numEggMoves = GetEggMoves(egg, sHatchedEggEggMoves);
+
+	for(i = 0; i < 4; i++)
+	{
+		if(sHatchedEggFatherMoves[i] != MOVE_NONE)
+		{
+			for(j = 0; j < numEggMoves; j++)
+			{
+				if(sHatchedEggFatherMoves[i] == sHatchedEggEggMoves[j])
+				{
+					if(GiveMoveToMon(egg, sHatchedEggFatherMoves[i]) == 0xFFFF)
+						DeleteFirstMoveAndGiveMoveToMon(egg, sHatchedEggFatherMoves[i]);
+					
+					break;
+				}
+			}
+		}
+		else
+			break;
+	}
+	
+	for(i = 0; i < 4; i++)
+	{
+		if(sHatchedEggFatherMoves[i] != MOVE_NONE)
+		{
+			for(j = 0; j < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; j++)
+			{
+				if(sHatchedEggFatherMoves[i] == ItemIdToBattleMoveId(ITEM_TM01_FOCUS_PUNCH + j) && CanMonLearnTMHM(egg, j))
+				{
+					if(GiveMoveToMon(egg, sHatchedEggFatherMoves[i]) == 0xFFFF)
+						DeleteFirstMoveAndGiveMoveToMon(egg, sHatchedEggFatherMoves[i]);
+				}
+			}
+		}
+	}
+	
+	for(i = 0; i < 4; i++)
+	{
+		if(sHatchedEggFatherMoves[i] == MOVE_NONE)
+			break;
+		
+		for(j = 0; j < 4; j++)
+		{
+			if(sHatchedEggFatherMoves[i] == sHatchedEggMotherMoves[j] && sHatchedEggFatherMoves[i] != MOVE_NONE)
+				sHatchedEggFinalMoves[numSharedParentMoves++] = sHatchedEggFatherMoves[i];
+		}
+	}
+	
+	for(i = 0; i < 4; i++)
+	{
+		if(sHatchedEggFinalMoves[i] == MOVE_NONE)
+			break;
+	
+		for(j = 0; j < numLevelUpMoves; j++)
+		{
+			if(sHatchedEggLevelUpMoves[j] != MOVE_NONE && sHatchedEggLevelUpMoves[j] == sHatchedEggFinalMoves[i])
+			{
+				if(GiveMoveToMon(egg, sHatchedEggFinalMoves[i]) == 0xFFFF)
+					DeleteFirstMoveAndGiveMoveToMon(egg, sHatchedEggFinalMoves[i]);
+				
+				break;
+			}
+		}
+	}
+}

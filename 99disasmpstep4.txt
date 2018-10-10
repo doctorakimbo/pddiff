@@ -1,0 +1,34 @@
+DetermineEggSpeciesAndParentSlots(daycare, parentSlots)
+{
+	for(i = 0; i < 2; i++)
+	{ 
+		species[i] = GetBoxMonData(&daycare->mons[i].mon, MON_DATA_SPECIES);
+		
+		if(species[i] == SPECIES_DITTO) // 0x84 -> 0xB7
+		{
+			parentSlots[0] = i ^ 1;
+			parentSlots[1] = i;
+		}
+		elseif(GetBoxMonGender(&daycare->mons[i].mon) == MON_FEMALE)
+		{
+			parentSlots[0] = i;
+			parentSlots[1] = i ^ 1;
+		}
+	}
+	
+	eggSpecies = GetEggSpecies(species[parentSlots[0]])
+	
+	if(eggSpecies == SPECIES_NIDORAN_F && (daycare->offspringPersonality & 0x8000))
+		eggSpecies = SPECIES_NIDORAN_M;
+	elseif(eggSpecies == SPECIES_NIDORAN_M && (daycare->offspringPersonality & 0x8000))
+		eggSpecies = SPECIES_NIDORAN_F;
+	elseif(eggSpecies == SPECIES_ILLUMISE && (daycare->offspringPersonality & 0x8000))
+		eggSpecies = SPECIES_VOLBEAT;
+	elseif(eggSpecies == SPECIES_VOLBEAT && (daycare->offspringPersonality & 0x8000))
+		eggSpecies = SPECIES_ILLUMISE;
+	
+	if(species[parentSlots[1]] == SPECIES_DITTO && GetBoxMonGender(&daycare->mons[parentSlots[0]].mon) != MON_FEMALE) // 0x84 -> 0xB7
+		swap(parentSlots[0], parentSlots[1]);
+	
+	return eggSpecies;
+}

@@ -1,0 +1,50 @@
+BuildEggMoveset(egg, father, mother)
+{
+	for(i = 0; i < EGG_MOVES_ARRAY_COUNT; i++)
+		sHatchedEggEggMoves_New[i] = 0;
+
+	for(i = 0; i < EGG_LVL_UP_MOVES_ARRAY_COUNT; i++)
+		sHatchedEggLevelUpMoves_New[i] = 0
+	
+	numLevelUpMoves = GetLevelUpMovesBySpecies(GetMonData(egg, MON_DATA_SPECIES), sHatchedEggLevelUpMoves_New);
+	numEggMoves = GetEggMoves(egg, sHatchedEggEggMoves_New);
+
+	for(i = 0; i < 8; i++)
+	{
+		if(gDaycareParentMoves[i] != MOVE_NONE)
+		{
+			for(j = 0; j < numEggMoves; j++)
+			{
+				if(gDaycareParentMoves[i] == sHatchedEggEggMoves_New[j])
+				{
+					if(GiveMoveToMon(egg, gDaycareParentMoves[i]) == 0xFFFF)
+						DeleteFirstMoveAndGiveMoveToMon(egg, gDaycareParentMoves[i]);
+					
+					break;
+				}
+			}
+		}
+	}
+
+	for(i = 0; i < numLevelUpMoves; i++)
+	{
+		for(j = 0; j < 4; j++)
+		{
+			if(sHatchedEggLevelUpMoves_New[i] == gDaycareParentMoves[0][j])
+			{
+				for(k = 0; k < 4; k++)
+				{
+					if(sHatchedEggLevelUpMoves_New[i] == gDaycareParentMoves[1][k])
+					{
+						if(GiveMoveToMon(egg, sHatchedEggLevelUpMoves_New[i]) == 0xFFFF)
+							DeleteFirstMoveAndGiveMoveToMon(egg, sHatchedEggLevelUpMoves_New[i]);
+						
+						// break out into the main loop (i) again
+						k = 4;
+						j = 4;
+					}
+				}
+			}
+		}
+	}
+}

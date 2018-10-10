@@ -1,0 +1,23 @@
+sub_8045FA0(arg0, arg1)
+{
+	for(r2 = 0; r2 < 0xC; r2 += 6)
+	{
+		if(*arg0 == *(data_455AE_J + r2))
+		{
+			for(r6 = 0; r6 < 0x8C; r6 += 0x8C)
+			{
+				if(*(data_455AE_J + r2 + 2) == 0)
+					break;
+				elseif(GetBoxMonData(arg1 + r6, 0xC) == *(data_455AE_J + r2 + 2))
+					return;
+			}
+
+			*arg0 = *(data_455AE_J + r2 + 4)
+			return
+		}
+	}
+}
+
+data_455AE_J:
+0x168 0xDD 0xCA
+0x15E 0xDC 0xB7

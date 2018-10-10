@@ -1,0 +1,102 @@
+BuildEggMoveset(arg0, arg1, arg2)
+{
+	s0 = 0
+
+	for(r6 = 0; r6 <= 3; r6++)
+	{
+		data_02024580[r6] = 0
+		data_0202455C[r6] = 0
+		data_02024564[r6] = 0
+	}
+
+	for(r6 = 0; r6 <= 9; r6++)
+		data_0202456C[r6] = 0
+	
+	for(r6 = 0; r6 <= 0x31; r6++)
+		data_020244F8[r6] = 0
+	
+	s1 = GetLevelUpMovesBySpecies(GetMonData(arg0, 0xB, NULL), data_020244F8)
+
+	for(r6 = 0; r6 <= 3; r6++)
+	{
+		data_0202455C[r6] = GetBoxMonData(arg1, 0xD + r6)
+		data_02024580[r6] = GetBoxMonData(arg2, 0xD + r6)
+	}
+	
+	r8 = GetEggMoves(arg0, data_0202456C)
+
+	for(r6 = 0; r6 <= 3; r6++)
+	{
+		if(data_0202455C[r6] == 0)
+			break;
+		
+		for(r5 = 0; r5 bcc r8; r5++)
+		{
+			r0 = data_0202455C[r6]
+			r1 = data_0202456C[r5]
+			
+			if(r0 == r1)
+			{
+				if(GiveMoveToMon(arg0, r0) == 0xFFFF)
+					DeleteFirstMoveAndGiveMoveToMon(arg0, r0)
+				
+				break;
+			}
+		}
+	}
+	
+	for(r6 = 0; r6 <= 3; r6++)
+	{
+		if(data_0202455C[r6] != 0)
+		{
+			for(r5 = 0; r5 <= 0x39; r5++)
+			{
+				if(data_0202455C[r6] == ItemIdToBattleMoveId(r5 + 0x121) && CanMonLearnTMHM(arg0, r5))
+				{
+					if(GiveMoveToMon(arg0, data_0202455C[r6]) == 0xFFFF)
+						DeleteFirstMoveAndGiveMoveToMon(arg0, data_0202455C[r6])
+				}
+			}
+		}
+	}
+	
+	for(r6 = 0; r6 <= 3; r6++)
+	{
+		if(data_0202455C[r6] == 0)
+			break;
+		
+		for(r5 = 0; r5 <= 3; r5++)
+		{
+			r1 = data_0202455C[r6]
+			r0 = data_02024580[r5]
+			
+			if(r1 == r0 && r1 != 0)
+			{
+				data_02024564[s0] = data_0202455C[r6]
+				s0++
+			}
+		}
+	}
+	
+	for(r6 = 0; r6 <= 3; r6++)
+	{
+		if(data_02024564[r6] == 0)
+			break;
+	
+		for(r5 = 0; r5 bcc s1; r5++)
+		{
+			r1 = data_020244F8[r5]
+			r0 = data_02024564[r6]
+			
+			if(r1 != 0 && r1 == r0)
+			{
+				if(GiveMoveToMon(arg0, r0) == 0xFFFF)
+					DeleteFirstMoveAndGiveMoveToMon(arg0, r0)
+				
+				break;
+			}
+		}
+	}
+	
+	return
+}

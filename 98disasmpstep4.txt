@@ -1,0 +1,23 @@
+AlterEggSpeciesWithIncenseItem(species, daycare)
+{
+	for(i = 0; i < ARRAY_SIZE(gIncenseTable); i++)
+	{
+		if(*species == gIncenseTable[i].babySpecies)
+		{
+			for(j = 0; j < 2; j++)
+			{
+				if(gIncenseTable[i].incense == ITEM_NONE)
+					break;
+				elseif(GetBoxMonData(&daycare->mons[j].mon, MON_DATA_HELD_ITEM) == gIncenseTable[i].incense)
+					return;
+			}
+
+			*species = gIncenseTable[i].parentSpecies;
+			return;
+		}
+	}
+}
+
+gIncenseTable[babySpecies, incense, parentSpecies]: @455AE_J
+SPECIES_WYNAUT ITEM_LAX_INCENSE SPECIES_WOBBUFFET
+SPECIES_AZURILL ITEM_SEA_INCENSE SPECIES_MARILL

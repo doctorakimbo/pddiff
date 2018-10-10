@@ -1,0 +1,44 @@
+sub_8045FA0(arg0, arg1)
+{
+	r4 = arg0
+	r5 = arg1
+	r7 = data_455AE_J
+	r1 = *r4
+	r2 = 0
+
+	for(r2 = 0; r2 < 0xC; r2 += 6)
+	{
+		r0 = *(r7 + r2)
+
+		if(r1 == r0)
+			goto lbl3
+	}
+
+	goto lbl6
+
+	lbl3:
+	r7 += r2
+	r6 = 0
+
+	for(r6 = 0; r6 == 0; r6 = 0x8C)
+	{
+		r0 = GetBoxMonData(r5 + r6, 0xC)
+		r3 = *(r7 + 2)
+		
+		if(r3 == 0)
+			break;
+		elseif(r0 == r3)
+			goto lbl6
+	}
+
+	r0 = *(r7 + 4)
+	*r4 = r0
+	goto lbl6
+
+	lbl6:
+	return
+}
+
+data_455AE_J:
+0x168 0xDD 0xCA
+0x15E 0xDC 0xB7

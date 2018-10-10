@@ -1,0 +1,41 @@
+lbl1: @45FA0
+r4 = r0
+r5 = r1
+r1 = *r4
+r7 = 0x168
+if(r1 == r7) goto lbl2
+
+r0 = 0x15E
+if(r1 != r0) goto lbl4
+
+goto lbl2
+
+lbl2:
+r6 = GetBoxMonData(r5, 0xC)
+r0 = r5
+r0 += 0x8C
+r2 = GetBoxMonData(r0, 0xC)
+r0 = *r4
+if(r0 != r7) goto lbl3
+
+if(r6 == 0xDD) goto lbl3
+
+if(r2 == 0xDD) goto lbl3
+
+*r4 = 0xCA
+goto lbl3
+
+lbl3:
+r1 = *r4
+r0 = 0x15E
+if(r1 != r0) goto lbl4
+
+if(r6 == 0xDC) goto lbl4
+
+if(r2 == 0xDC) goto lbl4
+
+*r4 = 0xB7
+goto lbl4
+
+lbl4:
+return
