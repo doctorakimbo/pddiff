@@ -1,0 +1,12 @@
+SetInitialEggData(mon, species, daycare)
+{
+	personality = daycare->offspringPersonality | (Random() << 0x10);
+
+	CreateMon(mon, species, EGG_HATCH_LEVEL, 0x20, TRUE, personality, FALSE, 0);
+	metLevel = 0;
+	ball = ITEM_POKE_BALL;
+	SetMonData(mon, MON_DATA_POKEBALL, &ball);
+	SetMonData(mon, MON_DATA_NICKNAME, sJapaneseEggNickname);
+	SetMonData(mon, MON_DATA_FRIENDSHIP, &gBaseStats[species].eggCycles);
+	SetMonData(mon, MON_DATA_MET_LEVEL, &metLevel);
+}

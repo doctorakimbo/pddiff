@@ -85,6 +85,7 @@ E8 3F 02 02: 48 3F 02 02: gBattleStruct
 F4 3F 02 02: 54 3F 02 02: gBattleResources
 FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
 04 40 02 02: 64 3F 02 02: gBattlerInMenuId
+1C 40 02 02: 7C 3F 02 02: gMonSpritesGfxPtr
 20 40 02 02: 80 3F 02 02: gBattleMovePower
 29 40 02 02: 89 3F 02 02: gPlayerPartyCount
 2C 40 02 02: 8C 3F 02 02: gEnemyParty
@@ -182,6 +183,7 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 funcs e,j,desc:
 0020BC = 0020BC = CopyBgTilemapBufferToVram
 002228 = 002228 = CopyToBgTilemapBufferRect_ChangePalette
+006124 = 005F90 = RenderTextFont9
 006F8C = 006B08 = CreateSprite
 0071EC = 006D68 = CreateSpriteAndAnimate
 007804 = 007380 = DestroySpriteAndFreeResources
@@ -274,6 +276,11 @@ funcs e,j,desc:
 045FA0 = 045564 = AlterEggSpeciesWithIncenseItem
 046000 = 0455C4 = DetermineEggSpeciesAndParentSlots
 046208 = 0457B4 = SetInitialEggData
+0480A8 = 047630 = GetHealthboxElementGfxPtr
+048618 = ?????? = UpdateHpTextInHealthboxInDoubles
+04A648 = ?????? = AddTextPrinterAndCreateWindowOnHealthbox
+04A6D8 = ?????? = RemoveWindowOnHealthbox
+04A6E8 = ?????? = FillHealthboxObject
 055250 = 054B10 = GetDestinationWarpMapHeader
 06E25C = 06DA50 = IsNationalPokedexEnabled
 06E454 = 06DC48 = GetVarPointer
@@ -287,6 +294,7 @@ funcs e,j,desc:
 0751C4 = 074968 = GetBattlerSide
 0751D8 = 07497C = GetBattlerPosition
 0751E8 = 07498C = GetBattlerAtPosition
+075290 = 074A34 = IsDoubleBattle
 07AF98 = 07A6F8 = weather_get_current
 088E8C = 088A68 = pokedex_count
 08B9F4 = 08B490 = StorageGetCurrentBox
@@ -304,6 +312,7 @@ funcs e,j,desc:
 0D87BC = 0D980C = BattlePutTextOnWindow
 125A78 = 1263C4 = ItemIdToBattleMoveId
 12E51C = 12ED24 = box_print
+1E3B64 = 1C7A88 = CpuSet
 1E3B9C = square root
 1E3BA8 = call r0
 1E4018 = 1C7F38 = division

@@ -1,0 +1,52 @@
+lbl1: @462D2
+fn_207344_J()
+r2 = 0x64
+memcpy()
+return
+
+
+
+
+
+fn_207344_J:
+r0 = r5
+r1 = 0x2E
+GetMonData()
+s0 = r0
+r1 = 0x2E
+r0 = r6
+r2 = &s0
+SetMonData()
+r0 = r5
+r2 = fn_EE8A00_J
+goto r2
+
+lblx: @20736A
+r1 = r6
+return
+
+
+
+
+
+fn_EE8A00_J:
+r1 = 0x26
+r3 = GetMonData
+fn_EE8A26_J()
+r0 = s0
+r0 = r6
+r1 = 0x26
+r2 = &s0
+r3 = SetMonData
+fn_EE8A26_J()
+r0 = r5
+r3 = lblx
+goto r3
+
+
+
+
+
+fn_EE8A26_J:
+goto r3
+return

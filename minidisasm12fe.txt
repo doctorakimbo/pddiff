@@ -1,0 +1,180 @@
+lbl1: @48440
+r9 = r0
+r10 = r1
+r8 = r2
+r1 = gSprites
+r0 *= 4
+r0 += r9
+r0 *= 2
+r4 = r0 + r1
+r0 = *(r4 + 0x3A)
+GetBattlerSide()
+if(r0 != 0) goto lbl5
+
+r0 = r8
+if(r0 == 0) goto lbl2
+
+r2 = r10
+r1 = r2
+r0 = &s4
+r2 = 1
+r3 = 3
+ConvertIntToDecimalStringN()
+r3 = &s11
+r0 = &s4
+r1 = 0
+r2 = 5
+fn_4A648()
+r5 = r0
+r0 = *(r4 + 4)
+r0 <<= 0x16
+r0 >>= 0x11
+r1 = data_06010A40
+r0 += r1
+r1 = r5
+goto lbl3
+
+lbl2:
+r2 = r10
+r1 = r2
+r0 = &s4
+r2 = 1
+r3 = 3
+ConvertIntToDecimalStringN()
+r1 = 0xBA
+*r0 = r1
+r1 = 0xFF
+*(r0 + 1) = r1
+r3 = &s11
+r0 = &s4
+r1 = 4
+r2 = 5
+fn_4A648()
+r5 = r0
+r4 = *(r4 + 4)
+r4 <<= 0x16
+r4 >>= 0x11
+r1 = data_060102E0
+r0 = r4 + r1
+r1 = r5
+r2 = 1
+fn_4A6E8()
+r2 = data_06010A00
+r4 += r2
+r1 = r5
+r1 += 0x20
+r0 = r4
+goto lbl4
+
+lbl4:
+r2 = 2
+fn_4A6E8()
+r0 = s11
+fn_4A6D8()
+goto lbl11
+
+lbl5:
+r5 = &s6
+r1 = data_26052C
+r0 = r5
+r2 = 0x14
+memcpy()
+r1 = gSprites
+r0 = r9
+r4 = r0 * 0x10
+r0 += r4
+r0 *= 4
+r7 = r0 + r1
+r0 = *(r7 + 0x3A)
+r6 = r0
+fn_75290()
+if(r0 == 1) goto lbl6
+
+r0 = r6
+GetBattlerSide()
+if(r0 != 1) goto lbl7
+
+goto lbl6
+
+lbl6:
+r2 = r10
+r1 = r2
+r0 = r9
+r2 = r8
+fn_48618()
+goto lbl11
+
+lbl7:
+r0 = *(r7 + 0x3A)
+GetBattlerSide()
+if(r0 != 0) goto lbl8
+
+r6 = 0x59
+r0 = r8
+if(r0 != 0) goto lbl9
+
+r6 = 0x1D
+goto lbl9
+
+lbl8:
+r6 = 0x30
+r1 = r8
+if(r1 != 0) goto lbl9
+
+r6 = 0x14
+goto lbl9
+
+lbl9:
+r0 = &s0
+r0 += 0x1E
+r2 = r10
+r1 = r2
+r2 = 1
+r3 = 3
+ConvertIntToDecimalStringN()
+r0 = data_0202401C
+r0 = *r0
+r1 = 0x174
+r0 += r1
+r0 = *r0
+r1 = 0
+s0 = r1
+s1 = r1
+s2 = r1
+s3 = r1
+r2 = r5
+r3 = 0
+fn_6124()
+r5 = 0
+r1 = gSprites
+r2 = r9
+r0 = r4 + r2
+r0 *= 4
+r4 = r0 + r1
+goto lbl10
+
+lbl10:
+r0 = data_0202401C
+r0 = *r0
+r1 = 0x174
+r0 += r1
+r1 = r5 * 0x40
+r1 += 0x20
+r0 = *r0
+r0 += r1
+r1 = *(r4 + 4)
+r1 += r6
+r1 += r5
+r1 *= 0x20
+r2 = data_06010000
+r1 += r2
+r2 = data_04000008
+fn_1E3B64()
+r0 = r5 + 1
+r5 = r0
+if(r5 <= 2) goto lbl10
+
+goto lbl11
+
+lbl11:
+return

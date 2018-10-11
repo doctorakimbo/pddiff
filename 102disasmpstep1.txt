@@ -1,0 +1,130 @@
+SetInitialEggData(arg0, arg1, arg2)
+{
+	r6 = arg0
+	r5 = arg1
+	r4 = arg2
+	r0 = GetBoxMonData(arg2, 0xC)
+	if(r0 == 0xC3) goto lbl3
+
+	r0 = r4
+	r0 += 0x8C
+	r0 = GetBoxMonData(r0, 0xC)
+	if(r0 == 0xC3) goto lbl2
+
+	r0 = Random()
+	r1 = 0x8C
+	r1 *= 2
+	r4 += r1
+	r1 = *r4
+	r0 <<= 0x10
+	r1 |= r0
+	goto lbly
+
+	lbl2:
+	r0 = r4
+	r0 += 0x8C
+	goto lbl4
+
+	lbl3:
+	r0 = r4
+	goto lbl4
+
+	lbl4:
+	r1 = 0x19
+	s0 = GetBoxMonData(r0, 0) % r1
+	r1 += 0x118
+	r4 += r1
+
+	do
+	{
+		r0 = Random() % 0xFFFE
+		r0++
+		*r4 = r0
+		*(r4 + 4) = Random()
+		r0 <<= 0x10
+		r1 = *r4
+		r0 |= r1
+		r0 = r0 % 0x19
+		r1 = s0
+	} while(r0 != r1)
+
+	r0 = *r4
+	r1 = *(r4 + 4)
+	r1 <<= 0x10
+	r1 |= r0
+	goto lbly
+	
+	lbly:
+	r0 = 1
+	r4 = 0
+	fn_251D2A_J(r6, r5, 1, 0x20, r0, r1, r4, r4)
+	r0 = &s3
+	r8 = r0
+	*r0 = r4
+	r1 = 4
+	r0 = &s4
+	*r0 = r1
+	SetMonData(r6, 0x26, &s4)
+	SetMonData(r6, 2, data_25F83E)
+	r2 = r5 * 8
+	r2 -= r5
+	r2 *= 4
+	r0 = data_254795
+	r2 += r0
+	SetMonData(r6, 0x20, r2)
+	SetMonData(r6, 0x24, r8)
+}
+
+
+
+
+
+
+
+fn_251D2A_J(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+{
+	s0 = arg0
+	s1 = arg1
+	s2 = arg2
+	s3 = arg3
+	r4 = GetNatureFromPersonality(arg5)
+	r0 = fn_251B58_J()
+
+	if(r0 == 1)
+	{
+		do
+		{
+			r5 = fn_251B8C_J()
+			r0 = GetNatureFromPersonality(r5)
+		} while(r0 != r4)
+	}
+	else
+	{
+		do
+		{
+			r5 = Random()
+			r0 = Random()
+			r0 <<= 0x10
+			r0 |= r5
+			r5 = r0
+			r0 = GetNatureFromPersonality(r5)
+		} while(r0 != r4)
+	}
+
+	CreateMon(s0, s1, s2, s3, arg4, r5, arg6, arg7)
+}
+
+
+
+
+
+
+
+fn_251B8C_J()
+{
+	r4 = Random()
+	r0 = Random()
+	r1 = 7
+	r0 &= r1
+	return fn_251BA4_J(r0, r4)
+}

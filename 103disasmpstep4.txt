@@ -1,0 +1,31 @@
+lbl1: @45924
+steps = fn_251ADC_J(steps);
+SetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP, &steps);
+...
+
+
+
+
+
+
+fn_251ADC_J(steps)
+{
+	for(i = 0; i < 6; i++)
+	{
+		if(GetBoxMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
+			continue;
+
+		if(GetMonAbility(&gPlayerParty[i]) == ABILITY_MAGMA_ARMOR) // should be !=
+			continue;
+
+		if(GetMonAbility(&gPlayerParty[i]) != ABILITY_FLAME_BODY)
+			continue;
+
+		if(steps <= 2)
+			steps = 2;
+			
+		return steps - 2;
+	}
+	
+	return steps - 1;
+}

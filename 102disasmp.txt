@@ -4,13 +4,16 @@ r5 = r1
 r0 = fn_E2EA00_J
 goto r0
 
-lblx:
+lblx: @457CA
 r1 = 0x8C
 r1 *= 2
 r4 += r1
 r1 = *r4
 r0 <<= 0x10
 r1 |= r0
+goto lbly
+
+lbly: @457D6
 r0 = 1
 s0 = r0
 s1 = r1
@@ -49,3 +52,171 @@ r1 = 0x24
 r2 = r8
 SetMonData()
 return
+
+
+
+
+
+
+
+fn_E2EA00_J:
+r4 = r2
+r0 = r2
+r1 = 0xC
+fn_E2EA76_J()
+if(r0 == 0xC3) goto lbl3
+
+r0 = r4
+r0 += 0x8C
+r1 = 0xC
+fn_E2EA76_J()
+if(r0 == 0xC3) goto lbl2
+
+fn_E2EA7E_J()
+r1 = lblx
+goto r1
+
+lbl2:
+r0 = r4
+r0 += 0x8C
+goto lbl4
+
+lbl3:
+r0 = r4
+goto lbl4
+
+lbl4:
+r1 = 0
+fn_E2EA76_J()
+r1 = 0x19
+fn_E2EA7A_J()
+s0 = r0
+r1 += 0x118
+r4 += r1
+goto lbl5
+
+lbl5:
+fn_E2EA7E_J()
+r1 = 0xFFFE
+fn_E2EA7A_J()
+r0++
+*r4 = r0
+fn_E2EA7E_J()
+*(r4 + 4) = r0
+r0 <<= 0x10
+r1 = *r4
+r0 |= r1
+r1 = 0x19
+fn_E2EA7A_J()
+r1 = s0
+if(r0 != r1) goto lbl5
+
+r0 = *r4
+r1 = *(r4 + 4)
+r1 <<= 0x10
+r1 |= r0
+r0 = lbly
+goto r0
+
+
+
+
+
+
+
+fn_E2EA76_J:
+r3 = GetBoxMonData
+goto r3
+return
+
+
+
+
+
+
+
+fn_E2EA7A_J:
+r2 = modulus
+goto r2
+return
+
+
+
+
+
+
+
+fn_E2EA7E_J:
+r0 = Random
+goto r0
+return
+
+
+
+
+
+
+
+fn_251D2A_J:
+s0 = r0
+s1 = r1
+s2 = r2
+s3 = r3
+r0 = s10
+GetNatureFromPersonality()
+r4 = r0
+fn_251B58_J()
+if(r0 == 1) goto lbl3
+
+goto lbl2
+
+lbl2:
+Random()
+r5 = r0
+Random()
+r0 <<= 0x10
+r0 |= r5
+r5 = r0
+GetNatureFromPersonality()
+if(r0 != r4) goto lbl2
+
+goto lbl4
+
+lbl3:
+fn_251B8C_J()
+r5 = r0
+GetNatureFromPersonality()
+if(r0 != r4) goto lbl3
+
+goto lbl4
+
+lbl4:
+r0 = s0
+r1 = s1
+r2 = s2
+r3 = s3
+s1 = r5
+r4 = s9
+s0 = r4
+r4 = s11
+s2 = r4
+r4 = s12
+s3 = r4
+CreateMon()
+return
+
+
+
+
+
+
+
+fn_251B8C_J:
+Random()
+r4 = r0
+Random()
+r1 = 7
+r0 &= r1
+r1 = r4
+fn_251BA4_J()
+return r0

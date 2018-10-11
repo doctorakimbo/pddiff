@@ -1,0 +1,78 @@
+sub_8048440(healthboxSpriteId, value)
+{
+	memcpy(text, data_21CF90_J, 0x1E)
+	
+	if(!IsDoubleBattle())
+	{
+		if(GetBattlerSide(gSprites[healthboxSpriteId].hMain_Battler) == B_SIDE_PLAYER)
+		{
+			r10 = 73
+			r5 = 72
+			
+			if(value == 100)
+				r7 = 72
+			else
+				r7 = 73
+		}
+		else
+		{
+			r10 = 40
+			r5 = 15
+			
+			if(value == 100)
+				r7 = 15
+			else
+				r7 = 40
+		}
+	}
+	else
+	{
+		if(GetBattlerSide(gSprites[healthboxSpriteId].hMain_Battler) == B_SIDE_PLAYER)
+		{
+			r10 = 41
+			r5 = 40
+			
+			if(value == 100)
+				r7 = 40
+			else
+				r7 = 41
+		}
+		else
+		{
+			r10 = 40
+			r5 = 15
+			
+			if(value == 100)
+				r7 = 15
+			else
+				r7 = 40
+		}
+	}
+	
+	if(value == 100)
+	{
+		CpuSet(GetHealthboxElementGfxPtr(0x2E), OBJ_VRAM0 + ((gSprites[healthboxSpriteId].oam.tileNum + r7) * 0x20), 0x20)
+		ConvertIntToDecimalStringN(&s5pt5, value, STR_CONV_MODE_LEFT_ALIGN, 3)
+		r6 = 3
+	}
+	else
+	{
+		CpuSet(GetHealthboxElementGfxPtr(0x76), OBJ_VRAM0 + ((gSprites[healthboxSpriteId].oam.tileNum + r5) * 0x20), 0x20)
+		CpuSet(GetHealthboxElementGfxPtr(0x77), OBJ_VRAM0 + ((gSprites[healthboxSpriteId].oam.tileNum + r7) * 0x20), 0x20)
+		ConvertIntToDecimalStringN(&s5pt5, value, STR_CONV_MODE_LEFT_ALIGN, 2)
+		
+		if(value < 10)
+		{
+			s5pt75 = 0
+			s6 = EOS
+		}
+		
+		r6 = 2
+		r10++
+	}
+	
+	RenderTextFont9(gMonSpritesGfxPtr->barFontGfx, 0, text);
+	
+	for(i = 0; i bcc r6; i++)
+		CpuSet(gMonSpritesGfxPtr->barFontGfx[(i * 64) + 32], OBJ_VRAM0 + ((gSprites[healthboxSpriteId].oam.tileNum + r10 + i) * 0x20), 0x20)
+}

@@ -303,13 +303,13 @@ grafics:
 = 008CF8, 008D2C: 0A -> 0C (pkmnnamelength)
 = 00960C: 36 -> 33 (some sort of link-related graphics function?, see 1disasm)
 = 00D311: 68 -> 47
-  00D320: 4C 2B 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (j252400, see 02disasm))
+  00D320: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j252400, see 02disasm))
 		  Implements: need more info
 		  Required knowledge: j0203B900, j0203C00D, j0203D500
 = 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
 = 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC: 0B -> 0D (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
-  0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
+  0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: Pokemon name length, something else - need more info
 		  Required knowledge: j020385E2, unknown data table at j1400000
 = 0124EB: 80 -> 60 (store weather as fullword)
@@ -325,7 +325,7 @@ grafics:
 		  Relies on: gChosenActionByBattler changed to something else
 		  Note: test deeply - incomprehensible code
 = 016460: 0C 29 1B D8 0B 4A 0C 49 -> 00 00 00 00 0B 4A 97 46
-  016494: 74 3D 02 02 -> E0 31 A2 08 (jumps to fn at A231E0, then back; see 07disasm)
+  016494: 74 3D 02 02 -> E0 31 A2 08 (jumps (mov) to fn at A231E0, then back; see 07disasm)
 		  Implements: new pokeballs (throw action)
 		  Required knowledge: gLastUsedItemType (j0203FE00)
 		  Relies on: pokeball ID changes
@@ -613,9 +613,9 @@ grafics:
 		  Glitch?: Level Ball might check the level of the second pkmn in player's party
 		  Glitch?: Cherish Ball uses the Moon Ball formula (not relevant since it should be unobtainable)
 = 02D636: 19 49 -> AF 46
-  02D698: E4 3B 02 02 -> 54 AB EE 08 (jumps to fn at EEAB54, then back; see 67disasm)
+  02D698: E4 3B 02 02 -> 54 AB EE 08 (jumps (mov) to fn at EEAB54, then back; see 67disasm)
   02D764: 28 88 -> AF 46
-  02D7B8: 68 3D 02 02 -> 30 AB EE 08 (jumps to fn at EEAB30, then back; see 67disasm)
+  02D7B8: 68 3D 02 02 -> 30 AB EE 08 (jumps (mov) to fn at EEAB30, then back; see 67disasm)
 		  Implements: critical capture
 		  Relies on: 02D500, etc
 		  Required knowledge: gLastUsedItemType (j0203FE00), gCritCapture (j0203FE04)
@@ -686,7 +686,7 @@ grafics:
   04085E: C9 -> 89
   040862: 79 -> 7D
 		  Implements: part of BoxPokemon refactor
-= 040B15: B5 A5 F1 B5 F9 01 BC -> 4B 9F 46 E0 3A A2 08 (jumps to fn at A23AE0, then back; see 80disasm)
+= 040B15: B5 A5 F1 B5 F9 01 BC -> 4B 9F 46 E0 3A A2 08 (jumps (mov) to fn at A23AE0, then back; see 80disasm)
 		  Implements: Heal Ball
 		  Required knowledge: gLastUsedItemType (j0203FE00)
 = 040B90: Entirety of SendMonToPC (see 81disasm)
@@ -736,7 +736,7 @@ grafics:
 ! 044034: 62 40 04 08 5C 40 04 08 62 40 04 08 62 40 04 08 5C 40 04 08 62 40 04 08 62 40 04 08 54 40 04 08 -> 54 40 04 08 5C 40 04 08 D8 32 85 08 D0 32 85 08 30 8F 8D 08 E0 64 86 08 58 00 74 08 A0 0F 8C 08 (changes table to point to other scripts, see 92disasm)
 		  Implements: PDONLY, more trainer music
 		  Requires in future: all the pointed-to scripts
-= 04442C: 99 18 88 89 C9 89 88 42 -> 00 49 08 47 XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jE2EAD0, see 93disasm))
+= 04442C: 99 18 88 89 C9 89 88 42 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2EAD0, see 93disasm))
 		  Implements: Compound Eyes overworld effect
 + 044EC8: Entirety of Random (see 94disasm)
 		  Implements: New random function (unclear why)
@@ -767,14 +767,36 @@ grafics:
 = 046112: FF F7 DD FD -> ?? ?? ?? ?? (changes call to BuildEggMoveset to instead call fn at j2072F0 (this calls BuildEggMoveset inside it anyway), see 101disasm)
 		  Implements: modern ability inheritance
 = ??????: 84 -> B7 (PDONLY, changes ditto index to #183)
-! 046120: 2D 21 FA F7 2B F9 09 48 -> 00 49 08 47 00 89 EE 08 (jumps to fn at EE8900, then back; see 101disasm)
+- 046120: 2D 21 FA F7 2B F9 09 48 -> 00 49 08 47 01 89 EE 08 (jumps (bx) to fn at EE8900, then back; see 101disasm)
 		  Implements: modern pokeball inheritance
-		  GLITCH!: game crashes when generating egg
-= 046216: 14 1C 2D 04 2D 0C FE F7 54 FE -> 00 48 00 47 XX XX XX 08 00 00 (jumps to extra fn at XXXXXX, then back (jE2EA00, see 102disasm))
-= 04623E: 05 22 20 23 F7 F7 07 -> 01 22 20 23 ?? ?? ?? ?? (instead of calling CreateMon(5, 0x20), calls fn_251D2A_J(1, 0x20), see 102disasm)
+= 046216: 14 1C 2D 04 2D 0C FE F7 54 FE -> 00 48 00 47 XX XX XX 08 00 00 (jumps (bx) to extra fn at XXXXXX, then back (jE2EA00, see 102disasm))
+		  Implements: Everstone nature inheritance
+= 04623E: 05 22 20 23 F7 F7 07 -> 01 22 20 23 ?? ?? ?? ?? (instead of calling CreateMon(..., 5, ...), calls CreateMonWithNature_New(..., 1, ...); see 102disasm)
+		  Implements: egg hatch level 5 -> 1, (item72), need more info (something to do with personality values)
+		  Requires in future: fn_251B58_J(), fn_251B8C_J, fn_251BA4_J, CreateMonWithNature_New (j251D2A)
+= 046390: 01 38 00 90 -> ?? ?? ?? ?? (calls new fn at j251AE0, see 103disasm)
+		  Implements: Magma Armor/Flame Body overworld effect
+		  Glitch?: Magma Armor doesn't work
+- 046CBE: 05 -> 01 (egg hatch level 5 -> 1)
+= 046D46: 30 1C 29 1C -> ?? ?? ?? ?? (calls new fn at j207344, see 104disasm)
+		  Implements: needed for modern pokeball inheritance; something involving alt ability
+- 046DDA: F9 F7 CF FA -> 00 00 00 00 (needed for modern pokeball inheritance)
+= (parts of sub_8048440/j47920)
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
 		  
 		  
 		  
 
-curr: j456D6, j456E4
-next: j457C0
+
+curr: j47984 (1byte), j47988 (3byte), j479C8 (1byte), j479CC (3byte), j479D6 (1byte)
+next: j48D22

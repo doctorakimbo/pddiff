@@ -1,0 +1,7 @@
+	...
+	hasAltAbility = GetMonData(egg, MON_DATA_ALT_ABILITY);
+	SetMonData(temp, MON_DATA_ALT_ABILITY, &hasAltAbility);
+	ball = GetMonData(egg, MON_DATA_POKEBALL);
+	SetMonData(temp, MON_DATA_POKEBALL, &ball);
+	*egg = *temp;
+}

@@ -1,0 +1,6 @@
+lbl1: @462D2
+r0 = r5
+r1 = r6
+r2 = 0x64
+memcpy()
+return

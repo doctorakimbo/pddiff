@@ -1,0 +1,53 @@
+lbl1: @45924
+fn_251ADC_J()
+r0 = r4
+r1 = 0x20
+r2 = &s0
+SetMonData()
+...
+
+
+
+
+
+
+fn_251ADC_J:
+r5 = 0
+r6 = r0
+r4 = gPlayerParty
+goto lbl2
+
+lbl2:
+r0 = r5
+r1 = 0x64
+r0 *= r1
+r0 += r4
+r7 = r0
+r1 = 0x2D
+GetBoxMonData()
+if(r0 != 0) goto lbl4
+
+r0 = r7
+GetMonAbility()
+if(r0 == 0x28) goto lbl4
+
+if(r0 != 0x31) goto lbl4
+
+if(r6 > 2) goto lbl3
+
+r6 = 2
+goto lbl4
+
+lbl3:
+r6 -= 2
+goto lbl4
+
+lbl4:
+r5++
+if(r5 != 6) goto lbl2
+
+r6--
+goto lbl5
+
+r0 = r6
+return r0

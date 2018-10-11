@@ -1,0 +1,7 @@
+	...
+	s0 = GetMonData(r5, 0x2E)
+	SetMonData(r6, 0x2E, &s0)
+	s0 = GetMonData(r5, 0x26)
+	SetMonData(r6, 0x26, &s0)
+	memcpy(r5, r6, 0x64)
+}

@@ -1,0 +1,9 @@
+SetInitialEggData(arg0, arg1, arg2)
+{
+	CreateMon(arg0, arg1, 5, 0x20, 1, (*(arg2 + 0x118) | (Random() << 0x10)), 0, 0)
+	SetMonData(arg0, 0x26, &0)
+	SetMonData(arg0, 2, data_25F83E)
+	SetMonData(arg0, 0x20, (arg1 * 0x1C) + data_254795)
+	SetMonData(arg0, 0x24, &0)
+	SetMonData(arg0, 3, &1)
+}

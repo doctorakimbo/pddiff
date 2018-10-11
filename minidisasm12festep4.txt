@@ -1,0 +1,56 @@
+sub_8048440(healthboxSpriteId, value, maxOrCurrent)
+{
+	if(GetBattlerSide(gSprites[healthboxSpriteId].hMain_Battler) == B_SIDE_PLAYER)
+	{
+		spriteTileNum = gSprites[healthboxSpriteId].oam.tileNum * 32;
+		
+		if(maxOrCurrent != HP_CURRENT)
+		{
+			ConvertIntToDecimalStringN(text, value, STR_CONV_MODE_RIGHT_ALIGN, 3);
+			windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(text, 0, 5, 2, &windowId);
+			FillHealthboxObject(OBJ_VRAM0 + spriteTileNum + 0xB40, windowTileData, 2);
+			RemoveWindowOnHealthbox(windowId);
+		}
+		else
+		{
+			ConvertIntToDecimalStringN(text, value, STR_CONV_MODE_RIGHT_ALIGN, 3);
+			text[3] = CHAR_SLASH;
+			text[4] = EOS;
+			windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(text, 4, 5, 2, &windowId);
+			FillHealthboxObject(OBJ_VRAM0 + spriteTileNum + 0x3E0, windowTileData, 1);
+			FillHealthboxObject(OBJ_VRAM0 + spriteTileNum + 0xB00, windowTileData + 0x20, 2);
+			RemoveWindowOnHealthbox(windowId);
+		}
+	}
+	else
+	{
+		memcpy(text, data_26052C, 0x14)
+		battler = gSprites[healthboxSpriteId].hMain_Battler;
+		
+		if(IsDoubleBattle() || GetBattlerSide(battler) == B_SIDE_OPPONENT)
+			UpdateHpTextInHealthboxInDoubles(healthboxSpriteId, value, maxOrCurrent);
+		else
+		{
+			if(GetBattlerSide(battler) == B_SIDE_PLAYER)
+			{	
+				if(maxOrCurrent == HP_CURRENT)
+					r6 = 29
+				else
+					r6 = 89
+			}
+			else
+			{
+				if(maxOrCurrent == HP_CURRENT)
+					r6 = 20
+				else
+					r6 = 48
+			}
+			
+			ConvertIntToDecimalStringN(text + 6, value, STR_CONV_MODE_RIGHT_ALIGN, 3);
+			RenderTextFont9(gMonSpritesGfxPtr->barFontGfx, 0, text);
+
+			for(i = 0; i < 3; i++)
+				CpuSet(gMonSpritesGfxPtr->barFontGfx[(i * 64) + 32], OBJ_VRAM0 + ((gSprites[healthboxSpriteId].oam.tileNum + r6 + i) * 0x20), 0x20)
+		}
+	}
+}

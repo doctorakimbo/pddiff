@@ -1,0 +1,16 @@
+	...
+	fn_207344_J()
+	memcpy(r5, r6, 0x64)
+}
+
+
+
+
+
+fn_207344_J()
+{
+	s0 = GetMonData(r5, 0x2E)
+	SetMonData(r6, 0x2E, &s0)
+	s0 = GetMonData(r5, 0x26)
+	SetMonData(r6, 0x26, &s0)
+}

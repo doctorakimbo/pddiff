@@ -1,0 +1,33 @@
+lbl1: @45924
+r0 = fn_251ADC_J(r0)
+SetMonData(r4, 0x20, &s0)
+...
+
+
+
+
+
+
+fn_251ADC_J(arg0)
+{
+	r6 = arg0
+
+	for(r5 = 0; r5 != 6; r5++)
+	{
+		if(GetBoxMonData(&gPlayerParty[r5], 0x2D) != 0)
+			continue;
+
+		if(GetMonAbility(&gPlayerParty[r5]) == 0x28) // should be !=
+			continue;
+
+		if(GetMonAbility(&gPlayerParty[r5]) != 0x31)
+			continue;
+
+		if(r6 <= 2)
+			r6 = 2
+		else
+			r6 -= 2
+	}
+	
+	return r6 - 1
+}

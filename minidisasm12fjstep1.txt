@@ -1,0 +1,175 @@
+sub_8048440(arg0, arg1)
+{
+	r9 = arg0
+	r8 = arg1
+	memcpy(&s4, data_21CF90_J, 0x1E)
+	
+	if(!IsDoubleBattle())
+	{
+		r1 = gSprites
+		r0 = r9
+		r4 = r0 * 0x10
+		r0 += r4
+		r0 *= 4
+		r0 += r1
+		s12 = r4
+		
+		if(GetBattlerSide(*(r0 + 0x3A)) == 0)
+		{
+			r1 = 0x49
+			r10 = r1
+			r5 = 0x48
+			
+			if(r8 == 0x64)
+				r7 = 0x48
+			else
+				r7 = 0x49
+		}
+		else
+		{
+			r0 = 0x28
+			r10 = r0
+			r5 = 0xF
+			
+			if(r8 == 0x64)
+				r7 = 0xF
+			else
+				r7 = 0x28
+		}
+	}
+	else
+	{
+		r1 = gSprites
+		r2 = r9
+		r4 = r2 * 0x10
+		r0 = r4 + r2
+		r0 *= 4
+		r0 += r1
+		s12 = r4
+		
+		if(GetBattlerSide(*(r0 + 0x3A)) == 0)
+		{
+			r0 = 0x29
+			r10 = r0
+			r5 = 0x28
+			
+			if(r8 == 0x64)
+				r7 = 0x28
+			else
+				r7 = 0x29
+		}
+		else
+		{
+			r2 = 0x28
+			r10 = r2
+			r5 = 0xF
+			
+			if(r8 == 0x64)
+				r7 = 0xF
+			else
+				r7 = 0x28
+		}
+	}
+	
+	if(r8 == 0x64)
+	{
+		r0 = GetHealthboxElementGfxPtr(0x2E)
+		r2 = gSprites
+		r1 = s12
+		r1 += r9
+		r1 *= 4
+		r1 += r2
+		r1 = *(r1 + 4)
+		r1 += r7
+		r1 *= 0x20
+		r2 = data_06010000
+		r1 += r2
+		CpuSet(r0, r1, data_04000008)
+		r0 = &s0
+		r0 += 0x16
+		ConvertIntToDecimalStringN(r0, 0x64, 0, 3)
+		r6 = 3
+	}
+	else
+	{
+		r0 = GetHealthboxElementGfxPtr(0x76)
+		r1 = gSprites
+		r4 = s12
+		r4 += r9
+		r4 *= 4
+		r4 += r1
+		r1 = *(r4 + 4)
+		r1 += r5
+		r1 *= 0x20
+		r5 = data_06010000
+		r1 += r5
+		r6 = data_04000008
+		CpuSet(r0, r1, r6)
+		r0 = GetHealthboxElementGfxPtr(0x77)
+		r1 = *(r4 + 4)
+		r1 += r7
+		r1 *= 0x20
+		r1 += r5
+		CpuSet(r0, r1, r6)
+		r0 = &s0
+		r0 += 0x16
+		r0 = ConvertIntToDecimalStringN(r0, r8, 0, 2)
+		
+		if(r8 < 10)
+		{
+			r1 = &s4
+			r0 = 0
+			*(r1 + 7) = r0
+			r0 = 0xFF
+			*(r1 + 8) = r0
+		}
+		
+		r6 = 2
+		r0 = r10
+		r0++
+		r10 = r0
+	}
+	
+	r0 = data_0202401C
+	r0 = *r0
+	r1 = 0x174
+	r0 += r1
+	r0 = *r0
+	r1 = 0
+	s0 = r1
+	s1 = r1
+	s2 = r1
+	s3 = r1
+	r3 = 0
+	RenderTextFont9(r0, r1, &s4)
+	r5 = 0
+	
+	if(r5 bcc r6)
+	{
+		r1 = gSprites
+		r0 = s12
+		r0 += r9
+		r0 *= 4
+		r4 = r0 + r1
+
+		do
+		{
+			r0 = data_0202401C
+			r0 = *r0
+			r2 = 0x174
+			r0 += r2
+			r1 = r5 * 0x40
+			r0 = *r0
+			r0 += r1
+			r0 += 0x20
+			r1 = *(r4 + 4)
+			r1 += r10
+			r1 += r5
+			r1 *= 0x20
+			r2 = data_06010000
+			r1 += r2
+			CpuSet(r0, r1, data_04000008)
+			r5++
+		} while(r5 bcc r6)
+	}
+}

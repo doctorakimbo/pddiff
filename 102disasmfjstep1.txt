@@ -1,0 +1,31 @@
+SetInitialEggData(arg0, arg1, arg2)
+{
+	r6 = arg0
+	r5 = arg1
+	r4 = arg2
+	r0 = Random()
+	r1 = 0x8C
+	r1 *= 2
+	r4 += r1
+	r1 = *r4
+	r0 <<= 0x10
+	r1 |= r0
+	r0 = 1
+	r4 = 0
+	CreateMon(r6, r5, 5, 0x20, r0, r1, r4, r4)
+	r0 = &s3
+	r8 = r0
+	*r0 = r4
+	r1 = 4
+	r0 = &s4
+	*r0 = r1
+	SetMonData(r6, 0x26, &s4)
+	SetMonData(r6, 2, data_25F83E)
+	r2 = r5 * 8
+	r2 -= r5
+	r2 *= 4
+	r0 = data_254795
+	r2 += r0
+	SetMonData(r6, 0x20, r2)
+	SetMonData(r6, 0x24, r8)
+}

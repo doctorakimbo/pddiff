@@ -1,0 +1,65 @@
+SetInitialEggData(mon, species, daycare)
+{
+	if(GetBoxMonData(&daycare->mons[0].mon, MON_DATA_HELD_ITEM) == ITEM_EVERSTONE || GetBoxMonData(&daycare->mons[1].mon, MON_DATA_HELD_ITEM) == ITEM_EVERSTONE)
+	{
+		if(GetBoxMonData(&daycare->mons[0].mon, MON_DATA_HELD_ITEM) == ITEM_EVERSTONE)
+			nature = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_PERSONALITY) % 25;
+		elseif(GetBoxMonData(&daycare->mons[1].mon, MON_DATA_HELD_ITEM) == ITEM_EVERSTONE)
+			nature = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_PERSONALITY) % 25;
+
+		do
+		{
+			daycare->offspringPersonality[0] = (Random() % 0xFFFE) + 1;
+			daycare->offspringPersonality[1] = Random();
+		} while(((daycare->offspringPersonality[0] | (daycare->offspringPersonality[1] << 0x10)) % 25) != nature)
+
+		personality = daycare->offspringPersonality[0] | (daycare->offspringPersonality[1] << 0x10);
+	}
+	else
+		personality = daycare->offspringPersonality | (Random() << 0x10);
+	
+	CreateMonWithNature_New(mon, species, EGG_HATCH_LEVEL, 0x20, TRUE, personality, FALSE, 0); // EGG_HATCH_LEVEL = 5 -> 1
+	metLevel = 0;
+	ball = ITEM_POKE_BALL;
+	SetMonData(mon, MON_DATA_POKEBALL, &ball);
+	SetMonData(mon, MON_DATA_NICKNAME, sJapaneseEggNickname);
+	SetMonData(mon, MON_DATA_FRIENDSHIP, &gBaseStats[species].eggCycles);
+	SetMonData(mon, MON_DATA_MET_LEVEL, &metLevel);
+}
+
+
+
+
+
+
+
+CreateMonWithNature_New(mon, species, level, fixedIV, hasFixedPersonality, fixedPersonality, otIdType, fixedOtId) @251D2A_J
+{
+	if(fn_251B58_J())
+	{
+		do
+		{
+			personality = fn_251B8C_J();
+		} while(GetNatureFromPersonality(personality) != GetNatureFromPersonality(fixedPersonality));
+	}
+	else
+	{
+		do
+		{
+			personality = Random32();
+		} while(GetNatureFromPersonality(personality) != GetNatureFromPersonality(fixedPersonality));
+	}
+
+	CreateMon(mon, species, level, fixedIV, hasFixedPersonality, personality, otIdType, fixedOtId);
+}
+
+
+
+
+
+
+
+fn_251B8C_J()
+{
+	return fn_251BA4_J(Random() & 7, Random());
+}

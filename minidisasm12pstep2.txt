@@ -1,0 +1,78 @@
+sub_8048440(arg0, arg1)
+{
+	memcpy(&s4, data_21CF90_J, 0x1E)
+	
+	if(!IsDoubleBattle())
+	{
+		if(GetBattlerSide(*((arg0 * 0x44) + gSprites + 0x3A)) == 0)
+		{
+			r10 = 0x49
+			r5 = 0x48
+			
+			if(arg1 == 0x64)
+				r7 = 0x48
+			else
+				r7 = 0x49
+		}
+		else
+		{
+			r10 = 0x29
+			r5 = 0x28
+			
+			if(arg1 == 0x64)
+				r7 = 0x28
+			else
+				r7 = 0x29
+		}
+	}
+	else
+	{
+		if(GetBattlerSide(*((arg0 * 0x44) + gSprites + 0x3A)) == 0)
+		{
+			r10 = 0x29
+			r5 = 0x28
+			
+			if(arg1 == 0x64)
+				r7 = 0x28
+			else
+				r7 = 0x29
+		}
+		else
+		{
+			r10 = 0x29
+			r5 = 0x28
+			
+			if(arg1 == 0x64)
+				r7 = 0x28
+			else
+				r7 = 0x29
+		}
+	}
+	
+	if(arg1 == 0x64)
+	{
+		CpuSet(GetHealthboxElementGfxPtr(0x2E), ((*((arg0 * 0x44) + gSprites + 4) + r7) * 0x20) + data_06010000, data_04000008)
+		ConvertIntToDecimalStringN(&s5pt5, 0x64, 0, 3)
+		r6 = 3
+	}
+	else
+	{
+		CpuSet(GetHealthboxElementGfxPtr(0x76), ((*((arg0 * 0x44) + gSprites + 4) + r5) * 0x20) + data_06010000, data_04000008)
+		CpuSet(GetHealthboxElementGfxPtr(0x77), ((*((arg0 * 0x44) + gSprites + 4) + r7) * 0x20) + data_06010000, data_04000008)
+		ConvertIntToDecimalStringN(&s5pt5, arg1, 0, 2)
+		
+		if(arg1 < 10)
+		{
+			s5pt75 = 0
+			s6 = 0xFF
+		}
+		
+		r6 = 2
+		r10++
+	}
+	
+	RenderTextFont9(*(*data_0202401C + 0x174), 0, &s4)
+	
+	for(i = 0; i bcc r6; i++)
+		CpuSet(*(*data_0202401C + 0x174) + (i * 0x40) + 0x20, ((*((arg0 * 0x44) + gSprites + 4) + r10 + i) * 0x20) + data_06010000, data_04000008)
+}

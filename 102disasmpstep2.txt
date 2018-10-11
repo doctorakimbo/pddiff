@@ -1,0 +1,63 @@
+SetInitialEggData(arg0, arg1, arg2)
+{
+	if(GetBoxMonData(arg2, 0xC) == 0xC3 || GetBoxMonData(arg2 + 0x8C, 0xC) == 0xC3)
+	{
+		if(GetBoxMonData(arg2, 0xC) == 0xC3)
+			s0 = GetBoxMonData(arg2, 0) % 0x19
+		elseif(GetBoxMonData(arg2 + 0x8C, 0xC) == 0xC3)
+			s0 = GetBoxMonData(arg2 + 0x8C, 0) % 0x19
+
+		do
+		{
+			*(arg2 + 0x118 + 0x19) = (Random() % 0xFFFE) + 1
+			*(arg2 + 0x118 + 0x19 + 4) = Random()
+		} while(((*(arg2 + 0x118 + 0x19) | (*(arg2 + 0x118 + 0x19) << 0x10)) % 0x19) != s0)
+
+		r1 = *(arg2 + 0x118 + 0x19 + 4) | (*(arg2 + 0x118 + 0x19) << 0x10)
+	}
+	else
+		r1 = *(arg2 + 0x118) | (Random() << 0x10)
+	
+	fn_251D2A_J(arg0, arg1, 1, 0x20, 1, r1, 0, 0)
+	SetMonData(arg0, 0x26, &4)
+	SetMonData(arg0, 2, data_25F83E)
+	SetMonData(arg0, 0x20, (arg1 * 0x1C) + data_254795)
+	SetMonData(arg0, 0x24, &0)
+}
+
+
+
+
+
+
+
+fn_251D2A_J(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+{
+	if(fn_251B58_J())
+	{
+		do
+		{
+			r5 = fn_251B8C_J()
+		} while(GetNatureFromPersonality(r5) != GetNatureFromPersonality(arg5))
+	}
+	else
+	{
+		do
+		{
+			r5 = Random() | (Random() << 0x10)
+		} while(GetNatureFromPersonality(r5) != GetNatureFromPersonality(arg5))
+	}
+
+	CreateMon(arg0, arg1, arg2, arg3, arg4, r5, arg6, arg7)
+}
+
+
+
+
+
+
+
+fn_251B8C_J()
+{
+	return fn_251BA4_J(Random() & 7, Random())
+}
