@@ -1,0 +1,33 @@
+lbl1: @2072F0
+r4 = r1
+r5 = r2
+r6 = r0
+fn_45CD0()
+r0 = GetMonData(r5, 0xB)
+
+if(r0 != 0xB7)
+	r0 = r5
+else
+	r0 = r4
+
+r0 = GetMonData(r0, 0x2E)
+
+if(r0 < 2)
+{
+	r4 = r0
+	r1 = Random() % 0x64
+
+	if(r1 >= 0x50)
+	{
+		lbl4:
+		r0 = 1
+		r4 ^= r0
+	}
+
+	s0 = r4
+	SetMonData(r6, 0x2E, &s0)
+	r0 = GetMonAbility(r6)
+	if(r0 == 0) goto lbl4
+}
+
+return r0

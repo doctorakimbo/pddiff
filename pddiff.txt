@@ -222,8 +222,8 @@ pokeball types:
 + 0x0E = Dusk Ball
 + 0x0F = Park Ball
 + 0x10 = Heal Ball
-= 0x11 = (Moon Ball effect, uses SafariBallThrow)
-= 0x12 = (Moon Ball effect, uses BallThrow)
++ 0x11 = Cherish Ball
++ 0x12 = Moon Ball
 + 0x13 = Friend Ball
 + 0x14 = Heavy Ball
 + 0x15 = Level Ball
@@ -325,10 +325,11 @@ grafics:
 		  Relies on: gChosenActionByBattler changed to something else
 		  Note: test deeply - incomprehensible code
 = 016460: 0C 29 1B D8 0B 4A 0C 49 -> 00 00 00 00 0B 4A 97 46
-  016494: 74 3D 02 02 -> XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jA231E0, see 07disasm))
+  016494: 74 3D 02 02 -> E0 31 A2 08 (jumps to fn at A231E0, then back; see 07disasm)
 		  Implements: new pokeballs (throw action)
 		  Required knowledge: gLastUsedItemType (j0203FE00)
 		  Relies on: pokeball ID changes
+		  Glitch?: Cherish Ball uses SafariBallThrow (not relevant since it should be unobtainable)
 + 017594: Entirety of TrySetCantSelectMoveBattleScript (see 08disasm)
 		  Implements: Klutz (move restriction items), Choice Specs (locking), Choice Scarf (locking), Assault Vest (move prevention)
 		  Relies on: Choice Band effect ID change
@@ -595,7 +596,6 @@ grafics:
 		  Implements: Honey Gather, modern pickup tables
 + 02CFD8: Entirety of atkE8_settypebasedhalvers (+ uncalled mysteryfunc) (see 66disasm)
 		  Implements: Makes room for mysteryfunc
-		  GLITCH!: Honey Gather picks up item 0 instead of Honey
 = 02D0D0: 07 -> 03
   02D0EC: 18 -> 0C
   02D100: 60 -> 30
@@ -604,13 +604,14 @@ grafics:
 		  Implements: Need more info
 		  Required knowledge: gLastUsedItemType (j0203FE00)
 = 02D508: Part of sub_802D434 (+ add part at A23260_J) (see 67disasm)
-		  Implements: Quick Ball (gen 6), Dusk Ball (gen 6), Park Ball, Heal Ball (catch rate), (ball11), (ball12), Friend Ball, Heavy Ball, Level Ball, Love Ball, Lure Ball (gen 6), Fast Ball, ensures ball thrown in Safari Zone is Safari Ball
+		  Implements: Quick Ball (gen 6), Dusk Ball (gen 6), Park Ball, Heal Ball (catch rate), Cherish Ball, Moon Ball, Friend Ball, Heavy Ball, Level Ball, Love Ball, Lure Ball (gen 6), Fast Ball, ensures ball thrown in Safari Zone is Safari Ball
 		  Required knowledge: gLastUsedItemType (j0203FE00), j02023FE0, j02023FF8, j0202429C, j02026D47, j02026D6C, j03005542
 		  Relies on: 02D500, etc
 		  Note: Fast Ball has manual table (A24300), different for base patch and P/D
 		  Note: Check again - Heal Ball currently has secondaryId of 0, making it never work
 		  Glitch?: Love Ball is boosted if pkmn are different genders, but "genderless" is counted as a third gender
 		  Glitch?: Level Ball might check the level of the second pkmn in player's party
+		  Glitch?: Cherish Ball uses the Moon Ball formula (not relevant since it should be unobtainable)
 = 02D636: 19 49 -> AF 46
   02D698: E4 3B 02 02 -> 54 AB EE 08 (jumps to fn at EEAB54, then back; see 67disasm)
   02D764: 28 88 -> AF 46
@@ -685,7 +686,7 @@ grafics:
   04085E: C9 -> 89
   040862: 79 -> 7D
 		  Implements: part of BoxPokemon refactor
-= 040B15: B5 A5 F1 B5 F9 01 BC -> 4B 9F 46 XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jA23AE0 - actually importable, see 80disasm))
+= 040B15: B5 A5 F1 B5 F9 01 BC -> 4B 9F 46 E0 3A A2 08 (jumps to fn at A23AE0, then back; see 80disasm)
 		  Implements: Heal Ball
 		  Required knowledge: gLastUsedItemType (j0203FE00)
 = 040B90: Entirety of SendMonToPC (see 81disasm)
@@ -758,15 +759,17 @@ grafics:
 = 045CD0: Entirety of BuildEggMoveset (+fn_4539C_J/fn_45DD8, fn_453C4_J/fn_45E00) (see 97disasm)
 		  Implements: either parent passing down egg moves; removes tm/hm inheritance
 		  Required knowledge: gDaycareParentMoves (j0203C2AC), sHatchedEggLevelUpMoves_New (j0203D600), j0203D664, sHatchedEggEggMoves_New (j0203D674)
-- 045FA0: Entirety of AlterEggSpeciesWithIncenseItem (see 98disasm)
++ 045FA0: Entirety of AlterEggSpeciesWithIncenseItem (see 98disasm)
 		  Implements: No actual change, but allows new incenses to be added easily (table at j455AE/e45FEA)
-- 046000: Entirety of DetermineEggSpeciesAndParentSlots (see 99disasm)
-		  Implements: Allows NidoranM and Volbeat to have female offspring when breeding with Ditto
++ 046000: Entirety of DetermineEggSpeciesAndParentSlots (see 99disasm)
+		  Implements: Allows NidoranM+ and Volbeat to have female offspring when breeding with Ditto
 ! 046024, 0460A6: 84 -> B7 (PDONLY, changes ditto index to #183)
-= 046112: FF F7 DD FD -> ?? ?? ?? ?? (changes sole call to BuildEggMoveset to instead call fn at j2072F0, see 100disasm)
-		  Implements: 
-= 046120: 2D 21 FA F7 2B F9 09 48 -> 00 49 08 47 XX XX XX 08 (jumps to extra fn at XXXXXX, then back (jEE8900, see 101disasm))
-		  Implements: 
+= 046112: FF F7 DD FD -> ?? ?? ?? ?? (changes call to BuildEggMoveset to instead call fn at j2072F0 (this calls BuildEggMoveset inside it anyway), see 101disasm)
+		  Implements: modern ability inheritance
+= ??????: 84 -> B7 (PDONLY, changes ditto index to #183)
+! 046120: 2D 21 FA F7 2B F9 09 48 -> 00 49 08 47 00 89 EE 08 (jumps to fn at EE8900, then back; see 101disasm)
+		  Implements: modern pokeball inheritance
+		  GLITCH!: game crashes when generating egg
 = 046216: 14 1C 2D 04 2D 0C FE F7 54 FE -> 00 48 00 47 XX XX XX 08 00 00 (jumps to extra fn at XXXXXX, then back (jE2EA00, see 102disasm))
 = 04623E: 05 22 20 23 F7 F7 07 -> 01 22 20 23 ?? ?? ?? ?? (instead of calling CreateMon(5, 0x20), calls fn_251D2A_J(1, 0x20), see 102disasm)
 		  

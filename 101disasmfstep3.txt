@@ -1,0 +1,16 @@
+sub_80460D4(arg0)
+{
+	s17 = DetermineEggSpeciesAndParentSlots(arg0, &s16)
+	AlterEggSpeciesWithIncenseItem(&s17, arg0)
+	SetInitialEggData(&s0, s17, arg0)
+	InheritIVs(&s0, arg0)
+	BuildEggMoveset(&s0, arg0[s16[1]], arg0[s16[0]])
+	s1A = 1
+	SetMonData(&s0, 0x2D, s0 + 0x6A)
+	
+	memcpy(gPlayerParty + 0x1F4, &s0, 0x64)
+	CompactPartySlots()
+	CalculatePlayerPartyCount()
+	RemoveEggFromDayCare(arg0)
+	return
+}

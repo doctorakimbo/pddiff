@@ -1,0 +1,15 @@
+_GiveEggFromDaycare(daycare)
+{
+	species = DetermineEggSpeciesAndParentSlots(daycare, parentSlots);
+	AlterEggSpeciesWithIncenseItem(&species, daycare);
+	SetInitialEggData(&egg, species, daycare);
+	InheritIVs(&egg, daycare);
+	BuildEggMoveset(&egg, &daycare->mons[parentSlots[1]].mon, &daycare->mons[parentSlots[0]].mon);
+	
+	SetMonData(&egg, MON_DATA_IS_EGG, &TRUE);
+	
+	gPlayerParty[PARTY_SIZE - 1] = egg;
+	CompactPartySlots();
+	CalculatePlayerPartyCount();
+	RemoveEggFromDayCare(daycare);
+}

@@ -1,0 +1,27 @@
+fn_2072F0_J(egg, father, mother)
+{
+	BuildEggMoveset(egg, father, mother)
+
+	if(GetMonData(mother, 0xB) == 0xB7) // 0x84 -> 0xB7
+		r0 = father
+	else
+		r0 = mother
+
+	r0 = GetMonData(r0, 0x2E)
+
+	if(r0 < 2)
+	{
+		r4 = r0
+		
+		if((Random() % 0x64) >= 0x50)
+			r4 ^= 1
+		
+		SetMonData(egg, 0x2E, &r4)
+		r0 = GetMonAbility(egg)
+		
+		if(r0 == 0)
+			SetMonData(egg, 0x2E, &(r4 ^ 1)) // Technically a loop, but something's broken if it loops more than once
+	}
+
+	return r0
+}

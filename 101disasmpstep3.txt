@@ -1,0 +1,54 @@
+sub_80460D4(arg0)
+{
+	s17 = DetermineEggSpeciesAndParentSlots(arg0, &s16)
+	AlterEggSpeciesWithIncenseItem(&s17, arg0)
+	SetInitialEggData(&s0, s17, arg0)
+	InheritIVs(&s0, arg0)
+	fn_2072F0_J(&s0, arg0[s16[1]], arg0[s16[0]])
+	s1A = 1
+	SetMonData(&s0, 0x2D, &s1A)
+	
+	if(GetMonData(&arg0[0], 0xB) == GetMonData(&arg0[1], 0xB))
+	{
+		if(Random() % 2 != 0)
+			r0 = GetMonData(&arg0[0], 0x26)
+		else
+			r0 = GetMonData(&arg0[1], 0x26)
+	}
+	else
+	{
+		if(fn_EE89B6_J(arg0))
+			r0 = GetMonData(&arg0[1], 0x26)
+		elseif(fn_EE89B6_J(arg0 + 0x8C))
+			r0 = GetMonData(&arg0[0], 0x26)
+		elseif(GetBoxMonGender(arg0) != 0)
+			r0 = GetMonData(&arg0[0], 0x26)
+		else
+			r0 = GetMonData(&arg0[1], 0x26)
+	}
+	
+	if(r0 == 1 || r0 == 0x11)
+		r0 = 4
+	
+	s1A = r0
+	SetMonData(&s0, 0x26, &s1A)
+	
+	memcpy(&gPlayerParty.0x1F4, &s0, 0x64)
+	CompactPartySlots()
+	CalculatePlayerPartyCount()
+	RemoveEggFromDayCare(arg0)
+	return
+}
+
+
+
+
+
+
+fn_EE89B6_J(arg0)
+{
+	if(gBaseStats[GetMonData(arg0[0], 0xB)].0x14 == 0xD || gBaseStats[GetMonData(arg0[0], 0xB)].0x15 == 0xD)
+		return TRUE
+	else
+		return FALSE
+}

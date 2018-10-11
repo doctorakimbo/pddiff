@@ -1,0 +1,70 @@
+_GiveEggFromDaycare(daycare)
+{
+	species = DetermineEggSpeciesAndParentSlots(daycare, parentSlots);
+	AlterEggSpeciesWithIncenseItem(&species, daycare);
+	SetInitialEggData(&egg, species, daycare);
+	InheritIVs(&egg, daycare);
+	BuildEggMoveset(&egg, &daycare->mons[parentSlots[1]].mon, &daycare->mons[parentSlots[0]].mon);
+
+	if(GetMonData(mother, MON_DATA_SPECIES) == SPECIES_DITTO) // 0x84 -> 0xB7
+		hasAltAbility = GetMonData(father, MON_DATA_ALT_ABILITY);
+	else
+		hasAltAbility = GetMonData(mother, MON_DATA_ALT_ABILITY);
+
+	if(hasAltAbility < 2)
+	{
+		if((Random() % 100) >= 80) // 20% chance
+			hasAltAbility = !hasAltAbility;
+		
+		SetMonData(egg, MON_DATA_ALT_ABILITY, &hasAltAbility);
+		
+		if(GetMonAbility(egg) == ABILITY_NONE)
+			SetMonData(egg, MON_DATA_ALT_ABILITY, &(!hasAltAbility)); // Technically a loop, but something's broken if it loops more than once
+	}
+	
+	SetMonData(&egg, MON_DATA_IS_EGG, &TRUE);
+	
+	if(GetMonData(&daycare->mons[0].mon, MON_DATA_SPECIES) == GetMonData(&daycare->mons[1].mon, MON_DATA_SPECIES))
+	{
+		if(Random() % 2) // 50% chance
+			pokeball = GetMonData(&daycare->mons[0].mon, MON_DATA_POKEBALL);
+		else
+			pokeball = GetMonData(&daycare->mons[1].mon, MON_DATA_POKEBALL);
+	}
+	else
+	{
+		if(IsDitto(daycare->mons[0].mon))
+			pokeball = GetMonData(&daycare->mons[1].mon, MON_DATA_POKEBALL);
+		elseif(IsDitto(daycare->mons[1].mon))
+			pokeball = GetMonData(&daycare->mons[0].mon, MON_DATA_POKEBALL);
+		elseif(GetBoxMonGender(daycare->mons[0].mon) != MON_MALE)
+			pokeball = GetMonData(&daycare->mons[0].mon, MON_DATA_POKEBALL);
+		else
+			pokeball = GetMonData(&daycare->mons[1].mon, MON_DATA_POKEBALL);
+	}
+	
+	if(pokeball == BALL_EFFECT_MASTER_BALL || pokeball == BALL_EFFECT_CHERISH_BALL)
+		pokeball = BALL_EFFECT_POKE_BALL;
+	
+	SetMonData(&egg, MON_DATA_POKEBALL, &pokeball);
+	
+	gPlayerParty[PARTY_SIZE - 1] = egg;
+	CompactPartySlots();
+	CalculatePlayerPartyCount();
+	RemoveEggFromDayCare(daycare);
+}
+
+
+
+
+
+
+IsDitto(mon) @EE89B6_J
+{
+	species = GetMonData(mon, MON_DATA_SPECIES);
+
+	if(gBaseStats[species].eggGroup1 == EGG_GROUP_DITTO || gBaseStats[species].eggGroup2 == EGG_GROUP_DITTO)
+		return TRUE;
+	else
+		return FALSE;
+}
