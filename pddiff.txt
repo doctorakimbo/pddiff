@@ -767,8 +767,9 @@ grafics:
 = 046112: FF F7 DD FD -> ?? ?? ?? ?? (changes call to BuildEggMoveset to instead call fn at j2072F0 (this calls BuildEggMoveset inside it anyway), see 101disasm)
 		  Implements: modern ability inheritance
 = ??????: 84 -> B7 (PDONLY, changes ditto index to #183)
-- 046120: 2D 21 FA F7 2B F9 09 48 -> 00 49 08 47 01 89 EE 08 (jumps (bx) to fn at EE8900, then back; see 101disasm)
+! 046120: 2D 21 FA F7 2B F9 09 48 -> 00 49 08 47 01 89 EE 08 (jumps (bx) to fn at EE8900, then back; see 101disasm)
 		  Implements: modern pokeball inheritance
+		  GLITCH!: Crashes upon receiving egg
 = 046216: 14 1C 2D 04 2D 0C FE F7 54 FE -> 00 48 00 47 XX XX XX 08 00 00 (jumps (bx) to extra fn at XXXXXX, then back (jE2EA00, see 102disasm))
 		  Implements: Everstone nature inheritance
 = 04623E: 05 22 20 23 F7 F7 07 -> 01 22 20 23 ?? ?? ?? ?? (instead of calling CreateMon(..., 5, ...), calls CreateMonWithNature_New(..., 1, ...); see 102disasm)
@@ -777,12 +778,13 @@ grafics:
 = 046390: 01 38 00 90 -> ?? ?? ?? ?? (calls new fn at j251AE0, see 103disasm)
 		  Implements: Magma Armor/Flame Body overworld effect
 		  Glitch?: Magma Armor doesn't work
-- 046CBE: 05 -> 01 (egg hatch level 5 -> 1)
++ 046CBE: 05 -> 01 (egg hatch level 5 -> 1)
 = 046D46: 30 1C 29 1C -> ?? ?? ?? ?? (calls new fn at j207344, see 104disasm)
 		  Implements: needed for modern pokeball inheritance; something involving alt ability
-- 046DDA: F9 F7 CF FA -> 00 00 00 00 (needed for modern pokeball inheritance)
-= (parts of sub_8048440/j47920)
-		  
++ 046DDA: F9 F7 CF FA -> 00 00 00 00 (needed for modern pokeball inheritance)
+= 048440: Unclear how to translate this to English rom
+		  Implements: Moves in-battle level display over by two characters (one in Japanese) to make room for name
+= 
 		  
 		  
 		  
@@ -798,5 +800,5 @@ grafics:
 		  
 
 
-curr: j47984 (1byte), j47988 (3byte), j479C8 (1byte), j479CC (3byte), j479D6 (1byte)
-next: j48D22
+curr: j48D22
+next: 
