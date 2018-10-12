@@ -98,6 +98,11 @@ F8 44 02 02: 58 44 02 02: ??????
 64 45 02 02: C4 44 02 02: ??????
 6C 45 02 02: CC 44 02 02: ??????
 80 45 02 02: E0 44 02 02: ??????
+88 45 02 02: E8 44 02 02: ??????
+2C 55 02 02: 8C 54 02 02: ??????
+14 93 02 02: 4C 92 02 02: ??????
+64 17 03 02: 9C 16 03 02: gLoadedSaveData
+8C 1C 03 02: C4 1B 03 02: gLastEncryptionKey
 A4 1D 03 02: D8 1C 03 02: ?????? (GetEvolutionTargetSpecies: used as index to find the mon to check against the parameter to EVO_TRADE_FOR_SPECIFIC_MON) (gTradePartnerSelectedMon?)
 		   : 47 6D 03 02: ?????? (atkEF_handleballthrow: Dusk Ball boosted if this is 4) (gTileset?)
 		   : 6C 6D 03 02: ?????? (atkEF_handleballthrow: Lure Ball boosted if this is 1) (gIsPlayerFishing?)
@@ -117,6 +122,7 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 		   : 64 B9 03 02: gWasMonShown
 		   : 65 B9 03 02: ?????? (ShouldSwitch_NewAI: set to 1 when fn executed (always ran whenever it's possible to switch))
 		   : 70 B9 03 02: ?????? (appears to be an array of unknown objects; first field is a 4-entry array of 2 bytes each, second field is a 4-entry array of 1 byte each)
+		   : 00 BB 03 02: ??????
 								 (atk02_attackstring: when player attacks: insert [gCurrentMove, 0] into the first empty slot for the mon, or increment the field2 of the first entry where field1 = gCurrentMove and field2 != 0xFF, whichever comes first)
 								 (atk02_attackstring: when player attacks: if neither of the above is available, insert [gCurrentMove, 0] into the last slot where field2 != 0xFF; if even that fails, insert it into the first slot)
 		   : 30 BF 03 02: ?????? (appears to be (0-3) array of ptrs to Sprites, (4) int)
@@ -141,6 +147,7 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 								 (fn_EB85EE_J: Something about this[gBattleResources + 4])
 		   : F4 BF 03 02: ?????? (CanUseNewAI: If gBattleTypeFlags & 0x100 (BATTLE_TYPE_BATTLE_TOWER?), read the AI flags from here)
 		   : 0D C0 03 02: ?????? (sub_8032768: zeroed)
+		   : 10 C0 03 02: ??????
 		   : AC C2 03 02: gDaycareParentMoves
 		   : B4 C2 03 02: gDaycareParentMoves[1]
 		   : 00 D3 03 02: ?????? (Appears to be an array of characters)
@@ -175,6 +182,7 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 00 50 00 03: 40 50 00 03: gRngValue
 08 50 00 03: 48 50 00 03: gSaveBlock1Ptr
 0C 50 00 03: 4C 50 00 03: gSaveBlock2Ptr
+10 50 00 03: 50 50 00 03: ??????
 7C 53 00 03: CC 53 00 03: gCB2_AfterEvolution
 		   : 40 55 00 03: ?????? (GetEvolutionTargetSpecies: EVO_FRIENDSHIP_DAY works when this.2 is less than 11; EVO_FRIENDSHIP_NIGHT works when this.2 is between 12 and 23 inclusive) (gLocalTime?)
 		   : 42 55 00 03: ?????? (atkEF_handleballthrow: Dusk Ball boosted if less than 6 or greater than 20) (gLocalTime.hours?)
@@ -189,8 +197,10 @@ funcs e,j,desc:
 007804 = 007380 = DestroySpriteAndFreeResources
 0086DC = 008258 = LoadSpriteSheet
 008928 = 0084A4 = LoadSpritePalette
+008D28 = 0088A4 = StringGetEnd10
 008D84 = 008900 = StringCopy
 008DA4 = 008920 = StringAppend
+008E08 = 008984 = StringLength
 008E28 = 0089A4 = StringCompare
 008E78 = 0089F4 = ConvertIntToDecimalStringN
 00DFA4 = 00D998 = BtlController_EmitGetMonData
@@ -244,6 +254,7 @@ funcs e,j,desc:
 03EC40 = 03E3AC = DeleteFirstMoveAndGiveMoveToBoxMon
 03ECEC = 03E458 = CalculateBaseDamage
 03F5B4 = 03ED20 = CountAliveMonsInBattle
+03F720 = 03EE8C = GetMonGender
 03F730 = 03EE9C = GetBoxMonGender
 03F78C = 03EEF8 = GetGenderFromSpeciesAndPersonality
 03F940 = 03F0AC = GetSubstruct
@@ -277,10 +288,10 @@ funcs e,j,desc:
 046000 = 0455C4 = DetermineEggSpeciesAndParentSlots
 046208 = 0457B4 = SetInitialEggData
 0480A8 = 047630 = GetHealthboxElementGfxPtr
-048618 = ?????? = UpdateHpTextInHealthboxInDoubles
-04A648 = ?????? = AddTextPrinterAndCreateWindowOnHealthbox
-04A6D8 = ?????? = RemoveWindowOnHealthbox
-04A6E8 = ?????? = FillHealthboxObject
+048618 = UpdateHpTextInHealthboxInDoubles
+04A648 = AddTextPrinterAndCreateWindowOnHealthbox
+04A6D8 = RemoveWindowOnHealthbox
+04A6E8 = FillHealthboxObject
 055250 = 054B10 = GetDestinationWarpMapHeader
 06E25C = 06DA50 = IsNationalPokedexEnabled
 06E454 = 06DC48 = GetVarPointer
@@ -301,6 +312,7 @@ funcs e,j,desc:
 08BA18 = 08B4B4 = GetBoxMonDataFromAnyBox
 08BD30 = 08B7CC = GetBoxedMonPtr
 0937DC = 093210 = CompactPartySlots
+099E44 = 09984C = SetBagItemsPointers
 099F40 = 099948 = CheckBagHasItem
 09A924 = 09A330 = GetHoldEffect
 09A948 = 09A354 = GetHoldEffectParam

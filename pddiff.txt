@@ -286,6 +286,7 @@ grafics:
 + expand 25EF0C (egg moves) from 0x8E8 bytes to 0xFC4 bytes (8B6630)
 + expand 26056C (ball sprites) from 12 entries to 26 (A23000)
 + expand 2605CC (ball sprite palettes) from 12 entries to 26 (A230F0)
+- expand 2606F4 (ball sprite templates) from 12 entries to 26 (A23380)
 + expand 3DB028 (item data) from 375 entries to 435 (10B0000)
 + expand 3D4038 (mon icon palettes) from 6 entries to 16 (jE40000, e1E40000)
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
@@ -774,7 +775,7 @@ grafics:
 		  Implements: Everstone nature inheritance
 = 04623E: 05 22 20 23 F7 F7 07 -> 01 22 20 23 ?? ?? ?? ?? (instead of calling CreateMon(..., 5, ...), calls CreateMonWithNature_New(..., 1, ...); see 102disasm)
 		  Implements: egg hatch level 5 -> 1, (item72), need more info (something to do with personality values)
-		  Requires in future: fn_251B58_J(), fn_251B8C_J, fn_251BA4_J, CreateMonWithNature_New (j251D2A)
+		  Requires in future: fn_251B58_J, fn_251B8C_J, fn_251BA4_J, CreateMonWithNature_New (j251D2A)
 = 046390: 01 38 00 90 -> ?? ?? ?? ?? (calls new fn at j251AE0, see 103disasm)
 		  Implements: Magma Armor/Flame Body overworld effect
 		  Glitch?: Magma Armor doesn't work
@@ -782,12 +783,24 @@ grafics:
 = 046D46: 30 1C 29 1C -> ?? ?? ?? ?? (calls new fn at j207344, see 104disasm)
 		  Implements: needed for modern pokeball inheritance; something involving alt ability
 + 046DDA: F9 F7 CF FA -> 00 00 00 00 (needed for modern pokeball inheritance)
-= 048440: Unclear how to translate this to English rom
+= ~048440: Unclear how to translate this to English rom (minidisasm12)
 		  Implements: Moves in-battle level display over by two characters (one in Japanese) to make room for name
-= 
-		  
-		  
-		  
+= ~0496C0: Unclear how to translate this to English rom (minidisasm13pt2)
+		  Implements: name length in the battle boxes (the ones with the HP in them)
+= 049718: 1D 28 01 D0 20 28 09 D1 -> 0C E0 00 00 00 00 00 00 (PDONLY, restores gender markers for pokemon #29 and #32)
+= 049720: 0B -> 10 (pkmnnamelength)
+= ?????? (j48EBA): Unclear how to translate this to English rom (minidisasm13pt3)
+		  Implements: (check!)
+- 04A2F0: Entirety of CalcNewBarValue (see 105disasm)
+		  Implements: Doubles the amount of change the HP and EXP bars go through per (number entered into the fn), unclear why (need more info)
+		  Note: Also makes the function not use its toAdd parameter, amount to add is calculated inside the function
+- 04B5AA: 0B -> 1F (max pokeball types 12 -> 32)
+- 04BF24: 0B 2C 01 DC -> 00 00 00 00
+		  Implements: Certain gfx aren't loaded for Dive Ball and everything starting at Luxury Ball; this is now fully independent of number of ball types
+- 04C058: Entirety of SetSaveBlocksPointers (see 106disasm)
+		  Implements: nothing?
+= 04C320: Entirety of LoadPlayerBag (see 107disasm)
+= 04C440: Entirety of sub_804C440 (see 108disasm)
 		  
 		  
 		  
@@ -800,5 +813,6 @@ grafics:
 		  
 
 
-curr: j48D22
-next: 
+curr: j4BAD8-j4BBF8, j4BBF8-j4BD24
+curr: j4E78E (2byte), j4E8A2 (4byte), j5336C (6byte), j5337E (6byte), j533DA (6byte), j542C4 (1byte), j5432C (8byte), j54AFE (8byte)
+next: j54DDC

@@ -1,0 +1,25 @@
+	...
+	if(GetBattlerSide(gSprites[r10 + r9].hMain_Battler) == B_SIDE_PLAYER && !IsDoubleBattle())
+	{
+		for(i = 0; i < r8; i++)
+		{
+			CpuCopy32(r6, ((gSprites[r10 + r9].oam.tileNum + i + 2) * 0x20) + data_06010000, 0x20)
+			r6 += 0x20
+			CpuCopy32(r6, ((gSprites[r10 + r9].oam.tileNum + i + 0xA) * 0x20) + data_06010000, 0x20)
+			r6 += 0x20
+		}
+	}
+	else
+	{
+		if(GetBattlerSide(gSprites[r10 + r9].hMain_Battler) == B_SIDE_PLAYER)
+			s7 = 1
+		
+		for(i = 0; i < r8; i++)
+		{
+			CpuCopy32(r6, ((gSprites[r10 + r9].oam.tileNum + i + 1 + s7) * 0x20) + data_06010000, 0x20)
+			r6 += 0x20
+			CpuCopy32(r6, ((gSprites[r10 + r9].oam.tileNum + i + 9 + s7) * 0x20) + data_06010000, 0x20)
+			r6 += 0x20
+		}
+	}
+}

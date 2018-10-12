@@ -1,0 +1,34 @@
+lbl1: @48DCA
+r7 = gDisplayedStringBattle
+r0 = r7
+StringLength()
+r8 = r0
+r5 = r8
+r5 -= 6
+r4 = 0
+if(r5 > 5) goto lbl3
+
+r2 = r7
+r7 = 0
+r3 = 0xFF
+goto lbl2
+
+lbl2:
+r0 = r8
+r1 = r0 + r4
+r0 = r1 + r2
+*r0 = r7
+r1++
+r1 += r2
+r0 = *r1
+r0 |= r3
+*r1 = r0
+r5++
+r0 = r4 + 1
+r4 = r0
+if(r5 <= 5) goto lbl2
+
+goto lbl3
+
+lbl3:
+...

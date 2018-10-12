@@ -1,0 +1,32 @@
+sub_80496C0(arg0, arg1)
+{
+	r7 = arg1
+	r8 = arg0
+	r0 = gDisplayedStringBattle
+	StringCopy(r0, data_260556)
+	r5 = r0
+	GetMonData(r7, 2, &s0)
+	StringGetEnd10(&s0)
+	StringCopy(r5, &s0)
+	r0 = 0xFC
+	*r5 = r0
+	r5++
+	r0 = 1
+	*r5 = r0
+	r5++
+	r6 = GetMonGender(r7)
+	r0 = GetMonData(r7, 0xB, NULL)
+	r1 = r0
+	
+	if(r0 == 29 || r0 == 32)
+	{
+		r0 = 0xB
+		r1 *= r0
+		r0 = data_245EE0
+		r1 += r0
+		r0 = StringCompare(&s0, r1)
+		
+		if(r0 == 0)
+			r6 = 0x64
+	}
+	...

@@ -1,0 +1,13 @@
+...
+r8 = StringLength(gDisplayedStringBattle)
+r4 = 0
+
+for(r5 = r8 - 6; r5 < 6; r5++)
+{
+	*(r8 + r4 + gDisplayedStringBattle) = 0
+	*(r8 + r4 + gDisplayedStringBattle + 1) = 0xFF
+	r4++
+}
+
+lbl3:
+...

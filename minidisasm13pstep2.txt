@@ -1,0 +1,16 @@
+sub_80496C0(arg0, arg1)
+{
+	s7 = 0
+	r6 = gDisplayedStringBattle
+	StringCopy(gDisplayedStringBattle, data_260556)
+	GetMonData(arg1, 2, &s4)
+	StringGetEnd10(&s4)
+	r6 += 3
+	StringCopy(r6, &s4)
+	*r6 = 0xFC
+	r6++
+	*r6 = 1
+	r6++
+	r5 = GetMonGender(arg1)
+	r2 = GetMonData(arg1, 0xB, NULL)
+	...

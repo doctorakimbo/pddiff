@@ -1,0 +1,19 @@
+UpdateNickInHealthbox(arg0, mon)
+{
+
+	r5 = gDisplayedStringBattle
+	StringCopy(gDisplayedStringBattle, gText_HighlightDarkGrey);
+	GetMonData(mon, MON_DATA_NICKNAME, nickname);
+	StringGetEnd10(nickname);
+	
+	StringCopy(r5, nickname)
+	*r5 = 0xFC
+	r5++
+	*r5 = 1
+	r5++
+	gender = GetMonGender(mon);
+	species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	
+	if((species == SPECIES_NIDORAN_F || species == SPECIES_NIDORAN_M) && StringCompare(nickname, gSpeciesNames[species]) == 0)
+		gender = 100;
+	...

@@ -1,0 +1,118 @@
+copy_bags_and_unk_data_from_save_blocks()
+{
+	r0 = data_02031C8C
+	r12 = r0
+	r1 = gSaveBlock2Ptr
+	r10 = r1
+	r5 = gSaveBlock1Ptr
+	r3 = 0x310
+	r4 = data_02031764
+
+	for(r2 = 0; r2 <= 0x29; r2++)
+	{
+		r0 = r2 * 4
+		r1 = *r5
+		r1 += r3
+		r1 += r0
+		r0 = *r1
+		stmia r4!, {r0}
+	}
+	
+	r0 = data_02031764
+	r5 = gSaveBlock1Ptr
+	r3 = 0x3B8
+	r4 = r0
+	r4 += 0xA8
+	
+	for(r2 = 0; r2 <= 0x1D; r2++)
+	{
+		r0 = r2 * 4
+		r1 = *r5
+		r1 += r3
+		r1 += r0
+		r0 = *r1
+		stmia r4!, {r0}
+	}
+
+	r0 = data_02031764
+	r5 = gSaveBlock1Ptr
+	r6 = 0x120
+	r4 = r0 + r6
+	r3 = 0x430
+	
+	for(r2 = 0; r2 <= 0xC; r2++)
+	{
+		r0 = r2 * 4
+		r1 = *r5
+		r1 += r3
+		r1 += r0
+		r0 = *r1
+		stmia r4!, {r0}
+	}
+	
+	r0 = data_02031764
+	r5 = gSaveBlock1Ptr
+	r7 = 0x154
+	r4 = r0 + r7
+	r3 = 0x464
+	
+	for(r2 = 0; r2 <= 0x39; r2++)
+	{
+		r0 = r2 * 4
+		r1 = *r5
+		r1 += r3
+		r1 += r0
+		r0 = *r1
+		stmia r4!, {r0}
+	}
+	
+	r0 = data_02031764
+	r5 = gSaveBlock1Ptr
+	r1 = 0x23C
+	r4 = r0 + r1
+	r3 = 0x54C
+	
+	for(r2 = 0; r2 <= 0x2A; r2++)
+	{
+		r0 = r2 * 4
+		r1 = *r5
+		r1 += r3
+		r1 += r0
+		r0 = *r1
+		stmia r4!, {r0}
+	}
+	
+	r0 = data_02031764
+	r5 = gSaveBlock1Ptr
+	r8 = r5
+	r6 = 0x2E8
+	r4 = r0 + r6
+	r3 = 0
+	r7 = 0x2CD0
+	r9 = r7
+	
+	for(r2 = 0xF; r2 >= 0; r2--)
+	{
+		r0 = r8
+		r1 = *r0
+		r1 += r3
+		r0 = r4
+		r1 += r9
+		ldmia r1!, {r5, r6, r7}
+		stmia r0!, {r5, r6, r7}
+		ldmia r1!, {r5, r6, r7}
+		stmia r0!, {r5, r6, r7}
+		ldmia r1!, {r5, r6, r7}
+		stmia r0!, {r5, r6, r7}
+		r4 += 0x24
+		r3 += 0x24
+	}
+
+	r1 = r10
+	r0 = *r1
+	r5 = 0xF20
+	r0 += r5
+	r0 = *r0
+	r6 = r12
+	*r6 = r0
+}

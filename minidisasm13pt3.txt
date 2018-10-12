@@ -1,0 +1,53 @@
+lbl1: @48EA0
+r1 = gSprites
+r0 = r10
+r0 += r9
+r0 *= 4
+r4 = r0 + r1
+r0 = *(r4 + 0x3A)
+GetBattlerSide()
+if(r0 != 0) goto lbl3
+
+IsDoubleBattle()
+if(r0 != 0) goto lbl3
+
+r5 = 0
+if(r5 >= r8) goot lbl(48f96)
+
+r2 = data_06010000
+r9 = r2
+r7 = 0x04000008
+goto lbl2
+
+lbl2:
+r0 = *(r4 + 4)
+r1 = r5 + 2
+r0 += r1
+r1 = s7
+r0 += r1
+r0 *= 0x20
+r2 = r9
+r1 = r0 + r2
+r0 = r6
+r2 = r7
+CpuSet()
+r6 += 0x20
+r0 = *(r4 + 4)
+r1 = r5
+r1 += 0xA
+r0 += r1
+r1 = s7
+r0 += r1
+r0 *= 0x20
+r2 = r9
+r1 = r0 + r2
+r0 = r6
+r2 = r7
+CpuSet()
+r6 += 0x20
+r5++
+if(r5 < r8) goto lbl2
+
+goto lbl(48f96)
+
+lbl3:

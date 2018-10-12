@@ -1,0 +1,47 @@
+lbl1: @496C0
+r7 = r1
+r8 = r0
+r0 = gDisplayedStringBattle
+r1 = data_260556
+StringCopy()
+r5 = r0
+r0 = r7
+r1 = 2
+r2 = &s0
+GetMonData()
+r0 = &s0
+fn_8D28()
+r0 = r5
+r1 = &s0
+StringCopy()
+r5 = r0
+r0 = 0xFC
+*r5 = r0
+r5++
+r0 = 1
+*r5 = r0
+r5++
+r0 = r7
+fn_3F720()
+r6 = r0
+r0 = r7
+r1 = 0xB
+GetMonData()
+r1 = r0
+if(r0 == 29) goto lbl2
+
+if(r0 != 32) goto lbl3
+
+goto lbl2
+
+lbl2:
+r0 = 0xB
+r1 *= r0
+r0 = data_245EE0
+r1 += r0
+r0 = &s0
+fn_8E28()
+if(r0 != 0) goto lbl3
+
+r6 = 0x64
+goto lbl3

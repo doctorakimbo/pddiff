@@ -1,0 +1,71 @@
+lbl1: @4BAD8
+r2 = 0
+r0 = data_02031C8C
+r12 = r0
+r1 = gSaveBlock2Ptr
+r10 = r1
+r5 = gSaveBlock1Ptr
+r3 = 0x310
+r4 = data_02031764
+goto lbl2
+
+lbl2:
+r0 = r2 * 4
+r1 = *r5
+r1 += r3
+r1 += r0
+r0 = *r1
+stmia r4!, {r0}
+r2++
+if(r2 <= 0xB9) goto lbl2
+
+r2 = 0
+r0 = data_0203BB00_J
+r5 = data_0203C010_J
+r4 = r0
+goto lbl3
+
+lbl3:
+r0 = r2 * 4
+r1 = r5 + r0
+r0 = *r1
+stmia r4!, {r0}
+r2++
+if(r2 <= 0xA6) goto lbl3
+
+r0 = data_02031764
+r5 = gSaveBlock1Ptr
+r8 = r5
+r6 = 0x2E8
+r4 = r0 + r6
+r3 = 0
+r7 = 0x2CD0
+r9 = r7
+r2 = 0xF
+goto lbl4
+
+lbl4:
+r0 = r8
+r1 = *r0
+r1 += r3
+r0 = r4
+r1 += r9
+ldmia r1!, {r5, r6, r7}
+stmia r0!, {r5, r6, r7}
+ldmia r1!, {r5, r6, r7}
+stmia r0!, {r5, r6, r7}
+ldmia r1!, {r5, r6, r7}
+stmia r0!, {r5, r6, r7}
+r4 += 0x24
+r3 += 0x24
+r2--
+if(r2 >= 0) goto lbl4
+
+r1 = r10
+r0 = *r1
+r5 = 0xF20
+r0 += r5
+r0 = *r0
+r6 = r12
+*r6 = r0
+return

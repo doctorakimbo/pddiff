@@ -1,0 +1,9 @@
+SetSaveBlocksPointers()
+{
+	r0 = Random() & 0x7C
+	*(gSaveBlock1Ptr + 4) = data_02024588 + r0
+	*gSaveBlock1Ptr = data_0202552C + r0
+	*(gSaveBlock1Ptr + 8) = data_02029314 + r0
+	SetBagItemsPointers()
+	sub_8110840(*gSaveBlock1Ptr)
+}

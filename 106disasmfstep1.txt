@@ -1,0 +1,21 @@
+SetSaveBlocksPointers()
+{
+	r4 = gSaveBlock1Ptr
+	r5 = *r4
+	r0 = Random()
+	r1 = 0x7C
+	r1 &= r0
+	r2 = gSaveBlock2Ptr
+	r0 = data_02024588
+	r0 += r1
+	*r2 = r0
+	r0 = data_0202552C
+	r0 += r1
+	*r4 = r0
+	r2 = data_03005010
+	r0 = data_02029314
+	r1 += r0
+	*r2 = r1
+	SetBagItemsPointers()
+	sub_8110840(r5)
+}

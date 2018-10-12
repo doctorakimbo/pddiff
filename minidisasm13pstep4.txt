@@ -1,0 +1,16 @@
+UpdateNickInHealthbox(arg0, mon)
+{
+	s7 = 0
+	r6 = gDisplayedStringBattle
+	StringCopy(gDisplayedStringBattle, gText_HighlightDarkGrey);
+	GetMonData(mon, MON_DATA_NICKNAME, nickname);
+	StringGetEnd10(nickname);
+	r6 += 3
+	StringCopy(r6, nickname)
+	*r6 = 0xFC
+	r6++
+	*r6 = 1
+	r6++
+	gender = GetMonGender(mon);
+	species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	...

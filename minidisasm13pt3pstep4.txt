@@ -1,0 +1,22 @@
+	...
+	if(GetBattlerSide(gSprites[r10 + r9].hMain_Battler) == B_SIDE_PLAYER)
+	{
+		for(i = 0; i < r8; i++)
+		{
+			CpuCopy32(r6, ((gSprites[r10 + r9].oam.tileNum + i + 1) * 0x20) + data_06010000, 0x20)
+			r6 += 0x20
+			CpuCopy32(r6, ((gSprites[r10 + r9].oam.tileNum + i + 9) * 0x20) + data_06010000, 0x20)
+			r6 += 0x20
+		}
+	}
+	else
+	{
+		for(i = 0; i < r8; i++)
+		{
+			CpuCopy32(r6, ((gSprites[r10 + r9].oam.tileNum + i) * 0x20) + data_06010000, 0x20)
+			r6 += 0x20
+			CpuCopy32(r6, ((gSprites[r10 + r9].oam.tileNum + i + 8) * 0x20) + data_06010000, 0x20)
+			r6 += 0x20
+		}
+	}
+}

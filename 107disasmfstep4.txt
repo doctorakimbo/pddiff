@@ -1,0 +1,29 @@
+copy_bags_and_unk_data_from_save_blocks()
+{
+	for(r2 = 0; r2 <= 0x29; r2++)
+		data_02031764.0[r2] = gSaveBlock1Ptr->0x310[r2]
+	
+	for(r2 = 0; r2 <= 0x1D; r2++)
+		data_02031764.0xA8[r2] = gSaveBlock1Ptr->0x3B8[r2]
+
+	for(r2 = 0; r2 <= 0xC; r2++)
+		data_02031764.0x120[r2] = gSaveBlock1Ptr->0x430[r2]
+	
+	for(r2 = 0; r2 <= 0x39; r2++)
+		data_02031764.0x154[r2] = gSaveBlock1Ptr->0x464[r2]
+	
+	for(r2 = 0; r2 <= 0x2A; r2++)
+		data_02031764.0x23C[r2] = gSaveBlock1Ptr->0x54C[r2]
+	
+	r4 = 0
+	r3 = 0
+	
+	for(r2 = 0xF; r2 >= 0; r2--)
+	{
+		data_02031764.0x2E8[r4] = &gSaveBlock1Ptr->0x2CD0[r3] // size 0x24
+		r4++
+		r3++
+	}
+
+	data_02031C8C = gSaveBlock2Ptr->0xF20
+}

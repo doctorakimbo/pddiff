@@ -1,0 +1,96 @@
+	...
+	r1 = gSprites
+	r0 = r10
+	r0 += r9
+	r0 *= 4
+	r4 = r0 + r1
+	
+	if(GetBattlerSide(*(r4 + 0x3A)) == 0)
+	{
+		r5 = 0
+		
+		if(r5 < r8)
+		{
+			r2 = data_0600FFE0
+			r9 = r2
+			r7 = 0x04000008
+
+			do
+			{
+				r0 = *(r4 + 4)
+				r1 = r5 + 2
+				r0 += r1
+				r1 = s7
+				r0 += r1
+				r0 *= 0x20
+				r2 = r9
+				r1 = r0 + r2
+				CpuSet(r6, r1, r7)
+				r6 += 0x20
+				r0 = *(r4 + 4)
+				r1 = r5
+				r1 += 0xA
+				r0 += r1
+				r1 = s7
+				r0 += r1
+				r0 *= 0x20
+				r2 = r9
+				r1 = r0 + r2
+				CpuSet(r6, r1, r7)
+				r6 += 0x20
+				r5++
+			} while(r5 < r8)
+		}
+	}
+	else
+	{
+		r1 = gSprites
+		r0 = r10
+		r0 += r9
+		r0 *= 4
+		r4 = r0 + r1
+		
+		if(GetBattlerSide(*(r4 + 0x3A)) == 0)
+		{
+			r0 = 1
+			s7 = r0
+		}
+		
+		r5 = 0
+		
+		if(r5 < r8)
+		{
+			r7 = r4
+			r1 = data_0600FFE0
+			r10 = r1
+			r2 = 0x04000008
+			r9 = r2
+			
+			do
+			{
+				r0 = *(r7 + 4)
+				r4 = r5 + 1
+				r0 += r4
+				r1 = s7
+				r0 += r1
+				r0 *= 0x20
+				r2 = r10
+				r1 = r0 + r2
+				CpuSet(r6, r1, r9)
+				r6 += 0x20
+				r0 = *(r7 + 4)
+				r1 = r5
+				r1 += 9
+				r0 += r1
+				r1 = s7
+				r0 += r1
+				r0 *= 0x20
+				r2 = r10
+				r1 = r0 + r2
+				CpuSet(r6, r1, r9)
+				r6 += 0x20
+				r5 = r4
+			} while(r5 < 8)
+		}
+	}
+}

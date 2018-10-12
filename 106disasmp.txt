@@ -1,0 +1,19 @@
+lbl1: @4B810
+r6 = 0x7C
+r4 = gSaveBlock1Ptr
+r7 = data_02024588
+r5 = *r4
+Random()
+r0 &= r6
+r2 = r0 + r7
+*(r4 + 4) = r2
+r2 = data_0202552C
+r2 += r0
+*r4 = r2
+r2 = data_02029314
+r0 += r2
+*(r4 + 8) = r0
+SetBagItemsPointers()
+r0 = r5
+sub_8110840()
+return

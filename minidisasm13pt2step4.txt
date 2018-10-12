@@ -1,0 +1,11 @@
+...
+endOfName = StringLength(gDisplayedStringBattle);
+j = 0;
+
+for(i = endOfName - 6; i <= 5; i++)
+{
+	gDisplayedStringBattle[endOfName + j] = 0;
+	gDisplayedStringBattle[endOfName + j + 1] = 0xFF;
+	j++;
+}
+...

@@ -1,0 +1,29 @@
+	...
+	r4 = ((r10 + r9) * 4) + gSprites
+	
+	if(GetBattlerSide(*(r4 + 0x3A)) == 0 && !IsDoubleBattle())
+	{
+		for(r5 = 0; r5 < r8; r5++)
+		{
+			CpuSet(r6, ((*(r4 + 4) + r5 + 2 + s7) * 0x20) + data_06010000, 0x04000008)
+			r6 += 0x20
+			CpuSet(r6, ((*(r4 + 4) + r5 + 0xA + s7) * 0x20) + data_06010000, 0x04000008)
+			r6 += 0x20
+		}
+	}
+	else
+	{
+		r4 = ((r10 + r9) * 4) + gSprites
+		
+		if(GetBattlerSide(*(r4 + 0x3A)) == 0)
+			s7 = 1
+		
+		for(r5 = 0; r5 < r8; r5++)
+		{
+			CpuSet(r6, ((*(r4 + 4) + r5 + 1 + s7) * 0x20) + data_06010000, 0x04000008)
+			r6 += 0x20
+			CpuSet(r6, ((*(r4 + 4) + r5 + 9 + s7) * 0x20) + data_06010000, 0x04000008)
+			r6 += 0x20
+		}
+	}
+}

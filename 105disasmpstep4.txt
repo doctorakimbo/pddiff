@@ -1,0 +1,86 @@
+CalcNewBarValue(maxValue, oldValue, receivedValue, currValue, scale, notUsed)
+{
+	scale *= 8;
+
+	if(currValue == -32768)
+	{
+		if(maxValue < scale)
+			currValue = Q_24_8(oldValue);
+		else
+			currValue = oldValue;
+	}
+	
+	newValue = oldValue - receivedValue;
+	
+	if(newValue < 0)
+		newValue = 0;
+	elseif(newValue > maxValue)
+		newValue = maxValue;
+	
+	if(maxValue < scale)
+	{
+		if(newValue == Q_24_8_TO_INT(currValue) && GET_Q_24_8_FRACTION(currValue) == 0)
+			return -1;
+	}
+	else
+	{
+		if(newValue == currValue)
+			return -1;
+	}
+	
+	if(maxValue < scale)
+	{
+		toAdd = Q_24_8(maxValue * 2) / scale;
+		
+		if(receivedValue < 0)
+		{
+			currValue += toAdd;
+			ret = Q_24_8_TO_INT(currValue);
+			
+			if(ret >= newValue)
+			{
+				currValue = Q_24_8(newValue);
+				ret = newValue;
+			}
+		}
+		else
+		{
+			currValue -= toAdd;
+			ret = Q_24_8_TO_INT(currValue);
+			
+			if(GET_Q_24_8_FRACTION(currValue) > 0)
+				ret++; // round up
+			
+			if(ret <= newValue)
+			{
+				currValue = Q_24_8(newValue);
+				ret = newValue;
+			}
+		}
+	}
+	else
+	{
+		toAdd = (maxValue * 2) / scale;
+	
+		if(receivedValue < 0)
+		{
+			currValue += toAdd;
+			
+			if(currValue > newValue)
+				currValue = newValue;
+
+			ret = currValue;
+		}
+		else
+		{
+			currValue -= toAdd;
+			
+			if(currValue < newValue)
+				currValue = newValue;
+
+			ret = currValue;
+		}
+	}
+	
+	return ret;
+}

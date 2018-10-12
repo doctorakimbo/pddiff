@@ -1,0 +1,80 @@
+sub_804A2F0(arg0, arg1, arg2, arg3, arg4, arg5)
+{
+	if(*arg3 == 0xFFFF8000)
+	{
+		if(arg0 < (arg4 * 8))
+			*arg3 = arg1 * 0x10
+		else
+			*arg3 = arg1
+	}
+	
+	r4 = arg1 - arg2
+	
+	if(r4 < 0)
+		r4 = 0
+	elseif(r4 > arg0)
+		r4 = arg0
+	
+	if(arg0 < (arg4 * 8))
+	{
+		if(r4 == (*arg3 >> 8) && (*arg3 & 0xFF) == 0)
+			return -1
+	}
+	else
+	{
+		if(r4 == *arg3)
+			return -1
+	}
+	
+	if(arg0 < (arg4 * 8))
+	{
+		r0 = (arg0 << 8) / (arg4 * 8)
+		
+		if(arg2 < 0)
+		{
+			r0 += r6
+			*arg3 = r0
+			r2 = r0 >> 8
+			
+			if(r2 < r4)
+				return r2
+		}
+		else
+		{
+			r0 = r6 - r0
+			*arg3 = r0
+			r2 = r0 >> 8
+			r0 &= 0xFF
+			
+			if(r0 > 0)
+				r2++
+			
+			if(r2 > r4)
+				return r2
+		}
+		
+		*arg3 = r4 << 8
+		return r4
+	}
+	else
+	{
+		if(arg2 < 0)
+		{
+			*arg3 += arg5
+			
+			if(*arg3 > r4)
+				*arg3 = r4
+
+			return *arg3
+		}
+		else
+		{
+			*arg3 -= arg5
+			
+			if(*arg3 < r4)
+				*arg3 = r4
+
+			return *arg3
+		}
+	}
+}
