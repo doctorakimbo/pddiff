@@ -1,0 +1,18 @@
+SavePlayerBag()
+{
+	totalCount = BAG_ITEMS_COUNT + BAG_KEYITEMS_COUNT + BAG_POKEBALLS_COUNT + BAG_TMHM_COUNT + BAG_BERRIES_COUNT; // 186
+
+	for(i = 0; i < totalCount; i++)
+		gSaveBlock1Ptr->bagPocket_Items[i] = gLoadedSaveData.items[i];
+	
+	for(i = 0; i <= 0xA6; i++)
+		data_0203C010_J[i] = data_0203BB00_J[i];
+
+	for(i = 0; i < MAIL_COUNT; i++)
+		gSaveBlock1Ptr->mail[i] = gLoadedSaveData.mail[i];
+
+	encryptionKeyBackup = gSaveBlock2Ptr->encryptionKey;
+    gSaveBlock2Ptr->encryptionKey = gLastEncryptionKey;
+	ApplyNewEncryptionKeyToBagItems(encryptionKeyBackup);
+    gSaveBlock2Ptr->encryptionKey = encryptionKeyBackup;
+}

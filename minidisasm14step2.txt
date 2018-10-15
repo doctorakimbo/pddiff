@@ -1,0 +1,38 @@
+sub_804EED4(arg0, arg1, arg2)
+{
+	if(*((arg1 * 6) + arg2 + (*data_02031DA8 + 0x51)) == 0)
+	{
+		for(r4 = 0; r4 < 4; r4++)
+		{
+			if(arg1 == 0)
+			{
+				r1 = 0xD + r4
+				r2 = gPlayerParty
+			}
+			else
+			{
+				r1 = 0xD + r4
+				r2 = gEnemyParty
+			}
+			
+			*((r4 * 2) + &s0) = GetMonData((arg2 * 0x64) + r2, r1, NULL)
+		}
+
+		StringCopy(arg0, data_261EB6)
+
+		for(r4 = 0; r4 < 4; r4++)
+		{
+			r0 = *((r4 * 2) + &s0)
+			
+			if(r0 != 0)
+				StringAppend(arg0, (r0 * 0xD) + gMoveNames)
+			
+			StringAppend(arg0, data_261EC7)
+		}
+	}
+	else
+	{
+		StringCopy(arg0, data_261EB6)
+		StringAppend(arg0, data_41E09F)
+	}
+}

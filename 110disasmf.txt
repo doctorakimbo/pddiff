@@ -1,0 +1,45 @@
+lbl1: @5550C
+r6 = r0
+r7 = r1
+fn_56188()
+r4 = r0
+r1 = data_02031DBC
+r0 = 0
+r0 = *(r1 + r0)
+r1 = *(r1 + 1)
+fn_56158()
+r5 = r0
+r0 = r4
+fn_561D8()
+if(r0 == 0) goto lbl3
+
+r0 = r5
+fn_561D8()
+if(r0 == 1) goto lbl3
+
+r5 = gSaveBlock1Ptr
+r0 = *r5
+r0 = *(r0 + 4)
+if(r0 == 1) goto lbl3
+
+fn_5C6C4()
+r1 = 1
+r0 ^= r1
+r4 = -r0
+r4 |= r0
+r1 = *r5
+r0 = 4
+r0 = *(r1 + r0)
+r1 = *(r1 + 5)
+r2 = 1
+r2 = -r2
+r3 = r6 - 7
+r4 >>= 0x1F
+r4 -= 7
+r4 += r7
+s0 = r4
+fn_555A0()
+goto lbl3
+
+lbl3:
+return

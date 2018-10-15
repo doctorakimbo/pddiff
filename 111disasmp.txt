@@ -1,0 +1,13 @@
+lbl1: @5562C
+r4 = data_0203CB18_J
+r1 = *(r4 + 0xE)
+if(r1 != 0) goto lbl2
+
+r1 = *(r0 + 1)
+r0 = *r0
+Overworld_GetMapHeaderByGroupAndId()
+r4 = r0 + 4
+goto lbl2
+
+r0 = *(r4 + 0xC)
+return r0

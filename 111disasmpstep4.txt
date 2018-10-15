@@ -1,0 +1,7 @@
+GetLocationMusic(warp)
+{
+	if(data_0203CB18_J.0xE != 0)
+		return data_0203CB18_J.0xC
+	else
+		return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music;
+}

@@ -1,0 +1,30 @@
+sub_80597F0()
+{
+	if(r0 == 2 || r0 == 0xD1)
+		return TRUE;
+	else
+		return FALSE;
+}
+
+
+
+
+
+
+sub_8059808()
+{
+	if(r0 == 3)
+		return TRUE;
+	else
+		return FALSE;
+}
+
+
+
+
+
+
+sub_805980C()
+{
+	return FALSE;
+}

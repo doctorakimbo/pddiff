@@ -1,0 +1,4 @@
+sub_8055D6C(arg0)
+{
+	return *(Overworld_GetMapHeaderByGroupAndId(*(arg0 + 0), *(arg0 + 1)) + 0x10)
+}

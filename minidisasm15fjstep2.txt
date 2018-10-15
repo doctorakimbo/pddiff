@@ -1,0 +1,24 @@
+sub_804F020()
+{
+	if(arg0 != 0)
+		r10 = gEnemyParty
+	else
+		r10 = gPlayerParty
+	
+	r0 = *(*data_02031DA8 + 0x36 + arg0)
+	
+	r8 = r1
+	
+	for(r6 = 0; r6 bcc r0; r6++)
+	{
+		r4 = (r6 * 0x64) + r10
+		
+		GetMonData(r4, 2, &s0)
+		StringCopy10(&s5, &s0)
+		
+		if(*((*r8 + 0x51) + (arg0 * 6) + r6) == 0)
+			fn_45CD8_J(&s5, GetMonGender(r4)) // p/d removed
+		
+		fn_4EFB4(arg0, r6, &s5)
+	}
+}

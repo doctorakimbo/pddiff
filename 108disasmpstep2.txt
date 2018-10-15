@@ -1,0 +1,38 @@
+SavePlayerBag()
+{
+	r4 = gLoadedSaveData
+	
+	for(r2 = 0; r2 <= 0xB9; r2++)
+	{
+		ldmia r4!, {r1}
+		*(*gSaveBlock1Ptr + 0x310 + (r2 * 4)) = r1
+	}
+	
+	r3 = data_0203BB00_J
+	
+	for(r2 = 0; r2 <= 0xA6; r2++)
+	{
+		ldmia r3!, {r1}
+		*(data_0203C010_J + (r2 * 4)) = r1
+	}
+
+	r4 = gLoadedSaveData
+	r3 = 0
+
+	for(r2 = 0xF; r2 >= 0; r2--)
+	{
+		r1 = *gSaveBlock1Ptr + r3 + 0x2CD0
+		r0 = r4 + 0x2E8
+		ldmia r0!, {r5, r6, r7}
+		stmia r1!, {r5, r6, r7}
+		ldmia r0!, {r5, r6, r7}
+		stmia r1!, {r5, r6, r7}
+		ldmia r0!, {r5, r6, r7}
+		stmia r1!, {r5, r6, r7}
+		r4 += 0x24
+		r3 += 0x24
+	}
+
+	*(*gSaveBlock2Ptr + 0xF20) = *gLastEncryptionKey
+	ApplyNewEncryptionKeyToBagItems(*(*gSaveBlock2Ptr + 0xF20))
+}

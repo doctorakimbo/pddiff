@@ -308,7 +308,7 @@ grafics:
 		  Implements: need more info
 		  Required knowledge: j0203B900, j0203C00D, j0203D500
 = 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
-= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC: 0B -> 0D (pkmnnamelength)
+= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: Pokemon name length, something else - need more info
@@ -641,7 +641,7 @@ grafics:
 		  Implements: Removes move selection cursor
 ! 030A14: Entirety of MoveSelectionDestroyCursorAt (see 71disasm)
 		  Implements: Removes move selection cursor
-= 034D26: 0B -> 0D (pkmnnamelength)
+= 034D26: 0B -> 10 (pkmnnamelength)
 = 038744: Entirety of OpponentHandleChoosePokemon (see 72disasm)
 		  Implements: New level of smart AI for switching choice (prioritizes mon with Trick Room if team is slow, prioritizes best Trick Room attacker during Trick Room, prioritizes weather setter when weather runs out, prioritizes mon with best type matchup)
 		  Relies on: new AI value
@@ -695,7 +695,7 @@ grafics:
 		  Requires in future: CopyMonToBox (j3C5FA0)
 = 040FA0: Entirety of IsPokemonStorageFull (see 82disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
-= 040FE2: 0B -> 0D (pkmnnamelength)
+= 040FE2: 0B -> 10 (pkmnnamelength)
 = 0415D0: B0 16 04 08 44 17 04 08 -> 6C 16 04 08 98 16 04 08
   0415F6: 29 48 29 -> 42 48 42
   04160C: 25 -> 3E
@@ -802,12 +802,30 @@ grafics:
 = 04C320: Entirety of LoadPlayerBag (see 107disasm)
 		  Implements: Copies something into something else (extra bag space?)
 		  Required knowledge: j0203BB00, j0203C010
-= 04C440: Entirety of sub_804C440 (see 108disasm)
-		  
-		  
-		  
-		  
-		  
+= 04C440: Entirety of SavePlayerBag (see 108disasm)
+		  Implements: Copies something into something else, reverse of LoadPlayerBag (extra bag space?)
+		  Required knowledge: j0203BB00, j0203C010
+= 04EF5E: 0D -> 20 (movenamelength)
+= ?????? (j4E8A2): Unclear how to translate this to English rom (minidisasm15)
+		  Implements: Removes gender symbol somewhere, seems to be removed in english already
+= 053AB0, 053B16: 0B -> 10 (pkmnnamelength)
+! 054A00: 06 -> 04 (possibly PDONLY, changes call Overworld_SetWarpDestination(4, 1, -1, 6, 6) to Overworld_SetWarpDestination(4, 1, -1, 6, 4) (TEST THIS))
+= 054A68: 39 4E 31 68 39 48 80 46 -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DF50, see 109disasm))
+		  Implements: need more info (clear save data)
+- 055238: 00 04 09 04 03 4A 80 0B 80 18 00 68 89 0B 09 18 -> 00 04 09 04 03 4A 89 0B 80 0B 80 18 00 68 09 18 (does nothing?)
+= 05550C: Entirety of sub_805550C (see 110disasm)
+		  Implements: need more info (some kind of warp, already prevented in map group 1, is now also prevented in map group 0x2501)
+= 055D6C: Entirety of sub_8055D6C (see 111disasm)
+		  Implements: possibly allows music to be dynamically changed
+		  Required knowledge: j0203CB18
+= 055FF8: Entirety of music_something (see 112disasm)
+		  Implements: Need more info
+		  Required knowledge: j0203C00D
+= 059F34: Entirety of sub_8059F34 (see 113disasm)
+		  Implements: Makes room for changes at 059F4C
+= 059F4C: Entirety of sub_8059F4C (see 113disasm)
+		  Implements: Not completely sure, but possibly implements RSE's MetatileBehavior_IsLongGrass() for FRLG
+= 05A9B4: Part of DrawMetatile (see 114disasm)
 		  
 		  
 		  
@@ -815,6 +833,5 @@ grafics:
 		  
 
 
-curr: j4BBF8-j4BD24
-curr: j4E78E (2byte), j4E8A2 (4byte), j5336C (6byte), j5337E (6byte), j533DA (6byte), j542C4 (1byte), j5432C (8byte), j54AFE (8byte)
-next: j54DDC
+curr: j5A278
+next: j5ACA2

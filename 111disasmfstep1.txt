@@ -1,0 +1,7 @@
+sub_8055D6C(arg0)
+{
+	r1 = arg0
+	r0 = 0
+	r0 = Overworld_GetMapHeaderByGroupAndId(*(r1 + r0), *(r1 + 1))
+	return *(r0 + 0x10)
+}

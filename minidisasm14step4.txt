@@ -1,0 +1,28 @@
+sub_804EED4(string, isEnemy, index)
+{
+	if(data_02031DA8->0x51[isEnemy][index] == 0)
+	{
+		for(i = 0; i < 4; i++)
+		{
+			if(isEnemy)
+				monMoves[i] = GetMonData(&gEnemyParty[index], MON_DATA_MOVE1 + i, NULL);
+			else
+				monMoves[i] = GetMonData(&gPlayerParty[index], MON_DATA_MOVE1 + i, NULL);
+		}
+
+		StringCopy(string, sText_Blank);
+
+		for(i = 0; i < 4; i++)
+		{
+			if(monMoves[i] != MOVE_NONE)
+				StringAppend(string, &gMoveNames[monMoves[i]]);
+			
+			StringAppend(string, sText_Newline);
+		}
+	}
+	else
+	{
+		StringCopy(string, sText_Blank);
+		StringAppend(string, sText_FourQuestionMarks);
+	}
+}

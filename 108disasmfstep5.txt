@@ -1,0 +1,25 @@
+SavePlayerBag()
+{
+	for(i = 0; i < BAG_ITEMS_COUNT; i++)
+		gSaveBlock1Ptr->bagPocket_Items[i] = gLoadedSaveData.items[i];
+	
+	for(i = 0; i < BAG_KEYITEMS_COUNT; i++)
+		gSaveBlock1Ptr->bagPocket_KeyItems[i] = gLoadedSaveData.keyItems[i];
+	
+	for(i = 0; i < BAG_POKEBALLS_COUNT; i++)
+		gSaveBlock1Ptr->bagPocket_PokeBalls[i] = gLoadedSaveData.pokeBalls[i];
+	
+	for(i = 0; i < BAG_TMHM_COUNT; i++)
+		gSaveBlock1Ptr->bagPocket_TMHM[i] = gLoadedSaveData.TMsHMs[i];
+	
+	for(i = 0; i < BAG_BERRIES_COUNT; i++)
+		gSaveBlock1Ptr->bagPocket_Berries[i] = gLoadedSaveData.berries[i];
+
+	for(i = 0; i < MAIL_COUNT; i++)
+		gSaveBlock1Ptr->mail[i] = gLoadedSaveData.mail[i];
+
+	encryptionKeyBackup = gSaveBlock2Ptr->encryptionKey;
+    gSaveBlock2Ptr->encryptionKey = gLastEncryptionKey;
+	ApplyNewEncryptionKeyToBagItems(encryptionKeyBackup);
+    gSaveBlock2Ptr->encryptionKey = encryptionKeyBackup;
+}

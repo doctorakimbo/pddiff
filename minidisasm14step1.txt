@@ -1,0 +1,73 @@
+sub_804EED4(arg0, arg1, arg2)
+{
+	r6 = arg0
+	r7 = arg1
+	r0 = data_02031DA8
+	r1 = *r0
+	r0 = r7 * 2
+	r0 += r7
+	r0 *= 2
+	r0 += arg2
+	r1 = 0x51
+	r1 += r0
+	r0 = *r1
+	
+	if(r0 == 0)
+	{
+		r0 = 0x64
+		r5 = arg2
+		r5 *= r0
+		r0 = gPlayerParty
+		r9 = r0
+		r2 = gEnemyParty
+		r8 = r2
+
+		for(r4 = 0; r4 < 4; r4++)
+		{
+			if(r7 == 0)
+			{
+				r1 = r4
+				r1 += 0xD
+				r2 = r9
+			}
+			else
+			{
+				r1 = r5
+				r1 += 0xD
+				r2 = r8
+			}
+			
+			r0 = GetMonData(r5 + r2, r1, NULL)
+			r1 = r4 * 2
+			r1 += &s0
+			*r1 = r0
+		}
+
+		StringCopy(r6, data_261EB6)
+
+		for(r4 = 0; r4 < 4; r4++)
+		{
+			r0 = r4 * 2
+			r2 = &s0
+			r1 = r2 + r0
+			r0 = *r1
+			
+			if(r0 != 0)
+			{
+				r1 = r0
+				r0 = 0xD
+				r1 *= r0
+				r0 = gMoveNames
+				r1 += r0
+				StringAppend(r6, r1)
+			}
+			
+			StringAppend(r6, data_261EC7)
+		}
+	}
+	else
+	{
+		StringCopy(r6, data_261EB6)
+		StringAppend(r6, data_41E09F)
+	}
+}

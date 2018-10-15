@@ -1,0 +1,18 @@
+sub_804F020()
+{
+	if(arg0 != 0)
+		r10 = gEnemyParty
+	else
+		r10 = gPlayerParty
+	
+	for(r6 = 0; r6 bcc data_02031DA8->0x36[arg0]; r6++)
+	{
+		GetMonData(&r10[r6], 2, &s0)
+		StringCopy10(&s5, &s0)
+		
+		if(data_02031DA8->0x51[arg0][r6] == 0)
+			AppendGenderSymbol(&s5, GetMonGender(&r10[r6])) // p/d removed
+		
+		fn_4EFB4(arg0, r6, &s5)
+	}
+}

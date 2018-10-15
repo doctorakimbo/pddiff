@@ -1,0 +1,14 @@
+SavePlayerBag()
+{
+	for(r2 = 0; r2 <= 0xB9; r2++)
+		gSaveBlock1Ptr->0x310[r2] = gLoadedSaveData.0[r2]
+	
+	for(r2 = 0; r2 <= 0xA6; r2++)
+		data_0203C010_J[r2] = data_0203BB00_J[r2]
+
+	for(r2 = 0; r2 <= 0xF; r2++)
+		gSaveBlock1Ptr->0x2CD0[r2] = gLoadedSaveData.0x2E8[r2]
+
+	gSaveBlock2Ptr->0xF20 = gLastEncryptionKey
+	ApplyNewEncryptionKeyToBagItems(gSaveBlock2Ptr->0xF20)
+}

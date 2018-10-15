@@ -1,0 +1,92 @@
+lbl1: @4EED4
+r6 = r0
+r7 = r1
+r0 = data_02031DA8
+r1 = *r0
+r0 = r7 * 2
+r0 += r7
+r0 *= 2
+r0 += r2
+r1 = 0x51
+r1 += r0
+r0 = *r1
+if(r0 != 0) goto lbl7
+
+r4 = 0
+r0 = 0x64
+r5 = r2
+r5 *= r0
+r0 = gPlayerParty
+r9 = r0
+r2 = gEnemyParty
+r8 = r2
+goto lbl2
+
+lbl2:
+if(r7 != 0) goto lbl3
+
+r1 = r4
+r1 += 0xD
+r2 = r9
+goto lbl4
+
+lbl3:
+r1 = r5
+r1 += 0xD
+r2 = r8
+goto lbl4
+
+lbl4:
+r0 = r5 + r2
+r2 = 0
+GetMonData()
+r1 = r4 * 2
+r1 += &s0
+*r1 = r0
+r0 = r4 + 1
+r4 = r0
+if(r4 <= 3) goto lbl2
+
+r1 = data_261EB6
+r0 = r6
+StringCopy()
+r4 = 0
+goto lbl5
+
+lbl5:
+r0 = r4 * 2
+r2 = &s0
+r1 = r2 + r0
+r0 = *r1
+if(r0 == 0) goto lbl6
+
+r1 = r0
+r0 = 0xD
+r1 *= r0
+r0 = gMoveNames
+r1 += r0
+r0 = r6
+StringAppend()
+goto lbl6
+
+lbl6:
+r0 = r6
+r1 = data_261EC7
+StringAppend()
+r0 = r4 + 1
+r4 = r0
+if(r4 <= 3) goto lbl5
+
+goto lbl8
+
+lbl7:
+r1 = data_261EB6
+r0 = r6
+StringCopy()
+r1 = data_41E09F
+r0 = r6
+StringAppend()
+goto lbl8
+
+lbl8:
+return

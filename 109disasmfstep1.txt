@@ -1,0 +1,76 @@
+NewGameInitData()
+{
+	r6 = gSaveBlock1Ptr
+	r1 = *r6
+	r0 = 0x3A4C
+	r8 = r0
+	r0 = &s0
+	StringCopy(r0, r8)
+	r1 = data_02031DB0
+	r0++
+	*r1 = r0
+	r4 = gSaveBlock2Ptr
+	r0 = *r4
+	r1 = 0xF20
+	r0 += r1
+	r5 = 0
+	*r0 = r5
+	fn_3DA14()
+	fn_3DA34()
+	fn_549D4()
+	fn_4C034()
+	fn_97C84()
+	r0 = *r4
+	*(r0 + 9) = r5
+	r0 = *r4
+	r1 = r0
+	r1 += 0xA8
+	*r1 = r5
+	r0 += 0xAC
+	r1++
+	*r0 = r1
+	r0 = *r4
+	r0 += 0xAD
+	*r0 = r5
+	fn_54928()
+	fn_54814()
+	fn_549AC()
+	fn_6E0D0()
+	fn_12D304()
+	r0 = *r6
+	r1 = 0x290
+	r0 += r1
+	r1 = 0xBB8
+	fn_9FD70()
+	fn_54E68()
+	fn_CD8DC()
+	fn_A0904()
+	fn_A0958()
+	fn_6E190()
+	r0 = gPlayerPartyCount
+	*r0 = r5
+	fn_3DA14()
+	fn_8C7E0()
+	fn_141C54()
+	r0 = *r6
+	r1 = 0x296
+	r0 += r1
+	*r0 = r5
+	fn_9A2DC()
+	fn_EB658()
+	fn_9C794()
+	fn_BDD34()
+	fn_113044()
+	fn_129820()
+	fn_54B70()
+	fn_143D24()
+	fn_15D838()
+	fn_549F8()
+	r0 = data_1A6481
+	fn_69B48()
+	r0 = *r6
+	r0 += r8
+	r1 = &s0
+	StringCopy(r0, &s0)
+	fn_15EE0C() // not in jp
+}

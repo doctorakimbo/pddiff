@@ -1,0 +1,16 @@
+lbl1: @55F88
+fn_55DA4()
+r4 = r0
+r0 = 0x4001
+FlagGet()
+if(r0 == 1) goto lbl2
+
+fn_71A68()
+if(r4 == r0) goto lbl2
+
+fn_55F68()
+FadeOutMapMusic()
+goto lbl2
+
+lbl2:
+return

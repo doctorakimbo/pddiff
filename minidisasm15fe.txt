@@ -1,0 +1,47 @@
+lbl1: @4F020
+r6 = r0
+r7 = gEnemyParty
+if(r6 != 0) goto lbl2
+
+r7 = gPlayerParty
+goto lbl2
+
+lbl2:
+r4 = 0
+r0 = data_02031DA8
+r0 = *r0
+r0 += 0x36
+r0 += r6
+r0 = *r0
+if(r4 bcs r0) goto lbl5
+
+r5 = &s5
+goto lbl3
+
+lbl3:
+r0 = 0x64
+r0 *= r4
+r0 += r7
+r1 = 2
+r2 = &s0
+GetMonData()
+r0 = r5
+r1 = &s0
+fn_8CF4()
+r0 = r6
+r1 = r4
+r2 = r5
+fn_4EFB4()
+r0 = r4 + 1
+r4 = r0
+r0 = data_02031DA8
+r0 = *r0
+r0 += 0x36
+r0 += r6
+r0 = *r0
+if(r4 bcc r0) goto lbl3
+
+goto lbl5
+
+lbl5:
+return

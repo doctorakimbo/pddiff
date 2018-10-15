@@ -1,0 +1,74 @@
+lbl1: @4E830
+r5 = r0
+r0 = gEnemyParty
+r10 = r0
+if(r5 != 0) goto lbl2
+
+r1 = gPlayerParty
+r10 = r1
+goto lbl2
+
+lbl2:
+r6 = 0
+r1 = data_02031DA8
+r0 = *r1
+r0 += 0x36
+r0 += r5
+r0 = *r0
+if(r6 bcs r0) goto lbl5
+
+r7 = &s5
+r8 = r1
+r0 = r5 * 2
+r0 += r5
+r0 *= 2
+r9 = r0
+goto lbl3
+
+lbl3:
+r0 = 0x64
+r4 = r6
+r4 *= r0
+r4 += r10
+r0 = r4
+r1 = 2
+r2 = &s0
+GetMonData()
+r0 = r7
+r1 = &s0
+fn_8CF4()
+r0 = r4
+GetMonGender()
+r2 = r0
+r3 = r8
+r0 = *r3
+r3 = r9
+r1 = r6 + r3
+r0 += 0x51
+r0 += r1
+r0 = *r0
+if(r0 != 0) goto lbl4
+
+r0 = r7
+r1 = r2
+fn_45CD8_J() // p/d removed
+goto lbl4
+
+lbl4:
+r0 = r5
+r1 = r6
+r2 = r7
+fn_4EFB4()
+r0 = r6 + 1
+r6 = r0
+r1 = r8
+r0 = *r1
+r0 += 0x36
+r0 += r5
+r0 = *r0
+if(r6 bcc r0) goto lbl3
+
+goto lbl5
+
+lbl5:
+return

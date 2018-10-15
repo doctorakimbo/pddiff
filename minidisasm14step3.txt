@@ -1,0 +1,28 @@
+sub_804EED4(arg0, arg1, arg2)
+{
+	if(data_02031DA8->0x51[arg1][arg2] == 0)
+	{
+		for(r4 = 0; r4 < 4; r4++)
+		{
+			if(arg1 == 0)
+				stack[r4] = GetMonData(&gPlayerParty[arg2], 0xD + r4, NULL)
+			else
+				stack[r4] = GetMonData(&gEnemyParty[arg2], 0xD + r4, NULL)
+		}
+
+		StringCopy(arg0, data_261EB6)
+
+		for(r4 = 0; r4 < 4; r4++)
+		{
+			if(stack[r4] != 0)
+				StringAppend(arg0, &gMoveNames[stack[r4]])
+			
+			StringAppend(arg0, data_261EC7)
+		}
+	}
+	else
+	{
+		StringCopy(arg0, data_261EB6)
+		StringAppend(arg0, data_41E09F)
+	}
+}

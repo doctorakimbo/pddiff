@@ -1,0 +1,43 @@
+sub_805550C(arg0, arg1)
+{
+	r6 = arg0
+	r7 = arg1
+	r4 = Overworld_GetMapTypeOfSaveblockLocation(arg0, arg1)
+	r1 = data_02031DBC
+	r0 = 0
+	r5 = GetMapTypeByGroupAndId(*(r1 + r0), *(r1 + 1))
+	r0 = is_map_type_1_2_3_5_or_6(r4)
+	
+	if(r0 != 0)
+	{
+		r0 = is_map_type_1_2_3_5_or_6(r5)
+		
+		if(r0 != 1)
+		{
+			r5 = gSaveBlock1Ptr
+			r5 = *r5
+			r0 = *(r5 + 4)
+			
+			if(r0 != 1)
+			{
+				r1 = 0x2501
+				
+				if(r0 != r1)
+				{
+					r0 = GetPlayerFacingDirection()
+					r4 = -r0
+					
+					if(r0 != 2)
+						r4 = 0
+					
+					r0 = 4
+					r2 = 1
+					r4 >>= 0x1F
+					r4 -= 7
+					r4 += r7
+					sub_80555A0(*(r5 + r0), *(r5 + 5), -r2, r6 - 7, r4)
+				}
+			}
+		}
+	}
+}

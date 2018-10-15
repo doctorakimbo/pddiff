@@ -1,0 +1,35 @@
+lbl1: @59F34
+if(r0 == 2) goto lbl2
+
+if(r0 != 0xD1) goto lbl3
+
+goto lbl2
+
+lbl2:
+r0 = 1
+goto lbl4
+
+lbl3:
+r0 = 0
+goto lbl4
+
+lbl4:
+return r0
+
+
+
+
+
+
+lbl5: @59F4C
+r0 = 0
+return r0
+
+
+
+
+
+
+lbl6: @59F50
+r0 = 0
+return r0

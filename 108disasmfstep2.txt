@@ -1,0 +1,62 @@
+SavePlayerBag()
+{
+	r4 = gLoadedSaveData
+
+	for(r2 = 0; r2 <= 0x29; r2++)
+	{
+		ldmia r4!, {r1}
+		*(*gSaveBlock1Ptr + 0x310 + (r2 * 4)) = r1
+	}
+	
+	r3 = gLoadedSaveData + 0xA8
+	
+	for(r2 = 0; r2 <= 0x1D; r2++)
+	{
+		ldmia r3!, {r1}
+		*(*gSaveBlock1Ptr + 0x3B8 + (r2 * 4)) = r1
+	}
+	
+	r3 = gLoadedSaveData + 0x120
+	
+	for(r2 = 0; r2 <= 0xC; r2++)
+	{
+		ldmia r3!, {r1}
+		*(*gSaveBlock1Ptr + 0x430 + (r2 * 4)) = r1
+	}
+	
+	r3 = gLoadedSaveData + 0x154
+	
+	for(r2 = 0; r2 <= 0x39; r2++)
+	{
+		ldmia r3!, {r1}
+		*(*gSaveBlock1Ptr + 0x464 + (r2 * 4)) = r1
+	}
+	
+	r3 = gLoadedSaveData + 0x23C
+	
+	for(r2 = 0; r2 <= 0x2A; r2++)
+	{
+		ldmia r3!, {r1}
+		*(*gSaveBlock1Ptr + 0x54C + (r2 * 4)) = r1
+	}
+
+	r4 = gLoadedSaveData
+	r3 = 0
+
+	for(r2 = 0xF; r2 >= 0; r2--)
+	{
+		r1 = *gSaveBlock1Ptr + r3 + 0x2CD0
+		r0 = r4 + 0x2E8
+		ldmia r0!, {r5, r6, r7}
+		stmia r1!, {r5, r6, r7}
+		ldmia r0!, {r5, r6, r7}
+		stmia r1!, {r5, r6, r7}
+		ldmia r0!, {r5, r6, r7}
+		stmia r1!, {r5, r6, r7}
+		r4 += 0x24
+		r3 += 0x24
+	}
+
+	*(*gSaveBlock2Ptr + 0xF20) = *gLastEncryptionKey
+	ApplyNewEncryptionKeyToBagItems(*(*gSaveBlock2Ptr + 0xF20))
+}

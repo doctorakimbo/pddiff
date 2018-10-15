@@ -1,0 +1,27 @@
+sub_8059F34()
+{
+	if(r0 == 2 || r0 == 0xD1)
+		return TRUE;
+	else
+		return FALSE;
+}
+
+
+
+
+
+
+sub_8059F4C()
+{
+	return FALSE;
+}
+
+
+
+
+
+
+sub_8059F50()
+{
+	return FALSE;
+}

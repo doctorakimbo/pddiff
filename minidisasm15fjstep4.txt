@@ -1,0 +1,19 @@
+sub_804F020(arg0)
+{
+	if(arg0)
+		party = gEnemyParty;
+	else
+		party = gPlayerParty;
+	
+	for(i = 0; i < data_02031DA8->0x36[arg0]; i++)
+	{
+		GetMonData(&party[i], MON_DATA_NICKNAME, nickname);
+		StringCopy10(realNickname, nickname);
+		
+		// entire if statement removed in p/d
+		if(data_02031DA8->0x51[arg0][i] == 0)
+			AppendGenderSymbol(realNickname, GetMonGender(&party[i]));
+		
+		fn_4EFB4(arg0, i, realNickname);
+	}
+}

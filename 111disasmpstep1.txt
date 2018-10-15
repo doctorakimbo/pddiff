@@ -1,0 +1,10 @@
+sub_8055D6C(arg0)
+{
+	r4 = data_0203CB18_J
+	r1 = *(r4 + 0xE)
+	
+	if(r1 == 0)
+		r4 = Overworld_GetMapHeaderByGroupAndId(*arg0, *(arg0 + 1)) + 4
+
+	return *(r4 + 0xC)
+}

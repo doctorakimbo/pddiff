@@ -1,0 +1,22 @@
+sub_805550C(arg0, arg1)
+{
+	currMapType = Overworld_GetMapTypeOfSaveblockLocation();
+	destMapType = GetMapTypeByGroupAndId(sWarpDestination.mapGroup, sWarpDestination.mapNum);
+	
+	if(is_map_type_1_2_3_5_or_6(currMapType) && !is_map_type_1_2_3_5_or_6(destMapType) && gSaveBlock1Ptr->location.mapGroup != 1 && gSaveBlock1Ptr->location.mapGroup != 0x2501)
+	{
+		r0 = GetPlayerFacingDirection()
+		
+		if(r0 == 2)
+			r4 = -r0
+		else
+			r4 = 0
+			
+		// case 0: 0
+		// case 1: 0
+		// case 2: -2 = 10 = 2
+		// case 3: 0
+		
+		sub_80555A0(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1, arg0 - 7, arg1 + ((r4 >> 0x1F) - 7))
+	}
+}

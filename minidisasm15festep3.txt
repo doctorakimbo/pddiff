@@ -1,0 +1,14 @@
+sub_804F020(arg0)
+{
+	if(arg0 != 0)
+		r7 = gEnemyParty
+	else
+		r7 = gPlayerParty
+	
+	for(r4 = 0; r4 bcc data_02031DA8->0x36[arg0], r4++)
+	{
+		GetMonData(&r7[r4], 2, &s0)
+		StringCopy10(&s5, &s0)
+		fn_4EFB4(arg0, r4, &s5)
+	}
+}

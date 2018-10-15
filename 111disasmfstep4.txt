@@ -1,0 +1,4 @@
+GetLocationMusic(warp)
+{
+	return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music;
+}
