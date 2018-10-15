@@ -1,14 +1,15 @@
 LoadPlayerBag()
 {
-	// equivalent to first 5 loops of firered LoadPlayerBag
-	for(i = 0; i < 186; i++)
-		gLoadedSaveData.0[i] = gSaveBlock1Ptr->0x310[i]
+	totalCount = BAG_ITEMS_COUNT + BAG_KEYITEMS_COUNT + BAG_POKEBALLS_COUNT + BAG_TMHM_COUNT + BAG_BERRIES_COUNT; // 186
+	
+	for(i = 0; i < totalCount; i++)
+		gLoadedSaveData.items[i] = gSaveBlock1Ptr->bagPocket_Items[i];
 	
 	for(i = 0; i < 167; i++)
-		data_0203BB00_J[i] = data_0203C010_J[i]
+		data_0203BB00_J[i] = data_0203C010_J[i];
 
-	for(i = 0; i < 16; i++)
-		gLoadedSaveData.0x2E8[i] = gSaveBlock1Ptr->0x2CD0[i]
+	for(i = 0; i < MAIL_COUNT; i++)
+		gLoadedSaveData.mail[i] = gSaveBlock1Ptr->mail[i];
 
 	gLastEncryptionKey = gSaveBlock2Ptr->encryptionKey;
 }

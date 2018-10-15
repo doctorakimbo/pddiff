@@ -122,9 +122,10 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 		   : 64 B9 03 02: gWasMonShown
 		   : 65 B9 03 02: ?????? (ShouldSwitch_NewAI: set to 1 when fn executed (always ran whenever it's possible to switch))
 		   : 70 B9 03 02: ?????? (appears to be an array of unknown objects; first field is a 4-entry array of 2 bytes each, second field is a 4-entry array of 1 byte each)
-		   : 00 BB 03 02: ??????
 								 (atk02_attackstring: when player attacks: insert [gCurrentMove, 0] into the first empty slot for the mon, or increment the field2 of the first entry where field1 = gCurrentMove and field2 != 0xFF, whichever comes first)
 								 (atk02_attackstring: when player attacks: if neither of the above is available, insert [gCurrentMove, 0] into the last slot where field2 != 0xFF; if even that fails, insert it into the first slot)
+		   : 00 BB 03 02: ?????? (appears to be an array of 167 unknown 4-byte objects, possibly ItemSlots)
+								 (LoadPlayerBag: Entire array written to in a loop, just like gLoadedSaveData.items, read from j0203C010)
 		   : 30 BF 03 02: ?????? (appears to be (0-3) array of ptrs to Sprites, (4) int)
 								 (fn_EB8398_J: Set this[moveId] to the created sprite)
 								 (fn_EB8398_J: Set this.4 to moveId)
@@ -147,7 +148,8 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 								 (fn_EB85EE_J: Something about this[gBattleResources + 4])
 		   : F4 BF 03 02: ?????? (CanUseNewAI: If gBattleTypeFlags & 0x100 (BATTLE_TYPE_BATTLE_TOWER?), read the AI flags from here)
 		   : 0D C0 03 02: ?????? (sub_8032768: zeroed)
-		   : 10 C0 03 02: ??????
+		   : 10 C0 03 02: ?????? (appears to be an array of 167 unknown 4-byte objects, possibly ItemSlots)
+								 (LoadPlayerBag: Entire array read from in a loop, just like gSaveBlock1Ptr->bagPocket_Items, and written to j0203BB00)
 		   : AC C2 03 02: gDaycareParentMoves
 		   : B4 C2 03 02: gDaycareParentMoves[1]
 		   : 00 D3 03 02: ?????? (Appears to be an array of characters)

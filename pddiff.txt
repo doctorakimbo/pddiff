@@ -286,7 +286,7 @@ grafics:
 + expand 25EF0C (egg moves) from 0x8E8 bytes to 0xFC4 bytes (8B6630)
 + expand 26056C (ball sprites) from 12 entries to 26 (A23000)
 + expand 2605CC (ball sprite palettes) from 12 entries to 26 (A230F0)
-- expand 2606F4 (ball sprite templates) from 12 entries to 26 (A23380)
++ expand 2606F4 (ball sprite templates) from 12 entries to 26 (A23380)
 + expand 3DB028 (item data) from 375 entries to 435 (10B0000)
 + expand 3D4038 (mon icon palettes) from 6 entries to 16 (jE40000, e1E40000)
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
@@ -446,17 +446,17 @@ grafics:
 + 0207A4: ptr 0A 11 02 08 -> 8C 0F 02 08
 		  Implements: 50% recoil effect
 		  Relies on: changes at 020F78
-+ 02082C: (see 29disasm)
+! 02082C: (see 29disasm)
 		  Implements: Mold Breaker+ (vs Inner Focus)
 		  Note: decompilation mistake on my end? mold breaker mons would be unable to flinch foe (check once below is fixed)
 		  GLITCH!: Flinching stopped working completely, some other change probably needed
 + 0208B8: (see 29disasm)
 		  Implements: nothing?
-+ 020A20: (see 29disasm)
+! 020A20: (see 29disasm)
 		  Implements: Grip Claw, Klutz (Grip Claw), wrapping moves duration 3-6 -> 5-6
 		  Note: check if wrap still works (check once below is fixed)
 		  GLITCH!: Wrap stopped working completely, some other change probably needed
-+ 020AEC: (see 29disasm)
+! 020AEC: (see 29disasm)
 		  Implements: Modern Struggle
 		  Relies on: changes at 020F78
 		  GLITCH!: Struggle has 100% HP recoil, some other change probably needed
@@ -490,7 +490,7 @@ grafics:
   022FD4: 04 DC -> 0B DA
   022FE7: D0 -> DA
 		  Implements: Correct stat animations for drastically/severely
-= 02301C: Entirety of atk48_playstatchangeanimation (+BattleScript_FlowerVeilProtects)(see 36disasm)
+= 02301C: Entirety of atk48_playstatchangeanimation (+BattleScript_FlowerVeilProtects) (see 36disasm)
 		  Implements: Mold Breaker+ (vs stat-reduction prevention abilities), Contrary, Big Pecks, Infiltrator (vs Mist), Flower Veil (vs stat reduction)
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Glitch: 0x68 (Mold Breaker) is instead 0x97, test mold breaker vs clear body
@@ -691,7 +691,7 @@ grafics:
 		  Implements: Heal Ball
 		  Required knowledge: gLastUsedItemType (j0203FE00)
 = 040B90: Entirety of SendMonToPC (see 81disasm)
-		  Implements: Part of CompressedBoxPokemon refactor, allowing 15->23 boxes
+		  Implements: Part of CompressedBoxPokemon refactor, allowing 14->22 boxes
 		  Requires in future: CopyMonToBox (j3C5FA0)
 = 040FA0: Entirety of IsPokemonStorageFull (see 82disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
@@ -784,22 +784,24 @@ grafics:
 		  Implements: needed for modern pokeball inheritance; something involving alt ability
 + 046DDA: F9 F7 CF FA -> 00 00 00 00 (needed for modern pokeball inheritance)
 = ~048440: Unclear how to translate this to English rom (minidisasm12)
-		  Implements: Moves in-battle level display over by two characters (one in Japanese) to make room for name
+		  Implements: Moves in-battle level/gender display for opponents right by two characters (one in Japanese) to make room for name
 = ~0496C0: Unclear how to translate this to English rom (minidisasm13pt2)
 		  Implements: name length in the battle boxes (the ones with the HP in them)
 = 049718: 1D 28 01 D0 20 28 09 D1 -> 0C E0 00 00 00 00 00 00 (PDONLY, restores gender markers for pokemon #29 and #32)
 = 049720: 0B -> 10 (pkmnnamelength)
 = ?????? (j48EBA): Unclear how to translate this to English rom (minidisasm13pt3)
-		  Implements: (check!)
-- 04A2F0: Entirety of CalcNewBarValue (see 105disasm)
-		  Implements: Doubles the amount of change the HP and EXP bars go through per (number entered into the fn), unclear why (need more info)
+		  Implements: Moves name in battle boxes for player mons left by two characters (one in Japanese) to make room
++ 04A2F0: Entirety of CalcNewBarValue (see 105disasm)
+		  Implements: HP and EXP bars go twice as fast
 		  Note: Also makes the function not use its toAdd parameter, amount to add is calculated inside the function
-- 04B5AA: 0B -> 1F (max pokeball types 12 -> 32)
-- 04BF24: 0B 2C 01 DC -> 00 00 00 00
++ 04B5AA: 0B -> 1F (max pokeball types 12 -> 32)
++ 04BF24: 0B 2C 01 DC -> 00 00 00 00
 		  Implements: Certain gfx aren't loaded for Dive Ball and everything starting at Luxury Ball; this is now fully independent of number of ball types
-- 04C058: Entirety of SetSaveBlocksPointers (see 106disasm)
++ 04C058: Entirety of SetSaveBlocksPointers (see 106disasm)
 		  Implements: nothing?
 = 04C320: Entirety of LoadPlayerBag (see 107disasm)
+		  Implements: Copies something into something else (extra bag space?)
+		  Required knowledge: j0203BB00, j0203C010
 = 04C440: Entirety of sub_804C440 (see 108disasm)
 		  
 		  
@@ -813,6 +815,6 @@ grafics:
 		  
 
 
-curr: j4BAD8-j4BBF8, j4BBF8-j4BD24
+curr: j4BBF8-j4BD24
 curr: j4E78E (2byte), j4E8A2 (4byte), j5336C (6byte), j5337E (6byte), j533DA (6byte), j542C4 (1byte), j5432C (8byte), j54AFE (8byte)
 next: j54DDC

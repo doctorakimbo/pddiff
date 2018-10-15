@@ -1,22 +1,22 @@
 LoadPlayerBag()
 {
-	for(i = 0; i < 42; i++)
-		gLoadedSaveData.0[i] = gSaveBlock1Ptr->0x310[i]
+	for(i = 0; i < BAG_ITEMS_COUNT; i++)
+		gLoadedSaveData.items[i] = gSaveBlock1Ptr->bagPocket_Items[i];
 	
-	for(i = 0; i < 30; i++)
-		gLoadedSaveData.0xA8[i] = gSaveBlock1Ptr->0x3B8[i]
+	for(i = 0; i < BAG_KEYITEMS_COUNT; i++)
+		gLoadedSaveData.keyItems[i] = gSaveBlock1Ptr->bagPocket_KeyItems[i];
 
-	for(i = 0; i < 13; i++)
-		gLoadedSaveData.0x120[i] = gSaveBlock1Ptr->0x430[i]
+	for(i = 0; i < BAG_POKEBALLS_COUNT; i++)
+		gLoadedSaveData.pokeBalls[i] = gSaveBlock1Ptr->bagPocket_PokeBalls[i];
 	
-	for(i = 0; i < 58; i++)
-		gLoadedSaveData.0x154[i] = gSaveBlock1Ptr->0x464[i]
+	for(i = 0; i < BAG_TMHM_COUNT; i++)
+		gLoadedSaveData.TMsHMs[i] = gSaveBlock1Ptr->bagPocket_TMHM[i];
 	
-	for(i = 0; i < 43; i++)
-		gLoadedSaveData.0x23C[i] = gSaveBlock1Ptr->0x54C[i]
+	for(i = 0; i < BAG_BERRIES_COUNT; i++)
+		gLoadedSaveData.berries[i] = gSaveBlock1Ptr->bagPocket_Berries[i];
 	
-	for(i = 0; i < 16; i++)
-		gLoadedSaveData.0x2E8[i] = gSaveBlock1Ptr->0x2CD0[i]
+	for(i = 0; i < MAIL_COUNT; i++)
+		gLoadedSaveData.mail[i] = gSaveBlock1Ptr->mail[i];
 
 	gLastEncryptionKey = gSaveBlock2Ptr->encryptionKey;
 }
