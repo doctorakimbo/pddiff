@@ -1,0 +1,65 @@
+lbl1: @5B9C0
+r1 = fn_222AE0_J
+goto r1
+
+lblx: @5B9CA
+fn_5C024()
+return
+
+
+
+
+
+fn_222AE0_J:
+s0 = r0
+r0 = gPlayerAvatar
+r1 = *(r0 + 5)
+r0 = r1 * 8
+r0 += r1
+r0 *= 4
+r1 = gEventObjects
+r0 += r1
+r1 = *(r0 + 0x1E)
+r0 = s0
+if(r1 < 0xB0) goto lbl2
+
+if(r1 > 0xB5) goto lbl2
+
+r3 = fn_222B34_J
+call_far_fn()
+goto lbl3
+
+lbl2:
+r3 = fn_63F84
+call_far_fn()
+goto lbl3
+
+lbl3:
+r3 = lblx
+call_far_fn()
+
+
+
+
+
+fn_222B34_J:
+r4 = r0
+r1 -= 0xB0
+r1 *= 4
+r2 = data_222B88_J
+r1 += r2
+r1 = *r0
+r0 = &s0
+r2 = 5
+r3 = memcpy
+call_far_fn()
+if(r4 <= 4) goto lbl2
+
+r4 = 0
+goto lbl2
+
+lbl2:
+r1 = &s0
+r0 = r1 + r4
+r0 = *r0
+return r0

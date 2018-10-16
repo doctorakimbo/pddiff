@@ -1,0 +1,35 @@
+PlayerNotOnBikeMoving(direction, arg1)
+{
+	r0 = CheckForPlayerAvatarCollision(direction);
+	
+	if(r0 != 0)
+	{
+		if(r0 == 6)
+			PlayerJumpLedge(direction);
+		elseif(r0 == 8)
+			PlayerFaceDirection(direction);
+		else
+		{
+			if((r0 - 5) > 3)
+				PlayerNotOnBikeCollide(direction);
+		}
+	}
+	elseif(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
+		PlayerGoSpeed2(direction);
+	elseif((heldKeys & B_BUTTON) && FlagGet(FLAG_SYS_B_DASH) && !IsRunningDisallowed(gEventObjects[gPlayerAvatar.eventObjectId].currentMetatileBehavior))
+	{
+		if(fn_5BAAC(direction))
+			fn_5C194(direction)
+		else
+			fn_5C17C(direction)
+		
+		gPlayerAvatar.flags |= PLAYER_AVATAR_FLAG_DASH;
+	}
+	else
+	{
+		if(fn_5BAAC(direction))
+			fn_5C0EC(direction)
+		else
+			PlayerGoSpeed1(direction);
+	}
+}

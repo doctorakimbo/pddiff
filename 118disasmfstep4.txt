@@ -1,0 +1,13 @@
+sub_805BB1C(direction)
+{
+	playerEventObj = &gEventObjects[gPlayerAvatar.eventObjectId];
+	
+	x = playerEventObj->currentCoords.x;
+	y = playerEventObj->currentCoords.y;
+	
+	if(fn_6DB84(MapGridGetMetatileBehaviorAt(x, y), direction))
+		return 8;
+	
+	MoveCoords(direction, &x, &y);
+	return fn_5BBA8(playerEventObj, x, y, direction, MapGridGetMetatileBehaviorAt(x, y));
+}

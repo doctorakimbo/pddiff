@@ -1,0 +1,98 @@
+lbl1: @5AC9C
+r6 = r0
+r8 = r1
+r7 = r2
+r0 = r6
+fn_2074A0_J()
+r6 = r0
+r4 = data_02037078
+r1 = *(r4 + 5)
+r0 = 0x24
+r0 *= r1
+r1 = data_02036E38
+r5 = r0 + r1
+r0 = r5
+fn_5CC40()
+r0 = *(r4 + 6)
+if(r0 != 0) goto lbl2
+
+fn_5B528()
+if(r0 != 0) goto lbl2
+
+r0 = r5
+r1 = r6
+fn_5B45C()
+if(r0 != 0) goto lbl2
+
+r0 = r5
+fn_5B4B0()
+fn_5BE08()
+fn_5B5A0()
+if(r0 != 0) goto lbl2
+
+r0 = r6
+r1 = r8
+r2 = r7
+fn_5B4D4()
+fn_5B50C()
+goto lbl2
+
+lbl2:
+return
+
+
+
+
+
+
+fn_2074A0_J:
+r4 = r0
+r0 = data_02030C00D_J
+r1 = *r0
+r2 = 2
+r2 &= r1
+beq lbl5
+
+r2 = data_02037078
+r2 = *r2
+r1 = 0xD
+r2 &= r1
+bne lbl5
+
+if(r4 != 0) goto lbl5
+
+r2 = *(r0 + 1)
+if(r2 == 0) goto lbl5
+
+r4 = 0
+r2 = *(r0 + 2)
+r1 = 0x80
+r1 &= r2
+bne lbl4
+
+r1 = 0x40
+r1 &= r2
+bne lbl3
+
+r1 = 0x20
+r1 &= r2
+bne lbl2
+
+r4++
+goto lbl2
+
+lbl2:
+r4++
+goto lbl3
+
+lbl3:
+r4++
+goto lbl4
+
+lbl4:
+r4++
+goto lbl5
+
+lbl5:
+r0 = r4
+return r0

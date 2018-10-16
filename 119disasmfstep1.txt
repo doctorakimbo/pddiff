@@ -1,0 +1,66 @@
+sub_805BCEC(arg0, arg1, arg2)
+{
+	r3 = &s0
+	*r3 = arg0
+	r5 = &s0
+	r5 += 2
+	*r5 = arg1
+	r7 = arg2
+	
+	if(FlagGet(0x805))
+	{
+		r0 = &s0
+		r1 = 0 
+		r2 = 0
+		r6 = GetFieldObjectIdByXY(*(r0 + r1), *(r5 + r2))
+		
+		if(r6 != 0x10)
+		{
+			r0 = gEventObjects
+			r1 = r6 * 8
+			r1 += r6
+			r1 *= 4
+			r4 = r1 + r0
+			r0 = *(r4 + 5)
+			
+			if(r0 == 0x61)
+			{
+				r1 = *(r4 + 0x10)
+				r0 = &s0
+				*r0 = r1
+				r0 = *(r4 + 0x12)
+				*r5 = r0
+				MoveCoords(r7, &s0, r5)
+				r0 = &s0
+				r1 = 0
+				r2 = 0
+				r0 = MapGridGetMetatileBehaviorAt(*(r0 + r1), *(r5 + r2))
+				
+				if(r0 == 0x66) goto lbl2
+
+				r0 = &s0
+				r2 = 0
+				r0 = 0
+				r0 = npc_block_way(r4, *(r0 + r2), *(r5 + r0), r7)
+				
+				if(r0 == 0)
+				{
+					r0 = &s0
+					r1 = 0
+					r2 = 0
+					MapGridGetMetatileBehaviorAt(*(r0 + r1), *(r5 + r2))
+					fn_59C8C()
+					
+					if(r0 == 0)
+					{
+						lbl2:
+						task_add_bump_boulder(r6, r7)
+						return 1
+					}
+				}
+			}
+		}
+	}
+	
+	return 0
+}

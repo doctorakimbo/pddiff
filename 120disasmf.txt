@@ -1,0 +1,26 @@
+lbl1: @5C104
+fn_63F84()
+r1 = 2
+fn_5C024()
+return
+
+
+
+
+
+fn_63F84: @63F84
+r4 = r0
+r1 = data_3A6505
+r0 = &s0
+r2 = 5
+memcpy()
+if(r4 <= 4) goto lbl2
+
+r4 = 0
+goto lbl2
+
+lbl2:
+r1 = &s0
+r0 = r1 + r4
+r0 = *r0
+return r0

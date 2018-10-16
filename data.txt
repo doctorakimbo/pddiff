@@ -108,7 +108,8 @@ A8 1D 03 02: DC 1C 03 02: ??????
 B0 1D 03 02: E4 1C 03 02: ??????
 BC 1D 03 02: F0 1C 03 02: sWarpDestination
 		   : 47 6D 03 02: ?????? (atkEF_handleballthrow: Dusk Ball boosted if this is 4) (gTileset?)
-		   : 6C 6D 03 02: ?????? (atkEF_handleballthrow: Lure Ball boosted if this is 1) (gIsPlayerFishing?)
+38 6E 03 02: 6C 6D 03 02: gEventObjects (atkEF_handleballthrow: Lure Ball boosted if this[0] is 1) (gIsPlayerFishing?)
+78 70 03 02: AC 6F 03 02: gPlayerAvatar
 D6 70 03 02: 0A 70 03 02: gSpecialVar_MonBoxId
 D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 		   : E2 85 03 02: ?????? (CreateNPCTrainerParty: checked if less than 0x2E6, if so, used as an index to copy data from table data_09400000_J into gEnemyParty)
@@ -154,6 +155,11 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 		   : 00 C0 03 02: ?????? (NewGameInitData: zeroed starting from here to 0203CEC4)
 		   : 0D C0 03 02: ?????? (sub_8032768: this.1 is set to 0)
 								 (music_something: this.1 is set to 0)
+								 {SoftForceDirection: if (this.0 & 2) isn't set, the player isn't on foot, surfing, or (?acrobike), there's not an existing direction, and this.1 isn't 0, this.2 corresponds to the new direction: this.2 & 0x80 = south, this.2 & 0x40 = north, this.2 & 0x20 = west, otherwise east}
+								 (MovePlayerAvatarUsingKeypadInput: MovePlayerOnBike is only run if (this.0 & 2) isn't set, otherwise MovePlayerNotOnBike)
+								 (PlayerNotOnBikeMoving: if surfing or (?machbike) and this.1 has high bit of 0, go slower than normal)
+								 (PlayerNotOnBikeMoving: if surfing or (?machbike) and this.1 > 0x10, go (faster than normal? fn_5C164))
+								 (PlayerNotOnBikeMoving: if (this.0 & 1) is set, run when possible even when B isn't held)
 		   : 10 C0 03 02: ?????? (appears to be an array of 167 unknown 4-byte objects, possibly ItemSlots)
 								 (LoadPlayerBag: Entire array read from in a loop, just like gSaveBlock1Ptr->bagPocket_Items, and written to j0203BB00)
 								 (SavePlayerBag: Entire array written to in a loop, just like gSaveBlock1Ptr->bagPocket_Items, read from j0203BB00)
@@ -314,7 +320,30 @@ funcs e,j,desc:
 056158 = 055A18 = GetMapTypeByGroupAndId
 056188 = 055A48 = Overworld_GetMapTypeOfSaveblockLocation
 0561D8 = 055A98 = is_map_type_1_2_3_5_or_6
+058F78 = 058834 = MapGridGetMetatileBehaviorAt
+059C8C = 059548 = MetatileBehavior_IsNonAnimDoor
+05B45C = 05AD18 = TryInterruptEventObjectSpecialAnim
+05B4B0 = 05AD6C = npc_clear_strange_bits
+05B4D4 = 05AD90 = MovePlayerAvatarUsingKeypadInput
+05B50C = 05ADC8 = PlayerAllowForcedMovementIfMovingSameDirection
+05B528 = 05ADE4 = TryDoMetatileBehaviorForcedMovement
+05B5A0 = 05AE5C = GetForcedMovementByMetatileBehavior
+05B93C = 05B1F8 = MovePlayerNotOnBike
+05BB1C = 05B3D8 = CheckForPlayerAvatarCollision
+05BE08 = 05B6C4 = DoPlayerAvatarTransition
+05C024 = 05B8E0 = PlayerSetAnimId
+05C104 = 05B9C0 = PlayerGoSpeed1
+05C11C = 05B9D8 = PlayerGoSpeed2
+05C1D0 = 05BA8C = PlayerNotOnBikeCollide
+05C1F4 = 05BAB0 = PlayerFaceDirection
+05C23C = 05BAF8 = PlayerJumpLedge
 05C6C4 = 05BF80 = GetPlayerFacingDirection
+05CCD0 = 05C58C = task_add_bump_boulder
+05DFB0 = 05D870 = GetFieldObjectIdByXY
+0636AC = 062F6C = GetCollisionAtCoords
+063A20 = 0632E0 = MoveCoords
+063F84 = 063844 = GetWalkNormalMovementAction
+063FB0 = 063870 = ?????
 06E25C = 06DA50 = IsNationalPokedexEnabled
 06E454 = 06DC48 = GetVarPointer
 06E568 = 06DD5C = VarGet
@@ -339,6 +368,8 @@ funcs e,j,desc:
 099F40 = 099948 = CheckBagHasItem
 09A924 = 09A330 = GetHoldEffect
 09A948 = 09A354 = GetHoldEffectParam
+0BD09C = 0BE35C = MovePlayerOnBike
+0BD488 = 0BE748 = IsRunningDisallowed
 0C71D0 = 0C83AC = RecordAbilityBattle
 0C7208 = 0C83E4 = RecordItemEffectBattle
 0CC79C = 0CD914 = set_unknown_box_id
@@ -407,6 +438,8 @@ funcs e,j,desc:
 ?????? = 207370 = ????? (unimplemented)
 ?????? = 207450 = GetPinchThreshhold (unimplemented)
 ?????? = 207470 = PushScriptInstr (unimplemented)
+?????? = 2074A0 = SoftForceDirection (unimplemented)
+?????? = 2074F0 = ????? (unimplemented)
 ?????? = 2076B0 = RunTypeEffectivenessBasedAbilities (unimplemented)
 ?????? = 251B30 = GetNature_CheckSynchronize (unimplemented)
 ?????? = 251B58 = ????? (unimplemented)

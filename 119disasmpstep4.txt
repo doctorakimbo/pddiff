@@ -1,0 +1,23 @@
+sub_805BCEC(x, y, direction)
+{
+	if(FlagGet(FLAG_SYS_USE_STRENGTH))
+	{
+		eventObjectId = GetFieldObjectIdByXY(x, y);
+		
+		if(eventObjectId != 0x10 && gEventObjects[eventObjectId].graphicsId == 0x61)
+		{
+			x = gEventObjects[eventObjectId].currentCoords.x;
+			y = gEventObjects[eventObjectId].currentCoords.y;
+			MoveCoords(direction, &x, &y);
+			behavior = MapGridGetMetatileBehaviorAt(x, y);
+			
+			if(behavior == MB_CRACKED_FLOOR_HOLE || behavior == 0x1F || (GetCollisionAtCoords(&gEventObjects[eventObjectId], x, y, direction) == 0 && MapGridGetMetatileBehaviorAt(x, y) != MB_NON_ANIMATED_DOOR))
+			{
+				task_add_bump_boulder(eventObjectId, direction);
+				return 1;
+			}
+		}
+	}
+	
+	return 0;
+}

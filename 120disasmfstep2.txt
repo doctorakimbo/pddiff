@@ -1,0 +1,18 @@
+PlayerGoSpeed1(arg0)
+{
+	PlayerSetAnimId(GetWalkNormalMovementAction(arg0), 2)
+}
+
+
+
+
+
+GetWalkNormalMovementAction(arg0) @63F84
+{
+	memcpy(&s0, data_3A6505, 5)
+	
+	if(arg0 > 4)
+		arg0 = 0
+	
+	return *(&s0 + arg0)
+}

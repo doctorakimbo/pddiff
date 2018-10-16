@@ -1,0 +1,53 @@
+sub_805BB1C(direction)
+{
+	playerEventObj = &gEventObjects[gPlayerAvatar.eventObjectId];
+
+	x = playerEventObj->currentCoords.x;
+	y = playerEventObj->currentCoords.y;
+	
+	if(fn_6DB84(MapGridGetMetatileBehaviorAt(x, y), direction))
+		return 8;
+		
+	oldDirection = direction;
+	
+	switch(playerEventObj->currentMetatileBehavior)
+	{
+	case 0xB0:
+		if(direction == DIR_WEST)
+			direction = DIR_NORTHWEST;
+		elseif(direction == DIR_EAST)
+			direction = DIR_SOUTHEAST;
+		
+		break;
+	case 0xB1:
+		if(direction == DIR_WEST)
+			direction = DIR_NORTHWEST;
+		
+		break;
+	case 0xB2:
+		if(direction == DIR_EAST)
+			direction = DIR_SOUTHEAST;
+		
+		break;
+	case 0xB3:
+		if(direction == DIR_WEST)
+			direction = DIR_SOUTHWEST;
+		elseif(direction == DIR_EAST)
+			direction = DIR_NORTHEAST;
+		
+		break;
+	case 0xB4:
+		if(direction == DIR_EAST)
+			direction = DIR_NORTHEAST;
+		
+		break;
+	case 0xB5:
+		if(direction == DIR_WEST)
+			direction = DIR_SOUTHWEST;
+		
+		break;
+	}
+	
+	MoveCoords(direction, &x, &y);
+	return fn_5BBA8(playerEventObj, x, y, oldDirection, MapGridGetMetatileBehaviorAt(x, y));
+}

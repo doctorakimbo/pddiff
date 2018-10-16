@@ -1,0 +1,66 @@
+sub_805B9D4(arg0, arg1)
+{
+	fn_5BB1C()
+	r1 = r0
+	
+	if(r0 != 0)
+	{
+		if(r0 == 6)
+		{
+			r0 = arg0
+			fn_5C23C()
+		}
+		elseif(r0 == 8)
+			PlayerFaceDirection(arg0)
+		else
+		{
+			if((r1 - 5) > 3)
+				PlayerNotOnBikeCollide(arg0)
+		}
+	}
+	elseif(gPlayerAvatar.0 & 8)
+	{
+		r0 = arg0
+		fn_5C11C()
+	}
+	elseif((arg1 & 2) && FlagGet(0x82F))
+	{
+		r0 = gEventObjects[gPlayerAvatar.5].0x1E
+		fn_BD488()
+		
+		if(r0 == 0)
+		{
+			r0 = arg0
+			fn_5BAAC()
+			
+			if(r0 != 0)
+			{
+				r0 = arg0
+				fn_5C194()
+			}
+			else
+			{
+				r0 = arg0
+				fn_5C17C()
+			}
+			
+			gPlayerAvatar.0 |= 0x80
+		}
+	}
+	else
+	{
+		r0 = arg0
+		fn_5BAAC()
+		
+		if(r0 != 0)
+		{
+			r0 = arg0
+			fn_5C0EC()
+		}
+		else
+		{
+			r0 = arg0
+			fn_5C104()
+		}
+	}
+}

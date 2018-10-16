@@ -1,0 +1,24 @@
+sub_805BCEC(arg0, arg1, arg2)
+{
+	if(FlagGet(0x805))
+	{
+		r6 = GetFieldObjectIdByXY(arg0, arg1)
+		
+		if(r6 != 0x10 && gEventObjects[r6].5 == 0x61)
+		{
+			s0 = gEventObjects[r6].0x10
+			spt5 = gEventObjects[r6].0x12
+			MoveCoords(arg2, &s0, &spt5)
+			r0 = MapGridGetMetatileBehaviorAt(s0, spt5)
+			
+			if(r0 == 0x66 || r0 == 0x1F || (npc_block_way(&gEventObjects[r6], s0, spt5, arg2) == 0 && MapGridGetMetatileBehaviorAt(s0, spt5) != 0x60))
+			{
+				lbl2:
+				task_add_bump_boulder(r6, arg2)
+				return 1
+			}
+		}
+	}
+	
+	return 0
+}

@@ -1,0 +1,39 @@
+lbl1: @5B3E0
+r6 = r0
+r8 = r1
+r7 = r2
+r4 = data_02037078
+r1 = *(r4 + 5)
+r0 = r1 * 8
+r0 += r1
+r0 *= 4
+r1 = data_02036E38
+r5 = r0 + r1
+r0 = r5
+fn_5CC40()
+r0 = *(r4 + 6)
+if(r0 != 0) goto lbl2
+
+fn_5B528()
+if(r0 != 0) goto lbl2
+
+r0 = r5
+r1 = r6
+fn_5B45C()
+if(r0 != 0) goto lbl2
+
+r0 = r5
+fn_5B4B0()
+fn_5BE08()
+fn_5B5A0()
+if(r0 != 0) goto lbl2
+
+r0 = r6
+r1 = r8
+r2 = r7
+fn_5B4D4()
+fn_5B50C()
+goto lbl2
+
+lbl2:
+return

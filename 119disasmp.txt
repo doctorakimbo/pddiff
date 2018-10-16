@@ -1,0 +1,75 @@
+lbl1: @5B5A8
+r5 = &s0
+*r5 = r0
+r5 += 2
+*r5 = r1
+r7 = r2
+r0 = 0x805
+fn_6E6D0()
+if(r0 == 0) goto lbl3
+
+r0 = &s0
+r1 = 0
+r0 = *(r0 + r1)
+r1 = *(r5 + r1)
+fn_5DFB0()
+r6 = r0
+if(r6 == 0x10) goto lbl3
+
+r0 = gEventObjects
+r1 = r6 * 8
+r1 += r6
+r1 *= 4
+r4 = r1 + r0
+r0 = *(r4 + 5)
+if(r0 != 0x61) goto lbl3
+
+r1 = *(r4 + 0x10)
+r0 = &s0
+*r0 = r1
+r0 = *(r4 + 0x12)
+*r5 = r0
+r0 = r7
+r1 = &s0
+r2 = r5
+MoveCoords()
+r0 = &s0
+r1 = 0
+r0 = *(r0 + r1)
+r1 = *(r5 + r1)
+MapGridGetMetatileBehaviorAt()
+if(r0 == 0x66) goto lbl2
+
+if(r0 == 0x1F) goto lbl2
+
+r0 = &s0
+r2 = 0
+r1 = *(r0 + r2)
+r2 = *(r5 + r2)
+r0 = r4
+r3 = r7
+fn_636AC()
+if(r0 != 0) goto lbl3
+
+r0 = &s0
+r1 = 0
+r0 = *(r0 + r1)
+r1 = *(r5 + r1)
+MapGridGetMetatileBehaviorAt()
+if(r0 == 0x60) goto lbl3
+
+goto lbl2
+
+lbl2:
+r0 = r6
+r1 = r7
+fn_5CCD0()
+r0 = 1
+goto lbl4
+
+lbl3:
+r0 = 0
+goto lbl4
+
+lbl4:
+return r0

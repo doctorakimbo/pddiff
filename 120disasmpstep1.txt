@@ -1,0 +1,42 @@
+PlayerGoSpeed1(arg0)
+{
+	s0 = arg0
+	r0 = gPlayerAvatar
+	r1 = *(r0 + 5)
+	r0 = r1 * 8
+	r0 += r1
+	r0 *= 4
+	r1 = gEventObjects
+	r0 += r1
+	r1 = *(r0 + 0x1E)
+	
+	if(r1 >= 0xB0 && r1 <= 0xB5)
+		r0 = fn_222B34_J(s0)
+	else
+		r0 = fn_63F84(s0)
+	
+	fn_5C024()
+	return
+}
+
+
+
+
+
+fn_222B34_J(arg0)
+{
+	r4 = arg0
+	r1 -= 0xB0
+	r1 *= 4
+	r2 = data_222B88_J
+	r1 += r2
+	memcpy(&s0, *r0, 5)
+	
+	if(r4 > 4)
+		r4 = 0
+	
+	r1 = &s0
+	r0 = r1 + r4
+	r0 = *r0
+	return r0
+}

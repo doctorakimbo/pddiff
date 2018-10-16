@@ -1,0 +1,23 @@
+PlayerGoSpeed1(direction)
+{
+	PlayerSetAnimId(GetWalkNormalMovementAction(direction), 2);
+}
+
+
+
+
+
+GetWalkNormalMovementAction(direction) @63F84
+{
+	memcpy(&actionTable, data_3A6505, 5)
+	
+	if(direction > 4)
+		direction = 0;
+	
+	return actionTable[direction];
+}
+
+
+
+data_3A6505:
+10 10 11 12 13

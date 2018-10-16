@@ -1,0 +1,11 @@
+lbl1: @5B9D8
+fn_2074F0_J()
+r1 = 2
+PlayerSetAnimId()
+(end)
+
+
+
+
+
+fn_2074F0_J:

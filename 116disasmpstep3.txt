@@ -1,0 +1,7 @@
+MovePlayerAvatarUsingKeypadInput(arg0, arg1, arg2)
+{
+	if(!(data_0203C00D_J.0 & 2) && (gPlayerAvatar.0 & 6))
+		MovePlayerOnBike(arg0, arg1)
+	else
+		MovePlayerNotOnBike(arg0, arg2)
+}

@@ -1,0 +1,23 @@
+sub_805BB1C(arg0)
+{
+	s1 = gEventObjects[gPlayerAvatar.5].0x10
+	s1pt5 = gEventObjects[gPlayerAvatar.5].0x12
+	r0 = s1
+	fn_58F78()
+	r1 = arg0
+	r0 = is_warp_tile()
+	
+	if(r0 != 0)
+		return 8
+	
+	MoveCoords(arg0, &s1, r4)
+	r0 = s1
+	r1 = s1pt5
+	fn_58F78()
+	r1 = s1
+	r2 = s1pt5
+	s0 = r0
+	r0 = &gEventObjects[gPlayerAvatar.5]
+	r3 = arg0
+	return fn_5BBA8()
+}

@@ -1,0 +1,96 @@
+lbl1: @5B9D4
+r4 = r0
+r5 = r1
+r0 = r4
+fn_5BB1C()
+r1 = r0
+if(r0 == 0) goto lbl4
+
+if(r0 != 6) goto lbl2
+
+r0 = r4
+fn_5C23C()
+goto lbl13
+
+lbl2:
+if(r0 != 8) goto lbl3
+
+r0 = r4
+fn_5C1F4()
+goto lbl13
+
+lbl3:
+r0 = r1 - 5
+if(r0 <= 3) goto lbl13
+
+r0 = r4
+fn_5C1D0()
+goto lbl13
+
+lbl4:
+r6 = gPlayerAvatar
+r1 = *r6
+r0 = 8
+r0 &= r1
+if(r0 == 0) goto lbl8
+
+r0 = r4
+fn_5C11C()
+goto lbl13
+
+lbl8:
+r0 = 2
+r5 &= r0
+if(r5 == 0) goto lbl11
+
+r0 = 0x82F
+FlagGet()
+if(r0 == 0) goto lbl11
+
+r2 = gEventObjects
+r1 = *(r6 + 5)
+r0 = r1 * 8
+r0 += r1
+r0 *= 4
+r0 += r2
+r0 = *(r0 + 0x1E)
+fn_BD488()
+if(r0 != 0) goto lbl11
+
+r0 = r4
+fn_5BAAC()
+if(r0 == 0) goto lbl9
+
+r0 = r4
+fn_5C194()
+goto lbl10
+
+lbl9:
+r0 = r4
+fn_5C17C()
+goto lbl10
+
+lbl10:
+r2 = gPlayerAvatar
+r1 = *r2
+r0 = 0x80
+r0 |= r1
+*r2 = r0
+goto lbl13
+
+lbl11:
+r0 = r4
+fn_5BAAC()
+if(r0 == 0) goto lbl12
+
+r0 = r4
+fn_5C0EC()
+goto lbl13
+
+lbl12:
+r0 = r4
+fn_5C104()
+goto lbl13
+
+lbl13:
+return

@@ -1,0 +1,25 @@
+PlayerGoSpeed1(arg0)
+{
+	r1 = *((*(gPlayerAvatar + 5) * 0x24) + gEventObjects + 0x1E)
+	
+	if(r1 >= 0xB0 && r1 <= 0xB5)
+		r0 = fn_222B34_J(arg0, r1)
+	else
+		r0 = GetWalkNormalMovementAction(arg0)
+	
+	PlayerSetAnimId(r0, 2)
+}
+
+
+
+
+
+fn_222B34_J(arg0, arg1)
+{
+	memcpy(&s0, *(((arg1 - 0xB0) * 4) + data_222B88_J), 5)
+	
+	if(arg0 > 4)
+		arg0 = 0
+	
+	return *(&s0 + arg0)
+}

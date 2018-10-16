@@ -1,0 +1,44 @@
+player_step(direction, newKeys, heldKeys)
+{
+	direction = SoftForceDirection(direction);
+	
+	playerEventObj = gEventObjects[gPlayerAvatar.eventObjectId];
+	sub_805CC40(playerEventObj);
+	
+	if(gPlayerAvatar.preventStep == FALSE && TryDoMetatileBehaviorForcedMovement() == 0 && TryInterruptEventObjectSpecialAnim(playerEventObj, direction) == 0)
+	{
+		npc_clear_strange_bits(playerEventObj);
+		DoPlayerAvatarTransition();
+		
+		if(GetForcedMovementByMetatileBehavior() == 0)
+		{
+			MovePlayerAvatarUsingKeypadInput(direction, newKeys, heldKeys);
+			PlayerAllowForcedMovementIfMovingSameDirection();
+		}
+	}
+}
+
+
+
+
+
+
+SoftForceDirection(direction) @2074A0_J
+{
+	if(data_02030C00D_J.0 & 2)
+		return direction;
+	elseif(gPlayerAvatar.flags & 0xD) // in RSE this would be PLAYER_AVATAR_FLAG_ON_FOOT | PLAYER_AVATAR_FLAG_ACRO_BIKE | PLAYER_AVATAR_FLAG_SURFING;
+		return direction;			  // unclear what the acro and mach bike flags become in FRLG
+	elseif(direction != DIR_NONE)
+		return direction;
+	elseif(data_02030C00D_J.1 == 0)
+		return DIR_NONE;
+	elseif(data_02030C00D_J.2 & 0x80)
+		return DIR_SOUTH;
+	elseif(data_02030C00D_J.2 & 0x40)
+		return DIR_NORTH;
+	elseif(data_02030C00D_J.2 & 0x20)
+		return DIR_WEST;
+	else
+		return DIR_EAST;
+}

@@ -1,0 +1,17 @@
+sub_805B3E0(arg0, arg1, arg2)
+{
+	r5 = (*(data_02037078 + 5) * 0x24) + data_02036E38
+	sub_805CC40(r5)
+	
+	if(*(data_02037078 + 6) == 0 && TryDoMetatileBehaviorForcedMovement() == 0 && TryInterruptEventObjectSpecialAnim(r5, arg0) == 0)
+	{
+		npc_clear_strange_bits(r5)
+		DoPlayerAvatarTransition()
+		
+		if(GetForcedMovementByMetatileBehavior() == 0)
+		{
+			MovePlayerAvatarUsingKeypadInput(arg0, arg1, arg2)
+			PlayerAllowForcedMovementIfMovingSameDirection()
+		}
+	}
+}

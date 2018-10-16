@@ -1,0 +1,38 @@
+sub_805B3E0(arg0, arg1, arg2)
+{
+	r6 = arg0
+	r8 = arg1
+	r7 = arg2
+	r4 = data_02037078
+	r1 = *(r4 + 5)
+	r0 = r1 * 8
+	r0 += r1
+	r0 *= 4
+	r1 = data_02036E38
+	r5 = r0 + r1
+	sub_805CC40(r5)
+	r0 = *(r4 + 6)
+	
+	if(r0 == 0)
+	{
+		r0 = TryDoMetatileBehaviorForcedMovement()
+		
+		if(r0 == 0)
+		{
+			r0 = TryInterruptEventObjectSpecialAnim(r5, r6)
+			
+			if(r0 == 0)
+			{
+				npc_clear_strange_bits(r5)
+				DoPlayerAvatarTransition()
+				r0 = GetForcedMovementByMetatileBehavior()
+				
+				if(r0 == 0)
+				{
+					MovePlayerAvatarUsingKeypadInput(r6, r8, r7)
+					PlayerAllowForcedMovementIfMovingSameDirection()
+				}
+			}
+		}
+	}
+}

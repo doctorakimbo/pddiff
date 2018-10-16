@@ -1,0 +1,96 @@
+sub_805B3E0(arg0, arg1, arg2)
+{
+	r6 = arg0
+	r8 = arg1
+	r7 = arg2
+	r6 = fn_2074A0_J(r6)
+	r4 = data_02037078
+	r1 = *(r4 + 5)
+	r0 = 0x24
+	r0 *= r1
+	r1 = data_02036E38
+	r5 = r0 + r1
+	sub_805CC40(r5)
+	r0 = *(r4 + 6)
+	
+	if(r0 == 0)
+	{
+		r0 = TryDoMetatileBehaviorForcedMovement()
+		
+		if(r0 == 0)
+		{
+			r0 = TryInterruptEventObjectSpecialAnim(r5, r6)
+			
+			if(r0 == 0)
+			{
+				npc_clear_strange_bits(r5)
+				DoPlayerAvatarTransition()
+				r0 = GetForcedMovementByMetatileBehavior()
+				
+				if(r0 == 0)
+				{
+					MovePlayerAvatarUsingKeypadInput(r6, r8, r7)
+					PlayerAllowForcedMovementIfMovingSameDirection()
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
+fn_2074A0_J(arg0)
+{
+	r4 = arg0
+	r0 = data_02030C00D_J
+	r1 = *r0
+	r2 = 2
+	r2 &= r1
+	
+	if(r2 == 0)
+	{
+		r2 = data_02037078
+		r2 = *r2
+		r1 = 0xD
+		r2 &= r1
+		
+		if(r2 == 0 && r4 == 0)
+		{
+			r2 = *(r0 + 1)
+			
+			if(r2 != 0)
+			{
+				r4 = 0
+				r2 = *(r0 + 2)
+				r1 = 0x80
+				r1 &= r2
+				
+				if(r1 == 0)
+				{
+					r1 = 0x40
+					r1 &= r2
+					
+					if(r1 == 0)
+					{
+						r1 = 0x20
+						r1 &= r2
+						
+						if(r1 == 0)
+							r4++
+						
+						r4++
+					}
+					
+					r4++
+				}
+				
+				r4++
+			}
+		}
+	}
+	
+	return r4
+}

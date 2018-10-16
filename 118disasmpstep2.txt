@@ -1,0 +1,63 @@
+sub_805BB1C(arg0)
+{
+	s1 = *((*(gPlayerAvatar + 5) * 0x24) + gEventObjects + 0x10)
+	s1pt5 = *((*(gPlayerAvatar + 5) * 0x24) + gEventObjects + 0x12)
+	r0 = s1
+	fn_58F78()
+	r1 = arg0
+	r0 = is_warp_tile()
+	
+	if(r0 != 0)
+		return 8
+	
+	switch(*((*(gPlayerAvatar + 5) * 0x24) + gEventObjects + 0x1E))
+	{
+	case 0xB0:
+		if(arg0 == 3)
+			r0 = 7
+		elseif(arg0 == 4)
+			r0 = 6
+		else
+			r0 = arg0
+	case 0xB1:
+		if(arg0 == 3)
+			r0 = 7
+		else
+			r0 = arg0
+	case 0xB2:
+		if(arg0 == 4)
+			r0 = 6
+		else
+			r0 = arg0
+	case 0xB3:
+		if(arg0 == 3)
+			r0 = 5
+		elseif(arg0 == 4)
+			r0 = 8
+		else
+			r0 = arg0
+	case 0xB4:
+		if(arg0 == 4)
+			r0 = 8
+		else
+			r0 = arg0
+	case 0xB5:
+		if(arg0 == 3)
+			r0 = 5
+		else
+			r0 = arg0
+	default:
+		r0 = arg0
+	}
+	
+	MoveCoords(r0, &s1, r4)
+	r0 = s1
+	r1 = s1pt5
+	fn_58F78()
+	r1 = s1
+	r2 = s1pt5
+	s0 = r0
+	r0 = (*(gPlayerAvatar + 5) * 0x24) + gEventObjects
+	r3 = arg0
+	return fn_5BBA8()
+}

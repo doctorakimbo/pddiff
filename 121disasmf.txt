@@ -1,0 +1,11 @@
+lbl1: @5C11C
+fn_63FB0()
+r1 = 2
+PlayerSetAnimId()
+(end)
+
+
+
+
+
+fn_63FB0: @63FB0

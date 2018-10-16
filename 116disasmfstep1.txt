@@ -1,0 +1,14 @@
+MovePlayerAvatarUsingKeypadInput(arg0, arg1)
+{
+	r3 = arg0
+	r4 = arg1
+	r0 = gPlayerAvatar
+	r1 = *r0
+	r0 = 6
+	r0 &= r1
+	
+	if(r0 != 0)
+		MovePlayerOnBike(r3, r4)
+	else
+		MovePlayerNotOnBike(r3, r2)
+}

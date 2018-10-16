@@ -1,0 +1,44 @@
+sub_805B3E0(arg0, arg1, arg2)
+{
+	arg0 = fn_2074A0_J(arg0)
+	
+	r5 = (*(data_02037078 + 5) * 0x24) + data_02036E38
+	sub_805CC40(r5)
+	
+	if(*(data_02037078 + 6) == 0 && TryDoMetatileBehaviorForcedMovement() == 0 && TryInterruptEventObjectSpecialAnim(r5, arg0) == 0)
+	{
+		npc_clear_strange_bits(r5)
+		DoPlayerAvatarTransition()
+		
+		if(GetForcedMovementByMetatileBehavior() == 0)
+		{
+			MovePlayerAvatarUsingKeypadInput(arg0, arg1, arg2)
+			PlayerAllowForcedMovementIfMovingSameDirection()
+		}
+	}
+}
+
+
+
+
+
+
+fn_2074A0_J(arg0)
+{
+	if(*data_02030C00D_J & 2)
+		return arg0
+	elseif(*data_02037078 & 0xD)
+		return arg0
+	elseif(r4 != 0)
+		return arg0
+	elseif(*(data_02030C00D_J + 1) == 0)
+		return 0
+	elseif(*(data_02030C00D_J + 2) & 0x80)
+		return 1
+	elseif(*(data_02030C00D_J + 2) & 0x40)
+		return 2
+	elseif(*(data_02030C00D_J + 2) & 0x20)
+		return 3
+	else
+		return 4
+}

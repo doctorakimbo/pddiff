@@ -1,0 +1,17 @@
+player_step(direction, newKeys, heldKeys)
+{
+	playerEventObj = gEventObjects[gPlayerAvatar.eventObjectId];
+	sub_805CC40(playerEventObj);
+	
+	if(gPlayerAvatar.preventStep == FALSE && TryDoMetatileBehaviorForcedMovement() == 0 && TryInterruptEventObjectSpecialAnim(playerEventObj, direction) == 0)
+	{
+		npc_clear_strange_bits(playerEventObj);
+		DoPlayerAvatarTransition();
+		
+		if(GetForcedMovementByMetatileBehavior() == 0)
+		{
+			MovePlayerAvatarUsingKeypadInput(direction, newKeys, heldKeys);
+			PlayerAllowForcedMovementIfMovingSameDirection();
+		}
+	}
+}

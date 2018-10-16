@@ -1,0 +1,7 @@
+MovePlayerAvatarUsingKeypadInput(direction, newKeys, heldKeys)
+{
+	if(!(data_0203C00D_J.0 & 2) && (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE)))
+		MovePlayerOnBike(direction, newKeys, heldKeys)
+	else
+		MovePlayerNotOnBike(direction, heldKeys)
+}

@@ -231,6 +231,15 @@ pokeball types:
 + 0x17 = Lure Ball
 + 0x18 = Fast Ball
 
+metatiles:
+0x1F: (allows Strength boulder to be moved onto it)
+0xB0: (moving west off the tile results in northwest, moving east results in southeast)
+0xB1: (moving west off the tile results in northwest)
+0xB2: (moving east off the tile results in southeast)
+0xB3: (moving west off the tile results in southwest, moving east results in northeast)
+0xB4: (moving east off the tile results in northeast)
+0xB5: (moving west off the tile results in southwest)
+
 battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0xC2 = "[PKMN]'s [ABILITY] [CHANGED] its [STAT]!" <DON'T ADD 9> <REFACTOR LATER>
 ! 0xC8 = (special message for move ID 257?) <DON'T ADD 9> <probably refactor later to not remove the old C8, "prevents romance">
@@ -818,21 +827,42 @@ grafics:
 = 055D6C: Entirety of sub_8055D6C (see 111disasm)
 		  Implements: possibly allows music to be dynamically changed
 		  Required knowledge: j0203CB18
-= 055FF8: Entirety of music_something (see 112disasm)
+= 055F88: Entirety of music_something (see 112disasm)
 		  Implements: Need more info
 		  Required knowledge: j0203C00D
 - 059F34: Entirety of sub_8059F34 (see 113disasm)
 		  Implements: Makes room for changes at 059F4C
 - 059F4C: Entirety of sub_8059F4C (see 113disasm)
 		  Implements: Not completely sure, but possibly implements RSE's MetatileBehavior_IsLongGrass() for FRLG
-= 05A9B4: Part of DrawMetatile (see 114disasm)
+= 05A9BC: 01 28 25 D0 01 28 02 DC 00 28 51 D0 -> 03 28 7E D8 00 4B 18 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j183100, see 114disasm))
 		  Implements: Unsure, but DrawMetatile(1, ...) and DrawMetatile(2, ...) swapped functionality and there's a new DrawMetatile(3, ...) that uses all available resources at once
-= (DO THE RAW_PE FOR ABOVE)
+= 05B3E0: Entirety of player_step (see 115disasm)
+		  Implements: Need more info, something about semi-forced steps
+		  Required knowledge: j02030C00D
+		  Requires in future: SoftForceDirection (j2074A0)
+= 05B4D4: Entirety of MovePlayerAvatarUsingKeypadInput (see 116disasm)
+		  Implements: Need more info, extra requirement for bike
+		  Required knowledge: j02030C00D
+= 05B9D4: Entirety of PlayerNotOnBikeMoving (see 117disasm)
+		  Implements: running always-on toggle, something else
+		  Required knowledge: j02030C00D
+= 05BB5C: 30 1C 01 A9 22 1C 07 F0 -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j222A70, see 118disasm))
+		  Implements: forced movement for metatiles 0xB0-0xB5
+- 05BCEC: Entirety of sub_805BCEC (see 119disasm)
+		  Implements: Strength boulders able to be moved onto metatile 0x1F
+= 05C104: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j222AE0, see 120disasm))
+		  Implements: player walk animations for metatiles 0xB0-0xB5
+= 05C11C: Entirety of PlayerGoSpeed2 (see 121disasm)
+		  Implements: 
+		  Requires in future: fn_2074F0_J
+		  
+		  
+		  
 		  
 		  
 		  
 		  
 
 
-curr: j5A278
-next: j5ACA2
+curr: j5B9D8-j5B9F0
+next: j5BA08

@@ -1,0 +1,24 @@
+PlayerGoSpeed1(arg0)
+{
+	r0 = fn_63F84(arg0)
+	r1 = 2
+	fn_5C024()
+}
+
+
+
+
+
+fn_63F84(arg0) @63F84
+{
+	r4 = arg0
+	memcpy(&s0, data_3A6505, 5)
+	
+	if(r4 > 4)
+		r4 = 0
+	
+	r1 = &s0
+	r0 = r1 + r4
+	r0 = *r0
+	return r0
+}

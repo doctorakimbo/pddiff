@@ -1,0 +1,33 @@
+PlayerGoSpeed1(direction)
+{
+	behavior = gEventObjects[gPlayerAvatar.eventObjectId].currentMetatileBehavior;
+	
+	if(behavior >= 0xB0 && behavior <= 0xB5)
+		PlayerSetAnimId(fn_222B34_J(direction, behavior), 2);
+	else
+		PlayerSetAnimId(GetWalkNormalMovementAction(direction), 2);
+}
+
+
+
+
+
+fn_222B34_J(direction, behavior)
+{
+	memcpy(&actionTable, data_222B88_J[behavior - 0xB0], 5);
+	
+	if(direction > 4)
+		direction = 0;
+	
+	return actionTable[direction];
+}
+
+
+
+data_222B88_J:
+10 10 11 C8 C5
+10 10 11 C8 13
+10 10 11 12 C5
+10 10 11 C4 C9
+10 10 11 12 C9
+10 10 11 C4 13

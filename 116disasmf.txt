@@ -1,0 +1,22 @@
+lbl1: @5B4D4
+r3 = r0
+r4 = r1
+r0 = gPlayerAvatar
+r1 = *r0
+r0 = 6
+r0 &= r1
+if(r0 == 0) goto lbl2
+
+r0 = r3
+r1 = r4
+fn_BD09C()
+goto lbl3
+
+lbl2:
+r0 = r3
+r1 = r2
+fn_5B93C()
+goto lbl3
+
+lbl3:
+return
