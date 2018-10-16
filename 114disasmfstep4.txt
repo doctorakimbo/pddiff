@@ -1,0 +1,58 @@
+DrawMetatile(a, b, c)
+{
+	switch(a)
+	{
+	case 0:
+		gBGTilemapBuffers3[c] = 0x3014;
+		gBGTilemapBuffers3[c + 1] = 0x3014;
+		gBGTilemapBuffers3[c + 0x20] = 0x3014;
+		gBGTilemapBuffers3[c + 0x21] = 0x3014;
+		
+		gBGTilemapBuffers1[c] = b[0];
+		gBGTilemapBuffers1[c + 1] = b[1];
+		gBGTilemapBuffers1[c + 0x20] = b[2];
+		gBGTilemapBuffers1[c + 0x21] = b[3];
+		
+		gBGTilemapBuffers2[c] = b[4];
+		gBGTilemapBuffers2[c + 1] = b[5];
+		gBGTilemapBuffers2[c + 0x20] = b[6];
+		gBGTilemapBuffers2[c + 0x21] = b[7];
+		break;
+	case 1:
+		gBGTilemapBuffers3[c] = b[0];
+		gBGTilemapBuffers3[c + 1] = b[1];
+		gBGTilemapBuffers3[c + 0x20] = b[2];
+		gBGTilemapBuffers3[c + 0x21] = b[3];
+		
+		gBGTilemapBuffers1[c] = b[4];
+		gBGTilemapBuffers1[c + 1] = b[5];
+		gBGTilemapBuffers1[c + 0x20] = b[6];
+		gBGTilemapBuffers1[c + 0x21] = b[7];
+		
+		gBGTilemapBuffers2[c] = 0;
+		gBGTilemapBuffers2[c + 1] = 0;
+		gBGTilemapBuffers2[c + 0x20] = 0;
+		gBGTilemapBuffers2[c + 0x21] = 0;
+		break;
+	case 2:
+		gBGTilemapBuffers3[c] = b[0];
+		gBGTilemapBuffers3[c + 1] = b[1];
+		gBGTilemapBuffers3[c + 0x20] = b[2];
+		gBGTilemapBuffers3[c + 0x21] = b[3];
+		
+		gBGTilemapBuffers1[c] = 0;
+		gBGTilemapBuffers1[c + 1] = 0;
+		gBGTilemapBuffers1[c + 0x20] = 0;
+		gBGTilemapBuffers1[c + 0x21] = 0;
+		
+		gBGTilemapBuffers2[c] = b[4];
+		gBGTilemapBuffers2[c + 1] = b[5];
+		gBGTilemapBuffers2[c + 0x20] = b[6];
+		gBGTilemapBuffers2[c + 0x21] = b[7];
+		break;
+	}
+
+	schedule_bg_copy_tilemap_to_vram(1);
+	schedule_bg_copy_tilemap_to_vram(2);
+	schedule_bg_copy_tilemap_to_vram(3);
+}

@@ -1,0 +1,64 @@
+DrawMetatile(arg0, arg1, arg2)
+{
+	switch(arg0)
+	{
+	case 0:
+		data_0300501C->0[arg2] = 0x3014
+		data_0300501C->2[arg2] = 0x3014
+		data_0300501C->0x40[arg2] = 0x3014
+		data_0300501C->0x42[arg2] = 0x3014
+		data_03005014->0[arg2] = arg1[0]
+		data_03005014->2[arg2] = arg1[1]
+		data_03005014->0x40[arg2] = arg1[2]
+		data_03005014->0x42[arg2] = arg1[3]
+
+		lbl5:
+		data_03005018->0[arg2] = arg1[4]
+		data_03005018->2[arg2] = arg1[5]
+		data_03005018->0x40[arg2] = arg1[6]
+		data_03005018->0x42[arg2] = arg1[7]
+		break;
+	case 1:
+		data_0300501C->0[arg2] = arg1[0]
+		data_0300501C->2[arg2] = arg1[1]
+		data_0300501C->0x40[arg2] = arg1[2]
+		data_0300501C->0x42[arg2] = arg1[3]
+		data_03005014->0[arg2] = 0
+		data_03005014->2[arg2] = 0
+		data_03005014->0x40[arg2] = 0
+		data_03005014->0x42[arg2] = 0
+		goto lbl5
+	case 2:
+		data_0300501C->0[arg2] = arg1[0]
+		data_0300501C->2[arg2] = arg1[1]
+		data_0300501C->0x40[arg2] = arg1[2]
+		data_0300501C->0x42[arg2] = arg1[3]
+		data_03005014->0[arg2] = arg1[4]
+		data_03005014->2[arg2] = arg1[5]
+		data_03005014->0x40[arg2] = arg1[6]
+		data_03005014->0x42[arg2] = arg1[7]
+		data_03005018->0[arg2] = 0
+		data_03005018->2[arg2] = 0
+		data_03005018->0x40[arg2] = 0
+		data_03005018->0x42[arg2] = 0
+		break;
+	case 3:
+		data_0300501C->0[arg2] = arg1[0]
+		data_0300501C->2[arg2] = arg1[1]
+		data_0300501C->0x40[arg2] = arg1[2]
+		data_0300501C->0x42[arg2] = arg1[3]
+		data_03005014->0[arg2] = arg1[4]
+		data_03005014->2[arg2] = arg1[5]
+		data_03005014->0x40[arg2] = arg1[6]
+		data_03005014->0x42[arg2] = arg1[7]
+		data_03005018->0[arg2] = arg1[8]
+		data_03005018->2[arg2] = arg1[9]
+		data_03005018->0x40[arg2] = arg1[10]
+		data_03005018->0x42[arg2] = arg1[11]
+		break;
+	}
+
+	schedule_bg_copy_tilemap_to_vram(1);
+	schedule_bg_copy_tilemap_to_vram(2);
+	schedule_bg_copy_tilemap_to_vram(3);
+}

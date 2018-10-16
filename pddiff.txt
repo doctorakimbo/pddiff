@@ -466,7 +466,7 @@ grafics:
 		  Requires in future: script_229DE_J, script_229EF_J
 = 020F00: (see 29disasm)
 		  Implements: Smelling Salts now does...something (need more info)
-+ 020F78: (see 29disasm) (last part of SetMoveEffect)
+! 020F78: (see 29disasm) (last part of SetMoveEffect)
 		  Implements: Magic Guard (move recoil)
 		  GLITCH!: Rock Head stopped working completely/Magic Guard doesn't work, some other change probably needed
 = 021124: Entirety of atk15_seteffectwithchance (see 30disasm)
@@ -809,10 +809,10 @@ grafics:
 = ?????? (j4E8A2): Unclear how to translate this to English rom (minidisasm15)
 		  Implements: Removes gender symbol somewhere, seems to be removed in english already
 = 053AB0, 053B16: 0B -> 10 (pkmnnamelength)
-! 054A00: 06 -> 04 (possibly PDONLY, changes call Overworld_SetWarpDestination(4, 1, -1, 6, 6) to Overworld_SetWarpDestination(4, 1, -1, 6, 4) (TEST THIS))
+! 054A00: 06 -> 04 (PDONLY, moves starting position in new game two tiles north)
 = 054A68: 39 4E 31 68 39 48 80 46 -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DF50, see 109disasm))
 		  Implements: need more info (clear save data)
-- 055238: 00 04 09 04 03 4A 80 0B 80 18 00 68 89 0B 09 18 -> 00 04 09 04 03 4A 89 0B 80 0B 80 18 00 68 09 18 (does nothing?)
++ 055238: 00 04 09 04 03 4A 80 0B 80 18 00 68 89 0B 09 18 -> 00 04 09 04 03 4A 89 0B 80 0B 80 18 00 68 09 18 (does nothing?)
 = 05550C: Entirety of sub_805550C (see 110disasm)
 		  Implements: need more info (some kind of warp, already prevented in map group 1, is now also prevented in map group 0x2501)
 = 055D6C: Entirety of sub_8055D6C (see 111disasm)
@@ -821,12 +821,13 @@ grafics:
 = 055FF8: Entirety of music_something (see 112disasm)
 		  Implements: Need more info
 		  Required knowledge: j0203C00D
-= 059F34: Entirety of sub_8059F34 (see 113disasm)
+- 059F34: Entirety of sub_8059F34 (see 113disasm)
 		  Implements: Makes room for changes at 059F4C
-= 059F4C: Entirety of sub_8059F4C (see 113disasm)
+- 059F4C: Entirety of sub_8059F4C (see 113disasm)
 		  Implements: Not completely sure, but possibly implements RSE's MetatileBehavior_IsLongGrass() for FRLG
 = 05A9B4: Part of DrawMetatile (see 114disasm)
-		  
+		  Implements: Unsure, but DrawMetatile(1, ...) and DrawMetatile(2, ...) swapped functionality and there's a new DrawMetatile(3, ...) that uses all available resources at once
+= (DO THE RAW_PE FOR ABOVE)
 		  
 		  
 		  
