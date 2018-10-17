@@ -1,0 +1,237 @@
+lbl1: @6CAC8
+r5 = r0
+sub_8069A54()
+r6 = GetPlayerFacingDirection()
+r4 = &s0
+r0 = &s0
+player_get_pos_to_and_height()
+r0 = &s0
+r1 = 0
+r0 = *(r0 + r1)
+r2 = 2
+r1 = *(r4 + r2)
+r2 = 0xFF
+sub_8058F48()
+r8 = r0
+r0 = &s0
+r1 = 0
+r2 = 2
+r4 = MapGridGetMetatileBehaviorAt(*(r0 + r1), *(r4 + r2))
+r7 = data_03005078
+r0 = r7
+sub_806C888()
+r0 = *(r5 + 2)
+*(r7 + 2) = r0
+sub_8081B30()
+if(r0 == 1 || mapheader_run_first_tag2_script_list_match() == 1) goto lbl2
+
+r1 = *r5
+r0 = 0x40
+r0 &= r1
+if(r0 == 0) goto lbl3
+
+IncrementGameStat(5)
+sub_8146CA4()
+sub_815D8C8()
+sub_80CC918()
+sub_80CB054()
+sub_80CCFBC()
+r0 = &s0
+r1 = r4
+r2 = r6
+sub_806D5E8()
+if(r0 != 1) goto lbl3
+
+r0 = *r7
+r1 = 0x40
+r0 |= r1
+*r7 = r0
+goto lbl2
+
+lbl2:
+r0 = 1
+goto lbl15
+
+lbl3:
+r1 = *r5
+r0 = 2
+r0 &= r1
+if(r0 == 0) goto lbl7
+
+r0 = *(r5 + 2)
+if(r0 == 0) goto lbl4
+
+if(r0 != r6) goto lbl6
+
+goto lbl4
+
+lbl4:
+r7 = &s0
+r0 = &s0
+player_get_next_pos_and_height()
+r0 = &s0
+r1 = 0
+r2 = 2
+MapGridGetMetatileBehaviorAt(*(r0 + r1), *(r7 + r2))
+r4 = r0
+r0 = &s0
+r1 = r4
+r2 = r6
+sub_806D804()
+if(r0 != 1) goto lbl5
+
+r0 = data_03005078
+r1 = *r0
+r2 = 2
+goto lbl13
+
+lbl5:
+r0 = &s0
+player_get_pos_to_and_height()
+r0 = &s0
+r1 = 0
+r2 = 2
+MapGridGetMetatileBehaviorAt(*(r0 + r1), *(r7 + r2))
+r4 = r0
+goto lbl6
+
+lbl6:
+r1 = *r5
+r0 = 2
+r0 &= r1
+if(r0 == 0) goto lbl7
+
+r0 = r8
+sub_806D7F4()
+if(r0 != 1) goto lbl7
+
+r0 = data_03005078
+r1 = *r0
+r2 = 2
+goto lbl13
+
+lbl7:
+r1 = *r5
+r0 = 0x10
+r0 &= r1
+if(r0 == 0) goto lbl8
+
+r0 = *(r5 + 2)
+if(r0 != r6) goto lbl8
+
+r0 = &s0
+r1 = r4
+r2 = r6
+sub_806D964()
+if(r0 != 1) goto lbl8
+
+r0 = data_03005078
+r1 = *r0
+r2 = 0x10
+goto lbl13
+
+lbl8:
+r4 = &s0
+r0 = &s0
+player_get_next_pos_and_height()
+r0 = &s0
+r1 = 0
+r2 = 2
+MapGridGetMetatileBehaviorAt(*(r0 + r1), *(r4 + r2))
+r4 = r0
+r1 = *r5
+r0 = 0x10
+r0 &= r1
+if(r0 == 0) goto lbl9
+
+r0 = *(r5 + 2)
+if(r0 != r6) goto lbl9
+
+r0 = &s0
+r1 = r4
+r2 = r6
+sub_806D804()
+if(r0 != 1) goto lbl9
+
+r0 = data_03005078
+r1 = *r0
+r2 = 0x10
+goto lbl13
+
+lbl9:
+r1 = *r5
+r0 = 1
+r0 &= r1
+if(r0 == 0) goto lbl10
+
+r0 = &s0
+r1 = r4
+r2 = r6
+sub_806CEA0()
+if(r0 != 1) goto lbl10
+
+r0 = data_03005078
+r1 = *r0
+r2 = 1
+goto lbl13
+
+lbl10:
+r1 = *r5
+r0 = 0x20
+r0 &= r1
+if(r0 == 0) goto lbl11
+
+r0 = *(r5 + 2)
+if(r0 != r6) goto lb111
+
+r0 = &s0
+r1 = r4
+r2 = r6
+sub_806DCD0()
+if(r0 != 1) goto lbl11
+
+r0 = data_03005078
+r1 = *r0
+r2 = 0x20
+goto lbl13
+
+lbl11:
+r1 = *r5
+r0 = 4
+r0 &= r1
+if(r0 == 0) goto lbl12
+
+r2 = data_03005078
+r0 = *r2
+r1 = 4
+r0 |= r1
+*r2 = r0
+FlagSet(0x83E)
+PlaySE(6)
+sub_806F258()
+goto lbl2
+
+lbl12:
+r0 = 8
+r0 &= r1
+if(r0 == 0) goto lbl14
+
+sub_810AD10()
+if(r0 != 1) goto lbl14
+
+r0 = data_03005078
+r1 = *r0
+r2 = 8
+goto lbl13
+
+lbl13:
+r1 |= r2
+*r0 = r1
+goto lbl2
+
+lbl14:
+r0 = 0
+goto lbl15
+
+lbl15:
+return r0

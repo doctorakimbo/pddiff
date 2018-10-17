@@ -1,0 +1,26 @@
+sub_805C438(arg0)
+{
+	r4 = gEventObjects[gPlayerAvatar.5].0x1E
+	call(data_35B864[arg0 - 1], r4)
+	
+	if(r0 == 0)
+	{
+		if(arg0 == 3 && (fn_59C20(r4) || fn_59C48(r4)))
+			return
+		
+		if(arg0 == 4 && (fn_59C0C(r4) || fn_59C34(r4)))
+			return
+		
+		if(arg0 == 2)
+		{
+			PlayerGetDestCoords(&s0, &spt5)
+			MoveCoords(2, &s0, &spt5)
+			r4 = MapGridGetMetatileBehaviorAt(s0, spt5)
+			
+			if(MetatileBehavior_IsWarpDoor(r4))
+				return
+		}
+		
+		PlaySE(7)
+	}
+}

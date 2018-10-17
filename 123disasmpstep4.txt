@@ -1,0 +1,7 @@
+fn_183380_J(metatileBehavior)
+{
+	if(metatileBehavior == 0xE0 || metatileBehavior == 0xE2 || metatileBehavior == 0x21 || metatileBehavior == 0x2B)
+		return TRUE;
+	else
+		return FALSE;
+}

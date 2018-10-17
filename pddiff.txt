@@ -239,6 +239,8 @@ metatiles:
 0xB3: (moving west off the tile results in southwest, moving east results in northeast)
 0xB4: (moving east off the tile results in northeast)
 0xB5: (moving west off the tile results in southwest)
+0xE0: (IsSandOrDeepSand (? unsure) returns TRUE)
+0xE2: (IsSandOrDeepSand (? unsure) returns TRUE)
 
 battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0xC2 = "[PKMN]'s [ABILITY] [CHANGED] its [STAT]!" <DON'T ADD 9> <REFACTOR LATER>
@@ -296,6 +298,8 @@ grafics:
 + expand 26056C (ball sprites) from 12 entries to 26 (A23000)
 + expand 2605CC (ball sprite palettes) from 12 entries to 26 (A230F0)
 + expand 2606F4 (ball sprite templates) from 12 entries to 26 (A23380)
+- expand 39FDB0 (field object graphics info pointers) from 174 entries to 256 (j4EFDA0, e14EFDA0?????)
+- expand 3A65BC (movement action functions) from 170 entries to 226 (j221550, e1221550?????)
 + expand 3DB028 (item data) from 375 entries to 435 (10B0000)
 + expand 3D4038 (mon icon palettes) from 6 entries to 16 (jE40000, e1E40000)
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
@@ -853,8 +857,28 @@ grafics:
 = 05C104: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j222AE0, see 120disasm))
 		  Implements: player walk animations for metatiles 0xB0-0xB5
 = 05C11C: Entirety of PlayerGoSpeed2 (see 121disasm)
-		  Implements: 
-		  Requires in future: fn_2074F0_J
+		  Implements: player fast-walk animations for metatiles 0xB0-0xB5
+		  Requires in future: GetWalkFastMovementAction_New (j2074F0)
+= 05C14C: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j222CD0, see 120disasm mostly))
+		  Implements: player fastest-walk animations for metatiles 0xB0-0xB5
+= 05C164: Entirety of PlayerRun (see 121disasm mostly)
+		  Implements: player run animations for metatiles 0xB0-0xB5
+		  Requires in future: GetPlayerRunMovementAction_New (j207524)
+= 05C17C: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j222BA0, see 120disasm mostly))
+		  Implements: player ??? animations for metatiles 0xB0-0xB5 (seems to be FRLG-exclusive)
+= 05C438: Entirety of PlayCollisionSoundIfNotFacingWarp (see 122disasm)
+		  Implements: Need more info
+		  Required knowledge: j02030C00D
+- 05F2E0: 97 -> FF (152 -> 255 max object graphics ids)
+= 067D44: F1 F7 0A FF -> ?? ?? ?? ?? (changes call to sub_8059B5C to instead call fn at j183380, see 123disasm)
+		  Implements: Not certain, possibly IsSandOrDeepSand; adds metatiles 0xE0 and 0xE2 to whatever check this is
+= 06BCAA, 06BCF2: 0B -> 10 (pkmnnamelength)
+= 06BE72: 0D -> 20 (movenamelength)
+= 06CAC8: Entirety of sub_806CAC8 (see 124disasm)
+		  
+		  
+		  
+		  
 		  
 		  
 		  
@@ -864,5 +888,5 @@ grafics:
 		  
 
 
-curr: j5B9D8-j5B9F0
-next: j5BA08
+curr: j6C2BC-j6C524
+next: j6C9E4

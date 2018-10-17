@@ -9,3 +9,47 @@ PlayerSetAnimId()
 
 
 fn_2074F0_J:
+r4 = r0
+r0 = gPlayerAvatar
+r1 = *(r0 + 5)
+r0 = 0x24
+r0 *= r1
+r1 = gEventObjects
+r0 += r1
+r0 = *(r0 + 0x1E)
+if(r0 < 0xB0) goto lbl3
+
+if(r0 > 0xB5) goto lbl3
+
+r0 -= 0xB0
+r0 *= 4
+r2 = data_207558_J
+r0 = *(r2 + r0)
+if(r4 <= 4) goto lbl2
+
+r4 = 0
+goto lbl2
+
+lbl2:
+r0 = *(r0 + r4)
+goto lbl4
+
+lbl3:
+r0 = r4
+fn_63FB0()
+goto lbl4
+
+lbl4:
+return r0
+
+
+
+
+
+data_207558_J:
+1D 1D 1E D8 D5
+1D 1D 1E D8 20
+1D 1D 1E 1F D5
+1D 1D 1E D4 D9
+1D 1D 1E 1F D9
+1D 1D 1E D4 20

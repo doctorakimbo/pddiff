@@ -9,3 +9,25 @@ PlayerSetAnimId()
 
 
 fn_63FB0: @63FB0
+r4 = r0
+r1 = data_3A650A
+r0 = &s0
+r2 = 5
+memcpy()
+if(r4 <= 4) goto lbl2
+
+r4 = 0
+goto lbl2
+
+lbl2:
+r1 = &s0
+r0 = r1 + r4
+r0 = *r0
+return r0
+
+
+
+
+
+data_3A650A:
+1D 1D 1E 1F 20

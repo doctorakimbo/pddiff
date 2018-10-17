@@ -1,0 +1,35 @@
+PlayerGoSpeed2(direction)
+{
+	PlayerSetAnimId(GetWalkFastMovementAction_New(direction), 2);
+}
+
+
+
+
+
+GetWalkFastMovementAction_New(direction) @2074F0_J
+{
+	behavior = gEventObjects[gPlayerAvatar.eventObjectId].currentMetatileBehavior;
+	
+	if(behavior >= 0xB0 && behavior <= 0xB5)
+	{
+		if(direction > 4)
+			direction = 0;
+		
+		return gNewTileWalkFastMovementActions[behavior - 0xB0][direction];
+	}
+	else
+		return GetWalkFastMovementAction(direction);
+}
+
+
+
+
+
+gNewTileWalkFastMovementActions: @207558_J
+1D 1D 1E D8 D5
+1D 1D 1E D8 20
+1D 1D 1E 1F D5
+1D 1D 1E D4 D9
+1D 1D 1E 1F D9
+1D 1D 1E D4 20

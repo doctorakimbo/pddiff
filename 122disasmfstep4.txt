@@ -1,0 +1,25 @@
+PlayCollisionSoundIfNotFacingWarp(direction)
+{
+	behavior = gEventObjects[gPlayerAvatar.eventObjectId].currentMetatileBehavior;
+	
+	if(call(data_35B864[direction - 1], behavior) == 0)
+	{
+		if(direction == DIR_WEST && (fn_59C20(behavior) || fn_59C48(behavior)))
+			return;
+		
+		if(direction == DIR_EAST && (fn_59C0C(behavior) || fn_59C34(behavior)))
+			return;
+		
+		if(direction == DIR_NORTH)
+		{
+			PlayerGetDestCoords(&x, &y);
+			MoveCoords(DIR_NORTH, &x, &y);
+			behavior = MapGridGetMetatileBehaviorAt(x, y);
+			
+			if(MetatileBehavior_IsWarpDoor(behavior))
+				return;
+		}
+		
+		PlaySE(SE_WALL_HIT);
+	}
+}

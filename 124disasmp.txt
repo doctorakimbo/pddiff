@@ -1,0 +1,708 @@
+lbl1: @6C2BC
+r5 = r0
+fn_69A54()
+GetPlayerFacingDirection()
+r6 = r0
+r4 = &s0
+r0 = &s0
+fn_6CE20()
+r2 = data_0203D2F9_J
+r1 = 0
+r0 = *r2
+*r2 = r1
+if(r0 == 0) goto lblx
+
+goto lbly
+
+lblx:
+r0 = &s0
+r1 = 0
+r0 = *(r0 + r1)
+r2 = 2
+r1 = *(r4 + r2)
+r2 = 0xFF
+fn_58F48()
+r8 = r0
+r0 = &s0
+r1 = 0
+r0 = *(r0 + r1)
+r2 = 2
+r1 = *(r4 + r2)
+MapGridGetMetatileBehaviorAt()
+r4 = r0
+r7 = data_03005078
+r0 = r7
+fn_6C888()
+r0 = *(r5 + 2)
+*(r7 + 2) = r0
+fn_81B30()
+if(r0 == 1) goto lbl2
+
+fn_69C74()
+if(r0 == 1) goto lbl2
+
+r1 = *r5
+r0 = 0x40
+r0 &= r1
+if(r0 == 0) goto lbl3
+
+r0 = 5
+fn_54E90()
+fn_146CA4()
+fn_15D8C8()
+fn_CC918()
+fn_CB054()
+fn_CCFBC()
+r0 = &s0
+r1 = r4
+r2 = r6
+fn_6D5E8()
+if(r0 != 1) goto lbl3
+
+r0 = *r7
+r1 = 0x40
+r0 |= r1
+*r7 = r0
+goto lbl2
+
+lbl2:
+r0 = 1
+goto lbl15
+
+lbl3:
+r1 = *r5
+r0 = 2
+r0 &= r1
+if(r0 == 0) goto lbl7
+
+r0 = *(r5 + 2)
+if(r0 == 0) goto lbl4
+
+if(r0 != r6) goto lbl6
+
+goto lbl4
+
+lbl4:
+r7 = &s0
+r0 = &s0
+fn_6CE38()
+r0 = &s0
+r1 = 0
+r0 = *(r0 + r1)
+r2 = 2
+r1 = *(r7 + r2)
+MapGridGetMetatileBehaviorAt()
+r4 = r0
+r0 = &s0
+r1 = r4
+r2 = r6
+fn_6D804()
+if(r0 != 1) goto lbl5
+
+r0 = data_03005078
+r1 = *r0
+r2 = 2
+goto lbl13
+
+lbl5:
+r0 = &s0
+fn_6CE20()
+r0 = &s0
+r1 = 0
+r0 = *(r0 + r1)
+r2 = 2
+r1 = *(r7 + r2)
+MapGridGetMetatileBehaviorAt()
+r4 = r0
+goto lbl6
+
+lbl6:
+r1 = *r5
+r0 = 2
+r0 &= r1
+if(r0 == 0) goto lbl7
+
+r0 = r8
+fn_6D7F4()
+if(r0 != 1) goto lbl7
+
+r0 = data_03005078
+r1 = *r0
+r2 = 2
+goto lbl13
+
+lbl7:
+fn_168C10_J()
+r1 = *r5
+r0 = 0x10
+r0 &= r1
+if(r0 == 0) goto lbl8
+
+r0 = *(r5 + 2)
+if(r0 != r6) goto lbl8
+
+r0 = &s0
+r1 = r4
+r2 = r6
+fn_6D964()
+if(r0 != 1) goto lbl8
+
+r0 = data_03005078
+r1 = *r0
+r2 = 0x10
+goto lbl13
+
+lbl8:
+r4 = &s0
+r0 = &s0
+fn_6CE38()
+r0 = &s0
+r1 = 0
+r0 = *(r0 + r1)
+r2 = 2
+r1 = *(r4 + r2)
+MapGridGetMetatileBehaviorAt()
+r4 = r0
+r1 = *r5
+r0 = 0x10
+r0 &= r1
+if(r0 == 0) goto lbl9
+
+r0 = *(r5 + 2)
+if(r0 != r6) goto lbl9
+
+r0 = &s0
+r1 = r4
+r2 = r6
+fn_6D804()
+if(r0 != 1) goto lbl9
+
+r0 = data_03005078
+r1 = *r0
+r2 = 0x10
+goto lbl13
+
+lbl9:
+r1 = *r5
+r0 = 1
+r0 &= r1
+if(r0 == 0) goto lbl10
+
+r0 = &s0
+r1 = r4
+r2 = r6
+fn_6CEA0()
+if(r0 != 1) goto lbl10
+
+r0 = data_03005078
+r1 = *r0
+r2 = 1
+goto lbl13
+
+lbl10:
+r1 = *r5
+r0 = 0x20
+r0 &= r1
+if(r0 == 0) goto lbl11
+
+r0 = *(r5 + 2)
+if(r0 != r6) goto lb111
+
+r0 = &s0
+r1 = r4
+r2 = r6
+fn_6DCD0()
+if(r0 != 1) goto lbl11
+
+r0 = data_03005078
+r1 = *r0
+r2 = 0x20
+goto lbl13
+
+lbl11:
+r1 = *r5
+r0 = 4
+r0 &= r1
+if(r0 == 0) goto lbl12
+
+r2 = data_03005078
+r0 = *r2
+r1 = 4
+r0 |= r1
+*r2 = r0
+r0 = 0x83E
+fn_6E680()
+r0 = 6
+PlaySE()
+fn_6F258()
+goto lbl2
+
+lbl12:
+r0 = data_03005078
+r0 = *(r0 + 2)
+if(r0 != 0) goto lbl14
+
+r0 = 8
+r0 &= r1
+if(r0 == 0) goto lbl14
+
+fn_EE5000_J()
+goto lbl14
+
+lbly:
+fn_10AD10()
+if(r0 != 1) goto lbl14
+
+r0 = data_03005078
+r1 = *r0
+r2 = 8
+goto lbl13
+
+lbl13:
+r1 |= r2
+*r0 = r1
+goto lbl2
+
+lbl14:
+r0 = 0
+goto lbl15
+
+lbl15:
+return r0
+
+
+
+
+
+
+fn_EE5000_J:
+r0 = 0
+r1 = data_0203D2E0_J
+*(r1 + 4) = r0
+*(r1 + 8) = r0
+*(r1 + 0xC) = r0
+r0 = data_0203CB54_J
+r0 = *r0
+*r1 = r0
+fn_EE5528_J()
+fn_99F4A_J()
+r0 = *r0
+if(r0 != 0) goto lbl2
+
+r0 = data_0203D2F9_J
+r1 = 1
+*r0 = r1
+goto lbl7
+
+lbl2:
+r0 = data_04000008_J
+r1 = *r0
+r0 = 0x80
+r1 |= r0
+r0 = 8
+fn_A38_J()
+r0 = data_030050D0_J
+r4 ^= r4
+goto lbl3
+
+lbl3:
+r1 = 0x28
+r1 *= r4
+r2 = *(r0 + r1)
+r3 = data_97B9D_J
+if(r2 != r3) goto lbl4
+
+r0 += r1
+r1 = 6
+*(r0 + 8) = r1
+r1 = 0
+r0 = 0x12
+fn_A38_J()
+goto lbl5
+
+lbl4:
+r4++
+if(r4 <= 0xF) goto lbl3
+
+goto lbl5
+
+lbl5:
+r0 = 0x1E
+s0 = r0
+r0 = 0xA
+s1 = r0
+r0 = 0
+r1 = data_EE5920_J
+r2 = 0
+r3 = 0xA
+fn_2124_J()
+r0 = data_EE57CC_J
+r1 = data_06008000_J
+svc(18)
+r0 = data_EE5900_J
+r1 = 0xD0
+r2 = 0x20
+LoadPalette()
+r0 = data_EE57AC_J
+r1 = 0xE0
+r2 = 0x20
+LoadPalette()
+r0 = data_03000F9C_J
+r1 = 1
+*r0 = r1
+r0 = data_0203D2FF_J
+r1 = 1
+*r0 = r1
+r0 = 1
+*(r1 + 5) = r0
+r0 = 8
+*(r1 + 0xD) = r0
+fn_EE540C_J()
+r1 = 0
+r0 = data_EE5560_J
+fn_EE543E_J()
+r0 = data_EE5568_J
+r1 = 1
+fn_EE543E_J()
+r1 = 2
+r0 = data_EE5570_J
+fn_EE543E_J()
+fn_EE5510_J()
+fn_99F4A_J()
+r4 ^= r4
+goto lbl6
+
+lbl6:
+r1 = r4 * 2
+r1 = *(r0 + r1)
+r4++
+if(r1 != 0) goto lbl6
+
+r0 = data_0203D2E4_J
+r4--
+*r0 = r4
+fn_EE54D6_J()
+r0 = data_EE5578_J
+fn_3CB0_J()
+r4 = r0
+fn_3F6C_J()
+r0 = r4
+fn_3E08_J()
+r0 = data_EE5580_J
+fn_3CB0_J()
+r4 = r0
+fn_3F6C_J()
+r0 = r4
+fn_3E08_J()
+r0 = 0
+CopyBgTilemapBufferToVram()
+r0 = 5
+PlaySE()
+r1 = data_0203D2ED_J
+r0 = 0x10
+*r1 = r0
+r0 = data_EE51C1_J
+r1 = 0
+fn_76BB4_J()
+r1 = data_0203D2FA_J
+*r1 = r0
+goto lbl7
+
+lbl7:
+return
+
+
+
+
+
+
+fn_EE5528_J:
+fn_99F4A_J()
+r4 = r0
+r5 ^= r5
+goto lbl2
+
+lbl2:
+r0 = *r4
+if(r0 == 0) goto lbl4
+
+r1 = 1
+CheckBagHasItem()
+if(r0 == 1) goto lbl3
+
+r0 = r4
+fn_99F54_J()
+goto lbl2
+
+lbl3:
+r4 += 2
+goto lbl2
+
+lbl4:
+return
+
+
+
+
+
+
+fn_EE540C_J:
+fn_99F4A_J()
+r1 = data_0203D2E0_J
+r1 = *r1
+r1 *= 2
+r0 += r1
+r0 = *r0
+r1 = data_06008800_J
+fn_EE5654_J()
+r0 = data_EE5558_J
+fn_3CB0_J()
+r4 = r0
+fn_3F6C_J()
+r0 = r4
+fn_3E08_J()
+return
+
+
+
+
+
+
+fn_EE543E_J:
+r6 = r1
+fn_3CB0_J()
+r4 = r0
+r1 = 0xC
+r1 *= r4
+r0 = data_02020430_J
+r0 += r1
+r1 = *(r0 + 8)
+r5 = r0
+r0 = data_EE56E0_J
+svc(17)
+r0 = data_0203D2E1_J
+r0 = *r0
+r6 += r0
+fn_99F4A_J()
+r6 *= 2
+r0 = *(r0 + r6)
+if(r0 != 0) goto lbl2
+
+r0 = data_EE55AC_J
+goto lbl3
+
+lbl2:
+fn_9A2C4_J()
+goto lbl3
+
+lbl3:
+s4 = r0
+r0 = 0
+s0 = r0
+s1 = r0
+r0 = data_EE5588_J
+s2 = r0
+r0 = 1
+r0 = -r0
+s3 = r0
+r0 = r4
+r1 = 2
+r2 = 4
+r3 = 1
+fn_12EDAC_J()
+r0 = *(r5 + 8)
+r1 = 0x30
+r2 = 0xD
+fn_EE561C_J()
+r6 *= 2
+r0 = data_0203D2E1_J
+r0 = *r0
+r6 -= r0
+r0 = data_06009000_J
+r1 = 0x1000
+r1 *= r6
+r0 += r1
+r1 = *(r5 + 8)
+r2 = 0xC00
+memcpy()
+r0 = 2
+*(r5 + 4) = r0
+r0 = r4
+fn_3F6C_J()
+r0 = r4
+fn_3E08_J()
+return
+
+
+
+
+
+
+fn_EE5510_J:
+r0 = data_0203D2E2_J
+r0 = *r0
+r1 = 0x1000
+r1 *= r0
+r0 = data_06009000_J
+r0 += r1
+r1 = 0x30
+r2 = 0xD
+fn_EE56BC_J()
+return
+
+
+
+
+
+
+fn_EE54D6_J:
+r0 = data_0203D2E1_J
+r0 = *r0
+if(r0 != 0) goto lbl2
+
+r1 = data_EE5D38_J
+goto lbl3
+
+lbl2:
+r1 = data_EE5C58_J
+goto lbl3
+
+lbl3:
+r0 = data_06009C00_J
+r2 = 0xC0
+memcpy()
+r0 = data_0203D2E1_J
+r0 = *r0
+r0 += 4
+r1 = data_0203D2E4_J
+r1 = *r1
+if(r0 > r1) goto lbl4
+
+r1 = data_EE5B78_J
+goto lbl5
+
+lbl4:
+r1 = data_EE5D38_J
+goto lbl5
+
+lbl5:
+r0 = data_06009CC0_J
+r2 = 0xC0
+memcpy()
+return
+
+
+
+
+
+
+fn_EE5654_J:
+r4 = r0
+r5 = r1
+r0 = data_981FC_J
+r0 = *r0
+r1 = r4 * 8
+r6 = r0 + r1
+r0 = *r6
+r1 += r5
+svc(18)
+r0 = *(r6 + 4)
+r1 = 0xF0
+r2 = 0x20
+fn_6FB4C_J()
+r0 = r5
+r1 = 9
+r2 = 0xF
+fn_EE561C_J()
+r0 = 0x240
+goto lbl2
+
+lbl2:
+r0 -= 2
+r1 = *(r5 + r0)
+r2 = r1 >> 8
+if(r2 != 0xF0) goto lbl3
+
+r2 = r1
+r1 = 0xFF
+r2 &= r1
+r1 = 0xDB00
+r1 |= r2
+goto lbl3
+
+lbl3:
+r2 = 0xFF
+r2 &= r1
+if(r2 != 0xF0) goto lbl4
+
+r1 &= 0xFF00
+r1 += 0xDB
+goto lbl4
+
+lbl4:
+*(r5 + r0) = r1
+if(r0 != 0) goto lbl2
+
+return
+
+
+
+
+
+
+fn_EE561C_J:
+r4 = r0
+r5 = r1
+r2 *= 0x10
+r6 = r2
+r0 = 0x20
+r1 = 0x40
+r0 *= r5
+r1 *= r5
+r0 += r4
+r1 += r4
+r7 = 0x20
+r5 *= r7
+goto lbl2
+
+lbl2:
+r0 -= 1
+r1 -= 2
+r2 = *r0
+r3 = 0xF
+r3 &= r2
+r3 += r6
+r2 /= 0x10
+r2 += r6
+r2 *= 0x100
+r2 |= r3
+*r1 = r2
+r5--
+if(r5 != 0) goto lbl2
+
+return
+
+
+
+
+
+
+fn_EE56BC_J:
+r2 *= 0x10
+r4 = r2
+r4 *= 0x100
+r2 |= r4
+r3 = 0x40
+r1 *= r3
+goto lbl2
+
+lbl2:
+r1 -= 2
+r3 = *(r0 + r1)
+r4 = 0xF0F
+r3 &= r4
+r3 |= r2
+*(r0 + r1) = r3
+if(r1 > 0) goto lbl2
+
+return

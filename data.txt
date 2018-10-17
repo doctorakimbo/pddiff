@@ -1,6 +1,7 @@
 addr e: addr j: desc
 
 		   : 24 00 02 02: ????? (valid)
+		   : 30 04 02 02: ?????
 3C 06 02 02: B8 05 02 02: gSprites
 D0 1C 02 02: 4C 1C 02 02: gStringVar1
 		   : 10 1D 02 02: ?????? (GetMoveRelearnerMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
@@ -160,12 +161,22 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 								 (PlayerNotOnBikeMoving: if surfing or (?machbike) and this.1 has high bit of 0, go slower than normal)
 								 (PlayerNotOnBikeMoving: if surfing or (?machbike) and this.1 > 0x10, go (faster than normal? fn_5C164))
 								 (PlayerNotOnBikeMoving: if (this.0 & 1) is set, run when possible even when B isn't held)
+								 (PlayCollisionSoundIfNotFacingWarp: if a wall collision occurs, set this.1 to 0)
 		   : 10 C0 03 02: ?????? (appears to be an array of 167 unknown 4-byte objects, possibly ItemSlots)
 								 (LoadPlayerBag: Entire array read from in a loop, just like gSaveBlock1Ptr->bagPocket_Items, and written to j0203BB00)
 								 (SavePlayerBag: Entire array written to in a loop, just like gSaveBlock1Ptr->bagPocket_Items, read from j0203BB00)
 		   : AC C2 03 02: gDaycareParentMoves
 		   : B4 C2 03 02: gDaycareParentMoves[1]
 		   : 18 CB 03 02: ?????? (GetLocationMusic: if this.0xE is not zero, return this.0xC instead of the default music)
+		   : 54 CB 03 02: ??????
+		   : E0 D2 03 02: ??????
+		   : E1 D2 03 02: ??????
+		   : E2 D2 03 02: ??????
+		   : E4 D2 03 02: ??????
+		   : ED D2 03 02: ??????
+		   : F9 D2 03 02: ??????
+		   : FA D2 03 02: ??????
+		   : FF D2 03 02: ??????
 		   : 00 D3 03 02: ?????? (Appears to be an array of characters)
 								 (fn_EB8398_J: Set this[0] to data_0203BF70_J[battler].8[moveId])
 								 (fn_EB8398_J: Set this[2] to CHAR_SLASH)
@@ -189,7 +200,9 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 		   : 00 FE 03 02: gLastUsedItemType
 		   : 04 FE 03 02: gCritCapture
 		   
+		   : 9C 0F 00 03: ??????
 F0 30 00 03: 30 31 00 03: gMain
+		   : 50 31 00 03: ??????
 84 4F 00 03: C4 4F 00 03: gBattleMainFunc
 90 4F 00 03: D0 4F 00 03: gBattleResults
 A3 4F 00 03: E3 4F 00 03: gBattleResults.battleTurnCounter
@@ -202,14 +215,21 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 14 50 00 03: 54 50 00 03: gBGTilemapBuffers1
 18 50 00 03: 58 50 00 03: gBGTilemapBuffers2
 1C 50 00 03: 5C 50 00 03: gBGTilemapBuffers3
+78 50 00 03: B8 50 00 03: ??????
+		   : D0 50 00 03: ??????
 7C 53 00 03: CC 53 00 03: gCB2_AfterEvolution
 		   : 40 55 00 03: ?????? (GetEvolutionTargetSpecies: EVO_FRIENDSHIP_DAY works when this.2 is less than 11; EVO_FRIENDSHIP_NIGHT works when this.2 is between 12 and 23 inclusive) (gLocalTime?)
 		   : 42 55 00 03: ?????? (atkEF_handleballthrow: Dusk Ball boosted if less than 6 or greater than 20) (gLocalTime.hours?)
 		   
 		   
 funcs e,j,desc:
+000A38 = 000A38 = SetGpuReg
 0020BC = 0020BC = CopyBgTilemapBufferToVram
+002124 = 002124 = CopyToBgTilemapBufferRect
 002228 = 002228 = CopyToBgTilemapBufferRect_ChangePalette
+003CE4 = 003CB0 = AddWindow
+003E3C = 003E08 = RemoveWindow
+003FA0 = 003F6C = PutWindowTilemap
 006124 = 005F90 = RenderTextFont9
 006F8C = 006B08 = CreateSprite
 0071EC = 006D68 = CreateSpriteAndAnimate
@@ -315,12 +335,15 @@ funcs e,j,desc:
 04A648 = AddTextPrinterAndCreateWindowOnHealthbox
 04A6D8 = RemoveWindowOnHealthbox
 04A6E8 = FillHealthboxObject
+054E90 = 054750 = IncrementGameStat
 055238 = 054AF8 = Overworld_GetMapHeaderByGroupAndId
 055250 = 054B10 = GetDestinationWarpMapHeader
 056158 = 055A18 = GetMapTypeByGroupAndId
 056188 = 055A48 = Overworld_GetMapTypeOfSaveblockLocation
 0561D8 = 055A98 = is_map_type_1_2_3_5_or_6
+058F48 = 058804 = MapGridGetMetatileIdAt
 058F78 = 058834 = MapGridGetMetatileBehaviorAt
+059BC8 = 059484 = MetatileBehavior_IsWarpDoor
 059C8C = 059548 = MetatileBehavior_IsNonAnimDoor
 05B45C = 05AD18 = TryInterruptEventObjectSpecialAnim
 05B4B0 = 05AD6C = npc_clear_strange_bits
@@ -337,27 +360,45 @@ funcs e,j,desc:
 05C1D0 = 05BA8C = PlayerNotOnBikeCollide
 05C1F4 = 05BAB0 = PlayerFaceDirection
 05C23C = 05BAF8 = PlayerJumpLedge
+05C538 = 05BDF4 = PlayerGetDestCoords
 05C6C4 = 05BF80 = GetPlayerFacingDirection
 05CCD0 = 05C58C = task_add_bump_boulder
 05DFB0 = 05D870 = GetFieldObjectIdByXY
 0636AC = 062F6C = GetCollisionAtCoords
 063A20 = 0632E0 = MoveCoords
 063F84 = 063844 = GetWalkNormalMovementAction
-063FB0 = 063870 = ?????
+063FB0 = 063870 = GetPlayerRunMovementAction
+069A54 = 069314 = ?????
+069C74 = 069534 = mapheader_run_first_tag2_script_list_match
+06C888 = 06C07C = ?????
+06CE20 = 06C614 = player_get_pos_to_and_height
+06CE38 = 06C62C = player_get_next_pos_and_height
+06CEA0 = 06C694 = ?????
+06D5E8 = 06CDDC = ?????
+06D7F4 = 06CFE8 = ?????
+06D804 = 06CFF8 = ?????
+06D964 = 06D158 = ?????
+06DCD0 = 06D4C4 = ?????
 06E25C = 06DA50 = IsNationalPokedexEnabled
 06E454 = 06DC48 = GetVarPointer
 06E568 = 06DD5C = VarGet
 06E584 = 06DD78 = VarSet
 06E6A8 = 06DE9C = FlagClear
+06E680 = 06DE74 = FlagSet
 06E6D0 = 06DEC4 = FlagGet
+06F258 = 06EA4C = ?????
+0703A8 = 06FB4C = LoadCompressedPalette
 0703EC = 06FB90 = LoadPalette
 070E44 = BeginFastPaletteFade
 071AB4 = 071258 = FadeOutMapMusic
+0722CC = 071A70 = PlaySE
 0751C4 = 074968 = GetBattlerSide
 0751D8 = 07497C = GetBattlerPosition
 0751E8 = 07498C = GetBattlerAtPosition
 075290 = 074A34 = IsDoubleBattle
+07741C = 076BB4 = CreateTask
 07AF98 = 07A6F8 = weather_get_current
+081B30 = 08171C = ?????
 088E8C = 088A68 = pokedex_count
 08B9F4 = 08B490 = StorageGetCurrentBox
 08BA18 = 08B4B4 = GetBoxMonDataFromAnyBox
@@ -366,22 +407,33 @@ funcs e,j,desc:
 099DE0 = 0997E8 = ApplyNewEncryptionKeyToBagItems
 099E44 = 09984C = SetBagItemsPointers
 099F40 = 099948 = CheckBagHasItem
+09A540 = 099F4A = ?????
+?????? = 099F54 = ?????
+09A8BC = 09A2C4 = ItemId_GetName
 09A924 = 09A330 = GetHoldEffect
 09A948 = 09A354 = GetHoldEffectParam
 0BD09C = 0BE35C = MovePlayerOnBike
 0BD488 = 0BE748 = IsRunningDisallowed
 0C71D0 = 0C83AC = RecordAbilityBattle
 0C7208 = 0C83E4 = RecordItemEffectBattle
+0CB054 = 0CC220 = ?????
 0CC79C = 0CD914 = set_unknown_box_id
 0CC7A8 = 0CD920 = get_unknown_box_id
+0CC918 = 0CDA8C = ?????
+0CCFBC = 0CE104 = ?????
 0D77F4 = 0D8898 = BattleStringExpandPlaceholdersToDisplayedString
 0D87BC = 0D980C = BattlePutTextOnWindow
 0F67A4 = 0F77FC = schedule_bg_copy_tilemap_to_vram
+10AD10 = 10B80C = ?????
 125A78 = 1263C4 = ItemIdToBattleMoveId
 12E51C = 12ED24 = box_print
+12E5A4 = 12EDAC = AddTextPrinterParameterized2
+146CA4 = 147294 = ?????
+15D8C8 = 160B74 = ?????
 1E3B64 = 1C7A88 = CpuSet
 1E3B9C = square root
-1E3BA8 = call r0
+1E3BA8 = 1C7AC8 = call r0
+1E3BAC = 1C7ACC = call r1
 1E4018 = 1C7F38 = division
 1E40F4 = 1C8014 = modulus
 1E460C = 1C852C = division
@@ -411,6 +463,7 @@ funcs e,j,desc:
 045E00 = 0453C4 = ?????
 ?????? = 168C88 = ClearFocusBand (unimplemented)
 ?????? = 168C9C = SetFocusBand (unimplemented)
+?????? = 183A90 = ????? (unimplemented)
 ?????? = 2058E0 = ????? (unimplemented)
 ?????? = 205B0C = CopyMonToBattleMon (unimplemented)
 ?????? = 205C80 = GetMonThatCanWithstandBiggestAttack (unimplemented)
@@ -439,7 +492,8 @@ funcs e,j,desc:
 ?????? = 207450 = GetPinchThreshhold (unimplemented)
 ?????? = 207470 = PushScriptInstr (unimplemented)
 ?????? = 2074A0 = SoftForceDirection (unimplemented)
-?????? = 2074F0 = ????? (unimplemented)
+?????? = 2074F0 = GetWalkFastMovementAction_New (unimplemented)
+?????? = 207524 = GetPlayerRunMovementAction_New (unimplemented)
 ?????? = 2076B0 = RunTypeEffectivenessBasedAbilities (unimplemented)
 ?????? = 251B30 = GetNature_CheckSynchronize (unimplemented)
 ?????? = 251B58 = ????? (unimplemented)

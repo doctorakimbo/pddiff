@@ -1,0 +1,25 @@
+PlayerGoSpeed2(direction)
+{
+	PlayerSetAnimId(GetWalkFastMovementAction(direction), 2);
+}
+
+
+
+
+
+GetWalkFastMovementAction(direction) @63FB0
+{
+	memcpy(animIds, gWalkFastMovementActions, 5);
+	
+	if(direction > 4)
+		direction = 0;
+	
+	return animIds[direction];
+}
+
+
+
+
+
+gWalkFastMovementActions:
+1D 1D 1E 1F 20

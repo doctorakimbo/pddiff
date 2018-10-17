@@ -1,0 +1,7 @@
+sub_8059B5C(metatileBehavior)
+{
+	if(metatileBehavior == 0x21 || metatileBehavior == 0x2B)
+		return TRUE;
+	else
+		return FALSE;
+}

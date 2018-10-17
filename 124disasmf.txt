@@ -1,0 +1,253 @@
+lbl1: @6CAC8
+r5 = r0
+fn_69A54()
+GetPlayerFacingDirection()
+r6 = r0
+r4 = &s0
+r0 = &s0
+fn_6CE20()
+r0 = &s0
+r1 = 0
+r0 = *(r0 + r1)
+r2 = 2
+r1 = *(r4 + r2)
+r2 = 0xFF
+fn_58F48()
+r8 = r0
+r0 = &s0
+r1 = 0
+r0 = *(r0 + r1)
+r2 = 2
+r1 = *(r4 + r2)
+MapGridGetMetatileBehaviorAt()
+r4 = r0
+r7 = data_03005078
+r0 = r7
+fn_6C888()
+r0 = *(r5 + 2)
+*(r7 + 2) = r0
+fn_81B30()
+if(r0 == 1) goto lbl2
+
+fn_69C74()
+if(r0 == 1) goto lbl2
+
+r1 = *r5
+r0 = 0x40
+r0 &= r1
+if(r0 == 0) goto lbl3
+
+r0 = 5
+fn_54E90()
+fn_146CA4()
+fn_15D8C8()
+fn_CC918()
+fn_CB054()
+fn_CCFBC()
+r0 = &s0
+r1 = r4
+r2 = r6
+fn_6D5E8()
+if(r0 != 1) goto lbl3
+
+r0 = *r7
+r1 = 0x40
+r0 |= r1
+*r7 = r0
+goto lbl2
+
+lbl2:
+r0 = 1
+goto lbl15
+
+lbl3:
+r1 = *r5
+r0 = 2
+r0 &= r1
+if(r0 == 0) goto lbl7
+
+r0 = *(r5 + 2)
+if(r0 == 0) goto lbl4
+
+if(r0 != r6) goto lbl6
+
+goto lbl4
+
+lbl4:
+r7 = &s0
+r0 = &s0
+fn_6CE38()
+r0 = &s0
+r1 = 0
+r0 = *(r0 + r1)
+r2 = 2
+r1 = *(r7 + r2)
+MapGridGetMetatileBehaviorAt()
+r4 = r0
+r0 = &s0
+r1 = r4
+r2 = r6
+fn_6D804()
+if(r0 != 1) goto lbl5
+
+r0 = data_03005078
+r1 = *r0
+r2 = 2
+goto lbl13
+
+lbl5:
+r0 = &s0
+fn_6CE20()
+r0 = &s0
+r1 = 0
+r0 = *(r0 + r1)
+r2 = 2
+r1 = *(r7 + r2)
+MapGridGetMetatileBehaviorAt()
+r4 = r0
+goto lbl6
+
+lbl6:
+r1 = *r5
+r0 = 2
+r0 &= r1
+if(r0 == 0) goto lbl7
+
+r0 = r8
+fn_6D7F4()
+if(r0 != 1) goto lbl7
+
+r0 = data_03005078
+r1 = *r0
+r2 = 2
+goto lbl13
+
+lbl7:
+r1 = *r5
+r0 = 0x10
+r0 &= r1
+if(r0 == 0) goto lbl8
+
+r0 = *(r5 + 2)
+if(r0 != r6) goto lbl8
+
+r0 = &s0
+r1 = r4
+r2 = r6
+fn_6D964()
+if(r0 != 1) goto lbl8
+
+r0 = data_03005078
+r1 = *r0
+r2 = 0x10
+goto lbl13
+
+lbl8:
+r4 = &s0
+r0 = &s0
+fn_6CE38()
+r0 = &s0
+r1 = 0
+r0 = *(r0 + r1)
+r2 = 2
+r1 = *(r4 + r2)
+MapGridGetMetatileBehaviorAt()
+r4 = r0
+r1 = *r5
+r0 = 0x10
+r0 &= r1
+if(r0 == 0) goto lbl9
+
+r0 = *(r5 + 2)
+if(r0 != r6) goto lbl9
+
+r0 = &s0
+r1 = r4
+r2 = r6
+fn_6D804()
+if(r0 != 1) goto lbl9
+
+r0 = data_03005078
+r1 = *r0
+r2 = 0x10
+goto lbl13
+
+lbl9:
+r1 = *r5
+r0 = 1
+r0 &= r1
+if(r0 == 0) goto lbl10
+
+r0 = &s0
+r1 = r4
+r2 = r6
+fn_6CEA0()
+if(r0 != 1) goto lbl10
+
+r0 = data_03005078
+r1 = *r0
+r2 = 1
+goto lbl13
+
+lbl10:
+r1 = *r5
+r0 = 0x20
+r0 &= r1
+if(r0 == 0) goto lbl11
+
+r0 = *(r5 + 2)
+if(r0 != r6) goto lb111
+
+r0 = &s0
+r1 = r4
+r2 = r6
+fn_6DCD0()
+if(r0 != 1) goto lbl11
+
+r0 = data_03005078
+r1 = *r0
+r2 = 0x20
+goto lbl13
+
+lbl11:
+r1 = *r5
+r0 = 4
+r0 &= r1
+if(r0 == 0) goto lbl12
+
+r2 = data_03005078
+r0 = *r2
+r1 = 4
+r0 |= r1
+*r2 = r0
+r0 = 0x83E
+fn_6E680()
+r0 = 6
+PlaySE()
+fn_6F258()
+goto lbl2
+
+lbl12:
+r0 = 8
+r0 &= r1
+if(r0 == 0) goto lbl14
+
+fn_10AD10()
+if(r0 != 1) goto lbl14
+
+r0 = data_03005078
+r1 = *r0
+r2 = 8
+goto lbl13
+
+lbl13:
+r1 |= r2
+*r0 = r1
+goto lbl2
+
+lbl14:
+r0 = 0
+goto lbl15
+
+lbl15:
+return r0

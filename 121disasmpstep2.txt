@@ -1,0 +1,35 @@
+PlayerGoSpeed2(arg0)
+{
+	PlayerSetAnimId(fn_2074F0_J(arg0), 2)
+}
+
+
+
+
+
+fn_2074F0_J(arg0)
+{
+	r0 = *((*(gPlayerAvatar + 5) * 0x24) + gEventObjects + 0x1E)
+	
+	if(r0 >= 0xB0 && r0 <= 0xB5)
+	{
+		if(arg0 > 4)
+			arg0 = 0
+		
+		return *(*(((r0 - 0xB0) * 4) + data_207558_J) + arg0)
+	}
+	else
+		return fn_63FB0(arg0)
+}
+
+
+
+
+
+data_207558_J:
+1D 1D 1E D8 D5
+1D 1D 1E D8 20
+1D 1D 1E 1F D5
+1D 1D 1E D4 D9
+1D 1D 1E 1F D9
+1D 1D 1E D4 20

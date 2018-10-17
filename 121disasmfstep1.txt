@@ -1,0 +1,28 @@
+PlayerGoSpeed2(arg0)
+{
+	PlayerSetAnimId(fn_63FB0(arg0), 2)
+}
+
+
+
+
+
+fn_63FB0(arg0) @63FB0
+{
+	r4 = arg0
+	memcpy(&s0, data_3A650A, 5)
+	
+	if(r4 > 4)
+		r4 = 0
+	
+	r1 = &s0
+	r0 = r1 + r4
+	return *r0
+}
+
+
+
+
+
+data_3A650A:
+1D 1D 1E 1F 20

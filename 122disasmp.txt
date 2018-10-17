@@ -1,0 +1,78 @@
+lbl1: @5BCF4
+r5 = r0
+r6 = r5
+r2 = gEventObjects
+r0 = gPlayerAvatar
+r1 = *(r0 + 5)
+r0 = 0x24
+r0 *= r1
+r0 += r2
+r4 = *(r0 + 0x1E)
+r1 = data_35B864
+r0 = r5 - 1
+r0 *= 4
+r0 += r1
+r1 = *r0
+r0 = r4
+fn_1E3BAC()
+if(r0 != 0) goto lbl5
+
+if(r5 != 3) goto lbl2
+
+r0 = r4
+fn_59C20()
+if(r0 != 0) goto lbl5
+
+r0 = r4
+fn_59C48()
+if(r0 != 0) goto lbl5
+
+goto lbl2
+
+lbl2:
+if(r5 != 4) goto lbl3
+
+r0 = r4
+fn_59C0C()
+if(r0 != 0) goto lbl5
+
+r0 = r4
+fn_59C34()
+if(r0 != 0) goto lbl5
+
+goto lbl3
+
+lbl3:
+if(r6 != 2) goto lbl4
+
+r4 = &s0
+r4 += 2
+r0 = &s0
+r1 = r4
+fn_5C538()
+r0 = 2
+r1 = &s0
+r2 = r4
+MoveCoords()
+r0 = &s0
+r1 = 0
+r0 = *(r0 + r1)
+r2 = 0
+r1 = *(r4 + r2)
+MapGridGetMetatileBehaviorAt()
+r4 = r0
+fn_59BC8()
+if(r0 != 0) goto lbl5
+
+goto lbl4
+
+lbl4:
+r0 = 7
+fn_722CC()
+r0 = data_0203C00D_J
+r1 ^= r1
+*(r0 + 1) = r1
+goto lbl5
+
+lbl5:
+return
