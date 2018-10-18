@@ -1,0 +1,16 @@
+sub_806DE28(arg0)
+{
+	behavior = MapGridGetMetatileBehaviorAt(arg0->0x10, arg0->0x12)
+	
+	if(behavior == 0x1F)
+		PlaySE(0xCF)
+	elseif(behavior == MB_CRACKED_FLOOR_HOLE)
+	{
+		FlagClear(sub_805FCD8(arg0->8, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup))
+		PlaySE(0x25)
+	}
+	else
+		return
+	
+	RemoveFieldObjectByLocalIdAndMap(arg0->8, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup)
+}

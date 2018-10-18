@@ -6,12 +6,12 @@ sub_806CAC8(arg0)
 	r8 = sub_8058F48(s0, s0pt5, 0xFF)
 	r4 = MapGridGetMetatileBehaviorAt(s0, s0pt5)
 	sub_806C888(data_03005078)
-	*(data_03005078 + 2) = *(arg0 + 2)
+	data_03005078.2 = arg0.2
 	
 	if(sub_8081B30() == 1 || mapheader_run_first_tag2_script_list_match() == 1)
 		return 1
 	
-	if(*arg0 & 0x40)
+	if(arg0.0 & 0x40)
 	{
 		IncrementGameStat(5)
 		sub_8146CA4()
@@ -22,21 +22,21 @@ sub_806CAC8(arg0)
 		
 		if(sub_806D5E8(&s0, r4, r6) == 1)
 		{
-			*data_03005078 |= 0x40
+			data_03005078.0 |= 0x40
 			return 1
 		}
 	}
 	
-	if(*arg0 & 2)
+	if(arg0.0 & 2)
 	{
-		if(*(arg0 + 2) == 0 || *(arg0 + 2) == r6)
+		if(arg0.2 == 0 || arg0.2 == r6)
 		{
 			player_get_next_pos_and_height(&s0)
 			r4 = MapGridGetMetatileBehaviorAt(s0, s0pt5)
 			
 			if(sub_806D804(&s0, r4, r6) == 1)
 			{
-				*data_03005078 |= 2
+				data_03005078.0 |= 2
 				return 1
 			}
 			
@@ -44,52 +44,52 @@ sub_806CAC8(arg0)
 			r4 = MapGridGetMetatileBehaviorAt(s0, s0pt5)
 		}
 		
-		if((*arg0 & 2) && sub_806D7F4(r8) == 1)
+		if((arg0.0 & 2) && sub_806D7F4(r8) == 1)
 		{
-			*data_03005078 |= 2
+			data_03005078.0 |= 2
 			return 1
 		}
 	}
 	
-	if((*arg0 & 0x10) && *(arg0 + 2) == r6 && sub_806D964(&s0, r4, r6) == 1)
+	if((arg0.0 & 0x10) && arg0.2 == r6 && sub_806D964(&s0, r4, r6) == 1)
 	{
-		*data_03005078 |= 0x10
+		data_03005078.0 |= 0x10
 		return 1
 	}
 	
 	player_get_next_pos_and_height(&s0)
 	r4 = MapGridGetMetatileBehaviorAt(s0, s0pt5)
 	
-	if((*arg0 & 0x10) && *(arg0 + 2) == r6 && sub_806D804(&s0, r4, r6) == 1)
+	if((arg0.0 & 0x10) && arg0.2 == r6 && sub_806D804(&s0, r4, r6) == 1)
 	{
-		*data_03005078 |= 0x10
+		data_03005078.0 |= 0x10
 		return 1
 	}
 	
-	if((*arg0 & 1) && sub_806CEA0(&s0, r4, r6) == 1)
+	if((arg0.0 & 1) && sub_806CEA0(&s0, r4, r6) == 1)
 	{
-		*data_03005078 |= 1
+		data_03005078.0 |= 1
 		return 1
 	}
 	
-	if((*arg0 & 0x20) && *(arg0 + 2) == r6 && sub_806DCD0(&s0, r4, r6) == 1)
+	if((arg0.0 & 0x20) && arg0.2 == r6 && sub_806DCD0(&s0, r4, r6) == 1)
 	{
-		*data_03005078 |= 0x20
+		data_03005078.0 |= 0x20
 		return 1
 	}
 	
-	if(*arg0 & 4)
+	if(arg0.0 & 4)
 	{
-		*data_03005078 |= 4
+		data_03005078.0 |= 4
 		FlagSet(0x83E)
 		PlaySE(6)
 		sub_806F258()
 		return 1
 	}
 	
-	if((*arg0 & 8) && sub_810AD10() == 1)
+	if((arg0.0 & 8) && sub_810AD10() == 1)
 	{
-		*data_03005078 |= 8
+		data_03005078.0 |= 8
 		return 1
 	}
 	

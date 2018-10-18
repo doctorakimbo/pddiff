@@ -1,107 +1,107 @@
-sub_806CAC8(arg0)
+sub_806CAC8(input)
 {
 	sub_8069A54()
-	r6 = GetPlayerFacingDirection()
-	player_get_pos_to_and_height(&s0)
-	r0 = data_0203D2F9_J
+	playerDirection = GetPlayerFacingDirection();
+	GetPlayerPosition(&position);
+	oldValue = data_0203D2F9_J
 	data_0203D2F9_J = 0
 	
-	if(r0 != 0 && sub_810AD10() == 1)
+	if(oldValue != 0 && UseRegisteredKeyItemOnField() == TRUE)
 	{
-		data_03005078.0 |= 8
-		return 1
+		data_03005078.pressedSelectButton = TRUE
+		return TRUE;
 	}
 	
-	r8 = sub_8058F48(s0, s0pt5, 0xFF)
-	r4 = MapGridGetMetatileBehaviorAt(s0, s0pt5)
+	r8 = sub_8058F48(position.x, position.y, 0xFF)
+	metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
 	sub_806C888(data_03005078)
-	data_03005078.2 = arg0.2
+	data_03005078.dpadDirection = input->dpadDirection
 	
-	if(sub_8081B30() == 1 || mapheader_run_first_tag2_script_list_match() == 1)
-		return 1
+	if(CheckForTrainersWantingBattle() == TRUE || mapheader_run_first_tag2_script_list_match() == 1)
+		return TRUE;
 	
-	if(arg0.0 & 0x40)
+	if(input->tookStep)
 	{
-		IncrementGameStat(5)
+		IncrementGameStat(GAME_STAT_STEPS);
 		sub_8146CA4()
 		sub_815D8C8()
 		sub_80CC918()
 		sub_80CB054()
 		sub_80CCFBC()
 		
-		if(sub_806D5E8(&s0, r4, r6) == 1)
+		if(TryStartStepBasedScript(&position, metatileBehavior, playerDirection) == TRUE)
 		{
-			data_03005078.0 |= 0x40
-			return 1
+			data_03005078.tookStep = TRUE
+			return TRUE;
 		}
 	}
 	
-	if(arg0.0 & 2)
+	if(input->checkStandardWildEncounter)
 	{
-		if(arg0.2 == 0 || arg0.2 == r6)
+		if(input->dpadDirection == DIR_NONE || input->dpadDirection == playerDirection)
 		{
-			player_get_next_pos_and_height(&s0)
-			r4 = MapGridGetMetatileBehaviorAt(s0, s0pt5)
+			GetInFrontOfPlayerPosition(&position);
+			metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
 			
-			if(sub_806D804(&s0, r4, r6) == 1)
+			if(sub_806D804(&position, metatileBehavior, playerDirection) == 1)
 			{
-				data_03005078.0 |= 2
-				return 1
+				data_03005078.checkStandardWildEncounter = TRUE
+				return TRUE;
 			}
 			
-			player_get_pos_to_and_height(&s0)
-			r4 = MapGridGetMetatileBehaviorAt(s0, s0pt5)
+			GetPlayerPosition(&position);
+			metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
 		}
 		
-		if((arg0.0 & 2) && sub_806D7F4(r8) == 1)
+		if(input->checkStandardWildEncounter && sub_806D7F4(r8) == 1)
 		{
-			data_03005078.0 |= 2
-			return 1
+			data_03005078.checkStandardWildEncounter = TRUE
+			return TRUE;
 		}
 	}
 	
-	fn_183A90_J()
+	fn_183A90_J();
 	
-	if((arg0.0 & 0x10) && arg0.2 == r6 && sub_806D964(&s0, r4, r6) == 1)
+	if(input->input_field_0_4 && input->dpadDirection == playerDirection && sub_806D964(&position, metatileBehavior, playerDirection) == TRUE)
 	{
-		data_03005078.0 |= 0x10
-		return 1
+		data_03005078.input_field_0_4 = TRUE
+		return TRUE;
 	}
 	
-	player_get_next_pos_and_height(&s0)
-	r4 = MapGridGetMetatileBehaviorAt(s0, s0pt5)
+	GetInFrontOfPlayerPosition(&position);
+	metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
 	
-	if((arg0.0 & 0x10) && arg0.2 == r6 && sub_806D804(&s0, r4, r6) == 1)
+	if(input->input_field_0_4 && input->dpadDirection == playerDirection && sub_806D804(&position, metatileBehavior, playerDirection) == TRUE)
 	{
-		data_03005078.0 |= 0x10
-		return 1
+		data_03005078.input_field_0_4 = TRUE
+		return TRUE;
 	}
 		
-	if((arg0.0 & 1) && sub_806CEA0(&s0, r4, r6) == 1)
+	if(input->pressedAButton && TryStartInteractionScript(&position, metatileBehavior, playerDirection) == TRUE)
 	{
-		data_03005078.0 |= 1
-		return 1
+		data_03005078.pressedAButton = TRUE
+		return TRUE;
 	}
 	
-	if((arg0.0 & 0x20) && arg0.2 == r6 && sub_806DCD0(&s0, r4, r6) == 1)
+	if(input->input_field_0_5 && input->dpadDirection == playerDirection && map_warp_consider_2_to_inside(&position, metatileBehavior, playerDirection) == TRUE)
 	{
-		data_03005078.0 |= 0x20
-		return 1
+		data_03005078.input_field_0_5 = TRUE
+		return TRUE;
 	}
 	
-	if(arg0.0 & 4)
+	if(input->pressedStartButton)
 	{
-		data_03005078.0 |= 4
+		data_03005078.pressedStartButton = TRUE
 		FlagSet(0x83E)
-		PlaySE(6)
-		sub_806F258()
-		return 1
+		PlaySE(SE_WIN_OPEN);
+		ShowStartMenu();
+		return TRUE;
 	}
 	
-	if(data_03005078.2 == 0 && (arg0.0 & 8))
-		fn_EE5000_J()
+	if(data_03005078.dpadDirection == DIR_NONE && input->pressedSelectButton)
+		fn_EE5000_J();
 	
-	return 0
+	return FALSE;
 }
 
 
@@ -111,59 +111,46 @@ sub_806CAC8(arg0)
 
 fn_183A90_J()
 {
-	r4 = data_0203C00D_J.0
-	r5 = data_0203C00D_J.1
-	
-	if(data_03003150_J.0xF & 1)
+	if((gMain.newKeys & R_BUTTON) && FlagGet(0x82F))
 	{
-		r0 = FlagGet(0x82F)
-		
-		if(r0 != 0)
-		{
-			r4 ^= r0
-			PlaySE(0x68 - (r0 & r4))
-		}
+		data_0203C00D_J.0 ^= 1
+		PlaySE(0x68 - (data_0203C00D_J.0 & 1))
 	}
 	
-	if(!(gPlayerAvatar.0 & 0xD))
+	if(!(gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_ON_FOOT | PLAYER_AVATAR_FLAG_ACRO_BIKE | PLAYER_AVATAR_FLAG_SURFING)))
 	{
-		if(data_03003150_J.0xE & 2)
+		if(gMain.newKeys & B_BUTTON)
 		{
-			r4 ^= 2
+			data_0203C00D_J.0 ^= 2
 			
-			if(r4 & 2)
+			if(data_0203C00D_J.0 & 2)
 				PlaySE(0x206)
 			else
 				PlaySE(0x207)
 			
-			r5 = 0
+			data_0203C00D_J.1 = 0
 		}
 		else
 		{
-			if(r4 & 2)
+			if(data_0203C00D_J.0 & 2)
 			{
-				r0 = data_03003150_J.0xC & 0xF0
-				
-				if(r0 != 0)
+				if(gMain.heldKeys & DPAD_ANY)
 				{
-					if(r5 < 0x30)
-						r5++
+					if(data_0203C00D_J.1 < 0x30)
+						data_0203C00D_J.1++
 					
-					data_0203C00D_J.2 = r0
+					data_0203C00D_J.2 = (gMain.heldKeys & DPAD_ANY)
 				}
 				else
 				{
-					if(r5 > 1)
-						r5 -= 2
+					if(data_0203C00D_J.1 > 1)
+						data_0203C00D_J.1 -= 2
 					else
-						r5 = 0
+						data_0203C00D_J.1 = 0
 				}
 			}
 		}
 	}
-	
-	data_0203C00D_J.0 = r4
-	data_0203C00D_J.1 = r5
 }
 
 
@@ -179,21 +166,20 @@ fn_EE5000_J()
 	data_0203D2E0_J.0 = data_0203CB54_J
 	fn_EE5528_J()
 	
-	if(sub_809A540() == 0)
+	if(fn_99F4A_J() == 0)
 	{
 		data_0203D2F9_J = 1
 		return
 	}
 	
-	SetGpuReg(8, data_04000008_J | 0x80)
-	r0 = 
+	SetGpuReg(REG_OFFSET_BG0CNT, data_04000008_J | BGCNT_256COLOR)
 
 	for(r4 = 0; r4 <= 0xF; r4++)
 	{
 		if(data_030050D0_J[r4] == data_97B9D_J)
 		{
 			data_030050D0_J[r4].8 = 6
-			SetGpuReg(0x12, 0)
+			SetGpuReg(REG_OFFSET_BG0VOFS, 0);
 			break;
 		}
 	}
@@ -214,7 +200,7 @@ fn_EE5000_J()
 	fn_EE543E_J(data_EE5568_J, 1)
 	fn_EE543E_J(data_EE5570_J, 2)
 	fn_EE5510_J()
-	r0 = sub_809A540()
+	r0 = fn_99F4A_J()
 	r4 = 0
 
 	do
@@ -232,7 +218,7 @@ fn_EE5000_J()
 	PutWindowTilemap(r4)
 	RemoveWindow(r4)
 	CopyBgTilemapBufferToVram(0)
-	PlaySE(5)
+	PlaySE(SE_SELECT);
 	data_0203D2ED_J = 0x10
 	data_0203D2FA_J = CreateTask(fn_EE51C0_J, 0)
 }
@@ -242,24 +228,24 @@ fn_EE5000_J()
 
 
 
+fn_99F4A_J()
+{
+	return (*gPokemonStoragePtr + 0x824C)
+}
+
+
+
+
+
 fn_EE5528_J()
 {
-	r4 = sub_809A540()
-
-	while(true)
+	for(r4 = fn_99F4A_J(); r4 != 0; r4 += 2)
 	{
-		r0 = r4
-		
-		if(r0 == 0)
-			break;
-		
-		if(CheckBagHasItem(r0, 1) != 1)
+		if(!CheckBagHasItem(r4, 1))
 		{
-			fn_99F54_J(&r0)
-			continue;
+			ShiftListElementsLeft(&r4)
+			r4 -= 2 // don't increase the counter
 		}
-	
-		r4 += 2
 	}
 }
 
@@ -270,8 +256,8 @@ fn_EE5528_J()
 
 fn_EE540C_J()
 {
-	r0 = sub_809A540()
-	fn_EE5654_J(r0[data_0203D2E0_J.0]), data_06008800_J)
+	r0 = fn_99F4A_J()
+	fn_EE5654_J(r0[data_0203D2E0_J.0], data_06008800_J)
 	r4 = AddWindow(data_EE5558_J)
 	PutWindowTilemap(r4)
 	RemoveWindow(r4)
@@ -288,8 +274,8 @@ fn_EE543E_J(arg0, arg1)
 	r1 = data_02020430_J[r4].8
 	r0 = data_EE56E0_J
 	svc(17)
-	r0 = sub_809A540()
-	r0 = r0[*data_0203D2E1_J + arg1]
+	r0 = fn_99F4A_J()
+	r0 = r0[data_0203D2E1_J + arg1]
 	
 	if(r0 == 0)
 		s4 = data_EE55AC_J
@@ -326,7 +312,7 @@ fn_EE54D6_J()
 	else
 		memcpy(data_06009C00_J, data_EE5C58_J, 0xC0)
 	
-	if((data_0203D2E1_J.4 <= data_0203D2E4_J)
+	if(data_0203D2E1_J.4 <= data_0203D2E4_J)
 		memcpy(data_06009CC0_J, data_EE5B78_J, 0xC0)
 	else
 		memcpy(data_06009CC0_J, data_EE5D38_J, 0xC0)
@@ -395,13 +381,13 @@ fn_EE56BC_J(arg0, arg1, arg2)
 
 
 
-fn_99F54_J(arg0)
+ShiftListElementsLeft(arg0) @99F54_J
 {
 	while(true)
 	{
-		arg0.0 = arg0.2
+		*arg0 = *(arg0 + 2)
 		
-		if(arg0.0 == 0)
+		if(*arg0 == 0)
 			break;
 
 		arg0 += 2
@@ -420,23 +406,23 @@ fn_EE51C0_J()
 	
 	if(data_0203D2EE_J != 0)
 	{
-		SetGpuReg(8, 0x4000008_J ^ 0x80)
+		SetGpuReg(REG_OFFSET_BG0CNT, 0x4000008_J ^ BGCNT_256COLOR)
 		data_03000F9C_J = 0
 		DestroyTask(data_0203D2FA_J)
 		data_0203CB54_J = data_0203D2E0_J.0
 	}
 	else
 	{
-		if(gMain.0x2E & 6)
+		if(gMain.newKeys & (B_BUTTON | SELECT_BUTTON))
 		{
 			if(data_0203D2EC_J == 1)
 			{
-				PlaySE(5)
+				PlaySE(SE_SELECT);
 				goto lbl18
 			}
 			else
 			{
-				PlaySE(5)
+				PlaySE(SE_SELECT);
 
 				lbl4:
 				data_0203D2FF_J = 0
@@ -445,9 +431,9 @@ fn_EE51C0_J()
 				data_0203D2EE_J = 1
 			}
 		}
-		elseif(gMain.0x2E & 1)
+		elseif(gMain.newKeys & A_BUTTON)
 		{
-			PlaySE(5)
+			PlaySE(SE_SELECT);
 			
 			if(data_0203D2EC_J == 1)
 				goto lbl18
@@ -457,7 +443,7 @@ fn_EE51C0_J()
 				goto lbl4
 			}
 		}
-		elseif((gMain.0x2E & 0x40) && )
+		elseif((gMain.newKeys & DPAD_UP))
 		{
 			if(data_0203D2E0_J.0 != 0)
 			{
@@ -470,14 +456,14 @@ fn_EE51C0_J()
 				
 				if(data_0203D2EC_J != 0)
 				{
-					r0 = sub_809A540()
+					r0 = fn_99F4A_J()
 					r3 = r0[data_0203D2E0_J.0]
 					r4 = r0[data_0203D2E0_J.0 + 1]
 					r0[data_0203D2E0_J.0] = r4
 					r0[data_0203D2E0_J.0 + 1] = r3
 				}
 				
-				PlaySE(5)
+				PlaySE(SE_SELECT);
 				fn_EE54D6_J()
 				fn_EE540C_J()
 				fn_EE543E_J(data_EE5560_J, 0)
@@ -486,7 +472,7 @@ fn_EE51C0_J()
 				fn_EE5510_J()
 			}
 		}
-		elseif(gMain.0x2E & 0x80)
+		elseif(gMain.newKeys & DPAD_DOWN)
 		{	
 			if(data_0203D2E0_J.0 < (data_0203D2E4_J - 1))
 			{
@@ -499,14 +485,14 @@ fn_EE51C0_J()
 				
 				if(data_0203D2EC_J != 0)
 				{
-					r0 = sub_809A540()
+					r0 = fn_99F4A_J()
 					r3 = r0[data_0203D2E0_J.0]
 					r4 = r0[data_0203D2E0_J.0 - 1]
 					r0[data_0203D2E0_J.0] = r4
 					r0[data_0203D2E0_J.0 - 1] = r3
 				}
 				
-				PlaySE(5)
+				PlaySE(SE_SELECT);
 				fn_EE54D6_J()
 				fn_EE540C_J()
 				fn_EE543E_J(data_EE5560_J, 0)
@@ -515,9 +501,9 @@ fn_EE51C0_J()
 				fn_EE5510_J()
 			}
 		}
-		elseif(gMain.0x2E & 8)
+		elseif(gMain.newKeys & START_BUTTON)
 		{
-			PlaySE(5)
+			PlaySE(SE_SELECT);
 
 			lbl18:
 			data_0203D2EC_J ^= 1

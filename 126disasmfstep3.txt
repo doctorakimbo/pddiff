@@ -1,0 +1,11 @@
+sub_806DE28(arg0)
+{
+	r0 = MapGridGetMetatileBehaviorAt(arg0->0x10, arg0->0x12)
+	
+	if(r0 == 0x66)
+	{
+		PlaySE(0x25)
+		RemoveFieldObjectByLocalIdAndMap(arg0->8, gSaveBlock1Ptr->5, gSaveBlock1Ptr->4)
+		FlagClear(sub_805FCD8(arg0->8, gSaveBlock1Ptr->5, gSaveBlock1Ptr->4))
+	}
+}

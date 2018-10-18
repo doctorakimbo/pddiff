@@ -1,0 +1,97 @@
+sub_806CAC8(input)
+{
+	sub_8069A54()
+	playerDirection = GetPlayerFacingDirection();
+	GetPlayerPosition(&position);
+	r8 = sub_8058F48(position.x, position.y, 0xFF)
+	metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
+	sub_806C888(data_03005078)
+	data_03005078.dpadDirection = input->dpadDirection
+	
+	if(CheckForTrainersWantingBattle() == TRUE || mapheader_run_first_tag2_script_list_match() == 1)
+		return TRUE;
+	
+	if(input->tookStep)
+	{
+		IncrementGameStat(GAME_STAT_STEPS);
+		sub_8146CA4()
+		sub_815D8C8()
+		sub_80CC918()
+		sub_80CB054()
+		sub_80CCFBC()
+		
+		if(TryStartStepBasedScript(&position, metatileBehavior, playerDirection) == TRUE)
+		{
+			data_03005078.tookStep = TRUE
+			return TRUE;
+		}
+	}
+	
+	if(input->checkStandardWildEncounter)
+	{
+		if(input->dpadDirection == DIR_NONE || input->dpadDirection == playerDirection)
+		{
+			GetInFrontOfPlayerPosition(&position);
+			metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
+			
+			if(sub_806D804(&position, metatileBehavior, playerDirection) == 1)
+			{
+				data_03005078.checkStandardWildEncounter = TRUE
+				return TRUE;
+			}
+			
+			GetPlayerPosition(&position);
+			metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
+		}
+		
+		if(input->checkStandardWildEncounter && sub_806D7F4(r8) == 1)
+		{
+			data_03005078.checkStandardWildEncounter = TRUE
+			return TRUE;
+		}
+	}
+	
+	if(input->input_field_0_4 && input->dpadDirection == playerDirection && sub_806D964(&position, metatileBehavior, playerDirection) == TRUE)
+	{
+		data_03005078.input_field_0_4 = TRUE
+		return TRUE;
+	}
+	
+	GetInFrontOfPlayerPosition(&position);
+	metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
+	
+	if(input->input_field_0_4 && input->dpadDirection == playerDirection && sub_806D804(&position, metatileBehavior, playerDirection) == TRUE)
+	{
+		data_03005078.input_field_0_4 = TRUE
+		return TRUE;
+	}
+	
+	if(input->pressedAButton && TryStartInteractionScript(&position, metatileBehavior, playerDirection) == TRUE)
+	{
+		data_03005078.pressedAButton = TRUE
+		return TRUE;
+	}
+	
+	if(input->input_field_0_5 && input->dpadDirection == playerDirection && map_warp_consider_2_to_inside(&position, metatileBehavior, playerDirection) == TRUE)
+	{
+		data_03005078.input_field_0_5 = TRUE
+		return TRUE;
+	}
+	
+	if(input->pressedStartButton)
+	{
+		data_03005078.pressedStartButton = TRUE
+		FlagSet(0x83E)
+		PlaySE(SE_WIN_OPEN);
+		ShowStartMenu();
+		return TRUE;
+	}
+	
+	if(input->pressedSelectButton && UseRegisteredKeyItemOnField() == TRUE)
+	{
+		data_03005078.pressedSelectButton = TRUE
+		return TRUE;
+	}
+	
+	return FALSE;
+}

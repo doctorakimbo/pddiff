@@ -1,0 +1,38 @@
+sub_806D1F0(NULL, arg1, arg2)
+{
+	r4 = arg1
+	r5 = arg2
+	r0 = data_020370D4
+	*r0 = r5
+	r6 = data_6CA2C_J
+	r0 = 0
+
+	while(true)
+	{
+		r1 = r0 * 8
+		r2 = *(r6 + r1)
+		
+		if(r2 == r4)
+		{
+			r6 += r1
+			r2 = *(r6 + 2)
+			
+			if(r2 == 0 || r2 == r5)
+			{
+				r0 = *(r6 + 3)
+				
+				if(r0 != 1)
+					return *(r6 + 4)
+			}
+
+			return 0
+		}
+		elseif(r2 == 0xFF)
+			return 0
+
+		r0++
+	} 
+}
+
+data_6CA2C_J:
+?

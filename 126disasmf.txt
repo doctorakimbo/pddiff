@@ -1,0 +1,27 @@
+lbl1: @6DE28
+r5 = r0
+r1 = 0x10
+r0 = *(r5 + r1)
+r2 = 0x12
+r1 = *(r5 + r2)
+MapGridGetMetatileBehaviorAt()
+if(r0 != 0x66) goto lbl2
+
+r0 = 0x25
+PlaySE()
+r0 = *(r5 + 8)
+r4 = gSaveBlock1Ptr
+r2 = *r4
+r1 = *(r2 + 5)
+r2 = *(r2 + 4)
+fn_5E4C8()
+r0 = *(r5 + 8)
+r2 = *r4
+r1 = *(r2 + 5)
+r2 = *(r2 + 4)
+fn_5FCD8()
+FlagClear()
+goto lbl2
+
+lbl2:
+return

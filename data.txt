@@ -111,6 +111,7 @@ BC 1D 03 02: F0 1C 03 02: sWarpDestination
 		   : 47 6D 03 02: ?????? (atkEF_handleballthrow: Dusk Ball boosted if this is 4) (gTileset?)
 38 6E 03 02: 6C 6D 03 02: gEventObjects (atkEF_handleballthrow: Lure Ball boosted if this[0] is 1) (gIsPlayerFishing?)
 78 70 03 02: AC 6F 03 02: gPlayerAvatar
+D4 70 03 02: 08 70 03 02: ??????
 D6 70 03 02: 0A 70 03 02: gSpecialVar_MonBoxId
 D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 		   : E2 85 03 02: ?????? (CreateNPCTrainerParty: checked if less than 0x2E6, if so, used as an index to copy data from table data_09400000_J into gEnemyParty)
@@ -156,29 +157,51 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 		   : 00 C0 03 02: ?????? (NewGameInitData: zeroed starting from here to 0203CEC4)
 		   : 0D C0 03 02: ?????? (sub_8032768: this.1 is set to 0)
 								 (music_something: this.1 is set to 0)
-								 {SoftForceDirection: if (this.0 & 2) isn't set, the player isn't on foot, surfing, or (?acrobike), there's not an existing direction, and this.1 isn't 0, this.2 corresponds to the new direction: this.2 & 0x80 = south, this.2 & 0x40 = north, this.2 & 0x20 = west, otherwise east}
+								 {SoftForceDirection: if (this.0 & 2) isn't set, the player isn't on foot, surfing, or (?acrobike), there's not an existing direction, and this.1 isn't 0, this.2 corresponds to the new direction: this.2 & DPAD_DOWN = south, this.2 & DPAD_UP = north, this.2 & DPAD_LEFT = west, otherwise east}
 								 (MovePlayerAvatarUsingKeypadInput: MovePlayerOnBike is only run if (this.0 & 2) isn't set, otherwise MovePlayerNotOnBike)
-								 (PlayerNotOnBikeMoving: if surfing or (?machbike) and this.1 has high bit of 0, go slower than normal)
+								 (PlayerNotOnBikeMoving: if surfing or (?machbike) and this.1 < 0x10, go slower than normal)
 								 (PlayerNotOnBikeMoving: if surfing or (?machbike) and this.1 > 0x10, go (faster than normal? fn_5C164))
 								 (PlayerNotOnBikeMoving: if (this.0 & 1) is set, run when possible even when B isn't held)
 								 (PlayCollisionSoundIfNotFacingWarp: if a wall collision occurs, set this.1 to 0)
+								 (fn_183A90_J: If R is pressed and flag 0x82F is set, toggle (this.0 & 1))
+								 (fn_183A90_J: If the player isn't on foot, surfing, or (?acrobike) and B is pressed, toggle (this.0 & 2) and set this.1 to 0)
+								 (fn_183A90_J: If the player isn't on foot, surfing, or (?acrobike) and an arrow key is held, set this.2 to the arrow key and increment this.1 once per frame up to 0x30)
+								 (fn_183A90_J: If the player isn't on foot, surfing, or (?acrobike) and an arrow key isn't held, decrease this.1 by 2 per frame until 0)
 		   : 10 C0 03 02: ?????? (appears to be an array of 167 unknown 4-byte objects, possibly ItemSlots)
 								 (LoadPlayerBag: Entire array read from in a loop, just like gSaveBlock1Ptr->bagPocket_Items, and written to j0203BB00)
 								 (SavePlayerBag: Entire array written to in a loop, just like gSaveBlock1Ptr->bagPocket_Items, read from j0203BB00)
 		   : AC C2 03 02: gDaycareParentMoves
 		   : B4 C2 03 02: gDaycareParentMoves[1]
 		   : 18 CB 03 02: ?????? (GetLocationMusic: if this.0xE is not zero, return this.0xC instead of the default music)
-		   : 54 CB 03 02: ??????
-		   : E0 D2 03 02: ??????
-		   : E1 D2 03 02: ??????
-		   : E2 D2 03 02: ??????
-		   : E4 D2 03 02: ??????
-		   : EC D2 03 02: ??????
-		   : ED D2 03 02: ??????
-		   : EE D2 03 02: ??????
-		   : F9 D2 03 02: ??????
-		   : FA D2 03 02: ??????
-		   : FF D2 03 02: ??????
+		   : 54 CB 03 02: ?????? (fn_EE5000: set data_0203D2E0_J.0 on start)
+								 (fn_EE51C0: set this to data_0203D2E0_J.0 on exit)
+		   : E0 D2 03 02: ?????? (fn_EE5000: set this.4, this.8, and this.0xC to 0 and this.0 to data_0203CB54_J on start)
+								 (fn_EE540C: use this.0 as an index into gPokemonStoragePtr->0x824C[])
+								 (fn_EE51C0: just before exiting, set data_0203CB54_J to this.0)
+								 (fn_EE51C0: if UP is pressed, decrement this.0 if not 0, decrement this.2 if not 0 (otherwise decrement this.1), and if data_0203D2EC_J is 1, swap gPokemonStoragePtr->0x824C[this.0] and gPokemonStoragePtr->0x824C[this.0 + 1])
+								 (fn_EE51C0: if DOWN is pressed, decrement this.0 if less than (data_0203D2E4_J - 1), increment this.2 if not 2 (otherwise increment this.1), and if data_0203D2EC_J is 1, swap gPokemonStoragePtr->0x824C[this.0] and gPokemonStoragePtr->0x824C[this.0 - 1])
+		   : E1 D2 03 02: ?????? (fn_EE543E: use this.0 as an index into gPokemonStoragePtr->0x824C[])
+								 (fn_EE543E: use this.0 as an index into data_06009000_J)
+								 (fn_EE54D6: determine something through this.0, and something else through this.4)
+		   : E2 D2 03 02: ?????? (fn_EE5510: used as an index into data_06009000_J)
+		   : E4 D2 03 02: ?????? (fn_EE5000: set this to the currently occupied size of gPokemonStoragePtr->0x824C[])
+								 (fn_EE54D6: used as an upper limit of something)
+								 (fn_EE51C0: DOWN only does something if data_0203D2E0_J.0 is less than (this - 1))
+		   : EC D2 03 02: ?????? (fn_EE51C0: when this is 1 and A, B, or SELECT are pressed, set this to 0 and switch a palette)
+								 (fn_EE51C0: when START is pressed, toggle this and switch a palette)
+								 (fn_EE51C0: when this is 1, UP/DOWN swap entries of gPokemonStoragePtr->0x824C[])
+		   : ED D2 03 02: ?????? (fn_EE5000: set this to 0x10 on start)
+								 (fn_EE51C0: decrement once per frame until 0)
+		   : EE D2 03 02: ?????? (fn_EE51C0: exit when this is 1)
+								 (fn_EE51C0: when data_0203D2EC_J != 1 and A, B, or SELECT are pressed, set this to 1)
+		   : F9 D2 03 02: ?????? (sub_806CAC8: set to zero on start)
+								 (sub_806CAC8: if 1, act as if SELECT was pressed)
+								 (fn_EE5000: if gPokemonStoragePtr->0x824C[0] == 0, set this to 1 and don't execute the function)
+								 (fn_EE51C0: if the A button is pressed with data_0203D2EC_J != 1, set this to 1 and prepare to exit)
+		   : FA D2 03 02: ?????? (fn_EE5000: set this to the created task on start)
+								 (fn_EE51C0: destroy this task on exit)
+		   : FF D2 03 02: ?????? (fn_EE5000: set to 1 on start)
+								 (fn_EE51C0: set to 0 on exit)
 		   : 00 D3 03 02: ?????? (Appears to be an array of characters)
 								 (fn_EB8398_J: Set this[0] to data_0203BF70_J[battler].8[moveId])
 								 (fn_EB8398_J: Set this[2] to CHAR_SLASH)
@@ -204,7 +227,6 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 		   
 		   : 9C 0F 00 03: ??????
 F0 30 00 03: 30 31 00 03: gMain
-		   : 50 31 00 03: ??????
 84 4F 00 03: C4 4F 00 03: gBattleMainFunc
 90 4F 00 03: D0 4F 00 03: gBattleResults
 A3 4F 00 03: E3 4F 00 03: gBattleResults.battleTurnCounter
@@ -213,7 +235,7 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 00 50 00 03: 40 50 00 03: gRngValue
 08 50 00 03: 48 50 00 03: gSaveBlock1Ptr
 0C 50 00 03: 4C 50 00 03: gSaveBlock2Ptr
-10 50 00 03: 50 50 00 03: ??????
+10 50 00 03: 50 50 00 03: gPokemonStoragePtr
 14 50 00 03: 54 50 00 03: gBGTilemapBuffers1
 18 50 00 03: 58 50 00 03: gBGTilemapBuffers2
 1C 50 00 03: 5C 50 00 03: gBGTilemapBuffers3
@@ -348,6 +370,8 @@ funcs e,j,desc:
 058F78 = 058834 = MapGridGetMetatileBehaviorAt
 059BC8 = 059484 = MetatileBehavior_IsWarpDoor
 059C8C = 059548 = MetatileBehavior_IsNonAnimDoor
+059ED8 = 059794 = MetatileBehavior_IsPlayerFacingTVScreen
+059EF4 = 0597B0 = MetatileBehavior_IsPC
 05B45C = 05AD18 = TryInterruptEventObjectSpecialAnim
 05B4B0 = 05AD6C = npc_clear_strange_bits
 05B4D4 = 05AD90 = MovePlayerAvatarUsingKeypadInput
@@ -367,21 +391,18 @@ funcs e,j,desc:
 05C6C4 = 05BF80 = GetPlayerFacingDirection
 05CCD0 = 05C58C = task_add_bump_boulder
 05DFB0 = 05D870 = GetFieldObjectIdByXY
+05E4C8 = 05DD88 = RemoveFieldObjectByLocalIdAndMap
+05FCD8 = 05F598 = ?????
 0636AC = 062F6C = GetCollisionAtCoords
 063A20 = 0632E0 = MoveCoords
 063F84 = 063844 = GetWalkNormalMovementAction
 063FB0 = 063870 = GetPlayerRunMovementAction
-069A54 = 069314 = ?????
 069C74 = 069534 = mapheader_run_first_tag2_script_list_match
-06C888 = 06C07C = ?????
 06CE20 = 06C614 = player_get_pos_to_and_height
 06CE38 = 06C62C = player_get_next_pos_and_height
-06CEA0 = 06C694 = ?????
-06D5E8 = 06CDDC = ?????
-06D7F4 = 06CFE8 = ?????
-06D804 = 06CFF8 = ?????
-06D964 = 06D158 = ?????
-06DCD0 = 06D4C4 = ?????
+06CEA0 = 06C694 = TryStartInteractionScript
+06D5E8 = 06CDDC = TryStartStepBasedScript
+06DCD0 = 06D4C4 = map_warp_consider_2_to_inside
 06E25C = 06DA50 = IsNationalPokedexEnabled
 06E454 = 06DC48 = GetVarPointer
 06E568 = 06DD5C = VarGet
@@ -389,7 +410,7 @@ funcs e,j,desc:
 06E6A8 = 06DE9C = FlagClear
 06E680 = 06DE74 = FlagSet
 06E6D0 = 06DEC4 = FlagGet
-06F258 = 06EA4C = ?????
+06F258 = 06EA4C = ShowStartMenu
 0703A8 = 06FB4C = LoadCompressedPalette
 0703EC = 06FB90 = LoadPalette
 070E44 = BeginFastPaletteFade
@@ -402,7 +423,7 @@ funcs e,j,desc:
 07741C = 076BB4 = CreateTask
 077508 = 076CA0 = DestroyTask
 07AF98 = 07A6F8 = weather_get_current
-081B30 = 08171C = ?????
+081B30 = 08171C = CheckForTrainersWantingBattle
 088E8C = 088A68 = pokedex_count
 08B9F4 = 08B490 = StorageGetCurrentBox
 08BA18 = 08B4B4 = GetBoxMonDataFromAnyBox
@@ -411,8 +432,6 @@ funcs e,j,desc:
 099DE0 = 0997E8 = ApplyNewEncryptionKeyToBagItems
 099E44 = 09984C = SetBagItemsPointers
 099F40 = 099948 = CheckBagHasItem
-09A540 = 099F4A = ?????
-?????? = 099F54 = ?????
 09A8BC = 09A2C4 = ItemId_GetName
 09A924 = 09A330 = GetHoldEffect
 09A948 = 09A354 = GetHoldEffectParam
@@ -420,20 +439,15 @@ funcs e,j,desc:
 0BD488 = 0BE748 = IsRunningDisallowed
 0C71D0 = 0C83AC = RecordAbilityBattle
 0C7208 = 0C83E4 = RecordItemEffectBattle
-0CB054 = 0CC220 = ?????
 0CC79C = 0CD914 = set_unknown_box_id
 0CC7A8 = 0CD920 = get_unknown_box_id
-0CC918 = 0CDA8C = ?????
-0CCFBC = 0CE104 = ?????
 0D77F4 = 0D8898 = BattleStringExpandPlaceholdersToDisplayedString
 0D87BC = 0D980C = BattlePutTextOnWindow
 0F67A4 = 0F77FC = schedule_bg_copy_tilemap_to_vram
-10AD10 = 10B80C = ?????
+10AD10 = 10B80C = UseRegisteredKeyItemOnField
 125A78 = 1263C4 = ItemIdToBattleMoveId
 12E51C = 12ED24 = box_print
 12E5A4 = 12EDAC = AddTextPrinterParameterized2
-146CA4 = 147294 = ?????
-15D8C8 = 160B74 = ?????
 1E3B64 = 1C7A88 = CpuSet
 1E3B9C = square root
 1E3BA8 = 1C7AC8 = call r0
@@ -465,6 +479,7 @@ funcs e,j,desc:
 045BF0 = 0451B4 = GetStatFromPowerItem
 045DD8 = 04539C = ?????
 045E00 = 0453C4 = ?????
+?????? = 099F54 = ShiftListElementsLeft (unimplemented)
 ?????? = 168C88 = ClearFocusBand (unimplemented)
 ?????? = 168C9C = SetFocusBand (unimplemented)
 ?????? = 183A90 = ????? (unimplemented)

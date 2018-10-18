@@ -1,0 +1,87 @@
+GetInteractedMetatileScript(NULL, metatileBehavior, direction)
+{
+	data_020370D4 = direction
+	
+	if(MetatileBehavior_IsPC(metatileBehavior) == TRUE) // 0x83
+		return data_1A6955
+	elseif(fn_5A134(metatileBehavior) == TRUE) // 0x85
+		return data_1A6C32
+	elseif(fn_5A24C(metatileBehavior) == TRUE) // 0x81
+		return data_1A7606
+	elseif(fn_5A260(metatileBehavior) == TRUE) // 0x82
+		return data_1A760F
+	elseif(fn_5A44C(metatileBehavior) == TRUE) // 0x90
+		return data_1A7618
+	elseif(fn_5A558(metatileBehavior) == TRUE) // 0xA0
+		return data_1A7633
+	elseif(fn_5A474(metatileBehavior) == TRUE) // 0x93
+		return data_1A763C
+	elseif(fn_5A56C(metatileBehavior) == TRUE) // 0xA1
+		return data_1A7621
+	elseif(fn_5A580(metatileBehavior) == TRUE) // 0xA2
+		return data_1A7645
+	elseif(fn_5A4C4(metatileBehavior) == TRUE) // 0x97
+		return data_1A762A
+	elseif(fn_5A594(metatileBehavior) == TRUE) // 0xA3
+		return data_1C549C
+	elseif(MetatileBehavior_IsPlayerFacingTVScreen(metatileBehavior, direction) == TRUE) // 0x86
+		return data_1A764E
+	elseif(fn_5A374(metatileBehavior) == TRUE) // 0x89
+		return data_1A7657
+	elseif(fn_5A388(metatileBehavior) == TRUE) // 0x8A
+		return data_1A7660
+	elseif(fn_5A39C(metatileBehavior) == TRUE) // 0x8B
+		return data_1A7669
+	elseif(fn_5A3B0(metatileBehavior) == TRUE) // 0x8C
+		return data_1A7672
+	elseif(fn_5A488(metatileBehavior) == TRUE) // 0x94
+		return data_1A767B
+	elseif(fn_5A49C(metatileBehavior) == TRUE) // 0x95
+		return data_1A7684
+	elseif(fn_5A4B0(metatileBehavior) == TRUE) // 0x96
+		return data_1A768D
+	elseif(fn_5A4D8(metatileBehavior) == TRUE) // 0x98
+		return data_1A7696
+	elseif(fn_5A4EC(metatileBehavior) == TRUE) // 0x99
+		return data_1A769F
+	elseif(fn_5A500(metatileBehavior) == TRUE) // 0x9A
+		return data_1A76A8
+	elseif(fn_5A514(metatileBehavior) == TRUE) // 0x9B
+		return data_1A76B1
+	elseif(fn_5A528(metatileBehavior) == TRUE) // NULL
+		return data_1A76BA
+	elseif(fn_5A52C(metatileBehavior) == TRUE) // NULL
+		return data_1A76C3
+	elseif(fn_5A530(metatileBehavior) == TRUE) // 0x9E
+		return data_1A76CC
+	elseif(fn_5A544(metatileBehavior) == TRUE) // 0x9F
+		return data_1A76D5
+	elseif(fn_5A3D8(metatileBehavior, direction) == TRUE) // 0x8D
+		return data_1BBFD8
+	elseif(fn_5A410(metatileBehavior) == TRUE) // 0x8F
+		return data_1A7702
+	elseif(fn_5A3F4(metatileBehavior, direction) == TRUE) // 0x8E
+		return data_1BB8A7
+	elseif(fn_5A424(metatileBehavior) == TRUE) // 0x91
+	{
+		fn_69A20()
+		return data_1A76F0
+	}
+	elseif(fn_5A438(metatileBehavior) == TRUE) // 0x92
+	{
+		fn_69A20()
+		return data_1A76F9
+	}
+	elseif(fn_5A290(metatileBehavior, direction) == TRUE) // 0x88
+	{
+		fn_69A20()
+		return data_1A76DE
+	}
+	elseif(fn_5A274(metatileBehavior, direction) == TRUE) // 0x87
+	{
+		fn_69A20()
+		return data_1A76E7
+	}
+	else
+		return NULL;
+}

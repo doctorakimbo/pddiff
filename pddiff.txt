@@ -232,7 +232,7 @@ pokeball types:
 + 0x18 = Fast Ball
 
 metatiles:
-0x1F: (allows Strength boulder to be moved onto it)
+0x1F: (Strength boulders can be moved onto this tile, after which the boulder disappears; unlike the holes because it has a different sound effect and doesn't set a flag)
 0xB0: (moving west off the tile results in northwest, moving east results in southeast)
 0xB1: (moving west off the tile results in northwest)
 0xB2: (moving east off the tile results in southeast)
@@ -241,6 +241,8 @@ metatiles:
 0xB5: (moving west off the tile results in southwest)
 0xE0: (IsSandOrDeepSand (? unsure) returns TRUE)
 0xE2: (IsSandOrDeepSand (? unsure) returns TRUE)
+0xE3: (runs script_68277E_J (msgbox 8B 70 46 0A 1A FE 8B 70 44 00 02 50 4B 02 AB FF) when examined)
+0xE4: (runs script_682787_J (msgbox 87 5B 8B 5F B0 AB FE 15 06 1A 00 8B 70 00 46 50 06 28 AB FF) when examined)
 
 battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0xC2 = "[PKMN]'s [ABILITY] [CHANGED] its [STAT]!" <DON'T ADD 9> <REFACTOR LATER>
@@ -639,7 +641,7 @@ grafics:
 		  Implements: Need more info
 		  Required knowledge: j0203BF40
 = 030830: Entirety of MoveSelectionDisplayMoveNames (see 70disasm)
-		  Implements: Need more info
+		  Implements: Need more info (possibly displays the type icons in the info box)
 		  Required knowledge: j02020024, j0203BF30, j0203BF40, j0203BF70, j0203D300, j0203D340, j0203D380, j0203D480
 		  Requires in future: fn_1833C0_J
 ! 0308B8: A7 F0 80 FF -> 00 00 00 00
@@ -875,9 +877,15 @@ grafics:
 = 06BCAA, 06BCF2: 0B -> 10 (pkmnnamelength)
 = 06BE72: 0D -> 20 (movenamelength)
 = 06CAC8: Entirety of sub_806CAC8 (see 124disasm)
-		  
-		  
-		  
+		  Implements: Need more info (possibly two-speed bike and multi-registration SELECT)
+		  Required knowledge: j0203C00D, j0203CB54, j0203D2E0, j0203D2E1, j0203D2E2, j0203D2E4, j0203D2EC, j0203D2ED, j0203D2EE, j0203D2F9, j0203D2FA, j0203D2FF
+		  Requires in future: fn_99F4A_J, ShiftListElementsLeft (j99F54), fn_183A90_J, fn_EE5000, fn_EE51C0, fn_EE540C, fn_EE543E, fn_EE54D6, fn_EE5510, fn_EE5528, fn_EE561C, fn_EE5654, fn_EE56BC
+= 06D1F0: Entirety of GetInteractedMetatileScript (see 125disasm)
+		  Implements: scripts for metatiles 0xE3 and 0xE4, makes it easier to add more scripted metatiles
+		  Requires in future: script_68277E_J, script_682787_J
+- 06DE28: Entirety of sub_806DE28 (see 126disasm)
+		  Implements: Strength boulders disappear when moved onto metatile 0x1F
+= 06DE70: Entirety of sub_806DE70 (see 127disasm)
 		  
 		  
 		  
@@ -888,5 +896,5 @@ grafics:
 		  
 
 
-curr: j6C2BC-j6C524
-next: j6C9E4
+curr: j6D664-j6D6B8
+next: j6DDB4

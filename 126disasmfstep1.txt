@@ -1,0 +1,25 @@
+sub_806DE28(arg0)
+{
+	r5 = arg0
+	r1 = 0x10
+	r2 = 0x12
+	
+	r0 = MapGridGetMetatileBehaviorAt(*(r5 + r1), *(r5 + r2))
+	
+	if(r0 == 0x66)
+	{
+		PlaySE(0x25)
+		r0 = *(r5 + 8)
+		r4 = gSaveBlock1Ptr
+		r2 = *r4
+		r1 = *(r2 + 5)
+		r2 = *(r2 + 4)
+		fn_5E4C8()
+		r0 = *(r5 + 8)
+		r2 = *r4
+		r1 = *(r2 + 5)
+		r2 = *(r2 + 4)
+		fn_5FCD8()
+		FlagClear()
+	}
+}
