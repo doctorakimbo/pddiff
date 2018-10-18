@@ -173,7 +173,9 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 		   : E1 D2 03 02: ??????
 		   : E2 D2 03 02: ??????
 		   : E4 D2 03 02: ??????
+		   : EC D2 03 02: ??????
 		   : ED D2 03 02: ??????
+		   : EE D2 03 02: ??????
 		   : F9 D2 03 02: ??????
 		   : FA D2 03 02: ??????
 		   : FF D2 03 02: ??????
@@ -227,6 +229,7 @@ funcs e,j,desc:
 0020BC = 0020BC = CopyBgTilemapBufferToVram
 002124 = 002124 = CopyToBgTilemapBufferRect
 002228 = 002228 = CopyToBgTilemapBufferRect_ChangePalette
+002454 = 002454 = FillBgTilemapBufferRect_Palette0
 003CE4 = 003CB0 = AddWindow
 003E3C = 003E08 = RemoveWindow
 003FA0 = 003F6C = PutWindowTilemap
@@ -397,6 +400,7 @@ funcs e,j,desc:
 0751E8 = 07498C = GetBattlerAtPosition
 075290 = 074A34 = IsDoubleBattle
 07741C = 076BB4 = CreateTask
+077508 = 076CA0 = DestroyTask
 07AF98 = 07A6F8 = weather_get_current
 081B30 = 08171C = ?????
 088E8C = 088A68 = pokedex_count

@@ -1,0 +1,532 @@
+sub_806CAC8(arg0)
+{
+	sub_8069A54()
+	r6 = GetPlayerFacingDirection()
+	player_get_pos_to_and_height(&s0)
+	r0 = *data_0203D2F9_J
+	*data_0203D2F9_J = 0
+	
+	if(r0 != 0 && sub_810AD10() == 1)
+	{
+		*data_03005078 |= 8
+		return 1
+	}
+	
+	r8 = sub_8058F48(s0, s0pt5, 0xFF)
+	r4 = MapGridGetMetatileBehaviorAt(s0, s0pt5)
+	sub_806C888(data_03005078)
+	*(data_03005078 + 2) = *(arg0 + 2)
+	
+	if(sub_8081B30() == 1 || mapheader_run_first_tag2_script_list_match() == 1)
+		return 1
+	
+	if(*arg0 & 0x40)
+	{
+		IncrementGameStat(5)
+		sub_8146CA4()
+		sub_815D8C8()
+		sub_80CC918()
+		sub_80CB054()
+		sub_80CCFBC()
+		
+		if(sub_806D5E8(&s0, r4, r6) == 1)
+		{
+			*data_03005078 |= 0x40
+			return 1
+		}
+	}
+	
+	if(*arg0 & 2)
+	{
+		if(*(arg0 + 2) == 0 || *(arg0 + 2) == r6)
+		{
+			player_get_next_pos_and_height(&s0)
+			r4 = MapGridGetMetatileBehaviorAt(s0, s0pt5)
+			
+			if(sub_806D804(&s0, r4, r6) == 1)
+			{
+				*data_03005078 |= 2
+				return 1
+			}
+			
+			player_get_pos_to_and_height(&s0)
+			r4 = MapGridGetMetatileBehaviorAt(s0, s0pt5)
+		}
+		
+		if((*arg0 & 2) && sub_806D7F4(r8) == 1)
+		{
+			*data_03005078 |= 2
+			return 1
+		}
+	}
+	
+	fn_183A90_J()
+	
+	if((*arg0 & 0x10) && *(arg0 + 2) == r6 && sub_806D964(&s0, r4, r6) == 1)
+	{
+		*data_03005078 |= 0x10
+		return 1
+	}
+	
+	player_get_next_pos_and_height(&s0)
+	r4 = MapGridGetMetatileBehaviorAt(s0, s0pt5)
+	
+	if((*arg0 & 0x10) && *(arg0 + 2) == r6 && sub_806D804(&s0, r4, r6) == 1)
+	{
+		*data_03005078 |= 0x10
+		return 1
+	}
+		
+	if((*arg0 & 1) && sub_806CEA0(&s0, r4, r6) == 1)
+	{
+		*data_03005078 |= 1
+		return 1
+	}
+	
+	if((*arg0 & 0x20) && *(arg0 + 2) == r6 && sub_806DCD0(&s0, r4, r6) == 1)
+	{
+		*data_03005078 |= 0x20
+		return 1
+	}
+	
+	if(*arg0 & 4)
+	{
+		*data_03005078 |= 4
+		FlagSet(0x83E)
+		PlaySE(6)
+		sub_806F258()
+		return 1
+	}
+	
+	if(*(data_03005078 + 2) == 0 && (*arg0 & 8))
+		fn_EE5000_J()
+	
+	return 0
+}
+
+
+
+
+
+
+fn_183A90_J()
+{
+	r4 = *data_0203C00D_J
+	r5 = *(data_0203C00D_J + 1)
+	
+	if(*(data_03003150_J + 0xF) & 1)
+	{
+		r0 = FlagGet(0x82F)
+		
+		if(r0 != 0)
+		{
+			r4 ^= r0
+			PlaySE(0x68 - (r0 & r4))
+		}
+	}
+	
+	if(!(*gPlayerAvatar & 0xD))
+	{
+		if(*(data_03003150_J + 0xE) & 2)
+		{
+			r4 ^= 2
+			
+			if(r4 & 2)
+				PlaySE(0x206)
+			else
+				PlaySE(0x207)
+			
+			r5 = 0
+		}
+		else
+		{
+			if(r4 & 2)
+			{
+				r0 = *(data_03003150_J + 0xC) & 0xF0
+				
+				if(r0 != 0)
+				{
+					if(r5 < 0x30)
+						r5++
+					
+					*(data_0203C00D_J + 2) = r0
+				}
+				else
+				{
+					if(r5 > 1)
+						r5 -= 2
+					else
+						r5 = 0
+				}
+			}
+		}
+	}
+	
+	*data_0203C00D_J = r4
+	*(data_0203C00D_J + 1) = r5
+}
+
+
+
+
+
+
+fn_EE5000_J()
+{
+	*(data_0203D2E0_J + 4) = 0
+	*(data_0203D2E0_J + 8) = 0
+	*(data_0203D2E0_J + 0xC) = 0
+	*data_0203D2E0_J = *data_0203CB54_J
+	fn_EE5528_J()
+	
+	if(*sub_809A540() == 0)
+	{
+		*data_0203D2F9_J = 1
+		return
+	}
+	
+	SetGpuReg(8, *data_04000008_J | 0x80)
+	r0 = data_030050D0_J
+
+	for(r4 = 0; r4 <= 0xF; r4++)
+	{
+		if(*(r0 + (r4 * 0x28)) == data_97B9D_J)
+		{
+			r0 += r4 * 0x28
+			*(r0 + 8) = 6
+			SetGpuReg(0x12, 0)
+			break;
+		}
+	}
+	
+	CopyToBgTilemapBufferRect(0, data_EE5920_J, 0, 0xA, 0x1E, 0xA)
+	r0 = data_EE57CC_J
+	r1 = data_06008000_J
+	svc(18)
+	LoadPalette(data_EE5900_J, 0xD0, 0x20)
+	LoadPalette(data_EE57AC_J, 0xE0, 0x20)
+	*data_03000F9C_J = 1
+	*data_0203D2FF_J = 1
+	// oops! r1 is currently 1 instead of whatever was intended
+	*(r1 + 5) = 1
+	*(r1 + 0xD) = 8
+	fn_EE540C_J()
+	fn_EE543E_J(data_EE5560_J, 0)
+	fn_EE543E_J(data_EE5568_J, 1)
+	fn_EE543E_J(data_EE5570_J, 2)
+	fn_EE5510_J()
+	r0 = sub_809A540()
+	r4 = 0
+
+	do
+	{
+		r1 = *(r0 + (r4 * 2))
+		r4++
+	} while(r1 != 0)
+
+	*data_0203D2E4_J = r4 - 1
+	fn_EE54D6_J()
+	r4 = AddWindow(data_EE5578_J)
+	PutWindowTilemap(r4)
+	RemoveWindow(r4)
+	r4 = AddWindow(data_EE5580_J)
+	PutWindowTilemap(r4)
+	RemoveWindow(r4)
+	CopyBgTilemapBufferToVram(0)
+	PlaySE(5)
+	*data_0203D2ED_J = 0x10
+	*data_0203D2FA_J = CreateTask(fn_EE51C0_J, 0)
+}
+
+
+
+
+
+
+fn_EE5528_J()
+{
+	r4 = sub_809A540()
+
+	while(true)
+	{
+		r0 = *r4
+		
+		if(r0 == 0)
+			break;
+		
+		if(CheckBagHasItem(r0, 1) != 1)
+		{
+			fn_99F54_J(r4)
+			continue;
+		}
+	
+		r4 += 2
+	}
+}
+
+
+
+
+
+
+fn_EE540C_J()
+{
+	fn_EE5654_J(*(sub_809A540() + (*data_0203D2E0_J * 2)), data_06008800_J)
+	r4 = AddWindow(data_EE5558_J)
+	PutWindowTilemap(r4)
+	RemoveWindow(r4)
+}
+
+
+
+
+
+
+fn_EE543E_J(arg0, arg1)
+{
+	r4 = AddWindow(arg0)
+	r1 = *((r4 * 0xC) + data_02020430_J + 8)
+	r0 = data_EE56E0_J
+	svc(17)
+	r0 = *(((*data_0203D2E1_J + arg1) * 2) + sub_809A540())
+	
+	if(r0 == 0)
+		s4 = data_EE55AC_J
+	else
+		s4 = ItemId_GetName(r0)
+	
+	AddTextPrinterParameterized2(r4, 2, 4, 1, 0, 0, data_EE5588_J, -1)
+	fn_EE561C_J(*((r4 * 0xC) + data_02020430_J + 8), 0x30, 0xD)
+	memcpy(((((*data_0203D2E1_J + arg1) * 2) - *data_0203D2E1_J) * 0x1000) + data_06009000_J, *((r4 * 0xC) + data_02020430_J + 8), 0xC00)
+	*((r4 * 0xC) + data_02020430_J + 4) = 2
+	PutWindowTilemap(r4)
+	RemoveWindow(r4)
+}
+
+
+
+
+
+
+fn_EE5510_J()
+{
+	fn_EE56BC_J((*data_0203D2E2_J * 0x1000) + data_06009000_J, 0x30, 0xD)
+}
+
+
+
+
+
+
+fn_EE54D6_J()
+{
+	if(*data_0203D2E1_J == 0)
+		memcpy(data_06009C00_J, data_EE5D38_J, 0xC0)
+	else
+		memcpy(data_06009C00_J, data_EE5C58_J, 0xC0)
+	
+	if((*data_0203D2E1_J + 4) <= *data_0203D2E4_J)
+		memcpy(data_06009CC0_J, data_EE5B78_J, 0xC0)
+	else
+		memcpy(data_06009CC0_J, data_EE5D38_J, 0xC0)
+}
+
+
+
+
+
+
+fn_EE5654_J(arg0, arg1)
+{
+	r0 = *((arg0 * 8) + *data_981FC_J)
+	r1 = (arg0 * 8) + arg1
+	svc(18)
+	LoadCompressedPalette(*((arg0 * 8) + *data_981FC_J + 4), 0xF0, 0x20)
+	fn_EE561C_J(arg1, 9, 0xF)
+
+	for(r0 = 0x23E; r0 != 0; r0 -= 2)
+	{
+		r1 = *(arg1 + r0)
+		
+		if((r1 >> 8) == 0xF0)
+			r1 = (r1 & 0xFF) | 0xDB00
+		
+		if((r1 & 0xFF) == 0xF0)
+			r1 = (r1 & 0xFF00) + 0xDB
+		
+		*(arg1 + r0) = r1
+	}
+}
+
+
+
+
+
+
+fn_EE561C_J(arg0, arg1, arg2)
+{
+	r0 = (0x20 * arg1) + arg0
+	r1 = (0x40 * arg1) + arg0
+
+	for(r5 = arg1 * 0x20; r5 != 0; r5--)
+	{
+		r0 -= 1
+		r1 -= 2
+		*r1 = ((*r0 & 0xF) + (arg2 * 0x10)) | (((*r0 / 0x10) + (arg2 * 0x10)) * 0x100)
+	}
+}
+
+
+
+
+
+
+fn_EE56BC_J(arg0, arg1, arg2)
+{
+	for(r1 = (arg1 * 0x40) - 2; r1 > 0; r1 -= 2)
+	{
+		*(arg0 + r1) = (*(arg0 + r1) & 0xF0F) | ((arg2 * 0x10) | ((arg2 * 0x10) * 0x100))
+	}
+}
+
+
+
+
+
+
+fn_99F54_J(arg0)
+{
+	while(true)
+	{
+		*arg0 = *(arg0 + 2)
+		
+		if(*arg0 == 0)
+			break;
+
+		arg0 += 2
+	}
+}
+
+
+
+
+
+
+fn_EE51C0_J()
+{
+	if(*data_0203D2ED_J != 0)
+		*data_0203D2ED_J--
+	
+	if(*data_0203D2EE_J != 0)
+	{
+		SetGpuReg(8, *0x4000008_J ^ 0x80)
+		*data_03000F9C_J = 0
+		DestroyTask(*data_0203D2FA_J)
+		*data_0203CB54_J = *data_0203D2E0_J
+	}
+	else
+	{
+		if(*(gMain + 0x2E) & 6)
+		{
+			if(*data_0203D2EC_J == 1)
+			{
+				PlaySE(5)
+				goto lbl18
+			}
+			else
+			{
+				PlaySE(5)
+
+				lbl4:
+				*data_0203D2FF_J = 0
+				FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 0x1E, 0x14)
+				CopyBgTilemapBufferToVram(0)
+				*data_0203D2EE_J = 1
+			}
+		}
+		elseif(*(gMain + 0x2E) & 1)
+		{
+			PlaySE(5)
+			
+			if(*data_0203D2EC_J == 1)
+				goto lbl18
+			else
+			{
+				*data_0203D2F9_J = 1
+				goto lbl4
+			}
+		}
+		elseif((*(gMain + 0x2E) & 0x40) && )
+		{
+			if(*data_0203D2E0_J != 0)
+			{
+				*data_0203D2E0_J--
+				
+				if(*(data_0203D2E0_J + 2) != 0)
+					*(data_0203D2E0_J + 2)--
+				else
+					*(data_0203D2E0_J + 1)--
+				
+				if(*data_0203D2EC_J != 0)
+				{
+					r0 = sub_809A540()
+					r3 = *(r0 + (*data_0203D2E0_J * 2))
+					r4 = *(r0 + (*data_0203D2E0_J * 2) + 2)
+					*(r0 + (*data_0203D2E0_J * 2)) = r4
+					*(r0 + (*data_0203D2E0_J * 2) + 2) = r3
+				}
+				
+				PlaySE(5)
+				fn_EE54D6_J()
+				fn_EE540C_J()
+				fn_EE543E_J(data_EE5560_J, 0)
+				fn_EE543E_J(data_EE5568_J, 1)
+				fn_EE543E_J(data_EE5570_J, 2)
+				fn_EE5510_J()
+			}
+		}
+		elseif(*(gMain + 0x2E) & 0x80)
+		{	
+			if(*data_0203D2E0_J < (*data_0203D2E4_J - 1))
+			{
+				*data_0203D2E0_J++
+				
+				if(*(data_0203D2E0_J + 2) != 2)
+					*(data_0203D2E0_J + 2)++
+				else
+					*(data_0203D2E0_J + 1)++
+				
+				if(*data_0203D2EC_J != 0)
+				{
+					r0 = sub_809A540()
+					r3 = *(r0 + (*data_0203D2E0_J * 2))
+					r4 = *(r0 + (*data_0203D2E0_J * 2) - 2)
+					*(r0 + (*data_0203D2E0_J * 2)) = r4
+					*(r0 + (*data_0203D2E0_J * 2) - 2) = r3
+				}
+				
+				PlaySE(5)
+				fn_EE54D6_J()
+				fn_EE540C_J()
+				fn_EE543E_J(data_EE5560_J, 0)
+				fn_EE543E_J(data_EE5568_J, 1)
+				fn_EE543E_J(data_EE5570_J, 2)
+				fn_EE5510_J()
+			}
+		}
+		elseif(*(gMain + 0x2E) & 8)
+		{
+			PlaySE(5)
+
+			lbl18:
+			*data_0203D2EC_J ^= 1
+			
+			if(*data_0203D2EC_J == 1)
+				LoadPalette(data_EE558C_J, 0xE0, 0x20)
+			else
+				LoadPalette(data_EE57AC_J, 0xE0, 0x20)
+			
+			
+		}
+	}
+}

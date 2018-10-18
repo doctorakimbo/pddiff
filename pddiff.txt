@@ -869,7 +869,7 @@ grafics:
 = 05C438: Entirety of PlayCollisionSoundIfNotFacingWarp (see 122disasm)
 		  Implements: Need more info
 		  Required knowledge: j02030C00D
-- 05F2E0: 97 -> FF (152 -> 255 max object graphics ids)
++ 05F2E0: 97 -> FF (152 -> 255 max object graphics ids)
 = 067D44: F1 F7 0A FF -> ?? ?? ?? ?? (changes call to sub_8059B5C to instead call fn at j183380, see 123disasm)
 		  Implements: Not certain, possibly IsSandOrDeepSand; adds metatiles 0xE0 and 0xE2 to whatever check this is
 = 06BCAA, 06BCF2: 0B -> 10 (pkmnnamelength)
