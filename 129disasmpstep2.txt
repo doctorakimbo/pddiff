@@ -1,0 +1,111 @@
+sub_806F01C()
+{
+	switch(*data_020370FF)
+	{
+	case 0:
+		*data_020370FF++
+		break;
+	case 1:
+		fn_6ED54()
+		*data_020370FF++
+		break;
+	case 2:
+		fn_F6E9C()
+		r0 = *data_020370F5
+		r1 = 0
+		fn_F6F1C()
+		*data_020370FF++
+		break;
+	case 3:
+		if(GetSafariZoneFlag())
+			fn_6EE7C()
+		
+		*data_020370FF++
+		break;
+	case 4:
+		r0 = data_02037100
+		r1 = 2
+		fn_6EF44()
+		
+		if(r0 != 1)
+			break;
+
+		*data_020370FF++
+		break;
+	case 5:
+		r0 = GetStartMenuWindowId()
+		s0 = 0xF
+		s1 = *data_020370F5
+		s2 = *data_020370F4
+		r1 = 2
+		r2 = 0
+		r3 = 0
+		fn_10F7D8()
+		*data_020370F4 = r0
+		fn_BF708()
+		*data_0203D2FF_J = 1
+		r0 = AddWindow(data_E9D698_J)
+		*data_0203D380_J = r0
+		PutWindowTilemap(r0)
+		r1 = *((*data_0203D380_J * 0xC) + data_02020430_J + 8)
+		r0 = data_E1E390_J
+		svc_17()
+		LoadPalette(data_E99700_J, 0xD0, 0x20)
+		CreateSprite(data_E9D6A0_J, 0x140, 0x140, 0)
+
+		for(r5 = 0; r5 < *data_020370F5 - 1; r5++)
+		{
+			fn_E9D53C_J(arg0)
+			r2 = *(data_020370F6 + arg0)
+			
+			if(r2 == 3 && *data_0203CB27_J != 0)
+				r2 = 6
+			
+			fn_E9D586_J(arg0)
+		}
+
+		CopyWindowToVram(*data_0203D380_J, 2)
+		CopyBgTilemapBufferToVram(0)
+		CopyWindowToVram(GetStartMenuWindowId(), 1)
+		return 1
+	}
+	
+	return 0
+}
+
+
+
+
+
+
+fn_E9D53C_J(arg0)
+{
+	if(*data_020370F4 == arg0)
+		r1 = data_E99F20_J
+	else
+		r1 = data_E99720_J
+	
+	BlitBitmapRectToWindow(*data_0203D380_J, r1, 0, 0, 0x40, 0x20, ((arg0 % 3) * 0x48) + 0x10, ((arg0 / 3) * 0x20) + 0x21, 0x40, 0x20)
+}
+
+
+
+
+
+
+fn_E9D586_J(arg0)
+{
+	if(*(data_020370F6 + arg0) == 8)
+		s4 = *(gSaveBlock1Ptr + 4)
+	elseif(*(data_020370F6 + arg0) == 3)
+	{
+		if(*data_0203CB27_J != 0)
+			s4 = data_E9D6C4_J
+		else
+			s4 = *(gSaveBlock1Ptr + 4)
+	}
+	else
+		s4 = *(data_36B374_J + (*(data_020370F6 + arg0) * 8))
+	
+	AddTextPrinterParameterized2(*data_0203D380_J, 1, ((arg0 % 3) * 0x48) + 0x24, ((arg0 / 3) * 0x20) + 0x28, 0, 0, data_E9D6C0_J, -1)
+}

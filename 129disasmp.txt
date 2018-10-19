@@ -1,0 +1,309 @@
+lbl1: @6E810
+r0 = data_020370FF
+r1 = 0
+r1 = *(r0 + r1)
+r2 = r0
+if(r1 <= 5) goto lbl2
+
+goto lbl12
+
+lbl2:
+r0 = r1 * 4
+r1 = switchtable
+r0 += r1
+r0 = *r0
+goto r0
+
+switchtable:
+0: lbl3
+1: lbl4
+2: lbl5
+3: lbl6
+4: lbl8
+5: lbl10
+
+lbl3: @6E84C
+r0 = *r2
+r0++
+*r2 = r0
+goto lbl12
+
+lbl4: @6E854
+fn_6ED54()
+r1 = data_020370FF
+goto lbl9
+
+lbl5: @6E860
+fn_F6E9C()
+r0 = data_020370F5
+r0 = *r0
+r1 = 0
+fn_F6F1C()
+r1 = data_020370FF
+goto lbl9
+
+lbl6: @6E884
+fn_A0E90()
+if(r0 == 0) goto lbl7
+
+fn_6EE7C()
+goto lbl7
+
+lbl7:
+r1 = data_020370FF
+goto lbl9
+
+lbl8: @6E898
+r4 = data_02037100
+r0 = r4
+r1 = 2
+fn_6EF44()
+if(r0 != 1) goto lbl12
+
+r1 = r4 - 1
+goto lbl9
+
+lbl9:
+r0 = *r1
+r0++
+*r1 = r0
+goto lbl12
+
+lbl10: @6E8B8
+fn_F793C()
+r1 = 0xF
+s0 = r1
+r1 = data_020370F5
+r1 = *r1
+s1 = r1
+r4 = data_020370F4
+r1 = *r4
+s2 = r1
+r1 = 2
+r2 = 0
+r3 = 0
+fn_10F7D8()
+*r4 = r0
+fn_BF708()
+fn_11B0D0()
+r0 = gSaveBlock2Ptr
+r0 = *r0
+r0 = *(r0 + 0x13)
+r0 = fn_E9D3D4_J
+goto r0
+
+// unused
+r0 = *r4
+r0 += r1
+r0 = *r0
+r0 *= 4
+r0 += r2
+r0 = *r0
+fn_F7974()
+
+lblx: @6E90C
+fn_F793C()
+r1 = 1
+fn_3F20()
+r0 = 1
+goto lbl13
+
+lbl12:
+r0 = 0
+goto lbl13
+
+lbl13:
+return r0
+
+
+
+
+
+
+fn_E9D3D4_J:
+r0 = data_0203D2FF_J
+r1 = 1
+*r0 = r1
+r5 = 0
+r2 = data_020370F5
+r7 = *r2
+r7--
+r0 = data_E9D698_J
+AddWindow()
+r1 = data_0203D380_J
+*r1 = r0
+PutWindowTilemap()
+r1 = data_0203D380_J
+r1 = *r1
+r0 = 0xC
+r0 *= r1
+r1 = data_02020430_J
+r0 += r1
+r1 = *(r0 + 8)
+r0 = data_E1E390_J
+svc_17()
+r0 = data_E99700_J
+r1 = 0xD0
+r2 = 0x20
+LoadPalette()
+r0 = data_E9D6A0_J
+r1 = 0x140
+r2 = 0x140
+r3 = 0
+CreateSprite()
+r5 = 0
+goto lbl2
+
+lbl2:
+r0 = r5
+fn_E9D48C_J()
+r5++
+if(r5 < r7) goto lbl2
+
+r0 = data_0203D380_J
+r0 = *r0
+r1 = 2
+fn_3F20()
+r0 = 0
+CopyBgTilemapBufferToVram()
+goto lblx
+
+
+
+
+
+
+fn_E9D48C_J:
+r5 = r0
+fn_E9D53C_J()
+r0 = r5
+fn_E9D4E2_J()
+r0 = r5
+fn_E9D586_J()
+return
+
+
+
+
+
+
+fn_E9D53C_J:
+r5 = r0
+r0 = r5
+r1 = 3
+svc_6()
+r2 = 0x20
+r0 *= r2
+r2 = 0x48
+r1 *= r2
+r2 = r0
+r1 += 0x10
+r2 += 0x21
+s2 = r1
+s3 = r2
+r1 = 0x40
+s4 = r1
+s0 = r1
+r1 = 0x20
+s5 = r1
+s1 = r1
+r0 = data_0203D380_J
+r0 = *r0
+r1 = data_020370F4
+r1 = *r1
+if(r1 == r5) goto lbl2
+
+r1 = data_E99720_J
+goto lbl3
+
+lbl2:
+r1 = data_E99F20_J
+goto lbl3
+
+lbl3:
+r2 = 0
+r3 = 0
+fn_41BC_J()
+return
+
+
+
+
+
+
+fn_E9D4E2_J:
+r2 = data_020370F6
+r2 = *(r2 + r5)
+if(r2 != 3) goto lbl2
+
+r3 = data_0203CB27_J
+r3 = *r3
+if(r3 == 0) goto lbl2
+
+r2 = 6
+goto lbl2
+
+lbl2:
+return
+
+
+
+
+
+
+fn_E9D586_J:
+r7 = r0
+r0 = r7
+r1 = 3
+svc(6)
+r2 = 0x20
+r0 *= r2
+r2 = 0x48
+r1 *= r2
+r2 = r0
+r1 += 0x24
+r2 += 0x28
+r3 = r2
+r2 = r1
+r0 = data_020370F6
+r0 = *(r0 + r7)
+if(r0 == 8) goto lbl2
+
+if(r0 != 3) goto lbl4
+
+r0 = data_0203CB27_J
+r0 = *r0
+if(r0 != 0) goto lbl3
+
+goto lbl2
+
+lbl2:
+r0 = gSaveBlock1Ptr
+r0 = *r4
+goto lbl5
+
+lbl3:
+r0 = data_E9D6C4_J
+goto lbl5
+
+lbl4:
+r1 = r0 * 8
+r0 = data_36B374_J
+r0 = *(r0 + r1)
+goto lbl5
+
+lbl5:
+s4 = r0
+r0 = data_E9D6C0_J
+s2 = r0
+r1 = 1
+r1 = -r1
+s3 = r1
+r1 = 0
+s0 = r1
+s1 = r1
+r0 = data_0203D380_J
+r0 = *r0
+r1 = 1
+AddTextPrinterParameterized2()
+return

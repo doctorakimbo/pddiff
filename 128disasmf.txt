@@ -1,0 +1,88 @@
+lbl1: @6E5C0
+r5 = r0 << 0x10
+r4 = r5 >> 0x10
+r6 = r4
+if(r4 != 0) goto lbl3
+
+r0 = 0
+goto lbl10
+
+lbl3:
+r0 = 0x3FFF
+if(r4 > r0) goto lbl7
+
+r0 = data_03005E88
+r0 = *r0
+if(r0 == 1) goto lbl4
+
+if(r0 <= 1) goto lbl6
+
+if(r0 == 2) goto lbl5
+
+goto lbl6
+
+lbl4:
+r0 = 1
+r1 = r4
+fn_112D40()
+r2 = r0
+if(r2 == 0) goto lbl6
+
+r0 = gSaveBlock1Ptr
+r0 = *r0
+r1 = r5 >> 0x13
+r3 = 0xEE0
+r0 += r3
+r0 += r1
+r1 = *r2
+*r0 = r1
+goto lbl6
+
+lbl5:
+r0 = r4
+r1 = 0
+fn_6E528()
+if(r0 != 1) goto lbl6
+
+r0 = data_0300507C
+*r0 = r4
+r0 = gSaveBlock1Ptr
+r0 = *r0
+r1 = r5 >> 0x13
+r2 = 0xEE0
+r0 += r2
+r0 += r1
+r2 = *r0
+r0 = 1
+r1 = r4
+fn_112DB0()
+goto lbl6
+
+lbl6:
+r0 = gSaveBlock1Ptr
+r1 = r6 >> 3
+r3 = 0xEE0
+r1 += r3
+r0 = *r0
+goto lbl9
+
+lbl7:
+r1 = 0xFFFFC000
+r0 = r6 + r1
+if(r0 >= 0) goto lbl8
+
+r2 = 0xFFFFC007
+r0 = r6 + r2
+goto lbl8
+
+lbl8:
+r0 /= 8
+r1 = data_020370E0
+goto lbl9
+
+lbl9:
+r0 += r1
+goto lbl10
+
+lbl10:
+return r0

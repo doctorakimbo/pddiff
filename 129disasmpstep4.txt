@@ -1,0 +1,98 @@
+InitStartMenuStep()
+{
+	switch(data_020370FF)
+	{
+	case 0:
+		data_020370FF++
+		break;
+	case 1:
+		BuildStartMenuActions();
+		data_020370FF++
+		break;
+	case 2:
+		fn_F6E9C()
+		NewMenuHelpers_DrawStdWindowFrame(sNumStartMenuActions, FALSE)
+		data_020370FF++
+		break;
+	case 3:
+		if(GetSafariZoneFlag() != FALSE)
+			ShowSafariBallsWindow();
+		
+		data_020370FF++
+		break;
+	case 4:
+		if(PrintStartMenuActions(data_02037100, 2) == FALSE)
+			break;
+
+		data_020370FF++
+		break;
+	case 5:
+		sStartMenuCursorPos = fn_10F7D8(GetStartMenuWindowId(), 2, 0, 0, 15, sNumStartMenuActions, sStartMenuCursorPos)
+		
+		data_0203D2FF_J = 1
+		r0 = AddWindow(data_E9D698_J)
+		data_0203D380_J = r0
+		PutWindowTilemap(r0)
+		r1 = data_02020430_J[data_0203D380_J].8 // size 0xC
+		r0 = data_E1E390_J
+		svc_17()
+		LoadPalette(data_E99700_J, 0xD0, 0x20)
+		CreateSprite(data_E9D6A0_J, 0x140, 0x140, 0)
+
+		for(i = 0; i <= sNumStartMenuActions; i++)
+		{
+			fn_E9D53C_J(i)
+			r2 = data_020370F6[i]
+			
+			if(r2 == 3 && data_0203CB27_J != 0)
+				r2 = 6
+			
+			fn_E9D586_J(i)
+		}
+
+		CopyWindowToVram(data_0203D380_J, 2)
+		CopyBgTilemapBufferToVram(0);
+		CopyWindowToVram(GetStartMenuWindowId(), TRUE);
+		
+		return TRUE;
+	}
+	
+	return FALSE;
+}
+
+
+
+
+
+
+fn_E9D53C_J(arg0)
+{
+	if(sStartMenuCursorPos == arg0)
+		pixels = data_E99F20_J
+	else
+		pixels = data_E99720_J
+	
+	BlitBitmapRectToWindow(data_0203D380_J, pixels, 0, 0, 0x40, 0x20, ((arg0 % 3) * 0x48) + 0x10, ((arg0 / 3) * 0x20) + 0x21, 0x40, 0x20)
+}
+
+
+
+
+
+
+fn_E9D586_J(arg0)
+{
+	if(data_020370F6[arg0] == 8)
+		s4 = gSaveBlock1Ptr->location
+	elseif(data_020370F6[arg0] == 3)
+	{
+		if(data_0203CB27_J != 0)
+			s4 = data_E9D6C4_J // 9F 59 60 98 FF
+		else
+			s4 = gSaveBlock1Ptr->location
+	}
+	else
+		s4 = data_36B374_J[data_020370F6[arg0]] // size 8
+	
+	AddTextPrinterParameterized2(data_0203D380_J, 1, ((arg0 % 3) * 0x48) + 0x24, ((arg0 / 3) * 0x20) + 0x28, 0, 0, data_E9D6C0_J, -1)
+}

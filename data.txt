@@ -108,12 +108,20 @@ A4 1D 03 02: D8 1C 03 02: ?????? (GetEvolutionTargetSpecies: used as index to fi
 A8 1D 03 02: DC 1C 03 02: ??????
 B0 1D 03 02: E4 1C 03 02: ??????
 BC 1D 03 02: F0 1C 03 02: sWarpDestination
-		   : 47 6D 03 02: ?????? (atkEF_handleballthrow: Dusk Ball boosted if this is 4) (gTileset?)
+FC 6D 03 02: 30 6D 03 02: gMapHeader
+13 6E 03 02: 47 6D 03 02: gMapHeader.mapType
 38 6E 03 02: 6C 6D 03 02: gEventObjects (atkEF_handleballthrow: Lure Ball boosted if this[0] is 1) (gIsPlayerFishing?)
 78 70 03 02: AC 6F 03 02: gPlayerAvatar
 D4 70 03 02: 08 70 03 02: ??????
 D6 70 03 02: 0A 70 03 02: gSpecialVar_MonBoxId
 D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
+E0 70 03 02: 14 70 03 02: ??????
+F0 70 03 02: 24 70 03 02: ??????
+F4 70 03 02: 28 70 03 02: sStartMenuCursorPos
+F5 70 03 02: 29 70 03 02: sNumStartMenuActions
+F6 70 03 02: 2A 70 03 02: ??????
+FF 70 03 02: 33 70 03 02: ??????
+00 71 03 02: 34 70 03 02: ??????
 		   : E2 85 03 02: ?????? (CreateNPCTrainerParty: checked if less than 0x2E6, if so, used as an index to copy data from table data_09400000_J into gEnemyParty)
 								 (CanUseNewAI: used as an index into gTrainers)
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
@@ -173,8 +181,11 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 		   : AC C2 03 02: gDaycareParentMoves
 		   : B4 C2 03 02: gDaycareParentMoves[1]
 		   : 18 CB 03 02: ?????? (GetLocationMusic: if this.0xE is not zero, return this.0xC instead of the default music)
+		   : 27 CB 03 02: ?????? (InitStartMenuStep: if set, skip START menu items 3-5)
+								 (InitStartMenuStep: if set, s4 = 9F 59 60 98 FF for menu item 3; otherwise s4 = gSaveBlock1Ptr->location (which shouldn't happen))
 		   : 54 CB 03 02: ?????? (fn_EE5000: set data_0203D2E0_J.0 on start)
 								 (fn_EE51C0: set this to data_0203D2E0_J.0 on exit)
+		   : 58 CB 03 02: ?????? (GetFlagPointer: if the flag number is 0xF000 or above, read it from this[number - 0xF000])
 		   : E0 D2 03 02: ?????? (fn_EE5000: set this.4, this.8, and this.0xC to 0 and this.0 to data_0203CB54_J on start)
 								 (fn_EE540C: use this.0 as an index into gPokemonStoragePtr->0x824C[])
 								 (fn_EE51C0: just before exiting, set data_0203CB54_J to this.0)
@@ -202,6 +213,7 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 								 (fn_EE51C0: destroy this task on exit)
 		   : FF D2 03 02: ?????? (fn_EE5000: set to 1 on start)
 								 (fn_EE51C0: set to 0 on exit)
+								 (InitStartMenuStep: set to 1 when this is called with parameter 5 (final step))
 		   : 00 D3 03 02: ?????? (Appears to be an array of characters)
 								 (fn_EB8398_J: Set this[0] to data_0203BF70_J[battler].8[moveId])
 								 (fn_EB8398_J: Set this[2] to CHAR_SLASH)
@@ -215,6 +227,7 @@ D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 		   : 80 D3 03 02: ?????? (Appears to be an array of record size 0x20)
 								 (fn_EB8398_J: Copies data_EB8780_J into this[moveId])
 								 (fn_EB8398_J: Add moveId to this[moveId])
+								 (InitStartMenuStep: set to and used as the window id)
 		   : 20 D4 03 02: ?????? (Appears to be a SpriteSheet object)
 							     (fn_EB8398_J: Set to {data = data_E95DDC, size = 0x100, tag = (0x78A0 + moveId)} then call LoadSpriteSheet())
 		   : 80 D4 03 02: gBackupMonData
@@ -240,10 +253,12 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 18 50 00 03: 58 50 00 03: gBGTilemapBuffers2
 1C 50 00 03: 5C 50 00 03: gBGTilemapBuffers3
 78 50 00 03: B8 50 00 03: ??????
+7C 50 00 03: BC 50 00 03: ??????
 		   : D0 50 00 03: ??????
 7C 53 00 03: CC 53 00 03: gCB2_AfterEvolution
 		   : 40 55 00 03: ?????? (GetEvolutionTargetSpecies: EVO_FRIENDSHIP_DAY works when this.2 is less than 11; EVO_FRIENDSHIP_NIGHT works when this.2 is between 12 and 23 inclusive) (gLocalTime?)
 		   : 42 55 00 03: ?????? (atkEF_handleballthrow: Dusk Ball boosted if less than 6 or greater than 20) (gLocalTime.hours?)
+88 5E 00 03: D8 5E 00 03: ??????
 		   
 		   
 funcs e,j,desc:
@@ -254,7 +269,9 @@ funcs e,j,desc:
 002454 = 002454 = FillBgTilemapBufferRect_Palette0
 003CE4 = 003CB0 = AddWindow
 003E3C = 003E08 = RemoveWindow
+003F20 = 003EEC = CopyWindowToVram
 003FA0 = 003F6C = PutWindowTilemap
+0041F0 = 0041BC = BlitBitmapRectToWindow
 006124 = 005F90 = RenderTextFont9
 006F8C = 006B08 = CreateSprite
 0071EC = 006D68 = CreateSpriteAndAnimate
@@ -392,11 +409,12 @@ funcs e,j,desc:
 05CCD0 = 05C58C = task_add_bump_boulder
 05DFB0 = 05D870 = GetFieldObjectIdByXY
 05E4C8 = 05DD88 = RemoveFieldObjectByLocalIdAndMap
-05FCD8 = 05F598 = ?????
 0636AC = 062F6C = GetCollisionAtCoords
 063A20 = 0632E0 = MoveCoords
 063F84 = 063844 = GetWalkNormalMovementAction
 063FB0 = 063870 = GetPlayerRunMovementAction
+069940 = 069200 = ScriptContext2_Enable
+069AE4 = 0693A4 = ScriptContext1_SetupScript
 069C74 = 069534 = mapheader_run_first_tag2_script_list_match
 06CE20 = 06C614 = player_get_pos_to_and_height
 06CE38 = 06C62C = player_get_next_pos_and_height
@@ -410,7 +428,15 @@ funcs e,j,desc:
 06E6A8 = 06DE9C = FlagClear
 06E680 = 06DE74 = FlagSet
 06E6D0 = 06DEC4 = FlagGet
+06ED54 = 06E548 = BuildStartMenuActions
+06EE7C = 06E670 = ShowSafariBallsWindow
+06EF18 = 06E70C = ?????
+06EF44 = 06E738 = PrintStartMenuActions
 06F258 = 06EA4C = ShowStartMenu
+06F374 = 06EB68 = ?????
+06F394 = 06EB88 = ?????
+06F3CC = 06EBBC = ?????
+06FEA0 = 06F644 = ?????
 0703A8 = 06FB4C = LoadCompressedPalette
 0703EC = 06FB90 = LoadPalette
 070E44 = BeginFastPaletteFade
@@ -435,8 +461,10 @@ funcs e,j,desc:
 09A8BC = 09A2C4 = ItemId_GetName
 09A924 = 09A330 = GetHoldEffect
 09A948 = 09A354 = GetHoldEffectParam
+0A0E90 = 0A2164 = GetSafariZoneFlag
 0BD09C = 0BE35C = MovePlayerOnBike
 0BD488 = 0BE748 = IsRunningDisallowed
+0BF708 = 0C08D8 = ?????
 0C71D0 = 0C83AC = RecordAbilityBattle
 0C7208 = 0C83E4 = RecordItemEffectBattle
 0CC79C = 0CD914 = set_unknown_box_id
@@ -444,7 +472,13 @@ funcs e,j,desc:
 0D77F4 = 0D8898 = BattleStringExpandPlaceholdersToDisplayedString
 0D87BC = 0D980C = BattlePutTextOnWindow
 0F67A4 = 0F77FC = schedule_bg_copy_tilemap_to_vram
+0F6F1C = 0F7F7C = NewMenuHelpers_DrawStdWindowFrame
+0F793C = 0F899C = GetStartMenuWindowId
+0F7998 = 0F89F8 = ?????
 10AD10 = 10B80C = UseRegisteredKeyItemOnField
+10F904 = 110438 = ?????
+113018 = 113B64 = ?????
+11B0D0 = 11B914 = InUnionRoom
 125A78 = 1263C4 = ItemIdToBattleMoveId
 12E51C = 12ED24 = box_print
 12E5A4 = 12EDAC = AddTextPrinterParameterized2

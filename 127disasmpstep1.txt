@@ -1,0 +1,36 @@
+sub_806DE70(arg0, arg1)
+{
+	r2 = data_02036DFC
+	r2 = *(r2 + 4)
+	r4 = *(r2 + 0xC)
+	r5 = *(r2 + 2)
+	r7 = arg0 >> 0x10
+	r0 >>= 0x10
+	r6 = arg1 >> 0x10
+	r1 >>= 0x10
+	r0 = MapGridGetMetatileBehaviorAt(r0, r1)
+	
+	if(r0 == 0x1F || r0 == 0x20)
+	{
+		for(; r5 != 0; r5--)
+		{
+			r0 = *r4
+			r0 += 7
+			
+			if(r0 == r7)
+			{
+				r0 = *(r4 + 2)
+				r0 += 7
+				
+				if(r0 == r6)
+				{
+					fn_112364()
+					ScriptContext1_SetupScript(*(r4 + 0xC))
+					ScriptContext2_Enable()
+				}
+			}
+			
+			r4 += 0x10
+		}
+	}
+}

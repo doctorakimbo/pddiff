@@ -1,0 +1,41 @@
+InitStartMenuStep()
+{
+	switch(data_020370FF)
+	{
+	case 0:
+		data_020370FF++
+		break;
+	case 1:
+		BuildStartMenuActions();
+		data_020370FF++
+		break;
+	case 2:
+		fn_F6E9C()
+		NewMenuHelpers_DrawStdWindowFrame(fn_F78E0(sNumStartMenuActions), FALSE)
+		data_020370FF++
+		break;
+	case 3:
+		if(GetSafariZoneFlag() != FALSE)
+			ShowSafariBallsWindow();
+		
+		data_020370FF++
+		break;
+	case 4:
+		if(PrintStartMenuActions(data_02037100, 2) == FALSE)
+			break;
+
+		data_020370FF++
+		break;
+	case 5:
+		sStartMenuCursorPos = fn_10F7D8(GetStartMenuWindowId(), 2, 0, 0, 15, sNumStartMenuActions, sStartMenuCursorPos)
+		
+		if(fn_BF708() == 0 && !InUnionRoom() && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_NORMAL)
+			fn_F7974(data_3A7394[data_020370F6[sStartMenuCursorPos]])
+		
+		CopyWindowToVram(GetStartMenuWindowId(), TRUE);
+		
+		return TRUE;
+	}
+	
+	return FALSE;
+}

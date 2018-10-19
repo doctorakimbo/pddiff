@@ -1,0 +1,237 @@
+sub_806F01C()
+{
+	r0 = data_020370FF
+	r1 = 0
+	r1 = *(r0 + r1)
+	r2 = r0
+	
+	if(r1 > 5)
+		return 0
+
+	switch(r1)
+	{
+	case 0:
+		r0 = *r2
+		r0++
+		*r2 = r0
+		break;
+	case 1:
+		fn_6ED54()
+		r1 = data_020370FF
+		r0 = *r1
+		r0++
+		*r1 = r0
+		break;
+	case 2:
+		fn_F6E9C()
+		r0 = data_020370F5
+		r0 = *r0
+		r1 = 0
+		fn_F6F1C()
+		r1 = data_020370FF
+		r0 = *r1
+		r0++
+		*r1 = r0
+		break;
+	case 3:
+		if(GetSafariZoneFlag())
+			fn_6EE7C()
+		
+		r1 = data_020370FF
+		r0 = *r1
+		r0++
+		*r1 = r0
+		break;
+	case 4:
+		r4 = data_02037100
+		r0 = r4
+		r1 = 2
+		fn_6EF44()
+		
+		if(r0 != 1)
+			break;
+
+		r1 = r4 - 1
+		r0 = *r1
+		r0++
+		*r1 = r0
+		break;
+	case 5:
+		r0 = GetStartMenuWindowId()
+		r1 = 0xF
+		s0 = r1
+		r1 = data_020370F5
+		r1 = *r1
+		s1 = r1
+		r4 = data_020370F4
+		r1 = *r4
+		s2 = r1
+		r1 = 2
+		r2 = 0
+		r3 = 0
+		fn_10F7D8()
+		*r4 = r0
+		fn_BF708()
+		r0 = gSaveBlock2Ptr
+		r0 = *r0
+		r0 = *(r0 + 0x13)
+		r0 = data_0203D2FF_J
+		r1 = 1
+		*r0 = r1
+		r5 = 0
+		r2 = data_020370F5
+		r7 = *r2
+		r7--
+		r0 = AddWindow(data_E9D698_J)
+		r1 = data_0203D380_J
+		*r1 = r0
+		PutWindowTilemap(r0)
+		r1 = data_0203D380_J
+		r1 = *r1
+		r0 = 0xC
+		r0 *= r1
+		r1 = data_02020430_J
+		r0 += r1
+		r1 = *(r0 + 8)
+		r0 = data_E1E390_J
+		svc_17()
+		LoadPalette(data_E99700_J, 0xD0, 0x20)
+		CreateSprite(data_E9D6A0_J, 0x140, 0x140, 0)
+
+		for(r5 = 0; r5 < r7; r5++)
+		{
+			r0 = r5
+			fn_E9D48C_J()
+		}
+
+		r0 = data_0203D380_J
+		CopyWindowToVram(*r0, 2)
+		CopyBgTilemapBufferToVram(0)
+		CopyWindowToVram(GetStartMenuWindowId(), 1)
+		return 1
+	}
+	
+	return 0
+}
+
+
+
+
+
+
+fn_E9D48C_J(arg0)
+{
+	r5 = arg0
+	fn_E9D53C_J(arg0)
+	r2 = data_020370F6
+	r2 = *(r2 + r5)
+	
+	if(r2 == 3)
+	{
+		r3 = data_0203CB27_J
+		r3 = *r3
+		
+		if(r3 != 0)
+			r2 = 6
+	}
+	
+	fn_E9D586_J(r5)
+}
+
+
+
+
+
+
+fn_E9D53C_J(arg0)
+{
+	r5 = arg0
+	r0 = r5 / 3
+	r1 = r5 % 3
+	r2 = 0x20
+	r0 *= r2
+	r2 = 0x48
+	r1 *= r2
+	r2 = r0
+	r1 += 0x10
+	r2 += 0x21
+	s2 = r1
+	r1 = 0x40
+	s4 = r1
+	s0 = r1
+	r1 = 0x20
+	s5 = r1
+	s1 = r1
+	r0 = data_0203D380_J
+	r1 = data_020370F4
+	r1 = *r1
+	
+	if(r1 == r5)
+		r1 = data_E99F20_J
+	else
+		r1 = data_E99720_J
+	
+	BlitBitmapRectToWindow(*r0, r1, 0, 0, s0, s1, s2, r2, s4, s5)
+}
+
+
+
+
+
+
+fn_E9D586_J(arg0)
+{
+	r7 = arg0
+	r0 = r7
+	r1 = 3
+	svc(6)
+	r2 = 0x20
+	r0 *= r2
+	r2 = 0x48
+	r1 *= r2
+	r2 = r0
+	r1 += 0x24
+	r2 += 0x28
+	r3 = r2
+	r2 = r1
+	r0 = data_020370F6
+	r0 = *(r0 + r7)
+	
+	if(r0 == 8)
+	{
+		r0 = gSaveBlock1Ptr
+		r0 = *(r0 + 4)
+	}
+	else
+	{
+		if(r0 == 3)
+		{
+			r0 = data_0203CB27_J
+			r0 = *r0
+			
+			if(r0 != 0)
+				r0 = data_E9D6C4_J
+			else
+			{
+				r0 = gSaveBlock1Ptr
+				r0 = *(r0 + 4)
+			}
+		}
+		else
+		{
+			r1 = r0 * 8
+			r0 = data_36B374_J
+			r0 = *(r0 + r1)
+		}
+	}
+	
+	s4 = r0
+	r0 = data_E9D6C0_J
+	s2 = r0
+	r1 = 1
+	r1 = -r1
+	s3 = r1
+	r1 = 0
+	r0 = data_0203D380_J
+	AddTextPrinterParameterized2(*r0, 1, r2, r3, r1, r1, s2, s3)
+}

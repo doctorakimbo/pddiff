@@ -1,0 +1,32 @@
+GetFlagPointer(id)
+{
+	if(id >= 0xF000)
+		return data_0203CB58_J[id - 0xF000]
+	
+	if(id == 0)
+		return NULL;
+	
+	if(id < SPECIAL_FLAGS_START)
+	{
+		if(data_03005E88 == 1)
+		{
+			r2 = fn_112D40(1, id)
+			
+			if(r2 != 0)
+				gSaveBlock1Ptr->flags[id / 8] = *r2
+		}
+		elseif(data_03005E88 == 2 && fn_6E528(id, 0) == 1)
+			fn_112DB0(1, id, gSaveBlock1Ptr->flags[(r5 >> 0x10) / 8]) // wrong
+		
+		return &gSaveBlock1Ptr->flags[id / 8];
+	}
+	else
+	{
+		r0 = id - SPECIAL_FLAGS_START;
+		
+		if(r0 < 0)
+			r0 = (id - SPECIAL_FLAGS_START) + 7;
+		
+		return &data_020370E0[r0 / 8]
+	}
+}

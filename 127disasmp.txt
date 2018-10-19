@@ -1,1 +1,46 @@
 lbl1: @6D664
+r2 = data_02036DFC
+r2 = *(r2 + 4)
+r4 = *(r2 + 0xC)
+r5 = *(r2 + 2)
+r7 = r0 >> 0x10
+r0 >>= 0x10
+r6 = r1 >> 0x10
+r1 >>= 0x10
+MapGridGetMetatileBehaviorAt()
+
+if(r0 == 0x1F) goto lbl2
+
+if(r0 != 0x20) goto lbl5
+
+goto lbl2
+
+lbl2:
+if(r5 == 0) goto lbl5
+
+goto lbl3
+
+lbl3:
+r0 = *r4
+r0 += 7
+if(r0 != r7) goto lbl4
+
+r0 = *(r4 + 2)
+r0 += 7
+if(r0 != r6) goto lbl4
+
+fn_112364()
+r0 = *(r4 + 0xC)
+fn_69AE4()
+fn_69940()
+goto lbl4
+
+lbl4:
+r4 += 0x10
+r5--
+if(r5 != 0) goto lbl3
+
+goto lbl5
+
+lbl5:
+return

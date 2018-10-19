@@ -1,0 +1,23 @@
+sub_806DE70(arg0, arg1)
+{
+	x = arg0 >> 0x10;
+	y = arg1 >> 0x10;
+
+	coordEvents = gMapHeader->events.coordEvents[0];
+	coordEventCount = gMapHeader->events.coordEventCount;
+	
+	behavior = MapGridGetMetatileBehaviorAt(x, y);
+	
+	if(behavior == 0x1F || behavior == MB_ICE)
+	{
+		for(i = 1; i <= coordEventCount; i++)
+		{
+			if(coordEvents[i].x + 7 == x && coordEvents[i].y + 7 == y)
+			{
+				fn_112364()
+				ScriptContext1_SetupScript(coordEvents[i].script);
+				ScriptContext2_Enable();
+			}
+		}
+	}
+}

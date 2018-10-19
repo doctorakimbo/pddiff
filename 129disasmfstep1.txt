@@ -1,0 +1,102 @@
+sub_806F01C()
+{
+	r0 = data_020370FF
+	r1 = 0
+	r1 = *(r0 + r1)
+	r2 = r0
+	
+	if(r1 > 5)
+		return 0
+	
+	switch(r1)
+	{
+	case 0:
+		r0 = *r2
+		r0++
+		*r2 = r0
+		break;
+	case 1:
+		fn_6ED54()
+		r1 = data_020370FF
+		r0 = *r1
+		r0++
+		*r1 = r0
+		break;
+	case 2:
+		fn_F6E9C()
+		r0 = data_020370F5
+		r0 = *r0
+		fn_F78E0()
+		r1 = 0
+		fn_F6F1C()
+		r1 = data_020370FF
+		r0 = *r1
+		r0++
+		*r1 = r0
+		break;
+	case 3:
+		if(GetSafariZoneFlag())
+			fn_6EE7C()
+		
+		r1 = data_020370FF
+		r0 = *r1
+		r0++
+		*r1 = r0
+		break;
+	case 4:
+		r4 = data_02037100
+		r0 = r4
+		r1 = 2
+		fn_6EF44()
+		
+		if(r0 != 1)
+			break;
+
+		r1 = r4 - 1
+		r0 = *r1
+		r0++
+		*r1 = r0
+		break;
+	case 5:
+		r0 = GetStartMenuWindowId()
+		r1 = 0xF
+		s0 = r1
+		r1 = data_020370F5
+		r1 = *r1
+		s1 = r1
+		r4 = data_020370F4
+		r1 = *r4
+		s2 = r1
+		r1 = 2
+		r2 = 0
+		r3 = 0
+		fn_10F7D8()
+		*r4 = r0
+		fn_BF708()
+		
+		if(r0 == 0 && !InUnionRoom())
+		{
+			r0 = gSaveBlock2Ptr
+			r0 = *r0
+			r0 = *(r0 + 0x13)
+			
+			if(r0 == 0)
+			{
+				r2 = data_3A7394
+				r1 = data_020370F6
+				r0 = *r4
+				r0 += r1
+				r0 = *r0
+				r0 *= 4
+				r0 += r2
+				r0 = *r0
+				fn_F7974()
+			}
+		}
+		
+		CopyWindowToVram(GetStartMenuWindowId(), 1)
+		return 1
+	}
+	
+	return 0
+}

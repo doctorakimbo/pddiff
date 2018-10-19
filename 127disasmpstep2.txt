@@ -1,0 +1,20 @@
+sub_806DE70(arg0, arg1)
+{
+	r4 = *(*(data_02036DFC + 4) + 0xC)
+	r0 = MapGridGetMetatileBehaviorAt(arg0 >> 0x10, arg1 >> 0x10)
+	
+	if(r0 == 0x1F || r0 == 0x20)
+	{
+		for(r5 = *(*(data_02036DFC + 4) + 2); r5 != 0; r5--)
+		{
+			if((*r4 + 7) == (arg0 >> 0x10) && (*(r4 + 2) + 7) == (arg1 >> 0x10))
+			{
+				fn_112364()
+				ScriptContext1_SetupScript(*(r4 + 0xC))
+				ScriptContext2_Enable()
+			}
+			
+			r4 += 0x10
+		}
+	}
+}

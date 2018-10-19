@@ -1,0 +1,122 @@
+lbl1: @6F01C
+r0 = data_020370FF
+r1 = 0
+r1 = *(r0 + r1)
+r2 = r0
+if(r1 <= 5) goto lbl2
+
+goto lbl12
+
+lbl2:
+r0 = r1 * 4
+r1 = switchtable
+r0 += r1
+r0 = *r0
+goto r0
+
+switchtable:
+0: lbl3
+1: lbl4
+2: lbl5
+3: lbl6
+4: lbl8
+5: lbl10
+
+lbl3: @6F058
+r0 = *r2
+r0++
+*r2 = r0
+goto lbl12
+
+lbl4: @6F060
+fn_6ED54()
+r1 = data_020370FF
+goto lbl9
+
+lbl5: @6F06C
+fn_F6E9C()
+r0 = data_020370F5
+r0 = *r0
+fn_F78E0()
+r1 = 0
+fn_F6F1C()
+r1 = data_020370FF
+goto lbl9
+
+lbl6: @6F090
+fn_A0E90()
+if(r0 == 0) goto lbl7
+
+fn_6EE7C()
+goto lbl7
+
+lbl7:
+r1 = data_020370FF
+goto lbl9
+
+lbl8: @6F0A4
+r4 = data_02037100
+r0 = r4
+r1 = 2
+fn_6EF44()
+if(r0 != 1) goto lbl12
+
+r1 = r4 - 1
+goto lbl9
+
+lbl9:
+r0 = *r1
+r0++
+*r1 = r0
+goto lbl12
+
+lbl10: @6F0C4
+fn_F793C()
+r1 = 0xF
+s0 = r1
+r1 = data_020370F5
+r1 = *r1
+s1 = r1
+r4 = data_020370F4
+r1 = *r4
+s2 = r1
+r1 = 2
+r2 = 0
+r3 = 0
+fn_10F7D8()
+*r4 = r0
+fn_BF708()
+if(r0 != 0) goto lbl11
+
+fn_11B0D0()
+if(r0 == 1) goto lbl11
+
+r0 = gSaveBlock2Ptr
+r0 = *r0
+r0 = *(r0 + 0x13)
+if(r0 != 0) goto lbl11
+
+r2 = data_3A7394
+r1 = data_020370F6
+r0 = *r4
+r0 += r1
+r0 = *r0
+r0 *= 4
+r0 += r2
+r0 = *r0
+fn_F7974()
+goto lbl11
+
+lbl11:
+fn_F793C()
+r1 = 1
+fn_3F20()
+r0 = 1
+goto lbl13
+
+lbl12:
+r0 = 0
+goto lbl13
+
+lbl13:
+return r0
