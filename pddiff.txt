@@ -300,8 +300,8 @@ grafics:
 + expand 26056C (ball sprites) from 12 entries to 26 (A23000)
 + expand 2605CC (ball sprite palettes) from 12 entries to 26 (A230F0)
 + expand 2606F4 (ball sprite templates) from 12 entries to 26 (A23380)
-- expand 39FDB0 (field object graphics info pointers) from 174 entries to 256 (j4EFDA0, e14EFDA0?????)
-- expand 3A65BC (movement action functions) from 170 entries to 226 (j221550, e1221550?????)
++ expand 39FDB0 (field object graphics info pointers) from 174 entries to 256 (j4EFDA0, e14EFDA0)
+! expand 3A65BC (movement action functions) from 170 entries to 226 (j221550, eUNKNOWN)
 + expand 3DB028 (item data) from 375 entries to 435 (10B0000)
 + expand 3D4038 (mon icon palettes) from 6 entries to 16 (jE40000, e1E40000)
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
@@ -827,7 +827,7 @@ grafics:
 ! 054A00: 06 -> 04 (PDONLY, moves starting position in new game two tiles north)
 = 054A68: 39 4E 31 68 39 48 80 46 -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DF50, see 109disasm))
 		  Implements: need more info (clear save data)
-+ 055238: 00 04 09 04 03 4A 80 0B 80 18 00 68 89 0B 09 18 -> 00 04 09 04 03 4A 89 0B 80 0B 80 18 00 68 09 18 (does nothing?)
+! 055238: 00 04 09 04 03 4A 80 0B 80 18 00 68 89 0B 09 18 -> 00 04 09 04 03 4A 89 0B 80 0B 80 18 00 68 09 18 (does nothing?) (BREAKS ADVANCEMAP!!!)
 = 05550C: Entirety of sub_805550C (see 110disasm)
 		  Implements: need more info (some kind of warp, already prevented in map group 1, is now also prevented in map group 0x2501)
 = 055D6C: Entirety of sub_8055D6C (see 111disasm)
@@ -883,7 +883,7 @@ grafics:
 = 06D1F0: Entirety of GetInteractedMetatileScript (see 125disasm)
 		  Implements: scripts for metatiles 0xE3 and 0xE4, makes it easier to add more scripted metatiles
 		  Requires in future: script_68277E_J, script_682787_J
-- 06DE28: Entirety of sub_806DE28 (see 126disasm)
++ 06DE28: Entirety of sub_806DE28 (see 126disasm)
 		  Implements: Strength boulders disappear when moved onto metatile 0x1F
 = 06DE70: Entirety of sub_806DE70 (see 127disasm)
 		  
