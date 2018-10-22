@@ -20,9 +20,7 @@ sub_806F280()
 		}
 
 		*r4 = r0
-		r0 = *r4
-		r1 = r5
-		fn_6E6B8_J()
+		fn_E9D4A2_J(*r4, r5)
 		return 0
 	}
 	
@@ -41,9 +39,7 @@ sub_806F280()
 			r0 = 0
 		
 		*r4 = r0
-		r0 = *r4
-		r1 = r5
-		fn_6E6B8_J()
+		fn_E9D4A2_J(*r4, r5)
 		return 0
 	}
 	
@@ -68,9 +64,7 @@ sub_806F280()
 		}
 		
 		*r4 = r0
-		r0 = *r4
-		r1 = r5
-		fn_6E6B8_J()
+		fn_E9D4A2_J(*r4, r5)
 		return 0
 	}
 	
@@ -95,9 +89,7 @@ sub_806F280()
 		}
 		
 		*r4 = r0
-		r0 = *r4
-		r1 = r5
-		fn_6E6B8_J()
+		fn_E9D4A2_J(*r4, r5)
 		return 0
 	}
 	
@@ -143,13 +135,29 @@ sub_806F280()
 	return 0
 }
 
-fn_6EB68: @6F374_E
-r6 = fn_E9D4A2_J
-goto r6
 
 
 
 
 
+fn_E9D4A2_J(arg0, arg1)
+{
+	fn_E9D53C_J(arg0)
+	r2 = data_020370F6[arg0]
 
-fn_E9D4A2_J:
+	if(r2 == 3 && data_0203CB27_J != 0)
+		r2 = 6
+
+	fn_E9D586_J(arg0)
+
+	fn_E9D53C_J(arg1)
+	r2 = data_020370F6[arg1]
+
+	if(r2 == 3 && data_0203CB27_J != 0)
+		r2 = 6
+
+	fn_E9D586_J(arg1)
+	
+	CopyWindowToVram(*data_0203D380_J, 2)
+	CopyBgTilemapBufferToVram(0)
+}

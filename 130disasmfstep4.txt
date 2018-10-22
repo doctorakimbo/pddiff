@@ -1,0 +1,40 @@
+ProcessMenuInput()
+{
+	if(gMain.newKeys & DPAD_UP)
+	{
+		PlaySE(SE_SELECT);
+		sStartMenuCursorPos = MoveMenuCursor(-1);
+		
+		if(fn_BF708() == 0 && InUnionRoom() == FALSE && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_NORMAL)
+			fn_113018(data_3A7394[data_020370F6[sStartMenuCursorPos]], 2)
+	}
+	
+	if(gMain.newKeys & DPAD_DOWN)
+	{
+		PlaySE(SE_SELECT);
+		sStartMenuCursorPos = MoveMenuCursor(1);
+		
+		if(fn_BF708() == 0 && InUnionRoom() == FALSE && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_NORMAL)
+			fn_113018(data_3A7394[data_020370F6[sStartMenuCursorPos]], 2)
+	}
+	
+	if(gMain.newKeys & A_BUTTON)
+	{
+		PlaySE(SE_SELECT);
+		
+		if(fn_6F3CC())
+		{
+			data_020370F0 = data_3A7344[data_020370F6[sStartMenuCursorPos]].1
+			fn_6F394()
+		}
+	}
+	elseif(gMain.newKeys & (B_BUTTON | START_BUTTON)) 
+	{
+		fn_6EF18()
+		fn_F7998()
+		fn_6FEA0()
+		return MENU_B_PRESSED;
+	}
+		
+	return MENU_NOTHING_CHOSEN;
+}

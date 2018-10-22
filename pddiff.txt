@@ -894,7 +894,21 @@ grafics:
 		  Implements: Need more info (something about START menu)
 		  Required knowledge: j0203CB27, j0203D2FF, j0203D380
 		  Requires in future: fn_E9D53C_J, fn_E9D586_J
-= 06F280: Entirety of sub_806F280 (+ add part at E9D4A2_J) (see 130disasm)
+= 06F280: Entirety of ProcessMenuInput (+ add part at E9D4A2_J) (see 130disasm)
+		  Implements: possibly retools START menu into 3x2 grid
+		  Required knowledge: j0203CB27, j0203D380
+		  Requires in future: fn_E9D53C_J, fn_E9D586_J
+- 06FEA0: Entirety of HideStartMenuWindow (see 131disasm)
+		  Implements: changes menu close sfx from SE_SELECT to (sound_0x200)
+= (RECOMPILE PREVIOUS)
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
 		  
 		  
 		  
@@ -902,5 +916,5 @@ grafics:
 		  
 
 
-curr: j6EA74-j6EB88
-next: j6F644
+curr: j6F644-j6F66A
+next: j6F770

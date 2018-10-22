@@ -1,0 +1,48 @@
+sub_806F280()
+{
+	if(gMain.0x2E & 0x40)
+	{
+		PlaySE(5)
+		sStartMenuCursorPos = MoveMenuCursor(-1)
+		
+		if(fn_BF708() == 0 && InUnionRoom() != 1 && gSaveBlock2Ptr->0x13 == 0)
+		{
+			r0 = data_3A7394[data_020370F6[sStartMenuCursorPos]]
+			r1 = 2
+			fn_113018()
+		}
+	}
+	
+	if(gMain.0x2E & 0x80)
+	{
+		PlaySE(5)
+		sStartMenuCursorPos = MoveMenuCursor(1)
+		
+		if(fn_BF708() == 0 && InUnionRoom() != 1 && gSaveBlock2Ptr->0x13 == 0)
+		{
+			r0 = data_3A7394[data_020370F6[sStartMenuCursorPos]]
+			r1 = 2
+			fn_113018()
+		}
+	}
+	
+	if(gMain.0x2E & 1)
+	{
+		PlaySE(5)
+		
+		if(fn_6F3CC() != 0)
+		{
+			data_020370F0 = gSaveBlock2Ptr->4[data_020370F6[sStartMenuCursorPos]]
+			fn_6F394()
+		}
+	}
+	elseif(gMain.0x2E & 0xA) 
+	{
+		fn_6EF18()
+		fn_F7998()
+		fn_6FEA0()
+		return 1
+	}
+		
+	return 0
+}

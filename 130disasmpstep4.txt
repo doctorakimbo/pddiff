@@ -1,0 +1,105 @@
+ProcessMenuInput()
+{
+	oldCursorPos = sStartMenuCursorPos;
+	
+	if(gMain.newKeys & DPAD_LEFT)
+	{
+		PlaySE(0x201)
+		sStartMenuCursorPos--;
+		
+		if(sStartMenuCursorPos < 0)
+			sStartMenuCursorPos = sNumStartMenuActions - 2;
+
+		fn_E9D4A2_J(sStartMenuCursorPos, oldCursorPos)
+		return MENU_NOTHING_CHOSEN;
+	}
+	elseif(gMain.newKeys & DPAD_RIGHT)
+	{
+		PlaySE(0x201)
+		sStartMenuCursorPos++;
+		
+		if(sStartMenuCursorPos > sNumStartMenuActions - 2)
+			sStartMenuCursorPos = 0;
+		
+		fn_E9D4A2_J(sStartMenuCursorPos, oldCursorPos)
+		return MENU_NOTHING_CHOSEN;
+	}
+	elseif(gMain.newKeys & DPAD_UP)
+	{
+		PlaySE(0x201)
+		sStartMenuCursorPos -= 3;
+		
+		if(sStartMenuCursorPos < 0)
+		{
+			sStartMenuCursorPos += 6;
+			
+			if(sStartMenuCursorPos > sNumStartMenuActions - 2)
+				sStartMenuCursorPos = 0;
+		}
+		
+		fn_E9D4A2_J(sStartMenuCursorPos, oldCursorPos)
+		return MENU_NOTHING_CHOSEN;
+	}
+	elseif(gMain.newKeys & DPAD_DOWN)
+	{
+		PlaySE(0x201)
+		sStartMenuCursorPos += 3;
+		
+		if(sStartMenuCursorPos > sNumStartMenuActions - 2)
+		{
+			sStartMenuCursorPos -= 6;
+			
+			if(sStartMenuCursorPos < 0) 
+				sStartMenuCursorPos = sNumStartMenuActions - 2;
+		}
+		
+		fn_E9D4A2_J(sStartMenuCursorPos, oldCursorPos)
+		return MENU_NOTHING_CHOSEN;
+	}
+	elseif(gMain.newKeys & A_BUTTON)
+	{
+		PlaySE(SE_SELECT);
+		
+		if(fn_6F3CC())
+		{
+			data_020370F0 = data_3A7344[data_020370F6[sStartMenuCursorPos]].1
+			fn_6F394()
+		}
+	}
+	elseif(gMain.newKeys & (B_BUTTON | START_BUTTON))
+	{
+		fn_6EF18()
+		fn_F7998()
+		fn_6FEA0()
+		return MENU_B_PRESSED;
+	}
+	
+	return MENU_NOTHING_CHOSEN;
+}
+
+
+
+
+
+
+fn_E9D4A2_J(arg0, arg1)
+{
+	fn_E9D53C_J(arg0)
+	r2 = data_020370F6[arg0]
+
+	if(r2 == 3 && data_0203CB27_J != 0)
+		r2 = 6
+
+	fn_E9D586_J(arg0)
+
+	fn_E9D53C_J(arg1)
+	r2 = data_020370F6[arg1]
+
+	if(r2 == 3 && data_0203CB27_J != 0)
+		r2 = 6
+
+	fn_E9D586_J(arg1)
+	
+	CopyWindowToVram(data_0203D380_J, 2)
+	CopyBgTilemapBufferToVram(0)
+}

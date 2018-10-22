@@ -1,0 +1,10 @@
+lbl1: @6FEA0
+r0 = 5
+PlaySE()
+GetStartMenuWindowId()
+r1 = 1
+fn_F6F9C()
+fn_F7948()
+fn_696C0()
+fn_6994C()
+return
