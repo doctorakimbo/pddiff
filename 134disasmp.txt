@@ -1,0 +1,60 @@
+lbl1: @78384
+r2 = r0
+r0 = r2 * 4
+r0 += r2
+r0 *= 8
+r1 = data_03005098
+r0 += r1
+r1 = fn_385250_J
+goto r1
+
+lblx: @78398
+r3 = s0
+if(r1 <= r0) goto lbl2
+
+r1 = data_02037F30
+r0 = 0xFF
+*r1 = r0
+r0 = r2
+DestroyTask()
+goto lbl2
+
+lbl2:
+return
+
+
+
+
+
+fn_385250_J:
+(var_shield start)
+r3 = data_020370C0_J
+r1 = data_3852A0_J
+r2 = *(r3 + 1)
+r2 *= 8
+r1 += r2
+r0 = *(r1 + 4)
+r2 = *r3
+if(r2 >= r0) goto lbl2
+
+r2++
+*r3 = r2
+goto lbl3
+
+lbl2:
+r2 = 0
+*r3 = r2
+r2 = *(r1 + 5)
+*(r3 + 1) = r2
+r0 = *r1
+r1 = data_06004000_J
+svc_18()
+goto lbl3
+
+lbl3:
+(var_shield end)
+r1 = *r0
+r0 = 0x140A
+s0 = r3
+r3 = lblx
+goto r3

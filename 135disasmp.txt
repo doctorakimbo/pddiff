@@ -1,0 +1,112 @@
+lbl1: @78B6E
+r0 = 4
+r1 = *(r4 + r0)
+r1 = -r1
+r0 = r4
+r1 = fn_2075E0_J
+call_far_fn_r1()
+goto lbl_2
+
+
+
+
+
+
+
+fn_2075E0_J:
+r4 = r0
+r1 = 0
+r0 = 2
+r2 = 0
+r7 = fn_1B90
+call_far_fn()
+r1 = 0xF0
+r0 = 0x40
+r7 = SetGpuReg
+call_far_fn()
+r5 = data_0203712C_J
+r0 = 0xF
+r1 = 0x20
+r0 *= r1
+r5 += r0
+r6 = 0xD
+goto lbl2
+
+lbl2:
+r0 = r6 * 2
+r0 = *(r5 + r0)
+r1 = 0x1F
+r0 &= r1
+s0 = r0
+r1 = *(r4 + 4)
+if(r1 <= 0xA8) goto lbl3
+
+r0 = 0x7FFF
+goto lbl4
+
+lbl3:
+r0 = 0x1F
+r2 = s0
+r0 -= r2
+r0 *= r1
+r1 = 0xA8
+svc_6()
+r1 = s0
+r1 += r0
+s0 = r1
+r0 = r6 * 2
+r0 = *(r5 + r0)
+r1 = 0x1F
+r1 <<= 5
+r0 &= r1
+r0 >>= 5
+s1 = r0
+r1 = 0x1F
+r1 -= r0
+r0 = *(r4 + 4)
+r0 *= r1
+r1 = 0xA8
+svc_6()
+r1 = s1
+r1 += r0
+s1 = r1
+r0 = r6 * 2
+r0 = *(r5 + r0)
+r1 = 0x1F
+r1 <<= 0xA
+r0 &= r1
+r0 >>= 0xA
+s2 = r0
+r1 = 0x1F
+r1 -= r0
+r0 = *(r4 + 4)
+r0 *= r1
+r1 = 0xA8
+svc_6()
+r1 = s2
+r1 += r0
+s2 = r1
+r0 = s0
+r1 = s1
+r1 <<= 5
+r0 |= r1
+r1 = s2
+r1 <<= 0xA
+r0 |= r1
+goto lbl4
+
+lbl4:
+r1 = r6 * 2
+r3 = 0xF
+r2 = 0x20
+r3 *= r2
+r2 = data_020375F8
+r2 += r3
+*(r2 + r1) = r0
+if(r6 == 0) goto lbl5
+
+r6--
+goto lbl2
+
+lbl5:
+return

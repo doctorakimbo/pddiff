@@ -1,0 +1,96 @@
+sub_806FFBC()
+{
+	ResetTilesetAnimBuffer()
+	*data_03000FAE++
+	
+	if(*data_03000FAE bcs 0x100)
+		*data_03000FAE = 0
+	
+	*data_03000FB2++
+	
+	if(*data_03000FB2 bcs 0x100)
+		*data_03000FB2 = 0
+	
+	fn_939620_J()
+}
+
+
+
+
+
+
+fn_939620_J()
+{
+	if(*(*gMapHeader + 0x10) != 0 && *(*(*gMapHeader + 0x10) + 0x10) != 0)
+	{
+		for(r4 = 0; r4 bcc *(*(*(*gMapHeader + 0x10) + 0x10) + 0xF); r4++)
+		{
+			if(!(*((r4 * 0x10) + *(*(*gMapHeader + 0x10) + 0x10) + 0xE) & 0x10))
+			{
+				r3 = *((r4 * 0x10) + *(*(*gMapHeader + 0x10) + 0x10) + 6) & *data_03000FAE
+				r5 = *((r4 * 0x10) + *(*(*gMapHeader + 0x10) + 0x10) + 7)
+				
+				if(r5 > r3)
+					break;
+
+				if(r5 bcs r3)
+					fn_9396A8_J(*data_03000FAE >> *((r4 * 0x10) + *(*(*gMapHeader + 0x10) + 0x10) + 4), (r4 * 0x10) + *(*(*gMapHeader + 0x10) + 0x10))
+			}
+		}
+	}
+	
+	if(*(*gMapHeader + 0x14) != 0 && *(*(*gMapHeader + 0x14) + 0x10) != 0)
+	{
+		for(r4 = 0; r4 bcc *(*(*(*gMapHeader + 0x14) + 0x10) + 0xF); r4++)
+		{
+			if(!(*((r4 * 0x10) + *(*(*gMapHeader + 0x14) + 0x10) + 0xE) & 0x10))
+			{
+				r3 = *((r4 * 0x10) + *(*(*gMapHeader + 0x14) + 0x10) + 6) & *data_03000FAE
+				r5 = *((r4 * 0x10) + *(*(*gMapHeader + 0x14) + 0x10) + 7)
+				
+				if(r5 > r3)
+					break;
+
+				if(r5 bcs r3)
+					fn_9396A8_J(*data_03000FAE >> *((r4 * 0x10) + *(*(*gMapHeader + 0x14) + 0x10) + 4), (r4 * 0x10) + *(*(*gMapHeader + 0x14) + 0x10))
+			}
+		}
+	}
+}
+
+
+
+
+
+
+fn_9396A8_J(arg0, arg1)
+{
+	if(*(arg1 + 0xE) & 2)
+		arg0 -= r3
+	
+	if(!(*(arg1 + 0xE) & 8) || arg0 <= *(arg1 + 5) || (*(arg1 + 0x10 + 0xE) & 0x10))
+	{
+		if(*(arg1 + 0x10 + 0xE) & 1)
+			r0 = arg0 % *(arg1 + 0x10 + 0xA)
+		else
+			r0 = arg0 & *(arg1 + 0x10 + 0xA)
+		
+		if(*(arg1 + 0x10 + 0xE) & 2)
+		{
+			svc_11(*(((r0 & *(arg1 + 0x10 + 0xA)) * 4) + *(arg1 + 0x10)), (*(arg1 + 0x10 + 8) * 0x20) + data_02037B14_J, *(arg1 + 0x10 + 0xC) * 0x10)
+			svc_11(*(((r0 & *(arg1 + 0x10 + 0xA)) * 4) + *(arg1 + 0x10)), (*(arg1 + 0x10 + 8) * 0x20) + 0x5000000, *(arg1 + 0x10 + 0xC) * 0x10)
+		}
+		else
+			fn_939728_J(r0, NULL, *(arg1 + 0x10 + 0xC), NULL, *(arg1 + 0x10), *(arg1 + 0x10 + 8))
+	}
+}
+
+
+
+
+
+
+fn_939728_J(arg0, NULL, arg2, NULL, arg4, arg5)
+{
+	AppendTilesetAnimToBuffer(*((arg0 * 4) + arg4), (arg5 * 0x20) + 0x6000000, arg2 * 0x20)
+}

@@ -1,0 +1,47 @@
+sub_806FFBC()
+{
+	ResetTilesetAnimBuffer()
+	r2 = data_03000FAE
+	r0 = *r2
+	r0++
+	*r2 = r0
+	r1 = data_03000FB0
+	r1 = *r1
+	
+	if(r0 bcs r1)
+	{
+		r0 = 0
+		*r2 = r0
+	}
+	
+	r4 = data_03000FB2
+	r0 = *r4
+	r0++
+	*r4 = r0
+	r1 = data_03000FB4
+	r1 = *r1
+	
+	if(r0 bcs r1)
+	{
+		r0 = 0
+		*r4 = r0
+	}
+	
+	r0 = data_03000FB8
+	r1 = *r0
+	
+	if(r1 != 0)
+	{
+		r0 = *r2
+		call r1
+	}
+	
+	r0 = data_03000FBC
+	r1 = *r0
+	
+	if(r1 != 0)
+	{
+		r0 = *r4
+		call r1
+	}
+}

@@ -7,6 +7,7 @@ F0 30 A2 08
 00 00 00 09
 00 00 01 09
 04 00 01 09
+00 00 03 09
 A0 0B 06 09
 00 50 06 09
 00 00 0B 09
@@ -281,9 +282,20 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 = 0x20F = "[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"/"[PKMN] became trapped by swirling magma!"
 
 grafics:
+= 3BF58C (3860F0 old, 783890 new)
 = D0051C (C0051C old, EB8990 new)
+= EAB6C4 (3835A4 old, D97800 new)
+= EAB8C4 (383604 old, F00000 new)
+= EAD390 (385018 old, 8E0B00 new)
+= EAD5E8 (385228 old, F03730 new)
+= EAD608 (385248 old, 8E38A0 new)
+= EADEE4 (385B24 old, F03460 new)
+= EAE094 (385CD8 old, F03020 new)
+= EAE0B4 (385CF8 old, F01A00 new)
+= EAE374 (385FDC old, F03050 new)
 
 + expand rom to 2x
+- expand 1C68F4 (move animations) from 356 entries to 680 (1030000) 
 + expand 1C6EA8 (misc animations) from 23 entries to 24 (24th entry is 1C9989 - whirlwind animation) (104FF00)
 + expand 1D65A8 (move scripts) from 214 entries to 256 (1065000)
 = expand 245EE0 (species names) from 10 per to 12 per (1060BA0?)
@@ -300,8 +312,15 @@ grafics:
 + expand 26056C (ball sprites) from 12 entries to 26 (A23000)
 + expand 2605CC (ball sprite palettes) from 12 entries to 26 (A230F0)
 + expand 2606F4 (ball sprite templates) from 12 entries to 26 (A23380)
+! expand 399388 (battle anim sprites???) to [BROKEN] (11ECA80)
+! expand 399C90 (battle anim palettes???) to [BROKEN] (11EDD80)
 + expand 39FDB0 (field object graphics info pointers) from 174 entries to 256 (j4EFDA0, e14EFDA0)
 ! expand 3A65BC (movement action functions) from 170 entries to 226 (j221550, eUNKNOWN)
+- expand 3ACC08 (battle anim sprites) from 289 entries to 462 (1200300)
+	- also set 3AD048 (gBattleAnimPicTable[136]) to 1200740
+- ???
+	! also set 3AD950 (gBattleAnimPaletteTable[136]) to 1201A40
+- expand 3ADE18 (battle anim backgrounds) from 27 entries to 100 (11FF000)
 + expand 3DB028 (item data) from 375 entries to 435 (10B0000)
 + expand 3D4038 (mon icon palettes) from 6 entries to 16 (jE40000, e1E40000)
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
@@ -645,17 +664,17 @@ grafics:
 		  Required knowledge: j02020024, j0203BF30, j0203BF40, j0203BF70, j0203D300, j0203D340, j0203D380, j0203D480
 		  Requires in future: fn_1833C0_J
 ! 0308B8: A7 F0 80 FF -> 00 00 00 00
-		  Implements: Removes "PP" for battle move summary; in JP, also makes "Move Type/" -> "Type/", but that's already true
+		  Implements: Removes "PP" for battle move summary (replaced by functionality in 030830); in JP, also makes "Move Type/" -> "Type/", but that's already true
 ! 030924: A7 F0 4A FF -> 00 00 00 00
-		  Implements: Removes PP numbers for battle move summary
+		  Implements: Removes PP numbers for battle move summary (replaced by functionality in 030830)
 = 030990: 09 1A -> 09 18
   0309A0: A7 F0 0C FF -> 00 00 00 00
-		  Implements: Removes "Type/" + type names for battle move summary
+		  Implements: Removes "Type/" + type names for battle move summary (replaced by functionality in 030830)
 		  Relies on: expanded type names
 ! 0309CC: Entirety of MoveSelectionCreateCursorAt (see 71disasm)
-		  Implements: Removes move selection cursor
+		  Implements: Removes move selection cursor (replaced by functionality in 030830)
 ! 030A14: Entirety of MoveSelectionDestroyCursorAt (see 71disasm)
-		  Implements: Removes move selection cursor
+		  Implements: Removes move selection cursor (replaced by functionality in 030830)
 = 034D26: 0B -> 10 (pkmnnamelength)
 = 038744: Entirety of OpponentHandleChoosePokemon (see 72disasm)
 		  Implements: New level of smart AI for switching choice (prioritizes mon with Trick Room if team is slow, prioritizes best Trick Room attacker during Trick Room, prioritizes weather setter when weather runs out, prioritizes mon with best type matchup)
@@ -900,10 +919,31 @@ grafics:
 		  Requires in future: fn_E9D53C_J, fn_E9D586_J
 - 06FEA0: Entirety of HideStartMenuWindow (see 131disasm)
 		  Implements: changes menu close sfx from SE_SELECT to (sound_0x200)
-= (RECOMPILE PREVIOUS)
-		  
-		  
-		  
+= 06FFBC: Entirety of sub_806FFBC (see 132disasm)
+		  Implements: Need more info
+		  Relies on: Possible metatileAttributes refactor
+		  Required knowledge: j02037B14
+		  Requires in future: fn_939620_J, fn_9396A8_J, fn_939728_J
+! 07004E: 73 F1 AB FD -> 00 00 00 00
+		  Implements: (not sure, test) Removes tileset 1 animations (replaced by functionality in 06FFBC)
+! 07008A: 73 F1 8D FD -> 00 00 00 00
+		  Implements: (not sure, test) Removes tileset 2 animations (replaced by functionality in 06FFBC)
+= 07049A: 0C 48 03 60 61 7A 03 20 08 40 -> 01 48 87 46 C0 46 XX XX XX 08 (jumps (mov) to fn at XXXXXX, then back; (jE9D320, see 133disasm))
+		  Implements: Something palette-related
+		  Required knowledge: j0203D2FF
+! 070682: 73 F1 6F FA -> 00 00 00 00
+		  Implements: (not sure, test) Removes palette fading (replaced by functionality in 07049A)
+! 078A6E: F7 F7 BD FC -> 00 00 00 00
+		  Implements: removes the third call to LoadPalette, which does something? (test)
+= 078BFC: 00 23 C1 5E 06 48 -> 07 49 08 47 08 BC
+  078C1C: 8B 0A 00 00 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j, see 134disasm))
+		  Implements: almost certainly title screen silhouette fading
+		  Required knowledge: j020370C0
+! 0791EE: 06 -> FC (PDONLY, title screen cry charizard -> (species252))
+- 079282: C0 0F -> 01 20 (sound will always become stereo when game loaded from title screen)
+= 0793D8: Part of sub_80792C8 (+ add part at 2075E0_J) (see 135disasm)
+		  Implements: 
+		  Requires in future: fn_2075E0_J
 		  
 		  
 		  
@@ -916,5 +956,5 @@ grafics:
 		  
 
 
-curr: j6F644-j6F66A
-next: j6F770
+curr: j78B74-j78B90
+next: j799F4

@@ -1,0 +1,16 @@
+sub_806FFBC()
+{
+	ResetTilesetAnimBuffer();
+	
+	if(++sPrimaryTilesetCBCounter >= sPrimaryTilesetCBBufferSize)
+		sPrimaryTilesetCBCounter = 0;
+	
+	if(++sSecondaryTilesetCBCounter >= sSecondaryTilesetCBBufferSize)
+		sSecondaryTilesetCBCounter = 0;
+	
+	if(sPrimaryTilesetCB)
+		sPrimaryTilesetCB(sPrimaryTilesetCBCounter);
+	
+	if(sSecondaryTilesetCB)
+		sSecondaryTilesetCB(sSecondaryTilesetCBCounter);
+}

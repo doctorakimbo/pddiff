@@ -1,0 +1,125 @@
+lbl1: @6FC18
+r4 = data_02037AB8
+r1 = *(r4 + 8)
+r5 = 0x80
+r0 = r5
+r0 &= r1
+r3 = r0
+if(r3 != 0) goto lblx2
+
+r1 = data_020375F8
+r2 = 0x05000000
+r0 = 0x040000D4
+*r0 = r1
+*(r0 + 4) = r2
+r1 = 0x80000002
+*(r0 + 8) = r1
+r0 = *(r0 + 8)
+r0 = fn_E9D320_J
+goto r0
+
+lblx: @6FC48
+if(r0 != 2) goto lblx2
+
+r1 = *(r4 + 7)
+r0 = r5
+r0 &= r1
+if(r0 == 0) goto lblx2
+
+fn_7141C()
+goto lblx2
+
+lblx2:
+return
+
+
+
+
+
+
+fn_E9D320_J:
+r0 = data_02037AC8
+*r0 = r3
+r1 = *(r4 + 9)
+r0 = 3
+r0 &= r1
+r1 = data_0203D2FF_J
+r1 = *r1
+if(r1 == 0) goto lbl7
+
+r1 = data_03000000_J
+r1 = *r1
+r2 = 0x7F60
+if(r2 != r1) goto lbl7
+
+(var_barrier start)
+r5 = data_020375F8
+r7 = 0x05000000
+r4 = 0
+goto lbl2
+
+lbl2:
+r1 = r4 * 4
+r2 = *(r5 + r1)
+if(r4 >= 0x68) goto lbl3
+
+r2 /= 2
+r3 = 0x3DEF3DEF
+r2 &= r3
+goto lbl3
+
+lbl3:
+*(r7 + r1) = r2
+r4++
+if(r4 != 0x80) goto lbl2
+
+r5 = data_0203772C_J
+r7 = 0x05000200
+r4 = data_0203D2FE_J
+r6 = *r4
+r4 = 8
+r6 *= r4
+r4 = 0
+goto lbl4
+
+lbl4:
+r1 = r4 * 4
+r2 = *(r5 + r1)
+// if(r4 ?? r6)  // ignored condition, always jumps
+goto lbl5
+
+// ignored code:
+r3 = r6
+r3 += 8
+if(r4 < r3) goto lbl6
+
+goto lbl5
+
+lbl5:
+r2 /= 2
+r3 = 0x3DEF3DEF
+r2 &= r3
+goto lbl6
+
+lbl6:
+*(r7 + r1) = r2
+r4++
+if(r4 != 0x80) goto lbl4
+
+(var_barrier end)
+goto lbl8
+
+lbl7:
+(var_barrier start)
+r0 = 0xBA
+r4 = fn_85AC_J
+call_far_fn()
+r1 = data_0203D2FF_J
+r0 = 0
+*r1 = r0
+(var_barrier end)
+goto lbl8
+
+lbl8:
+r1 = lblx
+goto r1

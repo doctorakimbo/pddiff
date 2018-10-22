@@ -1,0 +1,95 @@
+sub_806FFBC()
+{
+	ResetTilesetAnimBuffer();
+	
+	if(++sPrimaryTilesetCBCounter >= 0x100)
+		sPrimaryTilesetCBCounter = 0;
+	
+	if(++sSecondaryTilesetCBCounter >= 0x100)
+		sSecondaryTilesetCBCounter = 0;
+	
+	fn_939620_J()
+}
+
+
+
+
+
+
+fn_939620_J()
+{
+	if(gMapHeader.mapLayout.primaryTileset != NULL && gMapHeader.mapLayout.primaryTileset.metatileAttributes != NULL)
+	{
+		for(i = 0; i < gMapHeader.mapLayout.primaryTileset.metatileAttributes[0].0xF; i++)
+		{
+			if(!(gMapHeader.mapLayout.primaryTileset.metatileAttributes[i].0xE & 0x10))
+			{
+				r3 = gMapHeader.mapLayout.primaryTileset.metatileAttributes[i].6 & sPrimaryTilesetCBCounter
+				r5 = gMapHeader.mapLayout.primaryTileset.metatileAttributes[i].7
+				
+				if(r5 > r3)
+					break;
+
+				if(r5 == r3)
+					fn_9396A8_J(sPrimaryTilesetCBCounter >> gMapHeader.mapLayout.primaryTileset.metatileAttributes[i].4, gMapHeader.mapLayout.primaryTileset.metatileAttributes[i])
+			}
+		}
+	}
+	
+	if(gMapHeader.mapLayout.secondaryTileset != NULL && gMapHeader.mapLayout.secondaryTileset.metatileAttributes != NULL)
+	{
+		for(i = 0; i < gMapHeader.mapLayout.secondaryTileset.metatileAttributes[0].0xF; i++)
+		{
+			if(!(gMapHeader.mapLayout.secondaryTileset.metatileAttributes[i].0xE & 0x10))
+			{
+				r3 = gMapHeader.mapLayout.secondaryTileset.metatileAttributes[i].6 & sPrimaryTilesetCBCounter
+				r5 = gMapHeader.mapLayout.secondaryTileset.metatileAttributes[i].7
+				
+				if(r5 > r3)
+					break;
+
+				if(r5 == r3)
+					fn_9396A8_J(sPrimaryTilesetCBCounter >> gMapHeader.mapLayout.secondaryTileset.metatileAttributes[i].4, gMapHeader.mapLayout.secondaryTileset.metatileAttributes[i], NULL, r3)
+			}
+		}
+	}
+}
+
+
+
+
+
+
+fn_9396A8_J(arg0, arg1, NULL, arg3)
+{
+	if(arg1.0xE & 2)
+		arg0 -= arg3
+	
+	if(!(arg1.0xE & 8) || arg0 <= arg1.5 || (arg1.nextEntry.0xE & 0x10))
+	{
+		if(arg1.nextEntry.0xE & 1)
+			r0 = arg0 % arg1.nextEntry.0xA
+		else
+			r0 = arg0 & arg1.nextEntry.0xA
+		
+		if(arg1.nextEntry.0xE & 2)
+		{
+			svc_11(arg1.nextEntry.0[r0 & arg1.nextEntry.0xA], data_02037B14_J[arg1.nextEntry.8], arg1.nextEntry.0xC * 0x10)
+			svc_11(arg1.nextEntry.0[r0 & arg1.nextEntry.0xA], data_05000000_J[arg1.nextEntry.8], arg1.nextEntry.0xC * 0x10)
+		}
+		else
+			fn_939728_J(r0, NULL, arg1.nextEntry.0xC, NULL, arg1.nextEntry.0, arg1.nextEntry.8)
+			// above is equivalent to:
+			// AppendTilesetAnimToBuffer(arg1.nextEntry.0[r0], data_06000000_J[arg1.nextEntry.8], arg1.nextEntry.0xC * 0x20)
+	}
+}
+
+
+
+
+
+
+fn_939728_J(arg0, NULL, arg2, NULL, arg4, arg5)
+{
+	AppendTilesetAnimToBuffer(arg4[arg0], data_06000000_J[arg5], arg2 * 0x20)
+}

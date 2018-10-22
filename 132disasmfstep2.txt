@@ -1,0 +1,19 @@
+sub_806FFBC()
+{
+	ResetTilesetAnimBuffer()
+	*data_03000FAE++
+	
+	if(*data_03000FAE bcs *data_03000FB0)
+		*data_03000FAE = 0
+	
+	*data_03000FB2++
+	
+	if(*data_03000FB2 bcs *data_03000FB4)
+		*data_03000FB2 = 0
+	
+	if(*data_03000FB8 != 0)
+		call *data_03000FB8(*data_03000FAE)
+	
+	if(*data_03000FBC != 0)
+		call *data_03000FBC(*data_03000FB2)
+}

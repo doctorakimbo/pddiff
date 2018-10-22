@@ -1,0 +1,13 @@
+TransferPlttBuffer()
+{
+	if(!gPaletteFade.bufferTransferDisabled)
+	{
+		0x040000D4[0] = gPlttBufferFaded
+		0x040000D4[1] = PLTT
+		0x040000D4[2] = 0x80000002
+		sPlttBufferTransferPending = 0;
+
+		if(gPaletteFade.mode == HARDWARE_FADE && gPaletteFade.active)
+			UpdateBlendRegisters();
+	}
+}

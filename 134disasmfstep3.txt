@@ -1,0 +1,8 @@
+sub_8078BEC(arg0)
+{
+	if(data_03005098[arg0] > 0xA8B)
+	{
+		data_02037F30 = 0xFF
+		DestroyTask(arg0)
+	}
+}

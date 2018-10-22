@@ -122,6 +122,14 @@ F5 70 03 02: 29 70 03 02: sNumStartMenuActions
 F6 70 03 02: 2A 70 03 02: ??????
 FF 70 03 02: 33 70 03 02: ??????
 00 71 03 02: 34 70 03 02: ??????
+		   : C0 70 03 02: ?????? (sub_8078BEC: this[0] is constantly incremented; when it reaches 3 it's set to 0 again and this[1] is incremented (if 15, set to 0))
+								 (sub_8078BEC: used as an index into data_3852A0_J)
+		   : 2C 71 03 02: ??????
+F8 75 03 02: 2C 75 03 02: ??????
+B8 7A 03 02: EC 79 03 02: gPaletteFade
+C8 7A 03 02: FC 79 03 02: ??????
+		   : 14 7B 03 02: ?????? (fn_9396A8_J: some sort of data is copied into this)
+30 7F 03 02: 64 7E 03 02: ??????
 		   : E2 85 03 02: ?????? (CreateNPCTrainerParty: checked if less than 0x2E6, if so, used as an index to copy data from table data_09400000_J into gEnemyParty)
 								 (CanUseNewAI: used as an index into gTrainers)
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
@@ -214,6 +222,8 @@ FF 70 03 02: 33 70 03 02: ??????
 		   : FF D2 03 02: ?????? (fn_EE5000: set to 1 on start)
 								 (fn_EE51C0: set to 0 on exit)
 								 (InitStartMenuStep: set to 1 when this is called with parameter 5 (final step))
+								 (TransferPlttBuffer: if this isn't 0 and addr 0x3000000 is 0x7F60, do... something, otherwise delete palette 0xBA)
+								 (TransferPlttBuffer: if addr 0x3000000 isn't 0x7F60, set this to 0)
 		   : 00 D3 03 02: ?????? (Appears to be an array of characters)
 								 (fn_EB8398_J: Set this[0] to data_0203BF70_J[battler].8[moveId])
 								 (fn_EB8398_J: Set this[2] to CHAR_SLASH)
@@ -238,7 +248,14 @@ FF 70 03 02: 33 70 03 02: ??????
 		   : 00 FE 03 02: gLastUsedItemType
 		   : 04 FE 03 02: gCritCapture
 		   
+		   : 00 00 00 03: ??????
 		   : 9C 0F 00 03: ??????
+AE 0F 00 03: AE 0F 00 03: sPrimaryTilesetCBCounter
+B0 0F 00 03: B0 0F 00 03: sPrimaryTilesetCBBufferSize
+B2 0F 00 03: B2 0F 00 03: sSecondaryTilesetCBCounter
+B4 0F 00 03: B4 0F 00 03: sSecondaryTilesetCBBufferSize
+B8 0F 00 03: B8 0F 00 03: sPrimaryTilesetCB
+BC 0F 00 03: BC 0F 00 03: sSecondaryTilesetCB
 F0 30 00 03: 30 31 00 03: gMain
 84 4F 00 03: C4 4F 00 03: gBattleMainFunc
 90 4F 00 03: D0 4F 00 03: gBattleResults
@@ -255,6 +272,7 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 78 50 00 03: B8 50 00 03: ??????
 7C 50 00 03: BC 50 00 03: ??????
 		   : D0 50 00 03: ??????
+98 50 00 03: D8 50 00 03: ??????
 7C 53 00 03: CC 53 00 03: gCB2_AfterEvolution
 		   : 40 55 00 03: ?????? (GetEvolutionTargetSpecies: EVO_FRIENDSHIP_DAY works when this.2 is less than 11; EVO_FRIENDSHIP_NIGHT works when this.2 is between 12 and 23 inclusive) (gLocalTime?)
 		   : 42 55 00 03: ?????? (atkEF_handleballthrow: Dusk Ball boosted if less than 6 or greater than 20) (gLocalTime.hours?)
@@ -263,6 +281,7 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 		   
 funcs e,j,desc:
 000A38 = 000A38 = SetGpuReg
+001B90 = 001B90 = ChangeBgX
 0020BC = 0020BC = CopyBgTilemapBufferToVram
 002124 = 002124 = CopyToBgTilemapBufferRect
 002228 = 002228 = CopyToBgTilemapBufferRect_ChangePalette
@@ -278,6 +297,7 @@ funcs e,j,desc:
 007804 = 007380 = DestroySpriteAndFreeResources
 0086DC = 008258 = LoadSpriteSheet
 008928 = 0084A4 = LoadSpritePalette
+008A30 = 0085AC = FreeSpritePaletteByTag
 008CF4 = 008870 = StringCopy10
 008D28 = 0088A4 = StringGetEnd10
 008D84 = 008900 = StringCopy
@@ -434,9 +454,12 @@ funcs e,j,desc:
 06EE7C = 06E670 = ShowSafariBallsWindow
 06EF44 = 06E738 = PrintStartMenuActions
 06F258 = 06EA4C = ShowStartMenu
+06FED8 = 06F67C = ResetTilesetAnimBuffer
+06FF04 = 06F6A8 = AppendTilesetAnimToBuffer
 0703A8 = 06FB4C = LoadCompressedPalette
 0703EC = 06FB90 = LoadPalette
 070E44 = BeginFastPaletteFade
+07141C = 070BC0 = UpdateBlendRegisters
 071AB4 = 071258 = FadeOutMapMusic
 0722CC = 071A70 = PlaySE
 0751C4 = 074968 = GetBattlerSide

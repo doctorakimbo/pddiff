@@ -1,0 +1,13 @@
+TransferPlttBuffer()
+{
+	if(!(*(data_02037AB8 + 8) & 0x80))
+	{
+		*(0x040000D4) = data_020375F8
+		*(0x040000D4 + 4) = 0x05000000
+		*(0x040000D4 + 8) = 0x80000002
+		*data_02037AC8 = 0
+
+		if((*(data_02037AB8 + 9) & 3) == 2 && (*(data_02037AB8 + 7) & 0x80))
+			UpdateBlendRegisters()
+	}
+}

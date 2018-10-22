@@ -1,0 +1,47 @@
+sub_8078BEC(arg0)
+{
+	r2 = arg0
+	r0 = r2 * 4
+	r0 += r2
+	r0 *= 8
+	r1 = data_03005098
+	r0 += r1
+
+	(var_shield start)
+	
+	r3 = data_020370C0_J
+	r1 = data_3852A0_J
+	r2 = *(r3 + 1)
+	r2 *= 8
+	r1 += r2
+	r0 = *(r1 + 4)
+	r2 = *r3
+	
+	if(r2 < r0)
+	{
+		r2++
+		*r3 = r2
+	}
+	else
+	{
+		r2 = 0
+		*r3 = r2
+		r2 = *(r1 + 5)
+		*(r3 + 1) = r2
+		r0 = *r1
+		svc_18(*r1, data_06004000_J)
+	}
+	
+	(var_shield end)
+
+	r1 = *r0
+	r0 = 0x140A
+	
+	if(r1 > r0)
+	{
+		r1 = data_02037F30
+		r0 = 0xFF
+		*r1 = r0
+		DestroyTask(r2)
+	}
+}
