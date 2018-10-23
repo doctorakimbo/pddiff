@@ -1,0 +1,7 @@
+sub_807AC14()
+{
+	if(*(gWeatherPtr + 0x74D) < 0x20 && *(gWeatherPtr + 0x74E) < 0x20)
+		return 1
+	else
+		return 0
+}

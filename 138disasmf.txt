@@ -1,0 +1,137 @@
+lbl1: @7FC5C
+r4 = s0
+r4 += 2
+r0 = s0
+r1 = r4
+PlayerGetDestCoords()
+r0 = s0
+r1 = 0
+r0 = *(r0 + r1)
+r2 = 0
+r1 = *(r4 + r2)
+MapGridGetMetatileBehaviorAt()
+r5 = r0
+r4 = r5
+r0 = r4
+fn_59F34()
+if(r0 == 0) goto lbl2
+
+r0 = 0
+goto lbl16
+
+lbl2:
+r0 = r4
+fn_59F4C()
+if(r0 == 0) goto lbl3
+
+r0 = 1
+goto lbl16
+
+lbl3:
+r0 = r4
+fn_59B74()
+if(r0 == 0) goto lbl4
+
+r0 = 2
+goto lbl16
+
+lbl4:
+r0 = gMapHeader
+r0 = *(r0 + 0x17)
+r0--
+if(r0 > 8) goto lbl10
+
+r0 *= 4
+r1 = switchtable
+r0 += r1
+r0 = *r0
+goto r0
+
+switchtable:
+3: lbl5
+4: lbl8
+5: lbl9
+7: lbl6
+8: lbl6
+else: lbl10
+
+lbl5: @7FCF4
+r4 = r5
+r0 = r4
+fn_59F88()
+if(r0 == 0) goto lbl7
+
+goto lbl6
+
+lbl6: @7FD04
+r0 = 8
+goto lbl16
+
+lbl7:
+r0 = r4
+fn_59CA4()
+if(r0 != 0) goto lbl12
+
+r0 = 7
+goto lbl16
+
+lbl8: @7FD18
+r0 = 3
+goto lbl16
+
+lbl9: @7FD1C
+r0 = r5
+fn_59CA4()
+if(r0 != 0) goto lbl14
+
+goto lbl15
+
+lbl10: @7FD2C
+r4 = r5
+r0 = r4
+fn_5A01C()
+if(r0 != 0) goto lbl14
+
+r0 = r4
+fn_59CA4()
+if(r0 != 0) goto lbl12
+
+r0 = r4
+fn_59F9C()
+if(r0 == 0) goto lbl11
+
+r0 = 6
+goto lbl16
+
+lbl11:
+r0 = 8
+fn_5C74C()
+if(r0 == 0) goto lbl15
+
+r0 = r4
+fn_59F5C()
+if(r0 == 0) goto lbl13
+
+goto lbl12
+
+lbl12:
+r0 = 5
+goto lbl16
+
+lbl13:
+r0 = r4
+fn_59F58()
+if(r0 != 1) goto lbl15
+
+goto lbl14
+
+lbl14:
+r0 = 4
+goto lbl16
+
+lbl15:
+r0 = 9
+goto lbl16
+
+lbl16:
+return r0

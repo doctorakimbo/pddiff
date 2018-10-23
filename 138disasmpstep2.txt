@@ -1,0 +1,46 @@
+sub_807FC5C()
+{
+	PlayerGetDestCoords(&s0, &s0pt5)
+	r5 = MapGridGetMetatileBehaviorAt(s0, s0pt5)
+	
+	r0 = *(data_7AF530_J + r5)
+
+	if(r0 != 0)
+		return r0 - 1
+
+	switch(*(gMapHeader + 0x17))
+	{
+	case 4:
+		if(MetatileBehavior_IsMB_0B(r5))
+			return 8;
+
+		if(fn_59CA4(r5))
+			return 5;
+
+		return 7;
+	case 5:
+		return 3;
+	case 6:
+		if(fn_59CA4(r5))
+			return 4;
+
+		return 9;
+	case 8:
+	case 9:
+		return 8;
+	}
+	
+	if(fn_5A01C(r5))
+		return 4;
+
+	if(fn_59CA4(r5))
+		return 5;
+
+	if(MetatileBehavior_IsMountain(r5))
+		return 6;
+	
+	if(!TestPlayerAvatarFlags(8))
+		return 9;
+
+	return 0;
+}

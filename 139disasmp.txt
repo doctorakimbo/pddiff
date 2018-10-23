@@ -1,0 +1,33 @@
+lbl1: @817D8
+r7 = r0
+r4 = &s0
+r4 += 2
+r0 = s0
+r1 = r4
+PlayerGetDestCoords()
+r0 = *(r7 + 7)
+r8 = r4
+if(r0 != 1) goto lbl3
+
+r1 = fn_E300F0_J
+goto r1
+
+lblx: @81802
+...
+
+
+
+
+
+
+
+fn_E300F0_J:
+r1 = data_03005548_J
+*r1 = r7
+r1 = data_3C7248 // data_38E0C4_J
+r0 = *(r7 + 0x18)
+r0 *= 4
+r0 -= 4
+r0 += r1
+r1 = lblx
+goto r1

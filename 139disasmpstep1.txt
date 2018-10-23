@@ -1,0 +1,11 @@
+sub_8081BEC(arg0)
+{
+	PlayerGetDestCoords(&s0, &s0pt5)
+
+	if(*(arg0 + 7) == 1)
+	{
+		*data_03005548_J = arg0
+		r0 = ((*(arg0 + 0x18) * 4) - 4) + data_3C7248
+		...
+	}
+	...

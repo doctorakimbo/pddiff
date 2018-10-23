@@ -124,12 +124,15 @@ FF 70 03 02: 33 70 03 02: ??????
 00 71 03 02: 34 70 03 02: ??????
 		   : C0 70 03 02: ?????? (sub_8078BEC: this[0] is constantly incremented; when it reaches 3 it's set to 0 again and this[1] is incremented (if 15, set to 0))
 								 (sub_8078BEC: used as an index into data_3852A0_J)
-		   : 2C 71 03 02: ?????? (fn_2075E0_J: data copied from this.0x1E0[] into gPlttBufferFaded.0x1E0[])
+F8 71 03 02: 2C 71 03 02: gPlttBufferUnfaded
 F8 75 03 02: 2C 75 03 02: gPlttBufferFaded
 B8 7A 03 02: EC 79 03 02: gPaletteFade
 C8 7A 03 02: FC 79 03 02: ??????
 		   : 14 7B 03 02: ?????? (fn_9396A8_J: some sort of data is copied into this)
 30 7F 03 02: 64 7E 03 02: ??????
+34 7F 03 02: 68 7E 03 02: gWeatherPtr
+94 83 03 02: C8 82 03 02: gWeatherPtr->altGammaShifts
+A4 86 03 02: D8 85 03 02: sPaletteGammaTypes
 		   : E2 85 03 02: ?????? (CreateNPCTrainerParty: checked if less than 0x2E6, if so, used as an index to copy data from table data_09400000_J into gEnemyParty)
 								 (CanUseNewAI: used as an index into gTrainers)
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
@@ -276,6 +279,7 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 7C 53 00 03: CC 53 00 03: gCB2_AfterEvolution
 		   : 40 55 00 03: ?????? (GetEvolutionTargetSpecies: EVO_FRIENDSHIP_DAY works when this.2 is less than 11; EVO_FRIENDSHIP_NIGHT works when this.2 is between 12 and 23 inclusive) (gLocalTime?)
 		   : 42 55 00 03: ?????? (atkEF_handleballthrow: Dusk Ball boosted if less than 6 or greater than 20) (gLocalTime.hours?)
+		   : 48 55 00 03: ?????? (GetTrainerApproachDistance: set to address of trainerObj)
 88 5E 00 03: D8 5E 00 03: ??????
 		   
 		   
@@ -405,10 +409,19 @@ funcs e,j,desc:
 0561D8 = 055A98 = is_map_type_1_2_3_5_or_6
 058F48 = 058804 = MapGridGetMetatileIdAt
 058F78 = 058834 = MapGridGetMetatileBehaviorAt
+059B74 = 059430 = MetatileBehavior_IsSandOrDeepSand
 059BC8 = 059484 = MetatileBehavior_IsWarpDoor
 059C8C = 059548 = MetatileBehavior_IsNonAnimDoor
+059CA4 = 059560 = MetatileBehavior_IsSurfableWaterOrUnderwater
 059ED8 = 059794 = MetatileBehavior_IsPlayerFacingTVScreen
 059EF4 = 0597B0 = MetatileBehavior_IsPC
+059F34 = 0597F0 = MetatileBehavior_IsTallGrass
+059F4C = 059808 = MetatileBehavior_IsLongGrass
+059F58 = 059814 = MetatileBehavior_IsBridge
+059F5C = 059818 = MetatileBehavior_GetBridgeSth
+059F88 = 059844 = MetatileBehavior_IsIndoorEncounter
+059F9C = 059858 = MetatileBehavior_IsMountain
+05A01C = 0598D8 = MetatileBehavior_IsDeepOrOceanWater
 05B45C = 05AD18 = TryInterruptEventObjectSpecialAnim
 05B4B0 = 05AD6C = npc_clear_strange_bits
 05B4D4 = 05AD90 = MovePlayerAvatarUsingKeypadInput
@@ -426,6 +439,7 @@ funcs e,j,desc:
 05C23C = 05BAF8 = PlayerJumpLedge
 05C538 = 05BDF4 = PlayerGetDestCoords
 05C6C4 = 05BF80 = GetPlayerFacingDirection
+05C74C = 05C008 = TestPlayerAvatarFlags
 05CCD0 = 05C58C = task_add_bump_boulder
 05DFB0 = 05D870 = GetFieldObjectIdByXY
 05E4C8 = 05DD88 = RemoveFieldObjectByLocalIdAndMap
@@ -500,6 +514,7 @@ funcs e,j,desc:
 125A78 = 1263C4 = ItemIdToBattleMoveId
 12E51C = 12ED24 = box_print
 12E5A4 = 12EDAC = AddTextPrinterParameterized2
+1E3B60 = 1C7A84 = CpuFastSet
 1E3B64 = 1C7A88 = CpuSet
 1E3B9C = square root
 1E3BA8 = 1C7AC8 = call r0

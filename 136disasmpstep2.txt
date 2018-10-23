@@ -1,0 +1,56 @@
+sub_807A294(arg0, arg1, arg2)
+{
+	if(arg2 > 0)
+	{
+		r6 = arg0 * 0x10
+		
+		for(r4 = arg0; r4 bcc (arg1 + arg0); r4++)
+		{
+			if(*(*data_020386A4 + r4) == 0)
+			{
+				CpuFastSet(data_020371F8 + (r6 * 2), data_020375F8 + (r6 * 2), 8)
+				r6 += 0x10
+				r8 = (arg1 + arg0) << 0x10
+			}
+			else
+			{
+				if(*(*data_020386A4 + r4) == 2 || (r4 - 0x10) == *(data_02037F34 + 0x6D5))
+					r0 = data_02038394
+				else
+					r0 = data_02037F34 + 0x200
+				
+				r5 = ((arg2 - 1) * 0x20) + r0
+
+				for(r7 = 0; r7 <= 0xF; r7++)
+				{
+					*((r6 * 2) + data_020375F8) = *(*((r6 * 2) + data_020371F8) + r5) | (*((*((r6 * 2) + data_020371F8) >> 5) + r5) << 5) | (*((*((r6 * 2) + data_020371F8) >> 0xA) + r5) << 0xA)
+					r6++
+				}
+			}
+		}
+	}
+	elseif(arg2 == 0)
+		CpuFastSet(data_020371F8 + (arg0 * 0x20), data_020375F8 + (arg0 * 0x20), arg1 * 8)
+	else
+	{
+		r6 = arg0 * 0x10
+		
+		for(r4 = arg0; r4 bcc (arg1 + arg0); r4++)
+		{
+			if(*(*data_020386A4 + r4) == 0)
+			{
+				svc_12(data_020371F8 + (r6 * 2), data_020375F8 + (r6 * 2), 8)
+				r6 += 0x10
+			}
+			else
+			{
+				for(r7 = 0; r7 <= 0xF; r7++)
+				{
+					r0 = ((*((r6 * 2) + data_020371F8) >> 1) & 0xF) | ((*((r6 * 2) + data_020371F8) >> 2) & 0xF0) | ((*((r6 * 2) + data_020371F8) >> 3) & 0xF00)
+					*((r6 * 2) + data_020375F8) = *((r0 * 2) + (-arg2 << 0xD) + data_F10000_J)
+					r6++
+				}
+			}
+		}
+	}
+}

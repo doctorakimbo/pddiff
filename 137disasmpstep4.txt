@@ -1,0 +1,10 @@
+LoadDroughtWeatherPalettes()
+{
+	if(gWeatherPtr->loadDroughtPalsIndex < 32)
+	{
+		gWeatherPtr->loadDroughtPalsIndex = 32;
+		gWeatherPtr->loadDroughtPalsOffset = 32;
+	}
+
+	return FALSE;
+}

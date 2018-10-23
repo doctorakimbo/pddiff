@@ -1,0 +1,11 @@
+GetTrainerApproachDistance(trainerObj)
+{
+	PlayerGetDestCoords(&x, &y);
+
+	if(trainerObj->trainerType == 1)
+	{
+		*data_03005548_J = &trainerObj
+		approachDistance = sDirectionalApproachDistanceFuncs[trainerObj->facingDirection - 1](trainerObj, trainerObj->trainerRange_berryTreeId, x, y);
+		...
+	}
+	...

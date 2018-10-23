@@ -1,0 +1,22 @@
+switchtable: @80670
+1, 2, 9: lbl1
+0, 4, 5, 8, A, B, C, D: lbl2
+else: lbl3
+
+lbl1: @806A8
+r0 = 0x11C
+goto lblx
+
+lbl2: @806AE
+r0 = 0x11D
+goto lblx
+
+lbl3: @806B8
+r0 = 0x11B
+goto lblx
+
+
+1, 2, 9: 0x11C
+0, 4, 5, 8, A, B, C, D: 0x11D
+3, 6, 7: 0x11B
+>D: 0x11B

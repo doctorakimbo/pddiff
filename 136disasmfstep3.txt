@@ -1,0 +1,31 @@
+sub_807A294(arg0, arg1, arg2)
+{
+	if(arg2 > 0)
+	{
+		r6 = arg0 * 0x10
+		
+		for(r4 = arg0; r4 bcc (arg1 + arg0); r4++)
+		{
+			if(data_020386A4->0[r4] == 0)
+			{
+				CpuFastSet(&data_020371F8[r6], &data_020375F8[r6], 8)
+				r6 += 0x10
+			}
+			else
+			{
+				if(data_020386A4->0[r4] == 2 || (r4 - 0x10) == data_02037F34.0x6D5)
+					r5 = data_02038394[arg2 - 1]
+				else
+					r5 = data_02037F34.0x200[arg2 - 1]
+
+				for(r7 = 0; r7 <= 0xF; r7++)
+				{
+					data_020375F8[r6] = r5[data_020371F8[r6]] | (r5[data_020371F8[r6] >> 5] << 5) | (r5[data_020371F8[r6] >> 0xA] << 0xA)
+					r6++
+				}
+			}
+		}
+	}
+	elseif(arg2 == 0)
+		CpuFastSet(&data_020371F8[arg0 + 0x10], &data_020375F8[arg0 + 0x10], arg1 * 8)
+}
