@@ -124,8 +124,8 @@ FF 70 03 02: 33 70 03 02: ??????
 00 71 03 02: 34 70 03 02: ??????
 		   : C0 70 03 02: ?????? (sub_8078BEC: this[0] is constantly incremented; when it reaches 3 it's set to 0 again and this[1] is incremented (if 15, set to 0))
 								 (sub_8078BEC: used as an index into data_3852A0_J)
-		   : 2C 71 03 02: ??????
-F8 75 03 02: 2C 75 03 02: ??????
+		   : 2C 71 03 02: ?????? (fn_2075E0_J: data copied from this.0x1E0[] into gPlttBufferFaded.0x1E0[])
+F8 75 03 02: 2C 75 03 02: gPlttBufferFaded
 B8 7A 03 02: EC 79 03 02: gPaletteFade
 C8 7A 03 02: FC 79 03 02: ??????
 		   : 14 7B 03 02: ?????? (fn_9396A8_J: some sort of data is copied into this)

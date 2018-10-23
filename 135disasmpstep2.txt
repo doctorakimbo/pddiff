@@ -11,7 +11,7 @@ fn_2075E0_J(r4)
 fn_2075E0_J(arg0)
 {
 	ChangeBgX(2, 0, 0)
-	SetGpuReg(0x40, 0xF0)
+	SetGpuReg(REG_OFFSET_WIN0H, 0xF0)
 
 	for(r6 = 0xD; r6 >= 0; r6--)
 	{
@@ -25,6 +25,6 @@ fn_2075E0_J(arg0)
 			r0 = s0 | (s1 << 5) | (s2 << 0xA)
 		}
 		
-		*(data_020375F8 + 0x1E0 + (r6 * 2)) = r0
+		*(gPlttBufferFaded + 0x1E0 + (r6 * 2)) = r0
 	}
 }

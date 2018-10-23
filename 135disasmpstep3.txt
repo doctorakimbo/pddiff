@@ -1,0 +1,35 @@
+...
+fn_2075E0_J(r4)
+...
+
+
+
+
+
+
+
+fn_2075E0_J(r4)
+{
+	ChangeBgX(2, 0, 0)
+	SetGpuReg(REG_OFFSET_WIN0H, 0xF0)
+
+	for(i = 0xD; i >= 0; i--)
+	{
+		if(r4.4 > 0xA8)
+			gPlttBufferFaded.0x1E0[i] = 0x7FFF
+		else
+		{
+			// x, y, and z are the 1st, 2nd, and 3rd sets of 5 bits in data_0203712C_J.0x1E0[i]
+			x = (data_0203712C_J.0x1E0[i] & 0x1F)
+			y = ((data_0203712C_J.0x1E0[i] & (0x1F << 5)) >> 5)
+			z = ((data_0203712C_J.0x1E0[i] & (0x1F << 0xA)) >> 0xA)
+			
+			// 0x1F - x for 5-bit x is equal to -x
+			part1 = x + ((0x1F - x) * (r4.4 / 0xA8))
+			part2 = y + ((0x1F - y) * (r4.4 / 0xA8))
+			part3 = z + ((0x1F - z) * (r4.4 / 0xA8))
+			
+			gPlttBufferFaded.0x1E0[i] = part1 | (part2 << 5) | (part3 << 0xA)
+		}
+	}
+}
