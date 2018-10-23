@@ -1,0 +1,70 @@
+ApplyGammaShift(startPalIndex, numPalettes, gammaIndex)
+{
+	if(gammaIndex > 0)
+	{
+		gammaIndex--;
+		palOffset = startPalIndex * 16;
+		numPalettes += startPalIndex;
+		
+		for(curPalIndex = startPalIndex; curPalIndex < numPalettes; curPalIndex++)
+		{
+			if(sPaletteGammaTypes[curPalIndex] == GAMMA_NONE)
+			{
+				CpuFastSet(&gPlttBufferUnfaded[palOffset], &gPlttBufferFaded[palOffset], 8)
+				palOffset += 16;
+			}
+			else
+			{
+				if(sPaletteGammaTypes[curPalIndex] == GAMMA_ALT || (curPalIndex - 16) == gWeatherPtr->altGammaSpritePalIndex)
+					gammaTable = gWeatherPtr->altGammaShifts[gammaIndex];
+				else
+					gammaTable = gWeatherPtr->gammaShifts[gammaIndex];
+
+				for(i = 0; i < 16; i++)
+				{
+					baseColor = gPlttBufferUnfaded[palOffset];
+					r = gammaTable[baseColor.r];
+					g = gammaTable[baseColor.g];
+					b = gammaTable[baseColor.b];
+				
+					gPlttBufferFaded[palOffset++] = r | (g << 5) | (b << 0xA);
+				}
+			}
+		}
+	}
+	elseif(gammaIndex == 0)
+		CpuFastSet(&gPlttBufferUnfaded[startPalIndex], &gPlttBufferFaded[startPalIndex], numPalettes * 8);
+	else
+	{
+		gammaIndex = -gammaIndex << 8;
+		palOffset = startPalIndex * 16;
+		numPalettes += startPalIndex;
+		
+		for(curPalIndex = startPalIndex; curPalIndex < numPalettes; curPalIndex++)
+		{
+			if(sPaletteGammaTypes[curPalIndex] == GAMMA_NONE)
+			{
+				svc_12(&gPlttBufferUnfaded[palOffset], &gPlttBufferFaded[palOffset], 8)
+				palOffset += 16;
+			}
+			else
+			{
+				for(i = 0; i < 16; i++)
+				{
+					baseColor = gPlttBufferUnfaded[palOffset];
+					// For baseColor = fedc ba98 7654 3210:
+					// a = 4321
+					// b = 9876 ____
+					// c = edcb ____ ____
+					// index = edcb 9876 4321
+					a = (baseColor >> 1) & 0xF;
+					b = (baseColor >> 2) & 0xF0;
+					c = (baseColor >> 3) & 0xF00;
+					index = a | b | c;
+				
+					gPlttBufferFaded[palOffset++] = data_F10000_J[gammaIndex][index];
+				}
+			}
+		}
+	}
+}

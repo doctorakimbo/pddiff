@@ -1,0 +1,56 @@
+BattleSetup_GetTerrainId()
+{
+	PlayerGetDestCoords(&x, &y);
+	tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
+	
+	if(MetatileBehavior_IsTallGrass(tileBehavior))
+		return BATTLE_TERRAIN_GRASS;
+
+	if(MetatileBehavior_IsLongGrass(tileBehavior))
+		return BATTLE_TERRAIN_LONG_GRASS;
+
+	if(MetatileBehavior_IsSandOrDeepSand(tileBehavior))
+		return BATTLE_TERRAIN_SAND;
+
+	switch(gMapHeader.mapType)
+	{
+	case MAP_TYPE_UNDERGROUND:
+		if(MetatileBehavior_IsIndoorEncounter(tileBehavior))
+			return BATTLE_TERRAIN_BUILDING;
+
+		if(MetatileBehavior_IsSurfableWaterOrUnderwater(tileBehavior))
+			return BATTLE_TERRAIN_POND;
+
+		return BATTLE_TERRAIN_CAVE;
+	case MAP_TYPE_UNDERWATER:
+		return BATTLE_TERRAIN_UNDERWATER;
+	case MAP_TYPE_6:
+		if(MetatileBehavior_IsSurfableWaterOrUnderwater(tileBehavior))
+			return BATTLE_TERRAIN_WATER;
+
+		return BATTLE_TERRAIN_PLAIN;
+	case MAP_TYPE_INDOOR:
+	case MAP_TYPE_SECRET_BASE:
+		return BATTLE_TERRAIN_BUILDING;
+	}
+
+	if(MetatileBehavior_IsDeepOrOceanWater(tileBehavior))
+		return BATTLE_TERRAIN_WATER;
+
+	if(MetatileBehavior_IsSurfableWaterOrUnderwater(tileBehavior))
+		return BATTLE_TERRAIN_POND;
+
+	if(MetatileBehavior_IsMountain(tileBehavior))
+		return BATTLE_TERRAIN_MOUNTAIN;
+
+	if(TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
+	{
+		if(MetatileBehavior_GetBridgeSth(tileBehavior))
+			return BATTLE_TERRAIN_POND;
+
+		if(MetatileBehavior_IsBridge(tileBehavior))
+			return BATTLE_TERRAIN_WATER;
+	}
+	else
+		return BATTLE_TERRAIN_PLAIN;
+}

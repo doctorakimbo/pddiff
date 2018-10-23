@@ -1,0 +1,108 @@
+lbl1: @7F38C
+r4 = s0
+r4 += 2
+r0 = s0
+r1 = r4
+PlayerGetDestCoords()
+r0 = s0
+r1 = 0
+r0 = *(r0 + r1)
+r2 = 0
+r1 = *(r4 + r2)
+MapGridGetMetatileBehaviorAt()
+r5 = r0
+r4 = r5
+r0 = data_7AF530_J
+r0 = *(r0 + r4)
+if(r0 == 0) goto lbl2
+
+r0--
+goto lbl13
+
+lbl2:
+r0 = gMapHeader
+r0 = *(r0 + 0x17)
+r0--
+if(r0 > 8) goto lbl8
+
+if(r0 <= 2) goto lbl8
+
+if(r0 == 3) goto lbl3
+
+if(r0 == 4) goto lbl6
+
+if(r0 == 5) goto lbl7
+
+if(r0 == 6) goto lbl8
+
+goto lbl4
+
+lbl3:
+r4 = r5
+r0 = r4
+fn_59F88()
+if(r0 == 0) goto lbl5
+
+goto lbl4
+
+lbl4:
+r0 = 8
+goto lbl13
+
+lbl5:
+r0 = r4
+fn_59CA4()
+if(r0 != 0) goto lbl10
+
+goto lbl13
+
+lbl6:
+r0 = 3
+goto lbl13
+
+lbl7:
+r0 = r5
+fn_59CA4()
+if(r0 != 0) goto lbl11
+
+goto lbl12
+
+lbl8:
+r4 = r5
+r0 = r4
+fn_5A01C()
+if(r0 != 0) goto lbl11
+
+r0 = r4
+fn_59CA4()
+if(r0 != 0) goto lbl10
+
+r0 = r4
+fn_59F9C()
+if(r0 == 0) goto lbl9
+
+r0 = 6
+goto lbl13
+
+lbl9:
+r0 = 8
+fn_5C74C()
+if(r0 == 0) goto lbl12
+
+r0 = 0
+goto lbl13
+
+lbl10:
+r0 = 5
+goto lbl13
+
+lbl11:
+r0 = 4
+goto lbl13
+
+lbl12:
+r0 = 9
+goto lbl13
+
+lbl13:
+return r0

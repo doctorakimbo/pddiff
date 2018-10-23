@@ -1,0 +1,12 @@
+LoadDroughtWeatherPalettes()
+{
+	if(gWeatherPtr->loadDroughtPalsIndex < 32)
+	{
+		nullsub(&gWeatherPtr->loadDroughtPalsIndex, &gWeatherPtr->loadDroughtPalsOffset); // in RSE, this is LoadDroughtWeatherPalette
+		
+		if(gWeatherPtr->loadDroughtPalsOffset < 32)
+			return TRUE;
+	}
+	
+	return FALSE;
+}

@@ -1,0 +1,37 @@
+ApplyGammaShift(startPalIndex, numPalettes, gammaIndex)
+{
+	if(gammaIndex > 0)
+	{
+		gammaIndex--;
+		palOffset = startPalIndex * 16;
+		numPalettes += startPalIndex;
+		
+		for(curPalIndex = startPalIndex; curPalIndex < numPalettes; curPalIndex++)
+		{
+			if(sPaletteGammaTypes[curPalIndex] == GAMMA_NONE)
+			{
+				CpuFastSet(&gPlttBufferUnfaded[palOffset], &gPlttBufferFaded[palOffset], 8)
+				palOffset += 16;
+			}
+			else
+			{
+				if(sPaletteGammaTypes[curPalIndex] == GAMMA_ALT || (curPalIndex - 16) == gWeatherPtr->altGammaSpritePalIndex)
+					gammaTable = gWeatherPtr->altGammaShifts[gammaIndex];
+				else
+					gammaTable = gWeatherPtr->gammaShifts[gammaIndex];
+
+				for(i = 0; i < 16; i++)
+				{
+					baseColor = gPlttBufferUnfaded[palOffset];
+					r = gammaTable[baseColor.r];
+					g = gammaTable[baseColor.g];
+					b = gammaTable[baseColor.b];
+				
+					gPlttBufferFaded[palOffset++] = r | (g << 5) | (b << 0xA);
+				}
+			}
+		}
+	}
+	elseif(gammaIndex == 0)
+		CpuFastSet(&gPlttBufferUnfaded[startPalIndex], &gPlttBufferFaded[startPalIndex], numPalettes * 8);
+}

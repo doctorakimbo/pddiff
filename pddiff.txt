@@ -233,6 +233,9 @@ pokeball types:
 + 0x18 = Fast Ball
 
 metatiles:
+0x08: (cave battle background)
+0x1A: (pond battle background)
+0x1B: (pond battle background)
 0x1F: (Strength boulders can be moved onto this tile, after which the boulder disappears; also some unknown functionality which is shared with ice tiles)
 0xB0: (moving west off the tile results in northwest, moving east results in southeast)
 0xB1: (moving west off the tile results in northwest)
@@ -240,8 +243,10 @@ metatiles:
 0xB3: (moving west off the tile results in southwest, moving east results in northeast)
 0xB4: (moving east off the tile results in northeast)
 0xB5: (moving west off the tile results in southwest)
-0xE0: (IsSandOrDeepSand (? unsure) returns TRUE)
-0xE2: (IsSandOrDeepSand (? unsure) returns TRUE)
+0xD1: (grass battle background)
+0xE0: (IsSandOrDeepSand (? unsure) returns TRUE; cave battle background)
+0xE1: (underwater battle background)
+0xE2: (IsSandOrDeepSand (? unsure) returns TRUE; underwater battle background)
 0xE3: (runs script_68277E_J (msgbox 8B 70 46 0A 1A FE 8B 70 44 00 02 50 4B 02 AB FF) when examined)
 0xE4: (runs script_682787_J (msgbox 87 5B 8B 5F B0 AB FE 15 06 1A 00 8B 70 00 46 50 06 28 AB FF) when examined)
 
@@ -936,14 +941,27 @@ grafics:
 ! 078A6E: F7 F7 BD FC -> 00 00 00 00
 		  Implements: removes the third call to LoadPalette, which does something? (test)
 = 078BFC: 00 23 C1 5E 06 48 -> 07 49 08 47 08 BC
-  078C1C: 8B 0A 00 00 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j, see 134disasm))
+  078C1C: 8B 0A 00 00 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j385250, see 134disasm))
 		  Implements: almost certainly title screen silhouette fading
 		  Required knowledge: j020370C0
 ! 0791EE: 06 -> FC (PDONLY, title screen cry charizard -> (species252))
 - 079282: C0 0F -> 01 20 (sound will always become stereo when game loaded from title screen)
 = 0793D8: Part of sub_80792C8 (+ add part at 2075E0_J) (see 135disasm)
-		  Implements: 
+		  Implements: (merge changes)
 		  Requires in future: fn_2075E0_J
+- 07A294: Entirety of ApplyGammaShift (+ add part at F1C000, +table_F10000) (see 136disasm)
+		  Implements: RSE Drought weather capability
+! 07ABCC: 80 -> 98 (shifts weather palettes over by +0x30, don't touch yet)
+- 07AC14: Entirety of LoadDroughtWeatherPalettes (see 137disasm)
+		  Implements: RSE Drought weather capability, note it's a bit different than actual RSE code
+- 07FC5C: Entirety of BattleSetup_GetTerrainId (+table_7AF530) (see 138disasm)
+		  Implements: various new metatiles' battle terrain, plus makes it easier to add more
+! 080008: 5A -> 53 (PDONLY, "Champion" battle intro happens for trainer class 0x5A -> 0x53)
+= 080650: 0D -> 7F
+  08066C: 70 06 08 08 -> XX XX XX 08 (expands the possible trainer encounter musics from 14 to 128; new switch table at jE2E040 (currently only 3/14 in FR and 16/128 in PD are used); see minidisasm16)
+= 081C0A: 0E 49 38 7E 00 07 80 0E 04 38 -> 01 49 08 47 00 00 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE300F0, see 139disasm))
+		  Implements: Need more info
+		  Required knowledge: j03005548
 		  
 		  
 		  
@@ -956,5 +974,5 @@ grafics:
 		  
 
 
-curr: j78B74-j78B90
-next: j799F4
+curr: j825E8
+next: 
