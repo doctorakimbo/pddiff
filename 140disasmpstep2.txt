@@ -1,0 +1,87 @@
+sub_80829FC(arg0, arg1, arg2)
+{
+	ZeroEnemyPartyMons()
+	
+	if(arg0 != 0xC9)
+		CreateMonWithNature(gEnemyParty, arg0, arg1, 0x20, NULL) // "CreateMonWithoutNature"
+	else
+		CreateMon(gEnemyParty, 0xC9, arg1, 0x20, 1, fn_251BE4_J(*(((*(*gSaveBlock1Ptr + 5) - 0x1B) * 0xC) + arg2 + data_3CA71C)), 0, 0)
+}
+
+
+
+
+
+fn_251BE4_J(arg0)
+{
+	r4 = arg0
+
+	if(fn_251B58_J() != 0)
+	{
+		for(r5 = 0; r5 < 8; r5++)
+		{
+			r0 = *(*gSaveBlock2Ptr + 0xA) ^ *(*gSaveBlock2Ptr + 0xC) ^ r5
+			r7 = ((r0 & 0x300) >> 6)
+			r7 |= (r0 & 3)
+
+			for(r6 = 0; r6 < 0x10; r6++)
+			{
+				r0 = (r7 ^ r6) << 4
+				r0 |= r6
+				
+				if(r0 % 28 == arg0)
+				{
+					r4 = GetNature_CheckSynchronize()
+
+					do
+					{
+						r1 = Random()
+						r1 &= (not 3)
+						r1 &= (not 0x300)
+						r1 |= (r6 & 3)
+						r1 |= (r6 & 0xC) << 6
+						r7 = fn_251BA4_J(r5, r1)
+					} while(GetNatureFromPersonality(r7) != GetNature_CheckSynchronize())
+
+					return r7
+				}
+			}
+		}
+	}
+		
+	do
+	{
+		r6 = fn_251C92_J(Random32(), r4)
+		r0 = GetNature_CheckSynchronize()
+	} while(r0 != GetNatureFromPersonality(r6) || fn_251BBA_J(r0))
+
+	return r6
+}
+
+
+
+
+
+fn_251C92_J(arg0, arg1)
+{
+	r0 = arg0 & (not 0x3030303)
+	r0 |= (arg1 & 3)
+	r0 |= ((arg1 & 0xC) << 6)
+	r0 |= ((arg1 & 0x30) << 0xC)
+	r0 |= ((arg1 & 0xC0) << 0x12)
+	return r0
+}
+
+
+
+
+
+fn_251BBA_J(arg0)
+{
+	r0 = arg0 ^ (arg0 << 0x10) ^ *(*gSaveBlock2Ptr + 0xA) ^ *(*gSaveBlock2Ptr + 0xC)
+	
+	if(r0 > 7)
+		return TRUE;
+	else
+		return FALSE;
+}

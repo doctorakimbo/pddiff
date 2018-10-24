@@ -1,0 +1,57 @@
+DoWildEncounterRateTest(arg0)
+{
+	if(fn_58F1C(arg0, 4) == 0)
+		return FALSE;
+
+	r4 = fn_8324C()
+	
+	if(r4 == 0xFF)
+		return FALSE;
+
+	r5 = 5
+	r0 = CheckFluteActive()
+	
+	if(r0 == BLACK_FLUTE_ACTIVE)
+	{
+		r4 -= r4 / 2
+		r5 += r5 / 2
+	}
+	elseif(r0 == WHITE_FLUTE_ACTIVE)
+	{
+		r4 *= 2
+		r5 /= 2
+	}
+	
+	data_020386D0.0xA = GetMonData(gPlayerParty, MON_DATA_HELD_ITEM)
+	
+	if(LeadMonHasCleanseTag())
+	{
+		r4 += r4 / 3
+		r5 -= r5 / 3
+	}
+	
+	r0 = CheckWildEncounterAbilityActive()
+	
+	if(r0 == STENCH_ACTIVE)
+	{
+		r4 *= 2
+		r5 /= 2
+	}
+	elseif(r0 == ILLUMINATE_ACTIVE)
+	{
+		r4 /= 2
+		r5 *= 2
+	}
+	
+	if(data_020386D0.8 >= r4)
+		return TRUE;
+	else
+	{
+		data_020386D0.8++
+		
+		if((Random() % 100) < r5)
+			return TRUE;
+		else
+			return FALSE;
+	}
+}

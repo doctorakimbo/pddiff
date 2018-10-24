@@ -1,0 +1,70 @@
+sub_80829FC(arg0, arg1, arg2)
+{
+	r4 = arg0
+	r6 = arg1
+	r5 = arg2
+	ZeroEnemyPartyMons()
+	
+	if(r4 != 0xC9)
+		CreateMonWithNature(gEnemyParty, r4, r6, 0x20, Random() % 25)
+	else
+	{
+		r0 = gSaveBlock1Ptr
+		r0 = *r0
+		r1 = *(r0 + 5)
+		r1 -= 0x1B
+		r2 = data_3CA71C
+		r0 = r1 * 2
+		r0 += r1
+		r0 *= 4
+		r0 += r5
+		r0 += r2
+		r0 = fn_82A88(*r0)
+		CreateMon(gEnemyParty, 0xC9, r6, 0x20, 1, r0, 0, 0)
+	}
+}
+
+
+
+
+
+fn_82A88(arg0)
+{
+	r5 = arg0
+
+	do
+	{
+		r4 = Random()
+		r0 = Random()
+		r4 <<= 0x10
+		r4 |= r0
+		r0 = r4
+		fn_82AB8()
+	} while(r0 != r5)
+
+	return r4
+}
+
+
+
+
+
+fn_82AB8(arg0)
+{
+	r2 = arg0
+	r0 = 0x3000000
+	r0 &= r2
+	r0 >>= 0x12
+	r1 = 0x30000
+	r1 &= r2
+	r1 >>= 0xC
+	r0 |= r1
+	r1 = 0x300
+	r1 &= r2
+	r1 >>= 6
+	r0 |= r1
+	r1 = 0x3
+	r1 &= r2
+	r0 |= r1
+	return r0 % 28
+}

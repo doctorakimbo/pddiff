@@ -1,0 +1,74 @@
+lbl1: @82CA4
+InUnionRoom()
+if(r0 == 1) goto lbl2
+
+r0 = data_0203ADFA
+r0 = *r0
+if(r0 == 2) goto lbl2
+
+r0 = 0x4020
+VarGet()
+if(r0 == 0) goto lbl2
+
+r1 = r0 - 1
+r4 = r1 << 0x18
+r5 = r1 >> 8
+r0 = 0x4020
+VarSet()
+if(r4 != 0) goto lbl2
+
+r4 = data_0203ACA8_J
+*r4 = r5
+r0 = script_E2FF90_J
+ScriptContext1_SetupScript()
+r0 = 1
+goto lbl3
+
+lbl2:
+r0 = 0
+goto lbl3
+
+lbl3:
+return r0
+
+
+
+
+
+script_E2FF90_J:
+(6A 47 0E 80 01 00 21 0D 80 00 00 06 01 84 5D 1A 08 0F 00 C0 FF E2 08 09 05 68 21 0D 80 00 00 06 01 BC FF E2 08 23 E1 FF E2 08 6A 02 6C 02)
+
+lock
+checkitem VAR_ITEM_ID, 1
+compare_var_to_value VAR_RESULT, FALSE
+goto_if_eq script_1BFB65
+msgbox E2FFC0_J, MSGBOX_YESNO // 5D 9D 7A AE 19 0A 03 06 37 00 07 2A 10 AB FE 12 43 09 13 00 12 06 02 1F 0D 06 AC
+closemessage
+compare_var_to_value VAR_RESULT, NO
+goto_if_eq script_E2FFBC_J
+callnative fn_E2FFE0_J
+lock
+end
+
+script_E2FFBC_J:
+release
+end
+
+
+
+
+
+fn_E2FFE0_J:
+r0 = sub_80A1998
+r1 = 0x50
+fn_E2FFEC_J()
+return
+
+
+
+
+
+fn_E2FFEC_J:
+r2 = CreateTask
+goto r2
+return

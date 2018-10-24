@@ -1,0 +1,63 @@
+sub_80832E4(arg0)
+{
+	if(fn_58F1C(arg0, 4) == 0)
+		return FALSE;
+
+	r4 = fn_8324C()
+	
+	if(r4 == 0xFF)
+		return FALSE;
+
+	r4 <<= 8
+	r5 = 0x500
+	r0 = fn_831A0()
+	
+	if(r0 == 1)
+	{
+		r4 -= r4 / 2
+		r5 = (r5 / 2) + 0x500
+	}
+	elseif(r0 == 2)
+	{
+		r4 *= 2
+		r5 /= 2
+	}
+	
+	*(data_020386D0 + 0xA) = GetMonData(gPlayerParty, 0xC)
+	
+	if(fn_831F8() == 1)
+	{
+		r0 = r4 / 3
+		r4 += r0
+		r0 = r5 / 3
+		r5 -= r0
+	}
+	
+	r0 = fn_82C58()
+	
+	if(r0 == 1)
+	{
+		r4 *= 2
+		r5 /= 2
+	}
+	elseif(r0 == 2)
+	{
+		r4 /= 2
+		r5 *= 2
+	}
+	
+	r4 >>= 8
+	r5 >>= 8
+	
+	if(*(data_020386D0 + 8) bcs r4)
+		return TRUE;
+	else
+	{
+		*(data_020386D0 + 8)++
+		
+		if((Random() % 100) bcc r5)
+			return TRUE;
+		else
+			return FALSE;
+	}
+}

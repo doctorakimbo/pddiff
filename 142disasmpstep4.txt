@@ -1,0 +1,24 @@
+sub_80832E4(arg0)
+{
+	if(fn_251AC0_J(fn_58F1C(arg0, 4)) == 0)
+		return 0;
+	
+	...
+}
+
+
+
+
+
+fn_251AC0_J(arg0)
+{
+	if(arg0 == 2)
+	{
+		if(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
+			return 2;
+		else
+			return 0;
+	}
+	else
+		return arg0;
+}

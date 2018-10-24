@@ -1,0 +1,55 @@
+sub_80830B8
+{
+	if(InUnionRoom())
+		return FALSE;
+	
+	if(*data_0203ADFA == 2)
+		return FALSE;
+
+	r0 = VarGet(0x4020)
+	
+	if(r0 == 0)
+		return FALSE;
+
+	r1 = r0 - 1
+	VarSet(0x4020, r1)
+	
+	if((r1 << 0x18) != 0)
+		return FALSE;
+
+	*data_0203ACA8_J = r1 >> 8
+	ScriptContext1_SetupScript(script_E2FF90_J)
+	return TRUE;
+}
+
+
+
+
+
+script_E2FF90_J:
+(6A 47 0E 80 01 00 21 0D 80 00 00 06 01 84 5D 1A 08 0F 00 C0 FF E2 08 09 05 68 21 0D 80 00 00 06 01 BC FF E2 08 23 E1 FF E2 08 6A 02 6C 02)
+
+lock
+checkitem VAR_ITEM_ID, 1
+compare_var_to_value VAR_RESULT, FALSE
+goto_if_eq script_1BFB65
+msgbox E2FFC0_J, MSGBOX_YESNO // 5D 9D 7A AE 19 0A 03 06 37 00 07 2A 10 AB FE 12 43 09 13 00 12 06 02 1F 0D 06 AC
+closemessage
+compare_var_to_value VAR_RESULT, NO
+goto_if_eq script_E2FFBC_J
+callnative fn_E2FFE0_J
+lock
+end
+
+script_E2FFBC_J:
+release
+end
+
+
+
+
+
+fn_E2FFE0_J()
+{
+	CreateTask(sub_80A1998, 0x50)
+}

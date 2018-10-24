@@ -1,0 +1,36 @@
+sub_80829FC(arg0, arg1, arg2)
+{
+	ZeroEnemyPartyMons()
+	
+	if(arg0 != 0xC9)
+		CreateMonWithNature(gEnemyParty, arg0, arg1, 0x20, Random() % 25)
+	else
+		CreateMon(gEnemyParty, 0xC9, arg1, 0x20, 1, fn_82A88(*(((*(*gSaveBlock1Ptr + 5) - 0x1B) * 0xC) + arg2 + data_3CA71C)), 0, 0)
+}
+
+
+
+
+
+fn_82A88(arg0)
+{
+	do
+	{
+		r4 = (Random() << 0x10) | Random()
+	} while(fn_82AB8(r4) != arg0)
+
+	return r4
+}
+
+
+
+
+
+fn_82AB8(arg0)
+{
+	r0 = ((arg0 & 0x3000000) >> 0x12)
+	r0 |= ((arg0 & 0x30000) >> 0xC)
+	r0 |= ((arg0 & 0x300) >> 6)
+	r0 |= (arg0 & 3)
+	return r0 % 28
+}

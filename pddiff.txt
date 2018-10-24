@@ -963,7 +963,18 @@ grafics:
 = 081C0A: 0E 49 38 7E 00 07 80 0E 04 38 -> 01 49 08 47 00 00 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE300F0, see 139disasm))
 		  Implements: Need more info
 		  Required knowledge: j03005548
-		  
+= 0829FC: Entirety of sub_80829FC (see 140disasm)
+		  Implements: Need more info (something to do with personality values)
+		  Relies on: CreateMonWithNature changed params ("CreateMonWithoutNature")
+		  Requires in future: fn_251B58_J, fn_251BA4_J, fn_251BBA_J, fn_251BE4_J, ForceUnownFormOnPersonality (j251C92)
+= 0830B8: Entirety of UpdateRepelCounter (see 141disasm)
+		  Implements: new repel system, (something else)
+		  Required knowledge: j0203ACA8
+		  Requires in future: EventScript_RepelWoreOffUseAnother (jE2FF90), fn_E2FFE0_J
+= 083119: 04 -> 06 (checks last byte of VAR_REPEL_STEP_COUNT instead of last two bytes, related to changes at 830B8)
+= 0832EC: 00 06 00 0E -> ?? ?? ?? ?? (calls new fn at j251AC0, see 142disasm)
+		  Implements: Unclear, possibly makes water tiles only cause encounters when player is surfing (is there a possibility of standing on water tiles otherwise?)
+= 
 		  
 		  
 		  
@@ -974,5 +985,5 @@ grafics:
 		  
 
 
-curr: j825E8
-next: 
+curr: 
+next: j8876E (2byte), j88C64 

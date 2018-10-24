@@ -1,0 +1,94 @@
+sub_80832E4:
+r1 = 4
+fn_58F1C()
+if(r0 == 0) goto lbl9
+
+fn_8324C()
+r4 = r0
+if(r4 == 0xFF) goto lbl9
+
+r4 <<= 8
+r5 = 0x500
+fn_831A0()
+if(r0 == 1) goto lbl2
+
+if(r0 == 2) goto lbl3
+
+goto lbl4
+
+lbl2:
+r0 = r4 / 2
+r4 -= r0
+r0 = r5 / 2
+r1 = 0x500
+r5 = r0 + r1
+goto lbl4
+
+lbl3:
+r4 *= 2
+r5 /= 2
+goto lbl4
+
+lbl4:
+r0 = gPlayerParty
+r1 = 0xC
+GetMonData()
+r1 = data_020386D0
+*(r1 + 0xA) = r0
+fn_831F8()
+if(r0 != 1) goto lbl5
+
+r0 = r4
+r1 = 3
+divide()
+r4 += r0
+r0 = r5
+r1 = 3
+divide()
+r5 -= r0
+goto lbl5
+
+lbl5:
+fn_82C58()
+if(r0 == 1) goto lbl6
+
+if(r0 == 2) goto lbl7
+
+goto lbl8
+
+lbl6:
+r4 *= 2
+r5 /= 2
+goto lbl8
+
+lbl7:
+r4 /= 2
+r5 *= 2
+goto lbl8
+
+lbl8:
+r4 >>= 8
+r5 >>= 8
+r1 = data_020386D0
+r0 = *(r1 + 8)
+if(r0 bcs r4) goto lbl10
+
+r0++
+*(r1 + 8) = r0
+Random()
+r1 = 0x64
+modulus()
+if(r0 bcc r5) goto lbl10
+
+goto lbl9
+
+lbl9:
+r0 = 0
+goto lbl11
+
+lbl10:
+r0 = 1
+goto lbl11
+
+lbl11:
+return r0

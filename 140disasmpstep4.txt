@@ -1,0 +1,88 @@
+sub_80829FC(species, level, arg2)
+{
+	ZeroEnemyPartyMons();
+	
+	if(species == 0xC9)
+		CreateMon(&gEnemyParty[0], species, level, 32, 1, fn_251BE4_J(data_3CA71C[gSaveBlock1Ptr->location.mapNum - 0x1B].arg2), 0, 0)
+	else
+		CreateMonWithoutNature(&gEnemyParty[0], species, level, 32);
+}
+
+
+
+
+
+fn_251BE4_J(form)
+{
+	if(fn_251B58_J())
+	{
+		for(r5 = 0; r5 < 8; r5++)
+		{
+			r0 = LOW_BYTE(gSaveBlock2Ptr->playerTrainerId) ^ HIGH_BYTE(gSaveBlock2Ptr->playerTrainerId) ^ r5
+			r7 = ((r0 & 0x300) >> 6)
+			r7 |= (r0 & 3)
+
+			for(r6 = 0; r6 < 0x10; r6++)
+			{
+				r0 = (r7 ^ r6) << 4
+				r0 |= r6
+				
+				if(r0 % 28 == form)
+				{
+					do
+					{
+						r1 = Random()
+						// r1 = fdec ba98 7654 3210
+						// r6 = DCBA
+						r1 &= (not 3)
+						r1 &= (not 0x300)			// r1 =  fdec ba__ 7654 32__
+						r1 |= (r6 & 3)				// r1 |= 				  BA
+						r1 |= (r6 & 0xC) << 6		// r1 |= 		DC ____ ____
+													// r1 =  fdec baDC 7654 32BA
+						r7 = fn_251BA4_J(r5, r1)
+					} while(GetNatureFromPersonality(r7) != GetNature_CheckSynchronize())
+
+					return r7
+				}
+			}
+		}
+	}
+		
+	do
+	{
+		personality = ForceUnownFormOnPersonality(Random32(), form);
+		nature = GetNature_CheckSynchronize();
+	} while(nature != GetNatureFromPersonality(personality) || fn_251BBA_J(nature))
+
+	return personality;
+}
+
+
+
+
+// oldPersonality = vuts rqpo nmlk jihg fedc ba98 7654 3210
+// form = HGFE DCBA
+ForceUnownFormOnPersonality(oldPersonality, form) @251C92_J
+{
+	r0 = oldPersonality & (not 0x3030303)	// r0 =  vuts rq__ nmlk ji__ fedc ba__ 7654 32__
+	r0 |= (form & 3)						// r0 |= 									  BA
+	r0 |= ((form & 0xC) << 6)				// r0 |= 							DC ____ ____
+	r0 |= ((form & 0x30) << 0xC)			// r0 |= 				  FE ____ ____ ____ ____
+	r0 |= ((form & 0xC0) << 0x12)			// r0 |= 		HG ____ ____ ____ ____ ____ ____
+											// r0 =  vuts rqHG nmlk jiFE fedc baDC 7654 32BA
+	return r0
+}
+
+
+
+
+
+fn_251BBA_J(nature)
+{
+	r0 = nature ^ (nature << 0x10) ^ LOW_BYTE(gSaveBlock2Ptr->playerTrainerId) ^ HIGH_BYTE(gSaveBlock2Ptr->playerTrainerId)
+	
+	if(r0 > 7)
+		return TRUE;
+	else
+		return FALSE;
+}

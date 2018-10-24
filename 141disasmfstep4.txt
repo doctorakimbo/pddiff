@@ -1,0 +1,33 @@
+UpdateRepelCounter()
+{
+	if(InUnionRoom())
+		return FALSE;
+
+	if(data_0203ADFA == 2)
+		return FALSE;
+
+	steps = VarGet(VAR_REPEL_STEP_COUNT);
+	
+	if(steps != 0)
+	{
+		steps--;
+		VarSet(VAR_REPEL_STEP_COUNT, steps);
+		
+		if(steps == 0)
+		{
+			ScriptContext1_SetupScript(EventScript_RepelWoreOff);
+			return TRUE;
+		}
+	}
+	
+	return FALSE;
+}
+
+
+
+
+
+EventScript_RepelWoreOff: @1BFB65
+(0F 00 6E FB 1B 08 09 03 02)
+msgbox Text_RepelWoreOff, 3
+end

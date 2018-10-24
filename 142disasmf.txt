@@ -1,0 +1,6 @@
+lbl1: @832E4
+r1 = 4
+fn_58F1C()
+if(r0 == 0) goto lbl_3
+
+goto lbl_2

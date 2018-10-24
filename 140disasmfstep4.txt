@@ -1,0 +1,37 @@
+sub_80829FC(species, level, arg2)
+{
+	ZeroEnemyPartyMons();
+	
+	if(species == 0xC9)
+		CreateMon(&gEnemyParty[0], species, level, 32, 1, GetPersonalityWithUnownForm(data_3CA71C[gSaveBlock1Ptr->location.mapNum - 0x1B].arg2), 0, 0)
+	else
+		CreateMonWithNature(&gEnemyParty[0], species, level, 32, Random() % 25);
+}
+
+
+
+
+
+GetPersonalityWithUnownForm(form)
+{
+	do
+	{
+		personality = Random32();
+	} while(GetUnownFormFromPersonality(personality) != form);
+
+	return personality;
+}
+
+
+
+
+// personality = vuts rqpo nmlk jihg fedc ba98 7654 3210
+GetUnownFormFromPersonality(personality)
+{
+	r0 = ((personality & 0x3000000) >> 0x12)	// r0 =  po__ ____
+	r0 |= ((personality & 0x30000) >> 0xC)		// r0 |= __hg ____
+	r0 |= ((personality & 0x300) >> 6)			// r0 |= ____ 98__
+	r0 |= (personality & 3)						// r0 |= ____ __10
+												// r0 =  pohg 9810
+	return r0 % 28
+}

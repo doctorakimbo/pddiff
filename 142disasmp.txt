@@ -1,0 +1,27 @@
+lbl1: @82ED0
+r1 = 4
+fn_58F1C()
+fn_251AC0_J()
+if(r0 == 0) goto lbl_3
+
+goto lbl_2
+
+
+
+
+
+
+fn_251AC0_J:
+if(r0 != 2) goto lbl2
+
+r0 = gPlayerAvatar
+r0 = *r0
+r1 = 8
+r0 &= r1
+if(r0 == 0) goto lbl2
+
+r0 = 2
+goto lbl2
+
+lbl2:
+return r0

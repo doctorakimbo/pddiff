@@ -135,6 +135,9 @@ C8 7A 03 02: FC 79 03 02: ??????
 A4 86 03 02: D8 85 03 02: sPaletteGammaTypes
 		   : E2 85 03 02: ?????? (CreateNPCTrainerParty: checked if less than 0x2E6, if so, used as an index to copy data from table data_09400000_J into gEnemyParty)
 								 (CanUseNewAI: used as an index into gTrainers)
+D0 86 03 02: 1C 86 03 02: ??????
+		   : A8 AC 03 02: ??????
+FA AD 03 02: 72 AD 03 02: ??????
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
 		   : 50 B9 03 02: ?????? (appears to be an array of bits, one for each battler)
 								 (ItemBattleEffects: all cleared at start of cases ITEMEFFECT_ON_SWITCH_IN and ITEMEFFECT_TURN_END)
@@ -354,6 +357,7 @@ funcs e,j,desc:
 03DA14 = 03D180 = ZeroPlayerPartyMons
 03DA34 = 03D1A0 = ZeroEnemyPartyMons
 03DA54 = 03D1C0 = CreateMon
+03DD98 = 03D504 = CreateMonWithNature (FR) / CreateMonWithoutNature (PD)
 03E47C = CalculateMonStats
 03E830 = 03DF9C = GetLevelFromBoxMonExp
 03E89C = 03E008 = GiveMoveToMon
@@ -407,6 +411,7 @@ funcs e,j,desc:
 056158 = 055A18 = GetMapTypeByGroupAndId
 056188 = 055A48 = Overworld_GetMapTypeOfSaveblockLocation
 0561D8 = 055A98 = is_map_type_1_2_3_5_or_6
+058F1C = 0587D8 = ?????
 058F48 = 058804 = MapGridGetMetatileIdAt
 058F78 = 058834 = MapGridGetMetatileBehaviorAt
 059B74 = 059430 = MetatileBehavior_IsSandOrDeepSand
@@ -484,6 +489,12 @@ funcs e,j,desc:
 077508 = 076CA0 = DestroyTask
 07AF98 = 07A6F8 = weather_get_current
 081B30 = 08171C = CheckForTrainersWantingBattle
+082A88 = 082674 = GetPersonalityWithUnownForm
+082AB8 = 0826A4 = GetUnownFormFromPersonality
+082C58 = 082844 = ?????
+0831A0 = 082D8C = ?????
+0831F8 = 082DE4 = ?????
+08324C = 082E38 = ?????
 088E8C = 088A68 = pokedex_count
 08B9F4 = 08B490 = StorageGetCurrentBox
 08BA18 = 08B4B4 = GetBoxMonDataFromAnyBox
@@ -581,9 +592,13 @@ funcs e,j,desc:
 ?????? = 2074F0 = GetWalkFastMovementAction_New (unimplemented)
 ?????? = 207524 = GetPlayerRunMovementAction_New (unimplemented)
 ?????? = 2076B0 = RunTypeEffectivenessBasedAbilities (unimplemented)
+?????? = 251AC0 = ????? (unimplemented)
 ?????? = 251B30 = GetNature_CheckSynchronize (unimplemented)
 ?????? = 251B58 = ????? (unimplemented)
 ?????? = 251BA4 = ????? (unimplemented)
+?????? = 251BBA = ????? (unimplemented)
+?????? = 251BE4 = ????? (unimplemented)
+?????? = 251C92 = ForceUnownFormOnPersonality (unimplemented)
 ?????? = 251CB6 = CuteCharmOverworldEffect (unimplemented)
 ?????? = 251CF4 = ????? (unimplemented)
 ?????? = 251DA0 = IsMoveBlockedByAbility (unimplemented)

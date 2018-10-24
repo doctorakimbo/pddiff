@@ -1,0 +1,41 @@
+sub_80832E4(arg0)
+{
+	if(fn_58F1C(arg0, 4) == 0)
+		return 0;
+	
+	...
+}
+
+
+
+// help?
+fn_58F1C(arg0, arg1)
+{
+	if(arg1 < 8)
+		return (arg0 & *((arg1 * 4) + data_352EF0)) >> *(data_352F10 + arg1)
+	else
+		return arg0
+}
+
+// case 0: (arg0 & FF CD FB 00) >> 0
+// case 1: (arg0 & BB DC 0C 00) >> 9
+// case 2: (arg0 & BB DB 0F 00) >> 0xE
+// case 3: (arg0 & BB 6D 0F 00) >> 0x12
+// case 4: (arg0 & 66 66 0F 00) >> 0x18
+// case 5: (arg0 & 66 F6 00 00) >> 0x1B
+// case 6: (arg0 & 7F F7 00 00) >> 0x1D
+// case 7: (arg0 & F0 0F 00 00) >> 0x1F
+
+// for arg0 = vuts rqpo nmlk jihg fedc ba98 7654 3210:
+
+// case 0: vuts rqpo nm__ ji_g fedc b_98 ____ ____
+// case 1: 			 _v_t sr_p onm_ kji_ ____ _ba_
+// case 2: 				  __v_ tsr_ ponm _kj_ hg__
+// case 3: 					   __v_ tsr_ po_m l_ji
+// case 4: 								 _ut_ _qp_
+// case 5: 									  ut__
+// case 6: 									  __ut
+// case 7: 									  ___v
+
+
+so fn_58F1C(arg0, 4) is 2 if bit p set and bits qtu not set
