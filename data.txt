@@ -1,8 +1,10 @@
 addr e: addr j: desc
 
-		   : 24 00 02 02: ????? (valid)
+		   : 24 00 02 02: ?????
 		   : 30 04 02 02: ?????
 3C 06 02 02: B8 05 02 02: gSprites
+		   : E8 0D 02 02: ?????
+		   : C2 1A 02 02: ?????
 D0 1C 02 02: 4C 1C 02 02: gStringVar1
 		   : 10 1D 02 02: ?????? (GetMoveRelearnerMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
 								 (GetNumberOfRelearnableMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
@@ -109,6 +111,7 @@ A8 1D 03 02: DC 1C 03 02: ??????
 B0 1D 03 02: E4 1C 03 02: ??????
 BC 1D 03 02: F0 1C 03 02: sWarpDestination
 FC 6D 03 02: 30 6D 03 02: gMapHeader
+10 6E 03 02: 44 6D 03 02: gMapHeader.regionMapSectionId
 13 6E 03 02: 47 6D 03 02: gMapHeader.mapType
 38 6E 03 02: 6C 6D 03 02: gEventObjects (atkEF_handleballthrow: Lure Ball boosted if this[0] is 1) (gIsPlayerFishing?)
 78 70 03 02: AC 6F 03 02: gPlayerAvatar
@@ -136,6 +139,7 @@ A4 86 03 02: D8 85 03 02: sPaletteGammaTypes
 		   : E2 85 03 02: ?????? (CreateNPCTrainerParty: checked if less than 0x2E6, if so, used as an index to copy data from table data_09400000_J into gEnemyParty)
 								 (CanUseNewAI: used as an index into gTrainers)
 D0 86 03 02: 1C 86 03 02: ??????
+A4 97 03 02: F0 96 03 02: ??????
 		   : A8 AC 03 02: ??????
 FA AD 03 02: 72 AD 03 02: ??????
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
@@ -195,11 +199,17 @@ FA AD 03 02: 72 AD 03 02: ??????
 		   : AC C2 03 02: gDaycareParentMoves
 		   : B4 C2 03 02: gDaycareParentMoves[1]
 		   : 18 CB 03 02: ?????? (GetLocationMusic: if this.0xE is not zero, return this.0xC instead of the default music)
+		   : 1C CB 03 02: ??????
+		   : 24 CB 03 02: ??????
+		   : 26 CB 03 02: ??????
 		   : 27 CB 03 02: ?????? (InitStartMenuStep/fn_E9D4A2_J: if set, skip START menu items 3-5)
 								 (InitStartMenuStep/fn_E9D4A2_J: if set, s4 = 9F 59 60 98 FF for menu item 3; otherwise s4 = gSaveBlock1Ptr->location (which shouldn't happen))
+		   : 28 CB 03 02: ??????
 		   : 54 CB 03 02: ?????? (fn_EE5000: set data_0203D2E0_J.0 on start)
 								 (fn_EE51C0: set this to data_0203D2E0_J.0 on exit)
 		   : 58 CB 03 02: ?????? (GetFlagPointer: if the flag number is 0xF000 or above, read it from this[number - 0xF000])
+		   : 00 D1 03 02: ??????
+		   : 00 D2 03 02: ??????
 		   : E0 D2 03 02: ?????? (fn_EE5000: set this.4, this.8, and this.0xC to 0 and this.0 to data_0203CB54_J on start)
 								 (fn_EE540C: use this.0 as an index into gPokemonStoragePtr->0x824C[])
 								 (fn_EE51C0: just before exiting, set data_0203CB54_J to this.0)
@@ -248,9 +258,26 @@ FA AD 03 02: 72 AD 03 02: ??????
 							     (fn_EB8398_J: Set to {data = data_E95DDC, size = 0x100, tag = (0x78A0 + moveId)} then call LoadSpriteSheet())
 		   : 80 D4 03 02: gBackupMonData
            : 00 D5 03 02: ?????? (sub_8032768: zeroed starting from here to 0203D600)
+		   : 0A D5 03 02: ??????
+		   : 1E D5 03 02: ??????
+		   : 1F D5 03 02: ??????
+		   : 20 D5 03 02: ??????
+		   : 28 D5 03 02: ??????
+		   : 2A D5 03 02: ??????
+		   : 30 D5 03 02: ??????
+		   : 50 D5 03 02: ??????
+		   : 60 D5 03 02: ??????
+		   : 61 D5 03 02: ??????
+		   : 70 D5 03 02: ??????
+		   : 71 D5 03 02: ??????
+		   : 80 D5 03 02: ??????
+		   : 82 D5 03 02: ??????
 		   : 00 D6 03 02: sHatchedEggLevelUpMoves_New
 		   : 64 D6 03 02: ?????? (BuildEggMoveset: read but not used?)
 		   : 74 D6 03 02: sHatchedEggEggMoves_New
+		   : 80 D6 03 02: ??????
+		   : 81 D6 03 02: ??????
+		   : 90 D6 03 02: ??????
 		   : 00 FE 03 02: gLastUsedItemType
 		   : 04 FE 03 02: gCritCapture
 		   
@@ -263,10 +290,11 @@ B4 0F 00 03: B4 0F 00 03: sSecondaryTilesetCBBufferSize
 B8 0F 00 03: B8 0F 00 03: sPrimaryTilesetCB
 BC 0F 00 03: BC 0F 00 03: sSecondaryTilesetCB
 F0 30 00 03: 30 31 00 03: gMain
+		   : 98 3E 00 03: ??????
 84 4F 00 03: C4 4F 00 03: gBattleMainFunc
 90 4F 00 03: D0 4F 00 03: gBattleResults
 A3 4F 00 03: E3 4F 00 03: gBattleResults.battleTurnCounter
-F4 4F 00 03: 34 50 00 03: ?????? (valid)
+F4 4F 00 03: 34 50 00 03: ??????
 F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 00 50 00 03: 40 50 00 03: gRngValue
 08 50 00 03: 48 50 00 03: gSaveBlock1Ptr
@@ -287,14 +315,20 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 		   
 		   
 funcs e,j,desc:
+000544 = 000544 = ?????
+0006F4 = 0006F4 = ?????
 000A38 = 000A38 = SetGpuReg
+0017D0 = 0017D0 = ?????
+0019BC = 0019BC = ?????
 001B90 = 001B90 = ChangeBgX
 0020BC = 0020BC = CopyBgTilemapBufferToVram
 002124 = 002124 = CopyToBgTilemapBufferRect
 002228 = 002228 = CopyToBgTilemapBufferRect_ChangePalette
 002454 = 002454 = FillBgTilemapBufferRect_Palette0
+002BC4 = 002BC4 = ?????
 003CE4 = 003CB0 = AddWindow
 003E3C = 003E08 = RemoveWindow
+003ECC = 003E98 = ?????
 003F20 = 003EEC = CopyWindowToVram
 003FA0 = 003F6C = PutWindowTilemap
 0041F0 = 0041BC = BlitBitmapRectToWindow
@@ -408,10 +442,11 @@ funcs e,j,desc:
 054E90 = 054750 = IncrementGameStat
 055238 = 054AF8 = Overworld_GetMapHeaderByGroupAndId
 055250 = 054B10 = GetDestinationWarpMapHeader
+055D8C = 05564C = ?????
 056158 = 055A18 = GetMapTypeByGroupAndId
 056188 = 055A48 = Overworld_GetMapTypeOfSaveblockLocation
 0561D8 = 055A98 = is_map_type_1_2_3_5_or_6
-058F1C = 0587D8 = ?????
+0568A8 = 056168 = ?????
 058F48 = 058804 = MapGridGetMetatileIdAt
 058F78 = 058834 = MapGridGetMetatileBehaviorAt
 059B74 = 059430 = MetatileBehavior_IsSandOrDeepSand
@@ -473,13 +508,18 @@ funcs e,j,desc:
 06EE7C = 06E670 = ShowSafariBallsWindow
 06EF44 = 06E738 = PrintStartMenuActions
 06F258 = 06EA4C = ShowStartMenu
+06F394 = 06EB88 = ?????
+06F4B4 = 06ECA4 = ?????
 06FED8 = 06F67C = ResetTilesetAnimBuffer
 06FF04 = 06F6A8 = AppendTilesetAnimToBuffer
 0703A8 = 06FB4C = LoadCompressedPalette
 0703EC = 06FB90 = LoadPalette
+070588 = 06FD2C = ?????
 070E44 = BeginFastPaletteFade
 07141C = 070BC0 = UpdateBlendRegisters
+071A68 = 07120C = ?????
 071AB4 = 071258 = FadeOutMapMusic
+071AEC = 071290 = ?????
 0722CC = 071A70 = PlaySE
 0751C4 = 074968 = GetBattlerSide
 0751D8 = 07497C = GetBattlerPosition
@@ -491,10 +531,6 @@ funcs e,j,desc:
 081B30 = 08171C = CheckForTrainersWantingBattle
 082A88 = 082674 = GetPersonalityWithUnownForm
 082AB8 = 0826A4 = GetUnownFormFromPersonality
-082C58 = 082844 = ?????
-0831A0 = 082D8C = ?????
-0831F8 = 082DE4 = ?????
-08324C = 082E38 = ?????
 088E8C = 088A68 = pokedex_count
 08B9F4 = 08B490 = StorageGetCurrentBox
 08BA18 = 08B4B4 = GetBoxMonDataFromAnyBox
@@ -513,14 +549,20 @@ funcs e,j,desc:
 0C7208 = 0C83E4 = RecordItemEffectBattle
 0CC79C = 0CD914 = set_unknown_box_id
 0CC7A8 = 0CD920 = get_unknown_box_id
+0CD38C = 0CE4D8 = ?????
+0CD3A0 = 0CE4EC = ?????
+0CD4D0 = 0CE61C = ?????
+0CD608 = 0CE754 = ?????
 0D77F4 = 0D8898 = BattleStringExpandPlaceholdersToDisplayedString
 0D87BC = 0D980C = BattlePutTextOnWindow
 0F67A4 = 0F77FC = schedule_bg_copy_tilemap_to_vram
 0F6F1C = 0F7F7C = NewMenuHelpers_DrawStdWindowFrame
 0F793C = 0F899C = GetStartMenuWindowId
 0F7948 = 0F89A8 = RemoveStartMenuWindow
+104AB0 = 10586C = ?????
 10AD10 = 10B80C = UseRegisteredKeyItemOnField
 10F904 = 110438 = MoveMenuCursor
+112364 = 112EAC = ?????
 11B0D0 = 11B914 = InUnionRoom
 125A78 = 1263C4 = ItemIdToBattleMoveId
 12E51C = 12ED24 = box_print

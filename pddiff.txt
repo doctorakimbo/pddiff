@@ -974,8 +974,8 @@ grafics:
 = 083119: 04 -> 06 (checks last byte of VAR_REPEL_STEP_COUNT instead of last two bytes, related to changes at 830B8)
 = 0832EC: 00 06 00 0E -> ?? ?? ?? ?? (calls new fn at j251AC0, see 142disasm)
 		  Implements: Unclear, possibly makes water tiles only cause encounters when player is surfing (is there a possibility of standing on water tiles otherwise?)
-= 
-		  
+= 088B9E: C0 0F -> 01 20 (sound will always become stereo no matter what options menu says)
+= 089088: Entirety of sub_8089088 (see 143disasm)
 		  
 		  
 		  
@@ -985,5 +985,5 @@ grafics:
 		  
 
 
-curr: 
-next: j8876E (2byte), j88C64 
+curr: j88C64-j88C7C
+next: j890E0 (repoint), j89BCA (1byte), j89BE6 (1byte), j89C30 (1byte), j8A628 (repoint), j8B3C8 (1byte), j8B4A2 (1byte), j8B4B4

@@ -1,0 +1,2172 @@
+lbl1: @88C64
+r4 = r0
+fn_E9E980_J()
+r0 = r4
+DestroyTask()
+return
+
+
+
+
+
+
+fn_E9E980_J:
+r5 = data_020397A4
+r0 = data_0203D51F_J
+r0 = *r0
+if(r0 == 0x80) goto lbl2
+
+r0 = fn_568A8
+goto lbl3
+
+lbl2:
+r0 = fn_E9EA00_J
+goto lbl3
+
+lbl3:
+fn_544()
+fn_3ECC()
+r0 = *r5
+fn_2BC4()
+r0 = 0
+*r5 = r0
+return
+
+
+
+
+
+
+fn_E9EA00_J:
+fn_112364()
+r0 = data_0203D51F_J
+r1 = 0x80
+*r0 = r1
+r1 = data_04000008_J
+r1 = *r1
+r0 = data_0203D550_J
+*r0 = r1
+r1 = data_0400000A_J
+r1 = *r1
+*(r0 + 2) = r1
+r0 = data_0203D52A_J
+r1 = 0x18
+*r0 = r1
+r0 = data_0203D51E_J
+r1 = 0
+*r0 = r1
+r0 = 0
+fn_6F4()
+r0 = fn_E9EA40_J
+fn_544()
+ScriptContext2_Enable()
+return
+
+
+
+
+
+
+fn_E9EA40_J:
+fn_42BE70_J()
+fn_E9F056_J()
+fn_E9EAA4_J()
+r1 = 0x1F40
+r0 = 0
+SetGpuReg()
+r0 = data_0203D500_J
+r1 = 0
+*r0 = r1
+r0 = -1
+r1 = 0
+s0 = r1
+r2 = 0x10
+r3 = 0
+fn_70588()
+r0 = fn_CD38C
+fn_6F4()
+r0 = fn_E9EB36_J
+r1 = 0
+CreateTask()
+r0 = fn_CD3A0
+fn_544()
+r1 = 0xBF
+r0 = 0x50
+SetGpuReg()
+r0 = 3
+CopyBgTilemapBufferToVram()
+return
+
+
+
+
+
+
+fn_42BE70_J:
+fn_CD4D0()
+fn_CD608()
+return
+
+
+
+
+
+
+fn_E9F056_J:
+r0 = data_E9F310_J
+AddWindow()
+r4 = data_0203D530_J
+*r4 = r0
+r0 = data_E9F318_J
+AddWindow()
+*(r4 + 1) = r0
+r0 = data_E9F320_J
+AddWindow()
+r4 = data_0203D528_J
+*r4 = r0
+r4 = r0
+r4 = data_0203D530_J
+*(r4 + 2) = r0
+r0 = data_E9F328_J
+AddWindow()
+*(r4 + 3) = r0
+r0 = data_E9F330_J
+AddWindow()
+*(r4 + 4) = r0
+r0 = data_E9F338_J
+AddWindow()
+*(r4 + 5) = r0
+r0 = data_E9FA70_J
+AddWindow()
+*(r4 + 6) = r0
+r0 = data_E9FAC0_J
+AddWindow()
+*(r4 + 7) = r0
+r0 = data_E9FAC8_J
+AddWindow()
+*(r4 + 8) = r0
+r0 = data_E9FA78_J
+AddWindow()
+*(r4 + 9) = r0
+r0 = data_E9FA80_J
+AddWindow()
+*(r4 + 0xA) = r0
+r0 = data_E9FA88_J
+AddWindow()
+*(r4 + 0xB) = r0
+r0 = data_E9FA90_J
+AddWindow()
+*(r4 + 0xC) = r0
+r0 = data_E9FA98_J
+AddWindow()
+*(r4 + 0xD) = r0
+r0 = data_E9FAA0_J
+AddWindow()
+*(r4 + 0xE) = r0
+r0 = data_E9FAA8_J
+AddWindow()
+*(r4 + 0xF) = r0
+r0 = data_E9FAB0_J
+AddWindow()
+*(r4 + 0x10) = r0
+r0 = data_E9FAB8_J
+AddWindow()
+*(r4 + 0x11) = r0
+r0 = data_E9F340_J
+AddWindow()
+*(r4 + 0x12) = r0
+r0 = data_E9F348_J
+AddWindow()
+*(r4 + 0x13) = r0
+r0 = data_E9F350_J
+AddWindow()
+*(r4 + 0x14) = r0
+r0 = data_E9F358_J
+AddWindow()
+*(r4 + 0x15) = r0
+r0 = data_E9F360_J
+AddWindow()
+*(r4 + 0x16) = r0
+r0 = data_E9F368_J
+AddWindow()
+*(r4 + 0x17) = r0
+return
+
+
+
+
+
+
+fn_E9EAA4_J:
+r1 = 0
+r0 = 0x1C
+SetGpuReg()
+r1 = 0
+r0 = 0x1E
+SetGpuReg()
+r0 = data_0203D500_J
+r1 = 1
+*(r0 + 4) = r1
+r0 = 0
+fn_19BC()
+r0 = 1
+fn_19BC()
+r0 = 2
+fn_19BC()
+r0 = 3
+fn_19BC()
+fn_E9F478_J()
+fn_E9EF98_J()
+fn_E9F204_J()
+r0 = 0
+CopyBgTilemapBufferToVram()
+r0 = 1
+CopyBgTilemapBufferToVram()
+r0 = 3
+CopyBgTilemapBufferToVram()
+r1 = data_0203D550_J
+r1 = *r1
+r0 = 0xFFFC
+r1 &= r0
+r0 = 8
+SetGpuReg()
+r1 = data_0203D550_J
+r1 = *(r1 + 2)
+r0 = 0xFFFC
+r1 &= r0
+r1++
+r0 = 0xA
+SetGpuReg()
+fn_E9F398_J()
+r1 = 0
+r0 = data_0203D50A_J
+*r0 = r1
+return
+
+
+
+
+
+
+fn_E9EB36_J:
+r0 = data_030050D0_J
+r1 = r2 * 4
+r1 += r2
+r1 *= 8
+r1 += r0
+r0 = fn_E9EBB0_J
+*r1 = r0
+return
+
+
+
+
+
+
+fn_E9F478_J:
+r4 = 0
+r5 = gSprites
+goto lbl2
+
+lbl2:
+r0 = 0x44
+r0 *= r4
+r0 += r5
+DestroySpriteAndFreeResources()
+r4++
+if(r4 != 0x10) goto lbl2
+
+r4 = 0
+r5 = data_02020DE8_J
+goto lbl3
+
+lbl3:
+r2 = r4 * 2
+r0 = *(r5 + r2)
+FreeSpritePaletteByTag()
+r4++
+if(r4 != 0x3F) goto lbl3
+
+r0 = data_03003E98_J
+r1 = 0
+*r0 = r1
+return
+
+
+
+
+
+
+fn_E9EF98_J:
+r0 = data_06000000_J
+r1 = data_EB1D50_J
+r2 = 0xA0
+memcpy()
+r0 = 0x20
+s0 = r0
+s1 = r0
+r0 = 3
+r1 = data_EA64F0_J
+r2 = 0
+r3 = 0
+CopyToBgTilemapBufferRect()
+r0 = 1
+r1 = data_EAC730_J
+r2 = 0xF00
+r3 = 0xC0
+fn_17D0()
+r0 = 1
+r1 = data_EA1470_J
+r2 = 0x12C0
+r3 = 0x140
+fn_17D0()
+fn_E9F272_J()
+r0 = 1
+r1 = data_EA4610_J
+r2 = 0x680
+r3 = 0x40
+fn_17D0()
+r0 = data_EA2B70_J
+r1 = 0
+r2 = 0x20
+LoadPalette()
+s0 = 0x1E
+s1 = 0x14
+r0 = 1
+r1 = 0
+r2 = 0
+r3 = 0
+FillBgTilemapBufferRect_Palette0()
+s0 = 0x1E
+s1 = 0x14
+r0 = 0
+r1 = 0
+r2 = 0
+r3 = 0
+FillBgTilemapBufferRect_Palette0()
+r4 = data_0203D530_J
+r0 = *r4
+r4 = r0
+PutWindowTilemap()
+r4 = data_0203D530_J
+r0 = *(r4 + 1)
+r4 = r0
+PutWindowTilemap()
+r4 = data_0203D530_J
+r0 = *(r4 + 2)
+r4 = r0
+PutWindowTilemap()
+r4 = data_0203D530_J
+r0 = *(r4 + 3)
+r4 = r0
+PutWindowTilemap()
+return
+
+
+
+
+
+
+fn_E9F204_J:
+r4 = data_0203D530_J
+r0 = *(r4 + 4)
+r4 = r0
+PutWindowTilemap()
+r4 = data_0203D530_J
+r0 = *(r4 + 5)
+r4 = r0
+fn_E9FC04_J()
+r0 = data_E9F374_J
+s0 = r0
+r0 = 0
+s1 = r0
+r0 = data_E9F37C_J
+s2 = r0
+r0 = r4
+r1 = 0
+r2 = 4
+r3 = 2
+box_print()
+r1 = data_0203CB1C_J
+r1 = *r1
+r0 = data_0203D520_J
+r2 = 1
+r3 = 4
+ConvertIntToDecimalStringN()
+r1 = 0xFFCABC
+*r0 = r1
+r0 = data_E9F374_J
+s0 = r0
+r0 = 0
+s1 = r0
+r0 = data_0203D520_J
+s2 = r0
+r0 = r4
+r1 = 0
+r2 = 0x30
+r3 = 0xF
+box_print()
+r0 = r4
+PutWindowTilemap()
+return
+
+
+
+
+
+
+fn_E9F398_J:
+r0 = data_02021AC2_J
+r1 = 0x100
+*r0 = r1
+r0 = data_E9F65C_J
+LoadSpriteSheet()
+r0 = data_E9F694_J
+LoadSpriteSheet()
+r0 = data_E9F644_J
+LoadSpritePalette()
+r1 = data_0203D571_J
+*r1 = r0
+r0 = data_E9F64C_J
+LoadSpritePalette()
+r1 = data_0203D570_J
+*r1 = r0
+r4 = 0
+goto lbl2
+
+lbl2:
+r1 = r4 * 4
+r0 = data_E9F664_J
+r0 = *(r0 + r1)
+LoadSpriteSheet()
+r4++
+if(r4 != 4) goto lbl2
+
+r6 = data_0203D100_J
+r4 = 0
+goto lbl3
+
+lbl3:
+r0 = 0x20
+r0 *= r4
+r0 += r6
+r1 = data_E9F69C_J
+r2 = 0x20
+memcpy()
+r1 = data_E9F52C_J
+r2 = r4 * 4
+r1 = *(r1 + r2)
+*(r0 + 0x14) = r1
+r1 = 8
+r2 = 0x20
+r2 *= r4
+r2 += 0x32
+CreateSpriteAndAnimate()
+r4++
+if(r4 != 4) goto lbl3
+
+r6 = data_0203D200_J
+r4 = 0
+goto lbl4
+
+lbl4:
+r0 = 0x20
+r0 *= 4
+r0 += r6
+r1 = data_E9F6B4_J
+r2 = 0x20
+memcpy()
+r1 = data_E9F54C_J
+r2 = r4 * 4
+r1 = *(r1 + r2)
+*(r0 + 0x14) = r1
+r1 = 0x48
+r2 = 0x14
+r2 *= r4
+r2 += 0x32
+CreateSpriteAndAnimate()
+r4++
+if(r4 != 4) goto lbl4
+
+r6 = data_0203D300_J
+r4 = 0
+goto lbl5
+
+lbl5:
+r0 = 0x20
+r0 *= 4
+r0 += r6
+r1 = data_E9F6CC_J
+r2 = 0x20
+memcpy()
+r1 = data_E9F52C_J
+r2 = r4 * 4
+r1 = *(r1 + r2)
+*(r0 + 0x14) = r1
+*r0 = r4
+r1 = 0x20
+r2 = 0x14
+r2 *= r4
+r2 += 0x2F
+CreateSpriteAndAnimate()
+r1 = r4
+fn_EA06C6_J()
+r4++
+if(r4 != 4) goto lbl5
+
+return
+
+
+
+
+
+
+fn_E9F272_J:
+r0 = data_0203D51E_J
+r4 = *r0
+if(r4 != 0) goto lbl2
+
+r0 = data_EA3750_J
+r1 = 0x10
+r2 = 0x20
+LoadPalette()
+r1 = data_EA3770_J
+r5 = data_EA3350_J
+goto lbl5
+
+lbl2:
+if(r4 != 1) goto lbl3
+
+r0 = data_EA4C90_J
+r1 = 0x10
+r2 = 0x20
+LoadPalette()
+r1 = data_EA4CB0_J
+r5 = data_EA3373_J
+goto lbl5
+
+lbl3:
+if(r4 != 2) goto lbl4
+
+r0 = data_EAB870_J
+r1 = 0x10
+r2 = 0x20
+LoadPalette()
+r1 = data_EAB890_J
+r5 = data_EA3396_J
+goto lbl5
+
+lbl4:
+if(r4 != 3) goto lbl6
+
+r0 = data_EAFD50_J
+r1 = 0x10
+r2 = 0x20
+LoadPalette()
+r1 = data_EAFD70_J
+r5 = data_EA33C0_J
+goto lbl5
+
+lbl5:
+r0 = 1
+r2 = 0xEA0
+r3 = 0x1E0
+fn_17D0()
+r4 = data_0203D530_J
+r0 = *(r4 + 4)
+r4 = r0
+fn_E9FC04_J()
+r0 = data_E9F378_J
+s0 = r0
+r0 = 0
+s1 = r0
+r0 = r5
+s2 = r0
+r0 = r4
+r1 = 2
+r2 = 0xA
+r3 = 1
+box_print()
+r0 = r4
+PutWindowTilemap()
+return
+
+
+
+
+
+
+fn_E9FC04_J:
+r5 = r0
+r4 = data_02020430_J
+r1 = 0xC
+r1 *= r0
+r4 += r1
+r0 = *(r4 + 8)
+r1 = *(r4 + 3)
+r2 = *(r4 + 4)
+r1 *= r2
+r2 = 0x20
+r2 *= r1
+r1 = 0
+fn_1E5ED8()
+r0 = r5
+return
+
+
+
+
+
+
+fn_EA06C6_J:
+r4 = r0
+r5 = r1
+if(r5 != 0) goto lbl2
+
+r2 = gSaveBlock1Ptr
+r2 = *(r2 + 4)
+goto lbl3
+
+lbl2:
+r2 = data_EA0760_J
+r0 = r5 - 1
+r0 *= 4
+r2 = *(r2 + r0)
+goto lbl3
+
+lbl3:
+r1 = data_EA0724_J
+r0 = r4
+fn_EA0540_J()
+return
+
+
+
+
+
+
+fn_EA0540_J:
+r4 = r0
+r5 = r1
+r6 = r2
+r0 = data_EA072C_J
+AddWindow()
+s5 = r0
+r1 = 0xC
+r0 *= r1
+r3 = data_02020430_J
+r3 += r0
+r0 = *(r5 + 6)
+*(r3 + 3) = r0
+r0 = *(r5 + 7)
+*(r3 + 4) = r0
+r0 = *(r3 + 8)
+r2 = gSprites
+r1 = 0x44
+r1 *= r4
+r2 += r1
+r2 = *(r2 + 4)
+r1 = 0x3FF
+r2 &= r1
+r2 *= 0x20
+r1 = data_06010000_J
+r1 += r2
+r2 = *(r5 + 6)
+r3 = *(r5 + 7)
+r2 *= r3
+r3 = 0x20
+r2 *= r3
+memcpy()
+r0 = s5
+r2 = r5 + 2
+s2 = r2
+r2 = 0
+s0 = r2
+s1 = r2
+s4 = r6
+r1 = -1
+s3 = r1
+r1 = *(r5 + 5)
+r2 = *r5
+r3 = *(r5 + 1)
+AddTextPrinterParameterized2()
+r0 = s4
+r1 = 0xC
+r1 *= r0
+r0 = data_02020430_J
+r1 += r0
+r1 = *(r1 + 8)
+r2 = gSprites
+r0 = 0x44
+r0 *= r4
+r2 += r0
+r2 = *(r2 + 4)
+r0 = 0x3FF
+r2 &= r0
+r2 *= 0x20
+r0 = data_06010000_J
+r0 += r2
+r2 = *(r5 + 6)
+r3 = *(r5 + 7)
+r2 *= r3
+r3 = 0x20
+r2 *= r3
+memcpy()
+r0 = s5
+RemoveWindow()
+return
+
+
+
+
+
+
+fn_E9EBB0_J:
+r1 = r0 * 4
+r1 += r0
+r1 *= 8
+r0 = data_030050D0_J
+r4 = r1 + r0
+r0 = data_0203D500_J
+r1 = *(r0 + 2)
+r2 = *(r0 + 0xA)
+if(r2 != 0) goto lbl2
+
+r1++
+r2 = 0x1FF
+r1 &= r2
+*(r0 + 2) = r1
+r1 /= 2
+r0 = 0x1C
+SetGpuReg()
+r0 = data_0203D500_J
+r1 = *(r0 + 2)
+r1 /= 2
+r0 = 0x1E
+SetGpuReg()
+goto lbl2
+
+lbl2:
+r0 = gMain
+r1 = *(r0 + 0x2E)
+r0 = data_0203D52A_J
+r2 = *r0
+if(r2 == 0xFF) goto lbl13
+
+if(r2 == 0xFE) goto lbl14
+
+if(r2 == 0) goto lbl3
+
+r2--
+*r0 = r2
+goto lbl43
+
+lbl3:
+r0 = data_0203D50A_J
+r0 = *r0
+if(r0 != 0) goto lbl4
+
+r0 = 1
+r0 &= r1
+if(r0 != 0) goto lbl6
+
+r0 = 2
+r0 &= r1
+if(r0 != 0) goto lbl5
+
+r0 = 0x80
+r0 &= r1
+if(r0 != 0) goto lbl11
+
+r0 = 0x40
+r0 &= r1
+if(r0 != 0) goto lbl12
+
+goto lbl43
+
+lbl4:
+goto lbl19
+
+lbl5:
+r0 = 5
+PlaySE()
+r0 = data_0203D51F_J
+r1 = 0
+*r0 = r1
+r0 = fn_568A8
+*r4 = r0
+goto lbl43
+
+lbl6:
+r0 = 5
+PlaySE()
+r0 = data_0203D51E_J
+r0 = *r0
+if(r0 != 0) goto lbl7
+
+r0 = fn_52A990_J
+goto r0 // should be bx, not mov pc; almost certainly crashes
+
+lblx:
+goto lbl43
+
+lbl7:
+if(r0 != 1) goto lbl10
+
+fn_E9FA12_J()
+if(r0 == 0) goto lbl9
+
+r0 = data_0203D52A_J
+r1 = 0xFF
+*r0 = r1
+goto lbl8
+
+lbl8:
+goto lbl43
+
+lbl9:
+fn_EA06E8_J()
+goto lbl43
+
+lbl10:
+if(r0 != 2) goto lbl5
+
+r0 = data_0203D52A_J
+r1 = 0xFF
+*r0 = r1
+goto lbl43
+
+lbl11:
+r0 = 5
+PlaySE()
+r0 = data_0203D51E_J
+r1 = *r0
+r1++
+r2 = 3
+r1 &= r2
+*r0 = r1
+fn_E9F272_J()
+goto lbl43
+
+lbl12:
+r0 = 5
+PlaySE()
+r0 = data_0203D51E_J
+r1 = *r0
+r1--
+r2 = 3
+r1 &= r2
+*r0 = r1
+fn_E9F272_J()
+goto lbl43
+
+lbl13:
+r0 = data_0203D500_J
+r1 = *r0
+if(r1 = 0x10) goto lbl15
+
+r1++
+*r0 = r1
+r0 = 0x54
+SetGpuReg()
+goto lbl43
+
+lbl14:
+r0 = data_0203D500_J
+r1 = *r0
+if(r1 == 0) goto lbl18
+
+r1--
+*r0 = r1
+r0 = 0x54
+SetGpuReg()
+goto lbl43
+
+lbl15:
+r0 = data_0203D50A_J
+r0 = *r0
+if(r0 != 0) goto lbl17
+
+r0 = data_0203D51E_J
+r0 = *r0
+if(r0 != 1) goto lbl16
+
+fn_E9F6F4_J()
+r1 = 0xFE
+r0 = data_0203D52A_J
+*r0 = r1
+goto lbl43
+
+lbl16:
+if(r0 != 2) goto lbl8
+
+fn_E9FC28_J()
+r1 = 0xFE
+r0 = data_0203D52A_J
+*r0 = r1
+goto lbl43
+
+lbl17:
+fn_E9EAA4_J()
+r1 = 0xFE
+r0 = data_0203D52A_J
+*r0 = r1
+goto lbl43
+
+lbl18:
+r1 = 0
+r0 = data_0203D52A_J
+*r0 = r1
+goto lbl43
+
+lbl19:
+if(r0 == 1) goto lbl20
+
+goto lbl31
+
+lbl20:
+r0 = 2
+r0 &= r1
+if(r0 == 0) goto lbl21
+
+r0 = data_0203D52A_J
+r1 = 0xFF
+*r0 = r1
+goto lbl43
+
+lbl21:
+r0 = 1
+r0 &= r1
+if(r0 == 0) goto lbl24
+
+r0 = 5
+PlaySE()
+r0 = data_0203D561_J
+r1 = *r0
+r0 = *(r0 + 1)
+r0 += r1
+if(r0 == 0) goto lbl23
+
+fn_E9F92C_J()
+r0--
+r0 *= 2
+r2 = 1
+r1 = data_0203CB26_J
+*r1 = r2
+r1 = data_E9FBC4_J
+r0 = *(r1 + r0)
+r1 = data_0203CB24_J
+*r1 = r0
+r4 = r0
+fn_71A68()
+if(r0 == r4) goto lbl22
+
+r0 = r4
+r1 = 4
+fn_71AEC()
+goto lbl22
+
+lbl22:
+goto lbl43
+
+lbl23:
+r2 = 0
+r1 = data_0203CB26_J
+*r1 = r2
+fn_55D8C()
+r4 = r0
+fn_71A68()
+if(r0 == r4) goto lbl22
+
+r0 = r4
+r1 = 4
+fn_71AEC()
+goto lbl43
+
+lbl24:
+r0 = 0x80
+r0 &= r1
+if(r0 == 0) goto lbl27
+
+r0 = data_0203D560_J
+r1 = *(r0 + 2)
+r2 = *(r0 + 1)
+r3 = *(r0 + 0)
+r2 += r1
+if(r2 >= r3) goto lbl26
+
+if(r1 >= 4) goto lbl25
+
+r1++
+*(r0 + 2) = r1
+fn_E9F966_J()
+r0 = 5
+PlaySE()
+goto lbl43
+
+lbl25:
+r0 = data_0203D560_J
+r1 = *(r0 + 1)
+r1++
+*(r0 + 1) = r1
+fn_E9F966_J()
+r0 = 5
+PlaySE()
+goto lbl43
+
+lbl26:
+r2 = 0
+r0 = data_0203D560_J
+*(r0 + 1) = r2
+*(r0 + 2) = r2
+fn_E9F966_J()
+r0 = 5
+PlaySE()
+goto lbl43
+
+lbl27:
+r0 = 0x40
+r0 &= r1
+if(r0 == 0) goto lbl22
+
+r0 = data_0203D560_J
+r1 = *(r0 + 2)
+r2 = *(r0 + 1)
+r3 = *(r0 + 0)
+r2 += r1
+if(r2 == 0) goto lbl29
+
+if(r1 == 0) goto lbl28
+
+r1--
+*(r0 + 2) = r1
+fn_E9F966_J()
+r0 = 5
+PlaySE()
+goto lbl43
+
+lbl28:
+r0 = data_0203D560_J
+r1 = *(r0 + 1)
+r1--
+*(r0 + 1) = r1
+fn_E9F966_J()
+r0 = 5
+PlaySE()
+goto lbl43
+
+lbl29:
+r0 = data_0203D560_J
+r1 = *r0
+if(r1 <= 4) goto lbl30
+
+r1 -= 4
+r2 = r1
+r1 = 4
+*(r0 + 1) = r2
+goto lbl30
+
+lbl30:
+*(r0 + 2) = r1
+fn_E9F966_J()
+r0 = 5
+PlaySE()
+goto lbl43
+
+lbl31:
+r4 = data_0203D580_J
+r5 = data_0203D680_J
+r6 = *(r5 + 1)
+r0 = 2
+r0 &= r1
+if(r0 == 0) goto lbl32
+
+r0 = data_0203D52A_J
+r1 = 0xFF
+*r0 = r1
+goto lbl43
+
+lbl32:
+r0 = 1
+r0 &= r1
+if(r0 == 0) goto lbl33
+
+r0 = fn_42BE40_J
+goto r0
+
+lbl33:
+r0 = 0x40
+r0 &= r1
+if(r0 == 0) goto lbl35
+
+r0 = *r5
+r1 = *(r5 + 1)
+r2 = r0 + r1
+if(r2 == 0) goto lbl43
+
+if(r2 < 7) goto lbl40
+
+if(r0 < 7) goto lbl34
+
+r0 -= 7
+goto lbl41
+
+lbl34:
+r1 -= 7
+goto lbl41
+
+lbl35:
+r0 = 0x80
+r0 &= r1
+if(r0 == 0) goto lbl38
+
+r0 = *r5
+r1 = *(r5 + 1)
+r3 = r0 + r1
+r2 = *r4
+r2--
+if(r3 >= r2) goto lbl43
+
+if(r0 >= 7) goto lbl37
+
+r0 += 7
+goto lblq
+
+lblq:
+r3 = r0 + r1
+if(r3 >= r2) goto lbl36
+
+goto lbl41
+
+lbl36:
+fn_EA0B60_J()
+goto lbl41
+
+lbl37:
+fn_E9E9D0_J()
+goto lbl38
+
+lbl38:
+r0 = 0x10
+r0 &= r1
+if(r0 == 0) goto lbl39
+
+r0 = *r5
+r1 = *(r5 + 1)
+r2 = *r4
+r2--
+r3 = r0 + r1
+if(r3 >= r2) goto lbl43
+
+r0++
+if(r0 < 0xE) goto lbl41
+
+r0 -= 7
+r1 += 7
+goto lbl41
+
+lbl39:
+r0 = 0x20
+r0 &= r1
+if(r0 == 0) goto lbl43
+
+r0 = *r5
+r1 = *(r5 + 1)
+r2 = r0 + r1
+if(r2 == 0) goto lbl43
+
+r0--
+if(r0 >= 0) goto lbl41
+r0 += 7
+r1 -= 7
+goto lbl41
+
+lbl40:
+r0 = 0
+r1 = 0
+goto lbl41
+
+lbl41:
+r5 = data_0203D680_J
+*r5 = r0
+*(r5 + 1) = r1
+if(r1 == r6) goto lbl42
+
+fn_E9FFDC_J()
+goto lbl42
+
+lbly:
+lbl42:
+r0 = 5
+PlaySE()
+r0 = data_0203D690_J
+r1 = 1
+*r0 = r1
+goto lbl43
+
+lblz:
+lbl43:
+return
+
+
+
+
+
+
+fn_52A990_J:
+fn_6F394()
+r0 = fn_6F4B4
+*r4 = r0
+goto lblx
+
+
+
+
+
+
+fn_E9FA12_J:
+r2 = 0
+r3 = 0
+r6 = data_EA076C_J
+r6 = *r6
+goto lbl2
+
+lbl2:
+r0 = data_0203CB28_J
+r4 = ALL_BUT_LAST_FIVE_BITS(r2)
+r4 *= 4
+r0 = *r4
+r1 = 1
+r4 = LAST_FIVE_BITS(r2)
+r1 <<= r4
+r1 &= r0
+if(r1 == 0) goto lbl3
+
+r3++
+goto lbl3
+
+lbl3:
+r2++
+if(r2 != r6) goto lbl2
+
+r0 = r3
+return r0
+
+
+
+
+
+
+fn_EA06E8_J:
+r4 = data_0203D530_J
+r0 = *(r4 + 4)
+r4 = r0
+fn_E9FC04_J()
+r0 = data_E9F378_J
+s0 = r0
+r0 = 0
+s1 = r0
+r0 = data_EA0784_J
+s2 = r0
+r0 = r4
+r1 = 2
+r2 = 0xA
+r3 = 1
+box_print()
+r0 = r4
+PutWindowTilemap()
+r0 = 0
+CopyBgTilemapBufferToVram()
+return
+
+
+
+
+
+
+fn_E9F6F4_J:
+r1 = 0
+r0 = 0x1C
+SetGpuReg()
+r1 = 0
+r0 = 0x1E
+SetGpuReg()
+r0 = data_0203D500_J
+r1 = 0
+*(r0 + 4) = r1
+r0 = data_0203D50A_J
+r1 = 1
+*r0 = r1
+fn_E9F478_J()
+r0 = data_EA5B50_J
+r1 = 0x20
+r2 = 0x20
+LoadPalette()
+r0 = 1
+r1 = data_EA5B70_J
+r2 = 0x600
+r3 = 0x80
+fn_17D0()
+r0 = 1
+r1 = data_EA6170_J
+r2 = 0x380
+r3 = 0x140
+fn_17D0()
+r0 = 0x1E
+s0 = r0
+r0 = 0x14
+s1 = r0
+r0 = 1
+r1 = 0
+r2 = 0
+r3 = 0
+FillBgTilemapBufferRect_Palette0()
+r0 = 0x1E
+s0 = r0
+r0 = 0x14
+s1 = r0
+r0 = 0
+r1 = 0
+r2 = 0
+r3 = 0
+FillBgTilemapBufferRect_Palette0()
+r4 = data_0203D530_J
+r0 = *r4
+r4 = r0
+PutWindowTilemap()
+r4 = data_0203D530_J
+r0 = *(r4 + 6)
+r4 = r0
+PutWindowTilemap()
+r4 = data_0203D530_J
+r0 = *(r4 + 7)
+r4 = r0
+PutWindowTilemap()
+r4 = data_0203D530_J
+r0 = *(r4 + 8)
+r4 = r0
+fn_E9FC04_J()
+r0 = fn_E9F370_J
+s0 = r0
+r0 = 0
+s1 = r0
+r0 = fn_E9FAD0_J
+s2 = r0
+r0 = r4
+r1 = 1
+r2 = 0xF
+r3 = 2
+box_print()
+r0 = r4
+PutWindowTilemap()
+fn_E9FA12_J()
+r1 = data_0203D560_J
+*r1 = r0
+r2 = 0
+*(r1 + 1) = r2
+*(r1 + 2) = r2
+r5 = r0
+if(r0 != 0) goto lbl2
+
+goto lbl4
+
+lbl2:
+if(r5 < 5) goto lbl3
+
+(sub sp, 8)
+r0 = 1
+r1 = 0
+r2 = data_0203D561_J
+r3 = 0x60
+s0 = r3
+r3 = 0x28
+s1 = r3
+fn_EA05F4_J()
+r0 = 0
+r1 = r5 - 4
+r2 = data_0203D561_J
+r3 = 0x60
+s0 = r3
+r3 = 0x98
+s1 = r3
+fn_EA05F4_J()
+(add sp, 8)
+goto lbl3
+
+lbl3:
+r4 = data_0203D530_J
+r0 = *(r4 + 9)
+r4 = r0
+PutWindowTilemap()
+if(r5 == 1) goto lbl4
+
+r4 = data_0203D530_J
+r0 = *(r4 + 0xA)
+r4 = r0
+PutWindowTilemap()
+if(r5 == 2) goto lbl4
+
+r4 = data_0203D530_J
+r0 = *(r4 + 0xB)
+r4 = r0
+PutWindowTilemap()
+if(r5 == 3) goto lbl4
+
+r4 = data_0203D530_J
+r0 = *(r4 + 0xC)
+r4 = r0
+PutWindowTilemap()
+goto lbl4
+
+lbl4:
+fn_E9F966_J()
+r0 = 0
+CopyBgTilemapBufferToVram()
+r0 = 1
+CopyBgTilemapBufferToVram()
+r0 = 3
+CopyBgTilemapBufferToVram()
+return
+
+
+
+
+
+
+fn_E9FC28_J:
+r0 = data_0203D580_J
+r1 = 0
+*r0 = r1
+r0 = data_0203D680_J
+*r0 = r1
+fn_E9FE26_J()
+r0 = 0
+fn_E9FED4_J()
+fn_E9FEA8_J()
+r0 = 1
+fn_E9FED4_J()
+r0 = gMapHeader.regionMapSectionId
+r0 = *r0
+r0 -= 0x58
+r1 = 0xC
+r0 *= r1
+r1 = data_EA08C0_J
+r1 += r0
+r0 = *(r1 + 8)
+r1 = 0xC
+r0 *= r1
+r1 = data_EA0840_J
+r1 += r0
+r4 = *(r1 + 8)
+r5 = *r1
+r1 = *(r1 + 4)
+r0 = 0x06000000_J
+r2 = 0xC00
+memcpy()
+r0 = 0x1E
+s0 = r0
+r0 = 0xB
+s1 = r0
+r0 = 3
+r1 = r4
+r2 = 0
+r3 = 0
+CopyToBgTilemapBufferRect()
+r0 = r5
+r1 = 0
+r2 = 0x20
+LoadPalette()
+r1 = 0
+r0 = 0x1C
+SetGpuReg()
+r1 = 0
+r0 = 0x1E
+SetGpuReg()
+r0 = data_0203D500_J
+r1 = 0
+*(r0 + 4) = r1
+r0 = data_0203D50A_J
+r1 = 2
+*r0 = r1
+fn_E9F478_J()
+r0 = data_0203D580_J
+r0 = *r0
+if(r0 < 0xE) goto lbl2
+
+(sub sp, 8)
+r0 = 1
+r1 = 0
+r2 = data_0203D681_J
+r3 = 0xE8
+s0 = r3
+r3 = 0x5A
+s1 = r3
+fn_EA0F54_J()
+r0 = data_0203D580_J
+r0 = *r0
+r1 = 7
+svc_6()
+r0--
+r1 = 7
+r1 *= r0
+r0 = 0
+r2 = data_0203D681_J
+r3 = 0xE8
+s0 = r3
+r3 = 0x5A
+s1 = r3
+fn_EA0F54_J()
+(add sp, 8)
+goto lbl2
+
+lbl2:
+r0 = 0x1E
+s0 = r0
+r0 = 0x14
+s1 = r0
+r0 = 1
+r1 = 0
+r2 = 0
+r3 = 0
+FillBgTilemapBufferRect_Palette0()
+r0 = 0x1E
+s0 = r0
+r0 = 0x14
+s1 = r0
+r0 = 0
+r1 = 0
+r2 = 0
+r3 = 0
+FillBgTilemapBufferRect_Palette0()
+r0 = data_EAAD10_J
+r1 = 0x20
+r2 = 0x20
+LoadPalette()
+r0 = 1
+r1 = data_EAAD30_J
+r2 = 0xB40
+r3 = 0xC0
+fn_17D0()
+r0 = 1
+r1 = data_EA8010_J
+r2 = 0x2D00
+r3 = 0x140
+fn_17D0()
+r4 = data_0203D530_J
+r0 = *(r4 + 0x12)
+r4 = r0
+PutWindowTilemap()
+r4 = data_0203D530_J
+r0 = *(r4 + 0x13)
+r4 = r0
+PutWindowTilemap()
+r4 = data_0203D530_J
+r0 = *(r4 + 0x14)
+r4 = r0
+fn_E9FC04_J()
+r0 = data_E9F370_J
+s0 = r0
+r0 = 0
+s1 = r0
+r0 = gMapHeader.regionMapSectionId
+r0 = *r0
+r0 -= 0x58
+r3 = r0 * 4
+r1 = 0xC
+r0 *= r1
+r1 = data_EA08C0_J
+r0 += r1
+r5 = r0
+r0 = data_3B8834_J // english=?
+r0 += r3
+r0 = *r0
+s2 = r0
+r0 = r4
+r1 = 2
+r2 = 0x18
+r3 = 5
+box_print()
+r0 = r4
+PutWindowTilemap()
+r4 = data_0203D530_J
+r0 = *(r4 + 0x16)
+r4 = r0
+fn_E9FC04_J()
+r0 = data_E9F370_J
+s0 = r0
+r0 = 0
+s1 = r0
+r0 = *(r5 + 4)
+s2 = r0
+r0 = r4
+r1 = 2
+r2 = 5
+r3 = 2
+box_print()
+r0 = r4
+PutWindowTilemap()
+r4 = data_0203D530_J
+r0 = *(r4 + 5)
+r4 = r0
+fn_E9FC04_J()
+r0 = data_E9F370_J
+s0 = r0
+r0 = 0
+s1 = r0
+r0 = data_EA0740_J
+s2 = r0
+r0 = r4
+r1 = 2
+r2 = 3
+r3 = 9
+box_print()
+r0 = r4
+PutWindowTilemap()
+r0 = data_0203D580_J
+r0 = *r0
+if(r0 == 0) goto lbl3
+
+fn_E9FFDC_J()
+fn_EA0158_J()
+goto lbl3
+
+lbl3:
+r0 = 0
+CopyBgTilemapBufferToVram()
+r0 = 1
+CopyBgTilemapBufferToVram()
+r0 = 3
+CopyBgTilemapBufferToVram()
+return
+
+
+
+
+
+
+fn_E9F92C_J:
+if(r0 == 0) goto lbl5
+
+r0--
+r4 = 0
+r3 = 0
+r6 = data_EA076C_J
+r6 = *r6
+goto lbl2
+
+lbl2:
+r2 = data_0203CB28_J
+r1 = ALL_BUT_LAST_FIVE_BITS(r4)
+r1 *= 4
+r2 = *(r1 + r2)
+r5 = 1
+r1 = LAST_FIVE_BITS(r4)
+r5 >>= r1
+r5 &= r2
+if(r5 == 0) goto lbl3
+
+if(r3 == r0) goto lbl4
+
+r3++
+goto lbl3
+
+lbl3:
+r4++
+if(r4 != r6) goto lbl2
+
+r4 = 0xFE
+goto lbl4
+
+lbl4:
+r0 = r4
+r0++
+goto lbl5
+
+lbl5:
+return r0
+
+
+
+
+
+
+fn_E9F966_J:
+r4 = data_0203D530_J
+r0 = *(r4 + 0xD)
+r4 = r0
+fn_E9F8B0_J()
+r4 = data_0203D530_J
+r0 = *(r4 + 0xE)
+r4 = r0
+fn_E9F8B0_J()
+r4 = data_0203D530_J
+r0 = *(r4 + 0xF)
+r4 = r0
+fn_E9F8B0_J()
+r4 = data_0203D530_J
+r0 = *(r4 + 0x10)
+r4 = r0
+fn_E9F8B0_J()
+r4 = data_0203D530_J
+r0 = *(r4 + 0x11)
+r4 = r0
+fn_E9F8B0_J()
+r4 = data_0203D530_J
+r0 = *(r4 + 0xD)
+r4 = r0
+r1 = 2
+CopyWindowToVram()
+r0 = r4
+PutWindowTilemap()
+r4 = data_0203D530_J
+r0 = *(r4 + 0xE)
+r4 = r0
+r1 = 2
+CopyWindowToVram()
+r0 = r4
+PutWindowTilemap()
+r4 = data_0203D530_J
+r0 = *(r4 + 0xF)
+r4 = r0
+r1 = 2
+CopyWindowToVram()
+r0 = r4
+PutWindowTilemap()
+r4 = data_0203D530_J
+r0 = *(r4 + 0x10)
+r4 = r0
+r1 = 2
+CopyWindowToVram()
+r0 = r4
+PutWindowTilemap()
+r4 = data_0203D530_J
+r0 = *(r4 + 0x11)
+r4 = r0
+r1 = 2
+CopyWindowToVram()
+r0 = r4
+PutWindowTilemap()
+r0 = 0
+CopyBgTilemapBufferToVram()
+return
+
+
+
+
+
+
+fn_42BE40_J:
+r0 = data_0203D580_J
+r0 = *r0
+if(r0 == 0) goto lbl2
+
+r0 = data_0203D680_J
+r1 = *(r0 + 2)
+r2 = 1
+r1 ^= r2
+*(r0 + 2) = r1
+r1 = lbly
+goto r1
+
+lbl2:
+r1 = lblz
+goto r1
+
+
+
+
+
+
+fn_EA0B60_J:
+r4 = data_0203D580_J
+r0 = *r4
+r1 = 7
+svc_6()
+r1 = r0
+if(r1 == 0) goto lbl2
+r1--
+goto lbl2
+
+lbl2:
+r5 = 7
+r1 *= r5
+r0 = *r4
+r0 -= r1
+r0--
+return r0
+
+
+
+
+
+
+fn_E9E9D0_J:
+r3 += 7
+if(r3 < r2) goto lbl2
+
+r0 += 7
+goto lbl3
+
+lbl2:
+r1 += 7
+goto lbl3
+
+lbl3:
+r3 = lblq
+goto r3
+
+
+
+
+
+
+fn_E9FFDC_J:
+r0 = 0x1E
+s0 = r0
+r0 = 8
+s1 = r0
+r0 = 0
+r1 = 0
+r2 = 0
+r3 = 0xB
+FillBgTilemapBufferRect_Palette0()
+r4 = 0
+goto lbl2
+
+lbl2:
+r0 = data_E40000_J
+r1 = r4 * 8
+r0 *= r1
+r1 = 0x50
+r2 = 0x10
+r2 *= r4
+r1 += r2
+r2 = 0x20
+LoadPalette()
+r4++
+if(r4 != 6) goto lbl2
+
+r0 = data_EA02A8_J
+r1 = 0xB0
+r2 = 0x20
+LoadPalette()
+r0 = data_0203D680_J
+r5 = *(r0 + 1)
+r4 = data_0203D580_J
+r6 = r4
+if(r6 == 0) goto lbl10
+
+r6 -= r5
+r4 = 0
+goto lbl3
+
+lbl3:
+r1 = r5 * 2
+r0 = data_0203D582_J
+r0 = *(r0 + r1)
+s0 = r0
+r1 = 0
+r2 = 1
+fn_104AB0()
+if(r0 == 0) goto lbl4
+
+r0 = s0
+r1 = 0
+goto lbl4
+
+lbl4:
+fn_168900_J()
+r1 = r0
+r2 = 0x200
+r0 = 0x10
+r0 *= r4
+r3 = 0x1A0
+r3 += r0
+r0 = 0
+fn_17D0()
+r4++
+r5++
+if(r4 == 0xE) goto lbl5
+
+if(r4 != r6) goto lbl3
+
+goto lbl5
+
+lbl5:
+r5 = 0
+goto lbl6
+
+lbl6:
+r0 = data_0203D680_J
+r0 = *(r0 + 1)
+r0 += r5
+r0 *= 2
+r2 = data_0203D582_J
+r0 = *(r2 + r0)
+r4 = r0
+r1 = 1
+r2 = 1
+fn_104AB0()
+if(r0 == 0) goto lbl7
+
+r3 = data_091FE6E0_J
+r3 = *r3
+r6 = *(r3 + r4)
+goto lbl9
+
+lbl7:
+r0 = r4
+r1 = 0
+r2 = 1
+fn_104AB0()
+if(r0 == 0) goto lbl8
+
+r6 = 6
+goto lbl9
+
+lbl8:
+r6 = 0
+goto lbl9
+
+lbl9:
+r4 = data_0203D530_J
+r0 = r5
+r1 = 7
+svc_6()
+r2 = 4
+r1 *= r2
+r1++
+r2 *= r0
+r2 += 0xB
+r0 = *(r4 + 0x17)
+r3 = r6
+r3 += 5
+s0 = r5
+fn_EA00EA_J()
+r2 = data_0203D580_J
+r2 = *r2
+r0 = data_0203D680_J
+r0 = *(r0 + 1)
+r2 -= r0
+r5++
+if(r5 == 0xE) goto lbl10
+
+if(r5 != r2) goto lbl6
+
+goto lbl10
+
+lbl10:
+r0 = 0
+CopyBgTilemapBufferToVram()
+return
+
+
+
+
+
+
+fn_EA05F4_J:
+r4 = r0
+r5 = r1
+r6 = r2
+r0 = data_EA062C_J
+LoadSpriteSheet()
+r0 = data_EA0634_J
+LoadSpritePalette()
+r1 = s5
+r2 = s6
+r3 = 0
+r0 = data_EA063C_J
+CreateSprite()
+r1 = gSprites
+r2 = 0x44
+r0 *= r2
+r0 += r1
+*(r0 + 0x2E) = r4
+*(r0 + 0x34) = r5
+*(r0 + 0x30) = r6
+return
+
+
+
+
+
+
+fn_E9FE26_J:
+r0 = gMapHeader.regionMapSectionId
+r4 = *r0
+r5 = data_390B34_J // english=?
+r6 = 0
+goto lbl2
+
+lbl2:
+r1 = 0x14
+r1 *= r6
+r1 += r5
+r2 = *r1
+if(r2 == 0xFF) goto lbl4
+
+r0 = data_316758_J // english=?
+r2 *= 4
+r0 = *(r0 + r2)
+r2 = *(r1 + 1)
+r2 *= 4
+r0 = *(r0 + r2)
+r0 = *(r0 + 0x14)
+if(r0 != r4) goto lbl3
+
+r0 = r1
+fn_E9FE5A_J()
+goto lbl3
+
+lbl3:
+r6++
+goto lbl2
+
+lbl4:
+return
+
+
+
+
+
+
+fn_E9FED4_J:
+if(r0 == 1) goto lbl5
+
+r4 = data_0203D580_J
+r6 = *r4
+if(r6 == 0) goto lbl7
+
+r4 += 2
+r5 = 0
+goto lbl2
+
+lbl2:
+r0 = r5 * 2
+r0 = *(r4 + r0)
+r1 = 0
+r2 = 1
+fn_104AB0()
+if(r0 == 1) goto lbl3
+
+r1 = r5 * 2
+r0 = *(r4 + r1)
+r2 = 0xC000
+r0 |= r2
+*(r4 + r1) = r0
+goto lbl4
+
+lbl3:
+r0 = r5 * 2
+r0 = *(r4 + r0)
+r1 = 1
+r2 = 1
+fn_104AB0()
+if(r0 == 1) goto lbl4
+
+r1 = r5 * 2
+r0 = *(r4 + r1)
+r2 = 0x8000
+r0 |= r2
+*(r4 + r1) = r0
+goto lbl4
+
+lbl4:
+r5++
+if(r5 != r6) goto lbl2
+
+goto lbl7
+
+lbl5:
+r0 = data_0203D580_J
+r1 = *r0
+if(r1 == 0) goto lbl7
+
+r0 = 2
+r2 = 0
+goto lbl6
+
+lbl6:
+r3 = r2 * 2
+r4 = *(r0 + r3)
+r4 = LAST_14_BITS(r4)
+*(r0 + r3) = r4
+r2++
+if(r2 != r1) goto lbl6
+
+goto lbl7
+
+lbl7:
+return
+
+
+
+
+
+
+fn_E9FEA8_J:
+r0 = data_0203D580_J
+r1 = *r0
+if(r1 <= 1) goto lbl5
+
+r0 += 2
+goto lbl2
+
+lbl2:
+r1--
+r4 = 0
+goto lbl3
+
+lbl3:
+r3 = r4 * 2
+r5 = r3 + 2
+r6 = *(r0 + r3)
+r7 = *(r0 + r5)
+if(r6 <= r7) goto lbl4
+
+*(r0 + r3) = r7
+*(r0 + r5) = r6
+goto lbl4
+
+lbl4:
+r4++
+if(r1 != r4) goto lbl3
+
+if(r1 != 1) goto lbl2
+
+goto lbl5
+
+lbl5:
+return
+
+
+
+
+
+
+fn_EA0158_J:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fn_E9F8B0_J:
+fn_168900_J:
+fn_EA00EA_J:
+fn_E9FE5A_J:
