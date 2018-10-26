@@ -1,0 +1,8 @@
+sub_8089088(arg0)
+{
+	SetMainCallback2(data_020397A4->0x458)
+	FreeAllWindowBuffers()
+	Free(data_020397A4)
+	data_020397A4 = 0
+	DestroyTask(arg0)
+}

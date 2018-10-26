@@ -1,16 +1,14 @@
-lbl1: @89088
-r4 = r0
-r5 = data_020397A4
-r0 = *r5
-r1 = 0x458
-r0 += r1
-r0 = *r0
-fn_544()
-fn_3ECC()
-r0 = *r5
-fn_2BC4()
-r0 = 0
-*r5 = r0
-r0 = r4
-DestroyTask()
-return
+sub_8089088(arg0)
+{
+	r4 = arg0
+	r5 = data_020397A4
+	r0 = *r5
+	r1 = 0x458
+	r0 += r1
+	SetMainCallback2(*r0)
+	FreeAllWindowBuffers()
+	Free(*r5)
+	r0 = 0
+	*r5 = r0
+	DestroyTask(r4)
+}

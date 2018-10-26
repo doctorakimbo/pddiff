@@ -1,7 +1,7 @@
 addr e: addr j: desc
 
 		   : 24 00 02 02: ?????
-		   : 30 04 02 02: ?????
+		   : 30 04 02 02: gWindows
 3C 06 02 02: B8 05 02 02: gSprites
 		   : E8 0D 02 02: ?????
 		   : C2 1A 02 02: ?????
@@ -258,16 +258,20 @@ FA AD 03 02: 72 AD 03 02: ??????
 							     (fn_EB8398_J: Set to {data = data_E95DDC, size = 0x100, tag = (0x78A0 + moveId)} then call LoadSpriteSheet())
 		   : 80 D4 03 02: gBackupMonData
            : 00 D5 03 02: ?????? (sub_8032768: zeroed starting from here to 0203D600)
+		   : 02 D5 03 02: ??????
+		   : 04 D5 03 02: ??????
 		   : 0A D5 03 02: ??????
 		   : 1E D5 03 02: ??????
 		   : 1F D5 03 02: ??????
 		   : 20 D5 03 02: ??????
 		   : 28 D5 03 02: ??????
 		   : 2A D5 03 02: ??????
-		   : 30 D5 03 02: ??????
+		   : 30 D5 03 02: gMysteryFuncWindows
 		   : 50 D5 03 02: ??????
+		   : 52 D5 03 02: ??????
 		   : 60 D5 03 02: ??????
 		   : 61 D5 03 02: ??????
+		   : 62 D5 03 02: ??????
 		   : 70 D5 03 02: ??????
 		   : 71 D5 03 02: ??????
 		   : 80 D5 03 02: ??????
@@ -277,6 +281,7 @@ FA AD 03 02: 72 AD 03 02: ??????
 		   : 74 D6 03 02: sHatchedEggEggMoves_New
 		   : 80 D6 03 02: ??????
 		   : 81 D6 03 02: ??????
+		   : 82 D6 03 02: ??????
 		   : 90 D6 03 02: ??????
 		   : 00 FE 03 02: gLastUsedItemType
 		   : 04 FE 03 02: gCritCapture
@@ -315,20 +320,20 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 		   
 		   
 funcs e,j,desc:
-000544 = 000544 = ?????
-0006F4 = 0006F4 = ?????
+000544 = 000544 = SetMainCallback2
+0006F4 = 0006F4 = SetVBlankCallback
 000A38 = 000A38 = SetGpuReg
-0017D0 = 0017D0 = ?????
-0019BC = 0019BC = ?????
+0017D0 = 0017D0 = LoadBgTiles
+0019BC = 0019BC = ShowBg
 001B90 = 001B90 = ChangeBgX
 0020BC = 0020BC = CopyBgTilemapBufferToVram
 002124 = 002124 = CopyToBgTilemapBufferRect
 002228 = 002228 = CopyToBgTilemapBufferRect_ChangePalette
 002454 = 002454 = FillBgTilemapBufferRect_Palette0
-002BC4 = 002BC4 = ?????
+002BC4 = 002BC4 = Free
 003CE4 = 003CB0 = AddWindow
 003E3C = 003E08 = RemoveWindow
-003ECC = 003E98 = ?????
+003ECC = 003E98 = FreeAllWindowBuffers
 003F20 = 003EEC = CopyWindowToVram
 003FA0 = 003F6C = PutWindowTilemap
 0041F0 = 0041BC = BlitBitmapRectToWindow
@@ -509,17 +514,17 @@ funcs e,j,desc:
 06EF44 = 06E738 = PrintStartMenuActions
 06F258 = 06EA4C = ShowStartMenu
 06F394 = 06EB88 = ?????
-06F4B4 = 06ECA4 = ?????
+06F4B4 = 06ECA4 = StartMenuPokedexCallback
 06FED8 = 06F67C = ResetTilesetAnimBuffer
 06FF04 = 06F6A8 = AppendTilesetAnimToBuffer
 0703A8 = 06FB4C = LoadCompressedPalette
 0703EC = 06FB90 = LoadPalette
-070588 = 06FD2C = ?????
-070E44 = BeginFastPaletteFade
+070588 = 06FD2C = BeginNormalPaletteFade
+070E44 = 0705E8 = BeginFastPaletteFade
 07141C = 070BC0 = UpdateBlendRegisters
-071A68 = 07120C = ?????
+071A68 = 07120C = GetCurrentMapMusic
 071AB4 = 071258 = FadeOutMapMusic
-071AEC = 071290 = ?????
+071AEC = 071290 = FadeOutAndPlayNewMapMusic
 0722CC = 071A70 = PlaySE
 0751C4 = 074968 = GetBattlerSide
 0751D8 = 07497C = GetBattlerPosition
@@ -549,10 +554,10 @@ funcs e,j,desc:
 0C7208 = 0C83E4 = RecordItemEffectBattle
 0CC79C = 0CD914 = set_unknown_box_id
 0CC7A8 = 0CD920 = get_unknown_box_id
-0CD38C = 0CE4D8 = ?????
-0CD3A0 = 0CE4EC = ?????
-0CD4D0 = 0CE61C = ?????
-0CD608 = 0CE754 = ?????
+0CD38C = 0CE4D8 = VblankCB_TrainerHillRecords
+0CD3A0 = 0CE4EC = MainCB2_TrainerHillRecords
+0CD4D0 = 0CE61C = ClearVramOamPlttRegs
+0CD608 = 0CE754 = ClearTasksAndGraphicalStructs
 0D77F4 = 0D8898 = BattleStringExpandPlaceholdersToDisplayedString
 0D87BC = 0D980C = BattlePutTextOnWindow
 0F67A4 = 0F77FC = schedule_bg_copy_tilemap_to_vram
