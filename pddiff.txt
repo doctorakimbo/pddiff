@@ -976,6 +976,13 @@ grafics:
 		  Implements: Unclear, possibly makes water tiles only cause encounters when player is surfing (is there a possibility of standing on water tiles otherwise?)
 + 088B9E: C0 0F -> 01 20 (sound will always become stereo no matter what options menu says)
 = 089088: Entirety of sub_8089088 (see 143disasm)
+		  Implements: When backing out of (trainer card?), implement possibility that it returns to some mysteryfunc enormous menu instead of the START menu (need A LOT more info)
+		  Required knowledge: j0203D51F, (needed for fn_E9EA00_J: j0203CB1C, j0203CB24, j0203CB26, j0203CB28, j0203D100, j0203D200, j0203D500, j0203D502, j0203D504, j0203D50A, j0203D51E, j0203D51F, j0203D520, j0203D528, j0203D52A, gMysteryFuncWindows (j0203D530), j0203D550, j0203D552, j0203D560, j0203D561, j0203D562, j0203D570, j0203D571, gMysteryFuncUnknownListSize (j0203D580), gMysteryFuncUnknownList (j0203D582), j0203D680, j0203D681, j0203D682, j0203D690)
+		  Requires in future: fn_E9E980_J, fn_E9EA00_J (and all subfunctions: fn_168900_J, fn_42BE70_J, fn_E9EA40_J, fn_E9EAA4_J, fn_E9EB36_J, fn_E9EBB0_J, fn_E9EF98_J, fn_E9F056_J, fn_E9F204_J, fn_E9F272_J, fn_E9F398_J, fn_E9F478_J, fn_E9F6F4_J, fn_E9F8B0_J, fn_E9F92C_J, fn_E9F966_J, fn_E9FA12_J, fn_E9FC04_J, fn_E9FC28_J, fn_E9FE26_J, fn_E9FE5A_J, AddElementToUnknownList (jE9FE82), SortUnknownListNumerically (jE9FEA8), fn_E9FED4_J, fn_E9FFDC_J, fn_EA00EA_J, fn_EA0110_J, fn_EA0158_J, fn_EA0540_J, fn_EA05F4_J, fn_EA06C6_J, fn_EA06E8_J, fn_EA0B60_J)
+= 
+		  
+		  
+		  
 		  
 		  
 		  
@@ -985,5 +992,5 @@ grafics:
 		  
 
 
-curr: j88C64-j88C7C
-next: j890E0 (repoint), j89BCA (1byte), j89BE6 (1byte), j89C30 (1byte), j8A628 (repoint), j8B3C8 (1byte), j8B4A2 (1byte), j8B4B4
+curr: j890E0 (repoint)
+next: j89BCA (1byte), j89BE6 (1byte), j89C30 (1byte), j8A628 (repoint), j8B3C8 (1byte), j8B4A2 (1byte), j8B4B4

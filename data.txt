@@ -199,20 +199,25 @@ FA AD 03 02: 72 AD 03 02: ??????
 		   : AC C2 03 02: gDaycareParentMoves
 		   : B4 C2 03 02: gDaycareParentMoves[1]
 		   : 18 CB 03 02: ?????? (GetLocationMusic: if this.0xE is not zero, return this.0xC instead of the default music)
-		   : 1C CB 03 02: ??????
-		   : 24 CB 03 02: ??????
-		   : 26 CB 03 02: ??????
+								 (fn_E9F204_J: convert this.4 (number) to a string and store it in data_0203D520_J)
+								 (fn_E9EBB0_J: If data_0203D52A_J is 0, data_0203D50A_J is 1, A is pressed, and (data_0203D562_J + data_0203D561_J) != 0, set this.0xC to data_E9FBC4_J[fn_E9F92C_J(data_0203D562_J + data_0203D561_J) - 1] then start playing the music at this.0xC)
+								 (fn_E9EBB0_J: If data_0203D52A_J is 0, data_0203D50A_J is 1, A is pressed, and (data_0203D562_J + data_0203D561_J) != 0, set this.0xE to 1)
+								 (fn_E9EBB0_J: If data_0203D52A_J is 0, data_0203D50A_J is 1, A is pressed, and (data_0203D562_J + data_0203D561_J) == 0, set this.0xE to 0)
 		   : 27 CB 03 02: ?????? (InitStartMenuStep/fn_E9D4A2_J: if set, skip START menu items 3-5)
 								 (InitStartMenuStep/fn_E9D4A2_J: if set, s4 = 9F 59 60 98 FF for menu item 3; otherwise s4 = gSaveBlock1Ptr->location (which shouldn't happen))
-		   : 28 CB 03 02: ??????
-		   : 54 CB 03 02: ?????? (fn_EE5000: set data_0203D2E0_J.0 on start)
+		   : 28 CB 03 02: ?????? (appears to be an array of 64 bits)
+								 (fn_E9FA12_J: this function returns the number of bits in the array that are set)
+								 (fn_E9F92C_J: if its argument is 0, this function returns 0; otherwise returns the index (plus 1) of the (argument)th 1 byte in the array (0xFF if there is none))
+		   : 54 CB 03 02: ?????? (fn_EE5000: set data_0203D2E0_J.0 to this on start)
 								 (fn_EE51C0: set this to data_0203D2E0_J.0 on exit)
 		   : 58 CB 03 02: ?????? (GetFlagPointer: if the flag number is 0xF000 or above, read it from this[number - 0xF000])
-		   : 00 D1 03 02: ??????
-		   : 00 D2 03 02: ??????
+		   : 00 D1 03 02: ?????? (appears to be an array of 4 SpriteTemplates)
+								 (fn_E9F398_J: used to temporarily store SpriteTemplates before their creation in a loop)
+		   : 00 D2 03 02: ?????? (appears to be an array of 4 SpriteTemplates)
+								 (fn_E9F398_J: used to temporarily store SpriteTemplates before their creation in a loop)
 		   : E0 D2 03 02: ?????? (fn_EE5000: set this.4, this.8, and this.0xC to 0 and this.0 to data_0203CB54_J on start)
 								 (fn_EE540C: use this.0 as an index into gPokemonStoragePtr->0x824C[])
-								 (fn_EE51C0: just before exiting, set data_0203CB54_J to this.0)
+								 (fn_EE51C0: set data_0203CB54_J to this.0 on exit)
 								 (fn_EE51C0: if UP is pressed, decrement this.0 if not 0, decrement this.2 if not 0 (otherwise decrement this.1), and if data_0203D2EC_J is 1, swap gPokemonStoragePtr->0x824C[this.0] and gPokemonStoragePtr->0x824C[this.0 + 1])
 								 (fn_EE51C0: if DOWN is pressed, decrement this.0 if less than (data_0203D2E4_J - 1), increment this.2 if not 2 (otherwise increment this.1), and if data_0203D2EC_J is 1, swap gPokemonStoragePtr->0x824C[this.0] and gPokemonStoragePtr->0x824C[this.0 - 1])
 		   : E1 D2 03 02: ?????? (fn_EE543E: use this.0 as an index into gPokemonStoragePtr->0x824C[])
@@ -258,31 +263,64 @@ FA AD 03 02: 72 AD 03 02: ??????
 							     (fn_EB8398_J: Set to {data = data_E95DDC, size = 0x100, tag = (0x78A0 + moveId)} then call LoadSpriteSheet())
 		   : 80 D4 03 02: gBackupMonData
            : 00 D5 03 02: ?????? (sub_8032768: zeroed starting from here to 0203D600)
-		   : 02 D5 03 02: ??????
-		   : 04 D5 03 02: ??????
-		   : 0A D5 03 02: ??????
-		   : 1E D5 03 02: ??????
-		   : 1F D5 03 02: ??????
-		   : 20 D5 03 02: ??????
-		   : 28 D5 03 02: ??????
-		   : 2A D5 03 02: ??????
+								 (fn_E9EA40_J: set to 0 at start)
+								 (fn_E9EBB0_J: if data_0203D52A_J is 0xFF, increment this and set REG_BLDY to this each frame until 0x10, then set data_0203D52A_J to 0xFE)
+								 (fn_E9EBB0_J: if data_0203D52A_J is 0xFE, decrement this and set REG_BLDY to this each frame until 0, then set data_0203D52A_J to 0)
+		   : 02 D5 03 02: ?????? (fn_E9EBB0_J: if data_0203D50A_J is 0, increment this (mod 512) and set REG_BG3HOFS and REG_BG3VOFS to (this / 2) each frame)
+		   : 04 D5 03 02: ?????? (fn_E9EAA4_J: set to 1)
+								 (fn_E9F6F4_J: set to 0)
+								 (fn_E9FC28_J: set to 0)
+		   : 0A D5 03 02: ?????? (fn_E9EAA4_J: set to 0)
+								 (fn_E9EBB0_J: if this is 0, increment data_0203D504_J (mod 512) and set REG_BG3HOFS and REG_BG3VOFS to (this / 2) each frame)
+								 (fn_E9EBB0_J: if data_0203D52A_J is 0xFF, data_0203D500_J is 0x10, and this isn't 0, call fn_E9EAA4_J)
+								 (fn_E9EBB0_J: if data_0203D52A_J is 0xFF, data_0203D500_J is 0x10, and this is 0, call fn_E9F6F4_J or fn_E9FC28_J, depending on data_0203D51E_J)
+								 (fn_E9EBB0_J: used as switch between three "modes" of receiving input)
+								 (fn_E9F6F4_J: set to 1)
+								 (fn_E9FC28_J: set to 2)
+		   : 1E D5 03 02: ?????? (fn_E9EA00_J: set to 0 at start)
+								 (fn_E9F272_J: used as switch to load one of four palettes)
+								 (fn_E9EBB0_J: if data_0203D52A_J is 0xFF, data_0203D500_J is 0x10, and data_0203D50A_J is 0, call fn_E9F6F4_J if this is 1 or fn_E9FC28_J if 2)
+								 (fn_E9EBB0_J: if data_0203D52A_J is 0, data_0203D50A_J is 0, A is pressed, and this is 0, open the pokedex)
+								 (fn_E9EBB0_J: if data_0203D52A_J is 0, data_0203D50A_J is 0, A is pressed, this is 1, and at least 1 bit in data_0203CB28_J is set, set data_0203D52A_J to 0xFF)
+								 (fn_E9EBB0_J: if data_0203D52A_J is 0, data_0203D50A_J is 0, A is pressed, this is 1, and no bits in data_0203CB28_J are set, call fn_EA06E8_J)
+								 (fn_E9EBB0_J: if data_0203D52A_J is 0, data_0203D50A_J is 0, A is pressed, and this is 2, set data_0203D52A_J to 0xFF)
+								 (fn_E9EBB0_J: if data_0203D52A_J is 0, data_0203D50A_J is 0, A is pressed, and this is 3, set data_0203D51F_J to 0 and go back to the START menu)
+		   : 1F D5 03 02: ?????? (fn_E9E980_J: If this is 0x80, jump to mysteryfunc (fn_E9EA00_J); else go back to the START menu)
+								 (fn_E9EA00_J: set to 0x80 at start)
+								 (fn_E9EBB0_J: If data_0203D52A_J is 0, data_0203D50A_J is 0, and B is pressed, set this to 0 and go back to the START menu)
+		   : 20 D5 03 02: ?????? (fn_E9F204_J: used as storage space for a string printed to gMysteryFuncWindows[5])
+		   : 28 D5 03 02: ?????? (fn_E9F056_J: set to the same thing as gMysteryFuncWindows[2])
+		   : 2A D5 03 02: ?????? (fn_E9EA00_J: set to 0x18 at start)
+								 (fn_E9EBB0_J: if 0xFF, possibility to become 0xFE; if 0xFE, possibility to become 0; if 0, possiblity to become 0xFF (usually from B button), otherwise decrement once per frame until 0)
 		   : 30 D5 03 02: gMysteryFuncWindows
-		   : 50 D5 03 02: ??????
-		   : 52 D5 03 02: ??????
-		   : 60 D5 03 02: ??????
-		   : 61 D5 03 02: ??????
-		   : 62 D5 03 02: ??????
-		   : 70 D5 03 02: ??????
-		   : 71 D5 03 02: ??????
-		   : 80 D5 03 02: ??????
-		   : 82 D5 03 02: ??????
+		   : 50 D5 03 02: ?????? (fn_E9EA00_J: set to REG_BG0CNT at start)
+								 (fn_E9EAA4_J: set REG_BG0CNT to this mod 4)
+		   : 52 D5 03 02: ?????? (fn_E9EA00_J: set to REG_BG1CNT at start)
+								 (fn_E9EAA4_J: set REG_BG1CNT to (this mod 4) + 1)
+		   : 60 D5 03 02: ?????? (fn_E9F6F4_J: set this to the number of 1 bits in data_0203CB28_J)
+								 (fn_E9EBB0_J: used as the size of some mystery list)
+		   : 61 D5 03 02: ?????? (fn_E9F6F4_J: set to 0 at start)
+								 (fn_E9F6F4_J: if more than 5 1 bits in data_0203CB28_J, do something with fn_EA05F4_J with this as parameter)
+								 (fn_E9F8B0_J: unknown)
+								 (fn_E9EBB0_J: used as the selection offset of some mystery list)
+		   : 62 D5 03 02: ?????? (fn_E9F6F4_J: set to 0 at start)
+								 (fn_E9F8B0_J: unknown)
+								 (fn_E9EBB0_J: used as the selection id of some mystery list)
+		   : 70 D5 03 02: ?????? (fn_E9F398_J: loaded with the results of a call to LoadSpritePalette)
+		   : 71 D5 03 02: ?????? (fn_E9F398_J: loaded with the results of a call to LoadSpritePalette)
+		   : 80 D5 03 02: gMysteryFuncUnknownListSize
+		   : 82 D5 03 02: gMysteryFuncUnknownList // record size 2
 		   : 00 D6 03 02: sHatchedEggLevelUpMoves_New
 		   : 64 D6 03 02: ?????? (BuildEggMoveset: read but not used?)
 		   : 74 D6 03 02: sHatchedEggEggMoves_New
-		   : 80 D6 03 02: ??????
-		   : 81 D6 03 02: ??????
-		   : 82 D6 03 02: ??????
-		   : 90 D6 03 02: ??????
+		   : 80 D6 03 02: ?????? (fn_E9FC28_J: set to 0 at start)
+								 (fn_E9EBB0_J: used as the selection id of some mystery list, seven entries per row)
+		   : 81 D6 03 02: ?????? (fn_E9FC28_J: if gMysteryFuncUnknownListSize is 14 or more, do something with fn_EA05F4_J with this as parameter)
+								 (fn_E9FFDC_J: used as index into gMysteryFuncUnknownList)
+								 (fn_E9EBB0_J: used as the selection offset of some mystery list, seven entries per row)
+		   : 82 D6 03 02: ?????? (fn_E9EBB0_J: if data_0203D52A_J is 0, data_0203D50A_J is 2, A is pressed, and gMysteryFuncUnknownListSize isn't 0, toggle this)
+		   : 90 D6 03 02: ?????? (fn_EA0158_J: set to 1 at start)
+								 (fn_E9EBB0_J: if data_0203D52A_J is 0, data_0203D50A_J is 2, and any key but B is pressed, set this to 1)
 		   : 00 FE 03 02: gLastUsedItemType
 		   : 04 FE 03 02: gCritCapture
 		   
@@ -570,7 +608,7 @@ funcs e,j,desc:
 112364 = 112EAC = ?????
 11B0D0 = 11B914 = InUnionRoom
 125A78 = 1263C4 = ItemIdToBattleMoveId
-12E51C = 12ED24 = box_print
+12E51C = 12ED24 = AddTextPrinterParameterized3
 12E5A4 = 12EDAC = AddTextPrinterParameterized2
 1E3B60 = 1C7A84 = CpuFastSet
 1E3B64 = 1C7A88 = CpuSet
