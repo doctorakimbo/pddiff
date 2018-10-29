@@ -1,0 +1,10 @@
+SetBoxMonNickFromAnyBox(boxId, monPosition, nickname)
+{
+	if(boxId <= 22 && monPosition <= 29)
+	{
+		monPtr = GetCompressedBoxMonFromBox(boxId, monPosition);
+	
+		for(i = 0; i <= 5; i++) // need changing
+			monPtr.nickname[i] = nickname[i];
+	}
+}

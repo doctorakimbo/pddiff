@@ -1,0 +1,7 @@
+GetBoxMonDataFromAnyBox(boxId, monPosition, request)
+{
+	if(boxId > 13 || monPosition > 29)
+		return NULL;
+	
+	return GetBoxMonData(&gPokemonStoragePtr->4[boxId][monPosition], request) // 0x1F by 0x50
+}

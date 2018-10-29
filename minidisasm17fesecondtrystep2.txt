@@ -1,0 +1,15 @@
+sub_8089FEC()
+{
+	ConvertIntToDecimalStringN(StringCopy(&s3, data_419CED), *(*data_020397A4 + 0x480), 0, 6)
+	
+	if(*(*data_020397A4 + 0x457) != 1)
+	{
+		AddTextPrinterParameterized3(1, *(data_3CD8E9 + 1), 0x14, 0x38, data_3CD8E0, -1, data_419CE7)
+		AddTextPrinterParameterized3(1, *(data_3CD8E9 + 1), -0x7A - (StringLength(&s3) * 6), 0x38, data_3CD8E0, -1, &s3)
+	}
+	else
+	{
+		AddTextPrinterParameterized3(1, *(data_3CD8E9 + 1), 0x10, 0x39, data_3CD8E0, -1, data_419CE7)
+		AddTextPrinterParameterized3(1, *(data_3CD8E9 + 1), 0x76 - (StringLength(&s3) * 6), 0x39, data_3CD8E0, -1, &s3)
+	}
+}

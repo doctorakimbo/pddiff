@@ -1,0 +1,5 @@
+SetBoxMonNickFromAnyBox(arg0, arg1, arg2)
+{
+	if(arg0 <= 0xD && arg1 <= 0x1D)
+		SetBoxMonData(gPokemonStoragePtr->4[arg0][arg1], 2, arg2)
+}

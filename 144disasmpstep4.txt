@@ -1,0 +1,129 @@
+GetBoxMonDataFromAnyBox(boxId, monPosition, request)
+{
+	if(boxId > 22 || monPosition > 29)
+		return NULL;
+	
+	tempMon = fn_3C5D20_J(GetBoxMonFromBox(boxId, monPosition))
+	ret = GetBoxMonData(tempMon, request);
+	Free(tempMon);
+	return ret;
+}
+
+
+
+
+
+GetBoxMonFromBox(via_r3 boxId, via_r4 monPosition) @3C5F84_J
+{
+	return &gPokemonStoragePtr->4[boxId][monPosition] // 0x1F by 0x30
+}
+
+
+
+
+
+fn_3C5D20_J(srcMon)
+{
+	destMon = AllocZeroed(0x50);
+	ZeroBoxMonData(destMon);
+	SetBoxMonData(destMon, MON_DATA_PERSONALITY, &srcMon.personality)
+	SetBoxMonData(destMon, MON_DATA_OT_ID, &srcMon.otId)
+	SetBoxMonData(destMon, MON_DATA_CHECKSUM, &CalculateBoxMonChecksum(destMon))
+	EncryptBoxMon(destMon);
+	SetBoxMonData(destMon, MON_DATA_NICKNAME, srcMon.0xC)
+	SetBoxMonData(destMon, MON_DATA_LANGUAGE, data_1CDE31_J)
+	SetBoxMonData(destMon, MON_DATA_OT_NAME, srcMon.0x1E)
+
+	for(i = MON_DATA_POKERUS; i <= MON_DATA_ALT_ABILITY; i++)
+		fn_3C5DC2_J(srcMon, destMon, i)
+
+	for(i = MON_DATA_EXP; i <= MON_DATA_FRIENDSHIP; i++)
+		fn_3C5DC2_J(srcMon, destMon, i)
+
+	fn_3C5DC2_J(srcMon, destMon, MON_DATA_MARKINGS)
+	fn_3C5DC2_J(srcMon, destMon, MON_DATA_FRIENDSHIP)
+	fn_3C5DC2_J(srcMon, destMon, MON_DATA_PP_BONUSES)
+
+	for(i = MON_DATA_SPECIES; i <= MON_DATA_MOVE4; i++)
+		fn_3C5DC2_J(srcMon, destMon, i)
+
+	MonRestorePP(destMon);
+	return destMon;
+}
+
+
+
+
+
+fn_3C5DC2_J(via_r4 srcMon, via_r5 destMon, via_r6 request)
+{
+	SetBoxMonData(destMon, request, &fn_3C5DDE_J(srcMon, request))
+}
+
+
+
+
+
+fn_3C5DDE_J(mon, request)
+{
+	switch(request)
+	{
+	case MON_DATA_NICKNAME:
+		return &mon.0xC
+	case MON_DATA_LANGUAGE:
+		return data_1CDE31_J
+	case MON_DATA_OT_NAME:
+		return &mon.0x1E
+	case MON_DATA_MARKINGS:
+		return FIRST_4_BITS(mon.0x26)
+	case MON_DATA_SPECIES:
+		return mon.0x24
+	case MON_DATA_HELD_ITEM:
+		return LAST_12_BITS(mon.0x26)
+	case MON_DATA_MOVE1:
+	case MON_DATA_MOVE2:
+	case MON_DATA_MOVE3:
+		return LOWER_TWO_BYTES(mon.0x28 >> ((request - MON_DATA_MOVE1) * 0xA))
+	case MON_DATA_MOVE4:
+		return HIGHEST_TWO_BITS(mon.0x2B) | LOWEST_SIX_BITS(mon.0x2C) >> 2
+	case MON_DATA_PP_BONUSES:
+		return mon.0x13
+	case MON_DATA_EXP:
+		return mon.0x2D | (mon.0x2E << 8) | (LAST_5_BITS(mon.0x2F) << 0x10)
+	case MON_DATA_HP_EV:
+	case MON_DATA_ATK_EV:
+	case MON_DATA_DEF_EV:
+	case MON_DATA_SPEED_EV:
+	case MON_DATA_SPATK_EV:
+	case MON_DATA_SPDEF_EV:
+		return mon.0x16[request - MON_DATA_HP_EV]
+	case MON_DATA_FRIENDSHIP:
+		return mon.0x14
+	case MON_DATA_POKERUS:
+		return LAST_TWO_BITS(mon.0x2F >> 5)
+	case MON_DATA_MET_LOCATION:
+		return mon.0x15
+	case MON_DATA_MET_LEVEL:
+		return mon.0x16
+	case MON_DATA_MET_GAME:
+		return 4
+	case MON_DATA_POKEBALL:
+		return mon.0x17
+	case MON_DATA_HP_IV:
+	case MON_DATA_ATK_IV:
+	case MON_DATA_DEF_IV:
+	case MON_DATA_SPEED_IV:
+	case MON_DATA_SPATK_IV:
+	case MON_DATA_SPDEF_IV:
+		return LAST_FIVE_BITS(mon.8 >> ((request - MON_DATA_HP_IV) * 5))
+	case MON_DATA_IS_EGG:
+		return SECOND_HIGHEST_BIT(mon.0x18)
+	case MON_DATA_ALT_ABILITY:
+		if((mon.0x2F >> 7) != 0)
+			return 2
+		else
+			return mon.0xB >> 7
+	default:
+		return mon;
+	}
+}

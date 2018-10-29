@@ -1,0 +1,11 @@
+SetBoxMonDataFromAnyBox(arg0, arg1, arg2, arg3)
+{
+	if(arg0 <= 0x16 && arg1 <= 0x1D)
+	{
+		r7 = GetCompressedBoxMonFromBox(arg0, arg1)
+		r4 = DecompressBoxMon(r7)
+		SetBoxMonData(r4, arg2, arg3)
+		CopyMonToBox(r4, r7)
+		Free(r4)
+	}
+}

@@ -1,0 +1,38 @@
+sub_808A100()
+{
+	r4 = data_020397A4
+	r0 = *r4
+	r1 = 0x46C
+	r0 += r1
+	ConvertIntToDecimalStringN(&s3, *r0, 0, 7)
+	r0 = *r4
+	r2 = 0x443
+	r0 += r2
+	r0 = *r0
+	
+	if(r0 != 1)
+	{
+		r0 = StringLength(&s3)
+		r0 *= 8
+		r2 = -0x70
+		r1 = r2
+		r1 -= r0
+		r7 = r1
+		r6 = data_3CD8E9
+		r5 = data_3CD8E0
+		r4 = -1
+		AddTextPrinterParameterized3(1, *(r6 + 1), 0x14, 0x38, r5, r4, data_419CEF)
+		r6 = *r6
+		AddTextPrinterParameterized3(1, r6, r7, 0x38, r5, r4, &s3)
+		AddTextPrinterParameterized3(1, r6, 0x92, 0x38, r5, r4, data_419CF7)
+	}
+	else
+	{
+		r0 = StringLength(&s3)
+		r0 *= 8
+		r1 = 0x6C
+		r1 -= r0
+		r7 = r1
+		AddTextPrinterParameterized3(1, *data_3CD8E9, r7, 0x3A, data_3CD8E0, -1, &s3)
+	}
+}

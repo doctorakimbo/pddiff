@@ -1,0 +1,128 @@
+GetBoxMonDataFromAnyBox(boxId, monPosition, request)
+{
+	if(boxId > 22 || monPosition > 29)
+		return NULL;
+	
+	tempMon = DecompressBoxMon(GetCompressedBoxMonFromBox(boxId, monPosition));
+	ret = GetBoxMonData(tempMon, request);
+	Free(tempMon);
+	return ret;
+}
+
+
+
+
+
+GetCompressedBoxMonFromBox(via_r3 boxId, via_r4 monPosition) @3C5F84_J
+{
+	return &gPokemonStoragePtr->4[boxId][monPosition] // 0x1F by 0x30
+}
+
+
+
+
+
+DecompressBoxMon(srcMon) @fn_3C5D20_J
+{
+	destMon = AllocZeroed(0x50);
+	ZeroBoxMonData(destMon);
+	SetBoxMonData(destMon, MON_DATA_PERSONALITY, &srcMon.personality);
+	SetBoxMonData(destMon, MON_DATA_OT_ID, &srcMon.otId);
+	SetBoxMonData(destMon, MON_DATA_CHECKSUM, &CalculateBoxMonChecksum(destMon));
+	EncryptBoxMon(destMon);
+	SetBoxMonData(destMon, MON_DATA_NICKNAME, srcMon.nickname);
+	SetBoxMonData(destMon, MON_DATA_LANGUAGE, LANGUAGE_JAPANESE);
+	SetBoxMonData(destMon, MON_DATA_OT_NAME, srcMon.otName);
+
+	for(i = MON_DATA_POKERUS; i <= MON_DATA_ALT_ABILITY; i++)
+		SetBoxMonDataToCompressedBoxMonData(srcMon, destMon, i);
+
+	for(i = MON_DATA_EXP; i <= MON_DATA_FRIENDSHIP; i++)
+		SetBoxMonDataToCompressedBoxMonData(srcMon, destMon, i);
+
+	SetBoxMonDataToCompressedBoxMonData(srcMon, destMon, MON_DATA_MARKINGS);
+	SetBoxMonDataToCompressedBoxMonData(srcMon, destMon, MON_DATA_FRIENDSHIP);
+	SetBoxMonDataToCompressedBoxMonData(srcMon, destMon, MON_DATA_PP_BONUSES);
+
+	for(i = MON_DATA_SPECIES; i <= MON_DATA_MOVE4; i++)
+		SetBoxMonDataToCompressedBoxMonData(srcMon, destMon, i);
+
+	MonRestorePP(destMon);
+	return destMon;
+}
+
+
+
+
+
+SetBoxMonDataToCompressedBoxMonData(via_r4 srcMon, via_r5 destMon, via_r6 request) @3C5DC2_J
+{
+	SetBoxMonData(destMon, request, &GetCompressedBoxMonData(srcMon, request))
+}
+
+
+
+
+
+GetCompressedBoxMonData(mon, request) @3C5DDE_J
+{
+	switch(request)
+	{
+	case MON_DATA_NICKNAME:
+		return &mon.nickname;
+	case MON_DATA_LANGUAGE:
+		return LANGUAGE_JAPANESE;
+	case MON_DATA_OT_NAME:
+		return &mon.otName;
+	case MON_DATA_MARKINGS:
+		return mon.markings;
+	case MON_DATA_SPECIES:
+		return mon.species;
+	case MON_DATA_HELD_ITEM:
+		return mon.heldItem;
+	case MON_DATA_MOVE1:
+	case MON_DATA_MOVE2:
+	case MON_DATA_MOVE3:
+	case MON_DATA_MOVE4:
+		return mon.moves[request - MON_DATA_MOVE1];
+	case MON_DATA_PP_BONUSES:
+		return mon.ppBonuses;
+	case MON_DATA_EXP:
+		return mon.experience;
+	case MON_DATA_HP_EV:
+	case MON_DATA_ATK_EV:
+	case MON_DATA_DEF_EV:
+	case MON_DATA_SPEED_EV:
+	case MON_DATA_SPATK_EV:
+	case MON_DATA_SPDEF_EV:
+		return mon.ev[request - MON_DATA_HP_EV]
+	case MON_DATA_FRIENDSHIP:
+		return mon.friendship;
+	case MON_DATA_POKERUS:
+		return mon.pokerus;
+	case MON_DATA_MET_LOCATION:
+		return mon.metLocation;
+	case MON_DATA_MET_LEVEL:
+		return mon.metLevel;
+	case MON_DATA_MET_GAME:
+		return VERSION_FIRERED;
+	case MON_DATA_POKEBALL:
+		return mon.pokeball;
+	case MON_DATA_HP_IV:
+	case MON_DATA_ATK_IV:
+	case MON_DATA_DEF_IV:
+	case MON_DATA_SPEED_IV:
+	case MON_DATA_SPATK_IV:
+	case MON_DATA_SPDEF_IV:
+		return mon.iv[request - MON_DATA_HP_IV];
+	case MON_DATA_IS_EGG:
+		return mon.isEgg;
+	case MON_DATA_ALT_ABILITY:
+		if(mon.altAbilityEqualsTwo) // ???
+			return 2;
+		else
+			return mon.altAbility;
+	default:
+		return mon;
+	}
+}

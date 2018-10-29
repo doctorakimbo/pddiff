@@ -368,6 +368,7 @@ funcs e,j,desc:
 002124 = 002124 = CopyToBgTilemapBufferRect
 002228 = 002228 = CopyToBgTilemapBufferRect_ChangePalette
 002454 = 002454 = FillBgTilemapBufferRect_Palette0
+002BB0 = 002BB0 = AllocZeroed
 002BC4 = 002BC4 = Free
 003CE4 = 003CB0 = AddWindow
 003E3C = 003E08 = RemoveWindow
@@ -431,11 +432,13 @@ funcs e,j,desc:
 036530 = 035CA4 = OpponentBufferExecCompleted
 039698 = 038E04 = HasSuperEffectiveMoveAgainstOpponents
 039E3C = 0395A8 = GetMostSuitableMonToSwitchInto
+03D97C = 03D0E8 = ZeroBoxMonData
 03DA14 = 03D180 = ZeroPlayerPartyMons
 03DA34 = 03D1A0 = ZeroEnemyPartyMons
 03DA54 = 03D1C0 = CreateMon
 03DD98 = 03D504 = CreateMonWithNature (FR) / CreateMonWithoutNature (PD)
-03E47C = CalculateMonStats
+03E3E8 = 03DB54 = CalculateBoxMonChecksum
+03E47C = 03DBE8 = CalculateMonStats
 03E830 = 03DF9C = GetLevelFromBoxMonExp
 03E89C = 03E008 = GiveMoveToMon
 03E8B0 = 03E01C = GiveMoveToBoxMon
@@ -446,10 +449,12 @@ funcs e,j,desc:
 03F720 = 03EE8C = GetMonGender
 03F730 = 03EE9C = GetBoxMonGender
 03F78C = 03EEF8 = GetGenderFromSpeciesAndPersonality
+03F8F8 = 03F064 = EncryptBoxMon
 03F940 = 03F0AC = GetSubstruct
 03FBE8 = 03F354 = GetMonData
 03FD44 = 03F4B0 = GetBoxMonData
 04037C = 03FA70 = SetMonData
+0404D0 = 03FBC4 = SetBoxMonData
 040B08 = 0401FC = CopyMon
 040C3C = 040330 = CalculatePlayerPartyCount
 040D7C = 040470 = GetMonAbility
@@ -485,11 +490,9 @@ funcs e,j,desc:
 054E90 = 054750 = IncrementGameStat
 055238 = 054AF8 = Overworld_GetMapHeaderByGroupAndId
 055250 = 054B10 = GetDestinationWarpMapHeader
-055D8C = 05564C = ?????
 056158 = 055A18 = GetMapTypeByGroupAndId
 056188 = 055A48 = Overworld_GetMapTypeOfSaveblockLocation
 0561D8 = 055A98 = is_map_type_1_2_3_5_or_6
-0568A8 = 056168 = ?????
 058F48 = 058804 = MapGridGetMetatileIdAt
 058F78 = 058834 = MapGridGetMetatileBehaviorAt
 059B74 = 059430 = MetatileBehavior_IsSandOrDeepSand
@@ -551,7 +554,6 @@ funcs e,j,desc:
 06EE7C = 06E670 = ShowSafariBallsWindow
 06EF44 = 06E738 = PrintStartMenuActions
 06F258 = 06EA4C = ShowStartMenu
-06F394 = 06EB88 = ?????
 06F4B4 = 06ECA4 = StartMenuPokedexCallback
 06FED8 = 06F67C = ResetTilesetAnimBuffer
 06FF04 = 06F6A8 = AppendTilesetAnimToBuffer
@@ -602,10 +604,8 @@ funcs e,j,desc:
 0F6F1C = 0F7F7C = NewMenuHelpers_DrawStdWindowFrame
 0F793C = 0F899C = GetStartMenuWindowId
 0F7948 = 0F89A8 = RemoveStartMenuWindow
-104AB0 = 10586C = ?????
 10AD10 = 10B80C = UseRegisteredKeyItemOnField
 10F904 = 110438 = MoveMenuCursor
-112364 = 112EAC = ?????
 11B0D0 = 11B914 = InUnionRoom
 125A78 = 1263C4 = ItemIdToBattleMoveId
 12E51C = 12ED24 = AddTextPrinterParameterized3
@@ -693,7 +693,12 @@ funcs e,j,desc:
 ?????? = 252058 = ShouldSwitchIfMightBeDoubleTargeted (unimplemented)
 ?????? = 252248 = GetTypeMatchup (unimplemented)
 ?????? = 3915EC = ????? (unimplemented)
+?????? = 3C5D20 = DecompressBoxMon (unimplemented)
+?????? = 3C5DC2 = SetBoxMonDataToCompressedBoxMonData (unimplemented)
+?????? = 3C5DDE = GetCompressedBoxMonData (unimplemented)
+?????? = 3C5F84 = GetCompressedBoxMonFromBox (unimplemented)
 ?????? = 3C5FA0 = CopyMonToBox (unimplemented)
+
 
 data:
 21A8D4 = sHoldEffectToType

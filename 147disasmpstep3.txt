@@ -1,0 +1,7 @@
+GetAndCopyBoxMonDataFromAnyBox(arg0, arg1, arg2, arg3)
+{
+	if(arg0 > 0x16 || arg1 > 0x1D)
+		return 0
+	
+	return GetCompressedBoxMonData(GetCompressedBoxMonFromBox(arg0, arg1), arg2, arg3)
+}

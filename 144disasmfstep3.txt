@@ -1,0 +1,7 @@
+GetBoxMonDataFromAnyBox(arg0, arg1, arg2)
+{
+	if(arg0 > 0xD || arg1 > 0x1D)
+		return 0
+	
+	return GetBoxMonData(&gPokemonStoragePtr->4[arg0][arg1], arg2) // 0x1F by 0x50
+}

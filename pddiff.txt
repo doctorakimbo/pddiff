@@ -288,6 +288,7 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 
 grafics:
 = 3BF58C (3860F0 old, 783890 new)
+= 3CD5E8 (395324 old, 90C190 new)
 = D0051C (C0051C old, EB8990 new)
 = EAB6C4 (3835A4 old, D97800 new)
 = EAB8C4 (383604 old, F00000 new)
@@ -326,8 +327,9 @@ grafics:
 - ???
 	! also set 3AD950 (gBattleAnimPaletteTable[136]) to 1201A40
 - expand 3ADE18 (battle anim backgrounds) from 27 entries to 100 (11FF000)
-+ expand 3DB028 (item data) from 375 entries to 435 (10B0000)
+- expand 3D3740 (raw mon icon palette data) from 3 entries to 6 (ONLY FIRST PTR) (EE4E00?)
 + expand 3D4038 (mon icon palettes) from 6 entries to 16 (jE40000, e1E40000)
++ expand 3DB028 (item data) from 375 entries to 435 (10B0000)
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
 + expand 3FE664 (trapping moves) from 6 entries to 8 (1303552)
 
@@ -350,7 +352,7 @@ grafics:
 = 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
-		  Implements: Pokemon name length, something else - need more info
+		  Implements: pkmnnamelength, something else - need more info
 		  Required knowledge: j020385E2, unknown data table at j1400000
 = 0124EB: 80 -> 60 (store weather as fullword)
 = 014CD8: Entirety of GetWhoStrikesFirst (+GetSpeedStat, GetPriority, GetAbilityValues) (see 04disasm/04disasm2)
@@ -979,6 +981,27 @@ grafics:
 		  Implements: When backing out of (trainer card?), implement possibility that it returns to some mysteryfunc enormous menu instead of the START menu (need A LOT more info)
 		  Required knowledge: j0203D51F, (needed for fn_E9EA00_J: j0203CB1C, j0203CB24, j0203CB26, j0203CB28, j0203D100, j0203D200, j0203D500, j0203D502, j0203D504, j0203D50A, j0203D51E, j0203D51F, j0203D520, j0203D528, j0203D52A, gMysteryFuncWindows (j0203D530), j0203D550, j0203D552, j0203D560, j0203D561, j0203D562, j0203D570, j0203D571, gMysteryFuncUnknownListSize (j0203D580), gMysteryFuncUnknownList (j0203D582), j0203D680, j0203D681, j0203D682, j0203D690)
 		  Requires in future: fn_E9E980_J, fn_E9EA00_J (and all subfunctions: fn_168900_J, fn_42BE70_J, fn_E9EA40_J, fn_E9EAA4_J, fn_E9EB36_J, fn_E9EBB0_J, fn_E9EF98_J, fn_E9F056_J, fn_E9F204_J, fn_E9F272_J, fn_E9F398_J, fn_E9F478_J, fn_E9F6F4_J, fn_E9F8B0_J, fn_E9F92C_J, fn_E9F966_J, fn_E9FA12_J, fn_E9FC04_J, fn_E9FC28_J, fn_E9FE26_J, fn_E9FE5A_J, AddElementToUnknownList (jE9FE82), SortUnknownListNumerically (jE9FEA8), fn_E9FED4_J, fn_E9FFDC_J, fn_EA00EA_J, fn_EA0110_J, fn_EA0158_J, fn_EA0540_J, fn_EA05F4_J, fn_EA06C6_J, fn_EA06E8_J, fn_EA0B60_J)
+- 08A006: 06 -> 07
+  08A028: 7A -> 72
+  08A090: 76 -> 6E
+		  Implements: extra money digit on trainer card display
+		  Notes: unclear if this is the correct way to translate to english rom (see minidisasm17)
+- 08B92A: 08 -> 02 (changes something from palette slot 8 to palette slot 2) (test this)
+= 08BA06: 0D -> 16 (part of box refactor)
+= 08BA18: Entirety of GetBoxMonDataFromAnyBox (see 144disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: DecompressBoxMon (j3C5D20), SetBoxMonDataToCompressedBoxMonData (j3C5DC2), GetCompressedBoxMonData (j3C5DDE), GetCompressedBoxMonFromBox (j3C5F84)
+= 08BA5C: Entirety of SetBoxMonDataFromAnyBox (see 145disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: DecompressBoxMon (j3C5D20), GetCompressedBoxMonFromBox (j3C5F84), CopyMonToBox (j3C5FA0)
+= 08BB2C: Entirety of SetBoxMonNickFromAnyBox (see 146disasm)
+		  Implements: Part of CompressedBoxPokemon refactor, pkmnnamelength
+		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
+= 08BB6C: Entirety of GetAndCopyBoxMonDataFromAnyBox (see 147disasm)
+		   Implements: Part of CompressedBoxPokemon refactor, pkmnnamelength
+		  Requires in future: GetCompressedBoxMonData (j3C5DDE), GetCompressedBoxMonFromBox (j3C5F84)
+= 08BBB4: Entirety of CopyBoxMonFromAnyBox (see 148disasm)
+		  Implements: 
 = 
 		  
 		  
@@ -990,7 +1013,12 @@ grafics:
 		  
 		  
 		  
+		  
+		  
+		  
+		  
+		  
 
 
-curr: j890E0 (repoint)
-next: j89BCA (1byte), j89BE6 (1byte), j89C30 (1byte), j8A628 (repoint), j8B3C8 (1byte), j8B4A2 (1byte), j8B4B4
+curr: j8B5C8-j8B690
+next: j8B750

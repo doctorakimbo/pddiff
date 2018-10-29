@@ -1,0 +1,305 @@
+GetBoxMonDataFromAnyBox(arg0, arg1, arg2)
+{
+	r5 = arg2
+	r3 = arg0
+	r4 = arg1
+	
+	if(r3 > 0x16 || r4 > 0x1D)
+		return 0
+	
+	r4 = fn_3C5D20_J(fn_3C5F84_J(r3, r4))
+	r5 = GetBoxMonData(r4, r5)
+	Free(r4)
+	return r5
+}
+
+
+
+
+
+fn_3C5F84_J(via_r3 arg0, via_r4 arg1)
+{
+	r0 = 0x1E
+	r2 = 0x30
+	r0 *= r2
+	r0 *= arg0
+	r1 = r0 + 4
+	r0 = gPokemonStoragePtr
+	r0 = *r0
+	r0 += r1
+	r2 *= arg1
+	r0 += r2
+	return r0
+}
+
+
+
+
+
+fn_3C5D20_J(arg0)
+{
+	r4 = arg0
+	r5 = AllocZeroed(0x50)
+	ZeroBoxMonData(r5)
+	SetBoxMonData(r5, 0, r4)
+	SetBoxMonData(r5, 1, r4 + 4)
+	s0 = CalculateBoxMonChecksum(r5)
+	SetBoxMonData(r5, 9, &s0)
+	EncryptBoxMon(r5)
+	SetBoxMonData(r5, 2, r4 + 0xC)
+	SetBoxMonData(r5, 3, data_1CDE31_J)
+	SetBoxMonData(r5, 7, r4 + 0x1E)
+
+	for(r6 = 0x22; r6 <= 0x2E; r6++)
+		fn_3C5DC2_J(r4, r5, r6)
+
+	for(r6 = 0x19; r6 <= 0x20; r6++)
+		fn_3C5DC2_J(r4, r5, r6)
+
+	fn_3C5DC2_J(r4, r5, 8)
+	fn_3C5DC2_J(r4, r5, 0x20)
+	fn_3C5DC2_J(r4, r5, 0x15)
+
+	for(r6 = 0xB; r6 <= 0x10; r6++)
+		fn_3C5DC2_J(r4, r5, r6)
+
+	MonRestorePP(r5)
+	return r5
+}
+
+
+
+
+
+fn_3C5DC2_J(via_r4 arg0, via_r5 arg1, via_r6 arg2)
+{
+	s0 = fn_3C5DDE_J(arg0, arg2)
+	SetBoxMonData(arg1, arg2, &s0)
+}
+
+
+
+
+
+fn_3C5DDE_J(arg0, arg1)
+{
+	r4 = arg0
+	r5 = arg1
+	
+	if(r5 == 2)
+	{
+		r0 = r4
+		r0 += 0xC
+		goto lbl28
+	}
+
+	if(r5 == 3)
+	{
+		r0 = data_1CDE31_J
+		goto lbl28
+	}
+
+	if(r5 == 7)
+	{
+		r0 = 0x1E
+		r0 += r4
+		goto lbl28
+	}
+
+	if(r5 == 8)
+	{
+		r0 = 0x26
+		r0 += r4
+		r0 = *r0
+		r0 >>= 0xC
+		goto lbl28
+	}
+
+	if(r5 == 0xB)
+	{
+		r0 = 0x24
+		r0 += r4
+		goto lbl27
+	}
+
+	if(r5 == 0xC)
+	{
+		r0 = 0x26
+		r0 += r4
+		r0 = *r0
+		r0 <<= 0x16
+		r0 >>= 0x16
+		goto lbl28
+	}
+
+	if(r5 <= 0xF)
+	{
+		if(r5 >= 0xD)
+		{
+			r1 = r5
+			r1 -= 0xD
+			r0 = 0xA
+			r1 *= r0
+			r0 = 0x28
+			r0 += r4
+			r0 = *r0
+			r0 >>= r1
+			r0 <<= 0x16
+			r0 >>= 0x16
+			goto lbl28
+		}
+	}
+	
+	if(r5 == 0x10)
+	{
+		r2 = 0x2B
+		r2 += r4
+		r0 = *r2
+		r0 >>= 6
+		r1 = *(r2 + 1)
+		r1 <<= 2
+		r0 |= r1
+		goto lbl28
+	}
+
+	if(r5 == 0x15)
+	{
+		r0 = 0x13
+		r0 += r4
+		goto lbl26
+	}
+
+	if(r5 == 0x19)
+	{
+		r2 = 0x2D
+		r2 += r4
+		r0 = *r2
+		r1 = *(r2 + 1)
+		r1 <<= 8
+		r0 |= r1
+		r1 = *(r2 + 2)
+		r1 <<= 0x1B
+		r1 >>= 0xB
+		r0 |= r1
+		goto lbl28
+	}
+
+	if(r5 <= 0x1F)
+	{
+		if(r5 >= 0x1A)
+		{
+			r1 = r5
+			r1 -= 0x1A
+			r0 = 0x16
+			r0 += r1
+			r0 += r4
+			goto lbl26
+		}
+	}
+	
+	if(r5 == 0x20)
+	{
+		r0 = 0x14
+		r0 += r4
+		goto lbl26
+	}
+
+	if(r5 == 0x22)
+	{
+		r2 = 0x2D
+		r2 += r4
+		r0 = *(r2 + 2)
+		r0 >>= 5
+		r1 = 3
+		r0 &= r1
+		goto lbl28
+	}
+
+	if(r5 == 0x23)
+	{
+		r0 = 0x15
+		r0 += r4
+		goto lbl26
+	}
+
+	if(r5 == 0x24)
+	{
+		r0 = 0x16
+		r0 += r4
+		goto lbl26
+	}
+
+	if(r5 == 0x25)
+	{
+		r0 = 4
+		goto lbl28
+	}
+
+	if(r5 == 0x26)
+	{
+		r0 = 0x17
+		r0 += r4
+		goto lbl26
+	}
+
+	if(r5 <= 0x2C)
+	{
+		if(r5 >= 0x27)
+		{
+			r2 = 8
+			r2 += r4
+			r0 = *r2
+			r1 = r5
+			r1 -= 0x27
+			r2 = 5
+			r1 *= r2
+			r0 >>= r1
+			r1 = 0x1F
+			r0 &= r1
+			goto lbl28
+		}
+	}
+	
+	if(r5 == 0x2D)
+	{
+		r2 = 8
+		r2 += r4
+		r0 = *r2
+		r0 <<= 1
+		r0 >>= 0x1F
+		goto lbl28
+	}
+
+	if(r5 == 0x2E)
+	{
+		r2 = 0x2D
+		r2 += r4
+		r0 = *(r2 + 2)
+		r0 >>= 7
+		
+		if(r0 != 0)
+		{
+			r0 = 2
+			goto lbl28
+		}
+		
+		r2 = 8
+		r2 += r4
+		r0 = *(r2 + 3)
+		r0 >>= 7
+		goto lbl28
+	}
+
+	goto lbl28
+
+	lbl26:
+	r0 = *r0
+	goto lbl28
+
+	lbl27:
+	r0 = *r0
+	goto lbl28
+
+	lbl28:
+	return r0
+}

@@ -1,0 +1,5 @@
+SetBoxMonNickFromAnyBox(boxId, monPosition, nickname)
+{
+	if(boxId <= 13 && monPosition <= 29)
+		SetBoxMonData(gPokemonStoragePtr->4[boxId][monPosition], MON_DATA_NICKNAME, nickname)
+}

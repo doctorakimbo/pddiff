@@ -1,0 +1,18 @@
+SetBoxMonNickFromAnyBox(arg0, arg1, arg2)
+{
+	r5 = arg2
+	r3 = arg0
+	r4 = arg1
+	
+	if(r3 <= 0x16 && r4 <= 0x1D)
+	{
+		r0 = GetCompressedBoxMonFromBox(r3, r4)
+		r0 += 0xC
+
+		for(r2 = 0; r2 <= 5; r2++)
+		{
+			r1 = *(r5 + r2)
+			*(r0 + r2) = r1
+		}
+	}
+}

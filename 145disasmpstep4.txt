@@ -1,0 +1,11 @@
+SetBoxMonDataFromAnyBox(boxId, monPosition, request, newVal)
+{
+	if(boxId <= 22 && monPosition <= 29)
+	{
+		monPtr = GetCompressedBoxMonFromBox(boxId, monPosition);
+		tempMon = DecompressBoxMon(monPtr);
+		SetBoxMonData(tempMon, request, newVal);
+		CopyMonToBox(tempMon, monPtr);
+		Free(tempMon);
+	}
+}

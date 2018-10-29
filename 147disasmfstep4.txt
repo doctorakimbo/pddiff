@@ -1,0 +1,7 @@
+GetAndCopyBoxMonDataFromAnyBox(boxId, monPosition, request, destAddr)
+{
+	if(boxId > 13 || monPosition > 29)
+		return NULL;
+	
+	return GetBoxMonData(&gPokemonStoragePtr->4[boxId][monPosition], request, destAddr)
+}

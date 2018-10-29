@@ -1,0 +1,10 @@
+SetBoxMonNickFromAnyBox(arg0, arg1, arg2)
+{
+	if(arg0 <= 0x16 && arg1 <= 0x1D)
+	{
+		r0 = GetCompressedBoxMonFromBox(arg0, arg1)
+	
+		for(r2 = 0; r2 <= 5; r2++)
+			GetCompressedBoxMonFromBox(arg0, arg1).0xC[r2] = arg2[r2]
+	}
+}

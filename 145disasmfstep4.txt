@@ -1,0 +1,5 @@
+SetBoxMonDataFromAnyBox(boxId, monPosition, request, newVal)
+{
+	if(boxId <= 13 && monPosition <= 29)
+		SetBoxMonData(gPokemonStoragePtr->4[boxId][monPosition], request, newVal)
+}

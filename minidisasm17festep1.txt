@@ -1,0 +1,51 @@
+sub_808A100()
+{
+	if(FlagGet(0x829))
+	{
+		r4 = data_020397A4
+		r0 = *r4
+		r1 = 0x468
+		r0 += r1
+		ConvertIntToDecimalStringN(&s3, *r0, 0, 3)
+		r0 = *r4
+		r2 = 0x457
+		r0 += r2
+		r0 = *r0
+		
+		if(r0 != 1)
+		{
+			r0 = StringLength(&s3)
+			r1 = r0 * 2
+			r1 += r0
+			r1 *= 2
+			r2 = -0x78
+			r0 = r2
+			r0 -= r1
+			r7 = r0
+			r0 = data_3CD8E9
+			r6 = *(r0 + 1)
+			r5 = data_3CD8E0
+			r4 = -1
+			AddTextPrinterParameterized3(1, r6, 0x14, 0x48, r5, r4, data_419CEF)
+			AddTextPrinterParameterized3(1, r6, r7, 0x48, r5, r4, &s3)
+			AddTextPrinterParameterized3(1, r6, 0x8A, 0x48, r5, r4, data_419CF7)
+		}
+		else
+		{
+			r0 = StringLength(&s3)
+			r1 = r0 * 2
+			r1 += r0
+			r1 *= 2
+			r0 = 0x78
+			r0 -= r1
+			r7 = r0
+			r0 = data_3CD8E9
+			r6 = *(r0 + 1)
+			r5 = data_3CD8E0
+			r4 = -1
+			AddTextPrinterParameterized3(1, r6, 0x10, 0x49, r5, r4, data_419CEF)
+			AddTextPrinterParameterized3(1, r6, r7, 0x49, r5, r4, &s3)
+			AddTextPrinterParameterized3(1, r6, 0x8A, 0x49, r5, r4, data_419CF7)
+		}
+	}
+}
