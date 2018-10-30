@@ -1,0 +1,10 @@
+ClearMonInBox(boxId, monPosition)
+{
+	if(boxId <= 22 && monPosition <= 29)
+	{
+		monPtr = GetCompressedBoxMonFromBox(boxId, monPosition);
+		
+		for(i = 0; i <= 0x2F; i++)
+			monPtr[i] = 0;
+	}
+}

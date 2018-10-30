@@ -1,0 +1,107 @@
+lbl1: @8BDE8
+r8 = r0
+r1 <<= 0x18
+r0 = r1 >> 0x18
+r2 <<= 0x18
+r7 = r2 >> 0x18
+r4 = r3
+r2 = 0xFFFF
+if(r3 > 1) goto lbl2
+
+r2 = 1
+if(r3 == 1) goto lbl3
+
+goto lbl2
+
+lbl2:
+if(r4 != 3) goto lbl7
+
+goto lbl3
+
+lbl3:
+r1 = r2
+r1 += r0
+r0 = r1 << 0x10
+r6 = r2
+if(r1 < 0) goto lbl10
+
+if(r1 > r7) goto lbl10
+
+goto lbl4
+
+lbl4:
+r4 = r0 >> 0x10
+r0 = r4 * 4
+r0 += r4
+r0 *= 0x10
+r0 += r8
+r1 = 0xB
+GetBoxMonData()
+if(r0 != 0) goto lbl5
+
+r0 = r6 >> 0x10
+r0 += r4
+r0 <<= 0x10
+r2 = r0 >> 0x10
+if(r2 < 0) goto lbl10
+
+if(r2 <= r7) goto lbl4
+
+goto lbl10
+
+lbl5:
+r0 = r4
+goto lbl11
+
+lbl6:
+r0 = r5
+goto lbl11
+
+lbl7:
+r2 <<= 0x10
+r1 = r2 >> 0x10
+r1 += r0
+r0 = r1 << 0x10
+r6 = r2
+if(r1 < 0) goto lbl10
+
+if(r1 > r7) goto lbl10
+
+goto lbl8
+
+lbl8:
+r5 = r0 >> 0x10
+r0 = r5 * 4
+r0 += r5
+r0 *= 0x10
+r1 = r8
+r4 = r1 + r0
+r0 = r4
+r1 = 0xB
+GetBoxMonData()
+if(r0 == 0) goto lbl9
+
+r0 = r4
+r1 = 0x2D
+GetBoxMonData()
+if(r0 == 0) goto lbl6
+
+goto lbl9
+
+lbl9:
+r0 = r6 >> 0x10
+r0 += r5
+r0 <<= 0x10
+r2 = r0 >> 0x10
+if(r2 < 0) goto lbl10
+
+if(r2 <= r7) goto lbl8
+
+goto lbl10
+
+lbl10:
+r0 = -1
+goto lbl11
+
+lbl11:
+return r0

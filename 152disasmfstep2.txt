@@ -1,0 +1,7 @@
+GetBoxNamePtr(arg0)
+{
+	if(arg0 <= 0xD)
+		return (arg0 * 9) + *gPokemonStoragePtr + 0x8344
+	else
+		return 0
+}

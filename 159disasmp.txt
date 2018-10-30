@@ -1,0 +1,202 @@
+lbl1: @8C400
+r5 = r0
+r0 = 0
+r1 = 0
+s13 = r0
+s14 = r1
+r1 = 0xC0000000
+r0 = s13
+r0 |= r1
+r1 = 0xFFFF0FFF
+r4 = &s13
+r0 = *(r4 + 4)
+r0 &= r1
+r1 = 0x1000
+r0 |= r1
+*(r4 + 4) = r0
+r0 = &s7
+r8 = r0
+r1 = 0
+*r0 = r1
+r0 = &s0
+r0 += 0x1E
+*r0 = r1
+s8 = r4
+r0 = data_231CF0
+s9 = r0
+s10 = r1
+r0 = data_231CFC
+s11 = r0
+r0 = data_760D
+s12 = r0
+r0 = &s1
+r1 = r8
+r2 = 0x18
+memcpy()
+r1 = data_3CDA94
+r0 = r8
+r2 = 4
+memcpy()
+r6 = data_020397AC
+r0 = *r6
+r1 = 0x244
+r0 += r1
+*r0 = r5
+r2 = &s1
+r1 = *r6
+r5 = 0x240
+r0 = r1 + r5
+r0 = *r0
+*r2 = r0
+r3 = 0x242
+r1 += r3
+r0 = *r1
+*(r2 + 2) = r0
+r3 = *r6
+r0 = 0
+*r3 = r0
+r1 = 0x3F
+r0 = r1
+r0 &= r2
+r2 = 0x80
+r0 |= r2
+*(r4 + 1) = r0
+r0 = *(r4 + 3)
+r1 &= r0
+r0 = 0x40
+r1 |= r0
+*(r4 + 3) = r1
+r1 = &s1
+r3 += r5
+r0 = *r3
+r0++
+*r1 = r0
+r0 = data_3CDA70
+s3 = r0
+r4 = 0
+r7 = r8
+goto lbl2
+
+lbl2:
+r2 = *r6
+r3 = r4 * 4
+r2 += 4
+r2 += r3
+r1 = 0
+*r2 = r1
+r5 = 0
+r0 = 2
+r0 &= r4
+if(r0 == 0) goto lbl3
+
+r0 = 0xC4
+*(r1 + 0x20) = r0
+r5 = 2
+goto lbl3
+
+lbl3:
+r0 = 1
+r0 &= r4
+if(r0 == 0) goto lbl4
+
+r1 = *r6
+r1 += 4
+r1 += r3
+r2 = *r1
+r0 = 0x70
+*(r2 + 0x22) = r0
+r2 = *r1
+r1 = *(r2 + 3)
+r0 = 0x3F
+r0 &= r1
+*(r2 + 3) = r0 
+r5++
+goto lbl4
+
+lbl4:
+r4++
+if(r4 <= 3) goto lbl2
+
+r4 = 0
+r5 = data_020397AC
+goto lbl5
+
+lbl5:
+r0 = r4 * 8
+r0 += r4
+r0 *= 0x80000
+r3 = 0x7C0000
+r0 += r3
+r0 /= 0x10000
+r2 = 0
+r1 = *r5
+r3 = 0x246
+r1 += r3
+r1 = *r1
+s0 = r1
+r1 = 0x48
+r3 = 0
+fn_9223C()
+r2 = r0
+r0 = *r5
+r1 = r4 * 4
+r0 += 0x20
+r0 += r1
+if(r2 == 0) goto lbl7
+
+r1 = 1
+if(r4 != 0) goto lbl6
+
+r3 = -1
+r1 += r3
+goto lbl6
+
+lbl6:
+*(r2 + 0x2E) = r1
+r1 = *r0
+r0 = data_8CD65
+*(r1 + 0x1C) = r0
+goto lbl7
+
+lbl7:
+r4++
+if(r4 <= 1) goto lbl5
+
+fn_EEA2C0_J()
+fn_8CC74()
+r0 = r7
+r1 = 5
+r2 = 3
+fn_8CCFC()
+return
+
+
+
+
+
+
+fn_EEA2C0_J:
+r0 = data_EEAAC4_J
+r1 = 0xA0
+r2 = 0x20
+LoadPalette()
+r0 = data_EEA620_J
+AddWindow()
+r4 = r0
+r1 = data_02036FFC_J
+*r1 = r4
+r1 = 0
+fn_445C()
+r0 = r4
+r1 = data_EEA78C_J
+r2 = 0
+r3 = 0
+fn_4404()
+r0 = r4
+r1 = 3
+CopyWindowToVram()
+r0 = r4
+PutWindowTilemap()
+r0 = 0
+CopyBgTilemapBufferToVram()
+return

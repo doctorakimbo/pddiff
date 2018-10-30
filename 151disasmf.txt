@@ -1,0 +1,8 @@
+lbl1: @8BD30
+r3 = r0
+r4 = r1
+
+if(boxId <= 13 && monPosition <= 29)
+	return &gPokemonStoragePtr->4[boxId][monPosition];
+else
+	return NULL;

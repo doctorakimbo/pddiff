@@ -1,0 +1,12 @@
+CountMonsInBox(boxId)
+{
+	count = 0;
+
+	for(i = 0; i < 30; i++)
+	{
+		if(GetBoxedMonPtr(boxId, i).species != SPECIES_NONE)
+			count++;
+	}
+
+	return count;
+}

@@ -1,0 +1,14 @@
+GetFirstFreeBoxSpot(arg0)
+{
+	r3 = arg0
+	
+	for(r4 = 0; r4 <= 0x1D; r4++)
+	{
+		r0 = GetCompressedBoxMonFromBox(r3, r4)
+		
+		if(*(r0 + 0x24) == 0)
+			return r4
+	}
+	
+	return -1
+}

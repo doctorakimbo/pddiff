@@ -1,0 +1,12 @@
+GetFirstFreeBoxSpot(arg0)
+{
+	r5 = arg0
+
+	for(r4 = 0; r4 <= 0x1D; r4++)
+	{
+		if(GetBoxMonDataFromAnyBox(r5, r4, 0xB) == 0)
+			return r4
+	}
+	
+	return -1
+}

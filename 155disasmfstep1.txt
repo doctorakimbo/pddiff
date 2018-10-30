@@ -1,0 +1,76 @@
+sub_808BDE8(arg0, arg1, arg2, arg3)
+{
+	r8 = arg0
+	r1 = arg1 << 0x18
+	r0 = r1 >> 0x18
+	r2 = arg2 << 0x18
+	r7 = r2 >> 0x18
+	r4 = arg3
+	r2 = 0xFFFF
+	if(r3 > 1) goto lbl2
+
+	r2 = 1
+	
+	if(r3 != 1)
+	{
+		lbl2:
+		if(r4 != 3)
+		{
+			r2 <<= 0x10
+			r1 = r2 >> 0x10
+			r1 += r0
+			r0 = r1 << 0x10
+			r6 = r2
+			
+			if(r1 >= 0 && r1 <= r7)
+			{
+				do
+				{
+					r5 = r0 >> 0x10
+					r0 = r5 * 4
+					r0 += r5
+					r0 *= 0x10
+					r1 = r8
+					r4 = r1 + r0
+
+					if(GetBoxMonData(r4, 0xB) != 0 && GetBoxMonData(r4, 0x2D) == 0)
+						return r5
+
+					r0 = r6 >> 0x10
+					r0 += r5
+					r0 <<= 0x10
+					r2 = r0 >> 0x10
+				} while(r2 >= 0 && r2 <= r7)
+			}
+
+			return -1
+		}
+	}
+	
+	r1 = r2
+	r1 += r0
+	r0 = r1 << 0x10
+	r6 = r2
+	
+	if(r1 >= 0 && r1 < r7)
+	{
+		do
+		{
+			r4 = r0 >> 0x10
+			r0 = r4 * 4
+			r0 += r4
+			r0 *= 0x10
+			r0 += r8
+			
+			if(GetBoxMonData(r0, 0xB) != 0)
+				return r4
+
+			r0 = r6 >> 0x10
+			r0 += r4
+			r0 <<= 0x10
+			r2 = r0 >> 0x10
+		} while(r2 >= 0 && r2 <= r7)
+	}
+
+	return -1
+}

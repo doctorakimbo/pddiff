@@ -1,0 +1,5 @@
+SetBoxWallpaper(arg0, arg1)
+{
+	if(arg0 <= 0xD && arg1 <= 0xF)
+		*(*gPokemonStoragePtr + 0x83C2 + arg0) = arg1
+}

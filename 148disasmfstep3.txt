@@ -1,0 +1,5 @@
+CopyBoxMonFromAnyBox(arg0, arg1, arg2)
+{
+	if(arg0 <= 0xD && arg1 <= 0x1D)
+		memcpy(gPokemonStoragePtr->4[arg0][arg1], arg2, 0x50)
+}

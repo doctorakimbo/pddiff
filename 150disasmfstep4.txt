@@ -1,0 +1,5 @@
+sub_808BCF0(boxId, monPosition, destMon)
+{
+	if(boxId <= 13 && monPosition <= 29)
+		BoxMonToMon(&gPokemonStoragePtr->4[boxId][monPosition], destMon)
+}

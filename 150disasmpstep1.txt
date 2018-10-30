@@ -1,0 +1,13 @@
+sub_808BCF0(arg0, arg1, arg2)
+{
+	r5 = arg2
+	r3 = arg0
+	r4 = arg1
+
+	if(boxId <= 22 && monPosition <= 29)
+	{
+		r4 = DecompressBoxMon(GetCompressedBoxMonFromBox(r3, r4))
+		fn_3E774(r4, r5)
+		Free(r4)
+	}
+}

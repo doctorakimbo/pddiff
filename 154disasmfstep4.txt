@@ -1,0 +1,5 @@
+SetBoxWallpaper(boxId, wallpaperId)
+{
+	if(boxId <= 19 && wallpaperId <= 15)
+		gPokemonStoragePtr->0x83C2[boxId] = wallpaperId
+}

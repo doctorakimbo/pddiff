@@ -1,0 +1,7 @@
+GetBoxedMonPtr(boxId, monPosition)
+{
+	if(boxId <= 13 && monPosition <= 29)
+		return GetCompressedBoxMonFromBox(boxId, monPosition);
+	else
+		return NULL;
+}

@@ -1,0 +1,28 @@
+sub_808C95C()
+{
+	if(*(gMain + 0x2E) & 2)
+	{
+		PlaySE(5)
+		return 0xC9
+	}
+	elseif(*(gMain + 0x2E) & 1)
+	{
+		PlaySE(5)
+		return *(*data_020397AC + 0x244)
+	}
+	else
+	{
+		if(*(gMain + 0x2E) & 0x20)
+		{
+			PlaySE(5)
+			sub_808CC44()
+		}
+		elseif(*(gMain + 0x2E) & 0x10)
+		{
+			PlaySE(5)
+			sub_808CC10()
+		}
+		
+		return 0xC8
+	}
+}

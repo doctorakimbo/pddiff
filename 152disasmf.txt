@@ -1,0 +1,19 @@
+lbl1: @8BD6C
+r2 = r0
+if(r2 <= 0xD) goto lbl2
+
+r0 = 0
+goto lbl3
+
+lbl2:
+r0 = gPokemonStoragePtr
+r1 = r2 * 8
+r1 += r2
+r2 = 0x8344
+r1 += r2
+r0 = *r0
+r0 += r1
+goto lbl3
+
+lbl3:
+return r0

@@ -1,0 +1,28 @@
+sub_808C95C()
+{
+	if(gMain.newKeys & B_BUTTON)
+	{
+		PlaySE(SE_SELECT);
+		return 201;
+	}
+	elseif(gMain.newKeys & A_BUTTON)
+	{
+		PlaySE(SE_SELECT);
+		return data_020397AC->0x244
+	}
+	else
+	{
+		if(gMain.newKeys & DPAD_LEFT)
+		{
+			PlaySE(SE_SELECT);
+			sub_808CC44();
+		}
+		elseif(gMain.newKeys & DPAD_RIGHT)
+		{
+			PlaySE(SE_SELECT);
+			sub_808CC10();
+		}
+		
+		return 200;
+	}
+}

@@ -1,0 +1,30 @@
+sub_808BDE8(arg0, arg1, arg2, arg3)
+{
+	r2 = 0xFFFF
+	if(r3 > 1) goto lbl2
+
+	r2 = 1
+	
+	if(r3 != 1)
+	{
+		lbl2:
+		if(arg3 != 3)
+		{
+			for(r5 = arg1 + r2; r5 <= 0x10000 && r5 <= arg2; r5 += r2)
+			{
+				if(*((r5 * 0x30) + arg0 + 0x24) != 0 && SECOND_HIGHEST_BIT(*((r5 * 0x30) + arg0 + 8)) == 0)
+					return r5
+			}
+
+			return -1
+		}
+	}
+	
+	for(r4 = arg1 + r2; r4 <= 0x10000 && r4 <= arg2; r4 += r2)
+	{
+		if(*((r4 * 0x30) + arg0 + 0x24) != 0)
+			return r4
+	}
+
+	return -1
+}

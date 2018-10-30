@@ -1,0 +1,22 @@
+lbl1: @8B750
+r3 = r0
+r4 = r1
+if(r3 > 0x16) goto lbl3
+
+if(r4 > 0x1D) goto lbl3
+
+GetCompressedBoxMonFromBox()
+r2 = 0
+r3 = 0
+goto lbl2
+
+lbl2:
+r1 = r0 + r2
+*r1 = r3
+r2++
+if(r2 <= 0x2F) goto lbl2
+
+goto lbl3
+
+lbl3:
+return

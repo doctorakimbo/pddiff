@@ -1,0 +1,13 @@
+CountMonsInBox(arg0)
+{
+	r6 = arg0
+	r5 = 0
+
+	for(r4 = 0; r4 <= 0x1D; r4++)
+	{
+		if(GetBoxMonDataFromAnyBox(r6, r4, 0xB) != 0)
+			r5++
+	}
+
+	return r5
+}

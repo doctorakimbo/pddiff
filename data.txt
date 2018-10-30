@@ -115,6 +115,7 @@ FC 6D 03 02: 30 6D 03 02: gMapHeader
 13 6E 03 02: 47 6D 03 02: gMapHeader.mapType
 38 6E 03 02: 6C 6D 03 02: gEventObjects (atkEF_handleballthrow: Lure Ball boosted if this[0] is 1) (gIsPlayerFishing?)
 78 70 03 02: AC 6F 03 02: gPlayerAvatar
+		   : FC 6F 03 02: ??????
 D4 70 03 02: 08 70 03 02: ??????
 D6 70 03 02: 0A 70 03 02: gSpecialVar_MonBoxId
 D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
@@ -140,6 +141,7 @@ A4 86 03 02: D8 85 03 02: sPaletteGammaTypes
 								 (CanUseNewAI: used as an index into gTrainers)
 D0 86 03 02: 1C 86 03 02: ??????
 A4 97 03 02: F0 96 03 02: ??????
+AC 97 03 02: F8 96 03 02: ??????
 		   : A8 AC 03 02: ??????
 FA AD 03 02: 72 AD 03 02: ??????
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
@@ -376,10 +378,13 @@ funcs e,j,desc:
 003F20 = 003EEC = CopyWindowToVram
 003FA0 = 003F6C = PutWindowTilemap
 0041F0 = 0041BC = BlitBitmapRectToWindow
+004404 = 0043D0 = CopyToWindowPixelBuffer
+00445C = 004428 = FillWindowPixelBuffer
 006124 = 005F90 = RenderTextFont9
 006F8C = 006B08 = CreateSprite
 0071EC = 006D68 = CreateSpriteAndAnimate
 007804 = 007380 = DestroySpriteAndFreeResources
+00838C = 007F08 = StartSpriteAnim
 0086DC = 008258 = LoadSpriteSheet
 008928 = 0084A4 = LoadSpritePalette
 008A30 = 0085AC = FreeSpritePaletteByTag
@@ -439,6 +444,7 @@ funcs e,j,desc:
 03DD98 = 03D504 = CreateMonWithNature (FR) / CreateMonWithoutNature (PD)
 03E3E8 = 03DB54 = CalculateBoxMonChecksum
 03E47C = 03DBE8 = CalculateMonStats
+03E774 = 03DEE0 = ?????
 03E830 = 03DF9C = GetLevelFromBoxMonExp
 03E89C = 03E008 = GiveMoveToMon
 03E8B0 = 03E01C = GiveMoveToBoxMon
@@ -580,6 +586,9 @@ funcs e,j,desc:
 08B9F4 = 08B490 = StorageGetCurrentBox
 08BA18 = 08B4B4 = GetBoxMonDataFromAnyBox
 08BD30 = 08B7CC = GetBoxedMonPtr
+08CC74 = 08C6B0 = ?????
+08CCFC = 08C738 = ?????
+09223C = 091C70 = ?????
 0937DC = 093210 = CompactPartySlots
 099DE0 = 0997E8 = ApplyNewEncryptionKeyToBagItems
 099E44 = 09984C = SetBagItemsPointers

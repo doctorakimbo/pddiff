@@ -1,0 +1,15 @@
+CountMonsInBox(arg0)
+{
+	r6 = arg0
+	r5 = 0
+
+	for(r4 = 0; r4 <= 0x1D; r4++)
+	{
+		r0 = GetBoxedMonPtr(r6, r4)
+		
+		if(*(r0 + 0x24) != 0)
+			r5++
+	}
+
+	return r5
+}

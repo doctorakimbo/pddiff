@@ -1,0 +1,17 @@
+sub_808BCB4(arg0, arg1)
+{
+	r3 = arg0
+	r4 = arg1
+
+	if(r3 <= 0x16 && r4 <= 0x1D)
+	{
+		r0 = GetCompressedBoxMonFromBox(r3, r4)
+		r3 = 0
+
+		for(r2 = 0; r2 <= 0x2F; r2++)
+		{
+			r1 = r0 + r2
+			*r1 = r3
+		}
+	}
+}

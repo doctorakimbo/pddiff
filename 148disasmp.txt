@@ -1,1 +1,25 @@
 lbl1: @8B650
+r5 = r2
+r4 = r0
+r3 = r1
+if(r4 > 0x16) goto lbl2
+
+if(r3 > 0x1D) goto lbl2
+
+r2 = gPokemonStoragePtr
+r0 = 0x1E
+r1 = 0x30
+r1 *= r0
+r1 *= r4
+r1 += 4
+r0 = *r2
+r0 += r1
+r1 = 0x30
+r1 *= r3
+r1 += r0
+r0 = r5
+CopyMonToBox()
+goto lbl2
+
+lbl2:
+return

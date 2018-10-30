@@ -1,0 +1,5 @@
+CopyBoxMonFromAnyBox(boxId, monPosition, srcMon)
+{
+	if(boxId <= 13 && monPosition <= 29)
+		memcpy(gPokemonStoragePtr->4[boxId][monPosition], srcMon, 0x50)
+}

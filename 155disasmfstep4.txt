@@ -1,0 +1,29 @@
+sub_808BDE8(arg0, arg1, arg2, arg3)
+{
+	if(arg3 > 1 && arg3 != 3)
+	{
+		for(i = arg1 + 0xFFFF; i <= 0x10000 && i <= arg2; i += 0xFFFF)
+		{
+			if(GetBoxMonData(&arg0[i], MON_DATA_SPECIES) != SPECIES_NONE && !GetBoxMonData(&arg0[i], MON_DATA_IS_EGG))
+				return i;
+		}
+	}
+	elseif(arg3 != 1 && arg3 != 3)
+	{
+		for(i = arg1 + 1; i <= 0x10000 && i <= arg2; i++)
+		{
+			if(GetBoxMonData(&arg0[i], MON_DATA_SPECIES) != SPECIES_NONE && !GetBoxMonData(&arg0[i], MON_DATA_IS_EGG))
+				return i;
+		}
+	}
+	else
+	{
+		for(i = arg1 + 1; i <= 0x10000 && i <= arg2; i++)
+		{
+			if(GetBoxMonData(&arg0[i], MON_DATA_SPECIES) != SPECIES_NONE)
+				return i;
+		}
+	}
+	
+	return -1;
+}

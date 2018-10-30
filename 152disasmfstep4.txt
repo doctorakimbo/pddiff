@@ -1,0 +1,7 @@
+GetBoxNamePtr(boxId)
+{
+	if(boxId <= 13)
+		return &gPokemonStoragePtr->0x8344[arg0]
+	else
+		return NULL;
+}

@@ -998,11 +998,41 @@ grafics:
 		  Implements: Part of CompressedBoxPokemon refactor, pkmnnamelength
 		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
 = 08BB6C: Entirety of GetAndCopyBoxMonDataFromAnyBox (see 147disasm)
-		   Implements: Part of CompressedBoxPokemon refactor, pkmnnamelength
+		  Implements: Part of CompressedBoxPokemon refactor, pkmnnamelength
 		  Requires in future: GetCompressedBoxMonData (j3C5DDE), GetCompressedBoxMonFromBox (j3C5F84)
 = 08BBB4: Entirety of CopyBoxMonFromAnyBox (see 148disasm)
-		  Implements: 
-= 
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: CopyMonToBox (j3C5FA0)
+= 08BCB4: Entirety of ClearMonInBox (see 149disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
+= 08BCF0: Entirety of sub_808BCF0 (see 150disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: DecompressBoxMon (j3C5D20), GetCompressedBoxMonFromBox (j3C5F84)
+= 08BD30: Entirety of GetBoxedMonPtr (see 151disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
+= 08BD6C: Entirety of GetBoxNamePtr (see 152disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+= 08BD94: Entirety of sub_808BD94 (see 153disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+= 08BDBC: Entirety of SetBoxWallpaper (see 154disasm)
+		  Implements: Part of CompressedBoxPokemon refactor, no longer limited to 16 wallpapers
+= 08BDE8: Entirety of sub_808BDE8 (see 155disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+= 08C0D4: Entirety of CountMonsInBox (see 156disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+= 08C108: Entirety of GetFirstFreeBoxSpot (see 157disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
+= 08C808, 08C82C, 08C844: 0D -> 16 (part of CompressedBoxPokemon refactor)
+- 08C95C: Entirety of sub_808C95C (see 158disasm)
+		  Implements: Eliminates the delay on something in the PC (test!)
+= 08C9C4: Entirety of sub_808C9C4 (+ add part at EEA2C0_J) (see 159disasm)
+		  
+		  
+		  
+		  
 		  
 		  
 		  
@@ -1020,5 +1050,5 @@ grafics:
 		  
 
 
-curr: j8B5C8-j8B690
-next: j8B750
+curr: j8C400-j8C5E0
+next: j8C5E0

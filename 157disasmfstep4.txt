@@ -1,0 +1,10 @@
+GetFirstFreeBoxSpot(boxId)
+{
+	for(i = 0; i < 30; i++)
+	{
+		if(GetBoxMonDataFromAnyBox(boxId, i, MON_DATA_SPECIES) == SPECIES_NONE)
+			return i;
+	}
+	
+	return -1;
+}

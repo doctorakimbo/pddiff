@@ -1,0 +1,25 @@
+lbl1: @8BCB4
+r3 = r0
+r4 = r1
+if(r3 > 0xD) goto lbl2
+
+if(r4 > 0x1D) goto lbl2
+
+r2 = gPokemonStoragePtr
+r0 = r3 * 4
+r0 += r3
+r1 = r0 * 0x10
+r1 -= r0
+r1 *= 0x20
+r1 += 4
+r0 = *r2
+r0 += r1
+r1 = r4 * 4
+r1 += r4
+r1 *= 0x10
+r0 += r1
+ZeroBoxMonData()
+goto lbl2
+
+lbl2:
+return

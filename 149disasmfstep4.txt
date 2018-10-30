@@ -1,0 +1,5 @@
+ClearMonInBox(boxId, monPosition)
+{
+	if(boxId <= 13 && monPosition <= 29)
+		ZeroBoxMonData(gPokemonStoragePtr->4[boxId][monPosition])
+}

@@ -1,0 +1,9 @@
+sub_808BCF0(boxId, monPosition, destMon)
+{
+	if(boxId <= 22 && monPosition <= 29)
+	{
+		srcMon = DecompressBoxMon(GetCompressedBoxMonFromBox(boxId, monPosition));
+		BoxMonToMon(srcMon, destMon);
+		Free(srcMon);
+	}
+}

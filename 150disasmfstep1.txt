@@ -1,0 +1,9 @@
+sub_808BCF0(arg0, arg1, arg2)
+{
+	r5 = arg2
+	r3 = arg0
+	r4 = arg1
+
+	if(boxId <= 13 && monPosition <= 29)
+		fn_3E774(&gPokemonStoragePtr->4[boxId][monPosition], r5)
+}

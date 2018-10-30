@@ -1,0 +1,5 @@
+CopyBoxMonFromAnyBox(arg0, arg1, arg2)
+{
+	if(arg0 <= 0x16 && arg1 <= 0x1D)
+		CopyMonToBox(arg2, *gPokemonStoragePtr + (arg0 * (0x30 * 0x1E)) + 4 + (arg1 + 0x30))
+}

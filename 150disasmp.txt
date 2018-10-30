@@ -1,0 +1,15 @@
+lbl1: @8B78C
+r5 = r2
+r3 = r0
+r4 = r1
+
+if(boxId <= 22 && monPosition <= 29)
+{
+	GetCompressedBoxMonFromBox()
+	DecompressBoxMon()
+	r4 = r0
+	r1 = r5
+	fn_3E774()
+	r0 = r4
+	Free()
+}
