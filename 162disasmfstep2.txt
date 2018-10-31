@@ -1,0 +1,88 @@
+sub_808E83C()
+{
+	switch(*(*data_020397B0))
+	{
+	case 0:
+		sub_808FD34()
+		r0 = 2
+		sub_808FBA4()
+		*(*data_020397B0)++
+		
+		break;
+	case 1:
+		sub_8094F90()
+		
+		if(r0 != 0)
+			*(*data_020397B0)++
+
+		break;
+	case 2:
+		sub_8094F94()
+		*(*data_020397B0 + 0x78E) = r0
+		r0 = *(*data_020397B0 + 0x78E)
+		
+		if(r0 == -1)
+		{
+			r0 = 1
+			sub_80920FC()
+			sub_808FD20()
+			r0 = data_8D2BD
+			add_to_c3_somehow()
+		}
+		elseif(r0 > -1 && r0 >= 0x12 && r0 < 0x15)
+		{
+			PlaySE(5)
+			sub_8095024()
+			*(*data_020397B0 + 0x78E) -= 0x12
+			*(*data_020397B0)++
+		}
+		
+		break;
+	case 3:
+		if(!IsDma3ManagerBusyWithBgCopy())
+		{
+			r0 = *((*data_020397B0 + 0x78E))
+			sub_808FD5C()
+			r0 = 3
+			sub_808FBA4()
+			*(*data_020397B0)++
+		}
+		
+		break;
+	case 4:
+		sub_8094F94()
+		*(data_020397B0 + 0x790) = r0
+		r1 = *(*data_020397B0)
+		
+		if(r1 != -2)
+		{
+			if(r1 == -1)
+			{
+				sub_808FD20()
+				*(*data_020397B0) = 0
+			}
+			else
+			{
+				PlaySE(5)
+				sub_808FD20()
+				*(*data_020397B0 + 0x790) -= 0x16
+				sub_8091730()
+				*(*data_020397B0)++
+			}
+		}
+		
+		break;
+	case 5:
+		sub_8091760()
+		
+		if(r0 == 0)
+		{
+			r0 = 1
+			sub_80920FC()
+			r0 = data_8D2BD
+			add_to_c3_somehow()
+		}
+		
+		break;
+	}
+}

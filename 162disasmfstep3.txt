@@ -1,0 +1,73 @@
+sub_808E83C()
+{
+	switch(data_020397B0->0)
+	{
+	case 0:
+		sub_808FD34()
+		sub_808FBA4(2)
+		data_020397B0->0++
+		
+		break;
+	case 1:
+		if(sub_8094F90() != 0)
+			data_020397B0->0++
+
+		break;
+	case 2:
+		data_020397B0->0x78E = sub_8094F94()
+		
+		if(data_020397B0->0x78E == -1)
+		{
+			sub_80920FC(1)
+			sub_808FD20()
+			add_to_c3_somehow(task_pokemon_box_related)
+		}
+		elseif(data_020397B0->0x78E > -1 && data_020397B0->0x78E >= 0x12 && data_020397B0->0x78E < 0x15)
+		{
+			PlaySE(5)
+			sub_8095024()
+			data_020397B0->0x78E -= 0x12
+			data_020397B0->0++
+		}
+		
+		break;
+	case 3:
+		if(!IsDma3ManagerBusyWithBgCopy())
+		{
+			sub_808FD5C(data_020397B0->0x78E)
+			sub_808FBA4(3)
+			data_020397B0->0++
+		}
+		
+		break;
+	case 4:
+		data_020397B0->0x790 = sub_8094F94()
+		
+		if(data_020397B0->0x790 != -2)
+		{
+			if(data_020397B0->0x790 == -1)
+			{
+				sub_808FD20()
+				data_020397B0->0 = 0
+			}
+			else
+			{
+				PlaySE(5)
+				sub_808FD20()
+				data_020397B0->0x790 -= 0x16
+				sub_8091730()
+				data_020397B0->0++
+			}
+		}
+		
+		break;
+	case 5:
+		if(sub_8091760() == 0)
+		{
+			sub_80920FC(1)
+			add_to_c3_somehow(task_pokemon_box_related)
+		}
+		
+		break;
+	}
+}

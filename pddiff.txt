@@ -289,7 +289,15 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 grafics:
 = 3BF58C (3860F0 old, 783890 new)
 = 3CD5E8 (395324 old, 90C190 new)
+= 3CE5FC (396334 old, 396D18 new)
+= 3CE738 (3964D0 old, 396394 new)
+= 3CE758 (3964F0 old, 3963B4 new)
 = D0051C (C0051C old, EB8990 new)
+= E9C3D8 (3964B0 old, 396374 new)
+= E9C3F8 (396470 old, 396334 new)
+= E9C418 (396490 old, 396354 new)
+= E9C438 (396510 old, 396470 new)
+= E9CAEC (396BD0 old, 39CE04 new)
 = EAB6C4 (3835A4 old, D97800 new)
 = EAB8C4 (383604 old, F00000 new)
 = EAD390 (385018 old, 8E0B00 new)
@@ -1025,14 +1033,28 @@ grafics:
 = 08C108: Entirety of GetFirstFreeBoxSpot (see 157disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
 		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
-= 08C808, 08C82C, 08C844: 0D -> 16 (part of CompressedBoxPokemon refactor)
+= 08C808, 08C82C, 08C844, 08CC26, 08CC60, 08D476, 08D4B2, 08DED4: 0D -> 16 (part of CompressedBoxPokemon refactor)
 - 08C95C: Entirety of sub_808C95C (see 158disasm)
 		  Implements: Eliminates the delay on something in the PC (test!)
 = 08C9C4: Entirety of sub_808C9C4 (+ add part at EEA2C0_J) (see 159disasm)
-		  
-		  
-		  
-		  
+		  Implements: need more info
+		  Required knowledge: j02036FFC
+= 08CBA4: Entirety of sub_808CBA4 (see 160disasm)
+		  Implements: need more info
+		  Required knowledge: j02036FFC
+= 08CC74: Entirety of sub_808CC74 (+ add part at EEA33C_J) (see 161disasm)
+		  Implements: need more info (possibly box summary images on scroll)
+		  Required knowledge: j02036FFC
+		  Requires in future: jEEA4E2, GetStringLength (jEEA53E), jEEA554
+= 08E8D8: 88 42 5B DB 15 28 59 DC -> 00 4A 10 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2A46E, see 162disasm))
+  08E958: 05 20 E3 F7 B7 FC 01 F0 -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2A4B8, see 162disasm))
+		  Implements: Need more info (adds cases 0x7D, 0x7E, and 0x7F to data_020397B0->0x790)
+- 08F4CC, 08F550: 06 -> 08 (? moves x value of some printer over by two, j is 0 -> 2; test first)
+- 08F4E4, 08F566: 02 -> 00 (? changes font of some printer (same one as above))
+= 08FD34: 00 B5 05 F0 37 F8 12 20 -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2A400, see 163disasm))
+		  Implements: Need more info (extra call to fn_94DEC with case 0x7F)
+= 08FD68: 01 2C 16 D0 01 2C 02 DC -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2A432, see 164disasm))
+		  Implements: 
 		  
 		  
 		  
@@ -1050,5 +1072,5 @@ grafics:
 		  
 
 
-curr: j8C400-j8C5E0
-next: j8C5E0
+curr: j8F7A4 (8byte)
+next: j8F890

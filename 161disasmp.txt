@@ -1,0 +1,327 @@
+lbl1: @EEA33C
+r6 = data_020397AC
+r0 = *r6
+r5 = 0x244
+r0 += r5
+r0 = *r0
+fn_8C0D4()
+r1 = r0
+r0 = gStringVar1
+r2 = 0
+r3 = 2
+ConvertIntToDecimalStringN()
+r0 = data_02036FFC_J
+r4 = *r0
+r0 = r4
+r1 = data_EEA78C_J
+r2 = 0
+r3 = 0
+CopyToWindowPixelBuffer()
+r0 = gStringVar1
+fn_EEA53E_J()
+r0 = 2
+r0 -= r1
+r2 = 4
+r2 *= r0
+r0 = 0
+s0 = r0
+s1 = r0
+r0 = data_EEA628_J
+s2 = r0
+r0 = -1
+s3 = r0
+r0 = gStringVar1
+s4 = r0
+r0 = r4
+r2 = 0x48
+r1 = 0
+r3 = 0xC
+AddTextPrinterParameterized2()
+r0 = *r6
+r0 += r5
+r0 = *r0
+r5 = r0
+fn_8BD6C()
+fn_EEA53E_J()
+s4 = r0
+r2 = 8
+r2 -= r1
+r1 = 4
+r2 *= r1
+r0 = 0
+s0 = r0
+s1 = r0
+r0 = data_EEA628_J
+s2 = r0
+r0 - 1
+s3 = r0
+r0 = r4
+r1 = 0
+r2 = 0x30
+r3 = 2
+AddTextPrinterParameterized2()
+r6 = 0
+goto lbl2
+
+lbl2:
+r0 = r5
+r1 = r6
+r2 = 0x2D
+r3 = 0
+fn_8BB6C()
+if(r0 != 1) goto lbl3
+
+r0 = 8
+goto lbl4
+
+lbl3:
+r0 = r5
+r1 = r6
+r2 = 0xB
+r3 = 0
+fn_8BB6C()
+if(r0 == 0) goto lbl5
+
+r1 = 0x1C
+r0 *= r1
+r1 = data_1BC_J
+r1 = *r1
+r0 += r1
+r0 = *(r0 + 0x19)
+goto lbl4
+
+lbl4:
+r1 = 0xF
+r0 &= r1
+r1 = 0x20
+r0 *= r1
+r1 = data_EEA62C_J
+r1 += r0
+s0 = r1
+r0 = r6
+r1 = 6
+svc_6()
+r2 = 6
+r0 *= r2
+r1 *= r2
+r1 += 0x3E
+r0 += 0x1B
+s2 = r1
+r1 = s0
+s3 = r0
+r0 = 6
+s4 = r0
+s5 = r0
+r0 = 0
+s0 = r0
+s1 = r0
+r3 = 0
+r2 = 0
+r0 = r4
+BlitBitmapRectToWindow()
+goto lbl5
+
+lbl5:
+r6++
+if(r6 < 0x1E) goto lbl2
+
+r0 = r5 - 2
+r0 += 0x17
+r1 = 0x17
+svc_6()
+r2 = r1
+r6 = r2
+r0 = 6
+r1 = 0x25
+fn_EEA554_J()
+r0 = 0xA
+r1 = 0x17
+r2 = r6
+fn_EEA4E2_J()
+r0 = r5 - 1
+r0 += 0x17
+r1 = 0x17
+svc_6()
+r2 = r1
+r6 = r2
+r0 = 0x21
+r1 = 0x25
+fn_EEA554_J()
+r0 = 0x25
+r1 = 0x17
+r2 = r6
+fn_EEA4E2_J()
+r0 = r5 + 1
+r0 += 0x17
+r1 = 0x17
+svc_6()
+r2 = r1
+r6 = r2
+r0 = 0x67
+r1 = 0x25
+fn_EEA554_J()
+r0 = 0x6B
+r1 = 0x17
+r2 = r6
+fn_EEA4E2_J()
+r0 = r5 + 2
+r0 += 0x17
+r1 = 0x17
+svc_6()
+r2 = r1
+r6 = r2
+r0 = 0x82
+r1 = 0x25
+fn_EEA554_J()
+r0 = 0x86
+r1 = 0x17
+r2 = r6
+fn_EEA4E2_J()
+r0 = r4
+r1 = 3
+CopyWindowToVram()
+r0 = 0
+CopyBgTilemapBufferToVram()
+return
+
+
+
+
+
+
+fn_EEA53E_J:
+r4 = r0
+r5 = 0
+goto lbl2
+
+lbl2:
+r0 = *(r4 + r5)
+if(r0 == 0xFF) goto lbl3
+
+r5++
+goto lbl2
+
+lbl3:
+r1 = r5
+r0 = r4
+return {r0, r1}
+
+
+
+
+
+
+fn_EEA554_J:
+s6 = r0
+s7 = r1
+s8 = r2
+r6 = 0
+goto lbl2
+
+lbl2:
+r0 = s8
+r1 = r6
+r2 = 0x2D
+r3 = 0
+fn_8BB6C()
+if(r0 != 1) goto lbl3
+
+r0 = 8
+goto lbl4
+
+lbl3:
+r0 = s8
+r1 = r6
+r2 = 0xB
+r3 = 0
+fn_8BB6C()
+if(r0 == 0) goto lbl5
+
+r1 = 0x1C
+r0 *= r1
+r1 = data_1BC_J
+r1 = *r1
+r0 += r1
+r0 = *(r0 + 0x19)
+goto lbl4
+
+lbl4:
+r1 = 0xF
+r0 &= r1
+r1 = 0x20
+r0 *= r1
+r1 = data_EEA62C_J
+r1 *= r0
+s0 = r1
+r0 = r6
+r1 = 6
+svc_6()
+r2 = 4
+r0 *= r2
+r1 *= r2
+s6 = r2
+s7 = r3
+r1 += r2
+r0 += r3
+s2 = r1
+r1 = s0
+s3 = r0
+r0 = 4
+s4 = r0
+s5 = r0
+r0 = 0
+s0 = r0
+s1 = r0
+r3 = 0
+r2 = 0
+r0 = r4
+BlitBitmapRectToWindow()
+goto lbl5
+
+lbl5:
+r6++
+if(r6 < 0x1E) goto lbl2
+
+return
+
+
+
+
+
+
+fn_EEA4E2_J:
+s6 = r0
+s7 = r1
+s8 = r2
+r6 = 0
+r0 = s8
+fn_8C0D4()
+r1 = r0
+r0 = gStringVar1
+r2 = 0
+r3 = 2
+ConvertIntToDecimalStringN()
+r0 = data_02036FFC_J
+r4 = *r0
+r0 = gStringVar1
+fn_EEA53E_J()
+r0 = 2
+r0 -= r1
+r2 = 4
+r2 *= r0
+r0 = 0
+s0 = r0
+s1 = r0
+r0 = data_EEA628_J
+s2 = r0
+r0 = -1
+s3 = r0
+r0 = gStringVar1
+s4 = r0
+r0 = r4
+r1 = s6
+r2 += r1
+r3 = s7
+r1 = 0
+AddTextPrinterParameterized2()
+return

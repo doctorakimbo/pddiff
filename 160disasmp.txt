@@ -1,0 +1,33 @@
+lbl1: @8C5E0
+r0 = data_02036FFC_J
+r4 = *r0
+r0 = r4
+r1 = 0
+FillWindowPixelBuffer()
+r0 = r4
+r1 = 3
+CopyWindowToVram()
+r0 = r4
+RemoveWindow()
+r0 = 0
+CopyBgTilemapBufferToVram()
+r5 = 0
+goto lbl5
+
+lbl5:
+r0 = data_020397AC
+r0 = *r0
+r1 = r5 * 4
+r0 += 0x20
+r0 += r1
+r0 = *r0
+if(r0 == 0) goto lbl6
+
+fn_7280()
+goto lbl6
+
+lbl6:
+r5++
+if(r5 <= 1) goto lbl5
+
+return

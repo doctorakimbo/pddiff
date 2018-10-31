@@ -1,0 +1,12 @@
+lbl1: @8FD34
+fn_94DA8()
+r0 = 0x12
+fn_94DEC()
+r0 = 0x13
+fn_94DEC()
+r0 = 0x14
+fn_94DEC()
+r0 = 0x15
+fn_94DEC()
+fn_94E88()
+return

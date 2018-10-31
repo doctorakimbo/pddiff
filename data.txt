@@ -1,10 +1,10 @@
 addr e: addr j: desc
 
-		   : 24 00 02 02: ?????
+		   : 24 00 02 02: ??????
 		   : 30 04 02 02: gWindows
 3C 06 02 02: B8 05 02 02: gSprites
-		   : E8 0D 02 02: ?????
-		   : C2 1A 02 02: ?????
+		   : E8 0D 02 02: ??????
+		   : C2 1A 02 02: ??????
 D0 1C 02 02: 4C 1C 02 02: gStringVar1
 		   : 10 1D 02 02: ?????? (GetMoveRelearnerMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
 								 (GetNumberOfRelearnableMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
@@ -115,7 +115,9 @@ FC 6D 03 02: 30 6D 03 02: gMapHeader
 13 6E 03 02: 47 6D 03 02: gMapHeader.mapType
 38 6E 03 02: 6C 6D 03 02: gEventObjects (atkEF_handleballthrow: Lure Ball boosted if this[0] is 1) (gIsPlayerFishing?)
 78 70 03 02: AC 6F 03 02: gPlayerAvatar
-		   : FC 6F 03 02: ??????
+		   : FC 6F 03 02: ?????? (sub_808C9C4: set to created window)
+								 (sub_808CBA4: window stored here is deleted)
+								 (sub_808CC74: used as window to print to)
 D4 70 03 02: 08 70 03 02: ??????
 D6 70 03 02: 0A 70 03 02: gSpecialVar_MonBoxId
 D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
@@ -364,6 +366,7 @@ funcs e,j,desc:
 0006F4 = 0006F4 = SetVBlankCallback
 000A38 = 000A38 = SetGpuReg
 0017D0 = 0017D0 = LoadBgTiles
+001960 = 001960 = IsDma3ManagerBusyWithBgCopy
 0019BC = 0019BC = ShowBg
 001B90 = 001B90 = ChangeBgX
 0020BC = 0020BC = CopyBgTilemapBufferToVram
@@ -383,6 +386,7 @@ funcs e,j,desc:
 006124 = 005F90 = RenderTextFont9
 006F8C = 006B08 = CreateSprite
 0071EC = 006D68 = CreateSpriteAndAnimate
+007280 = 006DFC = DestroySprite
 007804 = 007380 = DestroySpriteAndFreeResources
 00838C = 007F08 = StartSpriteAnim
 0086DC = 008258 = LoadSpriteSheet
@@ -444,7 +448,7 @@ funcs e,j,desc:
 03DD98 = 03D504 = CreateMonWithNature (FR) / CreateMonWithoutNature (PD)
 03E3E8 = 03DB54 = CalculateBoxMonChecksum
 03E47C = 03DBE8 = CalculateMonStats
-03E774 = 03DEE0 = ?????
+03E774 = 03DEE0 = BoxMonToMon
 03E830 = 03DF9C = GetLevelFromBoxMonExp
 03E89C = 03E008 = GiveMoveToMon
 03E8B0 = 03E01C = GiveMoveToBoxMon
@@ -585,11 +589,25 @@ funcs e,j,desc:
 088E8C = 088A68 = pokedex_count
 08B9F4 = 08B490 = StorageGetCurrentBox
 08BA18 = 08B4B4 = GetBoxMonDataFromAnyBox
+08BB6C = 08B608 = GetAndCopyBoxMonDataFromAnyBox
 08BD30 = 08B7CC = GetBoxedMonPtr
-08CC74 = 08C6B0 = ?????
-08CCFC = 08C738 = ?????
-09223C = 091C70 = ?????
+08BD6C = 08B808 = GetBoxNamePtr
+08C0D4 = 08BB10 = CountMonsInBox
+08CFF8 = 08CA34 = add_to_c3_somehow
+08FBA4 = 08F5E0 = ?????
+08FD20 = 08F75C = ?????
+08FD34 = 08F770 = ?????
+08FD5C = 08F798 = ?????
+091730 = 09116C = ?????
+091760 = 09119C = ?????
+0920FC = 091B30 = ?????
 0937DC = 093210 = CompactPartySlots
+094DA8 = 0947DC = ?????
+094DEC = 094820 = ?????
+094E88 = 0948BC = ?????
+094F90 = 0949B8 = ?????
+094F94 = 0949BC = ?????
+095024 = 094A4C = ?????
 099DE0 = 0997E8 = ApplyNewEncryptionKeyToBagItems
 099E44 = 09984C = SetBagItemsPointers
 099F40 = 099948 = CheckBagHasItem
@@ -618,7 +636,7 @@ funcs e,j,desc:
 11B0D0 = 11B914 = InUnionRoom
 125A78 = 1263C4 = ItemIdToBattleMoveId
 12E51C = 12ED24 = AddTextPrinterParameterized3
-12E5A4 = 12EDAC = AddTextPrinterParameterized2
+12E5A4 = 12EDAC = AddTextPrinterParameterized4
 1E3B60 = 1C7A84 = CpuFastSet
 1E3B64 = 1C7A88 = CpuSet
 1E3B9C = square root
@@ -711,6 +729,7 @@ funcs e,j,desc:
 
 data:
 21A8D4 = sHoldEffectToType
+254784 = 21118C = gBaseStats
 250104 = sSoundMovesTable
 2504FC = 25CF04 = sAccuracyStageRatios
 25053C = sStatusFlagsForMoveEffects

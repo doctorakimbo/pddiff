@@ -1,0 +1,14 @@
+sub_808CBA4()
+{
+	r4 = data_02036FFC_J
+	FillWindowPixelBuffer(r4, 0)
+	CopyWindowToVram(r4, 3)
+	RemoveWindow(r4)
+	CopyBgTilemapBufferToVram(0)
+	
+	for(i = 0; i < 2; i++)
+	{
+		if(data_020397AC->0x20[i])
+			DestroySprite(data_020397AC->0x20[i])
+	}
+}

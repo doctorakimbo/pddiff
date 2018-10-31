@@ -1,0 +1,65 @@
+sub_808C9C4(arg0)
+{
+	s13 = 0
+	s13.3 = 0xC0
+	s13.4 = 0x1000
+	s7 = 0
+	s7pt5 = 0
+	s8 = &s13
+	s9 = data_231CF0
+	s10 = 0
+	s11 = data_231CFC
+	s12 = data_760D
+	memcpy(&s1, &s7, 0x18)
+	memcpy(&s7, data_3CDA94, 4)
+	data_020397AC->0x244 = arg0
+	s1 = data_020397AC->0x240
+	s1pt5 = data_020397AC->0x242
+	r1 = CreateSprite(&s1, 0xA0, 0x60, 0)
+	data_020397AC = &gSprites[r1]
+	s13.1 = (s13.1 & 0x3F) | 0x80
+	s13.3 = (s13.3 & 0x3F) | 0x40
+	s1 = data_020397AC->0x240 + 1
+	s3 = data_3CDA70
+
+	for(r4 = 0; r4 <= 3; r4++)
+	{
+		r1 = CreateSprite(&s1, 0x7C, 0x50, data_020397AC->0x246)
+		data_020397AC->4[r4] = &gSprites[r1]
+		
+		if(r4 & 2)
+		{
+			gSprites[r1].0x20 = 0xC4
+			r5 = 2
+		}
+		else
+			r5 = 0
+		
+		if(r4 & 1)
+		{
+			data_020397AC->4[r4].0x22 = 0x70
+			data_020397AC->4[r4].0.3 &= 0x3F
+			r5++
+		}
+		
+		StartSpriteAnim(*(*data_020397AC + 4 + (r4 * 4)), r5)
+	}
+	
+	for(r4 = 0; r4 <= 1; r4++)
+	{
+		r2 = sub_809223C(((r4 * 0x480000) + 0x7C0000) / 0x10000, 0x58, r4, 0, data_020397AC->0x246)
+		
+		if(r2 != 0)
+		{
+			if(r4 == 0)
+				r2.0x2E = 0
+			else
+				r2.0x2E = 1
+			
+			data_020397AC->0x20[r4].0x1C = data_8CD65
+		}
+	}
+
+	sub_808CC74()
+	sub_808CCFC(&s7, 5, 3)
+}

@@ -1,0 +1,147 @@
+lbl1: @8E83C
+r0 = data_020397B0
+r0 = *r0
+r0 = *r0
+if(r0 <= 5) goto lbl2
+
+goto lbl14
+
+lbl2:
+r0 *= 4
+r1 = switchtable
+r0 += r1
+r0 = *r0
+goto r0
+
+switchtable:
+0: lbl3
+1: lbl4
+2: lbl6
+3: lbl8
+4: lbl9
+5: lbl13
+
+lbl3: @8E874
+fn_8FD34()
+r0 = 2
+fn_8FBA4()
+r0 = data_020397B0
+r1 = *r0
+goto lbl12
+
+lbl4: @8E888
+fn_94F90()
+if(r0 == 0) goto lbl5
+
+goto lbl14
+
+lbl5:
+r0 = data_020397B0
+r1 = *r0
+goto lbl12
+
+lbl6: @8E8A0
+fn_94F94()
+r5 = data_020397B0
+r1 = *r5
+r4 = 0x78E
+r1 += r4
+*r1 = r0
+r2 = 0
+r0 = *(r1 + r2)
+r1 = -1
+if(r0 != r1) goto lbl7
+
+r0 = 1
+fn_920FC()
+fn_8FD20()
+r0 = data_8D2BD
+fn_8CFF8()
+goto lbl14
+
+lbl7:
+if(r0 < r1) goto lbl14
+
+if(r0 > 0x15) goto lbl14
+
+if(r0 < 0x12) goto lbl14
+
+r0 = 5
+PlaySE()
+fn_95024()
+r1 = *r5
+r2 = r1 + r4
+r0 = *r2
+r0 -= 0x12
+*r2 = r0
+goto lbl12
+
+lbl8: @8E8FA
+fn_1960()
+if(r0 != 0) goto lbl14
+
+r4 = data_020397B0
+r0 = *r4
+r1 = 0x78E
+r0 += r1
+r0 = *r0
+fn_8FD5C()
+r0 = 3
+fn_8FBA4()
+goto lbl11
+
+lbl9: @8E924
+fn_94F94()
+r4 = data_020397B0
+r1 = r4
+r5 = 0x790
+r1 += r5
+*r1 = r0
+r2 = 0
+r1 = *(r1 + r2)
+r0 = -2
+if(r1 == r0) goto lbl14
+
+r0++
+if(r1 != r0) goto lbl10
+
+fn_8FD20()
+r1 = *r4
+r0 = 0
+*r1 = r0
+goto lbl14
+
+lbl10:
+r0 = 5
+PlaySE()
+fn_8FD20()
+r1 = *r4
+r1 += r5
+r0 = *r1
+r0 -= 0x16
+*r1 = r0
+fn_91730()
+goto lbl11
+
+lbl11:
+r1 = *r4
+goto lbl12
+
+lbl12:
+r0 = *r1
+r0++
+*r1 = r0
+goto lbl14
+
+lbl13: @8E97E
+fn_91760()
+if(r0 != 0) goto lbl14
+
+r0 = 1
+fn_920FC()
+r0 = data_8D2BD
+fn_8CFF8()
+goto lbl14
+
+lbl14:
+return

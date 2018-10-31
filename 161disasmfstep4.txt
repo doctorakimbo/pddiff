@@ -1,0 +1,14 @@
+sub_808CC74()
+{
+	curBox = data_020397AC->curBox
+
+	StringCopy(&data_020397AC->0x228, GetBoxNamePtr(curBox))
+	
+	for(i = 0; i < 8, i++)
+		data_020397AC->0x228[i] = 0
+	
+	data_020397AC->0x230 = 0xFF
+	fn_8CCFC(&data_020397AC->0x228, 0, 1)
+	ConvertIntToDecimalStringN(&data_020397AC->0x228, CountMonsInBox(curBox), STR_CONV_MODE_RIGHT_ALIGN, 2)
+	fn_8CCFC(&data_020397AC->0x228, 3, 3)
+}

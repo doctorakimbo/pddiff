@@ -1,0 +1,267 @@
+lbl1: @8E278
+r0 = data_020397B0
+r0 = *r0
+r0 = *r0
+if(r0 <= 5) goto lbl2
+
+goto lbl14
+
+lbl2:
+r0 *= 4
+r1 = switchtable
+r0 += r1
+r0 = *r0
+goto r0
+
+switchtable:
+0: lbl3
+1: lbl4
+2: lbl6
+3: lbl8
+4: lbl9
+5: lbl13
+
+lbl3: @8E2B0
+fn_8FD34()
+r0 = 2
+fn_8FBA4()
+r0 = data_020397B0
+r1 = *r0
+goto lbl12
+
+lbl4: @8E2C4
+fn_94F90()
+if(r0 == 0) goto lbl5
+
+goto lbl14
+
+lbl5:
+r0 = data_020397B0
+r1 = *r0
+goto lbl12
+
+lbl6: @8E2DC
+fn_94F94()
+r5 = data_020397B0
+r1 = *r5
+r4 = 0x78E
+r1 += r4
+*r1 = r0
+r2 = 0
+r0 = *(r1 + r2)
+r1 = -1
+if(r0 != r1) goto lbl7
+
+r0 = 1
+fn_920FC()
+fn_8FD20()
+r0 = data_8D2BD
+fn_8CFF8()
+goto lbl14
+
+lbl7:
+r2 = fn_E2A46E_J
+goto r2
+
+lblx: @8E320
+r0 = 5
+PlaySE()
+fn_95024()
+r1 = *r5
+r2 = r1 + r4
+r0 = *r2
+r0 -= 0x12
+*r2 = r0
+goto lbl12
+
+lbl8: @8E336
+fn_1960()
+if(r0 != 0) goto lbl14
+
+r4 = data_020397B0
+r0 = *r4
+r1 = 0x78E
+r0 += r1
+r0 = *r0
+fn_8FD5C()
+r0 = 3
+fn_8FBA4()
+goto lbl11
+
+lbl9: @8E360
+fn_94F94()
+r4 = data_020397B0
+r1 = r4
+r5 = 0x790
+r1 += r5
+*r1 = r0
+r2 = 0
+r1 = *(r1 + r2)
+r0 = -2
+if(r1 == r0) goto lbl14
+
+r0++
+if(r1 != r0) goto lbl10
+
+fn_8FD20()
+r1 = *r4
+r0 = 0
+*r1 = r0
+goto lbl14
+
+lbl10:
+r0 = fn_E2A4B8_J
+goto r0
+
+lbly: @8E39E
+r1 = *r4
+r1 += r5
+r0 = *r1
+r0 -= 0x16
+*r1 = r0
+fn_91730()
+goto lbl11
+
+lbl11:
+r1 = *r4
+goto lbl12
+
+lbl12:
+r0 = *r1
+r0++
+*r1 = r0
+goto lbl14
+
+lbl13: @8E3BA
+fn_91760()
+if(r0 != 0) goto lbl14
+
+r0 = 1
+fn_920FC()
+r0 = data_8D2BD
+fn_8CFF8()
+goto lbl14
+
+lbl14:
+return
+
+
+
+
+
+fn_E2A46E_J:
+if(r0 < r1) goto lbl2
+
+if(r0 < 0x12) goto lbl2
+
+if(r0 <= 0x15) goto lbl3
+
+if(r0 == 0x7F) goto lbl3
+
+goto lbl2
+
+lbl2:
+r4 = lbl14
+goto r4
+
+lbl3:
+r0 = lblx
+goto r0
+
+
+
+
+
+fn_E2A4B8_J:
+if(r1 == 0x7E) goto lbl2
+
+if(r1 == 0x7D) goto lbl3
+
+r0 = 5
+PlaySE()
+fn_8FD20()
+goto lbly
+
+lbl2:
+r4 = gBattlerAttacker
+r0 = *r4
+r0--
+*r4 = r0
+goto lbl4
+
+lbl3:
+r4 = gBattlerAttacker
+r0 = *r4
+r0++
+*r4 = r0
+goto lbl4
+
+lbl4:
+r5 = data_E2A770_J
+r4 = r0 * 4
+r5 += r4
+fn_E2A538_J()
+if(r4 == 0) goto lbl5
+
+r0 = 0x7D
+fn_E2A53C_J()
+goto lbl5
+
+lbl5:
+r0 = *r5
+if(r0 == 0xFF) goto lbl6
+
+r0 += 0x16
+fn_E2A53C_J()
+r0 = *(r5 + 1)
+if(r0 == 0xFF) goto lbl6
+
+r0 += 0x16
+fn_E2A53C_J()
+r0 = *(r5 + 2)
+if(r0 == 0xFF) goto lbl6
+
+r0 += 0x16
+fn_E2A53C_J()
+r0 = *(r5 + 3)
+if(r0 == 0xFF) goto lbl6
+
+r0 += 0x16
+fn_E2A53C_J()
+r0 = *(r5 + 4)
+if(r0 == 0xFF) goto lbl6
+
+r0 = 0x7E
+fn_E2A53C_J()
+goto lbl6
+
+lbl6:
+goto loc_E2A860_J
+
+
+
+
+
+fn_E2A538_J:
+fn_94DA8()
+return
+
+
+
+
+
+fn_E2A53C_J:
+fn_94DEC()
+return
+
+
+
+
+
+loc_E2A860_J:
+r0 = 3
+fn_8FBA4()
+r0 = 5
+PlaySE()
+fn_94E88()
+return

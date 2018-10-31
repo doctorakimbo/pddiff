@@ -1,0 +1,104 @@
+sub_808CC74() @EEA33C
+{
+	r5 = data_020397AC->0x244
+
+	ConvertIntToDecimalStringN(gStringVar1, CountMonsInBox(r5), 0, 2)
+	r4 = data_02036FFC_J
+	CopyToWindowPixelBuffer(r4, data_EEA78C_J, 0, 0)
+	{NULL, r1} = fn_EEA53E_J(gStringVar1)
+	AddTextPrinterParameterized2(r4, 0, ((2 - r1) * 4) + 0x48, 0xC, 0, 0, data_EEA628_J, -1)
+	{s4, r1} = fn_EEA53E_J(GetBoxNamePtr(r5))
+	AddTextPrinterParameterized2(r4, 0, ((8 - r1) * 4) + 0x30, 2, 0, 0, data_EEA628_J, -1)
+
+	for(r6 = 0; r6 < 0x1E; r6++)
+	{
+		r0 = GetAndCopyBoxMonDataFromAnyBox(r5, r6, 0x2D, 0)
+		
+		if(r0 == 1)
+		{
+			r0 = 8
+			goto lbl4
+		}
+		
+		r0 = GetAndCopyBoxMonDataFromAnyBox(r5, r6, 0xB, 0)
+		
+		if(r0 != 0)
+		{
+			r0 = data_254784[r0].0x19
+
+			lbl4:
+			// data_EEA62C_J record size 0x20
+			BlitBitmapRectToWindow(r4, data_EEA62C_J[r0 & 0xF], 0, 0, 0, 0, ((r6 % 6) * 6) + 0x3E, ROUND_DOWN_TO_NEAREST_SIX(r6) + 0x1B, 6, 6)
+		}
+	}
+	
+	fn_EEA554_J(6, 0x25, ((r5 - 2) + 0x17) % 0x17)
+	fn_EEA4E2_J(0xA, 0x17, ((r5 - 2) + 0x17) % 0x17)
+	fn_EEA554_J(0x21, 0x25, ((r5 - 1) + 0x17) % 0x17)
+	fn_EEA4E2_J(0x25, 0x17, ((r5 - 1) + 0x17) % 0x17)
+	fn_EEA554_J(0x67, 0x25, ((r5 + 1) + 0x17) % 0x17)
+	fn_EEA4E2_J(0x6B, 0x17, ((r5 + 1) + 0x17) % 0x17)
+	fn_EEA554_J(0x82, 0x25, ((r5 + 2) + 0x17) % 0x17)
+	fn_EEA4E2_J(0x86, 0x17, ((r5 + 2) + 0x17) % 0x17)
+	CopyWindowToVram(r4, 3)
+	CopyBgTilemapBufferToVram(0)
+}
+
+
+
+
+
+
+fn_EEA53E_J(arg0)
+{
+	r5 = 0
+
+	while(arg0[r5] != 0xFF)
+		r5++
+	
+	return {arg0, r5}
+}
+
+
+
+
+
+
+fn_EEA554_J(arg0, arg1, arg2)
+{
+	for(r6 = 0; r6 < 0x1E; r6++)
+	{
+		r0 = GetAndCopyBoxMonDataFromAnyBox(arg2, r6, 0x2D, 0)
+		
+		if(r0 == 1)
+		{
+			r0 = 8
+			goto lbl4
+		}
+		
+		r0 = GetAndCopyBoxMonDataFromAnyBox(arg2, r6, 0xB, 0)
+		
+		if(r0 != 0)
+		{
+			r0 = data_254784[r1].0x19
+
+			lbl4:
+			// data_EEA62C_J record size 0x20
+			BlitBitmapRectToWindow(r4, data_EEA62C_J[r0 & 0xF], 0, 0, 0, 0, ((r6 % 6) * 4) + arg0, ((r6 / 6) * 4) + arg1, 4, 4)
+		}
+	}
+}
+
+
+
+
+
+
+fn_EEA4E2_J(arg0, arg1, arg2)
+{
+	ConvertIntToDecimalStringN(gStringVar1, CountMonsInBox(arg2), 0, 2)
+	r4 = data_02036FFC_J
+	{NULL, r1} = fn_EEA53E_J(gStringVar1)
+	s4 = gStringVar1
+	AddTextPrinterParameterized2(r4, 0, ((2 - r1) * 4) + arg0, arg1, 0, 0, data_EEA628_J, -1)
+}

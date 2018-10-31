@@ -1,0 +1,87 @@
+sub_808CC74() @EEA33C
+{
+	curBox = data_020397AC->curBox
+
+	ConvertIntToDecimalStringN(gStringVar1, CountMonsInBox(curBox), STR_CONV_MODE_LEFT_ALIGN, 2);
+	window = data_02036FFC_J
+	CopyToWindowPixelBuffer(window, data_EEA78C_J, 0, 0)
+	{NULL, length} = GetStringLength(gStringVar1)
+	AddTextPrinterParameterized4(window, 0, ((2 - length) * 4) + 0x48, 0xC, 0, 0, data_EEA628_J, -1, s4)
+	{s4, length} = GetStringLength(GetBoxNamePtr(curBox))
+	AddTextPrinterParameterized4(window, 0, ((8 - length) * 4) + 0x30, 2, 0, 0, data_EEA628_J, -1, s4)
+
+	for(i = 0; i < 30; i++)
+	{
+		// data_EEA62C_J record size 0x20
+		if(GetAndCopyBoxMonDataFromAnyBox(curBox, i, MON_DATA_IS_EGG, 0))
+			BlitBitmapRectToWindow(window, data_EEA62C_J[8], 0, 0, 0, 0, ((i % 6) * 6) + 0x3E, ROUND_DOWN_TO_NEAREST_SIX(i) + 0x1B, 6, 6)
+		else
+		{
+			species = GetAndCopyBoxMonDataFromAnyBox(curBox, i, MON_DATA_SPECIES, 0);
+			
+			if(species != SPECIES_NONE)
+				BlitBitmapRectToWindow(window, data_EEA62C_J[gBaseStats[species].bodyColor & 0xF], 0, 0, 0, 0, ((i % 6) * 6) + 0x3E, ROUND_DOWN_TO_NEAREST_SIX(i) + 0x1B, 6, 6)
+		}
+	}
+	
+	fn_EEA554_J(6, 0x25, ((curBox - 2) + 0x17) % 0x17)
+	fn_EEA4E2_J(0xA, 0x17, ((curBox - 2) + 0x17) % 0x17)
+	fn_EEA554_J(0x21, 0x25, ((curBox - 1) + 0x17) % 0x17)
+	fn_EEA4E2_J(0x25, 0x17, ((curBox - 1) + 0x17) % 0x17)
+	fn_EEA554_J(0x67, 0x25, ((curBox + 1) + 0x17) % 0x17)
+	fn_EEA4E2_J(0x6B, 0x17, ((curBox + 1) + 0x17) % 0x17)
+	fn_EEA554_J(0x82, 0x25, ((curBox + 2) + 0x17) % 0x17)
+	fn_EEA4E2_J(0x86, 0x17, ((curBox + 2) + 0x17) % 0x17)
+	CopyWindowToVram(window, 3);
+	CopyBgTilemapBufferToVram(0);
+}
+
+
+
+
+
+
+GetStringLength(string) @EEA53E_J
+{
+	length = 0;
+
+	while(string[length] != 0xFF)
+		length++;
+	
+	return {string, length};
+}
+
+
+
+
+
+
+fn_EEA554_J(xOffset, yOffset, boxId)
+{
+	for(i = 0; i < 30; i++)
+	{
+		// data_EEA62C_J record size 0x20
+		if(GetAndCopyBoxMonDataFromAnyBox(boxId, i, MON_DATA_IS_EGG, 0))
+			BlitBitmapRectToWindow(window, data_EEA62C_J[8], 0, 0, 0, 0, ((i % 6) * 4) + xOffset, ((i / 6) * 4) + yOffset, 4, 4)
+		else
+		{
+			species = GetAndCopyBoxMonDataFromAnyBox(boxId, i, MON_DATA_SPECIES, 0);
+			
+			if(species != SPECIES_NONE)
+				BlitBitmapRectToWindow(window, data_EEA62C_J[gBaseStats[species].bodyColor & 0xF], 0, 0, 0, 0, ((i % 6) * 4) + xOffset, ((i / 6) * 4) + yOffset, 4, 4)
+		}
+	}
+}
+
+
+
+
+
+
+fn_EEA4E2_J(xOffset, y, boxId)
+{
+	ConvertIntToDecimalStringN(gStringVar1, CountMonsInBox(boxId), STR_CONV_MODE_LEFT_ALIGN, 2);
+	window = data_02036FFC_J
+	{NULL, length} = GetStringLength(gStringVar1);
+	AddTextPrinterParameterized4(window, 0, ((2 - length) * 4) + xOffset, y, 0, 0, data_EEA628_J, -1, gStringVar1)
+}

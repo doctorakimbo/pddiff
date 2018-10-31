@@ -1,0 +1,2 @@
+lbl1: @8C6B0
+goto fn_EEA33C_J

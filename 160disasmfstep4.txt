@@ -1,0 +1,23 @@
+sub_808CBA4()
+{
+	if(data_020397AC->0)
+	{
+		DestroySprite(data_020397AC->0)
+		data_020397AC->0 = NULL
+	}
+	
+	for(i = 0; i < 4; i++)
+	{
+		if(data_020397AC->4[i])
+		{
+			DestroySprite(data_020397AC->4[i])
+			data_020397AC->4[i] = NULL
+		}
+	}
+
+	for(i = 0; i < 2; i++)
+	{
+		if(data_020397AC->0x20[i])
+			DestroySprite(data_020397AC->0x20[i])
+	}
+}
