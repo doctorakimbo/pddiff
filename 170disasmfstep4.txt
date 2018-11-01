@@ -1,0 +1,9 @@
+sub_8092458()
+{
+	if(data_02039820 == 0)
+		return GetBoxMonDataFromSelectedBox(data_02039821, MON_DATA_SPECIES)
+	elseif(data_02039820 == 1)
+		return GetMonData(&gPlayerParty[data_02039821], MON_DATA_SPECIES)
+	else
+		return NULL;
+}

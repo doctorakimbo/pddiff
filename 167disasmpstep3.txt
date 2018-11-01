@@ -1,0 +1,19 @@
+...
+mon = GetCompressedBoxMonFromBox(gPokemonStoragePtr, r7)
+r8 = fn_3C62B0_J(mon.species, mon)
+...
+r1 = mon.personality
+...
+
+
+
+
+
+
+fn_3C62B0_J(species, mon)
+{
+	if(mon.isEgg)
+		return 0x19C;
+	else
+		return species;
+}

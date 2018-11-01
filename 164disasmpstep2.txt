@@ -1,0 +1,111 @@
+sub_808FD5C(arg0)
+{
+	fn_94DA8()
+	
+	switch(arg0)
+	{
+	case 0:
+		r0 = 0x16
+		fn_94DEC()
+		r0 = 0x17
+		fn_94DEC()
+		r0 = 0x18
+		fn_94DEC()
+		r0 = 0x19
+		fn_94DEC()
+		
+		break;
+	case 2:
+		r0 = 0x1E
+		fn_94DEC()
+		r0 = 0x1F
+		fn_94DEC()
+		r0 = 0x20
+		fn_94DEC()
+		r0 = 0x21
+		fn_94DEC()
+		
+		break;
+	case 3:
+		r0 = 0x22
+		fn_94DEC()
+		r0 = 0x23
+		fn_94DEC()
+		r0 = 0x24
+		fn_94DEC()
+		r0 = 0x25
+		fn_94DEC()
+		
+		break;
+	case 0x6D:
+		r1 = gBattlerAttacker
+		r0 = 0
+		*r1 = r0
+		fn_E2A4E4_J()
+		fn_94DEC()
+		r0 = 0x1A
+		fn_94DEC()
+		r0 = 0x1B
+		fn_94DEC()
+		r0 = 0x1C
+		fn_94DEC()
+		r0 = 0x1D
+		fn_94DEC()
+		
+		break;
+	}
+	
+	fn_94E88()
+}
+
+
+
+
+
+
+fn_E2A4E4_J(arg0)
+{
+	r5 = (arg0 * 4) + data_E2A770_J
+	sub_8094DA8()
+	
+	if(arg0 != 0)
+	{
+		r0 = 0x7D
+		sub_8094DEC()
+	}
+	
+	if(*r5 != 0xFF)
+	{
+		r0 = *r5 + 0x16
+		sub_8094DEC()
+		
+		if(*(r5 + 1) != 0xFF)
+		{
+			r0 = *(r5 + 1) + 0x16
+			sub_8094DEC()
+			
+			if(*(r5 + 2) != 0xFF)
+			{
+				r0 = *(r5 + 2) + 0x16
+				sub_8094DEC()
+				
+				if(*(r5 + 3) != 0xFF)
+				{
+					r0 = *(r5 + 3) + 0x16
+					sub_8094DEC()
+					
+					if(*(r5 + 4) != 0xFF)
+					{
+						r0 = 0x7E
+						sub_8094DEC()
+					}
+				}
+			}
+		}
+	}
+	
+	r0 = 3
+	sub_808FBA4()
+	PlaySE(5)
+	sub_8094E88()
+}

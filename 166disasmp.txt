@@ -1,0 +1,25 @@
+lbl1: @8FB10
+...
+r0 = r9
+r1 = r6
+GetBoxedMonPtr()
+r4 = *(r0 + 0x24)
+if(r4 == 0) goto lbl_2
+
+r1 = *(r0 + 8)
+r1 = SECOND_HIGHEST_BIT(r1)
+if(r1 == 0) goto lbl2
+
+r4 = 0x19C
+goto lbl2
+
+lbl2:
+r0 = *r0
+r1 = r0
+...
+r0 = r9
+r1 = r6
+GetBoxedMonPtr()
+r0 = *(r0 + 0x26)
+if(r0 != 0) goto lbl_3
+...

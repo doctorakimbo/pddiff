@@ -1,0 +1,9 @@
+sub_8092458()
+{
+	if(data_02039820 == 0)
+		return GetCompressedBoxMonFromBox(gPokemonStoragePtr.0, data_02039821).0x24
+	elseif(data_02039820 == 1)
+		return GetMonData(&gPlayerParty[data_02039821], 0xB)
+	else
+		return 0
+}

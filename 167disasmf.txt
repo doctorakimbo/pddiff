@@ -1,0 +1,12 @@
+lbl1: @901EC
+...
+r0 = r7
+r1 = 0x41
+GetBoxMonDataFromSelectedBox()
+r8 = r0
+...
+r0 = r7
+r1 = 0
+GetBoxMonDataFromSelectedBox()
+r1 = r0
+...

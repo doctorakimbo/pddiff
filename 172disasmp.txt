@@ -1,0 +1,148 @@
+lbl1: @93444
+r5 = data_02039820
+r0 = data_020397B0
+r1 = *r0
+r2 = 0
+r0 = *(r5 + 2)
+if(r0 != 0) goto lbl2
+
+r2 = 1
+goto lbl2
+
+lbl2:
+r4 = 0xCE6
+r0 = r1 + r4
+*r0 = r2
+r0 = *(r5 + 2)
+if(r0 != 0) goto lbl7
+
+r0 = *r5
+if(r0 == 1) goto lbl4
+
+if(r0 > 1) goto lbl3
+
+if(r0 == 0) goto lbl6
+
+goto lbl7
+
+lbl3:
+if(r0 > 3) goto lbl7
+
+goto lbl5
+
+lbl4:
+r0 = 1
+r0 = *(r5 + r0)
+if(r0 > 5) goto lbl5
+
+r1 = 0x64
+r0 *= r1
+r1 = gPlayerParty
+r0 += r1
+r1 = 0
+sub_8093AD0()
+goto lbl7
+
+lbl5:
+r0 = 0
+r1 = 2
+sub_8093AD0()
+goto lbl7
+
+lbl6:
+StorageGetCurrentBox()
+r1 = *(r5 + 1)
+GetBoxedMonPtr()
+fn_3C6170_J()
+r4 = r0
+r1 = 1
+sub_8093AD0()
+r0 = r4
+Free()
+goto lbl7
+
+lbl7:
+return
+
+
+
+
+
+fn_3C6170_J:
+r4 = r0
+r0 = 0x50
+AllocZeroed()
+r5 = r0
+ZeroBoxMonData()
+r0 = r5
+r1 = 0
+r2 = r4
+SetBoxMonData()
+r0 = r5
+r1 = 1
+r2 = *(r4 + 4)
+SetBoxMonData()
+r0 = r5
+CalculateBoxMonChecksum()
+s0 = r0
+r0 = r5
+r1 = 9
+r2 = &s0
+SetBoxMonData()
+r0 = r5
+EncryptBoxMon()
+r0 = r5
+r1 = 2
+r2 = r4
+r2 += 0xC
+SetBoxMonData()
+r0 = r5
+r1 = 3
+r2 = data_1CDE31_J
+SetBoxMonData()
+r0 = 4
+s0 = r0
+r1 = 0x25
+r0 = r5
+r2 = &s0
+SetBoxMonData()
+r2 = 0x24
+r2 += r4
+r1 = 0xB
+r0 = r5
+SetBoxMonData()
+r0 = *(r4 + 0x26)
+r6 = r0
+r0 = LAST_10_BITS(r0)
+s0 = r0
+r1 = 0xC
+r0 = r5
+r2 = &s0
+SetBoxMonData()
+r0 = FIRST_20_BITS(r6)
+s0 = r0
+r1 = 8
+r0 = r5
+r2 = &s0
+SetBoxMonData()
+r0 = *(r4 + 8)
+r0 = SECOND_HIGHEST_BIT(r0)
+s0 = r0
+r0 = r5
+r1 = 0x2D
+r2 = &s0
+SetBoxMonData()
+r4 += 0x2C
+r0 = *(r4 + 1)
+r1 = *(r4 + 2)
+r1 = LAST_13_BITS(r1)
+r1 <<= 8
+r0 |= r1
+r1 = 0x25
+r0 = r5
+r2 = &s0
+SetBoxMonData()
+r0 = r5
+MonRestorePP()
+r0 = r5
+return r0

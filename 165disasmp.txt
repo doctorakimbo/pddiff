@@ -1,0 +1,37 @@
+lbl1: @8F890
+r5 = r0
+fn_94D34()
+r4 = r0
+r0 = data_020397B0
+r0 = *r0
+r1 = 0xCE0
+r0 += r1
+r7 = *r0
+r0 = data_020397B4
+r0 = *r0
+if(r0 == 0) goto lbl2
+
+r6 = 0xE
+fn_94CC8()
+r1 = 0x64
+r0 *= r1
+r1 = gPlayerParty
+r0 += r1
+r1 = 0x41
+GetMonData()
+goto lbl3
+
+lbl2:
+StorageGetCurrentBox()
+r6 = r0
+fn_94CC8()
+r4 = r0
+r3 = gPokemonStoragePtr
+r3 = *r3
+r3 = *r3
+GetCompressedBoxMonFromBox()
+r0 = *(r0 + 0x24)
+goto lbl3
+
+lbl3:
+whoops

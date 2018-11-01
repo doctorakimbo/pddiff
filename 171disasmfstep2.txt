@@ -1,0 +1,4 @@
+	...
+	if(*r4 == 0)
+		SetBoxMonDataFromSelectedBox(*data_02039821, 8, &s0)
+}

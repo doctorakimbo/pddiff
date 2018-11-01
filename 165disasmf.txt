@@ -1,0 +1,150 @@
+lbl1: @8FE54
+r5 = r0
+fn_94D34()
+r4 = r0
+r0 = data_020397B0
+r0 = *r0
+r1 = 0xCE0
+r0 += r1
+r7 = *r0
+r0 = data_020397B4
+r0 = *r0
+if(r0 == 0) goto lbl2
+
+r6 = 0xE
+fn_94CC8()
+r1 = 0x64
+r0 *= r1
+r1 = gPlayerParty
+r0 += r1
+r1 = 0x41
+GetMonData()
+goto lbl3
+
+lbl2:
+StorageGetCurrentBox()
+r6 = r0
+fn_94CC8()
+r1 == 0x41
+GetMonData()
+goto lbl3
+
+lbl3:
+r3 = r0
+r0 = data_020397B0
+r0 = *r0
+r2 = 0x2228
+r1 = r0 + r2
+if(r5 == 1) goto lbl10
+
+if(r5 > 1) goto lbl4
+
+if(r5 == 0) goto lbl5
+
+goto lbl19
+
+lbl4:
+if(r5 == 2) goto lbl14
+
+if(r5 == 3) goto lbl15
+
+goto lbl19
+
+lbl5:
+r0 = data_020397B4
+r0 = *r0
+if(r0 == 0) goto lbl7
+
+if(r4 == 0xE) goto lbl19
+
+goto lbl6
+
+lbl6:
+r2 = 0x16
+goto lbl9
+
+lbl7:
+if(r4 == 0xE) goto lbl6
+
+r0 = 0x15
+if(r4 == r6) goto lbl8
+
+r0 = 0x14
+goto lbl8
+
+lbl8:
+r2 = r0
+goto lbl9
+
+lbl9:
+*r1 = r7
+*(r1 + 2) = r3
+goto lbl16
+
+lbl10:
+r0 = 0
+*r1 = r7
+*(r1 + 2) = r0
+*(r1 + 4) = r4
+r0 = 0xFF
+*(r1 + 5) = r0
+r0 = data_020397B4
+r0 = *r0
+if(r0 == 0) goto lbl11
+
+if(r4 == 0x1E) goto lbl19
+
+r2 = 0x19
+goto lbl18
+
+lbl11:
+if(r4 != 0xE) goto lbl12
+
+r2 = 0x1A
+*(r1 + 4) = r6
+goto lbl18
+
+lbl12:
+if(r4 == r6) goto lbl13
+
+r2 = 0x17
+goto lbl17
+
+lbl13:
+r2 = 0x18
+goto lbl18
+
+lbl14:
+r2 = 0x1A
+r0 = 0
+*r1 = r7
+*(r1 + 2) = r0
+r0 = data_020397B6
+r0 = *r0
+*(r1 + 4) = r0
+r0 = 0xFF
+*(r1 + 5) = r0
+goto lbl18
+
+lbl15:
+r2 = 0x1B
+r0 = 0
+*r1 = r0
+*(r1 + 2) = r0
+goto lbl16
+
+lbl16:
+*(r1 + 4) = r4
+goto lbl17
+
+lbl17:
+*(r1 + 5) = r6
+goto lbl18
+
+lbl18:
+r0 = r2
+fn_113550_J()
+goto lbl19
+
+lbl19:
+return

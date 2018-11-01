@@ -1,0 +1,7 @@
+lbl1: @903A4
+...
+r0 = *r0
+r1 = r5
+r2 = 0xC
+GetBoxMonDataFromAnyBox()
+...

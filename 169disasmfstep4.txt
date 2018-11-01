@@ -1,0 +1,16 @@
+sub_8090794(boxId)
+{
+	for(i = 0; i < 5; i++)
+	{
+		for(j = 0; j < 6; j++)
+		{
+			species = GetBoxMonDataFromAnyBox(boxId, j, MON_DATA_SPECIES);
+			data_020397B0->0xBA4[j] = species
+			
+			if(species != SPECIES_NONE)
+				data_020397B0->0xBE0[j] = GetBoxMonDataFromAnyBox(boxId, j, MON_DATA_PERSONALITY)
+		}
+	}
+
+	data_020397B0->0xC58 = boxId
+}

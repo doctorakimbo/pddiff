@@ -1,0 +1,38 @@
+sub_808FD5C(arg0)
+{
+	fn_94DA8()
+	
+	switch(arg0)
+	{
+	case 0:
+		sub_8094DEC(0x16)
+		sub_8094DEC(0x17)
+		sub_8094DEC(0x18)
+		sub_8094DEC(0x19)
+		
+		break;
+	case 1:
+		sub_8094DEC(0x1A)
+		sub_8094DEC(0x1B)
+		sub_8094DEC(0x1C)
+		sub_8094DEC(0x1D)
+		
+		break;
+	case 2:
+		sub_8094DEC(0x1E)
+		sub_8094DEC(0x1F)
+		sub_8094DEC(0x20)
+		sub_8094DEC(0x21)
+		
+		break;
+	case 3:
+		sub_8094DEC(0x22)
+		sub_8094DEC(0x23)
+		sub_8094DEC(0x24)
+		sub_8094DEC(0x25)
+		
+		break;
+	}
+	
+	fn_94E88()
+}

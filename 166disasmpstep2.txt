@@ -1,0 +1,23 @@
+...
+r0 = GetBoxedMonPtr(r9, r6)
+r4 = *(r0 + 0x24)
+
+if(r4 != 0)
+{
+	r1 = SECOND_HIGHEST_BIT(*(r0 + 8))
+	
+	if(r1 != 0)
+		r4 = 0x19C
+	
+	r1 = *r0
+	...
+}
+...
+r0 = GetBoxedMonPtr(r9, r6)
+r0 = *(r0 + 0x26)
+
+if(r0 == 0)
+{
+	...
+}
+...

@@ -1,0 +1,37 @@
+lbl1: @8FC28
+...
+r4 = r7
+r3 = gPokemonStoragePtr
+r3 = *r3
+r3 = *r3
+GetCompressedBoxMonFromBox()
+s0 = r0
+r1 = r0
+r0 = *(r0 + 0x24)
+fn_3C62B0_J()
+r8 = r0
+...
+r0 = s0
+r1 = *r0
+...
+
+
+
+
+
+
+fn_3C62B0_J:
+r4 = r0
+r0 = *(r1 + 8)
+r0 = SECOND_HIGHEST_BIT(r0)
+if(r0 != 1) goto lbl2
+
+r0 = 0x19C
+goto lbl3
+
+lbl2:
+r0 = r4
+goto lbl3
+
+lbl3:
+return r4

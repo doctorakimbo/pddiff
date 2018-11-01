@@ -1,0 +1,21 @@
+lbl1: @900D4
+...
+r0 = r9
+r1 = r6
+r2 = 0x41
+GetBoxMonDataFromAnyBox()
+r4 = r0
+if(r4 == 0) goto lbl_2
+
+r0 = r9
+r1 = r6
+r2 = 0
+GetBoxMonDataFromAnyBox()
+r1 = r0
+...
+r0 = r9
+r1 = r6
+r2 = 0xC
+GetBoxMonDataFromAnyBox()
+if(r0 != 0) goto lbl_3
+....

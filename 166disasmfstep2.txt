@@ -1,0 +1,16 @@
+...
+r4 = GetBoxMonDataFromAnyBox(r9, r6, 0x41)
+
+if(r4 != 0)
+{
+	r1 = GetBoxMonDataFromAnyBox(r9, r6, 0)
+	...
+}
+...
+r0 = GetBoxMonDataFromAnyBox(r9, r6, 0xC)
+
+if(r0 == 0)
+{
+	...
+}
+...

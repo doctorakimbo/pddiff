@@ -1,0 +1,8 @@
+lbl1: @8FDE0
+...
+r0 = *r0
+r1 = r5
+GetBoxedMonPtr()
+r0 = *(r0 + 0x26)
+r0 = LOWER_TEN_BITS(r0)
+...

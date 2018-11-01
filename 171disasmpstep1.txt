@@ -1,0 +1,18 @@
+	...
+	r0 = *r4
+
+	if(r0 == 0)
+	{
+		r0 = data_02039821
+		r3 = gPokemonStoragePtr
+		r3 = *r3
+		r0 = GetCompressedBoxMonFromBox(*r3, *r0)
+		r1 = &s0
+		r1 = LOWEST_BYTE(r1)
+		r2 = *(r0 + 0x26)
+		r2 = LOWEST_TEN_BITS(r2)
+		r1 <<= 0xC
+		r1 |= r2
+		*(r0 + 0x26) = r1
+	}
+}

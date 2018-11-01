@@ -1,0 +1,54 @@
+sub_8090794(arg0)
+{
+	r6 = arg0
+	r5 = 0
+	r0 = 0
+
+	do
+	{
+		r0++
+		r8 = r0
+
+		for(r7 = 5; r7 >= 0; r7--)
+		{
+			r4 = r5
+			r0 = GetBoxedMonPtr(r6, r4)
+			r1 = *(r0 + 8)
+			r1 = SECOND_HIGHEST_BYTE(r1)
+			
+			if(r1 == 1)
+				r0 = 0x19C
+			else
+				r0 = *(r0 + 0x24)
+			
+			r2 = data_020397B0
+			r1 = *r2
+			r2 = r5 * 2
+			r3 = 0xBA4
+			r1 += r3
+			*(r1 + r2) = r0
+			
+			if(r0 != 0)
+			{
+				r0 = GetBoxedMonPtr(r6, r4)
+				r0 = *r0
+				r2 = data_020397B0
+				r1 = *r2
+				r2 = r5 * 4
+				r3 = 0xBE0
+				r1 += r3
+				*(r1 + r2) = r0
+			}
+			
+			r5++
+		}
+
+		r0 = r8
+	} while(r0 <= 4)
+
+	r0 = data_020397B0
+	r0 = *r0
+	r1 = 0xC58
+	r0 += r1
+	*r0 = r6
+}

@@ -1,0 +1,19 @@
+...
+s0 = GetCompressedBoxMonFromBox(*(*gPokemonStoragePtr), r7)
+r8 = fn_3C62B0_J(*(s0 + 0x24), s0)
+...
+r1 = *s0
+...
+
+
+
+
+
+
+fn_3C62B0_J(arg0, arg1)
+{
+	if(SECOND_HIGHEST_BIT(*(arg1 + 8)) == 1)
+		return 0x19C
+	else
+		return arg0
+}

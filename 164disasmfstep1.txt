@@ -1,0 +1,56 @@
+sub_808FD5C(arg0)
+{
+	r4 = arg0
+	r5 = r4
+	fn_94DA8()
+	
+	switch(r4)
+	{
+	case 0:
+		r0 = 0x16
+		fn_94DEC()
+		r0 = 0x17
+		fn_94DEC()
+		r0 = 0x18
+		fn_94DEC()
+		r0 = 0x19
+		fn_94DEC()
+		
+		break;
+	case 1:
+		r0 = 0x1A
+		fn_94DEC()
+		r0 = 0x1B
+		fn_94DEC()
+		r0 = 0x1C
+		fn_94DEC()
+		r0 = 0x1D
+		fn_94DEC()
+		
+		break;
+	case 2:
+		r0 = 0x1E
+		fn_94DEC()
+		r0 = 0x1F
+		fn_94DEC()
+		r0 = 0x20
+		fn_94DEC()
+		r0 = 0x21
+		fn_94DEC()
+		
+		break;
+	case 3:
+		r0 = 0x22
+		fn_94DEC()
+		r0 = 0x23
+		fn_94DEC()
+		r0 = 0x24
+		fn_94DEC()
+		r0 = 0x25
+		fn_94DEC()
+		
+		break;
+	}
+	
+	fn_94E88()
+}

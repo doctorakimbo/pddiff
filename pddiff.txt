@@ -318,7 +318,7 @@ grafics:
 + expand 24FB08 (ability descriptions) from 78 entries to 232 (13FD000)
 = expand 24FC40 (ability names) from 78 entries/12 per to 232 entries/16 per (13FF000)
 + expand 25011C (battle script commands) from 248 entries to 256 (EB7A00)
-= expand 2507E8 (uncopiable moves) from 4 entries (mimic) / 19 entries (metronome) to 5 entries (mimic) / 44 entries (metronome) (j20CA40, eUNKNOWN)
+! expand 2507E8 (uncopiable moves) from 4 entries (mimic) / 19 entries (metronome) to 5 entries (mimic) / 44 entries (metronome) (j20CA40, eUNKNOWN)
 + expand 250848 (pickup table) from 16 entries to 10 subtables of varying size (1528150)
 + expand 250C04 (move data) from 355 entries to 680 (1010000)
 + expand 2539D4 (cry ids) to encompass all ids (865DE0)
@@ -335,7 +335,9 @@ grafics:
 - ???
 	! also set 3AD950 (gBattleAnimPaletteTable[136]) to 1201A40
 - expand 3ADE18 (battle anim backgrounds) from 27 entries to 100 (11FF000)
-- expand 3D3740 (raw mon icon palette data) from 3 entries to 6 (ONLY FIRST PTR) (EE4E00?)
+- expand 3D2A10 (box wallpapers) from 48 entries to 63 (938980)
+- expand 3D353C (PC menu options) from 38 entries to 128 (jE2A570, e1E2A570???)
+- expand 3D3740 (raw mon icon palette data) from 3 entries to 6 (ONLY FIRST PTR) (EE4E00)
 + expand 3D4038 (mon icon palettes) from 6 entries to 16 (jE40000, e1E40000)
 + expand 3DB028 (item data) from 375 entries to 435 (10B0000)
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
@@ -1033,7 +1035,7 @@ grafics:
 = 08C108: Entirety of GetFirstFreeBoxSpot (see 157disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
 		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
-= 08C808, 08C82C, 08C844, 08CC26, 08CC60, 08D476, 08D4B2, 08DED4: 0D -> 16 (part of CompressedBoxPokemon refactor)
+= 08C808, 08C82C, 08C844, 08CC26, 08CC60, 08D476, 08D4B2, 08DED4, 090E12, 09170E, 0935D2: 0D -> 16 (part of CompressedBoxPokemon refactor)
 - 08C95C: Entirety of sub_808C95C (see 158disasm)
 		  Implements: Eliminates the delay on something in the PC (test!)
 = 08C9C4: Entirety of sub_808C9C4 (+ add part at EEA2C0_J) (see 159disasm)
@@ -1054,7 +1056,36 @@ grafics:
 = 08FD34: 00 B5 05 F0 37 F8 12 20 -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2A400, see 163disasm))
 		  Implements: Need more info (extra call to fn_94DEC with case 0x7F)
 = 08FD68: 01 2C 16 D0 01 2C 02 DC -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2A432, see 164disasm))
-		  Implements: 
+		  Implements: Need more info (add case 0x6D, remove case 1)
+= 08FE54: Entirety of sub_808FE54 (see 165disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
+= 0900D4: Entirety of sub_80900D4 (see 166disasm)
+		  Implements: Part of CompressedBoxPokemon refactor, need more info (if mon is egg, species is treated as 0x19C instead of actual species)
+		  Note: it's possible that eggs have 0x19C stored in species2 anyway, which would mean the "need more info" part doesn't change anything
+= 0901EC: Entirety of sub_80901EC (see 167disasm)
+		  Implements: Part of CompressedBoxPokemon refactor, need more info (egg -> 0x19C)
+		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84), fn_3C62B0_J
+		  Note: see previous note
+= 0903A4: Entirety of sub_80903A4 (see 168disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+= 090794: Entirety of sub_8090794 (see 169disasm)
+		  Implements: Part of CompressedBoxPokemon refactor, need more info (egg -> 0x19C)
+		  Note: see previous note
+= 090D62, 092D5E, 092E96, 092F0A, 092F12, 092F6A, 092FDE, 09303A, 093062, 093128, 09323C, 093306, 093476, 09366E: 0E -> 17 (part of CompressedBoxPokemon refactor)
+- 091AF0: 81 18 -> 11 1C
+  091AFE: 80 18 -> 10 1C
+  091D4A, 091F16, 091F3C: 40 18 -> 08 1C
+		  Implements: allows more than 16 box wallpapers by ignoring a pointless table
+= 092458: Entirety of sub_8092458 (see 170disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
+= 093878: Entirety of sub_8093878 (see 171disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
+= 093A10: Entirety of sub_8093A10 (see 172disasm)
+		  
+		  
 		  
 		  
 		  
@@ -1072,5 +1103,6 @@ grafics:
 		  
 
 
-curr: j8F7A4 (8byte)
-next: j8F890
+
+curr: j93444-j934E0
+next: j9381C (8byte), j93854 (6byte), j9449C (6byte), j950CC

@@ -1,0 +1,16 @@
+...
+r4 = GetBoxMonDataFromAnyBox(r9, r6, MON_DATA_SPECIES2)
+
+if(r4 != 0)
+{
+	r1 = GetBoxMonDataFromAnyBox(r9, r6, MON_DATA_PERSONALITY)
+	...
+}
+...
+r0 = GetBoxMonDataFromAnyBox(r9, r6, MON_DATA_HELD_ITEM)
+
+if(r0 == 0)
+{
+	...
+}
+...

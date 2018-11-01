@@ -1,0 +1,34 @@
+lbl1: @92458
+r0 = data_02039820
+r0 = *r0
+if(r0 = 0) goto lbl2
+
+if(r0 != 1) goto lbl4
+
+r0 = data_02039821
+r1 = 0
+r1 = *(r0 + r1)
+r0 = 0x64
+r0 *= r1
+r1 = gPlayerParty
+r0 += r1
+r1 = 0xB
+GetMonData()
+goto lbl3
+
+lbl2:
+r0 = data_02039821
+r0 = *r0
+r1 = 0xB
+GetBoxMonDataFromSelectedBox()
+goto lbl3
+
+lbl3:
+goto lbl5
+
+lbl4:
+r0 = 0
+goto lbl5
+
+lbl5:
+return r0

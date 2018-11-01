@@ -1,1 +1,66 @@
-lbl1: @8F75C
+lbl1: @8FD5C
+r4 = r0
+r5 = r4
+fn_94DA8()
+if(r4 == 1) goto lbl4
+
+if(r4 > 1) goto lbl2
+
+if(r4 == 0) goto lbl3
+
+goto lbl7
+
+lbl2:
+if(r5 == 2) goto lbl5
+
+if(r5 == 3) goto lbl6
+
+goto lbl7
+
+lbl3:
+r0 = 0x16
+fn_94DEC()
+r0 = 0x17
+fn_94DEC()
+r0 = 0x18
+fn_94DEC()
+r0 = 0x19
+fn_94DEC()
+goto lbl7
+
+lbl4:
+r0 = 0x1A
+fn_94DEC()
+r0 = 0x1B
+fn_94DEC()
+r0 = 0x1C
+fn_94DEC()
+r0 = 0x1D
+fn_94DEC()
+goto lbl7
+
+lbl5:
+r0 = 0x1E
+fn_94DEC()
+r0 = 0x1F
+fn_94DEC()
+r0 = 0x20
+fn_94DEC()
+r0 = 0x21
+fn_94DEC()
+goto lbl7
+
+lbl6:
+r0 = 0x22
+fn_94DEC()
+r0 = 0x23
+fn_94DEC()
+r0 = 0x24
+fn_94DEC()
+r0 = 0x25
+fn_94DEC()
+goto lbl7
+
+lbl7:
+fn_94E88()
+return

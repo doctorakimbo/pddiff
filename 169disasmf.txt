@@ -1,0 +1,56 @@
+lbl1: @90794
+r6 = r0
+r5 = 0
+r0 = 0
+r1 = data_020397B0
+r9 = r1
+goto lbl2
+
+lbl2:
+r0++
+r8 = r0
+r7 = 5
+goto lbl3
+
+lbl3:
+r4 = r5
+r0 = r6
+r1 = r4
+r2 = 0x41
+GetBoxMonDataFromAnyBox()
+r2 = r9
+r1 = *r2
+r2 = r5 * 2
+r3 = 0xBA4
+r1 += r3
+r1 += r2
+*r1 = r0
+if(r0 == 0) goto lbl4
+
+r0 = r6
+r1 = r4
+r2 = 0
+GetBoxMonDataFromAnyBox()
+r2 = r9
+r1 = *r2
+r2 = r5 * 4
+r3 = 0xBE0
+r1 += r3
+r1 += r2
+*r1 = r0
+goto lbl4
+
+lbl4:
+r5++
+r7--
+if(r7 >= 0) goto lbl3
+
+r0 = r8
+if(r0 <= 4) goto lbl2
+
+r0 = data_020397B0
+r0 = *r0
+r1 = 0xC58
+r0 += r1
+*r0 = r6
+return
