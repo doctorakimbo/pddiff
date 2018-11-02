@@ -1,0 +1,24 @@
+lbl1: @954E4
+...
+r1 = r7 * 4
+r1 += r7
+r1 *= 0x10
+r1 += 0x20
+r2 = data_02039828
+r0 = *r2
+r0 += r1
+r0 = *(r0 + 0x24)
+if(r0 == 0) goto lbl_2
+
+s0 = r4
+r4 = r5
+r3 = gPokemonStoragePtr
+r3 = *r3
+r3 = *r3
+GetCompressedBoxMonFromBox()
+r4 = s0
+r0 = *(r0 + 0x24)
+if(r0 == 0) goto lbl_2
+
+return 0
+...

@@ -1,59 +1,36 @@
 sub_8093A10()
 {
-	r5 = data_02039820
-	r0 = data_020397B0
-	r1 = *r0
-	r2 = 0
-	r0 = *(r5 + 2)
-	if(r0 != 0) goto lbl2
-
-	r2 = 1
-	goto lbl2
-
-	lbl2:
-	r4 = 0xCE6
-	r0 = r1 + r4
-	*r0 = r2
-	r0 = *(r5 + 2)
-	if(r0 != 0) goto lbl7
-
-	r0 = *r5
-	if(r0 == 1) goto lbl4
-
-	if(r0 > 1) goto lbl3
-
-	if(r0 == 0) goto lbl6
-
-	goto lbl7
-
-	lbl3:
-	if(r0 > 3) goto lbl7
-
-	goto lbl5
-
-	lbl4:
-	r0 = 1
-	r0 = *(r5 + r0)
-	if(r0 > 5) goto lbl5
-
-	r1 = 0x64
-	r0 *= r1
-	r1 = gPlayerParty
-	r0 += r1
-	sub_8093AD0(r0, 0)
-	goto lbl7
-
-	lbl5:
-	sub_8093AD0(0, 2)
-	goto lbl7
-
-	lbl6:
-	r4 = fn_3C6170_J(GetBoxedMonPtr(StorageGetCurrentBox(), *(r5 + 1)))
-	sub_8093AD0(r4, 1)
-	Free(r4)
-	goto lbl7
-
-	lbl7:
+	if(*data_02039822 == 0)
+		r2 = 1
+	else
+		r2 = 0
+	
+	*(*data_020397B0 + 0xCE6) = r2
+	
+	if(*data_02039822 == 0)
+	{
+		switch(*data_02039820)
+		{
+		case 0:
+			r4 = fn_3C6170_J(GetBoxedMonPtr(StorageGetCurrentBox(), *data_02039821))
+			sub_8093AD0(r4, 1)
+			Free(r4)
+			
+			break;
+		case 1:
+			if(*data_02039821 > 5)
+				sub_8093AD0(0, 2)
+			else
+				sub_8093AD0((*data_02039821 * 0x64) + gPlayerParty, 0)
+			
+			break;
+		case 2:
+		case 3:
+			sub_8093AD0(0, 2)
+			
+			break;
+		}
+	}
 }
 
 
@@ -62,42 +39,20 @@ sub_8093A10()
 
 fn_3C6170_J(arg0)
 {
-	r4 = arg0
 	r5 = AllocZeroed(0x50)
 	ZeroBoxMonData(r5)
-	SetBoxMonData(r5, 0, r4)
-	SetBoxMonData(r5, 1, r4 + 4)
-	s0 = CalculateBoxMonChecksum(r5)
-	SetBoxMonData(r5, 9, &s0)
+	SetBoxMonData(r5, 0, arg0)
+	SetBoxMonData(r5, 1, arg0 + 4)
+	SetBoxMonData(r5, 9, &CalculateBoxMonChecksum(r5))
 	EncryptBoxMon(r5)
-	SetBoxMonData(r5, 2, r4 + 0xC)
+	SetBoxMonData(r5, 2, arg0 + 0xC)
 	SetBoxMonData(r5, 3, data_1CDE31_J)
-	r0 = 4
-	s0 = r0
-	SetBoxMonData(r5, 0x25, &s0)
-	r2 = 0x24
-	r2 += r4
-	SetBoxMonData(r5, 0xB, r2)
-	r0 = *(r4 + 0x26)
-	r6 = r0
-	r0 = LAST_10_BITS(r0)
-	s0 = r0
-	SetBoxMonData(r5, 0xC, &s0)
-	r0 = FIRST_20_BITS(r6)
-	s0 = r0
-	SetBoxMonData(r5, 8, &s0)
-	r0 = *(r4 + 8)
-	r0 = SECOND_HIGHEST_BIT(r0)
-	s0 = r0
-	SetBoxMonData(r5, 0x2D, &s0)
-	r4 += 0x2C
-	r0 = *(r4 + 1)
-	r1 = *(r4 + 2)
-	r1 = LAST_13_BITS(r1)
-	r1 <<= 8
-	r0 |= r1
-	s0 = r0
-	SetBoxMonData(r5, 0x25, &s0)
+	SetBoxMonData(r5, 0x25, &4)
+	SetBoxMonData(r5, 0xB, arg0 + 0x24)
+	SetBoxMonData(r5, 0xC, &LAST_10_BITS(*(arg0 + 0x26)))
+	SetBoxMonData(r5, 8, &FIRST_20_BITS(r6))
+	SetBoxMonData(r5, 0x2D, &SECOND_HIGHEST_BIT(*(arg0 + 8)))
+	SetBoxMonData(r5, 0x25, &(*(arg0 + 0x2D) | (LAST_13_BITS(*(arg0 + 0x2E)) << 8)))
 	MonRestorePP(r5)
 	return r5
 }

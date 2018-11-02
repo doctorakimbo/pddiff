@@ -1,0 +1,51 @@
+AddItemIconObject(arg0, arg1, arg2)
+{
+	if(sub_80986EC() == 0)
+		return 0x40
+
+	if(ItemId_GetPocket(arg2) == 4)
+		r0 = fn_2519E4_J()
+	else
+		r0 = data_090B8000_J[arg2]
+	
+	LZDecompressWram(r0, data_02039884)
+	CopyItemIconPicTo4x4Buffer(data_02039884, data_02039888.0)
+	s6.0 = data_02039888.0
+	s6.4 = 0x200 | (arg0 << 0x10)
+	LoadSpriteSheet(&s6)
+	
+	if(ItemId_GetPocket(arg2) == 4)
+		s8.0 = fn_2519EA_J(arg2)
+	else
+		s8.0 = data_090B8000_J[arg2].4
+	
+	s8.4 = (s8.6 << 0x10) | arg1
+	LoadCompressedObjectPalette(&s8)
+	CpuSet(data_39C784_J, &s0, 0xC)
+	s0.0 = arg0
+	s0.2 = arg1
+	r4 = CreateSprite(&s0, 0, 0, 0)
+	Free(data_02039884)
+	Free(data_02039888.0)
+	return r4
+}
+
+
+
+
+
+
+fn_2519E4_J()
+{
+	return data_D91CF0_J
+}
+
+
+
+
+
+
+fn_2519EA_J(arg0)
+{
+	return data_251A0C_J[gBattleMoves.[ItemIdToBattleMoveId(arg0)].2]
+}

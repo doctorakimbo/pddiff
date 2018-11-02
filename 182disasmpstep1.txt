@@ -1,0 +1,100 @@
+AddItemIconObject(arg0, arg1, arg2)
+{
+	r7 = arg0
+	r10 = arg1
+	r5 = arg2
+	sub_80986EC()
+	
+	if(r0 == 0)
+		return 0x40
+
+	if(ItemId_GetPocket(r5) == 4)
+		r0 = fn_2519E4_J()
+	else
+	{
+		r0 = r5
+		r1 = data_090B8000_J
+		r0 *= 8
+		r0 += r1
+		r4 = r0
+		r0 = *r0
+	}
+	
+	r1 = data_02039884
+	r9 = r1
+	LZDecompressWram(r0, *r1)
+	r2 = r9
+	r1 = r9
+	r1 += r4
+	r8 = r1
+	CopyItemIconPicTo4x4Buffer(*r2, *r1)
+	r2 = r8
+	r0 = *r2
+	s6 = r0
+	r0 = &s6
+	r1 = 0x200
+	r3 = r7 << 0x10
+	r1 |= r3
+	*(r0 + 4) = r1
+	LoadSpriteSheet(r0)
+	
+	if(ItemId_GetPocket(r5) == 4)
+		r0 = fn_2519EA_J(r5)
+	else
+	{
+		r0 = r4 + 4
+		r0 = *r0
+	}
+	
+	s8 = r0
+	r0 = &s8
+	r1 = *(r0 + 6)
+	r1 <<= 0x10
+	r2 = r10
+	r1 |= r2
+	*(r0 + 4) = r1
+	LoadCompressedObjectPalette(r0)
+	r0 = data_39C784_J
+	r1 = &s0
+	r2 = 0xC
+	CpuSet()
+	r0 = &s0
+	*r0 = r7
+	r1 = r10
+	*(r0 + 2) = r1
+	r4 = CreateSprite(r0, 0, 0, 0)
+	r2 = r9
+	Free(*r2)
+	r1 = r8
+	Free(*r1)
+	return r4
+}
+
+
+
+
+
+
+fn_2519E4_J()
+{
+	return data_D91CF0_J
+}
+
+
+
+
+
+
+fn_2519EA_J(arg0)
+{
+	r0 = ItemIdToBattleMoveId(arg0)
+	r4 = 0xC
+	r5 = data_1CC_J
+	r5 = *r5
+	r0 *= 4
+	r0 += r5
+	r0 = *(r0 + 2)
+	r0 *= 4
+	r1 = data_251A0C_J
+	return *(r1 + r0)
+}

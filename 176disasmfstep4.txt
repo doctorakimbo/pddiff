@@ -1,0 +1,6 @@
+...
+r4 = r8[r7].0x14
+
+if(GetBoxMonData(r4, MON_DATA_SANITY_BIT2) != 0)
+	CopyBoxMonFromAnyBox(s1, r6, r4)
+...

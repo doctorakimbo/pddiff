@@ -1,0 +1,5 @@
+sub_809572C(col, row)
+{
+	if(GetCompressedBoxMonFromBox(gPokemonStoragePtr->currentBox, col + (row * 6)).species != SPECIES_NONE)
+		FillWindowPixelRect8Bit(data_020397B0->0x21F0, 0, col * 0x18, row * 0x18, 0x20, 0x20)
+}

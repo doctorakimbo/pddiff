@@ -1,0 +1,54 @@
+AddItemIconObject(arg0, arg1, arg2)
+{
+	r6 = arg0
+	r5 = arg1
+	r7 = arg2
+	sub_80986EC()
+	
+	if(r0 == 0)
+		return 0x40
+
+	r0 = r7
+	r1 = 0
+	sub_8098974()
+	r2 = data_02039884
+	LZDecompressWram(r0, *r2)
+	r1 = data_02039884
+	r2 = data_02039888
+	CopyItemIconPicTo4x4Buffer(*r1, *r2)
+	r1 = data_02039888
+	r0 = r1
+	s6 = r0
+	r4 = 0xFFFF0000
+	r0 = &s6
+	r1 = *(r0 + 4)
+	r1 &= r4
+	r2 = 0x200
+	r1 |= r2
+	r3 = r6 << 0x10
+	r2 = 0xFFFF
+	r1 &= r2
+	r1 |= r3
+	*(r0 + 4) = r1
+	LoadSpriteSheet(r0)
+	r0 = r7
+	r1 = 1
+	sub_8098974()
+	s8 = r0
+	r0 = &s8
+	r1 = *(r0 + 4)
+	r1 &= r4
+	r1 |= r5
+	*(r0 + 4) = r1
+	LoadCompressedObjectPalette(r0)
+	CpuSet(data_3D427C, &s0, 0xC)
+	r0 = &s0
+	*r0 = r6
+	*(r0 + 2) = r5
+	r4 = CreateSprite(r0, 0, 0, 0)
+	r2 = data_02039884
+	Free(*r2)
+	r1 = data_02039884
+	Free(*r1)
+	return r4
+}

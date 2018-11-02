@@ -1,0 +1,17 @@
+SetBagItemsPointers()
+{
+	gBagPockets[ITEMS_POCKET].itemSlots = &gSaveBlock1Ptr->0x310
+	gBagPockets[ITEMS_POCKET].capacity = BAG_ITEMS_COUNT; // 42
+	
+	gBagPockets[KEYITEMS_POCKET].itemSlots = &gSaveBlock1Ptr->0x3B8
+	gBagPockets[KEYITEMS_POCKET].capacity = BAG_KEYITEMS_COUNT; // 30
+	
+	gBagPockets[BALLS_POCKET].itemSlots = &gSaveBlock1Ptr->0x430
+	gBagPockets[BALLS_POCKET].capacity = BAG_POKEBALLS_COUNT; // 13
+	
+	gBagPockets[TMHM_POCKET].itemSlots = &gSaveBlock1Ptr->0x464
+	gBagPockets[TMHM_POCKET].capacity = BAG_TMHM_COUNT; // 58
+	
+	gBagPockets[BERRIES_POCKET].itemSlots = &gSaveBlock1Ptr->0x54C
+	gBagPockets[BERRIES_POCKET].capacity = BAG_BERRIES_COUNT; // 43
+}

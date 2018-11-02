@@ -1,0 +1,6 @@
+...
+r4 = r8[r7].0x20
+
+if(GetBoxMonData(r4, 5) != 0)
+	CopyBoxMonFromAnyBox(s1, r6, r4)
+...

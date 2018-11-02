@@ -1,0 +1,70 @@
+lbl1: @98758
+r6 = r0
+r5 = r1
+r7 = r2
+fn_986EC()
+if(r0 == 0) goto lbl7
+
+r0 = r7
+r1 = 0
+fn_98974()
+r2 = data_02039884
+r1 = *r2
+fn_EBB4()
+r1 = data_02039884
+r0 = *r1
+r2 = data_02039888
+r1 = *r2
+fn_9872C()
+r1 = data_02039888
+r0 = r1
+s6 = r0
+r4 = 0xFFFF0000
+r0 = &s6
+r1 = *(r0 + 4)
+r1 &= r4
+r2 = 0x200
+r1 |= r2
+r3 = r6 << 0x10
+r2 = 0xFFFF
+r1 &= r2
+r1 |= r3
+*(r0 + 4) = r1
+LoadSpriteSheet()
+r0 = r7
+r1 = 1
+fn_98974()
+s8 = r0
+r0 = &s8
+r1 = *(r0 + 4)
+r1 &= r4
+r1 |= r5
+*(r0 + 4) = r1
+fn_EC28()
+r0 = data_3D427C
+r1 = &s0
+r2 = 0xC
+CpuSet()
+r0 = &s0
+*r0 = r6
+*(r0 + 2) = r5
+r1 = 0
+r2 = 0
+r3 = 0
+CreateSprite()
+r4 = r0
+r2 = data_02039884
+r0 = *r2
+Free()
+r1 = data_02039884
+r0 = *r1
+Free()
+r0 = r4
+goto lbl8
+
+lbl7:
+r0 = 0x40
+goto lbl8
+
+lbl8:
+return r0

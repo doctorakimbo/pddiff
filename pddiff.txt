@@ -339,6 +339,7 @@ grafics:
 - expand 3D353C (PC menu options) from 38 entries to 128 (jE2A570, e1E2A570???)
 - expand 3D3740 (raw mon icon palette data) from 3 entries to 6 (ONLY FIRST PTR) (EE4E00)
 + expand 3D4038 (mon icon palettes) from 6 entries to 16 (jE40000, e1E40000)
+- expand 3D4294 (item icons/palettes) from 375 entries to 435 (10B8000)
 + expand 3DB028 (item data) from 375 entries to 435 (10B0000)
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
 + expand 3FE664 (trapping moves) from 6 entries to 8 (1303552)
@@ -359,7 +360,7 @@ grafics:
 		  Implements: need more info
 		  Required knowledge: j0203B900, j0203C00D, j0203D500
 = 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
-= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC: 0B -> 10 (pkmnnamelength)
+= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: pkmnnamelength, something else - need more info
@@ -692,7 +693,6 @@ grafics:
 		  Implements: Removes move selection cursor (replaced by functionality in 030830)
 ! 030A14: Entirety of MoveSelectionDestroyCursorAt (see 71disasm)
 		  Implements: Removes move selection cursor (replaced by functionality in 030830)
-= 034D26: 0B -> 10 (pkmnnamelength)
 = 038744: Entirety of OpponentHandleChoosePokemon (see 72disasm)
 		  Implements: New level of smart AI for switching choice (prioritizes mon with Trick Room if team is slow, prioritizes best Trick Room attacker during Trick Room, prioritizes weather setter when weather runs out, prioritizes mon with best type matchup)
 		  Relies on: new AI value
@@ -746,7 +746,6 @@ grafics:
 		  Requires in future: CopyMonToBox (j3C5FA0)
 = 040FA0: Entirety of IsPokemonStorageFull (see 82disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
-= 040FE2: 0B -> 10 (pkmnnamelength)
 = 0415D0: B0 16 04 08 44 17 04 08 -> 6C 16 04 08 98 16 04 08
   0415F6: 29 48 29 -> 42 48 42
   04160C: 25 -> 3E
@@ -769,7 +768,6 @@ grafics:
 + 043214: CD 24 64 -> FF 24 A4 (410 -> 1020 maximum pkmn species?)
 + 043304: Entirety of SpeciesToCryId (see 87disasm)
 		  Implements: Allows forbiddenmons to get individual cries
-= 0435A6: 0B -> 10 (pkmnnamelength)
 + 043890: Entirety of MonGainEVs (see 88disasm)
 		  Implements: Power items, EV per-stat limit 255->252
 = 043A70: Entirety of CheckPartyPokerus (see 89disasm)
@@ -839,7 +837,6 @@ grafics:
 = ~0496C0: Unclear how to translate this to English rom (minidisasm13pt2)
 		  Implements: name length in the battle boxes (the ones with the HP in them)
 = 049718: 1D 28 01 D0 20 28 09 D1 -> 0C E0 00 00 00 00 00 00 (PDONLY, restores gender markers for pokemon #29 and #32)
-= 049720: 0B -> 10 (pkmnnamelength)
 = ?????? (j48EBA): Unclear how to translate this to English rom (minidisasm13pt3)
 		  Implements: Moves name in battle boxes for player mons left by two characters (one in Japanese) to make room
 + 04A2F0: Entirety of CalcNewBarValue (see 105disasm)
@@ -856,10 +853,9 @@ grafics:
 = 04C440: Entirety of SavePlayerBag (see 108disasm)
 		  Implements: Copies something into something else, reverse of LoadPlayerBag (extra bag space?)
 		  Required knowledge: j0203BB00, j0203C010
-= 04EF5E: 0D -> 20 (movenamelength)
+= 04EF5E, 06BE72: 0D -> 20 (movenamelength)
 = ?????? (j4E8A2): Unclear how to translate this to English rom (minidisasm15)
 		  Implements: Removes gender symbol somewhere, seems to be removed in english already
-= 053AB0, 053B16: 0B -> 10 (pkmnnamelength)
 ! 054A00: 06 -> 04 (PDONLY, moves starting position in new game two tiles north)
 = 054A68: 39 4E 31 68 39 48 80 46 -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DF50, see 109disasm))
 		  Implements: need more info (clear save data)
@@ -910,8 +906,6 @@ grafics:
 + 05F2E0: 97 -> FF (152 -> 255 max object graphics ids)
 = 067D44: F1 F7 0A FF -> ?? ?? ?? ?? (changes call to sub_8059B5C to instead call fn at j183380, see 123disasm)
 		  Implements: Not certain, possibly IsSandOrDeepSand; adds metatiles 0xE0 and 0xE2 to whatever check this is
-= 06BCAA, 06BCF2: 0B -> 10 (pkmnnamelength)
-= 06BE72: 0D -> 20 (movenamelength)
 = 06CAC8: Entirety of sub_806CAC8 (see 124disasm)
 		  Implements: Need more info (possibly two-speed bike and multi-registration SELECT)
 		  Required knowledge: j0203C00D, j0203CB54, j0203D2E0, j0203D2E1, j0203D2E2, j0203D2E4, j0203D2EC, j0203D2ED, j0203D2EE, j0203D2F9, j0203D2FA, j0203D2FF
@@ -1084,6 +1078,47 @@ grafics:
 		  Implements: Part of CompressedBoxPokemon refactor
 		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
 = 093A10: Entirety of sub_8093A10 (see 172disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: CopyMonForBoxViewing (j3C6170)
+- 093DE8: 1D 2A 01 D0 20 2A 01 D1 -> 04 E0 00 00 00 00 00 00 (need more info - removes cases 0x1D and 0x20 from data_020397B0->0xCE0)
+- 094A68: 11 20 00 F0 BF F9 -> 00 00 00 00 00 00 (need more info - remove call to fn_94DEC with case 0x11)
+= 0956A4: Entirety of sub_80956A4 (see 173disasm)
+		  Implements: Part of CompressedBoxPokemon refactor, need more info (egg -> 0x19C)
+		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84), fn_3C62B0_J
+		  Note: see previous egg -> 0x19C note
+= 09572C: Entirety of sub_809572C (see 174disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
+= 0957C8: Entirety of sub_80957C8 (see 175disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+= 09596C: 05 21 AA F7 E9 F9 -> 80 8C 00 00 00 00 (part of CompressedBoxPokemon refactor)
+= 0959A8: Entirety of sub_80959A8 (see 176disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+= 095ABC: Entirety of sub_8095ABC (see 177disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
+= 095C84: Entirety of sub_8095C84 (see 178disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
+= 095D84: Entirety of sub_8095D84 (see 179disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
+= 095EA0: Entirety of sub_8095EA0 (see 180disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
+= 095F74: Entirety of sub_8095F74 (see 181disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
+= 098758: Entirety of AddItemIconObject (see 182disasm)
+		  Implements: TM/HM item icon graphics are produced dynamically based on the type of the move
+		  Requires in future: GetTMHMIcon (j2519E4), GetTMHMPalette (j2519EA)
+		  Note: english rom has a separate graphics loader at sub_8098974, might want to rewrite that instead)
+= 099E44: Entirety of SetBagItemsPointers (see 183disasm)
+		  Implements: 
+		  
+		  
+		  
+		  
 		  
 		  
 		  
@@ -1104,5 +1139,5 @@ grafics:
 
 
 
-curr: j93444-j934E0
-next: j9381C (8byte), j93854 (6byte), j9449C (6byte), j950CC
+curr: j9984C-j99898
+next: j99F48

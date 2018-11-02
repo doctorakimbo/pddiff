@@ -1,0 +1,20 @@
+lbl1: @953D0
+...
+r0 = r7 * 4
+r0 += r7
+r0 *= 0x10
+r4 = r0
+r4 += 0x20
+r1 = r8
+r0 = *r1
+r4 += r0
+r1 = *(r4 + 0x24)
+if(r1 == 0) goto lbl_2
+
+r0 = s1
+r1 = r6
+GetBoxedMonPtr()
+r1 = r4
+r2 = 0x30
+memcpy()
+goto lbl_2

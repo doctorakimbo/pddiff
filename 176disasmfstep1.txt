@@ -1,0 +1,18 @@
+...
+r0 = r7 * 4
+r0 += r7
+r0 *= 0x10
+r4 = r0
+r4 += 0x20
+r1 = r8
+r0 = *r1
+r0 += r4
+
+if(GetBoxMonData(r0, 5) != 0)
+{
+	r0 = r8
+	r2 = *r0
+	r2 += r4
+	CopyBoxMonFromAnyBox(s1, r6, r2)
+}
+...

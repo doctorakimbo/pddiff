@@ -1,0 +1,6 @@
+...
+r4 = *r8 + (r7 * 0x50) + 0x20
+
+if(*(r4 + 0x24) != 0)
+	memcpy(GetBoxedMonPtr(s1, r6), r4, 0x30)
+...

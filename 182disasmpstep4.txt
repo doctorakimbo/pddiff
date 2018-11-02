@@ -1,0 +1,51 @@
+AddItemIconObject(arg0, arg1, itemId)
+{
+	if(sub_80986EC() == 0)
+		return 0x40
+
+	if(ItemId_GetPocket(itemId) == POCKET_TMHM)
+		icon = GetTMHMIcon()
+	else
+		icon = gItemIconData[itemId].icon
+	
+	LZDecompressWram(&icon, data_02039884)
+	CopyItemIconPicTo4x4Buffer(data_02039884, data_02039888.0)
+	s6.0 = data_02039888.0
+	s6.4 = 0x200 | (arg0 << 0x10)
+	LoadSpriteSheet(&s6)
+	
+	if(ItemId_GetPocket(itemId) == POCKET_TMHM)
+		s8.0 = GetTMHMPalette(itemId)
+	else
+		s8.0 = gItemIconData[itemId].palette
+	
+	s8.4 = (s8.6 << 0x10) | arg1
+	LoadCompressedObjectPalette(&s8)
+	CpuSet(data_3D427C, &s0, 0xC)
+	s0.0 = arg0
+	s0.2 = arg1
+	r4 = CreateSprite(&s0, 0, 0, 0)
+	Free(data_02039884)
+	Free(data_02039888.0)
+	return r4
+}
+
+
+
+
+
+
+GetTMHMIcon() @2519E4_J
+{
+	return data_D91CF0_J
+}
+
+
+
+
+
+
+GetTMHMPalette(arg0) @2519EA_J
+{
+	return data_251A0C_J[gBattleMoves.[ItemIdToBattleMoveId(arg0)].type]
+}

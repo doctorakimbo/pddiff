@@ -5,55 +5,47 @@ sub_8093A10()
 	r1 = *r0
 	r2 = 0
 	r0 = *(r5 + 2)
-	if(r0 != 0) goto lbl2
-
-	r2 = 1
-	goto lbl2
-
-	lbl2:
+	
+	if(r0 == 0)
+		r2 = 1
+	
 	r4 = 0xCE6
 	r0 = r1 + r4
 	*r0 = r2
 	r0 = *(r5 + 2)
-	if(r0 != 0) goto lbl7
-
-	r0 = *r5
-	if(r0 == 1) goto lbl4
-
-	if(r0 > 1) goto lbl3
-
-	if(r0 == 0) goto lbl6
-
-	goto lbl7
-
-	lbl3:
-	if(r0 > 3) goto lbl7
-
-	goto lbl5
-
-	lbl4:
-	r0 = 1
-	r0 = *(r5 + r0)
-	if(r0 > 5) goto lbl5
-
-	r1 = 0x64
-	r0 *= r1
-	r1 = gPlayerParty
-	r0 += r1
-	sub_8093AD0(r0, 0)
-	goto lbl7
-
-	lbl5:
-	sub_8093AD0(0, 2)
-	goto lbl7
-
-	lbl6:
-	r4 = fn_3C6170_J(GetBoxedMonPtr(StorageGetCurrentBox(), *(r5 + 1)))
-	sub_8093AD0(r4, 1)
-	Free(r4)
-	goto lbl7
-
-	lbl7:
+	
+	if(r0 == 0)
+	{
+		r0 = *r5
+		
+		if(r0 == 1)
+		{
+			r0 = 1
+			r0 = *(r5 + r0)
+			
+			if(r0 > 5)
+				sub_8093AD0(0, 2)
+			else
+			{
+				r1 = 0x64
+				r0 *= r1
+				r1 = gPlayerParty
+				r0 += r1
+				sub_8093AD0(r0, 0)
+			}
+		}
+		elseif(r0 < 1)
+		{
+			if(r0 == 0)
+			{
+				r4 = fn_3C6170_J(GetBoxedMonPtr(StorageGetCurrentBox(), *(r5 + 1)))
+				sub_8093AD0(r4, 1)
+				Free(r4)
+			}
+		}
+		elseif(r0 <= 3)
+			sub_8093AD0(0, 2)
+	}
 }
 
 

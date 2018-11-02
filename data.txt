@@ -150,6 +150,10 @@ B6 97 03 02: 02 97 03 02: ??????
 20 98 03 02: 6C 97 03 02: ??????
 21 98 03 02: 6D 97 03 02: ??????
 22 98 03 02: 6E 97 03 02: ??????
+28 98 03 02: 74 97 03 02: ??????
+84 98 03 02: D0 97 03 02: ??????
+88 98 03 02: D4 97 03 02: ??????
+8C 98 03 02: D8 97 03 02: gBagPockets
 		   : A8 AC 03 02: ??????
 FA AD 03 02: 72 AD 03 02: ??????
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
@@ -389,6 +393,7 @@ funcs e,j,desc:
 0041F0 = 0041BC = BlitBitmapRectToWindow
 004404 = 0043D0 = CopyToWindowPixelBuffer
 00445C = 004428 = FillWindowPixelBuffer
+005180 = 00514C = FillWindowPixelRect8Bit
 006124 = 005F90 = RenderTextFont9
 006F8C = 006B08 = CreateSprite
 0071EC = 006D68 = CreateSpriteAndAnimate
@@ -413,6 +418,8 @@ funcs e,j,desc:
 00E848 = 00E1FC = BtlController_EmitTwoReturnValues
 00E874 = 00E228 = BtlController_EmitChosenMonReturnValue
 00EB28 = 00E4DC = BtlController_EmitBattleAnimation
+00EBB4 = 00E568 = LZDecompressWram
+00EC28 = 00E5DC = LoadCompressedObjectPalette
 016E24 = 016634 = GetBattlerForBattleScript
 016EC8 = 0166D8 = PressurePPLose
 017248 = 016A58 = MarkBattlerForControllerExec
@@ -598,34 +605,20 @@ funcs e,j,desc:
 08BAA0 = 08B53C = GetBoxMonDataFromSelectedBox
 08BAC0 = 08B55C = SetBoxMonDataFromSelectedBox
 08BB6C = 08B608 = GetAndCopyBoxMonDataFromAnyBox
+08BBB4 = 08B650 = CopyBoxMonFromAnyBox
 08BD30 = 08B7CC = GetBoxedMonPtr
 08BD6C = 08B808 = GetBoxNamePtr
 08C0D4 = 08BB10 = CountMonsInBox
 08CFF8 = 08CA34 = add_to_c3_somehow
-08FBA4 = 08F5E0 = ?????
-08FD20 = 08F75C = ?????
-08FD34 = 08F770 = ?????
-08FD5C = 08F798 = ?????
-0912E0 = 090D1C = ?????
-091730 = 09116C = ?????
-091760 = 09119C = ?????
-0920FC = 091B30 = ?????
 0937DC = 093210 = CompactPartySlots
-093AD0 = 093504 = ?????
-094CC8 = 0946FC = ?????
-094D34 = 094768 = ?????
-094DA8 = 0947DC = ?????
-094DEC = 094820 = ?????
-094E88 = 0948BC = ?????
-094F90 = 0949B8 = ?????
-094F94 = 0949BC = ?????
-095024 = 094A4C = ?????
+09872C = 09811C = CopyItemIconPicTo4x4Buffer
 099DE0 = 0997E8 = ApplyNewEncryptionKeyToBagItems
 099E44 = 09984C = SetBagItemsPointers
 099F40 = 099948 = CheckBagHasItem
 09A8BC = 09A2C4 = ItemId_GetName
-09A924 = 09A330 = GetHoldEffect
-09A948 = 09A354 = GetHoldEffectParam
+09A924 = 09A330 = ItemId_GetHoldEffect
+09A948 = 09A354 = ItemId_GetHoldEffectParam
+09A9D8 = 09A3E8 = ItemId_GetPocket
 0A0E90 = 0A2164 = GetSafariZoneFlag
 0BD09C = 0BE35C = MovePlayerOnBike
 0BD488 = 0BE748 = IsRunningDisallowed
@@ -716,6 +709,8 @@ funcs e,j,desc:
 ?????? = 2074F0 = GetWalkFastMovementAction_New (unimplemented)
 ?????? = 207524 = GetPlayerRunMovementAction_New (unimplemented)
 ?????? = 2076B0 = RunTypeEffectivenessBasedAbilities (unimplemented)
+?????? = 2519E4 = GetTMHMIcon (unimplemented)
+?????? = 2519EA = GetTMHMPalette (unimplemented)
 ?????? = 251AC0 = ????? (unimplemented)
 ?????? = 251B30 = GetNature_CheckSynchronize (unimplemented)
 ?????? = 251B58 = ????? (unimplemented)
@@ -737,6 +732,7 @@ funcs e,j,desc:
 ?????? = 3C5DDE = GetCompressedBoxMonData (unimplemented)
 ?????? = 3C5F84 = GetCompressedBoxMonFromBox (unimplemented)
 ?????? = 3C5FA0 = CopyMonToBox (unimplemented)
+?????? = 3C6170 = CopyMonForBoxViewing (unimplemented)
 
 
 data:

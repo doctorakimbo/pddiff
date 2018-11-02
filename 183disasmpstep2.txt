@@ -1,0 +1,13 @@
+sub_8099E44()
+{
+	*(data_0203988C + 0x10) = data_0203C010_J
+	*(data_0203988C + 0x14) = 0x1E
+	*data_0203988C = data_0203C010_J + 0x78
+	*(data_0203988C + 4) = 0x46
+	*(data_0203988C + 0x20) = data_0203C010_J + 0x190
+	*(data_0203988C + 0x24) = 0x43
+	*(data_0203988C + 8) = *gSaveBlock1Ptr + 0x310
+	*(data_0203988C + 0xC) = 0x3A
+	*(data_0203988C + 0x18) = *gSaveBlock1Ptr + 0x3F8
+	*(data_0203988C + 0x1C) = 0x80
+}

@@ -1,0 +1,5 @@
+sub_809572C(arg0, arg1)
+{
+	if(GetBoxMonDataFromSelectedBox(arg0[arg1], 0x41) != 0)
+		fn_5180(data_020397B0->0x21F0, 0, arg0 * 0x18, arg1 * 0x18, 0x20, 0x20)
+}

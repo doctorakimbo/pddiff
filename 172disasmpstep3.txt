@@ -1,0 +1,56 @@
+sub_8093A10()
+{
+	if(data_02039822 == 0)
+		data_020397B0->0xCE6 = 1
+	else
+		data_020397B0->0xCE6 = 0
+	
+	if(data_02039822 == 0)
+	{
+		switch(data_02039820)
+		{
+		case 0:
+			r4 = fn_3C6170_J(GetBoxedMonPtr(StorageGetCurrentBox(), data_02039821))
+			sub_8093AD0(r4, 1)
+			Free(r4)
+			
+			break;
+		case 1:
+			if(data_02039821 > 5)
+				sub_8093AD0(0, 2)
+			else
+				sub_8093AD0(gPlayerParty[data_02039821], 0)
+			
+			break;
+		case 2:
+		case 3:
+			sub_8093AD0(0, 2)
+			
+			break;
+		}
+	}
+}
+
+
+
+
+
+fn_3C6170_J(arg0)
+{
+	r5 = AllocZeroed(0x50)
+	ZeroBoxMonData(r5)
+	SetBoxMonData(r5, 0, &arg0.0)
+	SetBoxMonData(r5, 1, &arg0.4)
+	SetBoxMonData(r5, 9, &CalculateBoxMonChecksum(r5))
+	EncryptBoxMon(r5)
+	SetBoxMonData(r5, 2, &arg0.0xC)
+	SetBoxMonData(r5, 3, &1)
+	SetBoxMonData(r5, 0x25, &4)
+	SetBoxMonData(r5, 0xB, &arg0.0x24)
+	SetBoxMonData(r5, 0xC, &LAST_10_BITS(arg0.0x26))
+	SetBoxMonData(r5, 8, &FIRST_20_BITS(arg0.0x26))
+	SetBoxMonData(r5, 0x2D, &SECOND_HIGHEST_BIT(arg0.8))
+	SetBoxMonData(r5, 0x25, &(arg0.0x2D | (LAST_13_BITS(arg0.0x2E) << 8)))
+	MonRestorePP(r5)
+	return r5
+}

@@ -1,0 +1,30 @@
+sub_8093A10()
+{	
+	if(data_02039822 == 0)
+		data_020397B0->0xCE6 = 1
+	else
+		data_020397B0->0xCE6 = 0
+	
+	if(data_02039822 == 0)
+	{
+		switch(data_02039820)
+		{
+		case 0:
+			sub_8093AD0(GetBoxedMonPtr(StorageGetCurrentBox(), data_02039821), 1)
+			
+			break;
+		case 1:
+			if(data_02039821 > 5)
+				sub_8093AD0(0, 2)
+			else
+				sub_8093AD0(gPlayerParty[data_02039821], 0)
+			
+			break;
+		case 2:
+		case 3:
+			sub_8093AD0(0, 2)
+			
+			break;
+		}
+	}
+}

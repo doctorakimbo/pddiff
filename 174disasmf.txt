@@ -1,0 +1,28 @@
+lbl1: @9572C
+r4 = r0
+r0 = r1 * 2
+r5 = r0 + r1
+r0 = r5 * 2
+r0 += r4
+r1 = 0x41
+GetBoxMonDataFromSelectedBox()
+if(r0 == 0) goto lbl2
+
+r0 = data_020397B0
+r0 = *r0
+r1 = 0x21F0
+r0 += r1
+r0 = *r0
+r2 = r4 * 2
+r2 += r4
+r2 *= 8
+r3 = r5 * 8
+r1 = 0x20
+s0 = r1
+s1 = r1
+r1 = 0
+fn_5180()
+goto lbl2
+
+lbl2:
+return
