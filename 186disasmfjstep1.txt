@@ -1,0 +1,15 @@
+sub_809B408(arg0, arg1, arg2)
+{
+	r6 = arg0
+	r5 = arg2
+	r0 = -2
+	
+	if(arg1 != r0)
+	{
+		r4 = gStringVar1
+		ConvertIntToDecimalStringN(r4, ItemId_GetPrice(arg1), 1, 4)
+		r4 = data_02021C88_J
+		StringExpandPlaceholders(r4, data_3DDDAB_J)
+		fn_13F6F4(r6, 0, r4, 0x60, r5, 0, 0, 0xFF, 1)
+	}
+}

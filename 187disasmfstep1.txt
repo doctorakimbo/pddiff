@@ -1,0 +1,4 @@
+	...
+	CopyItemName(r4, gStringVar1)
+	fn_13F75C(r6, data_416766, fn_9BCA0)
+}

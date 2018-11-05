@@ -1,0 +1,68 @@
+lbl1: @9B66C
+...
+r1 = fn_D7DF50_J
+goto r1
+
+lblx: @9B670
+fn_99E90()
+r1 = data_416766
+r2 = data_9BCA1
+r0 = r6
+fn_13F75C()
+goto lbly
+
+lbly: @9B67E
+return
+
+
+
+
+
+
+fn_D7DF50_J:
+r0 = r4
+ItemId_GetPocket()
+if(r0 != 4) goto lbl4
+
+r0 = r4
+r1 = 1
+CheckBagHasItem()
+if(r0 == 0) goto lbl2
+
+r0 = r4
+r1 = gStringVar1
+fn_99E90()
+r1 = data_D7E000_J
+r2 = data_9B989_J
+r0 = r6
+fn_13F75C()
+goto lbl3
+
+lbl2:
+r0 = 1
+*(r5 + 2) = r0
+r0 = r4
+r1 = gStringVar1
+fn_99E90()
+r0 = *(r5 + 0xA)
+ItemId_GetPrice()
+r1 = r0
+r0 = data_02021C60_J
+r2 = 0
+r3 = 8
+ConvertIntToDecimalStringN()
+r1 = data_D7E014_J
+r2 = data_9B881_J
+r0 = r6
+fn_13F75C()
+goto lbl3
+
+lbl3:
+r3 = lbly
+goto r3
+
+lbl4:
+r1 = gStringVar1
+r0 = r4
+r3 = lblx
+goto r3

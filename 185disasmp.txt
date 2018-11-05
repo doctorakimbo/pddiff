@@ -1,0 +1,11 @@
+lbl1: @9A30C
+r4 = gItemData
+SanitizeItemId()
+r1 = r0 * 4
+r1 += r0
+r1 *= 8
+r1 += r4
+r0 = *(r1 + 0xC)
+r1 = 0xA
+r0 *= r1
+return r0

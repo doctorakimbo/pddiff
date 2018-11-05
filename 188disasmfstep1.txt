@@ -1,0 +1,22 @@
+sub_809BF0C(arg0)
+{
+	r4 = arg0
+	IncrementGameStat(0x26)
+	r6 = gSaveBlock1Ptr
+	r0 = *r6
+	r5 = 0x290
+	r0 += r5
+	r1 = data_02039934
+	RemoveMoney(r0, *(r1 + 8))
+	PlaySE(0xF8)
+	r0 = *r6
+	r0 += r5
+	PrintMoneyAmountInMoneyBox(0, GetMoney(r0), 0)
+	r1 = data_03005090
+	r0 = r4 * 4
+	r0 += r4
+	r0 *= 8
+	r0 += r1
+	r1 = fn_9BF68
+	*r0 = r1
+}

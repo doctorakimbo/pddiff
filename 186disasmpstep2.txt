@@ -1,0 +1,14 @@
+sub_809B408(arg0, arg1, arg2)
+{
+	if(arg1 != -2)
+	{
+		if(ItemId_GetPocket(arg1) == 4 && CheckBagHasItem(arg1, 1))
+			StringCopy(&gStringVar1, data_D7E0E8_J) // " -----"
+		else
+			ConvertIntToDecimalStringN(&gStringVar1, ItemId_GetPrice(arg1), STR_CONV_MODE_RIGHT_ALIGN, 6)
+		
+		r4 = data_02021C88_J
+		StringExpandPlaceholders(r4, data_3DDDAB_J)
+		fn_13F6F4(arg0, 0, r4, 0x58, arg2, 0, 0, 0xFF, 1)
+	}
+}

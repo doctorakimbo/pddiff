@@ -1,0 +1,8 @@
+sub_809BF0C(arg0)
+{
+	IncrementGameStat(0x26)
+	RemoveMoney(&gSaveBlock1Ptr->0x290, data_02039934.8)
+	PlaySE(0xF8)
+	PrintMoneyAmountInMoneyBox(0, GetMoney(&gSaveBlock1Ptr->0x290), 0)
+	data_03005090[arg0].0 = fn_9BF68
+}

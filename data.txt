@@ -6,6 +6,8 @@ addr e: addr j: desc
 		   : E8 0D 02 02: ??????
 		   : C2 1A 02 02: ??????
 D0 1C 02 02: 4C 1C 02 02: gStringVar1
+		   : 60 1C 02 02: ??????
+18 1D 02 02: 88 1C 02 02: ??????
 		   : 10 1D 02 02: ?????? (GetMoveRelearnerMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
 								 (GetNumberOfRelearnableMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
 74 29 02 02: E4 28 02 02: gBattle_BG0_X
@@ -154,6 +156,7 @@ B6 97 03 02: 02 97 03 02: ??????
 84 98 03 02: D0 97 03 02: ??????
 88 98 03 02: D4 97 03 02: ??????
 8C 98 03 02: D8 97 03 02: gBagPockets
+34 99 03 02: 80 98 03 02: gShopDataPtr
 		   : A8 AC 03 02: ??????
 FA AD 03 02: 72 AD 03 02: ??????
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
@@ -170,9 +173,7 @@ FA AD 03 02: 72 AD 03 02: ??????
 		   : 70 B9 03 02: ?????? (appears to be an array of unknown objects; first field is a 4-entry array of 2 bytes each, second field is a 4-entry array of 1 byte each)
 								 (atk02_attackstring: when player attacks: insert [gCurrentMove, 0] into the first empty slot for the mon, or increment the field2 of the first entry where field1 = gCurrentMove and field2 != 0xFF, whichever comes first)
 								 (atk02_attackstring: when player attacks: if neither of the above is available, insert [gCurrentMove, 0] into the last slot where field2 != 0xFF; if even that fails, insert it into the first slot)
-		   : 00 BB 03 02: ?????? (appears to be an array of 167 unknown 4-byte objects, possibly ItemSlots)
-								 (LoadPlayerBag: Entire array written to in a loop, just like gLoadedSaveData.items, read from j0203C010)
-								 (SavePlayerBag: Entire array read from in a loop, just like gLoadedSaveData.items, and written to j0203C010)
+		   : 00 BB 03 02: ?????? gLoadedSave_ExtraItemData
 		   : 30 BF 03 02: ?????? (appears to be (0-3) array of ptrs to Sprites, (4) int)
 								 (fn_EB8398_J: Set this[moveId] to the created sprite)
 								 (fn_EB8398_J: Set this.4 to moveId)
@@ -362,7 +363,7 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 1C 50 00 03: 5C 50 00 03: gBGTilemapBuffers3
 78 50 00 03: B8 50 00 03: ??????
 7C 50 00 03: BC 50 00 03: ??????
-		   : D0 50 00 03: ??????
+90 50 00 03: D0 50 00 03: gTasks
 98 50 00 03: D8 50 00 03: ??????
 7C 53 00 03: CC 53 00 03: gCB2_AfterEvolution
 		   : 40 55 00 03: ?????? (GetEvolutionTargetSpecies: EVO_FRIENDSHIP_DAY works when this.2 is less than 11; EVO_FRIENDSHIP_NIGHT works when this.2 is between 12 and 23 inclusive) (gLocalTime?)
@@ -410,6 +411,7 @@ funcs e,j,desc:
 008E08 = 008984 = StringLength
 008E28 = 0089A4 = StringCompare
 008E78 = 0089F4 = ConvertIntToDecimalStringN
+008FCC = 008B48 = StringExpandPlaceholders
 00DFA4 = 00D998 = BtlController_EmitGetMonData
 00DFF0 = 00D9E4 = BtlController_EmitSetMonData
 00E0B4 = 00DAA8 = BtlController_EmitReturnMonToBall
@@ -614,11 +616,17 @@ funcs e,j,desc:
 09872C = 09811C = CopyItemIconPicTo4x4Buffer
 099DE0 = 0997E8 = ApplyNewEncryptionKeyToBagItems
 099E44 = 09984C = SetBagItemsPointers
+099E90 = 099898 = CopyItemName
 099F40 = 099948 = CheckBagHasItem
+09A8A4 = 09A2AC = SanitizeItemId
 09A8BC = 09A2C4 = ItemId_GetName
+09A900 = 09A30C = ItemId_GetPrice
 09A924 = 09A330 = ItemId_GetHoldEffect
 09A948 = 09A354 = ItemId_GetHoldEffectParam
 09A9D8 = 09A3E8 = ItemId_GetPocket
+09FD58 = 09FC38 = GetMoney
+09FDD8 = 09FCB8 = RemoveMoney
+09FE40 = 09FD20 = PrintMoneyAmountInMoneyBox
 0A0E90 = 0A2164 = GetSafariZoneFlag
 0BD09C = 0BE35C = MovePlayerOnBike
 0BD488 = 0BE748 = IsRunningDisallowed
@@ -636,12 +644,15 @@ funcs e,j,desc:
 0F6F1C = 0F7F7C = NewMenuHelpers_DrawStdWindowFrame
 0F793C = 0F899C = GetStartMenuWindowId
 0F7948 = 0F89A8 = RemoveStartMenuWindow
+1074DC = 107FE0 = ListMenuPrintEntries
 10AD10 = 10B80C = UseRegisteredKeyItemOnField
 10F904 = 110438 = MoveMenuCursor
 11B0D0 = 11B914 = InUnionRoom
 125A78 = 1263C4 = ItemIdToBattleMoveId
 12E51C = 12ED24 = AddTextPrinterParameterized3
 12E5A4 = 12EDAC = AddTextPrinterParameterized4
+13F6F4 = 13FE18 = ?????
+13F75C = 13FE80 = ?????
 1E3B60 = 1C7A84 = CpuFastSet
 1E3B64 = 1C7A88 = CpuSet
 1E3B9C = square root

@@ -1,0 +1,24 @@
+sub_809B408(arg0, arg1, arg2)
+{
+	if(arg1 != -2)
+	{
+		ConvertIntToDecimalStringN(&gStringVar1, ItemId_GetPrice(arg1), STR_CONV_MODE_LEFT_ALIGN, 4)
+		r2 = data_02021D18
+		
+		for(r1 = (4 - StringLength(&gStringVar1)) - 1; r1 >= 0; r1--)
+		{
+			*r2 = 0
+			r2++
+			r1--
+		}
+		
+		StringExpandPlaceholders(r2, data_41697A)
+		fn_13F6F4(arg0, 0, data_02021D18, 0x69, arg2, 0, 0, 0xFF, 1)
+	}
+}
+
+fn_13F6F4(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
+= AddTextPrinterParameterized4(arg0, arg1, arg3, arg4, arg5, arg6, (arg8 * 3) + data_464884, arg7, arg2)
+
+so
+fn_13F6F4(windowId, fontId, str, x, y, letterSpacing, lineSpacing, speed, colorOffset)

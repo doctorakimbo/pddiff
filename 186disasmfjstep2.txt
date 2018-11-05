@@ -1,0 +1,10 @@
+sub_809B408(arg0, arg1, arg2)
+{
+	if(arg1 != -2)
+	{
+		ConvertIntToDecimalStringN(&gStringVar1, ItemId_GetPrice(arg1), STR_CONV_MODE_RIGHT_ALIGN, 4)
+		r4 = data_02021C88_J
+		StringExpandPlaceholders(r4, data_3DDDAB_J)
+		fn_13F6F4(arg0, 0, r4, 0x60, arg2, 0, 0, 0xFF, 1)
+	}
+}

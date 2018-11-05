@@ -1,0 +1,28 @@
+lbl1: @9BF0C
+r4 = r0
+r0 = 0x26
+IncrementGameStat()
+r6 = gSaveBlock1Ptr
+r0 = *r6
+r5 = 0x290
+r0 += r5
+r1 = data_02039934
+r1 = *(r1 + 8)
+fn_9FDD8()
+r0 = 0xF8
+PlaySE()
+r0 = *r6
+r0 += r5
+fn_9FD58()
+r1 = r0
+r0 = 0
+r2 = 0
+fn_9FE40()
+r1 = data_03005090
+r0 = r4 * 4
+r0 += r4
+r0 *= 8
+r0 += r1
+r1 = fn_9BF68
+*r0 = r1
+return

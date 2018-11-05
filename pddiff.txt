@@ -349,6 +349,7 @@ grafics:
 + repoint 1D8C10 -> 1051B20 (BattleScript_SuccessForceOut) - do it itself later
 + repoint 1D9015 -> 1052EE0 (BattleScript_FocusPunchSetUp) - do it itself later
 ! repoint 1D9444 -> 1050260 (BattleScript_ObliviousPreventsAttraction) - script done, import during atk97_tryinfatuating
+! repoint ptrs at 09D1E0 and 09D248 ("Bill's PC"/"Someone's PC") to the same text (jE00590, e1E00590???) (PDONLY)
 
 = 006884: ptr 217818 (gUnusedJapaneseFireRedLeafGreenMaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
 = 0069F0: ptr 227B30 (gUnusedJapaneseFireRedLeafGreenFemaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
@@ -360,7 +361,7 @@ grafics:
 		  Implements: need more info
 		  Required knowledge: j0203B900, j0203C00D, j0203D500
 = 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
-= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20: 0B -> 10 (pkmnnamelength)
+= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: pkmnnamelength, something else - need more info
@@ -848,12 +849,12 @@ grafics:
 + 04C058: Entirety of SetSaveBlocksPointers (see 106disasm)
 		  Implements: nothing?
 = 04C320: Entirety of LoadPlayerBag (see 107disasm)
-		  Implements: Copies something into something else (extra bag space?)
-		  Required knowledge: j0203BB00, j0203C010
+		  Implements: extra bag space
+		  Required knowledge: gLoadedSave_ExtraItemData (j0203BB00), gSaveBlock_ExtraItems (j0203C010)
 = 04C440: Entirety of SavePlayerBag (see 108disasm)
-		  Implements: Copies something into something else, reverse of LoadPlayerBag (extra bag space?)
-		  Required knowledge: j0203BB00, j0203C010
-= 04EF5E, 06BE72: 0D -> 20 (movenamelength)
+		  Implements: extra bag space
+		  Required knowledge: gLoadedSave_ExtraItemData (j0203BB00), gSaveBlock_ExtraItems (j0203C010)
+= 04EF5E, 06BE72, 09B4EC: 0D -> 20 (movenamelength)
 = ?????? (j4E8A2): Unclear how to translate this to English rom (minidisasm15)
 		  Implements: Removes gender symbol somewhere, seems to be removed in english already
 ! 054A00: 06 -> 04 (PDONLY, moves starting position in new game two tiles north)
@@ -1114,14 +1115,38 @@ grafics:
 		  Requires in future: GetTMHMIcon (j2519E4), GetTMHMPalette (j2519EA)
 		  Note: english rom has a separate graphics loader at sub_8098974, might want to rewrite that instead)
 = 099E44: Entirety of SetBagItemsPointers (see 183disasm)
-		  Implements: 
+		  Implements: extra bag space
+		  Required knowledge: gSaveBlock_ExtraItems (j0203C010)
+- 09A540: Entirety of SwapRegisteredBike (+mysteryfuncs) (see 184disasm)
+		  Implements: removes unused code to make room for mysteryfuncs
+- 09A8AA: BB -> D8 (max items 374 -> 432)
+- 09A900: Entirety of ItemId_GetPrice (see 185disasm)
+		  Implements: the price in-game is now the price stored in the data times ten, this allows items up to 10x more expensive than previous maximum
+		  Relies on: every price in item data divided by 10
+- 09B3B4: 02 -> 01 (changes letter spacing of some printer in a shop menu, unsure what this does; jp changes line spacing 2->1 and x 4->0 as well, which is already done in en)
+- 09B3D0: 77 -> B0 (menu return icon index changed to new max items)
+= 09B41E: 08 04 -> 20 47
+  09B488: D0 1C 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jD7E090, see 186disasm))
+		  Implements: Show already-obtained TMs as price "-----"
+- 09B428, 09BC4A, 09BD26: 09 04 09 0C -> 00 00 00 00 (don't cap prices at 65536)
+- 09B430: 04 23 -> 06 23
+  09B440: 04 21 -> 06 21
+		  Implements: extra 2 digits for prices
+- 09B718: 98 -> 90 (move some sort of arrow in a shop menu left? unclear, test)
+- 09B868: 01 -> 02
+  09B86E: 02 DC -> 2F D0
+		  Implements: switches cases metatileLayerType = 1 and metatileLayerType = 2 for BuyMenuDrawMapMetatile (what? test)
+- 09BB68: 36 -> 2E (move some sort of printer in a shop menu left?, test; in jp it's 0x26 -> 0x1E)
+= 09BC7E: 20 1C -> 08 47
+  09B684: D0 1C 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jD7DF50, see 187disasm))
+		  Implements: prevents buying duplicate TMs
+- 09BDB6, 09C106: 00 04 00 0C -> 00 00 00 00 (don't cap prices at 65536)
+= 09BF46: A0 00 -> 08 47
+  09BF60: 90 50 00 03 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jD7E030, see 188disasm))
+		  Implements: need more info
+= 09F914: Entirety of sub_809F914 (see 189disasm)
 		  
-		  
-		  
-		  
-		  
-		  
-		  
+
 		  
 		  
 		  
@@ -1139,5 +1164,5 @@ grafics:
 
 
 
-curr: j9984C-j99898
-next: j99F48
+curr: j9F808-j9F8D4
+next: j9FCB4 (4byte), j9FD30 (1byte), j9FD6C (1byte), j9FE1C

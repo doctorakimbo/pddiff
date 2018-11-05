@@ -1,0 +1,4 @@
+ItemId_GetPrice(arg0)
+{
+	return *((SanitizeItemId(arg0) * 0x2C) + gItemData + 0x10)
+}

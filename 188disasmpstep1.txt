@@ -1,0 +1,36 @@
+sub_809BF0C(arg0)
+{
+	r4 = arg0
+	IncrementGameStat(0x26)
+	r6 = gSaveBlock1Ptr
+	r0 = *r6
+	r5 = 0x290
+	r0 += r5
+	r1 = data_02039934
+	RemoveMoney(r0, *(r1 + 8))
+	PlaySE(0xF8)
+	r0 = *r6
+	r0 += r5
+	PrintMoneyAmountInMoneyBox(0, GetMoney(r0), 0)
+	r1 = data_03005090
+	r0 = r4 * 4
+	r0 += r4
+	r0 *= 8
+	r5 = r0 + r1
+	
+	if(ItemId_GetPocket(*(r5 + 0x12)) == 4)
+	{
+		r1 = *(r5 + 0x16)
+		r0 = r1 * 4
+		r0 += r1
+		r0 *= 8
+		r1 = data_03005098
+		r6 = r0 + r1
+		FillWindowPixelBuffer(*(r6 + 0x10), 0)
+		ListMenuPrintEntries(r6, *(r6 + 0x18), 0, *(r6 + 0xE))
+	}
+	
+	r0 = r5
+	r1 = fn_9BF68
+	*r0 = r1
+}

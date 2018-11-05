@@ -1,0 +1,10 @@
+lbl1: @9BC7C
+...
+r1 = gStringVar1
+r0 = r4
+fn_99E90()
+r1 = data_416766
+r2 = data_9BCA1
+r0 = r6
+fn_13F75C()
+return

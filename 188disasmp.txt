@@ -1,0 +1,60 @@
+lbl1: @9B8FC
+r4 = r0
+r0 = 0x26
+IncrementGameStat()
+r6 = gSaveBlock1Ptr
+r0 = *r6
+r5 = 0x290
+r0 += r5
+r1 = data_02039934
+r1 = *(r1 + 8)
+fn_9FDD8()
+r0 = 0xF8
+PlaySE()
+r0 = *r6
+r0 += r5
+fn_9FD58()
+r1 = r0
+r0 = 0
+r2 = 0
+fn_9FE40()
+r1 = fn_D7E030_J
+goto r1
+
+lblx: @9B93E
+r1 = fn_9BF68
+*r0 = r1
+return
+
+
+
+
+
+
+fn_D7E030_J:
+r1 = data_03005090
+r0 = r4 * 4
+r0 *= 8
+r5 = r0 + r1
+ItemId_GetPocket()
+if(r0 != 4) goto lbl2
+
+r1 = *(r5 + 0x16)
+r0 = r1 * 4
+r0 += r1
+r0 *= 8
+r1 = data_03005098
+r6 = r0 + r1
+r0 = *(r6 + 0x10)
+r1 = 0
+FillWindowPixelBuffer()
+r0 = r6
+r1 = *(r0 + 0x18)
+r3 = *(r0 + 0xE)
+r2 = 0
+fn_107FE0_J()
+goto lbl2
+
+lbl2:
+r0 = r5
+goto lblx

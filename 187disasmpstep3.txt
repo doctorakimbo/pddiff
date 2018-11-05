@@ -1,0 +1,22 @@
+	...
+	if(ItemId_GetPocket(r4) == 4)
+	{
+		if(CheckBagHasItem(r4, 1))
+		{
+			CopyItemName(r4, gStringVar1)
+			fn_13F75C(r6, data_D7E000_J, fn_9BF98) // fn_9B988_J
+		}
+		else
+		{
+			r5.2 = 1
+			CopyItemName(r4, gStringVar1)
+			ConvertIntToDecimalStringN(data_02021C60_J, ItemId_GetPrice(r5.0xA), 0, 8)
+			fn_13F75C(r6, data_D7E014_J, fn_9BE90) // fn_9B880_J
+		}
+	}
+	else
+	{
+		CopyItemName(r4, gStringVar1)
+		fn_13F75C(r6, data_416766, fn_9BCA0)
+	}
+}
