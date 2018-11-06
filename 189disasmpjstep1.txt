@@ -1,0 +1,74 @@
+sub_809F914()
+{
+	r6 = data_0203998C
+	r1 = *r6
+	r2 = 0x1E2C
+	r0 = r1 + r2
+	r0 = *r0
+	
+	if(r0 == 1)
+	{
+		r0 = 8
+		r2 = 2
+	}
+	else
+	{
+		if(r0 == 2 || r0 == 3)
+			r2 = 0xA
+		else
+			r2 = 0x12
+		
+		r0 = 6
+	}
+	
+	r8 = r0
+	r10 = r2
+	r2 = 0x1E13
+	r0 = r1 + r2
+	FillWindowPixelBuffer(*r0, 0x11)
+	r4 = 0
+	
+	if(r4 < r8)
+	{
+		r5 = &s3
+		r7 = 0
+		r0 = data_3DD1DC_J
+		r0 = *r0
+		r9 = r0
+
+		do
+		{
+			r0 = *r6
+			r1 = 0x1800
+			r0 += r1
+			r0 += r4
+			r0 = *r0
+			*r5 = r0
+			r2 = r9
+			*(r5 + 1) = r2
+			sub_809FC54(*r5)
+			
+			if(r0 == 1)
+				r2 = 2
+			else
+				r2 = 0
+			
+			r0 = *r6
+			r1 = 0x1E13
+			r0 += r1
+			r1 = 0xB
+			r3 = r4
+			r3 *= r1
+			r3 += r10
+			r3 += r2
+			PrintTextOnWindow(*r0, 2, &s3, r3, 1, r7, r7)
+			r0 = r4 + 1
+			r4 = r0
+		} while(r4 < r8)
+	}
+	
+	r0 = *r6
+	r2 = 0x1E13
+	r0 += r2
+	PutWindowTilemap(*r0)
+}

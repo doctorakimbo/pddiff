@@ -1,0 +1,21 @@
+CreateScriptedWildMon(arg0, arg1, arg2)
+{
+	r4 = arg0
+	r5 = arg1
+	r7 = arg2
+	r6 = r7
+	ZeroEnemyPartyMons()
+	r0 = &gEnemyParty[0]
+	r8 = r0
+	CreateMon(r8, r4, r5, 0x20, 0, 0, 0, 0)
+	
+	if(r6 != 0)
+	{
+		r0 = &s4
+		*r0 = r6
+		r1 = r0
+		r0 = r7
+		*(r1 + 1) = r0
+		SetMonData(r8, 0xC, &s4)
+	}
+}

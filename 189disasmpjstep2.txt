@@ -1,0 +1,34 @@
+sub_809F914()
+{
+	if(*(*data_0203998C + 0x1E2C) == 1)
+	{
+		r8 = 8
+		r10 = 2
+	}
+	else
+	{
+		if(*(*data_0203998C + 0x1E2C) == 2 || *(*data_0203998C + 0x1E2C) == 3)
+			r10 = 0xA
+		else
+			r10 = 0x12
+		
+		r8 = 6
+	}
+	
+	FillWindowPixelBuffer(*(*data_0203998C + 0x1E13), 0x11)
+	
+	for(r4 = 0; r4 < r8; r4++)
+	{
+		s3.0 = *(*data_0203998C + 0x1800 + r4)
+		s3.1 = *data_3DD1DC_J
+		
+		if(sub_809FC54(s3) == 1)
+			r2 = 2
+		else
+			r2 = 0
+		
+		PrintTextOnWindow(*(*data_0203998C + 0x1E13), 2, &s3, (r4 * 0xB) + r10 + r2, 1, 0, 0)
+	}
+	
+	PutWindowTilemap(*(*data_0203998C + 0x1E13))
+}

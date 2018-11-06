@@ -1,0 +1,33 @@
+lbl1: @A029C
+r4 = r0
+r5 = r1
+r7 = r2
+r6 = r7
+ZeroEnemyPartyMons()
+r0 = gEnemyParty
+r8 = r0
+r0 = 0
+s0 = r0
+s1 = r0
+s2 = r0
+s3 = r0
+r0 = r8
+r1 = r4
+r2 = r5
+r3 = 0x20
+CreateMon()
+if(r6 == 0) goto lbl2
+
+r0 = &s4
+*r0 = r6
+r1 = r0
+r0 = r7
+*(r1 + 1) = r0
+r0 = r8
+r1 = 0xC
+r2 = &s4
+SetMonData()
+goto lbl2
+
+lbl2:
+return

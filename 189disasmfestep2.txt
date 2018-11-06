@@ -1,0 +1,21 @@
+sub_809F914()
+{
+	FillWindowPixelBuffer(*(*data_0203998C + 0x1E13), 0x11)
+	
+	for(r4 = 0; r4 < *(*(*data_0203998C + 0x1E28) + 1); r4++)
+	{
+		s3.0 = *(data_0203998C + 0x1800 + r4)
+		s3.1 = *data_415A20
+		
+		if(sub_809FC54(s3) == 1)
+			r1 = 2
+		else
+			r1 = 0
+		
+		PrintTextOnWindow(*(*data_0203998C + 0x1E13), 2, &s3, (*(*data_0203998C + 0x1E16) - 0x40) + (r4 * 8) + r1, 1, 0xFF, r4)
+	}
+	
+	sub_809F594()
+	CopyWindowToVram(*(*data_0203998C + 0x1E13), 2)
+	PutWindowTilemap(*(*data_0203998C + 0x1E13))
+}

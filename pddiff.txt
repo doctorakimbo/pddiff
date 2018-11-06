@@ -361,7 +361,7 @@ grafics:
 		  Implements: need more info
 		  Required knowledge: j0203B900, j0203C00D, j0203D500
 = 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
-= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE: 0B -> 10 (pkmnnamelength)
+= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: pkmnnamelength, something else - need more info
@@ -975,10 +975,10 @@ grafics:
 		  Relies on: CreateMonWithNature changed params ("CreateMonWithoutNature")
 		  Requires in future: fn_251B58_J, fn_251BA4_J, fn_251BBA_J, fn_251BE4_J, ForceUnownFormOnPersonality (j251C92)
 = 0830B8: Entirety of UpdateRepelCounter (see 141disasm)
-		  Implements: new repel system, (something else)
-		  Required knowledge: j0203ACA8
+		  Implements: new repel system
+		  Relies on: VAR_REPEL_STEP_COUNT refactor (repel type is stored in high byte of VAR_REPEL_STEP_COUNT)
 		  Requires in future: EventScript_RepelWoreOffUseAnother (jE2FF90), fn_E2FFE0_J
-= 083119: 04 -> 06 (checks last byte of VAR_REPEL_STEP_COUNT instead of last two bytes, related to changes at 830B8)
+= 083119, 0A19A5: 04 -> 06 (part of VAR_REPEL_STEP_COUNT refactor)
 = 0832EC: 00 06 00 0E -> ?? ?? ?? ?? (calls new fn at j251AC0, see 142disasm)
 		  Implements: Unclear, possibly makes water tiles only cause encounters when player is surfing (is there a possibility of standing on water tiles otherwise?)
 + 088B9E: C0 0F -> 01 20 (sound will always become stereo no matter what options menu says)
@@ -1145,24 +1145,40 @@ grafics:
   09BF60: 90 50 00 03 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jD7E030, see 188disasm))
 		  Implements: need more info
 = 09F914: Entirety of sub_809F914 (see 189disasm)
+		  Implements: pkmnnamelength (nicknaming screen), something else
+		  Note: This is very different in en vs jp, should try to find the naming screen templates and change those
+- 09FDD4: 3F 42 0F -> 7F 96 98 (max money 999999 -> 9999999)
+= ?????? (j9FD30): 08 -> 00 (unclear how to translate to english rom since this fn doesn't exist; moves some money-related printer left (testjp!))
+- 09FEE8: 06 -> 08 (extra 2 digits for money)
+- 09FFB8: Entirety of DrawMoneyBox (see 190disasm)
+		  Implements: makes money display one tile wider and changes base block from 8 to 5 (?)
+- 0A011C: Entirety of ScriptGiveMon (see 191disasm)
+		  Implements: does nothing by itself, but carries over any changes to CreateScriptedWildMon to giftmons too
+- 0A029C: Entirety of CreateScriptedWildMon (see 192disasm)
+		  Implements: does nothing by itself, but carries over any changes to sub_80829FC to scripted encounters too
+= 0A19E8: Entirety of sub_80A19E8 (see 193disasm)
+		  Implements: part of VAR_REPEL_STEP_COUNT refactor
+- 0A1A5A: 67 F0 B5 F9 -> 00 00 00 00
+  0A1A68: 66 F0 C4 FF -> 00 00 00 00
+		  Implements: need more info (appears to remove functions that delete blank bag slots when an item is used up, probably reimplemented elsewhere)
+= 0B3834: Entirety of sub_80B3834 (see 194disasm)
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
 		  
 
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
 
 
-
-curr: j9F808-j9F8D4
-next: j9FCB4 (4byte), j9FD30 (1byte), j9FD6C (1byte), j9FE1C
+curr: jB4AF4-jB4C40
+next: jB691C (1byte), jBD3E8 (1byte), jBE688 (8byte), jBEAD4 (6byte), jBEAE4 (2byte), jC0408 (repoint), jC0C4C (2byte), jC0E44 (repoint), jC0E4C (1byte), jC0E74/jC0E94 (repoint), jC0E86 (1byte), jC0F34 (1byte), jC0F40/jC0F64 (repoint), jC0FAC (1byte), jC0FB0 (1byte), jC0FD4 (repoint), jC1514 (repoint), jC1540 (repoint), jC1554 (repoint)
+next: jC47C0

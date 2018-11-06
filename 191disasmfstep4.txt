@@ -1,0 +1,17 @@
+ScriptGiveMon(speciesNum, level, heldItem)
+{
+	tempMon = AllocZeroed(100);
+	CreateMon(tempMon, speciesNum, level, 32, 0, 0, 0, 0);
+	SetMonData(tempMon, MON_DATA_HELD_ITEM, &heldItem);
+	result = GiveMonToPlayer(tempMon);
+	dexNum = SpeciesToNationalPokedexNum(speciesNum);
+	
+	if(result == MON_GIVEN_TO_PARTY || result == MON_GIVEN_TO_PC)
+	{
+		GetSetPokedexFlag(dexNum, 2);
+		GetSetPokedexFlag(dexNum, 3);
+	}
+	
+	Free(tempMon);
+	return result;
+}

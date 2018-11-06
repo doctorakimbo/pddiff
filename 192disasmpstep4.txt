@@ -1,0 +1,5 @@
+CreateScriptedWildMon(speciesNum, level, heldItem)
+{
+	sub_80829FC(speciesNum, level, heldItem);
+	SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &heldItem);
+}

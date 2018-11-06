@@ -1,0 +1,18 @@
+ScriptGiveMon(arg0, arg1, arg2)
+{
+	r6 = arg0
+	r4 = arg1
+	r5 = arg2
+	fn_A029C(arg0, arg1, arg2)
+	r7 = gEnemyParty
+	r4 = fn_40B14(r7)
+	r5 = SpeciesToNationalPokedexNum(r6)
+	
+	if(r4 >= 0 && r4 <= 1)
+	{
+		fn_88E74(r5, 2)
+		fn_88E74(r5, 3)
+	}
+	
+	return r4
+}

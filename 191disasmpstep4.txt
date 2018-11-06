@@ -1,0 +1,14 @@
+ScriptGiveMon(speciesNum, level, heldItem)
+{
+	CreateScriptedWildMon(speciesNum, level, heldItem);
+	result = GiveMonToPlayer(&gEnemyParty[0]);
+	dexNum = SpeciesToNationalPokedexNum(speciesNum);
+	
+	if(result == MON_GIVEN_TO_PARTY || result == MON_GIVEN_TO_PC)
+	{
+		GetSetPokedexFlag(dexNum, 2);
+		GetSetPokedexFlag(dexNum, 3);
+	}
+	
+	return result;
+}

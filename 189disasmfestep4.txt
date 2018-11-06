@@ -1,0 +1,21 @@
+sub_809F914()
+{
+	maxChars = gNamingScreenData->template->maxChars;
+	unk = gNamingScreenData->inputCharBaseXPos - 0x40;
+
+	FillWindowPixelBuffer(gNamingScreenData->windows[2], 0x11);
+	
+	for(i = 0; i < maxChars; i++)
+	{
+		temp[0] = gNamingScreenData->textBuffer[i];
+		temp[1] = gExpandedPlaceholder_Empty;
+		
+		unk2 = (sub_809FC54(temp) == 1) ? 2 : 0;
+		
+		AddTextPrinterParameterized(gNamingScreenData->windows[2], 2, temp, (i * 8) + unk + unk2, 1, 0xFF, i);
+	}
+	
+	sub_809F594();
+	CopyWindowToVram(gNamingScreenData->windows[2], 2);
+	PutWindowTilemap(gNamingScreenData->windows[2]);
+}

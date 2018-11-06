@@ -1,0 +1,8 @@
+CreateScriptedWildMon(speciesNum, level, heldItem)
+{
+	ZeroEnemyPartyMons();
+	CreateMon(&gEnemyParty[0], speciesNum, level, 32, 0, 0, 0, 0);
+	
+	if(heldItem != ITEM_NONE)
+		SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &heldItem);
+}

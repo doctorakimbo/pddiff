@@ -1,0 +1,19 @@
+ScriptGiveMon(arg0, arg1, arg2)
+{
+	r7 = AllocZeroed(0x64)
+	CreateMon(r7, arg0, arg1, 0x20, 0, 0, 0, 0)
+	s4.0 = arg2
+	s4.1 = HIGHEST_BYTE(arg2)
+	SetMonData(r7, 0xC, &s4)
+	r4 = fn_40B14(r7)
+	r5 = SpeciesToNationalPokedexNum(arg0)
+	
+	if(r4 >= 0 && r4 <= 1)
+	{
+		fn_88E74(r5, 2)
+		fn_88E74(r5, 3)
+	}
+	
+	Free(r7)
+	return r4
+}

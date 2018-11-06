@@ -1,0 +1,21 @@
+sub_80A19E8(arg0)
+{
+	r6 = arg0
+	
+	if(!IsSEPlaying())
+	{
+		r4 = data_0203AD30
+		r2 = *r4
+		r3 = 0xFFFF
+		r0 = 4
+		r1 = 0
+		sub_80A2294()
+		VarSet(0x4020, ItemId_GetHoldEffectParam(*r4))
+		sub_80A1A44()
+		r2 = data_02021D18
+		r3 = fn_10A1F8
+		r0 = r6
+		r1 = 2
+		sub_8108E70()
+	}
+}

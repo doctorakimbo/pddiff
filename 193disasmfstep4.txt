@@ -1,0 +1,10 @@
+sub_80A19E8(taskId)
+{
+	if(!IsSEPlaying())
+	{
+		sub_80A2294(4, 0, gSpecialVar_ItemId, 0xFFFF)
+		VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(gSpecialVar_ItemId));
+		sub_80A1A44()
+		DisplayItemMessage(taskId, 2, gStringVar4, bag_menu_inits_lists_menu);
+	}
+}

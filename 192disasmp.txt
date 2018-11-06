@@ -1,0 +1,11 @@
+lbl1: @A1574
+r4 = r0
+r5 = r1
+r7 = r2
+sub_80829FC()
+s0 = r7
+r0 = gEnemyParty
+r1 = 0xC
+r2 = &s0
+SetMonData()
+return

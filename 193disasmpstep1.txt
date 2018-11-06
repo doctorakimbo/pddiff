@@ -1,0 +1,31 @@
+sub_80A19E8(arg0)
+{
+	r6 = arg0
+
+	if(!IsSEPlaying())
+	{
+		r4 = data_0203AD30
+		r2 = *r4
+		r3 = 0xFFFF
+		r0 = 4
+		r1 = 0
+		sub_80A2294()
+		r0 = ItemId_GetHoldEffectParam(*r4)
+		r1 = *r4
+		r1 <<= 8
+		r1 ^= r0
+		VarSet(0x4020, r1)
+		sub_80A1A44()
+		r3 = gTasks
+		r1 = 0x28
+		r1 *= r6
+		r3 += r1
+		r1 = *(r3 + 7)
+		r0 = r6
+		r2 = 2
+		r3 = data_02021D18
+		sub_80A10C4()
+	}
+
+	ScriptContext2_Enable()
+}

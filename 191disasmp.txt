@@ -1,0 +1,27 @@
+lbl1: @A13F4
+r6 = r0
+r4 = r1
+r5 = r2
+fn_A029C()
+r7 = gEnemyParty
+r0 = r7
+fn_40B14()
+r4 = r0
+r0 = r6
+SpeciesToNationalPokedexNum()
+r5 = r0
+if(r4 > 1) goto lbl2
+
+if(r4 < 0) goto lbl2
+
+r0 = r5
+r1 = 2
+fn_88E74()
+r0 = r5
+r1 = 3
+fn_88E74()
+goto lbl2
+
+lbl2:
+r0 = r4
+return r0

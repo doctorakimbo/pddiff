@@ -1,0 +1,27 @@
+lbl1: @A19E8
+r6 = r0
+fn_723E0()
+if(r0 != 0) goto lbl2
+
+r4 = data_0203AD30
+r2 = *r4
+r3 = 0xFFFF
+r0 = 4
+r1 = 0
+fn_A2294()
+r5 = 0x4020
+r0 = *r4
+ItemId_GetHoldEffectParam()
+r1 = r0
+r0 = r5
+VarSet()
+fn_A1A44()
+r2 = data_02021D18
+r3 = fn_10A1F8
+r0 = r6
+r1 = 2
+fn_108E70()
+goto lbl2
+
+lbl2:
+return

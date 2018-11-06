@@ -1,0 +1,9 @@
+CreateScriptedWildMon(arg0, arg1, arg2)
+{
+	r4 = arg0
+	r5 = arg1
+	r7 = arg2
+	sub_80829FC()
+	s0 = r7
+	SetMonData(&gEnemyParty[0], 0xC, &s0)
+}

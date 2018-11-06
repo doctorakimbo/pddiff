@@ -1,0 +1,10 @@
+sub_80A19E8(arg0)
+{
+	if(!IsSEPlaying())
+	{
+		sub_80A2294(4, 0, *data_0203AD30, 0xFFFF)
+		VarSet(0x4020, ItemId_GetHoldEffectParam(*data_0203AD30))
+		sub_80A1A44()
+		sub_8108E70(arg0, 2, data_02021D18, fn_10A1F8)
+	}
+}

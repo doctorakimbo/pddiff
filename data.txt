@@ -7,7 +7,7 @@ addr e: addr j: desc
 		   : C2 1A 02 02: ??????
 D0 1C 02 02: 4C 1C 02 02: gStringVar1
 		   : 60 1C 02 02: ??????
-18 1D 02 02: 88 1C 02 02: ??????
+18 1D 02 02: 88 1C 02 02: gStringVar4
 		   : 10 1D 02 02: ?????? (GetMoveRelearnerMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
 								 (GetNumberOfRelearnableMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
 74 29 02 02: E4 28 02 02: gBattle_BG0_X
@@ -157,7 +157,8 @@ B6 97 03 02: 02 97 03 02: ??????
 88 98 03 02: D4 97 03 02: ??????
 8C 98 03 02: D8 97 03 02: gBagPockets
 34 99 03 02: 80 98 03 02: gShopDataPtr
-		   : A8 AC 03 02: ??????
+8C 99 03 02: D8 98 03 02: gNamingScreenData
+30 AD 03 02: A8 AC 03 02: gSpecialVar_ItemId
 FA AD 03 02: 72 AD 03 02: ??????
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
 		   : 50 B9 03 02: ?????? (appears to be an array of bits, one for each battler)
@@ -386,6 +387,7 @@ funcs e,j,desc:
 002454 = 002454 = FillBgTilemapBufferRect_Palette0
 002BB0 = 002BB0 = AllocZeroed
 002BC4 = 002BC4 = Free
+002C48 = 002C44 = AddTextPrinterParameterized
 003CE4 = 003CB0 = AddWindow
 003E3C = 003E08 = RemoveWindow
 003ECC = 003E98 = FreeAllWindowBuffers
@@ -481,6 +483,7 @@ funcs e,j,desc:
 04037C = 03FA70 = SetMonData
 0404D0 = 03FBC4 = SetBoxMonData
 040B08 = 0401FC = CopyMon
+040B14 = 040208 = GiveMonToPlayer
 040C3C = 040330 = CalculatePlayerPartyCount
 040D7C = 040470 = GetMonAbility
 04101C = 04070C = CalculatePPWithBonus
@@ -591,6 +594,7 @@ funcs e,j,desc:
 071AB4 = 071258 = FadeOutMapMusic
 071AEC = 071290 = FadeOutAndPlayNewMapMusic
 0722CC = 071A70 = PlaySE
+0723E0 = 071B84 = IsSEPlaying
 0751C4 = 074968 = GetBattlerSide
 0751D8 = 07497C = GetBattlerPosition
 0751E8 = 07498C = GetBattlerAtPosition
@@ -601,6 +605,7 @@ funcs e,j,desc:
 081B30 = 08171C = CheckForTrainersWantingBattle
 082A88 = 082674 = GetPersonalityWithUnownForm
 082AB8 = 0826A4 = GetUnownFormFromPersonality
+088E74 = 088A50 = GetSetPokedexFlag
 088E8C = 088A68 = pokedex_count
 08B9F4 = 08B490 = StorageGetCurrentBox
 08BA18 = 08B4B4 = GetBoxMonDataFromAnyBox
@@ -627,7 +632,9 @@ funcs e,j,desc:
 09FD58 = 09FC38 = GetMoney
 09FDD8 = 09FCB8 = RemoveMoney
 09FE40 = 09FD20 = PrintMoneyAmountInMoneyBox
+0A029C = 0A0574 = CreateScriptedWildMon
 0A0E90 = 0A2164 = GetSafariZoneFlag
+0A10C4 = 0A2398 = DisplayCannotUseItemMessage
 0BD09C = 0BE35C = MovePlayerOnBike
 0BD488 = 0BE748 = IsRunningDisallowed
 0C71D0 = 0C83AC = RecordAbilityBattle
@@ -645,14 +652,13 @@ funcs e,j,desc:
 0F793C = 0F899C = GetStartMenuWindowId
 0F7948 = 0F89A8 = RemoveStartMenuWindow
 1074DC = 107FE0 = ListMenuPrintEntries
+108E70 = 109968 = DisplayItemMessage
 10AD10 = 10B80C = UseRegisteredKeyItemOnField
 10F904 = 110438 = MoveMenuCursor
 11B0D0 = 11B914 = InUnionRoom
 125A78 = 1263C4 = ItemIdToBattleMoveId
 12E51C = 12ED24 = AddTextPrinterParameterized3
 12E5A4 = 12EDAC = AddTextPrinterParameterized4
-13F6F4 = 13FE18 = ?????
-13F75C = 13FE80 = ?????
 1E3B60 = 1C7A84 = CpuFastSet
 1E3B64 = 1C7A88 = CpuSet
 1E3B9C = square root
