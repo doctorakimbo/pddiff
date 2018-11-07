@@ -1,0 +1,56 @@
+	...
+	switch(data_02037F02.2)
+	{
+	case 0:
+		*r5 = fn_B3980
+		break;
+	case 1:
+		*r5 = fn_168A10_J
+		break;
+	default:
+		*r5 = fn_168AC0_J
+		break;
+	}
+}
+
+
+
+
+
+
+[fn_B3980/fn_168A10_J/fn_168AC0_J](arg0)
+{
+	if(gTasks[arg0].8 == 0)
+	{
+		gTasks[arg0].0xA++
+		
+		if(gTasks[arg0].0xA > 6)
+		{
+			gTasks[arg0].0xA = 0
+			r0 = [data_3E7114 for fn_B3980, data_092F01E0_J for fn_168A10_J, data_092F01F8_J for fn_168AC0_J]
+			r1 = CreateSprite(r0, gTasks[arg0].0x1E, gTasks[arg0].0x20, 0)
+			
+			if(r1 != 0x40)
+			{
+				gSprites[r1].0x2E = 0x10
+				gSprites[r1].0x32 = gTasks[arg0].0x22
+				gSprites[r1].0x36 = gTasks[arg0].0x24
+				gSprites[r1].0x38 = gTasks[arg0].0x1C
+				sub_8075068(gSprites[r1])
+				StartSpriteAffineAnim(gSprites[r1], gTasks[arg0].0xC % 4)
+			}
+			
+			gTasks[arg0].0xC++
+			
+			if(gTasks[arg0].0xC == 0xC)
+				gTasks[arg0].8++
+		}
+	}
+	elseif(gTasks[arg0].8 == 1)
+	{
+		gTasks[arg0].0xA++
+		
+		if(gTasks[arg0].0xA > 0x11)
+			DestroyAnimVisualTask(arg0)
+	}
+}

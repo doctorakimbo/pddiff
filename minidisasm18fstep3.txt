@@ -1,0 +1,54 @@
+sub_80BFCD0(arg0)
+{
+	if(VarGet(0x4082) == 1)
+	{
+		if(THIRD_LOWEST_BIT(gSaveBlock1Ptr->0x3D42[gSaveBlock1Ptr->0x3D34] != 1)
+			VarSet(0x4082, 0)
+		
+		data_020370D2 = 1
+		arg0.4 = 4
+		arg0.6 = 0xB
+		arg0.0 = 2
+		arg0.1 = 0xA
+		arg0.2 = 0xFF
+	}
+	else
+	{
+		r6 = GetHealLocationIndexFromMapGroupAndNum(gSaveBlock1Ptr->0x1C, gSaveBlock1Ptr->0x1D)
+		arg0.0 = data_3EEC98[r6 - 1].0
+		arg0.1 = data_3EEC98[r6 - 1].2
+		arg0.2 = 0xFF
+		
+		if(data_3EEC98[r6 - 1].0 == 4 && data_3EEC98[r6 - 1].2 == 0)
+		{
+			arg0.4 = 8
+			arg0.6 = 5
+			sub_80BFE00(r6)
+		}
+		elseif(data_3EEC98[r6 - 1].0 == 0xD && data_3EEC98[r6 - 1].2 == 0)
+		{
+			arg0.4 = 0xD
+			arg0.6 = 0xC
+			sub_80BFE00(r6)
+		}
+		elseif(data_3EEC98[r6 - 1].0 == 0x20 && data_3EEC98[r6 - 1].2 == 0)
+		{
+			arg0.4 = 5
+			arg0.6 = 4
+			sub_80BFE00(r6)
+		}
+		elseif(data_3EEC98[r6 - 1].0 == 2 && data_3EEC98[r6 - 1].2 == 0xA)
+		{
+			arg0.4 = 4
+			arg0.6 = 0xB
+			VarSet(0x4082, 0)
+			sub_80BFE00(r6)
+		}
+		else
+		{
+			arg0.4 = 7
+			arg0.6 = 4
+			sub_80BFE00(r6)
+		}
+	}
+}

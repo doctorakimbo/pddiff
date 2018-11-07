@@ -1,0 +1,54 @@
+sub_80BFCD0(dest)
+{
+	if(VarGet(VAR_0x4082) == 1)
+	{
+		if(THIRD_LOWEST_BIT(gSaveBlock1Ptr->0x3D42[gSaveBlock1Ptr->0x3D34] != 1)
+			VarSet(VAR_0x4082, 0)
+		
+		data_020370D2 = 1
+		dest.x = 4;
+		dest.y = 0xB;
+		dest.mapGroup = 2;
+		dest.mapNum = 0xA;
+		dest.warpId = 0xFF;
+	}
+	else
+	{
+		index = GetHealLocationIndexByMap(gSaveBlock1Ptr->lastHealLocation.mapGroup, gSaveBlock1Ptr->lastHealLocation.mapNum);
+		dest.mapGroup = data_3EEC98[index - 1].0
+		dest.mapNum = data_3EEC98[index - 1].2
+		dest.warpId = 0xFF;
+		
+		if(data_3EEC98[index - 1].0 == 4 && data_3EEC98[index - 1].2 == 0)
+		{
+			dest.x = 8;
+			dest.y = 5;
+			sub_80BFE00(index)
+		}
+		elseif(data_3EEC98[index - 1].0 == 0xD && data_3EEC98[index - 1].2 == 0)
+		{
+			dest.x = 0xD;
+			dest.y = 0xC;
+			sub_80BFE00(index)
+		}
+		elseif(data_3EEC98[index - 1].0 == 0x20 && data_3EEC98[index - 1].2 == 0)
+		{
+			dest.x = 5;
+			dest.y = 4;
+			sub_80BFE00(index)
+		}
+		elseif(data_3EEC98[index - 1].0 == 2 && data_3EEC98[index - 1].2 == 0xA)
+		{
+			dest.x = 4;
+			dest.y = 0xB;
+			VarSet(VAR_0x4082, 0)
+			sub_80BFE00(index)
+		}
+		else
+		{
+			dest.x = 7;
+			dest.y = 4;
+			sub_80BFE00(index)
+		}
+	}
+}

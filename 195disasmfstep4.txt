@@ -1,0 +1,10 @@
+get_some_collision(direction)
+{
+	playerEventObj = &gEventObjects[gPlayerAvatar.eventObjectId];
+
+	x = playerEventObj->currentCoords.x;
+	y = playerEventObj->currentCoords.y;
+	MoveCoords(direction, &x, &y);
+	metatileBehavior = MapGridGetMetatileBehaviorAt(x, y);
+	return Bike_CheckCollisionTryAdvanceCollisionCount(playerEventObj, x, y, direction, metatileBehavior);
+}

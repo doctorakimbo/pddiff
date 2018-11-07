@@ -1,0 +1,39 @@
+get_some_collision(direction)
+{
+	playerEventObj = &gEventObjects[gPlayerAvatar.eventObjectId];
+
+	x = playerEventObj->currentCoords.x;
+	y = playerEventObj->currentCoords.y;
+	
+	newDirection = direction;
+	
+	switch(playerEventObj->currentMetatileBehavior)
+	{
+	case 0xB0:
+		if(direction == DIR_WEST)
+			newDirection = DIR_NORTHWEST;
+		elseif(direction == DIR_EAST)
+			newDirection = DIR_SOUTHEAST;
+	case 0xB1:
+		if(direction == DIR_WEST)
+			newDirection = DIR_NORTHWEST;
+	case 0xB2:
+		if(direction == DIR_EAST)
+			newDirection = DIR_SOUTHEAST;
+	case 0xB3:
+		if(direction == DIR_WEST)
+			newDirection = DIR_SOUTHWEST;
+		elseif(direction == DIR_EAST)
+			newDirection = DIR_NORTHEAST;
+	case 0xB4:
+		if(direction == DIR_WEST)
+			newDirection = DIR_NORTHEAST;
+	case 0xB5:
+		if(direction == DIR_WEST)
+			newDirection = DIR_SOUTHWEST;
+	}
+	
+	MoveCoords(newDirection, &x, &y);
+	metatileBehavior = MapGridGetMetatileBehaviorAt(x, y);
+	return Bike_CheckCollisionTryAdvanceCollisionCount(playerEventObj, x, y, direction, metatileBehavior);
+}

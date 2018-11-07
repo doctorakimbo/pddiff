@@ -1,0 +1,143 @@
+sub_80C35DC(arg0)
+{
+	r0 = arg0 - 0x58
+
+	switch(r0)
+	{
+	case 0:
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
+	case 8:
+	case 9:
+	case 0xA:
+	case 0xB:
+	case 0xC:
+	case 0x37:
+	case 0x38:
+	case 0x39:
+	case 0x3A:
+	case 0x3B:
+	case 0x3C:
+	case 0x3D:
+	case 0x6D:
+		return 0
+	default:
+		return 1
+	}
+
+	switchtable: @C35F8
+	00: lbl3
+	01: lbl4
+	02: lbl5
+	03: lbl6
+	04: lbl7
+	05: lbl8
+	06: lbl9
+	07: lbl10
+	08: lbl11
+	09: lbl12
+	0A: lbl13
+	37: lbl14
+	38: lbl15
+	39: lbl16
+	3A: lbl17
+	3B: lbl18
+	3C: lbl19
+	3D: lbl20
+	0B: lbl21
+	0C: lbl24
+
+	lbl3: @C37B0
+	r0 = 0x890
+	goto lbl25
+
+	lbl4: @C37B6
+	r0 = 0x891
+	goto lbl25
+
+	lbl5: @C37C0
+	r0 = 0x892
+	goto lbl25
+
+	lbl6: @C37C8
+	r0 = 0x893
+	goto lbl25
+
+	lbl7: @C37D0
+	r0 = 0x894
+	goto lbl25
+
+	lbl8: @C37D8
+	r0 = 0x895
+	goto lbl25
+
+	lbl9: @C37E0
+	r0 = 0x896
+	goto lbl25
+
+	lbl10: @C37E8
+	r0 = 0x897
+	goto lbl25
+
+	lbl11: @C37F0
+	r0 = 0x898
+	goto lbl25
+
+	lbl12: @C37F8
+	r0 = 0x899
+	goto lbl25
+
+	lbl13: @C3800
+	r0 = 0x89A
+	goto lbl25
+
+	lbl14: @C3808
+	r0 = 0x89B
+	goto lbl25
+
+	lbl15: @C3810
+	r0 = 0x89C
+	goto lbl25
+
+	lbl16: @C3818
+	r0 = 0x89D
+	goto lbl25
+
+	lbl17: @C3820
+	r0 = 0x89E
+	goto lbl25
+
+	lbl18: @C3828
+	r0 = 0x89F
+	goto lbl25
+
+	lbl19: @C3830
+	r0 = 0x8A0
+	goto lbl25
+
+	lbl20: @C3836
+	r0 = 0x8A1
+	goto lbl25
+
+	lbl21: @C3840
+	if(fn_C0E04(3) == 0)
+		return 0
+	
+	r0 = 0x8A2
+	goto lbl25
+
+	lbl24: @C3858
+	r0 = 0x8A3
+	goto lbl25
+
+	lbl25:
+	if(FlagGet(r0) != 0)
+		return 2
+	else
+		return 3
+}

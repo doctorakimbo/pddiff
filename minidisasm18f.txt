@@ -1,0 +1,143 @@
+lbl1: @BFCD0
+r4 = r0
+r6 = 0x4082
+r0 = r6
+VarGet()
+r5 = r0
+if(r5 != 1) goto lbl3
+
+r0 = gSaveBlock1Ptr
+r1 = *r0
+r2 = 0x3D34
+r0 = r1 + r2
+r2 = *r0
+r0 = r2 * 2
+r0 += r2
+r0 *= 4
+r1 += r0
+r0 = 0x3D42
+r1 += r0
+r0 = *r1
+if(THIRD_LOWEST_BIT(r0) == 1) goto lbl2
+
+r0 = r6
+r1 = 0
+VarSet()
+goto lbl2
+
+lbl2:
+r0 = data_020370D2
+*r0 = r5
+r0 = 4
+*(r4 + 4) = r0
+r0 = 0xB
+*(r4 + 6) = r0
+r0 = 2
+*r4 = r0
+r0 = 0xA
+*(r4 + 1) = r0
+r0 = 0xFF
+*(r4 + 2) = r0
+goto lbl11
+
+lbl3:
+r0 = gSaveBlock1Ptr
+r1 = *r0
+r0 = 0x1C
+r0 = *(r1 + r0)
+r1 = *(r1 + 0x1D)
+fn_BFC50()
+r6 = r0
+r2 = data_3EEC98
+r0 = r6 - 1
+r0 *= 4
+r1 = r0 + r2
+r1 = *r1
+*r4 = r1
+r2 += 2
+r0 += r2
+r2 = *r0
+*(r4 + 1) = r2
+r0 = 0xFF
+*(r4 + 2) = r0
+if(r1 != 4) goto lbl4
+
+if(r2 != 0) goto lbl4
+
+r0 = 8
+*(r4 + 4) = r0
+r0 = 5
+goto lbl9
+
+lbl4:
+r0 = data_3EEC98
+r2 = r6 - 1
+r3 = r2 * 4
+r1 = r3 + r0
+r1 = *r1
+r5 = r0
+if(r1 != 0xD) goto lbl5
+
+r0 = r5 + 2
+r0 += r3
+r0 = *r0
+if(r0 != 0) goto lbl5
+
+*(r4 + 4) = r1
+r0 = 0xC
+goto lbl9
+
+lbl5:
+r1 = r2 * 4
+r0 = r1 + r5
+r0 = *r0
+if(r0 != 0x20) goto lbl6
+
+r0 = r5 + 2
+r0 += r1
+r0 = *r0
+if(r0 != 0) goto lbl6
+
+r0 = 5
+goto lbl8
+
+lbl6:
+r2 *= 4
+r0 = r2 + r5
+r0 = *r0
+if(r0 != 2) goto lbl7
+
+r0 = r5 + 2
+r0 += r2
+r0 = *r0
+if(r0 != 0xA) goto lbl7
+
+r0 = 4
+*(r4 + 4) = r0
+r0 = 0xB
+*(r4 + 6) = r0
+r0 = 0x4082
+r1 = 0
+VarSet()
+goto lbl10
+
+lbl7:
+r0 = 7
+goto lbl8
+
+lbl8:
+*(r4 + 4) = r0
+r0 = 4
+goto lbl9
+
+lbl9:
+*(r4 + 6) = r0
+goto lbl10
+
+lbl10:
+r0 = r6
+fn_BFE00()
+goto lbl11
+
+lbl11:
+return

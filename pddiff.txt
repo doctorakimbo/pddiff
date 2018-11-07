@@ -292,6 +292,9 @@ grafics:
 = 3CE5FC (396334 old, 396D18 new)
 = 3CE738 (3964D0 old, 396394 new)
 = 3CE758 (3964F0 old, 3963B4 new)
+= 3EF61C (3B61A4 old, 8DC3D0 new)
+= 3F089C (3B7424 old, 8DD390 new)
+= 3F0AFC (3B7684 old, 77C4F0 new)
 = D0051C (C0051C old, EB8990 new)
 = E9C3D8 (3964B0 old, 396374 new)
 = E9C3F8 (396470 old, 396334 new)
@@ -341,6 +344,10 @@ grafics:
 + expand 3D4038 (mon icon palettes) from 6 entries to 16 (jE40000, e1E40000)
 - expand 3D4294 (item icons/palettes) from 375 entries to 435 (10B8000)
 + expand 3DB028 (item data) from 375 entries to 435 (10B0000)
+- expand 3EEBF8 (heal locations) from 20 entries to 22 (FE42E0)
+	- also set 3EEBF0 (sHealLocations[-1]) to FE42D8
+- expand 3EEC98 (heal location map indexes) from 20 entries to 22 (FE4400)
+- expand 3EECE8 (? gSpecialVar_LastTalked values to be set on respawn per heal location) from 20 entries to 22 (FE4480)
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
 + expand 3FE664 (trapping moves) from 6 entries to 8 (1303552)
 
@@ -350,6 +357,7 @@ grafics:
 + repoint 1D9015 -> 1052EE0 (BattleScript_FocusPunchSetUp) - do it itself later
 ! repoint 1D9444 -> 1050260 (BattleScript_ObliviousPreventsAttraction) - script done, import during atk97_tryinfatuating
 ! repoint ptrs at 09D1E0 and 09D248 ("Bill's PC"/"Someone's PC") to the same text (jE00590, e1E00590???) (PDONLY)
+- repoint 41E234 -> FE42DC (only ptr at BF1E4) "From " -> ""
 
 = 006884: ptr 217818 (gUnusedJapaneseFireRedLeafGreenMaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
 = 0069F0: ptr 227B30 (gUnusedJapaneseFireRedLeafGreenFemaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
@@ -361,7 +369,7 @@ grafics:
 		  Implements: need more info
 		  Required knowledge: j0203B900, j0203C00D, j0203D500
 = 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
-= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6: 0B -> 10 (pkmnnamelength)
+= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: pkmnnamelength, something else - need more info
@@ -854,7 +862,7 @@ grafics:
 = 04C440: Entirety of SavePlayerBag (see 108disasm)
 		  Implements: extra bag space
 		  Required knowledge: gLoadedSave_ExtraItemData (j0203BB00), gSaveBlock_ExtraItems (j0203C010)
-= 04EF5E, 06BE72, 09B4EC: 0D -> 20 (movenamelength)
+= 04EF5E, 06BE72, 09B4EC, 0BD824, 0BFA7C: 0D -> 20 (movenamelength)
 = ?????? (j4E8A2): Unclear how to translate this to English rom (minidisasm15)
 		  Implements: Removes gender symbol somewhere, seems to be removed in english already
 ! 054A00: 06 -> 04 (PDONLY, moves starting position in new game two tiles north)
@@ -1162,8 +1170,20 @@ grafics:
   0A1A68: 66 F0 C4 FF -> 00 00 00 00
 		  Implements: need more info (appears to remove functions that delete blank bag slots when an item is used up, probably reimplemented elsewhere)
 = 0B3834: Entirety of sub_80B3834 (see 194disasm)
-		  
-		  
+		  Implements: In an unknown animation routine only used by Skill Swap in vanilla, allows gBattleAnimArgs[1] to choose between 3 options for the sprite/palette tags (gBattleAnimArgs[1] = 0 is the standard one)
+		  Relies on: animation scripts setting the value correctly
+		  Requires in future: fn_168A10_J, fn_168AC0_J
+- 0B565C: 00 -> 01 (set Shadow Ball sprite.data[0] to 1 instead of 0; test to figure out what this does)
+- 0BC128: 6E -> 6C (set gBattleAnimTarget to gBattlerTarget instead of gEffectBattler; this unknown animation routine is called by the item steal animation)
+= 0BD3C8: 01 A9 2A 1C A6 F7 28 FB -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j222C60, see 195disasm))
+		  Implements: forced movement for metatiles 0xB0-0xB5 (on bike)
+- 0BFC7C: 13 -> 15 (heal locations 20 -> 22)
+- 0BFCB6: 14 -> 16 (heal locations 20 -> 22)
+! 0BFD74: 08 -> 07
+  0BFDEC: 07 -> 0B
+  0BFDF0: 04 -> 0D
+		  Implements: some respawn locations after blackout are repositioned (PDONLY)
+= 0C35DC: Entirety of sub_80C35DC (see 196disasm)
 		  
 		  
 		  
@@ -1179,6 +1199,5 @@ grafics:
 
 
 
-curr: jB4AF4-jB4C40
-next: jB691C (1byte), jBD3E8 (1byte), jBE688 (8byte), jBEAD4 (6byte), jBEAE4 (2byte), jC0408 (repoint), jC0C4C (2byte), jC0E44 (repoint), jC0E4C (1byte), jC0E74/jC0E94 (repoint), jC0E86 (1byte), jC0F34 (1byte), jC0F40/jC0F64 (repoint), jC0FAC (1byte), jC0FB0 (1byte), jC0FD4 (repoint), jC1514 (repoint), jC1540 (repoint), jC1554 (repoint)
-next: jC47C0
+curr: jC47C0-jC4A5C, jC4A5C-jC4CAC
+next: jC4F24

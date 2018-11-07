@@ -1,0 +1,8 @@
+get_some_collision(arg0)
+{
+	r4 = (*(gPlayerAvatar + 5) * 0x24) + gEventObjects
+	s1.0 = *(r4 + 0x10)
+	s1.2 = *(r4 + 0x12)
+	MoveCoords(arg0, &s1.0, &s1.2)
+	return fn_BD40C(r4, s1.0, s1.2, arg0, MapGridGetMetatileBehaviorAt(s1.0, s1.2))
+}

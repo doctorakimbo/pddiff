@@ -120,7 +120,8 @@ FC 6D 03 02: 30 6D 03 02: gMapHeader
 		   : FC 6F 03 02: ?????? (sub_808C9C4: set to created window)
 								 (sub_808CBA4: window stored here is deleted)
 								 (sub_808CC74: used as window to print to)
-D4 70 03 02: 08 70 03 02: ??????
+D2 70 03 02: 06 70 03 02: gSpecialVar_LastTalked
+D4 70 03 02: 08 70 03 02: gSpecialVar_Facing
 D6 70 03 02: 0A 70 03 02: gSpecialVar_MonBoxId
 D8 70 03 02: 0C 70 03 02: gSpecialVar_MonBoxPos
 E0 70 03 02: 14 70 03 02: ??????
@@ -137,6 +138,7 @@ F8 75 03 02: 2C 75 03 02: gPlttBufferFaded
 B8 7A 03 02: EC 79 03 02: gPaletteFade
 C8 7A 03 02: FC 79 03 02: ??????
 		   : 14 7B 03 02: ?????? (fn_9396A8_J: some sort of data is copied into this)
+02 7F 03 02: 36 7E 03 02: gBattleAnimArgs
 30 7F 03 02: 64 7E 03 02: ??????
 34 7F 03 02: 68 7E 03 02: gWeatherPtr
 94 83 03 02: C8 82 03 02: gWeatherPtr->altGammaShifts
@@ -158,6 +160,7 @@ B6 97 03 02: 02 97 03 02: ??????
 8C 98 03 02: D8 97 03 02: gBagPockets
 34 99 03 02: 80 98 03 02: gShopDataPtr
 8C 99 03 02: D8 98 03 02: gNamingScreenData
+		   : 4C 99 03 02: ??????
 30 AD 03 02: A8 AC 03 02: gSpecialVar_ItemId
 FA AD 03 02: 72 AD 03 02: ??????
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
@@ -403,6 +406,7 @@ funcs e,j,desc:
 007280 = 006DFC = DestroySprite
 007804 = 007380 = DestroySpriteAndFreeResources
 00838C = 007F08 = StartSpriteAnim
+00843C = 007FB8 = StartSpriteAffineAnim
 0086DC = 008258 = LoadSpriteSheet
 008928 = 0084A4 = LoadSpritePalette
 008A30 = 0085AC = FreeSpritePaletteByTag
@@ -595,6 +599,8 @@ funcs e,j,desc:
 071AEC = 071290 = FadeOutAndPlayNewMapMusic
 0722CC = 071A70 = PlaySE
 0723E0 = 071B84 = IsSEPlaying
+072760 = 071F04 = DestroyAnimVisualTask
+075068 = 07480C = ?????
 0751C4 = 074968 = GetBattlerSide
 0751D8 = 07497C = GetBattlerPosition
 0751E8 = 07498C = GetBattlerAtPosition
@@ -637,6 +643,8 @@ funcs e,j,desc:
 0A10C4 = 0A2398 = DisplayCannotUseItemMessage
 0BD09C = 0BE35C = MovePlayerOnBike
 0BD488 = 0BE748 = IsRunningDisallowed
+0BFC50 = 0C0E20 = GetHealLocationIndexByMap
+0C0E04 = 0C1FE8 = ?????
 0C71D0 = 0C83AC = RecordAbilityBattle
 0C7208 = 0C83E4 = RecordItemEffectBattle
 0CC79C = 0CD914 = set_unknown_box_id
@@ -692,6 +700,8 @@ funcs e,j,desc:
 045DD8 = 04539C = ?????
 045E00 = 0453C4 = ?????
 ?????? = 099F54 = ShiftListElementsLeft (unimplemented)
+?????? = 168A10 = ????? (unimplemented)
+?????? = 168AC0 = ????? (unimplemented)
 ?????? = 168C88 = ClearFocusBand (unimplemented)
 ?????? = 168C9C = SetFocusBand (unimplemented)
 ?????? = 183A90 = ????? (unimplemented)

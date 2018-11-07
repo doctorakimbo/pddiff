@@ -1,0 +1,57 @@
+	...
+	switch(*(data_02037F02 + 2))
+	{
+	case 0:
+		*r5 = fn_B3980
+		break;
+	case 1:
+		*r5 = fn_168A10_J
+		break;
+	default:
+		*r5 = fn_168AC0_J
+		break;
+	}
+}
+
+
+
+
+
+
+[fn_B3980/fn_168A10_J/fn_168AC0_J](arg0)
+{
+	if(*((arg0 * 0x28) + gTasks + 8) == 0)
+	{
+		*((arg0 * 0x28) + gTasks + 0xA)++
+		
+		if(*((arg0 * 0x28) + gTasks + 0xA) > 6)
+		{
+			*((arg0 * 0x28) + gTasks + 0xA) = 0
+			r0 = [data_3E7114 for fn_B3980, data_092F01E0_J for fn_168A10_J, data_092F01F8_J for fn_168AC0_J]
+			r1 = CreateSprite(r0, *((arg0 * 0x28) + gTasks + 0x1E), *((arg0 * 0x28) + gTasks + 0x20), 0)
+			
+			if(r1 != 0x40)
+			{
+				r4 = (r1 * 0x44) + gSprites
+				*(r4 + 0x2E) = 0x10
+				*(r4 + 0x32) = *((arg0 * 0x28) + gTasks + 0x22)
+				*(r4 + 0x36) = *((arg0 * 0x28) + gTasks + 0x24)
+				*(r4 + 0x38) = *((arg0 * 0x28) + gTasks + 0x1C)
+				sub_8075068(r4)
+				StartSpriteAffineAnim(r4, *((arg0 * 0x28) + gTasks + 0xC) % 4)
+			}
+			
+			*((arg0 * 0x28) + gTasks + 0xC)++
+			
+			if(*((arg0 * 0x28) + gTasks + 0xC) == 0xC)
+				*((arg0 * 0x28) + gTasks + 8)++
+		}
+	}
+	elseif(*((arg0 * 0x28) + gTasks + 8) == 1)
+	{
+		*((arg0 * 0x28) + gTasks + 0xA)++
+		
+		if(*((arg0 * 0x28) + gTasks + 0xA) > 0x11)
+			DestroyAnimVisualTask(arg0)
+	}
+}

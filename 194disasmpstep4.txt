@@ -1,0 +1,70 @@
+	...
+	switch(gBattleAnimArgs[1])
+	{
+	case 0:
+		gTasks[taskId].taskFunc = fn_B3980
+		break;
+	case 1:
+		gTasks[taskId].taskFunc = fn_168A10_J
+		break;
+	default:
+		gTasks[taskId].taskFunc = fn_168AC0_J
+		break;
+	}
+}
+
+
+
+
+
+
+[fn_B3980/fn_168A10_J/fn_168AC0_J](taskId)
+{
+	if(gTasks[taskId].data[1] == 0)
+	{
+		gTasks[taskId].data[2]++
+		
+		if(gTasks[taskId].data[2] > 6)
+		{
+			gTasks[taskId].data[2] = 0
+			r0 = [data_3E7114 (data_3AE658_J) for fn_B3980, data_092F01E0_J for fn_168A10_J, data_092F01F8_J for fn_168AC0_J]
+			r1 = CreateSprite(r0, gTasks[taskId].data[0xC], gTasks[taskId].data[0xD], 0)
+			
+			if(r1 != 0x40)
+			{
+				gSprites[r1].data[0] = 0x10
+				gSprites[r1].data[2] = gTasks[taskId].data[0xE]
+				gSprites[r1].data[4] = gTasks[taskId].data[0xF]
+				gSprites[r1].data[5] = gTasks[taskId].data[0xB]
+				sub_8075068(gSprites[r1])
+				StartSpriteAffineAnim(gSprites[r1], gTasks[taskId].data[3] % 4)
+			}
+			
+			gTasks[taskId].data[3]++
+			
+			if(gTasks[taskId].data[3] == 0xC)
+				gTasks[taskId].data[1]++
+		}
+	}
+	elseif(gTasks[taskId].data[1] == 1)
+	{
+		gTasks[taskId].data[2]++
+		
+		if(gTasks[taskId].data[2] > 0x11)
+			DestroyAnimVisualTask(arg0)
+	}
+}
+
+
+
+
+data_3E7114: @3AE658_J
+0B 28 0B 28 60 0A 37 08 E4 11 1F 08 00 00 00 00 48 E6 3A 08 F5 4C 0B 08
+
+data_092F01E0_J:
+46 28 46 28 60 0A 37 08 E4 11 1F 08 00 00 00 00 48 E6 3A 08 F5 4C 0B 08
+
+data_092F01F8_J:
+47 28 47 28 60 0A 37 08 E4 11 1F 08 00 00 00 00 48 E6 3A 08 F5 4C 0B 08
+
+identical except for tileTag and paletteTag

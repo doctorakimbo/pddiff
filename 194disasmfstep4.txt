@@ -1,0 +1,3 @@
+	...
+	gTasks[taskId].taskFunc = fn_B3980
+}

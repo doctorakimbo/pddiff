@@ -1,0 +1,37 @@
+get_some_collision(arg0)
+{
+	r4 = (*(gPlayerAvatar + 5) * 0x24) + gEventObjects
+	s1.0 = *(r4 + 0x10)
+	s1.2 = *(r4 + 0x12)
+	
+	r0 = arg0
+	
+	switch(*(r4 + 0x1E))
+	{
+	case 0xB0:
+		if(arg0 == 3)
+			r0 = 7
+		elseif(arg0 == 4)
+			r0 = 6
+	case 0xB1:
+		if(arg0 == 3)
+			r0 = 7
+	case 0xB2:
+		if(arg0 == 4)
+			r0 = 6
+	case 0xB3:
+		if(arg0 == 3)
+			r0 = 5
+		elseif(arg0 == 4)
+			r0 = 8
+	case 0xB4:
+		if(arg0 == 4)
+			r0 = 8
+	case 0xB5:
+		if(arg0 == 3)
+			r0 = 5
+	}
+	
+	MoveCoords(r0, &s1.0, &s1.2)
+	return fn_BD40C(r4, s1.0, s1.2, arg0, MapGridGetMetatileBehaviorAt(s1.0, s1.2))
+}
