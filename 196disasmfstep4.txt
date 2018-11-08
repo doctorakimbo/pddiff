@@ -1,0 +1,78 @@
+get_flagnr_blue_points(mapSecId)
+{
+	switch(mapSecId)
+	{
+	case 0x58:
+		flag = 0x890;
+		break;
+	case 0x59:
+		flag = 0x891;
+		break;
+	case 0x5A:
+		flag = 0x892;
+		break;
+	case 0x5B:
+		flag = 0x893;
+		break;
+	case 0x5C:
+		flag = 0x894;
+		break;
+	case 0x5D:
+		flag = 0x895;
+		break;
+	case 0x5E:
+		flag = 0x896;
+		break;
+	case 0x5F:
+		flag = 0x897;
+		break;
+	case 0x60:
+		flag = 0x898;
+		break;
+	case 0x61:
+		flag = 0x899;
+		break;
+	case 0x62:
+		flag = 0x89A;
+		break;
+	case 0x63:
+		if(sub_80C0E04(3) == 0)
+			return MAPSECTYPE_NONE;
+		
+		flag = 0x8A2;
+		break;
+	case 0x64:
+		flag = 0x8A3;
+		break;
+	case 0x8F:
+		flag = 0x89B;
+		break;
+	case 0x90:
+		flag = 0x89C;
+		break;
+	case 0x91:
+		flag = 0x89D;
+		break;
+	case 0x92:
+		flag = 0x89E;
+		break;
+	case 0x93:
+		flag = 0x89F;
+		break;
+	case 0x94:
+		flag = 0x8A0;
+		break;
+	case 0x95:
+		flag = 0x8A1;
+		break;
+	case 0xC5:
+		return MAPSECTYPE_NONE;
+	default:
+		return MAPSECTYPE_PLAIN;
+	}
+	
+	if(FlagGet(flag))
+		return MAPSECTYPE_CITY_CANFLY;
+	else
+		return MAPSECTYPE_CITY_CANTFLY;
+}

@@ -1,0 +1,189 @@
+lbl1: @C8214
+when *(*(*gBattleResources + 0x14)) == 0: call fn_205940_J
+just before exit: call fn_205910_J
+
+
+
+
+
+fn_205940_J:
+r0 = data_0203D500_J
+r1 = *r0
+if(r1 != 1) goto lbl2
+
+goto lbl(205a82)
+
+lbl2:
+r1 = 1
+*r0 = r1
+r0 += 4
+r1 = gBattleMons
+r6 = *r1
+r2 = 0x58
+memcpy()
+r0 = data_0203D500_J
+r0 += 4
+r1 = gBattleMons
+r2 = 0x58
+r6 = *(r1 + r2)
+r3 = 2
+r3 *= r2
+r0 += r2
+r1 += r3
+r7 = *(r1 + r2)
+memcpy()
+CanUseNewAI()
+if(r0 != 0) goto lbl3
+
+goto lbl(205a82)
+
+lbl3:
+r0 = 0
+GetBattlerAtPosition()
+r1 = gAbsentBattlerFlags
+r1 = *r1
+r2 = gBitTable
+r3 = r0 * 4
+r2 = *(r2 + r3)
+r1 &= r2
+if(r1 != 0) goto lbl6
+
+r1 = 0x58
+r0 *= r1
+r1 = gBattleMons
+r0 += r1
+r1 = *(r0 + 0x28)
+if(r1 == 0) goto lbl6
+
+r0 = 0
+fn_205A84_J()
+r4 = r0
+if(r0 >= 0x1E) goto lbl4
+
+if(r0 < 0xF) goto lbl6
+
+Random()
+r1 = 4
+svc_6()
+if(r0 == 0) goto lbl6 // !!! should be r1
+
+goto lbl4
+
+lbl4:
+Random()
+r1 = 8
+svc_6()
+r0 = data_0203B960_J
+r0 = *r0
+if(r0 <= r1) goto lbl6
+
+r0 = r6
+r1 = r7
+r2 = 0
+GetBestMatchupScore()
+if(r0 >= r4) goto lbl6
+
+r0 = data_0203B960_J
+r2 = *r0
+if(r2 == 0) goto lbl5
+
+r2--
+*r0 = r2
+goto lbl5
+
+lbl5:
+r0 = 0x64
+r1 *= r0
+r0 = gPlayerParty
+r1 += r0
+r0 = gBattleMons
+CopyMonToBattleMon()
+r0 = data_0203D500_J
+r1 = 1
+*(r0 + 1) = r1
+goto lbl6
+
+lbl6:
+r0 = 2
+GetBattlerAtPosition()
+r1 = gAbsentBattlerFlags
+r1 = *r1
+r2 = gBitTable
+r3 = r0 * 4
+r2 = *(r2 + r3)
+r1 &= r2
+if(r1 != 0) goto lbl(205a82)
+
+r1 = 0x58
+r0 *= r1
+r1 = gBattleMons
+r0 += r1
+r1 = *(r0 + 0x28)
+if(r1 == 0) goto lbl(205a82)
+
+r0 = 2
+fn_205A84_J()
+r4 = r0
+if(r0 >= 0x1E) goto lbl7
+
+if(r0 < 0xF) goto lbl(205a82)
+
+Random()
+r1 = 4
+svc_6()
+if(r0 == 0) goto lbl(205a82) // !!! should be r1
+
+goto lbl7
+
+lbl7:
+Random()
+r1 = 8
+svc_6()
+r0 = data_0203B960_J
+r0 = *r0
+if(r0 <= r1) goto lbl(205a82)
+
+r0 = r6
+r1 = r7
+r2 = 0
+GetBestMatchupScore()
+if(r0 >= r4) goto lbl(205a82)
+
+r0 = data_0203B960_J
+r2 = *r0
+if(r2 == 0) goto lbl8
+
+r2--
+*r0 = r2
+goto lbl8
+
+lbl8:
+r0 = 0x64
+r1 *= r0
+r0 = gPlayerParty
+r1 += r0
+r0 = gBattleMons
+r2 = 0x58
+r3 = 2
+r2 *= r3
+r0 += r2
+CopyMonToBattleMon()
+r0 = data_0203D500_J
+r1 = 1
+*(r0 + 2) = r1
+goto lbl9
+
+lbl9:
+return
+
+
+
+
+
+fn_205910_J:
+???
+
+
+
+
+fn_205A84_J:

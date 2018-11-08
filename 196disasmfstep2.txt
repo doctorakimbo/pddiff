@@ -3,76 +3,76 @@ sub_80C35DC(arg0)
 	switch(arg0 - 0x58)
 	{
 	case 0:
-		r0 = 0x890
+		flag = 0x890;
 		break;
 	case 1:
-		r0 = 0x891
+		flag = 0x891;
 		break;
 	case 2:
-		r0 = 0x892
+		flag = 0x892;
 		break;
 	case 3:
-		r0 = 0x893
+		flag = 0x893;
 		break;
 	case 4:
-		r0 = 0x894
+		flag = 0x894;
 		break;
 	case 5:
-		r0 = 0x895
+		flag = 0x895;
 		break;
 	case 6:
-		r0 = 0x896
+		flag = 0x896;
 		break;
 	case 7:
-		r0 = 0x897
+		flag = 0x897;
 		break;
 	case 8:
-		r0 = 0x898
+		flag = 0x898;
 		break;
 	case 9:
-		r0 = 0x899
+		flag = 0x899;
 		break;
 	case 0xA:
-		r0 = 0x89A
+		flag = 0x89A;
 		break;
 	case 0xB:
 		if(fn_C0E04(3) == 0)
-			return 0
+			return 0;
 		
-		r0 = 0x8A2
+		flag = 0x8A2;
 		break;
 	case 0xC:
-		r0 = 0x8A3
+		flag = 0x8A3;
 		break;
 	case 0x37:
-		r0 = 0x89B
+		flag = 0x89B;
 		break;
 	case 0x38:
-		r0 = 0x89C
+		flag = 0x89C;
 		break;
 	case 0x39:
-		r0 = 0x89D
+		flag = 0x89D;
 		break;
 	case 0x3A:
-		r0 = 0x89E
+		flag = 0x89E;
 		break;
 	case 0x3B:
-		r0 = 0x89F
+		flag = 0x89F;
 		break;
 	case 0x3C:
-		r0 = 0x8A0
+		flag = 0x8A0;
 		break;
 	case 0x3D:
-		r0 = 0x8A1
+		flag = 0x8A1;
 		break;
 	case 0x6D:
-		return 0
+		return 0;
 	default:
-		return 1
+		return 1;
 	}
 	
-	if(FlagGet(r0) != 0)
-		return 2
+	if(FlagGet(flag) != 0)
+		return 2;
 	else
-		return 3
+		return 3;
 }

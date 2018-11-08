@@ -1,0 +1,349 @@
+lbl1: @C3D40
+fn_C3B00()
+r0 -= 0x66
+if(r0 <= 0x5C) goto lbl2
+
+goto lbl42
+
+lbl2:
+r0 *= 4
+r1 = switchtable
+r0 += r1
+r0 = *r0
+goto r0
+
+switchtable:
+22: lbl3
+20: lbl4
+21: lbl5
+26: lbl6
+28: lbl7
+1A: lbl8
+23: lbl9
+1F: lbl10
+1B: lbl11
+1C: lbl13
+55: lbl15
+48: lbl16
+4D: lbl17
+49: lbl18
+4A: lbl19
+50: lbl20
+4C: lbl22
+52, 56-5C: lbl23
+4E: lbl24
+18: lbl26
+00: lbl27
+13: lbl29
+03: lbl33
+04: lbl36
+05: lbl38
+06: lbl39
+else: lbl42
+
+lbl3: @C3ED4
+r0 = data_020399E4
+r1 = *r0
+r0 = 0xC
+*r1 = r0
+*(r1 + 2) = r0
+goto lbl43
+
+lbl4: @C3EE4
+r0 = data_020399E4
+r1 = *r0
+r0 = 0xE
+goto lbl40
+
+lbl5: @C3EF0
+r0 = data_020399E4
+r1 = *r0
+r0 = 4
+*r1 = r0
+r0 = 0xE
+*(r1 + 2) = r0
+goto lbl43
+
+lbl6: @C3F04
+r0 = data_020399E4
+r1 = *r0
+r0 = 0x12
+goto lbl40
+
+lbl7: @C3F10
+r0 = data_020399E4
+r1 = *r0
+r0 = 0x12
+*r1 = r0
+r0 = 4
+*(r1 + 2) = r0
+goto lbl43
+
+lbl8: @C3F24
+r0 = data_020399E4
+r1 = *r0
+r0 = 0xE
+*r1 = r0
+r0 = 9
+*(r1 + 2) = r0
+goto lbl43
+
+lbl9: @C3F38
+r0 = data_020399E4
+r1 = *r0
+r0 = 2
+goto lbl21
+
+lbl10: @C3F44
+r0 = data_020399E4
+r1 = *r0
+r0 = 0xB
+goto lbl40
+
+lbl11: @C3F50
+r0 = data_020399E4
+r1 = *r0
+r2 = 0xE
+*r1 = r2
+r0 = 7
+*(r1 + 2) = r0
+r0 = gSaveBlock1Ptr
+r0 = *r0
+r0 = *(r0 + 5)
+if(r0 == 0x1E) goto lbl12
+
+goto lbl43
+
+lbl12:
+goto lbl35
+
+lbl13: @C3F78
+r0 = data_020399E4
+r1 = *r0
+r0 = 0xC
+*r1 = r0
+r2 = 6
+*(r1 + 2) = r2
+r0 = gSaveBlock1Ptr
+r0 = *r0
+r0 = *(r0 + 5)
+if(r0 == 0x23) goto lbl14
+
+goto lbl43
+
+lbl14:
+r0 = 0xF
+*r1 = r0
+goto lbl43
+
+lbl15: @C3FA4
+r0 = data_020399E4
+r1 = *r0
+r0 = 0x12
+goto lbl32
+
+lbl16: @C3FB0
+r0 = data_020399E4
+r1 = *r0
+r0 = 0xA
+goto lbl25
+
+lbl17: @C3FBC
+r0 = data_020399E4
+r1 = *r0
+r0 = 5
+goto lbl40
+
+lbl18: @C3FC8
+r0 = data_020399E4
+r1 = *r0
+r0 = 2
+goto lbl21
+
+lbl19: @C3FD4
+r0 = data_020399E4
+r1 = *r0
+r0 = 0xE
+goto lbl30
+
+lbl20: @C3FE0
+r0 = data_020399E4
+r1 = *r0
+r0 = 0x11
+goto lbl21
+
+lbl21:
+*r1 = r0
+r0 = 3
+*(r1 + 2) = r0
+goto lbl43
+
+lbl22: @C3FF4
+r0 = data_020399E4
+r1 = *r0
+r0 = 0x11
+*r1 = r0
+r0 = 0xB
+*(r1 + 2) = r0
+goto lbl43
+
+lbl23: @C4008
+r0 = data_020399E4
+r1 = *r0
+r0 = 9
+goto lbl30
+
+lbl24: @C4014
+r0 = data_020399E4
+r1 = *r0
+r0 = 0x10
+goto lbl25
+
+lbl25:
+*r1 = r0
+r0 = 8
+*(r1 + 2) = r0
+goto lbl43
+
+lbl26: @C4028
+r0 = data_020399E4
+r1 = *r0
+r0 = 4
+goto lbl40
+
+lbl27: @C4034
+r0 = gSaveBlock1Ptr
+r0 = *r0
+r0 = *(r0 + 5)
+if(r0 != 0) goto lbl28
+
+r0 = data_020399E4
+r1 = *r0
+r0 = 4
+goto lbl37
+
+lbl28:
+if(r0 != 3) goto lbl41
+
+r0 = data_020399E4
+r1 = *r0
+r0 = 4
+goto lbl34
+
+lbl29: @C4064
+r0 = gSaveBlock1Ptr
+r0 = *r0
+r0 = *(r0 + 5)
+if(r0 != 0x27) goto lbl31
+
+r0 = data_020399E4
+r1 = *r0
+r0 = 4
+goto lbl30
+
+lbl30:
+*r1 = r0
+r0 = 0xC
+*(r1 + 2) = r0
+goto lbl43
+
+lbl31:
+if(r0 != 0x28) goto lbl43
+
+r0 = data_020399E4
+r1 = *r0
+r0 = 4
+goto lbl32
+
+lbl32:
+*r1 = r0
+r0 = 0xD
+*(r1 + 2) = r0
+goto lbl43
+
+lbl33: @C40A0
+r0 = gSaveBlock1Ptr
+r0 = *r0
+r0 = *(r0 + 5)
+if(r0 != 1) goto lbl41
+
+r0 = data_020399E4
+r1 = *r0
+r0 = 0xE
+goto lbl34
+
+lbl34:
+*r1 = r0
+goto lbl35
+
+lbl35:
+r0 = 5
+*(r1 + 2) = r0
+goto lbl43
+
+lbl36: @C40C4
+r0 = gSaveBlock1Ptr
+r0 = *r0
+r0 = *(r0 + 5)
+if(r0 != 0) goto lbl41
+
+r0 = data_020399E4
+r1 = *r0
+r0 = 0xE
+goto lbl37
+
+lbl37:
+*r1 = r0
+r0 = 7
+*(r1 + 2) = r0
+goto lbl43
+
+lbl38: @C40E8
+r0 = gSaveBlock1Ptr
+r0 = *r0
+r0 = *(r0 + 5)
+if(r0 != 0) goto lbl41
+
+r0 = data_020399E4
+r1 = *r0
+r0 = 0xD
+goto lbl40
+
+lbl39: @C4108
+r0 = gSaveBlock1Ptr
+r0 = *r0
+r0 = *(r0 + 5)
+if(r0 != 0) goto lbl41
+
+r0 = data_020399E4
+r1 = *r0
+r0 = 0xF
+goto lbl40
+
+lbl40:
+*r1 = r0
+r0 = 6
+*(r1 + 2) = r0
+goto lbl43
+
+lbl41:
+fn_C3B28()
+goto lbl43
+
+lbl42: @C4132
+fn_C3B28()
+goto lbl43
+
+lbl43:
+fn_C0E20()
+r4 = data_020399E4
+r1 = *r4
+r3 = 2
+r2 = *(r1 + r3)
+r5 = 0
+r3 = *(r1 + r5)
+r1 = 0
+fn_C4164()
+r1 = *r4
+*(r1 + 0x14) = r0
+return

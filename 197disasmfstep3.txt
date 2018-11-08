@@ -1,0 +1,108 @@
+sub_80C3878(arg0)
+{
+	switch(arg0 - 0x7E)
+	{
+	case 0:
+		r0 = 0x8A4;
+		break;
+	case 1:
+		r0 = 0x8A5;
+		break;
+	case 2:
+		r0 = 0x8A6;
+		break;
+	case 3:
+		r0 = 0x8A7;
+		break;
+	case 4:
+		r0 = 0x8A8;
+		break;
+	case 5:
+		r0 = 0x8A9;
+		break;
+	case 6:
+		r0 = 0x8AA;
+		break;
+	case 7:
+		r0 = 0x8AB;
+		break;
+	case 8:
+		r0 = 0x8AC;
+		break;
+	case 9:
+		r0 = 0x8AD;
+		break;
+	case 0xA:
+		r0 = 0x8AE;
+		break;
+	case 0xB:
+		r0 = 0x8AF;
+		break;
+	case 0xC:
+		r0 = 0x8B0;
+		break;
+	case 0xD:
+		r0 = 0x8B1;
+		break;
+	case 0xE:
+		r0 = 0x8B2;
+		break;
+	case 0xF:
+		r0 = 0x8B3;
+		break;
+	case 0x10:
+		r0 = 0x8B4;
+		break;
+	case 0x30:
+		r0 = 0x8B5;
+		break;
+	case 0x31:
+		r0 = 0x8B6;
+		break;
+	case 0x32:
+		r0 = 0x8B7;
+		break;
+	case 0x33:
+		r0 = 0x8B8;
+		break;
+	case 0x34:
+		r0 = 0x8B9;
+		break;
+	case 0x35:
+		r0 = 0x8BA;
+		break;
+	case 0x36:
+		r0 = 0x8BB;
+		break;
+	case 0x37:
+		r0 = 0x8BC;
+		break;
+	case 0x38:
+		r0 = 0x8BD;
+		break;
+	case 0x39:
+		r0 = 0x8BE;
+		break;
+	case 0x3A:
+		r0 = 0x8BF;
+		break;
+	case 0x3B:
+		r0 = 0x8C0;
+		break;
+	case 0x3C:
+		r0 = 0x8C1;
+		break;
+	case 0x3D:
+		r0 = 0x8C2;
+		break;
+	case 0x47:
+		return 0;
+	default:
+		return 1;
+	}
+	
+	if(FlagGet(r0))
+		return 2;
+	else
+		return 3;
+}

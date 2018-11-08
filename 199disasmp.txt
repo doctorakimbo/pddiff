@@ -1,0 +1,9 @@
+lbl1: @C7F80
+...
+r0 = gBattleResources
+r0 = *r0
+r1 = *(r0 + 0x14)
+r0 = data_0203BFF4_J
+r0 = *r0
+*(r1 + 0xC) = r0
+...

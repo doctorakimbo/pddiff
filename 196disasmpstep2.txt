@@ -1,0 +1,51 @@
+sub_80C35DC(arg0)
+{
+	if(arg0 - 0x58 > 0x6D)
+		return 1
+	
+	if(arg0 - 0x58 == 0xB && *(*data_0203994C_J + 0x4797 + 3) == 0)
+		return 0
+	
+	flag = *(((arg0 - 0x58) * 2) + data_C4838_J)
+	
+	if(flag == 0xFFFF)
+		return 1
+	
+	if(flag == 0)
+		return 0
+
+	if(FlagGet(flag) != 0)
+		return 2
+	else
+		return 3
+}
+
+
+
+
+
+data_C4838_J (key : value):
+00 : 0x890
+01 : 0x891
+02 : 0x892
+03 : 0x893
+04 : 0x894
+05 : 0x895
+06 : 0x896
+07 : 0x897
+08 : 0x898
+09 : 0x899
+0A : 0x89A
+0B : 0x8A2
+0C : 0x8A3
+23 : 0x89B
+25 : 0x89C
+37 : 0x89B
+38 : 0x89C
+39 : 0x89D
+3A : 0x89E
+3B : 0x89F
+3C : 0x8A0
+3D : 0x8A1
+6D : 0
+else : 0xFFFF

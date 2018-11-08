@@ -1,0 +1,51 @@
+get_flagnr_blue_points(mapSecId)
+{
+	if(mapSecId > 0xC5)
+		return MAPSECTYPE_PLAIN;
+	
+	if(mapSecId == 0x63 && data_020399D4->0x4797.3 == 0)
+		return MAPSECTYPE_NONE;
+	
+	flag = data_C4838_J[mapSecId]
+	
+	if(flag == 0xFFFF)
+		return MAPSECTYPE_PLAIN;
+	
+	if(flag == 0)
+		return MAPSECTYPE_NONE;
+
+	if(FlagGet(flag))
+		return MAPSECTYPE_CITY_CANFLY;
+	else
+		return MAPSECTYPE_CITY_CANTFLY;
+}
+
+
+
+
+
+data_C4838_J (key : value):
+58 : 0x890
+59 : 0x891
+5A : 0x892
+5B : 0x893
+5C : 0x894
+5D : 0x895
+5E : 0x896
+5F : 0x897
+60 : 0x898
+61 : 0x899
+62 : 0x89A
+63 : 0x8A2
+64 : 0x8A3
+	7B : 0x89B
+	7C : 0x89C
+8F : 0x89B
+90 : 0x89C
+91 : 0x89D
+92 : 0x89E
+93 : 0x89F
+94 : 0x8A0
+95 : 0x8A1
+C5 : 0
+else : 0xFFFF

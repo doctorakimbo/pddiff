@@ -1,0 +1,8 @@
+lbl1: @C6DA0
+...
+r0 = gBattleResources
+r0 = *r0
+r1 = *(r0 + 0x14)
+r0 = 7
+*(r1 + 0xC) = r0
+...

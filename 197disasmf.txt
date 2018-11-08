@@ -1,0 +1,61 @@
+lbl1: @C3878
+r0 -= 0x7E
+if(r0 <= 0x47) goto lbl2
+
+goto lbl3
+
+lbl2:
+r0 *= 4
+r1 = switchtable
+r0 += r1
+r0 = *r0
+goto r0
+
+switchtable:
+00: r0 = 0x8A4
+01: r0 = 0x8A5
+02: r0 = 0x8A6
+03: r0 = 0x8A7
+04: r0 = 0x8A8
+05: r0 = 0x8A9
+06: r0 = 0x8AA
+07: r0 = 0x8AB
+08: r0 = 0x8AC
+09: r0 = 0x8AD
+0A: r0 = 0x8AE
+0B: r0 = 0x8AF
+0C: r0 = 0x8B0
+0D: r0 = 0x8B1
+0E: r0 = 0x8B2
+0F: r0 = 0x8B3
+10: r0 = 0x8B4
+30: r0 = 0x8B5
+31: r0 = 0x8B6
+32: r0 = 0x8B7
+33: r0 = 0x8B8
+34: r0 = 0x8B9
+35: r0 = 0x8BA
+36: r0 = 0x8BB
+37: r0 = 0x8BC
+38: r0 = 0x8BD
+39: r0 = 0x8BE
+3A: r0 = 0x8BF
+3B: r0 = 0x8C0
+3C: r0 = 0x8C1
+3D: r0 = 0x8C2
+47: return 0
+else: lbl3
+
+lbl3: @C3AC0
+return 1
+
+lbl4: (after all r0 =)
+FlagGet()
+r1 = 3
+if(r0 == 0) goto lbl5
+
+r1 = 2
+goto lbl5
+
+lbl5:
+return r1

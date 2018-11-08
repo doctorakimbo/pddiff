@@ -292,6 +292,8 @@ grafics:
 = 3CE5FC (396334 old, 396D18 new)
 = 3CE738 (3964D0 old, 396394 new)
 = 3CE758 (3964F0 old, 3963B4 new)
+= 3EF524 (3B60AC old, 8E1C70 new)
+= 3EF59C (3B6124 old, 8E1CF0 new)
 = 3EF61C (3B61A4 old, 8DC3D0 new)
 = 3F089C (3B7424 old, 8DD390 new)
 = 3F0AFC (3B7684 old, 77C4F0 new)
@@ -1182,8 +1184,23 @@ grafics:
 ! 0BFD74: 08 -> 07
   0BFDEC: 07 -> 0B
   0BFDF0: 04 -> 0D
-		  Implements: some respawn locations after blackout are repositioned (PDONLY)
-= 0C35DC: Entirety of sub_80C35DC (see 196disasm)
+		  Implements: PDONLY, some respawn locations after blackout are repositioned
+- 0C35DC: Entirety of get_flagnr_blue_points (see 196disasm)
+		  Implements: makes it easier to add new fly points
+! 0C369A: FF FF FF FF FF FF -> 9B 08 FF FF 9C 08 (PDONLY, adds fly points for region map sections 7B (checks flag 0x89B) and 7C (checks flag 0x89C))
+- 0C3878: Entirety of sub_80C3878 (see 197disasm)
+		  Implements: makes it easier to add new town map points of interest
+! 0C3D40: Entirety of sub_80C3D40 (see 198disasm)
+		  Implements: PDONLY; makes it easier to add new custom (?????) (and changes them), this also removes the ability to set them for a specific map within a section (TEST!)
+= 0C6DA0: Entirety of BattleAI_SetupAIData (see 199disasm)
+		  Implements: instead of 7 (previous "smartest" AI), the flags are set to the current value of j0203BFF4
+		  Required knowledge: j0203BFF4
+= 0C7038: Entirety of BattleAI_DoAIProcessing (see 200disasm)
+		  
+		  
+		  
+		  
+		  
 		  
 		  
 		  
@@ -1199,5 +1216,5 @@ grafics:
 
 
 
-curr: jC47C0-jC4A5C, jC4A5C-jC4CAC
-next: jC4F24
+curr: jC8214-jC8340
+next: jC83AC
