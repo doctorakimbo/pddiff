@@ -1,0 +1,5 @@
+RecordAbilityBattle(battlerId, abilityId)
+{
+	if(GetBattlerSide(battlerId) == B_SIDE_PLAYER)
+		gRecordedAbilities[gBattlerPartyIndexes[battlerId]] = abilityId // array size 1
+}

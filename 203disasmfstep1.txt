@@ -1,0 +1,52 @@
+sub_80C8EBC()
+{
+	... (ignore first loop)
+	
+	r3 = 0
+	r1 = gBattleMons
+	r0 = gBattlerAttacker
+	r2 = *r0
+	r0 = gBattleMoves
+	r12 = r0
+	r7 = gBattleResources
+	r6 = gBattlerTarget
+	r0 = 0x58
+	r0 *= r2
+	r1 = r12
+	r4 = r0 + r1
+	
+	do
+	{
+		r2 = r3 * 2
+		r0 = *r4
+		
+		if(r0 != 0)
+		{
+			r0 = *r7
+			r1 = *(r0 + 0x18)
+			r0 = *r6
+			r0 >>= 1
+			r0 <<= 4
+			r0 += r2
+			r1 += r0
+			r1 = *r1
+			r0 = r1 * 2
+			r0 += r1
+			r0 *= 4
+			r0 += r12
+			r1 = *r5
+			r0 = *r0
+			r1 = *(r1 + 2)
+			
+			if(r0 == r1)
+				break;
+		}
+		
+		r4 += 2
+		r3++
+	} while(r3 <= 7)
+	
+	r2 = *r5
+	r1 = T1_READ_PTR(*(r2 + 3))
+	*r5 = r1
+}

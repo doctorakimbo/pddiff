@@ -1,0 +1,5 @@
+RecordAbilityBattle(arg0, arg1)
+{
+	if(GetBattlerSide(arg0) == 0)
+		*(*((arg0 * 2) + gBattlerPartyIndexes) + data_0203B918_J) = arg1
+}

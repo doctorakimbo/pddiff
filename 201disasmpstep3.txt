@@ -1,0 +1,5 @@
+RecordAbilityBattle(arg0, arg1)
+{
+	if(GetBattlerSide(arg0) == 0)
+		data_0203B918_J[gBattlerPartyIndexes[arg0]] = arg1 // array size 1
+}

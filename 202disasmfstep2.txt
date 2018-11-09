@@ -1,0 +1,41 @@
+sub_80C841C()
+{
+	if(*(*data_02039A00 + 1) == 1)
+		r4 = *gBattlerAttacker
+	else
+		r4 = *gBattlerTarget
+	
+	if(GetBattlerSide(r4) == 0)
+	{
+		r0 = *(*(GetBattlerPosition(r4) & 1) + *(*gBattleResources + 0x18) + 0x20)
+		
+		if(r0 != 0)
+			*(*(*gBattleResources + 0x14) + 8) = r0
+		
+		r0 = *((r4 * 0x58) + gBattleMons + 0x20)
+		
+		if(r0 == 0x17 || r0 == 0x2A || r0 == 0x47)
+			*(*(*gBattleResources + 0x14) + 8) = *((r4 * 0x58) + gBattleMons + 0x20)
+		else
+		{
+			if(*((*((r4 * 0x58) + gBattleMons) * 0x1C) + gBaseStats + 0x16) == 0)
+				*(*(*gBattleResources + 0x14) + 8) = *((*((r4 * 0x58) + gBattleMons) * 0x1C) + gBaseStats + 0x17)
+			else
+			{
+				if(*((*((r4 * 0x58) + gBattleMons) * 0x1C) + gBaseStats + 0x17) == 0)
+					*(*(*gBattleResources + 0x14) + 8) = *((*((r4 * 0x58) + gBattleMons) * 0x1C) + gBaseStats + 0x16)
+				else
+				{
+					if((Random() & 1) != 0)
+						*(*(*gBattleResources + 0x14) + 8) = *((*((r4 * 0x58) + gBattleMons) * 0x1C) + gBaseStats + 0x16)
+					else
+						*(*(*gBattleResources + 0x14) + 8) = *((*((r4 * 0x58) + gBattleMons) * 0x1C) + gBaseStats + 0x17)
+				}
+			}
+		}
+	}
+	else
+		*(*(*gBattleResources + 0x14) + 8) = *((r4 * 0x58) + gBattleMons + 0x20)
+	
+	*data_02039A00 += 2
+}

@@ -1,0 +1,37 @@
+sub_80C841C()
+{
+	if(gAIScriptPtr[1] == 1)
+		battlerId = gBattlerAttacker;
+	else
+		battlerId = gBattlerTarget;
+	
+	if(GetBattlerSide(battlerId) == B_SIDE_PLAYER)
+	{
+		if(gRecordedAbilities[gBattlerPartyIndexes[battlerId]] != ABILITY_NONE)
+			ability = gRecordedAbilities[gBattlerPartyIndexes[battlerId]];
+		elseif(gBattleMons[battlerId].ability == ABILITY_SHADOW_TAG || gBattleMons[battlerId].ability == ABILITY_MAGNET_PULL || gBattleMons[battlerId].ability == ABILITY_ARENA_TRAP)
+			ability = gBattleMons[battlerId].ability;
+		else
+		{
+			if((Random() & 1) == 0) // 50% chance
+			{
+				ability = gBaseStats[gBattleMons[battlerId].species].ability1;
+				
+				if(ability == ABILITY_NONE)
+					ability = gBaseStats[gBattleMons[battlerId].species].ability2;
+			}
+			else
+			{
+				ability = gBaseStats[gBattleMons[battlerId].species].ability2;
+				
+				if(ability == ABILITY_NONE)
+					ability = gBaseStats[gBattleMons[battlerId].species].ability1;
+			}
+		}
+	}
+	else
+		ability = gBattleMons[battlerId].ability;
+	
+	gBattleResources->ai.funcResult = ability;
+	gAIScriptPtr += 2;
+}

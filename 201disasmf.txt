@@ -1,0 +1,20 @@
+lbl1: @C71D0
+r4 = r0
+r5 = r1
+GetBattlerSide()
+if(r0 != 0) goto lbl2
+
+r0 = r4
+GetBattlerPosition()
+r1 = gBattleResources
+r1 = *r1
+r2 = *(r1 + 0x18)
+r1 = 1
+r1 &= r0
+r2 += 0x20
+r2 += r1
+*r2 = r5
+goto lbl2
+
+lbl2:
+return

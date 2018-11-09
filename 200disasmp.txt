@@ -11,7 +11,7 @@ r0 = data_0203D500_J
 r1 = *r0
 if(r1 != 1) goto lbl2
 
-goto lbl(205a82)
+goto lbl9
 
 lbl2:
 r1 = 1
@@ -35,7 +35,7 @@ memcpy()
 CanUseNewAI()
 if(r0 != 0) goto lbl3
 
-goto lbl(205a82)
+goto lbl9
 
 lbl3:
 r0 = 0
@@ -112,26 +112,26 @@ r2 = gBitTable
 r3 = r0 * 4
 r2 = *(r2 + r3)
 r1 &= r2
-if(r1 != 0) goto lbl(205a82)
+if(r1 != 0) goto lbl9
 
 r1 = 0x58
 r0 *= r1
 r1 = gBattleMons
 r0 += r1
 r1 = *(r0 + 0x28)
-if(r1 == 0) goto lbl(205a82)
+if(r1 == 0) goto lbl9
 
 r0 = 2
 fn_205A84_J()
 r4 = r0
 if(r0 >= 0x1E) goto lbl7
 
-if(r0 < 0xF) goto lbl(205a82)
+if(r0 < 0xF) goto lbl9
 
 Random()
 r1 = 4
 svc_6()
-if(r0 == 0) goto lbl(205a82) // !!! should be r1
+if(r0 == 0) goto lbl9 // !!! should be r1
 
 goto lbl7
 
@@ -141,13 +141,13 @@ r1 = 8
 svc_6()
 r0 = data_0203B960_J
 r0 = *r0
-if(r0 <= r1) goto lbl(205a82)
+if(r0 <= r1) goto lbl9
 
 r0 = r6
 r1 = r7
 r2 = 0
 GetBestMatchupScore()
-if(r0 >= r4) goto lbl(205a82)
+if(r0 >= r4) goto lbl9
 
 r0 = data_0203B960_J
 r2 = *r0
@@ -181,9 +181,91 @@ return
 
 
 fn_205910_J:
-???
+r1 = data_0203D500_J
+r0 = 0
+*r1 = r0
+r1 += 4
+r0 = gBattleMons
+r2 = 0x58
+memcpy()
+r1 = data_0203D500_J
+r0 = gBattleMons
+r2 = 0x58
+r3 = 2
+r3 *= r2
+r1 += r2
+r1 += 4
+r0 += r3
+memcpy()
+return
+
 
 
 
 
 fn_205A84_J:
+r6 = 0
+s0 = r6
+s1 = r6
+s2 = r6
+r6 = 0xA
+r7 = 0xA
+r4 = r0
+r0 = 0x58
+r0 *= r4
+r1 = data_0203D500_J
+r0 += r1
+r4 = *r0
+r0 = 1
+GetBattlerAtPosition()
+r1 = gAbsentBattlerFlags
+r1 = *r1
+r2 = gBitTable
+r3 = r0 * 4
+r2 = *(r2 + r3)
+r1 &= r2
+if(r1 != 0) goto lbl2
+
+r1 = 0x58
+r0 *= r1
+r1 = gBattleMons
+r0 += r1
+r1 = *(r0 + 0x28)
+if(r1 == 0) goto lbl2
+r0 = *r0
+s0 = r0
+r1 = r4
+GetMatchupScore()
+r6 = r0
+goto lbl2
+
+lbl2:
+r0 = 3
+GetBattlerAtPosition()
+r1 = gAbsentBattlerFlags
+r1 = *r1
+r2 = gBitTable
+r3 = r0 * 4
+r2 = *(r2 + r3)
+r1 &= r2
+if(r1 != 0) goto lbl3
+
+r1 = 0x58
+r0 *= r1
+r1 = gBattleMons
+r0 += r1
+r1 = *(r0 + 0x28)
+if(r1 == 0) goto lbl3
+r0 = *r0
+s1 = r0
+r1 = r4
+GetMatchupScore()
+r7 = r0
+goto lbl3
+
+lbl3:
+r6 *= r7
+r0 = r6
+r1 = 0xA
+svc_6()
+return r0

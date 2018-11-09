@@ -1,0 +1,138 @@
+lbl1: @C841C
+r0 = data_02039A00
+r0 = *r0
+r0 = *(r0 + 1)
+if(r0 != 1) goto lbl2
+
+r0 = gBattlerAttacker
+goto lbl3
+
+lbl2:
+r0 = gBattlerTarget
+goto lbl3
+
+lbl3:
+r4 = *r0
+r0 = r4
+GetBattlerSide()
+if(r0 != 0) goto lbl10
+
+r0 = r4
+GetBattlerPosition()
+r7 = 1
+r1 = r7
+r1 &= r0
+r6 = gBattleResources
+r3 = *r6
+r0 = *(r3 + 0x18)
+r0 += 0x20
+r2 = r0 + r1
+r0 = *r2
+if(r0 == 0) goto lbl4
+
+r1 = *(r3 + 0x14)
+*(r1 + 8) = r0
+goto lbl4
+
+lbl4:
+r1 = gBattleMons
+r0 = 0x58
+r0 *= r4
+r5 = r0 + r1
+r0 = r5
+r0 += 0x20
+r0 = *r0
+r2 = r1
+if(r0 == 0x17) goto lbl5
+
+if(r0 == 0x2A) goto lbl5
+
+if(r0 != 0x47) goto lbl6
+
+goto lbl5
+
+lbl5:
+r0 = gBattleResources
+r0 = *r0
+r1 = *(r0 + 0x14)
+r0 = 0x58
+r0 *= r4
+r0 += r2
+r0 += 0x20
+r0 = *r0
+*(r1 + 8) = r0
+goto lbl12
+
+lbl6:
+r4 = gBaseStats
+r0 = *r5
+r1 = r0 * 8
+r1 -= r0
+r1 *= 4
+r2 = r1 + r4
+r0 = *(r2 + 0x16)
+if(r0 == 0) goto lbl9
+
+r0 = *(r2 + 0x17)
+if(r0 == 0) goto lbl8
+
+Random()
+r1 = r7
+r1 &= r0
+if(r1 == 0) goto lbl7
+
+r0 = *r6
+r2 = *(r0 + 0x14)
+r1 = *r5
+r0 = r1 * 8
+r0 -= r1
+r0 *= 4
+r0 += r4
+r0 = *(r0 + 0x16)
+goto lbl11
+
+lbl7:
+r0 = *r6
+r2 = *(r0 + 0x14)
+r1 = *r5
+r0 = r1 * 8
+r0 -= r1
+r0 *= 4
+r0 += r4
+r0 = *(r0 + 0x17)
+goto lbl11
+
+lbl8:
+r1 = *(r3 + 0x14)
+r0 = *(r2 + 0x16)
+*(r1 + 8) = r0
+goto lbl12
+
+lbl9:
+r1 = *(r3 + 0x14)
+r0 = *(r2 + 0x17)
+*(r1 + 8) = r0
+goto lbl12
+
+lbl10:
+r0 = gBattleResources
+r0 = *r0
+r2 = *(r0 + 0x14)
+r1 = gBattleMons
+r0 = 0x58
+r0 *= r4
+r0 += r1
+r0 += 0x20
+r0 = *r0
+goto lbl11
+
+lbl11:
+*(r2 + 8) = r0
+goto lbl12
+
+lbl12:
+r1 = data_02039A00
+r0 = *r1
+r0 += 2
+*r1 = r0
+return

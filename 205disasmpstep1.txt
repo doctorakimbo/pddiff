@@ -1,0 +1,9 @@
+oei_task_add()
+{
+	GetXYCoordsOneStepInFrontOfPlayer(data_02039A04, data_02039A04 + 2)
+	
+	if(*data_0203BFF0_J == 0)
+		return CreateTask(task08_080C9820, 8)
+	else
+		return CreateTask(sub_80C98FC, 8)
+}

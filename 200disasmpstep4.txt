@@ -1,0 +1,88 @@
+when gBattleResources->ai.aiState == AIState_SettingUp: call AISetup_SmartSwitching
+just before exit: call AI_CleanupSmartSwitching
+
+
+
+
+
+AISetup_SmartSwitching() @205940_J
+{
+	if(data_0203D500_J != 1)
+	{
+		data_0203D500_J = 1
+		
+		memcpy(&data_0203D504_J[0], &gBattleMons[B_POSITION_PLAYER_LEFT], 0x58)
+		memcpy(&data_0203D504_J[1], &gBattleMons[B_POSITION_PLAYER_RIGHT], 0x58)
+		
+		if(CanUseNewAI())
+		{
+			leftMon = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+			
+			if(!(gBitTable[leftMon] & gAbsentBattlerFlags) && gBattleMons[leftMon].hp != 0)
+			{
+				score = GetOpponentMatchupScore(B_POSITION_PLAYER_LEFT);
+				
+				// !!! should be Random() % 4, not Random() / 4
+				if(score >= 30 || (score >= 15 && (Random() / 4) != 0 && data_0203B960_J > (Random() % 8) && GetBestMatchupScore(gBattleMons[B_POSITION_OPPONENT_LEFT], gBattleMons[B_POSITION_OPPONENT_RIGHT], FALSE) < score))
+				{
+					if(data_0203B960_J != 0)
+						data_0203B960_J--
+					
+					CopyMonToBattleMon(&gBattleMons[B_POSITION_PLAYER_LEFT], &gPlayerParty[chosenMon]) // chosenMon was returned from GetBestMatchupScore
+					data_0203D501_J = 1
+				}
+			}
+			
+			rightMon = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
+
+			if(!(gBitTable[rightMon] & gAbsentBattlerFlags) && gBattleMons[rightMon].hp != 0)
+			{
+				score = GetOpponentMatchupScore(B_POSITION_PLAYER_RIGHT);
+				
+				// !!! should be Random() % 4, not Random() / 4
+				if(score >= 30 || (score >= 15 && (Random() / 4) != 0 && data_0203B960_J > (Random() % 8) && GetBestMatchupScore(gBattleMons[B_POSITION_OPPONENT_LEFT], gBattleMons[B_POSITION_OPPONENT_RIGHT], FALSE) < score))
+				{
+					if(data_0203B960_J != 0)
+						data_0203B960_J--
+					
+					CopyMonToBattleMon(&gBattleMons[B_POSITION_PLAYER_RIGHT], &gPlayerParty[chosenMon]) // chosenMon was returned from GetBestMatchupScore
+					data_0203D502_J = 1
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+AI_CleanupSmartSwitching() @205910_J
+{
+	data_0203D500_J = 0
+	memcpy(&gBattleMons[B_POSITION_PLAYER_LEFT], &data_0203D504_J[0], 0x58)
+	memcpy(&gBattleMons[B_POSITION_PLAYER_RIGHT], &data_0203D504_J[1], 0x58)
+}
+
+
+
+
+
+GetOpponentMatchupScore(position) @205A84_J
+{
+	scoreLeft = 10;
+	scoreRight = 10;
+	thisMon = gBattleMons[position];
+	
+	leftMon = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+	
+	if(!(gBitTable[leftMon] & gAbsentBattlerFlags) && gBattleMons[leftMon].hp != 0)
+		scoreLeft = GetMatchupScore(gBattleMons[leftMon], thisMon, r2) // !!! r2 never set
+	
+	rightMon = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
+	
+	if(!(gBitTable[rightMon] & gAbsentBattlerFlags) && gBattleMons[rightMon].hp != 0)
+		scoreRight = GetMatchupScore(gBattleMons[rightMon], thisMon, r2) // !!! r2 never set
+	
+	return (scoreLeft * scoreRight) / 10;
+}

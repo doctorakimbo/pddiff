@@ -1,0 +1,84 @@
+lbl1: @C95F8
+r0 = gBattleResources
+r0 = *r0
+r6 = *(r0 + 0x14)
+r0 = data_02039A00
+r0 = *r0
+r0 = *(r0 + 1)
+if(r0 != 1) goto lbl2
+
+r0 = gBattlerAttacker
+goto lbl3
+
+lbl2:
+r0 = gBattlerTarget
+goto lbl3
+
+lbl3:
+r4 = *r0
+r0 = r4
+GetBattlerSide()
+if(r0 != 0) goto lbl5
+
+r0 = gBattlerPartyIndexes
+r1 = r4 * 2
+r0 += r1
+r0 = *r0
+r1 = gRecordedAbilities
+r5 = r0 + r1
+r0 = *r5
+if(r0 != 0) goto lbl6
+
+r1 = gBattleMons
+r0 = 0x58
+r0 *= r4
+r7 = r0 + r1
+r0 = r7
+r0 += 0x20
+r0 = *r0
+if(r0 == 0x17) goto lbl6
+
+if(r0 == 0x2A) goto lbl6
+
+if(r0 == 0x47) goto lbl6
+
+r1 = *r7
+r0 = r1 * 8
+r0 -= r1
+r0 *= 4
+r7 = gBaseStats
+r7 += r0
+Random()
+r1 = 1
+r0 &= r1
+if(r0 != 0) goto lbl4
+
+r0 = *(r7 + 0x16)
+if(r0 != 0) goto lbl6
+
+r0 = *(r7 + 0x17)
+goto lbl6
+
+lbl4:
+r0 = *(r7 + 0x17)
+if(r0 != 0) goto lbl6
+
+r0 = *(r7 + 0x16)
+goto lbl6
+
+lbl5:
+r1 = gBattleMons
+r0 = 0x58
+r0 *= r4
+r0 += r1
+r0 += 0x20
+r0 = *r0
+goto lbl6
+
+lbl6:
+*(r6 + 8) = r0
+r1 = data_02039A00
+r0 = *r1
+r0 += r2
+*r1 = r0
+return

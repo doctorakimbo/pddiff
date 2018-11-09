@@ -1,0 +1,40 @@
+sub_80C841C()
+{
+	if(data_02039A00->1 == 1)
+		r4 = gBattlerAttacker
+	else
+		r4 = gBattlerTarget
+	
+	if(GetBattlerSide(r4) == 0)
+	{
+		if(gRecordedAbilities[gBattlerPartyIndexes[r4]] == 0)
+		{
+			if(gBattleMons[r4].0x20 != 0x17 && gBattleMons[r4].0x20 != 0x2A && gBattleMons[r4].0x20 != 0x47)
+			{
+				if((Random() & 1) == 0)
+				{
+					r0 = gBaseStats[gBattleMons[r4].0].0x16
+					
+					if(r0 == 0)
+						r0 = gBaseStats[gBattleMons[r4].0].0x17
+				}
+				else
+				{
+					r0 = gBaseStats[gBattleMons[r4].0].0x17
+					
+					if(r0 == 0)
+						r0 = gBaseStats[gBattleMons[r4].0].0x16
+				}
+			}
+			else
+				r0 = gBattleMons[r4].0x20
+		}
+		else
+			r0 = gRecordedAbilities[gBattlerPartyIndexes[r4]]
+	}
+	else
+		r0 = gBattleMons[r4].0x20
+	
+	gBattleResources->0x14.8 = r0
+	data_02039A00 += 2
+}

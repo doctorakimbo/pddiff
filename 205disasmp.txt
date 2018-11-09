@@ -1,0 +1,19 @@
+lbl1: @CA9C8
+r0 = data_02039A04
+r1 = r0 + 2
+GetXYCoordsOneStepInFrontOfPlayer()
+r0 = data_0203BFF0_J
+r0 = *r0
+if(r0 != 0) goto lbl2
+
+r0 = task08_080C9820
+goto lbl3
+
+lbl2:
+r0 = sub_80C98FC
+goto lbl3
+
+lbl3:
+r1 = 8
+CreateTask()
+return r0

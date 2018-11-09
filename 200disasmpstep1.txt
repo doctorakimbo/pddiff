@@ -1,0 +1,238 @@
+lbl1: @C8214
+when *(*(*gBattleResources + 0x14)) == 0: call fn_205940_J
+just before exit: call fn_205910_J
+
+
+
+
+
+fn_205940_J()
+{
+	r0 = data_0203D500_J
+	r1 = *r0
+	
+	if(r1 != 1)
+	{
+		r1 = 1
+		*r0 = r1
+		r0 += 4
+		r1 = gBattleMons
+		r6 = *r1
+		memcpy(r0, r1, 0x58)
+		r0 = data_0203D500_J
+		r0 += 4
+		r1 = gBattleMons
+		r2 = 0x58
+		r6 = *(r1 + r2)
+		r3 = 2
+		r3 *= r2
+		r0 += r2
+		r1 += r3
+		r7 = *(r1 + r2)
+		memcpy(r0, r1, r2)
+		
+		if(CanUseNewAI())
+		{
+			r0 = GetBattlerAtPosition(0)
+			r1 = gAbsentBattlerFlags
+			r1 = *r1
+			r2 = gBitTable
+			r3 = r0 * 4
+			r2 = *(r2 + r3)
+			r1 &= r2
+			if(r1 != 0) goto lbl6
+
+			r1 = 0x58
+			r0 *= r1
+			r1 = gBattleMons
+			r0 += r1
+			r1 = *(r0 + 0x28)
+			if(r1 == 0) goto lbl6
+
+			r0 = fn_205A84_J(0)
+			r4 = r0
+			if(r0 >= 0x1E) goto lbl4
+
+			if(r0 < 0xF) goto lbl6
+			
+			if((Random() / 4) == 0) goto lbl6 // !!! should be Random() % 4
+
+			lbl4:
+			r1 = Random() % 8
+			r0 = data_0203B960_J
+			r0 = *r0
+			
+			if(r0 > r1 && GetBestMatchupScore(r6, r7, 0) < r4)
+			{
+				r0 = data_0203B960_J
+				r2 = *r0
+				
+				if(r2 != 0)
+				{
+					r2--
+					*r0 = r2
+				}
+				
+				r0 = 0x64
+				r1 *= r0
+				r0 = gPlayerParty
+				r1 += r0
+				CopyMonToBattleMon(gBattleMons, r1)
+				r0 = data_0203D500_J
+				r1 = 1
+				*(r0 + 1) = r1
+			}
+
+			lbl6:
+			r0 = GetBattlerAtPosition(2)
+			r1 = gAbsentBattlerFlags
+			r1 = *r1
+			r2 = gBitTable
+			r3 = r0 * 4
+			r2 = *(r2 + r3)
+			r1 &= r2
+			if(r1 != 0) goto lbl9
+
+			r1 = 0x58
+			r0 *= r1
+			r1 = gBattleMons
+			r0 += r1
+			r1 = *(r0 + 0x28)
+			if(r1 == 0) goto lbl9
+
+			r0 = 2
+			fn_205A84_J()
+			r4 = r0
+			if(r0 >= 0x1E) goto lbl7
+
+			if(r0 < 0xF) goto lbl9
+
+			if((Random() / 4) == 0) goto lbl9 // !!! should be Random() % 4
+
+			lbl7:
+			r1 = Random() % 8
+			r0 = data_0203B960_J
+			r0 = *r0
+			
+			if(r0 > r1 && GetBestMatchupScore(r6, r7, 0) < r4)
+			{
+				r0 = data_0203B960_J
+				r2 = *r0
+				
+				if(r2 != 0)
+				{
+					r2--
+					*r0 = r2
+				}
+				
+				r0 = 0x64
+				r1 *= r0
+				r0 = gPlayerParty
+				r1 += r0
+				r0 = gBattleMons
+				r2 = 0x58
+				r3 = 2
+				r2 *= r3
+				r0 += r2
+				CopyMonToBattleMon(r0, r1)
+				r0 = data_0203D500_J
+				r1 = 1
+				*(r0 + 2) = r1
+			}
+		}
+	}
+
+	lbl9:
+}
+
+
+
+
+
+fn_205910_J()
+{
+	r1 = data_0203D500_J
+	r0 = 0
+	*r1 = r0
+	r1 += 4
+	memcpy(gBattleMons, r1, 0x58)
+	r1 = data_0203D500_J
+	r0 = gBattleMons
+	r2 = 0x58
+	r3 = 2
+	r3 *= r2
+	r1 += r2
+	r1 += 4
+	r0 += r3
+	memcpy(r0, r1, r2)
+}
+
+
+
+
+
+fn_205A84_J(arg0)
+{
+	r6 = 0
+	s0 = r6
+	s1 = r6
+	s2 = r6
+	r6 = 0xA
+	r7 = 0xA
+	r4 = arg0
+	r0 = 0x58
+	r0 *= r4
+	r1 = data_0203D500_J
+	r0 += r1
+	r4 = *r0
+	r0 = GetBattlerAtPosition(1)
+	r1 = gAbsentBattlerFlags
+	r1 = *r1
+	r2 = gBitTable
+	r3 = r0 * 4
+	r2 = *(r2 + r3)
+	r1 &= r2
+	
+	if(r1 == 0)
+	{
+		r1 = 0x58
+		r0 *= r1
+		r1 = gBattleMons
+		r0 += r1
+		r1 = *(r0 + 0x28)
+		
+		if(r1 != 0)
+		{
+			r0 = *r0
+			s0 = r0
+			r6 = GetMatchupScore(r0, r4, r2)
+		}
+	}
+	
+	r0 = GetBattlerAtPosition(3)
+	r1 = gAbsentBattlerFlags
+	r1 = *r1
+	r2 = gBitTable
+	r3 = r0 * 4
+	r2 = *(r2 + r3)
+	r1 &= r2
+	
+	if(r1 == 0)
+	{
+		r1 = 0x58
+		r0 *= r1
+		r1 = gBattleMons
+		r0 += r1
+		r1 = *(r0 + 0x28)
+		
+		if(r1 != 0)
+		{
+			r0 = *r0
+			s1 = r0
+			r7 = GetMatchupScore(r0, r4, r2)
+		}
+	}
+	
+	r6 *= r7
+	return r6 / 0xA
+}

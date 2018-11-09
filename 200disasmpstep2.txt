@@ -1,0 +1,89 @@
+when *(*(*gBattleResources + 0x14)) == 0: call fn_205940_J
+just before exit: call fn_205910_J
+
+
+
+
+
+fn_205940_J()
+{
+	if(*data_0203D500_J != 1)
+	{
+		*data_0203D500_J = 1
+		memcpy(data_0203D504_J, gBattleMons, 0x58)
+		r6 = *(0x58 + gBattleMons)
+		r7 = *((0x58 * 3) + gBattleMons)
+		memcpy(0x58 + data_0203D504_J, (0x58 * 2) + gBattleMons, 0x58)
+		
+		if(CanUseNewAI())
+		{
+			r0 = GetBattlerAtPosition(0)
+			
+			if(!(*((r0 * 4) + gBitTable) & *gAbsentBattlerFlags) && *((r0 * 0x58) + gBattleMons + 0x28) != 0)
+			{
+				r4 = fn_205A84_J(0)
+				
+				// !!! should be Random() % 4, not Random() / 4
+				if(r4 >= 0x1E || (r4 >= 0xF && (Random() / 4) != 0 && *data_0203B960_J > (Random() % 8) && GetBestMatchupScore(r6, r7, 0) < r4))
+				{
+					if(*data_0203B960_J != 0)
+						*data_0203B960_J--
+					
+					CopyMonToBattleMon(gBattleMons, (r1 * 0x64) + gPlayerParty)
+					*data_0203D501_J = 1
+				}
+			}
+			
+			r0 = GetBattlerAtPosition(2)
+
+			if(!(*((r0 * 4) + gBitTable) & *gAbsentBattlerFlags) && *((r0 * 0x58) + gBattleMons + 0x28) != 0)
+			{
+				r4 = fn_205A84_J(2)
+				
+				// !!! should be Random() % 4, not Random() / 4
+				if(r4 >= 0x1E || (r4 >= 0xF && (Random() / 4) != 0 && *data_0203B960_J > (Random() % 8) && GetBestMatchupScore(r6, r7, 0) < r4))
+				{
+					if(*data_0203B960_J != 0)
+						*data_0203B960_J--
+					
+					CopyMonToBattleMon((0x58 * 2) + gBattleMons, (r1 * 0x64) + gPlayerParty)
+					*data_0203D502_J = 1
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+fn_205910_J()
+{
+	*data_0203D500_J = 0
+	memcpy(gBattleMons, data_0203D504_J, 0x58)
+	memcpy((0x58 * 2) + gBattleMons, 0x58 + data_0203D504_J, 0x58)
+}
+
+
+
+
+
+fn_205A84_J(arg0)
+{
+	r6 = 0xA
+	r7 = 0xA
+	
+	r4 = *((arg0 * 0x58) + data_0203D500_J)
+	r0 = GetBattlerAtPosition(1)
+	
+	if(!(*((r0 * 4) + gBitTable) & *gAbsentBattlerFlags) && *((r0 * 0x58) + gBattleMons + 0x28) != 0)
+		r6 = GetMatchupScore(*((r0 * 0x58) + gBattleMons), r4, r2) // !!! r2 never set
+	
+	r0 = GetBattlerAtPosition(3)
+	
+	if(!(*((r0 * 4) + gBitTable) & *gAbsentBattlerFlags) && *((r0 * 0x58) + gBattleMons + 0x28) != 0)
+		r7 = GetMatchupScore(*((r0 * 0x58) + gBattleMons), r4, r2) // !!! r2 never set
+	
+	return (r6 * r7) / 0xA
+}

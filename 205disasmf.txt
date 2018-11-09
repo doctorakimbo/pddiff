@@ -1,0 +1,8 @@
+lbl1: @C97FC
+r0 = data_02039A04
+r1 = r0 + 2
+GetXYCoordsOneStepInFrontOfPlayer()
+r0 = task08_080C9820
+r1 = 8
+CreateTask()
+return r0

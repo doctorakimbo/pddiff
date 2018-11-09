@@ -162,9 +162,12 @@ B6 97 03 02: 02 97 03 02: ??????
 8C 99 03 02: D8 98 03 02: gNamingScreenData
 D4 99 03 02: 4C 99 03 02: ??????
 E4 99 03 02: 5C 99 03 02: ??????
+00 9A 03 02: 78 99 03 02: gAIScriptPtr
+04 9A 03 02: 7C 99 03 02: gPlayerFacingPosition
 30 AD 03 02: A8 AC 03 02: gSpecialVar_ItemId
 FA AD 03 02: 72 AD 03 02: ??????
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
+		   : 18 B9 03 02: gRecordedAbilities
 		   : 50 B9 03 02: ?????? (appears to be an array of bits, one for each battler)
 								 (ItemBattleEffects: all cleared at start of cases ITEMEFFECT_ON_SWITCH_IN and ITEMEFFECT_TURN_END)
 								 (ItemBattleEffects: only executes case ITEMEFFECT_MOVE_END if this battler's bit is set)
@@ -173,6 +176,7 @@ FA AD 03 02: 72 AD 03 02: ??????
 		   : 60 B9 03 02: ?????? (atk4B_returnatktoball: adds 2 each time function is run for battler on player's side, max 6)
 								 (ShouldSwitchIfMightBeDoubleTargeted: choose not to switch with a probability increasing the higher this gets)
 								 (ShouldSwitchIfStallMon: choose not to switch with a probability increasing the higher this gets)
+								 (fn_205940_J: choose to switch with a probability increasing the higher this gets; when switch chosen, subtract 1)
 		   : 64 B9 03 02: gWasMonShown
 		   : 65 B9 03 02: ?????? (ShouldSwitch_NewAI: set to 1 when fn executed (always ran whenever it's possible to switch))
 		   : 70 B9 03 02: ?????? (appears to be an array of unknown objects; first field is a 4-entry array of 2 bytes each, second field is a 4-entry array of 1 byte each)
@@ -199,6 +203,7 @@ FA AD 03 02: 72 AD 03 02: ??????
 								 (fn_EB8398_J: Use ratio of this[battler].8[moveId] to this[battler].0xC[moveId] to obtain a result)
 								 (fn_EB8398_J: Use gBattleMoves[this[battler].0[moveId]] to select a sprite)
 								 (fn_EB85EE_J: Something about this[gBattleResources + 4])
+		   : F0 BF 03 02: ?????? (oei_task_add: if this isn't 0, call sub_80C98FC instead of the normal task08_080C9820)
 		   : F4 BF 03 02: ?????? (CanUseNewAI: If gBattleTypeFlags & 0x100 (BATTLE_TYPE_BATTLE_TOWER?), read the AI flags from here)
 								 (BattleAI_SetupAIData: When the AI flags would be set to 7 ("highest"), read them from here instead)
 		   : 00 C0 03 02: ?????? (NewGameInitData: zeroed starting from here to 0203CEC4)
@@ -287,10 +292,16 @@ FA AD 03 02: 72 AD 03 02: ??????
 								 (fn_E9EA40_J: set to 0 at start)
 								 (fn_E9EBB0_J: if data_0203D52A_J is 0xFF, increment this and set REG_BLDY to this each frame until 0x10, then set data_0203D52A_J to 0xFE)
 								 (fn_E9EBB0_J: if data_0203D52A_J is 0xFE, decrement this and set REG_BLDY to this each frame until 0, then set data_0203D52A_J to 0)
+								 (AISetup_SmartSwitching: only executed if this is not 1, and sets this to 1 at start)
+								 (AI_CleanupSmartSwitching: sets this to 0)
+		   : 01 D5 03 02: ?????? (AISetup_SmartSwitching: if bad matchup for opponent mon on left, set this to 1)
 		   : 02 D5 03 02: ?????? (fn_E9EBB0_J: if data_0203D50A_J is 0, increment this (mod 512) and set REG_BG3HOFS and REG_BG3VOFS to (this / 2) each frame)
+								 (AISetup_SmartSwitching: if bad matchup for opponent mon on right, set this to 1)
 		   : 04 D5 03 02: ?????? (fn_E9EAA4_J: set to 1)
 								 (fn_E9F6F4_J: set to 0)
 								 (fn_E9FC28_J: set to 0)
+								 (AISetup_SmartSwitching: opponent active mons are temporarily stored here)
+								 (AI_CleanupSmartSwitching: opponent active mons are retrieved from here)
 		   : 0A D5 03 02: ?????? (fn_E9EAA4_J: set to 0)
 								 (fn_E9EBB0_J: if this is 0, increment data_0203D504_J (mod 512) and set REG_BG3HOFS and REG_BG3VOFS to (this / 2) each frame)
 								 (fn_E9EBB0_J: if data_0203D52A_J is 0xFF, data_0203D500_J is 0x10, and this isn't 0, call fn_E9EAA4_J)
@@ -602,7 +613,6 @@ funcs e,j,desc:
 0722CC = 071A70 = PlaySE
 0723E0 = 071B84 = IsSEPlaying
 072760 = 071F04 = DestroyAnimVisualTask
-075068 = 07480C = ?????
 0751C4 = 074968 = GetBattlerSide
 0751D8 = 07497C = GetBattlerPosition
 0751E8 = 07498C = GetBattlerAtPosition
@@ -707,9 +717,9 @@ funcs e,j,desc:
 ?????? = 168C9C = SetFocusBand (unimplemented)
 ?????? = 183A90 = ????? (unimplemented)
 ?????? = 2058E0 = ????? (unimplemented)
-?????? = 205910 = ????? (unimplemented)
-?????? = 205940 = ????? (unimplemented)
-?????? = 205A84 = ????? (unimplemented)
+?????? = 205910 = AI_CleanupSmartSwitching (unimplemented)
+?????? = 205940 = AISetup_SmartSwitching (unimplemented)
+?????? = 205A84 = GetOpponentMatchupScore (unimplemented)
 ?????? = 205B0C = CopyMonToBattleMon (unimplemented)
 ?????? = 205C80 = GetMonThatCanWithstandBiggestAttack (unimplemented)
 ?????? = 205CF6 = GetGoodStallMon (unimplemented)
@@ -768,7 +778,6 @@ funcs e,j,desc:
 
 data:
 21A8D4 = sHoldEffectToType
-254784 = 21118C = gBaseStats
 250104 = sSoundMovesTable
 2504FC = 25CF04 = sAccuracyStageRatios
 25053C = sStatusFlagsForMoveEffects

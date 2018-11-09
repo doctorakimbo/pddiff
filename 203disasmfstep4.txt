@@ -1,0 +1,15 @@
+BattleAICmd_if_move_effect()
+{
+	... (ignore first loop)
+	
+	for(i = 0; i < 8; i++)
+	{	
+		if(gBattleMons[gBattlerAttacker].moves[i] != MOVE_NONE && gBattleMoves[gBattleResources->battleHistory.usedMoves[gBattlerTarget / 2][i]].effect == gAIScriptPtr[2])
+		{
+			gAIScriptPtr = T1_READ_PTR(&gAIScriptPtr[3]);
+			return;
+		}
+	}
+	
+	gAIScriptPtr = T1_READ_PTR(&gAIScriptPtr[3]);
+}

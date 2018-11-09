@@ -1,0 +1,17 @@
+lbl1: @C83AC
+r4 = r0
+r5 = r1
+GetBattlerSide()
+if(r0 != 0) goto lbl2
+
+r1 = gBattlerPartyIndexes
+r0 = r4 * 2
+r0 += r1
+r0 = *r0
+r2 = data_0203B918_J
+r0 += r2
+*r0 = r5
+goto lbl2
+
+lbl2:
+return

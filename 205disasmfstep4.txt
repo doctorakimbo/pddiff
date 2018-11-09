@@ -1,0 +1,6 @@
+oei_task_add()
+{
+	GetXYCoordsOneStepInFrontOfPlayer(&gPlayerFacingPosition.x, &gPlayerFacingPosition.y);
+	
+	return CreateTask(task08_080C9820, 8)
+}
