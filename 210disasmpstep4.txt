@@ -1,0 +1,38 @@
+HandleWriteSector()
+{
+	...
+	gFastSaveSection->checksum = CalculateChecksum(chunkData, chunkSize);
+	
+	if(gFastSaveSection->id == 0) // gSaveBlock2 (empty space at end)
+	{
+		r3 = 0xCC
+		r2 = data_0203C0C8_J
+		// 0203BFFC - 0203C0C8
+	}
+	elseif(gFastSaveSection->id == 4) // gSaveBlock1.chunks[3] (empty space at end)
+	{
+		r3 = 0x258
+		r2 = data_0203C320_J
+		// 0203C0C8 - 0203C320
+	}
+	elseif(gFastSaveSection->id == 0xD) // gPokemonStorage.chunks[8] (empty space at end)
+	{
+		r3 = 0xBA0
+		r2 = data_0203CEC0_J
+		// 0203C320 - 0203CEC0
+	}
+	else
+		return TryWriteSector(sectorNum, gFastSaveSection->data);
+	
+	r7 = &data_03005394->data[<last>]
+	
+	do
+	{
+		r7 -= 4
+		*r7 = *r2
+		r2 -= 4
+		r3 -= 4
+	} while(r3 != 0)
+	
+	return TryWriteSector(sectorNum, gFastSaveSection->data);
+}

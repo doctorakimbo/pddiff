@@ -1,0 +1,8 @@
+ClearSaveData_2()
+{
+	...
+	gFastSaveSection->checksum = CalculateChecksum(data, size);
+	EraseFlashSector(sector);
+    status = SAVE_STATUS_OK;
+	...
+}

@@ -1,0 +1,40 @@
+GetPokedexRatingText(count)
+{
+	gSpecialVar_Result = 0
+	
+	if(count < 10)
+		return data_1A6D17
+	elseif(count < 35)
+		return data_1A6D6D
+	elseif(count < 62)
+		return data_1A6DDF
+	elseif(count < 89)
+		return data_1A6E36
+	elseif(count < 116)
+		return data_1A6EA4
+	elseif(count < 143)
+		return data_1A6F0B
+	elseif(count < 170)
+		return data_1A6F71
+	elseif(count < 197)
+		return data_1A6FAB
+	elseif(count < 224)
+		return data_1A6FF1
+	elseif(count < 251)
+		return data_1A7031
+	elseif(count < 278)
+		return data_1A7063
+	elseif(count < 305)
+		return data_1A70A5
+	elseif(count < 332)
+		return data_1A70D8
+	elseif(count < 359)
+		return data_1A7108
+	elseif(count < 386)
+		return data_1A7137
+	else
+	{
+		gSpecialVar_Result = 1
+		return data_1A7175
+	}
+}

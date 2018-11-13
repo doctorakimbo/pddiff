@@ -1,0 +1,70 @@
+lbl1: @DABDA
+r0 = r10
+r1 = r3
+CalculateChecksum()
+r1 = gFastSaveSection
+r1 = *r1
+r2 = data_207280_J
+goto r2
+
+lblx: @DABF0
+r0 = r5
+call_r1()
+r6 = 1
+r4 = 0
+r7 = 0xFF7
+r9 = r7
+r7 = data_03007424
+goto lbl_2
+
+
+
+
+
+
+data_207280_J:
+r2 = 0xFF0
+r1 += r2
+*(r1 + 6) = r0
+r0 = *(r1 + 4)
+if(r0 == 0) goto lbl3
+
+if(r0 == 4) goto lbl4
+
+if(r0 == 0xD) goto lbl5
+
+goto lbl2
+
+lbl2:
+r0 = data_03007430
+r1 = *r0
+r0 = lblx
+goto r0
+
+lbl3:
+r4 = 0xCC
+r5 = data_0203C0C8_J
+// 0203BFFC - 0203C0C8
+goto lbl6
+
+lbl4:
+r4 = 0x258
+r5 = data_0203C320_J
+// 0203C0C8 - 0203C320
+goto lbl6
+
+lbl5:
+r4 = 0xBA0
+r5 = data_0203CEC0_J
+// 0203C320 - 0203CEC0
+goto lbl6
+
+lbl6:
+r1 -= 4
+r0 = *r5
+*r1 = r0
+r5 -= 4
+r4 -= 4
+if(r4 != 0) goto lbl6
+
+goto lbl2

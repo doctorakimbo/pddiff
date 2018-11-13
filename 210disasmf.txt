@@ -1,0 +1,12 @@
+lbl1: @D9910
+r0 = r10
+r1 = r4
+fn_DA1A8()
+r1 = data_03005394
+r1 = *r0
+r7 = 0xFF6
+r2 = *(r1 + r7)
+*r2 = r0
+r0 = r5 >> 0x18
+fn_D99D8()
+return r0

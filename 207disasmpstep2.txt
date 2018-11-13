@@ -1,0 +1,40 @@
+sub_80CA424(arg0)
+{
+	*gSpecialVar_Result = 0
+	
+	if(arg0 < 10)
+		return data_1A6D17
+	elseif(arg0 < 35)
+		return data_1A6D6D
+	elseif(arg0 < 62)
+		return data_1A6DDF
+	elseif(arg0 < 89)
+		return data_1A6E36
+	elseif(arg0 < 116)
+		return data_1A6EA4
+	elseif(arg0 < 143)
+		return data_1A6F0B
+	elseif(arg0 < 170)
+		return data_1A6F71
+	elseif(arg0 < 197)
+		return data_1A6FAB
+	elseif(arg0 < 224)
+		return data_1A6FF1
+	elseif(arg0 < 251)
+		return data_1A7031
+	elseif(arg0 < 278)
+		return data_1A7063
+	elseif(arg0 < 305)
+		return data_1A70A5
+	elseif(arg0 < 332)
+		return data_1A70D8
+	elseif(arg0 < 359)
+		return data_1A7108
+	elseif(arg0 < 386)
+		return data_1A7137
+	else
+	{
+		*gSpecialVar_Result = 1
+		return data_1A7175
+	}
+}

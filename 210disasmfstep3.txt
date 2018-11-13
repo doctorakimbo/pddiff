@@ -1,0 +1,6 @@
+HandleWriteSector()
+{
+	...
+	data_03005394->0xFF6 = CalculateChecksum(r10, r4)
+	return TryWriteSector(r5 >> 0x18, data_03005394)
+}

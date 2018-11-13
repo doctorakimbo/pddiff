@@ -1,0 +1,19 @@
+lbl1: @D9BF2
+r0 = r10
+r1 = r3
+CalculateChecksum()
+r1 = gFastSaveSection
+r1 = *r1
+r2 = 0xFF6
+r1 += r2
+*r1 = r0
+r0 = data_03007430
+r1 = *r0
+r0 = r5
+call_r1()
+r6 = 1
+r4 = 0
+r7 = 0xFF7
+r9 = r7
+r7 = data_03007424
+goto lbl_2

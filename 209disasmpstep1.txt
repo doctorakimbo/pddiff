@@ -1,0 +1,33 @@
+sub_80CC7F8()
+{
+	set_unknown_box_id(VarGet(0x4037))
+	r4 = StorageGetCurrentBox()
+
+	do
+	{
+		r6 = r4
+		r7 = r4
+
+		for(r5 = 0; r5 <= 0x1D; r5++)
+		{
+			r0 = GetBoxedMonPtr(r6, r5)
+			
+			if(*(r0 + 0x24) == 0)
+			{
+				if(get_unknown_box_id() != r4)
+					FlagClear(0x843)
+
+				VarSet(0x4037, r7)
+				return sub_80CC7B4()
+			}
+		}
+
+		r4++
+		
+		if(r4 == 0x17)
+			r4 = 0
+		
+	} while(r4 != StorageGetCurrentBox())
+
+	return 0
+}

@@ -1,0 +1,52 @@
+ClearSaveData_2()
+{
+	...
+	r0 = CalculateChecksum(r10, r3)
+	r1 = gFastSaveSection
+	r1 = *r1
+	r2 = 0xFF0
+	r1 += r2
+	*(r1 + 6) = r0
+	r0 = *(r1 + 4)
+	
+	if(r0 == 0)
+	{
+		r4 = 0xCC
+		r5 = data_0203C0C8_J
+		// 0203BFFC - 0203C0C8
+	}
+	elseif(r0 == 4)
+	{
+		r4 = 0x258
+		r5 = data_0203C320_J
+		// 0203C0C8 - 0203C320
+	}
+	elseif(r0 == 0xD)
+	{
+		r4 = 0xBA0
+		r5 = data_0203CEC0_J
+		// 0203C320 - 0203CEC0
+	}
+	else
+		goto lbl2
+	
+	do
+	{
+		r1 -= 4
+		r0 = *r5
+		*r1 = r0
+		r5 -= 4
+		r4 -= 4
+	} while(r4 != 0)
+
+	lbl2:
+	r0 = data_03007430
+	r1 = *r0
+	r1(r5)
+	r6 = 1
+	r4 = 0
+	r7 = 0xFF7
+	r9 = r7
+	r7 = data_03007424
+	...
+}

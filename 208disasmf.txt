@@ -1,0 +1,37 @@
+lbl1: @CBFE0
+r0 = gSpecialVar_MonBoxId
+r0 = *r0
+r1 = gSpecialVar_MonBoxPos
+r1 = *r1
+GetBoxedMonPtr()
+r6 = r0
+r2 = gStringVar3
+r1 = 2
+GetBoxMonData()
+r0 = gStringVar2
+r8 = r0
+r0 = r6
+r1 = 2
+r2 = r8
+GetBoxMonData()
+r0 = r6
+r1 = 0xB
+r2 = 0
+GetBoxMonData()
+r5 = r0
+r0 = r6
+GetBoxMonGender()
+r4 = r0
+r0 = r6
+r1 = 0
+r2 = 0
+GetBoxMonData()
+s0 = r0
+r0 = data_CC065
+s1 = r0
+r0 = 3
+r1 = r8
+r2 = r5
+r3 = r4
+fn_9D954()
+return

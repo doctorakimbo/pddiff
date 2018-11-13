@@ -1,0 +1,125 @@
+lbl1: @CA424
+r2 = r0
+r1 = gSpecialVar_Result
+r0 = 0
+*r1 = r0
+if(r2 > 9) goto lbl2
+
+goto lbl19
+
+lbl2:
+if(r2 > 19) goto lbl3
+
+r0 = data_1A6D6D
+goto lbl21
+
+lbl3:
+if(r2 > 29) goto lbl4
+
+r0 = data_1A6DDF
+goto lbl21
+
+lbl4:
+if(r2 > 39) goto lbl5
+
+r0 = data_1A6E36
+goto lbl21
+
+lbl5:
+if(r2 > 49) goto lbl6
+
+r0 = data_1A6EA4
+goto lbl21
+
+lbl6:
+if(r2 > 59) goto lbl7
+
+r0 = data_1A6F0B
+goto lbl21
+
+lbl7:
+if(r2 > 69) goto lbl8
+
+r0 = data_1A6F71
+goto lbl21
+
+lbl8:
+if(r2 > 79) goto lbl9
+
+r0 = data_1A6FAB
+goto lbl21
+
+lbl9:
+if(r2 > 89) goto lbl10
+
+r0 = data_1A6FF1
+goto lbl21
+
+lbl10:
+if(r2 > 99) goto lbl11
+
+r0 = data_1A7031
+goto lbl21
+
+lbl11:
+if(r2 > 109) goto lbl12
+
+r0 = data_1A7063
+goto lbl21
+
+lbl12:
+if(r2 > 119) goto lbl13
+
+r0 = data_1A70A5
+goto lbl21
+
+lbl13:
+if(r2 > 129) goto lbl14
+
+r0 = data_1A70D8
+goto lbl21
+
+lbl14:
+if(r2 > 139) goto lbl15
+
+r0 = data_1A7108
+goto lbl21
+
+lbl15:
+if(r2 <= 149) goto lbl16
+
+if(r2 != 150) goto lbl18
+
+r0 = 151
+SpeciesToNationalPokedexNum()
+r1 = 1
+GetSetPokedexFlag()
+if(r0 == 0) goto lbl17
+
+goto lbl16
+
+lbl16:
+r0 = data_1A7137
+goto lbl21
+
+lbl17:
+r1 = gSpecialVar_Result
+goto lbl20
+
+lbl18:
+if(r2 == 151) goto lbl20
+
+goto lbl19
+
+lbl19:
+r0 = data_1A6D17
+goto lbl21
+
+lbl20:
+r0 = 1
+*r1 = r0
+r0 = data_1A7175
+goto lbl21
+
+lbl21:
+return r0

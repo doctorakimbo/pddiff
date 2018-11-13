@@ -1,0 +1,108 @@
+lbl1: @CB5F0
+r2 = r0
+r1 = gSpecialVar_Result
+r0 = 0
+*r1 = r0
+if(r2 > 9) goto lbl2
+
+r0 = data_1A6D17
+goto lbl17
+
+lbl2:
+if(r2 > 34) goto lbl3
+
+r0 = data_1A6D6D
+goto lbl17
+
+lbl3:
+if(r2 > 61) goto lbl4
+
+r0 = data_1A6DDF
+goto lbl17
+
+lbl4:
+if(r2 > 88) goto lbl5
+
+r0 = data_1A6E36
+goto lbl17
+
+lbl5:
+if(r2 > 115) goto lbl6
+
+r0 = data_1A6EA4
+goto lbl17
+
+lbl6:
+if(r2 > 142) goto lbl7
+
+r0 = data_1A6F0B
+goto lbl17
+
+lbl7:
+if(r2 > 169) goto lbl8
+
+r0 = data_1A6F71
+goto lbl17
+
+lbl8:
+if(r2 > 196) goto lbl9
+
+r0 = data_1A6FAB
+goto lbl17
+
+lbl9:
+if(r2 > 223) goto lbl10
+
+r0 = data_1A6FF1
+goto lbl17
+
+lbl10:
+if(r2 > 250) goto lbl11
+
+r0 = data_1A7031
+goto lbl17
+
+lbl11:
+r3 = 250
+r3 += 27
+if(r2 > r3) goto lbl12
+
+r0 = data_1A7063
+goto lbl17
+
+lbl12:
+r3 += 27
+if(r2 > r3) goto lbl13
+
+r0 = data_1A70A5
+goto lbl17
+
+lbl13:
+r3 += 27
+if(r2 > r3) goto lbl14
+
+r0 = data_1A70D8
+goto lbl17
+
+lbl14:
+r3 += 27
+if(r2 > r3) goto lbl15
+
+r0 = data_1A7108
+goto lbl17
+
+lbl15:
+r3 += 27
+if(r2 > r3) goto lbl16
+
+r0 = data_1A7137
+goto lbl17
+
+lbl16:
+r0 = 1
+*r1 = r0
+r0 = data_1A7175
+goto lbl17
+
+lbl17:
+return r0

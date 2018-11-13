@@ -1,0 +1,40 @@
+HandleWriteSector()
+{
+	...
+	r0 = CalculateChecksum(r10, r4)
+	r1 = data_03005394
+	r1 = *r1
+	r7 = 0xFF0
+	r7 += r1
+	*(r7 + 6) = r0
+	r6 = *(r7 + 4)
+	
+	if(r6 == 0)
+	{
+		r3 = 0xCC
+		r2 = data_0203C0C8_J
+	}
+	elseif(r6 == 4)
+	{
+		r3 = 0x12C
+		r2 = data_0203C320_J
+	}
+	elseif(r6 == 0xD)
+	{
+		r3 = 0xBA0
+		r2 = data_0203CEC0_J
+	}
+	else
+		return TryWriteSector(r5 >> 0x18, r1)
+	
+	do
+	{
+		r7 -= 4
+		r0 = *r2
+		*r7 = r0
+		r2 -= 4
+		r3 -= 4
+	} while(r3 != 0)
+	
+	return TryWriteSector(r5 >> 0x18, r1)
+}

@@ -1,0 +1,10 @@
+ClearSaveData_2()
+{
+	...
+	*(*gFastSaveSection + 0xFF6) = CalculateChecksum(r10, r3)
+	*data_03007430(r5)
+	r6 = 1
+	r4 = 0
+	r9 = 0xFF7
+	r7 = data_03007424
+	...

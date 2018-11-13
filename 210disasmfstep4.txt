@@ -1,0 +1,6 @@
+HandleWriteSector()
+{
+	...
+	gFastSaveSection->checksum = CalculateChecksum(chunkData, chunkSize);
+	return TryWriteSector(sectorNum, gFastSaveSection->data);
+}

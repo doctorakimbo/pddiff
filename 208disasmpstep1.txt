@@ -1,0 +1,8 @@
+ChangeBoxPokemonNickname()
+{
+	r6 = DecompressBoxMon(GetBoxedMonPtr(*gSpecialVar_MonBoxId, *gSpecialVar_MonBoxPos))
+	GetBoxMonData(r6, 2, gStringVar3)
+	GetBoxMonData(r6, 2, gStringVar2)
+	fn_9D954(3, gStringVar2, GetBoxMonData(r6, 0xB, NULL), GetBoxMonGender(r6), GetBoxMonData(r6, 0, NULL), data_CC065)
+	Free(r6)
+}

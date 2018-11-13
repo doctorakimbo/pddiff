@@ -1,0 +1,52 @@
+GetPokedexRatingText(count)
+{
+	gSpecialVar_Result = 0
+	
+	if(count < 10)
+		return data_1A6D17
+	elseif(count < 20)
+		return data_1A6D6D
+	elseif(count < 30)
+		return data_1A6DDF
+	elseif(count < 40)
+		return data_1A6E36
+	elseif(count < 50)
+		return data_1A6EA4
+	elseif(count < 60)
+		return data_1A6F0B
+	elseif(count < 70)
+		return data_1A6F71
+	elseif(count < 80)
+		return data_1A6FAB
+	elseif(count < 90)
+		return data_1A6FF1
+	elseif(count < 100)
+		return data_1A7031
+	elseif(count < 110)
+		return data_1A7063
+	elseif(count < 120)
+		return data_1A70A5
+	elseif(count < 130)
+		return data_1A70D8
+	elseif(count < 140)
+		return data_1A7108
+	elseif(count < 150)
+		return data_1A7137
+	elseif(count == 150)
+	{
+		if(GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_MEW), 1))
+			return data_1A7137
+		else
+		{
+			gSpecialVar_Result = 1
+			return data_1A7175
+		}
+	}
+	elseif(count == 151)
+	{
+		gSpecialVar_Result = 1
+		return data_1A7175
+	}
+	
+	return data_1A6D17
+}

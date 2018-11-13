@@ -6,7 +6,8 @@ addr e: addr j: desc
 		   : E8 0D 02 02: ??????
 		   : C2 1A 02 02: ??????
 D0 1C 02 02: 4C 1C 02 02: gStringVar1
-		   : 60 1C 02 02: ??????
+F0 1C 02 02: 60 1C 02 02: gStringVar2
+04 1D 02 02: 74 1C 02 02: gStringVar3
 18 1D 02 02: 88 1C 02 02: gStringVar4
 		   : 10 1D 02 02: ?????? (GetMoveRelearnerMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
 								 (GetNumberOfRelearnableMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
@@ -120,6 +121,7 @@ FC 6D 03 02: 30 6D 03 02: gMapHeader
 		   : FC 6F 03 02: ?????? (sub_808C9C4: set to created window)
 								 (sub_808CBA4: window stored here is deleted)
 								 (sub_808CC74: used as window to print to)
+D0 70 03 02: 04 70 03 02: gSpecialVar_Result
 D2 70 03 02: 06 70 03 02: gSpecialVar_LastTalked
 D4 70 03 02: 08 70 03 02: gSpecialVar_Facing
 D6 70 03 02: 0A 70 03 02: gSpecialVar_MonBoxId
@@ -222,8 +224,10 @@ FA AD 03 02: 72 AD 03 02: ??????
 		   : 10 C0 03 02: ?????? (appears to be an array of 167 unknown 4-byte objects, possibly ItemSlots)
 								 (LoadPlayerBag: Entire array read from in a loop, just like gSaveBlock1Ptr->bagPocket_Items, and written to j0203BB00)
 								 (SavePlayerBag: Entire array written to in a loop, just like gSaveBlock1Ptr->bagPocket_Items, read from j0203BB00)
+		   : C8 C0 03 02: ?????? 
 		   : AC C2 03 02: gDaycareParentMoves
 		   : B4 C2 03 02: gDaycareParentMoves[1]
+		   : 20 C3 03 02: ?????? 
 		   : 18 CB 03 02: ?????? (GetLocationMusic: if this.0xE is not zero, return this.0xC instead of the default music)
 								 (fn_E9F204_J: convert this.4 (number) to a string and store it in data_0203D520_J)
 								 (fn_E9EBB0_J: If data_0203D52A_J is 0, data_0203D50A_J is 1, A is pressed, and (data_0203D562_J + data_0203D561_J) != 0, set this.0xC to data_E9FBC4_J[fn_E9F92C_J(data_0203D562_J + data_0203D561_J) - 1] then start playing the music at this.0xC)
@@ -237,6 +241,7 @@ FA AD 03 02: 72 AD 03 02: ??????
 		   : 54 CB 03 02: ?????? (fn_EE5000: set data_0203D2E0_J.0 to this on start)
 								 (fn_EE51C0: set this to data_0203D2E0_J.0 on exit)
 		   : 58 CB 03 02: ?????? (GetFlagPointer: if the flag number is 0xF000 or above, read it from this[number - 0xF000])
+		   : C0 CE 03 02: ?????? 
 		   : 00 D1 03 02: ?????? (appears to be an array of 4 SpriteTemplates)
 								 (fn_E9F398_J: used to temporarily store SpriteTemplates before their creation in a loop)
 		   : 00 D2 03 02: ?????? (appears to be an array of 4 SpriteTemplates)
@@ -383,10 +388,13 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 90 50 00 03: D0 50 00 03: gTasks
 98 50 00 03: D8 50 00 03: ??????
 7C 53 00 03: CC 53 00 03: gCB2_AfterEvolution
+94 53 00 03: E4 53 00 03: gFastSaveSection
 		   : 40 55 00 03: ?????? (GetEvolutionTargetSpecies: EVO_FRIENDSHIP_DAY works when this.2 is less than 11; EVO_FRIENDSHIP_NIGHT works when this.2 is between 12 and 23 inclusive) (gLocalTime?)
 		   : 42 55 00 03: ?????? (atkEF_handleballthrow: Dusk Ball boosted if less than 6 or greater than 20) (gLocalTime.hours?)
 		   : 48 55 00 03: ?????? (GetTrainerApproachDistance: set to address of trainerObj)
 88 5E 00 03: D8 5E 00 03: ??????
+24 74 00 03: 74 74 00 03: ??????
+30 74 00 03: 80 74 00 03: ??????
 		   
 		   
 funcs e,j,desc:
@@ -666,6 +674,8 @@ funcs e,j,desc:
 0CD608 = 0CE754 = ClearTasksAndGraphicalStructs
 0D77F4 = 0D8898 = BattleStringExpandPlaceholdersToDisplayedString
 0D87BC = 0D980C = BattlePutTextOnWindow
+0D99D8 = 0DA9C0 = TryWriteSector
+0DA1A8 = 0DB190 = CalculateChecksum
 0F67A4 = 0F77FC = schedule_bg_copy_tilemap_to_vram
 0F6F1C = 0F7F7C = NewMenuHelpers_DrawStdWindowFrame
 0F793C = 0F899C = GetStartMenuWindowId

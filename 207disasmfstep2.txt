@@ -1,0 +1,52 @@
+sub_80CA424(arg0)
+{
+	*gSpecialVar_Result = 0
+	
+	if(arg0 < 10)
+		return data_1A6D17
+	elseif(arg0 < 20)
+		return data_1A6D6D
+	elseif(arg0 < 30)
+		return data_1A6DDF
+	elseif(arg0 < 40)
+		return data_1A6E36
+	elseif(arg0 < 50)
+		return data_1A6EA4
+	elseif(arg0 < 60)
+		return data_1A6F0B
+	elseif(arg0 < 70)
+		return data_1A6F71
+	elseif(arg0 < 80)
+		return data_1A6FAB
+	elseif(arg0 < 90)
+		return data_1A6FF1
+	elseif(arg0 < 100)
+		return data_1A7031
+	elseif(arg0 < 110)
+		return data_1A7063
+	elseif(arg0 < 120)
+		return data_1A70A5
+	elseif(arg0 < 130)
+		return data_1A70D8
+	elseif(arg0 < 140)
+		return data_1A7108
+	elseif(arg0 < 150)
+		return data_1A7137
+	elseif(arg0 == 150)
+	{
+		if(GetSetPokedexFlag(SpeciesToNationalPokedexNum(151), 1))
+			return data_1A7137
+		else
+		{
+			*gSpecialVar_Result = 1
+			return data_1A7175
+		}
+	}
+	elseif(arg0 == 151)
+	{
+		*gSpecialVar_Result = 1
+		return data_1A7175
+	}
+	else
+		return data_1A6D17
+}

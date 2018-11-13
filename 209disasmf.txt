@@ -1,0 +1,56 @@
+lbl1: @CC7F8
+r0 = 0x4037
+VarGet()
+set_unknown_box_id()
+StorageGetCurrentBox()
+r4 = r0
+goto lbl2
+
+lbl2:
+r5 = 0
+r6 = r4
+r7 = r4
+goto lbl3
+
+lbl3:
+r1 = r5
+r0 = r6
+GetBoxedMonPtr()
+r1 = 0xB
+r2 = 0
+GetBoxMonData()
+if(r0 != 0) goto lbl5
+
+get_unknown_box_id()
+if(r0 == r4) goto lbl4
+
+r0 = 0x843
+FlagClear()
+goto lbl4
+
+lbl4:
+r0 = 0x4037
+r1 = r7
+VarSet()
+fn_CC7B4()
+goto lbl7
+
+lbl5:
+r5++
+if(r5 <= 0x1D) goto lbl3
+
+r4++
+if(r4 != 0xE) goto lbl6
+
+r4 = 0
+goto lbl6
+
+lbl6:
+StorageGetCurrentBox()
+if(r4 != r0) goto lbl2
+
+r0 = 0
+goto lbl7
+
+lbl7:
+return r0

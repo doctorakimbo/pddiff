@@ -1,0 +1,60 @@
+sub_80CA424(arg0)
+{
+	r2 = arg0
+	r1 = gSpecialVar_Result
+	r0 = 0
+	*r1 = r0
+	
+	if(r2 < 10)
+		return data_1A6D17
+	elseif(r2 < 35)
+		return data_1A6D6D
+	elseif(r2 < 62)
+		return data_1A6DDF
+	elseif(r2 < 89)
+		return data_1A6E36
+	elseif(r2 < 116)
+		return data_1A6EA4
+	elseif(r2 < 143)
+		return data_1A6F0B
+	elseif(r2 < 170)
+		return data_1A6F71
+	elseif(r2 < 197)
+		return data_1A6FAB
+	elseif(r2 < 224)
+		return data_1A6FF1
+	elseif(r2 < 251)
+		return data_1A7031
+	
+	r3 = 251
+	r3 += 27
+	
+	if(r2 < r3)
+		return data_1A7063
+	
+	r3 += 27
+	
+	if(r2 < r3)
+		return data_1A70A5
+	
+	r3 += 27
+	
+	if(r2 < r3)
+		return data_1A70D8
+	
+	r3 += 27
+	
+	if(r2 < r3)
+		return data_1A7108
+	
+	r3 += 27
+	
+	if(r2 < r3)
+		return data_1A7137
+	else
+	{
+		r0 = 1
+		*r1 = r0
+		return data_1A7175
+	}
+}

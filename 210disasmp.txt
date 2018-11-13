@@ -1,0 +1,59 @@
+lbl1: @DA8F8
+r0 = r10
+r1 = r4
+fn_DA1A8()
+r1 = data_03005394
+r1 = *r0
+r7 = fn_A24EA0_J
+goto r7
+
+lblx: @DA90A
+r0 = r5 >> 0x18
+fn_D99D8()
+return r0
+
+
+
+
+
+fn_A24EA0_J:
+r7 = 0xFF0
+r7 += r1
+*(r7 + 6) = r0
+r6 = *(r7 + 4)
+if(r6 == 0) goto lbl3
+
+if(r6 == 4) goto lbl4
+
+if(r6 == 0xD) goto lbl5
+
+goto lbl2
+
+lbl2:
+r0 = lblx
+goto r0
+
+lbl3:
+r3 = 0xCC
+r2 = data_0203C0C8_J
+goto lbl6
+
+lbl4:
+r3 = 0x12C
+r2 = data_0203C320_J
+goto lbl6
+
+lbl5:
+r3 = 0xBA0
+r2 = data_0203CEC0_J
+goto lbl6
+
+lbl6:
+r7 -= 4
+r0 = *r2
+*r7 = r0
+r2 -= 4
+r3 -= 4
+if(r3 != 0) goto lbl6
+
+goto lbl2

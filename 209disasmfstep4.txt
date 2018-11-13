@@ -1,0 +1,26 @@
+sub_80CC7F8()
+{
+	set_unknown_box_id(VarGet(VAR_STORAGE_UNKNOWN));
+	box = StorageGetCurrentBox();
+
+	do
+	{
+		for(i = 0; i < IN_BOX_COUNT; i++)
+		{
+			if(GetBoxMonData(GetBoxedMonPtr(box, i), MON_DATA_SPECIES, NULL) == SPECIES_NONE)
+			{
+				if(get_unknown_box_id() != box)
+					FlagClear(FLAG_SYS_STORAGE_UNKNOWN_FLAG);
+
+				VarSet(VAR_STORAGE_UNKNOWN, box);
+				return sub_80CC7B4();
+			}
+		}
+
+		if(++box == TOTAL_BOXES_COUNT) // 14
+			box = 0;
+		
+	} while(box != StorageGetCurrentBox());
+
+	return FALSE;
+}
