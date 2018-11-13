@@ -335,21 +335,21 @@ grafics:
 ! expand 399C90 (battle anim palettes???) to [BROKEN] (11EDD80)
 + expand 39FDB0 (field object graphics info pointers) from 174 entries to 256 (j4EFDA0, e14EFDA0)
 ! expand 3A65BC (movement action functions) from 170 entries to 226 (j221550, eUNKNOWN)
-- expand 3ACC08 (battle anim sprites) from 289 entries to 462 (1200300)
-	- also set 3AD048 (gBattleAnimPicTable[136]) to 1200740
-- ???
++ expand 3ACC08 (battle anim sprites) from 289 entries to 462 (1200300)
+	+ also set 3AD048 (gBattleAnimPicTable[136]) to 1200740
+= ???
 	! also set 3AD950 (gBattleAnimPaletteTable[136]) to 1201A40
-- expand 3ADE18 (battle anim backgrounds) from 27 entries to 100 (11FF000)
-- expand 3D2A10 (box wallpapers) from 48 entries to 63 (938980)
-- expand 3D353C (PC menu options) from 38 entries to 128 (jE2A570, e1E2A570???)
-- expand 3D3740 (raw mon icon palette data) from 3 entries to 6 (ONLY FIRST PTR) (EE4E00)
++ expand 3ADE18 (battle anim backgrounds) from 27 entries to 100 (11FF000)
++ expand 3D2A10 (box wallpapers) from 48 entries to 63 (938980)
++ expand 3D353C (PC menu options) from 38 entries to 128 (jE2A570, e1E2A570)
++ expand 3D3740 (raw mon icon palette data) from 3 entries to 6 (ONLY FIRST PTR) (EE4E00)
 + expand 3D4038 (mon icon palettes) from 6 entries to 16 (jE40000, e1E40000)
-- expand 3D4294 (item icons/palettes) from 375 entries to 435 (10B8000)
++ expand 3D4294 (item icons/palettes) from 375 entries to 435 (10B8000)
 + expand 3DB028 (item data) from 375 entries to 435 (10B0000)
-- expand 3EEBF8 (heal locations) from 20 entries to 22 (FE42E0)
-	- also set 3EEBF0 (sHealLocations[-1]) to FE42D8
-- expand 3EEC98 (heal location map indexes) from 20 entries to 22 (FE4400)
-- expand 3EECE8 (? gSpecialVar_LastTalked values to be set on respawn per heal location) from 20 entries to 22 (FE4480)
++ expand 3EEBF8 (heal locations) from 20 entries to 22 (FE42E0)
+	+ also set 3EEBF0 (sHealLocations[-1]) to FE42D8
++ expand 3EEC98 (heal location map indexes) from 20 entries to 22 (FE4400)
++ expand 3EECE8 (? gSpecialVar_LastTalked values to be set on respawn per heal location) from 20 entries to 22 (FE4480)
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
 + expand 3FE664 (trapping moves) from 6 entries to 8 (1303552)
 
@@ -358,8 +358,8 @@ grafics:
 + repoint 1D8C10 -> 1051B20 (BattleScript_SuccessForceOut) - do it itself later
 + repoint 1D9015 -> 1052EE0 (BattleScript_FocusPunchSetUp) - do it itself later
 ! repoint 1D9444 -> 1050260 (BattleScript_ObliviousPreventsAttraction) - script done, import during atk97_tryinfatuating
-! repoint ptrs at 09D1E0 and 09D248 ("Bill's PC"/"Someone's PC") to the same text (jE00590, e1E00590???) (PDONLY)
-- repoint 41E234 -> FE42DC (only ptr at BF1E4) "From " -> ""
+! repoint ptrs at 09D1E0 and 09D248 ("Bill's PC"/"Someone's PC") to the same text (jE00590, e1E00590) (PDONLY)
++ repoint 41E234 -> FE42DC (only ptr at BF1E4) "From " -> ""
 
 = 006884: ptr 217818 (gUnusedJapaneseFireRedLeafGreenMaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
 = 0069F0: ptr 227B30 (gUnusedJapaneseFireRedLeafGreenFemaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
@@ -797,7 +797,7 @@ grafics:
 ! 044034: 62 40 04 08 5C 40 04 08 62 40 04 08 62 40 04 08 5C 40 04 08 62 40 04 08 62 40 04 08 54 40 04 08 -> 54 40 04 08 5C 40 04 08 D8 32 85 08 D0 32 85 08 30 8F 8D 08 E0 64 86 08 58 00 74 08 A0 0F 8C 08 (changes table to point to other scripts, see 92disasm)
 		  Implements: PDONLY, more trainer music
 		  Requires in future: all the pointed-to scripts
-= 04442C: 99 18 88 89 C9 89 88 42 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2EAD0, see 93disasm))
++ 04442C: 99 18 88 89 C9 89 88 42 -> 00 49 08 47 D1 EA E2 09 (jumps (bx) to extra fn at 1E2EAD0, then back (jE2EAD0, see 93disasm))
 		  Implements: Compound Eyes overworld effect
 + 044EC8: Entirety of Random (see 94disasm)
 		  Implements: New random function (unclear why)
@@ -831,8 +831,9 @@ grafics:
 ! 046120: 2D 21 FA F7 2B F9 09 48 -> 00 49 08 47 01 89 EE 08 (jumps (bx) to fn at EE8900, then back; see 101disasm)
 		  Implements: modern pokeball inheritance
 		  GLITCH!: Crashes upon receiving egg
-= 046216: 14 1C 2D 04 2D 0C FE F7 54 FE -> 00 48 00 47 XX XX XX 08 00 00 (jumps (bx) to extra fn at XXXXXX, then back (jE2EA00, see 102disasm))
++ 046216: 14 1C 2D 04 2D 0C FE F7 54 FE -> 00 48 00 47 01 EA E2 09 00 00 (jumps (bx) to extra fn at 1E2EA00, then back (jE2EA00, see 102disasm))
 		  Implements: Everstone nature inheritance
+		  GLITCH!: doesn't actually work?
 = 04623E: 05 22 20 23 F7 F7 07 -> 01 22 20 23 ?? ?? ?? ?? (instead of calling CreateMon(..., 5, ...), calls CreateMonWithNature_New(..., 1, ...); see 102disasm)
 		  Implements: egg hatch level 5 -> 1, (item72), need more info (something to do with personality values)
 		  Requires in future: fn_251B58_J, fn_251B8C_J, fn_251BA4_J, CreateMonWithNature_New (j251D2A)
@@ -967,12 +968,12 @@ grafics:
 		  Implements: Need more info (title screen animation related)
 		  Required knowledge: j0203712C
 		  Requires in future: fn_2075E0_J
-- 07A294: Entirety of ApplyGammaShift (+ add part at F1C000, +table_F10000) (see 136disasm)
++ 07A294: Entirety of ApplyGammaShift (+ add part at F1C000, +table_F10000) (see 136disasm)
 		  Implements: RSE Drought weather capability
 ! 07ABCC: 80 -> 98 (shifts weather palettes over by +0x30, don't touch yet)
-- 07AC14: Entirety of LoadDroughtWeatherPalettes (see 137disasm)
++ 07AC14: Entirety of LoadDroughtWeatherPalettes (see 137disasm)
 		  Implements: RSE Drought weather capability, note it's a bit different than actual RSE code
-- 07FC5C: Entirety of BattleSetup_GetTerrainId (+table_7AF530) (see 138disasm)
++ 07FC5C: Entirety of BattleSetup_GetTerrainId (+table_7AF530) (see 138disasm)
 		  Implements: various new metatiles' battle terrain, plus makes it easier to add more
 ! 080008: 5A -> 53 (PDONLY, "Champion" battle intro happens for trainer class 0x5A -> 0x53)
 = 080650: 0D -> 7F
@@ -996,12 +997,13 @@ grafics:
 		  Implements: When backing out of (trainer card?), implement possibility that it returns to some mysteryfunc enormous menu instead of the START menu (need A LOT more info)
 		  Required knowledge: j0203D51F, (needed for fn_E9EA00_J: j0203CB1C, j0203CB24, j0203CB26, j0203CB28, j0203D100, j0203D200, j0203D500, j0203D502, j0203D504, j0203D50A, j0203D51E, j0203D51F, j0203D520, j0203D528, j0203D52A, gMysteryFuncWindows (j0203D530), j0203D550, j0203D552, j0203D560, j0203D561, j0203D562, j0203D570, j0203D571, gMysteryFuncUnknownListSize (j0203D580), gMysteryFuncUnknownList (j0203D582), j0203D680, j0203D681, j0203D682, j0203D690)
 		  Requires in future: fn_E9E980_J, fn_E9EA00_J (and all subfunctions: fn_168900_J, fn_42BE70_J, fn_E9EA40_J, fn_E9EAA4_J, fn_E9EB36_J, fn_E9EBB0_J, fn_E9EF98_J, fn_E9F056_J, fn_E9F204_J, fn_E9F272_J, fn_E9F398_J, fn_E9F478_J, fn_E9F6F4_J, fn_E9F8B0_J, fn_E9F92C_J, fn_E9F966_J, fn_E9FA12_J, fn_E9FC04_J, fn_E9FC28_J, fn_E9FE26_J, fn_E9FE5A_J, AddElementToUnknownList (jE9FE82), SortUnknownListNumerically (jE9FEA8), fn_E9FED4_J, fn_E9FFDC_J, fn_EA00EA_J, fn_EA0110_J, fn_EA0158_J, fn_EA0540_J, fn_EA05F4_J, fn_EA06C6_J, fn_EA06E8_J, fn_EA0B60_J)
-- 08A006: 06 -> 07
+= 08A006: 06 -> 07
   08A028: 7A -> 72
   08A090: 76 -> 6E
 		  Implements: extra money digit on trainer card display
-		  Notes: unclear if this is the correct way to translate to english rom (see minidisasm17)
-- 08B92A: 08 -> 02 (changes something from palette slot 8 to palette slot 2) (test this)
+		  Note: unclear if this is the correct way to translate to english rom (see minidisasm17)
+		  Note: this is wrong, move it left one tile
+! 08B92A: 08 -> 02 (PDONLY, changes trainer card trainer image from palette slot 8 to palette slot 2)
 = 08BA06: 0D -> 16 (part of box refactor)
 = 08BA18: Entirety of GetBoxMonDataFromAnyBox (see 144disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
@@ -1041,8 +1043,8 @@ grafics:
 		  Implements: Part of CompressedBoxPokemon refactor
 		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
 = 08C808, 08C82C, 08C844, 08CC26, 08CC60, 08D476, 08D4B2, 08DED4, 090E12, 09170E, 0935D2: 0D -> 16 (part of CompressedBoxPokemon refactor)
-- 08C95C: Entirety of sub_808C95C (see 158disasm)
-		  Implements: Eliminates the delay on something in the PC (test!)
++ 08C95C: Entirety of sub_808C95C (see 158disasm)
+		  Implements: Eliminates the delay on something in the PC (can't figure out what it is even after I implemented it)
 = 08C9C4: Entirety of sub_808C9C4 (+ add part at EEA2C0_J) (see 159disasm)
 		  Implements: need more info
 		  Required knowledge: j02036FFC
@@ -1053,15 +1055,15 @@ grafics:
 		  Implements: need more info (possibly box summary images on scroll)
 		  Required knowledge: j02036FFC
 		  Requires in future: jEEA4E2, GetStringLength (jEEA53E), jEEA554
-= 08E8D8: 88 42 5B DB 15 28 59 DC -> 00 4A 10 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2A46E, see 162disasm))
-  08E958: 05 20 E3 F7 B7 FC 01 F0 -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2A4B8, see 162disasm))
-		  Implements: Need more info (adds cases 0x7D, 0x7E, and 0x7F to data_020397B0->0x790)
-- 08F4CC, 08F550: 06 -> 08 (? moves x value of some printer over by two, j is 0 -> 2; test first)
-- 08F4E4, 08F566: 02 -> 00 (? changes font of some printer (same one as above))
-= 08FD34: 00 B5 05 F0 37 F8 12 20 -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2A400, see 163disasm))
-		  Implements: Need more info (extra call to fn_94DEC with case 0x7F)
-= 08FD68: 01 2C 16 D0 01 2C 02 DC -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2A432, see 164disasm))
-		  Implements: Need more info (add case 0x6D, remove case 1)
++ 08E8D8: 88 42 5B DB 15 28 59 DC -> 00 4A 10 47 6F A4 E2 09 (jumps (bx) to extra fn at 1E2A46E, then back (jE2A46E, see 162disasm))
+  08E958: 05 20 E3 F7 B7 FC 01 F0 -> 00 48 00 47 B9 A4 E2 09 (jumps (bx) to extra fn at 1E2A4B8, then back (jE2A4B8, see 162disasm))
+		  Implements: adds extra menus to wallpaper categories
++ 08F4CC, 08F550: 06 -> 08 (moves PC pokemon names text to the right slightly, unclear why)
++ 08F4E4, 08F566: 02 -> 00 (changes PC summary font size (to leave space for extra characters)
++ 08FD34: 00 B5 05 F0 37 F8 12 20 -> 00 48 00 47 01 A4 E2 09 (jumps (bx) to extra fn at 1E2A400, then back (jE2A400, see 163disasm))
+		  Implements: Adds "special" wallpaper category option on menu
++ 08FD68: 01 2C 16 D0 01 2C 02 DC -> 00 48 00 47 33 A4 E2 09 (jumps (bx) to extra fn at 1E2A432, then back (jE2A432, see 164disasm))
+		  Implements: Adds extra menu for "special" wallpapers
 = 08FE54: Entirety of sub_808FE54 (see 165disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
 		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
@@ -1078,7 +1080,7 @@ grafics:
 		  Implements: Part of CompressedBoxPokemon refactor, need more info (egg -> 0x19C)
 		  Note: see previous note
 = 090D62, 092D5E, 092E96, 092F0A, 092F12, 092F6A, 092FDE, 09303A, 093062, 093128, 09323C, 093306, 093476, 09366E: 0E -> 17 (part of CompressedBoxPokemon refactor)
-- 091AF0: 81 18 -> 11 1C
++ 091AF0: 81 18 -> 11 1C
   091AFE: 80 18 -> 10 1C
   091D4A, 091F16, 091F3C: 40 18 -> 08 1C
 		  Implements: allows more than 16 box wallpapers by ignoring a pointless table
@@ -1091,8 +1093,8 @@ grafics:
 = 093A10: Entirety of sub_8093A10 (see 172disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
 		  Requires in future: CopyMonForBoxViewing (j3C6170)
-- 093DE8: 1D 2A 01 D0 20 2A 01 D1 -> 04 E0 00 00 00 00 00 00 (need more info - removes cases 0x1D and 0x20 from data_020397B0->0xCE0)
-- 094A68: 11 20 00 F0 BF F9 -> 00 00 00 00 00 00 (need more info - remove call to fn_94DEC with case 0x11)
++ 093DE8: 1D 2A 01 D0 20 2A 01 D1 -> 04 E0 00 00 00 00 00 00 (no idea what this did - removes cases 0x1D and 0x20 from data_020397B0->0xCE0)
++ 094A68: 11 20 00 F0 BF F9 -> 00 00 00 00 00 00 (removes Info from menu when selecting a Pokemon in Move Items mode)
 = 0956A4: Entirety of sub_80956A4 (see 173disasm)
 		  Implements: Part of CompressedBoxPokemon refactor, need more info (egg -> 0x19C)
 		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84), fn_3C62B0_J
@@ -1127,71 +1129,70 @@ grafics:
 = 099E44: Entirety of SetBagItemsPointers (see 183disasm)
 		  Implements: extra bag space
 		  Required knowledge: gSaveBlock_ExtraItems (j0203C010)
-- 09A540: Entirety of SwapRegisteredBike (+mysteryfuncs) (see 184disasm)
++ 09A540: Entirety of SwapRegisteredBike (+mysteryfuncs) (see 184disasm)
 		  Implements: removes unused code to make room for mysteryfuncs
-- 09A8AA: BB -> D8 (max items 374 -> 432)
-- 09A900: Entirety of ItemId_GetPrice (see 185disasm)
++ 09A8AA: BB -> D8 (max items 374 -> 432)
++ 09A900: Entirety of ItemId_GetPrice (see 185disasm)
 		  Implements: the price in-game is now the price stored in the data times ten, this allows items up to 10x more expensive than previous maximum
 		  Relies on: every price in item data divided by 10
-- 09B3B4: 02 -> 01 (changes letter spacing of some printer in a shop menu, unsure what this does; jp changes line spacing 2->1 and x 4->0 as well, which is already done in en)
-- 09B3D0: 77 -> B0 (menu return icon index changed to new max items)
++ 09B3B4: 02 -> 01 (changes letter spacing of some printer in a shop menu, unsure what this did; jp changes line spacing 2->1 and x 4->0 as well, which is already done in en)
++ 09B3D0: 77 -> B0 (menu return icon index changed to new max items)
 = 09B41E: 08 04 -> 20 47
   09B488: D0 1C 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jD7E090, see 186disasm))
 		  Implements: Show already-obtained TMs as price "-----"
-- 09B428, 09BC4A, 09BD26: 09 04 09 0C -> 00 00 00 00 (don't cap prices at 65536)
-- 09B430: 04 23 -> 06 23
-  09B440: 04 21 -> 06 21
-		  Implements: extra 2 digits for prices
-- 09B718: 98 -> 90 (move some sort of arrow in a shop menu left? unclear, test)
-- 09B868: 01 -> 02
++ 09B428, 09BC4A, 09BD26: 09 04 09 0C -> 00 00 00 00 (don't cap prices at 65536)
+= 09B430, 09B440: 04 -> 06 (extra 2 digits for prices, this doesn't work right now (cutoff))
++ 09B718: 98 -> 90 (move the red arrows for item quantity left one tile (why?))
++ 09B868: 01 -> 02
   09B86E: 02 DC -> 2F D0
-		  Implements: switches cases metatileLayerType = 1 and metatileLayerType = 2 for BuyMenuDrawMapMetatile (what? test)
-- 09BB68: 36 -> 2E (move some sort of printer in a shop menu left?, test; in jp it's 0x26 -> 0x1E)
+		  Implements: switches cases metatileLayerType = 1 and metatileLayerType = 2 for BuyMenuDrawMapMetatile (no idea what this did)
++ 09BB68: 36 -> 2E (move some sort of printer in a shop menu left?, test; in jp it's 0x26 -> 0x1E)
 = 09BC7E: 20 1C -> 08 47
   09B684: D0 1C 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jD7DF50, see 187disasm))
 		  Implements: prevents buying duplicate TMs
-- 09BDB6, 09C106: 00 04 00 0C -> 00 00 00 00 (don't cap prices at 65536)
++ 09BDB6, 09C106: 00 04 00 0C -> 00 00 00 00 (don't cap prices at 65536)
 = 09BF46: A0 00 -> 08 47
   09BF60: 90 50 00 03 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jD7E030, see 188disasm))
 		  Implements: need more info
 = 09F914: Entirety of sub_809F914 (see 189disasm)
 		  Implements: pkmnnamelength (nicknaming screen), something else
 		  Note: This is very different in en vs jp, should try to find the naming screen templates and change those
-- 09FDD4: 3F 42 0F -> 7F 96 98 (max money 999999 -> 9999999)
-= ?????? (j9FD30): 08 -> 00 (unclear how to translate to english rom since this fn doesn't exist; moves some money-related printer left (testjp!))
-- 09FEE8: 06 -> 08 (extra 2 digits for money)
-- 09FFB8: Entirety of DrawMoneyBox (see 190disasm)
-		  Implements: makes money display one tile wider and changes base block from 8 to 5 (?)
-- 0A011C: Entirety of ScriptGiveMon (see 191disasm)
++ 09FDD4: 3F 42 0F -> 7F 96 98 (max money 999999 -> 9999999)
+= ?????? (j9FD30): 08 -> 00 (unclear how to translate to english rom since this fn doesn't exist; moves the money display in the money box left one tile)
++ 09FEE8: 06 -> 08 (extra 2 digits for money)
++ 09FFB8: Entirety of DrawMoneyBox (see 190disasm)
+		  Implements: makes money display one tile wider and changes base block from 8 to 5 (latter has unknown effect)
++ 0A011C: Entirety of ScriptGiveMon (see 191disasm)
 		  Implements: does nothing by itself, but carries over any changes to CreateScriptedWildMon to giftmons too
-- 0A029C: Entirety of CreateScriptedWildMon (see 192disasm)
++ 0A029C: Entirety of CreateScriptedWildMon (see 192disasm)
 		  Implements: does nothing by itself, but carries over any changes to sub_80829FC to scripted encounters too
 = 0A19E8: Entirety of sub_80A19E8 (see 193disasm)
 		  Implements: part of VAR_REPEL_STEP_COUNT refactor
-- 0A1A5A: 67 F0 B5 F9 -> 00 00 00 00
++ 0A1A5A: 67 F0 B5 F9 -> 00 00 00 00
   0A1A68: 66 F0 C4 FF -> 00 00 00 00
 		  Implements: need more info (appears to remove functions that delete blank bag slots when an item is used up, probably reimplemented elsewhere)
+		  Note: this doesn't actually do anything apparently
 = 0B3834: Entirety of sub_80B3834 (see 194disasm)
 		  Implements: In an unknown animation routine only used by Skill Swap in vanilla, allows gBattleAnimArgs[1] to choose between 3 options for the sprite/palette tags (gBattleAnimArgs[1] = 0 is the standard one)
 		  Relies on: animation scripts setting the value correctly
 		  Requires in future: fn_168A10_J, fn_168AC0_J
-- 0B565C: 00 -> 01 (set Shadow Ball sprite.data[0] to 1 instead of 0; test to figure out what this does)
-- 0BC128: 6E -> 6C (set gBattleAnimTarget to gBattlerTarget instead of gEffectBattler; this unknown animation routine is called by the item steal animation)
++ 0B565C: 00 -> 01 (set Shadow Ball sprite.data[0] to 1 instead of 0; no idea what this did)
++ 0BC128: 6E -> 6C (set gBattleAnimTarget to gBattlerTarget instead of gEffectBattler; this unknown animation routine is called by the item steal animation)
 = 0BD3C8: 01 A9 2A 1C A6 F7 28 FB -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j222C60, see 195disasm))
 		  Implements: forced movement for metatiles 0xB0-0xB5 (on bike)
-- 0BFC7C: 13 -> 15 (heal locations 20 -> 22)
-- 0BFCB6: 14 -> 16 (heal locations 20 -> 22)
++ 0BFC7C: 13 -> 15 (heal locations 20 -> 22)
++ 0BFCB6: 14 -> 16 (heal locations 20 -> 22)
 ! 0BFD74: 08 -> 07
   0BFDEC: 07 -> 0B
   0BFDF0: 04 -> 0D
 		  Implements: PDONLY, some respawn locations after blackout are repositioned
-- 0C35DC: Entirety of get_flagnr_blue_points (see 196disasm)
++ 0C35DC: Entirety of get_flagnr_blue_points (see 196disasm)
 		  Implements: makes it easier to add new fly points
 ! 0C369A: FF FF FF FF FF FF -> 9B 08 FF FF 9C 08 (PDONLY, adds fly points for region map sections 7B (checks flag 0x89B) and 7C (checks flag 0x89C))
-- 0C3878: Entirety of sub_80C3878 (see 197disasm)
++ 0C3878: Entirety of sub_80C3878 (see 197disasm)
 		  Implements: makes it easier to add new town map points of interest
 ! 0C3D40: Entirety of sub_80C3D40 (see 198disasm)
-		  Implements: PDONLY; makes it easier to add new custom (?????) (and changes them), this also removes the ability to set them for a specific map within a section (TEST!)
+		  Implements: PDONLY; makes it easier to add new custom (?????) (and changes them), this also removes the ability to set them for a specific map within a section (what are they, though?)
 = 0C6DA0: Entirety of BattleAI_SetupAIData (see 199disasm)
 		  Implements: instead of 7 (previous "smartest" AI), the flags are set to the current value of j0203BFF4
 		  Required knowledge: j0203BFF4
@@ -1213,11 +1214,11 @@ grafics:
   0C88AE: 60 -> 30
   0C88C2: 80 -> C0
 		  Implements: part of weather refactor
-- 0C8C38: 5A -> 32 (the AI's if_cant_faint check now considers 0BP and 1BP moves always unable to KO, instead of always able to KO)
-- 0C8EBC: Entirety of BattleAICmd_if_has_move_with_effect (see 203disasm)
++ 0C8C38: 5A -> 32 (the AI's if_cant_faint check now considers 0BP and 1BP moves always unable to KO, instead of always able to KO)
++ 0C8EBC: Entirety of BattleAICmd_if_has_move_with_effect (see 203disasm)
 		  Implements: Fixes a bug where the function would always consider opponents to have the specified move effect
 		  Note: it removes the null check for moves, which shouldn't actually matter; also it still doesn't fix the bug where it checks the user's moves instead of the opponents'
-- 0C8FB0: Entirety of BattleAICmd_if_doesnt_have_move_with_effect (see 204disasm)
++ 0C8FB0: Entirety of BattleAICmd_if_doesnt_have_move_with_effect (see 204disasm)
 		  Implements: Fixes a bug where the function would always consider opponents to have the specified move effect
 = 0C97FC: Entirety of oei_task_add (see 205disasm)
 		  Implements: option to not execute task08_080C9820, need more info
