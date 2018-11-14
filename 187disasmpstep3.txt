@@ -5,6 +5,8 @@
 		{
 			CopyItemName(r4, gStringVar1)
 			fn_13F75C(r6, data_D7E000_J, fn_9BF98) // fn_9B988_J
+			// You already have it! (71E912)
+			FD 02 00 1A FE 0D 44 16 00 05 23 11 44 0D 26 AB FC 09 FF
 		}
 		else
 		{
@@ -12,6 +14,8 @@
 			CopyItemName(r4, gStringVar1)
 			ConvertIntToDecimalStringN(data_02021C60_J, ItemId_GetPrice(r5.0xA), 0, 8)
 			fn_13F75C(r6, data_D7E014_J, fn_9BE90) // fn_9B880_J
+			// No. [NUM], [MOVE]? That will be $[MONEY]. OK? (71E929)
+			FD 02 00 44 0D 18 FE FD 03 B7 16 00 15 28 1F 0D 37 AC FF
 		}
 	}
 	else

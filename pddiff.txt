@@ -355,7 +355,7 @@ grafics:
 + expand 3EECE8 (? gSpecialVar_LastTalked values to be set on respawn per heal location) from 20 entries to 22 (FE4480)
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
 + expand 3FE664 (trapping moves) from 6 entries to 8 (1303552)
-- expand 3FEA70 (japanese grammar) from 118 entries to 183 (1040000)
++ expand 3FEA70 (japanese grammar) from 118 entries to 183 (1040000)
 
 = repoint 02A3C8 -> j168F08 (atkAA_setdestinybond) - need part at destination removed first + ASM can't be repointed without decompilation + do it itself later
 = repoint 02C670 ->  EB8130 (atkD9_scaledamagebyhealthratio) - ASM can't be repointed without decompilation + do it itself later
@@ -1141,8 +1141,8 @@ grafics:
 		  Relies on: every price in item data divided by 10
 + 09B3B4: 02 -> 01 (changes letter spacing of some printer in a shop menu, unsure what this did; jp changes line spacing 2->1 and x 4->0 as well, which is already done in en)
 + 09B3D0: 77 -> B0 (menu return icon index changed to new max items)
-= 09B41E: 08 04 -> 20 47
-  09B488: D0 1C 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jD7E090, see 186disasm))
++ 09B41E: 08 04 -> 20 47
+  09B488: D0 1C 02 02 -> 91 E0 D7 09 (jumps (bx) to extra fn at 1D7E090, then back (jD7E090, see 186disasm))
 		  Implements: Show already-obtained TMs as price "-----"
 + 09B428, 09BC4A, 09BD26: 09 04 09 0C -> 00 00 00 00 (don't cap prices at 65536)
 = 09B430, 09B440: 04 -> 06 (extra 2 digits for prices, this doesn't work right now (cutoff))
@@ -1151,13 +1151,14 @@ grafics:
   09B86E: 02 DC -> 2F D0
 		  Implements: switches cases metatileLayerType = 1 and metatileLayerType = 2 for BuyMenuDrawMapMetatile (no idea what this did)
 + 09BB68: 36 -> 2E (move some sort of printer in a shop menu left?, test; in jp it's 0x26 -> 0x1E)
-= 09BC7E: 20 1C -> 08 47
-  09B684: D0 1C 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jD7DF50, see 187disasm))
++ 09BC7E: 20 1C -> 08 47
+  09BC94: D0 1C 02 02 -> 51 DF D7 09 (jumps (bx) to extra fn at 1D7DF50, then back (jD7DF50, see 187disasm))
 		  Implements: prevents buying duplicate TMs
+		  Note: eventually, change "[ITEM]? That will be $[MONEY]. OK?" to "No. [NUM], [MOVE]? That will be $[MONEY]. OK?"
 + 09BDB6, 09C106: 00 04 00 0C -> 00 00 00 00 (don't cap prices at 65536)
-= 09BF46: A0 00 -> 08 47
-  09BF60: 90 50 00 03 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jD7E030, see 188disasm))
-		  Implements: need more info
++ 09BF46: A0 00 -> 08 47
+  09BF60: 90 50 00 03 -> 31 E0 D7 09 (jumps (bx) to extra fn at 1D7E030, then back (jD7E030, see 188disasm))
+		  Implements: refreshes price display after TM bought
 = 09F914: Entirety of sub_809F914 (see 189disasm)
 		  Implements: pkmnnamelength (nicknaming screen), something else
 		  Note: This is very different in en vs jp, should try to find the naming screen templates and change those
@@ -1236,8 +1237,8 @@ grafics:
 		  Requires in future: DecompressBoxMon (j3C5D20)
 = 0CC7F8: Entirety of sub_80CC7F8 (see 209disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
-- 0CE90D: D1 -> E0 (natdex no longer required for post-151 evolutions) 
-- 0D75FC, 0D7E96, 0D7EAE: B1 20 40 00 -> FF 20 80 00 (max moves 354 -> 1020)
++ 0CE90D: D1 -> E0 (natdex no longer required for post-151 evolutions) 
++ 0D75FC, 0D7E96, 0D7EAE: B1 20 40 00 -> FF 20 80 00 (max moves 354 -> 1020)
 - 0D77BC: 08 D9 03 49 FF 20 08 70 0D E0 00 00 81 01 00 00 8C 29 02 02 -> 08 D3 03 49 30 1A 08 E0 00 00 00 00 82 01 00 00 00 00 08 09
 		  Implements: if the string number is greater than the total strings (386), read from the expanded string table instead (1080000), giving an additional 208 strings for a total of 594 (603 in english due to jumping the gun on modernization)
 = 0D7FF2, 0D8610: 0D -> 20 (abilitynamelength; btw check decap kludge for more namelengths)
