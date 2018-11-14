@@ -1,0 +1,7 @@
+sub_80D9E54()
+{
+		...
+	} while(r5 <= 0xD);
+
+	return 1;
+}

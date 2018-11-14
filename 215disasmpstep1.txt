@@ -1,0 +1,45 @@
+sub_80E54C0()
+{
+	r0 = data_0203AAB4
+	r1 = *r0
+	r0 = 0xA67
+	r2 = r1 + r0
+
+	if(r0 == 0xFE)
+	{
+		for(r5 = 0; r5 <= 5; r5++)
+		{
+			if(r5 != 1)
+			{
+				r4 = r5
+				FillWindowPixelBuffer(r4, 0)
+				CopyWindowToVram(r4, 2)
+			}
+		}
+
+		r0 = 0
+		r1 = 0x1B
+		r2 = 2
+		r3 = 0x13
+		fn_107D68()
+	}
+	else
+	{
+		r0 *= 2
+		r1 = 0xE8
+		r1 += r0
+		r0 = *r1
+		fn_E5340()
+	}
+
+	for(; r5 != 5; r5++)
+	{
+		r0 = r5
+		r1 = 2
+		CopyWindowToVram()
+	}
+
+	r0 = 7
+	r1 = 3
+	CopyWindowToVram()
+}

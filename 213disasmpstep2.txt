@@ -1,0 +1,29 @@
+sub_80E5340(arg0)
+{
+	sub_8107D68(0, *((arg0 * 0xC) + gBattleMoves + 2) + 1, 2, 4)
+	BlitBitmapRectToWindow(2, ((*((arg0 * 0xC) + gBattleMoves + 0xA) >> 1) * 0xC0) + data_D7DC7C_J, 0, 0, 0x18, 0x80, 2, 2, 0x18, 0x10)
+	CopyWindowToVram(0, 2)
+	
+	if(*((arg0 * 0xC) + gBattleMoves + 1) <= 1)
+		r1 = data_416213
+	else
+	{
+		ConvertIntToDecimalStringN(&s2, *((arg0 * 0xC) + gBattleMoves + 1), 0, 3)
+		r1 = &s2
+	}
+	
+	sub_80E559C(3, r1, 1, 4, 0, 0)
+	
+	if(*((arg0 * 0xC) + gBattleMoves + 3) == 0)
+		r1 = data_416213
+	else
+	{
+		ConvertIntToDecimalStringN(&s2, *((arg0 * 0xC) + gBattleMoves + 3), 0, 3)
+		r1 = &s2
+	}
+	
+	sub_80E559C(3, r1, 1, 0x12, 0, 1)
+	ConvertIntToDecimalStringN(&s2, *((arg0 * 0xC) + gBattleMoves + 4), 0, 2)
+	sub_80E559C(4, &s2, 2, 2, 0, 0)
+	sub_80E559C(5, (arg0 * 0x3C) + data_09020000_J, 0, 4, 0, 0)
+}

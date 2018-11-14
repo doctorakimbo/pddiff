@@ -1,0 +1,55 @@
+lbl1: @E6470
+r0 = data_0203AAB4
+r1 = *r0
+r0 = 0xA67
+r2 = r1 + r0
+if(r0 == 0xFE) goto lbl2
+
+r0 *= 2
+r1 = 0xE8
+r1 += r0
+r0 = *r1
+fn_E5340()
+goto lbl5
+
+lbl2:
+r5 = 0
+goto lbl3
+
+lbl3:
+if(r5 == 1) goto lbl4
+
+r4 = r5
+r0 = r4
+r1 = 0
+FillWindowPixelBuffer()
+r0 = r4
+r1 = 2
+CopyWindowToVram()
+goto lbl4
+
+lbl4:
+r5++
+if(r5 <= 5) goto lbl3
+
+r0 = 0
+r1 = 0x1B
+r2 = 2
+r3 = 0x13
+107D68()
+goto lbl5
+
+lbl5:
+r0 = r5
+r1 = 2
+CopyWindowToVram()
+if(r5 == 5) goto lbl6
+
+r5++
+goto lbl5
+
+lbl6:
+r0 = 7
+r1 = 3
+CopyWindowToVram()
+return

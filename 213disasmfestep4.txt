@@ -1,0 +1,26 @@
+sub_80E5340(moveIndex)
+{
+	sub_8107D68(2, gBattleMoves[moveIndex].type + 1, 1, 4)
+	
+	
+	
+	if(gBattleMoves[moveIndex].power < 2)
+		sub_80E559C(3, gText_ThreeDashes, 1, 4, 0, 0)
+	else
+	{
+		ConvertIntToDecimalStringN(s2, gBattleMoves[moveIndex].power, STR_CONV_MODE_RIGHT_ALIGN, 3)
+		sub_80E559C(3, s2, 1, 4, 0, 0)
+	}
+	
+	if(gBattleMoves[moveIndex].accuracy == 0)
+		sub_80E559C(3, gText_ThreeDashes, 1, 0x12, 0, 1)
+	else
+	{
+		ConvertIntToDecimalStringN(s2, gBattleMoves[moveIndex].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3)
+		sub_80E559C(3, s2, 1, 0x12, 0, 1)
+	}
+	
+	ConvertIntToDecimalStringN(s2, gBattleMoves[moveIndex].pp, STR_CONV_MODE_LEFT_ALIGN, 2)
+	sub_80E559C(4, s2, 2, 2, 0, 0)
+	sub_80E559C(5, gMoveDescriptionPointers[moveIndex - 1], 1, 0, 0, 0)
+}

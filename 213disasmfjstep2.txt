@@ -1,0 +1,24 @@
+sub_80E5340(arg0)
+{
+	sub_8107D68(2, *((arg0 * 0xC) + gBattleMoves + 2) + 1, 0, 4)
+	
+	if(*((arg0 * 0xC) + gBattleMoves + 1) <= 1)
+		sub_80E559C(3, data_416213, 1, 4, 0, 0)
+	else
+	{
+		ConvertIntToDecimalStringN(&s2, *((arg0 * 0xC) + gBattleMoves + 1), 0, 3)
+		sub_80E559C(3, &s2, 1, 4, 0, 0)
+	}
+	
+	if(*((arg0 * 0xC) + gBattleMoves + 3) == 0)
+		sub_80E559C(3, data_416213, 1, 0x12, 0, 1)
+	else
+	{
+		ConvertIntToDecimalStringN(&s2, *((arg0 * 0xC) + gBattleMoves + 3), 0, 3)
+		sub_80E559C(3, &s2, 0, 0x12, 0, 1)
+	}
+	
+	ConvertIntToDecimalStringN(&s2, *((arg0 * 0xC) + gBattleMoves + 4), 0, 2)
+	sub_80E559C(4, &s2, 2, 2, 0, 0)
+	sub_80E559C(5, (arg0 * 0x3C) + data_427E38_J, 0, 0, 0, 0)
+}

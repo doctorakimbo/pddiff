@@ -1,0 +1,41 @@
+sub_80D9E54()
+{
+		...
+		r1 = *r4
+		r3 = 0xFF0
+		r3 += r1
+		r0 = *(r3 + 4)
+		
+		if(r0 == 0)
+		{
+			r1 = 0xCC
+			r2 = data_0203C0C8_J
+			// 0203BFFC - 0203C0C8
+		}
+		elseif(r0 == 4)
+		{
+			r1 = 0x258
+			r2 = data_0203C320_J
+			// 0203C0C8 - 0203C320
+		}
+		elseif(r0 == 0xD)
+		{
+			r1 = 0xBA0
+			r2 = data_0203CEC0_J
+			// 0203C320 - 0203CEC0
+		}
+		else
+			continue;
+		
+		do
+		{
+			r3 -= 4
+			r0 = *r3
+			*r2 = r0
+			r2 -= 4
+			r1 -= 4
+		} while(r1 != 0)
+	} while(r5 <= 0xD);
+
+	return 1;
+}

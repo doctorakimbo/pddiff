@@ -1,0 +1,5 @@
+lbl1: @D9EDC
+if(r5 <= 0xD) goto lbl_2
+
+r0 = 1
+return r0

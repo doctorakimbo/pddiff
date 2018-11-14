@@ -166,6 +166,7 @@ D4 99 03 02: 4C 99 03 02: ??????
 E4 99 03 02: 5C 99 03 02: ??????
 00 9A 03 02: 78 99 03 02: gAIScriptPtr
 04 9A 03 02: 7C 99 03 02: gPlayerFacingPosition
+B4 AA 03 02: 2C AA 03 02: ??????
 30 AD 03 02: A8 AC 03 02: gSpecialVar_ItemId
 FA AD 03 02: 72 AD 03 02: ??????
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
@@ -676,11 +677,14 @@ funcs e,j,desc:
 0D87BC = 0D980C = BattlePutTextOnWindow
 0D99D8 = 0DA9C0 = TryWriteSector
 0DA1A8 = 0DB190 = CalculateChecksum
+0E5340 = 0E62F0 = ?????
+0E559C = 0E6548 = ?????
 0F67A4 = 0F77FC = schedule_bg_copy_tilemap_to_vram
 0F6F1C = 0F7F7C = NewMenuHelpers_DrawStdWindowFrame
 0F793C = 0F899C = GetStartMenuWindowId
 0F7948 = 0F89A8 = RemoveStartMenuWindow
 1074DC = 107FE0 = ListMenuPrintEntries
+107D68 = 10886C = ?????
 108E70 = 109968 = DisplayItemMessage
 10AD10 = 10B80C = UseRegisteredKeyItemOnField
 10F904 = 110438 = MoveMenuCursor
@@ -842,8 +846,9 @@ BattleMove.extraFlags: 8765 4321
 BattleMove.categoryFlags: 4321
 1 = DOES_SPECIAL_DMG
 2 = SPECIAL_MOVE
-3 = (checked by prankster/(ability93))
-4 = 
+3 = STATUS_MOVE
+4 = (empty)
+(BattleMove.categoryFlags >> 1 = BattleMove.category)
 
 BattleMove.typeFlags3: 4321
 1 = FLAG_SECONDARY_EFFECT

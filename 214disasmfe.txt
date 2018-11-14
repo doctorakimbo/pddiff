@@ -1,0 +1,16 @@
+lbl1: @E5444
+fn_107D68(0, 0x13, 1, 4)
+fn_107D68(1, 0x14, 0, 4)
+fn_107D68(1, 0x15, 0, 0x13)
+fn_107D68(0, 0x16, 1, 0x13)
+fn_107D68(0, 0x17, 1, 0x22)
+PutWindowTilemap(0)
+PutWindowTilemap(1)
+PutWindowTilemap(4)
+PutWindowTilemap(3)
+PutWindowTilemap(5)
+PutWindowTilemap(2)
+PutWindowTilemap(7)
+CopyWindowToVram(0, 2)
+CopyWindowToVram(1, 2)
+return

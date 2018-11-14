@@ -1,0 +1,9 @@
+lbl1: @EF52C
+r0--
+if(r0 > 0xB) goto lbl_2
+
+r0 *= 4
+r1 = switchtable
+r0 += r1
+r0 = *r0
+goto r0

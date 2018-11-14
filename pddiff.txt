@@ -297,6 +297,12 @@ grafics:
 = 3EF61C (3B61A4 old, 8DC3D0 new)
 = 3F089C (3B7424 old, 8DD390 new)
 = 3F0AFC (3B7684 old, 77C4F0 new)
+= 405DC4 (3CBF9C old, E2A880 new)
+= 40644C (3CC624 old, E2B180 new)
+= 406654 (3CC82C old, E2BB10 new)
+= 4071D0 (3CD3A8 old, E2C570 new)
+= 407B9C (3CDD74 old, 96A430 new)
+= 408D98 (3CEF70 old, 96B5E0 new)
 = D0051C (C0051C old, EB8990 new)
 = E9C3D8 (3964B0 old, 396374 new)
 = E9C3F8 (396470 old, 396334 new)
@@ -312,6 +318,16 @@ grafics:
 = EAE094 (385CD8 old, F03020 new)
 = EAE0B4 (385CF8 old, F01A00 new)
 = EAE374 (385FDC old, F03050 new)
+
+stray text:
+= 3FDB92 (3C3D0A old, 3C3C3F new)
+= 3FDBEF (3C3D2B old, 3C3D09 new)
+= 3FDC58 (3C3D6B old, 3C3D3A new)
+= 3FDC95 (3C3D90 old, 3C3D5E new)
+= 3FDCD2 (3C3DB6 old, 3C3D86 new)
+= 3FDD23 (3C3DDD old, 3C3DAC new)
+= 3FDD64 (3C3E05 old, 3C3DCC new)
+= 3FDDEB (3C3E5C old, 3C3E1D new)
 
 + expand rom to 2x
 + expand 1C68F4 (move animations) from 356 entries to 680 (1030000) 
@@ -356,6 +372,7 @@ grafics:
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
 + expand 3FE664 (trapping moves) from 6 entries to 8 (1303552)
 + expand 3FEA70 (japanese grammar) from 118 entries to 183 (1040000)
+- expand 4886E8 (move descriptions) from from 355 entries to 680 (1020000)
 
 = repoint 02A3C8 -> j168F08 (atkAA_setdestinybond) - need part at destination removed first + ASM can't be repointed without decompilation + do it itself later
 = repoint 02C670 ->  EB8130 (atkD9_scaledamagebyhealthratio) - ASM can't be repointed without decompilation + do it itself later
@@ -375,7 +392,7 @@ grafics:
 		  Implements: need more info
 		  Required knowledge: j0203B900, j0203C00D, j0203D500
 = 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
-= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0: 0B -> 10 (pkmnnamelength)
+= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: pkmnnamelength, something else - need more info
@@ -869,7 +886,7 @@ grafics:
 = 04C440: Entirety of SavePlayerBag (see 108disasm)
 		  Implements: extra bag space
 		  Required knowledge: gLoadedSave_ExtraItemData (j0203BB00), gSaveBlock_ExtraItems (j0203C010)
-= 04EF5E, 06BE72, 09B4EC, 0BD824, 0BFA7C, 0CC8F8, 0D7630, 0D7ED6, 0D84F6: 0D -> 20 (movenamelength)
+= 04EF5E, 06BE72, 09B4EC, 0BD824, 0BFA7C, 0CC8F8, 0D7630, 0D7ED6, 0D84F6, 0E4DD2, 0E5116, 0E5130, 0E5164, 0E51A2, 0E523E: 0D -> 20 (movenamelength)
 = ?????? (j4E8A2): Unclear how to translate this to English rom (minidisasm15)
 		  Implements: Removes gender symbol somewhere, seems to be removed in english already
 ! 054A00: 06 -> 04 (PDONLY, moves starting position in new game two tiles north)
@@ -1250,7 +1267,60 @@ grafics:
 		  Required knowledge: j0203C0C8, j0203C320, j0203CEC0
 		  Note: check the sizes of the saves in english, might no longer have enough space
 = 0D9BFE: 0F 4A 89 18 08 80 0E 48 01 68 -> 01 4A 97 46 00 00 XX XX XX 08 (jumps (mov) to extra fn at XXXXXX, then back (j207280, see 211disasm))
-		  Implements: 
+		  Implements: saves all the extra data into the extra blank space at the end of save blocks
+		  Required knowledge: j0203C0C8, j0203C320, j0203CEC0
+		  Note: check the sizes of the saves in english, might no longer have enough space
+= 0D9EDC: 28 04 05 0C 0D 2D C5 D9 -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jA24E40, see 212disasm))
+		  Implements: loads all the extra data from the extra blank space at the end of save blocks
+		  Required knowledge: j0203C0C8, j0203C320, j0203CEC0
+		  Note: check the sizes of the saves in english, might no longer have enough space
+= 0E47F0: 6C 0A -> ?? ?? (size to allocate for some struct???, jp 0x9F0 -> 0xB80)
+= 0E5116: 8D 24 64 00 -> 9F 24 24 01
+  0E5168: 8D 27 7F 00 -> 9F 27 3F 01
+  0E5242: 8D 23 5B 00 -> 9F 23 1B 01
+		  Implements: (jp 0x11A -> 0x9F0 start index???)
+= 0E5340: Entirety of sub_80E5340 (see 213disasm)
+		  Implements: adds category icon to the move reminder summary screen, other minor adjustments to that screen
+		  Relies on: BattleMove refactor, data_D7DC7C_J
+- 0E5444: Entirety of sub_80E5444 (see 214disasm)
+		  Implements: need more info (instead of 5 (???), displays 3 (???) which are all different than the previous 5)
+		  Note: Possibly removes contest stat icons in favor of category icons? (where?)
+- 0E54C0: Entirety of sub_80E54C0 (see 215disasm)
+		  Implements: need more info (adds extra window and extra (???))
+- 0EB330: 31 -> 30
+  0EB342: 32 -> 30
+  0EB354: 33 -> 31
+  0EB378: 35 -> 32
+  0EB38A: 36 -> 33
+  0EB3AE: 39 -> 35
+  0EB3C0: 3A -> 36
+  0EB3D2: 3B -> 37
+  0EB3F6: 3D -> 39
+  0EB490: 83 -> 84
+  0EB4F4: 3A 08 00 00 3B 08 00 00 3C 08 00 00 3D 08 00 00 35 08 00 00 36 08 00 00 38 08 00 00 39 08 00 00 31 08 00 00 32 08 00 00 33 08 00 00 34 08 00 00 -> 	  32 00 00 00 3C 04 00 00 37 04 00 00 3A 00 00 00 36 00 00 00 3B 00 00 00 3D 00 00 00 3E 00 00 00 40 08 00 00 40 08 00 00 3F 00 00 00 41 00 00 00
+		  Implements: some sort of graphic in the intro battle
+- 0EC852: C0 0F -> 01 20 (sound will always become stereo when game loaded from title screen) (MERGE THIS CHECK)
+- 0EF208: 06 -> 01 (does something in an unknown animation routine called by an animation played on level-up)
+- 0EF258, 0EF294: 74 -> 86 (changes a palette in the same routine as previous)
+= 0EF4B4, 0EF4DC, 0EF674, 0EF9AC, 0F0368: 68 3D 02 02 -> ?? ?? ?? ?? (gLastUsedItem -> gLastUsedItemType)
+		  Implements: correct parameters for new ItemIdToBallId
+		  Required knowledge: gLastUsedItemType (j0203FE00)
+		  Requires in future: ItemIdToBallId changes
+= 0EF52C: Entirety of ItemIdToBallId (see 216disasm)
+		  Implements: correct ids for rearranged pokeballs
+		  Relies on: all calls to ItemIdToBallId to use correct parameters
+= 
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
 		  
 		  
 		  
@@ -1265,5 +1335,6 @@ grafics:
 
 
 
-curr: jDABE6 (10byte), jDAEC4 (8byte), jE5780 (1byte), jE5D9C (1byte), jE5DF4 (2byte), jE60CE (4byte), jE60DE (2byte), jE60E8 (1byte), jE611A (6byte), jE6156 (1byte)
-next: jE61F8
+curr: jF08D2 (2byte), jF0C8A (2byte) + jF0CAC (4byte)
+next: jF11C8 (repoint), jF11D4 (repoint), jF1236 (2byte), jF1540 (repoint), jF1548 (repoint), jF15CC (repoint), jF16E4 (repoint), jF2152 (1byte), jF21E4 (repoint), jF267C (4byte), jF2748 (repoint), jF274C (repoint), jF2A68 (repoint), jF2A6C (repoint)
+next: jF2C74

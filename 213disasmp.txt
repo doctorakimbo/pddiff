@@ -1,0 +1,109 @@
+lbl1: @E62F0
+r5 = r0
+r1 = gBattleMoves
+r0 = 0xC
+r0 *= r5
+r4 = r0 + r1
+r1 = *(r4 + 2)
+r1++
+r0 = 0
+r2 = 2
+r3 = 4
+fn_107D68()
+r0 = *(r4 + 0xA)
+r0 >>= 1
+r1 = 0xC0
+r0 *= r1
+r1 = data_D7DC7C_J
+r6 = r0 + r1
+r0 = 0x18
+s0 = r0
+r0 = 0x80
+s1 = r0
+r0 = 2
+s2 = r0
+r0 = 2
+s3 = r0
+r2 = 0x18
+s4 = r2
+r1 = 0x10
+s5 = r1
+r0 = 2
+r1 = r6
+r2 = 0
+r3 = 0
+BlitBitmapRectToWindow()
+r0 = 0
+r1 = 2
+CopyWindowToVram()
+r0 = *(r4 + 1)
+if(r0 > 1) goto lbl2
+
+r1 = data_416213
+goto lbl3
+
+lbl2:
+r1 = *(r4 + 1)
+r0 = &s2
+r2 = 0
+r3 = 3
+ConvertIntToDecimalStringN()
+r1 = &s2
+goto lbl3
+
+lbl3:
+r0 = 0
+s0 = r0
+s1 = r0
+r0 = 3
+r2 = 1
+r3 = 4
+fn_E559C()
+r1 = *(r4 + 3)
+if(r1 != 0) goto lbl4
+
+r1 = data_416213
+goto lbl5
+
+lbl4:
+r0 = &s2
+r2 = 0
+r3 = 3
+ConvertIntToDecimalStringN()
+r1 = &s2
+goto lbl5
+
+lbl5:
+r0 = 0
+s0 = r0
+r0 = 1
+s1 = r0
+r0 = 3
+r2 = 1
+r3 = 0x12
+fn_E559C()
+r1 = *(r4 + 4)
+r0 = &s2
+r2 = 0
+r3 = 2
+ConvertIntToDecimalStringN()
+r4 = 0
+s0 = r4
+s1 = r4
+r0 = 4
+r1 = &s2
+r2 = 2
+r3 = 2
+fn_E559C()
+r1 = r5 * 0x10
+r1 -= r5
+r1 *= 4
+r0 = data_09020000_J
+r1 += r0
+s0 = r4
+s1 = r4
+r0 = 5
+r2 = 0
+r3 = 4
+fn_E559C()
+return

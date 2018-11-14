@@ -1,0 +1,64 @@
+lbl1: @DAEC4
+r0 = fn_A24E40_J
+goto r0
+
+lblx: @DAECC
+r0 = 1
+return r0
+
+
+
+
+
+
+
+fn_A24E40_J:
+r1 = *r4
+r3 = 0xFF0
+r3 += r1
+r0 = *(r3 + 4)
+if(r0 == 0) goto lbl3
+
+if(r0 == 4) goto lbl4
+
+if(r0 == 0xD) goto lbl5
+
+goto lbl2
+
+lbl2:
+if(r5 <= 0xD) goto lbl7
+
+r0 = 1
+return r0
+
+lbl3:
+r1 = 0xCC
+r2 = data_0203C0C8_J
+// 0203BFFC - 0203C0C8
+goto lbl6
+
+lbl4:
+r1 = 0x258
+r2 = data_0203C320_J
+// 0203C0C8 - 0203C320
+goto lbl6
+
+lbl5:
+r1 = 0xBA0
+r2 = data_0203CEC0_J
+// 0203C320 - 0203CEC0
+goto lbl6
+
+lbl6:
+r3 -= 4
+r0 = *r3
+*r2 = r0
+r2 -= 4
+r1 -= 4
+if(r1 != 0) goto lbl6
+
+goto lbl2
+
+lbl7:
+r0 = lbl_2
+goto r0

@@ -1,0 +1,32 @@
+sub_80E54C0()
+{
+	r0 = data_0203AAB4
+	r1 = *r0
+	r0 = 0xA67
+	r2 = r1 + r0
+
+	if(r0 == 0xFE)
+	{
+		for(r5 = 2; r5 <= 5; r5++)
+		{
+			r4 = r5
+			FillWindowPixelBuffer(r4, 0)
+			CopyWindowToVram(r4, 2)
+		}
+	}
+	else
+	{
+		r0 *= 2
+		r1 = 0xE8
+		r1 += r0
+		r0 = *r1
+		fn_E5340()
+	}
+
+	CopyWindowToVram(3, 2)
+	CopyWindowToVram(4, 2)
+	CopyWindowToVram(2, 2)
+	CopyWindowToVram(2, 2)
+	CopyWindowToVram(5, 2)
+	CopyWindowToVram(7, 3)
+}

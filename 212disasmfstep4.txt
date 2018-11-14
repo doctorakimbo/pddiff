@@ -1,0 +1,7 @@
+sub_80D9E54()
+{
+		...
+	} while(i < NUM_SECTORS_PER_SAVE_SLOT);
+
+	return 1;
+}

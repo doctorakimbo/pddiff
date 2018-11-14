@@ -1,0 +1,109 @@
+lbl1: @E5340
+r5 = r0
+r1 = gBattleMoves
+r0 = r5 * 2
+r0 += r5
+r0 *= 4
+r4 = r0 + r1
+r1 = *(r4 + 2)
+r1++
+r0 = 2
+r2 = 0
+r3 = 4
+fn_107D68()
+r0 = *(r4 + 1)
+if(r0 > 1) goto lbl2
+
+r1 = data_416213
+r0 = 0
+s0 = r0
+s1 = r0
+r0 = 3
+r2 = 1
+r3 = 4
+fn_E559C()
+goto lbl3
+
+lbl2:
+r1 = *(r4 + 1)
+r0 = &s2
+r2 = 0
+r3 = 3
+ConvertIntToDecimalStringN()
+r0 = 0
+s0 = r0
+s1 = r0
+r0 = 3
+r1 = &s2
+r2 = 1
+r3 = 4
+fn_E559C()
+goto lbl3
+
+lbl3:
+r2 = gBattleMoves
+r1 = r5 * 2
+r0 = r1 + r5
+r0 *= 4
+r0 += r2
+r2 = *(r0 + 3)
+r4 = r1
+if(r2 != 0) goto lbl4
+
+r1 = data_416213
+s0 = r2
+r0 = 1
+s1 = r0
+r0 = 3
+r2 = 1
+r3 = 0x12
+fn_E559C()
+goto lbl5
+
+lbl4:
+r1 = *(r0 + 3)
+r0 = &s2
+r2 = 0
+r3 = 3
+ConvertIntToDecimalStringN()
+r0 = 0
+s0 = r0
+r0 = 1
+s1 = r0
+r0 = 3
+r1 = &s2
+r2 = 0
+r3 = 0x12
+fn_E559C()
+goto lbl5
+
+lbl5:
+r1 = gBattleMoves
+r0 = r4 + r5
+r0 *= 4
+r0 += r1
+r1 = *(r0 + 4)
+r0 = &s2
+r2 = 0
+r3 = 2
+ConvertIntToDecimalStringN()
+r4 = 0
+s0 = r4
+s1 = r4
+r0 = 4
+r1 = &s2
+r2 = 2
+r3 = 2
+fn_E559C()
+r1 = r5 * 0x10
+r1 -= r5
+r1 *= 4
+r0 = data_427E38_J
+r1 += r0
+s0 = r4
+s1 = r4
+r0 = 5
+r2 = 0
+r3 = 0
+fn_E559C()
+return
