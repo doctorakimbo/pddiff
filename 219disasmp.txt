@@ -1,0 +1,75 @@
+lbl1: @1039B0
+...
+FillBgTilemapBufferRect(3, 1, 0, 0, 0x1E, 0x14, 0)
+...
+r5 = IsNationalPokedexEnabled()
+fn_3C7C00_J()
+goto lbl_2
+...
+(empty)
+...
+
+
+
+
+
+
+fn_3C7C00_J:
+r6 = data_020372CC_J
+r0 = data_E98540_J
+r5 = 8
+r7 = 0
+fn_3C7C40_J()
+r0 = data_06002800_J
+r5 = 0x20
+r7 = 0
+fn_3C7C4E_J()
+r0 = data_06002C80_J
+r5 = 0x20
+r7 = 0
+fn_3C7C4E_J()
+r6 = gWindows
+r6 = *(r6 + 8)
+r0 = data_E98560_J
+r7 = 0
+r5 = 0x1E0
+fn_3C7C40_J()
+r7 = r5 * 4
+r0 += r7
+r7 = 0
+r6 = gWindows
+r6 = *(r6 + 0x14)
+fn_3C7C40_J()
+return
+
+
+
+
+
+
+fn_3C7C40_J:
+r3 = r7 * 4
+r4 = *(r0 + r3)
+*(r6 + r3) = r4
+r7++
+if(r7 != r5) goto lbl1
+
+return
+
+
+
+
+
+
+fn_3C7C4E_J:
+r3 = r7 * 4
+r4 = *(r0 + r3)
+r6 = 0x0FFF0FFF
+r4 &= r6
+r6 = 0xD000D000
+r4 |= r6
+*(r0 + r3) = r4
+r7++
+if(r7 != r5) goto lbl1
+
+return

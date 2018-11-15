@@ -1,0 +1,15 @@
+sub_8102C28()
+{
+	...
+	FillBgTilemapBufferRect(3, 0xE, 0, 0, 0x1E, 0x14, 0)
+	...
+	if(IsNationalPokedexEnabled())
+		goto lbl_2
+	else
+		goto lbl_3
+	...
+	FillWindowPixelBuffer(0, 0xFF)
+	fn_105584_J(0, 2, data_3DD4D2_J, 0x32, 2, 4) // 9F 59 73 7E 3E 06 2E 00 23 08 3D FF
+	FillWindowPixelBuffer(1, 0xFF)
+	...
+}

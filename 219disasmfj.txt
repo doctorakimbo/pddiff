@@ -1,0 +1,25 @@
+lbl1: @1039B0
+...
+FillBgTilemapBufferRect(3, 0xE, 0, 0, 0x1E, 0x14, 0)
+...
+r5 = IsNationalPokedexEnabled()
+if(r5 != r0) goto lbl_2
+
+goto lbl_3
+...
+r0 = 0
+r1 = 0xFF
+FillWindowPixelBuffer()
+r2 = data_3DD4D2_J
+r0 = 2
+s0 = r0
+r0 = 4
+s1 = r0
+r0 = 0
+r1 = 2
+r3 = 0x32
+fn_105584_J()
+r0 = 1
+r1 = 0xFF
+FillWindowPixelBuffer()
+...

@@ -1,0 +1,29 @@
+sub_80F1D14(arg0)
+{
+	switch(*(*(*gBattleSpritesDataPtr + 8)))
+	{
+	case 0x53:
+		*gBattleAnimArgs = 1
+		break;
+	case 0xFA:
+		*gBattleAnimArgs = 2
+		break;
+	case 0x80:
+		*gBattleAnimArgs = 3
+		break;
+	case 0x148:
+		*gBattleAnimArgs = 4
+		break;
+	case 0x28C:
+		*gBattleAnimArgs = 5
+		break;
+	case 0x28E:
+		*gBattleAnimArgs = 6
+		break;
+	default:
+		*gBattleAnimArgs = 0
+		break;
+	}
+	
+	DestroyAnimVisualTask(arg0)
+}

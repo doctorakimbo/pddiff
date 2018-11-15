@@ -1,0 +1,21 @@
+sub_80EFCEC(arg0)
+{
+	switch(LAST_BYTE(arg0.0x34))
+	{
+	case 0:
+		if(gCritCapture && gBattleSpritesDataPtr->animationData.ballThrowCaseId >= BALL_2_SHAKES)
+			arg0.0x35 = gBattleSpritesDataPtr->animationData.ballThrowCaseId - BALL_2_SHAKES
+
+		if(gBattleSpritesDataPtr->animationData.field_C > 0xFF)
+		{
+			arg0.0x24 += arg0.0x36
+			gBattleSpritesDataPtr->animationData.field_C = LAST_BYTE(gBattleSpritesDataPtr->animationData.field_C);
+		}
+		else
+			gBattleSpritesDataPtr->animationData.field_C += 0xB0;
+		
+		...
+	}
+	
+	...
+}

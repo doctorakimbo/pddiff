@@ -1,0 +1,51 @@
+lbl1: @3C7400
+r0 = data_02021674_J
+DestroySpriteAndFreeResources()
+r0 = data_02021630_J
+DestroySpriteAndFreeResources()
+fn_3C7418_J()
+return
+
+
+
+
+
+fn_3C7418_J:
+r4 = data_03003E98_J
+r0 = 4
+*r4 = 0
+r5 = 0
+r4 = data_020215EC_J
+goto lbl2
+
+lbl2:
+r0 = 0x44
+r0 *= r5
+r0 = r4 - r0
+DestroySpriteAndFreeResources()
+if(r5 == 0x3F) goto lbl3
+
+r5++
+goto lbl2
+
+lbl3:
+r4 = gSprites
+r5 = 0
+goto lbl4
+
+lbl4:
+r0 = 0x44
+r0 *= r5
+r0 += r4
+DestroySpriteAndFreeResources()
+if(r5 == 0x10) goto lbl5
+
+r5++
+goto lbl4
+
+lbl5:
+r0 = data_0203D080_J
+r1 = 0
+*r0 = r1
+*(r0 + 2) = r1
+return

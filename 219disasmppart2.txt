@@ -1,0 +1,47 @@
+sub_8102C28()
+{
+	...
+	FillBgTilemapBufferRect(3, 1, 0, 0, 0x1E, 0x14, 0)
+	...
+	fn_3C7C00_J()
+	goto lbl_2
+	...
+	(empty)
+	...
+}
+
+
+
+
+
+
+fn_3C7C00_J()
+{
+	fn_3C7C40_J(data_E98540_J, data_020372CC_J, 8)
+	fn_3C7C4E_J(data_06002800_J, 0x20)
+	fn_3C7C4E_J(data_06002C80_J, 0x20)
+	fn_3C7C40_J(data_E98560_J, *(gWindows + 8), 0x1E0)
+	fn_3C7C40_J(data_E98560_J + (0x1E0 * 4), *(gWindows + 0x14), 0x1E0)
+}
+
+
+
+
+
+
+fn_3C7C40_J(arg0, arg1, arg2)
+{
+	for(r7 = 0; r7 < arg2; r7++)
+		*(arg1 + (r7 * 4)) = *(arg0 + (r7 * 4))
+}
+
+
+
+
+
+
+fn_3C7C4E_J(arg0, arg1)
+{
+	for(r7 = 0; r7 < arg1; r7++)
+		*(arg0 + (r7 * 4)) = ((*(arg0 + (r7 * 4)) & 0x0FFF0FFF) | 0xD000D000)
+}

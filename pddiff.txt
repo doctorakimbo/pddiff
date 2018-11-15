@@ -303,6 +303,18 @@ grafics:
 = 4071D0 (3CD3A8 old, E2C570 new)
 = 407B9C (3CDD74 old, 96A430 new)
 = 408D98 (3CEF70 old, 96B5E0 new)
+= 40CB8C (3D3EA8 old, 8F8780 new)
+= 40D228 (3D4544 old, 8E99B0 new)
+= 40E158 (3D5474 old, 8F8C70 new)
+= 40E904 (3D5C20 old, 8F7F60 new)
+= 40F240 (3D655C old, 8F9260 new)
+= 40F944 (3D6C60 old, 8F7640 new)
+= 410198 (3D74B4 old, 204D10 new)
+= 4105B4 (3D78D0 old, 427E80 new)
+= 410E30 (3D867C old, 428700 new)
+= 4129C0 (3DA20C old, 7FC460 new)
+= 440274 (404928 old, E98420 new)
+= 4403AC (404A60 old, E98420 new)
 = D0051C (C0051C old, EB8990 new)
 = E9C3D8 (3964B0 old, 396374 new)
 = E9C3F8 (396470 old, 396334 new)
@@ -328,6 +340,12 @@ stray text:
 = 3FDD23 (3C3DDD old, 3C3DAC new)
 = 3FDD64 (3C3E05 old, 3C3DCC new)
 = 3FDDEB (3C3E5C old, 3C3E1D new)
+
+other data:
+- 40C068 (3D2240 old, A24210 new)
+- 40C0A4 (3D227C old, A237E0 new)
+- 40C104 (3D22DC old, A23840 new)
+- 40C1C4 (3D239C old, A24240 new)
 
 + expand rom to 2x
 + expand 1C68F4 (move animations) from 356 entries to 680 (1030000) 
@@ -356,8 +374,12 @@ stray text:
 ! expand 3A65BC (movement action functions) from 170 entries to 226 (j221550, eUNKNOWN)
 + expand 3ACC08 (battle anim sprites) from 289 entries to 462 (1200300)
 	+ also set 3AD048 (gBattleAnimPicTable[136]) to 1200740
+	- also set 3AD350 (gBattleAnimPicTable[233]) to 1200A48
+	- also set 3AD470 (gBattleAnimPicTable[269]) to 1200B68
 = ???
 	! also set 3AD950 (gBattleAnimPaletteTable[136]) to 1201A40
+	! also set 3ADC58 (gBattleAnimPaletteTable[233]) to 1201D48
+	! also set 3ADD78 (gBattleAnimPaletteTable[269]) to 1201E68
 + expand 3ADE18 (battle anim backgrounds) from 27 entries to 100 (11FF000)
 + expand 3D2A10 (box wallpapers) from 48 entries to 63 (938980)
 + expand 3D353C (PC menu options) from 38 entries to 128 (jE2A570, e1E2A570)
@@ -372,6 +394,9 @@ stray text:
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
 + expand 3FE664 (trapping moves) from 6 entries to 8 (1303552)
 + expand 3FEA70 (japanese grammar) from 118 entries to 183 (1040000)
+- expand 40BF48 (unknown pokeball struct) from 12 entries to 26 (A23600)
+- expand 40BFA8 (unknown pokeball struct) from 12 entries to 26 (A236D0)
+- expand 40C074 (pokeball animation tasks) from 12 entries to 28 (A23A50)
 - expand 4886E8 (move descriptions) from from 355 entries to 680 (1020000)
 
 = repoint 02A3C8 -> j168F08 (atkAA_setdestinybond) - need part at destination removed first + ASM can't be repointed without decompilation + do it itself later
@@ -392,7 +417,7 @@ stray text:
 		  Implements: need more info
 		  Required knowledge: j0203B900, j0203C00D, j0203D500
 = 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
-= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4: 0B -> 10 (pkmnnamelength)
+= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: pkmnnamelength, something else - need more info
@@ -869,7 +894,7 @@ stray text:
 		  Implements: Moves in-battle level/gender display for opponents right by two characters (one in Japanese) to make room for name
 = ~0496C0: Unclear how to translate this to English rom (minidisasm13pt2)
 		  Implements: name length in the battle boxes (the ones with the HP in them)
-= 049718: 1D 28 01 D0 20 28 09 D1 -> 0C E0 00 00 00 00 00 00 (PDONLY, restores gender markers for pokemon #29 and #32)
+! 049718: 1D 28 01 D0 20 28 09 D1 -> 0C E0 00 00 00 00 00 00 (PDONLY, restores gender markers for pokemon #29 and #32)
 = ?????? (j48EBA): Unclear how to translate this to English rom (minidisasm13pt3)
 		  Implements: Moves name in battle boxes for player mons left by two characters (one in Japanese) to make room
 + 04A2F0: Entirety of CalcNewBarValue (see 105disasm)
@@ -1199,7 +1224,7 @@ stray text:
 		  Relies on: animation scripts setting the value correctly
 		  Requires in future: fn_168A10_J, fn_168AC0_J
 + 0B565C: 00 -> 01 (set Shadow Ball sprite.data[0] to 1 instead of 0; no idea what this did)
-+ 0BC128: 6E -> 6C (set gBattleAnimTarget to gBattlerTarget instead of gEffectBattler; this unknown animation routine is called by the item steal animation)
++ 0BC128: 6E -> 6C (set gBattleAnimTarget to gBattlerTarget instead of gEffectBattler; these unknown animation routines are called by the item steal animation)
 = 0BD3C8: 01 A9 2A 1C A6 F7 28 FB -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j222C60, see 195disasm))
 		  Implements: forced movement for metatiles 0xB0-0xB5 (on bike)
 + 0BFC7C: 13 -> 15 (heal locations 20 -> 22)
@@ -1298,7 +1323,7 @@ stray text:
   0EB3F6: 3D -> 39
   0EB490: 83 -> 84
   0EB4F4: 3A 08 00 00 3B 08 00 00 3C 08 00 00 3D 08 00 00 35 08 00 00 36 08 00 00 38 08 00 00 39 08 00 00 31 08 00 00 32 08 00 00 33 08 00 00 34 08 00 00 -> 	  32 00 00 00 3C 04 00 00 37 04 00 00 3A 00 00 00 36 00 00 00 3B 00 00 00 3D 00 00 00 3E 00 00 00 40 08 00 00 40 08 00 00 3F 00 00 00 41 00 00 00
-		  Implements: some sort of graphic in the intro battle
+		  Implements: changes some sort of graphic in the intro battle
 - 0EC852: C0 0F -> 01 20 (sound will always become stereo when game loaded from title screen) (MERGE THIS CHECK)
 - 0EF208: 06 -> 01 (does something in an unknown animation routine called by an animation played on level-up)
 - 0EF258, 0EF294: 74 -> 86 (changes a palette in the same routine as previous)
@@ -1309,22 +1334,40 @@ stray text:
 = 0EF52C: Entirety of ItemIdToBallId (see 216disasm)
 		  Implements: correct ids for rearranged pokeballs
 		  Relies on: all calls to ItemIdToBallId to use correct parameters
-= 
+- 0EF972, 0F02D6: 14 DC -> 00 00 (no longer limited to 12 types of pokeballs)
+= 0EFD2A: 0D 68 -> 08 47
+  0EFD4C: 18 40 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jEEAB00, see 217disasm))
+		  Implements: critical capture animation
+		  Required knowledge: gCritCapture (j0203FE04)
+- 0F11F2: 0B -> 1F (max pokeball types 12 -> 32) (MERGE THIS CHECK)
+- 0F171C: 6E -> 6C (set gBattleAnimTarget to gBattlerTarget instead of gEffectBattler; these unknown animation routines are called by the item steal animation) (MERGE THIS CHECK)
+= 0F1D14: Entirety of AnimTask_GetTrappedMoveAnimId (see 218disasm)
+		  Implements: end-of-turn animations for Magma Storm and Infestation will show up
+		  Relies on: actual animations being implemented
+= 0F3270: 09 -> 0B (pkmnnamelength)
+		  Note: might actually run into issues, looks like jp hof might have extra space just in case western mons are transferred, en hof obviously doesn't
+! 0F3310: 20 28 01 D0 1D 28 07 D1 -> 0A E0 00 00 00 00 00 00 (PDONLY, restores gender markers for pokemon #29 and #32 in hall of fame)
+- 0F7328: A0 -> A1
+  0F7394: 01 02 00 00 02 02 00 00 03 02 00 00 05 02 00 00 06 02 00 00 09 02 00 00 0A 02 00 00 0B 02 00 00 0D 02 00 00 0A 0A 00 00 0B 0A 00 00 0C 0A 00 00 0D 0A 00 00 05 0A 00 00 06 0A 00 00 08 0A 00 00 09 0A 00 00 01 0A 00 00 02 0A 00 00 03 0A 00 00 04 0A 00 00 -> 00 02 00 00 00 02 00 00 01 02 00 00 02 02 00 00 03 02 00 00 05 02 00 00 06 02 00 00 07 02 00 00 09 02 00 00 02 02 00 00 0C 06 00 00 07 06 00 00 0A 02 00 00 06 02 00 00 0B 02 00 00 0D 02 00 00 0E 02 00 00 10 0A 00 00 10 0A 00 00 0F 02 00 00 11 02 00 00
+		  Implements: changes some sort of graphic in a menu
+- 0F75B8: A0 -> A1
+  0F7630: 01 02 00 00 02 02 00 00 03 02 00 00 05 02 00 00 06 02 00 00 09 02 00 00 0A 02 00 00 0B 02 00 00 0D 02 00 00 05 0A 00 00 06 0A 00 00 08 0A 00 00 09 0A 00 00 0A 0A 00 00 0B 0A 00 00 0C 0A 00 00 0D 0A 00 00 01 0A 00 00 02 0A 00 00 03 0A 00 00 04 0A 00 00 -> 00 02 00 00 01 02 00 00 00 02 00 00 02 02 00 00 08 06 00 00 03 02 00 00 05 02 00 00 06 02 00 00 07 02 00 00 02 02 00 00 08 06 00 00 08 02 00 00 03 02 00 00 05 02 00 00 06 02 00 00 0A 02 00 00 07 02 00 00 10 0A 00 00 0D 02 00 00 10 0A 00 00 0E 02 00 00
+		  Implements: changes some sort of graphic in a menu
+- 1025EC: C1 -> C2 (allocate 16 more bytes for ?????? (pokedex screen))
+- 1028B8: D0 29 10 08 -> D8 2B 10 08 (change case 5 to be identical to case 9 in some pokedex func - TEST)
+- 102B50: 01 F0 2E FE -> 00 00 00 00
+  102B58: 01 F0 2A FE -> 00 00 00 00
+  102B60: 01 F0 26 FE -> 00 00 00 00
+		  Implements: don't remove three windows (pokedex screen - TEST)
+= 102C28: Entirety of sub_8102C28 (see 219disasm)
+		  Implements: for one specific function (pokedex main screen?): change a tile type, always use natdex, and replace the TABLE OF CONTENTS text with something - need more info
+		  Requires in future: fn_3C7C00_J, CopyBytes (j3C7C40), fn_3C7C4E_J
+= 102FFE: 00 F0 C3 FC -> ?? ?? ?? ?? (changes call to sub_8103988 to instead call fn at j4151A0, which just adds a call to fn_3C7400_J after; see 220disasm)
+		  Implements: 
 		  
 		  
 		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
+		 
 		  
 		  
 		  
@@ -1335,6 +1378,5 @@ stray text:
 
 
 
-curr: jF08D2 (2byte), jF0C8A (2byte) + jF0CAC (4byte)
-next: jF11C8 (repoint), jF11D4 (repoint), jF1236 (2byte), jF1540 (repoint), jF1548 (repoint), jF15CC (repoint), jF16E4 (repoint), jF2152 (1byte), jF21E4 (repoint), jF267C (4byte), jF2748 (repoint), jF274C (repoint), jF2A68 (repoint), jF2A6C (repoint)
-next: jF2C74
+curr: j103D92 (4byte), j103DB8 (repoint), j103DBC (4byte), j103E18 (4byte), j103E32 (4byte)
+next: j103F10

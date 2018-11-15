@@ -1,0 +1,21 @@
+sub_80EFCEC(arg0)
+{
+	switch(LAST_BYTE(arg0.0x34))
+	{
+	case 0:
+		if(gCritCapture && data_02024018->8.8 > 1)
+			arg0.0x35 = data_02024018->8.8 - 2
+
+		if(data_02024018->8.0xC > 0xFF)
+		{
+			arg0.0x24 += arg0.0x36
+			data_02024018->8.0xC = data_02024018->8.0xC // ???
+		}
+		else
+			data_02024018->8.0xC += 0xB0
+		
+		...
+	}
+	
+	...
+}

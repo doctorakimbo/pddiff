@@ -4,6 +4,9 @@ addr e: addr j: desc
 		   : 30 04 02 02: gWindows
 3C 06 02 02: B8 05 02 02: gSprites
 		   : E8 0D 02 02: ??????
+		   : EC 15 02 02: ??????
+		   : 30 16 02 02: ??????
+		   : 74 16 02 02: ??????
 		   : C2 1A 02 02: ??????
 D0 1C 02 02: 4C 1C 02 02: gStringVar1
 F0 1C 02 02: 60 1C 02 02: gStringVar2
@@ -91,6 +94,7 @@ E8 3F 02 02: 48 3F 02 02: gBattleStruct
 F4 3F 02 02: 54 3F 02 02: gBattleResources
 FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
 04 40 02 02: 64 3F 02 02: gBattlerInMenuId
+18 40 02 02: 78 3F 02 02: gBattleSpritesDataPtr
 1C 40 02 02: 7C 3F 02 02: gMonSpritesGfxPtr
 20 40 02 02: 80 3F 02 02: gBattleMovePower
 29 40 02 02: 89 3F 02 02: gPlayerPartyCount
@@ -136,6 +140,7 @@ FF 70 03 02: 33 70 03 02: ??????
 		   : C0 70 03 02: ?????? (sub_8078BEC: this[0] is constantly incremented; when it reaches 3 it's set to 0 again and this[1] is incremented (if 15, set to 0))
 								 (sub_8078BEC: used as an index into data_3852A0_J)
 F8 71 03 02: 2C 71 03 02: gPlttBufferUnfaded
+		   : CC 72 03 02: ??????
 F8 75 03 02: 2C 75 03 02: gPlttBufferFaded
 B8 7A 03 02: EC 79 03 02: gPaletteFade
 C8 7A 03 02: FC 79 03 02: ??????
@@ -167,6 +172,7 @@ E4 99 03 02: 5C 99 03 02: ??????
 00 9A 03 02: 78 99 03 02: gAIScriptPtr
 04 9A 03 02: 7C 99 03 02: gPlayerFacingPosition
 B4 AA 03 02: 2C AA 03 02: ??????
+F0 AC 03 02: 68 AC 03 02: ??????
 30 AD 03 02: A8 AC 03 02: gSpecialVar_ItemId
 FA AD 03 02: 72 AD 03 02: ??????
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
@@ -225,10 +231,8 @@ FA AD 03 02: 72 AD 03 02: ??????
 		   : 10 C0 03 02: ?????? (appears to be an array of 167 unknown 4-byte objects, possibly ItemSlots)
 								 (LoadPlayerBag: Entire array read from in a loop, just like gSaveBlock1Ptr->bagPocket_Items, and written to j0203BB00)
 								 (SavePlayerBag: Entire array written to in a loop, just like gSaveBlock1Ptr->bagPocket_Items, read from j0203BB00)
-		   : C8 C0 03 02: ?????? 
 		   : AC C2 03 02: gDaycareParentMoves
 		   : B4 C2 03 02: gDaycareParentMoves[1]
-		   : 20 C3 03 02: ?????? 
 		   : 18 CB 03 02: ?????? (GetLocationMusic: if this.0xE is not zero, return this.0xC instead of the default music)
 								 (fn_E9F204_J: convert this.4 (number) to a string and store it in data_0203D520_J)
 								 (fn_E9EBB0_J: If data_0203D52A_J is 0, data_0203D50A_J is 1, A is pressed, and (data_0203D562_J + data_0203D561_J) != 0, set this.0xC to data_E9FBC4_J[fn_E9F92C_J(data_0203D562_J + data_0203D561_J) - 1] then start playing the music at this.0xC)
@@ -242,7 +246,8 @@ FA AD 03 02: 72 AD 03 02: ??????
 		   : 54 CB 03 02: ?????? (fn_EE5000: set data_0203D2E0_J.0 to this on start)
 								 (fn_EE51C0: set this to data_0203D2E0_J.0 on exit)
 		   : 58 CB 03 02: ?????? (GetFlagPointer: if the flag number is 0xF000 or above, read it from this[number - 0xF000])
-		   : C0 CE 03 02: ?????? 
+		   : C0 CE 03 02: ?????? (the last byte that's saved to the save file, start byte is 0203C010)
+		   : 80 D0 03 02: ?????? (fn_3C7418_J: 2 bytes zeroed)
 		   : 00 D1 03 02: ?????? (appears to be an array of 4 SpriteTemplates)
 								 (fn_E9F398_J: used to temporarily store SpriteTemplates before their creation in a loop)
 		   : 00 D2 03 02: ?????? (appears to be an array of 4 SpriteTemplates)
@@ -677,14 +682,11 @@ funcs e,j,desc:
 0D87BC = 0D980C = BattlePutTextOnWindow
 0D99D8 = 0DA9C0 = TryWriteSector
 0DA1A8 = 0DB190 = CalculateChecksum
-0E5340 = 0E62F0 = ?????
-0E559C = 0E6548 = ?????
 0F67A4 = 0F77FC = schedule_bg_copy_tilemap_to_vram
 0F6F1C = 0F7F7C = NewMenuHelpers_DrawStdWindowFrame
 0F793C = 0F899C = GetStartMenuWindowId
 0F7948 = 0F89A8 = RemoveStartMenuWindow
 1074DC = 107FE0 = ListMenuPrintEntries
-107D68 = 10886C = ?????
 108E70 = 109968 = DisplayItemMessage
 10AD10 = 10B80C = UseRegisteredKeyItemOnField
 10F904 = 110438 = MoveMenuCursor
@@ -788,6 +790,11 @@ funcs e,j,desc:
 ?????? = 3C5F84 = GetCompressedBoxMonFromBox (unimplemented)
 ?????? = 3C5FA0 = CopyMonToBox (unimplemented)
 ?????? = 3C6170 = CopyMonForBoxViewing (unimplemented)
+?????? = 3C7400 = ????? (unimplemented)
+?????? = 3C7418 = ????? (unimplemented)
+?????? = 3C7C00 = ????? (unimplemented)
+?????? = 3C7C40 = CopyBytes (unimplemented)
+?????? = 3C7C4E = ????? (unimplemented)
 
 
 data:

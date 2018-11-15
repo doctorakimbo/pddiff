@@ -1,0 +1,54 @@
+lbl1: @F2C74
+r2 = r0
+r0 = gBattleSpritesDataPtr
+r0 = *r0
+r0 = *(r0 + 8)
+r1 = *r0
+if(r1 != 0x53) goto lbl2
+
+r0 = 1
+goto lbl8
+
+lbl2:
+if(r1 != 0xFA) goto lbl3
+
+r0 = 2
+goto lbl8
+
+lbl3:
+if(r1 != 0x80) goto lbl4
+
+r0 = 3
+goto lbl8
+
+lbl4:
+r0 = 0x148
+if(r1 != r0) goto lbl5
+
+r0 = 4
+goto lbl8
+
+lbl5:
+r0 = 0x28C
+if(r1 != r0) goto lbl6
+
+r0 = 5
+goto lbl8
+
+lbl6:
+r0 = 0x28E
+if(r1 != r0) goto lbl7
+
+r0 = 6
+goto lbl8
+
+lbl7:
+r0 = 0
+goto lbl8
+
+lbl8:
+r1 = gBattleAnimArgs
+*r1 = r0
+r0 = r2
+DestroyAnimVisualTask()
+return
