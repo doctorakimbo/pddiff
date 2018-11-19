@@ -1,0 +1,732 @@
+fn_4151D2_J()
+{
+	CreateSpriteAtEnd(data_415318_J, 0x26, 0x32)
+	CreateSpriteAtEnd(data_415300_J, 0x2A, 0x34)
+	fn_4154F0_J()
+}
+
+
+
+
+
+
+fn_4154F0_J()
+{
+	r6 = data_03000DE8_J
+
+	for(r5 = 0x1E; r5 != 0; r5 -= 2)
+	{
+		r0 = *(r6 + r5)
+		r1 = 0x2000
+		
+		if(r0 < r1)
+			FreeSpritePaletteByTag(r0)
+	}
+	
+	r0 = data_0203D080_J
+	r1 = *(r0 + 2)
+	
+	if(r1 != 1)
+	{
+		r1 = 1
+		*(r0 + 2) = r1
+		r4 = data_03005098
+		r1 = *(r4 + 0x18)
+		*(r0 + 6) = r1
+		r4 = data_E40000_J
+
+		for(r5 = 0; r5 != 5; r5++)
+		{
+			r0 = r5 * 8
+			r0 += r4
+			LoadSpritePalette(r0)
+		}
+		
+		r1 = data_0203D4F0_J
+
+		for(r5 = 0; r5 != 0xC; r5++)
+			*(r1 + r5) = r5
+		
+		for(r7 = 0; r7 < 0xB; r7++)
+			fn_41553E_J()
+	}
+	
+	fn_4159E0_J()
+	fn_3C6FD0_J()
+}
+
+
+
+
+
+
+fn_41553E_J()
+{
+	fn_3C74B0_J()
+	r0 = 0xC230
+	r0 += r7
+	FreeSpriteTilesByTag(r0)
+	r0 = data_03005098
+	r1 = *(r0 + 0x18)
+	r6 = data_0203D4F0_J
+	r6 = *(r6 + r7)
+	r1 += r6
+	r2 = *(r0 + 0xC)
+	
+	if(r1 < r2)
+	{
+		r1 *= 8
+		r0 = *r0
+		r3 = r0 + r1
+		r0 = *(r3 + 4)
+		r4 = r0
+		r1 = r0 >> 0x10
+		
+		if(r1 == 0)
+			r0 = 0
+		
+		sub_8097028()
+		r1 = data_0203D100_J
+		r2 = r7 * 0x20
+		r1 += r2
+		*r1 = r0
+		r0 = 0xC230
+		r0 += r7
+		*(r1 + 6) = r0
+		r0 = 0x200
+		*(r1 + 4) = r0
+		r5 = r1
+		LoadSpriteSheet(r1)
+		r0 = r5
+		r0 += 8
+		r2 = gMonIconPaletteIndices
+		r3 = LOWER_TWO_BYTES(r4)
+		r2 = *(r2 + r3)
+		r3 = HIGHER_TWO_BYTES(r4)
+		
+		if(r3 == 3)
+		{
+			r3 = 0xDAC0
+			r3 += r2
+		}
+		elseif(r3 == 1)
+			r3 = 0xA920
+		else
+		{
+			r2 = 3
+			r3 = 0xDAC0
+			r3 += r2
+		}
+	}
+	else
+	{
+		r1 = data_0203D100_J
+		r2 = r7 * 0x20
+		r1 += r2
+		r0 = data_3C7250_J
+		*r1 = r0
+		r0 = 0xC230
+		r0 += r7
+		*(r1 + 6) = r0
+		r0 = 0x200
+		*(r1 + 4) = r0
+		r5 = r1
+		LoadCompressedObjectPicUsingHeap(r1)
+		r0 = r5
+		r0 += 8
+		r3 = 0xA920
+	}
+	
+	*(r0 + 2) = r3
+	r2 = 0xC230
+	r2 += r7
+	*r0 = r2
+	r2 = data_415624_J
+	*(r0 + 4) = r2
+	r2 = data_1F11E4_J
+	*(r0 + 8) = r2
+	r2 = 0
+	*(r0 + 0xC) = r2
+	r2 = data_1F11F0_J
+	*(r0 + 0x10) = r2
+	r2 = data_41563D_J
+	*(r0 + 0x14) = r2
+	r6 = data_0203D4F0_J
+	r6 = *(r6 + r7)
+	
+	for(r2 = r6; r2 >= 4; r2 -= 4) {};
+
+	r1 = 0x22
+	r1 *= r2
+	r1 += 0x6D
+	r2 = r6 >> 2
+	r3 = 0x2A
+	r2 *= r3
+	r2 += 0x27
+	CreateSpriteAtEnd(r0, r1, r2)
+}
+
+
+
+
+
+
+fn_3C74B0_J()
+{
+	r4 = data_E40000_J
+	r0 = data_0203D800_J
+	r5 = 0
+
+	for(r7 = 0; r7 < 7; r7++)
+	{
+		r1 = 0x7A7A7A7A
+		r2 = r7 * 4
+		*(r0 + r2) = r1
+	}
+	
+	r2 = data_0203D300_J
+	r1 = r5 * 8
+	r2 += r1
+	r1 = 0xA920
+	r1 += r5
+	*r2 = r0
+	*(r2 + 4) = r1
+	LoadSpritePalette(r2)
+}
+
+
+
+
+
+
+fn_4159E0_J()
+{
+	r0 = data_0203D080_J
+	r0 = *r0
+	
+	if(r0 == 0)
+	{
+		r0 = data_4157A0_J
+		r1 = data_0203D330_J
+		*r1 = r0
+		r0 = 0x32F0
+		*(r1 + 4) = r0
+		r0 = data_4157D0_J
+		*(r1 + 8) = r0
+		r0 = 0x200
+		*(r1 + 0xC) = r0
+		r0 = 0x32E0
+		*(r1 + 0xE) = r0
+		r4 = r1
+		r0 = r1
+		r0 += 8
+		LoadSpriteSheet(r0)
+		LoadSpritePalette(r4)
+		r0 = r4
+		r0 += 0x10
+		r1 = 0x32E0
+		*r0 = r1
+		r1 = 0x32F0
+		*(r0 + 2) = r1
+		r1 = data_415A48_J
+		*(r0 + 4) = r1
+		r1 = data_1F11E4_J
+		*(r0 + 8) = r1
+		r1 = 0
+		*(r0 + 0xC) = r1
+		r1 = data_1F11F0_J
+		*(r0 + 0x10) = r1
+		r1 = data_415A55_J
+		*(r0 + 0x14) = r1
+		CreateSpriteAndAnimate(r0, 0x5D, 0x1B)
+	}
+}
+
+
+
+
+
+
+fn_3C6FD0_J()
+{
+	r0 = data_0203D080_J
+	r1 = *r0
+	
+	if(r1 == 0)
+	{
+		r1 = 1
+		*r0 = r1
+		PlaySE(0x67)
+		FreeSpritePaletteByTag(0x1200)
+		LoadSpritePalette(data_3C7208_J)
+		LoadCompressedObjectPicUsingHeap(data_3C7128_J)
+		CreateSprite(data_3C7140_J, 0x26, 0x74)
+		r6 = data_0203D090_J
+
+		for(r7 = 0; r7 < 0xC; r7++)
+		{
+			r0 = r6
+			r1 = 8
+			r1 *= r7
+			r0 += r1
+			memcpy(r0, data_3C7134_J, 8)
+			r0 = r6
+			r1 = 8
+			r1 *= r7
+			r0 += r1
+			r1 = *(r0 + 6)
+			r1 += r7
+			*(r0 + 6) = r1
+			LoadCompressedObjectPicUsingHeap(r0)
+			r0 = r6
+			r1 = 8
+			r1 *= r7
+			r0 += r1
+			memcpy(r0, data_3C7164_J, 0x18)
+			r0 = r6
+			r1 = 8
+			r1 *= r7
+			r0 += r1
+			r2 = *r0
+			r2 += r7
+			*r0 = r2
+			r3 = r7 >> 2
+			r2 = r3 << 2
+			r2 = r7 - r2
+			r1 = 0x22
+			r1 *= r2
+			r1 += 0x6D
+			r2 = 0x2A
+			r2 *= r3
+			r2 += 0x22
+			CreateSprite(r0, r1, r2)
+		}
+
+		LoadCompressedObjectPicUsingHeap(data_3C71C0_J)
+		LoadCompressedObjectPicUsingHeap(data_3C71CC_J)
+		LoadCompressedObjectPicUsingHeap(data_3C71D8_J)
+		CreateSprite(data_3C7188_J, 0x16, 0x88)
+		CreateSprite(data_3C71A4_J, 0x36, 0x88)
+		CreateSpriteAndAnimate(data_3C71E4_J, 0xF4, 0x10)
+		fn_3C7D90_J()
+	}
+	
+	r0 = data_3C7D70_J
+	r1 = data_06012400_J
+	r2 = 0x100
+	r3 = 0xB
+	s0 = r3
+	r3 = 0xC
+	s1 = r3
+	r3 = 0
+	s2 = r3
+	sub_808BFE0()
+	r1 = data_06012400_J
+	r0 = data_03005098
+	r2 = *(r0 + 0x18)
+	r3 = *(r0 + 0x1A)
+	r2 += r3
+	r5 = r2 + 1
+	r2 *= 8
+	r0 = *r0
+	r0 = *(r0 + r2)
+	r2 = 0x100
+	r3 = 6
+	s0 = r3
+	r3 = 7
+	s1 = r3
+	r3 = 0
+	s2 = r3
+	sub_808BFE0()
+	r1 = data_06012300_J
+	r0 = data_03005098
+	r2 = *(r0 + 0x18)
+	r3 = *(r0 + 0x1A)
+	r0 = r2 + r3
+	r0++
+	fn_3C7660_J()
+	r5 = data_03005098
+	r5 = *(r5 + 0x18)
+	
+	for(r4 = 0; r4 < 0xC; r4++)
+	{
+		r1 = data_06012A00_J
+		r2 = 0x400
+		r2 *= r4
+		r1 += r2
+		r0 = r5 + 1
+		r0 += r4
+		fn_3C7660_J()
+	}
+
+	fn_3C7800_J()
+}
+
+
+
+
+
+
+fn_3C7D90_J()
+{
+	CreateSprite(data_3C7DB0_J, 0x18, 0x8A)
+	CreateSprite(data_3C7DCC_J, 0x38, 0x8A)
+}
+
+
+
+
+
+
+fn_3C7660_J()
+{
+	r7 = r1
+	r1 = data_03005098
+	r1 = *(r1 + 0xC)
+	
+	if(r0 <= r1)
+	{
+		r6 = r0 / 0x64
+		r0 = r0 % 0x64
+		r4 = r0 % 0xA
+		r5 = r0 / 0xA
+		fn_3C76A4_J(0xA, 0)
+		fn_3C76A4_J(r6, 1)
+		fn_3C76A4_J(r5, 2)
+		fn_3C76A4_J(r4, 3)
+	}
+	else
+		fn_3C76C0_J(r7)
+}
+
+
+
+
+
+
+fn_3C76A4_J(arg0, arg1)
+{
+	r0 = arg0 * 0x20
+	r2 = data_3C7500_J
+	r0 += r2
+	r1 = arg1 * 0x20
+	r1 += r7
+
+	for(r3 = 0; r3 < 8; r3++)
+	{
+		r2 = r3 * 8
+		r4 = *(r0 + r2)
+		*(r1 + r2) = r4
+	}
+}
+
+
+
+
+
+
+fn_3C76C0_J(as_r7 arg0)
+{
+	r0 = 0
+
+	for(r3 = 0; r3 < 0x20; r3++)
+	{
+		r2 = r3 * 8
+		*(arg0 + r2) = r0
+	}
+}
+
+
+
+
+
+
+fn_3C7800_J()
+{
+	r0 = data_1088B0_J
+	r6 = *r0
+	r7 = *(r0 + 4)
+	r1 = data_03005098
+	r2 = *r1
+	r3 = *(r1 + 0x18)
+	r1 = *(r1 + 0x1A)
+	r1 += r3
+	r1 *= 8
+	r2 += r1
+	r1 = *(r2 + 6)
+	
+	if(r1 == 3)
+	{
+		r2 = *(r2 + 4)
+		r1 = gBaseStats
+		r3 = 0x1C
+		r3 *= r2
+		r1 += r3
+		r5 = *(r1 + 7)
+		r1 = *(r1 + 6)
+		r4 = r1
+		r1++
+		r1 *= 4
+		r0 = r1 + r6
+		r0 = *(r0 + 2)
+		r0 *= 0x20
+		r0 += r7
+		fn_3C7868_J(r0, data_06015A00_J)
+		
+		if(r4 != r5) 
+		{
+			r1 = r5
+			r1++
+			r1 *= 4
+			r0 = r1 + r6
+			r0 = *(r0 + 2)
+			r0 *= 0x20
+			r0 += r7
+			fn_3C7868_J(r0, data_06015E00_J)
+		}
+		else
+			fn_3C7884_J(data_06015E00_J)
+	}
+	else
+	{
+		fn_3C7884_J(data_06015A00_J)
+		fn_3C7884_J(data_06015E00_J)
+	}
+}
+
+
+
+
+
+
+fn_3C7868_J(arg0, arg1)
+{
+	r0 = arg0
+
+	for(r2 = 0; r2 < 0x40; r2++)
+	{
+		r3 = r2 * 4
+		r4 = *(r0 + r3)
+		*(arg1 + r3) = r4
+		
+		if(r2 == 0x1F)
+		{
+			r3 = 0x180
+			r0 += r3
+		}
+	}
+}
+
+
+
+
+
+
+fn_3C7884_J(as_r1 arg0)
+{
+	r0 = 0
+
+	for(r2 = 0; r2 < 0x40; r2++)
+	{
+		r3 = r2 * 4
+		*(arg0 + r3) = r0
+	}
+}
+
+
+
+
+
+
+fn_41563C_J(arg0)
+{
+	r7 = arg0
+	r1 = *(r7 + 0x14)
+	r1 = *r1
+	r2 = 0xF
+	r1 &= r2
+	r4 = data_0203D080_J
+	r6 = data_03005098
+	r5 = *(r4 + 6)
+	r6 = *(r6 + 0x18)
+	
+	if(r5 != r6)
+	{
+		r2 = *(r4 + 8)
+		r3 = r2
+		r5 = 1
+		r5 << r1
+		r2 &= r5
+		
+		if(r2 == 0)
+		{
+			r3 |= r5
+			*(r4 + 8) = r3
+			r5 = r1
+			
+			if(r5 == 0)
+			{
+				r6 = 0
+				*(r4 + 8) = r6
+			}
+			
+			r6 = data_03005098
+			r2 = *(r4 + 6)
+			r6 = *(r6 + 0x18)
+			r6 -= r2
+			
+			if(r6 == 4)
+			{
+				r1 = 8
+				fn_415714_J(0)
+				r0 = data_0203D4F0_J
+				r0 = *(r0 + r5)
+				if(r0 >= 8) goto lbl3
+
+				r0 = *(r4 + 0xA)
+				
+				if(r0 != 1)
+				{
+					r0 = 0x28
+					r0 += r7
+					r1 = *(r0 + 1)
+					r1 -= 0x2A
+					*(r0 + 1) = r1
+				}
+				
+				goto lbl5
+			}
+
+			r6 += 4
+			
+			if(r6 == 0)
+			{
+				r1 = 0
+				fn_415714_J(1)
+				r0 = data_0203D4F0_J
+				r0 = *(r0 + r5)
+				if(r0 < 4) goto lbl3
+
+				r0 = *(r4 + 0xA)
+				
+				if(r0 != 1)
+				{
+					r0 = 0x28
+					r0 += r7
+					r1 = *(r0 + 1)
+					r1 += 0x2A
+					*(r0 + 1) = r1
+				}
+				
+				goto lbl5
+			}
+
+			goto lbl3
+
+			lbl3:
+			r1 = *(r4 + 0xA)
+			
+			if(r1 != 0)
+			{
+				r1 = *(r7 + 0x14)
+				r0 = r7
+				r7 = *r1
+				r1 = 0xF
+				r7 &= r1
+				DestroySprite(r0)
+				fn_41553E_J(r7)
+			}
+			else
+			{
+				r1 = 0x7F
+				r2 = 0x28
+				r2 += r7
+				*r2 = r1
+				*(r2 + 1) = r1
+				goto lbl4
+
+				lbl5:
+				r1 = *(r4 + 0xA)
+				
+				if(r1 == 0)
+				{
+					lbl4:
+					if(r5 == 0)
+					{
+						r0 = 1
+						*(r4 + 0xA) = r0
+					}
+					
+					return
+				}
+			}
+			
+			if(r5 == 0)
+			{
+				r4 = data_0203D080_J
+				r6 = data_03005098
+				r6 = *(r6 + 0x18)
+				*(r4 + 6) = r6
+				r0 = 0
+				*(r4 + 0xA) = r0
+				r4 = data_0203D4F0_J
+				*(r4 + 0xF) = r0
+			}
+		}
+	}
+}
+
+
+
+
+
+
+fn_415A54_J(arg0)
+{
+	r1 = data_03005098
+	r3 = *(r1 + 0x1A)
+	r2 = r3 >> 2
+	r1 = r2 << 2
+	r3 -= r1
+	r1 = 0x2A
+	r1 *= r2
+	r2 = 0x22
+	r2 *= r3
+	r0 = arg0 + 0x28
+	*r0 = r2
+	*(r0 + 1) = r1
+}
+
+
+
+
+
+
+fn_415714_J(arg0)
+{
+	r4 = data_0203D4F0_J
+	r5 = *(r4 + 0xF)
+	
+	if(r5 != 1)
+	{
+		r5 = *r4
+		r6 = *(r4 + 4)
+		r7 = *(r4 + 8)
+		
+		if(arg0 == 0)
+		{
+			*(r4 + 4) = r5
+			*(r4 + 8) = r6
+			*r4 = r7
+		}
+		else
+		{
+			*(r4 + 8) = r5
+			*r4 = r6
+			*(r4 + 4) = r7
+		}
+	}
+	
+	r0 = 1
+	*(r4 + 0xF) = r0
+}

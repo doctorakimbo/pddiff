@@ -1,0 +1,39 @@
+fn_3C7400_J()
+{
+	DestroySpriteAndFreeResources(data_02021674_J)
+	DestroySpriteAndFreeResources(data_02021630_J)
+	fn_3C7418_J()
+}
+
+
+
+
+
+fn_3C7418_J()
+{
+	r4 = data_03003E98_J
+	r0 = 4
+	*r4 = 0
+	r4 = data_020215EC_J
+
+	for(r5 = 0; r5 < 0x3F; r5++)
+	{
+		r0 = 0x44
+		r0 *= r5
+		DestroySpriteAndFreeResources(r4 - r0)
+	}
+	
+	r4 = gSprites
+
+	for(r5 = 0; r5 < 0x10; r5++)
+	{
+		r0 = 0x44
+		r0 *= r5
+		DestroySpriteAndFreeResources(r0 + r4)
+	}
+	
+	r0 = data_0203D080_J
+	r1 = 0
+	*r0 = r1
+	*(r0 + 2) = r1
+}

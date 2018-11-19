@@ -1,0 +1,60 @@
+lbl1: @4151F2
+r1 = data_03003E98_J
+r0 = 4
+*r1 = r0
+fn_4152D4_J()
+if(r0 >= r1) goto lbl3
+
+r1 = *(r3 + 6)
+if(r1 != 0) goto lbl2
+
+r0 = 0
+goto lbl2
+
+lbl2:
+r3 = data_128_J
+r1 = *r3
+r2 = r0 * 8
+r1 += r2
+r4 = data_0203B800_J
+r1 = *r1
+*r4 = r1
+r1 = 0x800
+*(r4 + 4) = r1
+r1 = 0x8045
+*(r4 + 6) = r1
+r2 = *(r3 + 8)
+r0 *= 8
+r2 += r0
+r2 = *r2
+*(r4 + 8) = r2
+r2 = 0x8046
+*(r4 + 0xC) = r2
+r0 = r4
+fn_E9E8_J()
+r0 = r4
+r0 += 8
+fn_EA2C_J()
+r0 = data_415344_J
+LoadSpritePalette()
+goto lbl3
+
+lbl3:
+return
+
+
+
+
+
+
+fn_4152D4_J:
+r0 = gTasks.data
+r1 = *(r0 + 0x18)
+r2 = *(r0 + 0x1A)
+r1 += r2
+r1 *= 8
+r0 = *r0
+r3 = r0 + r1
+r0 = *(r3 + 4)
+r1 = 0x400
+return {r0, r1, r3}

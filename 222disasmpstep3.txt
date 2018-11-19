@@ -1,0 +1,406 @@
+fn_4151D2_J()
+{
+	CreateSpriteAtEnd(data_415318_J, 0x26, 0x32)
+	CreateSpriteAtEnd(data_415300_J, 0x2A, 0x34)
+	fn_4154F0_J()
+}
+
+
+
+
+
+
+fn_4154F0_J()
+{
+	for(r5 = 0x1E; r5 != 0; r5 -= 2)
+	{
+		r0 = *(data_03000DE8_J + r5)
+		
+		if(r0 < 0x2000)
+			FreeSpritePaletteByTag(r0)
+	}
+	
+	if(*(data_0203D080_J + 2) != 1)
+	{
+		*(data_0203D080_J + 2) = 1
+		*(data_0203D080_J + 6) = *(data_03005098 + 0x18)
+
+		for(r5 = 0; r5 < 5; r5++)
+			LoadSpritePalette(&gMonIconPaletteTable[r5])
+		
+		for(r5 = 0; r5 < 0xC; r5++)
+			*(data_0203D4F0_J + r5) = r5
+		
+		for(r7 = 0; r7 < 0xB; r7++)
+			fn_41553E_J(r7)
+	}
+	
+	fn_4159E0_J()
+	fn_3C6FD0_J()
+}
+
+
+
+
+
+
+fn_41553E_J(as_r7 arg0)
+{
+	fn_3C74B0_J()
+	FreeSpriteTilesByTag(0xC230 + arg0)
+	r1 = *(data_03005098 + 0x18) + *(data_0203D4F0_J + arg0)
+	
+	if(r1 < *(data_03005098 + 0xC))
+	{
+		r0 = *((r1 * 8) + *data_03005098 + 4)
+		
+		if((*((r1 * 8) + *data_03005098 + 4) >> 0x10) == 0)
+			r0 = 0
+		
+		sub_8097028()
+		*((arg0 * 0x20) + data_0203D100_J) = r0
+		*((arg0 * 0x20) + data_0203D100_J + 6) = 0xC230 + arg0
+		*((arg0 * 0x20) + data_0203D100_J + 4) = 0x200
+		LoadSpriteSheet((arg0 * 0x20) + data_0203D100_J)
+		
+		if(HIGHER_TWO_BYTES(*((r1 * 8) + *data_03005098 + 4)) == 3)
+			r3 = 0xDAC0 + *(gMonIconPaletteIndices + LOWER_TWO_BYTES(*((r1 * 8) + *data_03005098 + 4)))
+		elseif(HIGHER_TWO_BYTES(*((r1 * 8) + *data_03005098 + 4)) == 1)
+			r3 = 0xA920
+		else
+			r3 = 0xDAC0 + 3
+	}
+	else
+	{
+		*((arg0 * 0x20) + data_0203D100_J) = data_3C7250_J
+		*((arg0 * 0x20) + data_0203D100_J + 6) = 0xC230 + arg0
+		*((arg0 * 0x20) + data_0203D100_J + 4) = 0x200
+		LoadCompressedObjectPicUsingHeap((arg0 * 0x20) + data_0203D100_J)
+		r3 = 0xA920
+	}
+	
+	r0 = (arg0 * 0x20) + data_0203D100_J + 8
+	
+	*(r0 + 2) = r3
+	*r0 = 0xC230 + arg0
+	*(r0 + 4) = data_415624_J
+	*(r0 + 8) = data_1F11E4_J
+	*(r0 + 0xC) = 0
+	*(r0 + 0x10) = data_1F11F0_J
+	*(r0 + 0x14) = data_41563D_J
+	
+	for(r2 = *(data_0203D4F0_J + arg0); r2 >= 4; r2 -= 4) {};
+
+	CreateSpriteAtEnd(r0, (r2 * 0x22) + 0x6D, ((*(data_0203D4F0_J + arg0) >> 2) * 0x2A) + 0x27)
+}
+
+
+
+
+
+
+fn_3C74B0_J()
+{
+	for(r7 = 0; r7 < 7; r7++)
+		*((r7 * 4) + data_0203D800_J) = 0x7A7A7A7A
+	
+	*data_0203D300_J = data_0203D800_J
+	*(data_0203D300_J + 4) = 0xA920
+	LoadSpritePalette(data_0203D300_J)
+}
+
+
+
+
+
+
+fn_4159E0_J()
+{
+	if(*data_0203D080_J == 0)
+	{
+		*data_0203D330_J = data_4157A0_J
+		*(data_0203D330_J + 4) = 0x32F0
+		*(data_0203D330_J + 8) = data_4157D0_J
+		*(data_0203D330_J + 0xC) = 0x200
+		*(data_0203D330_J + 0xE) = 0x32E0
+		LoadSpriteSheet(data_0203D330_J + 8)
+		LoadSpritePalette(data_0203D330_J)
+		*(data_0203D330_J + 0x10) = 0x32E0
+		*(data_0203D330_J + 0x12) = 0x32F0
+		*(data_0203D330_J + 0x14) = data_415A48_J
+		*(data_0203D330_J + 0x18) = data_1F11E4_J
+		*(data_0203D330_J + 0x1C) = 0
+		*(data_0203D330_J + 0x20) = data_1F11F0_J
+		*(data_0203D330_J + 0x24) = data_415A55_J
+		CreateSpriteAndAnimate(data_0203D330_J + 0x10, 0x5D, 0x1B)
+	}
+}
+
+
+
+
+
+
+fn_3C6FD0_J()
+{
+	if(*data_0203D080_J == 0)
+	{
+		*data_0203D080_J = 1
+		PlaySE(0x67)
+		FreeSpritePaletteByTag(0x1200)
+		LoadSpritePalette(data_3C7208_J)
+		LoadCompressedObjectPicUsingHeap(data_3C7128_J)
+		CreateSprite(data_3C7140_J, 0x26, 0x74)
+
+		for(r7 = 0; r7 < 0xC; r7++)
+		{
+			memcpy((r7 * 8) + data_0203D090_J, data_3C7134_J, 8)
+			*((r7 * 8) + data_0203D090_J + 6) += r7
+			LoadCompressedObjectPicUsingHeap(data_0203D090_J)
+			memcpy((r7 * 8) + data_0203D090_J, data_3C7164_J, 0x18)
+			
+			*((r7 * 8) + data_0203D090_J) += r7
+			CreateSprite((r7 * 8) + data_0203D090_J, (LOWEST_TWO_BITS(r7) * 0x22) + 0x6D, (ALL_BUT_LOWEST_TWO_BITS(r7) * 0x2A) + 0x22)
+		}
+
+		LoadCompressedObjectPicUsingHeap(data_3C71C0_J)
+		LoadCompressedObjectPicUsingHeap(data_3C71CC_J)
+		LoadCompressedObjectPicUsingHeap(data_3C71D8_J)
+		CreateSprite(data_3C7188_J, 0x16, 0x88)
+		CreateSprite(data_3C71A4_J, 0x36, 0x88)
+		CreateSpriteAndAnimate(data_3C71E4_J, 0xF4, 0x10)
+		fn_3C7D90_J()
+	}
+	
+	sub_808BFE0(data_3C7D70_J, data_06012400_J, 0x100, 0, 0xB, 0xC, 0)
+	sub_808BFE0(*(((*(data_03005098 + 0x18) + *(data_03005098 + 0x1A)) * 8) + *data_03005098), data_06012400_J, 0x100, 0, 6, 7, 0)
+	fn_3C7660_J(*(r0 + 0x18) + *(r0 + 0x1A) + 1, data_06012300_J)
+	
+	for(r4 = 0; r4 < 0xC; r4++)
+		fn_3C7660_J(*(data_03005098 + 0x18) + 1 + r4, (r4 * 0x400) + data_06012A00_J)
+
+	fn_3C7800_J()
+}
+
+
+
+
+
+
+fn_3C7D90_J()
+{
+	CreateSprite(data_3C7DB0_J, 0x18, 0x8A)
+	CreateSprite(data_3C7DCC_J, 0x38, 0x8A)
+}
+
+
+
+
+
+
+fn_3C7660_J(arg0, arg1)
+{
+	if(arg0 <= *(data_03005098 + 0xC))
+	{
+		fn_3C76A4_J(10, 0, arg1)
+		fn_3C76A4_J(arg0 / 100, 1, arg1)
+		fn_3C76A4_J((arg0 % 100) / 10, 2, arg1)
+		fn_3C76A4_J((arg0 % 100) % 10, 3, arg1)
+	}
+	else
+		fn_3C76C0_J(arg1)
+}
+
+
+
+
+
+
+fn_3C76A4_J(arg0, arg1, as_r7 arg2)
+{
+	for(r3 = 0; r3 < 8; r3++)
+		*((r3 * 8) + (arg1 * 0x20) + arg2) = *((r3 * 8) + (arg0 * 0x20) + data_3C7500_J)
+}
+
+
+
+
+
+
+fn_3C76C0_J(as_r7 arg0)
+{
+	for(r3 = 0; r3 < 0x20; r3++)
+		*((r3 * 8) + arg0) = 0
+}
+
+
+
+
+
+
+fn_3C7800_J()
+{
+	if(*(((*(data_03005098 + 0x18) + *(data_03005098 + 0x1A)) * 8) + *data_03005098 + 6) == 3)
+	{
+		r5 = *((*(((*(data_03005098 + 0x18) + *(data_03005098 + 0x1A)) * 8) + *data_03005098 + 4) * 0x1C) + gBaseStats + 7)
+		r4 = *((*(((*(data_03005098 + 0x18) + *(data_03005098 + 0x1A)) * 8) + *data_03005098 + 4) * 0x1C) + gBaseStats + 6)
+		
+		fn_3C7868_J((*(((r4 + 1) * 4) + *data_1088B0_J + 2) * 0x20) + *(data_1088B0_J + 4), data_06015A00_J)
+		
+		if(r4 != r5) 
+		{
+			fn_3C7868_J((*(((r5 + 1) * 4) + *data_1088B0_J + 2) * 0x20) + *(data_1088B0_J + 4), data_06015E00_J)
+		}
+		else
+			fn_3C7884_J(data_06015E00_J)
+	}
+	else
+	{
+		fn_3C7884_J(data_06015A00_J)
+		fn_3C7884_J(data_06015E00_J)
+	}
+}
+
+
+
+
+
+
+fn_3C7868_J(arg0, arg1)
+{
+	for(r2 = 0; r2 < 0x20; r2++)
+		*((r2 * 4) + arg1) = *((r2 * 4) + arg0)
+	
+	for(r2 = 0x20; r2 < 0x40; r2++)
+		*((r2 * 4) + arg1) = *((r2 * 4) + arg0 + 0x180)
+}
+
+
+
+
+
+
+fn_3C7884_J(as_r1 arg0)
+{
+	for(r2 = 0; r2 < 0x40; r2++)
+		*((r2 * 4) + arg0) = 0
+}
+
+
+
+
+
+
+fn_41563C_J(arg0)
+{
+	r5 = *(*(arg0 + 0x14)) & 0xF
+	
+	if(*(data_0203D080_J + 6) != *(data_03005098 + 0x18) && !(*(data_0203D080_J + 8) & (1 << r5)))
+	{
+		*(data_0203D080_J + 8) |= (1 << r5)
+		
+		if(r5 == 0)
+			*(data_0203D080_J + 8) = 0
+		
+		r6 = *(data_03005098 + 0x18) - *(data_0203D080_J + 6)
+		
+		if(r6 == 4)
+		{
+			fn_415714_J(0)
+			
+			if(*(data_0203D4F0_J + r5) < 8)
+			{
+				if(*(data_0203D080_J + 0xA) != 1)
+					r1 = *(arg0 + 0x29) -= 0x2A
+				
+				if(*(data_0203D080_J + 0xA) == 0)
+				{
+					if(r5 == 0)
+						*(data_0203D080_J + 0xA) = 1
+					
+					return
+				}
+			}
+		}
+		elseif(r6 + 4 == 0)
+		{
+			fn_415714_J(1)
+			
+			if(*(data_0203D4F0_J + r5) >= 4)
+			{
+				if(*(data_0203D080_J + 0xA) != 1)
+					*(arg0 + 0x29) += 0x2A
+				
+				if(*(data_0203D080_J + 0xA) == 0)
+				{
+					if(r5 == 0)
+						*(data_0203D080_J + 0xA) = 1
+					
+					return
+				}
+			}
+		}
+		
+		if(*(data_0203D080_J + 0xA) != 0)
+		{
+			DestroySprite(arg0)
+			fn_41553E_J(*(*(arg0 + 0x14)) & 0xF)
+			
+			if(r5 == 0)
+			{
+				*(data_0203D080_J + 6) = *(data_03005098 + 0x18)
+				*(data_0203D080_J + 0xA) = 0
+				*(data_0203D4F0_J + 0xF) = 0
+			}
+		}
+		else
+		{
+			*(arg0 + 0x28) = 0x7F
+			*(arg0 + 0x29) = 0x7F
+			
+			if(r5 == 0)
+				*(data_0203D080_J + 0xA) = 1
+		}
+	}
+}
+
+
+
+
+
+
+fn_415A54_J(arg0)
+{
+	*(arg0 + 0x28) = LAST_TWO_BITS(*(data_03005098 + 0x1A)) * 0x22
+	*(arg0 + 0x29) = FIRST_TWO_BITS(*(data_03005098 + 0x1A)) * 0x2A
+}
+
+
+
+
+
+
+fn_415714_J(arg0)
+{
+	if(*(data_0203D4F0_J + 0xF) != 1)
+	{
+		r5 = *data_0203D4F0_J
+		r6 = *(data_0203D4F0_J + 4)
+		r7 = *(data_0203D4F0_J + 8)
+		
+		if(arg0 == 0)
+		{
+			*(data_0203D4F0_J + 4) = r5
+			*(data_0203D4F0_J + 8) = r6
+			*data_0203D4F0_J = r7
+		}
+		else
+		{
+			*(data_0203D4F0_J + 8) = r5
+			*data_0203D4F0_J = r6
+			*(data_0203D4F0_J + 4) = r7
+		}
+	}
+	
+	*(data_0203D4F0_J + 0xF) = 1
+}

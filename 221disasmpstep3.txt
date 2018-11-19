@@ -1,0 +1,32 @@
+fn_4151F2_J()
+{
+	data_03003E98_J = 4
+	
+	{r0, r1, r3} = fn_4152D4_J()
+	
+	if(r0 < r1)
+	{
+		if(*(r3 + 6) == 0)
+			r0 = 0
+		
+		data_0203B800_J[0].data = gMonFrontPicTable[r0]
+		data_0203B800_J[0].size = 0x800
+		data_0203B800_J[0].tag = 0x8045
+		data_0203B800_J[8].data = gMonPaletteTable[r0]
+		data_0203B800_J[8].tag = 0x8046
+		LoadCompressedObjectPicUsingHeap(&data_0203B800_J[0])
+		LoadCompressedObjectPaletteUsingHeap(&data_0203B800_J[8])
+		LoadSpritePalette(data_415344_J)
+	}
+}
+
+
+
+
+
+
+fn_4152D4_J()
+{
+	r3 = data_03005098.0[data_03005098.0x18 + data_03005098.0x1A] // size 8
+	return {*(r3 + 4), 0x400, r3}
+}

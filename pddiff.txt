@@ -1363,11 +1363,29 @@ other data:
 		  Implements: for one specific function (pokedex main screen?): change a tile type, always use natdex, and replace the TABLE OF CONTENTS text with something - need more info
 		  Requires in future: fn_3C7C00_J, CopyBytes (j3C7C40), fn_3C7C4E_J
 = 102FFE: 00 F0 C3 FC -> ?? ?? ?? ?? (changes call to sub_8103988 to instead call fn at j4151A0, which just adds a call to fn_3C7400_J after; see 220disasm)
+		  Implements: clears all sprites from memory, something else (need more info)
+		  Required knowledge: j0203D080, j03003E98
+		  Requires in future: fn_3C7418_J
+= 103024: 7D 28 10 08 -> XX XX XX 08 (instead of setting callback to sub_810287C, set it to fn at j3C7A00, which is just sub_807249C followed by CB2_ReturnToFieldWithOpenMenu (sub_80568A8))
+		  Implements: some input, instead of moving to a new menu, does something volume-related then exits the pokedex
+= 103028: 00 F0 A8 F8 -> ?? ?? ?? ?? (changes call to sub_810317C to instead call fn at j4151AC, which just adds a call to fn_4151F2_J after; see 221disasm)
+		  Implements: loads some mon's front pic, need more info
+		  Required knowledge: j0203B800, j03003E98
+		  Requires in future: fn_4152D4_J
+= 103084: 04 F0 26 F9 -> ?? ?? ?? ?? (changes call to ListMenuGetScrollAndRow to instead call fn at j4151C4, which just adds a call to fn_4151D2_J after; see 222disasm)
 		  Implements: 
+		  Required knowledge: j03000DE8, 
+		  Requires in future: fn_1690E0_J, fn_3C6FD0_J, fn_3C74B0_J, fn_3C7660_J, fn_3C76A4_J, fn_3C76C0_J, fn_3C7800_J, fn_3C7868_J, fn_3C7884_J, fn_3C7D90_J, fn_4154F0_J, fn_41553E_J, fn_41563C_J, fn_415714_J, fn_4159E0_J, fn_415A54_J
 		  
 		  
 		  
-		 
+		  
+		  
+		  
+		  
+		  
+		  
+		  
 		  
 		  
 		  
@@ -1378,5 +1396,5 @@ other data:
 
 
 
-curr: j103D92 (4byte), j103DB8 (repoint), j103DBC (4byte), j103E18 (4byte), j103E32 (4byte)
+curr: j103E18 (4byte), j103E32 (4byte)
 next: j103F10

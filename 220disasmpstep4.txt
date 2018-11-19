@@ -1,0 +1,28 @@
+fn_3C7400_J()
+{
+	DestroySpriteAndFreeResources(gSprites[0x40]);
+	DestroySpriteAndFreeResources(gSprites[0x3F]);
+	fn_3C7418_J()
+}
+
+
+
+
+
+fn_3C7418_J()
+{
+	data_03003E98_J = 4
+
+	for(r5 = 0; r5 < 0x3F; r5++)
+		DestroySpriteAndFreeResources(data_020215EC_J - (r5 * 0x44))
+		
+	// equivalent to:
+	// for(r5 = 0; r5 < 0x3F; r5++)
+	// 	DestroySpriteAndFreeResources(gSprites[r5])
+
+	for(r5 = 0; r5 < 0x10; r5++)
+		DestroySpriteAndFreeResources(gSprites[r5]) // ??? redundant
+	
+	data_0203D080_J[0] = 0
+	data_0203D080_J[2] = 0
+}
