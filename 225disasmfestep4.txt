@@ -1,0 +1,9 @@
+lbl1: @10345C
+...
+FillWindowPixelBuffer(0, 0xFF)
+fn_106E78(data_415F4A, 1)
+FillWindowPixelBuffer(1, 0xFF)
+fn_104C2C(data_415F51)
+CopyWindowToVram(0, 2)
+CopyWindowToVram(1, 2)
+return

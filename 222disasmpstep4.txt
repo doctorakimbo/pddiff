@@ -20,10 +20,12 @@ fn_4154F0_J()
 			FreeSpritePaletteByTag(r0)
 	}
 	
+	list = gTasks[0].data;
+	
 	if(*(data_0203D080_J + 2) != 1)
 	{
 		*(data_0203D080_J + 2) = 1
-		*(data_0203D080_J + 6) = *(data_03005098 + 0x18)
+		*(data_0203D080_J + 6) = list->scrollOffset
 
 		for(i = 0; i < 5; i++)
 			LoadSpritePalette(&gMonIconPaletteTable[i])
@@ -46,15 +48,17 @@ fn_4154F0_J()
 
 fn_41553E_J(as_r7 arg0)
 {
+	list = gTasks[0].data;
+
 	fn_3C74B0_J()
 	FreeSpriteTilesByTag(0xC230 + arg0)
-	r1 = *(data_03005098 + 0x18) + *(data_0203D4F0_J + arg0)
+	r1 = list->scrollOffset + *(data_0203D4F0_J + arg0)
 	
-	if(r1 < *(data_03005098 + 0xC))
+	if(r1 < list->totalItems)
 	{
-		r0 = *((r1 * 8) + *data_03005098 + 4)
+		r0 = list->items[r1].id
 		
-		if((*((r1 * 8) + *data_03005098 + 4) >> 0x10) == 0)
+		if((list->items[r1].id >> 0x10) == 0)
 			r0 = 0
 		
 		data_0203D100_J[arg0].sprite.data = sub_8097028(r0)
@@ -62,9 +66,9 @@ fn_41553E_J(as_r7 arg0)
 		data_0203D100_J[arg0].sprite.size = 0x200
 		LoadSpriteSheet(&data_0203D100_J[arg0].sprite)
 		
-		if(HIGHER_TWO_BYTES(*((r1 * 8) + *data_03005098 + 4)) == 3)
-			data_0203D100_J[arg0].template.paletteTag = 0xDAC0 + gMonIconPaletteIndices[LOWER_TWO_BYTES(*((r1 * 8) + *data_03005098 + 4))]
-		elseif(HIGHER_TWO_BYTES(*((r1 * 8) + *data_03005098 + 4)) == 1)
+		if(HIGHER_TWO_BYTES(list->items[r1].id) == 3)
+			data_0203D100_J[arg0].template.paletteTag = 0xDAC0 + gMonIconPaletteIndices[LOWER_TWO_BYTES(list->items[r1].id)]
+		elseif(HIGHER_TWO_BYTES(list->items[r1].id) == 1)
 			data_0203D100_J[arg0].template.paletteTag = 0xA920
 		else
 			data_0203D100_J[arg0].template.paletteTag = 0xDAC0 + 3
@@ -111,15 +115,16 @@ fn_3C74B0_J()
 fn_41563C_J(arg0)
 {
 	r5 = arg0.template.tileTag & 0xF
+	list = gTasks[0].data;
 	
-	if(*(data_0203D080_J + 6) != *(data_03005098 + 0x18) && !(*(data_0203D080_J + 8) & (1 << r5)))
+	if(*(data_0203D080_J + 6) != list->scrollOffset && !(*(data_0203D080_J + 8) & (1 << r5)))
 	{
 		*(data_0203D080_J + 8) |= (1 << r5)
 		
 		if(r5 == 0)
 			*(data_0203D080_J + 8) = 0
 		
-		r6 = *(data_03005098 + 0x18) - *(data_0203D080_J + 6)
+		r6 = list->scrollOffset - *(data_0203D080_J + 6)
 		
 		if(r6 == 4)
 		{
@@ -128,7 +133,7 @@ fn_41563C_J(arg0)
 			if(*(data_0203D4F0_J + r5) < 8)
 			{
 				if(*(data_0203D080_J + 0xA) != 1)
-					r1 = arg0.centerToCornerVecY -= 0x2A
+					arg0.centerToCornerVecY -= 0x2A
 				
 				if(*(data_0203D080_J + 0xA) == 0)
 				{
@@ -165,7 +170,7 @@ fn_41563C_J(arg0)
 			
 			if(r5 == 0)
 			{
-				*(data_0203D080_J + 6) = *(data_03005098 + 0x18)
+				*(data_0203D080_J + 6) = list->scrollOffset
 				*(data_0203D080_J + 0xA) = 0
 				*(data_0203D4F0_J + 0xF) = 0
 			}
@@ -245,8 +250,9 @@ fn_4159E0_J()
 
 fn_415A54_J(arg0)
 {
-	arg0.centerToCornerVecX = LAST_TWO_BITS(*(data_03005098 + 0x1A)) * 0x22
-	arg0.centerToCornerVecY = FIRST_TWO_BITS(*(data_03005098 + 0x1A)) * 0x2A
+	list = gTasks[0].data;
+	arg0.centerToCornerVecX = LAST_TWO_BITS(list->selectedRow) * 0x22
+	arg0.centerToCornerVecY = FIRST_TWO_BITS(list->selectedRow) * 0x2A
 }
 
 
@@ -284,12 +290,14 @@ fn_3C6FD0_J()
 		fn_3C7D90_J()
 	}
 	
+	list = gTasks[0].data;
+	
 	sub_808BFE0(data_3C7D70_J, data_06012400_J, 0x100, 0, 0xB, 0xC, 0)
-	sub_808BFE0(*(((*(data_03005098 + 0x18) + *(data_03005098 + 0x1A)) * 8) + *data_03005098), data_06012400_J, 0x100, 0, 6, 7, 0)
-	fn_3C7660_J(*(data_03005098 + 0x18) + *(data_03005098 + 0x1A) + 1, data_06012300_J)
+	sub_808BFE0(list->items[list->scrollOffset + list->selectedRow].name, data_06012400_J, 0x100, 0, 6, 7, 0)
+	fn_3C7660_J(list->scrollOffset + list->selectedRow + 1, data_06012300_J)
 	
 	for(i = 0; i < 0xC; i++)
-		fn_3C7660_J(*(data_03005098 + 0x18) + 1 + i, (i * 0x400) + data_06012A00_J)
+		fn_3C7660_J(list->scrollOffset + 1 + i, (i * 0x400) + data_06012A00_J)
 
 	fn_3C7800_J()
 }
@@ -312,7 +320,9 @@ fn_3C7D90_J()
 
 fn_3C7660_J(arg0, arg1)
 {
-	if(arg0 <= *(data_03005098 + 0xC))
+	list = gTasks[0].data;
+
+	if(arg0 <= list->totalItems)
 	{
 		fn_3C76A4_J(10, 0, arg1)
 		fn_3C76A4_J(arg0 / 100, 1, arg1)
@@ -352,10 +362,12 @@ fn_3C76C0_J(as_r7 arg0)
 
 fn_3C7800_J()
 {
-	if(*(((*(data_03005098 + 0x18) + *(data_03005098 + 0x1A)) * 8) + *data_03005098 + 6) == 3)
+	list = gTasks[0].data;
+
+	if(list->items[list->scrollOffset + list->selectedRow].6 == 3)
 	{
-		r4 = gBaseStats[*(((*(data_03005098 + 0x18) + *(data_03005098 + 0x1A)) * 8) + *data_03005098 + 4)].type1
-		r5 = gBaseStats[*(((*(data_03005098 + 0x18) + *(data_03005098 + 0x1A)) * 8) + *data_03005098 + 4)].type2
+		r4 = gBaseStats[list->items[list->scrollOffset + list->selectedRow].id].type1
+		r5 = gBaseStats[list->items[list->scrollOffset + list->selectedRow].id].type2
 		
 		fn_3C7868_J((*(((r4 + 1) * 4) + *data_1088B0_J + 2) * 0x20) + *(data_1088B0_J + 4), data_06015A00_J)
 		

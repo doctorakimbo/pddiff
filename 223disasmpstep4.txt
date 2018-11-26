@@ -1,0 +1,197 @@
+ListMenuHandleInputGetItemlistTaskId(listTaskId)
+{
+	list = gTasks[listTaskId].data;
+
+	if(gMain.newKeys & A_BUTTON)
+		return list->items[list->scrollOffset + list->selectedRow].id;
+	elseif(gMain.newKeys & B_BUTTON)
+		return LIST_B_PRESSED;
+	elseif(gMain.newAndRepeatedKeys & DPAD_LEFT)
+	{
+		ListMenuChangeSelection(list, TRUE, 1, FALSE);
+		fn_3C7700_J(list, TRUE, 1, FALSE)
+	}
+	elseif(gMain.newAndRepeatedKeys & DPAD_RIGHT)
+	{
+		ListMenuChangeSelection(list, TRUE, 1, TRUE);
+		fn_3C7700_J(list, TRUE, 1, TRUE)
+	}
+	else
+	{
+		switch(list->template.scrollMultiple)
+		{
+		case LIST_MULTIPLE_SCROLL_DPAD:
+			leftButton = gMain.newAndRepeatedKeys & DPAD_UP;
+			rightButton = gMain.newAndRepeatedKeys & DPAD_DOWN;
+			
+			break;
+		case LIST_MULTIPLE_SCROLL_L_R:
+			leftButton = gMain.newAndRepeatedKeys & L_BUTTON;
+			rightButton = gMain.newAndRepeatedKeys & R_BUTTON;
+			
+			break;
+		default:
+			leftButton = FALSE;
+			rightButton = FALSE;
+			
+			break;
+		}
+		
+		if(leftButton)
+		{
+			ListMenuChangeSelection(list, TRUE, list->template.maxShowed, FALSE);
+			fn_3C7700_J(list, TRUE, list->template.maxShowed, FALSE)
+		}
+		elseif(rightButton)
+		{
+			ListMenuChangeSelection(list, TRUE, list->template.maxShowed, TRUE);
+			fn_3C7700_J(list, TRUE, list->template.maxShowed, TRUE)
+		}
+	}
+		
+	fn_415262_J()
+	return LIST_NOTHING_CHOSEN;
+}
+
+
+
+
+
+
+fn_3C7700_J(list, updateCursorAndCallCallback, count, movingDown)
+{
+	offset = list->scrollOffset;
+	selectedRow = list->selectedRow;
+	
+	if(updateCursorAndCallCallback)
+	{
+		if(movingDown)
+		{
+			if(count != 1)
+			{
+				if(gMain.heldKeysRaw & R_BUTTON)
+				{
+					lastItemIndex = list->template.totalItems - 1;
+					
+					if(lastItemIndex > 7)
+					{
+						offset = ROUND_DOWN_TO_NEAREST_8(lastItemIndex) - 8;
+						selectedRow = (lastItemIndex % 8) + 8;
+					}
+					else
+					{
+						offset = 0;
+						selectedRow = lastItemIndex;
+					}
+				}
+				else
+				{
+					if(selectedRow >= 8)
+					{
+						if(offset + 0xC >= list->template.totalItems)
+							selectedRow = (list->template.totalItems - offset) - 1;
+						else
+						{
+							offset += 4;
+							
+							if(offset + 0xF >= list->template.totalItems)
+								selectedRow = (list->template.totalItems - offset) - 1;
+						}
+					}
+					else
+					{
+						selectedRow += 4;
+						
+						if(offset + selectedRow >= list->template.totalItems)
+							selectedRow = (list->template.totalItems - offset) - 1;
+					}
+				}
+			}
+			else
+			{
+				if(offset + selectedRow + 1 >= list->template.totalItems)
+					return;
+				
+				if(selectedRow == 0xB)
+				{
+					offset += 4;
+					selectedRow -= 4;
+				}
+				
+				selectedRow++;
+			}
+		}
+		else
+		{
+			if(count != 1)
+			{
+				if(gMain.heldKeysRaw & R_BUTTON)
+				{
+					offset = 0;
+					selectedRow = 0;
+				}
+				else
+				{
+					if(selectedRow >= 4)
+						selectedRow -= 4;
+					elseif(offset < 4)
+					{
+						offset = 0;
+						selectedRow = 0;
+					}
+					else
+						offset -= 4;
+				}
+			}
+			else
+			{
+				if(selectedRow != 0)
+					selectedRow--;
+				else
+				{
+					if(offset < 4)
+						return;
+					
+					selectedRow += 3;
+					offset -= 4;
+				}
+			}
+		}
+		
+		if(list->scrollOffset != offset || list->selectedRow != selectedRow)
+		{
+			list->scrollOffset = offset;
+			list->selectedRow = selectedRow;
+			PlaySE(0x65);
+		}
+	}
+}
+
+
+
+
+
+
+fn_415262_J()
+{
+	{id, maxId, item} = fn_4152D4_J()
+	
+	if(id < maxId)
+	{
+		if(item.6 == 0)
+			id = 0;
+		
+		data_0203B800_J.sprite.data = gMonFrontPicTable[id]
+		data_0203B800_J.sprite.size = 0x800
+		data_0203B800_J.sprite.tag = 0x8045
+		data_0203B800_J.palette.data = gMonPaletteTable[id]
+		data_0203B800_J.palette.tag = 0x8046
+		LoadCompressedObjectPicUsingHeap(&data_0203B800_J.sprite)
+		LoadCompressedObjectPaletteUsingHeap(&data_0203B800_J.palette)
+		LoadSpritePalette(data_415344_J)
+		CreateSpriteAtEnd(data_415318_J, 0x26, 0x32)
+		CreateSpriteAtEnd(data_415300_J, 0x2A, 0x34)
+	}
+	
+	fn_4154F0_J()
+}

@@ -1,0 +1,162 @@
+lbl1: @103F10
+r0 = 3
+fn_416970_J()
+r0 = 0x20
+s0 = r0
+s1 = r0
+r0 = 0x11
+s2 = r0
+r0 = 1
+r1 = 0
+r2 = 0
+r3 = 0
+fn_2554()
+r0 = data_45216C
+AddWindow()
+r2 = data_0203ACF0
+r1 = *r2
+r1 += 0x40
+*r1 = r0
+r1 = &s3
+r0 = data_452174
+ldmia r0!, {r3, r4, r5}
+stmia r1!, {r3, r4, r5}
+ldmia r0!, {r3, r4, r5}
+stmia r1!, {r3, r4, r5}
+r2 = *r2
+r0 = *(r2 + 0x44)
+s3 = r0
+r1 = &s3
+r0 = r2
+r0 += 0x40
+r0 = *r0
+*(r1 + 0x10) = r0
+r0 = r2
+r0 += 0x48
+r0 = *r0
+*(r1 + 0xC) = r0
+r0 = r2
+r0 += 0x42
+r1 = *r0
+r0 = &s3
+fn_103924()
+fn_3C7C00_J()
+fn_3C7350_J()
+r0 = data_0203D090_J
+fn_104C2C()
+r0 = 0
+r1 = 2
+CopyWindowToVram()
+r0 = 1
+r1 = 2
+CopyWindowToVram()
+return
+
+
+
+
+
+
+
+fn_416970_J:
+r5 = r0
+r0 = data_E97740_J
+r1 = 0x30
+r2 = 0x20
+LoadPalette()
+r2 = data_06000000_J
+r1 = 0x4000
+r0 = r2 + r1
+r1 = data_E97760_J
+r2 = 0xCC0
+memcpy()
+r4 = data_415AC0_J
+r1 = data_030008E8_J
+r0 = r5 * 0x10
+r1 += r0
+r1 = *(r1 + 4)
+r5 = 0
+r6 = 0
+r3 = 0
+goto lbl2
+
+lbl2:
+r7 = r6 * 0x40
+r0 = r5 * 2
+r7 += r0
+r2 = *(r4 + r3)
+r0 = 0x3FF
+r2 &= r0
+r0 = 0x3000
+r2 += r0
+r0 = 0x200
+r2 += r0
+*(r1 + r7) = r2
+r3 += 2
+if(r5 >= 0x1D) goto lbl3
+
+r5++
+goto lbl2
+
+lbl3:
+if(r6 >= 0x13) goto lbl4
+
+r5 = 0
+r6++
+goto lbl2
+
+lbl4:
+return
+
+
+
+
+
+
+
+fn_3C7350_J:
+r0 = data_0203D090_J
+r1 = 0
+r2 = 0x20
+fn_1E5ED8()
+r0 = data_0203D090_J
+r1 = data_3C73B0_J
+r2 = 6
+memcpy()
+r0 = data_0203D090_J
+r0 += 0xB
+r1 = data_3C73BC_J
+r2 = 7
+memcpy()
+r4 = data_0203ACF0
+r4 = *r4
+r4 += 0x6A
+r1 = *r4
+r0 = data_0203D090_J
+r0 += 7
+r2 = 0
+r3 = 3
+ConvertIntToDecimalStringN()
+r1 = *(r4 + 2)
+r0 = data_0203D090_J
+r0 += 0x13
+r2 = 0
+r3 = 3
+ConvertIntToDecimalStringN()
+r1 = 0
+r3 = 0
+goto lbl2
+
+lbl2:
+r1++
+if(r1 == 0x10) goto lbl3
+
+r0 = data_0203D090_J
+r2 = *(r0 + r1)
+if(r2 != 0xFF) goto lbl2
+
+*(r0 + r1) = r3
+goto lbl2
+
+lbl3:
+return

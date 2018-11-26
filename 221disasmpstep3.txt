@@ -2,20 +2,20 @@ fn_4151F2_J()
 {
 	data_03003E98_J = 4
 	
-	{r0, r1, r3} = fn_4152D4_J()
+	{id, maxId, item} = fn_4152D4_J()
 	
-	if(r0 < r1)
+	if(id < maxId)
 	{
-		if(*(r3 + 6) == 0)
-			r0 = 0
+		if(item.6 == 0)
+			id = 0;
 		
-		data_0203B800_J[0].data = gMonFrontPicTable[r0]
-		data_0203B800_J[0].size = 0x800
-		data_0203B800_J[0].tag = 0x8045
-		data_0203B800_J[8].data = gMonPaletteTable[r0]
-		data_0203B800_J[8].tag = 0x8046
-		LoadCompressedObjectPicUsingHeap(&data_0203B800_J[0])
-		LoadCompressedObjectPaletteUsingHeap(&data_0203B800_J[8])
+		data_0203B800_J.sprite.data = gMonFrontPicTable[id]
+		data_0203B800_J.sprite.size = 0x800
+		data_0203B800_J.sprite.tag = 0x8045
+		data_0203B800_J.palette.data = gMonPaletteTable[id]
+		data_0203B800_J.palette.tag = 0x8046
+		LoadCompressedObjectPicUsingHeap(&data_0203B800_J.sprite)
+		LoadCompressedObjectPaletteUsingHeap(&data_0203B800_J.palette)
 		LoadSpritePalette(data_415344_J)
 	}
 }
@@ -27,6 +27,8 @@ fn_4151F2_J()
 
 fn_4152D4_J()
 {
-	r3 = data_03005098.0[data_03005098.0x18 + data_03005098.0x1A] // size 8
-	return {*(r3 + 4), 0x400, r3}
+	list = gTasks[0].data;
+
+	item = list->items[list->scrollOffset + list->selectedRow];
+	return {item.id, 0x400, &item}
 }

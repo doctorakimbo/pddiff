@@ -1,0 +1,39 @@
+ListMenuHandleInput(id)
+{
+	if(gMain.0x2E & 1)
+		return data_03005098[id].4[data_03005098[id].0x18 + data_03005098[id].0x1A]
+	elseif(gMain.0x2E & 2)
+		return -2
+	elseif(gMain.0x30 & 0x40)
+		ListMenuChangeSelection(&data_03005098[id], 1, 1, 0)
+	elseif(gMain.0x30 & 0x80)
+		ListMenuChangeSelection(&data_03005098[id], 1, 1, 1)
+	else
+	{
+		switch(data_03005098[id].0x16 >> 6)
+		{
+		case 1:
+			r2 = gMain.0x30 & 0x20
+			r0 = gMain.0x30 & 0x10
+			
+			break;
+		case 2:
+			r2 = gMain.0x30 & 0x200
+			r0 = gMain.0x30 & 0x100
+			
+			break;
+		default:
+			r2 = 0
+			r0 = 0
+			
+			break;
+		}
+		
+		if(r2 != 0)
+			ListMenuChangeSelection(&data_03005098[id], 1, data_03005098[id].0xE, 0)
+		elseif(r0 != 0)
+			ListMenuChangeSelection(&data_03005098[id], 1, data_03005098[id].0xE, 1)
+	}
+		
+	return -1
+}

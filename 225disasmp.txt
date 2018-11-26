@@ -1,0 +1,12 @@
+lbl1: @1041FC
+...
+fn_3C7C00_J()
+r0 = data_415F51
+fn_104C2C()
+r0 = 0
+r1 = 2
+CopyWindowToVram()
+r0 = 1
+r1 = 2
+CopyWindowToVram()
+return

@@ -1,0 +1,20 @@
+lbl1: @10345C
+...
+r0 = 0
+r1 = 0xFF
+FillWindowPixelBuffer()
+r0 = data_415F4A
+r1 = 1
+fn_106E78()
+r0 = 1
+r1 = 0xFF
+FillWindowPixelBuffer()
+r0 = data_415F51
+fn_104C2C()
+r0 = 0
+r1 = 2
+CopyWindowToVram()
+r0 = 1
+r1 = 2
+CopyWindowToVram()
+return

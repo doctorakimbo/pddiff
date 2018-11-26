@@ -1,0 +1,22 @@
+sub_810317C()
+{
+	FillBgTilemapBufferRect(3, 0xE, 0, 0, 0x1E, 0x14, 0)
+	FillBgTilemapBufferRect(1, 0, 0, 0, 0x20, 0x20, 0x11)
+	data_0203ACF0->0x40 = AddWindow(data_45216C)
+	r1 = &s3
+	r0 = data_452174
+	ldmia r0!, {r3, r4, r5}
+	stmia r1!, {r3, r4, r5}
+	ldmia r0!, {r3, r4, r5}
+	stmia r1!, {r3, r4, r5}
+	s3.0 = data_0203ACF0->0x44
+	s3.0x10 = data_0203ACF0->0x40
+	s3.0xC = data_0203ACF0->0x48
+	sub_8103924(&s3, data_0203ACF0->0x42)
+	FillWindowPixelBuffer(0, 0xFF)
+	sub_8106E78(data_415F3D, 1)
+	FillWindowPixelBuffer(1, 0xFF)
+	sub_8104C2C(data_415F51)
+	CopyWindowToVram(0, 2)
+	CopyWindowToVram(1, 2)
+}

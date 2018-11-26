@@ -1,0 +1,104 @@
+sub_810317C()
+{
+	fn_416970_J(3)
+	FillBgTilemapBufferRect(1, 0, 0, 0, 0x20, 0x20, 0x11)
+	r0 = AddWindow(data_45216C)
+	r2 = data_0203ACF0
+	r1 = *r2
+	r1 += 0x40
+	*r1 = r0
+	r1 = &s3
+	r0 = data_452174
+	ldmia r0!, {r3, r4, r5}
+	stmia r1!, {r3, r4, r5}
+	ldmia r0!, {r3, r4, r5}
+	stmia r1!, {r3, r4, r5}
+	r2 = *r2
+	r0 = *(r2 + 0x44)
+	s3 = r0
+	r1 = &s3
+	r0 = r2
+	r0 += 0x40
+	r0 = *r0
+	*(r1 + 0x10) = r0
+	r0 = r2
+	r0 += 0x48
+	r0 = *r0
+	*(r1 + 0xC) = r0
+	r0 = r2
+	r0 += 0x42
+	sub_8103924(&s3, *r0)
+	fn_3C7C00_J()
+	fn_3C7350_J()
+	sub_8104C2C(data_0203D090_J)
+	CopyWindowToVram(0, 2)
+	CopyWindowToVram(1, 2)
+}
+
+
+
+
+
+
+
+fn_416970_J()
+{
+	r5 = arg0
+	LoadPalette(data_E97740_J, 0x30, 0x20)
+	r2 = data_06000000_J
+	r1 = 0x4000
+	memcpy(r2 + r1, data_E97760_J, 0xCC0)
+	r4 = data_415AC0_J
+	r1 = data_030008E8_J
+	r0 = r5 * 0x10
+	r1 += r0
+	r1 = *(r1 + 4)
+	r3 = 0
+
+	for(r6 = 0; r6 < 0x13; r6++)
+	{
+		for(r5 = 0; r5 < 0x1D; r5++)
+		{
+			r7 = r6 * 0x40
+			r0 = r5 * 2
+			r7 += r0
+			r2 = *(r4 + r3)
+			r0 = 0x3FF
+			r2 &= r0
+			r0 = 0x3000
+			r2 += r0
+			r0 = 0x200
+			r2 += r0
+			*(r1 + r7) = r2
+			r3 += 2
+		}
+	}
+}
+
+
+
+
+
+
+
+fn_3C7350_J()
+{
+	fn_1E5ED8(data_0203D090_J, 0, 0x20)
+	memcpy(data_0203D090_J, data_3C73B0_J, 6)
+	memcpy(data_0203D090_J + 0xB, data_3C73BC_J, 7)
+	r4 = data_0203ACF0
+	r4 = *r4
+	r4 += 0x6A
+	ConvertIntToDecimalStringN(data_0203D090_J + 7, *r4, 0, 3)
+	ConvertIntToDecimalStringN(data_0203D090_J + 0x13, *(r4 + 2), 0, 3)
+	r3 = 0
+
+	for(r1 = 1; r1 < 0x10; r1++)
+	{
+		r0 = data_0203D090_J
+		r2 = *(r0 + r1)
+		
+		if(r2 == 0xFF)
+			*(r0 + r1) = r3
+	}
+}

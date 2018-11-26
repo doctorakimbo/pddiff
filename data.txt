@@ -176,6 +176,7 @@ F0 AC 03 02: 68 AC 03 02: ??????
 30 AD 03 02: A8 AC 03 02: gSpecialVar_ItemId
 FA AD 03 02: 72 AD 03 02: ??????
 		   : 00 B8 03 02: ?????? (fn_4151F2_J: sprite and palette data temporarily stored here)
+								 (fn_415262_J: sprite and palette data temporarily stored here)
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
 		   : 18 B9 03 02: gRecordedAbilities
 		   : 50 B9 03 02: ?????? (appears to be an array of bits, one for each battler)
@@ -249,14 +250,20 @@ FA AD 03 02: 72 AD 03 02: ??????
 		   : 58 CB 03 02: ?????? (GetFlagPointer: if the flag number is 0xF000 or above, read it from this[number - 0xF000])
 		   : C0 CE 03 02: ?????? (the last byte that's saved to the save file, start byte is 0203C010)
 		   : 80 D0 03 02: ?????? (fn_3C7418_J: 4 bytes zeroed)
-								 (fn_4154F0_J: if this.2 isn't 1, set it to 1, set this.6 to data_03005098.0x18, then do some functionality)
-								 (fn_41563C_J: only ran if this.6 isn't equal to data_03005098.0x18 and this.8[the current tiletag] isn't set)
+								 (fn_4154F0_J: if this.2 isn't 1, set it to 1, set this.6 to gTasks[0].data->scrollOffset, then do some functionality)
+								 (fn_41563C_J: only ran if this.6 isn't equal to gTasks[0].data->scrollOffset and this.8[the current tiletag] isn't set)
 								 (fn_41563C_J: set this.8[the current tiletag])
-								 (fn_41563C_J: if data_03005098.0x18 - this.6 is 4, )
-								 (fn_41563C_J: if data_03005098.0x18 - this.6 is -4, )
-		   : 90 D0 03 02: ?????? 
-		   : 00 D1 03 02: ?????? (appears to be an array of 4 SpriteTemplates)
-								 (fn_E9F398_J: used to temporarily store SpriteTemplates before their creation in a loop)
+								 (fn_41563C_J: if the current tiletag is 0, zero out this.8)
+								 (fn_41563C_J: if gTasks[0].data->scrollOffset - this.6 is 4, fn_415714_J(0), then if data_0203D4F0_J[the current tiletag] < 8 and this.0xA isn't set, move the sprite up 0x2A and set this.0xA if the current tiletag is 0)
+								 (fn_41563C_J: if gTasks[0].data->scrollOffset - this.6 is -4, fn_415714_J(1), then if data_0203D4F0_J[the current tiletag] > 3 and this.0xA isn't set, move the sprite down 0x2A and set this.0xA if the current tiletag is 0)
+								 (fn_41563C_J: if this.0xA is set, destroy the sprite, do some functionality, then if the current tiletag is 0, set this.6 to gTasks[0].data->scrollOffset, unset this.0xA, and set data_0203D4F0_J[0xF] to 0)
+								 (fn_41563C_J: if this.0xA isn't set, move the sprite to {0x7F, 0x7F}, and set this.0xA if the current tiletag is 0)
+								 (fn_4159E0_J: only execute if this.0 isn't set)
+								 (fn_3C6FD0_J: if this.0xA isn't set, set it, then do some functionality)
+		   : 90 D0 03 02: ?????? (fn_3C6FD0_J: used to temporarily store image and sprite data)
+								 (fn_3C7350_J: used to temporarily store string data)
+		   : 00 D1 03 02: ?????? (fn_E9F398_J: used to temporarily store SpriteTemplates before their creation in a loop)
+								 (fn_41553E_J: used to temporarily store a sprite and its template before their creation)
 		   : 00 D2 03 02: ?????? (appears to be an array of 4 SpriteTemplates)
 								 (fn_E9F398_J: used to temporarily store SpriteTemplates before their creation in a loop)
 		   : E0 D2 03 02: ?????? (fn_EE5000: set this.4, this.8, and this.0xC to 0 and this.0 to data_0203CB54_J on start)
@@ -289,15 +296,15 @@ FA AD 03 02: 72 AD 03 02: ??????
 								 (InitStartMenuStep: set to 1 when this is called with parameter 5 (final step))
 								 (TransferPlttBuffer: if this isn't 0 and addr 0x3000000 is 0x7F60, do... something, otherwise delete palette 0xBA)
 								 (TransferPlttBuffer: if addr 0x3000000 isn't 0x7F60, set this to 0)
-		   : 00 D3 03 02: ?????? (Appears to be an array of characters)
-								 (fn_EB8398_J: Set this[0] to data_0203BF70_J[battler].8[moveId])
+		   : 00 D3 03 02: ?????? (fn_EB8398_J: Set this[0] to data_0203BF70_J[battler].8[moveId])
 								 (fn_EB8398_J: Set this[2] to CHAR_SLASH)
 								 (fn_EB8398_J: Set this[3] to data_0203BF70_J[battler].0xC[moveId])
 								 (fn_EB8398_J: Print the full contents)
-		   : 30 D3 03 02: ?????? 
+								 (fn_3C74B0_J: used to temporarily store a palette before its creation)
+		   : 30 D3 03 02: ?????? (fn_4159E0_J: used to temporarily store a sprite, template, and palette before their creation)
 		   : 40 D3 03 02: ?????? (Appears to be an array of ints)
-								 (fn_EB8398_J: Set this[1] to the ratio from earlier)
-								 (fn_EB8398_J: Set this[2] to (the ratio from earlier) + 1)
+								 (fn_EB8398_J: Set this[1] to the ratio from data_0203D300_J)
+								 (fn_EB8398_J: Set this[2] to (the ratio from data_0203D300_J) + 1)
 								 (fn_EB8398_J: Set this[0] to 0)
 								 (fn_EB8398_J: Use the full contents as an argument to box_print)
 		   : 80 D3 03 02: ?????? (Appears to be an array of record size 0x20)
@@ -307,7 +314,15 @@ FA AD 03 02: 72 AD 03 02: ??????
 		   : 20 D4 03 02: ?????? (Appears to be a SpriteSheet object)
 							     (fn_EB8398_J: Set to {data = data_E95DDC, size = 0x100, tag = (0x78A0 + moveId)} then call LoadSpriteSheet())
 		   : 80 D4 03 02: gBackupMonData
-		   : F0 D4 03 02: ??????
+		   : F0 D4 03 02: ?????? (fn_4154F0_J: from 0 to 0xB, set this[i] to i)
+								 (fn_41553E_J: use (gTasks[0].data->scrollOffset + this[arg0]) as an index into gTasks[0].data->items)
+								 (fn_41553E_J: calculate sprite coordinates using this[arg0])
+								 (fn_41563C_J: if gTasks[0].data->scrollOffset - data_0203D080_J.6 is 4, check if this[the current tiletag] is less than 8)
+								 (fn_41563C_J: if gTasks[0].data->scrollOffset - data_0203D080_J.6 is -4, check if this[the current tiletag] is more than 3)
+								 (fn_41563C_J: if data_0203D080_J.0xA is set and the current tiletag is 0, unset this[0xF])
+								 (fn_415714_J: if this[0xF] isn't set and arg0 is 0, rotate the first three bytes left 4)
+								 (fn_415714_J: if this[0xF] isn't set and arg0 is 1, rotate the first three bytes right 4)
+								 (fn_415714_J: set this[0xF])
            : 00 D5 03 02: ?????? (sub_8032768: zeroed starting from here to 0203D600)
 								 (fn_E9EA40_J: set to 0 at start)
 								 (fn_E9EBB0_J: if data_0203D52A_J is 0xFF, increment this and set REG_BLDY to this each frame until 0x10, then set data_0203D52A_J to 0xFE)
@@ -373,11 +388,12 @@ FA AD 03 02: 72 AD 03 02: ??????
 		   : 82 D6 03 02: ?????? (fn_E9EBB0_J: if data_0203D52A_J is 0, data_0203D50A_J is 2, A is pressed, and gMysteryFuncUnknownListSize isn't 0, toggle this)
 		   : 90 D6 03 02: ?????? (fn_EA0158_J: set to 1 at start)
 								 (fn_E9EBB0_J: if data_0203D52A_J is 0, data_0203D50A_J is 2, and any key but B is pressed, set this to 1)
-		   : 00 D8 03 02: ??????
+		   : 00 D8 03 02: ?????? (fn_3C74B0_J: used to temporarily store some palette data)
 		   : 00 FE 03 02: gLastUsedItemType
 		   : 04 FE 03 02: gCritCapture
 		   
 		   : 00 00 00 03: ??????
+		   : E8 08 00 03: ??????
 		   : E8 0D 00 03: ??????
 		   : 9C 0F 00 03: ??????
 AE 0F 00 03: AE 0F 00 03: sPrimaryTilesetCBCounter
@@ -404,7 +420,7 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 78 50 00 03: B8 50 00 03: ??????
 7C 50 00 03: BC 50 00 03: ??????
 90 50 00 03: D0 50 00 03: gTasks
-98 50 00 03: D8 50 00 03: ??????
+98 50 00 03: D8 50 00 03: gTasks.data
 7C 53 00 03: CC 53 00 03: gCB2_AfterEvolution
 94 53 00 03: E4 53 00 03: gFastSaveSection
 		   : 40 55 00 03: ?????? (GetEvolutionTargetSpecies: EVO_FRIENDSHIP_DAY works when this.2 is less than 11; EVO_FRIENDSHIP_NIGHT works when this.2 is between 12 and 23 inclusive) (gLocalTime?)
@@ -427,6 +443,7 @@ funcs e,j,desc:
 002124 = 002124 = CopyToBgTilemapBufferRect
 002228 = 002228 = CopyToBgTilemapBufferRect_ChangePalette
 002454 = 002454 = FillBgTilemapBufferRect_Palette0
+002554 = 002554 = FillBgTilemapBufferRect
 002BB0 = 002BB0 = AllocZeroed
 002BC4 = 002BC4 = Free
 002C48 = 002C44 = AddTextPrinterParameterized
@@ -704,7 +721,12 @@ funcs e,j,desc:
 0F6F1C = 0F7F7C = NewMenuHelpers_DrawStdWindowFrame
 0F793C = 0F899C = GetStartMenuWindowId
 0F7948 = 0F89A8 = RemoveStartMenuWindow
+103924 = 1046E0 = ?????
+?????? = 105584 = ?????
+104C2C = 1059E8 = ?????
+106E78 = ?????? = ?????
 1074DC = 107FE0 = ListMenuPrintEntries
+10799C = 1084A0 = ListMenuChangeSelection
 108E70 = 109968 = DisplayItemMessage
 10AD10 = 10B80C = UseRegisteredKeyItemOnField
 10F904 = 110438 = MoveMenuCursor
@@ -810,11 +832,13 @@ funcs e,j,desc:
 ?????? = 3C6170 = CopyMonForBoxViewing (unimplemented)
 ?????? = 3C7400 = ????? (unimplemented)
 ?????? = 3C7418 = ????? (unimplemented)
+?????? = 3C7700 = ????? (unimplemented)
 ?????? = 3C7A00 = ????? (unimplemented)
 ?????? = 3C7C00 = ????? (unimplemented)
 ?????? = 3C7C40 = CopyBytes (unimplemented)
 ?????? = 3C7C4E = ????? (unimplemented)
 ?????? = 4151F2 = ????? (unimplemented)
+?????? = 415262 = ????? (unimplemented)
 ?????? = 4152D4 = ????? (unimplemented)
 
 

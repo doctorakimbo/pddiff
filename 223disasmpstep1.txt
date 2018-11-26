@@ -1,0 +1,273 @@
+fn_4150E0_J(arg0)
+{
+	r1 = r0 * 4
+	r1 += r0
+	r1 *= 8
+	r0 = data_03005098
+	r3 = r1 + r0
+	r2 = gMain
+	r1 = *(r2 + 0x2E)
+	r0 = 1
+	r0 &= r1
+	
+	if(r0 != 0)
+	{
+		r0 = *(r3 + 0x18)
+		r1 = *(r3 + 0x1A)
+		r0 += r1
+		r1 = *r3
+		r0 *= 8
+		r0 += r1
+		return *(r0 + 4)
+	}
+	else
+	{
+		r0 = 2
+		r0 &= r1
+		
+		if(r0 != 0)
+			return -2
+		else
+		{
+			r1 = *(r2 + 0x30)
+			r0 = 0x20
+			r0 &= r1
+			
+			if(r0 != 0)
+				fn_3C7700_J(ListMenuChangeSelection(r3, 1, 1, 0), 1, 1, 0)
+			else
+			{
+				r0 = 0x10
+				r0 &= r1
+				
+				if(r0 != 0)
+					fn_3C7700_J(ListMenuChangeSelection(r3, 1, 1, 1), 1, 1, 1)
+				else
+				{
+					r0 = *(r3 + 0x16)
+					r0 >> 6
+					
+					switch(r0)
+					{
+					case 1:
+						r0 = 0x40
+						r0 &= r1
+						r2 = r0
+						r0 = 0x80
+						r0 &= r1
+						
+						break;
+					case 2:
+						r0 = 0x200
+						r0 &= r1
+						r2 = r0
+						r0 = 0x100
+						r0 &= r1
+						
+						break;
+					default:
+						r2 = 0
+						r0 = 0
+						
+						break;
+					}
+					
+					if(r2 != 0)
+						fn_3C7700_J(ListMenuChangeSelection(r3, 1, *(r3 + 0xE), 0), 1, *(r3 + 0xE), 0)
+					elseif(r0 != 0)
+						fn_3C7700_J(ListMenuChangeSelection(r3, 1, *(r3 + 0xE), 1), 1, *(r3 + 0xE), 1)
+				}
+			}
+			
+			fn_415262_J()
+			return -1
+		}
+	}
+}
+
+
+
+
+
+
+fn_3C7700_J(arg0, arg1, arg2, arg3)
+{
+	r4 = *(r0 + 0x18)
+	r5 = *(r0 + 0x1A)
+	
+	if(r1 == 1)
+	{
+		if(r3 != 1)
+		{
+			if(r2 != 1)
+			{
+				r2 = gMain
+				r2 = *(r2 + 0x1C)
+				r1 = 0x100
+				r1 &= r2
+				
+				if(r1 != 0)
+				{
+					r4 = 0
+					r5 = 0
+				}
+				elseif(r5 >= 4)
+					r5 -= 4
+				elseif(r4 < 4)
+				{
+					r4 = 0
+					r5 = 0
+				}
+				else
+					r4 -= 4
+			}
+			elseif(r5 != 0)
+				r5--
+			else
+			{
+				if(r4 < 4)
+					return
+				
+				r5 += 3
+				r4 -= 4
+			}
+		}
+		elseif(r2 != 1)
+		{
+			r2 = gMain
+			r2 = *(r2 + 0x1C)
+			r1 = 0x100
+			r1 &= r2
+			
+			if(r1 != 0)
+			{
+				r2 = *(r0 + 0xC)
+				r2--
+				
+				if(r2 > 7)
+				{
+					r1 = r2 >> 2
+					r3 = r1 << 2
+					r2 -= r3
+					r3 -= 8
+					r2 += 8
+					r4 = r3
+					r5 = r2
+				}
+				else
+				{
+					r4 = 0
+					r5 = r2
+				}
+			}
+			else
+			{
+				r2 = *(r0 + 0xC)
+				
+				if(r5 >= 8)
+				{
+					r6 = r4 + 4
+					r6 += 8
+					
+					if(r6 >= r2)
+					{
+						r2 -= r4
+						r5 = r2 - 1
+					}
+					else
+					{
+						r4 += 4
+						r6 += 3
+						
+						if(r6 >= r2)
+						{
+							r2 -= r4
+							r5 = r2 - 1
+						}
+					}
+				}
+				else
+				{
+					r5 += 4
+					r7 = r4 + r5
+					
+					if(r7 >= r2)
+					{
+						r2 -= r4
+						r5 = r2 - 1
+					}
+				}
+			}
+		}
+		else
+		{
+			r6 = r4 + r5
+			r6++
+			r2 = *(r0 + 0xC)
+			
+			if(r6 >= r2)
+				return
+			
+			if(r5 == 0xB)
+			{
+				r4 += 4
+				r5 -= 4
+			}
+			
+			r5++
+		}
+		
+		r6 = *(r0 + 0x18)
+		r7 = *(r0 + 0x1A)
+		
+		if(r6 != r4 || r7 != r5)
+		{
+			*(r0 + 0x18) = r4
+			*(r0 + 0x1A) = r5
+			PlaySE(0x65)
+		}
+	}
+}
+
+
+
+
+
+
+fn_415262_J()
+{
+	{r0, r1, r3} = fn_4152D4_J()
+	
+	if(r0 < r1)
+	{
+		r1 = *(r3 + 6)
+		
+		if(r1 == 0)
+			r0 = 0
+		
+		r1 = gMonFrontPicTable
+		r2 = r0 * 8
+		r1 += r2
+		r4 = data_0203B800_J
+		r1 = *r1
+		*r4 = r1
+		r1 = 0x800
+		*(r4 + 4) = r1
+		r1 = 0x8045
+		*(r4 + 6) = r1
+		r2 = gMonPaletteTable
+		r0 *= 8
+		r2 += r0
+		r2 = *r2
+		*(r4 + 8) = r2
+		r2 = 0x8046
+		*(r4 + 0xC) = r2
+		LoadCompressedObjectPicUsingHeap(r4)
+		LoadCompressedObjectPaletteUsingHeap(r4 + 8)
+		LoadSpritePalette(data_415344_J)
+		CreateSpriteAtEnd(data_415318_J, 0x26, 0x32)
+		CreateSpriteAtEnd(data_415300_J, 0x2A, 0x34)
+	}
+	
+	fn_4154F0_J()
+}

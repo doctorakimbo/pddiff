@@ -340,6 +340,7 @@ stray text:
 = 3FDD23 (3C3DDD old, 3C3DAC new)
 = 3FDD64 (3C3E05 old, 3C3DCC new)
 = 3FDDEB (3C3E5C old, 3C3E1D new)
+= 415F66 (3DD606 old, 5447D9 new)
 
 other data:
 - 40C068 (3D2240 old, A24210 new)
@@ -417,7 +418,7 @@ other data:
 		  Implements: need more info
 		  Required knowledge: j0203B900, j0203C00D, j0203D500
 = 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
-= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC: 0B -> 10 (pkmnnamelength)
+= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC, 1035AC, 103652, 1036F2, 10378A, 103826, 1038B8: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: pkmnnamelength, something else - need more info
@@ -1366,21 +1367,30 @@ other data:
 		  Implements: clears all sprites from memory, something else (need more info)
 		  Required knowledge: j0203D080, j03003E98
 		  Requires in future: fn_3C7418_J
-= 103024: 7D 28 10 08 -> XX XX XX 08 (instead of setting callback to sub_810287C, set it to fn at j3C7A00, which is just sub_807249C followed by CB2_ReturnToFieldWithOpenMenu (sub_80568A8))
+= 103024, 1032E4: 7D 28 10 08 -> XX XX XX 08 (instead of setting callback to sub_810287C, set it to fn at j3C7A00, which is just sub_807249C followed by CB2_ReturnToFieldWithOpenMenu (sub_80568A8))
 		  Implements: some input, instead of moving to a new menu, does something volume-related then exits the pokedex
 = 103028: 00 F0 A8 F8 -> ?? ?? ?? ?? (changes call to sub_810317C to instead call fn at j4151AC, which just adds a call to fn_4151F2_J after; see 221disasm)
 		  Implements: loads some mon's front pic, need more info
 		  Required knowledge: j0203B800, j03003E98
 		  Requires in future: fn_4152D4_J
 = 103084: 04 F0 26 F9 -> ?? ?? ?? ?? (changes call to ListMenuGetScrollAndRow to instead call fn at j4151C4, which just adds a call to fn_4151D2_J after; see 222disasm)
-		  Implements: 
-		  Required knowledge: j03000DE8, 
+		  Implements: need more info (displays some stuff)
+		  Required knowledge: j0203D080, j0203D090, j0203D100, j0203D300, j0203D330, j0203D4F0, j0203D800, j03000DE8, j06012300, j06012400, j06012A00, j06015A00, j06015E00
 		  Requires in future: fn_1690E0_J, fn_3C6FD0_J, fn_3C74B0_J, fn_3C7660_J, fn_3C76A4_J, fn_3C76C0_J, fn_3C7800_J, fn_3C7868_J, fn_3C7884_J, fn_3C7D90_J, fn_4154F0_J, fn_41553E_J, fn_41563C_J, fn_415714_J, fn_4159E0_J, fn_415A54_J
-		  
-		  
-		  
-		  
-		  
+= 10309E: 03 F0 EB FF -> ?? ?? ?? ?? (changes call to ListMenuHandleInputGetItemId to instead call fn at j4150E0, see 223disasm)
+		  Implements: changes pokedex list to be 4 entries wide instead of vertical, adds ability to hold R to skip to top/bottom of dex, some other stuff (need more info)
+		  Required knowledge: j0203B800
+		  Requires in future: fn_3C7700_J, fn_415262_J, fn_4152D4_J, fn_4154F0_J
+= 10317C: Entirety of sub_810317C (seee 224disasm)
+		  Implements: need more info
+		  Required knowledge: j0203D090, j030008E8, j06000000
+		  Requires in future: fn_3C7350_J, fn_3C7C00_J, fn_416970_J
+- 103350: 00 F0 4E FB -> 00 00 00 00 (don't add scrollbar? TEST)
+= 10345C: Entirety of sub_810345C (see 225disasm)
+		  Implements: on some pokedex screen, replace the SEARCH text with something - need more info
+		  Requires in future: fn_3C7C00_J
+- 103550: 68 35 10 08 -> 74 38 10 08 (change case 0 to be identical to case 5 in some pokedex func - TEST)
+= 103940: C2 8E 83 8E -> 10 F3 D0 FE (add call to fn at j4154A0, see 226disasm)
 		  
 		  
 		  
@@ -1396,5 +1406,5 @@ other data:
 
 
 
-curr: j103E18 (4byte), j103E32 (4byte)
-next: j103F10
+curr: j1046FC (4byte)
+next: j1047AC

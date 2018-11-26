@@ -1,0 +1,313 @@
+lbl1: @4150E0
+r1 = r0 * 4
+r1 += r0
+r1 *= 8
+r0 = data_03005098
+r3 = r1 + r0
+r2 = gMain
+r1 = *(r2 + 0x2E)
+r0 = 1
+r0 &= r1
+if(r0 == 0) goto lbl2
+
+r0 = *(r3 + 0x18)
+r1 = *(r3 + 0x1A)
+r0 += r1
+r1 = *r3
+r0 *= 8
+r0 += r1
+r0 = *(r0 + 4)
+goto lbl15
+
+lbl2:
+r0 = 2
+r0 &= r1
+if(r0 == 0) goto lbl3
+
+r0 = -2
+goto lbl15
+
+lbl3:
+r1 = *(r2 + 0x30)
+r0 = 0x20
+r0 &= r1
+if(r0 == 0) goto lbl4
+
+r0 = r3
+r1 = 1
+r2 = 1
+r3 = 0
+goto lbl13
+
+lbl4:
+r0 = 0x10
+r0 &= r1
+if(r0 == 0) goto lbl5
+
+r0 = r3
+r1 = 1
+r2 = 1
+goto lbl12
+
+lbl5:
+r0 = *(r3 + 0x16)
+r0 >> 6
+if(r0 == 1) goto lbl7
+
+if(r0 <= 1) goto lbl6
+
+if(r0 == 2) goto lbl8
+
+goto lbl6
+
+lbl6:
+r2 = 0
+r0 = 0
+goto lbl10
+
+lbl7:
+r0 = 0x40
+r0 &= r1
+r2 = r0
+r0 = 0x80
+goto lbl9
+
+lbl8:
+r0 = 0x200
+r0 &= r1
+r2 = r0
+r0 = 0x100
+goto lbl9
+
+lbl9:
+r0 &= r1
+goto lbl10
+
+lbl10:
+if(r2 == 0) goto lbl11
+
+r2 = *(r3 + 0xE)
+r0 = r3
+r1 = 1
+r3 = 0
+goto lbl13
+
+lbl11:
+if(r0 == 0) goto lbl14
+
+r2 = *(r3 + 0xE)
+r0 = r3
+r1 = 1
+goto lbl12
+
+lbl12:
+r3 = 1
+goto lbl13
+
+lbl13:
+ListMenuChangeSelection()
+fn_3C7700_J()
+fn_415262_J()
+goto lbl14
+
+lbl14:
+r0 = -1
+goto lbl15
+
+lbl15:
+return r0
+
+
+
+
+
+
+fn_3C7700_J:
+r4 = *(r0 + 0x18)
+r5 = *(r0 + 0x1A)
+if(r1 != 1) goto lbl16
+
+if(r3 != 1) goto lbl6
+
+if(r2 != 1) goto lbl8
+
+r6 = r4 + r5
+r6++
+r2 = *(r0 + 0xC)
+if(r6 >= r2) goto lbl16
+
+if(r5 != 0xB) goto lbl2
+
+r4 += 4
+r5 -= 4
+goto lbl2
+
+lbl2:
+r5++
+goto lbl14
+
+lbl3:
+r2 = gMain
+r2 = *(r2 + 0x1C)
+r1 = 0x100
+r1 &= r2
+if(r1 != 0) goto lbl5
+
+if(r5 >= 4) goto lbl4
+
+if(r4 < 4) goto lbl5
+
+r4 -= 4
+goto lbl14
+
+lbl4:
+r5 -= 4
+goto lbl14
+
+lbl5:
+r4 = 0
+r5 = 0
+goto lbl14
+
+lbl6:
+if(r2 != 1) goto lbl3
+
+if(r5 != 0) goto lbl7
+
+if(r4 < 4) goto lbl16
+
+r5 += 3
+r4 -= 4
+goto lbl14
+
+lbl7:
+r5--
+goto lbl14
+
+lbl8:
+r2 = gMain
+r2 = *(r2 + 0x1C)
+r1 = 0x100
+r1 &= r2
+if(r1 != 0) goto lbl10
+
+r2 = *(r0 + 0xC)
+if(r5 >= 8) goto lbl12
+
+r5 += 4
+r7 = r4 + r5
+if(r7 < r2) goto lbl14
+
+goto lbl9
+
+lbl9:
+r2 -= r4
+r5 = r2 - 1
+goto lbl14
+
+lbl10:
+r2 = *(r0 + 0xC)
+r2--
+if(r2 <= 7) goto lbl11
+
+r1 = r2 >> 2
+r3 = r1 << 2
+r2 -= r3
+r3 -= 8
+r2 += 8
+r4 = r3
+r5 = r2
+goto lbl14
+
+lbl11:
+r4 = 0
+r5 = r2
+goto lbl14
+
+lbl12:
+r6 = r4 + 4
+r6 += 8
+if(r6 < r2) goto lbl13
+
+goto lbl9
+
+lbl13:
+r4 += 4
+r6 += 3
+if(r6 >= r2) goto lbl9
+
+goto lbl14
+
+lbl14:
+r6 = *(r0 + 0x18)
+r7 = *(r0 + 0x1A)
+if(r6 != r4) goto lbl15
+
+if(r7 == r5) goto lbl16
+
+goto lbl15
+
+lbl15:
+*(r0 + 0x18) = r4
+*(r0 + 0x1A) = r5
+r0 = 0x65
+PlaySE()
+goto lbl16
+
+lbl16:
+return
+
+
+
+
+
+
+fn_415262_J:
+fn_4152D4_J()
+if(r0 >= r1) goto lbl3
+
+r1 = *(r3 + 6)
+if(r1 != 0) goto lbl2
+
+r0 = 0
+goto lbl2
+
+lbl2:
+r3 = data_128_J
+r1 = *r3
+r2 = r0 * 8
+r1 += r2
+r4 = data_0203B800_J
+r1 = *r1
+*r4 = r1
+r1 = 0x800
+*(r4 + 4) = r1
+r1 = 0x8045
+*(r4 + 6) = r1
+r2 = *(r3 + 8)
+r0 *= 8
+r2 += r0
+r2 = *r2
+*(r4 + 8) = r2
+r2 = 0x8046
+*(r4 + 0xC) = r2
+r0 = r4
+LoadCompressedObjectPicUsingHeap()
+r0 = r4
+r0 += 8
+LoadCompressedObjectPaletteUsingHeap()
+r0 = data_415344_J
+LoadSpritePalette()
+r0 = data_415318_J
+r1 = 0x26
+r2 = 0x32
+CreateSpriteAtEnd()
+r0 = data_415300_J
+r1 = 0x2A
+r2 = 0x34
+CreateSpriteAtEnd()
+goto lbl3
+
+lbl3:
+fn_4154F0_J()
+return
