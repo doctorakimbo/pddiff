@@ -1,0 +1,30 @@
+sub_81039F0()
+{
+	r1 = &s0
+	r0 = data_4521B4
+	*r1 = *r0 // 12byte
+	r5 = data_0203ACF0
+	r6 = *r5
+	r6 += 0x48
+	r1 = data_452174
+	r0 = *r6
+	r1 = *(r1 + 0xE)
+	
+	if(r0 > r1)
+	{
+		r0--
+		r1 += 4
+		r6 = r1
+		r0 /= r6
+		r0 *= r6
+		r0 -= 8
+	}
+	else
+		r0 = 0
+	
+	r1 = &s0
+	*(r1 + 8) = r0
+	r1 = *r5
+	r1 += 0x62
+	return AddScrollIndicatorArrowPair(&s0, r1)
+}

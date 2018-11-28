@@ -1,0 +1,13 @@
+sub_81039F0()
+{
+	s0 = *data_4521B4 // 12byte
+	r0 = *(*data_0203ACF0 + 0x48)
+	r1 = *(data_452174 + 0xE)
+	
+	if(r0 > r1)
+		*(&s0 + 8) = r0 - r1
+	else
+		*(&s0 + 8) = 0
+	
+	return AddScrollIndicatorArrowPair(&s0, *data_0203ACF0 + 0x62)
+}

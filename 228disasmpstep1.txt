@@ -1,0 +1,19 @@
+...
+fn_EEB450_J()
+r0 = 0xC
+goto lbl_2
+
+
+
+
+
+
+fn_EEB450_J()
+{
+	r5 = data_0203D520_J
+	RemoveWindow(*r5)
+	RemoveWindow(*(r5 + 1))
+	RemoveWindow(*(r5 + 2))
+	r0 = data_0203ACF0
+	r1 = *r0
+}

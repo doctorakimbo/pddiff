@@ -1,0 +1,13 @@
+sub_81039F0()
+{
+	arrowInfo = data_4521B4 // 12byte
+	r0 = data_0203ACF0->0x48
+	r1 = data_452174.0xE
+	
+	if(r0 > r1)
+		arrowInfo.fullyDownThreshold = r0 - r1
+	else
+		arrowInfo.fullyDownThreshold = 0
+	
+	return AddScrollIndicatorArrowPair(&arrowInfo, &data_0203ACF0->0x62)
+}

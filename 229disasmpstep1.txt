@@ -1,0 +1,4 @@
+...
+fn_EEB450_J()
+r0 = 0xA
+goto lbl_2

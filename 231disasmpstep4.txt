@@ -1,0 +1,65 @@
+...
+FillBgTilemapBufferRect_Palette0(0, 0x1D, 2, 5, 1, 1)
+FillBgTilemapBufferRect_Palette0(0, 0x41D, 9, 5, 1, 1)
+FillBgTilemapBufferRect_Palette0(0, 0x81D, 2, 8, 1, 1)
+FillBgTilemapBufferRect_Palette0(0, 0xC1D, 9, 8, 1, 1)
+FillBgTilemapBufferRect_Palette0(0, 0x1E, 3, 5, 6, 1)
+FillBgTilemapBufferRect_Palette0(0, 0x81E, 3, 8, 6, 1)
+FillBgTilemapBufferRect_Palette0(0, 0x1F, 2, 6, 1, 2)
+FillBgTilemapBufferRect_Palette0(0, 0x41F, 9, 6, 1, 2)
+LoadPalette(data_EEAC00_J, 0x50, 0x20)
+gExtraDexDisplayStruct.windows[0] = AddWindow(data_EEB420_J)
+PutWindowTilemap(gExtraDexDisplayStruct.windows[0]);
+FillWindowPixelBuffer(gExtraDexDisplayStruct.windows[0], 0);
+BlitBitmapToWindow(gExtraDexDisplayStruct.windows[0], data_EEAC20_J[gBaseStats[data_0203ACF0->0x1E].eggGroup1], 0, 0, 0x10, 0x10) // data_EEAC20_J size 0x80
+CopyWindowToVram(gExtraDexDisplayStruct.windows[0], 2);
+gExtraDexDisplayStruct.windows[1] = AddWindow(data_EEB428_J)
+
+if(gBaseStats[data_0203ACF0->0x1E].eggGroup1 != gBaseStats[data_0203ACF0->0x1E].eggGroup2)
+{
+	PutWindowTilemap(gExtraDexDisplayStruct.windows[1]);
+	FillWindowPixelBuffer(gExtraDexDisplayStruct.windows[1], 0);
+	BlitBitmapToWindow(gExtraDexDisplayStruct.windows[1], data_EEAC20_J[gBaseStats[data_0203ACF0->0x1E].eggGroup2], 0, 0, 0x10, 0x10) // data_EEAC20_J size 0x80
+	CopyWindowToVram(gExtraDexDisplayStruct.windows[1], 2);
+}
+
+gExtraDexDisplayStruct.windows[2] = AddWindow(data_EEB430_J)
+FillWindowPixelBuffer(gExtraDexDisplayStruct.windows[2], 0);
+AddTextPrinterParameterized4(gExtraDexDisplayStruct.windows[2], 0, 0, 4, 0, 0, data_EEB438_J, -1, data_EEB76C_J)
+
+if(gBaseStats[data_0203ACF0->0x1E].item1 != ITEM_NONE)
+{
+	gExtraDexDisplayStruct.item1 = gBaseStats[data_0203ACF0->0x1E].item1
+	gExtraDexDisplayStruct.item2 = gBaseStats[data_0203ACF0->0x1E].item2
+}
+else
+{
+	gExtraDexDisplayStruct.item1 = gBaseStats[data_0203ACF0->0x1E].item2
+	gExtraDexDisplayStruct.item2 = ITEM_NONE;
+}
+
+if(gExtraDexDisplayStruct.item1 != ITEM_NONE)
+{
+	AddTextPrinterParameterized4(gExtraDexDisplayStruct.windows[2], 0, 8, 0x16, 0, 0, data_EEB438_J, -1, ItemId_GetName(gExtraDexDisplayStruct.item1))
+
+	if(gExtraDexDisplayStruct.item2 != ITEM_NONE)
+	{
+		AddTextPrinterParameterized4(gExtraDexDisplayStruct.windows[2], 0, 8, 0x24, 0, 0, data_EEB438_J, -1, ItemId_GetName(gExtraDexDisplayStruct.item2))
+		AddTextPrinterParameterized4(gExtraDexDisplayStruct.windows[2], 0, 8, 0x16, 0, 0, data_EEB438_J, -1, data_EEB776_J)
+	}
+}
+else
+	AddTextPrinterParameterized4(gExtraDexDisplayStruct.windows[2], 0, 8, 0x16, 0, 0, data_EEB438_J, -1, data_EEB776_J)
+
+CopyWindowToVram(gExtraDexDisplayStruct.windows[2], 2);
+PutWindowTilemap(gExtraDexDisplayStruct.windows[2]);
+FillBgTilemapBufferRect_Palette0(0, 0x1D, 2, 0xB, 1, 1)
+FillBgTilemapBufferRect_Palette0(0, 0x41D, 0xC, 0xB, 1, 1)
+FillBgTilemapBufferRect_Palette0(0, 0x81D, 2, 0xF, 1, 1)
+FillBgTilemapBufferRect_Palette0(0, 0xC1D, 0xC, 0xF, 1, 1)
+FillBgTilemapBufferRect_Palette0(0, 0x1E, 3, 0xB, 9, 1)
+FillBgTilemapBufferRect_Palette0(0, 0x81E, 3, 0xF, 9, 1)
+FillBgTilemapBufferRect_Palette0(0, 0x1F, 2, 0xC, 1, 3)
+FillBgTilemapBufferRect_Palette0(0, 0x41F, 0xC, 0xC, 1, 3)
+FillBgTilemapBufferRect_Palette0(0, 0x1F, 0xF, 3, 1, 0xE)
+...

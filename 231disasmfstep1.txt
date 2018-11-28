@@ -1,0 +1,13 @@
+...
+// r4 = 1
+r7 = 0xA
+r8 = 6
+FillBgTilemapBufferRect_Palette0(0, 0x1D, 1, 9, r4, r4)
+FillBgTilemapBufferRect_Palette0(0, 0x41D, 0xC, 9, r4, r4)
+FillBgTilemapBufferRect_Palette0(0, 0x81D, 1, 0x10, r4, r4)
+FillBgTilemapBufferRect_Palette0(0, 0xC1D, 0xC, 0x10, r4, r4)
+FillBgTilemapBufferRect_Palette0(0, 0x1E, 2, 9, r7, r4)
+FillBgTilemapBufferRect_Palette0(0, 0x81E, 2, 0x10, r7, r4)
+FillBgTilemapBufferRect_Palette0(0, 0x1F, 1, 0xA, r4, r8)
+FillBgTilemapBufferRect_Palette0(0, 0x41F, 0xC, 0xA, r4, r8)
+...

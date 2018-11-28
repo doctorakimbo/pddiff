@@ -1,0 +1,34 @@
+lbl1: @105334
+r0 = fn_EEB440_J
+goto r0
+
+lblx: @105338
+r0 = 0xC
+goto lbl_2
+
+
+
+
+
+
+fn_EEB440_J:
+fn_EEB450_J()
+r0 = lblx
+goto r0
+
+
+
+
+
+
+fn_EEB450_J:
+r5 = data_0203D520_J
+r0 = *r5
+RemoveWindow()
+r0 = *(r5 + 1)
+RemoveWindow()
+r0 = *(r5 + 2)
+RemoveWindow()
+r0 = data_0203ACF0
+r1 = *r0
+return

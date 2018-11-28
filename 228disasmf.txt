@@ -1,0 +1,5 @@
+lbl1: @104578
+r0 = data_0203ACF0
+r1 = *r0
+r0 = 0xC
+goto lbl_2

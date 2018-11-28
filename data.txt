@@ -356,6 +356,9 @@ FA AD 03 02: 72 AD 03 02: ??????
 								 (fn_E9EA00_J: set to 0x80 at start)
 								 (fn_E9EBB0_J: If data_0203D52A_J is 0, data_0203D50A_J is 0, and B is pressed, set this to 0 and go back to the START menu)
 		   : 20 D5 03 02: ?????? (fn_E9F204_J: used as storage space for a string printed to gMysteryFuncWindows[5])
+								 (appears to usually be a struct containing three windows (.0, .1, .2), and two integers (item1 - .4, item2 - .6) - gExtraDexDisplayStruct)
+								 (fn_EEB450_J: removes the windows with handles stored at this.windows[0], this.windows[1] and this.windows[2])
+								 (fn_EEB476_J: sets up the windows, using the integers as storage space)
 		   : 28 D5 03 02: ?????? (fn_E9F056_J: set to the same thing as gMysteryFuncWindows[2])
 		   : 2A D5 03 02: ?????? (fn_E9EA00_J: set to 0x18 at start)
 								 (fn_E9EBB0_J: if 0xFF, possibility to become 0xFE; if 0xFE, possibility to become 0; if 0, possiblity to become 0xFF (usually from B button), otherwise decrement once per frame until 0)
@@ -452,6 +455,7 @@ funcs e,j,desc:
 003ECC = 003E98 = FreeAllWindowBuffers
 003F20 = 003EEC = CopyWindowToVram
 003FA0 = 003F6C = PutWindowTilemap
+0041B8 = 004184 = BlitBitmapToWindow
 0041F0 = 0041BC = BlitBitmapRectToWindow
 004404 = 0043D0 = CopyToWindowPixelBuffer
 00445C = 004428 = FillWindowPixelBuffer
@@ -680,11 +684,9 @@ funcs e,j,desc:
 08BBB4 = 08B650 = CopyBoxMonFromAnyBox
 08BD30 = 08B7CC = GetBoxedMonPtr
 08BD6C = 08B808 = GetBoxNamePtr
-08BFE0 = 08BA1C = ?????
 08C0D4 = 08BB10 = CountMonsInBox
 08CFF8 = 08CA34 = add_to_c3_somehow
 0937DC = 093210 = CompactPartySlots
-097028 = 096A54 = ?????
 09872C = 09811C = CopyItemIconPicTo4x4Buffer
 099DE0 = 0997E8 = ApplyNewEncryptionKeyToBagItems
 099E44 = 09984C = SetBagItemsPointers
@@ -721,11 +723,8 @@ funcs e,j,desc:
 0F6F1C = 0F7F7C = NewMenuHelpers_DrawStdWindowFrame
 0F793C = 0F899C = GetStartMenuWindowId
 0F7948 = 0F89A8 = RemoveStartMenuWindow
-103924 = 1046E0 = ?????
-?????? = 105584 = ?????
-104C2C = 1059E8 = ?????
-106E78 = ?????? = ?????
 1074DC = 107FE0 = ListMenuPrintEntries
+107594 = 108098 = ListMenuDrawCursor
 10799C = 1084A0 = ListMenuChangeSelection
 108E70 = 109968 = DisplayItemMessage
 10AD10 = 10B80C = UseRegisteredKeyItemOnField
@@ -734,6 +733,7 @@ funcs e,j,desc:
 125A78 = 1263C4 = ItemIdToBattleMoveId
 12E51C = 12ED24 = AddTextPrinterParameterized3
 12E5A4 = 12EDAC = AddTextPrinterParameterized4
+133A20 = 13420C = AddScrollIndicatorArrowPair
 1E3B60 = 1C7A84 = CpuFastSet
 1E3B64 = 1C7A88 = CpuSet
 1E3B9C = square root

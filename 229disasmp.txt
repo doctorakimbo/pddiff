@@ -1,0 +1,17 @@
+lbl1: @10539A
+r0 = fn_EEB448_J
+goto r0
+
+lblx: @105338
+r0 = 0xA
+goto lbl_2
+
+
+
+
+
+
+fn_EEB448_J:
+fn_EEB450_J()
+r0 = lblx
+goto r0

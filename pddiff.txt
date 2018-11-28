@@ -315,6 +315,7 @@ grafics:
 = 4129C0 (3DA20C old, 7FC460 new)
 = 440274 (404928 old, E98420 new)
 = 4403AC (404A60 old, E98420 new)
+= 443620 (407FB8 old, E016A0 new)
 = D0051C (C0051C old, EB8990 new)
 = E9C3D8 (3964B0 old, 396374 new)
 = E9C3F8 (396470 old, 396334 new)
@@ -418,7 +419,7 @@ other data:
 		  Implements: need more info
 		  Required knowledge: j0203B900, j0203C00D, j0203D500
 = 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
-= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC, 1035AC, 103652, 1036F2, 10378A, 103826, 1038B8: 0B -> 10 (pkmnnamelength)
+= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC, 1035AC, 103652, 1036F2, 10378A, 103826, 1038B8, 104DF6, 10647E: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: pkmnnamelength, something else - need more info
@@ -1367,7 +1368,7 @@ other data:
 		  Implements: clears all sprites from memory, something else (need more info)
 		  Required knowledge: j0203D080, j03003E98
 		  Requires in future: fn_3C7418_J
-= 103024, 1032E4: 7D 28 10 08 -> XX XX XX 08 (instead of setting callback to sub_810287C, set it to fn at j3C7A00, which is just sub_807249C followed by CB2_ReturnToFieldWithOpenMenu (sub_80568A8))
+= 103024, 1032E4, 103BD0: 7D 28 10 08 -> XX XX XX 08 (instead of setting callback to sub_810287C, set it to fn at j3C7A00, which is just sub_807249C followed by CB2_ReturnToFieldWithOpenMenu (sub_80568A8))
 		  Implements: some input, instead of moving to a new menu, does something volume-related then exits the pokedex
 = 103028: 00 F0 A8 F8 -> ?? ?? ?? ?? (changes call to sub_810317C to instead call fn at j4151AC, which just adds a call to fn_4151F2_J after; see 221disasm)
 		  Implements: loads some mon's front pic, need more info
@@ -1391,6 +1392,50 @@ other data:
 		  Requires in future: fn_3C7C00_J
 - 103550: 68 35 10 08 -> 74 38 10 08 (change case 0 to be identical to case 5 in some pokedex func - TEST)
 = 103940: C2 8E 83 8E -> 10 F3 D0 FE (add call to fn at j4154A0, see 226disasm)
+		  Implements: something to do with 4-entries-wide dex listing
+- 1039F0: Entirety of sub_81039F0 (see 227disasm)
+		  Implements: need more info (TEST)
+- 103A64: 00 F0 E6 FF -> 00 00 00 00 (need more info, TEST)
+- 103A78: 04 F0 76 F9 -> 00 00 00 00
+  103A98: 04 F0 66 F9 -> 00 00 00 00
+  103AB2: 04 F0 59 F9 -> 00 00 00 00
+		  Implements: need more info (TEST)
+= 1043A2: 01 F0 3B FD -> ?? ?? ?? ?? (changes call to sub_8105E1C to instead call fn at j4151B8, which just adds a call to fn_3C7400_J after; see 220disasm)
+		  Implements: clears all sprites from memory, something else (need more info)
+		  Required knowledge: j0203D080, j03003E98
+		  Requires in future: fn_3C7418_J
+= 10457A: 01 68 -> 87 46
+  10458C: F0 AC 03 02 -> XX XX XX 08 (jumps (mov) to extra fn at XXXXXX, then back (jEEB440, see 228disasm))
+		  Implements: cleans up extra data display from sub_810603C
+		  Required knowledge: j0203D520
+		  Requires in future: fn_EEB450_J
+= 1045E0: 01 68 -> 87 46
+  1045E8: F0 AC 03 02 -> XX XX XX 08 (jumps (mov) to extra fn at XXXXXX, then back (jEEB448, see 229disasm))
+  		  Implements: cleans up extra data display from sub_810603C
+		  Required knowledge: gExtraDexDisplayStruct (j0203D520)
+		  Requires in future: fn_EEB450_J
+- 104E06: 02 -> 00 (change font on some pokedex window, TEST)
+= 104F5E: FF 21 FF F6 7C FA -> 33 21 ?? ?? ?? ?? (changes call to FillWindowPixelBuffer(0, 0xFF) to instead call fn_3C7C00_J(0, 0x33))
+		  Implements: need more info
+		  Note: parameters passed to fn_3C7C00_J are unused
+= 105E1C: Entirety of sub_8105E1C (see 230disasm)
+		  Implements: need more info
+		  Requires in future: fn_3C7C00_J
+= 10611E: Part of sub_810603C (see 231disasm)
+		  Implements: displays egg groups and wild hold items in pokedex list
+		  Required knowledge: gExtraDexDisplayStruct (j0203D520)
+		  Requires in future: fn_EEB476_J
+- 1063D0: FE F7 FA F9 -> 00 00 00 00 (need more info, TEST)
+- 106490: 02 -> 00 (change font on some pokedex window, TEST)
+- 106531: D1 -> 00 (instead of checking if something??? is zero, always treat it as zero; TEST)
+= 10676A: FD F6 77 FE -> ?? ?? ?? ?? (changes call to FillWindowPixelBuffer to instead call fn at j3C7C00)
+- 106CC2: FF 20 FE F7 C8 F9 -> 00 00 00 00 00 00 (removes something in case 3, need more info, TEST)
+- 106D0C: 05 -> 07 (case 4 shifts to case 7 instead of case 5, need more info, TEST)
+- 106DB8: 57 E0 -> 00 00 (case 7 falls through into case 8, need more info, TEST)
+- 106DC4: 09 20 4F E0 -> 0A 20 0A E0 (case 8 falls through into case 10, need more info, TEST)
+- 106DE2: 05 28 14 D8 -> 00 28 14 D0 (need more info, TEST)
+- 1071AE: 00 F0 F1 F9 -> 00 00 00 00 (don't draw cursor on list menu refresh)
+= 
 		  
 		  
 		  
@@ -1403,8 +1448,17 @@ other data:
 		  
 		  
 		  
-
-
-
-curr: j1046FC (4byte)
-next: j1047AC
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+curr: j1088B0 (repoint)
+next: j108EFC (4byte), j108F24 (2byte), j108FD6 (1byte), j109148 (1byte)
+next: j109150

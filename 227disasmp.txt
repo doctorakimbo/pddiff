@@ -1,0 +1,32 @@
+lbl1: @1047AC
+r1 = &s0
+r0 = data_4521B4
+*r1 = *r0 // 12byte
+r5 = data_0203ACF0
+r6 = *r5
+r6 += 0x48
+r1 = data_452174
+r0 = *r6
+r1 = *(r1 + 0xE)
+if(r0 <= r1) goto lbl2
+
+r0--
+r1 += 4
+r6 = r1
+svc_6()
+r0 *= r6
+r0 -= 8
+goto lbl3
+
+lbl2:
+r0 = 0
+goto lbl3
+
+lbl3:
+r1 = &s0
+*(r1 + 8) = r0
+r1 = *r5
+r1 += 0x62
+r0 = &s0
+fn_133A20()
+return r0

@@ -1,0 +1,10 @@
+...
+FillBgTilemapBufferRect_Palette0(0, 0x1D, 1, 9, 1, 1)
+FillBgTilemapBufferRect_Palette0(0, 0x41D, 0xC, 9, 1, 1)
+FillBgTilemapBufferRect_Palette0(0, 0x81D, 1, 0x10, 1, 1)
+FillBgTilemapBufferRect_Palette0(0, 0xC1D, 0xC, 0x10, 1, 1)
+FillBgTilemapBufferRect_Palette0(0, 0x1E, 2, 9, 0xA, 1)
+FillBgTilemapBufferRect_Palette0(0, 0x81E, 2, 0x10, 0xA, 1)
+FillBgTilemapBufferRect_Palette0(0, 0x1F, 1, 0xA, 1, 6)
+FillBgTilemapBufferRect_Palette0(0, 0x41F, 0xC, 0xA, 1, 6)
+...

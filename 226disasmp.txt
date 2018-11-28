@@ -1,0 +1,45 @@
+lbl1: @1046F6
+...
+r1 = data_45218C
+r4 = data_0203ACF0
+r0 = *r4
+fn_4154A0_J()
+...
+
+
+
+
+
+
+
+fn_4154A0_J:
+r4 = r0
+r5 = r1
+r2 = *(r0 + 0x36)
+r3 = *(r0 + 0x34)
+r7 = 0x48
+r7 = *(r0 + r7)
+r0 = r2 + r3
+r1 = 4
+svc_6()
+r0 *= 4
+if(r0 == 0) goto lbl2
+
+r0 -= 4
+r1 += 4
+r3 = r1 + r0
+r2 = r7 - 4
+if(r3 < r2) goto lbl2
+
+if(r0 == 0) goto lbl2
+
+r0 -= 4
+r1 += 4
+goto lbl2
+
+lbl2:
+r2 = r0
+r3 = r1
+r0 = r4
+r1 = r5
+return

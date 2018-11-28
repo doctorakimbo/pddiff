@@ -1,0 +1,215 @@
+lbl1: @106CC6
+...
+r0 = fn_EEB476_J
+goto r0
+
+lblx: @106D50
+...
+
+
+
+
+
+
+fn_EEB476_J:
+r7 = 6
+r6 = 2
+r5 = 1
+FillBgTilemapBufferRect_Palette0(0, 0x1D, 2, 5, r5, r5)
+FillBgTilemapBufferRect_Palette0(0, 0x41D, 9, 5, r5, r5)
+FillBgTilemapBufferRect_Palette0(0, 0x81D, 2, 8, r5, r5)
+FillBgTilemapBufferRect_Palette0(0, 0xC1D, 9, 8, r5, r5)
+FillBgTilemapBufferRect_Palette0(0, 0x1E, 3, 5, r7, r5)
+FillBgTilemapBufferRect_Palette0(0, 0x81E, 3, 8, r7, r5)
+FillBgTilemapBufferRect_Palette0(0, 0x1F, 2, 6, r5, r6)
+FillBgTilemapBufferRect_Palette0(0, 0x41F, 9, 6, r5, r6)
+LoadPalette(data_EEAC00_J, 0x50, 0x20)
+r0 = data_0203ACF0
+r7 = *r0
+r7 = *(r7 + 0x1E)
+r0 = 0x1C
+r7 *= r0
+r0 = data_1BC_J
+r0 = *r0
+r7 += r0
+r0 = data_EEB420_J
+AddWindow()
+r1 = data_0203D520_J
+*r1 = r0
+PutWindowTilemap()
+r1 = data_0203D520_J
+r0 = *r1
+r1 = 0
+FillWindowPixelBuffer()
+r1 = data_0203D520_J
+r0 = *r1
+r1 = data_EEAC20_J
+r2 = *(r7 + 0x14)
+r3 = 0x80
+r2 *= r3
+r1 += r2
+r2 = 0x10
+r3 = 0
+s0 = r2
+s1 = r2
+r2 = 0
+fn_4184_J()
+r1 = data_0203D520_J
+r0 = *r1
+r1 = 2
+CopyWindowToVram()
+r0 = data_EEB428_J
+AddWindow()
+r1 = data_0203D520_J
+*(r1 + 1) = r0
+r1 = data_EEAC20_J
+r2 = *(r7 + 0x15)
+r3 = *(r7 + 0x14)
+if(r2 == r3) goto lbl2
+
+PutWindowTilemap()
+r1 = data_0203D520_J
+r0 = *(r1 + 1)
+r1 = 0
+FillWindowPixelBuffer()
+r1 = data_0203D520_J
+r0 = *(r1 + 1)
+r1 = data_EEAC20_J
+r2 = *(r7 + 0x15)
+r3 = *(r7 + 0x14)
+r3 = 0x80
+r2 *= r3
+r1 += r2
+r2 = 0x10
+r3 = 0
+s0 = r2
+s1 = r2
+r2 = 0
+fn_4184_J()
+r1 = data_0203D520_J
+r0 = *(r1 + 1)
+r1 = 2
+CopyWindowToVram()
+goto lbl2
+
+lbl2:
+r0 = data_EEB430_J
+AddWindow()
+r1 = data_0203D520_J
+*(r1 + 2) = r0
+r1 = 0
+FillWindowPixelBuffer()
+r1 = data_0203D520_J
+r0 = *(r1 + 2)
+r1 = 0
+r2 = 0
+r3 = 4
+s0 = r2
+s1 = r2
+r2 = data_EEB438_J
+s2 = r2
+r2 = -1
+s3 = r2
+r2 = data_EEB76C_J
+s4 = r2
+r2 = 0
+AddTextPrinterParameterized4()
+r0 = data_0203D520_J
+r1 = 0
+*(r0 + 4) = r1
+r1 = *(r7 + 0xC)
+if(r1 == 0) goto lbl3
+
+*(r0 + 4) = r1
+r1 = *(r7 + 0xE)
+*(r0 + 6) = r1
+goto lbl4
+
+lbl3:
+r1 = *(r7 + 0xE)
+*(r0 + 4) = r1
+goto lbl4
+
+lbl4:
+r1 = data_0203D520_J
+r0 = *(r1 + 4)
+if(r0 == 0) goto lbl5
+
+ItemId_GetName()
+r2 = r0
+r1 = data_0203D520_J
+r0 = *(r1 + 2)
+r1 = 0
+s0 = r1
+s1 = r1
+r1 = data_EEB438_J
+s2 = r1
+r1 = -1
+s3 = r1
+s4 = r2
+r1 = 0
+r2 = 8
+r3 = 0x16
+AddTextPrinterParameterized4()
+r1 = data_0203D520_J
+r0 = *(r1 + 6)
+if(r0 == 0) goto lbl6
+
+ItemId_GetName()
+r2 = r0
+r1 = data_0203D520_J
+r0 = *(r1 + 2)
+r1 = 0
+s0 = r1
+s1 = r1
+r1 = data_EEB438_J
+s2 = r1
+r1 = -1
+s3 = r1
+s4 = r2
+r1 = 0
+r2 = 8
+r3 = 0x24
+AddTextPrinterParameterized4()
+goto lbl5
+
+lbl5:
+r2 = data_EEB776_J
+r1 = data_0203D520_J
+r0 = *(r1 + 2)
+r1 = 0
+s0 = r1
+s1 = r1
+r1 = data_EEB438_J
+s2 = r1
+r1 = -1
+s3 = r1
+s4 = r2
+r1 = 0
+r2 = 8
+r3 = 0x16
+AddTextPrinterParameterized4()
+goto lbl6
+
+lbl6:
+r1 = data_0203D520_J
+r0 = *(r1 + 2)
+r1 = 2
+CopyWindowToVram()
+r1 = data_0203D520_J
+r0 = *(r1 + 2)
+PutWindowTilemap()
+r7 = 9
+r6 = 3
+r5 = 1
+FillBgTilemapBufferRect_Palette0(0, 0x1D, 2, 0xB, r5, r5)
+FillBgTilemapBufferRect_Palette0(0, 0x41D, 0xC, 0xB, r5, r5)
+FillBgTilemapBufferRect_Palette0(0, 0x81D, 2, 0xF, r5, r5)
+FillBgTilemapBufferRect_Palette0(0, 0xC1D, 0xC, 0xF, r5, r5)
+FillBgTilemapBufferRect_Palette0(0, 0x1E, 3, 0xB, r7, r5)
+FillBgTilemapBufferRect_Palette0(0, 0x81E, 3, 0xF, r7, r5)
+FillBgTilemapBufferRect_Palette0(0, 0x1F, 2, 0xC, r5, r6)
+FillBgTilemapBufferRect_Palette0(0, 0x41F, 0xC, 0xC, r5, r6)
+r6 = 0xE
+FillBgTilemapBufferRect_Palette0(0, 0x1F, 0xF, 3, r5, r6)
+goto lblx
