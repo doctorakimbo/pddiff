@@ -343,21 +343,15 @@ stray text:
 = 3FDDEB (3C3E5C old, 3C3E1D new)
 = 415F66 (3DD606 old, 5447D9 new)
 
-other data:
-- 40C068 (3D2240 old, A24210 new)
-- 40C0A4 (3D227C old, A237E0 new)
-- 40C104 (3D22DC old, A23840 new)
-- 40C1C4 (3D239C old, A24240 new)
-
 + expand rom to 2x
 + expand 1C68F4 (move animations) from 356 entries to 680 (1030000) 
 + expand 1C6EA8 (misc animations) from 23 entries to 24 (24th entry is 1C9989 - whirlwind animation) (104FF00)
 + expand 1D65A8 (move scripts) from 214 entries to 256 (1065000)
 = expand 245EE0 (species names) from 10 per to 12 per (1060BA0?)
 = expand 247094 (move names) from 355 entries/12 per to 680 entries/16 per (1000000)
-	! also set 2481BE (gMoveNames[MOVE_FRENZY_PLANT]) to [BROKEN] 1E0C640(???)
-	! also set 24802B (gMoveNames[MOVE_BLAST_BURN]) to [BROKEN] 1E0C548(???)
-	! also set 248038 (gMoveNames[MOVE_HYDRO_CANNON]) to [BROKEN] 1E0C550(???)
+	! also set 2481BE (gMoveNames[MOVE_FRENZY_PLANT]) to [BROKEN] 1E0C640
+	! also set 24802B (gMoveNames[MOVE_BLAST_BURN]) to [BROKEN] 1E0C548
+	! also set 248038 (gMoveNames[MOVE_HYDRO_CANNON]) to [BROKEN] 1E0C550
 = expand 24F1A0 (type names) from 18 entries/7 per to 19 entries/9 per (j411E1C, e1411E1C)
 + expand 24FB08 (ability descriptions) from 78 entries to 232 (13FD000)
 = expand 24FC40 (ability names) from 78 entries/12 per to 232 entries/16 per (13FF000)
@@ -369,15 +363,15 @@ other data:
 + expand 25EF0C (egg moves) from 0x8E8 bytes to 0xFC4 bytes (8B6630)
 + expand 26056C (ball sprites) from 12 entries to 26 (A23000)
 + expand 2605CC (ball sprite palettes) from 12 entries to 26 (A230F0)
-+ expand 2606F4 (ball sprite templates) from 12 entries to 26 (A23380)
++ expand 2606F4 (ball sprite templates (?duplicate)) from 12 entries to 26 (A23380)
 ! expand 399388 (battle anim sprites???) to [BROKEN] (11ECA80)
 ! expand 399C90 (battle anim palettes???) to [BROKEN] (11EDD80)
 + expand 39FDB0 (field object graphics info pointers) from 174 entries to 256 (j4EFDA0, e14EFDA0)
 ! expand 3A65BC (movement action functions) from 170 entries to 226 (j221550, eUNKNOWN)
 + expand 3ACC08 (battle anim sprites) from 289 entries to 462 (1200300)
 	+ also set 3AD048 (gBattleAnimPicTable[136]) to 1200740
-	- also set 3AD350 (gBattleAnimPicTable[233]) to 1200A48
-	- also set 3AD470 (gBattleAnimPicTable[269]) to 1200B68
+	+ also set 3AD350 (gBattleAnimPicTable[233]) to 1200A48
+	+ also set 3AD470 (gBattleAnimPicTable[269]) to 1200B68
 = ???
 	! also set 3AD950 (gBattleAnimPaletteTable[136]) to 1201A40
 	! also set 3ADC58 (gBattleAnimPaletteTable[233]) to 1201D48
@@ -396,10 +390,14 @@ other data:
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
 + expand 3FE664 (trapping moves) from 6 entries to 8 (1303552)
 + expand 3FEA70 (japanese grammar) from 118 entries to 183 (1040000)
-- expand 40BF48 (unknown pokeball struct) from 12 entries to 26 (A23600)
-- expand 40BFA8 (unknown pokeball struct) from 12 entries to 26 (A236D0)
-- expand 40C074 (pokeball animation tasks) from 12 entries to 28 (A23A50)
-- expand 4886E8 (move descriptions) from from 355 entries to 680 (1020000)
++ expand 40BF48 (unknown pokeball struct) from 12 entries to 26 (A23600)
++ expand 40BFA8 (unknown pokeball struct) from 12 entries to 26 (A236D0)
++ expand 40C068 (unknown pokeball struct) from 12 entries to 48 (A24210)
++ expand 40C074 (ball animation tasks) from 12 entries to 28 (A23A50)
++ expand 40C0A4 (ball sprite templates (? duplicate)) from 12 entries to 26 (A237E0)
+	+ also set 40C104 (gUnknown_840C0A4[ITEM_POKE_BALL]) to A23840
++ expand 40C1C4 (? some ball-related colors) from 12 entries to 48 (A24240)
++ expand 4886E8 (move descriptions) from from 355 entries to 680 (1020000)
 
 = repoint 02A3C8 -> j168F08 (atkAA_setdestinybond) - need part at destination removed first + ASM can't be repointed without decompilation + do it itself later
 = repoint 02C670 ->  EB8130 (atkD9_scaledamagebyhealthratio) - ASM can't be repointed without decompilation + do it itself later
@@ -554,7 +552,7 @@ other data:
 		  Implements: max sleep turns 5 -> 4
 = 0206A2: 4B 46 19 78 58 20 41 43 40 46 50 30 09 18 0A 4A F3 78 98 00 80 18 09 68 00 68 01 40 00 29 01 D0 00 F0 13 FD D8 -> 00 00 4B 46 19 78 58 20 48 43 41 46 0B 18 0A 49 F2 78 90 00 40 18 19 6D 00 68 01 40 00 29 01 D0 00 F0 13 FD D0
 		  Implements: extension of changes at 01FF20
-+ 0207A4: ptr 0A 11 02 08 -> 8C 0F 02 08
+! 0207A4: ptr 0A 11 02 08 -> 8C 0F 02 08
 		  Implements: 50% recoil effect
 		  Relies on: changes at 020F78
 ! 02082C: (see 29disasm)
@@ -902,7 +900,7 @@ other data:
 + 04A2F0: Entirety of CalcNewBarValue (see 105disasm)
 		  Implements: HP and EXP bars go twice as fast
 		  Note: Also makes the function not use its toAdd parameter, amount to add is calculated inside the function
-+ 04B5AA: 0B -> 1F (max pokeball types 12 -> 32)
++ 04B5AA, 0F11F2: 0B -> 1F (max pokeball types 12 -> 32)
 + 04BF24: 0B 2C 01 DC -> 00 00 00 00
 		  Implements: Certain gfx aren't loaded for Dive Ball and everything starting at Luxury Ball; this is now fully independent of number of ball types
 + 04C058: Entirety of SetSaveBlocksPointers (see 106disasm)
@@ -1011,7 +1009,7 @@ other data:
 		  Implements: almost certainly title screen silhouette fading
 		  Required knowledge: j020370C0
 ! 0791EE: 06 -> FC (PDONLY, title screen cry charizard -> (species252))
-+ 079282: C0 0F -> 01 20 (sound will always become stereo when game loaded from title screen)
++ 079282, 0EC852: C0 0F -> 01 20 (sound will always become stereo when game loaded from title screen)
 = 0793DA: Part of sub_80792C8 (+ add part at 2075E0_J) (see 135disasm)
 		  Implements: Need more info (title screen animation related)
 		  Required knowledge: j0203712C
@@ -1107,7 +1105,7 @@ other data:
   08E958: 05 20 E3 F7 B7 FC 01 F0 -> 00 48 00 47 B9 A4 E2 09 (jumps (bx) to extra fn at 1E2A4B8, then back (jE2A4B8, see 162disasm))
 		  Implements: adds extra menus to wallpaper categories
 + 08F4CC, 08F550: 06 -> 08 (moves PC pokemon names text to the right slightly, unclear why)
-+ 08F4E4, 08F566: 02 -> 00 (changes PC summary font size (to leave space for extra characters)
++ 08F4E4, 08F566: 02 -> 00 (changes PC summary font size (to leave space for extra characters))
 + 08FD34: 00 B5 05 F0 37 F8 12 20 -> 00 48 00 47 01 A4 E2 09 (jumps (bx) to extra fn at 1E2A400, then back (jE2A400, see 163disasm))
 		  Implements: Adds "special" wallpaper category option on menu
 + 08FD68: 01 2C 16 D0 01 2C 02 DC -> 00 48 00 47 33 A4 E2 09 (jumps (bx) to extra fn at 1E2A432, then back (jE2A432, see 164disasm))
@@ -1211,9 +1209,10 @@ other data:
 + 09FEE8: 06 -> 08 (extra 2 digits for money)
 + 09FFB8: Entirety of DrawMoneyBox (see 190disasm)
 		  Implements: makes money display one tile wider and changes base block from 8 to 5 (latter has unknown effect)
-+ 0A011C: Entirety of ScriptGiveMon (see 191disasm)
+! 0A011C: Entirety of ScriptGiveMon (see 191disasm)
 		  Implements: does nothing by itself, but carries over any changes to CreateScriptedWildMon to giftmons too
-+ 0A029C: Entirety of CreateScriptedWildMon (see 192disasm)
+		  GLITCH!: either this or CreateScriptedWildMon cause bad eggs, unsure which so temporarily removed both
+! 0A029C: Entirety of CreateScriptedWildMon (see 192disasm)
 		  Implements: does nothing by itself, but carries over any changes to sub_80829FC to scripted encounters too
 = 0A19E8: Entirety of sub_80A19E8 (see 193disasm)
 		  Implements: part of VAR_REPEL_STEP_COUNT refactor
@@ -1226,7 +1225,7 @@ other data:
 		  Relies on: animation scripts setting the value correctly
 		  Requires in future: fn_168A10_J, fn_168AC0_J
 + 0B565C: 00 -> 01 (set Shadow Ball sprite.data[0] to 1 instead of 0; no idea what this did)
-+ 0BC128: 6E -> 6C (set gBattleAnimTarget to gBattlerTarget instead of gEffectBattler; these unknown animation routines are called by the item steal animation)
++ 0BC128, 0F171C: 6E -> 6C (set gBattleAnimTarget to gBattlerTarget instead of gEffectBattler; these unknown animation routines are called by the item steal animation)
 = 0BD3C8: 01 A9 2A 1C A6 F7 28 FB -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j222C60, see 195disasm))
 		  Implements: forced movement for metatiles 0xB0-0xB5 (on bike)
 + 0BFC7C: 13 -> 15 (heal locations 20 -> 22)
@@ -1274,7 +1273,7 @@ other data:
 = 0C9820 -> 0C981C (repoint): Entirety of task08_080C9820 (see 206disasm)
 		  Implements: makes room for oei_task_add changes
 		  Relies on: oei_task_add changes (makes room for these changes)
-- 0CA424: Entirety of GetPokedexRatingText (see 207disasm)
++ 0CA424: Entirety of GetPokedexRatingText (see 207disasm)
 		  Implements: dex ratings now scale to regional dex of 386, eventmons aren't skipped
 = 0CBFE0: Entirety of ChangeBoxPokemonNickname (see 208disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
@@ -1283,7 +1282,7 @@ other data:
 		  Implements: Part of CompressedBoxPokemon refactor
 + 0CE90D: D1 -> E0 (natdex no longer required for post-151 evolutions) 
 + 0D75FC, 0D7E96, 0D7EAE: B1 20 40 00 -> FF 20 80 00 (max moves 354 -> 1020)
-- 0D77BC: 08 D9 03 49 FF 20 08 70 0D E0 00 00 81 01 00 00 8C 29 02 02 -> 08 D3 03 49 30 1A 08 E0 00 00 00 00 82 01 00 00 00 00 08 09
++ 0D77BC: 08 D9 03 49 FF 20 08 70 0D E0 00 00 81 01 00 00 8C 29 02 02 -> 08 D3 03 49 30 1A 08 E0 00 00 00 00 82 01 00 00 00 00 08 09
 		  Implements: if the string number is greater than the total strings (386), read from the expanded string table instead (1080000), giving an additional 208 strings for a total of 594 (603 in english due to jumping the gun on modernization)
 = 0D7FF2, 0D8610: 0D -> 20 (abilitynamelength; btw check decap kludge for more namelengths)
 ! 0D814A: 5A -> 59 (PDONLY, trainer class 5A no longer takes the rival's name)
@@ -1309,12 +1308,13 @@ other data:
 = 0E5340: Entirety of sub_80E5340 (see 213disasm)
 		  Implements: adds category icon to the move reminder summary screen, other minor adjustments to that screen
 		  Relies on: BattleMove refactor, data_D7DC7C_J
-- 0E5444: Entirety of sub_80E5444 (see 214disasm)
-		  Implements: need more info (instead of 5 (???), displays 3 (???) which are all different than the previous 5)
-		  Note: Possibly removes contest stat icons in favor of category icons? (where?)
-- 0E54C0: Entirety of sub_80E54C0 (see 215disasm)
-		  Implements: need more info (adds extra window and extra (???))
-- 0EB330: 31 -> 30
+! 0E5444: Entirety of sub_80E5444 (see 214disasm)
+		  Implements: instead of TYPE/POWER/PP/ACCURACY/EFFECT on the move reminder summary screen, shows 3 (not yet known) graphics
+		  Relies on: fn_107D68 changes (probably)
+! 0E54C0: Entirety of sub_80E54C0 (see 215disasm)
+		  Implements: need more info (adds extra window and extra (???) when cancel is highlighted on the move reminder summary screen)
+		  Relies on: fn_107D68 changes (probably)
+! 0EB330: 31 -> 30
   0EB342: 32 -> 30
   0EB354: 33 -> 31
   0EB378: 35 -> 32
@@ -1324,9 +1324,10 @@ other data:
   0EB3D2: 3B -> 37
   0EB3F6: 3D -> 39
   0EB490: 83 -> 84
-  0EB4F4: 3A 08 00 00 3B 08 00 00 3C 08 00 00 3D 08 00 00 35 08 00 00 36 08 00 00 38 08 00 00 39 08 00 00 31 08 00 00 32 08 00 00 33 08 00 00 34 08 00 00 -> 	  32 00 00 00 3C 04 00 00 37 04 00 00 3A 00 00 00 36 00 00 00 3B 00 00 00 3D 00 00 00 3E 00 00 00 40 08 00 00 40 08 00 00 3F 00 00 00 41 00 00 00
-		  Implements: changes some sort of graphic in the intro battle
-- 0EC852: C0 0F -> 01 20 (sound will always become stereo when game loaded from title screen) (MERGE THIS CHECK)
+  0EB4F4: 3A 08 00 00 3B 08 00 00 3C 08 00 00 3D 08 00 00 35 08 00 00 36 08 00 00 38 08 00 00 39 08 00 00 31 08 00 00 32 08 00 00 33 08 00 00 34 08 00 00 -> 
+		  32 00 00 00 3C 04 00 00 37 04 00 00 3A 00 00 00 36 00 00 00 3B 00 00 00 3D 00 00 00 3E 00 00 00 40 08 00 00 40 08 00 00 3F 00 00 00 41 00 00 00
+		  Implements: changes the tilemap for oak's dialogue boxes in the intro battle
+		  Relies on: graphic itself actually changed
 - 0EF208: 06 -> 01 (does something in an unknown animation routine called by an animation played on level-up)
 - 0EF258, 0EF294: 74 -> 86 (changes a palette in the same routine as previous)
 = 0EF4B4, 0EF4DC, 0EF674, 0EF9AC, 0F0368: 68 3D 02 02 -> ?? ?? ?? ?? (gLastUsedItem -> gLastUsedItemType)
@@ -1336,31 +1337,33 @@ other data:
 = 0EF52C: Entirety of ItemIdToBallId (see 216disasm)
 		  Implements: correct ids for rearranged pokeballs
 		  Relies on: all calls to ItemIdToBallId to use correct parameters
-- 0EF972, 0F02D6: 14 DC -> 00 00 (no longer limited to 12 types of pokeballs)
++ 0EF972, 0F02D6: 14 DC -> 00 00 (no longer limited to 12 types of pokeballs)
 = 0EFD2A: 0D 68 -> 08 47
   0EFD4C: 18 40 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jEEAB00, see 217disasm))
 		  Implements: critical capture animation
 		  Required knowledge: gCritCapture (j0203FE04)
-- 0F11F2: 0B -> 1F (max pokeball types 12 -> 32) (MERGE THIS CHECK)
-- 0F171C: 6E -> 6C (set gBattleAnimTarget to gBattlerTarget instead of gEffectBattler; these unknown animation routines are called by the item steal animation) (MERGE THIS CHECK)
 = 0F1D14: Entirety of AnimTask_GetTrappedMoveAnimId (see 218disasm)
 		  Implements: end-of-turn animations for Magma Storm and Infestation will show up
 		  Relies on: actual animations being implemented
 = 0F3270: 09 -> 0B (pkmnnamelength)
 		  Note: might actually run into issues, looks like jp hof might have extra space just in case western mons are transferred, en hof obviously doesn't
 ! 0F3310: 20 28 01 D0 1D 28 07 D1 -> 0A E0 00 00 00 00 00 00 (PDONLY, restores gender markers for pokemon #29 and #32 in hall of fame)
-- 0F7328: A0 -> A1
+! 0F7328: A0 -> A1
   0F7394: 01 02 00 00 02 02 00 00 03 02 00 00 05 02 00 00 06 02 00 00 09 02 00 00 0A 02 00 00 0B 02 00 00 0D 02 00 00 0A 0A 00 00 0B 0A 00 00 0C 0A 00 00 0D 0A 00 00 05 0A 00 00 06 0A 00 00 08 0A 00 00 09 0A 00 00 01 0A 00 00 02 0A 00 00 03 0A 00 00 04 0A 00 00 -> 00 02 00 00 00 02 00 00 01 02 00 00 02 02 00 00 03 02 00 00 05 02 00 00 06 02 00 00 07 02 00 00 09 02 00 00 02 02 00 00 0C 06 00 00 07 06 00 00 0A 02 00 00 06 02 00 00 0B 02 00 00 0D 02 00 00 0E 02 00 00 10 0A 00 00 10 0A 00 00 0F 02 00 00 11 02 00 00
-		  Implements: changes some sort of graphic in a menu
-- 0F75B8: A0 -> A1
+		  Implements: changes the tilemap for overworld dialog boxes
+		  Relies on: graphic itself actually changed
+! 0F75B8: A0 -> A1
   0F7630: 01 02 00 00 02 02 00 00 03 02 00 00 05 02 00 00 06 02 00 00 09 02 00 00 0A 02 00 00 0B 02 00 00 0D 02 00 00 05 0A 00 00 06 0A 00 00 08 0A 00 00 09 0A 00 00 0A 0A 00 00 0B 0A 00 00 0C 0A 00 00 0D 0A 00 00 01 0A 00 00 02 0A 00 00 03 0A 00 00 04 0A 00 00 -> 00 02 00 00 01 02 00 00 00 02 00 00 02 02 00 00 08 06 00 00 03 02 00 00 05 02 00 00 06 02 00 00 07 02 00 00 02 02 00 00 08 06 00 00 08 02 00 00 03 02 00 00 05 02 00 00 06 02 00 00 0A 02 00 00 07 02 00 00 10 0A 00 00 0D 02 00 00 10 0A 00 00 0E 02 00 00
-		  Implements: changes some sort of graphic in a menu
-- 1025EC: C1 -> C2 (allocate 16 more bytes for ?????? (pokedex screen))
-- 1028B8: D0 29 10 08 -> D8 2B 10 08 (change case 5 to be identical to case 9 in some pokedex func - TEST)
-- 102B50: 01 F0 2E FE -> 00 00 00 00
+		  Implements: changes the tilemap for overworld sign messages
+		  Relies on: graphic itself actually changed
++ 1025EC: C1 -> C2 (allocate 16 more bytes for ?????? (pokedex screen))
+! 1028B8: D0 29 10 08 -> D8 2B 10 08 (change case 5 to be identical to case 9 in some pokedex func - TEST)
+		  Note: currently just automatically jumps to list from table of contents
+! 102B50: 01 F0 2E FE -> 00 00 00 00
   102B58: 01 F0 2A FE -> 00 00 00 00
   102B60: 01 F0 26 FE -> 00 00 00 00
 		  Implements: don't remove three windows (pokedex screen - TEST)
+		  Note: currently just breaks things (probably running out of memory)
 = 102C28: Entirety of sub_8102C28 (see 219disasm)
 		  Implements: for one specific function (pokedex main screen?): change a tile type, always use natdex, and replace the TABLE OF CONTENTS text with something - need more info
 		  Requires in future: fn_3C7C00_J, CopyBytes (j3C7C40), fn_3C7C4E_J
@@ -1386,20 +1389,21 @@ other data:
 		  Implements: need more info
 		  Required knowledge: j0203D090, j030008E8, j06000000
 		  Requires in future: fn_3C7350_J, fn_3C7C00_J, fn_416970_J
-- 103350: 00 F0 4E FB -> 00 00 00 00 (don't add scrollbar? TEST)
++ 103350: 00 F0 4E FB -> 00 00 00 00 (remove scroll indicator from search screen)
 = 10345C: Entirety of sub_810345C (see 225disasm)
 		  Implements: on some pokedex screen, replace the SEARCH text with something - need more info
 		  Requires in future: fn_3C7C00_J
-- 103550: 68 35 10 08 -> 74 38 10 08 (change case 0 to be identical to case 5 in some pokedex func - TEST)
++ 103550: 68 35 10 08 -> 74 38 10 08 (regional and national lists are now identical)
 = 103940: C2 8E 83 8E -> 10 F3 D0 FE (add call to fn at j4154A0, see 226disasm)
 		  Implements: something to do with 4-entries-wide dex listing
-- 1039F0: Entirety of sub_81039F0 (see 227disasm)
-		  Implements: need more info (TEST)
-- 103A64: 00 F0 E6 FF -> 00 00 00 00 (need more info, TEST)
-- 103A78: 04 F0 76 F9 -> 00 00 00 00
+! 1039F0: Entirety of sub_81039F0 (see 227disasm)
+		  Implements: something to do with 4-entries-wide dex listing
+		  Note: Currently just prevents down arrow on dex list from disappearing
+! 103A64: 00 F0 E6 FF -> 00 00 00 00 (removes numbers from dex list)
+! 103A78: 04 F0 76 F9 -> 00 00 00 00
   103A98: 04 F0 66 F9 -> 00 00 00 00
   103AB2: 04 F0 59 F9 -> 00 00 00 00
-		  Implements: need more info (TEST)
+		  Implements: removes caught icon and types from dex list
 = 1043A2: 01 F0 3B FD -> ?? ?? ?? ?? (changes call to sub_8105E1C to instead call fn at j4151B8, which just adds a call to fn_3C7400_J after; see 220disasm)
 		  Implements: clears all sprites from memory, something else (need more info)
 		  Required knowledge: j0203D080, j03003E98
@@ -1407,14 +1411,14 @@ other data:
 = 10457A: 01 68 -> 87 46
   10458C: F0 AC 03 02 -> XX XX XX 08 (jumps (mov) to extra fn at XXXXXX, then back (jEEB440, see 228disasm))
 		  Implements: cleans up extra data display from sub_810603C
-		  Required knowledge: j0203D520
+		  Required knowledge: gExtraDexDisplayStruct (j0203D520)
 		  Requires in future: fn_EEB450_J
 = 1045E0: 01 68 -> 87 46
   1045E8: F0 AC 03 02 -> XX XX XX 08 (jumps (mov) to extra fn at XXXXXX, then back (jEEB448, see 229disasm))
   		  Implements: cleans up extra data display from sub_810603C
 		  Required knowledge: gExtraDexDisplayStruct (j0203D520)
 		  Requires in future: fn_EEB450_J
-- 104E06: 02 -> 00 (change font on some pokedex window, TEST)
++ 104E06: 02 -> 00 (changes font on habitat listing cards (to leave space for extra characters))
 = 104F5E: FF 21 FF F6 7C FA -> 33 21 ?? ?? ?? ?? (changes call to FillWindowPixelBuffer(0, 0xFF) to instead call fn_3C7C00_J(0, 0x33))
 		  Implements: need more info
 		  Note: parameters passed to fn_3C7C00_J are unused
@@ -1425,10 +1429,10 @@ other data:
 		  Implements: displays egg groups and wild hold items in pokedex list
 		  Required knowledge: gExtraDexDisplayStruct (j0203D520)
 		  Requires in future: fn_EEB476_J
-- 1063D0: FE F7 FA F9 -> 00 00 00 00 (need more info, TEST)
-- 106490: 02 -> 00 (change font on some pokedex window, TEST)
-- 106531: D1 -> 00 (instead of checking if something??? is zero, always treat it as zero; TEST)
-= 10676A: FD F6 77 FE -> ?? ?? ?? ?? (changes call to FillWindowPixelBuffer to instead call fn at j3C7C00)
++ 1063D0: FE F7 FA F9 -> 00 00 00 00 (removes "Area" label on pokedex detail screen 2)
++ 106490: 02 -> 00 (changes font for names on pokedex detail screen 2 (to leave space for extra characters))
+! 106531: D1 -> 00 (remove size comparison graphic on pokedex detail screen)
+= 10676A: FD F6 77 FE -> ?? ?? ?? ?? (changes call to FillWindowPixelBuffer to instead call fn at j3C7C00; need more info)
 - 106CC2: FF 20 FE F7 C8 F9 -> 00 00 00 00 00 00 (removes something in case 3, need more info, TEST)
 - 106D0C: 05 -> 07 (case 4 shifts to case 7 instead of case 5, need more info, TEST)
 - 106DB8: 57 E0 -> 00 00 (case 7 falls through into case 8, need more info, TEST)
