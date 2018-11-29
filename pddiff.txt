@@ -316,6 +316,7 @@ grafics:
 = 440274 (404928 old, E98420 new)
 = 4403AC (404A60 old, E98420 new)
 = 443620 (407FB8 old, E016A0 new)
+= 452C94 (411AFC old, 411C1C new)
 = D0051C (C0051C old, EB8990 new)
 = E9C3D8 (3964B0 old, 396374 new)
 = E9C3F8 (396470 old, 396334 new)
@@ -965,9 +966,10 @@ stray text:
 = 067D44: F1 F7 0A FF -> ?? ?? ?? ?? (changes call to sub_8059B5C to instead call fn at j183380, see 123disasm)
 		  Implements: Not certain, possibly IsSandOrDeepSand; adds metatiles 0xE0 and 0xE2 to whatever check this is
 = 06CAC8: Entirety of sub_806CAC8 (see 124disasm)
-		  Implements: Need more info (possibly two-speed bike and multi-registration SELECT)
-		  Required knowledge: j0203C00D, j0203CB54, j0203D2E0, j0203D2E1, j0203D2E2, j0203D2E4, j0203D2EC, j0203D2ED, j0203D2EE, j0203D2F9, j0203D2FA, j0203D2FF
-		  Requires in future: fn_99F4A_J, ShiftListElementsLeft (j99F54), fn_183A90_J, fn_EE5000, fn_EE51C0, fn_EE540C, fn_EE543E, fn_EE54D6, fn_EE5510, fn_EE5528, fn_EE561C, fn_EE5654, fn_EE56BC
+		  Implements: multi-registration SELECT menu, something else (possibly two-speed bike)
+		  Relies on: CompressedBoxPokemon refactor
+		  Required knowledge: j0203C00D, j0203CB54, j0203D2E0, j0203D2E1, j0203D2E2, gRegisteredItemListSize (j0203D2E4), j0203D2EC, j0203D2ED, j0203D2EE, j0203D2F9, j0203D2FA, j0203D2FF
+		  Requires in future: GetRegisteredItemList (j99F4A), UnregisterItem (j99F54), fn_183A90_J, fn_EE5000, fn_EE51C0, fn_EE540C, fn_EE543E, fn_EE54D6, fn_EE5510, CompactRegisteredItems (jEE5528), fn_EE561C, fn_EE5654, fn_EE56BC
 = 06D1F0: Entirety of GetInteractedMetatileScript (see 125disasm)
 		  Implements: scripts for metatiles 0xE3 and 0xE4, makes it easier to add more scripted metatiles
 		  Requires in future: script_68277E_J, script_682787_J
@@ -1175,7 +1177,7 @@ stray text:
 = 099E44: Entirety of SetBagItemsPointers (see 183disasm)
 		  Implements: extra bag space
 		  Required knowledge: gSaveBlock_ExtraItems (j0203C010)
-+ 09A540: Entirety of SwapRegisteredBike (+mysteryfuncs) (see 184disasm)
+- 09A540: Entirety of SwapRegisteredBike (+GetRegisteredItemList, UnregisterItem) (+mysteryfuncs) (see 184disasm)
 		  Implements: removes unused code to make room for mysteryfuncs
 + 09A8AA: BB -> D8 (max items 374 -> 432)
 + 09A900: Entirety of ItemId_GetPrice (see 185disasm)
@@ -1439,7 +1441,27 @@ stray text:
 - 106DC4: 09 20 4F E0 -> 0A 20 0A E0 (case 8 falls through into case 10, need more info, TEST)
 - 106DE2: 05 28 14 D8 -> 00 28 14 D0 (need more info, TEST)
 - 1071AE: 00 F0 F1 F9 -> 00 00 00 00 (don't draw cursor on list menu refresh)
-= 
+- 1083F8: AC 20 40 00 -> 8E 20 80 00 (allocate 224 more bytes for ?????? (item menu))
+= 108420: 31 03 -> ?? ?? (size to allocate for some struct???, jp 0x285 -> 0x429)
++ ??????: 01 -> 00 (changes the letter spacing in the item menu, but this is already done in english)
+- 10864C: 77 -> B0 (changes to new final item for back icon in bag)
+= 108654: Entirety of sub_8108654 (see 232disasm)
+		  Implements: something involving the new multiple SELECT items feature
+		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList (j99F4A)
++ ??????: 04 -> 00 (moves some printer left four units, this is already done in english - might cause problems if it needs to move left anyway)
+- 108924: 98 -> 88 (moves scroll arrows left in item menu)
+= 109890: Entirety of sub_8109890 (see 233disasm)
+		  Implements: something involving the new multiple SELECT items feature
+		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList (j99F4A)
+		  Note: first major instance where merging changes from english and changes from pd is necessary - return to this later
+= 10A000: Entirety of ItemMenu_Register (see 234disasm)
+		  Implements: register multiple items with SELECT
+		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList (j99F4A), UnregisterItem (j99F54)
+		  Required knowledge: j0203CB54
+- 10A6BC, 10A7EA, 10A8A2, 10A982, 10AA14: 00 04 40 0C -> 00 00 40 08 (store money as 32-bit integer instead of 16-bit)
+- 10A6CA, 10A990: 06 -> 08 (extra 2 digits for money in sell screen)
+= 10AD10: Entirety of UseRegisteredKeyItemOnField (see 235disasm)
+		  Implements: 
 		  
 		  
 		  
@@ -1457,12 +1479,5 @@ stray text:
 		  
 		  
 		  
-		  
-		  
-		  
-		  
-		  
-		  
-curr: j1088B0 (repoint)
-next: j108EFC (4byte), j108F24 (2byte), j108FD6 (1byte), j109148 (1byte)
-next: j109150
+curr: j10B80C-j10B8A8
+next: j10D7AC-j10D7EC, j10DA68

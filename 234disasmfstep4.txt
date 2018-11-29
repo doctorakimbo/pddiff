@@ -1,0 +1,10 @@
+ItemMenu_Register(taskId)
+{
+	itemId = BagGetItemIdByPocketPosition(data_0203ACFC.6 + 1, gTasks[taskId].data[2])
+	
+	if(gSaveBlock1Ptr->registeredItem == itemId)
+		gSaveBlock1Ptr->registeredItem = ITEM_NONE;
+	else
+		gSaveBlock1Ptr->registeredItem = itemId;
+	...
+}

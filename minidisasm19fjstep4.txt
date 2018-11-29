@@ -1,0 +1,33 @@
+sub_810842C(arg0)
+{
+	for(r6 = 0; r6 < data_0203AD10->0xA[arg0]; r6++)
+	{
+		// data_0203AD1C size 0xF
+		fn_108560(&data_0203AD1C->0[r6], gBagPockets[arg0]->itemSlots[r6])
+		data_0203AD18->0[r6].0 = &data_0203AD1C->0[r6]
+		data_0203AD18->0[r6].4 = r6
+	}
+	
+	StringCopy(&data_0203AD1C->0[r6], data_452F60)
+	StringAppend(&data_0203AD1C->0[r6], data_4161C1)
+	data_0203AD18->0[r6].0 = &data_0203AD1C->0[r6]
+	data_0203AD18->0[r6].4 = r6
+	data_03005E70.items = &data_0203AD18->0
+	data_03005E70.totalItems = data_0203AD10->0xA[arg0] + 1
+	data_03005E70.windowId = 0
+	data_03005E70.header_X = 0
+	data_03005E70.item_X = 0xA
+	data_03005E70.cursor_X = 1
+	data_03005E70.lettersSpacing = 1
+	data_03005E70.itemVerticalPadding = 2
+	data_03005E70.upText_Y = 2
+	data_03005E70.maxShowed = data_0203AD10->0xD[arg0]
+	data_03005E70.cursorPal = 2
+	data_03005E70.fillValue = 0
+	data_03005E70.cursorShadowPal = 3
+	data_03005E70.moveCursorFunc = fn_1085A4
+	data_03005E70.itemPrintFunc = fn_108654
+	data_03005E70.fontId = 2
+	data_03005E70.cursorKind = 0
+	data_03005E70.scrollMultiple = 0
+}

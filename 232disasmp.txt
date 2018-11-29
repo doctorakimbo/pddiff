@@ -1,0 +1,101 @@
+lbl1: @109150
+r4 = r1
+r8 = r0
+r6 = r2
+r0 = data_0203AD10
+r0 = *r0
+r1 = *(r0 + 4)
+if(r1 == 0xFF) goto lbl3
+
+r0 = r4
+if(r1 != r0) goto lbl2
+
+r0 = r6
+r1 = 2
+fn_10878C()
+goto lbl3
+
+lbl2:
+r0 = r6
+r1 = 0xFF
+fn_10878C()
+goto lbl3
+
+lbl3:
+r0 = -2
+if(r4 == r0) goto lbl5
+
+r0 = data_0203AD10
+r0 = *r0
+r5 = data_0203ACFC
+r1 = *(r5 + 6)
+r0 += 0xA
+r0 += r1
+r0 = *r0
+if(r0 == r4) goto lbl5
+
+r0 = r1 + 1
+r1 = r4
+fn_9A798()
+r7 = r0
+r0 = *(r5 + 6)
+r0++
+r1 = r4
+fn_9A7B4()
+r4 = r0
+r0 = *(r5 + 6)
+if(r0 == 1) goto lbl4
+
+r0 = r7
+fn_9A990()
+r5 = r0
+if(r5 != 0) goto lbl4
+
+r0 = gStringVar1
+r1 = r4
+r2 = 1
+r3 = 3
+ConvertIntToDecimalStringN()
+r4 = gStringVar4
+r1 = data_4162B9
+r0 = r4
+StringExpandPlaceholders()
+s0 = r6
+s1 = r5
+s2 = r5
+r0 = 0xFF
+s3 = r0
+r0 = 1
+s4 = r0
+r0 = r8
+r1 = 0
+r2 = r4
+r3 = 0x6E
+fn_10B8F0()
+goto lbl5
+
+lbl4:
+fn_99F4A_J()
+r1 = r0
+goto lblx
+
+lblx:
+r0 = *r1
+if(r0 == 0) goto lbl5
+
+r1 += 2
+if(r0 != r7) goto lblx
+
+r1 = data_452F7C
+r0 = 0x18
+s0 = r0
+r0 = 0x10
+s1 = r0
+r0 = r8
+r2 = 0x70
+r3 = r6
+BlitBitmapToWindow()
+goto lbl5
+
+lbl5:
+return

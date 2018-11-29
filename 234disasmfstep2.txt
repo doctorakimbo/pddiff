@@ -1,0 +1,11 @@
+sub_810A000(arg0)
+{
+	r7 = (arg0 * 0x28) + gTasks.data
+	r2 = BagGetItemIdByPocketPosition(*(data_0203ACFC + 6) + 1, *(r7 + 2))
+	
+	if(*(*gSaveBlock1Ptr + 0x296) == r2)
+		*(*gSaveBlock1Ptr + 0x296) = 0
+	else
+		*(*gSaveBlock1Ptr + 0x296) = r2
+	...
+}

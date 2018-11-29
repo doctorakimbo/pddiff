@@ -1,0 +1,25 @@
+sub_810A000(arg0)
+{
+	r7 = (arg0 * 0x28) + gTasks.data
+	r2 = BagGetItemIdByPocketPosition(*(data_0203ACFC + 6) + 1, *(r7 + 2))
+	
+	r1 = GetRegisteredItemList()
+
+	for(i = 0; r1[i] != 0; r1++)
+	{
+		if(r1[i] == r2)
+		{
+			CloseGapInRegisteredItemsList(&r1[i])
+			break;
+		}
+	}
+	
+	if(r1[i] == 0)
+	{
+		r1[i] = r2
+		r1[i + 1] = 0
+	}
+	
+	*data_0203CB54_J = 0
+	...
+}

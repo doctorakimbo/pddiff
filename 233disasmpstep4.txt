@@ -1,0 +1,18 @@
+...
+registeredItems = GetRegisteredItemList();
+r7 = r3
+
+for(i = 0; registeredItems[i] != ITEM_NONE; i++)
+{
+	if(registeredItems[i] == gSpecialVar_ItemId)
+	{
+		r0 = 0xA
+		break;
+	}
+}
+
+if(registeredItems[i] == ITEM_NONE)
+	r0 = 2
+
+r1 = gSpecialVar_ItemId
+...

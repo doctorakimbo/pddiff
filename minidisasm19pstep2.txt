@@ -1,0 +1,29 @@
+sub_810842C(arg0)
+{
+	for(r6 = 0; r6 < *(*data_0203AD10 + 0xA + arg0); r6++)
+	{
+		fn_108560(*data_0203AD1C + (r6 * 0xF), *((r6 * 4) + *((arg0 * 8) + gBagPockets)))
+		*(*data_0203AD18 + (r6 * 8)) = *data_0203AD1C + (r6 * 0xF)
+		*(*data_0203AD18 + (r6 * 8) + 4) = r6
+	}
+	
+	StringCopy(*data_0203AD1C + (r6 * 0xF), data_452F60)
+	StringAppend(*data_0203AD1C + (r6 * 0xF), data_4161C1)
+	*(*data_0203AD18 + (r6 * 8)) = *data_0203AD1C + (r6 * 0xF)
+	*(*data_0203AD18 + (r6 * 8) + 4) = r6
+	*data_03005E70 = *data_0203AD18
+	*(data_03005E70 + 0xC) = *(*data_0203AD10 + 0xA + arg0) + 1
+	*(data_03005E70 + 0x10) = 0
+	*(data_03005E70 + 0x11) = 0
+	*(data_03005E70 + 0x12) = 0xA
+	*(data_03005E70 + 0x13) = 1
+	*(data_03005E70 + 0x16) = ((*(data_03005E70 + 0x16) & -8) & -0x39) | 0x20
+	*(data_03005E70 + 0x14) = (*(data_03005E70 + 0x14) & -0x29) | 2
+	*(data_03005E70 + 0xE) = *(*data_0203AD10 + 0xD + arg0)
+	*(data_03005E70 + 0x14) = (*(data_03005E70 + 0x14) & 0xF) | 0x20
+	*(data_03005E70 + 0x15) = 0x30
+	*(data_03005E70 + 4) = data_1085A5
+	*(data_03005E70 + 8) = data_108655
+	*(data_03005E70 + 0x17) = ((*(data_03005E70 + 0x17) & -0x40) | 2) & 0x3F
+	*(data_03005E70 + 0x16) &= 0x3F
+}

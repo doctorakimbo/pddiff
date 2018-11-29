@@ -164,12 +164,12 @@ fn_EE5000_J()
 	data_0203D2E0_J.8 = 0
 	data_0203D2E0_J.0xC = 0
 	data_0203D2E0_J.0 = data_0203CB54_J
-	fn_EE5528_J()
+	CompactRegisteredItems();
 	
-	if(fn_99F4A_J() == 0)
+	if(GetRegisteredItemList()[0] == ITEM_NONE)
 	{
 		data_0203D2F9_J = 1
-		return
+		return;
 	}
 	
 	SetGpuReg(REG_OFFSET_BG0CNT, data_04000008_J | BGCNT_256COLOR)
@@ -200,16 +200,11 @@ fn_EE5000_J()
 	fn_EE543E_J(data_EE5568_J, 1)
 	fn_EE543E_J(data_EE5570_J, 2)
 	fn_EE5510_J()
-	r0 = fn_99F4A_J()
-	r4 = 0
+	registeredItems = GetRegisteredItemList();
 
-	do
-	{
-		r1 = r0[r4]
-		r4++
-	} while(r1 != 0)
+	for(i = 0; registeredItems[i] != ITEM_NONE; i++) {};
 
-	data_0203D2E4_J = r4 - 1
+	gRegisteredItemListSize = i - 1;
 	fn_EE54D6_J()
 	r4 = AddWindow(data_EE5578_J)
 	PutWindowTilemap(r4)
@@ -228,23 +223,25 @@ fn_EE5000_J()
 
 
 
-fn_99F4A_J()
+GetRegisteredItemList() @99F4A_J
 {
-	return (*gPokemonStoragePtr + 0x824C)
+	return &gPokemonStoragePtr->registeredItems;
 }
 
 
 
 
 
-fn_EE5528_J()
+CompactRegisteredItems() @EE5528_J
 {
-	for(r4 = fn_99F4A_J(); r4 != 0; r4 += 2)
+	registeredItems = GetRegisteredItemList();
+
+	for(i = 0; registeredItems[i] != ITEM_NONE; i++)
 	{
-		if(!CheckBagHasItem(r4, 1))
+		if(!CheckBagHasItem(registeredItems[i], 1))
 		{
-			ShiftListElementsLeft(&r4)
-			r4 -= 2 // don't increase the counter
+			CloseGapInRegisteredItemsList(&registeredItems[i]);
+			i--; // don't increase the counter
 		}
 	}
 }
@@ -256,8 +253,8 @@ fn_EE5528_J()
 
 fn_EE540C_J()
 {
-	r0 = fn_99F4A_J()
-	fn_EE5654_J(r0[data_0203D2E0_J.0], data_06008800_J)
+	registeredItems = GetRegisteredItemList();
+	fn_EE5654_J(registeredItems[data_0203D2E0_J.0], data_06008800_J)
 	r4 = AddWindow(data_EE5558_J)
 	PutWindowTilemap(r4)
 	RemoveWindow(r4)
@@ -274,8 +271,8 @@ fn_EE543E_J(arg0, arg1)
 	r1 = data_02020430_J[r4].8
 	r0 = data_EE56E0_J
 	svc(17)
-	r0 = fn_99F4A_J()
-	r0 = r0[data_0203D2E1_J + arg1]
+	registeredItems = GetRegisteredItemList();
+	r0 = registeredItems[data_0203D2E1_J + arg1]
 	
 	if(r0 == 0)
 		s4 = data_EE55AC_J
@@ -312,7 +309,7 @@ fn_EE54D6_J()
 	else
 		memcpy(data_06009C00_J, data_EE5C58_J, 0xC0)
 	
-	if(data_0203D2E1_J.4 <= data_0203D2E4_J)
+	if(data_0203D2E1_J.4 <= gRegisteredItemListSize)
 		memcpy(data_06009CC0_J, data_EE5B78_J, 0xC0)
 	else
 		memcpy(data_06009CC0_J, data_EE5D38_J, 0xC0)
@@ -381,17 +378,10 @@ fn_EE56BC_J(arg0, arg1, arg2)
 
 
 
-ShiftListElementsLeft(arg0) @99F54_J
+CloseGapInRegisteredItemsList(startElement) @99F54_J
 {
-	while(true)
-	{
-		*arg0 = *(arg0 + 2)
-		
-		if(*arg0 == 0)
-			break;
-
-		arg0 += 2
-	}
+	for(elementPtr = startElement; *elementPtr != ITEM_NONE; elementPtr += SIZEOF(Item))
+		*elementPtr = *(elementPtr + SIZEOF(Item));
 }
 
 
@@ -456,11 +446,11 @@ fn_EE51C0_J()
 				
 				if(data_0203D2EC_J != 0)
 				{
-					r0 = fn_99F4A_J()
-					r3 = r0[data_0203D2E0_J.0]
-					r4 = r0[data_0203D2E0_J.0 + 1]
-					r0[data_0203D2E0_J.0] = r4
-					r0[data_0203D2E0_J.0 + 1] = r3
+					registeredItems = GetRegisteredItemList();
+					r3 = registeredItems[data_0203D2E0_J.0]
+					r4 = registeredItems[data_0203D2E0_J.0 + 1]
+					registeredItems[data_0203D2E0_J.0] = r4
+					registeredItems[data_0203D2E0_J.0 + 1] = r3
 				}
 				
 				PlaySE(SE_SELECT);
@@ -474,7 +464,7 @@ fn_EE51C0_J()
 		}
 		elseif(gMain.newKeys & DPAD_DOWN)
 		{	
-			if(data_0203D2E0_J.0 < (data_0203D2E4_J - 1))
+			if(data_0203D2E0_J.0 < (gRegisteredItemListSize - 1))
 			{
 				data_0203D2E0_J.0++
 				
@@ -485,11 +475,11 @@ fn_EE51C0_J()
 				
 				if(data_0203D2EC_J != 0)
 				{
-					r0 = fn_99F4A_J()
-					r3 = r0[data_0203D2E0_J.0]
-					r4 = r0[data_0203D2E0_J.0 - 1]
-					r0[data_0203D2E0_J.0] = r4
-					r0[data_0203D2E0_J.0 - 1] = r3
+					registeredItems = GetRegisteredItemList();
+					r3 = registeredItems[data_0203D2E0_J.0]
+					r4 = registeredItems[data_0203D2E0_J.0 - 1]
+					registeredItems[data_0203D2E0_J.0] = r4
+					registeredItems[data_0203D2E0_J.0 - 1] = r3
 				}
 				
 				PlaySE(SE_SELECT);

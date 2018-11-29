@@ -1,0 +1,66 @@
+sub_8108654(arg0, arg1, arg2)
+{
+	r4 = arg1
+	r8 = arg0
+	r6 = arg2
+	r0 = data_0203AD10
+	r0 = *r0
+	r1 = *(r0 + 4)
+	
+	if(r1 != 0xFF)
+	{
+		r0 = r4
+		
+		if(r1 == r0)
+			fn_10878C(r6, 2)
+		else
+			fn_10878C(r6, 0xFF)
+	}
+	
+	r0 = -2
+	
+	if(r4 != r0)
+	{
+		r0 = data_0203AD10
+		r0 = *r0
+		r5 = data_0203ACFC
+		r1 = *(r5 + 6)
+		r0 += 0xA
+		r0 += r1
+		r0 = *r0
+		
+		if(r0 != r4)
+		{
+			r7 = fn_9A798(r1 + 1, r4)
+			r0 = *(r5 + 6)
+			r0++
+			r4 = fn_9A7B4(r0, r4)
+			r0 = *(r5 + 6)
+			if(r0 == 1) goto lbl4
+
+			r5 = fn_9A990(r7)
+			if(r5 != 0) goto lbl4
+
+			ConvertIntToDecimalStringN(gStringVar1, r4, 1, 3)
+			r4 = gStringVar4
+			StringExpandPlaceholders(r4, data_4162B9)
+			fn_10B8F0(r8, 0, r4, 0x6E, r6, r5, r5, 0xF, 1)
+			goto lbl5
+
+			lbl4:
+			r1 = fn_99F4A_J()
+			goto lblx
+
+			lblx:
+			r0 = *r1
+			if(r0 == 0) goto lbl5
+
+			r1 += 2
+			if(r0 != r7) goto lblx
+
+			BlitBitmapToWindow(r8, data_452F7C, 0x70, r6, 0x18, 0x10)
+		}
+	}
+
+	lbl5:
+}

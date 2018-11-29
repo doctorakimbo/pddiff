@@ -1,0 +1,47 @@
+sub_8108654(arg0, arg1, arg2)
+{
+	if(data_0203AD10->4 != 0xFF)
+	{
+		if(data_0203AD10->4 == arg1)
+			bag_menu_print_cursor(arg2, 2)
+		else
+			bag_menu_print_cursor(arg2, 0xFF)
+	}
+	
+	if(arg1 != -2)
+	{
+		if(data_0203AD10->0xA[data_0203ACFC.6] != arg1)
+		{
+			r7 = fn_9A798(r1 + 1, arg1)
+			
+			if(data_0203ACFC.6 != 1 && ItemId_GetImportance(r7) == 0)
+			{
+				ConvertIntToDecimalStringN(gStringVar1, fn_9A7B4(data_0203ACFC.6 + 1, arg1), 1, 3)
+				StringExpandPlaceholders(gStringVar4, data_4162B9)
+				fn_10B8F0(arg0, 0, gStringVar4, 0x6E, arg2, 0, 0, 0xF, 1)
+			}
+			else
+			{
+				r2 = fn_99F4A_J()
+			
+				for(r1 = 0; r2[r1] != r7; r1++)
+				{
+					if(r2[r1] == 0)
+						return;
+				}
+
+				BlitBitmapToWindow(arg0, data_452F7C, 0x70, arg2, 0x18, 0x10)
+			}
+		}
+	}
+}
+
+
+
+
+
+
+fn_99F4A_J()
+{
+	return *gPokemonStoragePtr + 0x824C
+}

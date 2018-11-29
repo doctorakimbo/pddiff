@@ -1,0 +1,25 @@
+ItemMenu_Register(taskId)
+{
+	itemId = BagGetItemIdByPocketPosition(data_0203ACFC.6 + 1, gTasks[taskId].data[2])
+	
+	registeredItems = GetRegisteredItemList();
+
+	for(i = 0; registeredItems[i] != ITEM_NONE; i++)
+	{
+		if(registeredItems[i] == itemId)
+		{
+			UnregisterItem(&registeredItems[i]);
+			break; // jump to lbl
+		}
+	}
+	
+	if(registeredItems[i] == ITEM_NONE)
+	{
+		registeredItems[i] = itemId;
+		registeredItems[i + 1] = ITEM_NONE;
+	}
+	
+	// lbl
+	data_0203CB54_J = 0
+	...
+}

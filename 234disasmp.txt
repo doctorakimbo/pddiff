@@ -1,0 +1,41 @@
+lbl1: @10AAFC
+r8 = r0
+r0 *= 4
+r0 += r8
+r0 *= 8
+r1 = gTasks.data
+r7 = r0 + r1
+r0 = data_0203ACFC
+r0 = *(r0 + 6)
+r0++
+r1 = *(r7 + 2)
+BagGetItemIdByPocketPosition()
+r2 = r0
+GetRegisteredItemList()
+r1 = r0
+goto lblx
+
+lblx:
+r0 = *r1
+if(r0 == r2) goto lbly
+
+if(r0 == 0) goto lbl2
+
+r1 += 2
+goto lblx
+
+lbly:
+r0 = r1
+CloseGapInRegisteredItemsList()
+goto lbl3
+
+lbl2:
+*r1 = r2
+*(r1 + 2) = r0
+goto lbl3
+
+lbl3:
+r0 = data_0203CB54_J
+r1 = 0
+*r0 = r1
+...

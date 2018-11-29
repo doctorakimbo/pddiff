@@ -173,6 +173,13 @@ E4 99 03 02: 5C 99 03 02: ??????
 04 9A 03 02: 7C 99 03 02: gPlayerFacingPosition
 B4 AA 03 02: 2C AA 03 02: ??????
 F0 AC 03 02: 68 AC 03 02: ??????
+FC AC 03 02: 74 AC 03 02: ??????
+10 AD 03 02: 88 AC 03 02: ??????
+18 AD 03 02: 90 AC 03 02: ??????
+1C AD 03 02: 94 AC 03 02: ??????
+20 AD 03 02: 98 AC 03 02: ??????
+24 AD 03 02: 9C AC 03 02: ??????
+28 AD 03 02: A0 AC 03 02: ??????
 30 AD 03 02: A8 AC 03 02: gSpecialVar_ItemId
 FA AD 03 02: 72 AD 03 02: ??????
 		   : 00 B8 03 02: ?????? (fn_4151F2_J: sprite and palette data temporarily stored here)
@@ -247,6 +254,7 @@ FA AD 03 02: 72 AD 03 02: ??????
 								 (fn_E9F92C_J: if its argument is 0, this function returns 0; otherwise returns the index (plus 1) of the (argument)th 1 byte in the array (0xFF if there is none))
 		   : 54 CB 03 02: ?????? (fn_EE5000: set data_0203D2E0_J.0 to this on start)
 								 (fn_EE51C0: set this to data_0203D2E0_J.0 on exit)
+								 (ItemMenu_Register: set this to 0 whenever a key item's registration status changes)
 		   : 58 CB 03 02: ?????? (GetFlagPointer: if the flag number is 0xF000 or above, read it from this[number - 0xF000])
 		   : C0 CE 03 02: ?????? (the last byte that's saved to the save file, start byte is 0203C010)
 		   : 80 D0 03 02: ?????? (fn_3C7418_J: 4 bytes zeroed)
@@ -267,27 +275,25 @@ FA AD 03 02: 72 AD 03 02: ??????
 		   : 00 D2 03 02: ?????? (appears to be an array of 4 SpriteTemplates)
 								 (fn_E9F398_J: used to temporarily store SpriteTemplates before their creation in a loop)
 		   : E0 D2 03 02: ?????? (fn_EE5000: set this.4, this.8, and this.0xC to 0 and this.0 to data_0203CB54_J on start)
-								 (fn_EE540C: use this.0 as an index into gPokemonStoragePtr->0x824C[])
+								 (fn_EE540C: use this.0 as an index into gPokemonStoragePtr->registeredItems)
 								 (fn_EE51C0: set data_0203CB54_J to this.0 on exit)
-								 (fn_EE51C0: if UP is pressed, decrement this.0 if not 0, decrement this.2 if not 0 (otherwise decrement this.1), and if data_0203D2EC_J is 1, swap gPokemonStoragePtr->0x824C[this.0] and gPokemonStoragePtr->0x824C[this.0 + 1])
-								 (fn_EE51C0: if DOWN is pressed, decrement this.0 if less than (data_0203D2E4_J - 1), increment this.2 if not 2 (otherwise increment this.1), and if data_0203D2EC_J is 1, swap gPokemonStoragePtr->0x824C[this.0] and gPokemonStoragePtr->0x824C[this.0 - 1])
-		   : E1 D2 03 02: ?????? (fn_EE543E: use this.0 as an index into gPokemonStoragePtr->0x824C[])
+								 (fn_EE51C0: if UP is pressed, decrement this.0 if not 0, decrement this.2 if not 0 (otherwise decrement this.1), and if data_0203D2EC_J is 1, swap gPokemonStoragePtr->registeredItems[this.0] and gPokemonStoragePtr->registeredItems[this.0 + 1])
+								 (fn_EE51C0: if DOWN is pressed, decrement this.0 if less than (data_0203D2E4_J - 1), increment this.2 if not 2 (otherwise increment this.1), and if data_0203D2EC_J is 1, swap gPokemonStoragePtr->registeredItems[this.0] and gPokemonStoragePtr->registeredItems[this.0 - 1])
+		   : E1 D2 03 02: ?????? (fn_EE543E: use this.0 as an index into gPokemonStoragePtr->registeredItems)
 								 (fn_EE543E: use this.0 as an index into data_06009000_J)
 								 (fn_EE54D6: determine something through this.0, and something else through this.4)
 		   : E2 D2 03 02: ?????? (fn_EE5510: used as an index into data_06009000_J)
-		   : E4 D2 03 02: ?????? (fn_EE5000: set this to the currently occupied size of gPokemonStoragePtr->0x824C[])
-								 (fn_EE54D6: used as an upper limit of something)
-								 (fn_EE51C0: DOWN only does something if data_0203D2E0_J.0 is less than (this - 1))
+		   : E4 D2 03 02: gRegisteredItemListSize
 		   : EC D2 03 02: ?????? (fn_EE51C0: when this is 1 and A, B, or SELECT are pressed, set this to 0 and switch a palette)
 								 (fn_EE51C0: when START is pressed, toggle this and switch a palette)
-								 (fn_EE51C0: when this is 1, UP/DOWN swap entries of gPokemonStoragePtr->0x824C[])
+								 (fn_EE51C0: when this is 1, UP/DOWN swap entries of gPokemonStoragePtr->registeredItems)
 		   : ED D2 03 02: ?????? (fn_EE5000: set this to 0x10 on start)
 								 (fn_EE51C0: decrement once per frame until 0)
 		   : EE D2 03 02: ?????? (fn_EE51C0: exit when this is 1)
 								 (fn_EE51C0: when data_0203D2EC_J != 1 and A, B, or SELECT are pressed, set this to 1)
 		   : F9 D2 03 02: ?????? (sub_806CAC8: set to zero on start)
 								 (sub_806CAC8: if 1, act as if SELECT was pressed)
-								 (fn_EE5000: if gPokemonStoragePtr->0x824C[0] == 0, set this to 1 and don't execute the function)
+								 (fn_EE5000: if gPokemonStoragePtr->registeredItems[0] == 0, set this to 1 and don't execute the function)
 								 (fn_EE51C0: if the A button is pressed with data_0203D2EC_J != 1, set this to 1 and prepare to exit)
 		   : FA D2 03 02: ?????? (fn_EE5000: set this to the created task on start)
 								 (fn_EE51C0: destroy this task on exit)
@@ -429,6 +435,7 @@ F8 4F 00 03: 38 50 00 03: gNumberOfMovesToChoose
 		   : 40 55 00 03: ?????? (GetEvolutionTargetSpecies: EVO_FRIENDSHIP_DAY works when this.2 is less than 11; EVO_FRIENDSHIP_NIGHT works when this.2 is between 12 and 23 inclusive) (gLocalTime?)
 		   : 42 55 00 03: ?????? (atkEF_handleballthrow: Dusk Ball boosted if less than 6 or greater than 20) (gLocalTime.hours?)
 		   : 48 55 00 03: ?????? (GetTrainerApproachDistance: set to address of trainerObj)
+70 5E 00 03: C0 5E 00 03: ??????
 88 5E 00 03: D8 5E 00 03: ??????
 24 74 00 03: 74 74 00 03: ??????
 30 74 00 03: 80 74 00 03: ??????
@@ -692,11 +699,14 @@ funcs e,j,desc:
 099E44 = 09984C = SetBagItemsPointers
 099E90 = 099898 = CopyItemName
 099F40 = 099948 = CheckBagHasItem
+09A798 = 09A1A0 = BagGetItemIdByPocketPosition
+09A7B4 = 09A1BC = BagGetQuantityByPocketPosition
 09A8A4 = 09A2AC = SanitizeItemId
 09A8BC = 09A2C4 = ItemId_GetName
 09A900 = 09A30C = ItemId_GetPrice
 09A924 = 09A330 = ItemId_GetHoldEffect
 09A948 = 09A354 = ItemId_GetHoldEffectParam
+09A990 = 09A3A0 = ItemId_GetImportance
 09A9D8 = 09A3E8 = ItemId_GetPocket
 09FD58 = 09FC38 = GetMoney
 09FDD8 = 09FCB8 = RemoveMoney
@@ -726,8 +736,10 @@ funcs e,j,desc:
 1074DC = 107FE0 = ListMenuPrintEntries
 107594 = 108098 = ListMenuDrawCursor
 10799C = 1084A0 = ListMenuChangeSelection
+10878C = 109288 = bag_menu_print_cursor
 108E70 = 109968 = DisplayItemMessage
 10AD10 = 10B80C = UseRegisteredKeyItemOnField
+10B8F0 = 10C3EC = bag_menu_print
 10F904 = 110438 = MoveMenuCursor
 11B0D0 = 11B914 = InUnionRoom
 125A78 = 1263C4 = ItemIdToBattleMoveId
@@ -766,7 +778,8 @@ funcs e,j,desc:
 045BF0 = 0451B4 = GetStatFromPowerItem
 045DD8 = 04539C = ?????
 045E00 = 0453C4 = ?????
-?????? = 099F54 = ShiftListElementsLeft (unimplemented)
+09A542 = 099F4A = GetRegisteredItemList
+09A54C = 099F54 = UnregisterItem
 ?????? = 168A10 = ????? (unimplemented)
 ?????? = 168AC0 = ????? (unimplemented)
 ?????? = 168C88 = ClearFocusBand (unimplemented)
@@ -840,6 +853,7 @@ funcs e,j,desc:
 ?????? = 4151F2 = ????? (unimplemented)
 ?????? = 415262 = ????? (unimplemented)
 ?????? = 4152D4 = ????? (unimplemented)
+?????? = EE5528 = CompactRegisteredItems (unimplemented)
 
 
 data:
@@ -961,3 +975,4 @@ evo methods:
 POCKET_POKE_BALLS = 3 in FR
 MOVE_EFFECT_RECOIL_50 = 0x37
 AI_SCRIPT_NEW_AI = (1 << 0xA)
+gPokemonStoragePtr->0x824C = gPokemonStoragePtr->registeredItems

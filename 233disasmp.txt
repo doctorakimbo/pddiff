@@ -1,0 +1,26 @@
+lbl1: @10A37C
+...
+lbl2: @10A4A4
+GetRegisteredItemList()
+r1 = gSpecialVar_ItemId
+r7 = r3
+r3 = *r1
+goto lblx
+
+lblx:
+r1 = *r0
+if(r1 == 0) goto lbl3
+
+r0 += 2
+if(r1 != r3) goto lblx
+
+r0 = 0xA
+goto lbl4
+
+lbl3:
+r0 = 2
+goto lbl4
+
+lbl4:
+r1 = gSpecialVar_ItemId
+...

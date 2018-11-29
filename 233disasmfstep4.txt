@@ -1,0 +1,10 @@
+...
+r1 = gSpecialVar_ItemId
+r7 = r3
+
+if(gSaveBlock1Ptr->registeredItem == gSpecialVar_ItemId)
+	r0 = 0xA
+else
+	r0 = 2
+
+...

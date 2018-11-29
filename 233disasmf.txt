@@ -1,0 +1,22 @@
+lbl1: @109890
+...
+lbl2: @109A44
+r0 = gSaveBlock1Ptr
+r0 = *r0
+r1 = 0x296
+r0 += r1
+r1 = gSpecialVar_ItemId
+r0 = *r0
+r7 = r3
+r3 = *r1
+if(r0 != r3) goto lbl3
+
+r0 = 0xA
+goto lbl4
+
+lbl3:
+r0 = 2
+goto lbl4
+
+lbl4:
+...
