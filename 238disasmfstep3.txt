@@ -1,0 +1,15 @@
+sub_811164C()
+{
+	r6 = 0
+	
+	for(r7 = 0; r7 <= 0xD; r7++)
+	{
+		for(r4 = 0; r4 <= 0x1D; r4++)
+		{
+			if(GetBoxMonDataFromAnyBox(r4, r7, 5) != 0)
+				r6++
+		}
+	}
+	
+	return r6
+}

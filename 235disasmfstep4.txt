@@ -1,0 +1,30 @@
+UseRegisteredKeyItemOnField()
+{
+	if(InUnionRoom() == TRUE)
+		return FALSE;
+
+	HideMapNamePopUpWindow();
+	ChangeBgY(0, 0, 0);
+	registeredItem = gSaveBlock1Ptr->registeredItem;
+	
+	
+	if(registeredItem != ITEM_NONE)
+	{
+		if(CheckBagHasItem(registeredItem, 1) == TRUE)
+		{
+			ScriptContext2_Enable();
+			FreezeEventObjects();
+			fn_5C270()
+			fn_5C780()
+			gSpecialVar_ItemId = registeredItem;
+			taskId = CreateTask(ItemId_GetFieldFunc(registeredItem), 8);
+			gTasks[taskId].data[3] = 1;
+			return 1;
+		}
+		else
+			registeredItem = ITEM_NONE;
+	}
+	
+	ScriptContext1_SetupScript(data_1A77A0)
+	return TRUE;
+}

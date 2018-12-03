@@ -1,0 +1,37 @@
+lbl1: @112198
+r4 = gPokemonStoragePtr
+r4 = *r4
+r4 += 4
+r5 = 0
+goto lbl2
+
+lbl2:
+r6 = 0
+r0 = 0
+r1 = r5
+r2 = 0x30
+r1 *= r2
+r2 = 0x1E
+r1 *= r2
+r3 = r1 + r4
+goto lbl3
+
+lbl3:
+r1 = r6
+r2 = 0x30
+r1 *= r2
+r1 += r3
+r1 = *(r1 + 0x24)
+if(r1 != 0) goto lbl4
+
+r0++
+goto lbl4
+
+lbl4:
+r6++
+if(r6 <= 0x1D) goto lbl3
+
+r5++
+if(r5 <= 0x16) goto lbl2
+
+return r0

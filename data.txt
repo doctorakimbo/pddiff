@@ -279,6 +279,7 @@ FA AD 03 02: 72 AD 03 02: ??????
 								 (fn_EE51C0: set data_0203CB54_J to this.0 on exit)
 								 (fn_EE51C0: if UP is pressed, decrement this.0 if not 0, decrement this.2 if not 0 (otherwise decrement this.1), and if data_0203D2EC_J is 1, swap gPokemonStoragePtr->registeredItems[this.0] and gPokemonStoragePtr->registeredItems[this.0 + 1])
 								 (fn_EE51C0: if DOWN is pressed, decrement this.0 if less than (data_0203D2E4_J - 1), increment this.2 if not 2 (otherwise increment this.1), and if data_0203D2EC_J is 1, swap gPokemonStoragePtr->registeredItems[this.0] and gPokemonStoragePtr->registeredItems[this.0 - 1])
+								 (UseRegisteredKeyItemOnField: use this.0 as an index into gPokemonStoragePtr->registeredItems)
 		   : E1 D2 03 02: ?????? (fn_EE543E: use this.0 as an index into gPokemonStoragePtr->registeredItems)
 								 (fn_EE543E: use this.0 as an index into data_06009000_J)
 								 (fn_EE54D6: determine something through this.0, and something else through this.4)
@@ -449,6 +450,7 @@ funcs e,j,desc:
 001960 = 001960 = IsDma3ManagerBusyWithBgCopy
 0019BC = 0019BC = ShowBg
 001B90 = 001B90 = ChangeBgX
+001D08 = 001D08 = ChangeBgY
 0020BC = 0020BC = CopyBgTilemapBufferToVram
 002124 = 002124 = CopyToBgTilemapBufferRect
 002228 = 002228 = CopyToBgTilemapBufferRect_ChangePalette
@@ -636,6 +638,7 @@ funcs e,j,desc:
 063A20 = 0632E0 = MoveCoords
 063F84 = 063844 = GetWalkNormalMovementAction
 063FB0 = 063870 = GetPlayerRunMovementAction
+068974 = 068234 = FreezeEventObjects
 0696C0 = 068F80 = ScriptUnfreezeEventObjects
 069940 = 069200 = ScriptContext2_Enable
 06994C = 06920C = ScriptContext2_Disable
@@ -694,6 +697,7 @@ funcs e,j,desc:
 08C0D4 = 08BB10 = CountMonsInBox
 08CFF8 = 08CA34 = add_to_c3_somehow
 0937DC = 093210 = CompactPartySlots
+0982EC = 097CDC = HideMapNamePopUpWindow
 09872C = 09811C = CopyItemIconPicTo4x4Buffer
 099DE0 = 0997E8 = ApplyNewEncryptionKeyToBagItems
 099E44 = 09984C = SetBagItemsPointers
@@ -708,6 +712,7 @@ funcs e,j,desc:
 09A948 = 09A354 = ItemId_GetHoldEffectParam
 09A990 = 09A3A0 = ItemId_GetImportance
 09A9D8 = 09A3E8 = ItemId_GetPocket
+09AA20 = 09A430 = ItemId_GetFieldFunc
 09FD58 = 09FC38 = GetMoney
 09FDD8 = 09FCB8 = RemoveMoney
 09FE40 = 09FD20 = PrintMoneyAmountInMoneyBox

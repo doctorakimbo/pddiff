@@ -1,1 +1,64 @@
 lbl1: @10AD10
+InUnionRoom()
+if(r0 != 1) goto lbl2
+
+r0 = 0
+goto lbl6
+
+lbl2:
+fn_982EC()
+r0 = 0
+r1 = 0
+r2 = 0
+fn_1D08()
+r4 = gSaveBlock1Ptr
+r0 = *r4
+r5 = 0x296
+r1 = r0 + r5
+r0 = *r1
+if(r0 == 0) goto lbl4
+
+r1 = 1
+CheckBagHasItem()
+r6 = r0
+if(r6 != 1) goto lbl3
+
+ScriptContext2_Enable()
+fn_68974()
+fn_5C270()
+fn_5C780()
+r2 = gSpecialVar_ItemId
+r0 = *r4
+r0 += r5
+r1 = *r0
+*r2 = r1
+r0 = *r0
+fn_9AA20()
+r1 = 8
+CreateTask()
+r2 = gTasks
+r1 = r0 * 4
+r1 += r0
+r1 *= 8
+r1 += r2
+*(r1 + 0xE) = r6
+goto lbl5
+
+lbl3:
+r0 = *r4
+r0 += r5
+r1 = 0
+*r0 = r1
+goto lbl4
+
+lbl4:
+r0 = data_1A77A0
+ScriptContext1_SetupScript()
+goto lbl5
+
+lbl5:
+r0 = 1
+goto lbl6
+
+lbl6:
+return r0

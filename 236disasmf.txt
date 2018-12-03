@@ -1,0 +1,29 @@
+lbl1: @10CF90
+r0 -= 0x11
+if(r0 > 0x2D) goto lbl4
+
+r0 *= 4
+r1 = switchtable
+r0 += r1
+r0 = *r0
+goto r0
+
+switchtable:
+0, 1, 2, 3, 5, 6, 7, 8, 9, B, C, D, 14, 16, 17, 18, 19, 1C, 1D, 25, 27, 2D: lbl2
+13, 1A, 1B: lbl3
+else: lbl4
+
+lbl2:
+r0 = 0x4E
+goto lbl5
+
+lbl3:
+r0 = 0x4F
+goto lbl5
+
+lbl4:
+r0 = 0x4D
+goto lbl5
+
+lbl5:
+return r0

@@ -1,0 +1,49 @@
+UseRegisteredKeyItemOnField()
+{
+	if(InUnionRoom() == 1)
+		return 0
+
+	fn_982EC()
+	ChangeBgY(0, 0, 0)
+	r4 = gSaveBlock1Ptr
+	r0 = *r4
+	r5 = 0x296
+	r1 = r0 + r5
+	r0 = *r1
+	
+	if(r0 != 0)
+	{
+		r6 = CheckBagHasItem(r0, 1)
+		
+		if(r6 == 1)
+		{
+			ScriptContext2_Enable()
+			player_bitmagic()
+			fn_5C270()
+			fn_5C780()
+			r2 = gSpecialVar_ItemId
+			r0 = *r4
+			r0 += r5
+			r1 = *r0
+			*r2 = r1
+			r0 = CreateTask(ItemId_GetFieldFunc(*r0), 8)
+			r2 = gTasks
+			r1 = r0 * 4
+			r1 += r0
+			r1 *= 8
+			r1 += r2
+			*(r1 + 0xE) = r6
+			return 1
+		}
+		else
+		{
+			r0 = *r4
+			r0 += r5
+			r1 = 0
+			*r0 = r1
+		}
+	}
+	
+	ScriptContext1_SetupScript(data_1A77A0)
+	return 1
+}

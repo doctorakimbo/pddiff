@@ -1,0 +1,30 @@
+UseRegisteredKeyItemOnField()
+{
+	if(InUnionRoom() == 1)
+		return 0
+
+	fn_982EC()
+	ChangeBgY(0, 0, 0)
+	r5 = gSaveBlock1Ptr->0x296
+	
+	
+	if(r5 != 0)
+	{
+		if(CheckBagHasItem(r5, 1) == 1)
+		{
+			ScriptContext2_Enable()
+			player_bitmagic()
+			fn_5C270()
+			fn_5C780()
+			gSpecialVar_ItemId = r5
+			r0 = CreateTask(ItemId_GetFieldFunc(r5), 8)
+			gTasks[r0].0xE = 1
+			return 1
+		}
+		else
+			r5 = 0
+	}
+	
+	ScriptContext1_SetupScript(data_1A77A0)
+	return 1
+}

@@ -1,0 +1,32 @@
+lbl1: @11164C
+r6 = 0
+r0 = 0
+goto lbl2
+
+lbl2:
+r4 = 0
+r5 = r0 << 0x18
+r7 = r0 + 1
+goto lbl3
+
+lbl3:
+r1 = r4
+r0 = r5 >> 0x18
+r2 = 5
+GetBoxMonDataFromAnyBox()
+if(r0 == 0) goto lbl4
+
+r0 = r6 + 1
+r6 = r0
+goto lbl4
+
+lbl4:
+r0 = r4 + 1
+r4 = r0
+if(r4 <= 0x1D) goto lbl3
+
+r0 = r7
+if(r0 <= 0xD) goto lbl2
+
+r0 = r6
+return r0

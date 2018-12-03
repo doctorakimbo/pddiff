@@ -1,0 +1,15 @@
+sub_811164C()
+{
+	for(i = 0; i < TOTAL_BOXES_COUNT; i++) // 23
+	{
+		count = 0; // oops, should be outside the loop
+
+		for(j = 0; j < IN_BOX_COUNT; j++)
+		{
+			if(gPokemonStoragePtr->boxes[i][j].species == SPECIES_NONE)
+				count++;
+		}
+	}
+
+	return count;
+}
