@@ -901,7 +901,7 @@ stray text:
 + 04A2F0: Entirety of CalcNewBarValue (see 105disasm)
 		  Implements: HP and EXP bars go twice as fast
 		  Note: Also makes the function not use its toAdd parameter, amount to add is calculated inside the function
-+ 04B5AA, 0F11F2: 0B -> 1F (max pokeball types 12 -> 32)
++ 04B5AA: 0B -> 1F (max pokeball types 12 -> 32)
 + 04BF24: 0B 2C 01 DC -> 00 00 00 00
 		  Implements: Certain gfx aren't loaded for Dive Ball and everything starting at Luxury Ball; this is now fully independent of number of ball types
 + 04C058: Entirety of SetSaveBlocksPointers (see 106disasm)
@@ -969,7 +969,7 @@ stray text:
 		  Implements: multi-registration SELECT menu, something else (possibly two-speed bike)
 		  Relies on: CompressedBoxPokemon refactor
 		  Required knowledge: j0203C00D, j0203CB54, j0203D2E0, j0203D2E1, j0203D2E2, gRegisteredItemListSize (j0203D2E4), j0203D2EC, j0203D2ED, j0203D2EE, j0203D2F9, j0203D2FA, j0203D2FF
-		  Requires in future: GetRegisteredItemList (j99F4A), UnregisterItem (j99F54), fn_183A90_J, fn_EE5000, fn_EE51C0, fn_EE540C, fn_EE543E, fn_EE54D6, fn_EE5510, CompactRegisteredItems (jEE5528), fn_EE561C, fn_EE5654, fn_EE56BC
+		  Requires in future: GetRegisteredItemList, UnregisterItem, fn_183A90_J, fn_EE5000, fn_EE51C0, fn_EE540C, fn_EE543E, fn_EE54D6, fn_EE5510, CompactRegisteredItems (jEE5528), fn_EE561C, fn_EE5654, fn_EE56BC
 = 06D1F0: Entirety of GetInteractedMetatileScript (see 125disasm)
 		  Implements: scripts for metatiles 0xE3 and 0xE4, makes it easier to add more scripted metatiles
 		  Requires in future: script_68277E_J, script_682787_J
@@ -1177,7 +1177,7 @@ stray text:
 = 099E44: Entirety of SetBagItemsPointers (see 183disasm)
 		  Implements: extra bag space
 		  Required knowledge: gSaveBlock_ExtraItems (j0203C010)
-- 09A540: Entirety of SwapRegisteredBike (+GetRegisteredItemList, UnregisterItem) (+mysteryfuncs) (see 184disasm)
++ 09A540: Entirety of SwapRegisteredBike (+GetRegisteredItemList, UnregisterItem) (+mysteryfuncs) (see 184disasm)
 		  Implements: removes unused code to make room for mysteryfuncs
 + 09A8AA: BB -> D8 (max items 374 -> 432)
 + 09A900: Entirety of ItemId_GetPrice (see 185disasm)
@@ -1330,8 +1330,8 @@ stray text:
 		  32 00 00 00 3C 04 00 00 37 04 00 00 3A 00 00 00 36 00 00 00 3B 00 00 00 3D 00 00 00 3E 00 00 00 40 08 00 00 40 08 00 00 3F 00 00 00 41 00 00 00
 		  Implements: changes the tilemap for oak's dialogue boxes in the intro battle
 		  Relies on: graphic itself actually changed
-- 0EF208: 06 -> 01 (does something in an unknown animation routine called by an animation played on level-up)
-- 0EF258, 0EF294: 74 -> 86 (changes a palette in the same routine as previous)
++ 0EF208: 06 -> 01 (on level-up, instead of the border of the hp box flashing blue, the text does)
++ 0EF258, 0EF294: 74 -> 86 (on level-up, instead of the hp box text flashing whitish-blue, it flashes sky blue)
 = 0EF4B4, 0EF4DC, 0EF674, 0EF9AC, 0F0368: 68 3D 02 02 -> ?? ?? ?? ?? (gLastUsedItem -> gLastUsedItemType)
 		  Implements: correct parameters for new ItemIdToBallId
 		  Required knowledge: gLastUsedItemType (j0203FE00)
@@ -1344,6 +1344,8 @@ stray text:
   0EFD4C: 18 40 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jEEAB00, see 217disasm))
 		  Implements: critical capture animation
 		  Required knowledge: gCritCapture (j0203FE04)
+! 0F11F2: 0B -> 1F (max pokeball types 12 -> 32)
+		  GLITCH!: breaks battle animations, some other change probably needed
 = 0F1D14: Entirety of AnimTask_GetTrappedMoveAnimId (see 218disasm)
 		  Implements: end-of-turn animations for Magma Storm and Infestation will show up
 		  Relies on: actual animations being implemented
@@ -1447,16 +1449,16 @@ stray text:
 - 10864C: 77 -> B0 (changes to new final item for back icon in bag)
 = 108654: Entirety of sub_8108654 (see 232disasm)
 		  Implements: something involving the new multiple SELECT items feature
-		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList (j99F4A)
+		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList
 + ??????: 04 -> 00 (moves some printer left four units, this is already done in english - might cause problems if it needs to move left anyway)
 - 108924: 98 -> 88 (moves scroll arrows left in item menu)
 = 109890: Entirety of sub_8109890 (see 233disasm)
 		  Implements: something involving the new multiple SELECT items feature
-		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList (j99F4A)
+		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList
 		  Note: first major instance where merging changes from english and changes from pd is necessary - return to this later
 = 10A000: Entirety of ItemMenu_Register (see 234disasm)
 		  Implements: register multiple items with SELECT
-		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList (j99F4A), UnregisterItem (j99F54)
+		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList, UnregisterItem
 		  Required knowledge: j0203CB54
 - 10A6BC, 10A7EA, 10A8A2, 10A982, 10AA14: 00 04 40 0C -> 00 00 40 08 (store money as 32-bit integer instead of 16-bit)
 - 10A6CA, 10A990: 06 -> 08 (extra 2 digits for money in sell screen)
