@@ -318,6 +318,7 @@ grafics:
 = 443620 (407FB8 old, E016A0 new)
 = 452C94 (411AFC old, 411C1C new)
 = D0051C (C0051C old, EB8990 new)
+= E82700 (D826B0 old, 924320 new)
 = E9C3D8 (3964B0 old, 396374 new)
 = E9C3F8 (396470 old, 396334 new)
 = E9C418 (396490 old, 396354 new)
@@ -1505,15 +1506,20 @@ stray text:
 - 1140D6, 11411A: 0xA9 -> 0x90 (the HM notification in quest log now happens on TMs as well)
 		  Glitch?: probably should be the other way around (HM never, TM always)
 ! 115216: 5A -> 59 (PDONLY, trainer class 5A no longer takes the rival's name in quest log)
-= 
+= 11C6C0, 11D0D6: 84 -> ?? (changes placement of the move name in some data structure, jp 0x7F -> 0xE0; makes room for longer names)
+		  Note: minidisasm20 has all info known about data structure; according to that, might have to change placement of move name at 0x77 in english too)
+- 11F0FC: 01 60 03 2D 0A D1 01 63 0B E0 00 00 -> 0F E0 0E D0 03 2D 0C D0 01 62 07 E0
+  11F920: 00 2D 00 D0 01 61 -> 01 63 01 64 01 65
+		  Implements: removes something from party menu (TEST)
+- 11FFA6: 00 28 08 D1 -> 02 28 08 DA (instead of checking if data_0203B0A0.8[bits 5 and 6] is nonzero, something checks if it's greater than 1; TEST)
+= 11FFF0: Entirety of sub_811FFF0 (see 239disasm)
+		  
+		  
+		  
+		  
+		  
+		  
 
-
-
-		  
-		  
-		  
-		  
-
 		  
 		  
 		  
@@ -1530,5 +1536,5 @@ stray text:
 		  
 		  
 		  
-curr: j11CEFC (1byte), j11D906 (1byte), j11F7B8 (repoint), j11F904 (12byte)/j11F920 (6byte), j120796 (4byte)
-next: j1207E0
+curr: j1207E0-j1208E8, j1208E8-j120A8C
+next: j120E98

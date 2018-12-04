@@ -1,0 +1,140 @@
+lbl1: @11FFF0
+r4 = r0
+r0 = -1
+if(r1 == r0) goto lbl3
+
+if(r1 > r0) goto lbl2
+
+r0--
+if(r1 == r0) goto lbl12
+
+goto lbl15
+
+lbl2:
+if(r1 == 1) goto lbl8
+
+if(r1 == 2) goto lbl11
+
+goto lbl15
+
+lbl3:
+r0 = *r4
+r1 = 0
+r1 = *(r4 + r1)
+if(r1 != 0) goto lbl4
+
+r0 = 7
+goto lbl14
+
+lbl4:
+if(r1 != 6) goto lbl5
+
+r0 = gPlayerPartyCount
+r0 = *r0
+r0--
+goto lbl14
+
+lbl5:
+if(r1 != 7) goto lbl7
+
+r0 = data_0203B09C
+r0 = *r0
+r0 = *(r0 + 8)
+r0 = LAST_BIT(r0)
+if(r0 == 0) goto lbl6
+
+r0 = 6
+goto lbl14
+
+lbl6:
+r0 = gPlayerPartyCount
+r0 = *r0
+r0--
+goto lbl14
+
+lbl7:
+r0--
+goto lbl14
+
+lbl8:
+r2 = *r4
+r0 = 0
+r0 = *(r4 + r0)
+if(r0 == 7) goto lbl13
+
+r1 = 0
+r1 = *(r4 + r1)
+r0 = gPlayerPartyCount
+r0 = *r0
+r0--
+if(r1 != r0) goto lbl10
+
+r0 = data_0203B09C
+r0 = *r0
+r0 = *(r0 + 8)
+r0 = LAST_BIT(r0)
+if(r0 == 0) goto lbl9
+
+r0 = 6
+goto lbl14
+
+lbl9:
+r0 = 7
+goto lbl14
+
+lbl10:
+r0 = r2 + 1
+goto lbl14
+
+lbl11:
+r0 = gPlayerPartyCount
+r0 = *r0
+if(r0 == 1) goto lbl15
+
+r0 = 0
+r0 = *(r4 + r0)
+if(r0 != 0) goto lbl15
+
+r0 = data_0203B09C
+r0 = *r0
+r0 = *(r0 + 8)
+r0 <<= 0x1C
+r0 >>= 0x1D
+if(r0 != 0) goto lbl14
+
+r0 = 1
+goto lbl14
+
+lbl12:
+r0 = 0
+r0 = *(r4 + r0)
+if(r0 == 0) goto lbl15
+
+if(r0 == 6) goto lbl15
+
+if(r0 == 7) goto lbl15
+
+r0 = data_0203B09C
+r3 = *r0
+r1 = 0
+r1 = *(r4 + r1)
+r0 = 7
+r1 &= r0
+r1 *= 2
+r2 = *(r3 + 8)
+r0 = -0xF
+r0 &= r2
+r0 |= r1
+*(r3 + 8) = r0
+goto lbl13
+
+lbl13:
+r0 = 0
+goto lbl14
+
+lbl14:
+*r4 = r0
+goto lbl15
+
+lbl15:
+return

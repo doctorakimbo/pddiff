@@ -1,0 +1,110 @@
+sub_811FFF0(arg0)
+{
+	r4 = arg0
+	r0 = -1
+	
+	if(r1 == r0)
+	{
+		r1 = *r4
+		if(r1 <= 1) goto lbl10
+
+		if(r1 == 6) goto lbl6
+
+		if(r1 == 7) goto lbl5
+
+		r0 = r1 - 2
+		goto lbl12
+	}
+	elseif(r1 > r0)
+	{
+		if(r1 == 1)
+		{
+			r1 = *r4
+			if(r1 == 7) goto lbl11
+
+			if(r1 == 6) goto lbl10
+
+			r0 = gPlayerPartyCount
+			r0 = *r0
+			r0 -= 2
+			if(r1 >= r0) goto lbl9
+
+			r0 = r1 + 2
+			goto lbl12
+		}
+		elseif(r1 == 2)
+		{
+			r1 = *r4
+			if(r1 == 7) goto lbl11
+
+			if(r1 == 6) goto lbl10
+
+			r0 = gPlayerPartyCount
+			r0 = *r0
+			r0--
+			if(r1 == r0) goto lbl9
+
+			r0 = r1 + 1
+			goto lbl12
+		}
+
+		return
+	}
+	else
+	{
+		r0--
+		
+		if(r1 == r0)
+		{
+			r1 = *r4
+			if(r1 == 0) goto lbl10
+
+			if(r1 == 6) goto lbl6
+
+			if(r1 == 7) goto lbl5
+
+			r0 = r1 - 1
+			goto lbl12
+
+			lbl5:
+			r0 = data_0203B09C
+			r0 = *r0
+			r0 = *(r0 + 8)
+			r0 = LAST_BIT(r0)
+			if(r0 == 0) goto lbl6
+
+			r0 = 6
+			goto lbl12
+
+			lbl6:
+			r0 = gPlayerPartyCount
+			r0 = *r0
+			r0--
+			goto lbl12
+		}
+
+		return
+	}
+
+	lbl9:
+	r0 = data_0203B09C
+	r0 = *r0
+	r0 = *(r0 + 8)
+	r0 = LAST_BIT(r0)
+	if(r0 == 0) goto lbl10
+
+	r0 = 6
+	goto lbl12
+
+	lbl10:
+	r0 = 7
+	goto lbl12
+
+	lbl11:
+	r0 = 0
+	goto lbl12
+
+	lbl12:
+	*r4 = r0
+	return
+}

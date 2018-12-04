@@ -182,6 +182,8 @@ FC AC 03 02: 74 AC 03 02: ??????
 28 AD 03 02: A0 AC 03 02: ??????
 30 AD 03 02: A8 AC 03 02: gSpecialVar_ItemId
 FA AD 03 02: 72 AD 03 02: ??????
+9C B0 03 02: 10 B0 03 02: ??????
+B4 B0 03 02: 28 B0 03 02: ??????
 		   : 00 B8 03 02: ?????? (fn_4151F2_J: sprite and palette data temporarily stored here)
 								 (fn_415262_J: sprite and palette data temporarily stored here)
            : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
@@ -456,6 +458,7 @@ funcs e,j,desc:
 002228 = 002228 = CopyToBgTilemapBufferRect_ChangePalette
 002454 = 002454 = FillBgTilemapBufferRect_Palette0
 002554 = 002554 = FillBgTilemapBufferRect
+002B9C = 002B9C = Alloc
 002BB0 = 002BB0 = AllocZeroed
 002BC4 = 002BC4 = Free
 002C48 = 002C44 = AddTextPrinterParameterized

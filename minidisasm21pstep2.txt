@@ -1,0 +1,11 @@
+sub_811F0BC(arg0)
+{
+	*data_0203B0B4 = Alloc(0x60)
+
+	for(r2 = 0; r2 < 6; r2++)
+	{
+		*((r2 * 0x10) + *data_0203B0B4) = data_459EE4
+		*((r2 * 0x10) + *data_0203B0B4 + 4) = (r2 * 8) + (arg0 * 0x30) + data_459F04
+		*((r2 * 0x10) + *data_0203B0B4 + 8) = r2
+	}
+}

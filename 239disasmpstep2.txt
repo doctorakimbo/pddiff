@@ -1,0 +1,73 @@
+sub_811FFF0(&arg0)
+{
+	switch(arg1)
+	{
+	case 1:
+		if(*arg0 == 7)
+			*arg0 = 0
+		elseif(*arg0 == 6)
+			*arg0 = 7
+		else
+		{
+			if(*arg0 >= *gPlayerPartyCount - 2)
+			{
+				if(LAST_BIT(*(*data_0203B09C + 8)) != 0)
+					*arg0 = 6
+				else
+					*arg0 = 7
+			}
+			else
+				*arg0 += 2
+		}
+		
+		break;
+	case 2:
+		if(*arg0 == 7)
+			*arg0 = 0
+		elseif(*arg0 == 6)
+			*arg0 = 7
+		elseif(*arg0 == *gPlayerPartyCount - 1)
+		{
+			if(LAST_BIT(*(*data_0203B09C + 8)) != 0)
+				*arg0 = 6
+			else
+				*arg0 = 7
+		}
+		else
+			*arg0++
+		
+		break;
+	case -1:
+		if(*arg0 <= 1)
+			*arg0 = 7
+		elseif(*arg0 == 6)
+			*arg0 = *gPlayerPartyCount - 1
+		elseif(*arg0 == 7)
+		{
+			if(LAST_BIT(*(*data_0203B09C + 8)) != 0)
+				*arg0 = 6
+			else
+				*arg0 = *gPlayerPartyCount - 1
+		}
+		else
+			*arg0 -= 2
+			
+		break;
+	case -2:
+		if(*arg0 == 0)
+			*arg0 = 7
+		elseif(*arg0 == 6)
+			*arg0 = *gPlayerPartyCount - 1
+		elseif(*arg0 == 7)
+		{
+			if(LAST_BIT(*(*data_0203B09C + 8)) != 0)
+				*arg0 = 6
+			else
+				*arg0 = *gPlayerPartyCount - 1
+		}
+		else
+			*arg0--
+			
+		break;
+	}
+}

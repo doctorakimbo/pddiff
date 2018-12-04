@@ -1,0 +1,19 @@
+sub_811F0BC(arg0)
+{
+	// data_0203B0B4 entry size 0x10
+	data_0203B0B4 = Alloc(0x60)
+
+	for(i = 0; i < 6; i++)
+	{
+		data_0203B0B4[i].0 = data_459EE4
+		data_0203B0B4[i].4 = data_459F04[arg0][i]
+		data_0203B0B4[i].8 = i
+	}
+
+	data_0203B0B4[0].0 = data_459EC4
+	
+	if(arg0 == 3)
+		data_0203B0B4[3].0 = data_459EC4
+	elseif(arg0 == 0)
+		data_0203B0B4[1].0 = data_459EC4
+}

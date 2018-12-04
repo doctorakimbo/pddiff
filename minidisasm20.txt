@@ -1,0 +1,31 @@
+en: size 0x28DC
+.4 = arg2
+.8 = gPlayerParty[arg0] (size 0x64)
+.0x6C = gPlayerParty[arg0].nickname
+.0x77 = gMoveNames[otherfn_arg2]
+.0x84 -> .0x?? = gMoveNames[ItemIdToBattleMoveId(arg1)]
+.0x92 = 0
+.0x94 = gPlayerParty[arg0].species
+.0x96 = arg1
+.0x98 = sub_811D018(arg1)
+.0x9A = arg0
+.0x9C = sub_811D058(gPlayerParty[arg0].friendship)
+.0xA0 = gPlayerParty[arg0].personality
+.0xA4 = 0
+	
+	
+	
+jp: size 0x28D4
+.4 = arg2
+.8 = gPlayerParty[arg0] (size 0x64)
+.0x6C = gPlayerParty[arg0].nickname
+.0x77 = gMoveNames[otherfn_arg2]
+.0x7F -> .0xE0 = gMoveNames[ItemIdToBattleMoveId(arg1)]
+.0x88 = 0
+.0x8A = gPlayerParty[arg0].species
+.0x8C = arg1
+.0x8E = sub_811D018(arg1)
+.0x90 = arg0
+.0x92 = sub_811D058(gPlayerParty[arg0].friendship)
+.0x98 = gPlayerParty[arg0].personality
+.0x9C = 0
