@@ -1,0 +1,29 @@
+sub_81206A8(arg0)
+{
+	r7 = (arg0 * 0x28) + gTasks.data
+	r0 = *(r7 + 2) / 0x18
+	
+	if(r0 == 0)
+		r0 = 2
+	
+	if(r0 > *(r7 + 6))
+		r0 = *(r7 + 6)
+	
+	*r7 += (*(r7 + 4) * r0)
+	
+	if(*r7 > *(r7 + 2))
+		*r7 = *(r7 + 2)
+	
+	*(r7 + 6) -= r0
+	SetMonData((*(r7 + 8) * 0x64) + gPlayerParty, 0x39, r7)
+	fn_12199C((*(r7 + 8) * 0x64) + gPlayerParty, (*(r7 + 8) * 0x10) + *data_0203B0B4, 1)
+	fn_121AF0((*(r7 + 8) * 0x64) + gPlayerParty, (*(r7 + 8) * 0x10) + *data_0203B0B4)
+	
+	if(*(r7 + 6) == 0 || *r7 == 0 || *r7 == *(r7 + 2))
+	{
+		if(*r7 > *(r7 + 0xA))
+			ConvertIntToDecimalStringN(gStringVar2, *r7 - *(r7 + 0xA), 0, 3)
+		
+		fn_7761C(arg0)
+	}
+}

@@ -1,0 +1,293 @@
+sub_81200F8(arg0, arg1)
+{
+	r4 = arg0
+	r7 = arg1
+	r5 = GetMonData(data_02024414, 0xB)
+	r6 = GetMonData(data_02024478, 0xB)
+	r2 = r7
+	r0 = data_0203B09C
+	r0 = *r0
+	r0 = *(r0 + 0x8)
+	r7 = LAST_BIT(r0)
+	r0 = gPlayerPartyCount
+	r0 = *r0
+	r1 = -1
+
+	if(r2 == r1)
+	{
+		r1 = *r4
+		
+		if(r1 == 6)
+		{
+			if(r6 != 0)
+				*r4 = r1 - 1
+			elseif(r5 != 0)
+				*r4 = r1 - 2
+			else
+				*r4 = 1
+		}
+		elseif(r1 == 7)
+		{
+			r1--
+			
+			if(r7 != 0)
+				*r4 = 6
+			else
+			{
+				if(r6 != 0)
+					*r4 = r1 - 1
+				elseif(r5 != 0)
+					*r4 = r1 - 2
+				else
+					*r4 = 1
+			}
+		}
+		elseif(r1 == 0)
+			*r4 = 7
+		elseif(r1 == 1)
+		{
+			if(r0 <= 1)
+				*r4 = r1 - 1
+			elseif(r0 >= 3)
+				*r4 = r1 + 2
+			else
+				*r4 = r1 + 1
+		}
+		else
+		{
+			r0 = 1
+			r0 &= r1
+			
+			if(r0 == 1)
+				*r4 = r1 - 1
+			elseif(r1 == 2)
+				*r4 = r1 - 2
+			else
+				*r4 = r1 - 3
+		}
+	}
+	elseif(r2 > r1)
+	{
+		if(r2 == 1)
+		{
+			r1 = *r4
+			
+			if(r1 == 7)
+				*r4 = 0
+			elseif(r1 == 6)
+				*r4 = 7
+			elseif(r1 == 5)
+			{
+				if(r7 != 0)
+					*r4 = 6
+				else
+					*r4 = 7
+			}
+			elseif(r1 == 3)
+				*r4 = r1 - 2
+			elseif(r1 == 0)
+			{
+				if(r0 >= 2)
+					*r4 = r1 + 2
+				else
+					*r4 = r1 + 1
+			}
+			elseif(r1 == 1)
+			{
+				if(r5 != 0)
+					*r4 = r1 + 3
+				else
+				{
+					if(r7 != 0)
+						*r4 = 6
+					else
+						*r4 = 7
+				}
+			}
+			elseif(r1 == 2)
+			{
+				if(r0 >= 3)
+					*r4 = r1 + 1
+				else
+					*r4 = r1 - 1
+			}
+			else
+			{
+				if(r6 != 0)
+					*r4 = r1 + 1
+				else
+				{
+					if(r7 != 0)
+						*r4 = 6
+					else
+						*r4 = 7
+				}
+			}
+		}
+		elseif(r2 == 2)
+		{
+			r1 = *r4
+			
+			if(r1 == 7)
+				*r4 = 0
+			if(r1 == 6)
+				*r4 = 7
+			elseif(r1 == 5)
+			{
+				if(r7 != 0)
+					*r4 = 6
+				else
+					*r4 = 7
+			}
+			elseif(r1 == 0)
+				*r4 = r1 + 1
+			elseif(r1 == 1)
+			{
+				if(r0 >= 2)
+					*r4 = r1 + 1
+				else
+				{
+					if(r5 != 0)
+						*r4 = r1 + 3
+					else
+					{
+						if(r7 != 0)
+							*r4 = 6
+						else
+							*r4 = 7
+					}
+				}
+			}
+			elseif(r1 == 2)
+			{
+				if(r5 != 0)
+					*r4 = r1 + 2
+				else
+				{
+					if(r0 >= 3)
+						*r4 = r1 + 1
+					else
+					{
+						if(r7 != 0)
+							*r4 = 6
+						else
+							*r4 = 7
+					}
+				}
+			}
+			elseif(r1 == 3)
+			{
+				if(r6 != 0)
+					*r4 = r1 + 2
+				else
+				{
+					if(r7 != 0)
+						*r4 = 6
+					else
+						*r4 = 7	
+				}
+			}
+			else
+			{
+				if(r0 >= 3)
+					*r4 = r1 - 1
+				else
+				{
+					if(r6 != 0)
+						*r4 = r1 + 1
+					else
+					{
+						if(r7 != 0)
+							*r4 = 6
+						else
+							*r4 = 7
+					}
+				}
+			}
+		}
+	}
+	else
+	{
+		r1--
+
+		if(r2 == r1)
+		{
+			r1 = *r4
+			
+			if(r1 == 6)
+			{
+				if(r6 != 0)
+					*r4 = r1 - 1
+				elseif(r5 != 0)
+				{
+					if(r0 >= 3)
+						*r4 = r1 - 3
+					else
+						*r4 = r1 - 2
+				}
+				else
+				{
+					if(r0 == 2)
+						*r4 = 2
+					elseif(r0 >= 3)
+						*r4 = r1 - 3
+					else
+						*r4 = 1
+				}
+			}
+			elseif(r1 == 7)
+			{
+				r1--
+				
+				if(r7 != 0)
+					*r4 = 6
+				else
+				{
+					if(r6 != 0)
+						*r4 = r1 - 1
+					elseif(r5 != 0)
+					{
+						if(r0 >= 3)
+							*r4 = r1 - 3
+						else
+							*r4 = r1 - 2
+					}
+					else
+					{
+						if(r0 == 2)
+							*r4 = 2
+						elseif(r0 >= 3)
+							*r4 = r1 - 3
+						else
+							*r4 = 1
+					}
+				}
+			}
+			elseif(r1 == 0)
+				*r4 = 7
+			elseif(r1 <= 2)
+				*r4 = r1 - 1
+			elseif(r1 == 3)
+			{
+				if(r5 != 0)
+					*r4 = r1 + 1
+				else
+					*r4 = r1 - 1
+			}
+			elseif(r1 == 4)
+			{
+				if(r0 >= 2)
+					*r4 = r1 - 2
+				else
+					*r4 = r1 - 3
+			}
+			else
+			{
+				if(r0 >= 3)
+					*r4 = r1 - 2
+				else
+					*r4 = r1 - 1
+			}
+		}
+	}
+}

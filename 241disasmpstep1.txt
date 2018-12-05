@@ -1,0 +1,79 @@
+sub_81206A8(arg0)
+{
+	r6 = arg0
+	r1 = 0x28
+	r0 = arg0 * r1
+	r1 = gTasks.data
+	r7 = r0 + r1
+	r0 = *(r7 + 2) / 0x18
+	
+	if(r0 == 0)
+		r0 = 2
+	
+	r2 = *(r7 + 6)
+	
+	if(r0 > r2)
+		r0 = r2
+	
+	r1 = 4
+	r1 = *(r7 + r1)
+	r1 *= r0
+	r3 = *r7
+	r3 += r1
+	r1 = *(r7 + 2)
+	*r7 = r3
+	
+	if(r3 > r1)
+		*r7 = r1
+	
+	r2 -= r0
+	*(r7 + 6) = r2
+	r0 = *(r7 + 8)
+	r5 = 0x64
+	r0 *= r5
+	r4 = gPlayerParty
+	r0 += r4
+	SetMonData(r0, 0x39, r7)
+	r2 = *(r7 + 8)
+	r0 = r2
+	r0 *= r5
+	r0 += r4
+	r3 = data_0203B0B4
+	r2 *= 0x10
+	r1 = *r3
+	r1 += r2
+	r2 = 1
+	fn_12199C()
+	r2 = *(r7 + 8)
+	r0 = r2
+	r0 *= r5
+	r0 += r4
+	r2 *= 0x10
+	r3 = data_0203B0B4
+	r1 = *r3
+	r1 += r2
+	fn_121AF0()
+	r0 = *(r7 + 6)
+	
+	if(r0 != 0)
+	{
+		r1 = *r7
+		
+		if(r1 != 0)
+		{
+			r0 = *(r7 + 2)
+			
+			if(r1 != r0)
+				return
+		}
+	}
+	
+	r1 = *r7
+	r2 = *(r7 + 0xA)
+	
+	if(r1 > r2)
+		ConvertIntToDecimalStringN(gStringVar2, r1 - r2, 0, 3)
+	
+	r0 = r6
+	fn_7761C()
+}

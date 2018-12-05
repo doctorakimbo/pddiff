@@ -1514,11 +1514,15 @@ stray text:
   11F920: 00 2D 00 D0 01 61 -> 01 63 01 64 01 65
 		  Implements: removes special size for first mon in party on menu screen
 		  Relies on: graphics rework to make this not look broken
-+ 11FFA6: 00 28 08 D1 -> 02 28 08 DA (instead of checking if data_0203B0A0.8[bits 5 and 6] is nonzero, something checks if it's greater than 1; not sure what this does)
-= 11FFF0: Entirety of sub_811FFF0 (see 239disasm)
-		  
-		  
-		  
++ 11FFA6: 00 28 08 D1 -> 02 28 08 DA (instead of checking if data_0203B0A0.8[bits 5 and 6] is nonzero, something checks if it's greater than 1; not sure what this does) (TEST IN DOUBLES??)
+- 11FFF0: Entirety of sub_811FFF0 (see 239disasm)
+		  Implements: rearranges which button press moves the selection cursor on the party menu which way (single battles)
+		  Relies on: layout rework to make this not look broken
+- 1200F8: Entirety of sub_81200F8 (see 240disasm)
+		  Implements: rearranges which button press moves the selection cursor on the party menu which way (double battles)
+		  Relies on: layout rework to make this not look broken
+= 1206A8: Entirety of sub_81206A8 (see 241disasm)
+		  Implements: (FINISH THIS FIRST)
 		  
 		  
 		  
@@ -1539,5 +1543,6 @@ stray text:
 		  
 		  
 		  
-curr: j1207E0-j1208E8, j1208E8-j120A8C
-next: j120E98
+curr: j120E98-j120F50
+next: j1215C8 (repoint), j121B38 (4byte), j121B48 (1byte), j121B60 (1byte), j121B70 (repoint), j121B9C (4byte), j121BAC (1byte), j121BB8 (repoint), j121BC4 (1byte), j121BD4 (repoint), j121BE6 (1byte), j121BEA (1byte), j121BEE (1byte), j121BFC (repoint), j1220B8 (14byte), j1228D8 (repoint), j123672 (1byte), j1236B6 (18byte), j12371A (10byte), j123A92 (18byte), j125804 (1byte), j1258D0 (1byte), j125BA4 (2byte), j125FB0 (2byte), j126254 (1byte), j126334 (1byte), j1264CA (2byte), j1265C0 (1byte), j1265DE (2byte), j1268F8 (2byte), j12697E (2byte), j126A30 (2byte), j126B04 (2byte), j126B8E (2byte), j1270DC (2byte), j12716E (2byte), j127569 (1byte), j127746 (2byte), j13034C (1byte), j131760 (1byte), j1317B4 (repoint), j1317B8 (repoint), j131A40 (repoint), j131A58 (repoint), j131A78 (repoint), j131B18 (repoint), j1325D8 (1byte)
+next: j13265C

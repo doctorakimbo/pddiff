@@ -1,0 +1,263 @@
+sub_81200F8(&arg0, arg1)
+{
+	r5 = GetMonData(data_02024414, 0xB)
+	r6 = GetMonData(data_02024478, 0xB)
+	
+	switch(arg1)
+	{
+	case 1:
+		if(arg0 == 7)
+			arg0 = 0
+		elseif(arg0 == 6)
+			arg0 = 7
+		elseif(arg0 == 5)
+		{
+			if(data_0203B09C->8.lastBit != 0)
+				arg0 = 6
+			else
+				arg0 = 7
+		}
+		elseif(arg0 == 3)
+			arg0 -= 2
+		elseif(arg0 == 0)
+		{
+			if(gPlayerPartyCount >= 2)
+				arg0 += 2
+			else
+				arg0++
+		}
+		elseif(arg0 == 1)
+		{
+			if(r5 != 0)
+				arg0 += 3
+			else
+			{
+				if(data_0203B09C->8.lastBit != 0)
+					arg0 = 6
+				else
+					arg0 = 7
+			}
+		}
+		elseif(arg0 == 2)
+		{
+			if(gPlayerPartyCount >= 3)
+				arg0++
+			else
+				arg0--
+		}
+		else
+		{
+			if(r6 != 0)
+				arg0++
+			else
+			{
+				if(data_0203B09C->8.lastBit != 0)
+					arg0 = 6
+				else
+					arg0 = 7
+			}
+		}
+		
+		break;
+	case 2:
+		if(arg0 == 7)
+			arg0 = 0
+		if(arg0 == 6)
+			arg0 = 7
+		elseif(arg0 == 5)
+		{
+			if(data_0203B09C->8.lastBit != 0)
+				arg0 = 6
+			else
+				arg0 = 7
+		}
+		elseif(arg0 == 0)
+			arg0++
+		elseif(arg0 == 1)
+		{
+			if(gPlayerPartyCount >= 2)
+				arg0++
+			else
+			{
+				if(r5 != 0)
+					arg0 += 3
+				else
+				{
+					if(data_0203B09C->8.lastBit != 0)
+						arg0 = 6
+					else
+						arg0 = 7
+				}
+			}
+		}
+		elseif(arg0 == 2)
+		{
+			if(r5 != 0)
+				arg0 += 2
+			else
+			{
+				if(gPlayerPartyCount >= 3)
+					arg0++
+				else
+				{
+					if(data_0203B09C->8.lastBit != 0)
+						arg0 = 6
+					else
+						arg0 = 7
+				}
+			}
+		}
+		elseif(arg0 == 3)
+		{
+			if(r6 != 0)
+				arg0 += 2
+			else
+			{
+				if(data_0203B09C->8.lastBit != 0)
+					arg0 = 6
+				else
+					arg0 = 7	
+			}
+		}
+		else
+		{
+			if(gPlayerPartyCount >= 3)
+				arg0--
+			else
+			{
+				if(r6 != 0)
+					arg0++
+				else
+				{
+					if(data_0203B09C->8.lastBit != 0)
+						arg0 = 6
+					else
+						arg0 = 7
+				}
+			}
+		}
+		
+		break;
+	case -1:
+		if(arg0 == 6)
+		{
+			if(r6 != 0)
+				arg0--
+			elseif(r5 != 0)
+				arg0 -= 2
+			else
+				arg0 = 1
+		}
+		elseif(arg0 == 7)
+		{
+			if(data_0203B09C->8.lastBit != 0)
+				arg0 = 6
+			else
+			{
+				if(r6 != 0)
+					arg0 -= 2
+				elseif(r5 != 0)
+					arg0 -= 3
+				else
+					arg0 = 1
+			}
+		}
+		elseif(arg0 == 0)
+			arg0 = 7
+		elseif(arg0 == 1)
+		{
+			if(gPlayerPartyCount <= 1)
+				arg0--
+			elseif(gPlayerPartyCount >= 3)
+				arg0 += 2
+			else
+				arg0++
+		}
+		else
+		{
+			if(arg0 & 1)
+				arg0--
+			elseif(arg0 == 2)
+				arg0 -= 2
+			else
+				arg0 -= 3
+		}
+		
+		break;
+	case -2:
+		if(arg0 == 6)
+		{
+			if(r6 != 0)
+				arg0--
+			elseif(r5 != 0)
+			{
+				if(gPlayerPartyCount >= 3)
+					arg0 -= 3
+				else
+					arg0 -= 2
+			}
+			else
+			{
+				if(gPlayerPartyCount == 2)
+					arg0 = 2
+				elseif(gPlayerPartyCount >= 3)
+					arg0 -= 3
+				else
+					arg0 = 1
+			}
+		}
+		elseif(arg0 == 7)
+		{
+			if(data_0203B09C->8.lastBit != 0)
+				arg0 = 6
+			else
+			{
+				if(r6 != 0)
+					arg0 -= 2
+				elseif(r5 != 0)
+				{
+					if(gPlayerPartyCount >= 3)
+						arg0 -= 4
+					else
+						arg0 -= 3
+				}
+				else
+				{
+					if(gPlayerPartyCount == 2)
+						arg0 = 2
+					elseif(gPlayerPartyCount >= 3)
+						arg0 -= 4
+					else
+						arg0 = 1
+				}
+			}
+		}
+		elseif(arg0 == 0)
+			arg0 = 7
+		elseif(arg0 <= 2)
+			arg0--
+		elseif(arg0 == 3)
+		{
+			if(r5 != 0)
+				arg0++
+			else
+				arg0--
+		}
+		elseif(arg0 == 4)
+		{
+			if(gPlayerPartyCount >= 2)
+				arg0 -= 2
+			else
+				arg0 -= 3
+		}
+		else
+		{
+			if(gPlayerPartyCount >= 3)
+				arg0 -= 2
+			else
+				arg0--
+		}
+		
+		break;
+	}
+}

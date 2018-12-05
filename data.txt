@@ -103,6 +103,10 @@ FC 3F 02 02: 5C 3F 02 02: gMoveSelectionCursor
 		   : F8 3F 02 02: (gEnemyParty.friendship, but this is different in english)
 84 42 02 02: E4 41 02 02: gPlayerParty
 3C 43 02 02: 9C 42 02 02: gPlayerParty[1].level
+4C 43 02 02: AC 42 02 02: gPlayerParty[2]
+B0 43 02 02: 10 43 02 02: gPlayerParty[3]
+14 44 02 02: 74 43 02 02: gPlayerParty[4]
+78 44 02 02: D8 43 02 02: gPlayerParty[5]
 F8 44 02 02: 58 44 02 02: ??????
 5C 45 02 02: BC 44 02 02: ??????
 64 45 02 02: C4 44 02 02: ??????
@@ -683,6 +687,7 @@ funcs e,j,desc:
 075290 = 074A34 = IsDoubleBattle
 07741C = 076BB4 = CreateTask
 077508 = 076CA0 = DestroyTask
+07761C = 076DB4 = SwitchTaskToFollowupFunc
 07AF98 = 07A6F8 = weather_get_current
 081B30 = 08171C = CheckForTrainersWantingBattle
 082A88 = 082674 = GetPersonalityWithUnownForm
@@ -750,6 +755,9 @@ funcs e,j,desc:
 10B8F0 = 10C3EC = bag_menu_print
 10F904 = 110438 = MoveMenuCursor
 11B0D0 = 11B914 = InUnionRoom
+12029C = 120A8C = ?????
+12199C = 122170 = ?????
+121AF0 = 1222BC = ?????
 125A78 = 1263C4 = ItemIdToBattleMoveId
 12E51C = 12ED24 = AddTextPrinterParameterized3
 12E5A4 = 12EDAC = AddTextPrinterParameterized4

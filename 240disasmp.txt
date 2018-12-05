@@ -1,0 +1,256 @@
+lbl1: @1208E8
+r4 = r0
+r7 = r1
+r0 = data_02024414
+r1 = 0xB
+GetMonData()
+r5 = r0
+r0 = data_02024478
+r1 = 0xB
+GetMonData()
+r6 = r0
+r2 = r7
+r0 = data_0203B09C
+r0 = *r0
+r0 = *(r0 + 0x8)
+r7 = LAST_BIT(r0)
+r0 = gPlayerPartyCount
+r0 = *r0
+r1 = -1
+if(r2 == r1) goto lbl3
+
+if(r2 > r1) goto lbl2
+
+r1--
+if(r2 == r1) goto lbl5
+
+goto lbl34
+
+lbl2:
+if(r2 == 1) goto lbl16
+
+if(r2 == 2) goto lbl20
+
+goto lbl34
+
+lbl3:
+r1 = *r4
+if(r1 == 6) goto lbl9
+
+if(r1 == 7) goto lbl8
+
+if(r1 == 0) goto lbl13
+
+if(r1 != 1) goto lbl4
+
+if(r0 <= 1) goto lbl14
+
+if(r0 >= 3) goto lbl15
+
+goto lbl31
+
+lbl4:
+r0 = 1
+r0 &= r1
+if(r0 == 1) goto lbl28
+
+if(r1 == 2) goto lbl27
+
+goto lbl26
+
+lbl5:
+r1 = *r4
+if(r1 == 6) goto lbl11
+
+if(r1 == 7) goto lbl10
+
+if(r1 == 0) goto lbl25
+
+if(r1 <= 2) goto lbl28
+
+if(r1 != 3) goto lbl6
+
+if(r5 == 0) goto lbl28
+
+goto lbl31
+
+lbl6:
+if(r1 != 4) goto lbl7
+
+if(r0 >= 2) goto lbl27
+
+goto lbl26
+
+lbl7:
+if(r0 >= 3) goto lbl27
+
+goto lbl28
+
+lbl8:
+r1--
+if(r7 == 0) goto lbl9
+
+r0 = 6
+goto lbl33
+
+lbl9:
+if(r6 != 0) goto lbl28
+
+if(r5 != 0) goto lbl27
+
+r0 = 1
+goto lbl33
+
+lbl10:
+r1--
+if(r7 == 0) goto lbl11
+
+r0 = 6
+goto lbl33
+
+lbl11:
+if(r6 != 0) goto lbl28
+
+if(r5 == 0) goto lbl12
+
+if(r0 >= 3) goto lbl26
+
+goto lbl27
+
+lbl12:
+if(r0 == 2) goto lbl33
+
+if(r0 >= 3) goto lbl26
+
+r0 = 1
+goto lbl33
+
+lbl13:
+goto lbl25
+
+lbl14:
+goto lbl28
+
+lbl15:
+goto lbl30
+
+lbl16:
+r1 = *r4
+if(r1 == 7) goto lbl32
+
+if(r1 == 6) goto lbl25
+
+if(r1 == 5) goto lbl24
+
+if(r1 == 3) goto lbl27
+
+if(r1 != 0) goto lbl17
+
+if(r0 >= 2) goto lbl30
+
+goto lbl31
+
+lbl17:
+if(r1 != 1) goto lbl18
+
+if(r5 == 0) goto lbl24
+
+goto lbl29
+
+lbl18:
+if(r1 != 2) goto lbl19
+
+if(r0 >= 3) goto lbl31
+
+goto lbl28
+
+lbl19:
+if(r6 == 0) goto lbl24
+
+goto lbl31
+
+lbl20:
+r1 = *r4
+if(r1 == 7) goto lbl32
+
+if(r1 == 6) goto lbl25
+
+if(r1 == 5) goto lbl24
+
+if(r1 == 0) goto lbl31
+
+if(r1 != 1) goto lbl21
+
+if(r0 >= 2) goto lbl31
+
+if(r5 == 0) goto lbl24
+
+goto lbl29
+
+lbl21:
+if(r1 != 2) goto lbl22
+
+if(r5 != 0) goto lbl30
+
+if(r0 >= 3) goto lbl31
+
+goto lbl24
+
+lbl22:
+if(r1 != 3) goto lbl23
+
+if(r6 == 0) goto lbl24
+
+goto lbl30
+
+lbl23:
+if(r0 >= 3) goto lbl28
+
+if(r6 == 0) goto lbl24
+
+goto lbl31
+
+lbl24:
+if(r7 == 0) goto lbl25
+
+r0 = 6
+goto lbl33
+
+lbl25:
+r0 = 7
+goto lbl33
+
+lbl26:
+r1--
+goto lbl27
+
+lbl27:
+r1--
+goto lbl28
+
+lbl28:
+r0 = r1 - 1
+goto lbl33
+
+lbl29:
+r1++
+goto lbl30
+
+lbl30:
+r1++
+goto lbl31
+
+lbl31:
+r0 = r1 + 1
+goto lbl33
+
+lbl32:
+r0 = 0
+goto lbl33
+
+lbl33:
+*r4 = r0
+goto lbl34
+
+lbl34:
+return

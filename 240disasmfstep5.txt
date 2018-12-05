@@ -1,0 +1,117 @@
+ChangeHighlightedMonInDoubles(&position, direction)
+{
+	// position values: MON1, MON2, MON3, MON4, MON5, MON6, CONFIRM, CANCEL
+	// arrangement:  3
+	//				14
+	//				25
+	//				 6
+	
+	mon3Exists = GetMonData(gPlayerParty[2], MON_DATA_SPECIES);
+	mon4Exists = GetMonData(gPlayerParty[3], MON_DATA_SPECIES);
+	mon5Exists = GetMonData(gPlayerParty[4], MON_DATA_SPECIES);
+	mon6Exists = GetMonData(gPlayerParty[5], MON_DATA_SPECIES);
+	
+	switch(direction)
+	{
+	case DOWN:
+		switch(position)
+		{
+		case CONFIRM:
+			position = CANCEL;
+			break;
+		case CANCEL:
+			position = MON1;
+			break;
+		default:
+			newPos = TryMoving(position, DOWN);
+			
+			if(newPos == NOT_A_MON)
+			{
+				if(confirmExists)
+					position = CONFIRM;
+				else
+					position = CANCEL;
+			}
+			else
+				position = newPos;
+				
+			break;
+		}
+		
+		break;
+	case UP:
+		switch(position)
+		{
+		case MON1:
+			position = CANCEL;
+			break;
+		case CONFIRM:
+			position = LASTMON;
+			break;
+		case CANCEL:
+			if(confirmExists)
+				position = CONFIRM;
+			else
+				position = LASTMON;
+				
+			break;
+		default:
+			newPos = TryMoving(position, UP);
+			
+			if(newPos != NOT_A_MON)
+				position = newPos;
+				
+			break;
+		}
+		
+		break;
+	case RIGHT:
+		switch(position)
+		{
+		case MON1:
+			if(storedPosition == MON4)
+			{
+				if(mon4Exists)
+					position = MON4;
+			}
+			else
+			{
+				if(mon3Exists)
+					position = MON3;
+			}
+			
+			break;
+		case MON2:
+			if(storedPosition == MON6)
+			{
+				if(mon6Exists)
+					position = MON6;
+			}
+			else
+			{
+				if(mon5Exists)
+					position = MON5;
+			}
+			
+			break;
+		}
+		
+		break;
+	case LEFT:
+		switch(position)
+		{
+		case MON3:
+		case MON4:
+			storedPosition = position;
+			position = MON1;
+			break;
+		case MON5:
+		case MON6:
+			storedPosition = position;
+			position = MON2;
+			break;
+		}
+		
+		break;
+	}
+}

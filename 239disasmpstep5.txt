@@ -1,0 +1,100 @@
+ChangeHighlightedMonInSingles(&position, direction)
+{
+	// position values: MON1, MON2, MON3, MON4, MON5, MON6, CONFIRM, CANCEL
+	// arrangement:  123
+	//				 456
+	
+	switch(direction)
+	{
+	case DOWN:
+		switch(position)
+		{
+		case CONFIRM:
+			position = CANCEL;
+			break;
+		case CANCEL:
+			position = MON1;
+			break;
+		case SECONDTOLASTMON:
+		case LASTMON:
+			if(confirmExists)
+				position = CONFIRM;
+			else
+				position = CANCEL;
+				
+			break;
+		default:
+			position += 2;
+			break;
+		}
+		
+		break;
+	case UP:
+		switch(position)
+		{
+		case MON1:
+		case MON2:
+			position = CANCEL;
+			break;
+		case CONFIRM:
+			position = LASTMON;
+			break;
+		case CANCEL:
+			if(confirmExists)
+				position = CONFIRM;
+			else
+				position = LASTMON;
+				
+			break;
+		default:
+			position -= 2;
+			break;
+		}
+			
+		break;
+	case RIGHT:
+		switch(position)
+		{
+		case CONFIRM:
+			position = CANCEL;
+			break;
+		case CANCEL:
+			position = MON1;
+			break;
+		case LASTMON:
+			if(confirmExists)
+				position = CONFIRM;
+			else
+				position = CANCEL;
+				
+			break;
+		default:
+			position++;
+			break;
+		}
+		
+		break;
+	case LEFT:
+		switch(position)
+		{
+		case MON1:
+			position = CANCEL;
+			break;
+		case CONFIRM:
+			position = LASTMON;
+			break;
+		case CANCEL:
+			if(confirmExists)
+				position = CONFIRM;
+			else
+				position = LASTMON;
+				
+			break;
+		default:
+			position--;
+			break;
+		}
+			
+		break;
+	}
+}

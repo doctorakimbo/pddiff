@@ -1,0 +1,94 @@
+lbl1: @120E98
+r6 = r0
+r1 = 0x28
+r0 *= r1
+r1 = gTasks.data
+r7 = r0 + r1
+r0 = *(r7 + 2)
+r1 = 0x18
+svc_6()
+if(r0 != 0) goto lbl2
+
+r0 = 2
+goto lbl2
+
+lbl2:
+r2 = *(r7 + 6)
+if(r0 <= r2) goto lbl3
+
+r0 = r2
+goto lbl3
+
+lbl3:
+r1 = 4
+r1 = *(r7 + r1)
+r1 *= r0
+r3 = *r7
+r3 += r1
+r1 = *(r7 + 2)
+*r7 = r3
+if(r3 <= r1) goto lbl4
+
+*r7 = r1
+goto lbl4
+
+lbl4:
+r2 -= r0
+*(r7 + 6) = r2
+r0 = *(r7 + 8)
+r5 = 0x64
+r0 *= r5
+r4 = gPlayerParty
+r0 += r4
+r1 = 0x39
+r2 = r7
+SetMonData()
+r2 = *(r7 + 8)
+r0 = r2
+r0 *= r5
+r0 += r4
+r3 = data_0203B0B4
+r2 *= 0x10
+r1 = *r3
+r1 += r2
+r2 = 1
+fn_12199C()
+r2 = *(r7 + 8)
+r0 = r2
+r0 *= r5
+r0 += r4
+r2 *= 0x10
+r3 = data_0203B0B4
+r1 = *r3
+r1 += r2
+fn_121AF0()
+r0 = *(r7 + 6)
+if(r0 == 0) goto lbl5
+
+r1 = *r7
+if(r1 == 0) goto lbl5
+
+r0 = *(r7 + 2)
+if(r1 != r0) goto lbl7
+
+goto lbl5
+
+lbl5:
+r1 = *r7
+r2 = *(r7 + 0xA)
+if(r1 <= r2) goto lbl6
+
+r0 = gStringVar2
+r1 -= r2
+r2 = 0
+r3 = 3
+ConvertIntToDecimalStringN()
+goto lbl6
+
+lbl6:
+r0 = r6
+fn_7761C()
+goto lbl7
+
+lbl7:
+return

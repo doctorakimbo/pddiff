@@ -1,0 +1,311 @@
+ChangeHighlightedMonInDoubles(&position, direction)
+{
+	// position values: MON1, MON2, MON3, MON4, MON5, MON6, CONFIRM, CANCEL
+	//
+	// arrangement with partycount = 1:  1<+\
+	// 									  \v3
+	// 									   2 \
+	// 									    \v
+	// 									     5
+	// 										  \
+	// 										   6
+	// 									       ^
+	// 									     4-/
+	// 									   /-/
+	//
+	// 									  |4
+	// arrangement with partycount = 2:  12-
+	// 									-35
+	// 									4| \
+	// 									    6
+	//
+	// 									  |
+	// arrangement with partycount > 2:  12-
+	// 									-35-
+	// 									-46
+	// 									 |
+	
+	mon5Exists = GetMonData(gPlayerParty[4], MON_DATA_SPECIES);
+	mon6Exists = GetMonData(gPlayerParty[5], MON_DATA_SPECIES);
+	
+	switch(direction)
+	{
+	case DOWN:
+		switch(position)
+		{
+		case MON1:
+			if(gPlayerPartyCount > 1)
+				position = MON3;
+			else
+				position = MON2;
+				
+			break;
+		case MON2:
+			if(mon5Exists)
+				position = MON5;
+			else
+			{
+				if(confirmExists)
+					position = CONFIRM;
+				else
+					position = CANCEL;
+			}
+			
+			break;
+		case MON3:
+			if(gPlayerPartyCount > 2)
+				position = MON4;
+			else
+				position = MON2;
+		case MON4:
+			position = MON2;
+			break;
+		case MON5:
+			if(mon6Exists)
+				position = MON6;
+			else
+			{
+				if(confirmExists)
+					position = CONFIRM;
+				else
+					position = CANCEL;
+			}
+			
+			break;
+		case MON6:
+			if(confirmExists)
+				position = CONFIRM;
+			else
+				position = CANCEL;
+				
+			break;
+		case CONFIRM:
+			position = CANCEL;
+			break;
+		case CANCEL:
+			position = MON1;
+			break;
+		}
+		
+		break;
+	case UP:
+		switch(position)
+		{
+		case MON1:
+			position = CANCEL;
+			break;
+		case MON2:
+			if(gPlayerPartyCount < 2)
+				position = MON1;
+			elseif(gPlayerPartyCount > 2)
+				position = MON4;
+			else
+				position = MON3;
+				
+			break;
+		case MON3:
+			position = MON1;
+			break;
+		case MON4:
+			position = MON3;
+			break;
+		case MON5:
+			position = MON2;
+			break
+		case MON6:
+			position = MON5;
+			break;
+		case CONFIRM:
+			if(mon6Exists)
+				position = MON6;
+			elseif(mon5Exists)
+				position = MON5;
+			else
+				position = MON2;
+				
+			break;
+		case CANCEL:
+			if(confirmExists)
+				position = CONFIRM;
+			else
+			{
+				if(mon6Exists)
+					position = MON6;
+				elseif(mon5Exists)
+					position = MON5;
+				else
+					position = MON2;
+			}
+			
+			break;
+		}
+		
+		break;
+	case RIGHT:
+		switch(position)
+		{
+		case MON1:
+			position = MON2;
+			break;
+		case MON2:
+			if(gPlayerPartyCount > 1)
+				position = MON3;
+			else
+			{
+				if(mon5Exists)
+					position = MON5;
+				else
+				{
+					if(confirmExists)
+						position = CONFIRM;
+					else
+						position = CANCEL;
+				}
+			}
+			
+			break;
+		case MON3:
+			if(mon5Exists)
+				position = MON5;
+			else
+			{
+				if(gPlayerPartyCount > 2)
+					position = MON4;
+				else
+				{
+					if(confirmExists)
+						position = CONFIRM;
+					else
+						position = CANCEL;
+				}
+			}
+			
+			break;
+		case MON4:
+			if(mon6Exists)
+				position = MON6;
+			else
+			{
+				if(confirmExists)
+					position = CONFIRM;
+				else
+					position = CANCEL;	
+			}
+			
+			break;
+		case MON5:
+			if(gPlayerPartyCount > 2)
+				position = MON4;
+			else
+			{
+				if(mon6Exists)
+					position = MON6;
+				else
+				{
+					if(confirmExists)
+						position = CONFIRM;
+					else
+						position = CANCEL;
+				}
+			}
+			
+			break;
+		case MON6:
+			if(confirmExists)
+				position = CONFIRM;
+			else
+				position = CANCEL;
+				
+			break;
+		case CONFIRM:
+			position = CANCEL;
+			break;
+		case CANCEL:
+			position = MON1;
+			break;
+		}
+		
+		break;
+	case LEFT:
+		switch(position)
+		{
+		case MON1:
+			position = CANCEL;
+			break;
+		case MON2:
+			position = MON1;
+			break;
+		case MON3:
+			position = MON2;
+			break;
+		case MON4:
+			if(mon5Exists)
+				position = MON5;
+			else
+				position = MON3;
+				
+			break;
+		case MON5:
+			if(gPlayerPartyCount > 1)
+				position = MON3;
+			else
+				position = MON2;
+			
+			break;
+		case MON6:
+			if(gPlayerPartyCount > 2)
+				position = MON4;
+			else
+				position = MON5;
+				
+			break;
+		case CONFIRM:
+			if(mon6Exists)
+				position = MON6;
+			elseif(mon5Exists)
+			{
+				if(gPlayerPartyCount > 2)
+					position = MON4;
+				else
+					position = MON5;
+			}
+			else
+			{
+				if(gPlayerPartyCount == 2)
+					position = MON3;
+				elseif(gPlayerPartyCount > 2)
+					position = MON4;
+				else
+					position = MON2;
+			}
+			
+			break;
+		case CANCEL:
+			if(confirmExists)
+				position = CONFIRM;
+			else
+			{
+				if(mon6Exists)
+					position = MON6;
+				elseif(mon5Exists)
+				{
+					if(gPlayerPartyCount > 2)
+						position = MON4;
+					else
+						position = MON5;
+				}
+				else
+				{
+					if(gPlayerPartyCount == 2)
+						position = MON3;
+					elseif(gPlayerPartyCount > 2)
+						position = MON4;
+					else
+						position = MON2;
+				}
+			}
+		}
+		
+		break;
+	}
+}

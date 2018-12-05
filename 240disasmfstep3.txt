@@ -1,0 +1,88 @@
+sub_81200F8(&arg0, arg1)
+{
+	switch(arg1)
+	{
+	case 1:
+		if(arg0 == 6)
+			arg0 = 7
+		elseif(arg0 == 7)
+			arg0 = 0
+		else
+		{
+			r2 = fn_12029C(arg0, 1)
+			
+			if(r2 == -1)
+			{
+				if(data_0203B09C->8.lastBit != 0)
+					arg0 = 6
+				else
+					arg0 = 7
+			}
+			else
+				arg0 = r2
+		}
+		
+		break;
+	case 2:
+		if(arg0 == 0)
+		{
+			if(data_0203B09C->8.nextToLastThreeBits == 3)
+			{
+				if(GetMonData(data_020243B0, 0xB) != 0)
+					arg0 = 3
+			}
+			else
+			{
+				if(GetMonData(data_0202434C, 0xB) != 0)
+					arg0 = arg1
+			}
+		}
+		elseif(arg0 == 1)
+		{
+			if(data_0203B09C->8.nextToLastThreeBits == 5)
+			{
+				if(GetMonData(data_02024478, 0xB) != 0)
+					arg0 = 5
+			}
+			else
+			{
+				if(GetMonData(data_02024414, 0xB) != 0)
+					arg0 = 4
+			}
+		}
+		
+		break;
+	case -1:
+		if(arg0 == 0)
+			arg0 = 7
+		elseif(arg0 == 6)
+			arg0 = gPlayerPartyCount - 1
+		elseif(arg0 == 7)
+		{
+			if(data_0203B09C->8.lastBit != 0)
+				arg0 = 6
+			else
+				arg0--
+		}
+		
+		r2 = fn_12029C(arg0, arg1)
+		
+		if(r2 != -1)
+			arg0 = r2
+			
+		break;
+	case -2:
+		if(arg0 - 2 <= 1)
+		{
+			data_0203B09C->8.nextToLastThreeBits = arg0
+			arg0 = 0
+		}
+		elseif(arg0 - 4 <= 1)
+		{
+			data_0203B09C->8.nextToLastThreeBits = arg0
+			arg0 = 1
+		}
+		
+		break;
+	}
+}

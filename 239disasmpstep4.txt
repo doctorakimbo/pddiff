@@ -3,67 +3,93 @@ sub_811FFF0(&arg0, arg1)
 	switch(arg1)
 	{
 	case 1:
-		if(arg0 == 7)
-			arg0 = 0
-		elseif(arg0 == 6)
-			arg0 = 7
-		elseif(arg0 >= gPlayerPartyCount - 2)
+		switch(arg0)
 		{
+		case 6:
+			arg0 = 7
+			break;
+		case 7:
+			arg0 = 0
+			break;
+		case gPlayerPartyCount - 2:
+		case gPlayerPartyCount - 1:
 			if(data_0203B09C->8.lastBit != 0)
 				arg0 = 6
 			else
 				arg0 = 7
-		}
-		else
+				
+			break;
+		default:
 			arg0 += 2
+			break;
+		}
 		
 		break;
 	case 2:
-		if(arg0 == 7)
-			arg0 = 0
-		elseif(arg0 == 6)
-			arg0 = 7
-		elseif(arg0 == gPlayerPartyCount - 1)
+		switch(arg0)
 		{
+		case 6:
+			arg0 = 7
+			break;
+		case 7:
+			arg0 = 0
+			break;
+		case gPlayerPartyCount - 1:
 			if(data_0203B09C->8.lastBit != 0)
 				arg0 = 6
 			else
 				arg0 = 7
-		}
-		else
+				
+			break;
+		default:
 			arg0++
+			break;
+		}
 		
 		break;
 	case -1:
-		if(arg0 <= 1)
-			arg0 = 7
-		elseif(arg0 == 6)
-			arg0 = gPlayerPartyCount - 1
-		elseif(arg0 == 7)
+		switch(arg0)
 		{
+		case 0:
+		case 1:
+			arg0 = 7
+			break;
+		case 6:
+			arg0 = gPlayerPartyCount - 1
+			break;
+		case 7:
 			if(data_0203B09C->8.lastBit != 0)
 				arg0 = 6
 			else
 				arg0 = gPlayerPartyCount - 1
-		}
-		else
+				
+			break;
+		default:
 			arg0 -= 2
+			break;
+		}
 			
 		break;
 	case -2:
-		if(arg0 == 0)
-			arg0 = 7
-		elseif(arg0 == 6)
-			arg0 = gPlayerPartyCount - 1
-		elseif(arg0 == 7)
+		switch(arg0)
 		{
+		case 0:
+			arg0 = 7
+			break;
+		case 6:
+			arg0 = gPlayerPartyCount - 1
+			break;
+		case 7:
 			if(data_0203B09C->8.lastBit != 0)
 				arg0 = 6
 			else
 				arg0 = gPlayerPartyCount - 1
-		}
-		else
+				
+			break;
+		default:
 			arg0--
+			break;
+		}
 			
 		break;
 	}
