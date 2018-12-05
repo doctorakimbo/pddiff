@@ -401,7 +401,7 @@ stray text:
 + expand 40C0A4 (ball sprite templates (? duplicate)) from 12 entries to 26 (A237E0)
 	+ also set 40C104 (gUnknown_840C0A4[ITEM_POKE_BALL]) to A23840
 + expand 40C1C4 (color that mon sprite flashes on release from each ball) from 12 entries to 48 (A24240)
-- expand 456C50 (unknown quest-log-related list of flags) from 17 entries to 19 (6B0CCC???)
+! expand 456C50 (unknown quest-log-related list of flags) from 17 entries to 19 (j6B0CCC, eUNKNOWN)
 + expand 4886E8 (move descriptions) from from 355 entries to 680 (1020000)
 
 = repoint 02A3C8 -> j168F08 (atkAA_setdestinybond) - need part at destination removed first + ASM can't be repointed without decompilation + do it itself later
@@ -421,7 +421,7 @@ stray text:
   00D320: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j252400, see 02disasm))
 		  Implements: need more info
 		  Required knowledge: j0203B900, j0203C00D, j0203D500
-= 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (something about personality values + trainer gender)
++ 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (unclear, but gives more variance to personality values)
 = 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC, 1035AC, 103652, 1036F2, 10378A, 103826, 1038B8, 104DF6, 10647E, 113EE8, 119420, 11AC48, 11AFDE, 11B01C: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
@@ -1441,21 +1441,22 @@ stray text:
 + 106490: 02 -> 00 (changes font for names on pokedex detail screen 2 (to leave space for extra characters))
 ! 106531: D1 -> 00 (remove size comparison graphic on pokedex detail screen)
 = 10676A: FD F6 77 FE -> ?? ?? ?? ?? (changes call to FillWindowPixelBuffer to instead call fn at j3C7C00; need more info)
-- 106CC2: FF 20 FE F7 C8 F9 -> 00 00 00 00 00 00 (removes something in case 3, need more info, TEST)
-- 106D0C: 05 -> 07 (case 4 shifts to case 7 instead of case 5, need more info, TEST)
-- 106DB8: 57 E0 -> 00 00 (case 7 falls through into case 8, need more info, TEST)
-- 106DC4: 09 20 4F E0 -> 0A 20 0A E0 (case 8 falls through into case 10, need more info, TEST)
-- 106DE2: 05 28 14 D8 -> 00 28 14 D0 (need more info, TEST)
-- 1071AE: 00 F0 F1 F9 -> 00 00 00 00 (don't draw cursor on list menu refresh)
-- 1083F8: AC 20 40 00 -> 8E 20 80 00 (allocate 224 more bytes for ?????? (item menu))
++ 106CC2: FF 20 FE F7 C8 F9 -> 00 00 00 00 00 00
+  106D0C: 05 -> 07
+  106DB8: 57 E0 -> 00 00
+  106DC4: 09 20 4F E0 -> 0A 20 0A E0
+  106DE2: 05 28 14 D8 -> 00 28 14 D0
+		  Implements: removes initial zoom when new mon registered in pokedex (fades directly to dex entry, not showing habitat listing)
++ 1071AE: 00 F0 F1 F9 -> 00 00 00 00 (don't draw cursor on list menu refresh, this doesn't seem to actually do anything?)
++ 1083F8: AC 20 40 00 -> 8E 20 80 00 (allocate 224 more bytes for ?????? (item menu))
 = 108420: 31 03 -> ?? ?? (size to allocate for some struct???, jp 0x285 -> 0x429)
 + ?????? (j108FD6): 01 -> 00 (changes the letter spacing in the item menu, but this is already done in english)
-- 10864C: 77 -> B0 (change to new final item for back icon in bag)
++ 10864C: 77 -> B0 (change to new final item for back icon in bag)
 = 108654: Entirety of sub_8108654 (see 232disasm)
 		  Implements: something involving the new multiple SELECT items feature
 		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList
 + ?????? (j10936E): 04 -> 00 (moves some printer left four units, this is already done in english - might cause problems if it needs to move left anyway)
-- 108924: 98 -> 88 (moves scroll arrows left in item menu)
++ 108924: 98 -> 88 (supposedly moves scroll arrows left in item menu, not sure what it really does)
 = 109890: Entirety of sub_8109890 (see 233disasm)
 		  Implements: something involving the new multiple SELECT items feature
 		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList
@@ -1464,8 +1465,8 @@ stray text:
 		  Implements: register multiple items with SELECT
 		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList, UnregisterItem
 		  Required knowledge: j0203CB54
-- 10A6BC, 10A7EA, 10A8A2, 10A982, 10AA14: 00 04 40 0C -> 00 00 40 08 (store money as 32-bit integer instead of 16-bit)
-- 10A6CA, 10A990: 06 -> 08 (extra 2 digits for money in sell screen)
++ 10A6BC, 10A7EA, 10A8A2, 10A982, 10AA14: 00 04 40 0C -> 00 00 40 08 (store money as 32-bit integer instead of 16-bit)
++ 10A6CA, 10A990: 06 -> 08 (extra 2 digits for money in sell screen)
 = 10AD10: Entirety of UseRegisteredKeyItemOnField (see 235disasm)
 		  Implements: something involving the new multiple SELECT items feature
 		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList
@@ -1482,8 +1483,8 @@ stray text:
 		  Requires in future: data_508000_J
 + ?????? (j10E3BA): 01 -> 00 (changes the letter spacing in the pc item menu, but this is already done in english)
 + ?????? (j10E4D0): 04 -> 00 (moves some printer left four units, this is already done in english - might cause problems if it needs to move left anyway)
-- 10DA14: 77 -> B0 (change to new final item for back icon in item pc)
-- 10EEB6: 01 -> 00
++ 10DA14: 77 -> B0 (change to new final item for back icon in item pc)
+! 10EEB6: 01 -> 00
   10EEDE: 02 -> 00
   10EEFE: 03 -> 01
   10EF4A: 05 -> 02
@@ -1495,23 +1496,25 @@ stray text:
   10F15E: 80 -> 81
   10F230: 0A 08 00 00 0B 08 00 00 0C 08 00 00 0D 08 00 00 05 08 00 00 06 08 00 00 08 08 00 00 09 08 00 00 01 08 00 00 02 08 00 00 03 08 00 00 04 08 00 00 ->
 		  02 00 00 00 0C 04 00 00 07 04 00 00 0A 00 00 00 06 00 00 00 0B 00 00 00 0D 00 00 00 0E 00 00 00 10 08 00 00 10 08 00 00 0F 00 00 00 11 00 00 00
-		  Implements: changes the tilemap for ??? menu (TEST)
+		  Implements: changes the tilemap for the save confirmation textbox, probably others
 		  Relies on: graphic itself actually changed
-- 110F54: 00 28 0F D0 -> 00 0C 0F E0 (never execute sub_8110F90 (goto map [3, 19]); possibly disables quest log, TEST)
+		  Note: can't find the actual menu that changed, watch for this
++ 110F54: 00 28 0F D0 -> 00 0C 0F E0 (disable quest log)
 = 111438: Entirety of sub_8111438 (see 237disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
 = 11164C: Entirety of sub_811164C (see 238disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
 		  Glitch?: misplacement of counter declaration means it returns the number of empty slots in the final box, not the full PC as intended
-- 1140D6, 11411A: 0xA9 -> 0x90 (the HM notification in quest log now happens on TMs as well)
-		  Glitch?: probably should be the other way around (HM never, TM always)
++ 1140D6, 11411A: 0xA9 -> 0x90 (the HM notification in quest log now happens on TMs as well)
+		  Glitch?: probably should be the other way around (HM never, TM always); doesn't matter since quest log is now disabled
 ! 115216: 5A -> 59 (PDONLY, trainer class 5A no longer takes the rival's name in quest log)
 = 11C6C0, 11D0D6: 84 -> ?? (changes placement of the move name in some data structure, jp 0x7F -> 0xE0; makes room for longer names)
 		  Note: minidisasm20 has all info known about data structure; according to that, might have to change placement of move name at 0x77 in english too)
-- 11F0FC: 01 60 03 2D 0A D1 01 63 0B E0 00 00 -> 0F E0 0E D0 03 2D 0C D0 01 62 07 E0
+! 11F0FC: 01 60 03 2D 0A D1 01 63 0B E0 00 00 -> 0F E0 0E D0 03 2D 0C D0 01 62 07 E0
   11F920: 00 2D 00 D0 01 61 -> 01 63 01 64 01 65
-		  Implements: removes something from party menu (TEST)
-- 11FFA6: 00 28 08 D1 -> 02 28 08 DA (instead of checking if data_0203B0A0.8[bits 5 and 6] is nonzero, something checks if it's greater than 1; TEST)
+		  Implements: removes special size for first mon in party on menu screen
+		  Relies on: graphics rework to make this not look broken
++ 11FFA6: 00 28 08 D1 -> 02 28 08 DA (instead of checking if data_0203B0A0.8[bits 5 and 6] is nonzero, something checks if it's greater than 1; not sure what this does)
 = 11FFF0: Entirety of sub_811FFF0 (see 239disasm)
 		  
 		  
