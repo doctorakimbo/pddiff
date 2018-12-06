@@ -755,9 +755,6 @@ funcs e,j,desc:
 10B8F0 = 10C3EC = bag_menu_print
 10F904 = 110438 = MoveMenuCursor
 11B0D0 = 11B914 = InUnionRoom
-12029C = 120A8C = ?????
-12199C = 122170 = ?????
-121AF0 = 1222BC = ?????
 125A78 = 1263C4 = ItemIdToBattleMoveId
 12E51C = 12ED24 = AddTextPrinterParameterized3
 12E5A4 = 12EDAC = AddTextPrinterParameterized4

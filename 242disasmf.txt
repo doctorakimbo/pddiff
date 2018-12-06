@@ -1,0 +1,53 @@
+lbl1: @131E68
+r9 = r0
+r7 = r9
+r8 = r2
+r4 = r8
+r0 = -2
+if(r1 == r0) goto lbl3
+
+r6 = r1
+r0 = 4
+r1 = r6
+BagGetItemIdByPocketPosition()
+ItemId_GetImportance()
+r5 = r0
+if(r5 != 0) goto lbl2
+
+r4 = gStringVar1
+r0 = 4
+r1 = r6
+BagGetQuantityByPocketPosition()
+r1 = r0
+r0 = r4
+r2 = 1
+r3 = 3
+ConvertIntToDecimalStringN()
+r4 = gStringVar4
+r1 = data_4162B9
+r0 = r4
+StringExpandPlaceholders()
+r0 = r8
+s0 = r0
+s1 = r5
+s2 = r5
+r0 = 0xFF
+s3 = r0
+r0 = 1
+s4 = r0
+r0 = r9
+r1 = 0
+r2 = r4
+r3 = 0x7E
+fn_1332EC()
+goto lbl3
+
+lbl2:
+r0 = r7
+r1 = 0xA
+r2 = r4
+fn_1335B0()
+goto lbl3
+
+lbl3:
+return

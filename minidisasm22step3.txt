@@ -1,0 +1,30 @@
+sub_812125C(arg0, ???, 0xA, arg1, arg2, 0xA, 0x7) -> sub_812125C(arg0, ???, 0xF, arg1, arg2, 0xF, 0x4)
+
+sub_812125C(arg0, arg1, arg2, arg3, arg4, arg5, arg6)
+{
+	r9 = AllocZeroed(arg5 * arg6 * 0x20)
+	
+	if(r9 != 0)
+	{
+		for(r5 = 0; r5 < arg6; r5++)
+		{
+			for(r4 = 0; r4 < arg5; r4++)
+			{
+				CpuSet(fn_11F620(arg1[arg4 + r5][arg3 + r4]), &r9[(arg5 * r5) + r4], 0x10)
+				// r9 size [0x20]; arg1 size [arg2][1]
+			}
+		}
+		
+		BlitBitmapToWindow(arg0, r9, arg3 * 8, arg4 * 8, arg5 * 8, arg6 * 8)
+		Free(r9)
+	}
+}
+
+
+
+
+
+fn_11F620(arg0)
+{
+	return &data_0203B0B8[arg0] // size 0x20
+}

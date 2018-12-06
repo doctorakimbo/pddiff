@@ -1,0 +1,26 @@
+sub_8123270(arg0)
+{
+	r6 = (arg0 * 0x28) + gTasks.data
+	sub_81231E8(arg0)
+	sub_8123188(arg0)
+	*(r6 + 0xA) += *(r6 + 0xE)
+	*(r6 + 0xC) += *(r6 + 0x10)
+	*(r6 + 0x18)++
+	
+	if(*(r6 + 0x18) > 0x12)
+	{
+		*(r6 + 0x18) = 0
+		*(r6 + 0x14) = -*(r6 + 0x14)
+		*(r6 + 0x16) = -*(r6 + 0x16)
+		swap_pokemon_and_oams()
+		sub_811F234(*(data_0203B0A0 + 9))
+		sub_811F234(*(data_0203B0A0 + 0xA))
+		PutWindowTilemap(*((*(data_0203B0A0 + 9) * 0x10) + *data_0203B0B4 + 8))
+		PutWindowTilemap(*((*(data_0203B0A0 + 0xA) * 0x10) + *data_0203B0B4 + 8))
+		sub_80F6B94(0, *data_0203B0C8, *r6, *(r6 + 2), *(r6 + 4), *(r6 + 6))
+		sub_80F6B94(0, *data_0203B0CC, *(r6 + 8), *(r6 + 0xA), *(r6 + 0xC), *(r6 + 0xE))
+		ClearWindowTilemap(*((*(data_0203B0A0 + 9) * 0x10) + *data_0203B0B4 + 8))
+		ClearWindowTilemap(*((*(data_0203B0A0 + 0xA) * 0x10) + *data_0203B0B4 + 8))
+		*((arg0 * 0x28) + gTasks) = sub_8123388
+	}
+}

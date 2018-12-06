@@ -1,0 +1,22 @@
+lbl1: @13265C
+r7 = r0
+r4 = r2
+r0 = -2
+if(r1 == r0) goto lbl2
+
+r6 = r1
+r0 = 4
+r1 = r6
+BagGetItemIdByPocketPosition()
+ItemId_GetImportance()
+r5 = r0
+if(r5 == 0) goto lbl2
+
+r0 = r7
+r1 = 8
+r2 = r4
+fn_1335B0()
+goto lbl2
+
+lbl2:
+return

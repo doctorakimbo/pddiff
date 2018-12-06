@@ -317,6 +317,14 @@ grafics:
 = 4403AC (404A60 old, E98420 new)
 = 443620 (407FB8 old, E016A0 new)
 = 452C94 (411AFC old, 411C1C new)
+= 45A1C6 (419956 old, 41994C new)
+= 45A20C (41999C old, 419910 new)
+= 45A242 (4199D2 old, 419958 new)
+= 45A278 (419A08 old, 4199A0 new)
+= 460F14 (423228 old, 8DBCC0 new)
+= 46163C (423950 old, 68AE40 new)
+= 461D14 (424028 old, 8DEF50 new)
+= 4623EC (424700 old, 8DD7B0 new)
 = D0051C (C0051C old, EB8990 new)
 = E82700 (D826B0 old, 924320 new)
 = E9C3D8 (3964B0 old, 396374 new)
@@ -344,6 +352,7 @@ stray text:
 = 3FDD64 (3C3E05 old, 3C3DCC new)
 = 3FDDEB (3C3E5C old, 3C3E1D new)
 = 415F66 (3DD606 old, 5447D9 new)
+= 417457 (3DE537 old, 3C3EB6 new)
 = 417494 (3DE55B old, 3DE537 new)
 = 41A2E1 (3E06E3 old, 68AE00 new)
 = 41A312 (3E070A old, 3E0709 new)
@@ -423,7 +432,7 @@ stray text:
 		  Implements: need more info
 		  Required knowledge: j0203B900, j0203C00D, j0203D500
 + 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (unclear, but gives more variance to personality values)
-= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC, 1035AC, 103652, 1036F2, 10378A, 103826, 1038B8, 104DF6, 10647E, 113EE8, 119420, 11AC48, 11AFDE, 11B01C: 0B -> 10 (pkmnnamelength)
+= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC, 1035AC, 103652, 1036F2, 10378A, 103826, 1038B8, 104DF6, 10647E, 113EE8, 119420, 11AC48, 11AFDE, 11B01C, 1218EC: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: pkmnnamelength, something else - need more info
@@ -780,7 +789,7 @@ stray text:
 		  Implements: Synchronize overworld effect, Cute Charm overworld effect, (item72), need more info (something to do with personality values)
 		  Required knowledge: var_403E
 		  Requires in future: GetNature_CheckSynchronize (j251B30), fn_251B58_J, fn_251BA4_J, CuteCharmOverworldEffect (j251CB6), fn_251CF4_J, fn_3915EC_J
-! 03E564, 03E73C: 2F 01 -> FC 00 (PDONLY, changes shedinja index to #252)
+! 03E564, 03E73C, 125240: 2F 01 -> FC 00 (PDONLY, changes shedinja index to #252 (empty slot))
 = 03E192: Part of GiveBoxMonInitialMoveset (see 77disasm)
 		  Implements: Part of gLevelUpLearnsets refactor
 = 03EAFE, 03EB2E: 40 -> 80
@@ -901,7 +910,7 @@ stray text:
 		  Implements: Moves in-battle level/gender display for opponents right by two characters (one in Japanese) to make room for name
 = ~0496C0: Unclear how to translate this to English rom (minidisasm13pt2)
 		  Implements: name length in the battle boxes (the ones with the HP in them)
-! 049718: 1D 28 01 D0 20 28 09 D1 -> 0C E0 00 00 00 00 00 00 (PDONLY, restores gender markers for pokemon #29 and #32)
+! 049718: 1D 28 01 D0 20 28 09 D1 -> 0C E0 00 00 00 00 00 00 (PDONLY, restores gender markers for pokemon #29 and #32 in battle)
 = ?????? (j48EBA): Unclear how to translate this to English rom (minidisasm13pt3)
 		  Implements: Moves name in battle boxes for player mons left by two characters (one in Japanese) to make room
 + 04A2F0: Entirety of CalcNewBarValue (see 105disasm)
@@ -918,7 +927,7 @@ stray text:
 = 04C440: Entirety of SavePlayerBag (see 108disasm)
 		  Implements: extra bag space
 		  Required knowledge: gLoadedSave_ExtraItemData (j0203BB00), gSaveBlock_ExtraItems (j0203C010)
-= 04EF5E, 06BE72, 09B4EC, 0BD824, 0BFA7C, 0CC8F8, 0D7630, 0D7ED6, 0D84F6, 0E4DD2, 0E5116, 0E5130, 0E5164, 0E51A2, 0E523E, 10D9B2, 1140B2, 11C590, 11C6C2: 0D -> 20 (movenamelength)
+= 04EF5E, 06BE72, 09B4EC, 0BD824, 0BFA7C, 0CC8F8, 0D7630, 0D7ED6, 0D84F6, 0E4DD2, 0E5116, 0E5130, 0E5164, 0E51A2, 0E523E, 10D9B2, 1140B2, 11C590, 11C6C2, 12564C, 1258F4, 1259E2, 125B7E, 125C92, 125FB0, 126036, 1260E8, 1261BC, 12624A, 126798, 12682E, 126E0A, 131DE0: 0D -> 20 (movenamelength)
 + ?????? (j4E8A2): Unclear how to translate this to English rom (minidisasm15)
 		  Implements: Removes gender symbol somewhere, seems to be removed in english already
 ! 054A00: 06 -> 04 (PDONLY, moves starting position in new game two tiles north)
@@ -1288,7 +1297,7 @@ stray text:
 		  Requires in future: DecompressBoxMon (j3C5D20)
 = 0CC7F8: Entirety of sub_80CC7F8 (see 209disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
-+ 0CE90D: D1 -> E0 (natdex no longer required for post-151 evolutions) 
++ 0CE90D: D1 -> E0 (natdex no longer required for post-151 evolutions)
 + 0D75FC, 0D7E96, 0D7EAE: B1 20 40 00 -> FF 20 80 00 (max moves 354 -> 1020)
 + 0D77BC: 08 D9 03 49 FF 20 08 70 0D E0 00 00 81 01 00 00 8C 29 02 02 -> 08 D3 03 49 30 1A 08 E0 00 00 00 00 82 01 00 00 00 00 08 09
 		  Implements: if the string number is greater than the total strings (386), read from the expanded string table instead (1080000), giving an additional 208 strings for a total of 594 (603 in english due to jumping the gun on modernization)
@@ -1467,8 +1476,8 @@ stray text:
 		  Implements: register multiple items with SELECT
 		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList, UnregisterItem
 		  Required knowledge: j0203CB54
-+ 10A6BC, 10A7EA, 10A8A2, 10A982, 10AA14: 00 04 40 0C -> 00 00 40 08 (store money as 32-bit integer instead of 16-bit)
-+ 10A6CA, 10A990: 06 -> 08 (extra 2 digits for money in sell screen)
++ 10A6BC, 10A7EA, 10A8A2, 10A982, 10AA14, 1329E8, 132B0E, 132C00, 132CE6, 132D76: 00 04 40 0C -> 00 00 40 08 (store money as 32-bit integer instead of 16-bit)
++ 10A6CA, 10A990, 1329F6, 132CF4: 06 -> 08 (extra 2 digits for money in sell screen)
 = 10AD10: Entirety of UseRegisteredKeyItemOnField (see 235disasm)
 		  Implements: something involving the new multiple SELECT items feature
 		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList
@@ -1527,11 +1536,44 @@ stray text:
 		  Relies on: layout rework to make this not look broken
 - 1206A8: Entirety of sub_81206A8 (see 241disasm)
 		  Implements: need more info (possibly speeds up HP restoration on party menu? TEST)
-= 121364: 0A 23 07 24 -> 0F 23 04 24 ()
+- 121364, 121374, 12138C: 0A -> 0F
+  121366: 07 -> 04
+		  Implements: changes dimensions of some party menu graphic from 80x56 px to 120x32 px, TEST
+- 1213C8, 1213D8, 1213F0: 12 -> 0E
+  1213CA: 03 -> 05
+		  Implements: changes dimensions of some party menu graphic from 144x24 px to 112x40 px, TEST
+- 121412, 12141A: 12 -> 0E
+  121416: 03 -> 05
+		  Implements: changes dimensions of some party menu graphic from 144x24 px to 112x40 px, TEST
+! 1218E4: 20 2C 01 D0 1D 2C 09 D1 -> 0C E0 00 00 00 00 00 00 (PDONLY, restores gender markers for pokemon #29 and #32 in party menu)
+- 122E96: 14 -> 2E
+  122EDA: 0A 28 06 D1 01 22 52 42 10 1C 03 E0 00 00 B4 B0 03 02 -> 01 20 02 40 01 2A 04 D0 40 42 03 E0 00 00 00 00 00 00
+  122F3E: 0A 28 08 D1 01 22 52 42 10 1C -> 01 20 02 40 01 2A 06 D0 40 42
+		  Implements: need more info (party menu), TEST
+- 1232B6: 4A 80 08 1C 00 88 21 28 50 D9 10 04 00 0C 21 28 4C D9 -> 30 8B 01 30 30 83 12 28 50 D9 00 20 30 83 00 00 00 00 (need more info (party menu), TEST)
+- 124EA0, 124F6C, 125C74: A9 -> 90 (reusable TMs)
+- 126C2D: D1 -> E0 (natdex no longer required for post-151 evolutions) (MERGE THIS CHECK)
+! 12FB38: 1D -> 20 (PDONLY, oak pokemon cry #29 -> #32)
+- 130F4C: 1D -> 20 (seems like it's supposed to change the oakmon, but that's not what the function does??? TEST)
+- 130FA0: 94 51 23 08 F4 73 23 08 -> AC 51 23 08 0C 74 23 08 (changes some graphic in oak intro, TEST)
+- 131E68: Entirety of sub_8131E68 (see 242disasm)
+		  Implements: removes displayed quantity of TMs because they're infinite
+- 131E9A: 08 -> 06
+		  Implements: moves "HM" logo left 2 units
+		  Relies on: sub_8131E68 changes imported first
+- 132070: 98 -> 88 (supposedly moves scroll arrows left in tm case, not sure what it really does)
+- 1326B8: 00 28 17 D1 -> 00 00 17 E0
+  13288A, 1328DA: 00 28 0E D1 -> 00 00 0E E0
+		  Implements: TMs can't be held
+- 132926: 1F D1 -> 00 00 (TMs can't be sold)
+= 133408: 13 -> 18
+  133414: 14 -> 19
+  133420: 15 -> 1A
+  13342C: 16 -> 1B
+		  Implements: 
 		  
 		  
 		  
-
 		  
 		  
 		  
@@ -1543,10 +1585,8 @@ stray text:
 		  
 		  
 		  
-		  
-		  
-		  
-		  
-		  
-curr: j121B38 (4byte), j121B48 (1byte), j121B60 (1byte), j121B70 (repoint), j121B9C (4byte), j121BAC (1byte), j121BB8 (repoint), j121BC4 (1byte), j121BD4 (repoint), j121BE6 (1byte), j121BEA (1byte), j121BEE (1byte), j121BFC (repoint), j1220B8 (14byte), j1228D8 (repoint), j123672 (1byte), j1236B6 (18byte), j12371A (10byte), j123A92 (18byte), j125804 (1byte), j1258D0 (1byte), j125BA4 (2byte), j125FB0 (2byte), j126254 (1byte), j126334 (1byte), j1264CA (2byte), j1265C0 (1byte), j1265DE (2byte), j1268F8 (2byte), j12697E (2byte), j126A30 (2byte), j126B04 (2byte), j126B8E (2byte), j1270DC (2byte), j12716E (2byte), j127569 (1byte), j127746 (2byte), j13034C (1byte), j131760 (1byte), j1317B4 (repoint), j1317B8 (repoint), j131A40 (repoint), j131A58 (repoint), j131A78 (repoint), j131B18 (repoint), j1325D8 (1byte)
-next: j13265C
+curr: j133BF4 (1byte), j133C00 (1byte), j133C0C (1byte), j133C18 (1byte)
+next: j133CBC (1byte), j13409A (1byte), j1340E8 (repoint), j13547C (1byte), j13572C (1byte), j135730 (1byte), j135740 (1byte), j1357E8 (repoint), j135CC2 (2byte), j135E78 (1byte)
+next: j1362E0 (repoint), j136318 (repoint), j136334 (repoint), j136354 (repoint), j1363B8 (repoint), j1363D0 (repoint), j1363E4 (repoint), j1363F8 (repoint), j1364DC (repoint), j1364F4 (repoint), j136518 (repoint), j13654C (repoint), j136554 (repoint), j136588 (repoint), j1367F0 (repoint)
+next: j1368FB (1byte), j1369D0 (1byte), j136A54 (8byte), j136A64 (6byte), j136BC6 (2byte), j136D42 (2byte), j136D78 (2byte), j136DAC (2byte), j136DE0 (2byte), j136E14 (2byte), j136E50 (4byte), j136EC0 (2byte), j136EFA (18byte), j136F84 (1byte), j136F88 (repoint), j136F8C (1byte), j136F90 (repoint)
+next: j136FD0

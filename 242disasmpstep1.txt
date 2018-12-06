@@ -1,0 +1,12 @@
+sub_8131E68(arg0, arg1, arg2)
+{
+	r7 = arg0
+	r4 = arg2
+	r0 = -2
+	
+	if(arg1 != r0)
+	{
+		if(ItemId_GetImportance(BagGetItemIdByPocketPosition(4, arg1)) != 0)
+			fn_1335B0(r7, 8, r4)
+	}
+}
