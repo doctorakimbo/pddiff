@@ -344,6 +344,7 @@ stray text:
 = 3FDD64 (3C3E05 old, 3C3DCC new)
 = 3FDDEB (3C3E5C old, 3C3E1D new)
 = 415F66 (3DD606 old, 5447D9 new)
+= 417494 (3DE55B old, 3DE537 new)
 = 41A2E1 (3E06E3 old, 68AE00 new)
 = 41A312 (3E070A old, 3E0709 new)
 
@@ -1521,8 +1522,9 @@ stray text:
 - 1200F8: Entirety of sub_81200F8 (see 240disasm)
 		  Implements: rearranges which button press moves the selection cursor on the party menu which way (double battles)
 		  Relies on: layout rework to make this not look broken
-= 1206A8: Entirety of sub_81206A8 (see 241disasm)
-		  Implements: (FINISH THIS FIRST)
+- 1206A8: Entirety of sub_81206A8 (see 241disasm)
+		  Implements: need more info (possibly speeds up HP restoration on party menu? TEST)
+= 121364: 0A 23 07 24 -> 0F 23 04 24 ()
 		  
 		  
 		  
@@ -1543,6 +1545,5 @@ stray text:
 		  
 		  
 		  
-curr: j120E98-j120F50
-next: j1215C8 (repoint), j121B38 (4byte), j121B48 (1byte), j121B60 (1byte), j121B70 (repoint), j121B9C (4byte), j121BAC (1byte), j121BB8 (repoint), j121BC4 (1byte), j121BD4 (repoint), j121BE6 (1byte), j121BEA (1byte), j121BEE (1byte), j121BFC (repoint), j1220B8 (14byte), j1228D8 (repoint), j123672 (1byte), j1236B6 (18byte), j12371A (10byte), j123A92 (18byte), j125804 (1byte), j1258D0 (1byte), j125BA4 (2byte), j125FB0 (2byte), j126254 (1byte), j126334 (1byte), j1264CA (2byte), j1265C0 (1byte), j1265DE (2byte), j1268F8 (2byte), j12697E (2byte), j126A30 (2byte), j126B04 (2byte), j126B8E (2byte), j1270DC (2byte), j12716E (2byte), j127569 (1byte), j127746 (2byte), j13034C (1byte), j131760 (1byte), j1317B4 (repoint), j1317B8 (repoint), j131A40 (repoint), j131A58 (repoint), j131A78 (repoint), j131B18 (repoint), j1325D8 (1byte)
+curr: j121B38 (4byte), j121B48 (1byte), j121B60 (1byte), j121B70 (repoint), j121B9C (4byte), j121BAC (1byte), j121BB8 (repoint), j121BC4 (1byte), j121BD4 (repoint), j121BE6 (1byte), j121BEA (1byte), j121BEE (1byte), j121BFC (repoint), j1220B8 (14byte), j1228D8 (repoint), j123672 (1byte), j1236B6 (18byte), j12371A (10byte), j123A92 (18byte), j125804 (1byte), j1258D0 (1byte), j125BA4 (2byte), j125FB0 (2byte), j126254 (1byte), j126334 (1byte), j1264CA (2byte), j1265C0 (1byte), j1265DE (2byte), j1268F8 (2byte), j12697E (2byte), j126A30 (2byte), j126B04 (2byte), j126B8E (2byte), j1270DC (2byte), j12716E (2byte), j127569 (1byte), j127746 (2byte), j13034C (1byte), j131760 (1byte), j1317B4 (repoint), j1317B8 (repoint), j131A40 (repoint), j131A58 (repoint), j131A78 (repoint), j131B18 (repoint), j1325D8 (1byte)
 next: j13265C
