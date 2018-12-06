@@ -201,7 +201,7 @@ B4 B0 03 02: 28 B0 03 02: ??????
 								 (ShouldSwitchIfMightBeDoubleTargeted: choose not to switch with a probability increasing the higher this gets)
 								 (ShouldSwitchIfStallMon: choose not to switch with a probability increasing the higher this gets)
 								 (fn_205940_J: choose to switch with a probability increasing the higher this gets; when switch chosen, subtract 1)
-		   : 64 B9 03 02: gWasMonShown
+64 B9 03 02: 64 B9 03 02: gWasMonShown
 		   : 65 B9 03 02: ?????? (ShouldSwitch_NewAI: set to 1 when fn executed (always ran whenever it's possible to switch))
 		   : 70 B9 03 02: ?????? (appears to be an array of unknown objects; first field is a 4-entry array of 2 bytes each, second field is a 4-entry array of 1 byte each)
 								 (atk02_attackstring: when player attacks: insert [gCurrentMove, 0] into the first empty slot for the mon, or increment the field2 of the first entry where field1 = gCurrentMove and field2 != 0xFF, whichever comes first)
@@ -405,7 +405,7 @@ B4 B0 03 02: 28 B0 03 02: ??????
 		   : 90 D6 03 02: ?????? (fn_EA0158_J: set to 1 at start)
 								 (fn_E9EBB0_J: if data_0203D52A_J is 0, data_0203D50A_J is 2, and any key but B is pressed, set this to 1)
 		   : 00 D8 03 02: ?????? (fn_3C74B0_J: used to temporarily store some palette data)
-		   : 00 FE 03 02: gLastUsedItemType
+00 FE 03 02: 00 FE 03 02: gLastUsedItemType
 		   : 04 FE 03 02: gCritCapture
 		   
 		   : 00 00 00 03: ??????
