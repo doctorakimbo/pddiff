@@ -749,7 +749,7 @@ stray text:
 		  Implements: Removes the "switch which?" text when moving moves in battle with SELECT
 = 02EF58: Entirety of HandleMoveSwitching (see 69disasm)
 		  Implements: Need more info
-		  Required knowledge: j0203BF40
+		  Note: merging changes from english and changes from pd is necessary - return to this later
 = 030830: Entirety of MoveSelectionDisplayMoveNames (see 70disasm)
 		  Implements: Need more info (possibly displays the type icons in the info box)
 		  Required knowledge: j02020024, j0203BF30, j0203BF40, j0203BF70, j0203D300, j0203D340, j0203D380, j0203D480
@@ -1297,7 +1297,7 @@ stray text:
 		  Requires in future: DecompressBoxMon (j3C5D20)
 = 0CC7F8: Entirety of sub_80CC7F8 (see 209disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
-+ 0CE90D: D1 -> E0 (natdex no longer required for post-151 evolutions)
++ 0CE90D, 126C2D: D1 -> E0 (natdex no longer required for post-151 evolutions)
 + 0D75FC, 0D7E96, 0D7EAE: B1 20 40 00 -> FF 20 80 00 (max moves 354 -> 1020)
 + 0D77BC: 08 D9 03 49 FF 20 08 70 0D E0 00 00 81 01 00 00 8C 29 02 02 -> 08 D3 03 49 30 1A 08 E0 00 00 00 00 82 01 00 00 00 00 08 09
 		  Implements: if the string number is greater than the total strings (386), read from the expanded string table instead (1080000), giving an additional 208 strings for a total of 594 (603 in english due to jumping the gun on modernization)
@@ -1471,7 +1471,7 @@ stray text:
 = 109890: Entirety of sub_8109890 (see 233disasm)
 		  Implements: something involving the new multiple SELECT items feature
 		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList
-		  Note: first major instance where merging changes from english and changes from pd is necessary - return to this later
+		  Note: merging changes from english and changes from pd is necessary - return to this later
 = 10A000: Entirety of ItemMenu_Register (see 234disasm)
 		  Implements: register multiple items with SELECT
 		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList, UnregisterItem
@@ -1509,7 +1509,6 @@ stray text:
 		  02 00 00 00 0C 04 00 00 07 04 00 00 0A 00 00 00 06 00 00 00 0B 00 00 00 0D 00 00 00 0E 00 00 00 10 08 00 00 10 08 00 00 0F 00 00 00 11 00 00 00
 		  Implements: changes the tilemap for the save confirmation textbox, probably others
 		  Relies on: graphic itself actually changed
-		  Note: can't find the actual menu that changed, watch for this
 + 110F54: 00 28 0F D0 -> 00 0C 0F E0 (disable quest log)
 = 111438: Entirety of sub_8111438 (see 237disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
@@ -1534,38 +1533,43 @@ stray text:
 ! 1200F8: Entirety of sub_81200F8 (see 240disasm)
 		  Implements: rearranges which button press moves the selection cursor on the party menu which way (double battles)
 		  Relies on: layout rework to make this not look broken
-- 1206A8: Entirety of sub_81206A8 (see 241disasm)
-		  Implements: need more info (possibly speeds up HP restoration on party menu? TEST)
-- 121364, 121374, 12138C: 0A -> 0F
++ 1206A8: Entirety of sub_81206A8 (see 241disasm)
+		  Implements: vastly speeds up HP restoration on party menu
+! 121364, 121374, 12138C: 0A -> 0F
   121366: 07 -> 04
-		  Implements: changes dimensions of some party menu graphic from 80x56 px to 120x32 px, TEST
-- 1213C8, 1213D8, 1213F0: 12 -> 0E
+		  Implements: changes dimensions of first mon party menu background rectangle from 80x56 px to 120x32 px
+		  Relies on: graphics rework to make this not look broken
+! 1213C8, 1213D8, 1213F0: 12 -> 0E
   1213CA: 03 -> 05
-		  Implements: changes dimensions of some party menu graphic from 144x24 px to 112x40 px, TEST
-- 121412, 12141A: 12 -> 0E
+		  Implements: changes dimensions of non-first mon party menu background rectangle from 144x24 px to 112x40 px
+		  Relies on: graphics rework to make this not look broken
++ 121412, 12141A: 12 -> 0E
   121416: 03 -> 05
-		  Implements: changes dimensions of some party menu graphic from 144x24 px to 112x40 px, TEST
+		  Implements: changes dimensions of an unknown party menu graphic from 144x24 px to 112x40 px
+		  Relies on: graphics rework to make this not look broken
+		  Note: can't find the actual graphic that changed, watch for this
 ! 1218E4: 20 2C 01 D0 1D 2C 09 D1 -> 0C E0 00 00 00 00 00 00 (PDONLY, restores gender markers for pokemon #29 and #32 in party menu)
-- 122E96: 14 -> 2E
+! 122E96: 14 -> 2E
   122EDA: 0A 28 06 D1 01 22 52 42 10 1C 03 E0 00 00 B4 B0 03 02 -> 01 20 02 40 01 2A 04 D0 40 42 03 E0 00 00 00 00 00 00
   122F3E: 0A 28 08 D1 01 22 52 42 10 1C -> 01 20 02 40 01 2A 06 D0 40 42
-		  Implements: need more info (party menu), TEST
-- 1232B6: 4A 80 08 1C 00 88 21 28 50 D9 10 04 00 0C 21 28 4C D9 -> 30 8B 01 30 30 83 12 28 50 D9 00 20 30 83 00 00 00 00 (need more info (party menu), TEST)
-- 124EA0, 124F6C, 125C74: A9 -> 90 (reusable TMs)
-- 126C2D: D1 -> E0 (natdex no longer required for post-151 evolutions) (MERGE THIS CHECK)
-! 12FB38: 1D -> 20 (PDONLY, oak pokemon cry #29 -> #32)
-- 130F4C: 1D -> 20 (seems like it's supposed to change the oakmon, but that's not what the function does??? TEST)
-- 130FA0: 94 51 23 08 F4 73 23 08 -> AC 51 23 08 0C 74 23 08 (changes some graphic in oak intro, TEST)
-- 131E68: Entirety of sub_8131E68 (see 242disasm)
+		  Implements: changes the way mons slide around during party position switching
+		  Relies on: layout rework to make this not look broken
+! 1232B6: 4A 80 08 1C 00 88 21 28 50 D9 10 04 00 0C 21 28 4C D9 -> 30 8B 01 30 30 83 12 28 50 D9 00 20 30 83 00 00 00 00
+		  Implements: unknown what this actually does, right now it stops mons from going fully offscreen during party position switching
+		  Relies on: layout rework to make this not look broken
++ 124EA0, 124F6C, 125C74: A9 -> 90 (reusable TMs)
+! 12FB38, 130F4C: 1D -> 20
+  130FA0: 94 51 23 08 F4 73 23 08 -> AC 51 23 08 0C 74 23 08
+		  Implements: PDONLY, oak pokemon #29 -> #32
++ 131E68: Entirety of sub_8131E68 (see 242disasm)
 		  Implements: removes displayed quantity of TMs because they're infinite
-- 131E9A: 08 -> 06
-		  Implements: moves "HM" logo left 2 units
-		  Relies on: sub_8131E68 changes imported first
-- 132070: 98 -> 88 (supposedly moves scroll arrows left in tm case, not sure what it really does)
-- 1326B8: 00 28 17 D1 -> 00 00 17 E0
+! 131E9A: 08 -> 06
+		  Implements: moves "HM" logo left 2 pixels, this doesn't work right now (cutoff)
++ 132070: 98 -> 88 (supposedly moves scroll arrows left in tm case, not sure what it really does)
++ 1326B8: 00 28 17 D1 -> 00 00 17 E0
   13288A, 1328DA: 00 28 0E D1 -> 00 00 0E E0
 		  Implements: TMs can't be held
-- 132926: 1F D1 -> 00 00 (TMs can't be sold)
++ 132926: 1F D1 -> 00 00 (TMs can't be sold)
 = 133408: 13 -> 18
   133414: 14 -> 19
   133420: 15 -> 1A

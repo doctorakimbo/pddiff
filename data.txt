@@ -212,7 +212,7 @@ B4 B0 03 02: 28 B0 03 02: ??????
 								 (fn_EB8398_J: Set this.4 to moveId)
 								 (fn_EB873C_J: If this.4 != 0, destroy all four sprites)
 								 (fn_EB873C_J: Set this[0] to 0 and this.4 to 0)
-		   : 40 BF 03 02: ?????? (appears to be a data structure of at least 3 bytes)
+40 BF 03 02: 40 BF 03 02: ?????? (appears to be a data structure of at least 3 bytes)
 								 (HandleMoveSwitching: Set this.2 to 0 if (gMain.newKeys & (A_BUTTON | SELECT_BUTTON)) || (gMain.newKeys & (B_BUTTON | SELECT_BUTTON)); 1 otherwise)
 								 (fn_EB856A_J: Set this.2 to 0)
 								 (fn_EB856A_J: If this.4 != 1, set this.4 to 1 and load palettes into this.0 and this.1)
