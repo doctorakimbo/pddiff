@@ -1,0 +1,394 @@
+lbl1: @137774
+r0 = data_0203B140
+r9 = r0
+r3 = *r0
+r4 = 0x3003
+r0 = r3 + r4
+r0 = *r0
+r1 = data_0203B144
+r8 = r1
+r1 = *r1
+r2 = *(r1 + 2)
+r2 += 0x48
+r6 = data_463FA4
+s0 = r6
+r5 = -1
+s1 = r5
+r1 = 0x3080
+r3 += r1
+s2 = r3
+r1 = 2
+r3 = 0x44
+AddTextPrinterParameterized3()
+r2 = r9
+r3 = *r2
+r0 = r3 + r4
+r0 = *r0
+r2 = r8
+r1 = fn_E2DD70_J
+goto r1
+
+lblx1: @137906
+s0 = r6
+s1 = r5
+r1 = 0x308C
+r3 += r1
+s2 = r3
+r1 = 2
+r3 = 1
+AddTextPrinterParameterized3()
+r2 = r9
+r3 = *r2
+r0 = r3 + r4
+r0 = *r0
+r2 = r8
+r1 = fn_E2DDC6_J
+goto r1
+
+lblx2: @13792C
+s0 = r6
+s1 = r5
+r1 = 0x3091
+r3 += r1
+s2 = r3
+r1 = 2
+r3 = 0x11
+AddTextPrinterParameterized3()
+r2 = r9
+r3 = *r2
+r0 = r3 + r4
+r0 = *r0
+r2 = r8
+r1 = fn_E2DE14_J
+goto r1
+
+lblx3: @137952
+s0 = r6
+s1 = r5
+r1 = 0x3096
+r3 += r1
+s2 = r3
+r1 = 2
+r3 = 0x21
+AddTextPrinterParameterized3()
+r2 = r9
+r3 = *r2
+r0 = r3 + r4
+r0 = *r0
+r2 = r8
+r1 = fn_E2DE62_J
+goto r1
+
+lblx4: @137978
+s0 = r6
+s1 = r5
+r1 = 0x309B
+r3 += r1
+s2 = r3
+r1 = 2
+r3 = 0x31
+AddTextPrinterParameterized3()
+r2 = r9
+r3 = *r2
+r0 = r3 + r4
+r0 = *r0
+r2 = r8
+r1 = fn_E2DEB0_J
+goto r1
+
+lblx5: @13799E
+s0 = r6
+s1 = r5
+r1 = 0x30A0
+r3 += r1
+s2 = r3
+r1 = 2
+r3 = 0x41
+AddTextPrinterParameterized3()
+r2 = r9
+r3 = *r2
+r0 = r3 + r4
+r0 = *r0
+r2 = r8
+r1 = fn_E2DEFE_J
+goto r1
+
+lblx6: @1379C4
+s0 = r6
+s1 = r5
+r1 = 0x3178
+r3 += r1
+s2 = r3
+r1 = 2
+r3 = 0x50
+AddTextPrinterParameterized3()
+r2 = r9
+r3 = *r2
+r4 += r3
+r0 = *r4
+r2 = r8
+r1 = *r2
+r2 = *(r1 + 0x10)
+r2 += 0x78
+s0 = r6
+s1 = r5
+r1 = 0x3184
+r3 += r1
+s2 = r3
+r1 = 2
+r3 = 0x5C
+AddTextPrinterParameterized3()
+return
+
+
+
+
+
+
+fn_E2DD70_J:
+r1 = *r2
+r2 = *(r1 + 4)
+r2 += 0
+{protectedzone start}
+r0 = data_0203B140
+r0 = *r0
+r2 = 0x323C
+r0 += r2
+r1 = 0
+GetMonData()
+GetNatureFromPersonality()
+if(r0 == 1) goto lbl2
+
+if(r0 == 2) goto lbl2
+
+if(r0 == 3) goto lbl2
+
+if(r0 == 4) goto lbl2
+
+if(r0 == 5) goto lbl3
+
+if(r0 == 0xA) goto lbl3
+
+if(r0 == 0xF) goto lbl3
+
+if(r0 == 0x14) goto lbl3
+
+r6 = data_463FA4
+goto lbl4
+
+lbl2:
+r6 = data_E2DF44_J
+goto lbl4
+
+lbl3:
+r6 = data_E2DF48_J
+goto lbl4
+
+lbl4:
+{protectedzone end}
+goto lblx1
+
+
+
+
+
+
+fn_E2DDC6_J:
+r1 = *r2
+r2 = *(r1 + 6)
+r2 += 0
+{protectedzone start}
+r0 = data_0203B140
+r0 = *r0
+r2 = 0x323C
+r0 += r2
+r1 = 0
+GetMonData()
+GetNatureFromPersonality()
+if(r0 == 1) goto lbl6
+
+if(r0 == 5) goto lbl5
+
+if(r0 == 7) goto lbl5
+
+if(r0 == 8) goto lbl5
+
+if(r0 == 9) goto lbl5
+
+if(r0 == 0xB) goto lbl6
+
+if(r0 == 0x10) goto lbl6
+
+if(r0 == 0x15) goto lbl6
+
+r6 = data_463FA4
+goto lbl7
+
+lbl5:
+r6 = data_E2DF44_J
+goto lbl7
+
+lbl6:
+r6 = data_E2DF48_J
+goto lbl7
+
+lbl7:
+{protectedzone end}
+goto lblx2
+
+
+
+
+
+
+fn_E2DE14_J:
+r1 = *r2
+r2 = *(r1 + 8)
+r2 += 0
+{protectedzone start}
+r0 = data_0203B140
+r0 = *r0
+r2 = 0x323C
+r0 += r2
+r1 = 0
+GetMonData()
+GetNatureFromPersonality()
+if(r0 == 3) goto lbl9
+
+if(r0 == 8) goto lbl9
+
+if(r0 == 0xD) goto lbl9
+
+if(r0 == 0xF) goto lbl8
+
+if(r0 == 0x10) goto lbl8
+
+if(r0 == 0x11) goto lbl8
+
+if(r0 == 0x13) goto lbl8
+
+if(r0 == 0x17) goto lbl9
+
+r6 = data_463FA4
+goto lbl10
+
+lbl8:
+r6 = data_E2DF44_J
+goto lbl10
+
+lbl9:
+r6 = data_E2DF48_J
+goto lbl10
+
+lbl10:
+{protectedzone end}
+goto lblx3
+
+
+
+
+
+
+fn_E2DE62_J:
+r1 = *r2
+r2 = *(r1 + 0xA)
+r2 += 0
+{protectedzone start}
+r0 = data_0203B140
+r0 = *r0
+r2 = 0x323C
+r0 += r2
+r1 = 0
+GetMonData()
+GetNatureFromPersonality()
+if(r0 == 4) goto lbl12
+
+if(r0 == 9) goto lbl12
+
+if(r0 == 0xE) goto lbl12
+
+if(r0 == 0x13) goto lbl12
+
+if(r0 == 0x14) goto lbl11
+
+if(r0 == 0x15) goto lbl11
+
+if(r0 == 0x16) goto lbl11
+
+if(r0 == 0x17) goto lbl11
+
+r6 = data_463FA4
+goto lbl13
+
+lbl11:
+r6 = data_E2DF44_J
+goto lbl13
+
+lbl12:
+r6 = data_E2DF48_J
+goto lbl13
+
+lbl13:
+{protectedzone end}
+goto lblx4
+
+
+
+
+
+
+fn_E2DEB0_J:
+r1 = *r2
+r2 = *(r1 + 0xC)
+r2 += 0
+{protectedzone start}
+r0 = data_0203B140
+r0 = *r0
+r2 = 0x323C
+r0 += r2
+r1 = 0
+GetMonData()
+GetNatureFromPersonality()
+
+if(r0 == 2) goto lbl15
+
+if(r0 == 7) goto lbl15
+
+if(r0 == 0xA) goto lbl14
+
+if(r0 == 0xB) goto lbl14
+
+if(r0 == 0xD) goto lbl14
+
+if(r0 == 0xE) goto lbl14
+
+if(r0 == 0x11) goto lbl15
+
+if(r0 == 0x16) goto lbl15
+
+r6 = data_463FA4
+goto lbl16
+
+lbl14:
+r6 = data_E2DF44_J
+goto lbl16
+
+lbl15:
+r6 = data_E2DF48_J
+goto lbl16
+
+lbl16:
+{protectedzone end}
+goto lblx5
+
+
+
+
+
+
+fn_E2DEFE_J:
+r1 = *r2
+r2 = *(r1 + 0xE)
+r2 += 0x78
+r6 = data_463FA4
+goto lblx6

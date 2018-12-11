@@ -1,0 +1,17 @@
+r4 = r0
+r0 = *r6
+r1 = 0x318C
+r0 += r1
+r1 = 9
+r1 *= r4
+r2 = data_093FF000_J
+r1 += r2
+StringCopy()
+r0 = *r6
+r2 = 0x3195
+r0 += r2
+r1 = 0x18
+r1 *= r4
+r2 = data_093FD000_J
+r1 += r2
+StringCopy()

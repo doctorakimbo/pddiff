@@ -1,0 +1,18 @@
+r4 = r0
+r0 = *r6
+r1 = 0x3190
+r0 += r1
+r1 = r4 * 8
+r2 = data_21C274_J
+r1 += r2
+StringCopy()
+r0 = *r6
+r2 = 0x3198
+r0 += r2
+r1 = r4 * 4
+r1 += r4
+r1 *= 4
+r1 -= r4
+r2 = data_20C4E4_J
+r1 += r2
+StringCopy()

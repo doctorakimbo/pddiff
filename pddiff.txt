@@ -325,8 +325,16 @@ grafics:
 = 46163C (423950 old, 68AE40 new)
 = 461D14 (424028 old, 8DEF50 new)
 = 4623EC (424700 old, 8DD7B0 new)
+= 463B88 (427C40 old, 427C80 new)
+= 463C80 (427D38 old, 427C80 new)
 = D0051C (C0051C old, EB8990 new)
 = E82700 (D826B0 old, 924320 new)
+= E85068 (D85074 old, 251A80 new)
+= E9A460 (42631C old, 4F3040 new)
+= E9B598 (427680 old, 427654 new)
+= E9B750 (4279DC old, 427950 new)
+= E9B950 (427870 old, 427828 new)
+= E9BBCC (427B0C old, 427AF4 new)
 = E9C3D8 (3964B0 old, 396374 new)
 = E9C3F8 (396470 old, 396334 new)
 = E9C418 (396490 old, 396354 new)
@@ -354,6 +362,7 @@ stray text:
 = 415F66 (3DD606 old, 5447D9 new)
 = 417457 (3DE537 old, 3C3EB6 new)
 = 417494 (3DE55B old, 3DE537 new)
+= 419CA2 (3E0279 old, 3E06E3 new)
 = 41A2E1 (3E06E3 old, 68AE00 new)
 = 41A312 (3E070A old, 3E0709 new)
 
@@ -425,14 +434,14 @@ stray text:
 = 006884: ptr 217818 (gUnusedJapaneseFireRedLeafGreenMaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
 = 0069F0: ptr 227B30 (gUnusedJapaneseFireRedLeafGreenFemaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
 		  (wait until playthrough - is this the equivalent of removing gender colors?)
-= 008CF8, 008D2C: 0A -> 0C (pkmnnamelength)
+= 008CF8, 008D2C, 1361B4: 0A -> 0C (pkmnnamelength)
 = 00960C: 36 -> 33 (some sort of link-related graphics function?, see 1disasm)
 = 00D311: 68 -> 47
   00D320: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j252400, see 02disasm))
 		  Implements: need more info
 		  Required knowledge: j0203B900, j0203C00D, j0203D500
 + 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (unclear, but gives more variance to personality values)
-= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC, 1035AC, 103652, 1036F2, 10378A, 103826, 1038B8, 104DF6, 10647E, 113EE8, 119420, 11AC48, 11AFDE, 11B01C, 1218EC: 0B -> 10 (pkmnnamelength)
+= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC, 1035AC, 103652, 1036F2, 10378A, 103826, 1038B8, 104DF6, 10647E, 113EE8, 119420, 11AC48, 11AFDE, 11B01C, 1218EC, 136248: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: pkmnnamelength, something else - need more info
@@ -1301,7 +1310,7 @@ stray text:
 + 0D75FC, 0D7E96, 0D7EAE: B1 20 40 00 -> FF 20 80 00 (max moves 354 -> 1020)
 + 0D77BC: 08 D9 03 49 FF 20 08 70 0D E0 00 00 81 01 00 00 8C 29 02 02 -> 08 D3 03 49 30 1A 08 E0 00 00 00 00 82 01 00 00 00 00 08 09
 		  Implements: if the string number is greater than the total strings (386), read from the expanded string table instead (1080000), giving an additional 208 strings for a total of 594 (603 in english due to jumping the gun on modernization)
-= 0D7FF2, 0D8610: 0D -> 20 (abilitynamelength; btw check decap kludge for more namelengths)
+= 0D7FF2, 0D8610, 136714: 0D -> 20 (abilitynamelength; btw check decap kludge for more namelengths)
 ! 0D814A: 5A -> 59 (PDONLY, trainer class 5A no longer takes the rival's name)
 = 0D851B: 1A -> 18 (typenamelength)	  
 = 0D991E: CA 19 -> 38 47
@@ -1327,10 +1336,10 @@ stray text:
 		  Relies on: BattleMove refactor, data_D7DC7C_J
 ! 0E5444: Entirety of sub_80E5444 (see 214disasm)
 		  Implements: instead of TYPE/POWER/PP/ACCURACY/EFFECT on the move reminder summary screen, shows 3 (not yet known) graphics
-		  Relies on: fn_107D68 changes (probably)
+		  Relies on: graphics actually inserted
 ! 0E54C0: Entirety of sub_80E54C0 (see 215disasm)
 		  Implements: need more info (adds extra window and extra (???) when cancel is highlighted on the move reminder summary screen)
-		  Relies on: fn_107D68 changes (probably)
+		  Relies on: graphics actually inserted
 ! 0EB330: 31 -> 30
   0EB342: 32 -> 30
   0EB354: 33 -> 31
@@ -1570,11 +1579,65 @@ stray text:
   13288A, 1328DA: 00 28 0E D1 -> 00 00 0E E0
 		  Implements: TMs can't be held
 + 132926: 1F D1 -> 00 00 (TMs can't be sold)
-= 133408: 13 -> 18
+- 133408: 13 -> 18
   133414: 14 -> 19
   133420: 15 -> 1A
   13342C: 16 -> 1B
-		  Implements: 
+		  Implements: need more info (TM case) (TEST)
+- 1334D0: 01 -> 02 (2 base power now displays as "---" (TM case), why?)
+- 1338AE: 88 -> 90 (allocates 32 more bytes for ?????? (TM case))
+- 134C92: 0F -> 00 (remove something on summary screen, TEST)
+- 134F4A: 1E 24 00 94 02 25 -> 00 24 00 94 00 25 (remove something on summary screen, TEST)
+- 134F5E: 0F -> 00 (remove something on summary screen, TEST)
+- 1354F2: 10 32 -> 29 3A (need more info (summary screen), TEST)
+- 1356B0: 01 -> 00 (sub_813A3B8(1) -> sub_813A3B8(0), need more info (summary screen), TEST)
+- 1360F7: D1 -> E0 (display all dex numbers on summary screen even before natdex)
+! 136238: 20 2C 01 D0 1D 2C 11 D1 -> 14 E0 00 00 00 00 00 00 (PDONLY, restores gender markers for pokemon #29 and #32 on summary screen)
+- 1363C0, 13654E, 136586, 1365BC, 1365F2, 136628, 136666, 1366D8, 1369F4, 136A18: 09 18 49 00 -> 49 00 09 18
+  13666A: 3F -> 3E
+  1369F8: 0C -> 0B
+		  Implements: need more info (summary screen), TEST (jp 9 -> 8, en 6 -> 5 something (maybe make it 6 -> 2 something; it would then be 09 18 49 00 -> 00 00 00 00 / 3F -> 3B / 0C -> 08))
+- 13679C: BC -> B8
+  1367A4: CC -> C9
+		  Implements: need more info (summary screen), TEST (jp 90 -> 8C / 98 -> 95)
+= 136828: 0D -> 11 (movenamelength)
+- 136890: 28 -> 20 (need more info (summary screen), TEST) (jp 18 -> 10)
+- 136D50: 87 20 -> A0 00 (REG_OFFSET_WIN1V = 0x2087 -> 0x00A0; need more info (summary screen), TEST)
+- 136EB2: 28 -> 20 (jp 32 -> 2A) (move something on summary screen left, TEST)
+- 136EE0, 136F20: 69 -> 6C (move something on summary screen right, TEST)
+- 136FCE: 2F 22 13 23 -> 35 22 11 23 (jp 1A 22 11 23 -> 20 22 10 23) (move something on summary screen up/right, TEST)
+- 136FF2: 2F -> 35 (jp 1A -> 20)
+  137004: 05 -> 01 (jp 04 -> 00)
+		  Implements: move something on summary screen up/right, TEST
+- 13701E: 2F 22 31 23 -> 35 22 36 23 (jp 1A 22 2B 23 -> 20 22 30 23) (move something on summary screen down/right, TEST)
+- 13703A: 2F 22 40 23 -> 35 22 48 23 (jp 1A 22 38 23 -> 20 22 40 23) (move something on summary screen down/right, TEST)
+- 137056: 2F 22 4F 23 -> AB 22 40 23 (jp 04 22 50 23 -> 80 22 41 23) (move something on summary screen up/right, TEST)
+- 1370C2: 07 22 2D 23 -> 03 22 25 23 (jp 04 22 27 23 -> 00 22 1F 23) (move something on summary screen up/left, TEST)
+- 13710A: 0E -> 48
+  137122: 04 -> 44
+		  Implements: move something on summary screen down/right, TEST
+= 137132: 11 68 0A 79 32 32 12 06 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DD70, see 243disasm))
+		  Implements: move "Attack" label on summary screen left (TEST) and color it according to nature
+- 137148: 16 -> 01 (move "Attack" label on summary screen up, TEST)
+= 137158: 11 68 8A 79 32 32 12 06 12 0E -> 00 00 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DDC6, see 243disasm))
+		  Implements: move "Defense" label on summary screen left (TEST) and color it according to nature
+- 13716E: 23 -> 11 (move "Defense" label on summary screen up, TEST)
+= 13717E: 11 68 0A 7A 32 32 12 06 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DE14, see 243disasm))
+		  Implements: move "Sp. Atk" label on summary screen left (TEST) and color it according to nature
+- 137194: 30 -> 21 (move "Sp. Atk" label on summary screen up, TEST)
+= 1371A4: 11 68 8A 7A 32 32 12 06 12 0E -> 00 00 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DE62, see 243disasm))
+		  Implements: move "Sp. Def" label on summary screen left (TEST) and color it according to nature
+- 1371BA: 3D -> 31 (move "Sp. Def" label on summary screen up, TEST)
+= 1371CA: 11 68 0A 7B 32 32 12 06 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DEB0, see 243disasm))
+		  Implements: move "Speed" label on summary screen left (TEST) and color it according to nature
+- 1371E0: 4A -> 41 (move "Speed" label on summary screen up, TEST)
+= 1371F0: 11 68 8A 7B 0F 32 12 06 12 0E -> 00 00 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DEFE, see 243disasm))
+		  Implements: move something on summary screen right (TEST)
+- 137206: 57 -> 50 (move same thing as above up, TEST)
+- 13721A: 0F -> 78
+  13722C: 64 -> 5C
+		  Implements: move something on summary screen up/right, TEST
+= 
 		  
 		  
 		  
@@ -1589,8 +1652,16 @@ stray text:
 		  
 		  
 		  
-curr: j133BF4 (1byte), j133C00 (1byte), j133C0C (1byte), j133C18 (1byte)
-next: j133CBC (1byte), j13409A (1byte), j1340E8 (repoint), j13547C (1byte), j13572C (1byte), j135730 (1byte), j135740 (1byte), j1357E8 (repoint), j135CC2 (2byte), j135E78 (1byte)
-next: j1362E0 (repoint), j136318 (repoint), j136334 (repoint), j136354 (repoint), j1363B8 (repoint), j1363D0 (repoint), j1363E4 (repoint), j1363F8 (repoint), j1364DC (repoint), j1364F4 (repoint), j136518 (repoint), j13654C (repoint), j136554 (repoint), j136588 (repoint), j1367F0 (repoint)
-next: j1368FB (1byte), j1369D0 (1byte), j136A54 (8byte), j136A64 (6byte), j136BC6 (2byte), j136D42 (2byte), j136D78 (2byte), j136DAC (2byte), j136DE0 (2byte), j136E14 (2byte), j136E50 (4byte), j136EC0 (2byte), j136EFA (18byte), j136F84 (1byte), j136F88 (repoint), j136F8C (1byte), j136F90 (repoint)
-next: j136FD0
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+curr: j137B04 (22byte)
+curr: j137B64 (1byte), j137BCE (1byte), j137BEC (1byte), j137C08 (1byte), j137C32 (4byte), j137C50 (1byte), j137C64 (1byte), j137D6C (1byte), j137F18 (1byte), j138272 (1byte), j13828C (1byte), j1382A8 (1byte), j1382D0 (1byte), j13831A (6byte), j13833E (6byte), j138374 (4byte), j1383A4 (repoint), j138434 (1byte), j138478 (1byte), j1385A4 (repoint), j13875E (1byte), j13876A (4byte), j1387CE (2byte), j1387EC (2byte), j138834 (2byte), j138854 (2byte), j138D44 (1byte), j138D52 (1byte), j138D5A (1byte), j138D66 (1byte)
+next: j138D6E

@@ -1,0 +1,2 @@
+StringCopy(*r6 + 0x3190, (r0 * 8) + data_21C274_J)
+StringCopy(*r6 + 0x3198, (r4 * 0x13) + data_20C4E4_J)

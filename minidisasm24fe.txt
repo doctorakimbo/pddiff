@@ -1,0 +1,17 @@
+r4 = r0
+r0 = *r6
+r1 = 0x31BC
+r0 += r1
+r1 = 0xD
+r1 *= r4
+r2 = data_24FC40
+r1 += r2
+StringCopy()
+r0 = *r6
+r2 = 0x31CC
+r0 += r2
+r1 = data_24FB08
+r4 *= 4
+r4 += r1
+r1 = *r4
+StringCopy()

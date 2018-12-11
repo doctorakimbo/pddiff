@@ -1,0 +1,11 @@
+sub_81370EC()
+{
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->2 + 0xE, 4, data_463FA4, -1, &data_0203B140->0x3080)
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->4 + 0x32, 0x16, data_463FA4, -1, &data_0203B140->0x308C)
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->6 + 0x32, 0x23, data_463FA4, -1, &data_0203B140->0x3091)
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->8 + 0x32, 0x30, data_463FA4, -1, &data_0203B140->0x3096)
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->0xA + 0x32, 0x3D, data_463FA4, -1, &data_0203B140->0x309B)
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->0xC + 0x32, 0x4A, data_463FA4, -1, &data_0203B140->0x30A0)
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->0xE + 0xF, 0x57, data_463FA4, -1, &data_0203B140->0x3178)
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->0x10 + 0xF, 0x64, data_463FA4, -1, &data_0203B140->0x3184)
+}

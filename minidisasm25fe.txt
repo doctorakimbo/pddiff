@@ -1,0 +1,17 @@
+r1 = r2 * 2
+r1 += r2
+r1 *= 4
+r1 += r5
+r1 = *(r1 + 2)
+*r4 = r1
+r2 = 0xD
+r1 = r7
+r1 *= r2
+r4 = 0x3128
+r1 += r4
+r0 += r1
+r1 = *r3
+r1 *= r2
+r2 = gMoveNames
+r1 += r2
+StringCopy()

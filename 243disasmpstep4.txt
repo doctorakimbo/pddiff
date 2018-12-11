@@ -1,0 +1,106 @@
+sub_81370EC()
+{
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->2 + 0x48, 0x44, data_463FA4, -1, &data_0203B140->0x3080)
+	
+	switch(GetNatureFromPersonality(GetMonData(&data_0203B140->0x323C, 0)))
+	{
+	case NATURE_LONELY:
+	case NATURE_BRAVE:
+	case NATURE_ADAMANT:
+	case NATURE_NAUGHTY:
+		color = data_E2DF44_J // red
+		break;
+	case NATURE_BOLD:
+	case NATURE_TIMID:
+	case NATURE_MODEST:
+	case NATURE_CALM:
+		color = data_E2DF44_J // blue
+		break;
+	default:
+		color = data_E2DF44_J // white
+	}
+	
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->4, 1, color, -1, &data_0203B140->0x308C)
+	
+	switch(GetNatureFromPersonality(GetMonData(&data_0203B140->0x323C, 0)))
+	{
+	case NATURE_BOLD:
+	case NATURE_RELAXED:
+	case NATURE_IMPISH:
+	case NATURE_LAX:
+		color = data_E2DF44_J // red
+		break;
+	case NATURE_LONELY:
+	case NATURE_HASTY:
+	case NATURE_MILD:
+	case NATURE_GENTLE:
+		color = data_E2DF44_J // blue
+		break;
+	default:
+		color = data_E2DF44_J // white
+	}
+	
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->6, 0x11, color, -1, &data_0203B140->0x3091)
+	
+	switch(GetNatureFromPersonality(GetMonData(&data_0203B140->0x323C, 0)))
+	{
+	case NATURE_MODEST:
+	case NATURE_MILD:
+	case NATURE_QUIET:
+	case NATURE_RASH:
+		color = data_E2DF44_J // red
+		break;
+	case NATURE_ADAMANT:
+	case NATURE_IMPISH:
+	case NATURE_JOLLY:
+	case NATURE_CAREFUL:
+		color = data_E2DF44_J // blue
+		break;
+	default:
+		color = data_E2DF44_J // white
+	}
+	
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->8, 0x21, color, -1, &data_0203B140->0x3096)
+	
+	switch(GetNatureFromPersonality(GetMonData(&data_0203B140->0x323C, 0)))
+	{
+	case NATURE_CALM:
+	case NATURE_GENTLE:
+	case NATURE_SASSY:
+	case NATURE_CAREFUL:
+		color = data_E2DF44_J // red
+		break;
+	case NATURE_NAUGHTY:
+	case NATURE_LAX:
+	case NATURE_NAIVE:
+	case NATURE_RASH:
+		color = data_E2DF44_J // blue
+		break;
+	default:
+		color = data_E2DF44_J // white
+	}
+	
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->0xA, 0x31, color, -1, &data_0203B140->0x309B)
+	
+	switch(GetNatureFromPersonality(GetMonData(&data_0203B140->0x323C, 0)))
+	{
+	case NATURE_TIMID:
+	case NATURE_HASTY:
+	case NATURE_JOLLY:
+	case NATURE_NAIVE:
+		color = data_E2DF44_J // red
+		break;
+	case NATURE_BRAVE:
+	case NATURE_RELAXED:
+	case NATURE_QUIET:
+	case NATURE_SASSY:
+		color = data_E2DF44_J // blue
+		break;
+	default:
+		color = data_E2DF44_J // white
+	}
+	
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->0xC, 0x41, color, -1, &data_0203B140->0x30A0)
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->0xE + 0x78, 0x50, data_463FA4, -1, &data_0203B140->0x3178)
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->0x10 + 0x78, 0x5C, data_463FA4, -1, &data_0203B140->0x3184)
+}

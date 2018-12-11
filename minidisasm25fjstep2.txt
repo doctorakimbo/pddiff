@@ -1,0 +1,2 @@
+*r4 = *((r2 * 0xC) + r5 + 2)
+StringCopy((r7 * 8) + 0x3118 + r0, (*r3 * 8) + gMoveNames)

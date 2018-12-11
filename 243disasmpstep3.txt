@@ -1,0 +1,106 @@
+sub_81370EC()
+{
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->2 + 0x48, 0x44, data_463FA4, -1, &data_0203B140->0x3080)
+	
+	switch(GetNatureFromPersonality(GetMonData(&data_0203B140->0x323C, 0)))
+	{
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+		r6 = data_E2DF44_J
+		break;
+	case 5:
+	case 10:
+	case 15:
+	case 20:
+		r6 = data_E2DF48_J
+		break;
+	default:
+		r6 = data_463FA4
+	}
+	
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->4, 1, r6, -1, &data_0203B140->0x308C)
+	
+	switch(GetNatureFromPersonality(GetMonData(&data_0203B140->0x323C, 0)))
+	{
+	case 5:
+	case 7:
+	case 8:
+	case 9:
+		r6 = data_E2DF44_J
+		break;
+	case 1:
+	case 11:
+	case 16:
+	case 21:
+		r6 = data_E2DF48_J
+		break;
+	default:
+		r6 = data_463FA4
+	}
+	
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->6, 0x11, r6, -1, &data_0203B140->0x3091)
+	
+	switch(GetNatureFromPersonality(GetMonData(&data_0203B140->0x323C, 0)))
+	{
+	case 15:
+	case 16:
+	case 17:
+	case 19:
+		r6 = data_E2DF44_J
+		break;
+	case 3:
+	case 8:
+	case 13:
+	case 18:
+		r6 = data_E2DF48_J
+		break;
+	default:
+		r6 = data_463FA4
+	}
+	
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->8, 0x21, r6, -1, &data_0203B140->0x3096)
+	
+	switch(GetNatureFromPersonality(GetMonData(&data_0203B140->0x323C, 0)))
+	{
+	case 20:
+	case 21:
+	case 22:
+	case 23:
+		r6 = data_E2DF44_J
+		break;
+	case 4:
+	case 9:
+	case 14:
+	case 19:
+		r6 = data_E2DF48_J
+		break;
+	default:
+		r6 = data_463FA4
+	}
+	
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->0xA, 0x31, r6, -1, &data_0203B140->0x309B)
+	
+	switch(GetNatureFromPersonality(GetMonData(&data_0203B140->0x323C, 0)))
+	{
+	case 10:
+	case 11:
+	case 13:
+	case 14:
+		r6 = data_E2DF44_J
+		break;
+	case 2:
+	case 7:
+	case 17:
+	case 22:
+		r6 = data_E2DF48_J
+		break;
+	default:
+		r6 = data_463FA4
+	}
+	
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->0xC, 0x41, r6, -1, &data_0203B140->0x30A0)
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->0xE + 0x78, 0x50, data_463FA4, -1, &data_0203B140->0x3178)
+	AddTextPrinterParameterized3(data_0203B140->0x3003, 2, data_0203B144->0x10 + 0x78, 0x5C, data_463FA4, -1, &data_0203B140->0x3184)
+}
