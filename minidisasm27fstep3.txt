@@ -1,0 +1,16 @@
+mon = data_0203B140->0x32F4[fn_138B20()]
+temp1 = GetMonData(mon, MON_DATA_MOVE1 + data_0203B16D)
+temp2 = GetMonData(mon, MON_DATA_MOVE1 + data_0203B16E)
+temp3 = GetMonData(mon, MON_DATA_PP1 + data_0203B16D)
+temp4 = GetMonData(mon, MON_DATA_PP1 + data_0203B16E
+temp5 = GetMonData(mon, MON_DATA_PP_BONUSES)
+r2 = LAST_BYTE((data_25DEA1[data_0203B16D] & temp5) >> (data_0203B16D * 2))
+r1 = LAST_BYTE((data_25DEA1[data_0203B16E] & temp5) >> (data_0203B16E * 2))
+temp5 &= -data_25DEA1[data_0203B16D]
+temp5 &= -data_25DEA1[data_0203B16E]
+temp5 |= ((r2 << (data_0203B16E * 2)) + (r1 << (data_0203B16D * 2)))
+SetMonData(mon, MON_DATA_MOVE1 + data_0203B16D, &temp2)
+SetMonData(mon, MON_DATA_MOVE1 + data_0203B16E, &temp1)
+SetMonData(mon, MON_DATA_PP1 + data_0203B16D, &temp4)
+SetMonData(mon, MON_DATA_PP1 + data_0203B16E, &temp3)
+SetMonData(mon, MON_DATA_PP_BONUSES, &temp5)

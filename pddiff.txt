@@ -1597,11 +1597,11 @@ stray text:
   13666A: 3F -> 3E
   1369F8: 0C -> 0B
 		  Implements: need more info (summary screen), TEST (jp 9 -> 8, en 6 -> 5 something (maybe make it 6 -> 2 something; it would then be 09 18 49 00 -> 00 00 00 00 / 3F -> 3B / 0C -> 08))
-- 13679C: BC -> B8
-  1367A4: CC -> C9
-		  Implements: need more info (summary screen), TEST (jp 90 -> 8C / 98 -> 95)
-= 136828: 0D -> 11 (movenamelength)
-- 136890: 28 -> 20 (need more info (summary screen), TEST) (jp 18 -> 10)
+- 13679C: BC -> B8 (jp 90 -> 8C)
+  1367A4: CC -> C9 (jp 98 -> 95)
+		  Implements: need more info (summary screen), TEST
+= 136828, 137362: 0D -> 11 (movenamelength)
+- 136890, 1373B0: 28 -> 20 (need more info (summary screen), TEST) (jp 18 -> 10)
 - 136D50: 87 20 -> A0 00 (REG_OFFSET_WIN1V = 0x2087 -> 0x00A0; need more info (summary screen), TEST)
 - 136EB2: 28 -> 20 (jp 32 -> 2A) (move something on summary screen left, TEST)
 - 136EE0, 136F20: 69 -> 6C (move something on summary screen right, TEST)
@@ -1632,11 +1632,84 @@ stray text:
 		  Implements: move "Speed" label on summary screen left (TEST) and color it according to nature
 - 1371E0: 4A -> 41 (move "Speed" label on summary screen up, TEST)
 = 1371F0: 11 68 8A 7B 0F 32 12 06 12 0E -> 00 00 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DEFE, see 243disasm))
-		  Implements: move something on summary screen right (TEST)
-- 137206: 57 -> 50 (move same thing as above up, TEST)
+  137206: 57 -> 50
+		  Implements: move something on summary screen up/right, TEST
 - 13721A: 0F -> 78
   13722C: 64 -> 5C
 		  Implements: move something on summary screen up/right, TEST
+- 13736E: 02 21 03 22 -> 01 21 00 22 (move something on summary screen left and change font, TEST)
+- 13741E: 24 -> 1C (jp 16 -> 0E) (move something on summary screen left, TEST)
+- 13743A: 2E -> 28 (jp 20 -> 1A)
+  137454: 02 -> 01
+		  Implements: move something on summary screen left and change font, TEST
+- 13747C: 02 21 3A 22 -> 01 21 32 22 (jp 02 21 32 22 -> 01 21 2A 22) (move something on summary screen left and change font, TEST)
+- 13749A: 40 -> 37 (jp 3B -> 32)
+  1374AC: 02 -> 01
+		  Implements: move something on summary screen left and change font, TEST
+- 1375B0, 13775C: 05 -> 01 (default mon met level 5 -> 1)
+- 137AB6: 07 -> 00
+  137AD0: 14 -> 0C
+		  Implements: move something on summary screen up, TEST
+		  Note: jp has a third one, 24 -> 1C, that doesn't exist in en
++ ??????: 90 -> 8C (j1382D0; this doesn't exist at all in en)
+- 137B3C: 02 21 39 22 01 23 -> 00 21 37 22 16 23 (jp 02 21 32 22 01 23 -> 00 21 30 22 16 23) (move something on summary screen down/left and change font, TEST)
+- 137B60: 02 21 39 22 0F 23 -> 00 21 37 22 26 23 (jp 02 21 32 22 0F 23 -> 00 21 30 22 26 23) (move something on summary screen down/left and change font, TEST)
+- 137B96: 07 22 2A 23 -> 06 22 3A 23 (jp 05 22 27 23 -> 04 22 37 23) (move something on summary screen down/left, TEST)
+- 137C8C: 1367A4: CC -> C9 (jp 98 -> 95) (need more info (summary screen), TEST)
+- 137CD0: A0 -> F0 (need more info (summary screen), TEST)
+- 137FBA: AC -> 73
+  137FC6: 98 42 00 DA -> 00 00 00 00
+		  Implements: need more info (summary screen), TEST
+- 13802A, 138048, 138090, 1380B0: 49 42 -> 00 00 (need more info (summary screen), TEST)
+- 138582, 138678, 13873E, 13888A: B5 -> EA
+  138598, 13868E, 138752, 13889E: BD -> F2
+  138668, 1387D8: 6B -> D2
+  13866C, 1387DC: 7B -> E2
+  1386E8: 5B -> D0
+  1386EC, 1387E0, 138920: C5 -> E9
+  138702, 1387FC, 13893C: CD -> F1
+  138A28: 8B -> D4
+  138A2C: 9B -> E4
+		  Implements: change tilemap of some things (summary screen), TEST
+- 138590, 1385A4, 138686, 13869A, 1386FA, 13870E, 1387F4, 13880C, 138934, 13894C: 0D -> 10
+  1385DC, 1385F0, 13874A, 13875E, 13884C, 13885E, 13898C, 13899E: 0F -> 12
+  138626, 138638, 138794, 1387A6, 138896, 1388AA, 1389D8, 1389EA: 11 -> 14
+		  Implements: move some things on summary screen right, TEST
+- 1385AC: 2C 49 00 94 01 94 02 97 03 20 0E 22 00 23 C9 F6 CB FF 29 49 00 94 01 94 02 97 03 20 0E 22 01 23 C9 F6 C2 FF -> all zero
+  13860A: 1D 49 00 94 01 94 02 97 03 20 10 22 00 23 C9 F6 A5 FF 1A 49 00 94 01 94 02 97 03 20 10 22 01 23 C9 F6 9C FF -> all zero
+  138640: B7 21 49 00 00 94 01 94 02 97 03 20 12 22 00 23 C9 F6 80 FF -> all zero
+  1386A2: 0F 49 00 94 01 94 02 97 03 20 0E 22 00 23 C9 F6 50 FF 0B 49 00 94 01 94 02 97 03 20 0E 22 01 23 C9 F6 47 FF 08 49 04 20 00 90 02 20 01 90 02 97 03 20 0F 22 00 23 C9 F6 3C FF -> all zero
+  138716: AD 21 49 00 00 97 01 97 02 94 03 20 0E 22 00 23 C9 F6 15 FF B6 21 49 00 00 97 01 97 02 94 03 20 0E 22 01 23 C9 F6 0B FF -> all zero
+  138766: 1A 49 00 97 01 97 02 94 03 20 10 22 00 23 C9 F6 EE FE 16 49 00 97 01 97 02 94 03 20 10 22 01 23 C9 F6 E5 FE -> all zero
+  1387AE: B7 21 49 00 00 97 01 97 02 94 03 20 12 22 00 23 C9 F6 C9 FE -> all zero
+  138814: AD 20 40 00 80 46 00 94 01 94 02 95 03 20 41 46 0E 22 00 23 C9 F6 94 FE B6 26 76 00 00 94 01 94 02 95 03 20 31 1C 0E 22 01 23 C9 F6 89 FE -> all zero
+  138866: 00 94 01 94 02 95 03 20 41 46 10 22 00 23 C9 F6 6E FE 00 94 01 94 02 95 03 20 31 1C 10 22 01 23 C9 F6 65 FE -> all zero
+  1388B2: 09 49 00 94 01 94 02 95 03 20 12 22 00 23 C9 F6 48 FE -> all zero
+  1388CC: 03 20 12 22 01 23 C9 F6 3F FE -> all zero
+  1388EA: AD 21 49 00 04 26 00 96 01 25 01 95 00 24 02 94 03 20 0D 22 00 23 C9 F6 28 FE -> all zero
+  138954: AD 20 40 00 80 46 00 94 01 94 02 95 03 20 41 46 0E 22 00 23 C9 F6 F4 FD B6 26 76 00 00 94 01 94 02 95 03 20 31 1C 0E 22 01 23 C9 F6 E9 FD -> all zero
+  1389A6: 00 94 01 94 02 95 03 20 41 46 10 22 00 23 C9 F6 CE FD 00 94 01 94 02 95 03 20 31 1C 10 22 01 23 C9 F6 C5 FD -> all zero
+  1389F2: 0F 49 00 94 01 94 02 95 03 20 12 22 00 23 C9 F6 A8 FD 0B 49 00 94 01 94 02 95 03 20 12 22 01 23 -> all zero
+		  Implements: remove some things (summary screen), TEST
+- 138A90: 2F 22 23 23 -> 37 22 26 23 (jp 1A 22 1E 23 -> 22 22 21 23) (move something on summary screen down/right, TEST)
+- 138AA4: 53 22 23 23 -> 5B 22 26 23 (jp 3E 22 1E 23 -> 46 22 21 23) (move something on summary screen down/right, TEST)
+- 138ADA: 00 22 03 23 -> 0B 22 02 23 (move something on summary screen up/right, TEST)
+- 138AFC: 24 22 03 23 -> 2F 22 02 23 (move something on summary screen up/right, TEST)
+= 138B8C: Entirety of sub_8138B8C (see 244disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: DecompressBoxMon (j3C5D20)
+- 13917E: 52 18 -> 0A 43 (guessing it fixes a bug in the move-reordering function, but can't identify what the bug was)
+= 1391EC: Entirety of sub_81391EC (see 245disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: DecompressBoxMon (j3C5D20)
+= 139328: Entirety of sub_8139328 (see 246disasm)
+		  Implements: Part of CompressedBoxPokemon refactor
+		  Requires in future: DecompressBoxMon (j3C5D20)
+- 1396D2: 07 22 2A 23 -> 06 22 3A 23 (jp 05 22 27 23 -> 04 22 37 23) (move something on summary screen down/left, TEST)
+- 1399AC, 1399F8, 139A24: 3C -> D0
+  1399B0, 1399FC, 139A28: 41 -> 38
+		  Implements: move something on summary screen up/right, TEST
+- 139A6A: 01 70 -> 00 00 (possibly don't flip pkmn sprites in summary screen, TEST)
 = 
 		  
 		  
@@ -1653,15 +1726,5 @@ stray text:
 		  
 		  
 		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-curr: j137B04 (22byte)
-curr: j137B64 (1byte), j137BCE (1byte), j137BEC (1byte), j137C08 (1byte), j137C32 (4byte), j137C50 (1byte), j137C64 (1byte), j137D6C (1byte), j137F18 (1byte), j138272 (1byte), j13828C (1byte), j1382A8 (1byte), j1382D0 (1byte), j13831A (6byte), j13833E (6byte), j138374 (4byte), j1383A4 (repoint), j138434 (1byte), j138478 (1byte), j1385A4 (repoint), j13875E (1byte), j13876A (4byte), j1387CE (2byte), j1387EC (2byte), j138834 (2byte), j138854 (2byte), j138D44 (1byte), j138D52 (1byte), j138D5A (1byte), j138D66 (1byte)
-next: j138D6E
+curr: j13A496 (2byte), j13A4CC (4byte), j13A518 (repoint), j13A634 (1byte), j13A69E (2byte), j13A800 (1byte), j13A89C (repoint)
+next: j13A8FC

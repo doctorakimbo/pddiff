@@ -1,0 +1,2 @@
+lbl1: @1399C0
+CompressedBoxPokemon refactor

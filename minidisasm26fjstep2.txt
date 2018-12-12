@@ -1,0 +1,1 @@
+AddTextPrinterParameterized3(*(*data_0203B140 + 0x3003), 2, 3, (arg0 * 0x1C) + 5, data_463EF0, -1, *data_0203B140 + (arg0 * 8) + 0x3118)

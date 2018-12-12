@@ -1,0 +1,115 @@
+r0 = data_0203B140
+r0 = *r0
+r1 = 0x32F4
+r0 += r1
+r6 = *r0
+fn_138B20()
+r1 = 0x64
+r0 *= r1
+r6 += r0
+r3 = data_0203B16D
+r1 = *r3
+r1 += 0xD
+r0 = r6
+GetMonData()
+r1 = &s0.5
+s2 = r1
+*r1 = r0
+r3 = data_0203B16E
+r8 = r3
+r1 = *r3
+r1 += 0xD
+r0 = r6
+GetMonData()
+r1 = &s0
+*r1 = r0
+r0 = data_0203B16D
+r1 = *r0
+r1 += 0x11
+r0 = r6
+GetMonData()
+r1 = &s1.25
+r10 = r1
+*r1 = r0
+r3 = r8
+r1 = *r3
+r1 += 0x11
+r0 = r6
+GetMonData()
+r7 = &s1
+*r7 = r0
+r0 = r6
+r1 = 0x15
+GetMonData()
+r4 = &s1.5
+*r4 = r0
+r5 = data_25DEA1
+r0 = data_0203B16D
+r1 = *r0
+r0 = r1 + r5
+r0 = *r0
+r9 = r0
+r3 = *r4
+r2 = r3
+r0 = r9
+r2 &= r0
+r1 *= 2
+r2 >>= r1
+r2 = LAST_BYTE(r2)
+r1 = r8
+r0 = *r1
+r1 = r0 + r5
+r1 = *r1
+r1 &= r3
+r0 *= 2
+r1 >>= r0
+r1 = LAST_BYTE(r1)
+r0 = r9
+r3 &= -r0
+*r4 = r3
+r3 = r8
+r0 = *r3
+r0 += r5
+r3 = *r0
+r0 = *r4
+r0 &= -r3
+*r4 = r0
+r3 = r8
+r0 = *r3
+r0 *= 2
+r2 >>= r0
+r3 = data_0203B16D
+r0 = *r3
+r0 *= 2
+r1 <<= r0
+r2 |= r1
+r0 = *r4
+r0 |= r2
+*r4 = r0
+r1 = *r3
+r1 += 0xD
+r0 = r6
+r2 = &s0
+SetMonData()
+r0 = r8
+r1 = *r0
+r1 += 0xD
+r0 = r6
+r2 = &s2
+SetMonData()
+r3 = data_0203B16D
+r1 = *r3
+r1 += 0x11
+r0 = r6
+r2 = r7
+SetMonData()
+r0 = r8
+r1 = *r0
+r1 += 0x11
+r0 = r6
+r2 = r10
+SetMonData()
+r0 = r6
+r1 = 0x15
+r2 = r4
+SetMonData()

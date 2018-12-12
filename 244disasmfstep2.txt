@@ -1,0 +1,7 @@
+sub_8138B8C(arg0)
+{
+	if(*(*data_0203B140 + 0x321C) == 0)
+		memcpy(arg0, (fn_138B20() * 0x64) + *(*data_0203B140 + 0x32F4), 0x64)
+	else
+		BoxMonToMon((fn_138B20() * 0x50) + *(*data_0203B140 + 0x32F4), arg0)
+}
