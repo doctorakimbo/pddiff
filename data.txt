@@ -126,6 +126,7 @@ FC 6D 03 02: 30 6D 03 02: gMapHeader
 13 6E 03 02: 47 6D 03 02: gMapHeader.mapType
 38 6E 03 02: 6C 6D 03 02: gEventObjects (atkEF_handleballthrow: Lure Ball boosted if this[0] is 1) (gIsPlayerFishing?)
 78 70 03 02: AC 6F 03 02: gPlayerAvatar
+		   : F4 6F 03 02: gSpecialVar_0x8004
 		   : FC 6F 03 02: ?????? (sub_808C9C4: set to created window)
 								 (sub_808CBA4: window stored here is deleted)
 								 (sub_808CC74: used as window to print to)
@@ -746,6 +747,7 @@ funcs e,j,desc:
 0DA1A8 = 0DB190 = CalculateChecksum
 0F67A4 = 0F77FC = schedule_bg_copy_tilemap_to_vram
 0F6F1C = 0F7F7C = NewMenuHelpers_DrawStdWindowFrame
+0F7808 = 0F8868 = DisplayItemMessageOnField
 0F793C = 0F899C = GetStartMenuWindowId
 0F7948 = 0F89A8 = RemoveStartMenuWindow
 1074DC = 107FE0 = ListMenuPrintEntries
@@ -761,6 +763,7 @@ funcs e,j,desc:
 12E51C = 12ED24 = AddTextPrinterParameterized3
 12E5A4 = 12EDAC = AddTextPrinterParameterized4
 133A20 = 13420C = AddScrollIndicatorArrowPair
+13F2F0 = 13FA14 = GetPlayerDirectionTowardsHiddenItem
 1E3B60 = 1C7A84 = CpuFastSet
 1E3B64 = 1C7A88 = CpuSet
 1E3B9C = square root
@@ -937,7 +940,7 @@ BattleMove.typeFlags3: 4321
 3 = 
 4 = 
 
-BoxPokemon_Japanese:
+CompressedBoxPokemon_Japanese:
 00 = personality
 04 = otId
 08 = vuts rqpo nmlk jihg fedc ba98 7654 3210

@@ -1,0 +1,182 @@
+lbl1: @13A8FC
+r6 = 0
+r3 = data_0203B140
+r4 = data_0203B148
+goto lbl2
+
+lbl2:
+r0 = *r3
+r1 = 0x3268
+r0 += r1
+r0 = *r0
+if(r0 != 1) goto lbl3
+
+if(r6 > 1) goto lbl4
+
+goto lbl3
+
+lbl3:
+r0 = r6 * 4
+r0 += r4
+r0 = *r0
+r2 = *r0
+r0 = data_0203B16D
+r1 = *r0
+r0 = r1 * 8
+r0 -= r1
+r0 *= 4
+r0 += 0x22
+*(r2 + 0x22) = r0
+goto lbl4
+
+lbl4:
+r6++
+if(r6 <= 3) goto lbl2
+
+r1 = *r3
+r2 = 0x3268
+r0 = r1 + r2
+r0 = *r0
+if(r0 == 1) goto lbl6
+
+r2 -= 0x54
+r0 = r1 + r2
+r0 = *r0
+if(r0 != 3) goto lbl12
+
+r7 = 0
+goto lbl5
+
+lbl5:
+r4 = fn_D7DEC0_J
+goto r4
+
+lbl6:
+r7 = 1
+goto lbl5
+
+lbl7: @13A954
+r4 = data_0203B148
+r0 = *r4
+r1 = *r0
+r1 += 0x3E
+r3 = *r1
+r2 = -5
+r0 = r2
+r0 &= r3
+*r1 = r0
+r0 = *(r4 + 4)
+r0 = *r0
+r0 += 0x3E
+r1 = *r0
+r2 &= r1
+*r0 = r2
+goto lbl12
+
+lbl8:
+r6 = 0
+r1 = -5
+r12 = r1
+goto lbl9
+
+lbl9:
+r3 = data_0203B148
+r0 = r6 * 4
+r0 += r3
+r0 = *r0
+r3 = *r0
+r0 = *(r3 + 0x2E)
+r1 = r0 + 1
+*(r3 + 0x2E) = r1
+r4 = r3
+r4 += 0x3E
+r2 = *r4
+r0 = 4
+r0 &= r2
+r5 = r0
+if(r5 == 0) goto lbl10
+
+r0 = r1
+if(r0 <= 0x3C) goto lbl11
+
+r0 = r12
+r0 &= r2
+*r4 = r0
+r2 = 0
+*(r3 + 0x2E) = r2
+goto lbl11
+
+lbl10:
+r0 = r1
+if(r0 <= 0x3C) goto lbl11
+
+r0 = r2
+r2 = 4
+r0 |= r2
+*r4 = r0
+*(r3 + 0x2E) = r5
+goto lbl11
+
+lbl11:
+r6++
+if(r6 <= 1) goto lbl9
+
+goto lbl12
+
+lbl12:
+return
+
+
+
+
+
+
+
+
+fn_D7DEC0_J:
+r0 = data_0203B0E1_J
+r1 = *r0
+r1 *= 2
+r0 = data_0203B0B4_J
+r0 = *r0
+r3 = 0x31F8_J
+r0 += r3
+r0 = *r0
+if(r0 == 0) goto lblx2
+
+r0 = data_0203B0B4_J
+r0 = *r0
+r3 = 0x3204_J
+r0 += r3
+r0 += r1
+r3 = *r0
+if(r3 == 0) goto lblx2
+
+r0 = r3 * 2
+r0 += r3
+r0 *= 4
+r1 = gBattleMoves
+r0 += r1
+r4 = *(r0 + 0xA)
+r4 >>= 1
+r0 = r4 << 1
+r4 += r0
+r4 <<= 6
+r0 = data_D7DC7C_J
+r0 += r4
+r1 = data_06009140_J
+r2 = 0x30
+svc_11()
+r0 = data_D7DC7C_J
+r0 += r4
+r0 += 0x60
+r1 = data_06009140_J
+r2 = 0x1E0
+r1 += r2
+r2 = 0x30
+svc_11()
+goto lblx2
+
+lblx2:
+r1 = lbl7
+goto r1

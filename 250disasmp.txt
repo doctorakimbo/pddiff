@@ -1,0 +1,144 @@
+lbl1: @13F460
+r6 = 0x28
+r6 *= r0
+r7 = gTasks.data
+r4 = r6 + r7
+r1 = 6
+r0 = *(r4 + r1)
+r1 = 0x19
+modulus()
+if(r0 != 0) goto lbl5
+
+r2 = 0
+r0 = *(r4 + r2)
+r2 = 2
+r1 = *(r4 + r2)
+fn_13F2F0()
+r5 = r0
+r1 = 8
+r0 = *(r4 + r1)
+if(r0 != 0) goto lbl2
+
+r0 = r7
+r0 -= 8
+r0 += r6
+fn_43FD84_J()
+goto lbl6
+
+lbl2:
+r0 = 0x41
+PlaySE()
+r0 = *(r4 + 8)
+r0--
+r1 = r5
+if(r0 == 4) goto lbl3
+
+fn_13F40C()
+goto lbl4
+
+lbl3:
+fn_13F5AC()
+goto lbl4
+
+lbl4:
+r0 = *(r4 + 0xA)
+r0++
+*(r4 + 0xA) = r0
+if(r0 != 3) goto lbl5
+
+r0 = 0
+*(r4 + 8) = r0
+goto lbl5
+
+lbl5:
+r0 = *(r4 + 6)
+r0++
+*(r4 + 6) = r0
+goto lbl6
+
+lbl6:
+return
+
+
+
+
+
+
+fn_43FD84_J:
+r1 = *r4
+if(r1 != 0) goto lbl2
+
+r1 = fn_43FD94_J
+goto lbl3
+
+lbl2:
+r1 = fn_13F364
+goto lbl3
+
+lbl3:
+*r0 = r1
+return
+
+
+
+
+
+
+fn_43FD94_J:
+r2 = data_3DDA1B_J
+r3 = fn_43FDA2_J
+r1 = 2
+fn_F7808()
+return
+
+
+
+
+
+
+fn_43FDA2_J:
+r0 = gMapHeader
+r3 = *(r0 + 0x50)
+r1 = 0x00070007
+r3 -= r1
+r0 = *(r0 + 4)
+r1 = *(r0 + 3)
+r2 = *(r0 + 0x10)
+r4 = 0
+goto lbl2
+
+lbl2:
+r5 = 0xC
+r5 *= r4
+r0 = *(r2 + r5)
+if(r0 != r3) goto lbl3
+
+r5 += 5
+r0 = *(r2 + r5)
+if(r0 != 7) goto lbl3
+
+r5 = 0xC
+r5 *= r4
+r5 += r2
+r0 = *(r5 + 0xA)
+r1 = 0x3E8
+r0 += r1
+r2 = data_02036FF4_J
+*r2 = r0
+r0 = *(r5 + 8)
+*(r2 + 2) = r0
+r0 = *(r5 + 0xB)
+*(r2 + 4) = r0
+goto lbl4
+
+lbl3:
+r4++
+if(r4 < r1) goto lbl2
+
+goto lbl4
+
+lbl4:
+r0 = data_19410F_J
+ScriptContext1_SetupScript()
+ScriptContext2_Enable()
+return

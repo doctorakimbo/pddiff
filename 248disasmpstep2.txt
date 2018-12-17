@@ -1,0 +1,12 @@
+sub_813B870(arg0)
+{
+	while((
+	
+	*data_4B810_J ^ *(data_4B810_J + 4)) != 0x6976F9F9 ||
+	(*(data_4B810_J + 8) ^ *(data_4B810_J + 0xC)) != 0xB7C89612 ||
+	(*data_4B8F4_J ^ *(data_4B8F4_J + 4)) != 0xE8241020)
+	
+	}{}
+
+	return arg0
+}

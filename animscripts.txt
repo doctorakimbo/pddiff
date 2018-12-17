@@ -1,0 +1,51 @@
+1CA99F (old):
+19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 05 0B 02 0D 04 01 08
+playsewithpan 0x80, SOUND_PAN_ATTACKER
+delay 12
+playsewithpan 0x80, SOUND_PAN_ATTACKER
+delay 12
+playsewithpan 0x80, SOUND_PAN_ATTACKER
+delay 12
+playsewithpan 0x80, SOUND_PAN_ATTACKER
+delay 12
+playsewithpan 0x80, SOUND_PAN_ATTACKER
+delay 12
+waitforvisualfinish
+clearmonbg ANIM_ATK_PARTNER
+blendoff
+delay 1
+end
+
+
+1CA99F (new):
+1C 80 00 C0 0C 05 04 0C 05 0B 02 0D 04 01 08 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+loopsewithpan 0x80, SOUND_PAN_ATTACKER, 12, 5
+waitforvisualfinish
+clearmonbg ANIM_ATK_PARTNER
+blendoff
+delay 1
+end
+
+(Agility - this does nothing)
+
+
+
+1D51A0 (old):
+21 07 00 00 C8 51 1D 08 21 07 01 00 05 52 1D 08 21 07 02 00 69 52 1D 08 21 07 03 00 CD 52 1D 08 21 07 04 00 6D 53 1D 08
+jumpargeq 7, 0, 1D51C8
+jumpargeq 7, 1, 1D5205
+jumpargeq 7, 2, 1D5269
+jumpargeq 7, 3, 1D52CD
+jumpargeq 7, 4, 1D536D
+
+
+1D51A0 (new):
+21 07 00 00 C8 51 1D 08 21 07 03 00 05 52 1D 08 21 07 02 00 69 52 1D 08 21 07 01 00 6D 53 1D 08 21 07 04 00 CD 52 1D 08
+jumpargeq 7, 0, 1D51C8
+jumpargeq 7, 3, 1D5205
+jumpargeq 7, 2, 1D5269
+jumpargeq 7, 1, 1D536D
+jumpargeq 7, 4, 1D52CD
+
+(Weather Ball - sun -> "ice", sand -> "fire", hail -> "rock")
+probably means that the weather constant is changed from (none, sun, rain, sand, hail) to (none, hail, rain, sun, sand) (why???)

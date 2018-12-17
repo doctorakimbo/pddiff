@@ -1,0 +1,31 @@
+sub_813EF9C(arg0)
+{
+	r2 = gTasks[arg0].data[0]
+	r3 = gTasks[arg0].data[1]
+
+	if(r2 != 0 || r3 != 0)
+	{
+		if(r2 < 0)
+			r2 = -gTasks[arg0].data[0]
+		
+		if(r3 < 0)
+			r3 = -gTasks[arg0].data[1]
+		
+		if(r2 > r3)
+		{
+			if(r2 <= 3)
+				gTasks[arg0].data[4] = 4
+			else
+				gTasks[arg0].data[4] = 2
+		}
+		else
+		{
+			if(r3 <= 3)
+				gTasks[arg0].data[4] = 4
+			else
+				gTasks[arg0].data[4] = 2
+		}
+	}
+	else
+		gTasks[arg0].data[4] = 4
+}

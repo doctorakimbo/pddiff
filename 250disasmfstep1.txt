@@ -1,0 +1,55 @@
+sub_813ED3C(arg0)
+{
+	r1 = arg0 * 5
+	r6 = r1 * 8
+	r7 = gTasks.data
+	r4 = r6 + r7
+	
+	if(*(r4 + 6) % 0x19 == 0)
+	{
+		r5 = GetPlayerDirectionTowardsHiddenItem(*r4, *(r4 + 2))
+		
+		if(*(r4 + 8) == 0)
+		{
+			r0 = r7
+			r0 -= 8
+			r0 += r6
+			r1 = fn_13F364
+			*r0 = r1
+		}
+		else
+		{
+			PlaySE(0x41)
+			sub_813F40C(*(r4 + 0xA), r5)
+			*(r4 + 0xA)++
+			*(r4 + 8)--
+			*(r4 + 6)++
+		}
+	}
+	else
+		*(r4 + 6)++
+}
+
+
+
+
+
+
+fn_13F364(arg0)
+{
+	DisplayItemMessageOnField(arg0, 2, data_416476, fn_13F380)
+}
+
+
+
+
+
+
+fn_13F380(arg0)
+{
+	sub_813F3FC()
+	sub_80F6F54(0, 1)
+	ScriptUnfreezeEventObjects()
+	ScriptContext2_Disable()
+	DestroyTask(arg0)
+}

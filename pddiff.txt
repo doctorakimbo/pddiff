@@ -325,8 +325,11 @@ grafics:
 = 46163C (423950 old, 68AE40 new)
 = 461D14 (424028 old, 8DEF50 new)
 = 4623EC (424700 old, 8DD7B0 new)
+= 46386C (426D84 old, 426D80 new)
+= 463B20 (427460 old, 4267BC new)
 = 463B88 (427C40 old, 427C80 new)
 = 463C80 (427D38 old, 427C80 new)
+= 466620 (42F9A8 old, 922730 new)
 = D0051C (C0051C old, EB8990 new)
 = E82700 (D826B0 old, 924320 new)
 = E85068 (D85074 old, 251A80 new)
@@ -633,7 +636,7 @@ stray text:
   0233C4 -> 0233CC (repoint): Large part of atk49_moveend (see 37disasm)
   023B28: Another part of atk49_moveend (see 37disasm2)
 		  Implements: Stench flinch chance, Klutz (choice item locking), Poison Touch, Choice Specs (locking), Choice Scarf (locking), non-hardcoded spread moves
-		  Relies on: AbilityBattleEffects/ItemBattleEffects new cases, Choice Band effect ID change, gChosenActionByBattler changed to something else, CheckSwitchToSpreadMoveScript (j1588C, e16078), BattleScript_EffectSpreadMove (j158B0, e1609C)
+		  Relies on: AbilityBattleEffects/ItemBattleEffects new cases, Choice Band effect ID change, gChosenActionByBattler changed to something else, CheckSwitchToSpreadMoveScript (j1588C, e16078), BattleScript_EffectSpreadMove (j158B0, e1609C), rest of moveend refactor
 		  Notes: Inert call to ItemBattleEffects (arg 2)?
 = 023E88: Entirety of atk4B_returnatktoball (see 38disasm)
 		  Implements: need more info
@@ -929,7 +932,7 @@ stray text:
 + 04BF24: 0B 2C 01 DC -> 00 00 00 00
 		  Implements: Certain gfx aren't loaded for Dive Ball and everything starting at Luxury Ball; this is now fully independent of number of ball types
 + 04C058: Entirety of SetSaveBlocksPointers (see 106disasm)
-		  Implements: nothing?
+		  Implements: nothing, but obfuscates the functionality a bit
 = 04C320: Entirety of LoadPlayerBag (see 107disasm)
 		  Implements: extra bag space
 		  Required knowledge: gLoadedSave_ExtraItemData (j0203BB00), gSaveBlock_ExtraItems (j0203C010)
@@ -1208,7 +1211,7 @@ stray text:
 		  Implements: the price in-game is now the price stored in the data times ten, this allows items up to 10x more expensive than previous maximum
 		  Relies on: every price in item data divided by 10
 + 09B3B4: 02 -> 01 (changes letter spacing of some printer in a shop menu, unsure what this did; jp changes line spacing 2->1 and x 4->0 as well, which is already done in en)
-+ 09B3D0: 77 -> B0 (menu return icon index changed to new max items)
++ 09B3D0, 10864C, 10DA14: 77 -> B0 (change to new final item for back icon)
 + 09B41E: 08 04 -> 20 47
   09B488: D0 1C 02 02 -> 91 E0 D7 09 (jumps (bx) to extra fn at 1D7E090, then back (jD7E090, see 186disasm))
 		  Implements: Show already-obtained TMs as price "-----"
@@ -1471,7 +1474,6 @@ stray text:
 + 1083F8: AC 20 40 00 -> 8E 20 80 00 (allocate 224 more bytes for ?????? (item menu))
 = 108420: 31 03 -> ?? ?? (size to allocate for some struct???, jp 0x285 -> 0x429)
 + ?????? (j108FD6): 01 -> 00 (changes the letter spacing in the item menu, but this is already done in english)
-+ 10864C: 77 -> B0 (change to new final item for back icon in bag)
 = 108654: Entirety of sub_8108654 (see 232disasm)
 		  Implements: something involving the new multiple SELECT items feature
 		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList
@@ -1485,8 +1487,8 @@ stray text:
 		  Implements: register multiple items with SELECT
 		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList, UnregisterItem
 		  Required knowledge: j0203CB54
-+ 10A6BC, 10A7EA, 10A8A2, 10A982, 10AA14, 1329E8, 132B0E, 132C00, 132CE6, 132D76: 00 04 40 0C -> 00 00 40 08 (store money as 32-bit integer instead of 16-bit)
-+ 10A6CA, 10A990, 1329F6, 132CF4: 06 -> 08 (extra 2 digits for money in sell screen)
++ 10A6BC, 10A7EA, 10A8A2, 10A982, 10AA14: 00 04 40 0C -> 00 00 40 08 (store money as 32-bit integer instead of 16-bit)
++ 10A6CA, 10A990: 06 -> 08 (extra 2 digits for money in sell screen)
 = 10AD10: Entirety of UseRegisteredKeyItemOnField (see 235disasm)
 		  Implements: something involving the new multiple SELECT items feature
 		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList
@@ -1503,7 +1505,6 @@ stray text:
 		  Requires in future: data_508000_J
 + ?????? (j10E3BA): 01 -> 00 (changes the letter spacing in the pc item menu, but this is already done in english)
 + ?????? (j10E4D0): 04 -> 00 (moves some printer left four units, this is already done in english - might cause problems if it needs to move left anyway)
-+ 10DA14: 77 -> B0 (change to new final item for back icon in item pc)
 ! 10EEB6: 01 -> 00
   10EEDE: 02 -> 00
   10EEFE: 03 -> 01
@@ -1579,6 +1580,8 @@ stray text:
   13288A, 1328DA: 00 28 0E D1 -> 00 00 0E E0
 		  Implements: TMs can't be held
 + 132926: 1F D1 -> 00 00 (TMs can't be sold)
+- 1329E8, 132B0E, 132C00, 132CE6, 132D76, 13E508, 13E626, 13E6D0, 13E7A2, 13E832: 00 04 40 0C -> 00 00 40 08 (store money as 32-bit integer instead of 16-bit) (MERGE THIS CHECK)
+- 1329F6, 132CF4, 13E516, 13E7B0: 06 -> 08 (extra 2 digits for money in sell screen) (MERGE THIS CHECK)
 - 133408: 13 -> 18
   133414: 14 -> 19
   133420: 15 -> 1A
@@ -1709,7 +1712,65 @@ stray text:
 - 1399AC, 1399F8, 139A24: 3C -> D0
   1399B0, 1399FC, 139A28: 41 -> 38
 		  Implements: move something on summary screen up/right, TEST
-- 139A6A: 01 70 -> 00 00 (possibly don't flip pkmn sprites in summary screen, TEST)
+- 139A6A, 139EC6: 01 70 -> 00 00 (possibly don't flip pkmn sprites in summary screen, TEST)
+- 139CC0: 0A D1 -> 00 00 (pokeball on summary screen is always taken from mon data, ignoring unknown case (TEST on egg))
+- 139CF4: 6A 21 58 22 -> 98 21 28 22 (move pokeball on summary screen up/right)
+- 139E5C: 18 -> E0 (move some kind of pokemon icon on summary screen right, TEST)
+- 13A028: 98 -> 20 (move something on summary screen left, TEST)
+= 13A124: Entirety of sub_813A124 (see 247disasm)
+		  Implements: possibly move category icons on summary screen
+		  Required knowledge: j0203B0E1, j06009140
+		  Requires in future: fn_D7DEC0_J
+- 13A42E: 10 -> BA
+  13A434: 2D -> 20
+  13A44C: 10 -> 9A
+  13A452: 26 -> 1C
+		  Implements: need more info, TEST
+- 13A57E: 24 -> 59 (move something on summary screen right, TEST)
+- 13AC24: 72 21 5C 22 -> A4 21 24 22 (move something on summary screen up/right, TEST)
+- 13AD98: 72 -> A4
+  13AD9E: 5C -> 24
+		  Implements: need more info, TEST
+- 13AF26: 08 -> AC
+  13AF2C: 18 -> 24
+  13AF40: 6A -> AC
+  13AF46: 28 -> 24
+		  Implements: need more info, TEST
+- 13B040: 14 -> E0
+  13B046: 5B -> 5C
+		  Implements: move something on summary screen down/right, TEST
+! 13B870: Part of sub_813B870 (see 248disasm)
+		  Implements: replaces the help system listener with a (very obfuscated) check that the SetSaveBlocksPointers and MoveSaveBlocks_ResetHeap functions were not altered; if they were, the game instantly crashes - this is checked every frame
+		  Note: don't bother implementing this, thanks
+- 13B8E4: 00 D1 -> 00 00 (disables the help system; the above change does that already but I refuse to implement that)
+- 13D31C: Entirety of sub_813D31C (see 249disasm)
+		  Implements: displayed berry tag number in berry pouch is independent of internal item order - read from what G3T calls "mystery byte 02"
+		  Note: check that offset 0x15j -> 0x19(?)e is actually mystery byte 02
+- 13D428: 77 -> B0 (change to new final item for back icon) (MERGE THIS CHECK)
+- 13D668: 98 -> 88 (supposedly moves scroll arrows left in berry pouch, not sure what it really does)
+= 13ED3C: Entirety of sub_813ED3C (see 250disasm)
+		  Implements: Need more info (possibly allows for a new type of hidden items (7), which contains more than 1x of the item? + something else itemfinder related (dings?))
+		  Requires in future: fn_43FD84_J, fn_43FD94_J, fn_43FDA2_J
+- 13EED0: E0 -> F0
+  13EED2: D2 02 -> 52 03
+  13EED8: 0E -> 3C
+  13EEE0, 13EEE8: 05 -> 0A
+		  Implements: doubles the itemfinder radius
+- 13EF9C: Entirety of sub_813EF9C (see 251disasm)
+		  Implements: number of itemfinder dings gradually increases as item is closer (instead of just close = 4 and far = 2)
+! 15F9B4-1C68EC: [event scripts, just use advancemap for this part later]
+- 1C8146: D4 -> D8 (remove a sound effect from Thunderbolt, this might fix the associated glitch?)
+- 1CA99F: 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 05 0B 02 0D 04 01 08 ->
+		  1C 80 00 C0 0C 05 04 0C 05 0B 02 0D 04 01 08 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+		  Implements: makes Agility animation script less redundant but doesn't seem to actually do anything functionally
+- 1CADE9: 19 -> 1C (properly loop a sound in Sky Attack's script, fixing a glitch specific to attacking your partner)
+= 1D51AA: 01 -> 03
+  1D51BA: 03 -> 01
+  1D51BC: CD 52 -> 6D 53
+  1D51C4: 6D 53 -> CD 52
+		  Implements: switches around weather cases for Weather Ball animation (sun -> "ice", sand -> "fire", hail -> "rock")
+		  Relies on: probably means that the weather constant is changed from (none, sun, rain, sand, hail) to (none, hail, rain, sun, sand) (why???)
+= 1D6ABE, 1D6AD9: 10 -> 12 (part of moveend refactor)
 = 
 		  
 		  
@@ -1726,5 +1787,9 @@ stray text:
 		  
 		  
 		  
-curr: j13A496 (2byte), j13A4CC (4byte), j13A518 (repoint), j13A634 (1byte), j13A69E (2byte), j13A800 (1byte), j13A89C (repoint)
-next: j13A8FC
+		  
+		  
+		  
+		  
+		  
+curr: j1BAC89

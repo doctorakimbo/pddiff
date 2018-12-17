@@ -1,0 +1,76 @@
+sub_813ED3C(arg0)
+{
+	if(gTasks[arg0].data[3] % 0x19 == 0)
+	{
+		r5 = GetPlayerDirectionTowardsHiddenItem(gTasks[arg0].data[0], gTasks[arg0].data[1])
+		
+		if(gTasks[arg0].data[4] == 0)
+			fn_43FD84_J(&gTasks[arg0].0, &gTasks[arg0].data)
+		else
+		{
+			PlaySE(0x41)
+			r0 = gTasks[arg0].data[4] - 1
+			
+			if(r0 != 4)
+				sub_813F40C(r0, r5)
+			else
+				sub_813F5AC(r0, r5)
+			
+			gTasks[arg0].data[5]++
+			
+			if(gTasks[arg0].data[5] == 3)
+				gTasks[arg0].data[4] = 0
+			
+			gTasks[arg0].data[3]++
+		}
+	}
+	else
+		gTasks[arg0].data[3]++
+
+	lbl6:
+}
+
+
+
+
+
+
+fn_43FD84_J(arg0, as_r4 arg1)
+{
+	if(*arg1 == 0)
+		*arg0 = fn_43FD94_J
+	else
+		*arg0 = fn_13F364
+}
+
+
+
+
+
+
+fn_43FD94_J(arg0)
+{
+	DisplayItemMessageOnField(arg0, 2, data_3DDA1B_J, fn_43FDA2_J)
+}
+
+
+
+
+
+
+fn_43FDA2_J()
+{
+	for(r4 = 0; r4 < gMapHeader.4.3; r4++)
+	{
+		if(gMapHeader.4.0x10[r4].0 == gMapHeader.0x50 - 0x00070007 && gMapHeader.4.0x10[r4].5 == 7)
+		{
+			data_02036FF4_J.0 = gMapHeader.4.0x10[r4].0xA + 0x3E8
+			data_02036FF4_J.2 = gMapHeader.4.0x10[r4].8
+			data_02036FF4_J.4 = gMapHeader.4.0x10[r4].0xB
+			break;
+		}
+	}
+	
+	ScriptContext1_SetupScript(data_19410F_J)
+	ScriptContext2_Enable()
+}

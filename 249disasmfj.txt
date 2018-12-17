@@ -1,0 +1,32 @@
+lbl1: @13DA5C
+r8 = r0
+r5 = r1
+r6 = gStringVar4
+r1 = data_4166FF
+r0 = r6
+StringCopy()
+r1 = data_416226
+r0 = r6
+StringAppend()
+r4 = gStringVar1
+r1 = r5
+r1 -= 0x84
+r0 = r4
+r2 = 2
+r3 = 2
+ConvertIntToDecimalStringN()
+r0 = r6
+r1 = r4
+StringAppend()
+r0 = r5
+r1 = r4
+CopyItemName()
+r1 = data_3DDBCF_J
+r0 = r6
+StringAppend()
+r0 = r6
+r1 = r4
+StringAppend()
+r0 = r8
+r1 = r6
+StringCopy()

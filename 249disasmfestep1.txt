@@ -1,0 +1,18 @@
+sub_813D31C(arg0, arg1)
+{
+	r8 = arg0
+	r5 = arg1
+	r4 = gStringVar4
+	StringCopy(r4, data_4166FF)
+	StringAppend(r4, data_416226)
+	r6 = gStringVar1
+	r1 = r5
+	r1 -= 0x84
+	ConvertIntToDecimalStringN(r6, r1, 2, 2)
+	StringAppend(r4, r6)
+	CopyItemName(r5, r6)
+	StringAppend(r4, data_4643B4)
+	StringAppend(r4, data_466703)
+	StringAppend(r4, r6)
+	StringCopy(r8, r4)
+}

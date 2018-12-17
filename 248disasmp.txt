@@ -1,0 +1,33 @@
+lbl1: @13C034
+r7 = r0
+goto lbl2
+
+lbl2:
+r4 = 0x01009702
+r4 *= 8
+r1 = *r4
+r2 = *(r4 + 4)
+r2 ^= r1
+r1 = 0x4B448303
+r1 *= 2
+mvns r1, r1
+if(r2 != r1) goto lbl2
+
+r1 = *(r4 + 8)
+r2 = *(r4 + 0xC)
+r2 ^= r1
+r1 = 0x5BE44B09
+r1 *= 2
+if(r2 != r1) goto lbl2
+
+r4 = 0x02012E3D
+r4 *= 4
+r0 = *r4
+r1 = *(r4 + 4)
+r0 ^= r1
+r1 = 0x07412081
+r1 *= 0x20
+if(r0 != r1) goto lbl2
+
+r0 = r7
+return r0
