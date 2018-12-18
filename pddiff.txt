@@ -255,6 +255,7 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0xC8 = (special message for move ID 257?) <DON'T ADD 9> <probably refactor later to not remove the old C8, "prevents romance">
 ! 0xD5 = "drastically " <DON'T ADD 9>
 ! 0xD6 = "severely " <DON'T ADD 9> (what happens to the old D5 and D6?)
+! 0xE9 = "The sunlight is strong. (?????????????)"
 ! 0xEB = "[PKMN]'s [ABILITY] made it hail! (placeholder)" <DON'T ADD 9>
 = 0x180 = "[PKMN]'s [ABILITY] nullified the effects of weather!" <ADD THIS AFTER IMPORTING ABILITYBATTLEEFFECTS>
 = 0x181 = "[PKMN]'s [ITEM] let it move first!"
@@ -413,6 +414,9 @@ stray text:
 	+ also set 3EEBF0 (sHealLocations[-1]) to FE42D8
 + expand 3EEC98 (heal location map indexes) from 20 entries to 22 (FE4400)
 + expand 3EECE8 (? gSpecialVar_LastTalked values to be set on respawn per heal location) from 20 entries to 22 (FE4480)
+! expand 3FE538 (damaging weather continue messages) from 2 entries to 3 (3FE53A, don't do this until DoFieldEndTurnEffects changes done)
+! expand 3FE53C (damaging weather end messages) from 2 entries to 3 (1D8B18, don't do this until DoFieldEndTurnEffects changes done)
+! reduce 3FE540 (rain messages) from 3 entries to 2 (3FE542, don't do this until DoFieldEndTurnEffects changes done)
 + expand 3FE5A0 (trapping messages) from 6 entries to 8 (1053700)
 + expand 3FE664 (trapping moves) from 6 entries to 8 (1303552)
 + expand 3FEA70 (japanese grammar) from 118 entries to 183 (1040000)
@@ -431,6 +435,11 @@ stray text:
 + repoint 1D8C10 -> 1051B20 (BattleScript_SuccessForceOut) - do it itself later
 + repoint 1D9015 -> 1052EE0 (BattleScript_FocusPunchSetUp) - do it itself later
 ! repoint 1D9444 -> 1050260 (BattleScript_ObliviousPreventsAttraction) - script done, import during atk97_tryinfatuating
+- repoint 1D9C74 -> 1005000 (AI_CheckBadMove) - do it itself later
+- repoint 1DA445 -> 1005C00 (AI_TryToFaint) - do it itself later
+- repoint 1DBA8D -> 1007300 (AI_SetupFirstTurn) - do it itself later
+- repoint 1DBB3B -> 1007380 (AI_DoubleBattle) - do it itself later
+! repoint ptr at 1D9C1C to add new AI table entry at 11FC030
 ! repoint ptrs at 09D1E0 and 09D248 ("Bill's PC"/"Someone's PC") to the same text (jE00590, e1E00590) (PDONLY)
 + repoint 41E234 -> FE42DC (only ptr at BF1E4) "From " -> ""
 
@@ -596,7 +605,7 @@ stray text:
 		  Implements: Modern Struggle
 		  Relies on: changes at 020F78
 		  GLITCH!: Struggle has 100% HP recoil, some other change probably needed
-= 020B70, 020BF8: ptr D1 6B 1D 08 -> XX XX XX 08 (j0229DE)
+= 020B70, 020BF8, 1D968D: ptr D1 6B 1D 08 -> XX XX XX 08 (j0229DE)
 = 020BB4, 020C3C: ptr 62 6C 1D 08 -> XX XX XX 08 (j0229EF)
 		  Implements: need more info
 		  Requires in future: script_229DE_J, script_229EF_J
@@ -1770,26 +1779,47 @@ stray text:
   1D51C4: 6D 53 -> CD 52
 		  Implements: switches around weather cases for Weather Ball animation (sun -> "ice", sand -> "fire", hail -> "rock")
 		  Relies on: probably means that the weather constant is changed from (none, sun, rain, sand, hail) to (none, hail, rain, sun, sand) (why???)
-= 1D6ABE, 1D6AD9: 10 -> 12 (part of moveend refactor)
-= 
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-curr: j1BAC89
+= 1D6ABE, 1D6AD9, 1D6D4A, 1D7663, 1D7B78, 1D7B90, 1D7CDA, 1D839C, 1D94E8, 1D9502, 1D9519: 10 -> 12
+  1D6D8F: 02 -> 03
+  1D6D98, 1D89A1: 04 -> 05
+  1D76C4, 1D8E7E: 0E -> 10
+  1D89AA, 1D9AE0, 1D9B0F, 1D9B33, 1D9B55, 1D9B77: 0F -> 11
+  1D89D6: 03 -> 04
+  1D89D9: 06 -> 07
+  1D8E7B: 0B -> 0C
+		  Implements: part of moveend refactor
+- 1D6CCD: 01 60 69 1D 08 -> 00 00 00 00 00 (Roar/Whirlwind have perfect accuracy)
+- 1D6D52, 1D766A: 40 -> 00 (Endure no longer works against multihit moves)
+- 1D7011: Entirety of BattleScript_EffectRecoilIfMiss (see movescripts.txt)
+		  Implements: [High] Jump Kick crashes through Ghost-types, always does half HP recoil
+		  Relies on: atk80_manipulatedamage changes
+- 1D71F6: Part of BattleScript_EffectParalyze (see movescripts.txt)
+		  Implements: Electric-type paralysis immunity (Thunder Wave)
+		  Note: might cause ground-types to be paralyzed by Thunder Wave, check
+- 1D7581, 1D81B5, 1D82AB, 1D8417: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything)
+- 1D7747: 17 -> 27 (Minimize +1 -> +2 evasion)
+= 1D7BF5: 60 -> 30 (part of weather refactor - sun)
+= 1D80BA: 09 0A -> 00 00
+		  Implements: removes Charge animation (moved to elsewhere)
+		  Relies on: wherever it's moved to
+		  Note: duplicate attackcancelers due to misinterpretation of 00; fix later
+= 1D8A72: 02 -> 01 (part of DoFieldEndTurnEffects changes)
+= 1D8B6E: Part of BattleScript_LeechSeedTurnDrain (see movescripts.txt)
+		  Implements: Magic Guard (vs Leech Seed)
+		  Relies on: script at j17D18
+		  Note: implementation is actually caused by atk88_negativedamage changes, this just enables that to work on Leech Seed
+		  Note: Looks broken for Magic Guard vs Liquid Ooze case
+- 1D9366: 1C -> 16 (resets the statchanger, needed for Intimidate to keep working after addition of Defiant)
+- 1DD0C9: C5 -> CC (need more info (m4a), TEST)
+- 1E3B27: D0 -> E0 (need more info (isagbprn), TEST)
+! 1EA14C+: [text and data, go through here thoroughly later; jp 1D9634+]
+
+
+
+in order:
+repointed stuff (scripts -> commands -> ai)
+new battle script commands
+new movement action functions
+battle scripts
+misc animation scripts (1B 9C 1B 08 -> 64 35 30 09)
+move animation scripts

@@ -1,0 +1,188 @@
+BattleScript_EffectRecoilIfMiss (fj): @1BAFCD
+
+00 01 DA AF 1B 08 00 00 28 EA A8 1B 08 02 03 39 40 00 0F 12 40 00 29 04 2C 3D 02 02 08 0A A9 1B 08 10 60 00 12 40 00 05 06 07 80 01 36 2C 3D 02 02 01 35 30 3D 02 02 00 01 00 00 0B 01 0C 01 19 01 00 00 00 00 00 33 2C 3D 02 02 01 28 0A A9 1B 08
+
+attackcanceler
+accuracycheck BattleScript_MoveMissedDoDamage, ACC_CURR_MOVE
+goto BattleScript_HitFromAtkString
+
+BattleScript_MoveMissedDoDamage:
+attackstring
+ppreduce
+pause 0x40
+resultmessage
+waitmessage 0x40
+jumpifbyte CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE, BattleScript_MoveEnd
+printstring STRINGID_PKMNCRASHED
+waitmessage 0x40
+damagecalc
+typecalc
+adjustnormaldamage
+manipulatedamage ATK80_DMG_HALF_BY_TWO_NOT_MORE_THAN_HALF_MAX_HP
+bicbyte gMoveResultFlags, MOVE_RESULT_MISSED
+orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+healthbarupdate BS_ATTACKER
+datahpupdate BS_ATTACKER
+tryfaintmon BS_ATTACKER, FALSE, NULL
+orbyte gMoveResultFlags, MOVE_RESULT_MISSED
+goto BattleScript_MoveEnd
+
+
+BattleScript_EffectRecoilIfMiss (pj): @1BAFCD
+00 01 EA AF 1B 08 00 00 02 03 04 05 06 29 04 2C 3D 02 02 08 EC AF 1B 08 28 EF A8 1B 08 02 03 39 40 00 0F 12 40 00 80 05 10 60 00 12 40 00 36 2C 3D 02 02 09 35 30 3D 02 02 00 01 00 00 0B 01 0C 01 19 01 00 00 00 00 00 28 0A A9 1B 08 00 00 00 00
+
+attackcanceler
+accuracycheck BattleScript_MoveMissedDoDamage, ACC_CURR_MOVE
+attackstring
+ppreduce
+critcalc
+damagecalc
+typecalc
+jumpifbyte CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE, BattleScript_MoveUsedOnGhostDoDamage
+goto BattleScript_HitFromAdjustNormalDamage
+
+BattleScript_MoveMissedDoDamage:
+attackstring
+ppreduce
+goto BattleScript_MoveUsedOnGhostDoDamage
+
+BattleScript_MoveUsedOnGhostDoDamage:
+pause 0x40
+resultmessage
+waitmessage 0x40
+manipulatedamage ATK80_HALF_DMG_CHECK_MAGIC_GUARD
+printstring STRINGID_PKMNCRASHED
+waitmessage 0x40
+bicbyte gMoveResultFlags, MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE
+orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+healthbarupdate BS_ATTACKER
+datahpupdate BS_ATTACKER
+tryfaintmon BS_ATTACKER, FALSE, NULL
+goto BattleScript_MoveEnd
+
+
+BattleScript_EffectRecoilIfMiss (fe): @1D7011
+00 01 1E 70 1D 08 00 00 28 2E 69 1D 08 02 03 39 40 00 0F 12 40 00 29 04 CC 3D 02 02 08 4E 69 1D 08 10 60 00 12 40 00 05 06 07 80 01 36 CC 3D 02 02 01 35 D0 3D 02 02 00 01 00 00 0B 01 0C 01 19 01 00 00 00 00 00 33 CC 3D 02 02 01 28 4E 69 1D 08
+
+BattleScript_EffectRecoilIfMiss (pe): @1D7011
+00 01 2E 70 1D 08 00 00 02 03 04 05 06 29 04 CC 3D 02 02 08 30 70 1D 08 28 33 69 1D 08 02 03 39 40 00 0F 12 40 00 80 05 10 60 00 12 40 00 36 CC 3D 02 02 09 35 D0 3D 02 02 00 01 00 00 0B 01 0C 01 19 01 00 00 00 00 00 28 4E 69 1D 08 00 00 00 00
+
+
+
+
+
+
+
+1BB1B2 (fj):
+06 29 04 2C 3D 02 02 29 AE BD 1B 08 1C 00 40 00 00 00 F3 B1 1B 08 1C 00 FF 00 00 00 AE BD 1B 08 01 AE BD 1B 08 00 00 1F 00 20 00 F5 CA 1B 08 09 0A 2E E5 3D 02 02 05 16 0F 12 40 00 28 0A A9 1B 08
+
+...
+typecalc
+jumpifmovehadnoeffect BattleScript_ButItFailed
+jumpifstatus BS_TARGET, STATUS1_PARALYSIS, BattleScript_AlreadyParalyzed
+jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_ButItFailed
+accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
+jumpifsideaffecting BS_TARGET, SIDE_STATUS_SAFEGUARD, BattleScript_SafeguardProtected
+attackanimation
+waitanimation
+setmoveeffect MOVE_EFFECT_PARALYSIS
+seteffectprimary
+resultmessage
+waitmessage 0x40
+goto BattleScript_MoveEnd
+
+
+1BB1B2 (pj):
+22 00 0D C0 BD 1B 08 06 1C 00 40 00 00 00 F3 B1 1B 08 1C 00 FF 00 00 00 AE BD 1B 08 01 AE BD 1B 08 00 00 1F 00 20 00 F5 CA 1B 08 09 0A 2E E5 3D 02 02 05 16 0F 12 40 00 28 0A A9 1B 08 00 00 00 00
+
+...
+jumpiftype BS_TARGET, TYPE_ELECTRIC, BattleScript_NotAffected
+typecalc
+jumpifstatus BS_TARGET, STATUS1_PARALYSIS, BattleScript_AlreadyParalyzed
+jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_ButItFailed
+accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
+jumpifsideaffecting BS_TARGET, SIDE_STATUS_SAFEGUARD, BattleScript_SafeguardProtected
+attackanimation
+waitanimation
+setmoveeffect MOVE_EFFECT_PARALYSIS
+seteffectprimary
+resultmessage
+waitmessage 0x40
+goto BattleScript_MoveEnd
+
+
+1D71F6 (fe):
+06 29 04 CC 3D 02 02 29 F2 7D 1D 08 1C 00 40 00 00 00 37 72 1D 08 1C 00 FF 00 00 00 F2 7D 1D 08 01 F2 7D 1D 08 00 00 1F 00 20 00 39 8B 1D 08 09 0A 2E 85 3E 02 02 05 16 0F 12 40 00 28 4E 69 1D 08
+
+1D71F6 (pe):
+22 00 0D 04 7E 1D 08 06 1C 00 40 00 00 00 37 72 1D 08 1C 00 FF 00 00 00 F2 7D 1D 08 01 F2 7D 1D 08 00 00 1F 00 20 00 39 8B 1D 08 09 0A 2E 85 3E 02 02 05 16 0F 12 40 00 28 4E 69 1D 08 00 00 00 00
+
+
+
+
+
+
+
+1BCB27 (fj):
+1E 01 40 3B CB 1B 08 80 00 2E E7 3D 02 02 03 28 41 CB 1B 08 2E E7 3D 02 02 04 35 30 3D 02 02 00 01 10 00 0B 00 0C 00 13 24 45 3C 08 12 40 00 19 01 00 00 00 00 00 19 00 00 00 00 00 00 3E
+
+...
+jumpifability BS_ATTACKER, ABILITY_LIQUID_OOZE, BattleScript_LeechSeedTurnPrintLiquidOoze
+manipulatedamage ATK80_DMG_CHANGE_SIGN
+setbyte cMULTISTRING_CHOOSER, 0x3
+goto BattleScript_LeechSeedTurnPrintAndUpdateHp
+
+BattleScript_LeechSeedTurnPrintLiquidOoze:
+setbyte cMULTISTRING_CHOOSER, 0x4
+goto BattleScript_LeechSeedTurnPrintAndUpdateHp
+
+BattleScript_LeechSeedTurnPrintAndUpdateHp:
+orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_x100000
+healthbarupdate BS_TARGET
+datahpupdate BS_TARGET
+printfromtable gLeechSeedStringIds
+waitmessage 0x40
+tryfaintmon BS_ATTACKER, FALSE, NULL
+tryfaintmon BS_TARGET, FALSE, NULL
+end2
+
+
+1BCB27 (pj):
+1E 01 40 18 7D 01 08 80 02 31 B4 3C 02 02 B0 3C 02 02 04 31 CB 3C 02 02 CC 3C 02 02 01 88 31 CB 3C 02 02 35 3F 02 02 01 2E E7 3D 02 02 03 28 25 7D 01 08 00 00 00 00 00 00 00 00 00 00 00
+017D18 (pj):
+1E 00 62 6F 7D 01 08 2E E7 3D 02 02 04 35 30 3D 02 02 00 01 10 00 0B 00 0C 00 13 24 45 3C 08 12 40 00 19 01 00 00 00 00 00 19 00 00 00 00 00 00 3E
+
+...
+jumpifability BS_ATTACKER, ABILITY_LIQUID_OOZE, 017D18
+manipulatedamage ATK80_DMG_DOUBLED
+copyword gHpDealt, gBattleMoveDamage
+copybyte gBattlerAttacker, gBattlerTarget
+negativedamage
+copybyte gBattlerAttacker, sB_ANIM_ARG2
+setbyte cMULTISTRING_CHOOSER, 0x3
+goto 017D25
+
+017D18:
+jumpifability BS_TARGET, ABILITY_MAGIC_GUARD, 017D6F
+setbyte cMULTISTRING_CHOOSER, 0x4
+goto 017D25
+
+017D25:
+orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_x100000
+healthbarupdate BS_TARGET
+datahpupdate BS_TARGET
+printfromtable gLeechSeedStringIds
+waitmessage 0x40
+tryfaintmon BS_ATTACKER, FALSE, NULL
+tryfaintmon BS_TARGET, FALSE, NULL
+end2
+
+17D6F:
+(garbage)
+
+
+1D8B6B (fe):
+1E 01 40 7F 8B 1D 08 80 00 2E 87 3E 02 02 03 28 85 8B 1D 08 2E 87 3E 02 02 04 35 D0 3D 02 02 00 01 10 00 0B 00 0C 00 13 58 E5 3F 08 12 40 00 19 01 00 00 00 00 00 19 00 00 00 00 00 00 3E
+
+1D8B6B (pe): <FIX>
+1E 01 40 18 7D 01 08 80 02 31 B4 3C 02 02 B0 3C 02 02 04 31 CB 3C 02 02 CC 3C 02 02 01 88 31 CB 3C 02 02 35 3F 02 02 01 2E E7 3D 02 02 03 28 25 7D 01 08 00 00 00 00 00 00 00 00 00 00 00
