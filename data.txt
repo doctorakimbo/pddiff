@@ -209,7 +209,7 @@ B4 B0 03 02: 28 B0 03 02: ??????
 		   : 70 B9 03 02: ?????? (appears to be an array of unknown objects; first field is a 4-entry array of 2 bytes each, second field is a 4-entry array of 1 byte each)
 								 (atk02_attackstring: when player attacks: insert [gCurrentMove, 0] into the first empty slot for the mon, or increment the field2 of the first entry where field1 = gCurrentMove and field2 != 0xFF, whichever comes first)
 								 (atk02_attackstring: when player attacks: if neither of the above is available, insert [gCurrentMove, 0] into the last slot where field2 != 0xFF; if even that fails, insert it into the first slot)
-		   : 00 BB 03 02: ?????? gLoadedSave_ExtraItemData
+		   : 00 BB 03 02: gLoadedSave_ExtraItemData
 		   : 30 BF 03 02: ?????? (appears to be (0-3) array of ptrs to Sprites, (4) int)
 								 (fn_EB8398_J: Set this[moveId] to the created sprite)
 								 (fn_EB8398_J: Set this.4 to moveId)
@@ -246,11 +246,9 @@ B4 B0 03 02: 28 B0 03 02: ??????
 								 (fn_183A90_J: If the player isn't on foot, surfing, or (?acrobike) and B is pressed, toggle (this.0 & 2) and set this.1 to 0)
 								 (fn_183A90_J: If the player isn't on foot, surfing, or (?acrobike) and an arrow key is held, set this.2 to the arrow key and increment this.1 once per frame up to 0x30)
 								 (fn_183A90_J: If the player isn't on foot, surfing, or (?acrobike) and an arrow key isn't held, decrease this.1 by 2 per frame until 0)
-		   : 10 C0 03 02: ?????? (appears to be an array of 167 unknown 4-byte objects, possibly ItemSlots)
-								 (LoadPlayerBag: Entire array read from in a loop, just like gSaveBlock1Ptr->bagPocket_Items, and written to j0203BB00)
-								 (SavePlayerBag: Entire array written to in a loop, just like gSaveBlock1Ptr->bagPocket_Items, read from j0203BB00)
-		   : AC C2 03 02: gDaycareParentMoves
-		   : B4 C2 03 02: gDaycareParentMoves[1]
+		   : 10 C0 03 02: gSaveBlock_ExtraItems
+AC C2 03 02: AC C2 03 02: gDaycareParentMoves
+B4 C2 03 02: B4 C2 03 02: gDaycareParentMoves[1]
 		   : 18 CB 03 02: ?????? (GetLocationMusic: if this.0xE is not zero, return this.0xC instead of the default music)
 								 (fn_E9F204_J: convert this.4 (number) to a string and store it in data_0203D520_J)
 								 (fn_E9EBB0_J: If data_0203D52A_J is 0, data_0203D50A_J is 1, A is pressed, and (data_0203D562_J + data_0203D561_J) != 0, set this.0xC to data_E9FBC4_J[fn_E9F92C_J(data_0203D562_J + data_0203D561_J) - 1] then start playing the music at this.0xC)
@@ -396,9 +394,9 @@ B4 B0 03 02: 28 B0 03 02: ??????
 		   : 71 D5 03 02: ?????? (fn_E9F398_J: loaded with the results of a call to LoadSpritePalette)
 		   : 80 D5 03 02: gMysteryFuncUnknownListSize
 		   : 82 D5 03 02: gMysteryFuncUnknownList // record size 2
-		   : 00 D6 03 02: sHatchedEggLevelUpMoves_New
-		   : 64 D6 03 02: ?????? (BuildEggMoveset: read but not used?)
-		   : 74 D6 03 02: sHatchedEggEggMoves_New
+00 D6 03 02: 00 D6 03 02: sHatchedEggLevelUpMoves_New
+64 D6 03 02: 64 D6 03 02: ?????? (BuildEggMoveset: read but not used?)
+74 D6 03 02: 74 D6 03 02: sHatchedEggEggMoves_New
 		   : 80 D6 03 02: ?????? (fn_E9FC28_J: set to 0 at start)
 								 (fn_E9EBB0_J: used as the selection id of some mystery list, seven entries per row)
 		   : 81 D6 03 02: ?????? (fn_E9FC28_J: if gMysteryFuncUnknownListSize is 14 or more, do something with fn_EA05F4_J with this as parameter)

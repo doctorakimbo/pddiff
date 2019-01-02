@@ -114,7 +114,7 @@ abilities:
 + 0xB8 = Protean
 + 0xB9 = Bulletproof
 + 0xBA = Cheek Pouch
-= 0xBC = Strong Jaw/Mega Launcher (boosts extraFlags & 0x40 moves by 20%)
+= 0xBC = Strong Jaw/Mega Launcher (boosts extraFlags & 0x40 moves by 50%)
 + 0xC0 = Stamina
 + 0xC3 = Compaction
 + 0xCA = Slush Rush
@@ -953,7 +953,7 @@ stray text:
 		  Implements: Removes gender symbol somewhere, seems to be removed in english already
 ! 054A00: 06 -> 04 (PDONLY, moves starting position in new game two tiles north)
 = 054A68: 39 4E 31 68 39 48 80 46 -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DF50, see 109disasm))
-		  Implements: need more info (clear save data)
+		  Implements: on save-file deletion, clears pd-only save data too
 ! 055238: 00 04 09 04 03 4A 80 0B 80 18 00 68 89 0B 09 18 -> 00 04 09 04 03 4A 89 0B 80 0B 80 18 00 68 09 18 (does nothing?) (BREAKS ADVANCEMAP!!!)
 = 05550C: Entirety of sub_805550C (see 110disasm)
 		  Implements: need more info (some kind of warp, already prevented in map group 1, is now also prevented in map group 0x2501)
@@ -1220,7 +1220,7 @@ stray text:
 		  Implements: the price in-game is now the price stored in the data times ten, this allows items up to 10x more expensive than previous maximum
 		  Relies on: every price in item data divided by 10
 + 09B3B4: 02 -> 01 (changes letter spacing of some printer in a shop menu, unsure what this did; jp changes line spacing 2->1 and x 4->0 as well, which is already done in en)
-+ 09B3D0, 10864C, 10DA14: 77 -> B0 (change to new final item for back icon)
++ 09B3D0, 10864C, 10DA14, 13D428: 77 -> B0 (change to new final item for back icon)
 + 09B41E: 08 04 -> 20 47
   09B488: D0 1C 02 02 -> 91 E0 D7 09 (jumps (bx) to extra fn at 1D7E090, then back (jD7E090, see 186disasm))
 		  Implements: Show already-obtained TMs as price "-----"
@@ -1496,8 +1496,8 @@ stray text:
 		  Implements: register multiple items with SELECT
 		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList, UnregisterItem
 		  Required knowledge: j0203CB54
-+ 10A6BC, 10A7EA, 10A8A2, 10A982, 10AA14: 00 04 40 0C -> 00 00 40 08 (store money as 32-bit integer instead of 16-bit)
-+ 10A6CA, 10A990: 06 -> 08 (extra 2 digits for money in sell screen)
++ 10A6BC, 10A7EA, 10A8A2, 10A982, 10AA14, 1329E8, 132B0E, 132C00, 132CE6, 132D76, 13E508, 13E626, 13E6D0, 13E7A2, 13E832: 00 04 40 0C -> 00 00 40 08 (store money as 32-bit integer instead of 16-bit)
++ 10A6CA, 10A990, 1329F6, 132CF4, 13E516, 13E7B0: 06 -> 08 (extra 2 digits for money in sell screen)
 = 10AD10: Entirety of UseRegisteredKeyItemOnField (see 235disasm)
 		  Implements: something involving the new multiple SELECT items feature
 		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList
@@ -1589,91 +1589,134 @@ stray text:
   13288A, 1328DA: 00 28 0E D1 -> 00 00 0E E0
 		  Implements: TMs can't be held
 + 132926: 1F D1 -> 00 00 (TMs can't be sold)
-- 1329E8, 132B0E, 132C00, 132CE6, 132D76, 13E508, 13E626, 13E6D0, 13E7A2, 13E832: 00 04 40 0C -> 00 00 40 08 (store money as 32-bit integer instead of 16-bit) (MERGE THIS CHECK)
-- 1329F6, 132CF4, 13E516, 13E7B0: 06 -> 08 (extra 2 digits for money in sell screen) (MERGE THIS CHECK)
-- 133408: 13 -> 18
+! 133408: 13 -> 18
   133414: 14 -> 19
   133420: 15 -> 1A
   13342C: 16 -> 1B
-		  Implements: need more info (TM case) (TEST)
-- 1334D0: 01 -> 02 (2 base power now displays as "---" (TM case), why?)
-- 1338AE: 88 -> 90 (allocates 32 more bytes for ?????? (TM case))
-- 134C92: 0F -> 00 (remove something on summary screen, TEST)
-- 134F4A: 1E 24 00 94 02 25 -> 00 24 00 94 00 25 (remove something on summary screen, TEST)
-- 134F5E: 0F -> 00 (remove something on summary screen, TEST)
-- 1354F2: 10 32 -> 29 3A (need more info (summary screen), TEST)
-- 1356B0: 01 -> 00 (sub_813A3B8(1) -> sub_813A3B8(0), need more info (summary screen), TEST)
-- 1360F7: D1 -> E0 (display all dex numbers on summary screen even before natdex)
+		  Implements: changes graphics for "TYPE"/"POWER"/"ACCURACY"/"PP" in TM case
+		  Relies on: graphics actually inserted
++ 1334D0: 01 -> 02 (2 base power now displays as "---" (TM case), why?)
++ 1338AE: 88 -> 90 (allocates 32 more bytes for ?????? (TM case))
++ 134C92: 0F -> 00 (remove something on summary screen, no idea what)
++ 134F4A: 1E 24 00 94 02 25 -> 00 24 00 94 00 25 (remove something on summary screen, no idea what)
++ 134F5E: 0F -> 00 (remove something on summary screen, no idea what)
+! 1354F2: 10 32 -> 29 3A 
+		  Implements: move HP bar on summary screen left (when scrolling into it from the left)
+		  Relies on: layout rework to make this not look broken
++ 1356B0: 01 -> 00 (no idea what this does)
++ 1360F7: D1 -> E0 (display all dex numbers on summary screen even before natdex)
 ! 136238: 20 2C 01 D0 1D 2C 11 D1 -> 14 E0 00 00 00 00 00 00 (PDONLY, restores gender markers for pokemon #29 and #32 on summary screen)
-- 1363C0, 13654E, 136586, 1365BC, 1365F2, 136628, 136666, 1366D8, 1369F4, 136A18: 09 18 49 00 -> 49 00 09 18
+! 1363C0, 13654E, 136586, 1365BC, 1365F2, 136628, 136666, 1366D8, 1369F4, 136A18: 09 18 49 00 -> 49 00 09 18
   13666A: 3F -> 3E
   1369F8: 0C -> 0B
-		  Implements: need more info (summary screen), TEST (jp 9 -> 8, en 6 -> 5 something (maybe make it 6 -> 2 something; it would then be 09 18 49 00 -> 00 00 00 00 / 3F -> 3B / 0C -> 08))
-- 13679C: BC -> B8 (jp 90 -> 8C)
-  1367A4: CC -> C9 (jp 98 -> 95)
-		  Implements: need more info (summary screen), TEST
+		  Implements: move all the numbers on the summary screen stat page right (jp 9 -> 8, en 6 -> 5 something (maybe make it 6 -> 2 something; it would then be 09 18 49 00 -> 00 00 00 00 / 3F -> 3B / 0C -> 08))
+		  Relies on: layout rework to make this not look broken
+! 13679C: BC -> B8 (jp 90 -> 8C)
+		  Implements: moves the ability name left 4 characters
+		  Relies on: layout rework to make this not look broken
++ 1367A4, 137C8C: CC -> C9 (jp 98 -> 95) (one of these moves the ability description left, the other one moves it right; result is no change at all?)
 = 136828, 137362: 0D -> 11 (movenamelength)
-- 136890, 1373B0: 28 -> 20 (need more info (summary screen), TEST) (jp 18 -> 10)
-- 136D50: 87 20 -> A0 00 (REG_OFFSET_WIN1V = 0x2087 -> 0x00A0; need more info (summary screen), TEST)
-- 136EB2: 28 -> 20 (jp 32 -> 2A) (move something on summary screen left, TEST)
-- 136EE0, 136F20: 69 -> 6C (move something on summary screen right, TEST)
-- 136FCE: 2F 22 13 23 -> 35 22 11 23 (jp 1A 22 11 23 -> 20 22 10 23) (move something on summary screen up/right, TEST)
-- 136FF2: 2F -> 35 (jp 1A -> 20)
+! 136890, 1373B0: 28 -> 20 (jp 18 -> 10)
+		  Implements: moves the move names on the summary screen in some way
+		  Relies on: layout rework to make this not look broken
++ 136D50: 87 20 -> A0 00 (REG_OFFSET_WIN1V = 0x2087 -> 0x00A0; no idea what this does)
+! 136EB2: 28 -> 20 (jp 32 -> 2A) 
+		  Implements: moves nickname on summary screen left
+		  Relies on: layout rework to make this not look broken
++ 136EE0, 136F20: 69 -> 6C (move gender symbol on summary screen right)
+! 136FD0: 2F 22 13 23 -> 35 22 11 23 (jp 1A 22 11 23 -> 20 22 10 23)
+		  Implements: move species name on summary screen up/right
+		  Relies on: layout rework to make this not look broken
+! 136FF2: 2F -> 35 (jp 1A -> 20)
   137004: 05 -> 01 (jp 04 -> 00)
-		  Implements: move something on summary screen up/right, TEST
-- 13701E: 2F 22 31 23 -> 35 22 36 23 (jp 1A 22 2B 23 -> 20 22 30 23) (move something on summary screen down/right, TEST)
-- 13703A: 2F 22 40 23 -> 35 22 48 23 (jp 1A 22 38 23 -> 20 22 40 23) (move something on summary screen down/right, TEST)
-- 137056: 2F 22 4F 23 -> AB 22 40 23 (jp 04 22 50 23 -> 80 22 41 23) (move something on summary screen up/right, TEST)
-- 1370C2: 07 22 2D 23 -> 03 22 25 23 (jp 04 22 27 23 -> 00 22 1F 23) (move something on summary screen up/left, TEST)
-- 13710A: 0E -> 48
+		  Implements: move dex number on summary screen up/right
+		  Relies on: layout rework to make this not look broken
+! 13701E: 2F 22 31 23 -> 35 22 36 23 (jp 1A 22 2B 23 -> 20 22 30 23)
+		  Implements: move OT name on summary screen down/right
+		  Relies on: layout rework to make this not look broken
+! 13703A: 2F 22 40 23 -> 35 22 48 23 (jp 1A 22 38 23 -> 20 22 40 23)
+		  Implements: move OT ID number on summary screen down/right
+		  Relies on: layout rework to make this not look broken
+! 137056: 2F 22 4F 23 -> AB 22 40 23 (jp 04 22 50 23 -> 80 22 41 23)
+		  Implements: move held item name on summary screen up/right
+		  Relies on: layout rework to make this not look broken
+		  Note: seems like it went so far right it's offscreen?
+! 1370C2: 07 22 2D 23 -> 03 22 25 23 (jp 04 22 27 23 -> 00 22 1F 23)
+		  Implements: move egg state summary up/right
+		  Relies on: layout rework to make this not look broken
+! 13710A: 0E -> 48
   137122: 04 -> 44
-		  Implements: move something on summary screen down/right, TEST
+		  Implements: move HP values on summary screen down/right
+		  Relies on: layout rework to make this not look broken
+		  Note: seems like it went so far right it's offscreen?
 = 137132: 11 68 0A 79 32 32 12 06 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DD70, see 243disasm))
-		  Implements: move "Attack" label on summary screen left (TEST) and color it according to nature
-- 137148: 16 -> 01 (move "Attack" label on summary screen up, TEST)
+		  Implements: move Attack value on summary screen left (TEST) and color it according to nature
+! 137148: 16 -> 01 
+		  Implements: move Attack value on summary screen up
+		  Relies on: layout rework to make this not look broken
 = 137158: 11 68 8A 79 32 32 12 06 12 0E -> 00 00 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DDC6, see 243disasm))
-		  Implements: move "Defense" label on summary screen left (TEST) and color it according to nature
-- 13716E: 23 -> 11 (move "Defense" label on summary screen up, TEST)
+		  Implements: move Defense value on summary screen left (TEST) and color it according to nature
+! 13716E: 23 -> 11 
+		  Implements: move Defense value on summary screen up
+		  Relies on: layout rework to make this not look broken
 = 13717E: 11 68 0A 7A 32 32 12 06 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DE14, see 243disasm))
-		  Implements: move "Sp. Atk" label on summary screen left (TEST) and color it according to nature
-- 137194: 30 -> 21 (move "Sp. Atk" label on summary screen up, TEST)
+		  Implements: move Sp. Atk value on summary screen left (TEST) and color it according to nature
+! 137194: 30 -> 21 
+		  Implements: move Sp. Atk value on summary screen up
+		  Relies on: layout rework to make this not look broken
 = 1371A4: 11 68 8A 7A 32 32 12 06 12 0E -> 00 00 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DE62, see 243disasm))
-		  Implements: move "Sp. Def" label on summary screen left (TEST) and color it according to nature
-- 1371BA: 3D -> 31 (move "Sp. Def" label on summary screen up, TEST)
+		  Implements: move Sp. Def value on summary screen left (TEST) and color it according to nature
+! 1371BA: 3D -> 31
+		  Implements: move Sp. Def value on summary screen up
+		  Relies on: layout rework to make this not look broken
 = 1371CA: 11 68 0A 7B 32 32 12 06 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DEB0, see 243disasm))
-		  Implements: move "Speed" label on summary screen left (TEST) and color it according to nature
-- 1371E0: 4A -> 41 (move "Speed" label on summary screen up, TEST)
+		  Implements: move Speed value on summary screen left (TEST) and color it according to nature
+! 1371E0: 4A -> 41
+		  Implements: move Speed value on summary screen up
+		  Relies on: layout rework to make this not look broken
 = 1371F0: 11 68 8A 7B 0F 32 12 06 12 0E -> 00 00 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DEFE, see 243disasm))
   137206: 57 -> 50
 		  Implements: move something on summary screen up/right, TEST
-- 13721A: 0F -> 78
+! 13721A: 0F -> 78
   13722C: 64 -> 5C
-		  Implements: move something on summary screen up/right, TEST
-- 13736E: 02 21 03 22 -> 01 21 00 22 (move something on summary screen left and change font, TEST)
-- 13741E: 24 -> 1C (jp 16 -> 0E) (move something on summary screen left, TEST)
-- 13743A: 2E -> 28 (jp 20 -> 1A)
+		  Implements: move exp to next level on summary screen up/right
+		  Relies on: layout rework to make this not look broken
+		  Note: seems like it went so far right it's offscreen?
++ 13736E: 02 21 03 22 -> 01 21 00 22
+		  Implements: move move names on summary screen left
+		  Note: in jp this changes the font, but fonts 1 and 2 seem to be identical in en
+! 13741E: 24 -> 1C (jp 16 -> 0E)
+  13743A: 2E -> 28 (jp 20 -> 1A)
   137454: 02 -> 01
-		  Implements: move something on summary screen left and change font, TEST
-- 13747C: 02 21 3A 22 -> 01 21 32 22 (jp 02 21 32 22 -> 01 21 2A 22) (move something on summary screen left and change font, TEST)
-- 13749A: 40 -> 37 (jp 3B -> 32)
+  13747C: 02 21 3A 22 -> 01 21 32 22 (jp 02 21 32 22 -> 01 21 2A 22)
+  13749A: 40 -> 37 (jp 3B -> 32)
   1374AC: 02 -> 01
-		  Implements: move something on summary screen left and change font, TEST
-- 1375B0, 13775C: 05 -> 01 (default mon met level 5 -> 1)
-- 137AB6: 07 -> 00
+		  Implements: move PP values on summary screen left
+		  Relies on: layout rework to make this not look broken
+		  Note: in jp this changes the font, but fonts 1 and 2 seem to be identical in en
++ 1375B0, 13775C: 05 -> 01 (default mon met level 5 -> 1)
+! 137AB6: 07 -> 00
   137AD0: 14 -> 0C
-		  Implements: move something on summary screen up, TEST
+		  Implements: move "Exp. Points" and "Next Lv." labels on summary screen up
+		  Relies on: layout rework to make this not look broken
 		  Note: jp has a third one, 24 -> 1C, that doesn't exist in en
 + ??????: 90 -> 8C (j1382D0; this doesn't exist at all in en)
-- 137B3C: 02 21 39 22 01 23 -> 00 21 37 22 16 23 (jp 02 21 32 22 01 23 -> 00 21 30 22 16 23) (move something on summary screen down/left and change font, TEST)
-- 137B60: 02 21 39 22 0F 23 -> 00 21 37 22 26 23 (jp 02 21 32 22 0F 23 -> 00 21 30 22 26 23) (move something on summary screen down/left and change font, TEST)
-- 137B96: 07 22 2A 23 -> 06 22 3A 23 (jp 05 22 27 23 -> 04 22 37 23) (move something on summary screen down/left, TEST)
-- 137C8C: 1367A4: CC -> C9 (jp 98 -> 95) (need more info (summary screen), TEST)
-- 137CD0: A0 -> F0 (need more info (summary screen), TEST)
-- 137FBA: AC -> 73
+! 137B3C: 02 21 39 22 01 23 -> 00 21 37 22 16 23 (jp 02 21 32 22 01 23 -> 00 21 30 22 16 23)
+		  Implements: move move power value on summary screen down/left and change font
+		  Relies on: layout rework to make this not look broken
+! 137B60: 02 21 39 22 0F 23 -> 00 21 37 22 26 23 (jp 02 21 32 22 0F 23 -> 00 21 30 22 26 23)
+		  Implements: move accuracy value on summary screen down/left and change font
+		  Relies on: layout rework to make this not look broken
+! 137B96: 07 22 2A 23 -> 06 22 3A 23 (jp 05 22 27 23 -> 04 22 37 23)
+		  Implements: move move description on summary screen down/left
+		  Relies on: layout rework to make this not look broken
++ 137CD0: A0 -> F0 (no idea what this does)
+! 137FBA: AC -> 73
   137FC6: 98 42 00 DA -> 00 00 00 00
-		  Implements: need more info (summary screen), TEST
-- 13802A, 138048, 138090, 1380B0: 49 42 -> 00 00 (need more info (summary screen), TEST)
-- 138582, 138678, 13873E, 13888A: B5 -> EA
+		  Implements: move HP bar on summary screen left (when scrolling into it from the right)
+		  Relies on: layout rework to make this not look broken
++ 13802A, 138048, 138090, 1380B0: 49 42 -> 00 00 (no idea what this does)
+! 138582, 138678, 13873E, 13888A: B5 -> EA
   138598, 13868E, 138752, 13889E: BD -> F2
   138668, 1387D8: 6B -> D2
   13866C, 1387DC: 7B -> E2
@@ -1682,12 +1725,14 @@ stray text:
   138702, 1387FC, 13893C: CD -> F1
   138A28: 8B -> D4
   138A2C: 9B -> E4
-		  Implements: change tilemap of some things (summary screen), TEST
-- 138590, 1385A4, 138686, 13869A, 1386FA, 13870E, 1387F4, 13880C, 138934, 13894C: 0D -> 10
+		  Implements: change tilemap of indicator tabs on the top of summary screen
+		  Relies on: graphic itself actually changed
+! 138590, 1385A4, 138686, 13869A, 1386FA, 13870E, 1387F4, 13880C, 138934, 13894C: 0D -> 10
   1385DC, 1385F0, 13874A, 13875E, 13884C, 13885E, 13898C, 13899E: 0F -> 12
   138626, 138638, 138794, 1387A6, 138896, 1388AA, 1389D8, 1389EA: 11 -> 14
-		  Implements: move some things on summary screen right, TEST
-- 1385AC: 2C 49 00 94 01 94 02 97 03 20 0E 22 00 23 C9 F6 CB FF 29 49 00 94 01 94 02 97 03 20 0E 22 01 23 C9 F6 C2 FF -> all zero
+		  Implements: move indicator tabs on the top of summary screen right
+		  Relies on: layout rework to make this not look broken
+! 1385AC: 2C 49 00 94 01 94 02 97 03 20 0E 22 00 23 C9 F6 CB FF 29 49 00 94 01 94 02 97 03 20 0E 22 01 23 C9 F6 C2 FF -> all zero
   13860A: 1D 49 00 94 01 94 02 97 03 20 10 22 00 23 C9 F6 A5 FF 1A 49 00 94 01 94 02 97 03 20 10 22 01 23 C9 F6 9C FF -> all zero
   138640: B7 21 49 00 00 94 01 94 02 97 03 20 12 22 00 23 C9 F6 80 FF -> all zero
   1386A2: 0F 49 00 94 01 94 02 97 03 20 0E 22 00 23 C9 F6 50 FF 0B 49 00 94 01 94 02 97 03 20 0E 22 01 23 C9 F6 47 FF 08 49 04 20 00 90 02 20 01 90 02 97 03 20 0F 22 00 23 C9 F6 3C FF -> all zero
@@ -1702,77 +1747,90 @@ stray text:
   138954: AD 20 40 00 80 46 00 94 01 94 02 95 03 20 41 46 0E 22 00 23 C9 F6 F4 FD B6 26 76 00 00 94 01 94 02 95 03 20 31 1C 0E 22 01 23 C9 F6 E9 FD -> all zero
   1389A6: 00 94 01 94 02 95 03 20 41 46 10 22 00 23 C9 F6 CE FD 00 94 01 94 02 95 03 20 31 1C 10 22 01 23 C9 F6 C5 FD -> all zero
   1389F2: 0F 49 00 94 01 94 02 95 03 20 12 22 00 23 C9 F6 A8 FD 0B 49 00 94 01 94 02 95 03 20 12 22 01 23 -> all zero
-		  Implements: remove some things (summary screen), TEST
-- 138A90: 2F 22 23 23 -> 37 22 26 23 (jp 1A 22 1E 23 -> 22 22 21 23) (move something on summary screen down/right, TEST)
-- 138AA4: 53 22 23 23 -> 5B 22 26 23 (jp 3E 22 1E 23 -> 46 22 21 23) (move something on summary screen down/right, TEST)
-- 138ADA: 00 22 03 23 -> 0B 22 02 23 (move something on summary screen up/right, TEST)
-- 138AFC: 24 22 03 23 -> 2F 22 02 23 (move something on summary screen up/right, TEST)
+		  Implements: change the functionality of the tabs on the top of summary screen somehow, this will probably make sense given other changes
+		  Relies on: layout rework to make this not look broken
+! 138A80: 2F 22 23 23 -> 37 22 26 23 (jp 1A 22 1E 23 -> 22 22 21 23)
+  138AA4: 53 22 23 23 -> 5B 22 26 23 (jp 3E 22 1E 23 -> 46 22 21 23)
+  		  Implements: move type icons on summary screen down/right
+		  Relies on: layout rework to make this not look broken
+! 138ADA: 00 22 03 23 -> 0B 22 02 23
+  138AFC: 24 22 03 23 -> 2F 22 02 23
+		  Implements: move pokemon type icons on move summary screen up/right
+		  Relies on: layout rework to make this not look broken
 = 138B8C: Entirety of sub_8138B8C (see 244disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
 		  Requires in future: DecompressBoxMon (j3C5D20)
-- 13917E: 52 18 -> 0A 43 (guessing it fixes a bug in the move-reordering function, but can't identify what the bug was)
++ 13917E: 52 18 -> 0A 43 (guessing it fixes a bug in the move-reordering function, but can't identify what the bug was)
 = 1391EC: Entirety of sub_81391EC (see 245disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
 		  Requires in future: DecompressBoxMon (j3C5D20)
 = 139328: Entirety of sub_8139328 (see 246disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
 		  Requires in future: DecompressBoxMon (j3C5D20)
-- 1396D2: 07 22 2A 23 -> 06 22 3A 23 (jp 05 22 27 23 -> 04 22 37 23) (move something on summary screen down/left, TEST)
-- 1399AC, 1399F8, 139A24: 3C -> D0
++ 1396D2: 07 22 2A 23 -> 06 22 3A 23 (jp 05 22 27 23 -> 04 22 37 23) (move something on summary screen down/left, no idea what)
+! 1399AC, 1399F8, 139A24: 3C -> D0
   1399B0, 1399FC, 139A28: 41 -> 38
-		  Implements: move something on summary screen up/right, TEST
-- 139A6A, 139EC6: 01 70 -> 00 00 (possibly don't flip pkmn sprites in summary screen, TEST)
-- 139CC0: 0A D1 -> 00 00 (pokeball on summary screen is always taken from mon data, ignoring unknown case (TEST on egg))
-- 139CF4: 6A 21 58 22 -> 98 21 28 22 (move pokeball on summary screen up/right)
-- 139E5C: 18 -> E0 (move some kind of pokemon icon on summary screen right, TEST)
-- 13A028: 98 -> 20 (move something on summary screen left, TEST)
+		  Implements: move pokemon sprite on summary screen up/right
+		  Relies on: layout rework to make this not look broken
++ 139A6A, 139EC6: 01 70 -> 00 00 (don't flip pokemon sprites in summary screen)
++ 139CC0: 0A D1 -> 00 00 (pokeball on summary screen is always taken from mon data, ignoring unknown case (TEST on egg once pokeball inheritance works))
+! 139CF4: 6A 21 58 22 -> 98 21 28 22
+		  Implements: move pokeball on summary screen up/right
+		  Relies on: layout rework to make this not look broken
+! 139E5C: 18 -> E0
+		  Implements: move pokemon icon on summary screen right
+		  Relies on: layout rework to make this not look broken
+! 13A028: 98 -> 20
+		  Implements: move move selection cursor on summary screen left
+		  Relies on: layout rework to make this not look broken
 = 13A124: Entirety of sub_813A124 (see 247disasm)
 		  Implements: possibly move category icons on summary screen
 		  Required knowledge: j0203B0E1, j06009140
 		  Requires in future: fn_D7DEC0_J
-- 13A42E: 10 -> BA
++ 13A42E: 10 -> BA
   13A434: 2D -> 20
   13A44C: 10 -> 9A
   13A452: 26 -> 1C
-		  Implements: need more info, TEST
-- 13A57E: 24 -> 59 (move something on summary screen right, TEST)
-- 13AC24: 72 21 5C 22 -> A4 21 24 22 (move something on summary screen up/right, TEST)
-- 13AD98: 72 -> A4
+		  Implements: no idea what this does
+! 13A57E: 24 -> 59
+		  Implements: move HP bar on summary screen down
+		  Relies on: layout rework to make this not look broken
++ 13AC24: 72 21 5C 22 -> A4 21 24 22 (move something on summary screen up/right, no idea what)
++ 13AD98: 72 -> A4
   13AD9E: 5C -> 24
-		  Implements: need more info, TEST
-- 13AF26: 08 -> AC
+		  Implements: no idea what this does
+! 13AF26: 08 -> AC
   13AF2C: 18 -> 24
   13AF40: 6A -> AC
   13AF46: 28 -> 24
-		  Implements: need more info, TEST
-- 13B040: 14 -> E0
+		  Implements: move shiny star on summary screen down/right
+		  Relies on: layout rework to make this not look broken
++ 13B040: 14 -> E0
   13B046: 5B -> 5C
-		  Implements: move something on summary screen down/right, TEST
+		  Implements: move something on summary screen down/right, no idea what
 ! 13B870: Part of sub_813B870 (see 248disasm)
 		  Implements: replaces the help system listener with a (very obfuscated) check that the SetSaveBlocksPointers and MoveSaveBlocks_ResetHeap functions were not altered; if they were, the game instantly crashes - this is checked every frame
 		  Note: don't bother implementing this, thanks
-- 13B8E4: 00 D1 -> 00 00 (disables the help system; the above change does that already but I refuse to implement that)
-- 13D31C: Entirety of sub_813D31C (see 249disasm)
++ 13B8E4: 00 D1 -> 00 00 (disables the help system; the above change does that already but I refuse to implement that)
++ 13D31C: Entirety of sub_813D31C (see 249disasm)
 		  Implements: displayed berry tag number in berry pouch is independent of internal item order - read from what G3T calls "mystery byte 02"
-		  Note: check that offset 0x15j -> 0x19(?)e is actually mystery byte 02
-- 13D428: 77 -> B0 (change to new final item for back icon) (MERGE THIS CHECK)
-- 13D668: 98 -> 88 (supposedly moves scroll arrows left in berry pouch, not sure what it really does)
++ 13D668: 98 -> 88 (supposedly moves scroll arrows left in berry pouch, not sure what it really does)
 = 13ED3C: Entirety of sub_813ED3C (see 250disasm)
 		  Implements: Need more info (possibly allows for a new type of hidden items (7), which contains more than 1x of the item? + something else itemfinder related (dings?))
 		  Requires in future: fn_43FD84_J, fn_43FD94_J, fn_43FDA2_J
-- 13EED0: E0 -> F0
++ 13EED0: E0 -> F0
   13EED2: D2 02 -> 52 03
   13EED8: 0E -> 3C
   13EEE0, 13EEE8: 05 -> 0A
 		  Implements: doubles the itemfinder radius
-- 13EF9C: Entirety of sub_813EF9C (see 251disasm)
-		  Implements: number of itemfinder dings gradually increases as item is closer (instead of just close = 4 and far = 2)
++ 13EF9C: Entirety of sub_813EF9C (see 251disasm)
+		  Implements: number of itemfinder arrows gradually increases as item is closer (instead of just close = 4 and far = 2)
 ! 15F9B4-1C68EC: [event scripts, just use advancemap for this part later]
-- 1C8146: D4 -> D8 (remove a sound effect from Thunderbolt, this might fix the associated glitch?)
-- 1CA99F: 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 05 0B 02 0D 04 01 08 ->
++ 1C8146: D4 -> D8 (remove a sound effect from Thunderbolt, this might fix the associated glitch?)
++ 1CA99F: 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 05 0B 02 0D 04 01 08 ->
 		  1C 80 00 C0 0C 05 04 0C 05 0B 02 0D 04 01 08 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
 		  Implements: makes Agility animation script less redundant but doesn't seem to actually do anything functionally
-- 1CADE9: 19 -> 1C (properly loop a sound in Sky Attack's script, fixing a glitch specific to attacking your partner)
++ 1CADE9: 19 -> 1C (properly loop a sound in Sky Attack's script, fixing a glitch specific to attacking your partner)
 = 1D51AA: 01 -> 03
   1D51BA: 03 -> 01
   1D51BC: CD 52 -> 6D 53
@@ -1788,16 +1846,15 @@ stray text:
   1D89D9: 06 -> 07
   1D8E7B: 0B -> 0C
 		  Implements: part of moveend refactor
-- 1D6CCD: 01 60 69 1D 08 -> 00 00 00 00 00 (Roar/Whirlwind have perfect accuracy)
-- 1D6D52, 1D766A: 40 -> 00 (Endure no longer works against multihit moves)
-- 1D7011: Entirety of BattleScript_EffectRecoilIfMiss (see movescripts.txt)
++ 1D6CCD: 01 60 69 1D 08 -> 00 00 00 00 00 (Roar/Whirlwind have perfect accuracy)
++ 1D6D51, 1D766A: 40 -> 00 (Endure displays the pokemon getting hit and enduring all hits of multihit moves, not the old behavior of it hitting once then getting endured)
++ 1D7011: Entirety of BattleScript_EffectRecoilIfMiss (see movescripts.txt)
 		  Implements: [High] Jump Kick crashes through Ghost-types, always does half HP recoil
 		  Relies on: atk80_manipulatedamage changes
-- 1D71F6: Part of BattleScript_EffectParalyze (see movescripts.txt)
++ 1D71F6: Part of BattleScript_EffectParalyze (see movescripts.txt)
 		  Implements: Electric-type paralysis immunity (Thunder Wave)
-		  Note: might cause ground-types to be paralyzed by Thunder Wave, check
-- 1D7581, 1D81B5, 1D82AB, 1D8417: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything)
-- 1D7747: 17 -> 27 (Minimize +1 -> +2 evasion)
++ 1D7581, 1D81B5, 1D82AB, 1D8417: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything)
++ 1D7747: 17 -> 27 (Minimize +1 -> +2 evasion)
 = 1D7BF5: 60 -> 30 (part of weather refactor - sun)
 = 1D80BA: 09 0A -> 00 00
 		  Implements: removes Charge animation (moved to elsewhere)
@@ -1809,9 +1866,9 @@ stray text:
 		  Relies on: script at j17D18
 		  Note: implementation is actually caused by atk88_negativedamage changes, this just enables that to work on Leech Seed
 		  Note: Looks broken for Magic Guard vs Liquid Ooze case
-- 1D9366: 1C -> 16 (resets the statchanger, needed for Intimidate to keep working after addition of Defiant)
-- 1DD0C9: C5 -> CC (need more info (m4a), TEST)
-- 1E3B27: D0 -> E0 (need more info (isagbprn), TEST)
++ 1D9366: 1C -> 16 (resets the statchanger, needed for Intimidate to keep working after addition of Defiant)
++ 1DD0C9: C5 -> CC (no idea what this does (m4a))
++ 1E3B27: D0 -> E0 (no idea what this does (isagbprn))
 ! 1EA14C+: [text and data, go through here thoroughly later; jp 1D9634+]
 
 
