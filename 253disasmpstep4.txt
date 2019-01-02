@@ -1,0 +1,21 @@
+atkD9_scaledamagebyhealthratio()
+{
+	if(gDynamicBasePower == 0)
+	{
+		battler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1]);
+		power = gBattleMoves[gCurrentMove].power;
+		gDynamicBasePower = power * (gBattleMons[battler].hp / gBattleMons[battler].maxHP);
+		
+		if(gDynamicBasePower == 0)
+		{
+			if(power == 0)
+				gDynamicBasePower = 0;
+			else
+				gDynamicBasePower = 1;
+		}
+		// elseif(gDynamicBasePower == 0) // never executed, obviously
+		// 	gDynamicBasePower = 1;
+	}
+	
+	gBattleScriptCurrInstr += 2;
+}

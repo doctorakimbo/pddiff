@@ -1,0 +1,7 @@
+nullsub_2A()
+{
+	if(gBattleResources->0x14.8 & gAIScriptPtr[1])
+		gAIScriptPtr = T1_READ_PTR(gAIScriptPtr[2]);
+	else
+		gAIScriptPtr += 6;
+}

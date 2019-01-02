@@ -1,0 +1,14 @@
+atkD9_scaledamagebyhealthratio()
+{
+	if(gDynamicBasePower == 0)
+	{
+		battler = gBattlerAttacker;
+		power = gBattleMoves[gCurrentMove].power;
+		gDynamicBasePower = power * (gBattleMons[battler].hp / gBattleMons[battler].maxHP);
+		
+		if(gDynamicBasePower == 0)
+			gDynamicBasePower = 1;
+	}
+	
+	gBattleScriptCurrInstr++;
+}

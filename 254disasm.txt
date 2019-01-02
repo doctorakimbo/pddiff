@@ -1,0 +1,22 @@
+lbl1: @1830C0
+r0 = gBattleResources
+r0 = *r0
+r0 = *(r0 + 0x14)
+r3 = gAIScriptPtr
+r2 = *r3
+r0 = *(r0 + 8)
+r1 = *(r2 + 1)
+r0 &= r1
+if(r0 == 0) goto lbl2
+
+r1 = *(r2 + 2)
+*r3 = T1_READ_PTR(r1)
+goto lbl3
+
+lbl2:
+r0 = r2 + 6
+*r3 = r0
+goto lbl3
+
+lbl3:
+return

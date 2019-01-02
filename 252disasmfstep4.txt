@@ -1,0 +1,5 @@
+atkAA_setdestinybond()
+{
+	gBattleMons[gBattlerAttacker].status2 |= STATUS2_DESTINY_BOND;
+	gBattleScriptCurrInstr++
+}

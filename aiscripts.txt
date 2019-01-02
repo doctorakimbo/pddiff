@@ -1,0 +1,1239 @@
+AI_CheckBadMove (fj): @1BDC30
+
+24 13 00 9C DC 1B 08 31 00 EF E3 1B 08 2F 00 13 0A 62 DC 1B 08 13 0B 6F DC 1B 08 13 12 7C DC 1B 08 13 19 89 DC 1B 08 13 1A 94 DC 1B 08 59 9C DC 1B 08 22 04 26 0D F2 E3 1B 08 59 9C DC 1B 08 22 04 26 0B F2 E3 1B 08 59 9C DC 1B 08 22 04 26 0A F2 E3 1B 08 59 9C DC 1B 08 31 50 9C DC 1B 08 59 EF E3 1B 08 22 04 26 04 EF E3 1B 08 2F 00 14 2B E3 DC 1B 08 19 2D 00 EF E3 1B 08 19 2E 00 EF E3 1B 08 19 2F 00 EF E3 1B 08 19 30 00 EF E3 1B 08 19 67 00 EF E3 1B 08 19 AD 00 EF E3 1B 08 19 FD 00 EF E3 1B 08 19 3F 01 EF E3 1B 08 19 40 01 EF E3 1B 08 37 01 72 DF 1B 08 37 07 8B DF 1B 08 37 08 C4 DF 1B 08 37 0A DC DF 1B 08 37 0B E5 DF 1B 08 37 0C EE DF 1B 08 37 0D F7 DF 1B 08 37 0E 00 E0 1B 08 37 0F 09 E0 1B 08 37 10 12 E0 1B 08 37 12 1B E0 1B 08 37 13 30 E0 1B 08 37 14 3D E0 1B 08 37 15 4A E0 1B 08 37 16 57 E0 1B 08 37 17 64 E0 1B 08 37 18 79 E0 1B 08 37 19 90 E0 1B 08 37 1A 6E E1 1B 08 37 1C 06 E1 1B 08 37 21 17 E1 1B 08 37 23 46 E1 1B 08 37 26 51 E1 1B 08 37 27 6E E1 1B 08 37 28 6E E1 1B 08 37 2E 88 E1 1B 08 37 2F 93 E1 1B 08 37 31 9E E1 1B 08 37 32 DC DF 1B 08 37 33 E5 DF 1B 08 37 34 EE DF 1B 08 37 35 F7 DF 1B 08 37 36 00 E0 1B 08 37 37 09 E0 1B 08 37 38 12 E0 1B 08 37 3A 1B E0 1B 08 37 3B 30 E0 1B 08 37 3C 3D E0 1B 08 37 3D 4A E0 1B 08 37 3E 57 E0 1B 08 37 3F 64 E0 1B 08 37 40 79 E0 1B 08 37 41 B1 E1 1B 08 37 42 17 E1 1B 08 37 43 BC E1 1B 08 37 4F D5 E1 1B 08 37 50 6E E1 1B 08 37 54 E7 E1 1B 08 37 56 02 E2 1B 08 37 57 6E E1 1B 08 37 58 6E E1 1B 08 37 59 6E E1 1B 08 37 5A 0A E2 1B 08 37 5C 12 E2 1B 08 37 61 12 E2 1B 08 37 63 6E E1 1B 08 37 6A 1D E2 1B 08 37 6B AF DF 1B 08 37 6C 12 E0 1B 08 37 6D 28 E2 1B 08 37 70 39 E2 1B 08 37 71 44 E2 1B 08 37 72 4F E2 1B 08 37 73 5A E2 1B 08 37 76 9E E1 1B 08 37 78 62 E2 1B 08 37 79 6E E1 1B 08 37 7A 6E E1 1B 08 37 7B 6E E1 1B 08 37 7C A2 E2 1B 08 37 7E 66 E1 1B 08 37 7F BD E2 1B 08 37 82 6E E1 1B 08 37 88 C6 E2 1B 08 37 89 CE E2 1B 08 37 8E D5 DF 1B 08 37 8F 90 E0 1B 08 37 90 6E E1 1B 08 37 91 6E E1 1B 08 37 94 D6 E2 1B 08 37 99 EF E3 1B 08 37 9C E5 DF 1B 08 37 9E E1 E2 1B 08 37 A0 EA E2 1B 08 37 A1 F3 E2 1B 08 37 A2 F3 E2 1B 08 37 A4 02 E3 1B 08 37 A5 0A E3 1B 08 37 A6 9E E1 1B 08 37 A7 15 E3 1B 08 37 A8 AD E2 1B 08 37 AA 6E E1 1B 08 37 B0 3A E3 1B 08 37 B1 42 E3 1B 08 37 B5 4B E3 1B 08 37 B6 6E E1 1B 08 37 B8 56 E3 1B 08 37 BC 42 E3 1B 08 37 BD 6E E1 1B 08 37 C0 5F E3 1B 08 37 C1 6A E3 1B 08 37 C4 6E E1 1B 08 37 C9 75 E3 1B 08 37 CD 80 E3 1B 08 37 CE 91 E3 1B 08 37 D0 A2 E3 1B 08 37 D2 B3 E3 1B 08 37 D3 BE E3 1B 08 37 D4 CF E3 1B 08 5A 2F 00 13 0F EF E3 1B 08 13 48 EF E3 1B 08 09 00 FF 00 00 00 EF E3 1B 08 5A 31 00 EF E3 1B 08 2F 00 13 06 EF E3 1B 08 2C 01 14 00 AE DF 1B 08 2C 00 14 00 EF E3 1B 08 59 E0 E3 1B 08 5A 0B 00 00 00 00 08 EF E3 1B 08 0A 00 07 00 00 00 EC E3 1B 08 5A 0A 00 07 00 00 00 EC E3 1B 08 31 00 EF E3 1B 08 5A 05 01 33 EF E3 1B 08 3B 01 01 0C EF E3 1B 08 5A 3B 01 02 0C EF E3 1B 08 5A 3B 01 03 0C EF E3 1B 08 5A 3B 01 04 0C EF E3 1B 08 5A 3B 01 05 0C EF E3 1B 08 5A 3B 01 06 0C EF E3 1B 08 5A 3B 01 07 0C EF E3 1B 08 5A 3B 00 01 00 EF E3 1B 08 2F 00 13 34 EF E3 1B 08 59 81 E0 1B 08 3B 00 02 00 EF E3 1B 08 59 81 E0 1B 08 3B 00 03 00 EF E3 1B 08 59 81 E0 1B 08 3B 00 04 00 EF E3 1B 08 59 81 E0 1B 08 3B 00 05 00 EF E3 1B 08 59 81 E0 1B 08 3B 00 06 00 EF E3 1B 08 2F 00 13 33 EF E3 1B 08 59 81 E0 1B 08 3B 00 07 00 EF E3 1B 08 2F 00 13 1D EF E3 1B 08 13 49 EF E3 1B 08 5A 39 01 01 06 05 E1 1B 08 39 01 02 06 05 E1 1B 08 39 01 03 06 05 E1 1B 08 39 01 04 06 05 E1 1B 08 39 01 05 06 05 E1 1B 08 39 01 06 06 05 E1 1B 08 39 01 07 06 05 E1 1B 08 3A 00 01 06 05 E1 1B 08 3A 00 02 06 05 E1 1B 08 3A 00 03 06 05 E1 1B 08 3A 00 04 06 05 E1 1B 08 3A 00 05 06 05 E1 1B 08 3A 00 06 06 05 E1 1B 08 3A 00 07 06 05 E1 1B 08 59 EF E3 1B 08 5A 2C 00 13 00 EF E3 1B 08 2F 00 13 15 EF E3 1B 08 5A 22 00 13 08 EF E3 1B 08 13 03 EF E3 1B 08 22 02 13 08 EF E3 1B 08 13 03 EF E3 1B 08 2F 00 13 11 EF E3 1B 08 09 00 FF 00 00 00 EF E3 1B 08 5A 0F 01 02 00 00 00 EC E3 1B 08 5A 31 00 EF E3 1B 08 2F 00 13 05 EF E3 1B 08 5B 01 EF E3 1B 08 5A 2F 00 13 1A EF E3 1B 08 31 00 EF E3 1B 08 2F 00 14 19 87 E1 1B 08 31 50 87 E1 1B 08 59 EF E3 1B 08 5A 0F 01 00 01 00 00 EC E3 1B 08 5A 0B 01 00 00 10 00 EF E3 1B 08 5A 0B 00 07 00 00 00 E9 E3 1B 08 2F 00 13 14 EF E3 1B 08 5A 0F 01 01 00 00 00 EC E3 1B 08 5A 31 00 EF E3 1B 08 2F 00 13 07 EF E3 1B 08 09 00 FF 00 00 00 EF E3 1B 08 5A 0B 01 00 00 00 01 EC E3 1B 08 05 01 1A EF E3 1B 08 5A 0D 00 04 00 00 00 EF E3 1B 08 22 00 13 0C EF E3 1B 08 22 02 13 0C EF E3 1B 08 5A 43 00 00 EC E3 1B 08 5A 43 00 01 EC E3 1B 08 5A 0A 01 07 00 00 00 EC E3 1B 08 5A 0B 00 00 00 00 04 EF E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 02 0C EC E3 1B 08 5A 0F 00 10 00 00 00 EF E3 1B 08 5A 0B 00 00 00 00 20 EF E3 1B 08 5A 0D 00 20 00 00 00 EF E3 1B 08 5A 36 13 02 EC E3 1B 08 5A 0B 00 00 00 0F 00 EF E3 1B 08 2F 00 13 0C EF E3 1B 08 49 01 13 00 87 E2 1B 08 13 FE 94 E2 1B 08 59 EF E3 1B 08 49 00 13 FE A1 E2 1B 08 59 EF E3 1B 08 49 00 13 00 A1 E2 1B 08 59 EF E3 1B 08 5A 0F 01 20 00 00 00 EC E3 1B 08 5A 3B 00 01 00 EF E3 1B 08 3B 00 04 00 EC E3 1B 08 2C 01 13 00 EF E3 1B 08 5A 36 13 01 EC E3 1B 08 5A 36 13 00 EC E3 1B 08 5A 0F 00 40 00 00 00 EF E3 1B 08 5A 4A 01 13 00 EF E3 1B 08 5A 4B 01 13 03 EF E3 1B 08 5A 31 00 EF E3 1B 08 4B 01 13 00 EF E3 1B 08 5A 36 13 03 EC E3 1B 08 5A 0B 00 00 00 00 80 EF E3 1B 08 5A 2F 00 13 29 EF E3 1B 08 09 00 FF 00 00 00 EF E3 1B 08 31 00 EF E3 1B 08 31 14 EF E3 1B 08 31 0A EF E3 1B 08 5A 4C 13 00 EF E3 1B 08 5A 2F 00 13 3C EF E3 1B 08 5A 0D 01 00 04 00 00 EF E3 1B 08 5A 4D 01 13 00 EF E3 1B 08 5A 0D 01 00 20 00 00 EF E3 1B 08 5A 0A 01 D8 00 00 00 EF E3 1B 08 5A 0D 01 00 00 01 00 EF E3 1B 08 5A 3B 00 01 00 EF E3 1B 08 3B 00 02 00 EC E3 1B 08 5A 3B 01 02 0C EF E3 1B 08 3B 01 05 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 02 0C EC E3 1B 08 5A 0D 01 00 00 02 00 EF E3 1B 08 5A 3B 01 04 0C EF E3 1B 08 3B 01 05 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 03 0C EC E3 1B 08 5A 04 FF 5A 04 FE 5A 04 FD 5A 04 FB 5A 04 F8 5A 04 F6 5A 04 F4 5A 04 01 5A 04 02 5A 04 03 5A 04 05 5A
+
+get_how_powerful_move_is
+if_equal 0x0, [9C DC 1B 08]
+if_type_effectiveness 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0xA, [62 DC 1B 08]
+if_equal 0xB, [6F DC 1B 08]
+if_equal 0x12, [7C DC 1B 08]
+if_equal 0x19, [89 DC 1B 08]
+if_equal 0x1A, [94 DC 1B 08]
+goto [9C DC 1B 08]
+
+[62 DC 1B 08]:
+get_type 0x4
+if_equal_ 0xD, [F2 E3 1B 08]
+goto [9C DC 1B 08]
+
+[6F DC 1B 08]:
+get_type 0x4
+if_equal_ 0xB, [F2 E3 1B 08]
+goto [9C DC 1B 08]
+
+[7C DC 1B 08]:
+get_type 0x4
+if_equal_ 0xA, [F2 E3 1B 08]
+goto [9C DC 1B 08]
+
+[89 DC 1B 08]:
+if_type_effectiveness 0x50, [9C DC 1B 08]
+goto [EF E3 1B 08]
+
+[94 DC 1B 08]:
+get_type 0x4
+if_equal_ 0x4, [EF E3 1B 08]
+goto [9C DC 1B 08]
+
+[9C DC 1B 08]:
+get_ability 0x0
+if_not_equal 0x2B, [E3 DC 1B 08]
+if_move 0x2D, [EF E3 1B 08]
+if_move 0x2E, [EF E3 1B 08]
+if_move 0x2F, [EF E3 1B 08]
+if_move 0x30, [EF E3 1B 08]
+if_move 0x67, [EF E3 1B 08]
+if_move 0xAD, [EF E3 1B 08]
+if_move 0xFD, [EF E3 1B 08]
+if_move 0x13F, [EF E3 1B 08]
+if_move 0x140, [EF E3 1B 08]
+goto [E3 DC 1B 08]
+
+[E3 DC 1B 08]:
+if_effect 0x1, [72 DF 1B 08]
+if_effect 0x7, [8B DF 1B 08]
+if_effect 0x8, [C4 DF 1B 08]
+if_effect 0xA, [DC DF 1B 08]
+if_effect 0xB, [E5 DF 1B 08]
+if_effect 0xC, [EE DF 1B 08]
+if_effect 0xD, [F7 DF 1B 08]
+if_effect 0xE, [00 E0 1B 08]
+if_effect 0xF, [09 E0 1B 08]
+if_effect 0x10, [12 E0 1B 08]
+if_effect 0x12, [1B E0 1B 08]
+if_effect 0x13, [30 E0 1B 08]
+if_effect 0x14, [3D E0 1B 08]
+if_effect 0x15, [4A E0 1B 08]
+if_effect 0x16, [57 E0 1B 08]
+if_effect 0x17, [64 E0 1B 08]
+if_effect 0x18, [79 E0 1B 08]
+if_effect 0x19, [90 E0 1B 08]
+if_effect 0x1A, [6E E1 1B 08]
+if_effect 0x1C, [06 E1 1B 08]
+if_effect 0x21, [17 E1 1B 08]
+if_effect 0x23, [46 E1 1B 08]
+if_effect 0x26, [51 E1 1B 08]
+if_effect 0x27, [6E E1 1B 08]
+if_effect 0x28, [6E E1 1B 08]
+if_effect 0x2E, [88 E1 1B 08]
+if_effect 0x2F, [93 E1 1B 08]
+if_effect 0x31, [9E E1 1B 08]
+if_effect 0x32, [DC DF 1B 08]
+if_effect 0x33, [E5 DF 1B 08]
+if_effect 0x34, [EE DF 1B 08]
+if_effect 0x35, [F7 DF 1B 08]
+if_effect 0x36, [00 E0 1B 08]
+if_effect 0x37, [09 E0 1B 08]
+if_effect 0x38, [12 E0 1B 08]
+if_effect 0x3A, [1B E0 1B 08]
+if_effect 0x3B, [30 E0 1B 08]
+if_effect 0x3C, [3D E0 1B 08]
+if_effect 0x3D, [4A E0 1B 08]
+if_effect 0x3E, [57 E0 1B 08]
+if_effect 0x3F, [64 E0 1B 08]
+if_effect 0x40, [79 E0 1B 08]
+if_effect 0x41, [B1 E1 1B 08]
+if_effect 0x42, [17 E1 1B 08]
+if_effect 0x43, [BC E1 1B 08]
+if_effect 0x4F, [D5 E1 1B 08]
+if_effect 0x50, [6E E1 1B 08]
+if_effect 0x54, [E7 E1 1B 08]
+if_effect 0x56, [02 E2 1B 08]
+if_effect 0x57, [6E E1 1B 08]
+if_effect 0x58, [6E E1 1B 08]
+if_effect 0x59, [6E E1 1B 08]
+if_effect 0x5A, [0A E2 1B 08]
+if_effect 0x5C, [12 E2 1B 08]
+if_effect 0x61, [12 E2 1B 08]
+if_effect 0x63, [6E E1 1B 08]
+if_effect 0x6A, [1D E2 1B 08]
+if_effect 0x6B, [AF DF 1B 08]
+if_effect 0x6C, [12 E2 1B 08]
+if_effect 0x6D, [28 E2 1B 08]
+if_effect 0x70, [39 E2 1B 08]
+if_effect 0x71, [44 E2 1B 08]
+if_effect 0x72, [4F E2 1B 08]
+if_effect 0x73, [5A E2 1B 08]
+if_effect 0x76, [9E E1 1B 08]
+if_effect 0x78, [62 E2 1B 08]
+if_effect 0x79, [6E E1 1B 08]
+if_effect 0x7A, [6E E1 1B 08]
+if_effect 0x7B, [6E E1 1B 08]
+if_effect 0x7C, [A2 E2 1B 08]
+if_effect 0x7E, [66 E1 1B 08]
+if_effect 0x7F, [BD E2 1B 08]
+if_effect 0x82, [6E E1 1B 08]
+if_effect 0x88, [C6 E2 1B 08]
+if_effect 0x89, [CE E2 1B 08]
+if_effect 0x8E, [D5 DF 1B 08]
+if_effect 0x8F, [90 E0 1B 08]
+if_effect 0x90, [6E E1 1B 08]
+if_effect 0x91, [6E E1 1B 08]
+if_effect 0x94, [D6 E2 1B 08]
+if_effect 0x99, [EF E3 1B 08]
+if_effect 0x9C, [E5 DF 1B 08]
+if_effect 0x9E, [E1 E2 1B 08]
+if_effect 0xA0, [EA E2 1B 08]
+if_effect 0xA1, [F3 E2 1B 08]
+if_effect 0xA2, [F3 E2 1B 08]
+if_effect 0xA4, [02 E3 1B 08]
+if_effect 0xA5, [0A E3 1B 08]
+if_effect 0xA6, [9E E1 1B 08]
+if_effect 0xA7, [15 E3 1B 08]
+if_effect 0xA8, [AD E2 1B 08]
+if_effect 0xAA, [6E E1 1B 08]
+if_effect 0xB0, [3A E3 1B 08]
+if_effect 0xB1, [42 E3 1B 08]
+if_effect 0xB5, [4B E3 1B 08]
+if_effect 0xB6, [6E E1 1B 08]
+if_effect 0xB8, [56 E3 1B 08]
+if_effect 0xBC, [42 E3 1B 08]
+if_effect 0xBD, [6E E1 1B 08]
+if_effect 0xC0, [5F E3 1B 08]
+if_effect 0xC1, [6A E3 1B 08]
+if_effect 0xC4, [6E E1 1B 08]
+if_effect 0xC9, [75 E3 1B 08]
+if_effect 0xCD, [80 E3 1B 08]
+if_effect 0xCE, [91 E3 1B 08]
+if_effect 0xD0, [A2 E3 1B 08]
+if_effect 0xD2, [B3 E3 1B 08]
+if_effect 0xD3, [BE E3 1B 08]
+if_effect 0xD4, [CF E3 1B 08]
+end
+
+[72 DF 1B 08]:
+get_ability 0x0
+if_equal 0xF, [EF E3 1B 08]
+if_equal 0x48, [EF E3 1B 08]
+if_status 0x0, 0xFF, [EF E3 1B 08]
+end
+
+[8B DF 1B 08]:
+if_type_effectiveness 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0x6, [EF E3 1B 08]
+count_usable_party_mons 0x1
+if_not_equal 0x0, [AE DF 1B 08]
+count_usable_party_mons 0x0
+if_not_equal 0x0, [EF E3 1B 08]
+goto [AE DF 1B 08]
+
+[AE DF 1B 08]:
+goto [E0 E3 1B 08]
+
+[AF DF 1B 08]:
+if_status2 0x0, 0x8000000, [EF E3 1B 08]
+if_not_status 0x0, 0x7, [EC E3 1B 08]
+end
+
+[C4 DF 1B 08]:
+if_not_status 0x0, 0x7, [EC E3 1B 08]
+if_type_effectiveness 0x0, [EF E3 1B 08]
+end
+
+[D5 DF 1B 08]:
+if_hp_less_than 0x1, 0x33, [EF E3 1B 08]
+goto [DC DF 1B 08]
+
+[DC DF 1B 08]:
+if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
+end
+
+[E5 DF 1B 08]:
+if_stat_level_equal 0x1, 0x2, 0xC, [EF E3 1B 08]
+end
+
+[EE DF 1B 08]:
+if_stat_level_equal 0x1, 0x3, 0xC, [EF E3 1B 08]
+end
+
+[F7 DF 1B 08]:
+if_stat_level_equal 0x1, 0x4, 0xC, [EF E3 1B 08]
+end
+
+[00 E0 1B 08]:
+if_stat_level_equal 0x1, 0x5, 0xC, [EF E3 1B 08]
+end
+
+[09 E0 1B 08]:
+if_stat_level_equal 0x1, 0x6, 0xC, [EF E3 1B 08]
+end
+
+[12 E0 1B 08]:
+if_stat_level_equal 0x1, 0x7, 0xC, [EF E3 1B 08]
+end
+
+[1B E0 1B 08]:
+if_stat_level_equal 0x0, 0x1, 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0x34, [EF E3 1B 08]
+goto [81 E0 1B 08]
+
+[30 E0 1B 08]:
+if_stat_level_equal 0x0, 0x2, 0x0, [EF E3 1B 08]
+goto [81 E0 1B 08]
+
+[3D E0 1B 08]:
+if_stat_level_equal 0x0, 0x3, 0x0, [EF E3 1B 08]
+goto [81 E0 1B 08]
+
+[4A E0 1B 08]:
+if_stat_level_equal 0x0, 0x4, 0x0, [EF E3 1B 08]
+goto [81 E0 1B 08]
+
+[57 E0 1B 08]:
+if_stat_level_equal 0x0, 0x5, 0x0, [EF E3 1B 08]
+goto [81 E0 1B 08]
+
+[64 E0 1B 08]:
+if_stat_level_equal 0x0, 0x6, 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0x33, [EF E3 1B 08]
+goto [81 E0 1B 08]
+
+[79 E0 1B 08]:
+if_stat_level_equal 0x0, 0x7, 0x0, [EF E3 1B 08]
+goto [81 E0 1B 08]
+
+[81 E0 1B 08]:
+get_ability 0x0
+if_equal 0x1D, [EF E3 1B 08]
+if_equal 0x49, [EF E3 1B 08]
+end
+
+[90 E0 1B 08]:
+if_stat_level_less_than 0x1, 0x1, 0x6, [05 E1 1B 08]
+if_stat_level_less_than 0x1, 0x2, 0x6, [05 E1 1B 08]
+if_stat_level_less_than 0x1, 0x3, 0x6, [05 E1 1B 08]
+if_stat_level_less_than 0x1, 0x4, 0x6, [05 E1 1B 08]
+if_stat_level_less_than 0x1, 0x5, 0x6, [05 E1 1B 08]
+if_stat_level_less_than 0x1, 0x6, 0x6, [05 E1 1B 08]
+if_stat_level_less_than 0x1, 0x7, 0x6, [05 E1 1B 08]
+if_stat_level_more_than 0x0, 0x1, 0x6, [05 E1 1B 08]
+if_stat_level_more_than 0x0, 0x2, 0x6, [05 E1 1B 08]
+if_stat_level_more_than 0x0, 0x3, 0x6, [05 E1 1B 08]
+if_stat_level_more_than 0x0, 0x4, 0x6, [05 E1 1B 08]
+if_stat_level_more_than 0x0, 0x5, 0x6, [05 E1 1B 08]
+if_stat_level_more_than 0x0, 0x6, 0x6, [05 E1 1B 08]
+if_stat_level_more_than 0x0, 0x7, 0x6, [05 E1 1B 08]
+goto [EF E3 1B 08]
+
+[05 E1 1B 08]:
+end
+
+[06 E1 1B 08]:
+count_usable_party_mons 0x0
+if_equal 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0x15, [EF E3 1B 08]
+end
+
+[17 E1 1B 08]:
+get_type 0x0
+if_equal 0x8, [EF E3 1B 08]
+if_equal 0x3, [EF E3 1B 08]
+get_type 0x2
+if_equal 0x8, [EF E3 1B 08]
+if_equal 0x3, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0x11, [EF E3 1B 08]
+if_status 0x0, 0xFF, [EF E3 1B 08]
+end
+
+[46 E1 1B 08]:
+if_side_affecting 0x1, 0x2, [EC E3 1B 08]
+end
+
+[51 E1 1B 08]:
+if_type_effectiveness 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0x5, [EF E3 1B 08]
+if_level_cond 0x1, [EF E3 1B 08]
+end
+
+[66 E1 1B 08]:
+get_ability 0x0
+if_equal 0x1A, [EF E3 1B 08]
+goto [6E E1 1B 08]
+
+[6E E1 1B 08]:
+if_type_effectiveness 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_not_equal 0x19, [87 E1 1B 08]
+if_type_effectiveness 0x50, [87 E1 1B 08]
+goto [EF E3 1B 08]
+
+[87 E1 1B 08]:
+end
+
+[88 E1 1B 08]:
+if_side_affecting 0x1, 0x100, [EC E3 1B 08]
+end
+
+[93 E1 1B 08]:
+if_status2 0x1, 0x100000, [EF E3 1B 08]
+end
+
+[9E E1 1B 08]:
+if_status2 0x0, 0x7, [E9 E3 1B 08]
+get_ability 0x0
+if_equal 0x14, [EF E3 1B 08]
+end
+
+[B1 E1 1B 08]:
+if_side_affecting 0x1, 0x1, [EC E3 1B 08]
+end
+
+[BC E1 1B 08]:
+if_type_effectiveness 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0x7, [EF E3 1B 08]
+if_status 0x0, 0xFF, [EF E3 1B 08]
+end
+
+[D5 E1 1B 08]:
+if_status2 0x1, 0x1000000, [EC E3 1B 08]
+if_hp_less_than 0x1, 0x1A, [EF E3 1B 08]
+end
+
+[E7 E1 1B 08]:
+if_status3 0x0, 0x4, [EF E3 1B 08]
+get_type 0x0
+if_equal 0xC, [EF E3 1B 08]
+get_type 0x2
+if_equal 0xC, [EF E3 1B 08]
+end
+
+[02 E2 1B 08]:
+if_any_move_disabled_or_encored 0x0, 0x0, [EC E3 1B 08]
+end
+
+[0A E2 1B 08]:
+if_any_move_disabled_or_encored 0x0, 0x1, [EC E3 1B 08]
+end
+
+[12 E2 1B 08]:
+if_not_status 0x1, 0x7, [EC E3 1B 08]
+end
+
+[1D E2 1B 08]:
+if_status2 0x0, 0x4000000, [EF E3 1B 08]
+end
+
+[28 E2 1B 08]:
+if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
+if_stat_level_equal 0x1, 0x2, 0xC, [EC E3 1B 08]
+end
+
+[39 E2 1B 08]:
+if_side_affecting 0x0, 0x10, [EF E3 1B 08]
+end
+
+[44 E2 1B 08]:
+if_status2 0x0, 0x20000000, [EF E3 1B 08]
+end
+
+[4F E2 1B 08]:
+if_status3 0x0, 0x20, [EF E3 1B 08]
+end
+
+[5A E2 1B 08]:
+get_weather
+if_equal 0x2, [EC E3 1B 08]
+end
+
+[62 E2 1B 08]:
+if_status2 0x0, 0xF0000, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0xC, [EF E3 1B 08]
+get_gender 0x1
+if_equal 0x0, [87 E2 1B 08]
+if_equal 0xFE, [94 E2 1B 08]
+goto [EF E3 1B 08]
+
+[87 E2 1B 08]:
+get_gender 0x0
+if_equal 0xFE, [A1 E2 1B 08]
+goto [EF E3 1B 08]
+
+[94 E2 1B 08]:
+get_gender 0x0
+if_equal 0x0, [A1 E2 1B 08]
+goto [EF E3 1B 08]
+
+[A1 E2 1B 08]:
+end
+
+[A2 E2 1B 08]:
+if_side_affecting 0x1, 0x20, [EC E3 1B 08]
+end
+
+[AD E2 1B 08]:
+if_stat_level_equal 0x0, 0x1, 0x0, [EF E3 1B 08]
+if_stat_level_equal 0x0, 0x4, 0x0, [EC E3 1B 08]
+goto [BD E2 1B 08]
+
+[BD E2 1B 08]:
+count_usable_party_mons 0x1
+if_equal 0x0, [EF E3 1B 08]
+end
+
+[C6 E2 1B 08]:
+get_weather
+if_equal 0x1, [EC E3 1B 08]
+end
+
+[CE E2 1B 08]:
+get_weather
+if_equal 0x0, [EC E3 1B 08]
+end
+
+[D6 E2 1B 08]:
+if_side_affecting 0x0, 0x40, [EF E3 1B 08]
+end
+
+[E1 E2 1B 08]:
+is_first_turn_for 0x1
+if_equal 0x0, [EF E3 1B 08]
+end
+
+[EA E2 1B 08]:
+get_stockpile_count 0x1
+if_equal 0x3, [EF E3 1B 08]
+end
+
+[F3 E2 1B 08]:
+if_type_effectiveness 0x0, [EF E3 1B 08]
+get_stockpile_count 0x1
+if_equal 0x0, [EF E3 1B 08]
+end
+
+[02 E3 1B 08]:
+get_weather
+if_equal 0x3, [EC E3 1B 08]
+end
+
+[0A E3 1B 08]:
+if_status2 0x0, 0x80000000, [EF E3 1B 08]
+end
+
+[15 E3 1B 08]:
+get_ability 0x0
+if_equal 0x29, [EF E3 1B 08]
+if_status 0x0, 0xFF, [EF E3 1B 08]
+if_type_effectiveness 0x0, [EF E3 1B 08]
+if_type_effectiveness 0x14, [EF E3 1B 08]
+if_type_effectiveness 0xA, [EF E3 1B 08]
+end
+
+[3A E3 1B 08]:
+is_double_battle
+if_equal 0x0, [EF E3 1B 08]
+end
+
+[42 E3 1B 08]:
+get_ability 0x0
+if_equal 0x3C, [EF E3 1B 08]
+end
+
+[4B E3 1B 08]:
+if_status3 0x1, 0x400, [EF E3 1B 08]
+end
+
+[56 E3 1B 08]:
+get_used_held_item 0x1
+if_equal 0x0, [EF E3 1B 08]
+end
+
+[5F E3 1B 08]:
+if_status3 0x1, 0x2000, [EF E3 1B 08]
+end
+
+[6A E3 1B 08]:
+if_not_status 0x1, 0xD8, [EF E3 1B 08]
+end
+
+[75 E3 1B 08]:
+if_status3 0x1, 0x10000, [EF E3 1B 08]
+end
+
+[80 E3 1B 08]:
+if_stat_level_equal 0x0, 0x1, 0x0, [EF E3 1B 08]
+if_stat_level_equal 0x0, 0x2, 0x0, [EC E3 1B 08]
+end
+
+[91 E3 1B 08]:
+if_stat_level_equal 0x1, 0x2, 0xC, [EF E3 1B 08]
+if_stat_level_equal 0x1, 0x5, 0xC, [EC E3 1B 08]
+end
+
+[A2 E3 1B 08]:
+if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
+if_stat_level_equal 0x1, 0x2, 0xC, [EC E3 1B 08]
+end
+
+[B3 E3 1B 08]:
+if_status3 0x1, 0x20000, [EF E3 1B 08]
+end
+
+[BE E3 1B 08]:
+if_stat_level_equal 0x1, 0x4, 0xC, [EF E3 1B 08]
+if_stat_level_equal 0x1, 0x5, 0xC, [EC E3 1B 08]
+end
+
+[CF E3 1B 08]:
+if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
+if_stat_level_equal 0x1, 0x3, 0xC, [EC E3 1B 08]
+end
+
+[E0 E3 1B 08]:
+score 0xFF
+end
+
+[E3 E3 1B 08]:
+score 0xFE
+end
+
+[E6 E3 1B 08]:
+score 0xFD
+end
+
+[E9 E3 1B 08]:
+score 0xFB
+end
+
+[EC E3 1B 08]:
+score 0xF8
+end
+
+[EF E3 1B 08]:
+score 0xF6
+end
+
+[F2 E3 1B 08]:
+score 0xF4
+end
+
+[F5 E3 1B 08]:
+score 0x1
+end
+
+[F8 E3 1B 08]:
+score 0x2
+end
+
+[FB E3 1B 08]:
+score 0x3
+end
+
+[FE E3 1B 08]:
+score 0x5
+end
+
+
+
+
+
+AI_CheckBadMove (pj): @1005000
+
+24 13 00 00 4F 00 09 31 00 EF E3 1B 08 2F 00 13 19 20 50 00 09 13 1A 31 50 00 09 59 39 50 00 09 31 50 39 50 00 09 31 A0 39 50 00 09 59 EF E3 1B 08 22 04 26 04 EF E3 1B 08 2F 00 13 0A 6A 50 00 09 13 1F 6A 50 00 09 13 4E 6A 50 00 09 13 0B 77 50 00 09 13 72 77 50 00 09 13 12 84 50 00 09 13 9D 91 50 00 09 59 99 50 00 09 22 04 26 0D F2 E3 1B 08 59 99 50 00 09 22 04 26 0B F2 E3 1B 08 59 99 50 00 09 22 04 26 0A F2 E3 1B 08 59 99 50 00 09 22 04 26 0C F2 E3 1B 08 2F 00 13 2B C8 50 00 09 13 8E D4 50 00 09 13 A5 E0 50 00 09 13 B9 EC 50 00 09 22 00 26 0C D4 50 00 09 22 02 26 0C D4 50 00 09 59 F3 50 00 09 54 2A 01 F2 E3 1B 08 59 F3 50 00 09 54 2A 04 F2 E3 1B 08 59 F3 50 00 09 54 2A 08 F2 E3 1B 08 59 F3 50 00 09 54 2A 02 F2 E3 1B 08 37 1A E0 53 00 09 37 27 E0 53 00 09 37 28 E0 53 00 09 37 4B E0 53 00 09 37 50 E0 53 00 09 37 57 E0 53 00 09 37 59 E0 53 00 09 37 63 E0 53 00 09 37 79 E0 53 00 09 37 7A E0 53 00 09 37 7B E0 53 00 09 37 90 E0 53 00 09 37 91 E0 53 00 09 37 AA E0 53 00 09 37 B6 E0 53 00 09 37 BD E0 53 00 09 37 C4 E0 53 00 09 37 01 00 54 00 09 37 1E 19 54 00 09 37 21 3D 54 00 09 37 42 3D 54 00 09 37 8B 3D 54 00 09 37 40 72 54 00 09 37 43 B9 54 00 09 37 8A D6 54 00 09 37 A7 D6 54 00 09 37 31 12 55 00 09 37 76 12 55 00 09 37 A6 12 55 00 09 37 73 2F 55 00 09 37 88 37 55 00 09 37 89 3F 55 00 09 37 A4 47 55 00 09 37 23 4F 55 00 09 37 2E 5A 55 00 09 37 41 65 55 00 09 37 7C 70 55 00 09 37 85 7B 55 00 09 37 70 83 55 00 09 37 94 8E 55 00 09 37 2F 99 55 00 09 37 4F A4 55 00 09 37 B5 B6 55 00 09 37 C0 C1 55 00 09 37 C9 CC 55 00 09 37 D2 D7 55 00 09 37 6A E2 55 00 09 37 6B FB 55 00 09 37 71 10 56 00 09 37 A5 1B 56 00 09 37 54 26 56 00 09 37 72 41 56 00 09 37 BB 4C 56 00 09 37 56 61 56 00 09 37 5A 69 56 00 09 37 AF 71 56 00 09 37 0A 77 56 00 09 37 0B 80 56 00 09 37 9C 80 56 00 09 37 0C 89 56 00 09 37 0D 92 56 00 09 37 0E 9B 56 00 09 37 0F A4 56 00 09 37 10 AD 56 00 09 37 6C AD 56 00 09 37 DF AD 56 00 09 37 CE B6 56 00 09 37 D0 C7 56 00 09 37 F0 C7 56 00 09 37 D1 D8 56 00 09 37 D3 E9 56 00 09 37 D4 FA 56 00 09 37 F1 0B 57 00 09 37 F2 24 57 00 09 37 F3 3D 57 00 09 37 F4 56 57 00 09 37 F5 6F 57 00 09 37 F6 80 57 00 09 37 12 00 58 00 09 37 13 15 58 00 09 37 14 2A 58 00 09 37 15 37 58 00 09 37 16 44 58 00 09 37 17 51 58 00 09 37 18 66 58 00 09 37 CD 7D 58 00 09 37 EF 8E 58 00 09 37 A8 9F 58 00 09 37 7F B4 58 00 09 37 08 C4 58 00 09 37 5D D5 58 00 09 37 A0 E6 58 00 09 37 A1 EF 58 00 09 37 A2 EF 58 00 09 37 67 FE 58 00 09 37 7E 11 59 00 09 37 B1 1E 59 00 09 37 5C 27 59 00 09 37 C1 32 59 00 09 37 3C 3D 59 00 09 37 3D 45 59 00 09 37 3A 4D 59 00 09 37 3B 73 59 00 09 37 19 99 59 00 09 37 8F A0 59 00 09 37 07 16 5A 00 09 37 1C 3A 5A 00 09 37 26 59 5A 00 09 37 32 6E 5A 00 09 37 6D 89 5A 00 09 37 78 AB 5A 00 09 37 8E 00 5B 00 09 37 9E 0C 5B 00 09 37 B0 15 5B 00 09 37 B8 1D 5B 00 09 37 E5 26 5B 00 09 37 99 EF E3 1B 08 5A FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 31 00 EF E3 1B 08 2F 00 14 19 FF 53 00 09 31 50 FF 53 00 09 31 A0 FF 53 00 09 59 EF E3 1B 08 5A 2F 00 13 0F EF E3 1B 08 13 48 EF E3 1B 08 13 AD EF E3 1B 08 59 EE 54 00 09 22 00 26 0F EF E3 1B 08 22 02 26 0F EF E3 1B 08 2F 00 13 31 EF E3 1B 08 36 13 00 EF E3 1B 08 59 FD 54 00 09 22 00 26 03 EF E3 1B 08 26 08 EF E3 1B 08 22 02 26 03 EF E3 1B 08 26 08 EF E3 1B 08 2F 00 13 11 EF E3 1B 08 13 5A EF E3 1B 08 13 62 EF E3 1B 08 59 EE 54 00 09 22 00 26 03 EF E3 1B 08 26 08 EF E3 1B 08 26 0D EF E3 1B 08 22 02 26 03 EF E3 1B 08 26 08 EF E3 1B 08 26 0D EF E3 1B 08 2F 00 13 07 EF E3 1B 08 13 11 EF E3 1B 08 13 5A EF E3 1B 08 13 62 EF E3 1B 08 59 EE 54 00 09 22 00 26 0D EF E3 1B 08 22 02 26 0D EF E3 1B 08 2F 00 13 07 EF E3 1B 08 59 EE 54 00 09 22 00 26 0A EF E3 1B 08 22 02 26 0A EF E3 1B 08 2F 00 13 29 EF E3 1B 08 2F 00 14 66 FD 54 00 09 36 13 00 EF E3 1B 08 0F 00 20 00 00 00 EF E3 1B 08 09 00 FF 00 00 00 EF E3 1B 08 5A 2F 00 13 14 EF E3 1B 08 0F 00 20 00 00 00 EF E3 1B 08 0B 00 07 00 00 00 E9 E3 1B 08 5A 36 13 02 EC E3 1B 08 5A 36 13 01 EC E3 1B 08 5A 36 13 00 EC E3 1B 08 5A 36 13 03 EC E3 1B 08 5A 0F 01 02 00 00 00 EC E3 1B 08 5A 0F 01 00 01 00 00 EC E3 1B 08 5A 0F 01 01 00 00 00 EC E3 1B 08 5A 0F 01 20 00 00 00 EC E3 1B 08 5A 57 01 00 EC E3 1B 08 5A 0F 00 10 00 00 00 EF E3 1B 08 5A 0F 00 40 00 00 00 EF E3 1B 08 5A 0B 01 00 00 10 00 EF E3 1B 08 5A 0B 01 00 00 00 01 EC E3 1B 08 05 01 1A EF E3 1B 08 5A 0D 01 00 04 00 00 EF E3 1B 08 5A 0D 01 00 20 00 00 EF E3 1B 08 5A 0D 01 00 00 01 00 EF E3 1B 08 5A 0D 01 00 00 02 00 EF E3 1B 08 5A 19 D4 00 F0 55 00 09 1A 4F 01 FA 55 00 09 0B 00 00 00 00 04 EF E3 1B 08 5A 0B 00 00 00 00 08 EF E3 1B 08 0A 00 07 00 00 00 EC E3 1B 08 5A 0B 00 00 00 00 20 EF E3 1B 08 5A 0B 00 00 00 00 80 EF E3 1B 08 5A 0D 00 04 00 00 00 EF E3 1B 08 22 00 13 0C EF E3 1B 08 22 02 13 0C EF E3 1B 08 5A 0D 00 20 00 00 00 EF E3 1B 08 5A 0D 00 00 18 00 00 EF E3 1B 08 09 00 FF 00 00 00 EF E3 1B 08 5A 43 00 00 EC E3 1B 08 5A 43 00 01 EC E3 1B 08 5A 5C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 5A 3B 01 02 0C EF E3 1B 08 5A 3B 01 03 0C EF E3 1B 08 5A 3B 01 04 0C EF E3 1B 08 5A 3B 01 05 0C EF E3 1B 08 5A 3B 01 06 0C EF E3 1B 08 5A 3B 01 07 0C EF E3 1B 08 5A 3B 01 02 0C EF E3 1B 08 3B 01 05 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 02 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 04 0C EC E3 1B 08 5A 3B 01 04 0C EF E3 1B 08 3B 01 05 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 03 0C EC E3 1B 08 5A 3B 01 04 0C EF E3 1B 08 3B 01 05 0C EC E3 1B 08 3B 01 03 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 02 0C EC E3 1B 08 3B 01 06 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 04 0C EC E3 1B 08 3B 01 03 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 03 0C EC E3 1B 08 3B 01 07 0C EC E3 1B 08 5A 3B 01 03 0C EF E3 1B 08 3B 01 07 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 06 0C EC E3 1B 08 5A FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 3B 00 01 00 EF E3 1B 08 2F 00 13 34 EF E3 1B 08 59 6E 58 00 09 3B 00 02 00 EF E3 1B 08 2F 00 13 91 EF E3 1B 08 59 6E 58 00 09 3B 00 03 00 EF E3 1B 08 59 6E 58 00 09 3B 00 04 00 EF E3 1B 08 59 6E 58 00 09 3B 00 05 00 EF E3 1B 08 59 6E 58 00 09 3B 00 06 00 EF E3 1B 08 2F 00 13 33 EF E3 1B 08 59 6E 58 00 09 3B 00 07 00 EF E3 1B 08 2F 00 13 1D EF E3 1B 08 13 49 EF E3 1B 08 5A 3B 00 01 00 EF E3 1B 08 3B 00 02 00 EC E3 1B 08 5A 3B 00 04 00 EF E3 1B 08 3B 00 05 00 EC E3 1B 08 5A 3B 00 01 00 EF E3 1B 08 3B 00 04 00 EC E3 1B 08 59 BB 58 00 09 1A E2 00 C3 58 00 09 2C 01 13 00 EF E3 1B 08 5A 0A 00 07 00 00 00 EC E3 1B 08 31 00 EF E3 1B 08 5A 0A 00 88 00 00 00 EC E3 1B 08 31 00 EF E3 1B 08 5A 4B 01 13 03 EF E3 1B 08 5A 31 00 EF E3 1B 08 4B 01 13 00 EF E3 1B 08 5A 2F 00 13 D6 EF E3 1B 08 13 DB EF E3 1B 08 59 E0 53 00 09 2F 00 13 1A EF E3 1B 08 59 E0 53 00 09 2F 00 13 3C EF E3 1B 08 5A 0A 01 07 00 00 00 EC E3 1B 08 5A 0A 01 D8 00 00 00 EF E3 1B 08 5A 32 00 13 00 EF E3 1B 08 32 01 13 00 EF E3 1B 08 39 01 01 06 72 59 00 09 39 01 04 06 72 59 00 09 3A 00 01 06 72 59 00 09 3A 00 04 06 72 59 00 09 59 EF E3 1B 08 5A 39 01 02 06 98 59 00 09 39 01 05 06 98 59 00 09 3A 00 02 06 98 59 00 09 3A 00 05 06 98 59 00 09 59 EF E3 1B 08 5A 1A 72 00 15 5A 00 09 39 01 01 06 15 5A 00 09 39 01 02 06 15 5A 00 09 39 01 03 06 15 5A 00 09 39 01 04 06 15 5A 00 09 39 01 05 06 15 5A 00 09 39 01 06 06 15 5A 00 09 39 01 07 06 15 5A 00 09 3A 00 01 06 15 5A 00 09 3A 00 02 06 15 5A 00 09 3A 00 03 06 15 5A 00 09 3A 00 04 06 15 5A 00 09 3A 00 05 06 15 5A 00 09 3A 00 06 06 15 5A 00 09 3A 00 07 06 15 5A 00 09 59 EF E3 1B 08 5A 31 00 EF E3 1B 08 2F 00 13 06 EF E3 1B 08 2C 01 14 00 39 5A 00 09 2C 00 14 00 EF E3 1B 08 59 E0 E3 1B 08 5A 19 12 00 48 5A 00 09 1A 2E 00 58 5A 00 09 2C 00 13 00 EF E3 1B 08 2F 00 13 15 EF E3 1B 08 5A 31 00 EF E3 1B 08 2F 00 13 05 EF E3 1B 08 5B 01 EF E3 1B 08 5A 3B 00 07 00 EF E3 1B 08 2F 00 13 1D EF E3 1B 08 13 49 EF E3 1B 08 59 12 55 00 09 22 01 13 07 99 5A 00 09 22 03 14 07 C7 56 00 09 0B 00 00 00 00 10 EF E3 1B 08 05 01 33 EF E3 1B 08 5A 19 7D 02 BC 5A 00 09 0B 00 00 00 0F 00 EF E3 1B 08 2F 00 13 0C EF E3 1B 08 49 01 13 00 D7 5A 00 09 13 FE E4 5A 00 09 59 EF E3 1B 08 49 00 13 FE F1 5A 00 09 59 EF E3 1B 08 49 00 13 00 F1 5A 00 09 59 EF E3 1B 08 19 7D 02 37 58 00 09 19 A6 02 3D 54 00 09 5A 05 01 33 EF E3 1B 08 59 77 56 00 09 4A 01 13 00 EF E3 1B 08 5A 4C 13 00 EF E3 1B 08 5A 4D 01 13 00 EF E3 1B 08 5A 3F 00 40 02 EF E3 1B 08 5A
+
+AI_CheckBadMove_??? (pj): @1004F00
+1A 56 00 17 4F 00 09 22 00 26 0D F2 E3 1B 08 22 02 26 0D F2 E3 1B 08 1A 05 01 39 50 00 09 22 00 26 0A F2 E3 1B 08 22 02 26 0A F2 E3 1B 08 2D 33 0A 14 04 39 50 00 09 2F 01 14 9E 39 50 00 09 2D 33 06 13 10 39 50 00 09 13 40 39 50 00 09 22 00 26 11 F2 E3 1B 08 22 02 26 11 F2 E3 1B 08 59 39 50 00 09 31 00 F2 E3 1B 08 29 01 E6 E3 1B 08 01 45 F8 E3 1B 08 5A
+
+get_how_powerful_move_is
+if_equal 0x0, [00 4F 00 09]
+if_type_effectiveness 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0x19, [20 50 00 09]
+if_equal 0x1A, [31 50 00 09]
+goto [39 50 00 09]
+
+[00 4F 00 09]:
+if_not_move 0x56, [17 4F 00 09]
+get_type 0x0
+if_equal_ 0xD, [F2 E3 1B 08]
+get_type 0x2
+if_equal_ 0xD, [F2 E3 1B 08]
+goto [17 4F 00 09]
+
+[17 4F 00 09]:
+if_not_move 0x105, [39 50 00 09]
+get_type 0x0
+if_equal_ 0xA, [F2 E3 1B 08]
+get_type 0x2
+if_equal_ 0xA, [F2 E3 1B 08]
+get_considered_move
+[33 0A] (COME BACK TO THIS)
+if_not_equal 0x4, [39 50 00 09]
+get_ability 0x1
+if_not_equal 0x9E, [39 50 00 09]
+get_considered_move
+[33 06] (COME BACK TO THIS)
+if_equal 0x10, [39 50 00 09]
+if_equal 0x40, [39 50 00 09]
+get_type 0x0
+if_equal_ 0x11, [F2 E3 1B 08]
+get_type 0x2
+if_equal_ 0x11, [F2 E3 1B 08]
+goto [39 50 00 09]
+
+[63 4F 00 09]: // possibly unreachable?
+if_type_effectiveness 0x0, [F2 E3 1B 08]
+if_user_doesnt_go 0x1, [E6 E3 1B 08]
+if_random_greater_than 0x45, [F8 E3 1B 08]
+end
+
+[20 50 00 09]:
+
+
+
+
+[62 DC 1B 08]:
+get_type 0x4
+if_equal_ 0xD, [F2 E3 1B 08]
+goto [9C DC 1B 08]
+
+[6F DC 1B 08]:
+get_type 0x4
+if_equal_ 0xB, [F2 E3 1B 08]
+goto [9C DC 1B 08]
+
+[7C DC 1B 08]:
+get_type 0x4
+if_equal_ 0xA, [F2 E3 1B 08]
+goto [9C DC 1B 08]
+
+[89 DC 1B 08]:
+if_type_effectiveness 0x50, [9C DC 1B 08]
+goto [EF E3 1B 08]
+
+[94 DC 1B 08]:
+get_type 0x4
+if_equal_ 0x4, [EF E3 1B 08]
+goto [9C DC 1B 08]
+
+[9C DC 1B 08]:
+get_ability 0x0
+if_not_equal 0x2B, [E3 DC 1B 08]
+if_move 0x2D, [EF E3 1B 08]
+if_move 0x2E, [EF E3 1B 08]
+if_move 0x2F, [EF E3 1B 08]
+if_move 0x30, [EF E3 1B 08]
+if_move 0x67, [EF E3 1B 08]
+if_move 0xAD, [EF E3 1B 08]
+if_move 0xFD, [EF E3 1B 08]
+if_move 0x13F, [EF E3 1B 08]
+if_move 0x140, [EF E3 1B 08]
+goto [E3 DC 1B 08]
+
+[E3 DC 1B 08]:
+if_effect 0x1, [72 DF 1B 08]
+if_effect 0x7, [8B DF 1B 08]
+if_effect 0x8, [C4 DF 1B 08]
+if_effect 0xA, [DC DF 1B 08]
+if_effect 0xB, [E5 DF 1B 08]
+if_effect 0xC, [EE DF 1B 08]
+if_effect 0xD, [F7 DF 1B 08]
+if_effect 0xE, [00 E0 1B 08]
+if_effect 0xF, [09 E0 1B 08]
+if_effect 0x10, [12 E0 1B 08]
+if_effect 0x12, [1B E0 1B 08]
+if_effect 0x13, [30 E0 1B 08]
+if_effect 0x14, [3D E0 1B 08]
+if_effect 0x15, [4A E0 1B 08]
+if_effect 0x16, [57 E0 1B 08]
+if_effect 0x17, [64 E0 1B 08]
+if_effect 0x18, [79 E0 1B 08]
+if_effect 0x19, [90 E0 1B 08]
+if_effect 0x1A, [6E E1 1B 08]
+if_effect 0x1C, [06 E1 1B 08]
+if_effect 0x21, [17 E1 1B 08]
+if_effect 0x23, [46 E1 1B 08]
+if_effect 0x26, [51 E1 1B 08]
+if_effect 0x27, [6E E1 1B 08]
+if_effect 0x28, [6E E1 1B 08]
+if_effect 0x2E, [88 E1 1B 08]
+if_effect 0x2F, [93 E1 1B 08]
+if_effect 0x31, [9E E1 1B 08]
+if_effect 0x32, [DC DF 1B 08]
+if_effect 0x33, [E5 DF 1B 08]
+if_effect 0x34, [EE DF 1B 08]
+if_effect 0x35, [F7 DF 1B 08]
+if_effect 0x36, [00 E0 1B 08]
+if_effect 0x37, [09 E0 1B 08]
+if_effect 0x38, [12 E0 1B 08]
+if_effect 0x3A, [1B E0 1B 08]
+if_effect 0x3B, [30 E0 1B 08]
+if_effect 0x3C, [3D E0 1B 08]
+if_effect 0x3D, [4A E0 1B 08]
+if_effect 0x3E, [57 E0 1B 08]
+if_effect 0x3F, [64 E0 1B 08]
+if_effect 0x40, [79 E0 1B 08]
+if_effect 0x41, [B1 E1 1B 08]
+if_effect 0x42, [17 E1 1B 08]
+if_effect 0x43, [BC E1 1B 08]
+if_effect 0x4F, [D5 E1 1B 08]
+if_effect 0x50, [6E E1 1B 08]
+if_effect 0x54, [E7 E1 1B 08]
+if_effect 0x56, [02 E2 1B 08]
+if_effect 0x57, [6E E1 1B 08]
+if_effect 0x58, [6E E1 1B 08]
+if_effect 0x59, [6E E1 1B 08]
+if_effect 0x5A, [0A E2 1B 08]
+if_effect 0x5C, [12 E2 1B 08]
+if_effect 0x61, [12 E2 1B 08]
+if_effect 0x63, [6E E1 1B 08]
+if_effect 0x6A, [1D E2 1B 08]
+if_effect 0x6B, [AF DF 1B 08]
+if_effect 0x6C, [12 E2 1B 08]
+if_effect 0x6D, [28 E2 1B 08]
+if_effect 0x70, [39 E2 1B 08]
+if_effect 0x71, [44 E2 1B 08]
+if_effect 0x72, [4F E2 1B 08]
+if_effect 0x73, [5A E2 1B 08]
+if_effect 0x76, [9E E1 1B 08]
+if_effect 0x78, [62 E2 1B 08]
+if_effect 0x79, [6E E1 1B 08]
+if_effect 0x7A, [6E E1 1B 08]
+if_effect 0x7B, [6E E1 1B 08]
+if_effect 0x7C, [A2 E2 1B 08]
+if_effect 0x7E, [66 E1 1B 08]
+if_effect 0x7F, [BD E2 1B 08]
+if_effect 0x82, [6E E1 1B 08]
+if_effect 0x88, [C6 E2 1B 08]
+if_effect 0x89, [CE E2 1B 08]
+if_effect 0x8E, [D5 DF 1B 08]
+if_effect 0x8F, [90 E0 1B 08]
+if_effect 0x90, [6E E1 1B 08]
+if_effect 0x91, [6E E1 1B 08]
+if_effect 0x94, [D6 E2 1B 08]
+if_effect 0x99, [EF E3 1B 08]
+if_effect 0x9C, [E5 DF 1B 08]
+if_effect 0x9E, [E1 E2 1B 08]
+if_effect 0xA0, [EA E2 1B 08]
+if_effect 0xA1, [F3 E2 1B 08]
+if_effect 0xA2, [F3 E2 1B 08]
+if_effect 0xA4, [02 E3 1B 08]
+if_effect 0xA5, [0A E3 1B 08]
+if_effect 0xA6, [9E E1 1B 08]
+if_effect 0xA7, [15 E3 1B 08]
+if_effect 0xA8, [AD E2 1B 08]
+if_effect 0xAA, [6E E1 1B 08]
+if_effect 0xB0, [3A E3 1B 08]
+if_effect 0xB1, [42 E3 1B 08]
+if_effect 0xB5, [4B E3 1B 08]
+if_effect 0xB6, [6E E1 1B 08]
+if_effect 0xB8, [56 E3 1B 08]
+if_effect 0xBC, [42 E3 1B 08]
+if_effect 0xBD, [6E E1 1B 08]
+if_effect 0xC0, [5F E3 1B 08]
+if_effect 0xC1, [6A E3 1B 08]
+if_effect 0xC4, [6E E1 1B 08]
+if_effect 0xC9, [75 E3 1B 08]
+if_effect 0xCD, [80 E3 1B 08]
+if_effect 0xCE, [91 E3 1B 08]
+if_effect 0xD0, [A2 E3 1B 08]
+if_effect 0xD2, [B3 E3 1B 08]
+if_effect 0xD3, [BE E3 1B 08]
+if_effect 0xD4, [CF E3 1B 08]
+end
+
+[72 DF 1B 08]:
+get_ability 0x0
+if_equal 0xF, [EF E3 1B 08]
+if_equal 0x48, [EF E3 1B 08]
+if_status 0x0, 0xFF, [EF E3 1B 08]
+end
+
+[8B DF 1B 08]:
+if_type_effectiveness 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0x6, [EF E3 1B 08]
+count_usable_party_mons 0x1
+if_not_equal 0x0, [AE DF 1B 08]
+count_usable_party_mons 0x0
+if_not_equal 0x0, [EF E3 1B 08]
+goto [AE DF 1B 08]
+
+[AE DF 1B 08]:
+goto [E0 E3 1B 08]
+
+[AF DF 1B 08]:
+if_status2 0x0, 0x8000000, [EF E3 1B 08]
+if_not_status 0x0, 0x7, [EC E3 1B 08]
+end
+
+[C4 DF 1B 08]:
+if_not_status 0x0, 0x7, [EC E3 1B 08]
+if_type_effectiveness 0x0, [EF E3 1B 08]
+end
+
+[D5 DF 1B 08]:
+if_hp_less_than 0x1, 0x33, [EF E3 1B 08]
+goto [DC DF 1B 08]
+
+[DC DF 1B 08]:
+if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
+end
+
+[E5 DF 1B 08]:
+if_stat_level_equal 0x1, 0x2, 0xC, [EF E3 1B 08]
+end
+
+[EE DF 1B 08]:
+if_stat_level_equal 0x1, 0x3, 0xC, [EF E3 1B 08]
+end
+
+[F7 DF 1B 08]:
+if_stat_level_equal 0x1, 0x4, 0xC, [EF E3 1B 08]
+end
+
+[00 E0 1B 08]:
+if_stat_level_equal 0x1, 0x5, 0xC, [EF E3 1B 08]
+end
+
+[09 E0 1B 08]:
+if_stat_level_equal 0x1, 0x6, 0xC, [EF E3 1B 08]
+end
+
+[12 E0 1B 08]:
+if_stat_level_equal 0x1, 0x7, 0xC, [EF E3 1B 08]
+end
+
+[1B E0 1B 08]:
+if_stat_level_equal 0x0, 0x1, 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0x34, [EF E3 1B 08]
+goto [81 E0 1B 08]
+
+[30 E0 1B 08]:
+if_stat_level_equal 0x0, 0x2, 0x0, [EF E3 1B 08]
+goto [81 E0 1B 08]
+
+[3D E0 1B 08]:
+if_stat_level_equal 0x0, 0x3, 0x0, [EF E3 1B 08]
+goto [81 E0 1B 08]
+
+[4A E0 1B 08]:
+if_stat_level_equal 0x0, 0x4, 0x0, [EF E3 1B 08]
+goto [81 E0 1B 08]
+
+[57 E0 1B 08]:
+if_stat_level_equal 0x0, 0x5, 0x0, [EF E3 1B 08]
+goto [81 E0 1B 08]
+
+[64 E0 1B 08]:
+if_stat_level_equal 0x0, 0x6, 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0x33, [EF E3 1B 08]
+goto [81 E0 1B 08]
+
+[79 E0 1B 08]:
+if_stat_level_equal 0x0, 0x7, 0x0, [EF E3 1B 08]
+goto [81 E0 1B 08]
+
+[81 E0 1B 08]:
+get_ability 0x0
+if_equal 0x1D, [EF E3 1B 08]
+if_equal 0x49, [EF E3 1B 08]
+end
+
+[90 E0 1B 08]:
+if_stat_level_less_than 0x1, 0x1, 0x6, [05 E1 1B 08]
+if_stat_level_less_than 0x1, 0x2, 0x6, [05 E1 1B 08]
+if_stat_level_less_than 0x1, 0x3, 0x6, [05 E1 1B 08]
+if_stat_level_less_than 0x1, 0x4, 0x6, [05 E1 1B 08]
+if_stat_level_less_than 0x1, 0x5, 0x6, [05 E1 1B 08]
+if_stat_level_less_than 0x1, 0x6, 0x6, [05 E1 1B 08]
+if_stat_level_less_than 0x1, 0x7, 0x6, [05 E1 1B 08]
+if_stat_level_more_than 0x0, 0x1, 0x6, [05 E1 1B 08]
+if_stat_level_more_than 0x0, 0x2, 0x6, [05 E1 1B 08]
+if_stat_level_more_than 0x0, 0x3, 0x6, [05 E1 1B 08]
+if_stat_level_more_than 0x0, 0x4, 0x6, [05 E1 1B 08]
+if_stat_level_more_than 0x0, 0x5, 0x6, [05 E1 1B 08]
+if_stat_level_more_than 0x0, 0x6, 0x6, [05 E1 1B 08]
+if_stat_level_more_than 0x0, 0x7, 0x6, [05 E1 1B 08]
+goto [EF E3 1B 08]
+
+[05 E1 1B 08]:
+end
+
+[06 E1 1B 08]:
+count_usable_party_mons 0x0
+if_equal 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0x15, [EF E3 1B 08]
+end
+
+[17 E1 1B 08]:
+get_type 0x0
+if_equal 0x8, [EF E3 1B 08]
+if_equal 0x3, [EF E3 1B 08]
+get_type 0x2
+if_equal 0x8, [EF E3 1B 08]
+if_equal 0x3, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0x11, [EF E3 1B 08]
+if_status 0x0, 0xFF, [EF E3 1B 08]
+end
+
+[46 E1 1B 08]:
+if_side_affecting 0x1, 0x2, [EC E3 1B 08]
+end
+
+[51 E1 1B 08]:
+if_type_effectiveness 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0x5, [EF E3 1B 08]
+if_level_cond 0x1, [EF E3 1B 08]
+end
+
+[66 E1 1B 08]:
+get_ability 0x0
+if_equal 0x1A, [EF E3 1B 08]
+goto [6E E1 1B 08]
+
+[6E E1 1B 08]:
+if_type_effectiveness 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_not_equal 0x19, [87 E1 1B 08]
+if_type_effectiveness 0x50, [87 E1 1B 08]
+goto [EF E3 1B 08]
+
+[87 E1 1B 08]:
+end
+
+[88 E1 1B 08]:
+if_side_affecting 0x1, 0x100, [EC E3 1B 08]
+end
+
+[93 E1 1B 08]:
+if_status2 0x1, 0x100000, [EF E3 1B 08]
+end
+
+[9E E1 1B 08]:
+if_status2 0x0, 0x7, [E9 E3 1B 08]
+get_ability 0x0
+if_equal 0x14, [EF E3 1B 08]
+end
+
+[B1 E1 1B 08]:
+if_side_affecting 0x1, 0x1, [EC E3 1B 08]
+end
+
+[BC E1 1B 08]:
+if_type_effectiveness 0x0, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0x7, [EF E3 1B 08]
+if_status 0x0, 0xFF, [EF E3 1B 08]
+end
+
+[D5 E1 1B 08]:
+if_status2 0x1, 0x1000000, [EC E3 1B 08]
+if_hp_less_than 0x1, 0x1A, [EF E3 1B 08]
+end
+
+[E7 E1 1B 08]:
+if_status3 0x0, 0x4, [EF E3 1B 08]
+get_type 0x0
+if_equal 0xC, [EF E3 1B 08]
+get_type 0x2
+if_equal 0xC, [EF E3 1B 08]
+end
+
+[02 E2 1B 08]:
+if_any_move_disabled_or_encored 0x0, 0x0, [EC E3 1B 08]
+end
+
+[0A E2 1B 08]:
+if_any_move_disabled_or_encored 0x0, 0x1, [EC E3 1B 08]
+end
+
+[12 E2 1B 08]:
+if_not_status 0x1, 0x7, [EC E3 1B 08]
+end
+
+[1D E2 1B 08]:
+if_status2 0x0, 0x4000000, [EF E3 1B 08]
+end
+
+[28 E2 1B 08]:
+if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
+if_stat_level_equal 0x1, 0x2, 0xC, [EC E3 1B 08]
+end
+
+[39 E2 1B 08]:
+if_side_affecting 0x0, 0x10, [EF E3 1B 08]
+end
+
+[44 E2 1B 08]:
+if_status2 0x0, 0x20000000, [EF E3 1B 08]
+end
+
+[4F E2 1B 08]:
+if_status3 0x0, 0x20, [EF E3 1B 08]
+end
+
+[5A E2 1B 08]:
+get_weather
+if_equal 0x2, [EC E3 1B 08]
+end
+
+[62 E2 1B 08]:
+if_status2 0x0, 0xF0000, [EF E3 1B 08]
+get_ability 0x0
+if_equal 0xC, [EF E3 1B 08]
+get_gender 0x1
+if_equal 0x0, [87 E2 1B 08]
+if_equal 0xFE, [94 E2 1B 08]
+goto [EF E3 1B 08]
+
+[87 E2 1B 08]:
+get_gender 0x0
+if_equal 0xFE, [A1 E2 1B 08]
+goto [EF E3 1B 08]
+
+[94 E2 1B 08]:
+get_gender 0x0
+if_equal 0x0, [A1 E2 1B 08]
+goto [EF E3 1B 08]
+
+[A1 E2 1B 08]:
+end
+
+[A2 E2 1B 08]:
+if_side_affecting 0x1, 0x20, [EC E3 1B 08]
+end
+
+[AD E2 1B 08]:
+if_stat_level_equal 0x0, 0x1, 0x0, [EF E3 1B 08]
+if_stat_level_equal 0x0, 0x4, 0x0, [EC E3 1B 08]
+goto [BD E2 1B 08]
+
+[BD E2 1B 08]:
+count_usable_party_mons 0x1
+if_equal 0x0, [EF E3 1B 08]
+end
+
+[C6 E2 1B 08]:
+get_weather
+if_equal 0x1, [EC E3 1B 08]
+end
+
+[CE E2 1B 08]:
+get_weather
+if_equal 0x0, [EC E3 1B 08]
+end
+
+[D6 E2 1B 08]:
+if_side_affecting 0x0, 0x40, [EF E3 1B 08]
+end
+
+[E1 E2 1B 08]:
+is_first_turn_for 0x1
+if_equal 0x0, [EF E3 1B 08]
+end
+
+[EA E2 1B 08]:
+get_stockpile_count 0x1
+if_equal 0x3, [EF E3 1B 08]
+end
+
+[F3 E2 1B 08]:
+if_type_effectiveness 0x0, [EF E3 1B 08]
+get_stockpile_count 0x1
+if_equal 0x0, [EF E3 1B 08]
+end
+
+[02 E3 1B 08]:
+get_weather
+if_equal 0x3, [EC E3 1B 08]
+end
+
+[0A E3 1B 08]:
+if_status2 0x0, 0x80000000, [EF E3 1B 08]
+end
+
+[15 E3 1B 08]:
+get_ability 0x0
+if_equal 0x29, [EF E3 1B 08]
+if_status 0x0, 0xFF, [EF E3 1B 08]
+if_type_effectiveness 0x0, [EF E3 1B 08]
+if_type_effectiveness 0x14, [EF E3 1B 08]
+if_type_effectiveness 0xA, [EF E3 1B 08]
+end
+
+[3A E3 1B 08]:
+is_double_battle
+if_equal 0x0, [EF E3 1B 08]
+end
+
+[42 E3 1B 08]:
+get_ability 0x0
+if_equal 0x3C, [EF E3 1B 08]
+end
+
+[4B E3 1B 08]:
+if_status3 0x1, 0x400, [EF E3 1B 08]
+end
+
+[56 E3 1B 08]:
+get_used_held_item 0x1
+if_equal 0x0, [EF E3 1B 08]
+end
+
+[5F E3 1B 08]:
+if_status3 0x1, 0x2000, [EF E3 1B 08]
+end
+
+[6A E3 1B 08]:
+if_not_status 0x1, 0xD8, [EF E3 1B 08]
+end
+
+[75 E3 1B 08]:
+if_status3 0x1, 0x10000, [EF E3 1B 08]
+end
+
+[80 E3 1B 08]:
+if_stat_level_equal 0x0, 0x1, 0x0, [EF E3 1B 08]
+if_stat_level_equal 0x0, 0x2, 0x0, [EC E3 1B 08]
+end
+
+[91 E3 1B 08]:
+if_stat_level_equal 0x1, 0x2, 0xC, [EF E3 1B 08]
+if_stat_level_equal 0x1, 0x5, 0xC, [EC E3 1B 08]
+end
+
+[A2 E3 1B 08]:
+if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
+if_stat_level_equal 0x1, 0x2, 0xC, [EC E3 1B 08]
+end
+
+[B3 E3 1B 08]:
+if_status3 0x1, 0x20000, [EF E3 1B 08]
+end
+
+[BE E3 1B 08]:
+if_stat_level_equal 0x1, 0x4, 0xC, [EF E3 1B 08]
+if_stat_level_equal 0x1, 0x5, 0xC, [EC E3 1B 08]
+end
+
+[CF E3 1B 08]:
+if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
+if_stat_level_equal 0x1, 0x3, 0xC, [EC E3 1B 08]
+end
+
+[E0 E3 1B 08]:
+score 0xFF
+end
+
+[E3 E3 1B 08]:
+score 0xFE
+end
+
+[E6 E3 1B 08]:
+score 0xFD
+end
+
+[E9 E3 1B 08]:
+score 0xFB
+end
+
+[EC E3 1B 08]:
+score 0xF8
+end
+
+[EF E3 1B 08]:
+score 0xF6
+end
+
+[F2 E3 1B 08]:
+score 0xF4
+end
+
+[F5 E3 1B 08]:
+score 0x1
+end
+
+[F8 E3 1B 08]:
+score 0x2
+end
+
+[FB E3 1B 08]:
+score 0x3
+end
+
+[FE E3 1B 08]:
+score 0x5
+end
+
+AI_CheckBadMove (fe): @1D9C74
+
+24 13 00 E0 9C 1D 08 31 00 33 A4 1D 08 2F 00 13 0A A6 9C 1D 08 13 0B B3 9C 1D 08 13 12 C0 9C 1D 08 13 19 CD 9C 1D 08 13 1A D8 9C 1D 08 59 E0 9C 1D 08 22 04 26 0D 36 A4 1D 08 59 E0 9C 1D 08 22 04 26 0B 36 A4 1D 08 59 E0 9C 1D 08 22 04 26 0A 36 A4 1D 08 59 E0 9C 1D 08 31 50 E0 9C 1D 08 59 33 A4 1D 08 22 04 26 04 33 A4 1D 08 2F 00 14 2B 27 9D 1D 08 19 2D 00 33 A4 1D 08 19 2E 00 33 A4 1D 08 19 2F 00 33 A4 1D 08 19 30 00 33 A4 1D 08 19 67 00 33 A4 1D 08 19 AD 00 33 A4 1D 08 19 FD 00 33 A4 1D 08 19 3F 01 33 A4 1D 08 19 40 01 33 A4 1D 08 37 01 B6 9F 1D 08 37 07 CF 9F 1D 08 37 08 08 A0 1D 08 37 0A 20 A0 1D 08 37 0B 29 A0 1D 08 37 0C 32 A0 1D 08 37 0D 3B A0 1D 08 37 0E 44 A0 1D 08 37 0F 4D A0 1D 08 37 10 56 A0 1D 08 37 12 5F A0 1D 08 37 13 74 A0 1D 08 37 14 81 A0 1D 08 37 15 8E A0 1D 08 37 16 9B A0 1D 08 37 17 A8 A0 1D 08 37 18 BD A0 1D 08 37 19 D4 A0 1D 08 37 1A B2 A1 1D 08 37 1C 4A A1 1D 08 37 21 5B A1 1D 08 37 23 8A A1 1D 08 37 26 95 A1 1D 08 37 27 B2 A1 1D 08 37 28 B2 A1 1D 08 37 2E CC A1 1D 08 37 2F D7 A1 1D 08 37 31 E2 A1 1D 08 37 32 20 A0 1D 08 37 33 29 A0 1D 08 37 34 32 A0 1D 08 37 35 3B A0 1D 08 37 36 44 A0 1D 08 37 37 4D A0 1D 08 37 38 56 A0 1D 08 37 3A 5F A0 1D 08 37 3B 74 A0 1D 08 37 3C 81 A0 1D 08 37 3D 8E A0 1D 08 37 3E 9B A0 1D 08 37 3F A8 A0 1D 08 37 40 BD A0 1D 08 37 41 F5 A1 1D 08 37 42 5B A1 1D 08 37 43 00 A2 1D 08 37 4F 19 A2 1D 08 37 50 B2 A1 1D 08 37 54 2B A2 1D 08 37 56 46 A2 1D 08 37 57 B2 A1 1D 08 37 58 B2 A1 1D 08 37 59 B2 A1 1D 08 37 5A 4E A2 1D 08 37 5C 56 A2 1D 08 37 61 56 A2 1D 08 37 63 B2 A1 1D 08 37 6A 61 A2 1D 08 37 6B F3 9F 1D 08 37 6C 56 A0 1D 08 37 6D 6C A2 1D 08 37 70 7D A2 1D 08 37 71 88 A2 1D 08 37 72 93 A2 1D 08 37 73 9E A2 1D 08 37 76 E2 A1 1D 08 37 78 A6 A2 1D 08 37 79 B2 A1 1D 08 37 7A B2 A1 1D 08 37 7B B2 A1 1D 08 37 7C E6 A2 1D 08 37 7E AA A1 1D 08 37 7F 01 A3 1D 08 37 82 B2 A1 1D 08 37 88 0A A3 1D 08 37 89 12 A3 1D 08 37 8E 19 A0 1D 08 37 8F D4 A0 1D 08 37 90 B2 A1 1D 08 37 91 B2 A1 1D 08 37 94 1A A3 1D 08 37 99 33 A4 1D 08 37 9C 29 A0 1D 08 37 9E 25 A3 1D 08 37 A0 2E A3 1D 08 37 A1 37 A3 1D 08 37 A2 37 A3 1D 08 37 A4 46 A3 1D 08 37 A5 4E A3 1D 08 37 A6 E2 A1 1D 08 37 A7 59 A3 1D 08 37 A8 F1 A2 1D 08 37 AA B2 A1 1D 08 37 B0 7E A3 1D 08 37 B1 86 A3 1D 08 37 B5 8F A3 1D 08 37 B6 B2 A1 1D 08 37 B8 9A A3 1D 08 37 BC 86 A3 1D 08 37 BD B2 A1 1D 08 37 C0 A3 A3 1D 08 37 C1 AE A3 1D 08 37 C4 B2 A1 1D 08 37 C9 B9 A3 1D 08 37 CD C4 A3 1D 08 37 CE D5 A3 1D 08 37 D0 E6 A3 1D 08 37 D2 F7 A3 1D 08 37 D3 02 A4 1D 08 37 D4 13 A4 1D 08 5A 2F 00 13 0F 33 A4 1D 08 13 48 33 A4 1D 08 09 00 FF 00 00 00 33 A4 1D 08 5A 31 00 33 A4 1D 08 2F 00 13 06 33 A4 1D 08 2C 01 14 00 F2 9F 1D 08 2C 00 14 00 33 A4 1D 08 59 24 A4 1D 08 5A 0B 00 00 00 00 08 33 A4 1D 08 0A 00 07 00 00 00 30 A4 1D 08 5A 0A 00 07 00 00 00 30 A4 1D 08 31 00 33 A4 1D 08 5A 05 01 33 33 A4 1D 08 3B 01 01 0C 33 A4 1D 08 5A 3B 01 02 0C 33 A4 1D 08 5A 3B 01 03 0C 33 A4 1D 08 5A 3B 01 04 0C 33 A4 1D 08 5A 3B 01 05 0C 33 A4 1D 08 5A 3B 01 06 0C 33 A4 1D 08 5A 3B 01 07 0C 33 A4 1D 08 5A 3B 00 01 00 33 A4 1D 08 2F 00 13 34 33 A4 1D 08 59 C5 A0 1D 08 3B 00 02 00 33 A4 1D 08 59 C5 A0 1D 08 3B 00 03 00 33 A4 1D 08 59 C5 A0 1D 08 3B 00 04 00 33 A4 1D 08 59 C5 A0 1D 08 3B 00 05 00 33 A4 1D 08 59 C5 A0 1D 08 3B 00 06 00 33 A4 1D 08 2F 00 13 33 33 A4 1D 08 59 C5 A0 1D 08 3B 00 07 00 33 A4 1D 08 2F 00 13 1D 33 A4 1D 08 13 49 33 A4 1D 08 5A 39 01 01 06 49 A1 1D 08 39 01 02 06 49 A1 1D 08 39 01 03 06 49 A1 1D 08 39 01 04 06 49 A1 1D 08 39 01 05 06 49 A1 1D 08 39 01 06 06 49 A1 1D 08 39 01 07 06 49 A1 1D 08 3A 00 01 06 49 A1 1D 08 3A 00 02 06 49 A1 1D 08 3A 00 03 06 49 A1 1D 08 3A 00 04 06 49 A1 1D 08 3A 00 05 06 49 A1 1D 08 3A 00 06 06 49 A1 1D 08 3A 00 07 06 49 A1 1D 08 59 33 A4 1D 08 5A 2C 00 13 00 33 A4 1D 08 2F 00 13 15 33 A4 1D 08 5A 22 00 13 08 33 A4 1D 08 13 03 33 A4 1D 08 22 02 13 08 33 A4 1D 08 13 03 33 A4 1D 08 2F 00 13 11 33 A4 1D 08 09 00 FF 00 00 00 33 A4 1D 08 5A 0F 01 02 00 00 00 30 A4 1D 08 5A 31 00 33 A4 1D 08 2F 00 13 05 33 A4 1D 08 5B 01 33 A4 1D 08 5A 2F 00 13 1A 33 A4 1D 08 31 00 33 A4 1D 08 2F 00 14 19 CB A1 1D 08 31 50 CB A1 1D 08 59 33 A4 1D 08 5A 0F 01 00 01 00 00 30 A4 1D 08 5A 0B 01 00 00 10 00 33 A4 1D 08 5A 0B 00 07 00 00 00 2D A4 1D 08 2F 00 13 14 33 A4 1D 08 5A 0F 01 01 00 00 00 30 A4 1D 08 5A 31 00 33 A4 1D 08 2F 00 13 07 33 A4 1D 08 09 00 FF 00 00 00 33 A4 1D 08 5A 0B 01 00 00 00 01 30 A4 1D 08 05 01 1A 33 A4 1D 08 5A 0D 00 04 00 00 00 33 A4 1D 08 22 00 13 0C 33 A4 1D 08 22 02 13 0C 33 A4 1D 08 5A 43 00 00 30 A4 1D 08 5A 43 00 01 30 A4 1D 08 5A 0A 01 07 00 00 00 30 A4 1D 08 5A 0B 00 00 00 00 04 33 A4 1D 08 5A 3B 01 01 0C 33 A4 1D 08 3B 01 02 0C 30 A4 1D 08 5A 0F 00 10 00 00 00 33 A4 1D 08 5A 0B 00 00 00 00 20 33 A4 1D 08 5A 0D 00 20 00 00 00 33 A4 1D 08 5A 36 13 02 30 A4 1D 08 5A 0B 00 00 00 0F 00 33 A4 1D 08 2F 00 13 0C 33 A4 1D 08 49 01 13 00 CB A2 1D 08 13 FE D8 A2 1D 08 59 33 A4 1D 08 49 00 13 FE E5 A2 1D 08 59 33 A4 1D 08 49 00 13 00 E5 A2 1D 08 59 33 A4 1D 08 5A 0F 01 20 00 00 00 30 A4 1D 08 5A 3B 00 01 00 33 A4 1D 08 3B 00 04 00 30 A4 1D 08 2C 01 13 00 33 A4 1D 08 5A 36 13 01 30 A4 1D 08 5A 36 13 00 30 A4 1D 08 5A 0F 00 40 00 00 00 33 A4 1D 08 5A 4A 01 13 00 33 A4 1D 08 5A 4B 01 13 03 33 A4 1D 08 5A 31 00 33 A4 1D 08 4B 01 13 00 33 A4 1D 08 5A 36 13 03 30 A4 1D 08 5A 0B 00 00 00 00 80 33 A4 1D 08 5A 2F 00 13 29 33 A4 1D 08 09 00 FF 00 00 00 33 A4 1D 08 31 00 33 A4 1D 08 31 14 33 A4 1D 08 31 0A 33 A4 1D 08 5A 4C 13 00 33 A4 1D 08 5A 2F 00 13 3C 33 A4 1D 08 5A 0D 01 00 04 00 00 33 A4 1D 08 5A 4D 01 13 00 33 A4 1D 08 5A 0D 01 00 20 00 00 33 A4 1D 08 5A 0A 01 D8 00 00 00 33 A4 1D 08 5A 0D 01 00 00 01 00 33 A4 1D 08 5A 3B 00 01 00 33 A4 1D 08 3B 00 02 00 30 A4 1D 08 5A 3B 01 02 0C 33 A4 1D 08 3B 01 05 0C 30 A4 1D 08 5A 3B 01 01 0C 33 A4 1D 08 3B 01 02 0C 30 A4 1D 08 5A 0D 01 00 00 02 00 33 A4 1D 08 5A 3B 01 04 0C 33 A4 1D 08 3B 01 05 0C 30 A4 1D 08 5A 3B 01 01 0C 33 A4 1D 08 3B 01 03 0C 30 A4 1D 08 5A 04 FF 5A 04 FE 5A 04 FD 5A 04 FB 5A 04 F8 5A 04 F6 5A 04 F4 5A 04 01 5A 04 02 5A 04 03 5A 04 05 5A
+
+AI_CheckBadMove (pe): @1005000 <FIX>
+
+24 13 00 00 4F 00 09 31 00 EF E3 1B 08 2F 00 13 19 20 50 00 09 13 1A 31 50 00 09 59 39 50 00 09 31 50 39 50 00 09 31 A0 39 50 00 09 59 EF E3 1B 08 22 04 26 04 EF E3 1B 08 2F 00 13 0A 6A 50 00 09 13 1F 6A 50 00 09 13 4E 6A 50 00 09 13 0B 77 50 00 09 13 72 77 50 00 09 13 12 84 50 00 09 13 9D 91 50 00 09 59 99 50 00 09 22 04 26 0D F2 E3 1B 08 59 99 50 00 09 22 04 26 0B F2 E3 1B 08 59 99 50 00 09 22 04 26 0A F2 E3 1B 08 59 99 50 00 09 22 04 26 0C F2 E3 1B 08 2F 00 13 2B C8 50 00 09 13 8E D4 50 00 09 13 A5 E0 50 00 09 13 B9 EC 50 00 09 22 00 26 0C D4 50 00 09 22 02 26 0C D4 50 00 09 59 F3 50 00 09 54 2A 01 F2 E3 1B 08 59 F3 50 00 09 54 2A 04 F2 E3 1B 08 59 F3 50 00 09 54 2A 08 F2 E3 1B 08 59 F3 50 00 09 54 2A 02 F2 E3 1B 08 37 1A E0 53 00 09 37 27 E0 53 00 09 37 28 E0 53 00 09 37 4B E0 53 00 09 37 50 E0 53 00 09 37 57 E0 53 00 09 37 59 E0 53 00 09 37 63 E0 53 00 09 37 79 E0 53 00 09 37 7A E0 53 00 09 37 7B E0 53 00 09 37 90 E0 53 00 09 37 91 E0 53 00 09 37 AA E0 53 00 09 37 B6 E0 53 00 09 37 BD E0 53 00 09 37 C4 E0 53 00 09 37 01 00 54 00 09 37 1E 19 54 00 09 37 21 3D 54 00 09 37 42 3D 54 00 09 37 8B 3D 54 00 09 37 40 72 54 00 09 37 43 B9 54 00 09 37 8A D6 54 00 09 37 A7 D6 54 00 09 37 31 12 55 00 09 37 76 12 55 00 09 37 A6 12 55 00 09 37 73 2F 55 00 09 37 88 37 55 00 09 37 89 3F 55 00 09 37 A4 47 55 00 09 37 23 4F 55 00 09 37 2E 5A 55 00 09 37 41 65 55 00 09 37 7C 70 55 00 09 37 85 7B 55 00 09 37 70 83 55 00 09 37 94 8E 55 00 09 37 2F 99 55 00 09 37 4F A4 55 00 09 37 B5 B6 55 00 09 37 C0 C1 55 00 09 37 C9 CC 55 00 09 37 D2 D7 55 00 09 37 6A E2 55 00 09 37 6B FB 55 00 09 37 71 10 56 00 09 37 A5 1B 56 00 09 37 54 26 56 00 09 37 72 41 56 00 09 37 BB 4C 56 00 09 37 56 61 56 00 09 37 5A 69 56 00 09 37 AF 71 56 00 09 37 0A 77 56 00 09 37 0B 80 56 00 09 37 9C 80 56 00 09 37 0C 89 56 00 09 37 0D 92 56 00 09 37 0E 9B 56 00 09 37 0F A4 56 00 09 37 10 AD 56 00 09 37 6C AD 56 00 09 37 DF AD 56 00 09 37 CE B6 56 00 09 37 D0 C7 56 00 09 37 F0 C7 56 00 09 37 D1 D8 56 00 09 37 D3 E9 56 00 09 37 D4 FA 56 00 09 37 F1 0B 57 00 09 37 F2 24 57 00 09 37 F3 3D 57 00 09 37 F4 56 57 00 09 37 F5 6F 57 00 09 37 F6 80 57 00 09 37 12 00 58 00 09 37 13 15 58 00 09 37 14 2A 58 00 09 37 15 37 58 00 09 37 16 44 58 00 09 37 17 51 58 00 09 37 18 66 58 00 09 37 CD 7D 58 00 09 37 EF 8E 58 00 09 37 A8 9F 58 00 09 37 7F B4 58 00 09 37 08 C4 58 00 09 37 5D D5 58 00 09 37 A0 E6 58 00 09 37 A1 EF 58 00 09 37 A2 EF 58 00 09 37 67 FE 58 00 09 37 7E 11 59 00 09 37 B1 1E 59 00 09 37 5C 27 59 00 09 37 C1 32 59 00 09 37 3C 3D 59 00 09 37 3D 45 59 00 09 37 3A 4D 59 00 09 37 3B 73 59 00 09 37 19 99 59 00 09 37 8F A0 59 00 09 37 07 16 5A 00 09 37 1C 3A 5A 00 09 37 26 59 5A 00 09 37 32 6E 5A 00 09 37 6D 89 5A 00 09 37 78 AB 5A 00 09 37 8E 00 5B 00 09 37 9E 0C 5B 00 09 37 B0 15 5B 00 09 37 B8 1D 5B 00 09 37 E5 26 5B 00 09 37 99 EF E3 1B 08 5A FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 31 00 EF E3 1B 08 2F 00 14 19 FF 53 00 09 31 50 FF 53 00 09 31 A0 FF 53 00 09 59 EF E3 1B 08 5A 2F 00 13 0F EF E3 1B 08 13 48 EF E3 1B 08 13 AD EF E3 1B 08 59 EE 54 00 09 22 00 26 0F EF E3 1B 08 22 02 26 0F EF E3 1B 08 2F 00 13 31 EF E3 1B 08 36 13 00 EF E3 1B 08 59 FD 54 00 09 22 00 26 03 EF E3 1B 08 26 08 EF E3 1B 08 22 02 26 03 EF E3 1B 08 26 08 EF E3 1B 08 2F 00 13 11 EF E3 1B 08 13 5A EF E3 1B 08 13 62 EF E3 1B 08 59 EE 54 00 09 22 00 26 03 EF E3 1B 08 26 08 EF E3 1B 08 26 0D EF E3 1B 08 22 02 26 03 EF E3 1B 08 26 08 EF E3 1B 08 26 0D EF E3 1B 08 2F 00 13 07 EF E3 1B 08 13 11 EF E3 1B 08 13 5A EF E3 1B 08 13 62 EF E3 1B 08 59 EE 54 00 09 22 00 26 0D EF E3 1B 08 22 02 26 0D EF E3 1B 08 2F 00 13 07 EF E3 1B 08 59 EE 54 00 09 22 00 26 0A EF E3 1B 08 22 02 26 0A EF E3 1B 08 2F 00 13 29 EF E3 1B 08 2F 00 14 66 FD 54 00 09 36 13 00 EF E3 1B 08 0F 00 20 00 00 00 EF E3 1B 08 09 00 FF 00 00 00 EF E3 1B 08 5A 2F 00 13 14 EF E3 1B 08 0F 00 20 00 00 00 EF E3 1B 08 0B 00 07 00 00 00 E9 E3 1B 08 5A 36 13 02 EC E3 1B 08 5A 36 13 01 EC E3 1B 08 5A 36 13 00 EC E3 1B 08 5A 36 13 03 EC E3 1B 08 5A 0F 01 02 00 00 00 EC E3 1B 08 5A 0F 01 00 01 00 00 EC E3 1B 08 5A 0F 01 01 00 00 00 EC E3 1B 08 5A 0F 01 20 00 00 00 EC E3 1B 08 5A 57 01 00 EC E3 1B 08 5A 0F 00 10 00 00 00 EF E3 1B 08 5A 0F 00 40 00 00 00 EF E3 1B 08 5A 0B 01 00 00 10 00 EF E3 1B 08 5A 0B 01 00 00 00 01 EC E3 1B 08 05 01 1A EF E3 1B 08 5A 0D 01 00 04 00 00 EF E3 1B 08 5A 0D 01 00 20 00 00 EF E3 1B 08 5A 0D 01 00 00 01 00 EF E3 1B 08 5A 0D 01 00 00 02 00 EF E3 1B 08 5A 19 D4 00 F0 55 00 09 1A 4F 01 FA 55 00 09 0B 00 00 00 00 04 EF E3 1B 08 5A 0B 00 00 00 00 08 EF E3 1B 08 0A 00 07 00 00 00 EC E3 1B 08 5A 0B 00 00 00 00 20 EF E3 1B 08 5A 0B 00 00 00 00 80 EF E3 1B 08 5A 0D 00 04 00 00 00 EF E3 1B 08 22 00 13 0C EF E3 1B 08 22 02 13 0C EF E3 1B 08 5A 0D 00 20 00 00 00 EF E3 1B 08 5A 0D 00 00 18 00 00 EF E3 1B 08 09 00 FF 00 00 00 EF E3 1B 08 5A 43 00 00 EC E3 1B 08 5A 43 00 01 EC E3 1B 08 5A 5C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 5A 3B 01 02 0C EF E3 1B 08 5A 3B 01 03 0C EF E3 1B 08 5A 3B 01 04 0C EF E3 1B 08 5A 3B 01 05 0C EF E3 1B 08 5A 3B 01 06 0C EF E3 1B 08 5A 3B 01 07 0C EF E3 1B 08 5A 3B 01 02 0C EF E3 1B 08 3B 01 05 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 02 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 04 0C EC E3 1B 08 5A 3B 01 04 0C EF E3 1B 08 3B 01 05 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 03 0C EC E3 1B 08 5A 3B 01 04 0C EF E3 1B 08 3B 01 05 0C EC E3 1B 08 3B 01 03 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 02 0C EC E3 1B 08 3B 01 06 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 04 0C EC E3 1B 08 3B 01 03 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 03 0C EC E3 1B 08 3B 01 07 0C EC E3 1B 08 5A 3B 01 03 0C EF E3 1B 08 3B 01 07 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 06 0C EC E3 1B 08 5A FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 3B 00 01 00 EF E3 1B 08 2F 00 13 34 EF E3 1B 08 59 6E 58 00 09 3B 00 02 00 EF E3 1B 08 2F 00 13 91 EF E3 1B 08 59 6E 58 00 09 3B 00 03 00 EF E3 1B 08 59 6E 58 00 09 3B 00 04 00 EF E3 1B 08 59 6E 58 00 09 3B 00 05 00 EF E3 1B 08 59 6E 58 00 09 3B 00 06 00 EF E3 1B 08 2F 00 13 33 EF E3 1B 08 59 6E 58 00 09 3B 00 07 00 EF E3 1B 08 2F 00 13 1D EF E3 1B 08 13 49 EF E3 1B 08 5A 3B 00 01 00 EF E3 1B 08 3B 00 02 00 EC E3 1B 08 5A 3B 00 04 00 EF E3 1B 08 3B 00 05 00 EC E3 1B 08 5A 3B 00 01 00 EF E3 1B 08 3B 00 04 00 EC E3 1B 08 59 BB 58 00 09 1A E2 00 C3 58 00 09 2C 01 13 00 EF E3 1B 08 5A 0A 00 07 00 00 00 EC E3 1B 08 31 00 EF E3 1B 08 5A 0A 00 88 00 00 00 EC E3 1B 08 31 00 EF E3 1B 08 5A 4B 01 13 03 EF E3 1B 08 5A 31 00 EF E3 1B 08 4B 01 13 00 EF E3 1B 08 5A 2F 00 13 D6 EF E3 1B 08 13 DB EF E3 1B 08 59 E0 53 00 09 2F 00 13 1A EF E3 1B 08 59 E0 53 00 09 2F 00 13 3C EF E3 1B 08 5A 0A 01 07 00 00 00 EC E3 1B 08 5A 0A 01 D8 00 00 00 EF E3 1B 08 5A 32 00 13 00 EF E3 1B 08 32 01 13 00 EF E3 1B 08 39 01 01 06 72 59 00 09 39 01 04 06 72 59 00 09 3A 00 01 06 72 59 00 09 3A 00 04 06 72 59 00 09 59 EF E3 1B 08 5A 39 01 02 06 98 59 00 09 39 01 05 06 98 59 00 09 3A 00 02 06 98 59 00 09 3A 00 05 06 98 59 00 09 59 EF E3 1B 08 5A 1A 72 00 15 5A 00 09 39 01 01 06 15 5A 00 09 39 01 02 06 15 5A 00 09 39 01 03 06 15 5A 00 09 39 01 04 06 15 5A 00 09 39 01 05 06 15 5A 00 09 39 01 06 06 15 5A 00 09 39 01 07 06 15 5A 00 09 3A 00 01 06 15 5A 00 09 3A 00 02 06 15 5A 00 09 3A 00 03 06 15 5A 00 09 3A 00 04 06 15 5A 00 09 3A 00 05 06 15 5A 00 09 3A 00 06 06 15 5A 00 09 3A 00 07 06 15 5A 00 09 59 EF E3 1B 08 5A 31 00 EF E3 1B 08 2F 00 13 06 EF E3 1B 08 2C 01 14 00 39 5A 00 09 2C 00 14 00 EF E3 1B 08 59 E0 E3 1B 08 5A 19 12 00 48 5A 00 09 1A 2E 00 58 5A 00 09 2C 00 13 00 EF E3 1B 08 2F 00 13 15 EF E3 1B 08 5A 31 00 EF E3 1B 08 2F 00 13 05 EF E3 1B 08 5B 01 EF E3 1B 08 5A 3B 00 07 00 EF E3 1B 08 2F 00 13 1D EF E3 1B 08 13 49 EF E3 1B 08 59 12 55 00 09 22 01 13 07 99 5A 00 09 22 03 14 07 C7 56 00 09 0B 00 00 00 00 10 EF E3 1B 08 05 01 33 EF E3 1B 08 5A 19 7D 02 BC 5A 00 09 0B 00 00 00 0F 00 EF E3 1B 08 2F 00 13 0C EF E3 1B 08 49 01 13 00 D7 5A 00 09 13 FE E4 5A 00 09 59 EF E3 1B 08 49 00 13 FE F1 5A 00 09 59 EF E3 1B 08 49 00 13 00 F1 5A 00 09 59 EF E3 1B 08 19 7D 02 37 58 00 09 19 A6 02 3D 54 00 09 5A 05 01 33 EF E3 1B 08 59 77 56 00 09 4A 01 13 00 EF E3 1B 08 5A 4C 13 00 EF E3 1B 08 5A 4D 01 13 00 EF E3 1B 08 5A 3F 00 40 02 EF E3 1B 08 5A

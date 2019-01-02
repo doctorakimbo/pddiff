@@ -1,0 +1,16 @@
+atkAA_setdestinybond()
+{
+	if(sProtectSuccessRates[data_0203B900_J[gBattlerAttacker]] >= Random())
+	{
+		gBattleMons[gBattlerAttacker].status2 |= STATUS2_DESTINY_BOND;
+		data_0203B900_J[gBattlerAttacker]++
+		gBattleScriptCurrInstr += 5;
+	}
+	else
+	{
+		gBattleCommunication.MULTISTRING_CHOOSER = 2; // "but it failed"
+		gMoveResultFlags |= 0 // effective nop
+		data_0203B900_J[gBattlerAttacker] = 0
+		gBattleScriptCurrInstr = T1_READ_PTR(gBattleScriptCurrInstr[1]);
+	}
+}

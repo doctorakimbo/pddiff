@@ -1,0 +1,2 @@
+lbl1: @1832D0
+same as 254 but NOT

@@ -1,0 +1,5 @@
+atkAA_setdestinybond()
+{
+	gBattleMons[gBattlerAttacker].0x50 |= 0x2000000
+	gBattleScriptCurrInstr++
+}

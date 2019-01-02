@@ -1,0 +1,7 @@
+BattleAICmd_nullsub_2A()
+{
+	if(gBattleResources->AI_ThinkingStruct.funcResult & gAIScriptPtr[1])
+		gAIScriptPtr = T1_READ_PTR(gAIScriptPtr[2]);
+	else
+		gAIScriptPtr += 6;
+}

@@ -186,3 +186,91 @@ end2
 
 1D8B6B (pe): <FIX>
 1E 01 40 18 7D 01 08 80 02 31 B4 3C 02 02 B0 3C 02 02 04 31 CB 3C 02 02 CC 3C 02 02 01 88 31 CB 3C 02 02 35 3F 02 02 01 2E E7 3D 02 02 03 28 25 7D 01 08 00 00 00 00 00 00 00 00 00 00 00
+
+
+
+
+
+
+
+BattleScript_SuccessForceOut (fj): @1BCBCC
+09 0A E2 00 58 00 3A 2B 04 AC 2A 02 02 08 00 00 00 E8 CB 1B 08 2E EA 3D 02 02 05 F6 4C 00 4D 00 4E 00 00 3A 10 54 01 52 00 28 0A A9 1B 08
+
+attackanimation
+waitanimation
+switchoutabilities BS_TARGET
+returntoball BS_TARGET
+waitstate
+jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_TrainerBattleForceOut
+setoutcomeonteleport BS_ATTACKER
+finishaction
+
+BattleScript_TrainerBattleForceOut:
+getswitchedmondata BS_TARGET
+switchindataupdate BS_TARGET
+switchinanim BS_TARGET, FALSE
+waitstate
+printstring STRINGID_PKMNWASDRAGGEDOUT
+switchineffects BS_TARGET
+goto BattleScript_MoveEnd
+
+BattleScript_SuccessForceOutNew (pj): @1051B20
+2A 03 AA 3C 02 02 00 02 CC CB 1B 08 E2 00 58 00 3A 2B 04 AC 2A 02 02 08 00 00 00 E8 CB 1B 08 2E EA 3D 02 02 05 F6 4C 00 4D 00 4E 00 00 3A 10 54 01 52 00 3D
+
+jumpifhalfword CMP_LESS_THAN, gCurrentMove, 0x200, BattleScript_SuccessForceOut
+switchoutabilities BS_TARGET
+returntoball BS_TARGET
+waitstate
+jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_TrainerBattleForceOut
+setoutcomeonteleport BS_ATTACKER
+finishaction
+
+BattleScript_TrainerBattleForceOutNewUnused:
+getswitchedmondata BS_TARGET
+switchindataupdate BS_TARGET
+switchinanim BS_TARGET, FALSE
+waitstate
+printstring STRINGID_PKMNWASDRAGGEDOUT
+switchineffects BS_TARGET
+end
+
+BattleScript_SuccessForceOut (fe): @1D8C10
+09 0A E2 00 58 00 3A 2B 04 4C 2B 02 02 08 00 00 00 2C 8C 1D 08 2E 8A 3E 02 02 05 F6 4C 00 4D 00 4E 00 00 3A 10 54 01 52 00 28 4E 69 1D 08
+
+BattleScript_SuccessForceOutNew (pe): @1051B20
+2A 03 4A 3D 02 02 00 02 10 8C 1D 08 E2 00 58 00 3A 2B 04 4C 2B 02 02 08 00 00 00 2C 8C 1D 08 2E 8A 3E 02 02 05 F6 4C 00 4D 00 4E 00 00 3A 10 54 01 52 00 3D
+
+
+
+
+
+
+
+BattleScript_FocusPunchSetUp (fj): @1BCFD1
+10 30 01 12 01 00 45 01 14 00 00 00 00 10 AB 00 12 40 00 3E
+
+printstring STRINGID_EMPTYSTRING3
+waitmessage 0x1
+playanimation BS_ATTACKER, B_ANIM_FOCUS_PUNCH_SETUP, NULL
+printstring STRINGID_PKMNTIGHTENINGFOCUS
+waitmessage 0x40
+end2
+
+BattleScript_FocusPunchSetUpNew (pj): @1052EE0
+2A 01 AA 3C 02 02 A7 02 D1 CF 1B 08 39 40 00 00 00 00 45 01 14 34 3F 02 02 10 17 02 12 40 00 3E
+
+jumpifhalfword CMP_NOT_EQUAL, gCurrentMove, 0x2A7, BattleScript_FocusPunchSetUp
+pause 0x40
+attackcanceler
+attackcanceler
+attackcanceler
+playanimation BS_ATTACKER, B_ANIM_FOCUS_PUNCH_SETUP, sB_ANIM_ARG1
+printstring 0x217
+waitmessage 0x40
+end2
+
+BattleScript_FocusPunchSetUp (fe): @1D9015
+10 30 01 12 01 00 45 01 14 00 00 00 00 10 AB 00 12 40 00 3E
+
+BattleScript_FocusPunchSetUpNew (pe): @1052EE0
+2A 01 4A 3D 02 02 A7 02 15 90 1D 08 39 40 00 00 00 00 45 01 14 D4 3F 02 02 10 17 02 12 40 00 3E

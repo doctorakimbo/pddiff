@@ -193,7 +193,7 @@ B4 B0 03 02: 28 B0 03 02: ??????
 44 B1 03 02: B8 B0 03 02: ??????
 		   : 00 B8 03 02: ?????? (fn_4151F2_J: sprite and palette data temporarily stored here)
 								 (fn_415262_J: sprite and palette data temporarily stored here)
-           : 00 B9 03 02: ?????? (sub_8032768: zeroed starting from here to 0203BB00)
+           : 00 B9 03 02: gDestinyBondUses (sub_8032768: zeroed starting from here to 0203BB00)
 		   : 18 B9 03 02: gRecordedAbilities
 		   : 50 B9 03 02: ?????? (appears to be an array of bits, one for each battler)
 								 (ItemBattleEffects: all cleared at start of cases ITEMEFFECT_ON_SWITCH_IN and ITEMEFFECT_TURN_END)

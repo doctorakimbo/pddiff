@@ -1,0 +1,17 @@
+lbl1: @2A3C8
+r1 = gBattleMons
+r0 = gBattlerAttacker
+r2 = *r0
+r0 = 0x58
+r2 *= r0
+r1 += 0x50
+r2 += r1
+r0 = *r2
+r1 = 0x2000000
+r0 |= r1
+*r2 = r0
+r1 = gBattleScriptCurrInstr
+r0 = *r1
+r0++
+*r1 = r0
+return

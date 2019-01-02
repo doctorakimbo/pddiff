@@ -1,0 +1,16 @@
+atkAA_setdestinybond()
+{
+	if(data_2507E0[data_0203B900_J[gBattlerAttacker]] >= Random())
+	{
+		gBattleMons[gBattlerAttacker].0x50 |= 0x2000000
+		data_0203B900_J[gBattlerAttacker]++
+		gBattleScriptCurrInstr += 5
+	}
+	else
+	{
+		gBattleCommunication.5 = 2
+		gMoveResultFlags |= 0
+		data_0203B900_J[gBattlerAttacker] = 0
+		gBattleScriptCurrInstr = T1_READ_PTR(gBattleScriptCurrInstr[1])
+	}
+}
