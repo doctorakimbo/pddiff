@@ -1,0 +1,48 @@
+BattleAICmd_nullsub_32()
+{
+	if(gAIScriptPtr[1] == 1)
+	{
+		if(gBattleMons[gBattlerAttacker].type1 == gBattleMons[gBattlerTarget].type1 || gBattleMons[gBattlerAttacker].type1 == gBattleMons[gBattlerTarget].type2)
+			gBattleResources->AI_ThinkingStruct.funcResult = 1
+		else
+			gBattleResources->AI_ThinkingStruct.funcResult = 0
+	}
+	else
+	{
+		if(gBattleMons[gBattlerAttacker].type1 == gBattleMons[gBattlerTarget].type1)
+		{
+			if(gBattleMons[gBattlerAttacker].type2 == gBattleMons[gBattlerTarget].type2)
+				gBattleResources->AI_ThinkingStruct.funcResult = 1
+			else
+				gBattleResources->AI_ThinkingStruct.funcResult = 0
+		}
+		else
+		{
+			if(gBattleMons[gBattlerAttacker].type1 == gBattleMons[gBattlerTarget].type2 && gBattleMons[gBattlerAttacker].type2 == gBattleMons[gBattlerTarget].type1)
+				gBattleResources->AI_ThinkingStruct.funcResult = 1
+			else
+				gBattleResources->AI_ThinkingStruct.funcResult = 0
+		}
+	}
+	
+	gAIScriptPtr += 2
+}
+
+functable
+FFFF0: 1
+FFFW0: 0
+FFWF0: 0
+FFWW0: 0
+FWFF0: 0
+FWFW0: 1
+FWWF0: 1
+FWWW0: 0
+
+FFFF1: 1
+FFFW1: 0
+FFWF1: 0
+FFWW1: 0
+FWFF1: 1
+FWFW1: 0
+FWWF1: 0
+FWWW1: 0

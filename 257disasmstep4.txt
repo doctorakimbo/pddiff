@@ -1,0 +1,5 @@
+BattleAICmd_nullsub_33()
+{
+	gBattleResources->AI_ThinkingStruct.funcResult = gBattleMoves[gBattleResources->AI_ThinkingStruct.funcResult].(gAIScriptPtr[1])
+	gAIScriptPtr += 2
+}

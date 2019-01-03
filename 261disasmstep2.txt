@@ -1,0 +1,10 @@
+BattleAICmd_nullsub_56()
+{
+	r5 = *gAIScriptPtr
+	*gAIScriptPtr = *(r5 + 1)
+	*(gAIScriptPtr + 1) = *(r5 + 2)
+	*(gAIScriptPtr + 2) = *(r5 + 3)
+	*(gAIScriptPtr + 3) = *(r5 + 4)
+	call *gAIScriptPtr
+	*gAIScriptPtr = r5 + 5
+}

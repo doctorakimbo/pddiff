@@ -1,0 +1,29 @@
+BattleAICmd_nullsub_32()
+{
+	if(gAIScriptPtr[1] == 1)
+	{
+		if(gBattleMons[gBattlerAttacker].0x21 == gBattleMons[gBattlerTarget].0x21 || gBattleMons[gBattlerAttacker].0x21 == gBattleMons[gBattlerTarget].0x22 || gBattleMons[gBattlerAttacker].0x21 == gBattleMons[gBattlerTarget].0x22 || gBattleMons[gBattlerAttacker].0x21 == gBattleMons[gBattlerTarget].0x21)
+			gBattleResources->0x14.8 = 1
+		else
+			gBattleResources->0x14.8 = 0
+	}
+	else
+	{
+		if(gBattleMons[gBattlerAttacker].0x21 == gBattleMons[gBattlerTarget].0x21)
+		{
+			if(gBattleMons[gBattlerAttacker].0x22 == gBattleMons[gBattlerTarget].0x22)
+				gBattleResources->0x14.8 = 1
+			else
+				gBattleResources->0x14.8 = 0
+		}
+		else
+		{
+			if(gBattleMons[gBattlerAttacker].0x21 == gBattleMons[gBattlerTarget].0x22 && gBattleMons[gBattlerAttacker].0x22 == gBattleMons[gBattlerTarget].0x21)
+				gBattleResources->0x14.8 = 1
+			else
+				gBattleResources->0x14.8 = 0
+		}
+	}
+	
+	gAIScriptPtr += 2
+}

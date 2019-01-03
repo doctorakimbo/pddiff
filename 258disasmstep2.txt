@@ -1,0 +1,5 @@
+BattleAICmd_nullsub_52()
+{
+	*(*(*gBattleResources + 0x14) + 8) = *((*(*(*gBattleResources + 0x14) + 2) * 0xC) + gBattleMoves + 7)
+	*gAIScriptPtr++
+}

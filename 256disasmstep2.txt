@@ -1,0 +1,49 @@
+BattleAICmd_nullsub_32()
+{
+	if(*(*gAIScriptPtr + 1) == 1)
+	{
+		if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == *((*gBattlerTarget * 0x58) + gBattleMons + 0x21))
+			*(*(*gBattleResources + 0x14) + 8) = 1
+		else
+		{
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == *((*gBattlerTarget * 0x58) + gBattleMons + 0x22))
+				*(*(*gBattleResources + 0x14) + 8) = 1
+			else
+			{
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == *((*gBattlerTarget * 0x58) + gBattleMons + 0x22))
+					*(*(*gBattleResources + 0x14) + 8) = 1
+				else
+				{
+					if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == *((*gBattlerTarget * 0x58) + gBattleMons + 0x21))
+						*(*(*gBattleResources + 0x14) + 8) = 1
+					else
+						*(*(*gBattleResources + 0x14) + 8) = 0
+				}
+			}
+		}
+	}
+	else
+	{
+		if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == *((*gBattlerTarget * 0x58) + gBattleMons + 0x21))
+		{
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x22) == *((*gBattlerTarget * 0x58) + gBattleMons + 0x22))
+				*(*(*gBattleResources + 0x14) + 8) = 1
+			else
+				*(*(*gBattleResources + 0x14) + 8) = 0
+		}
+		else
+		{
+			if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x21) == *((*gBattlerTarget * 0x58) + gBattleMons + 0x22))
+			{
+				if(*((*gBattlerAttacker * 0x58) + gBattleMons + 0x22) == *((*gBattlerTarget * 0x58) + gBattleMons + 0x21))
+					*(*(*gBattleResources + 0x14) + 8) = 1
+				else
+					*(*(*gBattleResources + 0x14) + 8) = 0
+			}
+			else
+				*(*(*gBattleResources + 0x14) + 8) = 0
+		}
+	}
+	
+	*gAIScriptPtr += 2
+}

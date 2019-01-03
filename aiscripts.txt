@@ -2,594 +2,594 @@ AI_CheckBadMove (fj): @1BDC30
 
 24 13 00 9C DC 1B 08 31 00 EF E3 1B 08 2F 00 13 0A 62 DC 1B 08 13 0B 6F DC 1B 08 13 12 7C DC 1B 08 13 19 89 DC 1B 08 13 1A 94 DC 1B 08 59 9C DC 1B 08 22 04 26 0D F2 E3 1B 08 59 9C DC 1B 08 22 04 26 0B F2 E3 1B 08 59 9C DC 1B 08 22 04 26 0A F2 E3 1B 08 59 9C DC 1B 08 31 50 9C DC 1B 08 59 EF E3 1B 08 22 04 26 04 EF E3 1B 08 2F 00 14 2B E3 DC 1B 08 19 2D 00 EF E3 1B 08 19 2E 00 EF E3 1B 08 19 2F 00 EF E3 1B 08 19 30 00 EF E3 1B 08 19 67 00 EF E3 1B 08 19 AD 00 EF E3 1B 08 19 FD 00 EF E3 1B 08 19 3F 01 EF E3 1B 08 19 40 01 EF E3 1B 08 37 01 72 DF 1B 08 37 07 8B DF 1B 08 37 08 C4 DF 1B 08 37 0A DC DF 1B 08 37 0B E5 DF 1B 08 37 0C EE DF 1B 08 37 0D F7 DF 1B 08 37 0E 00 E0 1B 08 37 0F 09 E0 1B 08 37 10 12 E0 1B 08 37 12 1B E0 1B 08 37 13 30 E0 1B 08 37 14 3D E0 1B 08 37 15 4A E0 1B 08 37 16 57 E0 1B 08 37 17 64 E0 1B 08 37 18 79 E0 1B 08 37 19 90 E0 1B 08 37 1A 6E E1 1B 08 37 1C 06 E1 1B 08 37 21 17 E1 1B 08 37 23 46 E1 1B 08 37 26 51 E1 1B 08 37 27 6E E1 1B 08 37 28 6E E1 1B 08 37 2E 88 E1 1B 08 37 2F 93 E1 1B 08 37 31 9E E1 1B 08 37 32 DC DF 1B 08 37 33 E5 DF 1B 08 37 34 EE DF 1B 08 37 35 F7 DF 1B 08 37 36 00 E0 1B 08 37 37 09 E0 1B 08 37 38 12 E0 1B 08 37 3A 1B E0 1B 08 37 3B 30 E0 1B 08 37 3C 3D E0 1B 08 37 3D 4A E0 1B 08 37 3E 57 E0 1B 08 37 3F 64 E0 1B 08 37 40 79 E0 1B 08 37 41 B1 E1 1B 08 37 42 17 E1 1B 08 37 43 BC E1 1B 08 37 4F D5 E1 1B 08 37 50 6E E1 1B 08 37 54 E7 E1 1B 08 37 56 02 E2 1B 08 37 57 6E E1 1B 08 37 58 6E E1 1B 08 37 59 6E E1 1B 08 37 5A 0A E2 1B 08 37 5C 12 E2 1B 08 37 61 12 E2 1B 08 37 63 6E E1 1B 08 37 6A 1D E2 1B 08 37 6B AF DF 1B 08 37 6C 12 E0 1B 08 37 6D 28 E2 1B 08 37 70 39 E2 1B 08 37 71 44 E2 1B 08 37 72 4F E2 1B 08 37 73 5A E2 1B 08 37 76 9E E1 1B 08 37 78 62 E2 1B 08 37 79 6E E1 1B 08 37 7A 6E E1 1B 08 37 7B 6E E1 1B 08 37 7C A2 E2 1B 08 37 7E 66 E1 1B 08 37 7F BD E2 1B 08 37 82 6E E1 1B 08 37 88 C6 E2 1B 08 37 89 CE E2 1B 08 37 8E D5 DF 1B 08 37 8F 90 E0 1B 08 37 90 6E E1 1B 08 37 91 6E E1 1B 08 37 94 D6 E2 1B 08 37 99 EF E3 1B 08 37 9C E5 DF 1B 08 37 9E E1 E2 1B 08 37 A0 EA E2 1B 08 37 A1 F3 E2 1B 08 37 A2 F3 E2 1B 08 37 A4 02 E3 1B 08 37 A5 0A E3 1B 08 37 A6 9E E1 1B 08 37 A7 15 E3 1B 08 37 A8 AD E2 1B 08 37 AA 6E E1 1B 08 37 B0 3A E3 1B 08 37 B1 42 E3 1B 08 37 B5 4B E3 1B 08 37 B6 6E E1 1B 08 37 B8 56 E3 1B 08 37 BC 42 E3 1B 08 37 BD 6E E1 1B 08 37 C0 5F E3 1B 08 37 C1 6A E3 1B 08 37 C4 6E E1 1B 08 37 C9 75 E3 1B 08 37 CD 80 E3 1B 08 37 CE 91 E3 1B 08 37 D0 A2 E3 1B 08 37 D2 B3 E3 1B 08 37 D3 BE E3 1B 08 37 D4 CF E3 1B 08 5A 2F 00 13 0F EF E3 1B 08 13 48 EF E3 1B 08 09 00 FF 00 00 00 EF E3 1B 08 5A 31 00 EF E3 1B 08 2F 00 13 06 EF E3 1B 08 2C 01 14 00 AE DF 1B 08 2C 00 14 00 EF E3 1B 08 59 E0 E3 1B 08 5A 0B 00 00 00 00 08 EF E3 1B 08 0A 00 07 00 00 00 EC E3 1B 08 5A 0A 00 07 00 00 00 EC E3 1B 08 31 00 EF E3 1B 08 5A 05 01 33 EF E3 1B 08 3B 01 01 0C EF E3 1B 08 5A 3B 01 02 0C EF E3 1B 08 5A 3B 01 03 0C EF E3 1B 08 5A 3B 01 04 0C EF E3 1B 08 5A 3B 01 05 0C EF E3 1B 08 5A 3B 01 06 0C EF E3 1B 08 5A 3B 01 07 0C EF E3 1B 08 5A 3B 00 01 00 EF E3 1B 08 2F 00 13 34 EF E3 1B 08 59 81 E0 1B 08 3B 00 02 00 EF E3 1B 08 59 81 E0 1B 08 3B 00 03 00 EF E3 1B 08 59 81 E0 1B 08 3B 00 04 00 EF E3 1B 08 59 81 E0 1B 08 3B 00 05 00 EF E3 1B 08 59 81 E0 1B 08 3B 00 06 00 EF E3 1B 08 2F 00 13 33 EF E3 1B 08 59 81 E0 1B 08 3B 00 07 00 EF E3 1B 08 2F 00 13 1D EF E3 1B 08 13 49 EF E3 1B 08 5A 39 01 01 06 05 E1 1B 08 39 01 02 06 05 E1 1B 08 39 01 03 06 05 E1 1B 08 39 01 04 06 05 E1 1B 08 39 01 05 06 05 E1 1B 08 39 01 06 06 05 E1 1B 08 39 01 07 06 05 E1 1B 08 3A 00 01 06 05 E1 1B 08 3A 00 02 06 05 E1 1B 08 3A 00 03 06 05 E1 1B 08 3A 00 04 06 05 E1 1B 08 3A 00 05 06 05 E1 1B 08 3A 00 06 06 05 E1 1B 08 3A 00 07 06 05 E1 1B 08 59 EF E3 1B 08 5A 2C 00 13 00 EF E3 1B 08 2F 00 13 15 EF E3 1B 08 5A 22 00 13 08 EF E3 1B 08 13 03 EF E3 1B 08 22 02 13 08 EF E3 1B 08 13 03 EF E3 1B 08 2F 00 13 11 EF E3 1B 08 09 00 FF 00 00 00 EF E3 1B 08 5A 0F 01 02 00 00 00 EC E3 1B 08 5A 31 00 EF E3 1B 08 2F 00 13 05 EF E3 1B 08 5B 01 EF E3 1B 08 5A 2F 00 13 1A EF E3 1B 08 31 00 EF E3 1B 08 2F 00 14 19 87 E1 1B 08 31 50 87 E1 1B 08 59 EF E3 1B 08 5A 0F 01 00 01 00 00 EC E3 1B 08 5A 0B 01 00 00 10 00 EF E3 1B 08 5A 0B 00 07 00 00 00 E9 E3 1B 08 2F 00 13 14 EF E3 1B 08 5A 0F 01 01 00 00 00 EC E3 1B 08 5A 31 00 EF E3 1B 08 2F 00 13 07 EF E3 1B 08 09 00 FF 00 00 00 EF E3 1B 08 5A 0B 01 00 00 00 01 EC E3 1B 08 05 01 1A EF E3 1B 08 5A 0D 00 04 00 00 00 EF E3 1B 08 22 00 13 0C EF E3 1B 08 22 02 13 0C EF E3 1B 08 5A 43 00 00 EC E3 1B 08 5A 43 00 01 EC E3 1B 08 5A 0A 01 07 00 00 00 EC E3 1B 08 5A 0B 00 00 00 00 04 EF E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 02 0C EC E3 1B 08 5A 0F 00 10 00 00 00 EF E3 1B 08 5A 0B 00 00 00 00 20 EF E3 1B 08 5A 0D 00 20 00 00 00 EF E3 1B 08 5A 36 13 02 EC E3 1B 08 5A 0B 00 00 00 0F 00 EF E3 1B 08 2F 00 13 0C EF E3 1B 08 49 01 13 00 87 E2 1B 08 13 FE 94 E2 1B 08 59 EF E3 1B 08 49 00 13 FE A1 E2 1B 08 59 EF E3 1B 08 49 00 13 00 A1 E2 1B 08 59 EF E3 1B 08 5A 0F 01 20 00 00 00 EC E3 1B 08 5A 3B 00 01 00 EF E3 1B 08 3B 00 04 00 EC E3 1B 08 2C 01 13 00 EF E3 1B 08 5A 36 13 01 EC E3 1B 08 5A 36 13 00 EC E3 1B 08 5A 0F 00 40 00 00 00 EF E3 1B 08 5A 4A 01 13 00 EF E3 1B 08 5A 4B 01 13 03 EF E3 1B 08 5A 31 00 EF E3 1B 08 4B 01 13 00 EF E3 1B 08 5A 36 13 03 EC E3 1B 08 5A 0B 00 00 00 00 80 EF E3 1B 08 5A 2F 00 13 29 EF E3 1B 08 09 00 FF 00 00 00 EF E3 1B 08 31 00 EF E3 1B 08 31 14 EF E3 1B 08 31 0A EF E3 1B 08 5A 4C 13 00 EF E3 1B 08 5A 2F 00 13 3C EF E3 1B 08 5A 0D 01 00 04 00 00 EF E3 1B 08 5A 4D 01 13 00 EF E3 1B 08 5A 0D 01 00 20 00 00 EF E3 1B 08 5A 0A 01 D8 00 00 00 EF E3 1B 08 5A 0D 01 00 00 01 00 EF E3 1B 08 5A 3B 00 01 00 EF E3 1B 08 3B 00 02 00 EC E3 1B 08 5A 3B 01 02 0C EF E3 1B 08 3B 01 05 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 02 0C EC E3 1B 08 5A 0D 01 00 00 02 00 EF E3 1B 08 5A 3B 01 04 0C EF E3 1B 08 3B 01 05 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 03 0C EC E3 1B 08 5A 04 FF 5A 04 FE 5A 04 FD 5A 04 FB 5A 04 F8 5A 04 F6 5A 04 F4 5A 04 01 5A 04 02 5A 04 03 5A 04 05 5A
 
+AI_CheckBadMove:
 get_how_powerful_move_is
-if_equal 0x0, [9C DC 1B 08]
-if_type_effectiveness 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0xA, [62 DC 1B 08]
-if_equal 0xB, [6F DC 1B 08]
-if_equal 0x12, [7C DC 1B 08]
-if_equal 0x19, [89 DC 1B 08]
-if_equal 0x1A, [94 DC 1B 08]
-goto [9C DC 1B 08]
+if_equal 0, AI_CheckBadMove_CheckSoundproof
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_VOLT_ABSORB, CheckIfVoltAbsorbCancelsElectric
+if_equal ABILITY_WATER_ABSORB, CheckIfWaterAbsorbCancelsWater
+if_equal ABILITY_FLASH_FIRE, CheckIfFlashFireCancelsFire
+if_equal ABILITY_WONDER_GUARD, CheckIfWonderGuardCancelsMove
+if_equal ABILITY_LEVITATE, CheckIfLevitateCancelsGroundMove
+goto AI_CheckBadMove_CheckSoundproof
 
-[62 DC 1B 08]:
-get_type 0x4
-if_equal_ 0xD, [F2 E3 1B 08]
-goto [9C DC 1B 08]
+CheckIfVoltAbsorbCancelsElectric:
+get_curr_move_type
+if_equal_ TYPE_ELECTRIC, Score_Minus12
+goto AI_CheckBadMove_CheckSoundproof
 
-[6F DC 1B 08]:
-get_type 0x4
-if_equal_ 0xB, [F2 E3 1B 08]
-goto [9C DC 1B 08]
+CheckIfWaterAbsorbCancelsWater:
+get_curr_move_type
+if_equal_ TYPE_WATER, Score_Minus12
+goto AI_CheckBadMove_CheckSoundproof
 
-[7C DC 1B 08]:
-get_type 0x4
-if_equal_ 0xA, [F2 E3 1B 08]
-goto [9C DC 1B 08]
+CheckIfFlashFireCancelsFire:
+get_curr_move_type
+if_equal_ TYPE_FIRE, Score_Minus12
+goto AI_CheckBadMove_CheckSoundproof
 
-[89 DC 1B 08]:
-if_type_effectiveness 0x50, [9C DC 1B 08]
-goto [EF E3 1B 08]
+CheckIfWonderGuardCancelsMove:
+if_type_effectiveness AI_EFFECTIVENESS_x2, AI_CheckBadMove_CheckSoundproof
+goto Score_Minus10
 
-[94 DC 1B 08]:
-get_type 0x4
-if_equal_ 0x4, [EF E3 1B 08]
-goto [9C DC 1B 08]
+CheckIfLevitateCancelsGroundMove:
+get_curr_move_type
+if_equal_ TYPE_GROUND, Score_Minus10
+goto AI_CheckBadMove_CheckSoundproof
 
-[9C DC 1B 08]:
-get_ability 0x0
-if_not_equal 0x2B, [E3 DC 1B 08]
-if_move 0x2D, [EF E3 1B 08]
-if_move 0x2E, [EF E3 1B 08]
-if_move 0x2F, [EF E3 1B 08]
-if_move 0x30, [EF E3 1B 08]
-if_move 0x67, [EF E3 1B 08]
-if_move 0xAD, [EF E3 1B 08]
-if_move 0xFD, [EF E3 1B 08]
-if_move 0x13F, [EF E3 1B 08]
-if_move 0x140, [EF E3 1B 08]
-goto [E3 DC 1B 08]
+AI_CheckBadMove_CheckSoundproof:
+get_ability AI_TARGET
+if_not_equal ABILITY_SOUNDPROOF, AI_CheckBadMove_CheckEffect
+if_move MOVE_GROWL, Score_Minus10
+if_move MOVE_ROAR, Score_Minus10
+if_move MOVE_SING, Score_Minus10
+if_move MOVE_SUPERSONIC, Score_Minus10
+if_move MOVE_SCREECH, Score_Minus10
+if_move MOVE_SNORE, Score_Minus10
+if_move MOVE_UPROAR, Score_Minus10
+if_move MOVE_METAL_SOUND, Score_Minus10
+if_move MOVE_GRASS_WHISTLE, Score_Minus10
+goto AI_CheckBadMove_CheckEffect
 
-[E3 DC 1B 08]:
-if_effect 0x1, [72 DF 1B 08]
-if_effect 0x7, [8B DF 1B 08]
-if_effect 0x8, [C4 DF 1B 08]
-if_effect 0xA, [DC DF 1B 08]
-if_effect 0xB, [E5 DF 1B 08]
-if_effect 0xC, [EE DF 1B 08]
-if_effect 0xD, [F7 DF 1B 08]
-if_effect 0xE, [00 E0 1B 08]
-if_effect 0xF, [09 E0 1B 08]
-if_effect 0x10, [12 E0 1B 08]
-if_effect 0x12, [1B E0 1B 08]
-if_effect 0x13, [30 E0 1B 08]
-if_effect 0x14, [3D E0 1B 08]
-if_effect 0x15, [4A E0 1B 08]
-if_effect 0x16, [57 E0 1B 08]
-if_effect 0x17, [64 E0 1B 08]
-if_effect 0x18, [79 E0 1B 08]
-if_effect 0x19, [90 E0 1B 08]
-if_effect 0x1A, [6E E1 1B 08]
-if_effect 0x1C, [06 E1 1B 08]
-if_effect 0x21, [17 E1 1B 08]
-if_effect 0x23, [46 E1 1B 08]
-if_effect 0x26, [51 E1 1B 08]
-if_effect 0x27, [6E E1 1B 08]
-if_effect 0x28, [6E E1 1B 08]
-if_effect 0x2E, [88 E1 1B 08]
-if_effect 0x2F, [93 E1 1B 08]
-if_effect 0x31, [9E E1 1B 08]
-if_effect 0x32, [DC DF 1B 08]
-if_effect 0x33, [E5 DF 1B 08]
-if_effect 0x34, [EE DF 1B 08]
-if_effect 0x35, [F7 DF 1B 08]
-if_effect 0x36, [00 E0 1B 08]
-if_effect 0x37, [09 E0 1B 08]
-if_effect 0x38, [12 E0 1B 08]
-if_effect 0x3A, [1B E0 1B 08]
-if_effect 0x3B, [30 E0 1B 08]
-if_effect 0x3C, [3D E0 1B 08]
-if_effect 0x3D, [4A E0 1B 08]
-if_effect 0x3E, [57 E0 1B 08]
-if_effect 0x3F, [64 E0 1B 08]
-if_effect 0x40, [79 E0 1B 08]
-if_effect 0x41, [B1 E1 1B 08]
-if_effect 0x42, [17 E1 1B 08]
-if_effect 0x43, [BC E1 1B 08]
-if_effect 0x4F, [D5 E1 1B 08]
-if_effect 0x50, [6E E1 1B 08]
-if_effect 0x54, [E7 E1 1B 08]
-if_effect 0x56, [02 E2 1B 08]
-if_effect 0x57, [6E E1 1B 08]
-if_effect 0x58, [6E E1 1B 08]
-if_effect 0x59, [6E E1 1B 08]
-if_effect 0x5A, [0A E2 1B 08]
-if_effect 0x5C, [12 E2 1B 08]
-if_effect 0x61, [12 E2 1B 08]
-if_effect 0x63, [6E E1 1B 08]
-if_effect 0x6A, [1D E2 1B 08]
-if_effect 0x6B, [AF DF 1B 08]
-if_effect 0x6C, [12 E2 1B 08]
-if_effect 0x6D, [28 E2 1B 08]
-if_effect 0x70, [39 E2 1B 08]
-if_effect 0x71, [44 E2 1B 08]
-if_effect 0x72, [4F E2 1B 08]
-if_effect 0x73, [5A E2 1B 08]
-if_effect 0x76, [9E E1 1B 08]
-if_effect 0x78, [62 E2 1B 08]
-if_effect 0x79, [6E E1 1B 08]
-if_effect 0x7A, [6E E1 1B 08]
-if_effect 0x7B, [6E E1 1B 08]
-if_effect 0x7C, [A2 E2 1B 08]
-if_effect 0x7E, [66 E1 1B 08]
-if_effect 0x7F, [BD E2 1B 08]
-if_effect 0x82, [6E E1 1B 08]
-if_effect 0x88, [C6 E2 1B 08]
-if_effect 0x89, [CE E2 1B 08]
-if_effect 0x8E, [D5 DF 1B 08]
-if_effect 0x8F, [90 E0 1B 08]
-if_effect 0x90, [6E E1 1B 08]
-if_effect 0x91, [6E E1 1B 08]
-if_effect 0x94, [D6 E2 1B 08]
-if_effect 0x99, [EF E3 1B 08]
-if_effect 0x9C, [E5 DF 1B 08]
-if_effect 0x9E, [E1 E2 1B 08]
-if_effect 0xA0, [EA E2 1B 08]
-if_effect 0xA1, [F3 E2 1B 08]
-if_effect 0xA2, [F3 E2 1B 08]
-if_effect 0xA4, [02 E3 1B 08]
-if_effect 0xA5, [0A E3 1B 08]
-if_effect 0xA6, [9E E1 1B 08]
-if_effect 0xA7, [15 E3 1B 08]
-if_effect 0xA8, [AD E2 1B 08]
-if_effect 0xAA, [6E E1 1B 08]
-if_effect 0xB0, [3A E3 1B 08]
-if_effect 0xB1, [42 E3 1B 08]
-if_effect 0xB5, [4B E3 1B 08]
-if_effect 0xB6, [6E E1 1B 08]
-if_effect 0xB8, [56 E3 1B 08]
-if_effect 0xBC, [42 E3 1B 08]
-if_effect 0xBD, [6E E1 1B 08]
-if_effect 0xC0, [5F E3 1B 08]
-if_effect 0xC1, [6A E3 1B 08]
-if_effect 0xC4, [6E E1 1B 08]
-if_effect 0xC9, [75 E3 1B 08]
-if_effect 0xCD, [80 E3 1B 08]
-if_effect 0xCE, [91 E3 1B 08]
-if_effect 0xD0, [A2 E3 1B 08]
-if_effect 0xD2, [B3 E3 1B 08]
-if_effect 0xD3, [BE E3 1B 08]
-if_effect 0xD4, [CF E3 1B 08]
+AI_CheckBadMove_CheckEffect:
+if_effect EFFECT_SLEEP, AI_CBM_Sleep
+if_effect EFFECT_EXPLOSION, AI_CBM_Explosion
+if_effect EFFECT_DREAM_EATER, AI_CBM_DreamEater
+if_effect EFFECT_ATTACK_UP, AI_CBM_AttackUp
+if_effect EFFECT_DEFENSE_UP, AI_CBM_DefenseUp
+if_effect EFFECT_SPEED_UP, AI_CBM_SpeedUp
+if_effect EFFECT_SPECIAL_ATTACK_UP, AI_CBM_SpAtkUp
+if_effect EFFECT_SPECIAL_DEFENSE_UP, AI_CBM_SpDefUp
+if_effect EFFECT_ACCURACY_UP, AI_CBM_AccUp
+if_effect EFFECT_EVASION_UP, AI_CBM_EvasionUp
+if_effect EFFECT_ATTACK_DOWN, AI_CBM_AttackDown
+if_effect EFFECT_DEFENSE_DOWN, AI_CBM_DefenseDown
+if_effect EFFECT_SPEED_DOWN, AI_CBM_SpeedDown
+if_effect EFFECT_SPECIAL_ATTACK_DOWN, AI_CBM_SpAtkDown
+if_effect EFFECT_SPECIAL_DEFENSE_DOWN, AI_CBM_SpDefDown
+if_effect EFFECT_ACCURACY_DOWN, AI_CBM_AccDown
+if_effect EFFECT_EVASION_DOWN, AI_CBM_EvasionDown
+if_effect EFFECT_HAZE, AI_CBM_Haze
+if_effect EFFECT_BIDE, AI_CBM_HighRiskForDamage
+if_effect EFFECT_ROAR, AI_CBM_Roar
+if_effect EFFECT_TOXIC, AI_CBM_Toxic
+if_effect EFFECT_LIGHT_SCREEN, AI_CBM_LightScreen
+if_effect EFFECT_OHKO, AI_CBM_OneHitKO
+if_effect EFFECT_RAZOR_WIND, AI_CBM_HighRiskForDamage
+if_effect EFFECT_SUPER_FANG, AI_CBM_HighRiskForDamage
+if_effect EFFECT_MIST, AI_CBM_Mist
+if_effect EFFECT_FOCUS_ENERGY, AI_CBM_FocusEnergy
+if_effect EFFECT_CONFUSE, AI_CBM_Confuse
+if_effect EFFECT_ATTACK_UP_2, AI_CBM_AttackUp
+if_effect EFFECT_DEFENSE_UP_2, AI_CBM_DefenseUp
+if_effect EFFECT_SPEED_UP_2, AI_CBM_SpeedUp
+if_effect EFFECT_SPECIAL_ATTACK_UP_2, AI_CBM_SpAtkUp
+if_effect EFFECT_SPECIAL_DEFENSE_UP_2, AI_CBM_SpDefUp
+if_effect EFFECT_ACCURACY_UP_2, AI_CBM_AccUp
+if_effect EFFECT_EVASION_UP_2, AI_CBM_EvasionUp
+if_effect EFFECT_ATTACK_DOWN_2, AI_CBM_AttackDown
+if_effect EFFECT_DEFENSE_DOWN_2, AI_CBM_DefenseDown
+if_effect EFFECT_SPEED_DOWN_2, AI_CBM_SpeedDown
+if_effect EFFECT_SPECIAL_ATTACK_DOWN_2, AI_CBM_SpAtkDown
+if_effect EFFECT_SPECIAL_DEFENSE_DOWN_2, AI_CBM_SpDefDown
+if_effect EFFECT_ACCURACY_DOWN_2, AI_CBM_AccDown
+if_effect EFFECT_EVASION_DOWN_2, AI_CBM_EvasionDown
+if_effect EFFECT_REFLECT, AI_CBM_Reflect
+if_effect EFFECT_POISON, AI_CBM_Toxic
+if_effect EFFECT_PARALYZE, AI_CBM_Paralyze
+if_effect EFFECT_SUBSTITUTE, AI_CBM_Substitute
+if_effect EFFECT_RECHARGE, AI_CBM_HighRiskForDamage
+if_effect EFFECT_LEECH_SEED, AI_CBM_Leech_Seed
+if_effect EFFECT_DISABLE, AI_CBM_Disable
+if_effect EFFECT_LEVEL_DAMAGE, AI_CBM_HighRiskForDamage
+if_effect EFFECT_PSYWAVE, AI_CBM_HighRiskForDamage
+if_effect EFFECT_COUNTER, AI_CBM_HighRiskForDamage
+if_effect EFFECT_ENCORE, AI_CBM_Encore
+if_effect EFFECT_SNORE, AI_CBM_DamageDuringSleep
+if_effect EFFECT_SLEEP_TALK, AI_CBM_DamageDuringSleep
+if_effect EFFECT_FLAIL, AI_CBM_HighRiskForDamage
+if_effect EFFECT_MEAN_LOOK, AI_CBM_CantEscape
+if_effect EFFECT_NIGHTMARE, AI_CBM_Nightmare
+if_effect EFFECT_MINIMIZE, AI_CBM_DamageDuringSleep
+if_effect EFFECT_CURSE, AI_CBM_Curse
+if_effect EFFECT_SPIKES, AI_CBM_Spikes
+if_effect EFFECT_FORESIGHT, AI_CBM_Foresight
+if_effect EFFECT_PERISH_SONG, AI_CBM_PerishSong
+if_effect EFFECT_SANDSTORM, AI_CBM_Sandstorm
+if_effect EFFECT_SWAGGER, AI_CBM_Confuse
+if_effect EFFECT_ATTRACT, AI_CBM_Attract
+if_effect EFFECT_RETURN, AI_CBM_HighRiskForDamage
+if_effect EFFECT_PRESENT, AI_CBM_HighRiskForDamage
+if_effect EFFECT_FRUSTRATION, AI_CBM_HighRiskForDamage
+if_effect EFFECT_SAFEGUARD, AI_CBM_Safeguard
+if_effect EFFECT_MAGNITUDE, AI_CBM_Magnitude
+if_effect EFFECT_BATON_PASS, AI_CBM_BatonPass
+if_effect EFFECT_SONICBOOM, AI_CBM_HighRiskForDamage
+if_effect EFFECT_RAIN_DANCE, AI_CBM_RainDance
+if_effect EFFECT_SUNNY_DAY, AI_CBM_SunnyDay
+if_effect EFFECT_BELLY_DRUM, AI_CBM_BellyDrum
+if_effect EFFECT_PSYCH_UP, AI_CBM_Haze
+if_effect EFFECT_MIRROR_COAT, AI_CBM_HighRiskForDamage
+if_effect EFFECT_SKULL_BASH, AI_CBM_HighRiskForDamage
+if_effect EFFECT_FUTURE_SIGHT, AI_CBM_FutureSight
+if_effect EFFECT_TELEPORT, Score_Minus10
+if_effect EFFECT_DEFENSE_CURL, AI_CBM_DefenseUp
+if_effect EFFECT_FAKE_OUT, AI_CBM_FakeOut
+if_effect EFFECT_STOCKPILE, AI_CBM_Stockpile
+if_effect EFFECT_SPIT_UP, AI_CBM_SpitUpAndSwallow
+if_effect EFFECT_SWALLOW, AI_CBM_SpitUpAndSwallow
+if_effect EFFECT_HAIL, AI_CBM_Hail
+if_effect EFFECT_TORMENT, AI_CBM_Torment
+if_effect EFFECT_FLATTER, AI_CBM_Confuse
+if_effect EFFECT_WILL_O_WISP, AI_CBM_WillOWisp
+if_effect EFFECT_MEMENTO, AI_CBM_Memento
+if_effect EFFECT_FOCUS_PUNCH, AI_CBM_HighRiskForDamage
+if_effect EFFECT_HELPING_HAND, AI_CBM_HelpingHand
+if_effect EFFECT_TRICK, AI_CBM_TrickAndKnockOff
+if_effect EFFECT_INGRAIN, AI_CBM_Ingrain
+if_effect EFFECT_SUPERPOWER, AI_CBM_HighRiskForDamage
+if_effect EFFECT_RECYCLE, AI_CBM_Recycle
+if_effect EFFECT_KNOCK_OFF, AI_CBM_TrickAndKnockOff
+if_effect EFFECT_ENDEAVOR, AI_CBM_HighRiskForDamage
+if_effect EFFECT_IMPRISON, AI_CBM_Imprison
+if_effect EFFECT_REFRESH, AI_CBM_Refresh
+if_effect EFFECT_LOW_KICK, AI_CBM_HighRiskForDamage
+if_effect EFFECT_MUD_SPORT, AI_CBM_MudSport
+if_effect EFFECT_TICKLE, AI_CBM_Tickle
+if_effect EFFECT_COSMIC_POWER, AI_CBM_CosmicPower
+if_effect EFFECT_BULK_UP, AI_CBM_BulkUp
+if_effect EFFECT_WATER_SPORT, AI_CBM_WaterSport
+if_effect EFFECT_CALM_MIND, AI_CBM_CalmMind
+if_effect EFFECT_DRAGON_DANCE, AI_CBM_DragonDance
 end
 
-[72 DF 1B 08]:
-get_ability 0x0
-if_equal 0xF, [EF E3 1B 08]
-if_equal 0x48, [EF E3 1B 08]
-if_status 0x0, 0xFF, [EF E3 1B 08]
+AI_CBM_Sleep:
+get_ability AI_TARGET
+if_equal ABILITY_INSOMNIA, Score_Minus10
+if_equal ABILITY_VITAL_SPIRIT, Score_Minus10
+if_status AI_TARGET, STATUS1_ANY, Score_Minus10
 end
 
-[8B DF 1B 08]:
-if_type_effectiveness 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0x6, [EF E3 1B 08]
-count_usable_party_mons 0x1
-if_not_equal 0x0, [AE DF 1B 08]
-count_usable_party_mons 0x0
-if_not_equal 0x0, [EF E3 1B 08]
-goto [AE DF 1B 08]
+AI_CBM_Explosion:
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_DAMP, Score_Minus10
+count_usable_party_mons AI_USER
+if_not_equal 0, AI_CBM_Explosion_End
+count_usable_party_mons AI_TARGET
+if_not_equal 0, Score_Minus10
+goto Score_Minus1
 
-[AE DF 1B 08]:
-goto [E0 E3 1B 08]
-
-[AF DF 1B 08]:
-if_status2 0x0, 0x8000000, [EF E3 1B 08]
-if_not_status 0x0, 0x7, [EC E3 1B 08]
+AI_CBM_Explosion_End:
 end
 
-[C4 DF 1B 08]:
-if_not_status 0x0, 0x7, [EC E3 1B 08]
-if_type_effectiveness 0x0, [EF E3 1B 08]
+AI_CBM_Nightmare:
+if_status2 AI_TARGET, STATUS2_NIGHTMARE, Score_Minus10
+if_not_status AI_TARGET, STATUS1_SLEEP, Score_Minus8
 end
 
-[D5 DF 1B 08]:
-if_hp_less_than 0x1, 0x33, [EF E3 1B 08]
-goto [DC DF 1B 08]
-
-[DC DF 1B 08]:
-if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
+AI_CBM_DreamEater:
+if_not_status AI_TARGET, STATUS1_SLEEP, Score_Minus8
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
 end
 
-[E5 DF 1B 08]:
-if_stat_level_equal 0x1, 0x2, 0xC, [EF E3 1B 08]
+AI_CBM_BellyDrum:
+if_hp_less_than AI_USER, 51, Score_Minus10
+goto AI_CBM_AttackUp
+
+AI_CBM_AttackUp:
+if_stat_level_equal AI_USER, STAT_ATK, 12, Score_Minus10
 end
 
-[EE DF 1B 08]:
-if_stat_level_equal 0x1, 0x3, 0xC, [EF E3 1B 08]
+AI_CBM_DefenseUp:
+if_stat_level_equal AI_USER, STAT_DEF, 12, Score_Minus10
 end
 
-[F7 DF 1B 08]:
-if_stat_level_equal 0x1, 0x4, 0xC, [EF E3 1B 08]
+AI_CBM_SpeedUp:
+if_stat_level_equal AI_USER, STAT_SPEED, 12, Score_Minus10
 end
 
-[00 E0 1B 08]:
-if_stat_level_equal 0x1, 0x5, 0xC, [EF E3 1B 08]
+AI_CBM_SpAtkUp:
+if_stat_level_equal AI_USER, STAT_SPATK, 12, Score_Minus10
 end
 
-[09 E0 1B 08]:
-if_stat_level_equal 0x1, 0x6, 0xC, [EF E3 1B 08]
+AI_CBM_SpDefUp:
+if_stat_level_equal AI_USER, STAT_SPDEF, 12, Score_Minus10
 end
 
-[12 E0 1B 08]:
-if_stat_level_equal 0x1, 0x7, 0xC, [EF E3 1B 08]
+AI_CBM_AccUp:
+if_stat_level_equal AI_USER, STAT_ACC, 12, Score_Minus10
 end
 
-[1B E0 1B 08]:
-if_stat_level_equal 0x0, 0x1, 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0x34, [EF E3 1B 08]
-goto [81 E0 1B 08]
-
-[30 E0 1B 08]:
-if_stat_level_equal 0x0, 0x2, 0x0, [EF E3 1B 08]
-goto [81 E0 1B 08]
-
-[3D E0 1B 08]:
-if_stat_level_equal 0x0, 0x3, 0x0, [EF E3 1B 08]
-goto [81 E0 1B 08]
-
-[4A E0 1B 08]:
-if_stat_level_equal 0x0, 0x4, 0x0, [EF E3 1B 08]
-goto [81 E0 1B 08]
-
-[57 E0 1B 08]:
-if_stat_level_equal 0x0, 0x5, 0x0, [EF E3 1B 08]
-goto [81 E0 1B 08]
-
-[64 E0 1B 08]:
-if_stat_level_equal 0x0, 0x6, 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0x33, [EF E3 1B 08]
-goto [81 E0 1B 08]
-
-[79 E0 1B 08]:
-if_stat_level_equal 0x0, 0x7, 0x0, [EF E3 1B 08]
-goto [81 E0 1B 08]
-
-[81 E0 1B 08]:
-get_ability 0x0
-if_equal 0x1D, [EF E3 1B 08]
-if_equal 0x49, [EF E3 1B 08]
+AI_CBM_EvasionUp:
+if_stat_level_equal AI_USER, STAT_EVASION, 12, Score_Minus10
 end
 
-[90 E0 1B 08]:
-if_stat_level_less_than 0x1, 0x1, 0x6, [05 E1 1B 08]
-if_stat_level_less_than 0x1, 0x2, 0x6, [05 E1 1B 08]
-if_stat_level_less_than 0x1, 0x3, 0x6, [05 E1 1B 08]
-if_stat_level_less_than 0x1, 0x4, 0x6, [05 E1 1B 08]
-if_stat_level_less_than 0x1, 0x5, 0x6, [05 E1 1B 08]
-if_stat_level_less_than 0x1, 0x6, 0x6, [05 E1 1B 08]
-if_stat_level_less_than 0x1, 0x7, 0x6, [05 E1 1B 08]
-if_stat_level_more_than 0x0, 0x1, 0x6, [05 E1 1B 08]
-if_stat_level_more_than 0x0, 0x2, 0x6, [05 E1 1B 08]
-if_stat_level_more_than 0x0, 0x3, 0x6, [05 E1 1B 08]
-if_stat_level_more_than 0x0, 0x4, 0x6, [05 E1 1B 08]
-if_stat_level_more_than 0x0, 0x5, 0x6, [05 E1 1B 08]
-if_stat_level_more_than 0x0, 0x6, 0x6, [05 E1 1B 08]
-if_stat_level_more_than 0x0, 0x7, 0x6, [05 E1 1B 08]
-goto [EF E3 1B 08]
+AI_CBM_AttackDown:
+if_stat_level_equal AI_TARGET, STAT_ATK, 0, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_HYPER_CUTTER, Score_Minus10
+goto CheckIfAbilityBlocksStatChange
 
-[05 E1 1B 08]:
+AI_CBM_DefenseDown:
+if_stat_level_equal AI_TARGET, STAT_DEF, 0, Score_Minus10
+goto CheckIfAbilityBlocksStatChange
+
+AI_CBM_SpeedDown:
+if_stat_level_equal AI_TARGET, STAT_SPEED, 0, Score_Minus10
+goto CheckIfAbilityBlocksStatChange
+
+AI_CBM_SpAtkDown:
+if_stat_level_equal AI_TARGET, STAT_SPATK, 0, Score_Minus10
+goto CheckIfAbilityBlocksStatChange
+
+AI_CBM_SpDefDown:
+if_stat_level_equal AI_TARGET, STAT_SPDEF, 0, Score_Minus10
+goto CheckIfAbilityBlocksStatChange
+
+AI_CBM_AccDown:
+if_stat_level_equal AI_TARGET, STAT_ACC, 0, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_KEEN_EYE, Score_Minus10
+goto CheckIfAbilityBlocksStatChange
+
+AI_CBM_EvasionDown:
+if_stat_level_equal AI_TARGET, STAT_EVASION, 0, Score_Minus10
+goto CheckIfAbilityBlocksStatChange
+
+CheckIfAbilityBlocksStatChange:
+get_ability AI_TARGET
+if_equal ABILITY_CLEAR_BODY, Score_Minus10
+if_equal ABILITY_WHITE_SMOKE, Score_Minus10
 end
 
-[06 E1 1B 08]:
-count_usable_party_mons 0x0
-if_equal 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0x15, [EF E3 1B 08]
+AI_CBM_Haze:
+if_stat_level_less_than AI_USER, STAT_ATK, 6, AI_CBM_Haze_End
+if_stat_level_less_than AI_USER, STAT_DEF, 6, AI_CBM_Haze_End
+if_stat_level_less_than AI_USER, STAT_SPEED, 6, AI_CBM_Haze_End
+if_stat_level_less_than AI_USER, STAT_SPATK, 6, AI_CBM_Haze_End
+if_stat_level_less_than AI_USER, STAT_SPDEF, 6, AI_CBM_Haze_End
+if_stat_level_less_than AI_USER, STAT_ACC, 6, AI_CBM_Haze_End
+if_stat_level_less_than AI_USER, STAT_EVASION, 6, AI_CBM_Haze_End
+if_stat_level_more_than AI_TARGET, STAT_ATK, 6, AI_CBM_Haze_End
+if_stat_level_more_than AI_TARGET, STAT_DEF, 6, AI_CBM_Haze_End
+if_stat_level_more_than AI_TARGET, STAT_SPEED, 6, AI_CBM_Haze_End
+if_stat_level_more_than AI_TARGET, STAT_SPATK, 6, AI_CBM_Haze_End
+if_stat_level_more_than AI_TARGET, STAT_SPDEF, 6, AI_CBM_Haze_End
+if_stat_level_more_than AI_TARGET, STAT_ACC, 6, AI_CBM_Haze_End
+if_stat_level_more_than AI_TARGET, STAT_EVASION, 6, AI_CBM_Haze_End
+goto Score_Minus10
+
+AI_CBM_Haze_End:
 end
 
-[17 E1 1B 08]:
-get_type 0x0
-if_equal 0x8, [EF E3 1B 08]
-if_equal 0x3, [EF E3 1B 08]
-get_type 0x2
-if_equal 0x8, [EF E3 1B 08]
-if_equal 0x3, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0x11, [EF E3 1B 08]
-if_status 0x0, 0xFF, [EF E3 1B 08]
+AI_CBM_Roar:
+count_usable_party_mons AI_TARGET
+if_equal 0, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_SUCTION_CUPS, Score_Minus10
 end
 
-[46 E1 1B 08]:
-if_side_affecting 0x1, 0x2, [EC E3 1B 08]
+AI_CBM_Toxic:
+get_target_type1
+if_equal TYPE_STEEL, Score_Minus10
+if_equal TYPE_POISON, Score_Minus10
+get_target_type2
+if_equal TYPE_STEEL, Score_Minus10
+if_equal TYPE_POISON, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_IMMUNITY, Score_Minus10
+if_status AI_TARGET, STATUS1_ANY, Score_Minus10
 end
 
-[51 E1 1B 08]:
-if_type_effectiveness 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0x5, [EF E3 1B 08]
-if_level_cond 0x1, [EF E3 1B 08]
+AI_CBM_LightScreen:
+if_side_affecting AI_USER, SIDE_STATUS_LIGHTSCREEN, Score_Minus8
 end
 
-[66 E1 1B 08]:
-get_ability 0x0
-if_equal 0x1A, [EF E3 1B 08]
-goto [6E E1 1B 08]
-
-[6E E1 1B 08]:
-if_type_effectiveness 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_not_equal 0x19, [87 E1 1B 08]
-if_type_effectiveness 0x50, [87 E1 1B 08]
-goto [EF E3 1B 08]
-
-[87 E1 1B 08]:
+AI_CBM_OneHitKO:
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_STURDY, Score_Minus10
+if_level_cond 1, Score_Minus10
 end
 
-[88 E1 1B 08]:
-if_side_affecting 0x1, 0x100, [EC E3 1B 08]
+AI_CBM_Magnitude:
+get_ability AI_TARGET
+if_equal ABILITY_LEVITATE, Score_Minus10
+goto AI_CBM_HighRiskForDamage
+
+AI_CBM_HighRiskForDamage:
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
+get_ability AI_TARGET
+if_not_equal ABILITY_WONDER_GUARD, AI_CBM_HighRiskForDamage_End
+if_type_effectiveness AI_EFFECTIVENESS_x2, AI_CBM_HighRiskForDamage_End
+goto Score_Minus10
+
+AI_CBM_HighRiskForDamage_End:
 end
 
-[93 E1 1B 08]:
-if_status2 0x1, 0x100000, [EF E3 1B 08]
+AI_CBM_Mist:
+if_side_affecting AI_USER, SIDE_STATUS_MIST, Score_Minus8
 end
 
-[9E E1 1B 08]:
-if_status2 0x0, 0x7, [E9 E3 1B 08]
-get_ability 0x0
-if_equal 0x14, [EF E3 1B 08]
+AI_CBM_FocusEnergy:
+if_status2 AI_USER, STATUS2_FOCUS_ENERGY, Score_Minus10
 end
 
-[B1 E1 1B 08]:
-if_side_affecting 0x1, 0x1, [EC E3 1B 08]
+AI_CBM_Confuse:
+if_status2 AI_TARGET, STATUS2_CONFUSION, Score_Minus5
+get_ability AI_TARGET
+if_equal ABILITY_OWN_TEMPO, Score_Minus10
 end
 
-[BC E1 1B 08]:
-if_type_effectiveness 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0x7, [EF E3 1B 08]
-if_status 0x0, 0xFF, [EF E3 1B 08]
+AI_CBM_Reflect:
+if_side_affecting AI_USER, SIDE_STATUS_REFLECT, Score_Minus8
 end
 
-[D5 E1 1B 08]:
-if_status2 0x1, 0x1000000, [EC E3 1B 08]
-if_hp_less_than 0x1, 0x1A, [EF E3 1B 08]
+AI_CBM_Paralyze:
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_LIMBER, Score_Minus10
+if_status AI_TARGET, STATUS1_ANY, Score_Minus10
 end
 
-[E7 E1 1B 08]:
-if_status3 0x0, 0x4, [EF E3 1B 08]
-get_type 0x0
-if_equal 0xC, [EF E3 1B 08]
-get_type 0x2
-if_equal 0xC, [EF E3 1B 08]
+AI_CBM_Substitute:
+if_status2 AI_USER, STATUS2_SUBSTITUTE, Score_Minus8
+if_hp_less_than AI_USER, 26, Score_Minus10
 end
 
-[02 E2 1B 08]:
-if_any_move_disabled_or_encored 0x0, 0x0, [EC E3 1B 08]
+AI_CBM_Leech_Seed:
+if_status3 AI_TARGET, STATUS3_LEECHSEED, Score_Minus10
+get_target_type1
+if_equal TYPE_GRASS, Score_Minus10
+get_target_type2
+if_equal TYPE_GRASS, Score_Minus10
 end
 
-[0A E2 1B 08]:
-if_any_move_disabled_or_encored 0x0, 0x1, [EC E3 1B 08]
+AI_CBM_Disable:
+if_any_move_disabled AI_TARGET, Score_Minus8
 end
 
-[12 E2 1B 08]:
-if_not_status 0x1, 0x7, [EC E3 1B 08]
+AI_CBM_Encore:
+if_any_move_encored AI_TARGET, Score_Minus8
 end
 
-[1D E2 1B 08]:
-if_status2 0x0, 0x4000000, [EF E3 1B 08]
+AI_CBM_DamageDuringSleep:
+if_not_status AI_USER, STATUS1_SLEEP, Score_Minus8
 end
 
-[28 E2 1B 08]:
-if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
-if_stat_level_equal 0x1, 0x2, 0xC, [EC E3 1B 08]
+AI_CBM_CantEscape:
+if_status2 AI_TARGET, STATUS2_ESCAPE_PREVENTION, Score_Minus10
 end
 
-[39 E2 1B 08]:
-if_side_affecting 0x0, 0x10, [EF E3 1B 08]
+AI_CBM_Curse:
+if_stat_level_equal AI_USER, STAT_ATK, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_DEF, 12, Score_Minus8
 end
 
-[44 E2 1B 08]:
-if_status2 0x0, 0x20000000, [EF E3 1B 08]
+AI_CBM_Spikes:
+if_side_affecting AI_TARGET, SIDE_STATUS_SPIKES, Score_Minus10
 end
 
-[4F E2 1B 08]:
-if_status3 0x0, 0x20, [EF E3 1B 08]
+AI_CBM_Foresight:
+if_status2 AI_TARGET, STATUS2_FORESIGHT, Score_Minus10
 end
 
-[5A E2 1B 08]:
+AI_CBM_PerishSong:
+if_status3 AI_TARGET, STATUS3_PERISH_SONG, Score_Minus10
+end
+
+AI_CBM_Sandstorm:
 get_weather
-if_equal 0x2, [EC E3 1B 08]
+if_equal AI_WEATHER_SANDSTORM, Score_Minus8
 end
 
-[62 E2 1B 08]:
-if_status2 0x0, 0xF0000, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0xC, [EF E3 1B 08]
-get_gender 0x1
-if_equal 0x0, [87 E2 1B 08]
-if_equal 0xFE, [94 E2 1B 08]
-goto [EF E3 1B 08]
+AI_CBM_Attract:
+if_status2 AI_TARGET, STATUS2_INFATUATION, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_OBLIVIOUS, Score_Minus10
+get_gender AI_USER
+if_equal 0, AI_CBM_Attract_CheckIfTargetIsFemale
+if_equal 254, AI_CBM_Attract_CheckIfTargetIsMale
+goto Score_Minus10
 
-[87 E2 1B 08]:
-get_gender 0x0
-if_equal 0xFE, [A1 E2 1B 08]
-goto [EF E3 1B 08]
+AI_CBM_Attract_CheckIfTargetIsFemale:
+get_gender AI_TARGET
+if_equal 254, AI_CBM_Attract_End
+goto Score_Minus10
 
-[94 E2 1B 08]:
-get_gender 0x0
-if_equal 0x0, [A1 E2 1B 08]
-goto [EF E3 1B 08]
+AI_CBM_Attract_CheckIfTargetIsMale:
+get_gender AI_TARGET
+if_equal 0, AI_CBM_Attract_End
+goto Score_Minus10
 
-[A1 E2 1B 08]:
+AI_CBM_Attract_End:
 end
 
-[A2 E2 1B 08]:
-if_side_affecting 0x1, 0x20, [EC E3 1B 08]
+AI_CBM_Safeguard:
+if_side_affecting AI_USER, SIDE_STATUS_SAFEGUARD, Score_Minus8
 end
 
-[AD E2 1B 08]:
-if_stat_level_equal 0x0, 0x1, 0x0, [EF E3 1B 08]
-if_stat_level_equal 0x0, 0x4, 0x0, [EC E3 1B 08]
-goto [BD E2 1B 08]
+AI_CBM_Memento:
+if_stat_level_equal AI_TARGET, STAT_ATK, 0, Score_Minus10
+if_stat_level_equal AI_TARGET, STAT_SPATK, 0, Score_Minus8
+goto AI_CBM_BatonPass
 
-[BD E2 1B 08]:
-count_usable_party_mons 0x1
-if_equal 0x0, [EF E3 1B 08]
+AI_CBM_BatonPass:
+count_usable_party_mons AI_USER
+if_equal 0, Score_Minus10
 end
 
-[C6 E2 1B 08]:
+AI_CBM_RainDance:
 get_weather
-if_equal 0x1, [EC E3 1B 08]
+if_equal AI_WEATHER_RAIN, Score_Minus8
 end
 
-[CE E2 1B 08]:
+AI_CBM_SunnyDay:
 get_weather
-if_equal 0x0, [EC E3 1B 08]
+if_equal AI_WEATHER_SUN, Score_Minus8
 end
 
-[D6 E2 1B 08]:
-if_side_affecting 0x0, 0x40, [EF E3 1B 08]
+AI_CBM_FutureSight:
+if_side_affecting AI_TARGET, SIDE_STATUS_FUTUREATTACK, Score_Minus10
 end
 
-[E1 E2 1B 08]:
-is_first_turn_for 0x1
-if_equal 0x0, [EF E3 1B 08]
+AI_CBM_FakeOut:
+is_first_turn_for AI_USER
+if_equal 0, Score_Minus10
 end
 
-[EA E2 1B 08]:
-get_stockpile_count 0x1
-if_equal 0x3, [EF E3 1B 08]
+AI_CBM_Stockpile:
+get_stockpile_count AI_USER
+if_equal 3, Score_Minus10
 end
 
-[F3 E2 1B 08]:
-if_type_effectiveness 0x0, [EF E3 1B 08]
-get_stockpile_count 0x1
-if_equal 0x0, [EF E3 1B 08]
+AI_CBM_SpitUpAndSwallow:
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
+get_stockpile_count AI_USER
+if_equal 0, Score_Minus10
 end
 
-[02 E3 1B 08]:
+AI_CBM_Hail:
 get_weather
-if_equal 0x3, [EC E3 1B 08]
+if_equal AI_WEATHER_HAIL, Score_Minus8
 end
 
-[0A E3 1B 08]:
-if_status2 0x0, 0x80000000, [EF E3 1B 08]
+AI_CBM_Torment:
+if_status2 AI_TARGET, STATUS2_TORMENT, Score_Minus10
 end
 
-[15 E3 1B 08]:
-get_ability 0x0
-if_equal 0x29, [EF E3 1B 08]
-if_status 0x0, 0xFF, [EF E3 1B 08]
-if_type_effectiveness 0x0, [EF E3 1B 08]
-if_type_effectiveness 0x14, [EF E3 1B 08]
-if_type_effectiveness 0xA, [EF E3 1B 08]
+AI_CBM_WillOWisp:
+get_ability AI_TARGET
+if_equal ABILITY_WATER_VEIL, Score_Minus10
+if_status AI_TARGET, STATUS1_ANY, Score_Minus10
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
+if_type_effectiveness AI_EFFECTIVENESS_x0_5, Score_Minus10
+if_type_effectiveness AI_EFFECTIVENESS_x0_25, Score_Minus10
 end
 
-[3A E3 1B 08]:
-is_double_battle
-if_equal 0x0, [EF E3 1B 08]
+AI_CBM_HelpingHand:
+if_not_double_battle Score_Minus10
 end
 
-[42 E3 1B 08]:
-get_ability 0x0
-if_equal 0x3C, [EF E3 1B 08]
+AI_CBM_TrickAndKnockOff:
+get_ability AI_TARGET
+if_equal ABILITY_STICKY_HOLD, Score_Minus10
 end
 
-[4B E3 1B 08]:
-if_status3 0x1, 0x400, [EF E3 1B 08]
+AI_CBM_Ingrain:
+if_status3 AI_USER, STATUS3_ROOTED, Score_Minus10
 end
 
-[56 E3 1B 08]:
-get_used_held_item 0x1
-if_equal 0x0, [EF E3 1B 08]
+AI_CBM_Recycle:
+get_used_held_item AI_USER
+if_equal 0, Score_Minus10
 end
 
-[5F E3 1B 08]:
-if_status3 0x1, 0x2000, [EF E3 1B 08]
+AI_CBM_Imprison:
+if_status3 AI_USER, STATUS3_IMPRISONED_OTHERS, Score_Minus10
 end
 
-[6A E3 1B 08]:
-if_not_status 0x1, 0xD8, [EF E3 1B 08]
+AI_CBM_Refresh:
+if_not_status AI_USER, STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON, Score_Minus10
 end
 
-[75 E3 1B 08]:
-if_status3 0x1, 0x10000, [EF E3 1B 08]
+AI_CBM_MudSport:
+if_status3 AI_USER, STATUS3_MUDSPORT, Score_Minus10
 end
 
-[80 E3 1B 08]:
-if_stat_level_equal 0x0, 0x1, 0x0, [EF E3 1B 08]
-if_stat_level_equal 0x0, 0x2, 0x0, [EC E3 1B 08]
+AI_CBM_Tickle:
+if_stat_level_equal AI_TARGET, STAT_ATK, 0, Score_Minus10
+if_stat_level_equal AI_TARGET, STAT_DEF, 0, Score_Minus8
 end
 
-[91 E3 1B 08]:
-if_stat_level_equal 0x1, 0x2, 0xC, [EF E3 1B 08]
-if_stat_level_equal 0x1, 0x5, 0xC, [EC E3 1B 08]
+AI_CBM_CosmicPower:
+if_stat_level_equal AI_USER, STAT_DEF, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_SPDEF, 12, Score_Minus8
 end
 
-[A2 E3 1B 08]:
-if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
-if_stat_level_equal 0x1, 0x2, 0xC, [EC E3 1B 08]
+AI_CBM_BulkUp:
+if_stat_level_equal AI_USER, STAT_ATK, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_DEF, 12, Score_Minus8
 end
 
-[B3 E3 1B 08]:
-if_status3 0x1, 0x20000, [EF E3 1B 08]
+AI_CBM_WaterSport:
+if_status3 AI_USER, STATUS3_WATERSPORT, Score_Minus10
 end
 
-[BE E3 1B 08]:
-if_stat_level_equal 0x1, 0x4, 0xC, [EF E3 1B 08]
-if_stat_level_equal 0x1, 0x5, 0xC, [EC E3 1B 08]
+AI_CBM_CalmMind:
+if_stat_level_equal AI_USER, STAT_SPATK, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_SPDEF, 12, Score_Minus8
 end
 
-[CF E3 1B 08]:
-if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
-if_stat_level_equal 0x1, 0x3, 0xC, [EC E3 1B 08]
+AI_CBM_DragonDance:
+if_stat_level_equal AI_USER, STAT_ATK, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_SPEED, 12, Score_Minus8
 end
 
-[E0 E3 1B 08]:
-score 0xFF
+Score_Minus1:
+score -1
 end
 
-[E3 E3 1B 08]:
-score 0xFE
+Score_Minus2:
+score -2
 end
 
-[E6 E3 1B 08]:
-score 0xFD
+Score_Minus3:
+score -3
 end
 
-[E9 E3 1B 08]:
-score 0xFB
+Score_Minus5:
+score -5
 end
 
-[EC E3 1B 08]:
-score 0xF8
+Score_Minus8:
+score -8
 end
 
-[EF E3 1B 08]:
-score 0xF6
+Score_Minus10:
+score -10
 end
 
-[F2 E3 1B 08]:
-score 0xF4
+Score_Minus12:
+score -12
 end
 
-[F5 E3 1B 08]:
-score 0x1
+Score_Plus1:
+score +1
 end
 
-[F8 E3 1B 08]:
-score 0x2
+Score_Plus2:
+score +2
 end
 
-[FB E3 1B 08]:
-score 0x3
+Score_Plus3:
+score +3
 end
 
-[FE E3 1B 08]:
-score 0x5
+Score_Plus5:
+score +5
 end
 
 
@@ -600,635 +600,825 @@ AI_CheckBadMove (pj): @1005000
 
 24 13 00 00 4F 00 09 31 00 EF E3 1B 08 2F 00 13 19 20 50 00 09 13 1A 31 50 00 09 59 39 50 00 09 31 50 39 50 00 09 31 A0 39 50 00 09 59 EF E3 1B 08 22 04 26 04 EF E3 1B 08 2F 00 13 0A 6A 50 00 09 13 1F 6A 50 00 09 13 4E 6A 50 00 09 13 0B 77 50 00 09 13 72 77 50 00 09 13 12 84 50 00 09 13 9D 91 50 00 09 59 99 50 00 09 22 04 26 0D F2 E3 1B 08 59 99 50 00 09 22 04 26 0B F2 E3 1B 08 59 99 50 00 09 22 04 26 0A F2 E3 1B 08 59 99 50 00 09 22 04 26 0C F2 E3 1B 08 2F 00 13 2B C8 50 00 09 13 8E D4 50 00 09 13 A5 E0 50 00 09 13 B9 EC 50 00 09 22 00 26 0C D4 50 00 09 22 02 26 0C D4 50 00 09 59 F3 50 00 09 54 2A 01 F2 E3 1B 08 59 F3 50 00 09 54 2A 04 F2 E3 1B 08 59 F3 50 00 09 54 2A 08 F2 E3 1B 08 59 F3 50 00 09 54 2A 02 F2 E3 1B 08 37 1A E0 53 00 09 37 27 E0 53 00 09 37 28 E0 53 00 09 37 4B E0 53 00 09 37 50 E0 53 00 09 37 57 E0 53 00 09 37 59 E0 53 00 09 37 63 E0 53 00 09 37 79 E0 53 00 09 37 7A E0 53 00 09 37 7B E0 53 00 09 37 90 E0 53 00 09 37 91 E0 53 00 09 37 AA E0 53 00 09 37 B6 E0 53 00 09 37 BD E0 53 00 09 37 C4 E0 53 00 09 37 01 00 54 00 09 37 1E 19 54 00 09 37 21 3D 54 00 09 37 42 3D 54 00 09 37 8B 3D 54 00 09 37 40 72 54 00 09 37 43 B9 54 00 09 37 8A D6 54 00 09 37 A7 D6 54 00 09 37 31 12 55 00 09 37 76 12 55 00 09 37 A6 12 55 00 09 37 73 2F 55 00 09 37 88 37 55 00 09 37 89 3F 55 00 09 37 A4 47 55 00 09 37 23 4F 55 00 09 37 2E 5A 55 00 09 37 41 65 55 00 09 37 7C 70 55 00 09 37 85 7B 55 00 09 37 70 83 55 00 09 37 94 8E 55 00 09 37 2F 99 55 00 09 37 4F A4 55 00 09 37 B5 B6 55 00 09 37 C0 C1 55 00 09 37 C9 CC 55 00 09 37 D2 D7 55 00 09 37 6A E2 55 00 09 37 6B FB 55 00 09 37 71 10 56 00 09 37 A5 1B 56 00 09 37 54 26 56 00 09 37 72 41 56 00 09 37 BB 4C 56 00 09 37 56 61 56 00 09 37 5A 69 56 00 09 37 AF 71 56 00 09 37 0A 77 56 00 09 37 0B 80 56 00 09 37 9C 80 56 00 09 37 0C 89 56 00 09 37 0D 92 56 00 09 37 0E 9B 56 00 09 37 0F A4 56 00 09 37 10 AD 56 00 09 37 6C AD 56 00 09 37 DF AD 56 00 09 37 CE B6 56 00 09 37 D0 C7 56 00 09 37 F0 C7 56 00 09 37 D1 D8 56 00 09 37 D3 E9 56 00 09 37 D4 FA 56 00 09 37 F1 0B 57 00 09 37 F2 24 57 00 09 37 F3 3D 57 00 09 37 F4 56 57 00 09 37 F5 6F 57 00 09 37 F6 80 57 00 09 37 12 00 58 00 09 37 13 15 58 00 09 37 14 2A 58 00 09 37 15 37 58 00 09 37 16 44 58 00 09 37 17 51 58 00 09 37 18 66 58 00 09 37 CD 7D 58 00 09 37 EF 8E 58 00 09 37 A8 9F 58 00 09 37 7F B4 58 00 09 37 08 C4 58 00 09 37 5D D5 58 00 09 37 A0 E6 58 00 09 37 A1 EF 58 00 09 37 A2 EF 58 00 09 37 67 FE 58 00 09 37 7E 11 59 00 09 37 B1 1E 59 00 09 37 5C 27 59 00 09 37 C1 32 59 00 09 37 3C 3D 59 00 09 37 3D 45 59 00 09 37 3A 4D 59 00 09 37 3B 73 59 00 09 37 19 99 59 00 09 37 8F A0 59 00 09 37 07 16 5A 00 09 37 1C 3A 5A 00 09 37 26 59 5A 00 09 37 32 6E 5A 00 09 37 6D 89 5A 00 09 37 78 AB 5A 00 09 37 8E 00 5B 00 09 37 9E 0C 5B 00 09 37 B0 15 5B 00 09 37 B8 1D 5B 00 09 37 E5 26 5B 00 09 37 99 EF E3 1B 08 5A FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 31 00 EF E3 1B 08 2F 00 14 19 FF 53 00 09 31 50 FF 53 00 09 31 A0 FF 53 00 09 59 EF E3 1B 08 5A 2F 00 13 0F EF E3 1B 08 13 48 EF E3 1B 08 13 AD EF E3 1B 08 59 EE 54 00 09 22 00 26 0F EF E3 1B 08 22 02 26 0F EF E3 1B 08 2F 00 13 31 EF E3 1B 08 36 13 00 EF E3 1B 08 59 FD 54 00 09 22 00 26 03 EF E3 1B 08 26 08 EF E3 1B 08 22 02 26 03 EF E3 1B 08 26 08 EF E3 1B 08 2F 00 13 11 EF E3 1B 08 13 5A EF E3 1B 08 13 62 EF E3 1B 08 59 EE 54 00 09 22 00 26 03 EF E3 1B 08 26 08 EF E3 1B 08 26 0D EF E3 1B 08 22 02 26 03 EF E3 1B 08 26 08 EF E3 1B 08 26 0D EF E3 1B 08 2F 00 13 07 EF E3 1B 08 13 11 EF E3 1B 08 13 5A EF E3 1B 08 13 62 EF E3 1B 08 59 EE 54 00 09 22 00 26 0D EF E3 1B 08 22 02 26 0D EF E3 1B 08 2F 00 13 07 EF E3 1B 08 59 EE 54 00 09 22 00 26 0A EF E3 1B 08 22 02 26 0A EF E3 1B 08 2F 00 13 29 EF E3 1B 08 2F 00 14 66 FD 54 00 09 36 13 00 EF E3 1B 08 0F 00 20 00 00 00 EF E3 1B 08 09 00 FF 00 00 00 EF E3 1B 08 5A 2F 00 13 14 EF E3 1B 08 0F 00 20 00 00 00 EF E3 1B 08 0B 00 07 00 00 00 E9 E3 1B 08 5A 36 13 02 EC E3 1B 08 5A 36 13 01 EC E3 1B 08 5A 36 13 00 EC E3 1B 08 5A 36 13 03 EC E3 1B 08 5A 0F 01 02 00 00 00 EC E3 1B 08 5A 0F 01 00 01 00 00 EC E3 1B 08 5A 0F 01 01 00 00 00 EC E3 1B 08 5A 0F 01 20 00 00 00 EC E3 1B 08 5A 57 01 00 EC E3 1B 08 5A 0F 00 10 00 00 00 EF E3 1B 08 5A 0F 00 40 00 00 00 EF E3 1B 08 5A 0B 01 00 00 10 00 EF E3 1B 08 5A 0B 01 00 00 00 01 EC E3 1B 08 05 01 1A EF E3 1B 08 5A 0D 01 00 04 00 00 EF E3 1B 08 5A 0D 01 00 20 00 00 EF E3 1B 08 5A 0D 01 00 00 01 00 EF E3 1B 08 5A 0D 01 00 00 02 00 EF E3 1B 08 5A 19 D4 00 F0 55 00 09 1A 4F 01 FA 55 00 09 0B 00 00 00 00 04 EF E3 1B 08 5A 0B 00 00 00 00 08 EF E3 1B 08 0A 00 07 00 00 00 EC E3 1B 08 5A 0B 00 00 00 00 20 EF E3 1B 08 5A 0B 00 00 00 00 80 EF E3 1B 08 5A 0D 00 04 00 00 00 EF E3 1B 08 22 00 13 0C EF E3 1B 08 22 02 13 0C EF E3 1B 08 5A 0D 00 20 00 00 00 EF E3 1B 08 5A 0D 00 00 18 00 00 EF E3 1B 08 09 00 FF 00 00 00 EF E3 1B 08 5A 43 00 00 EC E3 1B 08 5A 43 00 01 EC E3 1B 08 5A 5C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 5A 3B 01 02 0C EF E3 1B 08 5A 3B 01 03 0C EF E3 1B 08 5A 3B 01 04 0C EF E3 1B 08 5A 3B 01 05 0C EF E3 1B 08 5A 3B 01 06 0C EF E3 1B 08 5A 3B 01 07 0C EF E3 1B 08 5A 3B 01 02 0C EF E3 1B 08 3B 01 05 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 02 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 04 0C EC E3 1B 08 5A 3B 01 04 0C EF E3 1B 08 3B 01 05 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 03 0C EC E3 1B 08 5A 3B 01 04 0C EF E3 1B 08 3B 01 05 0C EC E3 1B 08 3B 01 03 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 02 0C EC E3 1B 08 3B 01 06 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 04 0C EC E3 1B 08 3B 01 03 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 03 0C EC E3 1B 08 3B 01 07 0C EC E3 1B 08 5A 3B 01 03 0C EF E3 1B 08 3B 01 07 0C EC E3 1B 08 5A 3B 01 01 0C EF E3 1B 08 3B 01 06 0C EC E3 1B 08 5A FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 3B 00 01 00 EF E3 1B 08 2F 00 13 34 EF E3 1B 08 59 6E 58 00 09 3B 00 02 00 EF E3 1B 08 2F 00 13 91 EF E3 1B 08 59 6E 58 00 09 3B 00 03 00 EF E3 1B 08 59 6E 58 00 09 3B 00 04 00 EF E3 1B 08 59 6E 58 00 09 3B 00 05 00 EF E3 1B 08 59 6E 58 00 09 3B 00 06 00 EF E3 1B 08 2F 00 13 33 EF E3 1B 08 59 6E 58 00 09 3B 00 07 00 EF E3 1B 08 2F 00 13 1D EF E3 1B 08 13 49 EF E3 1B 08 5A 3B 00 01 00 EF E3 1B 08 3B 00 02 00 EC E3 1B 08 5A 3B 00 04 00 EF E3 1B 08 3B 00 05 00 EC E3 1B 08 5A 3B 00 01 00 EF E3 1B 08 3B 00 04 00 EC E3 1B 08 59 BB 58 00 09 1A E2 00 C3 58 00 09 2C 01 13 00 EF E3 1B 08 5A 0A 00 07 00 00 00 EC E3 1B 08 31 00 EF E3 1B 08 5A 0A 00 88 00 00 00 EC E3 1B 08 31 00 EF E3 1B 08 5A 4B 01 13 03 EF E3 1B 08 5A 31 00 EF E3 1B 08 4B 01 13 00 EF E3 1B 08 5A 2F 00 13 D6 EF E3 1B 08 13 DB EF E3 1B 08 59 E0 53 00 09 2F 00 13 1A EF E3 1B 08 59 E0 53 00 09 2F 00 13 3C EF E3 1B 08 5A 0A 01 07 00 00 00 EC E3 1B 08 5A 0A 01 D8 00 00 00 EF E3 1B 08 5A 32 00 13 00 EF E3 1B 08 32 01 13 00 EF E3 1B 08 39 01 01 06 72 59 00 09 39 01 04 06 72 59 00 09 3A 00 01 06 72 59 00 09 3A 00 04 06 72 59 00 09 59 EF E3 1B 08 5A 39 01 02 06 98 59 00 09 39 01 05 06 98 59 00 09 3A 00 02 06 98 59 00 09 3A 00 05 06 98 59 00 09 59 EF E3 1B 08 5A 1A 72 00 15 5A 00 09 39 01 01 06 15 5A 00 09 39 01 02 06 15 5A 00 09 39 01 03 06 15 5A 00 09 39 01 04 06 15 5A 00 09 39 01 05 06 15 5A 00 09 39 01 06 06 15 5A 00 09 39 01 07 06 15 5A 00 09 3A 00 01 06 15 5A 00 09 3A 00 02 06 15 5A 00 09 3A 00 03 06 15 5A 00 09 3A 00 04 06 15 5A 00 09 3A 00 05 06 15 5A 00 09 3A 00 06 06 15 5A 00 09 3A 00 07 06 15 5A 00 09 59 EF E3 1B 08 5A 31 00 EF E3 1B 08 2F 00 13 06 EF E3 1B 08 2C 01 14 00 39 5A 00 09 2C 00 14 00 EF E3 1B 08 59 E0 E3 1B 08 5A 19 12 00 48 5A 00 09 1A 2E 00 58 5A 00 09 2C 00 13 00 EF E3 1B 08 2F 00 13 15 EF E3 1B 08 5A 31 00 EF E3 1B 08 2F 00 13 05 EF E3 1B 08 5B 01 EF E3 1B 08 5A 3B 00 07 00 EF E3 1B 08 2F 00 13 1D EF E3 1B 08 13 49 EF E3 1B 08 59 12 55 00 09 22 01 13 07 99 5A 00 09 22 03 14 07 C7 56 00 09 0B 00 00 00 00 10 EF E3 1B 08 05 01 33 EF E3 1B 08 5A 19 7D 02 BC 5A 00 09 0B 00 00 00 0F 00 EF E3 1B 08 2F 00 13 0C EF E3 1B 08 49 01 13 00 D7 5A 00 09 13 FE E4 5A 00 09 59 EF E3 1B 08 49 00 13 FE F1 5A 00 09 59 EF E3 1B 08 49 00 13 00 F1 5A 00 09 59 EF E3 1B 08 19 7D 02 37 58 00 09 19 A6 02 3D 54 00 09 5A 05 01 33 EF E3 1B 08 59 77 56 00 09 4A 01 13 00 EF E3 1B 08 5A 4C 13 00 EF E3 1B 08 5A 4D 01 13 00 EF E3 1B 08 5A 3F 00 40 02 EF E3 1B 08 5A
 
-AI_CheckBadMove_??? (pj): @1004F00
+CheckElectricTypeThunderWaveImmunity (pj): @1004F00
 1A 56 00 17 4F 00 09 22 00 26 0D F2 E3 1B 08 22 02 26 0D F2 E3 1B 08 1A 05 01 39 50 00 09 22 00 26 0A F2 E3 1B 08 22 02 26 0A F2 E3 1B 08 2D 33 0A 14 04 39 50 00 09 2F 01 14 9E 39 50 00 09 2D 33 06 13 10 39 50 00 09 13 40 39 50 00 09 22 00 26 11 F2 E3 1B 08 22 02 26 11 F2 E3 1B 08 59 39 50 00 09 31 00 F2 E3 1B 08 29 01 E6 E3 1B 08 01 45 F8 E3 1B 08 5A
 
+AI_CheckBadMove:
 get_how_powerful_move_is
-if_equal 0x0, [00 4F 00 09]
-if_type_effectiveness 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0x19, [20 50 00 09]
-if_equal 0x1A, [31 50 00 09]
+if_equal 0, CheckElectricTypeThunderWaveImmunity
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_WONDER_GUARD, CheckIfWonderGuardCancelsMove_New
+if_equal ABILITY_LEVITATE, CheckIfLevitateCancelsGroundMove
 goto [39 50 00 09]
 
-[00 4F 00 09]:
-if_not_move 0x56, [17 4F 00 09]
-get_type 0x0
-if_equal_ 0xD, [F2 E3 1B 08]
-get_type 0x2
-if_equal_ 0xD, [F2 E3 1B 08]
-goto [17 4F 00 09]
+CheckElectricTypeThunderWaveImmunity:
+if_not_move MOVE_THUNDER_WAVE, CheckFireTypeWillOWispImmunity
+get_target_type1
+if_equal_ TYPE_ELECTRIC, Score_Minus12
+get_target_type2
+if_equal_ TYPE_ELECTRIC, Score_Minus12
+goto CheckFireTypeWillOWispImmunity
 
-[17 4F 00 09]:
-if_not_move 0x105, [39 50 00 09]
-get_type 0x0
-if_equal_ 0xA, [F2 E3 1B 08]
-get_type 0x2
-if_equal_ 0xA, [F2 E3 1B 08]
+CheckFireTypeWillOWispImmunity:
+if_not_move MOVE_WILL_O_WISP, CheckAbsorbingAbilities // oops, should skip to the prankster check - this means only will-o-wisp is checked for prankster
+get_target_type1
+if_equal_ TYPE_FIRE, Score_Minus12
+get_target_type2
+if_equal_ TYPE_FIRE, Score_Minus12
 get_considered_move
-[33 0A] (COME BACK TO THIS)
-if_not_equal 0x4, [39 50 00 09]
-get_ability 0x1
-if_not_equal 0x9E, [39 50 00 09]
+get_move_attribute ATTR_CATEGORY_FLAGS
+if_not_equal STATUS_MOVE, CheckAbsorbingAbilities
+get_ability AI_USER
+if_not_equal ABILITY_PRANKSTER, CheckAbsorbingAbilities
 get_considered_move
-[33 06] (COME BACK TO THIS)
-if_equal 0x10, [39 50 00 09]
-if_equal 0x40, [39 50 00 09]
-get_type 0x0
-if_equal_ 0x11, [F2 E3 1B 08]
-get_type 0x2
-if_equal_ 0x11, [F2 E3 1B 08]
+get_move_attribute ATTR_TARGET
+if_equal MOVE_TARGET_USER, CheckAbsorbingAbilities
+if_equal MOVE_TARGET_OPPONENTS_FIELD, CheckAbsorbingAbilities
+get_target_type1
+if_equal_ TYPE_DARK, Score_Minus12
+get_target_type2
+if_equal_ TYPE_DARK, Score_Minus12
+goto CheckAbsorbingAbilities
+
+[63 4F 00 09]: // unreachable?
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus12
+if_target_slower Score_Minus3
+if_random_greater_than 69, Score_Plus2
+end
+
+CheckIfWonderGuardCancelsMove_New:
+if_type_effectiveness AI_EFFECTIVENESS_x2, [39 50 00 09]
+if_type_effectiveness AI_EFFECTIVENESS_x4, [39 50 00 09]
+goto Score_Minus10
+
+CheckIfLevitateCancelsGroundMove:
+get_curr_move_type
+if_equal_ TYPE_GROUND, Score_Minus10
 goto [39 50 00 09]
 
-[63 4F 00 09]: // possibly unreachable?
-if_type_effectiveness 0x0, [F2 E3 1B 08]
-if_user_doesnt_go 0x1, [E6 E3 1B 08]
-if_random_greater_than 0x45, [F8 E3 1B 08]
+CheckAbsorbingAbilities:
+get_ability AI_TARGET
+if_equal ABILITY_VOLT_ABSORB, CheckIfVoltAbsorbCancelsElectric
+if_equal ABILITY_LIGHTNING_ROD, CheckIfVoltAbsorbCancelsElectric
+if_equal ABILITY_MOTOR_DRIVE, CheckIfVoltAbsorbCancelsElectric
+if_equal ABILITY_WATER_ABSORB, CheckIfWaterAbsorbCancelsWater
+if_equal ABILITY_STORM_DRAIN, CheckIfWaterAbsorbCancelsWater
+if_equal ABILITY_FLASH_FIRE, CheckIfFlashFireCancelsFire
+if_equal ABILITY_SAP_SIPPER, CheckIfSapSipperCancelsGrass
+goto AI_CheckBadMove_CheckSpecificMoveImmunities
+
+CheckIfVoltAbsorbCancelsElectric:
+get_curr_move_type
+if_equal_ TYPE_ELECTRIC, Score_Minus12
+goto AI_CheckBadMove_CheckSpecificMoveImmunities
+
+CheckIfWaterAbsorbCancelsWater:
+get_curr_move_type
+if_equal_ TYPE_WATER, Score_Minus12
+goto AI_CheckBadMove_CheckSpecificMoveImmunities
+
+CheckIfFlashFireCancelsFire:
+get_curr_move_type
+if_equal_ TYPE_FIRE, Score_Minus12
+goto AI_CheckBadMove_CheckSpecificMoveImmunities
+
+CheckIfSapSipperCancelsGrass:
+get_curr_move_type
+if_equal_ TYPE_GRASS, Score_Minus12
+goto AI_CheckBadMove_CheckSpecificMoveImmunities
+
+AI_CheckBadMove_CheckSpecificMoveImmunities:
+get_ability AI_TARGET
+if_equal ABILITY_SOUNDPROOF, AI_CheckBadMove_CheckSoundproof_New
+if_equal ABILITY_OVERCOAT, AI_CheckBadMove_CheckOvercoat
+if_equal ABILITY_AROMA_VEIL, AI_CheckBadMove_CheckAromaVeil
+if_equal ABILITY_BULLETPROOF, AI_CheckBadMove_CheckBulletproof
+get_target_type1
+if_equal_ TYPE_GRASS, AI_CheckBadMove_CheckOvercoat
+get_target_type2
+if_equal_ TYPE_GRASS, AI_CheckBadMove_CheckOvercoat
+goto AI_CheckBadMove_CheckEffect_New
+
+AI_CheckBadMove_CheckSoundproof_New:
+get_considered_move_extra_flags
+if_bits_set FLAG_SOUND_MOVE, Score_Minus12
+goto AI_CheckBadMove_CheckEffect_New
+
+AI_CheckBadMove_CheckOvercoat:
+get_considered_move_extra_flags
+if_bits_set FLAG_POWDER_MOVE, Score_Minus12
+goto AI_CheckBadMove_CheckEffect_New
+
+AI_CheckBadMove_CheckAromaVeil:
+get_considered_move_extra_flags
+if_bits_set FLAG_MENTAL_MOVE, Score_Minus12
+goto AI_CheckBadMove_CheckEffect_New
+
+AI_CheckBadMove_CheckBulletproof:
+get_considered_move_extra_flags
+if_bits_set FLAG_BALLISTIC_MOVE, Score_Minus12
+goto AI_CheckBadMove_CheckEffect_New
+
+AI_CheckBadMove_CheckEffect_New:
+if_effect EFFECT_BIDE, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_RAZOR_WIND, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_SUPER_FANG, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_SKY_ATTACK, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_RECHARGE, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_LEVEL_DAMAGE, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_COUNTER, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_FLAIL, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_RETURN, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_PRESENT, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_FRUSTRATION, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_MIRROR_COAT, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_SKULL_BASH, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_FOCUS_PUNCH, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_SUPERPOWER, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_ENDEAVOR, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_LOW_KICK, AI_CBM_HighRiskForDamage_New
+if_effect EFFECT_SLEEP, AI_CBM_Sleep_New
+if_effect EFFECT_0x1E, [19 54 00 09]
+if_effect EFFECT_TOXIC, AI_CBM_Toxic_New
+if_effect EFFECT_POISON, AI_CBM_Toxic_New
+if_effect EFFECT_0x8B, AI_CBM_Toxic_New
+if_effect EFFECT_0x40, [72 54 00 09]
+if_effect EFFECT_PARALYZE, AI_CBM_Paralyze_New
+if_effect EFFECT_0x8A, AI_CBM_Burn_New
+if_effect EFFECT_BURN, AI_CBM_Burn_New
+if_effect EFFECT_CONFUSE, AI_CBM_Confuse_New
+if_effect EFFECT_SWAGGER, AI_CBM_Confuse_New
+if_effect EFFECT_FLATTER, AI_CBM_Confuse_New
+if_effect EFFECT_SANDSTORM, AI_CBM_Sandstorm
+if_effect EFFECT_RAIN_DANCE, AI_CBM_RainDance
+if_effect EFFECT_SUNNY_DAY, AI_CBM_SunnyDay
+if_effect EFFECT_HAIL, AI_CBM_Hail
+if_effect EFFECT_LIGHT_SCREEN, AI_CBM_LightScreen
+if_effect EFFECT_MIST, AI_CBM_Mist
+if_effect EFFECT_REFLECT, AI_CBM_Reflect
+if_effect EFFECT_SAFEGUARD, AI_CBM_Safeguard
+if_effect EFFECT_TAILWIND, AI_CBM_Tailwind
+if_effect EFFECT_SPIKES, AI_CBM_Spikes
+if_effect EFFECT_FUTURE_SIGHT, AI_CBM_FutureSight
+if_effect EFFECT_FOCUS_ENERGY, AI_CBM_FocusEnergy
+if_effect EFFECT_SUBSTITUTE, AI_CBM_Substitute
+if_effect EFFECT_INGRAIN, AI_CBM_Ingrain
+if_effect EFFECT_IMPRISON, AI_CBM_Imprison
+if_effect EFFECT_MUD_SPORT, AI_CBM_MudSport
+if_effect EFFECT_WATER_SPORT, AI_CBM_WaterSport
+if_effect EFFECT_MEAN_LOOK, AI_CBM_CantEscape_CheckWhichMove
+if_effect EFFECT_NIGHTMARE, [FB 55 00 09]
+if_effect EFFECT_FORESIGHT, [10 56 00 09]
+if_effect EFFECT_TORMENT, [1B 56 00 09]
+if_effect EFFECT_LEECH_SEED, [26 56 00 09]
+if_effect EFFECT_PERISH_SONG, [41 56 00 09]
+if_effect EFFECT_YAWN, [4C 56 00 09]
+if_effect EFFECT_DISABLE, [61 56 00 09]
+if_effect EFFECT_ENCORE, [69 56 00 09]
+if_effect EFFECT_TAUNT, [71 56 00 09]
+if_effect EFFECT_ATTACK_UP, [77 56 00 09]
+if_effect EFFECT_DEFENSE_UP, [80 56 00 09]
+if_effect EFFECT_DEFENSE_CURL, [80 56 00 09]
+if_effect EFFECT_SPEED_UP, [89 56 00 09]
+if_effect EFFECT_SPECIAL_ATTACK_UP, [92 56 00 09]
+if_effect EFFECT_SPECIAL_DEFENSE_UP, [9B 56 00 09]
+if_effect EFFECT_ACCURACY_UP, [A4 56 00 09]
+if_effect EFFECT_EVASION_UP, [AD 56 00 09]
+if_effect EFFECT_FORMER_DOUBLE_EDGE, [AD 56 00 09]
+if_effect EFFECT_0xDF, [AD 56 00 09]
+if_effect EFFECT_COSMIC_POWER, [B6 56 00 09]
+if_effect EFFECT_BULK_UP, [C7 56 00 09]
+if_effect EFFECT_0xF0, [C7 56 00 09]
+if_effect EFFECT_FORMER_POISON_TAIL, [D8 56 00 09]
+if_effect EFFECT_CALM_MIND, [E9 56 00 09]
+if_effect EFFECT_DRAGON_DANCE, [FA 56 00 09]
+if_effect EFFECT_0xF1, [0B 57 00 09]
+if_effect EFFECT_0xF2, [24 57 00 09]
+if_effect EFFECT_0xF3, [3D 57 00 09]
+if_effect EFFECT_0xF4, [56 57 00 09]
+if_effect EFFECT_0xF5, [6F 57 00 09]
+if_effect EFFECT_0xF6, [80 57 00 09]
+if_effect EFFECT_ATTACK_DOWN, [00 58 00 09]
+if_effect EFFECT_DEFENSE_DOWN, [15 58 00 09]
+if_effect EFFECT_SPEED_DOWN, [2A 58 00 09]
+if_effect EFFECT_SPECIAL_ATTACK_DOWN, [37 58 00 09]
+if_effect EFFECT_SPECIAL_DEFENSE_DOWN, [44 58 00 09]
+if_effect EFFECT_ACCURACY_DOWN, [51 58 00 09]
+if_effect EFFECT_EVASION_DOWN, [66 58 00 09]
+if_effect EFFECT_TICKLE, [7D 58 00 09]
+if_effect EFFECT_0xEF, [8E 58 00 09]
+if_effect EFFECT_MEMENTO, [9F 58 00 09]
+if_effect EFFECT_BATON_PASS, [B4 58 00 09]
+if_effect EFFECT_DREAM_EATER, [C4 58 00 09]
+if_effect EFFECT_FORMER_CONVERSION_2, [D5 58 00 09]
+if_effect EFFECT_STOCKPILE, [E6 58 00 09]
+if_effect EFFECT_SPIT_UP, [EF 58 00 09]
+if_effect EFFECT_SWALLOW, [EF 58 00 09]
+if_effect EFFECT_FORMER_QUICK_ATTACK, [FE 58 00 09]
+if_effect EFFECT_FORMER_MAGNITUDE, [11 59 00 09]
+if_effect EFFECT_TRICK, [1E 59 00 09]
+if_effect EFFECT_SNORE, [27 59 00 09]
+if_effect EFFECT_REFRESH, [32 59 00 09]
+if_effect EFFECT_FORMER_SPEED_DOWN_2, [3D 59 00 09]
+if_effect EFFECT_FORMER_SPECIAL_ATTACK_DOWN_2, [45 59 00 09]
+if_effect EFFECT_FORMER_ATTACK_DOWN_2, [4D 59 00 09]
+if_effect EFFECT_FORMER_DEFENSE_DOWN_2, [73 59 00 09]
+if_effect EFFECT_HAZE, [99 59 00 09]
+if_effect EFFECT_PSYCH_UP, [A0 59 00 09]
+if_effect EFFECT_EXPLOSION, [16 5A 00 09]
+if_effect EFFECT_ROAR, [3A 5A 00 09]
+if_effect EFFECT_OHKO, [59 5A 00 09]
+if_effect EFFECT_FORMER_ATTACK_UP_2, [6E 5A 00 09]
+if_effect EFFECT_CURSE, [89 5A 00 09]
+if_effect EFFECT_ATTRACT, [AB 5A 00 09]
+if_effect EFFECT_BELLY_DRUM, [00 5B 00 09]
+if_effect EFFECT_FAKE_OUT, [0C 5B 00 09]
+if_effect EFFECT_HELPING_HAND, [15 5B 00 09]
+if_effect EFFECT_RECYCLE, [1D 5B 00 09]
+if_effect EFFECT_0xE5, [26 5B 00 09]
+if_effect EFFECT_TELEPORT, Score_Minus10
 end
 
-[20 50 00 09]:
+AI_CBM_HighRiskForDamage_New:
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
+get_ability AI_TARGET
+if_not_equal ABILITY_WONDER_GUARD, AI_CBM_HighRiskForDamage_End
+if_type_effectiveness AI_EFFECTIVENESS_x2, AI_CBM_HighRiskForDamage_End
+if_type_effectiveness AI_EFFECTIVENESS_x4, AI_CBM_HighRiskForDamage_End
+goto Score_Minus10
 
-
-
-
-[62 DC 1B 08]:
-get_type 0x4
-if_equal_ 0xD, [F2 E3 1B 08]
-goto [9C DC 1B 08]
-
-[6F DC 1B 08]:
-get_type 0x4
-if_equal_ 0xB, [F2 E3 1B 08]
-goto [9C DC 1B 08]
-
-[7C DC 1B 08]:
-get_type 0x4
-if_equal_ 0xA, [F2 E3 1B 08]
-goto [9C DC 1B 08]
-
-[89 DC 1B 08]:
-if_type_effectiveness 0x50, [9C DC 1B 08]
-goto [EF E3 1B 08]
-
-[94 DC 1B 08]:
-get_type 0x4
-if_equal_ 0x4, [EF E3 1B 08]
-goto [9C DC 1B 08]
-
-[9C DC 1B 08]:
-get_ability 0x0
-if_not_equal 0x2B, [E3 DC 1B 08]
-if_move 0x2D, [EF E3 1B 08]
-if_move 0x2E, [EF E3 1B 08]
-if_move 0x2F, [EF E3 1B 08]
-if_move 0x30, [EF E3 1B 08]
-if_move 0x67, [EF E3 1B 08]
-if_move 0xAD, [EF E3 1B 08]
-if_move 0xFD, [EF E3 1B 08]
-if_move 0x13F, [EF E3 1B 08]
-if_move 0x140, [EF E3 1B 08]
-goto [E3 DC 1B 08]
-
-[E3 DC 1B 08]:
-if_effect 0x1, [72 DF 1B 08]
-if_effect 0x7, [8B DF 1B 08]
-if_effect 0x8, [C4 DF 1B 08]
-if_effect 0xA, [DC DF 1B 08]
-if_effect 0xB, [E5 DF 1B 08]
-if_effect 0xC, [EE DF 1B 08]
-if_effect 0xD, [F7 DF 1B 08]
-if_effect 0xE, [00 E0 1B 08]
-if_effect 0xF, [09 E0 1B 08]
-if_effect 0x10, [12 E0 1B 08]
-if_effect 0x12, [1B E0 1B 08]
-if_effect 0x13, [30 E0 1B 08]
-if_effect 0x14, [3D E0 1B 08]
-if_effect 0x15, [4A E0 1B 08]
-if_effect 0x16, [57 E0 1B 08]
-if_effect 0x17, [64 E0 1B 08]
-if_effect 0x18, [79 E0 1B 08]
-if_effect 0x19, [90 E0 1B 08]
-if_effect 0x1A, [6E E1 1B 08]
-if_effect 0x1C, [06 E1 1B 08]
-if_effect 0x21, [17 E1 1B 08]
-if_effect 0x23, [46 E1 1B 08]
-if_effect 0x26, [51 E1 1B 08]
-if_effect 0x27, [6E E1 1B 08]
-if_effect 0x28, [6E E1 1B 08]
-if_effect 0x2E, [88 E1 1B 08]
-if_effect 0x2F, [93 E1 1B 08]
-if_effect 0x31, [9E E1 1B 08]
-if_effect 0x32, [DC DF 1B 08]
-if_effect 0x33, [E5 DF 1B 08]
-if_effect 0x34, [EE DF 1B 08]
-if_effect 0x35, [F7 DF 1B 08]
-if_effect 0x36, [00 E0 1B 08]
-if_effect 0x37, [09 E0 1B 08]
-if_effect 0x38, [12 E0 1B 08]
-if_effect 0x3A, [1B E0 1B 08]
-if_effect 0x3B, [30 E0 1B 08]
-if_effect 0x3C, [3D E0 1B 08]
-if_effect 0x3D, [4A E0 1B 08]
-if_effect 0x3E, [57 E0 1B 08]
-if_effect 0x3F, [64 E0 1B 08]
-if_effect 0x40, [79 E0 1B 08]
-if_effect 0x41, [B1 E1 1B 08]
-if_effect 0x42, [17 E1 1B 08]
-if_effect 0x43, [BC E1 1B 08]
-if_effect 0x4F, [D5 E1 1B 08]
-if_effect 0x50, [6E E1 1B 08]
-if_effect 0x54, [E7 E1 1B 08]
-if_effect 0x56, [02 E2 1B 08]
-if_effect 0x57, [6E E1 1B 08]
-if_effect 0x58, [6E E1 1B 08]
-if_effect 0x59, [6E E1 1B 08]
-if_effect 0x5A, [0A E2 1B 08]
-if_effect 0x5C, [12 E2 1B 08]
-if_effect 0x61, [12 E2 1B 08]
-if_effect 0x63, [6E E1 1B 08]
-if_effect 0x6A, [1D E2 1B 08]
-if_effect 0x6B, [AF DF 1B 08]
-if_effect 0x6C, [12 E2 1B 08]
-if_effect 0x6D, [28 E2 1B 08]
-if_effect 0x70, [39 E2 1B 08]
-if_effect 0x71, [44 E2 1B 08]
-if_effect 0x72, [4F E2 1B 08]
-if_effect 0x73, [5A E2 1B 08]
-if_effect 0x76, [9E E1 1B 08]
-if_effect 0x78, [62 E2 1B 08]
-if_effect 0x79, [6E E1 1B 08]
-if_effect 0x7A, [6E E1 1B 08]
-if_effect 0x7B, [6E E1 1B 08]
-if_effect 0x7C, [A2 E2 1B 08]
-if_effect 0x7E, [66 E1 1B 08]
-if_effect 0x7F, [BD E2 1B 08]
-if_effect 0x82, [6E E1 1B 08]
-if_effect 0x88, [C6 E2 1B 08]
-if_effect 0x89, [CE E2 1B 08]
-if_effect 0x8E, [D5 DF 1B 08]
-if_effect 0x8F, [90 E0 1B 08]
-if_effect 0x90, [6E E1 1B 08]
-if_effect 0x91, [6E E1 1B 08]
-if_effect 0x94, [D6 E2 1B 08]
-if_effect 0x99, [EF E3 1B 08]
-if_effect 0x9C, [E5 DF 1B 08]
-if_effect 0x9E, [E1 E2 1B 08]
-if_effect 0xA0, [EA E2 1B 08]
-if_effect 0xA1, [F3 E2 1B 08]
-if_effect 0xA2, [F3 E2 1B 08]
-if_effect 0xA4, [02 E3 1B 08]
-if_effect 0xA5, [0A E3 1B 08]
-if_effect 0xA6, [9E E1 1B 08]
-if_effect 0xA7, [15 E3 1B 08]
-if_effect 0xA8, [AD E2 1B 08]
-if_effect 0xAA, [6E E1 1B 08]
-if_effect 0xB0, [3A E3 1B 08]
-if_effect 0xB1, [42 E3 1B 08]
-if_effect 0xB5, [4B E3 1B 08]
-if_effect 0xB6, [6E E1 1B 08]
-if_effect 0xB8, [56 E3 1B 08]
-if_effect 0xBC, [42 E3 1B 08]
-if_effect 0xBD, [6E E1 1B 08]
-if_effect 0xC0, [5F E3 1B 08]
-if_effect 0xC1, [6A E3 1B 08]
-if_effect 0xC4, [6E E1 1B 08]
-if_effect 0xC9, [75 E3 1B 08]
-if_effect 0xCD, [80 E3 1B 08]
-if_effect 0xCE, [91 E3 1B 08]
-if_effect 0xD0, [A2 E3 1B 08]
-if_effect 0xD2, [B3 E3 1B 08]
-if_effect 0xD3, [BE E3 1B 08]
-if_effect 0xD4, [CF E3 1B 08]
+AI_CBM_HighRiskForDamage_End:
 end
 
-[72 DF 1B 08]:
-get_ability 0x0
-if_equal 0xF, [EF E3 1B 08]
-if_equal 0x48, [EF E3 1B 08]
-if_status 0x0, 0xFF, [EF E3 1B 08]
-end
+AI_CBM_Sleep_New:
+get_ability AI_TARGET
+if_equal ABILITY_INSOMNIA, Score_Minus10
+if_equal ABILITY_VITAL_SPIRIT, Score_Minus10
+if_equal ABILITY_SWEET_VEIL, Score_Minus10
+goto CheckIfLeafGuardCancelsStatus
 
-[8B DF 1B 08]:
-if_type_effectiveness 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0x6, [EF E3 1B 08]
-count_usable_party_mons 0x1
-if_not_equal 0x0, [AE DF 1B 08]
-count_usable_party_mons 0x0
-if_not_equal 0x0, [EF E3 1B 08]
-goto [AE DF 1B 08]
-
-[AE DF 1B 08]:
-goto [E0 E3 1B 08]
-
-[AF DF 1B 08]:
-if_status2 0x0, 0x8000000, [EF E3 1B 08]
-if_not_status 0x0, 0x7, [EC E3 1B 08]
-end
-
-[C4 DF 1B 08]:
-if_not_status 0x0, 0x7, [EC E3 1B 08]
-if_type_effectiveness 0x0, [EF E3 1B 08]
-end
-
-[D5 DF 1B 08]:
-if_hp_less_than 0x1, 0x33, [EF E3 1B 08]
-goto [DC DF 1B 08]
-
-[DC DF 1B 08]:
-if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
-end
-
-[E5 DF 1B 08]:
-if_stat_level_equal 0x1, 0x2, 0xC, [EF E3 1B 08]
-end
-
-[EE DF 1B 08]:
-if_stat_level_equal 0x1, 0x3, 0xC, [EF E3 1B 08]
-end
-
-[F7 DF 1B 08]:
-if_stat_level_equal 0x1, 0x4, 0xC, [EF E3 1B 08]
-end
-
-[00 E0 1B 08]:
-if_stat_level_equal 0x1, 0x5, 0xC, [EF E3 1B 08]
-end
-
-[09 E0 1B 08]:
-if_stat_level_equal 0x1, 0x6, 0xC, [EF E3 1B 08]
-end
-
-[12 E0 1B 08]:
-if_stat_level_equal 0x1, 0x7, 0xC, [EF E3 1B 08]
-end
-
-[1B E0 1B 08]:
-if_stat_level_equal 0x0, 0x1, 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0x34, [EF E3 1B 08]
-goto [81 E0 1B 08]
-
-[30 E0 1B 08]:
-if_stat_level_equal 0x0, 0x2, 0x0, [EF E3 1B 08]
-goto [81 E0 1B 08]
-
-[3D E0 1B 08]:
-if_stat_level_equal 0x0, 0x3, 0x0, [EF E3 1B 08]
-goto [81 E0 1B 08]
-
-[4A E0 1B 08]:
-if_stat_level_equal 0x0, 0x4, 0x0, [EF E3 1B 08]
-goto [81 E0 1B 08]
-
-[57 E0 1B 08]:
-if_stat_level_equal 0x0, 0x5, 0x0, [EF E3 1B 08]
-goto [81 E0 1B 08]
-
-[64 E0 1B 08]:
-if_stat_level_equal 0x0, 0x6, 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0x33, [EF E3 1B 08]
-goto [81 E0 1B 08]
-
-[79 E0 1B 08]:
-if_stat_level_equal 0x0, 0x7, 0x0, [EF E3 1B 08]
-goto [81 E0 1B 08]
-
-[81 E0 1B 08]:
-get_ability 0x0
-if_equal 0x1D, [EF E3 1B 08]
-if_equal 0x49, [EF E3 1B 08]
-end
-
-[90 E0 1B 08]:
-if_stat_level_less_than 0x1, 0x1, 0x6, [05 E1 1B 08]
-if_stat_level_less_than 0x1, 0x2, 0x6, [05 E1 1B 08]
-if_stat_level_less_than 0x1, 0x3, 0x6, [05 E1 1B 08]
-if_stat_level_less_than 0x1, 0x4, 0x6, [05 E1 1B 08]
-if_stat_level_less_than 0x1, 0x5, 0x6, [05 E1 1B 08]
-if_stat_level_less_than 0x1, 0x6, 0x6, [05 E1 1B 08]
-if_stat_level_less_than 0x1, 0x7, 0x6, [05 E1 1B 08]
-if_stat_level_more_than 0x0, 0x1, 0x6, [05 E1 1B 08]
-if_stat_level_more_than 0x0, 0x2, 0x6, [05 E1 1B 08]
-if_stat_level_more_than 0x0, 0x3, 0x6, [05 E1 1B 08]
-if_stat_level_more_than 0x0, 0x4, 0x6, [05 E1 1B 08]
-if_stat_level_more_than 0x0, 0x5, 0x6, [05 E1 1B 08]
-if_stat_level_more_than 0x0, 0x6, 0x6, [05 E1 1B 08]
-if_stat_level_more_than 0x0, 0x7, 0x6, [05 E1 1B 08]
-goto [EF E3 1B 08]
-
-[05 E1 1B 08]:
-end
-
-[06 E1 1B 08]:
-count_usable_party_mons 0x0
-if_equal 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0x15, [EF E3 1B 08]
-end
-
-[17 E1 1B 08]:
-get_type 0x0
-if_equal 0x8, [EF E3 1B 08]
-if_equal 0x3, [EF E3 1B 08]
-get_type 0x2
-if_equal 0x8, [EF E3 1B 08]
-if_equal 0x3, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0x11, [EF E3 1B 08]
-if_status 0x0, 0xFF, [EF E3 1B 08]
-end
-
-[46 E1 1B 08]:
-if_side_affecting 0x1, 0x2, [EC E3 1B 08]
-end
-
-[51 E1 1B 08]:
-if_type_effectiveness 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0x5, [EF E3 1B 08]
-if_level_cond 0x1, [EF E3 1B 08]
-end
-
-[66 E1 1B 08]:
-get_ability 0x0
-if_equal 0x1A, [EF E3 1B 08]
-goto [6E E1 1B 08]
-
-[6E E1 1B 08]:
-if_type_effectiveness 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_not_equal 0x19, [87 E1 1B 08]
-if_type_effectiveness 0x50, [87 E1 1B 08]
-goto [EF E3 1B 08]
-
-[87 E1 1B 08]:
-end
-
-[88 E1 1B 08]:
-if_side_affecting 0x1, 0x100, [EC E3 1B 08]
-end
-
-[93 E1 1B 08]:
-if_status2 0x1, 0x100000, [EF E3 1B 08]
-end
-
-[9E E1 1B 08]:
-if_status2 0x0, 0x7, [E9 E3 1B 08]
-get_ability 0x0
-if_equal 0x14, [EF E3 1B 08]
-end
-
-[B1 E1 1B 08]:
-if_side_affecting 0x1, 0x1, [EC E3 1B 08]
-end
-
-[BC E1 1B 08]:
-if_type_effectiveness 0x0, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0x7, [EF E3 1B 08]
-if_status 0x0, 0xFF, [EF E3 1B 08]
-end
-
-[D5 E1 1B 08]:
-if_status2 0x1, 0x1000000, [EC E3 1B 08]
-if_hp_less_than 0x1, 0x1A, [EF E3 1B 08]
-end
-
-[E7 E1 1B 08]:
-if_status3 0x0, 0x4, [EF E3 1B 08]
-get_type 0x0
-if_equal 0xC, [EF E3 1B 08]
-get_type 0x2
-if_equal 0xC, [EF E3 1B 08]
-end
-
-[02 E2 1B 08]:
-if_any_move_disabled_or_encored 0x0, 0x0, [EC E3 1B 08]
-end
-
-[0A E2 1B 08]:
-if_any_move_disabled_or_encored 0x0, 0x1, [EC E3 1B 08]
-end
-
-[12 E2 1B 08]:
-if_not_status 0x1, 0x7, [EC E3 1B 08]
-end
-
-[1D E2 1B 08]:
-if_status2 0x0, 0x4000000, [EF E3 1B 08]
-end
-
-[28 E2 1B 08]:
-if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
-if_stat_level_equal 0x1, 0x2, 0xC, [EC E3 1B 08]
-end
-
-[39 E2 1B 08]:
-if_side_affecting 0x0, 0x10, [EF E3 1B 08]
-end
-
-[44 E2 1B 08]:
-if_status2 0x0, 0x20000000, [EF E3 1B 08]
-end
-
-[4F E2 1B 08]:
-if_status3 0x0, 0x20, [EF E3 1B 08]
-end
-
-[5A E2 1B 08]:
+[19 54 00 09]:
+get_target_type1
+if_equal_ TYPE_ICE, Score_Minus10
+get_target_type2
+if_equal_ TYPE_ICE, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_FLAME_BODY, Score_Minus10
 get_weather
-if_equal 0x2, [EC E3 1B 08]
-end
+if_equal AI_WEATHER_SUN, Score_Minus10
+goto CheckIfSafeguardCancelsStatus
 
-[62 E2 1B 08]:
-if_status2 0x0, 0xF0000, [EF E3 1B 08]
-get_ability 0x0
-if_equal 0xC, [EF E3 1B 08]
-get_gender 0x1
-if_equal 0x0, [87 E2 1B 08]
-if_equal 0xFE, [94 E2 1B 08]
-goto [EF E3 1B 08]
+AI_CBM_Toxic_New:
+get_target_type1
+if_equal_ TYPE_POISON, Score_Minus10
+if_equal_ TYPE_STEEL, Score_Minus10
+get_target_type2
+if_equal_ TYPE_POISON, Score_Minus10
+if_equal_ TYPE_STEEL, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_IMMUNITY, Score_Minus10
+if_equal ABILITY_POISON_HEAL, Score_Minus10
+if_equal ABILITY_MAGIC_GUARD, Score_Minus10
+goto CheckIfLeafGuardCancelsStatus
 
-[87 E2 1B 08]:
-get_gender 0x0
-if_equal 0xFE, [A1 E2 1B 08]
-goto [EF E3 1B 08]
+[72 54 00 09]:
+get_target_type1
+if_equal_ TYPE_POISON, Score_Minus10
+if_equal_ TYPE_STEEL, Score_Minus10
+if_equal_ TYPE_ELECTRIC, Score_Minus10
+get_target_type2
+if_equal_ TYPE_POISON, Score_Minus10
+if_equal_ TYPE_STEEL, Score_Minus10
+if_equal_ TYPE_ELECTRIC, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_LIMBER, Score_Minus10
+if_equal ABILITY_IMMUNITY, Score_Minus10
+if_equal ABILITY_POISON_HEAL, Score_Minus10
+if_equal ABILITY_MAGIC_GUARD, Score_Minus10
+goto CheckIfLeafGuardCancelsStatus
 
-[94 E2 1B 08]:
-get_gender 0x0
-if_equal 0x0, [A1 E2 1B 08]
-goto [EF E3 1B 08]
+AI_CBM_Paralyze_New:
+get_target_type1
+if_equal_ TYPE_ELECTRIC, Score_Minus10
+get_target_type2
+if_equal_ TYPE_ELECTRIC, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_LIMBER, Score_Minus10
+goto CheckIfLeafGuardCancelsStatus
 
-[A1 E2 1B 08]:
-end
+AI_CBM_Burn_New:
+get_target_type1
+if_equal_ TYPE_FIRE, Score_Minus10
+get_target_type2
+if_equal_ TYPE_FIRE, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_WATER_VEIL, Score_Minus10
+goto CheckIfLeafGuardCancelsStatus
 
-[A2 E2 1B 08]:
-if_side_affecting 0x1, 0x20, [EC E3 1B 08]
-end
-
-[AD E2 1B 08]:
-if_stat_level_equal 0x0, 0x1, 0x0, [EF E3 1B 08]
-if_stat_level_equal 0x0, 0x4, 0x0, [EC E3 1B 08]
-goto [BD E2 1B 08]
-
-[BD E2 1B 08]:
-count_usable_party_mons 0x1
-if_equal 0x0, [EF E3 1B 08]
-end
-
-[C6 E2 1B 08]:
+CheckIfLeafGuardCancelsStatus:
+get_ability AI_TARGET
+if_not_equal ABILITY_LEAF_GUARD, CheckIfSafeguardCancelsStatus
 get_weather
-if_equal 0x1, [EC E3 1B 08]
+if_equal AI_WEATHER_SUN, Score_Minus10
+goto CheckIfSafeguardCancelsStatus
+
+CheckIfSafeguardCancelsStatus:
+if_side_affecting AI_TARGET, SIDE_STATUS_SAFEGUARD, Score_Minus10
+if_status AI_TARGET, STATUS1_ANY, Score_Minus10
 end
 
-[CE E2 1B 08]:
+AI_CBM_Confuse_New:
+get_ability AI_TARGET
+if_equal ABILITY_OWN_TEMPO, Score_Minus10
+if_side_affecting AI_TARGET, SIDE_STATUS_SAFEGUARD, Score_Minus10
+if_status2 AI_TARGET, STATUS2_CONFUSION, Score_Minus5
+end
+
+AI_CBM_Sandstorm:
 get_weather
-if_equal 0x0, [EC E3 1B 08]
+if_equal AI_WEATHER_SANDSTORM, Score_Minus8
 end
 
-[D6 E2 1B 08]:
-if_side_affecting 0x0, 0x40, [EF E3 1B 08]
-end
-
-[E1 E2 1B 08]:
-is_first_turn_for 0x1
-if_equal 0x0, [EF E3 1B 08]
-end
-
-[EA E2 1B 08]:
-get_stockpile_count 0x1
-if_equal 0x3, [EF E3 1B 08]
-end
-
-[F3 E2 1B 08]:
-if_type_effectiveness 0x0, [EF E3 1B 08]
-get_stockpile_count 0x1
-if_equal 0x0, [EF E3 1B 08]
-end
-
-[02 E3 1B 08]:
+AI_CBM_RainDance:
 get_weather
-if_equal 0x3, [EC E3 1B 08]
+if_equal AI_WEATHER_RAIN, Score_Minus8
 end
 
-[0A E3 1B 08]:
-if_status2 0x0, 0x80000000, [EF E3 1B 08]
+AI_CBM_SunnyDay:
+get_weather
+if_equal AI_WEATHER_SUN, Score_Minus8
 end
 
-[15 E3 1B 08]:
-get_ability 0x0
-if_equal 0x29, [EF E3 1B 08]
-if_status 0x0, 0xFF, [EF E3 1B 08]
-if_type_effectiveness 0x0, [EF E3 1B 08]
-if_type_effectiveness 0x14, [EF E3 1B 08]
-if_type_effectiveness 0xA, [EF E3 1B 08]
+AI_CBM_Hail:
+get_weather
+if_equal AI_WEATHER_HAIL, Score_Minus8
 end
 
-[3A E3 1B 08]:
-is_double_battle
-if_equal 0x0, [EF E3 1B 08]
+AI_CBM_LightScreen:
+if_side_affecting AI_USER, SIDE_STATUS_LIGHTSCREEN, Score_Minus8
 end
 
-[42 E3 1B 08]:
-get_ability 0x0
-if_equal 0x3C, [EF E3 1B 08]
+AI_CBM_Mist:
+if_side_affecting AI_USER, SIDE_STATUS_MIST, Score_Minus8
 end
 
-[4B E3 1B 08]:
-if_status3 0x1, 0x400, [EF E3 1B 08]
+AI_CBM_Reflect:
+if_side_affecting AI_USER, SIDE_STATUS_REFLECT, Score_Minus8
 end
 
-[56 E3 1B 08]:
-get_used_held_item 0x1
-if_equal 0x0, [EF E3 1B 08]
+AI_CBM_Safeguard:
+if_side_affecting AI_USER, SIDE_STATUS_SAFEGUARD, Score_Minus8
 end
 
-[5F E3 1B 08]:
-if_status3 0x1, 0x2000, [EF E3 1B 08]
+AI_CBM_Tailwind:
+if_tailwind_timer_isnt AI_USER, 0, Score_Minus8
 end
 
-[6A E3 1B 08]:
-if_not_status 0x1, 0xD8, [EF E3 1B 08]
+AI_CBM_Spikes:
+if_side_affecting AI_TARGET, SIDE_STATUS_SPIKES, Score_Minus10
 end
 
-[75 E3 1B 08]:
-if_status3 0x1, 0x10000, [EF E3 1B 08]
+AI_CBM_FutureSight:
+if_side_affecting AI_TARGET, SIDE_STATUS_FUTUREATTACK, Score_Minus10
 end
 
-[80 E3 1B 08]:
-if_stat_level_equal 0x0, 0x1, 0x0, [EF E3 1B 08]
-if_stat_level_equal 0x0, 0x2, 0x0, [EC E3 1B 08]
+AI_CBM_FocusEnergy:
+if_status2 AI_USER, STATUS2_FOCUS_ENERGY, Score_Minus10
 end
 
-[91 E3 1B 08]:
-if_stat_level_equal 0x1, 0x2, 0xC, [EF E3 1B 08]
-if_stat_level_equal 0x1, 0x5, 0xC, [EC E3 1B 08]
+AI_CBM_Substitute:
+if_status2 AI_USER, STATUS2_SUBSTITUTE, Score_Minus8
+if_hp_less_than AI_USER, 26, Score_Minus10
 end
 
-[A2 E3 1B 08]:
-if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
-if_stat_level_equal 0x1, 0x2, 0xC, [EC E3 1B 08]
+AI_CBM_Ingrain:
+if_status3 AI_USER, STATUS3_ROOTED, Score_Minus10
 end
 
-[B3 E3 1B 08]:
-if_status3 0x1, 0x20000, [EF E3 1B 08]
+AI_CBM_Imprison:
+if_status3 AI_USER, STATUS3_IMPRISONED_OTHERS, Score_Minus10
 end
 
-[BE E3 1B 08]:
-if_stat_level_equal 0x1, 0x4, 0xC, [EF E3 1B 08]
-if_stat_level_equal 0x1, 0x5, 0xC, [EC E3 1B 08]
+AI_CBM_MudSport:
+if_status3 AI_USER, STATUS3_MUDSPORT, Score_Minus10
 end
 
-[CF E3 1B 08]:
-if_stat_level_equal 0x1, 0x1, 0xC, [EF E3 1B 08]
-if_stat_level_equal 0x1, 0x3, 0xC, [EC E3 1B 08]
+AI_CBM_WaterSport:
+if_status3 AI_USER, STATUS3_WATERSPORT, Score_Minus10
 end
 
-[E0 E3 1B 08]:
-score 0xFF
+AI_CBM_CantEscape_CheckWhichMove:
+if_move MOVE_MEAN_LOOK, AI_CBM_CantEscape
+if_not_move MOVE_BLOCK, AI_CBM_CantEscape_End
+goto AI_CBM_CantEscape
+
+AI_CBM_CantEscape:
+if_status2 AI_TARGET, STATUS2_ESCAPE_PREVENTION, Score_Minus10
+goto AI_CBM_CantEscape_End
+
+AI_CBM_CantEscape_End:
 end
 
-[E3 E3 1B 08]:
-score 0xFE
+[FB 55 00 09]:
+if_status2 AI_TARGET, STATUS2_NIGHTMARE, Score_Minus10
+if_not_status AI_TARGET, STATUS1_SLEEP, Score_Minus8
 end
 
-[E6 E3 1B 08]:
-score 0xFD
+[10 56 00 09]:
+if_status2 AI_TARGET, STATUS2_FORESIGHT, Score_Minus10
 end
 
-[E9 E3 1B 08]:
-score 0xFB
+[1B 56 00 09]:
+if_status2 AI_TARGET, STATUS2_TORMENT, Score_Minus10
 end
 
-[EC E3 1B 08]:
-score 0xF8
+[26 56 00 09]:
+if_status3 AI_TARGET, STATUS3_LEECHSEED, Score_Minus10
+get_target_type1
+if_equal_ TYPE_GRASS, Score_Minus10
+get_target_type2
+if_equal_ TYPE_GRASS, Score_Minus10
 end
 
-[EF E3 1B 08]:
-score 0xF6
+[41 56 00 09]:
+if_status3 AI_TARGET, STATUS3_PERISH_SONG, Score_Minus10
 end
 
-[F2 E3 1B 08]:
-score 0xF4
+[4C 56 00 09]:
+if_status3 AI_TARGET, STATUS3_UNDERGROUND | STATUS3_MINIMIZED, Score_Minus10
+if_status AI_TARGET, STATUS1_ANY, Score_Minus10
 end
 
-[F5 E3 1B 08]:
-score 0x1
+[61 56 00 09]:
+if_any_move_disabled AI_TARGET, Score_Minus8
 end
 
-[F8 E3 1B 08]:
-score 0x2
+[69 56 00 09]:
+if_any_move_encored AI_TARGET, Score_Minus8
 end
 
-[FB E3 1B 08]:
-score 0x3
+[71 56 00 09]:
+if_target_taunted Score_Minus8
 end
 
-[FE E3 1B 08]:
-score 0x5
+[77 56 00 09]:
+if_stat_level_equal AI_USER, STAT_ATK, 12, Score_Minus10
 end
+
+[80 56 00 09]:
+if_stat_level_equal AI_USER, STAT_DEF, 12, Score_Minus10
+end
+
+[89 56 00 09]:
+if_stat_level_equal AI_USER, STAT_SPEED, 12, Score_Minus10
+end
+
+[92 56 00 09]:
+if_stat_level_equal AI_USER, STAT_SPATK, 12, Score_Minus10
+end
+
+[9B 56 00 09]:
+if_stat_level_equal AI_USER, STAT_SPDEF, 12, Score_Minus10
+end
+
+[A4 56 00 09]:
+if_stat_level_equal AI_USER, STAT_ACC, 12, Score_Minus10
+end
+
+[AD 56 00 09]:
+if_stat_level_equal AI_USER, STAT_EVASION, 12, Score_Minus10
+end
+
+[B6 56 00 09]:
+if_stat_level_equal AI_USER, STAT_DEF, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_SPDEF, 12, Score_Minus8
+end
+
+[C7 56 00 09]:
+if_stat_level_equal AI_USER, STAT_ATK, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_DEF, 12, Score_Minus8
+end
+
+[D8 56 00 09]:
+if_stat_level_equal AI_USER, STAT_ATK, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_SPATK, 12, Score_Minus8
+end
+
+[E9 56 00 09]:
+if_stat_level_equal AI_USER, STAT_SPATK, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_SPDEF, 12, Score_Minus8
+end
+
+[FA 56 00 09]:
+if_stat_level_equal AI_USER, STAT_ATK, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_SPEED, 12, Score_Minus8
+end
+
+[0B 57 00 09]:
+if_stat_level_equal AI_USER, STAT_SPATK, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_SPDEF, 12, Score_Minus8
+if_stat_level_equal AI_USER, STAT_SPEED, 12, Score_Minus8
+end
+
+[24 57 00 09]:
+if_stat_level_equal AI_USER, STAT_ATK, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_DEF, 12, Score_Minus8
+if_stat_level_equal AI_USER, STAT_ACC, 12, Score_Minus8
+end
+
+[3D 57 00 09]:
+if_stat_level_equal AI_USER, STAT_ATK, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_SPATK, 12, Score_Minus8
+if_stat_level_equal AI_USER, STAT_SPEED, 12, Score_Minus8
+end
+
+[56 57 00 09]:
+if_stat_level_equal AI_USER, STAT_ATK, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_SPEED, 12, Score_Minus8
+if_stat_level_equal AI_USER, STAT_EVASION, 12, Score_Minus8
+end
+
+[6F 57 00 09]:
+if_stat_level_equal AI_USER, STAT_SPEED, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_EVASION, 12, Score_Minus8
+end
+
+[80 57 00 09]:
+if_stat_level_equal AI_USER, STAT_ATK, 12, Score_Minus10
+if_stat_level_equal AI_USER, STAT_ACC, 12, Score_Minus8
+end
+
+[00 58 00 09]:
+if_stat_level_equal AI_TARGET, STAT_ATK, 0, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_HYPER_CUTTER, Score_Minus10
+goto [6E 58 00 09]
+
+[15 58 00 09]:
+if_stat_level_equal AI_TARGET, STAT_DEF, 0, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_BIG_PECKS, Score_Minus10
+goto [6E 58 00 09]
+
+[2A 58 00 09]:
+if_stat_level_equal AI_TARGET, STAT_SPEED, 0, Score_Minus10
+goto [6E 58 00 09]
+
+[37 58 00 09]:
+if_stat_level_equal AI_TARGET, STAT_SPATK, 0, Score_Minus10
+goto [6E 58 00 09]
+
+[44 58 00 09]:
+if_stat_level_equal AI_TARGET, STAT_SPDEF, 0, Score_Minus10
+goto [6E 58 00 09]
+
+[51 58 00 09]:
+if_stat_level_equal AI_TARGET, STAT_ACC, 0, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_KEEN_EYE, Score_Minus10
+goto [6E 58 00 09]
+
+[66 58 00 09]:
+if_stat_level_equal AI_TARGET, STAT_EVASION, 0, Score_Minus10
+goto [6E 58 00 09]
+
+[6E 58 00 09]:
+get_ability AI_TARGET
+if_equal ABILITY_CLEAR_BODY, Score_Minus10
+if_equal ABILITY_WHITE_SMOKE, Score_Minus10
+end
+
+[7D 58 00 09]:
+if_stat_level_equal AI_TARGET, STAT_ATK, 0, Score_Minus10
+if_stat_level_equal AI_TARGET, STAT_DEF, 0x0, Score_Minus8
+end
+
+[8E 58 00 09]:
+if_stat_level_equal AI_TARGET, STAT_SPATK, 0, Score_Minus10
+if_stat_level_equal AI_TARGET, STAT_SPDEF, 0x0, Score_Minus8
+end
+
+[9F 58 00 09]:
+if_stat_level_equal AI_TARGET, STAT_ATK, 0, Score_Minus10
+if_stat_level_equal AI_TARGET, STAT_SPATK, 0x0, Score_Minus8
+goto [BB 58 00 09]
+
+[B4 58 00 09]:
+if_not_move MOVE_BATON_PASS, [C3 58 00 09]
+goto [BB 58 00 09]
+
+[BB 58 00 09]:
+count_usable_party_mons AI_USER
+if_equal 0, Score_Minus10
+goto [C3 58 00 09]
+
+[C3 58 00 09]:
+end
+
+[C4 58 00 09]:
+if_not_status AI_TARGET, STATUS1_SLEEP, Score_Minus8
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
+end
+
+[D5 58 00 09]:
+if_not_status AI_TARGET, STATUS1_POISON | STATUS1_TOXIC_POISON, Score_Minus8
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
+end
+
+[E6 58 00 09]:
+get_stockpile_count AI_USER
+if_equal 0x3, Score_Minus10
+end
+
+[EF 58 00 09]:
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
+get_stockpile_count AI_USER
+if_equal 0, Score_Minus10
+end
+
+[FE 58 00 09]:
+get_ability AI_TARGET
+if_equal ABILITY_DAZZLING, Score_Minus10
+if_equal ABILITY_QUEENLY_MAJESTY, Score_Minus10
+goto AI_CBM_HighRiskForDamage_New
+
+[11 59 00 09]:
+get_ability AI_TARGET
+if_equal ABILITY_LEVITATE, Score_Minus10
+goto AI_CBM_HighRiskForDamage_New
+
+[1E 59 00 09]:
+get_ability AI_TARGET
+if_equal ABILITY_STICKY_HOLD, Score_Minus10
+end
+
+[27 59 00 09]:
+if_not_status AI_USER, STATUS1_SLEEP, Score_Minus8
+end
+
+[32 59 00 09]:
+if_not_status AI_USER, STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON, Score_Minus10
+end
+
+[3D 59 00 09]:
+is_same_type 0
+if_equal 0, Score_Minus10
+goto [45 59 00 09]
+
+[45 59 00 09]
+is_same_type 1
+if_equal 0, Score_Minus10
+goto [4D 59 00 09]
+
+[4D 59 00 09]:
+if_stat_level_less_than AI_USER, STAT_ATK, 6, [72 59 00 09]
+if_stat_level_less_than AI_USER, STAT_SPATK, 6, [72 59 00 09]
+if_stat_level_more_than AI_TARGET, STAT_ATK, 6, [72 59 00 09]
+if_stat_level_more_than AI_TARGET, STAT_SPATK, 6, [72 59 00 09]
+goto Score_Minus10
+
+[72 59 00 09]:
+end
+
+[73 59 00 09]:
+if_stat_level_less_than AI_USER, STAT_DEF, 6, [98 59 00 09]
+if_stat_level_less_than AI_USER, STAT_SPDEF, 6, [98 59 00 09]
+if_stat_level_more_than AI_TARGET, STAT_DEF, 6, [98 59 00 09]
+if_stat_level_more_than AI_TARGET, STAT_SPDEF, 6, [98 59 00 09]
+goto Score_Minus10
+
+[98 59 00 09]:
+end
+
+[99 59 00 09]:
+if_not_move MOVE_HAZE, [15 5A 00 09]
+if_stat_level_less_than AI_USER, STAT_ATK, 6, [15 5A 00 09]
+if_stat_level_less_than AI_USER, STAT_DEF, 6, [15 5A 00 09]
+if_stat_level_less_than AI_USER, STAT_SPEED, 6, [15 5A 00 09]
+if_stat_level_less_than AI_USER, STAT_SPATK, 6, [15 5A 00 09]
+if_stat_level_less_than AI_USER, STAT_SPDEF, 6, [15 5A 00 09]
+if_stat_level_less_than AI_USER, STAT_ACC, 6, [15 5A 00 09]
+if_stat_level_less_than AI_USER, STAT_EVASION, 6, [15 5A 00 09]
+if_stat_level_more_than AI_TARGET, STAT_ATK, 6, [15 5A 00 09]
+if_stat_level_more_than AI_TARGET, STAT_DEF, 6, [15 5A 00 09]
+if_stat_level_more_than AI_TARGET, STAT_SPEED, 6, [15 5A 00 09]
+if_stat_level_more_than AI_TARGET, STAT_SPATK, 6, [15 5A 00 09]
+if_stat_level_more_than AI_TARGET, STAT_SPDEF, 6, [15 5A 00 09]
+if_stat_level_more_than AI_TARGET, STAT_ACC, 6, [15 5A 00 09]
+if_stat_level_more_than AI_TARGET, STAT_EVASION, 6, [15 5A 00 09]
+goto Score_Minus10
+
+[15 5A 00 09]:
+end
+
+[16 5A 00 09]:
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_DAMP, Score_Minus10
+count_usable_party_mons AI_USER
+if_not_equal 0x0, [39 5A 00 09]
+count_usable_party_mons AI_TARGET
+if_not_equal 0, Score_Minus10
+goto Score_Minus1
+
+[39 5A 00 09]:
+end
+
+[3A 5A 00 09]:
+if_move MOVE_WHIRLWIND, [48 5A 00 09]
+if_not_move MOVE_ROAR, [58 5A 00 09]
+goto [48 5A 00 09]
+
+[48 5A 00 09]:
+count_usable_party_mons AI_TARGET
+if_equal 0, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_SUCTION_CUPS, Score_Minus10
+goto [58 5A 00 09]
+
+[58 5A 00 09]:
+end
+
+[59 5A 00 09]:
+if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_STURDY, Score_Minus10
+if_level_cond 1, Score_Minus10
+end
+
+[6E 5A 00 09]:
+if_stat_level_equal AI_TARGET, STAT_EVASION, 0, Score_Minus10
+get_ability AI_TARGET
+if_equal ABILITY_CLEAR_BODY, Score_Minus10
+if_equal ABILITY_WHITE_SMOKE, Score_Minus10
+goto AI_CBM_Confuse_New
+
+[89 5A 00 09]:
+get_user_type1
+if_equal TYPE_GHOST, [99 5A 00 09]
+get_user_type2
+if_not_equal TYPE_GHOST, [C7 56 00 09]
+goto [99 5A 00 09]
+
+[99 5A 00 09]:
+if_status2 AI_TARGET, STATUS2_CURSED, Score_Minus10
+if_hp_less_than AI_USER, 51, Score_Minus10
+end
+
+[AB 5A 00 09]:
+if_move 0x27D, [BC 5A 00 09]
+if_status2 AI_TARGET, STATUS2_INFATUATION, Score_Minus10
+goto [BC 5A 00 09]
+
+[BC 5A 00 09]:
+get_ability AI_TARGET
+if_equal ABILITY_OBLIVIOUS, Score_Minus10
+get_gender AI_USER
+if_equal 0, [D7 5A 00 09]
+if_equal 254, [E4 5A 00 09]
+goto Score_Minus10
+
+[D7 5A 00 09]:
+get_gender AI_TARGET
+if_equal 254, [F1 5A 00 09]
+goto Score_Minus10
+
+[E4 5A 00 09]:
+get_gender AI_TARGET
+if_equal 0, [F1 5A 00 09]
+goto Score_Minus10
+
+[F1 5A 00 09]:
+if_move 0x27D, [37 58 00 09]
+if_move 0x2A6, AI_CBM_Toxic_New
+end
+
+[00 5B 00 09]:
+if_hp_less_than AI_USER, 51, Score_Minus10
+goto [77 56 00 09]
+
+[0C 5B 00 09]:
+is_first_turn_for AI_USER
+if_equal 0, Score_Minus10
+end
+
+[15 5B 00 09]:
+if_not_double_battle Score_Minus10
+end
+
+[1D 5B 00 09]:
+get_used_held_item AI_USER
+if_equal 0, Score_Minus10
+end
+
+[26 5B 00 09]:
+if_has_move AI_TARGET, 0x240, Score_Minus10
+end
+
+
+
+
 
 AI_CheckBadMove (fe): @1D9C74
 

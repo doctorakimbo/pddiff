@@ -1,0 +1,12 @@
+BattleAICmd_nullsub_57()
+{
+	if(gAIScriptPtr[1] == 1)
+		r0 = gBattlerAttacker
+	else
+		r0 = gBattlerTarget
+	
+	if(gSideTimers[GetBattlerPosition(r0) & 1].0xB != gAIScriptPtr[2])
+		gAIScriptPtr = T1_READ_PTR(gAIScriptPtr[3])
+	else
+		gAIScriptPtr += 7
+}

@@ -1,1 +1,69 @@
 lbl1: @183200
+r0 = gBattleResources
+r0 = *r0
+r6 = *(r0 + 0x14)
+r0 = gBattlerAttacker
+r2 = *r0
+r3 = *(r0 + 1)
+r0 = 0x58
+r2 *= r0
+r2 += 0x20
+r3 *= r0
+r3 += 0x20
+r0 = gBattleMons
+r2 += r0
+r3 += r0
+r4 = gAIScriptPtr
+r5 = *r4
+r0 = *(r5 + 1)
+if(r0 == 1) goto lbl3
+
+r0 = *(r2 + 1)
+r1 = *(r3 + 1)
+if(r0 == r1) goto lbl2
+
+r1 = *(r3 + 2)
+if(r0 != r1) goto lbl5
+
+r0 = *(r2 + 2)
+r1 = *(r3 + 1)
+if(r0 == r1) goto lbl4
+
+goto lbl5
+
+lbl2:
+r0 = *(r2 + 2)
+r1 = *(r3 + 2)
+if(r0 == r1) goto lbl4
+
+goto lbl5
+
+lbl3:
+r0 = *(r2 + 1)
+r1 = *(r3 + 1)
+if(r0 == r1) goto lbl4
+
+r1 = *(r3 + 2)
+if(r0 == r1) goto lbl4
+
+r0 = *(r2 + 1)
+if(r0 == r1) goto lbl4
+
+r1 = *(r3 + 1)
+if(r0 != r1) goto lbl5
+
+goto lbl4
+
+lbl4:
+r0 = 1
+goto lbl6
+
+lbl5:
+r0 = 0
+goto lbl6
+
+lbl6:
+*(r6 + 8) = r0
+r5 += 2
+*r4 = r5
+return

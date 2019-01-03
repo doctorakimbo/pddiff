@@ -992,3 +992,15 @@ POCKET_POKE_BALLS = 3 in FR
 MOVE_EFFECT_RECOIL_50 = 0x37
 AI_SCRIPT_NEW_AI = (1 << 0xA)
 gPokemonStoragePtr->0x824C = gPokemonStoragePtr->registeredItems
+
+
+new battle ai commands:
+2A: if_bits_set (byte mask, 4byte dest)
+2B: if_bits_not_set (byte mask, 4byte dest)
+32: is_same_type (byte is_attacker_single_typed)
+33: get_move_attribute (byte which_byte)
+52: get_considered_move_target_type
+53: get_considered_move_category
+54: get_considered_move_extra_flags
+56: exec (4byte asm_func_ptr)
+57: if_tailwind_timer_isnt (byte side, byte value, 4byte dest)

@@ -1,0 +1,5 @@
+BattleAICmd_nullsub_33()
+{
+	gBattleResources->0x14.8 = gBattleMoves[gBattleResources->0x14.8].(gAIScriptPtr[1])
+	gAIScriptPtr += 2
+}

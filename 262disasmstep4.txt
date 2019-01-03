@@ -1,0 +1,12 @@
+BattleAICmd_nullsub_57()
+{
+	if(gAIScriptPtr[1] == 1)
+		mon = gBattlerAttacker
+	else
+		mon = gBattlerTarget
+	
+	if(gSideTimers[GetBattlerPosition(mon) & BIT_SIDE].tailwindTimer != gAIScriptPtr[2])
+		gAIScriptPtr = T1_READ_PTR(gAIScriptPtr[3])
+	else
+		gAIScriptPtr += 7
+}

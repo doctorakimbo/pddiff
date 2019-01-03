@@ -187,6 +187,7 @@ move effects:
 = 0x38 = (won't miss)
 = 0x3F = (won't miss)
 = 0x68 = (won't miss)
+= 0x85 = Tailwind
 = 0xE1 = Frost Breath
 = 0xEE = Hurricane
 
@@ -1289,10 +1290,18 @@ stray text:
 		  Implements: records abilities in a separate gRecordedAbilities array instead of in gBattleResources->battleHistory
 		  Relies on: BattleAICmd_check_ability changes
 		  Required knowledge: gRecordedAbilities (j0203B918)
+= 0C82D0 -> ?????? (repoint; j1830C0): BattleAICmd_nullsub_2A (see 254disasm)
+		  Implements: new battle ai script command (BattleAICmd_if_bits_set); jumps if the given bits in funcResult are set
+= 0C82D4 -> ?????? (repoint; j1832D0): BattleAICmd_nullsub_2B (see 255disasm)
+		  Implements: new battle ai script command (BattleAICmd_if_bits_not_set); jumps if the given bits in funcResult are not set
 = 0C841C: BattleAICmd_check_ability (see 202disasm)
 		  Implements: reads abilities from a separate gRecordedAbilities array instead of from gBattleResources->battleHistory
 		  Relies on: RecordAbilityBattle changes
 		  Required knowledge: gRecordedAbilities (j0203B918)
+= 0C86F0 -> ?????? (repoint; j183200): BattleAICmd_nullsub_32 (see 256disasm)
+		  Implements: new battle ai script command (BattleAICmd_is_same_type); checks if attacker is same type as target and stores answer in funcResult - set param to 1 if attacker is single-typed
+= 0C86F4 -> ?????? (repoint; j183290): BattleAICmd_nullsub_33 (see 257disasm)
+		  Implements: new battle ai script command (BattleAICmd_get_move_attribute); gets the given byte of the move in funcResult and stores it in funcResult
 = 0C8886: 07 -> 03
   0C889A: 18 -> 0C
   0C88AE: 60 -> 30
@@ -1304,6 +1313,16 @@ stray text:
 		  Note: it removes the null check for moves, which shouldn't actually matter; also it still doesn't fix the bug where it checks the user's moves instead of the opponents'
 + 0C8FB0: BattleAICmd_if_doesnt_have_move_with_effect (see 204disasm)
 		  Implements: Fixes a bug where the function would always consider opponents to have the specified move effect
+= 0C9518 -> ?????? (repoint; j168CC8): BattleAICmd_nullsub_52 (see 258disasm)
+		  Implements: new battle ai script command (BattleAICmd_get_considered_move_target_type); gets the target type (single, all foes, field, etc.) of the considered move and stores it in funcResult
+= 0C951C -> ?????? (repoint; j168CF4): BattleAICmd_nullsub_53 (see 259disasm)
+		  Implements: new battle ai script command (BattleAICmd_get_considered_move_category); gets the category (physical, special, status) of the considered move and stores it in funcResult
+= 0C9520 -> ?????? (repoint; j168D20): BattleAICmd_nullsub_54 (see 260disasm)
+		  Implements: new battle ai script command (BattleAICmd_get_considered_move_extra_flags); gets the extra flags (sound, powder, punch, etc.) of the considered move and stores them in funcResult
+- 0C9528 -> 11FC000 (repoint): BattleAICmd_nullsub_56 (see 261disasm)
+		  Implements: new battle ai script command (BattleAICmd_exec); executes the given ASM function then continues running the AI script 
+= 0C952C -> ?????? (repoint; j183190): BattleAICmd_nullsub_57 (see 262disasm)
+		  Implements: new battle ai script command (BattleAICmd_if_tailwind_timer_isnt); jumps if the given side's tailwind timer is a given value
 = 0C97FC: oei_task_add (see 205disasm)
 		  Implements: option to not execute task08_080C9820, need more info
 = 0C9820 -> 0C981C (repoint): task08_080C9820 (see 206disasm)
@@ -1891,25 +1910,6 @@ stray text:
 
 
 in order:
-= 0C82D0 -> ?????? (repoint; j1830C0): BattleAICmd_nullsub_2A (see 254disasm)
-		  Implements: new battle ai script command (BattleAICmd_if_bits_set); jumps if the given bits in funcResult are set
-= 0C82D4 -> ?????? (repoint; j1832D0): BattleAICmd_nullsub_2B (see 255disasm)
-		  Implements: new battle ai script command (BattleAICmd_if_bits_not_set); jumps if the given bits in funcResult are not set
-= 0C86F0 -> ?????? (repoint; j183200): BattleAICmd_nullsub_32 (see 256disasm)
-		  Implements: new battle ai script command (BattleAICmd_); 
-= 0C86F4 -> ?????? (repoint; j183290): BattleAICmd_nullsub_33 (see 257disasm)
-		  Implements: new battle ai script command (BattleAICmd_); 
-= 0C9518 -> ?????? (repoint; j168CC8): BattleAICmd_nullsub_52 (see 258disasm)
-		  Implements: new battle ai script command (BattleAICmd_); 
-= 0C951C -> ?????? (repoint; j168CF4): BattleAICmd_nullsub_53 (see 259disasm)
-		  Implements: new battle ai script command (BattleAICmd_); 
-= 0C9520 -> ?????? (repoint; j168D20): BattleAICmd_nullsub_54 (see 260disasm)
-		  Implements: new battle ai script command (BattleAICmd_); 
-= 0C9528 -> ?????? (repoint; j1FC000): BattleAICmd_nullsub_56 (see 261disasm)
-		  Implements: new battle ai script command (BattleAICmd_); 
-= 0C952C -> ?????? (repoint; j183190): BattleAICmd_nullsub_57 (see 262disasm)
-		  Implements: new battle ai script command (BattleAICmd_); 
-
 repointed ai scripts
 new battle script commands
 new movement action functions

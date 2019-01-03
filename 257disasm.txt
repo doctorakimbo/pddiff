@@ -1,0 +1,16 @@
+lbl1: @183290
+r0 = gBattleResources
+r0 = *r0
+r3 = *(r0 + 0x14)
+r2 = gBattleMoves
+r1 = *(r3 + 8)
+r0 = 0xC
+r0 *= r1
+r0 += r2
+r1 = gAIScriptPtr
+r2 = *r1
+r4 = *(r2 + 1)
+r0 = *(r0 + r4)
+*(r3 + 8) = r0
+r2 += 2
+*r1 = r2

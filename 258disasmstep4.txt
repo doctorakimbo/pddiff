@@ -1,0 +1,5 @@
+BattleAICmd_nullsub_52()
+{
+	gBattleResources->AI_ThinkingStruct.funcResult = gBattleMoves[gBattleResources->AI_ThinkingStruct.moveConsidered].target
+	gAIScriptPtr++
+}
