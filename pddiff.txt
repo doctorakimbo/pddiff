@@ -162,6 +162,7 @@ move IDs:
 = 0x207 = (can't be copied by mimic or called by metronome)
 + 0x208 = Trick Room
 = 0x23A = (can't be called by metronome)
+= 0x240 = (ai won't use moves with effect 0xE5 if it knows the target has this move)
 = 0x253 = (can't be called by metronome)
 = 0x254 = (can't be called by metronome)
 = 0x255 = (can't be called by metronome)
@@ -174,22 +175,46 @@ move IDs:
 = 0x262 = (can't be called by metronome)
 = 0x26C = (can't be called by metronome)
 = 0x26D = (can't be called by metronome)
+= 0x27D = (has attract effect, but ai will use on infatuated targets, but not on targets immune to spatk drops)
 = 0x28C = Magma Storm/Infestation
 = 0x28E = Infestation/Magma Storm
 = 0x294 = (can't be called by metronome)
 = 0x2A4 = (can't be called by metronome)
 = 0x2A5 = (can't be called by metronome)
+= 0x2A6 = (has attract effect, but ai also won't use on targets immune to poisoning)
 = 0x2A7 = (special-cased in focus punch setup to print string 0x217; can't be called by metronome)
 = 0x2A8 = (can't be called by metronome)
 
 move effects:
+= 0x1E = (ai won't use if target is ice-type, has Flame Body (clearly intended to be Magma Armor), has status, has Safeguard, or sun is up)
+= 0x32 = (ai won't use if target has -6 evasion, has Clear Body or Own Tempo, has Safeguard, or is confused)
 = 0x37 = (won't miss)
 = 0x38 = (won't miss)
+= 0x3A = (ai won't use if target has lowered attacking stats or user has boosted attacking stats)
+= 0x3B = (ai won't use if target has lowered defenses or user has boosted defenses)
+= 0x3C = (ai won't use if target and user are exactly the same type)
+= 0x3D = (ai won't use if target has user's primary type)
 = 0x3F = (won't miss)
+= 0x40 = (ai won't use if conditions for either paralysis or poison immunity are met)
+= 0x5D = (ai won't use if target is immune to the move's type or target isn't poisoned)
 = 0x68 = (won't miss)
 = 0x85 = Tailwind
+= 0x8A = (ai won't use if conditions for burn immunity are met)
+= 0x8B = (ai won't use if conditions for poison immunity are met)
+= 0xC6 = (ai won't use if user has +6 evasion)
+= 0xD1 = Work Up
+= 0xDF = (ai won't use if user has +6 evasion)
 = 0xE1 = Frost Breath
+= 0xE5 = (ai won't use if target has move 0x240)
 = 0xEE = Hurricane
+= 0xEF = (ai won't use if target has -6 spatk or -6 spdef)
+= 0xF0 = (ai won't use if user has +6 atk or +6 def)
+= 0xF1 = Quiver Dance
+= 0xF2 = Coil
+= 0xF3 = (ai won't use if user has +6 atk, +6 spatk, or +6 speed)
+= 0xF4 = (ai won't use if user has +6 atk, +6 speed, or +6 evasion)
+= 0xF5 = (ai won't use if user has +6 speed or +6 evasion)
+= 0xF6 = Hone Claws
 
 itemdata:
 all prices divided by 10
@@ -1891,9 +1916,21 @@ stray text:
 		  Note: import during atk97_tryinfatuating
 ? 1D9C1C: ptr ED BC 1D 08 -> 30 C0 1F 09 (add new AI table entry for script at 11FC030)
 		  Implements: 
-? 1D9C74 -> 1005000 (repoint): AI_CheckBadMove - do it itself later 30 DC 1B 08
-		  Implements: 
-? 1DA445 -> 1005C00 (repoint): AI_TryToFaint - do it itself later 01 E4 1B 08
+= 1D9C74 -> 1005000 (repoint): AI_CheckBadMove
+		  Implements: enough stuff to warrant breaking the usual format
+		  * Removes old AI for: every +2/-2, psywave, sleep talk, minimize, sonic boom (check later to make sure all of these are now new moves - if not, it may be a bug)
+		  * AI will now use Knock Off on itemless foes (due to buff)
+		  * Bugfixes: checks for "ultra effective" as well against Wonder Guard instead of strictly exactly 2x SE; Safeguard, Curse, Yawn, and Taunt are now checked; Curse isn't used when at less than half HP at the start of the turn
+		  * New mechanics that old scripts are updated for: electric-type paralysis immunity, dark-type Prankster immunity, grass-type powder immunity, Lightning Rod (immunity), Motor Drive, Poison Heal, Magic Guard, Leaf Guard, Storm Drain, Overcoat, Big Pecks, Sap Sipper, Aroma Veil, Sweet Veil, Bulletproof, Dazzling, Queenly Majesty
+		  * Moves that bypass AI restrictions: burn moves that aren't Will-O-Wisp (this only bypasses the Fire-type check); trapping moves that aren't Mean Look / Block; switch-out moves that aren't Baton Pass; stat-resetting moves that aren't Haze; phazing moves that aren't Roar / Whirlwind
+		  * New moves: 0x27D, 0x2A6 (factored into Attract script)
+		  * New move effects: [effect1E], [effect32], [effect3A], [effect3B], [effect3C], [effect3D], [effect40], [effect5D], Tailwind, [effect8A], [effect8B], [effectC6], Work Up, [effectDF], [effectE5], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws
+		  Relies on: new AI script commands, BattleMove refactor
+		  Glitch?: due to misaligned goto, only will-o-wisp is checked for prankster immunity
+		  Glitch?: looks like thunder wave is checked against electric-types twice instead of electric and ground (might be a transcription error? test this)
+		  Glitch?: [effect1E], which is clearly freeze-related, checks Flame Body instead of Magma Armor
+		  Glitch?: [effect3C] -> [effect3D] -> [effect3A] is fallthrough (might be intended, check again after determining what these are)
+? 1DA445 -> 1005C00 (repoint): AI_CheckViability
 		  Implements: 
 ? 1DBA8D -> 1007300 (repoint): AI_SetupFirstTurn - do it itself later 49 FA 1B 08
 		  Implements: 
