@@ -882,13 +882,11 @@ stray text:
 		  Implements: Compound Eyes overworld effect
 + 044EC8: Random (see 94disasm)
 		  Implements: New random function (unclear why)
-= 04555C: StorePokemonInEmptyDaycareSlot (see 95disasm)
++ 04555C: StorePokemonInEmptyDaycareSlot (see 95disasm)
 		  Implements: Part of BuildEggMoveset changes
-		  Required knowledge: gDaycareParentMoves (j0203C2AC)
 		  Requires in future: fn_4539C_J (e45DD8)
-= 045704: 09 06 09 0E -> 00 F0 7C FB
++ 045704: 09 06 09 0E -> 00 F0 7C FB
 		  Implements: Part of BuildEggMoveset changes
-		  Required knowledge: gDaycareParentMoves (j0203C2AC)
 		  Requires in future: fn_453C4_J (e45E00)
 + 045AC0: InheritIVs (see 96disasm)
 		  Implements: Power item IV inheritance, Destiny Knot IV inheritance
@@ -898,9 +896,8 @@ stray text:
 		  Implements: 10 -> 50 max egg moves per mon
 + 045CC4: 71 04 -> DE 07
 		  Implements: increased egg move list size
-= 045CD0: BuildEggMoveset (+fn_4539C_J/fn_45DD8, fn_453C4_J/fn_45E00) (see 97disasm)
++ 045CD0: BuildEggMoveset (+fn_4539C_J/fn_45DD8, fn_453C4_J/fn_45E00) (see 97disasm)
 		  Implements: either parent passing down egg moves; removes tm/hm inheritance
-		  Required knowledge: gDaycareParentMoves (j0203C2AC), sHatchedEggLevelUpMoves_New (j0203D600), j0203D664, sHatchedEggEggMoves_New (j0203D674)
 + 045FA0: AlterEggSpeciesWithIncenseItem (see 98disasm)
 		  Implements: No actual change, but allows new incenses to be added easily (table at j455AE/e45FEA)
 + 046000: DetermineEggSpeciesAndParentSlots (see 99disasm)
@@ -909,12 +906,12 @@ stray text:
 = 046112: FF F7 DD FD -> ?? ?? ?? ?? (changes call to BuildEggMoveset to instead call fn at j2072F0 (this calls BuildEggMoveset inside it anyway), see 101disasm)
 		  Implements: modern ability inheritance
 = ??????: 84 -> B7 (PDONLY, changes ditto index to #183)
-! 046120: 2D 21 FA F7 2B F9 09 48 -> 00 49 08 47 01 89 EE 08 (jumps (bx) to fn at EE8900, then back; see 101disasm)
++ 046120: 2D 21 FA F7 2B F9 09 48 -> 00 49 08 47 01 89 EE 08 (jumps (bx) to fn at EE8900, then back; see 101disasm)
 		  Implements: modern pokeball inheritance
-		  GLITCH!: Crashes upon receiving egg
-+ 046216: 14 1C 2D 04 2D 0C FE F7 54 FE -> 00 48 00 47 01 EA E2 09 00 00 (jumps (bx) to extra fn at 1E2EA00, then back (jE2EA00, see 102disasm))
+		  GLITCH!: doesn't seem to actually work?
+! 046216: 14 1C 2D 04 2D 0C FE F7 54 FE -> 00 48 00 47 01 EA E2 09 00 00 (jumps (bx) to extra fn at 1E2EA00, then back (jE2EA00, see 102disasm))
 		  Implements: Everstone nature inheritance
-		  GLITCH!: doesn't actually work?
+		  GLITCH!: Crashes upon receiving egg; maybe a problem with recompilation
 = 04623E: 05 22 20 23 F7 F7 07 -> 01 22 20 23 ?? ?? ?? ?? (instead of calling CreateMon(..., 5, ...), calls CreateMonWithNature_New(..., 1, ...); see 102disasm)
 		  Implements: egg hatch level 5 -> 1, (item72), need more info (something to do with personality values)
 		  Requires in future: fn_251B58_J, fn_251B8C_J, fn_251BA4_J, CreateMonWithNature_New (j251D2A)
@@ -1579,11 +1576,10 @@ stray text:
   1213CA: 03 -> 05
 		  Implements: changes dimensions of non-first mon party menu background rectangle from 144x24 px to 112x40 px
 		  Relies on: graphics rework to make this not look broken
-+ 121412, 12141A: 12 -> 0E
+! 121412, 12141A: 12 -> 0E
   121416: 03 -> 05
-		  Implements: changes dimensions of an unknown party menu graphic from 144x24 px to 112x40 px
+		  Implements: changes dimensions of empty party menu rectangle graphic from 144x24 px to 112x40 px
 		  Relies on: graphics rework to make this not look broken
-		  Note: can't find the actual graphic that changed, watch for this
 ! 1218E4: 20 2C 01 D0 1D 2C 09 D1 -> 0C E0 00 00 00 00 00 00 (PDONLY, restores gender markers for pokemon #29 and #32 in party menu)
 ! 122E96: 14 -> 2E
   122EDA: 0A 28 06 D1 01 22 52 42 10 1C 03 E0 00 00 B4 B0 03 02 -> 01 20 02 40 01 2A 04 D0 40 42 03 E0 00 00 00 00 00 00

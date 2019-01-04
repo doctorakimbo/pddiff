@@ -610,7 +610,7 @@ if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
 get_ability AI_TARGET
 if_equal ABILITY_WONDER_GUARD, CheckIfWonderGuardCancelsMove_New
 if_equal ABILITY_LEVITATE, CheckIfLevitateCancelsGroundMove
-goto [39 50 00 09]
+goto CheckAbsorbingAbilities
 
 CheckElectricTypeThunderWaveImmunity:
 if_not_move MOVE_THUNDER_WAVE, CheckFireTypeWillOWispImmunity
@@ -648,14 +648,14 @@ if_random_greater_than 69, Score_Plus2
 end
 
 CheckIfWonderGuardCancelsMove_New:
-if_type_effectiveness AI_EFFECTIVENESS_x2, [39 50 00 09]
-if_type_effectiveness AI_EFFECTIVENESS_x4, [39 50 00 09]
+if_type_effectiveness AI_EFFECTIVENESS_x2, CheckAbsorbingAbilities
+if_type_effectiveness AI_EFFECTIVENESS_x4, CheckAbsorbingAbilities
 goto Score_Minus10
 
 CheckIfLevitateCancelsGroundMove:
 get_curr_move_type
 if_equal_ TYPE_GROUND, Score_Minus10
-goto [39 50 00 09]
+goto CheckAbsorbingAbilities
 
 CheckAbsorbingAbilities:
 get_ability AI_TARGET
