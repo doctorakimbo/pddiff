@@ -637,7 +637,7 @@ get_target_type2
 if_equal_ TYPE_DARK, Score_Minus12
 goto CheckAbsorbingAbilities
 
-[63 4F 00 09]: // unreachable?
+[63 4F 00 09]: // part of CheckViability, placed here for whatever reason
 if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus12
 if_target_slower Score_Minus3
 if_random_greater_than 69, Score_Plus2
@@ -2620,54 +2620,1706 @@ end
 0xFF
 
 [5F F1 1B 08]:
+if_hp_less_than 0x0, 80, [88 F1 1B 08]
+if_user_goes 0x1, [7A F1 1B 08]
+if_hp_more_than 0x1, 40, [88 F1 1B 08]
+score +1
+goto [8A F1 1B 08]
 
+[7A F1 1B 08]:
+if_hp_more_than 0x1, 60, [88 F1 1B 08]
+score +1
+goto [8A F1 1B 08]
 
+[88 F1 1B 08]:
+score -1
 
+[8A F1 1B 08]:
+end
 
+[8B F1 1B 08]:
+score +2
+end
 
+[8E F1 1B 08]:
+if_random_less_than 0x80, [96 F1 1B 08]
+score +2
 
+[96 F1 1B 08]:
+end
 
+[97 F1 1B 08]:
+score +2
+end
 
+[9A F1 1B 08]:
+score -1
+if_user_goes 0x1, [CF F1 1B 08]
+if_hp_more_than 0x1, 70, [CF F1 1B 08]
+if_random_less_than 0x80, [B1 F1 1B 08]
+score +1
 
+[B1 F1 1B 08]:
+if_hp_more_than 0x1, 50, [CF F1 1B 08]
+if_random_less_than 0x80, [C0 F1 1B 08]
+score +1
 
+[C0 F1 1B 08]:
+if_hp_more_than 0x1, 30, [CF F1 1B 08]
+if_random_less_than 0x64, [CF F1 1B 08]
+score +2
 
+[CF F1 1B 08]:
+end
 
+[D0 F1 1B 08]:
+if_user_goes 0x1, [F0 F1 1B 08]
+if_hp_more_than 0x1, 33, [12 F2 1B 08]
+if_hp_more_than 0x1, 20, [14 F2 1B 08]
+if_hp_less_than 0x1, 8, [03 F2 1B 08]
+goto [05 F2 1B 08]
 
+[F0 F1 1B 08]:
+if_hp_more_than 0x1, 60, [12 F2 1B 08]
+if_hp_more_than 0x1, 40, [14 F2 1B 08]
+goto [05 F2 1B 08]
 
+[03 F2 1B 08]:
+score +1
 
+[05 F2 1B 08]:
+if_random_less_than 0x64, [14 F2 1B 08]
+score +1
+goto [14 F2 1B 08]
 
+[12 F2 1B 08]:
+score -1
 
+[14 F2 1B 08]:
+end
 
+[15 F2 1B 08]:
+if_status 0x0, 0xFF, [2B F2 1B 08]
+if_status_in_party 0x0, 0xFF, [2B F2 1B 08]
+score -5
 
+[2B F2 1B 08]:
+end
 
+[2C F2 1B 08]:
+get_hold_effect 0x0
+if_not_in_bytes [47 F2 1B 08], [44 F2 1B 08]
+if_random_less_than 0x32, [46 F2 1B 08]
+score +1
+goto [46 F2 1B 08]
 
+[44 F2 1B 08]:
+score -2
 
+[46 F2 1B 08]:
+end
 
+[47 F2 1B 08]: // raw data
+0x3
+0x9
+0x1
+0x16
+0x2B
+0x2D
+0x41
+0xFF
 
+[4F F2 1B 08]:
+get_type 0x1
+if_equal 0x7, [94 F2 1B 08]
+get_type 0x3
+if_equal 0x7, [94 F2 1B 08]
+if_stat_level_more_than 0x1, 0x2, 9, [9D F2 1B 08]
+if_random_less_than 0x80, [6F F2 1B 08]
+score +1
 
+[6F F2 1B 08]:
+if_stat_level_more_than 0x1, 0x2, 7, [9D F2 1B 08]
+if_random_less_than 0x80, [7F F2 1B 08]
+score +1
 
+[7F F2 1B 08]:
+if_stat_level_more_than 0x1, 0x2, 6, [9D F2 1B 08]
+if_random_less_than 0x80, [9D F2 1B 08]
+score +1
+goto [9D F2 1B 08]
 
+[94 F2 1B 08]:
+if_hp_more_than 0x1, 80, [9D F2 1B 08]
+score -1
 
+[9D F2 1B 08]:
+end
 
+[9E F2 1B 08]:
+get_protect_count 0x1
+if_more_than 1, [5C F3 1B 08]
+if_status 0x1, 0x80, [53 F3 1B 08]
+if_status2 0x1, 0x10000000, [53 F3 1B 08]
+if_status3 0x1, 0x20, [53 F3 1B 08]
+if_status2 0x1, 0xF0000, [53 F3 1B 08]
+if_status3 0x1, 0x4, [53 F3 1B 08]
+if_status3 0x1, 0x1800, [53 F3 1B 08]
+if_has_move_with_effect 0x0, 0x20, [53 F3 1B 08]
+if_has_move_with_effect 0x0, 0x9C, [53 F3 1B 08]
+if_status 0x0, 0x80, [3A F3 1B 08]
+if_status2 0x0, 0x10000000, [3A F3 1B 08]
+if_status3 0x0, 0x20, [3A F3 1B 08]
+if_status2 0x0, 0xF0000, [3A F3 1B 08]
+if_status3 0x0, 0x4, [3A F3 1B 08]
+if_status3 0x0, 0x1800, [3A F3 1B 08]
+get_last_used_bank_move 0x0
+get_move_effect_from_result
+if_not_equal 0x5E, [3A F3 1B 08]
+goto [3C F3 1B 08]
 
+[3A F3 1B 08]:
+score +2
 
+[3C F3 1B 08]:
+get_protect_count 0x1
+if_equal 0, [5E F3 1B 08]
+score -1
+if_random_less_than 0x80, [5E F3 1B 08]
+score -1
+goto [5E F3 1B 08]
 
+[53 F3 1B 08]:
+get_last_used_bank_move 0x0
+get_move_effect_from_result
+if_not_equal 0x5E, [5E F3 1B 08]
 
+[5C F3 1B 08]:
+score -2
 
+[5E F3 1B 08]:
+end
 
+[5F F3 1B 08]:
+get_type 0x1
+if_equal 0x7, [7E F3 1B 08]
+get_type 0x3
+if_equal 0x7, [7E F3 1B 08]
+if_stat_level_more_than 0x1, 0x7, 8, [84 F3 1B 08]
+score -2
+goto [8C F3 1B 08]
 
+[7E F3 1B 08]:
+if_random_less_than 0x50, [8C F3 1B 08]
 
+[84 F3 1B 08]:
+if_random_less_than 0x50, [8C F3 1B 08]
+score +2
 
+[8C F3 1B 08]:
+end
 
+[8D F3 1B 08]:
+if_hp_less_than 0x1, 4, [9B F3 1B 08]
+if_hp_less_than 0x1, 35, [A2 F3 1B 08]
 
+[9B F3 1B 08]:
+score -1
+goto [AA F3 1B 08]
 
+[A2 F3 1B 08]:
+if_random_less_than 0x46, [AA F3 1B 08]
+score +1
 
+[AA F3 1B 08]:
+end
 
+[AB F3 1B 08]:
+if_stat_level_more_than 0x1, 0x1, 8, [D8 F3 1B 08]
+if_stat_level_more_than 0x1, 0x2, 8, [D8 F3 1B 08]
+if_stat_level_more_than 0x1, 0x4, 8, [D8 F3 1B 08]
+if_stat_level_more_than 0x1, 0x5, 8, [D8 F3 1B 08]
+if_stat_level_more_than 0x1, 0x7, 8, [D8 F3 1B 08]
+goto [FE F3 1B 08]
 
+[D8 F3 1B 08]:
+if_user_goes 0x1, [EA F3 1B 08]
+if_hp_more_than 0x1, 60, [46 F4 1B 08]
+goto [F1 F3 1B 08]
+
+[EA F3 1B 08]:
+if_hp_more_than 0x1, 70, [46 F4 1B 08]
+
+[F1 F3 1B 08]:
+if_random_less_than 0x50, [46 F4 1B 08]
+score +2
+goto [46 F4 1B 08]
+
+[FE F3 1B 08]:
+if_stat_level_more_than 0x1, 0x1, 7, [2B F4 1B 08]
+if_stat_level_more_than 0x1, 0x2, 7, [2B F4 1B 08]
+if_stat_level_more_than 0x1, 0x4, 7, [2B F4 1B 08]
+if_stat_level_more_than 0x1, 0x5, 7, [2B F4 1B 08]
+if_stat_level_more_than 0x1, 0x7, 7, [2B F4 1B 08]
+goto [44 F4 1B 08]
+
+[2B F4 1B 08]:
+if_user_goes 0x1, [3D F4 1B 08]
+if_hp_more_than 0x1, 60, [44 F4 1B 08]
+goto [46 F4 1B 08]
+
+[3D F4 1B 08]:
+if_hp_less_than 0x1, 70, [46 F4 1B 08]
+
+[44 F4 1B 08]:
+score -2
+
+[46 F4 1B 08]:
+end
+
+[47 F4 1B 08]:
+is_first_turn_for 0x1
+if_not_equal 0x0, [7C F4 1B 08]
+get_type 0x0
+if_equal 0x7, [74 F4 1B 08]
+get_type 0x0
+if_equal 0xE, [74 F4 1B 08]
+get_type 0x2
+if_equal 0x7, [74 F4 1B 08]
+get_type 0x2
+if_equal 0xE, [74 F4 1B 08]
+goto [7C F4 1B 08]
+
+[74 F4 1B 08]:
+if_random_less_than 0x80, [7C F4 1B 08]
+score +1
+
+[7C F4 1B 08]:
+end
+
+[7D F4 1B 08]:
+if_user_goes 0x0, [8B F4 1B 08]
+get_ability 0x1
+if_equal 0x21, [B2 F4 1B 08]
+
+[8B F4 1B 08]:
+if_hp_less_than 0x1, 40, [B9 F4 1B 08]
+get_weather
+if_equal 0x3, [B2 F4 1B 08]
+if_equal 0x0, [B2 F4 1B 08]
+if_equal 0x2, [B2 F4 1B 08]
+get_ability 0x1
+if_equal 0x2C, [B2 F4 1B 08]
+goto [BB F4 1B 08]
+
+[B2 F4 1B 08]:
+score +1
+goto [BB F4 1B 08]
+
+[B9 F4 1B 08]:
+score -1
+
+[BB F4 1B 08]:
+end
+
+[BC F4 1B 08]:
+if_hp_less_than 0x1, 40, [E2 F4 1B 08]
+get_weather
+if_equal 0x3, [DB F4 1B 08]
+if_equal 0x1, [DB F4 1B 08]
+if_equal 0x2, [DB F4 1B 08]
+goto [E4 F4 1B 08]
+
+[DB F4 1B 08]:
+score +1
+goto [E4 F4 1B 08]
+
+[E2 F4 1B 08]:
+score -1
+
+[E4 F4 1B 08]:
+end
+
+[E5 F4 1B 08]:
+if_hp_less_than 0x1, 90, [F1 F4 1B 08]
+goto [F3 F4 1B 08]
+
+[F1 F4 1B 08]:
+score -2
+
+[F3 F4 1B 08]:
+end
+
+[F4 F4 1B 08]:
+if_stat_level_more_than 0x0, 0x1, 8, [21 F5 1B 08]
+if_stat_level_more_than 0x0, 0x2, 8, [21 F5 1B 08]
+if_stat_level_more_than 0x0, 0x4, 8, [21 F5 1B 08]
+if_stat_level_more_than 0x0, 0x5, 8, [21 F5 1B 08]
+if_stat_level_more_than 0x0, 0x7, 8, [21 F5 1B 08]
+goto [5E F5 1B 08]
+
+[21 F5 1B 08]:
+if_stat_level_less_than 0x1, 0x1, 7, [56 F5 1B 08]
+if_stat_level_less_than 0x1, 0x2, 7, [56 F5 1B 08]
+if_stat_level_less_than 0x1, 0x4, 7, [56 F5 1B 08]
+if_stat_level_less_than 0x1, 0x5, 7, [56 F5 1B 08]
+if_stat_level_less_than 0x1, 0x7, 7, [56 F5 1B 08]
+if_random_less_than 0x32, [60 F5 1B 08]
+goto [5E F5 1B 08]
+
+[54 F5 1B 08]: // unreachable?
+score +1
+
+[56 F5 1B 08]:
+if_random_less_than 0x80, [60 F5 1B 08]
+score +1
+
+[5E F5 1B 08]:
+score -2
+
+[60 F5 1B 08]:
+end
+
+[61 F5 1B 08]:
+if_status 0x0, 0x7, [F5 F5 1B 08]
+if_status2 0x0, 0xF0000, [F5 F5 1B 08]
+if_status2 0x0, 0x7, [F5 F5 1B 08]
+if_hp_more_than 0x1, 30, [8E F5 1B 08]
+if_random_less_than 0xA, [8E F5 1B 08]
+score -1
+
+[8E F5 1B 08]:
+if_hp_more_than 0x1, 50, [9D F5 1B 08]
+if_random_less_than 0x64, [9D F5 1B 08]
+score -1
+
+[9D F5 1B 08]:
+get_last_used_bank_move 0x0
+get_move_power_from_result
+if_equal 0x0, [CC F5 1B 08]
+if_target_not_taunted [B3 F5 1B 08]
+if_random_less_than 0x64, [B3 F5 1B 08]
+score +1
+
+[B3 F5 1B 08]:
+get_last_used_bank_move 0x0
+get_move_type_from_result
+if_not_in_bytes [F8 F5 1B 08], [F5 F5 1B 08]
+if_random_less_than 0x64, [F7 F5 1B 08]
+score +1
+goto [F7 F5 1B 08]
+
+[CC F5 1B 08]:
+if_target_not_taunted [D9 F5 1B 08]
+if_random_less_than 0x64, [D9 F5 1B 08]
+score +1
+
+[D9 F5 1B 08]:
+get_type 0x0
+if_in_bytes [F8 F5 1B 08], [F7 F5 1B 08]
+get_type 0x2
+if_in_bytes [F8 F5 1B 08], [F7 F5 1B 08]
+if_random_less_than 0x32, [F7 F5 1B 08]
+
+[F5 F5 1B 08]:
+score -1
+
+[F7 F5 1B 08]:
+end
+
+[F8 F5 1B 08]: // raw data
+0xA
+0xB
+0xC
+0xD
+0xE
+0xF
+0x10
+0x11
+0xFF
+
+[01 F6 1B 08]:
+if_type_effectiveness 0xA, [22 F6 1B 08]
+if_type_effectiveness 0x14, [22 F6 1B 08]
+if_has_move_with_effect 0x0, 0x6F, [22 F6 1B 08]
+if_hp_more_than 0x1, 38, [24 F6 1B 08]
+score -1
+goto [24 F6 1B 08]
+
+[22 F6 1B 08]:
+score -2
+
+[24 F6 1B 08]:
+end
+
+[25 F6 1B 08]:
+if_doesnt_have_move_with_effect 0x0, 0x6F, [33 F6 1B 08]
+score -1
+goto [AA F6 1B 08]
+
+[33 F6 1B 08]:
+if_status 0x0, 0x80, [A2 F6 1B 08]
+if_status2 0x0, 0x10000000, [A2 F6 1B 08]
+if_status3 0x0, 0x4, [A2 F6 1B 08]
+get_weather
+if_equal 0x3, [63 F6 1B 08]
+if_equal 0x2, [63 F6 1B 08]
+goto [8E F6 1B 08]
+
+[63 F6 1B 08]:
+get_type 0x1
+if_in_bytes [AB F6 1B 08], [A2 F6 1B 08]
+get_type 0x3
+if_in_bytes [AB F6 1B 08], [A2 F6 1B 08]
+goto [8E F6 1B 08]
+
+[7E F6 1B 08]: // unreachable?
+get_type 0x1
+if_equal 0xF, [A2 F6 1B 08]
+get_type 0x3
+if_equal 0xF, [A2 F6 1B 08]
+
+[8E F6 1B 08]:
+if_user_goes 0x1, [AA F6 1B 08]
+get_last_used_bank_move 0x0
+get_move_effect_from_result
+if_not_equal 0x5E, [A2 F6 1B 08]
+goto [AA F6 1B 08]
+
+[A2 F6 1B 08]:
+if_random_less_than 0x50, [AA F6 1B 08]
+score +1
+
+[AA F6 1B 08]:
+end
+
+[AB F6 1B 08]: // raw data
+0x4
+0x5
+0x8
+0xFF
+
+[AF F6 1B 08]:
+score +2
+end
+
+[B2 F6 1B 08]:
+get_stockpile_count 0x1
+if_less_than 2, [C2 F6 1B 08]
+if_random_less_than 0x50, [C2 F6 1B 08]
+score +2
+
+[C2 F6 1B 08]:
+end
+
+[C3 F6 1B 08]:
+if_hp_less_than 0x1, 40, [E9 F6 1B 08]
+get_weather
+if_equal 0x0, [E2 F6 1B 08]
+if_equal 0x1, [E2 F6 1B 08]
+if_equal 0x2, [E2 F6 1B 08]
+goto [EB F6 1B 08]
+
+[E2 F6 1B 08]:
+score +1
+goto [EB F6 1B 08]
+
+[E9 F6 1B 08]:
+score -1
+
+[EB F6 1B 08]:
+end
+
+[EC F6 1B 08]:
+if_not_status 0x0, 0xD8, [F8 F6 1B 08]
+score +1
+
+[F8 F6 1B 08]:
+end
+
+[F9 F6 1B 08]:
+if_type_effectiveness 0xA, [38 F7 1B 08]
+if_type_effectiveness 0x14, [38 F7 1B 08]
+if_status 0x0, 0x7, [45 F7 1B 08]
+if_status2 0x0, 0xF0000, [3F F7 1B 08]
+if_status2 0x0, 0x7, [3F F7 1B 08]
+is_first_turn_for 0x1
+if_not_equal 0x0, [47 F7 1B 08]
+if_random_less_than 0x64, [47 F7 1B 08]
+score +1
+goto [47 F7 1B 08]
+
+[38 F7 1B 08]:
+score -1
+goto [47 F7 1B 08]
+
+[3F F7 1B 08]:
+if_random_less_than 0x64, [47 F7 1B 08]
+
+[45 F7 1B 08]:
+score +1
+
+[47 F7 1B 08]:
+end
+
+[48 F7 1B 08]:
+if_status 0x0, 0x40, [57 F7 1B 08]
+goto [59 F7 1B 08]
+
+[57 F7 1B 08]:
+score +1
+
+[59 F7 1B 08]:
+end
+
+[5A F7 1B 08]:
+get_hold_effect 0x1
+if_in_bytes [A3 F7 1B 08], [75 F7 1B 08]
+if_in_bytes [9B F7 1B 08], [87 F7 1B 08]
+
+[6E F7 1B 08]:
+score -3
+goto [9A F7 1B 08]
+
+[75 F7 1B 08]:
+get_hold_effect 0x0
+if_in_bytes [A3 F7 1B 08], [6E F7 1B 08]
+score +5
+goto [9A F7 1B 08]
+
+[87 F7 1B 08]:
+get_hold_effect 0x0
+if_in_bytes [9B F7 1B 08], [6E F7 1B 08]
+if_random_less_than 0x32, [9A F7 1B 08]
+score +2
+
+[9A F7 1B 08]:
+end
+
+[9B F7 1B 08]: // raw data
+0xA
+0xB
+0xC
+0xD
+0xE
+0x18
+0x1D
+0xFF
+
+[A3 F7 1B 08]: // raw data
+0x1D
+0xFF
+
+[A5 F7 1B 08]:
+get_ability 0x1
+if_in_bytes [CB F7 1B 08], [BB F7 1B 08]
+get_ability 0x0
+if_in_bytes [CB F7 1B 08], [C2 F7 1B 08]
+
+[BB F7 1B 08]:
+score -1
+goto [CA F7 1B 08]
+
+[BB F7 1B 08]:
+if_random_less_than 0x32, [CA F7 1B 08]
+score +2
+
+[CA F7 1B 08]:
+end
+
+[CB F7 1B 08]:
+0x3
+0x4
+0x8
+0x9
+0x12
+0x19
+0x1B
+0x21
+0x25
+0x2C
+0x38
+0x3D
+0x3F
+0x4A
+0x22
+0x13
+0xFF
+
+[DC F7 1B 08]:
+if_type_effectiveness 0xA, [09 F8 1B 08]
+if_type_effectiveness 0x14, [09 F8 1B 08]
+if_stat_level_less_than 0x1, 0x1, 6, [09 F8 1B 08]
+if_user_goes 0x1, [02 F8 1B 08]
+if_hp_more_than 0x1, 40, [09 F8 1B 08]
+goto [0B F8 1B 08]
+
+[02 F8 1B 08]:
+if_hp_less_than 0x1, 60, [0B F8 1B 08]
+
+[09 F8 1B 08]:
+score -1
+
+[0B F8 1B 08]:
+end
+
+[0C F8 1B 08]:
+if_hp_more_than 0x0, 30, [1B F8 1B 08]
+if_random_less_than 0x64, [1B F8 1B 08]
+score -1
+
+[1B F8 1B 08]:
+is_first_turn_for 0x1
+if_equal 0x0, [36 F8 1B 08]
+if_random_less_than 0x96, [3E F8 1B 08]
+score +1
+goto [3E F8 1B 08]
+
+[30 F8 1B 08]: // unreachable?
+if_random_less_than 0x32, [3E F8 1B 08]
+
+[36 F8 1B 08]:
+if_random_less_than 0x1E, [3E F8 1B 08]
+score -1
+
+[3E F8 1B 08]:
+end
+
+[3F F8 1B 08]:
+get_used_held_item 0x1
+if_not_in_bytes [5A F8 1B 08], [57 F8 1B 08]
+if_random_less_than 0x32, [59 F8 1B 08]
+score +1
+goto [59 F8 1B 08]
+
+[57 F8 1B 08]:
+score -2
+
+[59 F8 1B 08]:
+end
+
+[5A F8 1B 08]:
+0x86
+0x8D
+0xAE
+0xFF
+
+[5E F8 1B 08]:
+if_status 0x0, 0x7, [89 F8 1B 08]
+if_status2 0x0, 0xF0000, [89 F8 1B 08]
+if_status2 0x0, 0x7, [89 F8 1B 08]
+if_random_less_than 0xB4, [89 F8 1B 08]
+score +2
+goto [8B F8 1B 08]
+
+[89 F8 1B 08]:
+score -2
+
+[8B F8 1B 08]:
+end
+
+[8C F8 1B 08]:
+if_side_affecting 0x0, 0x1, [9B F8 1B 08]
+goto [9D F8 1B 08]
+
+[9B F8 1B 08]:
+score +1
+
+[9D F8 1B 08]:
+end
+
+[9E F8 1B 08]:
+if_hp_less_than 0x0, 30, [B5 F8 1B 08]
+is_first_turn_for 0x1
+if_more_than 0x0, [B5 F8 1B 08]
+if_random_less_than 0xB4, [B5 F8 1B 08]
+score +1
+
+[B5 F8 1B 08]:
+end
+
+[B6 F8 1B 08]:
+if_hp_less_than 0x0, 70, [DF F8 1B 08]
+if_user_goes 0x1, [D1 F8 1B 08]
+if_hp_more_than 0x1, 40, [DF F8 1B 08]
+score +1
+goto [E1 F8 1B 08]
+
+[D1 F8 1B 08]:
+if_hp_more_than 0x1, 50, [DF F8 1B 08]
+score +1
+goto [E1 F8 1B 08]
+
+[DF F8 1B 08]:
+score -1
+
+[E1 F8 1B 08]:
+end
+
+[E2 F8 1B 08]:
+if_type_effectiveness 0xA, [07 F9 1B 08]
+if_type_effectiveness 0x14, [07 F9 1B 08]
+if_user_goes 0x1, [00 F9 1B 08]
+if_hp_more_than 0x0, 50, [09 F9 1B 08]
+goto [07 F9 1B 08]
+
+[00 F9 1B 08]:
+if_hp_more_than 0x0, 70, [09 F9 1B 08]
+
+[07 F9 1B 08]:
+score -1
+
+[09 F9 1B 08]:
+end
+
+[0A F9 1B 08]:
+is_first_turn_for 0x1
+if_more_than 0x0, [1A F9 1B 08]
+if_random_less_than 0x64, [1A F9 1B 08]
+score +2
+
+[1A F9 1B 08]:
+end
+
+[1B F9 1B 08]:
+if_hp_less_than 0x0, 50, [27 F9 1B 08]
+goto [29 F9 1B 08]
+
+[27 F9 1B 08]:
+score -1
+
+[29 F9 1B 08]:
+end
+
+[2A F9 1B 08]:
+is_first_turn_for 0x1
+if_equal 0x1, [71 F9 1B 08]
+if_random_less_than 0x1E, [93 F9 1B 08]
+if_user_goes 0x1, [57 F9 1B 08]
+if_hp_not_equal 0x1, 100, [8B F9 1B 08]
+if_hp_less_than 0x0, 70, [8B F9 1B 08]
+if_random_less_than 0x3C, [93 F9 1B 08]
+goto [8B F9 1B 08]
+
+[57 F9 1B 08]:
+if_hp_more_than 0x0, 25, [8B F9 1B 08]
+if_has_move_with_effect 0x0, 0x20, [71 F9 1B 08]
+if_has_move_with_effect 0x0, 0x9C, [71 F9 1B 08]
+goto [7E F9 1B 08]
+
+[71 F9 1B 08]:
+if_random_less_than 0x96, [93 F9 1B 08]
+score +2
+goto [93 F9 1B 08]
+
+[7E F9 1B 08]:
+if_random_less_than 0xE6, [8B F9 1B 08]
+score +1
+goto [93 F9 1B 08]
+
+[8B F9 1B 08]:
+if_random_less_than 0x1E, [93 F9 1B 08]
+score -2
+
+[93 F9 1B 08]:
+end
+
+[94 F9 1B 08]:
+if_hp_less_than 0x1, 50, [B7 F9 1B 08]
+get_type 0x0
+if_equal 0xD, [B0 F9 1B 08]
+get_type 0x2
+if_equal 0xD, [B0 F9 1B 08]
+goto [B7 F9 1B 08]
+
+[B0 F9 1B 08]:
+score +1
+goto [B9 F9 1B 08]
+
+[B7 F9 1B 08]:
+score -1
+
+[B9 F9 1B 08]:
+end
+
+[BA F9 1B 08]:
+if_type_effectiveness 0xA, [DF F9 1B 08]
+if_type_effectiveness 0x14, [DF F9 1B 08]
+if_user_goes 0x1, [D8 F9 1B 08]
+if_hp_more_than 0x1, 60, [E1 F9 1B 08]
+goto [DF F9 1B 08]
+
+[D8 F9 1B 08]:
+if_hp_more_than 0x1, 80, [E1 F9 1B 08]
+
+[DF F9 1B 08]:
+score -1
+
+[E1 F9 1B 08]:
+end
+
+[E2 F9 1B 08]:
+if_hp_less_than 0x1, 50, [05 FA 1B 08]
+get_type 0x0
+if_equal 0xA, [FE F9 1B 08]
+get_type 0x2
+if_equal 0xA, [FE F9 1B 08]
+goto [05 FA 1B 08]
+
+[FE F9 1B 08]:
+score +1
+goto [07 FA 1B 08]
+
+[05 FA 1B 08]:
+score -1
+
+[07 FA 1B 08]:
+end
+
+[08 FA 1B 08]:
+if_user_goes 0x1, [22 FA 1B 08]
+if_hp_more_than 0x1, 50, [2A FA 1B 08]
+if_random_less_than 0x46, [2A FA 1B 08]
+score -1
+goto [2A FA 1B 08]
+
+[22 FA 1B 08]:
+if_random_less_than 0x80, [2A FA 1B 08]
+score +1
+
+[2A FA 1B 08]:
+end
 
 
 AI_CheckViability (pj): @1005C00
 37 01 00 60 00 09 37 03 16 60 00 09 37 07 2A 60 00 09 37 A8 2A 60 00 09 37 08 7C 60 00 09 37 09 89 60 00 09 37 0A A5 60 00 09 37 F6 A5 60 00 09 37 0B DF 60 00 09 37 D0 DF 60 00 09 37 F2 DF 60 00 09 37 0C 30 61 00 09 37 F5 30 61 00 09 37 0D 3D 61 00 09 37 D1 3D 61 00 09 37 0E 77 61 00 09 37 CE 77 61 00 09 37 D3 77 61 00 09 37 0F C8 61 00 09 37 10 E0 61 00 09 37 6C E0 61 00 09 37 11 7D 62 00 09 37 12 A7 62 00 09 37 13 D2 62 00 09 37 CD D2 62 00 09 37 46 F1 62 00 09 37 14 07 63 00 09 37 15 14 63 00 09 37 16 3F 63 00 09 37 EF 3F 63 00 09 37 17 5E 63 00 09 37 18 F0 63 00 09 37 19 0F 64 00 09 37 1A CA 64 00 09 37 1C D2 64 00 09 37 84 04 65 00 09 37 20 1E 65 00 09 37 9D 1E 65 00 09 37 A2 1E 65 00 09 37 21 4D 65 00 09 37 54 4D 65 00 09 37 23 7F 65 00 09 37 41 7F 65 00 09 37 25 8D 65 00 09 37 26 DC 65 00 09 37 28 E7 65 00 09 37 2A EF 65 00 09 37 6A EF 65 00 09 37 2B 15 66 00 09 37 A6 3B 66 00 09 37 32 43 66 00 09 37 31 43 66 00 09 37 34 63 66 00 09 37 3A 88 66 00 09 37 3B E3 66 00 09 37 3D 3E 67 00 09 37 40 52 67 00 09 37 42 77 67 00 09 37 43 86 67 00 09 37 4E 9B 67 00 09 37 4F BD 67 00 09 37 50 51 68 00 09 37 56 73 68 00 09 37 58 89 68 00 09 37 59 0F 69 00 09 37 5A 5F 69 00 09 37 5B C8 69 00 09 37 5E E9 69 00 09 37 5D E9 69 00 09 37 5C F8 E3 1B 08 37 9E F8 E3 1B 08 37 62 F0 69 00 09 37 63 24 6A 00 09 37 66 57 6A 00 09 37 69 6C 6A 00 09 37 6D 88 6A 00 09 37 6F CF 6A 00 09 37 71 53 6B 00 09 37 74 7B 6B 00 09 37 7F 90 6B 00 09 37 80 1A 6C 00 09 37 85 46 6C 00 09 37 86 46 6C 00 09 37 F8 46 6C 00 09 37 88 53 6C 00 09 37 89 D7 6C 00 09 37 8E 20 6D 00 09 37 8F 28 6D 00 09 37 90 89 6D 00 09 37 27 D9 6D 00 09 37 4B D9 6D 00 09 37 91 D9 6D 00 09 37 97 D9 6D 00 09 37 9B F4 6D 00 09 37 A1 71 6E 00 09 37 A4 80 6E 00 09 37 A9 B7 6E 00 09 37 AA C2 6E 00 09 37 B1 F1 6E 00 09 37 B2 80 6F 00 09 37 B6 00 70 00 09 37 B7 2A 70 00 09 37 B8 4F 70 00 09 37 B9 65 70 00 09 37 BA 80 70 00 09 37 BC 8B 70 00 09 37 BD A1 70 00 09 37 BE C2 70 00 09 37 C0 08 71 00 09 37 C1 17 71 00 09 37 C3 1F 71 00 09 37 C9 73 71 00 09 37 CC 8D 71 00 09 37 D2 AF 71 00 09 37 D4 C9 71 00 09 37 F1 C9 71 00 09 37 F4 C9 71 00 09 37 D6 E4 71 00 09 37 D7 E4 71 00 09 37 DD E4 71 00 09 37 E3 06 72 00 09 37 E6 43 72 00 09 37 E8 4E 72 00 09 37 EE 5E 72 00 09 37 F0 6C 72 00 09 37 F3 89 72 00 09 37 F9 A0 72 00 09 37 FB B4 72 00 09 37 FC CB 72 00 09 5A FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 41 00 08 0F 60 00 09 41 00 6B 0F 60 00 09 5A 01 7F F5 E3 1B 08 5A 31 14 23 60 00 09 31 0A 23 60 00 09 5A 01 31 E6 E3 1B 08 5A 39 00 07 07 44 60 00 09 04 FF 39 00 07 0A 44 60 00 09 00 80 44 60 00 09 04 FF 05 01 50 58 60 00 09 28 01 58 60 00 09 01 31 E6 E3 1B 08 5A 06 01 32 75 60 00 09 00 80 67 60 00 09 04 01 06 01 1E 74 60 00 09 01 31 F5 E3 1B 08 5A 01 31 E0 E3 1B 08 5A 31 0A E0 E3 1B 08 31 14 E0 E3 1B 08 5A 28 01 9A 60 00 09 25 00 33 08 2A 10 F8 E3 1B 08 5A 25 00 33 08 2B 10 E0 E3 1B 08 5A 39 01 01 09 BA 60 00 09 00 64 C9 60 00 09 04 FF 59 C9 60 00 09 08 01 64 C9 60 00 09 00 80 C9 60 00 09 04 02 05 01 28 E3 E3 1B 08 05 01 46 D8 60 00 09 5A 01 27 E3 E3 1B 08 5A 39 01 02 09 F4 60 00 09 00 64 03 61 00 09 04 FF 59 03 61 00 09 08 01 64 03 61 00 09 00 80 03 61 00 09 04 02 05 01 28 E3 E3 1B 08 05 01 46 12 61 00 09 5A 25 00 33 0A 2A 02 E3 E3 1B 08 2A 0C 29 61 00 09 01 63 E3 E3 1B 08 5A 01 3B E3 E3 1B 08 5A 29 01 E6 E3 1B 08 01 45 FB E3 1B 08 5A 39 01 04 09 52 61 00 09 00 64 61 61 00 09 04 FF 59 61 61 00 09 08 01 64 61 61 00 09 00 80 61 61 00 09 04 02 05 01 28 E3 E3 1B 08 05 01 46 70 61 00 09 5A 01 27 E3 E3 1B 08 5A 39 01 05 09 8C 61 00 09 00 64 9B 61 00 09 04 FF 59 9B 61 00 09 08 01 64 9B 61 00 09 00 80 9B 61 00 09 04 02 05 01 28 E3 E3 1B 08 05 01 46 AA 61 00 09 5A 25 00 33 0A 2B 0E E3 E3 1B 08 2A 0C C1 61 00 09 01 63 E3 E3 1B 08 5A 01 3B E3 E3 1B 08 5A 39 01 06 09 D8 61 00 09 00 32 D8 61 00 09 04 FE 05 01 47 E3 E3 1B 08 5A 05 01 5A EF 61 00 09 00 64 EF 61 00 09 04 03 39 01 07 09 FF 61 00 09 00 80 FF 61 00 09 04 FF 0A 00 80 00 00 00 23 62 00 09 06 01 32 1B 62 00 09 00 50 23 62 00 09 59 21 62 00 09 00 32 23 62 00 09 04 03 0E 00 04 00 00 00 35 62 00 09 00 46 35 62 00 09 04 03 0E 01 00 04 00 00 47 62 00 09 00 80 47 62 00 09 04 02 0C 00 00 00 00 10 59 62 00 09 00 46 59 62 00 09 04 03 06 01 46 7C 62 00 09 39 01 07 07 7C 62 00 09 05 01 28 E3 E3 1B 08 05 00 28 E3 E3 1B 08 01 45 E3 E3 1B 08 5A 3A 00 07 0A 9E 62 00 09 39 01 06 02 9E 62 00 09 3A 00 07 08 A0 62 00 09 39 01 06 04 A0 62 00 09 5A 04 01 01 63 F5 E3 1B 08 5A 3A 00 01 05 CA 62 00 09 04 FF 06 01 5A BA 62 00 09 04 FF 3A 00 01 03 CA 62 00 09 00 32 CA 62 00 09 04 FE 05 00 47 E3 E3 1B 08 5A 05 01 46 E1 62 00 09 3A 00 02 03 E9 62 00 09 00 32 E9 62 00 09 04 FE 05 00 47 E3 E3 1B 08 5A 19 C4 00 63 4F 00 09 19 3D 01 63 4F 00 09 19 55 01 63 4F 00 09 5A 29 01 E6 E3 1B 08 01 45 F8 E3 1B 08 5A 3A 00 04 05 37 63 00 09 04 FF 06 01 5A 27 63 00 09 04 FF 3A 00 04 03 37 63 00 09 00 32 37 63 00 09 04 FE 05 00 47 E3 E3 1B 08 5A 05 01 46 4E 63 00 09 3A 00 05 03 56 63 00 09 00 32 56 63 00 09 04 FE 05 00 47 E3 E3 1B 08 5A 05 01 46 6C 63 00 09 06 00 46 74 63 00 09 00 64 74 63 00 09 04 FF 3A 00 06 04 84 63 00 09 00 80 84 63 00 09 04 FF 0A 00 80 00 00 00 96 63 00 09 00 46 96 63 00 09 04 02 0E 00 04 00 00 00 A8 63 00 09 00 46 A8 63 00 09 04 02 0E 01 00 04 00 00 BA 63 00 09 00 80 BA 63 00 09 04 01 0C 00 00 00 00 10 CC 63 00 09 00 46 CC 63 00 09 04 02 06 01 46 EF 63 00 09 3A 00 06 05 EF 63 00 09 05 01 28 E3 E3 1B 08 05 00 28 E3 E3 1B 08 01 45 E3 E3 1B 08 5A 05 01 46 FF 63 00 09 3A 00 07 03 07 64 00 09 00 32 07 64 00 09 04 FE 05 00 47 E3 E3 1B 08 5A 3A 01 01 08 64 64 00 09 3A 01 02 08 64 64 00 09 3A 01 04 08 64 64 00 09 3A 01 05 08 64 64 00 09 3A 01 07 08 64 64 00 09 39 00 01 04 64 64 00 09 39 00 02 04 64 64 00 09 39 00 04 04 64 64 00 09 39 00 05 04 64 64 00 09 39 00 06 04 64 64 00 09 59 6C 64 00 09 00 32 6C 64 00 09 04 FD 3A 00 01 08 C3 64 00 09 3A 00 02 08 C3 64 00 09 3A 00 04 08 C3 64 00 09 3A 00 05 08 C3 64 00 09 3A 00 07 08 C3 64 00 09 39 01 01 04 C3 64 00 09 39 01 02 04 C3 64 00 09 39 01 04 04 C3 64 00 09 39 01 05 04 C3 64 00 09 39 01 06 04 C3 64 00 09 01 31 E0 E3 1B 08 5A 01 31 FB E3 1B 08 5A 05 01 5B E3 E3 1B 08 5A 3A 00 01 08 FD 64 00 09 3A 00 02 08 FD 64 00 09 3A 00 04 08 FD 64 00 09 3A 00 05 08 FD 64 00 09 3A 00 07 08 FD 64 00 09 04 FD 5A 01 7F F8 E3 1B 08 5A 36 13 03 1C 65 00 09 13 01 1C 65 00 09 13 02 1C 65 00 09 59 1E 65 00 09 04 FE 07 01 64 E6 E3 1B 08 29 01 EC E3 1B 08 05 01 46 38 65 00 09 01 1D E6 E3 1B 08 42 00 C3 46 65 00 09 01 63 F8 E3 1B 08 5A 01 13 F8 E3 1B 08 5A 20 70 65 00 09 06 01 32 61 65 00 09 00 32 61 65 00 09 04 FD 06 00 32 70 65 00 09 00 32 70 65 00 09 04 FD 41 01 6F 78 65 00 09 5A 01 3B F8 E3 1B 08 5A 05 01 32 E3 E3 1B 08 01 7F E3 E3 1B 08 5A 28 01 B3 65 00 09 07 01 64 EC E3 1B 08 06 01 32 E6 E3 1B 08 05 01 28 C7 65 00 09 01 45 E6 E3 1B 08 59 C7 65 00 09 06 01 46 E6 E3 1B 08 05 01 3C C7 65 00 09 01 31 E6 E3 1B 08 42 00 C3 D5 65 00 09 01 31 FB E3 1B 08 5A 01 09 FB E3 1B 08 5A 25 01 33 00 13 5E F5 E3 1B 08 5A 05 00 33 E0 E3 1B 08 5A 09 00 80 00 00 00 0E 66 00 09 0B 00 00 00 0F 10 0E 66 00 09 0D 00 20 00 00 00 0E 66 00 09 5A 01 7F F5 E3 1B 08 5A 31 0A 33 66 00 09 31 14 33 66 00 09 31 50 34 66 00 09 31 A0 34 66 00 09 00 40 F5 E3 1B 08 5A 01 7F F5 E3 1B 08 5A 00 80 43 66 00 09 04 01 06 00 46 62 66 00 09 00 80 52 66 00 09 04 FF 06 00 32 62 66 00 09 04 FF 05 00 1F E0 E3 1B 08 5A FF FF 31 0A 87 66 00 09 31 14 87 66 00 09 28 01 F8 E3 1B 08 22 00 13 08 F8 E3 1B 08 22 02 13 08 F8 E3 1B 08 5A 3A 01 01 08 AD 66 00 09 3A 01 04 08 AD 66 00 09 39 00 01 04 AD 66 00 09 39 00 04 04 AD 66 00 09 59 B5 66 00 09 00 32 B5 66 00 09 04 FD 3A 00 01 08 DC 66 00 09 3A 00 04 08 DC 66 00 09 39 01 01 04 DC 66 00 09 39 01 04 04 DC 66 00 09 01 31 E0 E3 1B 08 5A 01 31 FB E3 1B 08 5A 3A 01 02 08 08 67 00 09 3A 01 05 08 08 67 00 09 39 00 02 04 08 67 00 09 39 00 05 04 08 67 00 09 59 10 67 00 09 00 32 10 67 00 09 04 FD 3A 00 02 08 37 67 00 09 3A 00 05 08 37 67 00 09 39 01 02 04 37 67 00 09 39 01 05 04 37 67 00 09 01 31 E0 E3 1B 08 5A 01 31 FB E3 1B 08 5A 31 50 4B 67 00 09 31 A0 4B 67 00 09 5A 01 7F F5 E3 1B 08 5A 05 01 32 60 67 00 09 06 00 32 62 67 00 09 04 FF 28 01 70 67 00 09 05 01 47 E0 E3 1B 08 5A 01 13 FB E3 1B 08 5A 05 01 32 E0 E3 1B 08 05 00 33 E0 E3 1B 08 5A 28 01 94 67 00 09 05 01 47 E0 E3 1B 08 5A 01 13 FB E3 1B 08 5A 28 01 B5 67 00 09 06 01 3C B5 67 00 09 05 01 28 B6 67 00 09 01 B3 E0 E3 1B 08 5A 01 31 E0 E3 1B 08 5A 06 01 5A EA 67 00 09 06 01 46 E2 67 00 09 06 01 32 DA 67 00 09 00 64 DA 67 00 09 04 FF 00 64 E2 67 00 09 04 FF 00 64 EA 67 00 09 04 FF 28 01 29 68 00 09 25 00 50 13 01 2A 68 00 09 13 1E 2A 68 00 09 13 21 2A 68 00 09 13 40 2A 68 00 09 13 42 2A 68 00 09 13 43 2A 68 00 09 13 A7 2A 68 00 09 13 31 35 68 00 09 13 54 40 68 00 09 5A 0A 01 FF 00 00 00 4A 68 00 09 5A 0C 01 07 00 00 00 4A 68 00 09 5A 0D 01 04 00 00 00 51 68 00 09 01 63 E0 E3 1B 08 5A 31 0A E0 E3 1B 08 31 14 E0 E3 1B 08 28 01 6B 68 00 09 06 01 28 E0 E3 1B 08 5A 06 01 3B E0 E3 1B 08 5A 28 01 88 68 00 09 25 00 4F 14 00 F5 E3 1B 08 01 63 E0 E3 1B 08 5A 19 09 01 C2 68 00 09 19 61 01 CD 68 00 09 19 83 02 CD 68 00 09 19 64 02 D8 68 00 09 19 66 02 E3 68 00 09 19 67 02 EE 68 00 09 19 0E 02 F9 68 00 09 19 65 02 04 69 00 09 5A 09 00 40 00 00 00 F5 E3 1B 08 5A 09 00 88 00 00 00 F5 E3 1B 08 5A 09 00 07 00 00 00 F5 E3 1B 08 5A 09 00 10 00 00 00 F5 E3 1B 08 5A 09 00 20 00 00 00 F5 E3 1B 08 5A 09 00 FF 00 00 00 F5 E3 1B 08 5A 0B 00 00 00 0F 00 F5 E3 1B 08 5A 09 00 07 00 00 00 E0 E3 1B 08 0B 00 07 00 0F 00 E0 E3 1B 08 06 01 1E 32 69 00 09 00 0A 32 69 00 09 04 FF 06 01 32 41 69 00 09 00 64 41 69 00 09 04 FF 5D 4E 69 00 09 00 64 4E 69 00 09 04 01 25 00 33 0A 2A 0E E0 E3 1B 08 01 63 F5 E3 1B 08 5A 43 00 00 78 69 00 09 28 01 E3 E3 1B 08 25 00 50 1C 7F 69 00 09 E3 E3 1B 08 01 1D FB E3 1B 08 5A 08 0A 0B 0C 0D 0E 19 1C 21 23 25 28 31 37 38 3A 3B 3C 41 42 43 54 55 5A 5E 66 6B 6F 71 72 73 74 76 78 7C 85 86 88 89 8A 8B 8E 8F 94 99 9E A0 A1 A2 A4 A5 A6 A7 AC AE B1 B2 B5 B8 BF C0 C1 C2 C7 C9 D2 D5 E4 E5 FA FB FE FF 05 00 50 E0 E3 1B 08 28 01 DF 69 00 09 06 01 28 E0 E3 1B 08 04 01 5A 06 01 3C E0 E3 1B 08 04 01 5A 01 7F F8 E3 1B 08 5A 04 FF 28 01 23 6A 00 09 06 01 46 23 6A 00 09 00 80 07 6A 00 09 04 01 06 01 32 23 6A 00 09 00 80 16 6A 00 09 04 01 06 01 1E 23 6A 00 09 01 63 F8 E3 1B 08 5A 28 01 42 6A 00 09 06 01 21 E0 E3 1B 08 06 01 07 3A 6A 00 09 04 01 05 01 15 50 6A 00 09 5A 06 01 3C E0 E3 1B 08 06 01 28 56 6A 00 09 01 63 F5 E3 1B 08 5A 09 00 FF 00 00 00 6B 6A 00 09 35 00 FF 00 00 00 E9 E3 1B 08 5A 48 00 1B 7E 6A 00 09 E3 E3 1B 08 01 31 F5 E3 1B 08 5A 18 44 45 46 4A 52 55 56 57 FF 22 01 13 07 C7 6A 00 09 22 03 13 07 C7 6A 00 09 3A 01 02 09 C6 6A 00 09 00 80 A8 6A 00 09 04 01 3A 01 02 07 C6 6A 00 09 00 80 B8 6A 00 09 04 01 3A 01 02 06 C6 6A 00 09 01 7F F5 E3 1B 08 5A 05 01 51 E0 E3 1B 08 5A 51 01 12 01 E3 E3 1B 08 09 01 80 00 00 00 49 6B 00 09 0B 01 00 00 0F 10 49 6B 00 09 0D 01 24 18 00 00 49 6B 00 09 41 00 20 49 6B 00 09 41 00 84 49 6B 00 09 41 00 9D 49 6B 00 09 09 00 80 00 00 00 36 6B 00 09 0B 00 00 00 0F 10 36 6B 00 09 0D 00 24 18 00 00 36 6B 00 09 25 00 50 13 5E 36 6B 00 09 59 38 6B 00 09 04 02 51 01 13 00 5E F3 1B 08 04 FF 01 7F E0 E3 1B 08 5A 25 00 50 14 5E E3 E3 1B 08 5A 22 00 13 07 72 6B 00 09 22 02 13 07 72 6B 00 09 39 00 07 09 E3 E3 1B 08 00 50 F8 E3 1B 08 5A 00 80 F8 E3 1B 08 5A FF FF 05 01 04 E0 E3 1B 08 06 01 22 E0 E3 1B 08 01 45 F5 E3 1B 08 5A 3A 01 01 08 BD 6B 00 09 3A 01 02 08 BD 6B 00 09 3A 01 04 08 BD 6B 00 09 3A 01 05 08 BD 6B 00 09 3A 01 07 08 BD 6B 00 09 59 D9 6B 00 09 28 01 CB 6B 00 09 05 01 3D D2 6B 00 09 5A 06 01 46 D8 6B 00 09 01 4F F8 E3 1B 08 5A 3A 01 01 07 04 6C 00 09 3A 01 02 07 04 6C 00 09 3A 01 04 07 04 6C 00 09 3A 01 05 07 04 6C 00 09 3A 01 07 07 04 6C 00 09 04 FE 5A 28 01 12 6C 00 09 06 01 3C E3 E3 1B 08 5A 06 01 45 E3 E3 1B 08 5A 4A 01 14 00 3E 6C 00 09 22 00 13 07 3F 6C 00 09 13 0E 3F 6C 00 09 22 02 13 07 3F 6C 00 09 13 0E 3F 6C 00 09 5A 01 7F F5 E3 1B 08 5A 29 01 E3 E3 1B 08 01 7F F8 E3 1B 08 5A 28 00 61 6C 00 09 2F 01 13 21 F5 E3 1B 08 05 01 28 E0 E3 1B 08 36 13 03 F5 E3 1B 08 13 00 F5 E3 1B 08 13 02 F5 E3 1B 08 2F 01 13 2C F5 E3 1B 08 13 57 F5 E3 1B 08 13 5D F5 E3 1B 08 5A 28 00 9E 6C 00 09 2F 01 13 92 F5 E3 1B 08 05 01 28 E0 E3 1B 08 36 13 03 F5 E3 1B 08 13 00 F5 E3 1B 08 13 01 F5 E3 1B 08 2F 01 13 08 F5 E3 1B 08 13 9F F5 E3 1B 08 22 01 13 05 F5 E3 1B 08 22 03 13 05 F5 E3 1B 08 5A 28 00 E5 6C 00 09 2F 01 13 22 F5 E3 1B 08 05 01 28 E0 E3 1B 08 36 13 03 F5 E3 1B 08 13 01 F5 E3 1B 08 13 02 F5 E3 1B 08 2F 01 13 57 E0 E3 1B 08 13 5E F5 E3 1B 08 13 66 F5 E3 1B 08 13 7A F5 E3 1B 08 13 8B F5 E3 1B 08 5A 05 01 5A E3 E3 1B 08 5A 3A 00 01 08 53 6D 00 09 3A 00 02 08 53 6D 00 09 3A 00 04 08 53 6D 00 09 3A 00 05 08 53 6D 00 09 3A 00 07 08 53 6D 00 09 04 FE 5A 39 01 01 07 82 6D 00 09 39 01 02 07 82 6D 00 09 39 01 04 07 82 6D 00 09 39 01 05 07 82 6D 00 09 39 01 07 07 F5 E3 1B 08 01 31 E3 E3 1B 08 5A 01 7F F5 E3 1B 08 5A 09 00 07 00 00 00 E0 E3 1B 08 0B 00 07 00 0F 00 E0 E3 1B 08 06 01 1E AC 6D 00 09 00 0A AC 6D 00 09 04 FF 06 01 32 BB 6D 00 09 00 64 BB 6D 00 09 04 FF 5D C8 6D 00 09 00 64 C8 6D 00 09 04 01 25 00 33 0A 2B 02 E0 E3 1B 08 01 63 F5 E3 1B 08 5A 31 0A E3 E3 1B 08 31 14 E3 E3 1B 08 41 00 6F E3 E3 1B 08 05 01 27 E0 E3 1B 08 5A 41 00 6F E0 E3 1B 08 09 00 80 00 00 00 66 6E 00 09 0B 00 00 00 00 10 66 6E 00 09 0D 00 04 00 00 00 66 6E 00 09 36 13 02 2B 6E 00 09 13 03 46 6E 00 09 59 56 6E 00 09 22 01 1B 6D 6E 00 09 66 6E 00 09 22 03 1B 6D 6E 00 09 66 6E 00 09 59 56 6E 00 09 22 01 13 0F 66 6E 00 09 22 03 13 0F 66 6E 00 09 28 01 65 6E 00 09 25 00 50 14 5E 66 6E 00 09 5A 01 4F F5 E3 1B 08 5A 04 05 08 FF 4B 01 11 02 C2 F6 1B 08 01 4F F8 E3 1B 08 5A 28 00 8E 6E 00 09 2F 01 13 CA F5 E3 1B 08 05 01 28 E0 E3 1B 08 36 13 00 F5 E3 1B 08 13 01 F5 E3 1B 08 13 02 F5 E3 1B 08 2F 01 13 51 F5 E3 1B 08 13 73 F5 E3 1B 08 5A 09 01 D8 00 00 00 F5 E3 1B 08 5A 31 0A E0 E3 1B 08 31 14 E0 E3 1B 08 09 00 07 00 00 00 F5 E3 1B 08 0B 00 07 00 0F 00 EA 6E 00 09 4A 01 14 00 F0 6E 00 09 01 63 F5 E3 1B 08 5A 48 01 1B 41 6F 00 09 11 6F 00 09 1B 45 6F 00 09 1F 6F 00 09 1B 49 6F 00 09 2D 6F 00 09 04 FD 5A 48 00 1B 41 6F 00 09 E6 E3 1B 08 04 05 5A 48 00 1B 45 6F 00 09 E6 E3 1B 08 04 05 5A 48 00 1B 51 6F 00 09 E6 E3 1B 08 01 31 F8 E3 1B 08 5A FF FF 44 45 46 FF 55 56 57 FF 0A 0B 0C 0D 0E 18 4A FF 0A 0B 0C 0D 0E 18 44 45 46 4A 55 56 57 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 2F 01 1C BB 6F 00 09 8D 6F 00 09 04 FF 1C E6 6F 00 09 98 6F 00 09 04 01 2F 00 1C BB 6F 00 09 AB 6F 00 09 00 32 AB 6F 00 09 04 02 1C E6 6F 00 09 BA 6F 00 09 01 31 E3 E3 1B 08 5A 03 04 08 09 0A 0B 12 13 19 1B 1F 21 22 25 2B 2C 2F 31 38 3D 3F 4A 4B 4E 51 55 5D 62 6F 72 73 74 8E 92 9C 9D A5 B3 B9 CA D6 D8 FF 23 32 35 36 64 67 6B 6C 70 76 77 7F 81 98 FF FF FF FF FF FF FF FF FF FF FF FF 31 0A E0 E3 1B 08 31 14 E0 E3 1B 08 39 01 01 06 E0 E3 1B 08 28 01 22 70 00 09 05 01 29 E0 E3 1B 08 5A 05 01 3C E0 E3 1B 08 5A 06 00 1E 39 70 00 09 00 64 39 70 00 09 04 FF 4A 01 13 00 48 70 00 09 01 95 F5 E3 1B 08 5A 01 1D E0 E3 1B 08 5A 4D 01 1C 61 70 00 09 E3 E3 1B 08 01 31 F5 E3 1B 08 5A 86 8D AE FF 09 00 07 00 00 00 E3 E3 1B 08 0B 00 07 00 0F 00 E3 E3 1B 08 01 B3 F8 E3 1B 08 5A 0F 00 03 00 00 00 F5 E3 1B 08 5A 05 00 1E A0 70 00 09 4A 01 12 00 A0 70 00 09 01 B3 F5 E3 1B 08 5A 05 00 46 E0 E3 1B 08 28 01 B8 70 00 09 06 01 28 E0 E3 1B 08 04 01 5A 06 01 32 E0 E3 1B 08 04 01 5A 31 0A E0 E3 1B 08 31 14 E0 E3 1B 08 19 1C 01 EA 70 00 09 19 43 01 EA 70 00 09 19 2D 02 00 71 00 09 19 7C 02 00 71 00 09 28 01 00 F9 1B 08 05 01 33 E0 E3 1B 08 5A 05 01 47 E0 E3 1B 08 5A 05 00 33 E0 E3 1B 08 5A 4A 01 12 00 16 71 00 09 01 63 F8 E3 1B 08 5A 05 00 32 E0 E3 1B 08 5A 4A 01 13 01 65 71 00 09 28 01 42 71 00 09 08 01 64 6C 71 00 09 05 00 46 6C 71 00 09 01 63 E3 E3 1B 08 5A 06 00 19 6C 71 00 09 41 00 20 65 71 00 09 41 00 84 65 71 00 09 41 00 9D 65 71 00 09 01 E5 F5 E3 1B 08 5A 01 95 F8 E3 1B 08 5A 01 1D E3 E3 1B 08 5A 05 01 32 E0 E3 1B 08 22 00 13 0D F5 E3 1B 08 22 02 13 0D F5 E3 1B 08 04 FF 5A 31 0A E0 E3 1B 08 31 14 E0 E3 1B 08 28 01 A7 71 00 09 05 01 3D E0 E3 1B 08 5A 05 01 51 E0 E3 1B 08 5A 05 01 32 E0 E3 1B 08 22 00 13 0A F5 E3 1B 08 22 02 13 0A F5 E3 1B 08 04 FF 5A 28 01 DD 71 00 09 06 01 32 DC 71 00 09 01 45 E0 E3 1B 08 5A 01 7F F5 E3 1B 08 5A 31 0A E0 E3 1B 08 31 14 E0 E3 1B 08 28 01 FE 71 00 09 05 01 29 E0 E3 1B 08 5A 05 01 3C E0 E3 1B 08 5A 31 0A E0 E3 1B 08 31 14 E0 E3 1B 08 19 58 02 27 72 00 09 19 7A 02 27 72 00 09 19 72 02 35 72 00 09 05 00 33 F8 E3 1B 08 01 31 E0 E3 1B 08 5A 05 01 33 F8 E3 1B 08 01 31 E0 E3 1B 08 5A 0F 01 03 00 00 00 F5 E3 1B 08 5A 25 01 1D 5A 72 00 09 F5 E3 1B 08 5A F2 01 FF FF 36 13 00 E3 E3 1B 08 13 01 F8 E3 1B 08 5A 05 01 28 E0 E3 1B 08 05 01 47 82 72 00 09 00 46 82 72 00 09 04 01 01 31 F5 E3 1B 08 5A 05 01 3C E0 E3 1B 08 04 01 05 01 5B 9F 72 00 09 01 63 F5 E3 1B 08 5A 09 00 FF 00 00 00 E9 E3 1B 08 09 01 DF 00 00 00 F8 E3 1B 08 3C 01 16 00 E0 E3 1B 08 3C 01 17 00 E0 E3 1B 08 01 31 F8 E3 1B 08 5A 29 01 EC E3 1B 08 01 95 F8 E3 1B 08 5A FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 21 14 00 17 73 00 09 2E 1C 63 FA 1B 08 17 73 00 09 01 4F F8 E3 1B 08 5A 01 0A 0B 0C 0D 0E 0F 10 12 13 14 15 16 17 18 21 23 2F 31 32 40 41 42 43 4F 54 6C 6D 76 8A 8B 9C A5 A6 A7 AE B5 BB C0 C7 CD CE D0 D1 D3 D4 D5 DF EF F0 F1 F2 F3 F4 F5 F6 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 31 50 E3 E3 1B 08 31 A0 E3 E3 1B 08 5A
+
+if_effect 0x1, [00 60 00 09]
+if_effect 0x3, [16 60 00 09]
+if_effect 0x7, [2A 60 00 09]
+if_effect 0xA8, [2A 60 00 09]
+if_effect 0x8, [7C 60 00 09]
+if_effect 0x9, [89 60 00 09]
+if_effect 0xA, [A5 60 00 09]
+if_effect 0xF6, [A5 60 00 09]
+if_effect 0xB, [DF 60 00 09]
+if_effect 0xD0, [DF 60 00 09]
+if_effect 0xF2, [DF 60 00 09]
+if_effect 0xC, [30 61 00 09]
+if_effect 0xF5, [30 61 00 09]
+if_effect 0xD, [3D 61 00 09]
+if_effect 0xD1, [3D 61 00 09]
+if_effect 0xE, [77 61 00 09]
+if_effect 0xCE, [77 61 00 09]
+if_effect 0xD3, [77 61 00 09]
+if_effect 0xF, [C8 61 00 09]
+if_effect 0x10, [E0 61 00 09]
+if_effect 0x6C, [E0 61 00 09]
+if_effect 0x11, [7D 62 00 09]
+if_effect 0x12, [A7 62 00 09]
+if_effect 0x13, [D2 62 00 09]
+if_effect 0xCD, [D2 62 00 09]
+if_effect 0x46, [F1 62 00 09]
+if_effect 0x14, [07 63 00 09]
+if_effect 0x15, [14 63 00 09]
+if_effect 0x16, [3F 63 00 09]
+if_effect 0xEF, [3F 63 00 09]
+if_effect 0x17, [5E 63 00 09]
+if_effect 0x18, [F0 63 00 09]
+if_effect 0x19, [0F 64 00 09]
+if_effect 0x1A, [CA 64 00 09]
+if_effect 0x1C, [D2 64 00 09]
+if_effect 0x84, [04 65 00 09]
+if_effect 0x20, [1E 65 00 09]
+if_effect 0x9D, [1E 65 00 09]
+if_effect 0xA2, [1E 65 00 09]
+if_effect 0x21, [4D 65 00 09]
+if_effect 0x54, [4D 65 00 09]
+if_effect 0x23, [7F 65 00 09]
+if_effect 0x41, [7F 65 00 09]
+if_effect 0x25, [8D 65 00 09]
+if_effect 0x26, [DC 65 00 09]
+if_effect 0x28, [E7 65 00 09]
+if_effect 0x2A, [EF 65 00 09]
+if_effect 0x6A, [EF 65 00 09]
+if_effect 0x2B, [15 66 00 09]
+if_effect 0xA6, [3B 66 00 09]
+if_effect 0x32, [43 66 00 09]
+if_effect 0x31, [43 66 00 09]
+if_effect 0x34, [63 66 00 09]
+if_effect 0x3A, [88 66 00 09]
+if_effect 0x3B, [E3 66 00 09]
+if_effect 0x3D, [3E 67 00 09]
+if_effect 0x40, [52 67 00 09]
+if_effect 0x42, [77 67 00 09]
+if_effect 0x43, [86 67 00 09]
+if_effect 0x4E, [9B 67 00 09]
+if_effect 0x4F, [BD 67 00 09]
+if_effect 0x50, [51 68 00 09]
+if_effect 0x56, [73 68 00 09]
+if_effect 0x58, [89 68 00 09]
+if_effect 0x59, [0F 69 00 09]
+if_effect 0x5A, [5F 69 00 09]
+if_effect 0x5B, [C8 69 00 09]
+if_effect 0x5E, [E9 69 00 09]
+if_effect 0x5D, [E9 69 00 09]
+if_effect 0x5C, [F8 E3 1B 08]
+if_effect 0x9E, [F8 E3 1B 08]
+if_effect 0x62, [F0 69 00 09]
+if_effect 0x63, [24 6A 00 09]
+if_effect 0x66, [57 6A 00 09]
+if_effect 0x69, [6C 6A 00 09]
+if_effect 0x6D, [88 6A 00 09]
+if_effect 0x6F, [CF 6A 00 09]
+if_effect 0x71, [53 6B 00 09]
+if_effect 0x74, [7B 6B 00 09]
+if_effect 0x7F, [90 6B 00 09]
+if_effect 0x80, [1A 6C 00 09]
+if_effect 0x85, [46 6C 00 09]
+if_effect 0x86, [46 6C 00 09]
+if_effect 0xF8, [46 6C 00 09]
+if_effect 0x88, [53 6C 00 09]
+if_effect 0x89, [D7 6C 00 09]
+if_effect 0x8E, [20 6D 00 09]
+if_effect 0x8F, [28 6D 00 09]
+if_effect 0x90, [89 6D 00 09]
+if_effect 0x27, [D9 6D 00 09]
+if_effect 0x4B, [D9 6D 00 09]
+if_effect 0x91, [D9 6D 00 09]
+if_effect 0x97, [D9 6D 00 09]
+if_effect 0x9B, [F4 6D 00 09]
+if_effect 0xA1, [71 6E 00 09]
+if_effect 0xA4, [80 6E 00 09]
+if_effect 0xA9, [B7 6E 00 09]
+if_effect 0xAA, [C2 6E 00 09]
+if_effect 0xB1, [F1 6E 00 09]
+if_effect 0xB2, [80 6F 00 09]
+if_effect 0xB6, [00 70 00 09]
+if_effect 0xB7, [2A 70 00 09]
+if_effect 0xB8, [4F 70 00 09]
+if_effect 0xB9, [65 70 00 09]
+if_effect 0xBA, [80 70 00 09]
+if_effect 0xBC, [8B 70 00 09]
+if_effect 0xBD, [A1 70 00 09]
+if_effect 0xBE, [C2 70 00 09]
+if_effect 0xC0, [08 71 00 09]
+if_effect 0xC1, [17 71 00 09]
+if_effect 0xC3, [1F 71 00 09]
+if_effect 0xC9, [73 71 00 09]
+if_effect 0xCC, [8D 71 00 09]
+if_effect 0xD2, [AF 71 00 09]
+if_effect 0xD4, [C9 71 00 09]
+if_effect 0xF1, [C9 71 00 09]
+if_effect 0xF4, [C9 71 00 09]
+if_effect 0xD6, [E4 71 00 09]
+if_effect 0xD7, [E4 71 00 09]
+if_effect 0xDD, [E4 71 00 09]
+if_effect 0xE3, [06 72 00 09]
+if_effect 0xE6, [43 72 00 09]
+if_effect 0xE8, [4E 72 00 09]
+if_effect 0xEE, [5E 72 00 09]
+if_effect 0xF0, [6C 72 00 09]
+if_effect 0xF3, [89 72 00 09]
+if_effect 0xF9, [A0 72 00 09]
+if_effect 0xFB, [B4 72 00 09]
+if_effect 0xFC, [CB 72 00 09]
+end
+
+[00 60 00 09]:
+if_has_move_with_effect 0x0, 0x8, [0F 60 00 09]
+if_has_move_with_effect 0x0, 0x6B, [0F 60 00 09]
+end
+
+[0F 60 00 09]:
+if_random_greater_than 0x7F, [F5 E3 1B 08]
+end
+
+[16 60 00 09]:
+if_type_effectiveness 0x14, [23 60 00 09]
+if_type_effectiveness 0xA, [23 60 00 09]
+end
+
+[23 60 00 09]:
+if_random_greater_than 0x31, [E6 E3 1B 08]
+end
+
+[2A 60 00 09]:
+if_stat_level_less_than 0x0, 0x7, 7, [44 60 00 09]
+score -1
+if_stat_level_less_than 0x0, 0x7, 10, [44 60 00 09]
+if_random_less_than 0x80, [44 60 00 09]
+score -1
+
+[44 60 00 09]:
+if_hp_less_than 0x1, 80, [58 60 00 09]
+if_user_goes 0x1, [58 60 00 09]
+if_random_greater_than 0x31, [E6 E3 1B 08]
+end
+
+[58 60 00 09]:
+if_hp_more_than 0x1, 50, [75 60 00 09]
+if_random_less_than 0x80, [67 60 00 09]
+score +1
+
+[67 60 00 09]:
+if_hp_more_than 0x1, 30, [74 60 00 09]
+if_random_greater_than 0x31, [F5 E3 1B 08]
+
+[74 60 00 09]:
+end
+
+[75 60 00 09]:
+if_random_greater_than 0x31, [E0 E3 1B 08]
+end
+
+[7C 60 00 09]:
+if_type_effectiveness 0xA, [E0 E3 1B 08]
+if_type_effectiveness 0x14, [E0 E3 1B 08]
+end
+
+[89 60 00 09]:
+if_user_goes 0x1, [9A 60 00 09]
+get_last_used_bank_move 0x0
+get_move_attribute 0x8
+if_bits_set 0x10, [F8 E3 1B 08]
+end
+
+[9A 60 00 09]:
+get_last_used_bank_move 0x0
+get_move_attribute 0x8
+if_bits_not_set 0x10, [E0 E3 1B 08]
+end
+
+[A5 60 00 09]:
+if_stat_level_less_than 0x1, 0x1, 9, [BA 60 00 09]
+if_random_less_than 0x64, [C9 60 00 09]
+score -1
+goto [C9 60 00 09]
+
+[BA 60 00 09]:
+if_hp_not_equal 0x1, 100, [C9 60 00 09]
+if_random_less_than 0x80, [C9 60 00 09]
+score +2
+
+[C9 60 00 09]:
+if_hp_less_than 0x1, 40, [E3 E3 1B 08]
+if_hp_less_than 0x1, 70, [D8 60 00 09]
+end
+
+[D8 60 00 09]:
+if_random_greater_than 0x27, [E3 E3 1B 08]
+end
+
+[DF 60 00 09]:
+if_stat_level_less_than 0x1, 0x2, 9, [F4 60 00 09]
+if_random_less_than 0x64, [03 61 00 09]
+score -1
+goto [03 61 00 09]
+
+[F4 60 00 09]:
+if_hp_not_equal 0x1, 100, [03 61 00 09]
+if_random_less_than 0x80, [03 61 00 09]
+score +2
+
+[03 61 00 09]:
+if_hp_less_than 0x1, 40, [E3 E3 1B 08]
+if_hp_less_than 0x1, 70, [12 61 00 09]
+end
+
+[12 61 00 09]:
+get_last_used_bank_move 0x0
+get_move_attribute 0xA
+if_bits_set 0x2, [E3 E3 1B 08]
+if_bits_set 0xC, [29 61 00 09]
+if_random_greater_than 0x63, [E3 E3 1B 08]
+end
+
+[29 61 00 09]:
+if_random_greater_than 0x3B, [E3 E3 1B 08]
+end
+
+[30 61 00 09]:
+if_user_doesnt_go 0x1, [E6 E3 1B 08]
+if_random_greater_than 0x45, [FB E3 1B 08]
+end
+
+[3D 61 00 09]:
+if_stat_level_less_than 0x1, 0x4, 9, [52 61 00 09]
+if_random_less_than 0x64, [61 61 00 09]
+score -1
+goto [61 61 00 09]
+
+[52 61 00 09]:
+if_hp_not_equal 0x1, 100, [61 61 00 09]
+if_random_less_than 0x80, [61 61 00 09]
+score +2
+
+[61 61 00 09]:
+if_hp_less_than 0x1, 40, [E3 E3 1B 08]
+if_hp_more_than 0x1, 70, [70 61 00 09]
+end
+
+[70 61 00 09]:
+if_random_greater_than 0x27, [E3 E3 1B 08]
+end
+
+[77 61 00 09]:
+if_stat_level_less_than 0x1, 0x5, 9, [8C 61 00 09]
+if_random_less_than 0x64, [9B 61 00 09]
+score -1
+goto [9B 61 00 09]
+
+[8C 61 00 09]:
+if_hp_not_equal 0x1, 100, [9B 61 00 09]
+if_random_less_than 0x80, [9B 61 00 09]
+score +2
+
+[9B 61 00 09]:
+if_hp_less_than 0x1, 40, [E3 E3 1B 08]
+if_hp_less_than 0x1, 70, [AA 61 00 09]
+end
+
+[AA 61 00 09]:
+get_last_used_bank_move 0x0
+get_move_attribute 0xA
+if_bits_not_set 0xE, [E3 E3 1B 08]
+if_bits_set 0xC, [C1 61 00 09]
+if_random_greater_than 0x63, [E3 E3 1B 08]
+end
+
+[C1 61 00 09]:
+if_random_greater_than 0x3B, [E3 E3 1B 08]
+end
+
+[C8 61 00 09]:
+if_stat_level_less_than 0x1, 0x6, 9, [D8 61 00 09]
+if_random_less_than 0x32, [D8 61 00 09]
+score -2
+
+[D8 61 00 09]:
+if_hp_less_than 0x1, 71, [E3 E3 1B 08]
+end
+
+[E0 61 00 09]:
+if_hp_less_than 0x1, 90, [EF 61 00 09]
+if_random_less_than 0x64, [EF 61 00 09]
+score +3
+
+[EF 61 00 09]:
+if_stat_level_less_than 0x1, 0x7, 9, [FF 61 00 09]
+if_random_less_than 0x80, [FF 61 00 09]
+score -1
+
+[FF 61 00 09]:
+if_not_status 0x0, 0x80, [23 62 00 09]
+if_hp_more_than 0x1, 50, [1B 62 00 09]
+if_random_less_than 0x50, [23 62 00 09]
+goto [21 62 00 09]
+
+[1B 62 00 09]:
+if_random_less_than 0x32, [23 62 00 09]
+
+[21 62 00 09]:
+score +3
+
+[23 62 00 09]:
+if_not_status3 0x0, 0x4, [35 62 00 09]
+if_random_less_than 0x46, [35 62 00 09]
+score +3
+
+[35 62 00 09]:
+if_not_status3 0x1, 0x400, [47 62 00 09]
+if_random_less_than 0x80, [47 62 00 09]
+score +2
+
+[47 62 00 09]:
+if_not_status2 0x0, 0x10000000, [59 62 00 09]
+if_random_less_than 0x46, [59 62 00 09]
+score +3
+
+[59 62 00 09]:
+if_hp_more_than 0x1, 70, [7C 62 00 09]
+if_stat_level_less_than 0x1, 0x7, 7, [7C 62 00 09]
+if_hp_less_than 0x1, 40, [E3 E3 1B 08]
+if_hp_less_than 0x0, 40, [E3 E3 1B 08]
+if_random_greater_than 0x45, [E3 E3 1B 08]
+
+[7C 62 00 09]:
+end
+
+[7D 62 00 09]:
+if_stat_level_more_than 0x0, 0x7, 10, [9E 62 00 09]
+if_stat_level_less_than 0x1, 0x6, 2, [9E 62 00 09]
+if_stat_level_more_than 0x0, 0x7, 8, [A0 62 00 09]
+if_stat_level_less_than 0x1, 0x6, 4, [A0 62 00 09]
+end
+
+[9E 62 00 09]:
+score +1
+
+[A0 62 00 09]:
+if_random_greater_than 0x63, [F5 E3 1B 08]
+end
+
+[A7 62 00 09]:
+if_stat_level_more_than 0x0, 0x1, 5, [CA 62 00 09]
+score -1
+if_hp_more_than 0x1, 90, [BA 62 00 09]
+score -1
+
+[BA 62 00 09]:
+if_stat_level_more_than 0x0, 0x1, 3, [CA 62 00 09]
+if_random_less_than 0x32, [CA 62 00 09]
+score -2
+
+[CA 62 00 09]:
+if_hp_less_than 0x0, 71, [E3 E3 1B 08]
+end
+
+[D2 62 00 09]:
+if_hp_less_than 0x1, 70, [E1 62 00 09]
+if_stat_level_more_than 0x0, 0x2, 3, [E9 62 00 09]
+
+[E1 62 00 09]:
+if_random_less_than 0x32, [E9 62 00 09]
+score -2
+
+[E9 62 00 09]:
+if_hp_less_than 0x0, 71, [E3 E3 1B 08]
+end
+
+[F1 62 00 09]:
+if_move 0xC4, [63 4F 00 09]
+if_move 0x13D, [63 4F 00 09]
+if_move 0x155, [63 4F 00 09]
+end
+
+[07 63 00 09]:
+if_user_doesnt_go 0x1, [E6 E3 1B 08]
+if_random_greater_than 0x45, [F8 E3 1B 08]
+end
+
+[14 63 00 09]:
+if_stat_level_more_than 0x0, 0x4, 5, [37 63 00 09]
+score -1
+if_hp_more_than 0x1, 90, [27 63 00 09]
+score -1
+
+[27 63 00 09]:
+if_stat_level_more_than 0x0, 0x4, 3, [37 63 00 09]
+if_random_less_than 0x32, [37 63 00 09]
+score -2
+
+[37 63 00 09]:
+if_hp_less_than 0x0, 71, [E3 E3 1B 08]
+end
+
+[3F 63 00 09]:
+if_hp_less_than 0x1, 70, [4E 63 00 09]
+if_stat_level_more_than 0x0, 0x5, 3, [56 63 00 09]
+
+[4E 63 00 09]:
+if_random_less_than 0x32, [56 63 00 09]
+score -2
+
+[56 63 00 09]:
+if_hp_less_than 0x0, 71, [E3 E3 1B 08]
+end
+
+[5E 63 00 09]:
+if_hp_less_than 0x1, 70, [6C 63 00 09]
+if_hp_more_than 0x0, 70, [74 63 00 09]
+
+[6C 63 00 09]:
+if_random_less_than 0x64, [74 63 00 09]
+score -1
+
+[74 63 00 09]:
+if_stat_level_more_than 0x0, 0x6, 4, [84 63 00 09]
+if_random_less_than 0x80, [84 63 00 09]
+score -1
+
+[84 63 00 09]:
+if_not_status 0x0, 0x80, [96 63 00 09]
+if_random_less_than 0x46, [96 63 00 09]
+score +2
+
+[96 63 00 09]:
+if_not_status3 0x0, 0x4, [A8 63 00 09]
+if_random_less_than 0x46, [A8 63 00 09]
+score +2
+
+[A8 63 00 09]:
+if_not_status3 0x1, 0x400, [BA 63 00 09]
+if_random_less_than 0x80, [BA 63 00 09]
+score +1
+
+[BA 63 00 09]:
+if_not_status2 0x0, 0x10000000, [CC 63 00 09]
+if_random_less_than 0x46, [CC 63 00 09]
+score +2
+
+[CC 63 00 09]:
+if_hp_more_than 0x1, 70, [EF 63 00 09]
+if_stat_level_more_than 0x0, 0x6, 5, [EF 63 00 09]
+if_hp_less_than 0x1, 40, [E3 E3 1B 08]
+if_hp_less_than 0x0, 40, [E3 E3 1B 08]
+if_random_more_than 0x45, [E3 E3 1B 08]
+
+[EF 63 00 09]:
+end
+
+[F0 63 00 09]:
+if_hp_less_than 0x1, 70, [FF 63 00 09]
+if_stat_level_more_than 0x0, 0x7, 3, [07 64 00 09]
+
+[FF 63 00 09]:
+if_random_less_than 0x32, [07 64 00 09]
+score -2
+
+[07 64 00 09]:
+if_hp_less_than 0x0, 71, [E3 E3 1B 08]
+end
+
+[0F 64 00 09]:
+if_stat_level_more_than 0x1, 0x1, 8, [64 64 00 09]
+if_stat_level_more_than 0x1, 0x2, 8, [64 64 00 09]
+if_stat_level_more_than 0x1, 0x4, 8, [64 64 00 09]
+if_stat_level_more_than 0x1, 0x5, 8, [64 64 00 09]
+if_stat_level_more_than 0x1, 0x7, 8, [64 64 00 09]
+if_stat_level_less_than 0x0, 0x1, 4, [64 64 00 09]
+if_stat_level_less_than 0x0, 0x2, 4, [64 64 00 09]
+if_stat_level_less_than 0x0, 0x4, 4, [64 64 00 09]
+if_stat_level_less_than 0x0, 0x5, 4, [64 64 00 09]
+if_stat_level_less_than 0x0, 0x6, 4, [64 64 00 09]
+goto [6C 64 00 09]
+
+[64 64 00 09]:
+if_random_less_than 0x32, [6C 64 00 09]
+score -3
+
+[6C 64 00 09]:
+if_stat_level_more_than 0x0, 0x1, 8, [C3 64 00 09]
+if_stat_level_more_than 0x0, 0x2, 8, [C3 64 00 09]
+if_stat_level_more_than 0x0, 0x4, 8, [C3 64 00 09]
+if_stat_level_more_than 0x0, 0x5, 8, [C3 64 00 09]
+if_stat_level_more_than 0x0, 0x7, 8, [C3 64 00 09]
+if_stat_level_less_than 0x1, 0x1, 4, [C3 64 00 09]
+if_stat_level_less_than 0x1, 0x2, 4, [C3 64 00 09]
+if_stat_level_less_than 0x1, 0x4, 4, [C3 64 00 09]
+if_stat_level_less_than 0x1, 0x5, 4, [C3 64 00 09]
+if_stat_level_less_than 0x1, 0x7, 4, [C3 64 00 09]
+if_random_greater_than 0x31, [E0 E3 1B 08]
+end
+
+[C3 64 00 09]:
+if_random_greater_than 0x31, [FB E3 1B 08]
+end
+
+[CA 64 00 09]:
+if_hp_less_than 0x1, 91, [E3 E3 1B 08]
+end
+
+[D2 64 00 09]:
+if_stat_level_more_than 0x0, 0x1, 8, [FD 64 00 09]
+if_stat_level_more_than 0x0, 0x2, 8, [FD 64 00 09]
+if_stat_level_more_than 0x0, 0x4, 8, [FD 64 00 09]
+if_stat_level_more_than 0x0, 0x5, 8, [FD 64 00 09]
+if_stat_level_more_than 0x0, 0x7, 8, [FD 64 00 09]
+score -3
+end
+
+[FD 64 00 09]:
+if_random_greater_than 0x7F, [F8 E3 1B 08]
+end
+
+[04 65 00 09]:
+get_weather
+if_equal 0x3, [1C 65 00 09]
+if_equal 0x1, [1C 65 00 09]
+if_equal 0x2, [1C 65 00 09]
+goto [1E 65 00 09]
+
+[1C 65 00 09]:
+score -2
+
+[1E 65 00 09]:
+if_hp_less_than 0x1, 70, [38 65 00 09]
+if_random_less_than 0x1D, [E6 E3 1B 08]
+
+[38 65 00 09]:
+if_doesnt_have_move_with_effect 0x0, 0xC3, [46 65 00 09]
+if_random_greater_than 0x63, [F8 E3 1B 08]
+end
+
+[46 65 00 09]:
+if_random_greater_than 0x13, [F8 E3 1B 08]
+end
+
+[4D 65 00 09]:
+if_user_has_no_attacking_moves [70 65 00 09]
+if_hp_more_than 0x1, 50, [61 65 00 09]
+if_random_less_than 0x32, [61 65 00 09]
+score -3
+
+[61 65 00 09]:
+if_hp_more_than 0x0, 50, [70 65 00 09]
+if_random_less_than 0x32, [70 65 00 09]
+score -3
+
+[70 65 00 09]:
+if_has_move_with_effect 0x1, 0x6F, [78 65 00 09]
+end
+
+[78 65 00 09]:
+if_random_greater_than 0x3B, [F8 E3 1B 08]
+end
+
+[7F 65 00 09]:
+if_hp_less_than 0x1, 50, [E3 E3 1B 08]
+if_random_greater_than 0x7F, [E3 E3 1B 08]
+end
+
+[8D 65 00 09]:
+if_user_goes 0x1, [B3 65 00 09]
+if_hp_equal 0x1, 100, [EC E3 1B 08]
+if_hp_more_than 0x1, 50, [E6 E3 1B 08]
+if_hp_less_than 0x1, 40, [C7 65 00 09]
+if_random_greater_than 0x45, [E6 E3 1B 08]
+goto [C7 65 00 09]
+
+[B3 65 00 09]:
+if_hp_more_than 0x1, 70, [E6 E3 1B 08]
+if_hp_less_than 0x1, 60, [C7 65 00 09]
+if_random_greater_than 0x31, [E6 E3 1B 08]
+
+[C7 65 00 09]:
+if_doesnt_have_move_with_effect 0x0, 0xC3, [D5 65 00 09]
+if_random_greater_than 0x31, [FB E3 1B 08]
+end
+
+[D5 65 00 09]:
+if_random_greater_than 0x9, [FB E3 1B 08]
+end
+
+[DC 65 00 09]:
+get_last_used_bank_move 0x1
+get_move_attribute 0x0
+if_equal 0x5E, [F5 E3 1B 08]
+end
+
+[E7 65 00 09]:
+if_hp_less_than 0x0, 51, [E0 E3 1B 08]
+end
+
+[EF 65 00 09]:
+if_status 0x0, 0x80, [0E 66 00 09]
+if_status2 0x0, 0x100F0000, [0E 66 00 09]
+if_status3 0x0, 0x20, [0E 66 00 09]
+end
+
+[0E 66 00 09]:
+if_random_greater_than 0x7F, [F5 E3 1B 08]
+end
+
+[15 66 00 09]:
+if_type_effectiveness 0xA, [33 66 00 09]
+if_type_effectiveness 0x14, [33 66 00 09]
+if_type_effectiveness 0x50, [34 66 00 09]
+if_type_effectiveness 0xA0, [34 66 00 09]
+if_random_less_than 0x40, [F5 E3 1B 08]
+
+[33 66 00 09]:
+end
+
+[34 66 00 09]:
+if_random_greater_than 0x7F, [F5 E3 1B 08]
+end
+
+[3B 66 00 09]:
+if_random_less_than 0x80, [43 66 00 09]
+score +1
+
+[43 66 00 09]:
+if_hp_more_than 0x0, 70, [62 66 00 09]
+if_random_less_than 0x80, [52 66 00 09]
+score -1
+
+[52 66 00 09]:
+if_hp_more_than 0x0, 50, [62 66 00 09]
+score -1
+if_hp_less_than 0x0, 30, [E0 E3 1B 08]
+
+[62 66 00 09]:
+end
+
+[63 66 00 09]:
+[ERROR] (FF FF)
+
+[65 66 00 09]: // probably the intended [63 66 00 09]
+if_type_effectiveness 0xA, [87 66 00 09]
+if_type_effectiveness 0x14, [87 66 00 09]
+if_user_goes 0x1, [F8 E3 1B 08]
+get_type 0x0
+if_equal 0x8, [F8 E3 1B 08]
+get_type 0x2
+if_equal 0x8, [F8 E3 1B 08]
+
+[87 66 00 09]:
+end
+
+[88 66 00 09]:
+if_stat_level_more_than 0x1, 0x1, 8, [AD 66 00 09]
+if_stat_level_more_than 0x1, 0x4, 8, [AD 66 00 09]
+if_stat_level_less_than 0x0, 0x1, 4, [AD 66 00 09]
+if_stat_level_less_than 0x0, 0x4, 4, [AD 66 00 09]
+goto [B5 66 00 09]
+
+[AD 66 00 09]:
+if_random_less_than 0x32, [B5 66 00 09]
+score -3
+
+[B5 66 00 09]:
+if_stat_level_more_than 0x0, 0x1, 8, [DC 66 00 09]
+if_stat_level_more_than 0x0, 0x4, 8, [DC 66 00 09]
+if_stat_level_less_than 0x1, 0x1, 4, [DC 66 00 09]
+if_stat_level_less_than 0x1, 0x4, 4, [DC 66 00 09]
+if_random_greater_than 0x31, [E0 E3 1B 08]
+end
+
+[DC 66 00 09]:
+if_random_greater_than 0x31, [FB E3 1B 08]
+end
+
+[E3 66 00 09]:
+if_stat_level_more_than 0x1, 0x2, 8, [08 67 00 09]
+if_stat_level_more_than 0x1, 0x5, 8, [08 67 00 09]
+if_stat_level_less_than 0x0, 0x2, 4, [08 67 00 09]
+if_stat_level_less_than 0x0, 0x5, 4, [08 67 00 09]
+goto [10 67 00 09]
+
+[08 67 00 09]:
+if_random_less_than 0x32, [10 67 00 09]
+score -3
+
+[10 67 00 09]:
+if_stat_level_more_than 0x0, 0x2, 8, [37 67 00 09]
+if_stat_level_more_than 0x0, 0x5, 8, [37 67 00 09]
+if_stat_level_less_than 0x1, 0x2, 4, [37 67 00 09]
+if_stat_level_less_than 0x1, 0x5, 4, [37 67 00 09]
+if_random_greater_than 0x31, [E0 E3 1B 08]
+end
+
+[37 67 00 09]:
+if_random_greater_than 0x31, [FB E3 1B 08]
+end
+
+[3E 67 00 09]:
+if_type_effectiveness 0x50, [4B 67 00 09]
+if_type_effectiveness 0xA0, [4B 67 00 09]
+end
+
+[4B 67 00 09]:
+if_random_greater_than 0x7F, [F5 E3 1B 08]
+end
+
+[52 67 00 09]:
+if_hp_less_than 0x1, 50, [60 67 00 09]
+if_hp_more_than 0x0, 50, [62 67 00 09]
+
+[60 67 00 09]:
+score -1
+
+[62 67 00 09]:
+if_user_goes 0x1, [70 67 00 09]
+if_hp_less_than 0x1, 71, [E0 E3 1B 08]
+end
+
+[70 67 00 09]:
+if_random_greater_than 0x13, [FB E3 1B 08]
+end
+
+[77 67 00 09]:
+if_hp_less_than 0x1, 50, [E0 E3 1B 08]
+if_hp_less_than 0x0, 51, [E0 E3 1B 08]
+end
+
+[86 67 00 09]:
+if_user_goes 0x1, [94 67 00 09]
+if_hp_less_than 0x1, 71, [E0 E3 1B 08]
+end
+
+[94 67 00 09]:
+if_random_greater_than 0x13, [FB E3 1B 08]
+end
+
+[9B 67 00 09]:
+if_user_goes 0x1, [B5 67 00 09]
+if_hp_more_than 0x1, 60, [B5 67 00 09]
+if_hp_less_than 0x1, 40, [B6 67 00 09]
+if_random_greater_than 0xB3, [E0 E3 1B 08]
+
+[B5 67 00 09]:
+end
+
+[B6 67 00 09]:
+if_random_greater_than 0x31, [E0 E3 1B 08]
+end
+
+[BD 67 00 09]:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
