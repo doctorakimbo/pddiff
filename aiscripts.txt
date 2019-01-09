@@ -637,7 +637,7 @@ get_target_type2
 if_equal_ TYPE_DARK, Score_Minus12
 goto CheckAbsorbingAbilities
 
-[63 4F 00 09]: // part of CheckViability, placed here for whatever reason
+AI_CV_SpeedDownFromChance2: // part of CheckViability, placed here for whatever reason
 if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus12
 if_target_slower Score_Minus3
 if_random_greater_than 69, Score_Plus2
@@ -1637,45 +1637,45 @@ AI_CV_MirrorMove_End:
 end
 
 AI_CV_MirrorMove_EncouragedMovesToMirror:
-0x4F
-0x8E
-0x93
-0x5F
-0x2F
-0x140
-0x145
-0x1C
-0x6C
-0x5C
-0xC
-0x20
-0x5A
-0x149
-0xEE
-0xB1
-0x6D
-0xBA
-0x67
-0xB2
-0xB8
-0x139
-0x13F
-0x56
-0x89
-0x4D
-0xF7
-0xDF
-0x3F
-0xF5
-0xA8
-0x157
-0xD5
-0xCF
-0x103
-0x104
-0x10F
-0x114
-0x11D
+MOVE_SLEEP_POWDER
+MOVE_LOVELY_KISS
+MOVE_SPORE
+MOVE_HYPNOSIS
+MOVE_SING
+MOVE_GRASS_WHISTLE
+MOVE_SHADOW_PUNCH
+MOVE_SAND_ATTACK
+MOVE_SMOKESCREEN
+MOVE_TOXIC
+MOVE_GUILLOTINE
+MOVE_HORN_DRILL
+MOVE_FISSURE
+MOVE_SHEER_COLD
+MOVE_CROSS_CHOP
+MOVE_AEROBLAST
+MOVE_CONFUSE_RAY
+MOVE_SWEET_KISS
+MOVE_SCREECH
+MOVE_COTTON_SPORE
+MOVE_SCARY_FACE
+MOVE_FAKE_TEARS
+MOVE_METAL_SOUND
+MOVE_THUNDER_WAVE
+MOVE_GLARE
+MOVE_POISON_POWDER
+MOVE_SHADOW_BALL
+MOVE_DYNAMIC_PUNCH
+MOVE_HYPER_BEAM
+MOVE_EXTREME_SPEED
+MOVE_THIEF
+MOVE_COVET
+MOVE_ATTRACT
+MOVE_SWAGGER
+MOVE_TORMENT
+MOVE_FLATTER
+MOVE_TRICK
+MOVE_SUPERPOWER
+MOVE_SKILL_SWAP
 
 AI_CV_AttackUp:
 if_stat_level_less_than AI_USER, STAT_ATK, 9, AI_CV_AttackUp2
@@ -1691,7 +1691,7 @@ score +2
 AI_CV_AttackUp3:
 if_hp_more_than AI_USER, 70, AI_CV_AttackUp_End
 if_hp_less_than AI_USER, 40, AI_CV_AttackUp_ScoreDown2
-if_random_less_than 70, AI_CV_AttackUp_End
+if_random_less_than 40, AI_CV_AttackUp_End
 
 AI_CV_AttackUp_ScoreDown2:
 score -2
@@ -2547,68 +2547,68 @@ AI_CV_Encore_End:
 end
 
 AI_CV_Encore_EncouragedMovesToEncore:
-0x8
-0xA
-0xB
-0xC
-0xD
-0x19
-0x1C
-0x1E
-0x21
-0x23
-0x25
-0x28
-0x36
-0x31
-0x42
-0x43
-0x54
-0x55
-0x32
-0x5A
-0x5D
-0x5E
-0x66
-0x6A
-0x6B
-0x6F
-0xBF
-0x71
-0x72
-0x73
-0x74
-0x76
-0x78
-0x7C
-0x88
-0x89
-0x8E
-0x8F
-0x94
-0x9E
-0xA0
-0xA1
-0xA2
-0xA4
-0xA5
-0xA7
-0xAC
-0xAE
-0xB1
-0xB2
-0xB5
-0xB8
-0xBC
-0xBF
-0xC0
-0xC1
-0xC2
-0xC7
-0xC9
-0xD2
-0xD4
-0xD5
+EFFECT_DREAM_EATER
+EFFECT_ATTACK_UP
+EFFECT_DEFENSE_UP
+EFFECT_SPEED_UP
+EFFECT_SPECIAL_ATTACK_UP
+EFFECT_HAZE
+EFFECT_ROAR
+EFFECT_CONVERSION
+EFFECT_TOXIC
+EFFECT_LIGHT_SCREEN
+EFFECT_REST
+EFFECT_SUPER_FANG
+EFFECT_SPECIAL_DEFENSE_UP_2
+EFFECT_CONFUSE
+EFFECT_POISON
+EFFECT_PARALYZE
+EFFECT_LEECH_SEED
+EFFECT_SPLASH
+EFFECT_ATTACK_UP_2
+EFFECT_ENCORE
+EFFECT_CONVERSION_2
+EFFECT_LOCK_ON
+EFFECT_HEAL_BELL
+EFFECT_MEAN_LOOK
+EFFECT_NIGHTMARE
+EFFECT_PROTECT
+EFFECT_SKILL_SWAP
+EFFECT_FORESIGHT
+EFFECT_PERISH_SONG
+EFFECT_SANDSTORM
+EFFECT_ENDURE
+EFFECT_SWAGGER
+EFFECT_ATTRACT
+EFFECT_SAFEGUARD
+EFFECT_RAIN_DANCE
+EFFECT_SUNNY_DAY
+EFFECT_BELLY_DRUM
+EFFECT_PSYCH_UP
+EFFECT_FUTURE_SIGHT
+EFFECT_FAKE_OUT
+EFFECT_STOCKPILE
+EFFECT_SPIT_UP
+EFFECT_SWALLOW
+EFFECT_HAIL
+EFFECT_TORMENT
+EFFECT_WILL_O_WISP
+EFFECT_FOLLOW_ME
+EFFECT_CHARGE
+EFFECT_TRICK
+EFFECT_ROLE_PLAY
+EFFECT_INGRAIN
+EFFECT_RECYCLE
+EFFECT_KNOCK_OFF
+EFFECT_SKILL_SWAP
+EFFECT_IMPRISON
+EFFECT_REFRESH
+EFFECT_GRUDGE
+EFFECT_TEETER_DANCE
+EFFECT_MUD_SPORT
+EFFECT_WATER_SPORT
+EFFECT_DRAGON_DANCE
+EFFECT_CAMOUFLAGE
 
 AI_CV_PainSplit:
 if_hp_less_than AI_TARGET, 80, AI_CV_PainSplit_ScoreDown1
@@ -2711,13 +2711,13 @@ AI_CV_Thief_End:
 end
 
 AI_CV_Thief_EncourageItemsToSteal:
-0x3
-0x9
-0x1
-0x16
-0x2B
-0x2D
-0x41
+HOLD_EFFECT_CURE_SLP
+HOLD_EFFECT_CURE_STATUS
+HOLD_EFFECT_RESTORE_HP
+HOLD_EFFECT_EVASION_UP
+HOLD_EFFECT_LEFTOVERS
+HOLD_EFFECT_LIGHT_BALL
+HOLD_EFFECT_THICK_CLUB
 
 AI_CV_Curse:
 get_user_type1
@@ -3185,16 +3185,16 @@ AI_CV_Trick_End:
 end
 
 AI_CV_Trick_EffectsToEncourage:
-0xA
-0xB
-0xC
-0xD
-0xE
-0x18
-0x1D
+HOLD_EFFECT_CONFUSE_SPICY
+HOLD_EFFECT_CONFUSE_DRY
+HOLD_EFFECT_CONFUSE_SWEET
+HOLD_EFFECT_CONFUSE_BITTER
+HOLD_EFFECT_CONFUSE_SOUR
+HOLD_EFFECT_MACHO_BRACE
+HOLD_EFFECT_CHOICE_BAND
 
 AI_CV_Trick_EffectsToEncourage2:
-0x1D
+HOLD_EFFECT_CHOICE_BAND
 
 AI_CV_ChangeSelfAbility:
 get_ability AI_USER
@@ -3206,7 +3206,7 @@ AI_CV_ChangeSelfAbility2:
 score -1
 goto AI_CV_ChangeSelfAbility_End
 
-AI_CV_ChangeSelfAbility2:
+AI_CV_ChangeSelfAbility3:
 if_random_less_than 50, AI_CV_ChangeSelfAbility_End
 score +2
 
@@ -3214,22 +3214,22 @@ AI_CV_ChangeSelfAbility_End:
 end
 
 AI_CV_ChangeSelfAbility_AbilitiesToEncourage:
-0x3
-0x4
-0x8
-0x9
-0x12
-0x19
-0x1B
-0x21
-0x25
-0x2C
-0x38
-0x3D
-0x3F
-0x4A
-0x22
-0x13
+ABILITY_SPEED_BOOST
+ABILITY_BATTLE_ARMOR
+ABILITY_SAND_VEIL
+ABILITY_STATIC
+ABILITY_FLASH_FIRE
+ABILITY_WONDER_GUARD
+ABILITY_EFFECT_SPORE
+ABILITY_SWIFT_SWIM
+ABILITY_HUGE_POWER
+ABILITY_RAIN_DISH
+ABILITY_CUTE_CHARM
+ABILITY_SHED_SKIN
+ABILITY_MARVEL_SCALE
+ABILITY_PURE_POWER
+ABILITY_CHLOROPHYLL
+ABILITY_SHIELD_DUST
 
 AI_CV_Superpower:
 if_type_effectiveness AI_EFFECTIVENESS_x0_25, AI_CV_Superpower_ScoreDown1
@@ -3284,9 +3284,9 @@ AI_CV_Recycle_End:
 end
 
 AI_CV_Recycle_ItemsToEncourage:
-0x86
-0x8D
-0xAE
+ITEM_CHESTO_BERRY
+ITEM_LUM_BERRY
+ITEM_STARF_BERRY
 
 AI_CV_Revenge:
 if_status AI_TARGET, STATUS1_SLEEP, AI_CV_Revenge_ScoreDown2
@@ -3480,133 +3480,133 @@ AI_CheckViability (pj): @1005C00
 
 if_effect EFFECT_SLEEP, AI_CV_Sleep
 if_effect EFFECT_ABSORB, AI_CV_Absorb
-if_effect EFFECT_EXPLOSION, [2A 60 00 09]
-if_effect EFFECT_MEMENTO, [2A 60 00 09]
-if_effect EFFECT_DREAM_EATER, [7C 60 00 09]
-if_effect EFFECT_MIRROR_MOVE, [89 60 00 09]
-if_effect EFFECT_ATTACK_UP, [A5 60 00 09]
-if_effect 0xF6, [A5 60 00 09]
-if_effect EFFECT_DEFENSE_UP, [DF 60 00 09]
-if_effect EFFECT_BULK_UP, [DF 60 00 09]
-if_effect 0xF2, [DF 60 00 09]
-if_effect EFFECT_SPEED_UP, [30 61 00 09]
-if_effect 0xF5, [30 61 00 09]
-if_effect EFFECT_SPECIAL_ATTACK_UP, [3D 61 00 09]
-if_effect EFFECT_POISON_TAIL, [3D 61 00 09]
-if_effect EFFECT_SPECIAL_DEFENSE_UP, [77 61 00 09]
-if_effect EFFECT_COSMIC_POWER, [77 61 00 09]
-if_effect EFFECT_CALM_MIND, [77 61 00 09]
-if_effect EFFECT_ACCURACY_UP, [C8 61 00 09]
-if_effect EFFECT_EVASION_UP, [E0 61 00 09]
-if_effect EFFECT_MINIMIZE, [E0 61 00 09]
-if_effect EFFECT_ALWAYS_HIT, [7D 62 00 09]
-if_effect EFFECT_ATTACK_DOWN, [A7 62 00 09]
-if_effect EFFECT_DEFENSE_DOWN, [D2 62 00 09]
-if_effect EFFECT_TICKLE, [D2 62 00 09]
-if_effect EFFECT_SPEED_DOWN_HIT, [F1 62 00 09]
-if_effect EFFECT_SPEED_DOWN, [07 63 00 09]
-if_effect EFFECT_SPECIAL_ATTACK_DOWN, [14 63 00 09]
-if_effect EFFECT_SPECIAL_DEFENSE_DOWN, [3F 63 00 09]
-if_effect 0xEF, [3F 63 00 09]
-if_effect EFFECT_ACCURACY_DOWN, [5E 63 00 09]
-if_effect EFFECT_EVASION_DOWN, [F0 63 00 09]
-if_effect EFFECT_HAZE, [0F 64 00 09]
-if_effect EFFECT_BIDE, [CA 64 00 09]
-if_effect EFFECT_ROAR, [D2 64 00 09]
-if_effect EFFECT_MORNING_SUN, [04 65 00 09]
-if_effect EFFECT_RESTORE_HP, [1E 65 00 09]
-if_effect EFFECT_SOFT_BOILED, [1E 65 00 09]
-if_effect EFFECT_SWALLOW, [1E 65 00 09]
-if_effect EFFECT_TOXIC, [4D 65 00 09]
-if_effect EFFECT_LEECH_SEED, [4D 65 00 09]
-if_effect EFFECT_LIGHT_SCREEN, [7F 65 00 09]
-if_effect EFFECT_REFLECT, [7F 65 00 09]
-if_effect EFFECT_REST, [8D 65 00 09]
-if_effect EFFECT_OHKO, [DC 65 00 09]
-if_effect EFFECT_SUPER_FANG, [E7 65 00 09]
-if_effect EFFECT_TRAP, [EF 65 00 09]
-if_effect EFFECT_MEAN_LOOK, [EF 65 00 09]
-if_effect EFFECT_HIGH_CRITICAL, [15 66 00 09]
-if_effect EFFECT_FLATTER, [3B 66 00 09]
-if_effect EFFECT_ATTACK_UP_2, [43 66 00 09]
-if_effect EFFECT_CONFUSE, [43 66 00 09]
-if_effect EFFECT_SPEED_UP_2, [63 66 00 09]
-if_effect EFFECT_ATTACK_DOWN_2, [88 66 00 09]
-if_effect EFFECT_DEFENSE_DOWN_2, [E3 66 00 09]
-if_effect EFFECT_SPECIAL_ATTACK_DOWN_2, [3E 67 00 09]
-if_effect EFFECT_EVASION_DOWN_2, [52 67 00 09]
-if_effect EFFECT_POISON, [77 67 00 09]
-if_effect EFFECT_PARALYZE, [86 67 00 09]
-if_effect EFFECT_VITAL_THROW, [9B 67 00 09]
-if_effect EFFECT_SUBSTITUTE, [BD 67 00 09]
-if_effect EFFECT_RECHARGE, [51 68 00 09]
-if_effect EFFECT_DISABLE, [73 68 00 09]
-if_effect 0x58, [89 68 00 09]
-if_effect EFFECT_COUNTER, [0F 69 00 09]
-if_effect EFFECT_ENCORE, [5F 69 00 09]
-if_effect EFFECT_PAIN_SPLIT, [C8 69 00 09]
-if_effect EFFECT_LOCK_ON, [E9 69 00 09]
-if_effect 0x5D, [E9 69 00 09]
+if_effect EFFECT_EXPLOSION, AI_CV_SelfKO
+if_effect EFFECT_MEMENTO, AI_CV_SelfKO
+if_effect EFFECT_DREAM_EATER, AI_CV_DreamEater
+if_effect EFFECT_MIRROR_MOVE, AI_CV_MirrorMove_New
+if_effect EFFECT_ATTACK_UP, AI_CV_AttackUp
+if_effect EFFECT_HONE_CLAWS, AI_CV_AttackUp
+if_effect EFFECT_DEFENSE_UP, AI_CV_DefenseUp_New
+if_effect EFFECT_BULK_UP, AI_CV_DefenseUp_New
+if_effect EFFECT_COIL, AI_CV_DefenseUp_New
+if_effect EFFECT_SPEED_UP, AI_CV_SpeedUp
+if_effect EFFECT_0xF5, AI_CV_SpeedUp
+if_effect EFFECT_SPECIAL_ATTACK_UP, AI_CV_SpAtkUp_New_ish
+if_effect EFFECT_WORK_UP, AI_CV_SpAtkUp_New_ish
+if_effect EFFECT_SPECIAL_DEFENSE_UP, AI_CV_SpDefUp_New
+if_effect EFFECT_COSMIC_POWER, AI_CV_SpDefUp_New
+if_effect EFFECT_CALM_MIND, AI_CV_SpDefUp_New
+if_effect EFFECT_ACCURACY_UP, AI_CV_AccuracyUp
+if_effect EFFECT_EVASION_UP, AI_CV_EvasionUp_New_ish
+if_effect EFFECT_MINIMIZE, AI_CV_EvasionUp_New_ish
+if_effect EFFECT_ALWAYS_HIT, AI_CV_AlwaysHit
+if_effect EFFECT_ATTACK_DOWN, AI_CV_AttackDown_New
+if_effect EFFECT_DEFENSE_DOWN, AI_CV_DefenseDown
+if_effect EFFECT_TICKLE, AI_CV_DefenseDown
+if_effect EFFECT_SPEED_DOWN_HIT, AI_CV_SpeedDownFromChance_New
+if_effect EFFECT_SPEED_DOWN, AI_CV_SpeedDown
+if_effect EFFECT_SPECIAL_ATTACK_DOWN, AI_CV_SpAtkDown_New
+if_effect EFFECT_SPECIAL_DEFENSE_DOWN, AI_CV_SpDefDown
+if_effect EFFECT_0xEF, AI_CV_SpDefDown
+if_effect EFFECT_ACCURACY_DOWN, AI_CV_AccuracyDown_New_ish
+if_effect EFFECT_EVASION_DOWN, AI_CV_EvasionDown
+if_effect EFFECT_HAZE, AI_CV_Haze
+if_effect EFFECT_BIDE, AI_CV_Bide
+if_effect EFFECT_ROAR, AI_CV_Roar
+if_effect EFFECT_HEAL_WEATHER, AI_CV_HealWeather
+if_effect EFFECT_RESTORE_HP, AI_CV_Heal_New_ish
+if_effect EFFECT_SOFT_BOILED, AI_CV_Heal_New_ish
+if_effect EFFECT_SWALLOW, AI_CV_Heal_New_ish
+if_effect EFFECT_TOXIC, AI_CV_Toxic_New
+if_effect EFFECT_LEECH_SEED, AI_CV_Toxic_New
+if_effect EFFECT_LIGHT_SCREEN, AI_CV_DualScreens // NEW
+if_effect EFFECT_REFLECT, AI_CV_DualScreens // NEW
+if_effect EFFECT_REST, AI_CV_Rest
+if_effect EFFECT_OHKO, AI_CV_OneHitKO_New
+if_effect EFFECT_SUPER_FANG, AI_CV_SuperFang
+if_effect EFFECT_TRAP, AI_CV_Trap
+if_effect EFFECT_MEAN_LOOK, AI_CV_Trap
+if_effect EFFECT_HIGH_CRITICAL, AI_CV_HighCrit
+if_effect EFFECT_FLATTER, AI_CV_Flatter
+if_effect EFFECT_0x32, AI_CV_Confuse
+if_effect EFFECT_CONFUSE, AI_CV_Confuse
+if_effect EFFECT_0x34, [63 66 00 09]
+if_effect EFFECT_0x3A, [88 66 00 09]
+if_effect EFFECT_0x3B, [E3 66 00 09]
+if_effect EFFECT_0x3D, [3E 67 00 09]
+if_effect EFFECT_0x40, [52 67 00 09]
+if_effect EFFECT_POISON, AI_CV_Poison
+if_effect EFFECT_PARALYZE, AI_CV_Paralyze
+if_effect EFFECT_VITAL_THROW, AI_CV_VitalThrow
+if_effect EFFECT_SUBSTITUTE, AI_CV_Substitute_New
+if_effect EFFECT_RECHARGE, AI_CV_Recharge
+if_effect EFFECT_DISABLE, AI_CV_Disable
+if_effect EFFECT_0x58, [89 68 00 09]
+if_effect EFFECT_COUNTER, AI_CV_Counter_New
+if_effect EFFECT_ENCORE, AI_CV_Encore_NewData
+if_effect EFFECT_PAIN_SPLIT, AI_CV_PainSplit
+if_effect EFFECT_LOCK_ON, AI_CV_LockOn
+if_effect EFFECT_0x5D, AI_CV_LockOn
 if_effect EFFECT_SNORE, Score_Plus2
 if_effect EFFECT_FAKE_OUT, Score_Plus2
-if_effect EFFECT_DESTINY_BOND, [F0 69 00 09]
-if_effect EFFECT_FLAIL, [24 6A 00 09]
-if_effect EFFECT_HEAL_BELL, [57 6A 00 09]
-if_effect EFFECT_THIEF, [6C 6A 00 09]
-if_effect EFFECT_CURSE, [88 6A 00 09]
-if_effect EFFECT_PROTECT, [CF 6A 00 09]
-if_effect EFFECT_FORESIGHT, [53 6B 00 09]
-if_effect EFFECT_ENDURE, [7B 6B 00 09]
-if_effect EFFECT_BATON_PASS, [90 6B 00 09]
-if_effect EFFECT_PURSUIT, [1A 6C 00 09]
-if_effect EFFECT_SYNTHESIS, [46 6C 00 09]
-if_effect EFFECT_MOONLIGHT, [46 6C 00 09]
-if_effect 0xF8, [46 6C 00 09]
-if_effect EFFECT_RAIN_DANCE, [53 6C 00 09]
-if_effect EFFECT_SUNNY_DAY, [D7 6C 00 09]
-if_effect EFFECT_BELLY_DRUM, [20 6D 00 09]
-if_effect EFFECT_PSYCH_UP, [28 6D 00 09]
-if_effect EFFECT_MIRROR_COAT, [89 6D 00 09]
-if_effect EFFECT_RAZOR_WIND, [D9 6D 00 09]
-if_effect EFFECT_SKY_ATTACK, [D9 6D 00 09]
-if_effect EFFECT_SKULL_BASH, [D9 6D 00 09]
-if_effect EFFECT_SOLAR_BEAM, [D9 6D 00 09]
-if_effect EFFECT_SEMI_INVULNERABLE, [F4 6D 00 09]
-if_effect EFFECT_SPIT_UP, [71 6E 00 09]
-if_effect EFFECT_HAIL, [80 6E 00 09]
-if_effect EFFECT_FACADE, [B7 6E 00 09]
-if_effect EFFECT_FOCUS_PUNCH, [C2 6E 00 09]
-if_effect EFFECT_TRICK, [F1 6E 00 09]
-if_effect EFFECT_ROLE_PLAY, [80 6F 00 09]
-if_effect EFFECT_SUPERPOWER, [00 70 00 09]
-if_effect EFFECT_MAGIC_COAT, [2A 70 00 09]
-if_effect EFFECT_RECYCLE, [4F 70 00 09]
-if_effect EFFECT_REVENGE, [65 70 00 09]
-if_effect EFFECT_BRICK_BREAK, [80 70 00 09]
-if_effect EFFECT_KNOCK_OFF, [8B 70 00 09]
-if_effect EFFECT_ENDEAVOR, [A1 70 00 09]
-if_effect EFFECT_ERUPTION, [C2 70 00 09]
-if_effect EFFECT_IMPRISON, [08 71 00 09]
-if_effect EFFECT_REFRESH, [17 71 00 09]
-if_effect EFFECT_SNATCH, [1F 71 00 09]
-if_effect EFFECT_MUD_SPORT, [73 71 00 09]
-if_effect EFFECT_OVERHEAT, [8D 71 00 09]
-if_effect EFFECT_WATER_SPORT, [AF 71 00 09]
-if_effect EFFECT_DRAGON_DANCE, [C9 71 00 09]
-if_effect 0xF1, [C9 71 00 09]
-if_effect 0xF4, [C9 71 00 09]
-if_effect 0xD6, [E4 71 00 09]
-if_effect 0xD7, [E4 71 00 09]
-if_effect 0xDD, [E4 71 00 09]
-if_effect 0xE3, [06 72 00 09]
-if_effect 0xE6, [43 72 00 09]
-if_effect 0xE8, [4E 72 00 09]
-if_effect 0xEE, [5E 72 00 09]
-if_effect 0xF0, [6C 72 00 09]
-if_effect 0xF3, [89 72 00 09]
-if_effect 0xF9, [A0 72 00 09]
-if_effect 0xFB, [B4 72 00 09]
-if_effect 0xFC, [CB 72 00 09]
+if_effect EFFECT_DESTINY_BOND, AI_CV_DestinyBond
+if_effect EFFECT_FLAIL, AI_CV_Flail
+if_effect EFFECT_HEAL_BELL, AI_CV_HealBell
+if_effect EFFECT_THIEF, AI_CV_Thief_New
+if_effect EFFECT_CURSE, AI_CV_Curse
+if_effect EFFECT_PROTECT, AI_CV_Protect_New
+if_effect EFFECT_FORESIGHT, AI_CV_Foresight_New_ish
+if_effect EFFECT_ENDURE, AI_CV_Endure
+if_effect EFFECT_BATON_PASS, AI_CV_BatonPass
+if_effect EFFECT_PURSUIT, AI_CV_Pursuit
+if_effect EFFECT_TAILWIND, [46 6C 00 09]
+if_effect EFFECT_0x86, [46 6C 00 09]
+if_effect EFFECT_0xF8, [46 6C 00 09]
+if_effect EFFECT_RAIN_DANCE, AI_CV_RainDance_New
+if_effect EFFECT_SUNNY_DAY, AI_CV_SunnyDay_New
+if_effect EFFECT_BELLY_DRUM, AI_CV_BellyDrum
+if_effect EFFECT_PSYCH_UP, AI_CV_PsychUp
+if_effect EFFECT_MIRROR_COAT, AI_CV_MirrorCoat_New
+if_effect EFFECT_RAZOR_WIND, AI_CV_ChargeUpMove
+if_effect EFFECT_SKY_ATTACK, AI_CV_ChargeUpMove
+if_effect EFFECT_SKULL_BASH, AI_CV_ChargeUpMove
+if_effect EFFECT_SOLAR_BEAM, AI_CV_ChargeUpMove
+if_effect EFFECT_SEMI_INVULNERABLE, AI_CV_Fly
+if_effect EFFECT_SPIT_UP, AI_CV_SpitUp
+if_effect EFFECT_HAIL, AI_CV_Hail_New
+if_effect EFFECT_FACADE, AI_CV_Facade_New
+if_effect EFFECT_FOCUS_PUNCH, AI_CV_FocusPunch
+if_effect EFFECT_TRICK, AI_CV_Trick_New
+if_effect EFFECT_ROLE_PLAY, AI_CV_ChangeSelfAbility_New
+if_effect EFFECT_SUPERPOWER, AI_CV_Superpower_New_ish
+if_effect EFFECT_MAGIC_COAT, AI_CV_MagicCoat
+if_effect EFFECT_RECYCLE, AI_CV_Recycle
+if_effect EFFECT_REVENGE, AI_CV_Revenge
+if_effect EFFECT_BRICK_BREAK, AI_CV_BrickBreak_New
+if_effect EFFECT_KNOCK_OFF, AI_CV_KnockOff
+if_effect EFFECT_ENDEAVOR, AI_CV_Endeavor
+if_effect EFFECT_ERUPTION, AI_CV_Eruption_New
+if_effect EFFECT_IMPRISON, AI_CV_Imprison
+if_effect EFFECT_REFRESH, AI_CV_Refresh
+if_effect EFFECT_SNATCH, AI_CV_Snatch_New
+if_effect EFFECT_MUD_SPORT, AI_CV_MudSport
+if_effect EFFECT_OVERHEAT, AI_CV_Overheat
+if_effect EFFECT_WATER_SPORT, AI_CV_WaterSport
+if_effect EFFECT_DRAGON_DANCE, AI_CV_DragonDance
+if_effect EFFECT_QUIVER_DANCE, AI_CV_DragonDance
+if_effect EFFECT_0xF4, AI_CV_DragonDance
+if_effect EFFECT_0xD6, [E4 71 00 09]
+if_effect EFFECT_0xD7, [E4 71 00 09]
+if_effect EFFECT_0xDD, [E4 71 00 09]
+if_effect EFFECT_0xE3, [06 72 00 09]
+if_effect EFFECT_0xE6, [43 72 00 09]
+if_effect EFFECT_0xE8, [4E 72 00 09]
+if_effect EFFECT_HURRICANE, AI_CV_Hurricane
+if_effect EFFECT_0xF0, [6C 72 00 09]
+if_effect EFFECT_0xF3, [89 72 00 09]
+if_effect EFFECT_0xF9, [A0 72 00 09]
+if_effect EFFECT_0xFB, [B4 72 00 09]
+if_effect EFFECT_0xFC, [CB 72 00 09]
 end
 
 AI_CV_Sleep:
@@ -3627,514 +3627,514 @@ AI_CV_AbsorbEncourageMaybe:
 if_random_greater_than 49, Score_Minus3
 end
 
-[2A 60 00 09]:
-if_stat_level_less_than AI_TARGET, STAT_EVASION, 7, [44 60 00 09]
+AI_CV_SelfKO:
+if_stat_level_less_than AI_TARGET, STAT_EVASION, 7, AI_CV_SelfKO_Encourage1
 score -1
-if_stat_level_less_than AI_TARGET, STAT_EVASION, 10, [44 60 00 09]
-if_random_less_than 128, [44 60 00 09]
+if_stat_level_less_than AI_TARGET, STAT_EVASION, 10, AI_CV_SelfKO_Encourage1
+if_random_less_than 128, AI_CV_SelfKO_Encourage1
 score -1
 
-[44 60 00 09]:
-if_hp_less_than AI_USER, 80, [58 60 00 09]
-if_target_faster [58 60 00 09]
+AI_CV_SelfKO_Encourage1:
+if_hp_less_than AI_USER, 80, AI_CV_SelfKO_Encourage2
+if_target_faster AI_CV_SelfKO_Encourage2
 if_random_greater_than 49, Score_Minus3
 end
 
-[58 60 00 09]:
-if_hp_more_than AI_USER, 50, [75 60 00 09]
-if_random_less_than 128, [67 60 00 09]
+AI_CV_SelfKO_Encourage2:
+if_hp_more_than AI_USER, 50, AI_CV_SelfKO_Encourage4
+if_random_less_than 128, AI_CV_SelfKO_Encourage3
 score +1
 
-[67 60 00 09]:
-if_hp_more_than AI_USER, 30, [74 60 00 09]
+AI_CV_SelfKO_Encourage3:
+if_hp_more_than AI_USER, 30, AI_CV_SelfKO_End
 if_random_greater_than 49, Score_Plus1
 
-[74 60 00 09]:
+AI_CV_SelfKO_End:
 end
 
-[75 60 00 09]:
+AI_CV_SelfKO_Encourage4:
 if_random_greater_than 49, Score_Minus1
 end
 
-[7C 60 00 09]:
+AI_CV_DreamEater:
 if_type_effectiveness AI_EFFECTIVENESS_x0_25, Score_Minus1
 if_type_effectiveness AI_EFFECTIVENESS_x0_5, Score_Minus1
 end
 
-[89 60 00 09]:
-if_target_faster [9A 60 00 09]
+AI_CV_MirrorMove_New:
+if_target_faster AI_CV_MirrorMove2
 get_last_used_bank_move AI_TARGET
-get_move_attribute 0x8
-if_bits_set 0x10, Score_Plus2
+get_move_attribute ATTR_FLAGS
+if_bits_set FLAG_MIRROR_MOVE_AFFECTED, Score_Plus2
 end
 
-[9A 60 00 09]:
+AI_CV_MirrorMove2:
 get_last_used_bank_move AI_TARGET
-get_move_attribute 0x8
-if_bits_not_set 0x10, Score_Minus1
+get_move_attribute ATTR_FLAGS
+if_bits_not_set FLAG_MIRROR_MOVE_AFFECTED, Score_Minus1
 end
 
-[A5 60 00 09]:
-if_stat_level_less_than AI_USER, STAT_ATK, 9, [BA 60 00 09]
-if_random_less_than 100, [C9 60 00 09]
+AI_CV_AttackUp:
+if_stat_level_less_than AI_USER, STAT_ATK, 9, AI_CV_AttackUp2
+if_random_less_than 100, AI_CV_AttackUp3
 score -1
-goto [C9 60 00 09]
+goto AI_CV_AttackUp3
 
-[BA 60 00 09]:
-if_hp_not_equal AI_USER, 100, [C9 60 00 09]
-if_random_less_than 128, [C9 60 00 09]
+AI_CV_AttackUp2:
+if_hp_not_equal AI_USER, 100, AI_CV_AttackUp3
+if_random_less_than 128, AI_CV_AttackUp3
 score +2
 
-[C9 60 00 09]:
+AI_CV_AttackUp3:
 if_hp_less_than AI_USER, 40, Score_Minus2
-if_hp_less_than AI_USER, 70, [D8 60 00 09]
+if_hp_less_than AI_USER, 70, AI_CV_AttackUp4
 end
 
-[D8 60 00 09]:
+AI_CV_AttackUp4:
 if_random_greater_than 39, Score_Minus2
 end
 
-[DF 60 00 09]:
-if_stat_level_less_than AI_USER, STAT_DEF, 9, [F4 60 00 09]
-if_random_less_than 100, [03 61 00 09]
+AI_CV_DefenseUp_New:
+if_stat_level_less_than AI_USER, STAT_DEF, 9, AI_CV_DefenseUp2
+if_random_less_than 100, AI_CV_DefenseUp3
 score -1
-goto [03 61 00 09]
+goto AI_CV_DefenseUp3
 
-[F4 60 00 09]:
-if_hp_not_equal AI_USER, 100, [03 61 00 09]
-if_random_less_than 128, [03 61 00 09]
+AI_CV_DefenseUp2:
+if_hp_not_equal AI_USER, 100, AI_CV_DefenseUp3
+if_random_less_than 128, AI_CV_DefenseUp3
 score +2
 
-[03 61 00 09]:
+AI_CV_DefenseUp3:
 if_hp_less_than AI_USER, 40, Score_Minus2
-if_hp_less_than AI_USER, 70, [12 61 00 09]
+if_hp_less_than AI_USER, 70, AI_CV_DefenseUp4
 end
 
-[12 61 00 09]:
+AI_CV_DefenseUp4:
 get_last_used_bank_move AI_TARGET
-get_move_attribute 0xA
-if_bits_set 0x2, Score_Minus2
-if_bits_set 0xC, [29 61 00 09]
+get_move_attribute ATTR_CATEGORY_FLAGS
+if_bits_set FLAG_SPECIAL_MOVE, Score_Minus2
+if_bits_set FLAG_STATUS_MOVE, AI_CV_DefenseUp5
 if_random_greater_than 99, Score_Minus2
 end
 
-[29 61 00 09]:
+AI_CV_DefenseUp5:
 if_random_greater_than 59, Score_Minus2
 end
 
-[30 61 00 09]:
+AI_CV_SpeedUp:
 if_target_slower Score_Minus3
 if_random_greater_than 69, Score_Plus3
 end
 
-[3D 61 00 09]:
-if_stat_level_less_than AI_USER, STAT_SPATK, 9, [52 61 00 09]
-if_random_less_than 100, [61 61 00 09]
+AI_CV_SpAtkUp_New_ish:
+if_stat_level_less_than AI_USER, STAT_SPATK, 9, AI_CV_SpAtkUp2
+if_random_less_than 100, AI_CV_SpAtkUp3
 score -1
-goto [61 61 00 09]
+goto AI_CV_SpAtkUp3
 
-[52 61 00 09]:
-if_hp_not_equal AI_USER, 100, [61 61 00 09]
-if_random_less_than 128, [61 61 00 09]
+AI_CV_SpAtkUp2:
+if_hp_not_equal AI_USER, 100, AI_CV_SpAtkUp3
+if_random_less_than 128, AI_CV_SpAtkUp3
 score +2
 
-[61 61 00 09]:
+AI_CV_SpAtkUp3:
 if_hp_less_than AI_USER, 40, Score_Minus2
-if_hp_more_than AI_USER, 70, [70 61 00 09]
+if_hp_more_than AI_USER, 70, AI_CV_SpAtkUp4
 end
 
-[70 61 00 09]:
+AI_CV_SpAtkUp4:
 if_random_greater_than 39, Score_Minus2
 end
 
-[77 61 00 09]:
-if_stat_level_less_than AI_USER, STAT_SPDEF, 9, [8C 61 00 09]
-if_random_less_than 100, [9B 61 00 09]
+AI_CV_SpDefUp_New:
+if_stat_level_less_than AI_USER, STAT_SPDEF, 9, AI_CV_SpDefUp2
+if_random_less_than 100, AI_CV_SpDefUp3
 score -1
-goto [9B 61 00 09]
+goto AI_CV_SpDefUp3
 
-[8C 61 00 09]:
-if_hp_not_equal AI_USER, 100, [9B 61 00 09]
-if_random_less_than 128, [9B 61 00 09]
+AI_CV_SpDefUp2:
+if_hp_not_equal AI_USER, 100, AI_CV_SpDefUp3
+if_random_less_than 128, AI_CV_SpDefUp3
 score +2
 
-[9B 61 00 09]:
+AI_CV_SpDefUp3:
 if_hp_less_than AI_USER, 40, Score_Minus2
-if_hp_less_than AI_USER, 70, [AA 61 00 09]
+if_hp_less_than AI_USER, 70, AI_CV_SpDefUp4
 end
 
-[AA 61 00 09]:
+AI_CV_SpDefUp4:
 get_last_used_bank_move AI_TARGET
-get_move_attribute 0xA
-if_bits_not_set 0xE, Score_Minus2
-if_bits_set 0xC, [C1 61 00 09]
+get_move_attribute ATTR_CATEGORY_FLAGS
+if_bits_not_set FLAG_SPECIAL_MOVE | FLAG_STATUS_MOVE, Score_Minus2 // if_physical
+if_bits_set FLAG_STATUS_MOVE, AI_CV_SpDefUp5
 if_random_greater_than 99, Score_Minus2
 end
 
-[C1 61 00 09]:
+AI_CV_SpDefUp5:
 if_random_greater_than 59, Score_Minus2
 end
 
-[C8 61 00 09]:
-if_stat_level_less_than AI_USER, STAT_ACC, 9, [D8 61 00 09]
-if_random_less_than 50, [D8 61 00 09]
+AI_CV_AccuracyUp:
+if_stat_level_less_than AI_USER, STAT_ACC, 9, AI_CV_AccuracyUp2
+if_random_less_than 50, AI_CV_AccuracyUp2
 score -2
 
-[D8 61 00 09]:
+AI_CV_AccuracyUp2:
 if_hp_less_than AI_USER, 71, Score_Minus2
 end
 
-[E0 61 00 09]:
-if_hp_less_than AI_USER, 90, [EF 61 00 09]
-if_random_less_than 100, [EF 61 00 09]
+AI_CV_EvasionUp_New_ish:
+if_hp_less_than AI_USER, 90, AI_CV_EvasionUp2
+if_random_less_than 100, AI_CV_EvasionUp2
 score +3
 
-[EF 61 00 09]:
-if_stat_level_less_than AI_USER, STAT_EVASION, 9, [FF 61 00 09]
-if_random_less_than 128, [FF 61 00 09]
+AI_CV_EvasionUp2:
+if_stat_level_less_than AI_USER, STAT_EVASION, 9, AI_CV_EvasionUp3
+if_random_less_than 128, AI_CV_EvasionUp3
 score -1
 
-[FF 61 00 09]:
-if_not_status AI_TARGET, STATUS1_TOXIC_POISON, [23 62 00 09]
-if_hp_more_than AI_USER, 50, [1B 62 00 09]
-if_random_less_than 80, [23 62 00 09]
-goto [21 62 00 09]
+AI_CV_EvasionUp3:
+if_not_status AI_TARGET, STATUS1_TOXIC_POISON, AI_CV_EvasionUp5
+if_hp_more_than AI_USER, 50, AI_CV_EvasionUp4
+if_random_less_than 80, AI_CV_EvasionUp5
+goto AI_CV_EvasionUp_ScoreUp3
 
-[1B 62 00 09]:
-if_random_less_than 50, [23 62 00 09]
+AI_CV_EvasionUp4:
+if_random_less_than 50, AI_CV_EvasionUp5
 
-[21 62 00 09]:
+AI_CV_EvasionUp_ScoreUp3:
 score +3
 
-[23 62 00 09]:
-if_not_status3 AI_TARGET, STATUS3_LEECHSEED, [35 62 00 09]
-if_random_less_than 70, [35 62 00 09]
+AI_CV_EvasionUp5:
+if_not_status3 AI_TARGET, STATUS3_LEECHSEED, AI_CV_EvasionUp6
+if_random_less_than 70, AI_CV_EvasionUp6
 score +3
 
-[35 62 00 09]:
-if_not_status3 AI_USER, STATUS3_ROOTED, [47 62 00 09]
-if_random_less_than 128, [47 62 00 09]
+AI_CV_EvasionUp6:
+if_not_status3 AI_USER, STATUS3_ROOTED, AI_CV_EvasionUp7
+if_random_less_than 128, AI_CV_EvasionUp7
 score +2
 
-[47 62 00 09]:
-if_not_status2 AI_TARGET, STATUS2_CURSED, [59 62 00 09]
-if_random_less_than 70, [59 62 00 09]
+AI_CV_EvasionUp7:
+if_not_status2 AI_TARGET, STATUS2_CURSED, AI_CV_EvasionUp8
+if_random_less_than 70, AI_CV_EvasionUp8
 score +3
 
-[59 62 00 09]:
-if_hp_more_than AI_USER, 70, [7C 62 00 09]
-if_stat_level_less_than AI_USER, STAT_EVASION, 7, [7C 62 00 09]
+AI_CV_EvasionUp8:
+if_hp_more_than AI_USER, 70, AI_CV_EvasionUp_End
+if_stat_level_less_than AI_USER, STAT_EVASION, 7, AI_CV_EvasionUp_End
 if_hp_less_than AI_USER, 40, Score_Minus2
 if_hp_less_than AI_TARGET, 40, Score_Minus2
 if_random_greater_than 69, Score_Minus2
 
-[7C 62 00 09]:
+AI_CV_EvasionUp_End:
 end
 
-[7D 62 00 09]:
-if_stat_level_more_than AI_TARGET, STAT_EVASION, 10, [9E 62 00 09]
-if_stat_level_less_than AI_USER, STAT_ACC, 2, [9E 62 00 09]
-if_stat_level_more_than AI_TARGET, STAT_EVASION, 8, [A0 62 00 09]
-if_stat_level_less_than AI_USER, STAT_ACC, 4, [A0 62 00 09]
+AI_CV_AlwaysHit:
+if_stat_level_more_than AI_TARGET, STAT_EVASION, 10, AI_CV_AlwaysHit_ScoreUp1
+if_stat_level_less_than AI_USER, STAT_ACC, 2, AI_CV_AlwaysHit_ScoreUp1
+if_stat_level_more_than AI_TARGET, STAT_EVASION, 8, AI_CV_AlwaysHit2
+if_stat_level_less_than AI_USER, STAT_ACC, 4, AI_CV_AlwaysHit2
 end
 
-[9E 62 00 09]:
+AI_CV_AlwaysHit_ScoreUp1:
 score +1
 
-[A0 62 00 09]:
+AI_CV_AlwaysHit2:
 if_random_greater_than 99, Score_Plus1
 end
 
-[A7 62 00 09]:
-if_stat_level_more_than AI_TARGET, STAT_ATK, 5, [CA 62 00 09]
+AI_CV_AttackDown_New:
+if_stat_level_more_than AI_TARGET, STAT_ATK, 5, AI_CV_AttackDown3
 score -1
-if_hp_more_than AI_USER, 90, [BA 62 00 09]
+if_hp_more_than AI_USER, 90, AI_CV_AttackDown2
 score -1
 
-[BA 62 00 09]:
-if_stat_level_more_than AI_TARGET, STAT_ATK, 3, [CA 62 00 09]
-if_random_less_than 50, [CA 62 00 09]
+AI_CV_AttackDown2:
+if_stat_level_more_than AI_TARGET, STAT_ATK, 3, AI_CV_AttackDown3
+if_random_less_than 50, AI_CV_AttackDown3
 score -2
 
-[CA 62 00 09]:
+AI_CV_AttackDown3:
 if_hp_less_than AI_TARGET, 71, Score_Minus2
 end
 
-[D2 62 00 09]:
-if_hp_less_than AI_USER, 70, [E1 62 00 09]
-if_stat_level_more_than AI_TARGET, STAT_DEF, 3, [E9 62 00 09]
+AI_CV_DefenseDown:
+if_hp_less_than AI_USER, 70, AI_CV_DefenseDown2
+if_stat_level_more_than AI_TARGET, STAT_DEF, 3, AI_CV_DefenseDown3
 
-[E1 62 00 09]:
-if_random_less_than 50, [E9 62 00 09]
+AI_CV_DefenseDown2:
+if_random_less_than 50, AI_CV_DefenseDown3
 score -2
 
-[E9 62 00 09]:
+AI_CV_DefenseDown3:
 if_hp_less_than AI_TARGET, 71, Score_Minus2
 end
 
-[F1 62 00 09]:
-if_move MOVE_ICY_WIND, [63 4F 00 09]
-if_move MOVE_ROCK_TOMB, [63 4F 00 09]
-if_move MOVE_MUD_SHOT, [63 4F 00 09]
+AI_CV_SpeedDownFromChance_New:
+if_move MOVE_ICY_WIND, AI_CV_SpeedDownFromChance2
+if_move MOVE_ROCK_TOMB, AI_CV_SpeedDownFromChance2
+if_move MOVE_MUD_SHOT, AI_CV_SpeedDownFromChance2
 end
 
-[07 63 00 09]:
+AI_CV_SpeedDown:
 if_target_slower Score_Minus3
 if_random_greater_than 69, Score_Plus2
 end
 
-[14 63 00 09]:
-if_stat_level_more_than AI_TARGET, STAT_SPATK, 5, [37 63 00 09]
+AI_CV_SpAtkDown_New:
+if_stat_level_more_than AI_TARGET, STAT_SPATK, 5, AI_CV_SpAtkDown3
 score -1
-if_hp_more_than AI_USER, 90, [27 63 00 09]
+if_hp_more_than AI_USER, 90, AI_CV_SpAtkDown2
 score -1
 
-[27 63 00 09]:
-if_stat_level_more_than AI_TARGET, STAT_SPATK, 3, [37 63 00 09]
-if_random_less_than 50, [37 63 00 09]
+AI_CV_SpAtkDown2:
+if_stat_level_more_than AI_TARGET, STAT_SPATK, 3, AI_CV_SpAtkDown3
+if_random_less_than 50, AI_CV_SpAtkDown3
 score -2
 
-[37 63 00 09]:
+AI_CV_SpAtkDown3:
 if_hp_less_than AI_TARGET, 71, Score_Minus2
 end
 
-[3F 63 00 09]:
-if_hp_less_than AI_USER, 70, [4E 63 00 09]
-if_stat_level_more_than AI_TARGET, STAT_SPDEF, 3, [56 63 00 09]
+AI_CV_SpDefDown:
+if_hp_less_than AI_USER, 70, AI_CV_SpDefDown2
+if_stat_level_more_than AI_TARGET, STAT_SPDEF, 3, AI_CV_SpDefDown3
 
-[4E 63 00 09]:
-if_random_less_than 50, [56 63 00 09]
+AI_CV_SpDefDown2:
+if_random_less_than 50, AI_CV_SpDefDown3
 score -2
 
-[56 63 00 09]:
+AI_CV_SpDefDown3:
 if_hp_less_than AI_TARGET, 71, Score_Minus2
 end
 
-[5E 63 00 09]:
-if_hp_less_than AI_USER, 70, [6C 63 00 09]
-if_hp_more_than AI_TARGET, 70, [74 63 00 09]
+AI_CV_AccuracyDown_New_ish:
+if_hp_less_than AI_USER, 70, AI_CV_AccuracyDown2
+if_hp_more_than AI_TARGET, 70, AI_CV_AccuracyDown3
 
-[6C 63 00 09]:
-if_random_less_than 100, [74 63 00 09]
+AI_CV_AccuracyDown2:
+if_random_less_than 100, AI_CV_AccuracyDown3
 score -1
 
-[74 63 00 09]:
-if_stat_level_more_than AI_TARGET, STAT_ACC, 4, [84 63 00 09]
-if_random_less_than 128, [84 63 00 09]
+AI_CV_AccuracyDown3:
+if_stat_level_more_than AI_TARGET, STAT_ACC, 4, AI_CV_AccuracyDown4
+if_random_less_than 128, AI_CV_AccuracyDown4
 score -1
 
-[84 63 00 09]:
-if_not_status AI_TARGET, STATUS1_TOXIC_POISON, [96 63 00 09]
-if_random_less_than 70, [96 63 00 09]
+AI_CV_AccuracyDown4:
+if_not_status AI_TARGET, STATUS1_TOXIC_POISON, AI_CV_AccuracyDown5
+if_random_less_than 70, AI_CV_AccuracyDown5
 score +2
 
-[96 63 00 09]:
-if_not_status3 AI_TARGET, STATUS3_LEECHSEED, [A8 63 00 09]
-if_random_less_than 70, [A8 63 00 09]
+AI_CV_AccuracyDown5:
+if_not_status3 AI_TARGET, STATUS3_LEECHSEED, AI_CV_AccuracyDown6
+if_random_less_than 70, AI_CV_AccuracyDown6
 score +2
 
-[A8 63 00 09]:
-if_not_status3 AI_USER, STATUS3_ROOTED, [BA 63 00 09]
-if_random_less_than 128, [BA 63 00 09]
+AI_CV_AccuracyDown6:
+if_not_status3 AI_USER, STATUS3_ROOTED, AI_CV_AccuracyDown7
+if_random_less_than 128, AI_CV_AccuracyDown7
 score +1
 
-[BA 63 00 09]:
-if_not_status2 AI_TARGET, STATUS2_CURSED, [CC 63 00 09]
-if_random_less_than 70, [CC 63 00 09]
+AI_CV_AccuracyDown7:
+if_not_status2 AI_TARGET, STATUS2_CURSED, AI_CV_AccuracyDown8
+if_random_less_than 70, AI_CV_AccuracyDown8
 score +2
 
-[CC 63 00 09]:
-if_hp_more_than AI_USER, 70, [EF 63 00 09]
-if_stat_level_more_than AI_TARGET, STAT_ACC, 5, [EF 63 00 09]
+AI_CV_AccuracyDown8:
+if_hp_more_than AI_USER, 70, AI_CV_AccuracyDown_End
+if_stat_level_more_than AI_TARGET, STAT_ACC, 5, AI_CV_AccuracyDown_End
 if_hp_less_than AI_USER, 40, Score_Minus2
 if_hp_less_than AI_TARGET, 40, Score_Minus2
 if_random_greater_than 69, Score_Minus2
 
-[EF 63 00 09]:
+AI_CV_AccuracyDown_End:
 end
 
-[F0 63 00 09]:
-if_hp_less_than AI_USER, 70, [FF 63 00 09]
-if_stat_level_more_than AI_TARGET, STAT_EVASION, 3, [07 64 00 09]
+AI_CV_EvasionDown:
+if_hp_less_than AI_USER, 70, AI_CV_EvasionDown2
+if_stat_level_more_than AI_TARGET, STAT_EVASION, 3, AI_CV_EvasionDown3
 
-[FF 63 00 09]:
-if_random_less_than 50, [07 64 00 09]
+AI_CV_EvasionDown2:
+if_random_less_than 50, AI_CV_EvasionDown3
 score -2
 
-[07 64 00 09]:
+AI_CV_EvasionDown3:
 if_hp_less_than AI_TARGET, 71, Score_Minus2
 end
 
-[0F 64 00 09]:
-if_stat_level_more_than AI_USER, STAT_ATK, 8, [64 64 00 09]
-if_stat_level_more_than AI_USER, STAT_DEF, 8, [64 64 00 09]
-if_stat_level_more_than AI_USER, STAT_SPATK, 8, [64 64 00 09]
-if_stat_level_more_than AI_USER, STAT_SPDEF, 8, [64 64 00 09]
-if_stat_level_more_than AI_USER, STAT_EVASION, 8, [64 64 00 09]
-if_stat_level_less_than AI_TARGET, STAT_ATK, 4, [64 64 00 09]
-if_stat_level_less_than AI_TARGET, STAT_DEF, 4, [64 64 00 09]
-if_stat_level_less_than AI_TARGET, STAT_SPATK, 4, [64 64 00 09]
-if_stat_level_less_than AI_TARGET, STAT_SPDEF, 4, [64 64 00 09]
-if_stat_level_less_than AI_TARGET, STAT_ACC, 4, [64 64 00 09]
-goto [6C 64 00 09]
+AI_CV_Haze:
+if_stat_level_more_than AI_USER, STAT_ATK, 8, AI_CV_Haze2
+if_stat_level_more_than AI_USER, STAT_DEF, 8, AI_CV_Haze2
+if_stat_level_more_than AI_USER, STAT_SPATK, 8, AI_CV_Haze2
+if_stat_level_more_than AI_USER, STAT_SPDEF, 8, AI_CV_Haze2
+if_stat_level_more_than AI_USER, STAT_EVASION, 8, AI_CV_Haze2
+if_stat_level_less_than AI_TARGET, STAT_ATK, 4, AI_CV_Haze2
+if_stat_level_less_than AI_TARGET, STAT_DEF, 4, AI_CV_Haze2
+if_stat_level_less_than AI_TARGET, STAT_SPATK, 4, AI_CV_Haze2
+if_stat_level_less_than AI_TARGET, STAT_SPDEF, 4, AI_CV_Haze2
+if_stat_level_less_than AI_TARGET, STAT_ACC, 4, AI_CV_Haze2
+goto AI_CV_Haze3
 
-[64 64 00 09]:
-if_random_less_than 50, [6C 64 00 09]
+AI_CV_Haze2:
+if_random_less_than 50, AI_CV_Haze3
 score -3
 
-[6C 64 00 09]:
-if_stat_level_more_than AI_TARGET, STAT_ATK, 8, [C3 64 00 09]
-if_stat_level_more_than AI_TARGET, STAT_DEF, 8, [C3 64 00 09]
-if_stat_level_more_than AI_TARGET, STAT_SPATK, 8, [C3 64 00 09]
-if_stat_level_more_than AI_TARGET, STAT_SPDEF, 8, [C3 64 00 09]
-if_stat_level_more_than AI_TARGET, STAT_EVASION, 8, [C3 64 00 09]
-if_stat_level_less_than AI_USER, STAT_ATK, 4, [C3 64 00 09]
-if_stat_level_less_than AI_USER, STAT_DEF, 4, [C3 64 00 09]
-if_stat_level_less_than AI_USER, STAT_SPATK, 4, [C3 64 00 09]
-if_stat_level_less_than AI_USER, STAT_SPDEF, 4, [C3 64 00 09]
-if_stat_level_less_than AI_USER, STAT_EVASION, 4, [C3 64 00 09]
+AI_CV_Haze3:
+if_stat_level_more_than AI_TARGET, STAT_ATK, 8, AI_CV_Haze4
+if_stat_level_more_than AI_TARGET, STAT_DEF, 8, AI_CV_Haze4
+if_stat_level_more_than AI_TARGET, STAT_SPATK, 8, AI_CV_Haze4
+if_stat_level_more_than AI_TARGET, STAT_SPDEF, 8, AI_CV_Haze4
+if_stat_level_more_than AI_TARGET, STAT_EVASION, 8, AI_CV_Haze4
+if_stat_level_less_than AI_USER, STAT_ATK, 4, AI_CV_Haze4
+if_stat_level_less_than AI_USER, STAT_DEF, 4, AI_CV_Haze4
+if_stat_level_less_than AI_USER, STAT_SPATK, 4, AI_CV_Haze4
+if_stat_level_less_than AI_USER, STAT_SPDEF, 4, AI_CV_Haze4
+if_stat_level_less_than AI_USER, STAT_EVASION, 4, AI_CV_Haze4
 if_random_greater_than 49, Score_Minus1
 end
 
-[C3 64 00 09]:
+AI_CV_Haze4:
 if_random_greater_than 49, Score_Plus3
 end
 
-[CA 64 00 09]:
+AI_CV_Bide:
 if_hp_less_than AI_USER, 91, Score_Minus2
 end
 
-[D2 64 00 09]:
-if_stat_level_more_than AI_TARGET, STAT_ATK, 8, [FD 64 00 09]
-if_stat_level_more_than AI_TARGET, STAT_DEF, 8, [FD 64 00 09]
-if_stat_level_more_than AI_TARGET, STAT_SPATK, 8, [FD 64 00 09]
-if_stat_level_more_than AI_TARGET, STAT_SPDEF, 8, [FD 64 00 09]
-if_stat_level_more_than AI_TARGET, STAT_EVASION, 8, [FD 64 00 09]
+AI_CV_Roar:
+if_stat_level_more_than AI_TARGET, STAT_ATK, 8, AI_CV_Roar2
+if_stat_level_more_than AI_TARGET, STAT_DEF, 8, AI_CV_Roar2
+if_stat_level_more_than AI_TARGET, STAT_SPATK, 8, AI_CV_Roar2
+if_stat_level_more_than AI_TARGET, STAT_SPDEF, 8, AI_CV_Roar2
+if_stat_level_more_than AI_TARGET, STAT_EVASION, 8, AI_CV_Roar2
 score -3
 end
 
-[FD 64 00 09]:
+AI_CV_Roar2:
 if_random_greater_than 127, Score_Plus2
 end
 
-[04 65 00 09]:
+AI_CV_HealWeather:
 get_weather
-if_equal AI_WEATHER_HAIL, [1C 65 00 09]
-if_equal AI_WEATHER_RAIN, [1C 65 00 09]
-if_equal AI_WEATHER_SANDSTORM, [1C 65 00 09]
-goto [1E 65 00 09]
+if_equal AI_WEATHER_HAIL, AI_CV_HealWeather_ScoreDown2
+if_equal AI_WEATHER_RAIN, AI_CV_HealWeather_ScoreDown2
+if_equal AI_WEATHER_SANDSTORM, AI_CV_HealWeather_ScoreDown2
+goto AI_CV_Heal_New_ish
 
-[1C 65 00 09]:
+AI_CV_HealWeather_ScoreDown2:
 score -2
 
-[1E 65 00 09]:
-if_hp_less_than AI_USER, 70, [38 65 00 09]
+AI_CV_Heal_New_ish:
+if_hp_less_than AI_USER, 70, AI_CV_Heal5
 if_random_greater_than 29, Score_Minus3
 
-[38 65 00 09]:
-if_doesnt_have_move_with_effect AI_TARGET, EFFECT_SNATCH, [46 65 00 09]
+AI_CV_Heal5:
+if_doesnt_have_move_with_effect AI_TARGET, EFFECT_SNATCH, AI_CV_Heal6
 if_random_greater_than 99, Score_Plus2
 end
 
-[46 65 00 09]:
+AI_CV_Heal6:
 if_random_greater_than 19, Score_Plus2
 end
 
-[4D 65 00 09]:
-if_user_has_no_attacking_moves [70 65 00 09]
-if_hp_more_than AI_USER, 50, [61 65 00 09]
-if_random_less_than 50, [61 65 00 09]
+AI_CV_Toxic_New:
+if_user_has_no_attacking_moves AI_CV_Toxic3
+if_hp_more_than AI_USER, 50, AI_CV_Toxic2
+if_random_less_than 50, AI_CV_Toxic2
 score -3
 
-[61 65 00 09]:
-if_hp_more_than AI_TARGET, 50, [70 65 00 09]
-if_random_less_than 50, [70 65 00 09]
+AI_CV_Toxic2:
+if_hp_more_than AI_TARGET, 50, AI_CV_Toxic3
+if_random_less_than 50, AI_CV_Toxic3
 score -3
 
-[70 65 00 09]:
-if_has_move_with_effect AI_USER, EFFECT_PROTECT, [78 65 00 09]
+AI_CV_Toxic3:
+if_has_move_with_effect AI_USER, EFFECT_PROTECT, AI_CV_Toxic4
 end
 
-[78 65 00 09]:
+AI_CV_Toxic4:
 if_random_greater_than 59, Score_Plus2
 end
 
-[7F 65 00 09]:
+AI_CV_DualScreens:
 if_hp_less_than AI_USER, 50, Score_Minus2
 if_random_greater_than 127, Score_Minus2
 end
 
-[8D 65 00 09]:
-if_target_faster [B3 65 00 09]
+AI_CV_Rest:
+if_target_faster AI_CV_Rest4
 if_hp_equal AI_USER, 100, Score_Minus8
 if_hp_more_than AI_USER, 50, Score_Minus3
-if_hp_less_than AI_USER, 40, [C7 65 00 09]
+if_hp_less_than AI_USER, 40, AI_CV_Rest6
 if_random_greater_than 69, Score_Minus3
-goto [C7 65 00 09]
+goto AI_CV_Rest6
 
-[B3 65 00 09]:
+AI_CV_Rest4:
 if_hp_more_than AI_USER, 70, Score_Minus3
-if_hp_less_than AI_USER, 60, [C7 65 00 09]
+if_hp_less_than AI_USER, 60, AI_CV_Rest6
 if_random_greater_than 49, Score_Minus3
 
-[C7 65 00 09]:
-if_doesnt_have_move_with_effect AI_TARGET, EFFECT_SNATCH, [D5 65 00 09]
+AI_CV_Rest6:
+if_doesnt_have_move_with_effect AI_TARGET, EFFECT_SNATCH, AI_CV_Rest7
 if_random_greater_than 49, Score_Plus3
 end
 
-[D5 65 00 09]:
+AI_CV_Rest7:
 if_random_greater_than 9, Score_Plus3
 end
 
-[DC 65 00 09]:
+AI_CV_OneHitKO_New:
 get_last_used_bank_move AI_USER
-get_move_attribute 0x0
-if_equal 0x5E, Score_Plus1
+get_move_attribute ATTR_EFFECT
+if_equal EFFECT_LOCK_ON, Score_Plus1
 end
 
-[E7 65 00 09]:
+AI_CV_SuperFang:
 if_hp_less_than AI_TARGET, 51, Score_Minus1
 end
 
-[EF 65 00 09]:
-if_status AI_TARGET, STATUS1_TOXIC_POISON, [0E 66 00 09]
-if_status2 AI_TARGET, STATUS2_CURSED | STATUS2_INFATUATION, [0E 66 00 09]
-if_status3 AI_TARGET, STATUS3_PERISH_SONG, [0E 66 00 09]
+AI_CV_Trap:
+if_status AI_TARGET, STATUS1_TOXIC_POISON, AI_CV_Trap2
+if_status2 AI_TARGET, STATUS2_CURSED | STATUS2_INFATUATION, AI_CV_Trap2
+if_status3 AI_TARGET, STATUS3_PERISH_SONG, AI_CV_Trap2
 end
 
-[0E 66 00 09]:
+AI_CV_Trap2:
 if_random_greater_than 127, Score_Plus1
 end
 
-[15 66 00 09]:
-if_type_effectiveness AI_EFFECTIVENESS_x0_25, [33 66 00 09]
-if_type_effectiveness AI_EFFECTIVENESS_x0_5, [33 66 00 09]
-if_type_effectiveness AI_EFFECTIVENESS_x2, [34 66 00 09]
-if_type_effectiveness AI_EFFECTIVENESS_x4, [34 66 00 09]
+AI_CV_HighCrit:
+if_type_effectiveness AI_EFFECTIVENESS_x0_25, AI_CV_HighCrit_End
+if_type_effectiveness AI_EFFECTIVENESS_x0_5, AI_CV_HighCrit_End
+if_type_effectiveness AI_EFFECTIVENESS_x2, AI_CV_HighCrit2
+if_type_effectiveness AI_EFFECTIVENESS_x4, AI_CV_HighCrit2
 if_random_less_than 64, Score_Plus1
 
-[33 66 00 09]:
+AI_CV_HighCrit_End:
 end
 
-[34 66 00 09]:
+AI_CV_HighCrit2:
 if_random_greater_than 127, Score_Plus1
 end
 
-[3B 66 00 09]:
-if_random_less_than 128, [43 66 00 09]
+AI_CV_Flatter:
+if_random_less_than 128, AI_CV_Confuse
 score +1
 
-[43 66 00 09]:
-if_hp_more_than AI_TARGET, 70, [62 66 00 09]
-if_random_less_than 128, [52 66 00 09]
+AI_CV_Confuse:
+if_hp_more_than AI_TARGET, 70, AI_CV_Confuse_End
+if_random_less_than 128, AI_CV_Confuse2
 score -1
 
-[52 66 00 09]:
-if_hp_more_than AI_TARGET, 50, [62 66 00 09]
+AI_CV_Confuse2:
+if_hp_more_than AI_TARGET, 50, AI_CV_Confuse_End
 score -1
 if_hp_less_than AI_TARGET, 30, Score_Minus1
 
-[62 66 00 09]:
+AI_CV_Confuse_End:
 end
 
 [63 66 00 09]:
@@ -4223,103 +4223,103 @@ end
 if_random_greater_than 19, Score_Plus3
 end
 
-[77 67 00 09]:
+AI_CV_Poison:
 if_hp_less_than AI_USER, 50, Score_Minus1
 if_hp_less_than AI_TARGET, 51, Score_Minus1
 end
 
-[86 67 00 09]:
-if_target_faster [94 67 00 09]
+AI_CV_Paralyze:
+if_target_faster AI_CV_Paralyze2
 if_hp_less_than AI_USER, 71, Score_Minus1
 end
 
-[94 67 00 09]:
+AI_CV_Paralyze2:
 if_random_greater_than 19, Score_Plus3
 end
 
-[9B 67 00 09]:
-if_target_faster [B5 67 00 09]
-if_hp_more_than AI_USER, 60, [B5 67 00 09]
-if_hp_less_than AI_USER, 40, [B6 67 00 09]
+AI_CV_VitalThrow:
+if_target_faster AI_CV_VitalThrow_End
+if_hp_more_than AI_USER, 60, AI_CV_VitalThrow_End
+if_hp_less_than AI_USER, 40, AI_CV_VitalThrow2
 if_random_greater_than 179, Score_Minus1
 
-[B5 67 00 09]:
+AI_CV_VitalThrow_End:
 end
 
-[B6 67 00 09]:
+AI_CV_VitalThrow2:
 if_random_greater_than 49, Score_Minus1
 end
 
-[BD 67 00 09]:
-if_hp_more_than AI_USER, 90, [EA 67 00 09]
-if_hp_more_than AI_USER, 70, [E2 67 00 09]
-if_hp_more_than AI_USER, 50, [DA 67 00 09]
-if_random_less_than 100, [DA 67 00 09]
+AI_CV_Substitute_New:
+if_hp_more_than AI_USER, 90, AI_CV_Substitute4
+if_hp_more_than AI_USER, 70, AI_CV_Substitute3
+if_hp_more_than AI_USER, 50, AI_CV_Substitute2
+if_random_less_than 100, AI_CV_Substitute2
 score -1
 
-[DA 67 00 09]:
-if_random_less_than 100, [E2 67 00 09]
+AI_CV_Substitute2:
+if_random_less_than 100, AI_CV_Substitute3
 score -1
 
-[E2 67 00 09]:
-if_random_less_than 100, [EA 67 00 09]
+AI_CV_Substitute3:
+if_random_less_than 100, AI_CV_Substitute4
 score -1
 
-[EA 67 00 09]:
-if_target_faster [29 68 00 09]
+AI_CV_Substitute4:
+if_target_faster AI_CV_Substitute_End
 get_last_used_bank_move AI_TARGET
 get_move_effect_from_result
-if_equal EFFECT_SLEEP, [2A 68 00 09]
-if_equal EFFECT_CONVERSION, [2A 68 00 09]
-if_equal EFFECT_TOXIC, [2A 68 00 09]
-if_equal EFFECT_EVASION_DOWN_2, [2A 68 00 09]
-if_equal EFFECT_POISON, [2A 68 00 09]
-if_equal EFFECT_PARALYZE, [2A 68 00 09]
-if_equal EFFECT_WILL_O_WISP, [2A 68 00 09]
-if_equal EFFECT_CONFUSE, [35 68 00 09]
-if_equal EFFECT_LEECH_SEED, [40 68 00 09]
+if_equal EFFECT_SLEEP, AI_CV_Substitute5
+if_equal EFFECT_0x1E, AI_CV_Substitute5
+if_equal EFFECT_TOXIC, AI_CV_Substitute5
+if_equal EFFECT_0x40, AI_CV_Substitute5
+if_equal EFFECT_POISON, AI_CV_Substitute5
+if_equal EFFECT_PARALYZE, AI_CV_Substitute5
+if_equal EFFECT_BURN, AI_CV_Substitute5
+if_equal EFFECT_CONFUSE, AI_CV_Substitute6
+if_equal EFFECT_LEECH_SEED, AI_CV_Substitute7
 
-[29 68 00 09]:
+AI_CV_Substitute_End:
 end
 
-[2A 68 00 09]:
-if_not_status AI_TARGET, STATUS1_ANY, [4A 68 00 09]
+AI_CV_Substitute5:
+if_not_status AI_TARGET, STATUS1_ANY, AI_CV_Substitute8
 end
 
-[35 68 00 09]:
-if_not_status2 AI_TARGET, STATUS2_CONFUSION, [4A 68 00 09]
+AI_CV_Substitute6:
+if_not_status2 AI_TARGET, STATUS2_CONFUSION, AI_CV_Substitute8
 end
 
-[40 68 00 09]:
-if_status3 AI_TARGET, STATUS3_LEECHSEED, [51 68 00 09] // should this be one line higher (end)?
+AI_CV_Substitute7:
+if_status3 AI_TARGET, STATUS3_LEECHSEED, AI_CV_Recharge // this should be one line higher (end)
 
-[4A 68 00 09]:
+AI_CV_Substitute8:
 if_random_greater_than 99, Score_Minus1
 end
 
-[51 68 00 09]:
+AI_CV_Recharge:
 if_type_effectiveness AI_EFFECTIVENESS_x0_25, Score_Minus1
 if_type_effectiveness AI_EFFECTIVENESS_x0_5, Score_Minus1
-if_target_faster [6B 68 00 09]
+if_target_faster AI_CV_Recharge2
 if_hp_more_than AI_USER, 40, Score_Minus1
 end
 
-[6B 68 00 09]:
+AI_CV_Recharge2:
 if_hp_more_than AI_USER, 59, Score_Minus1
 end
 
-[73 68 00 09]:
-if_target_faster [88 68 00 09]
+AI_CV_Disable:
+if_target_faster AI_CV_Disable_End
 get_last_used_bank_move AI_TARGET
 get_move_power_from_result
 if_not_equal 0, Score_Plus1
 if_random_greater_than 99, Score_Minus1
 
-[88 68 00 09]:
+AI_CV_Disable_End:
 end
 
 [89 68 00 09]:
-if_move 0x109, [C2 68 00 09]
+if_move MOVE_SMELLING_SALTS, [C2 68 00 09]
 if_move 0x161, [CD 68 00 09]
 if_move 0x283, [CD 68 00 09]
 if_move 0x264, [D8 68 00 09]
@@ -4357,328 +4357,327 @@ end
 if_status2 AI_TARGET, STATUS2_INFATUATION, Score_Plus1
 end
 
-[0F 69 00 09]:
+AI_CV_Counter_New:
 if_status AI_TARGET, STATUS1_SLEEP, Score_Minus1
 if_status2 AI_TARGET, STATUS2_CONFUSION | STATUS2_INFATUATION, Score_Minus1
-if_hp_more_than AI_USER, 30, [32 69 00 09]
-if_random_less_than 10, [32 69 00 09]
+if_hp_more_than AI_USER, 30, AI_CV_Counter2
+if_random_less_than 10, AI_CV_Counter2
 score -1
 
-[32 69 00 09]:
-if_hp_more_than AI_USER, 50, [41 69 00 09]
-if_random_less_than 100, [41 69 00 09]
+AI_CV_Counter2:
+if_hp_more_than AI_USER, 50, AI_CV_Counter3
+if_random_less_than 100, AI_CV_Counter3
 score -1
 
-[41 69 00 09]:
-if_target_not_taunted [4E 69 00 09]
-if_random_less_than 100, [4E 69 00 09]
+AI_CV_Counter3:
+if_target_not_taunted AI_CV_Counter4
+if_random_less_than 100, AI_CV_Counter4
 score +1
 
-[4E 69 00 09]:
+AI_CV_Counter4:
 get_last_used_bank_move AI_TARGET
-get_move_attribute 0xA
-if_bits_set 0xE, Score_Minus1
+get_move_attribute ATTR_CATEGORY_FLAGS
+if_bits_set FLAG_SPECIAL_MOVE | FLAG_STATUS_MOVE, Score_Minus1
 if_random_greater_than 99, Score_Plus1
 end
 
-[5F 69 00 09]:
-if_any_move_disabled AI_TARGET, [78 69 00 09]
+AI_CV_Encore_NewData:
+if_any_move_disabled AI_TARGET, AI_CV_Encore2
 if_target_faster Score_Minus2
 get_last_used_bank_move AI_TARGET
 get_move_effect_from_result
-if_not_in_bytes [7F 69 00 09], Score_Minus2
+if_not_in_bytes AI_CV_Encore_EncouragedMovesToEncore, Score_Minus2
 
-[78 69 00 09]:
+AI_CV_Encore2:
 if_random_greater_than 29, Score_Plus3
 end
 
-[7F 69 00 09]:
-0x8
-0xA
-0xB
-0xC
-0xD
-0xE
-0x19
-0x1C
-0x21
-0x23
-0x25
-0x28
-0x31
-0x37
-0x38
-0x3A
-0x3B
-0x3C
-0x41
-0x42
-0x43
-0x54
-0x55
-0x5A
-0x5E
-0x66
-0x6B
-0x6F
-0x71
-0x72
-0x73
-0x74
-0x76
-0x78
-0x7C
-0x85
-0x86
-0x88
-0x89
-0x8A
-0x8B
-0x8E
-0x8F
-0x94
-0x99
-0x9E
-0xA0
-0xA1
-0xA2
-0xA4
-0xA5
-0xA6
-0xA7
-0xAC
-0xAE
-0xB1
-0xB2
-0xB5
-0xB8
-0xBF
-0xC0
-0xC1
-0xC2
-0xC7
-0xC9
-0xD2
-0xD5
-0xE4
-0xE5
-0xFA
-0xFB
-0xFE
+AI_CV_Encore_EncouragedMovesToEncore:
+EFFECT_DREAM_EATER
+EFFECT_ATTACK_UP
+EFFECT_DEFENSE_UP
+EFFECT_SPEED_UP
+EFFECT_SPECIAL_ATTACK_UP
+EFFECT_0xE
+EFFECT_HAZE
+EFFECT_ROAR
+EFFECT_TOXIC
+EFFECT_LIGHT_SCREEN
+EFFECT_REST
+EFFECT_SUPER_FANG
+EFFECT_CONFUSE
+EFFECT_0x37
+EFFECT_0x38
+EFFECT_0x3A
+EFFECT_0x3B
+EFFECT_0x3C
+EFFECT_REFLECT
+EFFECT_POISON
+EFFECT_PARALYZE
+EFFECT_LEECH_SEED
+EFFECT_SPLASH
+EFFECT_ENCORE
+EFFECT_LOCK_ON
+EFFECT_HEAL_BELL
+EFFECT_NIGHTMARE
+EFFECT_PROTECT
+EFFECT_FORESIGHT
+EFFECT_PERISH_SONG
+EFFECT_SANDSTORM
+EFFECT_ENDURE
+EFFECT_SWAGGER
+EFFECT_ATTRACT
+EFFECT_SAFEGUARD
+EFFECT_TAILWIND
+EFFECT_0x86
+EFFECT_RAIN_DANCE
+EFFECT_SUNNY_DAY
+EFFECT_0x8A
+EFFECT_0x8B
+EFFECT_BELLY_DRUM
+EFFECT_PSYCH_UP
+EFFECT_FUTURE_SIGHT
+EFFECT_TELEPORT
+EFFECT_FAKE_OUT
+EFFECT_STOCKPILE
+EFFECT_SPIT_UP
+EFFECT_SWALLOW
+EFFECT_HAIL
+EFFECT_TORMENT
+EFFECT_FLATTER
+EFFECT_WILL_O_WISP
+EFFECT_FOLLOW_ME
+EFFECT_CHARGE
+EFFECT_TRICK
+EFFECT_ROLE_PLAY
+EFFECT_INGRAIN
+EFFECT_RECYCLE
+EFFECT_SKILL_SWAP
+EFFECT_IMPRISON
+EFFECT_REFRESH
+EFFECT_GRUDGE
+EFFECT_TEETER_DANCE
+EFFECT_MUD_SPORT
+EFFECT_WATER_SPORT
+EFFECT_CAMOUFLAGE
+EFFECT_0xE4
+EFFECT_0xE5
+EFFECT_0xFA
+EFFECT_0xFB
+EFFECT_0xFE
 
-[C8 69 00 09]:
+AI_CV_PainSplit:
 if_hp_less_than AI_TARGET, 80, Score_Minus1
-if_target_faster [DF 69 00 09]
+if_target_faster AI_CV_PainSplit2
 if_hp_more_than AI_USER, 40, Score_Minus1
 score +1
 end
 
-[DF 69 00 09]:
+AI_CV_PainSplit2:
 if_hp_more_than AI_USER, 60, Score_Minus1
 score +1
 end
 
-[E9 69 00 09]:
+AI_CV_LockOn:
 if_random_greater_than 127, Score_Plus2
 end
 
-[F0 69 00 09]:
+AI_CV_DestinyBond:
 score -1
-if_target_faster [23 6A 00 09]
-if_hp_more_than AI_USER, 70, [23 6A 00 09]
-if_random_less_than 128, [07 6A 00 09]
+if_target_faster AI_CV_DestinyBond_End
+if_hp_more_than AI_USER, 70, AI_CV_DestinyBond_End
+if_random_less_than 128, AI_CV_DestinyBond2
 score +1
 
-[07 6A 00 09]:
-if_hp_more_than AI_USER, 50, [23 6A 00 09]
-if_random_less_than 128, [16 6A 00 09]
+AI_CV_DestinyBond2:
+if_hp_more_than AI_USER, 50, AI_CV_DestinyBond_End
+if_random_less_than 128, AI_CV_DestinyBond3
 score +1
 
-[16 6A 00 09]:
-if_hp_more_than AI_USER, 30, [23 6A 00 09]
+AI_CV_DestinyBond3:
+if_hp_more_than AI_USER, 30, AI_CV_DestinyBond_End
 if_random_greater_than 99, Score_Plus2
 
-[23 6A 00 09]:
+AI_CV_DestinyBond_End:
 end
 
-[24 6A 00 09]:
-if_target_faster [42 6A 00 09]
+AI_CV_Flail:
+if_target_faster AI_CV_Flail3
 if_hp_more_than AI_USER, 33, Score_Minus1
-if_hp_more_than AI_USER, 7, [3A 6A 00 09]
+if_hp_more_than AI_USER, 7, AI_CV_Flail2
 score +1
 
-[3A 6A 00 09]:
-if_hp_less_than AI_USER, 21, [50 6A 00 09]
+AI_CV_Flail2:
+if_hp_less_than AI_USER, 21, AI_CV_Flail4
 end
 
-[42 6A 00 09]:
+AI_CV_Flail3:
 if_hp_more_than AI_USER, 60, Score_Minus1
-if_hp_more_than AI_USER, 40, [56 6A 00 09]
+if_hp_more_than AI_USER, 40, AI_CV_Flail_End
 
-[50 6A 00 09]:
+AI_CV_Flail4:
 if_random_greater_than 99, Score_Plus1
 
-[56 6A 00 09]:
+AI_CV_Flail_End:
 end
 
-[57 6A 00 09]:
-if_status AI_TARGET, STATUS1_ANY, [6B 6A 00 09]
+AI_CV_HealBell:
+if_status AI_TARGET, STATUS1_ANY, AI_CV_HealBell_End
 if_status_not_in_party AI_TARGET, STATUS1_ANY, Score_Minus5
 
-[6B 6A 00 09]:
+AI_CV_HealBell_End:
 end
 
-[6C 6A 00 09]:
+AI_CV_Thief_New:
 get_hold_effect AI_TARGET
-if_in_bytes [7E 6A 00 09], Score_Minus2
+if_in_bytes AI_CV_Thief_DiscourageItemsToSteal, Score_Minus2
 if_random_greater_than 49, Score_Plus1
 end
 
-[7E 6A 00 09]:
-0x18
-0x44
-0x45
-0x46
-0x4A
-0x52
-0x55
-0x56
-0x57
-0xFF
+AI_CV_Thief_DiscourageItemsToSteal:
+HOLD_EFFECT_MACHO_BRACE
+HOLD_EFFECT_CHOICE_SPECS
+HOLD_EFFECT_CHOICE_BAND
+HOLD_EFFECT_CHOICE_SCARF
+HOLD_EFFECT_LAGGING_TAIL
+HOLD_EFFECT_ASSAULT_VEST
+HOLD_EFFECT_0x55
+HOLD_EFFECT_0x56
+HOLD_EFFECT_DESTINY_KNOT
 
-[88 6A 00 09]:
+AI_CV_Curse:
 get_user_type1
-if_equal TYPE_GHOST, [C7 6A 00 09]
+if_equal TYPE_GHOST, AI_CV_Curse4
 get_user_type2
-if_equal TYPE_GHOST, [C7 6A 00 09]
-if_stat_level_more_than AI_USER, STAT_DEF, 9, [C6 6A 00 09]
-if_random_less_than 128, [A8 6A 00 09]
+if_equal TYPE_GHOST, AI_CV_Curse4
+if_stat_level_more_than AI_USER, STAT_DEF, 9, AI_CV_Curse_End
+if_random_less_than 128, AI_CV_Curse2
 score +1
 
-[A8 6A 00 09]:
-if_stat_level_more_than AI_USER, STAT_DEF, 7, [C6 6A 00 09]
-if_random_less_than 128, [B8 6A 00 09]
+AI_CV_Curse2:
+if_stat_level_more_than AI_USER, STAT_DEF, 7, AI_CV_Curse_End
+if_random_less_than 128, AI_CV_Curse3
 score +1
 
-[B8 6A 00 09]:
-if_stat_level_more_than AI_USER, STAT_DEF, 6, [C6 6A 00 09]
+AI_CV_Curse3:
+if_stat_level_more_than AI_USER, STAT_DEF, 6, AI_CV_Curse_End
 if_random_greater_than 127, Score_Plus1
 
-[C6 6A 00 09]:
+AI_CV_Curse_End:
 end
 
-[C7 6A 00 09]:
+AI_CV_Curse4:
 if_hp_less_than AI_USER, 81, Score_Minus1
 end
 
-[CF 6A 00 09]:
+AI_CV_Protect_New:
 get_protect_count AI_USER
 if_more_than 1, Score_Minus2
-if_status AI_USER, STATUS1_TOXIC_POISON, [49 6B 00 09]
-if_status2 AI_USER, STATUS2_CURSED | STATUS2_INFATUATION, [49 6B 00 09]
-if_status3 AI_USER, STATUS3_PERISH_SONG | STATUS3_LEECHSEED | STATUS3_YAWN, [49 6B 00 09]
-if_has_move_with_effect AI_TARGET, EFFECT_RESTORE_HP, [49 6B 00 09]
-if_has_move_with_effect AI_TARGET, EFFECT_MORNING_SUN, [49 6B 00 09]
-if_has_move_with_effect AI_TARGET, EFFECT_SOFT_BOILED, [49 6B 00 09]
-if_status AI_TARGET, STATUS1_TOXIC_POISON, [36 6B 00 09]
-if_status2 AI_TARGET, STATUS2_CURSED | STATUS2_INFATUATION, [36 6B 00 09]
-if_status3 AI_TARGET, STATUS3_PERISH_SONG | STATUS3_LEECHSEED | STATUS3_YAWN, [36 6B 00 09]
+if_status AI_USER, STATUS1_TOXIC_POISON, AI_CV_Protect3
+if_status2 AI_USER, STATUS2_CURSED | STATUS2_INFATUATION, AI_CV_Protect3
+if_status3 AI_USER, STATUS3_PERISH_SONG | STATUS3_LEECHSEED | STATUS3_YAWN, AI_CV_Protect3
+if_has_move_with_effect AI_TARGET, EFFECT_RESTORE_HP, AI_CV_Protect3
+if_has_move_with_effect AI_TARGET, EFFECT_HEAL_WEATHER, AI_CV_Protect3
+if_has_move_with_effect AI_TARGET, EFFECT_SOFT_BOILED, AI_CV_Protect3
+if_status AI_TARGET, STATUS1_TOXIC_POISON, AI_CV_Protect_ScoreUp2
+if_status2 AI_TARGET, STATUS2_CURSED | STATUS2_INFATUATION, AI_CV_Protect_ScoreUp2
+if_status3 AI_TARGET, STATUS3_PERISH_SONG | STATUS3_LEECHSEED | STATUS3_YAWN, AI_CV_Protect_ScoreUp2
 get_last_used_bank_move AI_TARGET
 get_move_effect_from_result
-if_equal EFFECT_LOCK_ON, [36 6B 00 09]
-goto [38 6B 00 09]
+if_equal EFFECT_LOCK_ON, AI_CV_Protect_ScoreUp2
+goto AI_CV_Protect2
 
-[36 6B 00 09]:
+AI_CV_Protect_ScoreUp2:
 score +2
 
-[38 6B 00 09]:
+AI_CV_Protect2:
 get_protect_count AI_USER
 if_equal 0, AI_CV_Protect_End
 score -1
 if_random_greater_than 127, Score_Minus1
 end
 
-[49 6B 00 09]:
+AI_CV_Protect3:
 get_last_used_bank_move AI_TARGET
 get_move_effect_from_result
 if_not_equal EFFECT_LOCK_ON, Score_Minus2
 end
 
-[53 6B 00 09]:
+AI_CV_Foresight_New_ish:
 get_user_type1
-if_equal TYPE_GHOST, [72 6B 00 09]
+if_equal TYPE_GHOST, AI_CV_Foresight2
 get_user_type2
-if_equal TYPE_GHOST, [72 6B 00 09]
+if_equal TYPE_GHOST, AI_CV_Foresight2
 if_stat_level_less_than AI_TARGET, STAT_EVASION, 9, Score_Minus2
 if_random_less_than 80, Score_Plus2
 end
 
-[72 6B 00 09]:
+AI_CV_Foresight2:
 if_random_less_than 128, Score_Plus2
 end
 
-[7B 6B 00 09]:
+AI_CV_Endure:
 if_hp_less_than AI_USER, 4, Score_Minus1
 if_hp_more_than AI_USER, 34, Score_Minus1
 if_random_greater_than 69, Score_Plus1
 end
 
-[90 6B 00 09]:
-if_stat_level_more_than AI_USER, STAT_ATK, 8, [BD 6B 00 09]
-if_stat_level_more_than AI_USER, STAT_DEF, 8, [BD 6B 00 09]
-if_stat_level_more_than AI_USER, STAT_SPATK, 8, [BD 6B 00 09]
-if_stat_level_more_than AI_USER, STAT_SPDEF, 8, [BD 6B 00 09]
-if_stat_level_more_than AI_USER, STAT_EVASION, 8, [BD 6B 00 09]
-goto [D9 6B 00 09]
+AI_CV_BatonPass:
+if_stat_level_more_than AI_USER, STAT_ATK, 8, AI_CV_BatonPass2
+if_stat_level_more_than AI_USER, STAT_DEF, 8, AI_CV_BatonPass2
+if_stat_level_more_than AI_USER, STAT_SPATK, 8, AI_CV_BatonPass2
+if_stat_level_more_than AI_USER, STAT_SPDEF, 8, AI_CV_BatonPass2
+if_stat_level_more_than AI_USER, STAT_EVASION, 8, AI_CV_BatonPass2
+goto AI_CV_BatonPass5
 
-[BD 6B 00 09]:
-if_target_faster [CB 6B 00 09]
-if_hp_less_than AI_USER, 61, [D2 6B 00 09]
+AI_CV_BatonPass2:
+if_target_faster AI_CV_BatonPass3
+if_hp_less_than AI_USER, 61, AI_CV_BatonPass4
 end
 
-[CB 6B 00 09]:
-if_hp_more_than AI_USER, 70, [D8 6B 00 09]
+AI_CV_BatonPass3:
+if_hp_more_than AI_USER, 70, AI_CV_BatonPass_End
 
-[D2 6B 00 09]:
+AI_CV_BatonPass4:
 if_random_greater_than 79, Score_Plus2
 
-[D8 6B 00 09]:
+AI_CV_BatonPass_End:
 end
 
-[D9 6B 00 09]:
-if_stat_level_more_than AI_USER, STAT_ATK, 7, [04 6C 00 09]
-if_stat_level_more_than AI_USER, STAT_DEF, 7, [04 6C 00 09]
-if_stat_level_more_than AI_USER, STAT_SPATK, 7, [04 6C 00 09]
-if_stat_level_more_than AI_USER, STAT_SPDEF, 7, [04 6C 00 09]
-if_stat_level_more_than AI_USER, STAT_EVASION, 7, [04 6C 00 09]
+AI_CV_BatonPass5:
+if_stat_level_more_than AI_USER, STAT_ATK, 7, AI_CV_BatonPass7
+if_stat_level_more_than AI_USER, STAT_DEF, 7, AI_CV_BatonPass7
+if_stat_level_more_than AI_USER, STAT_SPATK, 7, AI_CV_BatonPass7
+if_stat_level_more_than AI_USER, STAT_SPDEF, 7, AI_CV_BatonPass7
+if_stat_level_more_than AI_USER, STAT_EVASION, 7, AI_CV_BatonPass7
 score -2
 end
 
-[04 6C 00 09]:
-if_target_faster [12 6C 00 09]
+AI_CV_BatonPass7:
+if_target_faster AI_CV_BatonPass8
 if_hp_more_than AI_USER, 60, Score_Minus2
 end
 
-[12 6C 00 09]:
+AI_CV_BatonPass8:
 if_hp_more_than AI_USER, 69, Score_Minus2
 end
 
-[1A 6C 00 09]:
+AI_CV_Pursuit:
 is_first_turn_for AI_USER
-if_not_equal 0, [3E 6C 00 09]
+if_not_equal 0, AI_CV_Pursuit_End
 get_target_type1
-if_equal TYPE_GHOST, [3F 6C 00 09]
+if_equal TYPE_GHOST, AI_CV_Pursuit2
 get_target_type1
-if_equal TYPE_PSYCHIC, [3F 6C 00 09]
+if_equal TYPE_PSYCHIC, AI_CV_Pursuit2
 get_target_type2
-if_equal TYPE_GHOST, [3F 6C 00 09]
+if_equal TYPE_GHOST, AI_CV_Pursuit2
 get_target_type2
-if_equal TYPE_PSYCHIC, [3F 6C 00 09]
+if_equal TYPE_PSYCHIC, AI_CV_Pursuit2
 
-[3E 6C 00 09]:
+AI_CV_Pursuit_End:
 end
 
-[3F 6C 00 09]:
+AI_CV_Pursuit2:
 if_random_greater_than 127, Score_Plus1
 end
 
@@ -4687,12 +4686,12 @@ if_target_slower Score_Minus2
 if_random_greater_than 127, Score_Plus2
 end
 
-[53 6C 00 09]:
-if_user_faster [61 6C 00 09]
+AI_CV_RainDance_New:
+if_user_faster AI_CV_RainDance2
 get_ability AI_USER
 if_equal ABILITY_SWIFT_SWIM, Score_Plus1
 
-[61 6C 00 09]:
+AI_CV_RainDance2:
 if_hp_less_than AI_USER, 40, Score_Minus1
 get_weather
 if_equal AI_WEATHER_HAIL, Score_Plus1
@@ -4723,12 +4722,12 @@ get_user_type2
 if_equal TYPE_ROCK, Score_Plus1
 end
 
-[D7 6C 00 09]:
-if_user_faster [E5 6C 00 09]
+AI_CV_SunnyDay_New:
+if_user_faster AI_CV_SunnyDay2
 get_ability AI_USER
 if_equal ABILITY_CHLOROPHYLL, Score_Plus1
 
-[E5 6C 00 09]:
+AI_CV_SunnyDay2:
 if_hp_less_than AI_USER, 40, Score_Minus1
 get_weather
 if_equal AI_WEATHER_HAIL, Score_Plus1
@@ -4742,116 +4741,116 @@ if_equal ABILITY_FLOWER_GIFT, Score_Plus1
 if_equal ABILITY_0x8B, Score_Plus1
 end
 
-[20 6D 00 09]:
+AI_CV_BellyDrum:
 if_hp_less_than AI_USER, 90, Score_Minus2
 end
 
-[28 6D 00 09]:
-if_stat_level_more_than AI_TARGET, STAT_ATK, 8, [53 6D 00 09]
-if_stat_level_more_than AI_TARGET, STAT_DEF, 8, [53 6D 00 09]
-if_stat_level_more_than AI_TARGET, STAT_SPATK, 8, [53 6D 00 09]
-if_stat_level_more_than AI_TARGET, STAT_SPDEF, 8, [53 6D 00 09]
-if_stat_level_more_than AI_TARGET, STAT_EVASION, 8, [53 6D 00 09]
+AI_CV_PsychUp:
+if_stat_level_more_than AI_TARGET, STAT_ATK, 8, AI_CV_PsychUp2
+if_stat_level_more_than AI_TARGET, STAT_DEF, 8, AI_CV_PsychUp2
+if_stat_level_more_than AI_TARGET, STAT_SPATK, 8, AI_CV_PsychUp2
+if_stat_level_more_than AI_TARGET, STAT_SPDEF, 8, AI_CV_PsychUp2
+if_stat_level_more_than AI_TARGET, STAT_EVASION, 8, AI_CV_PsychUp2
 score -2
 end
 
-[53 6D 00 09]:
-if_stat_level_less_than AI_USER, STAT_ATK, 7, [82 6D 00 09]
-if_stat_level_less_than AI_USER, STAT_DEF, 7, [82 6D 00 09]
-if_stat_level_less_than AI_USER, STAT_SPATK, 7, [82 6D 00 09]
-if_stat_level_less_than AI_USER, STAT_SPDEF, 7, [82 6D 00 09]
+AI_CV_PsychUp2:
+if_stat_level_less_than AI_USER, STAT_ATK, 7, AI_CV_PsychUp3
+if_stat_level_less_than AI_USER, STAT_DEF, 7, AI_CV_PsychUp3
+if_stat_level_less_than AI_USER, STAT_SPATK, 7, AI_CV_PsychUp3
+if_stat_level_less_than AI_USER, STAT_SPDEF, 7, AI_CV_PsychUp3
 if_stat_level_less_than AI_USER, STAT_EVASION, 7, Score_Plus1
 if_random_greater_than 49, Score_Minus2
 end
 
-[82 6D 00 09]:
+AI_CV_PsychUp3:
 if_random_greater_than 128, Score_Plus1
 end
 
-[89 6D 00 09]:
+AI_CV_MirrorCoat_New:
 if_status AI_TARGET, STATUS1_SLEEP, Score_Minus1
 if_status2 AI_TARGET, STATUS2_CONFUSION | STATUS2_INFATUATION, Score_Minus1
-if_hp_more_than AI_USER, 30, [AC 6D 00 09]
-if_random_less_than 10, [AC 6D 00 09]
+if_hp_more_than AI_USER, 30, AI_CV_MirrorCoat2
+if_random_less_than 10, AI_CV_MirrorCoat2
 score -1
 
-[AC 6D 00 09]:
-if_hp_more_than AI_USER, 50, [BB 6D 00 09]
-if_random_less_than 100, [BB 6D 00 09]
+AI_CV_MirrorCoat2:
+if_hp_more_than AI_USER, 50, AI_CV_MirrorCoat3
+if_random_less_than 100, AI_CV_MirrorCoat3
 score -1
 
-[BB 6D 00 09]:
-if_target_not_taunted [C8 6D 00 09]
-if_random_less_than 100, [C8 6D 00 09]
+AI_CV_MirrorCoat3:
+if_target_not_taunted AI_CV_MirrorCoat4
+if_random_less_than 100, AI_CV_MirrorCoat4
 score +1
 
-[C8 6D 00 09]:
+AI_CV_MirrorCoat4:
 get_last_used_bank_move AI_TARGET
-get_move_attribute 0xA
-if_bits_not_set 0x2, Score_Minus1
+get_move_attribute ATTR_CATEGORY_FLAGS
+if_bits_not_set FLAG_SPECIAL_MOVE, Score_Minus1
 if_random_greater_than 99, Score_Plus1
 end
 
-[D9 6D 00 09]:
+AI_CV_ChargeUpMove:
 if_type_effectiveness AI_EFFECTIVENESS_x0_25, Score_Minus2
 if_type_effectiveness AI_EFFECTIVENESS_x0_5, Score_Minus2
 if_has_move_with_effect AI_TARGET, EFFECT_PROTECT, Score_Minus2
 if_hp_less_than AI_USER, 39, Score_Minus1
 end
 
-[F4 6D 00 09]:
+AI_CV_Fly:
 if_has_move_with_effect AI_TARGET, EFFECT_PROTECT, Score_Minus1
-if_status AI_TARGET, STATUS1_TOXIC_POISON, [66 6E 00 09]
-if_status2 AI_TARGET, STATUS2_CURSED, [66 6E 00 09]
-if_status3 AI_TARGET, STATUS3_LEECHSEED, [66 6E 00 09]
+if_status AI_TARGET, STATUS1_TOXIC_POISON, AI_CV_Fly6
+if_status2 AI_TARGET, STATUS2_CURSED, AI_CV_Fly6
+if_status3 AI_TARGET, STATUS3_LEECHSEED, AI_CV_Fly6
 get_weather
-if_equal AI_WEATHER_SANDSTORM, [2B 6E 00 09]
-if_equal AI_WEATHER_HAIL, [46 6E 00 09]
-goto [56 6E 00 09]
+if_equal AI_WEATHER_SANDSTORM, AI_CV_Fly3
+if_equal AI_WEATHER_HAIL, AI_CV_Fly4
+goto AI_CV_Fly5
 
-[2B 6E 00 09]:
+AI_CV_Fly3:
 get_user_type1
-if_in_bytes [6D 6E 00 09], [66 6E 00 09]
+if_in_bytes AI_CV_Fly_TypesToEncourage, AI_CV_Fly6
 get_user_type2
-if_in_bytes [6D 6E 00 09], [66 6E 00 09]
-goto [56 6E 00 09]
+if_in_bytes AI_CV_Fly_TypesToEncourage, AI_CV_Fly6
+goto AI_CV_Fly5
 
-[46 6E 00 09]:
+AI_CV_Fly4:
 get_user_type1
-if_equal TYPE_ICE, [66 6E 00 09]
+if_equal TYPE_ICE, AI_CV_Fly6
 get_user_type2
-if_equal TYPE_ICE, [66 6E 00 09]
+if_equal TYPE_ICE, AI_CV_Fly6
 
-[56 6E 00 09]:
-if_target_faster [65 6E 00 09]
+AI_CV_Fly5:
+if_target_faster AI_CV_Fly_End
 get_last_used_bank_move AI_TARGET
 get_move_effect_from_result
-if_not_equal EFFECT_LOCK_ON, [66 6E 00 09]
+if_not_equal EFFECT_LOCK_ON, AI_CV_Fly6
 
-[65 6E 00 09]:
+AI_CV_Fly_End:
 end
 
-[66 6E 00 09]:
+AI_CV_Fly6:
 if_random_greater_than 79, Score_Plus1
 end
 
-[6D 6E 00 09]:
+AI_CV_Fly_TypesToEncourage:
 TYPE_GROUND
 TYPE_ROCK
 TYPE_STEEL
 
-[71 6E 00 09]:
+AI_CV_SpitUp:
 get_stockpile_count AI_USER
 if_less_than 2, AI_CV_SpitUp_End
 if_random_greater_than 79, Score_Plus2
 end
 
-[80 6E 00 09]:
-if_user_faster [8E 6E 00 09]
+AI_CV_Hail_New:
+if_user_faster AI_CV_Hail2
 get_ability AI_USER
 if_equal ABILITY_SLUSH_RUSH, Score_Plus1
 
-[8E 6E 00 09]:
+AI_CV_Hail2:
 if_hp_less_than AI_USER, 40, Score_Minus1
 get_weather
 if_equal AI_WEATHER_SUN, Score_Plus1
@@ -4862,294 +4861,294 @@ if_equal ABILITY_SNOW_CLOAK, Score_Plus1
 if_equal ABILITY_ICE_BODY, Score_Plus1
 end
 
-[B7 6E 00 09]:
+AI_CV_Facade_New:
 if_status AI_USER, STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON, Score_Plus1
 end
 
-[C2 6E 00 09]:
+AI_CV_FocusPunch:
 if_type_effectiveness AI_EFFECTIVENESS_x0_25, Score_Minus1
 if_type_effectiveness AI_EFFECTIVENESS_x0_5, Score_Minus1
 if_status AI_TARGET, STATUS1_SLEEP, Score_Plus1
-if_status2 AI_TARGET, STATUS2_CONFUSION | STATUS2_INFATUATION, [EA 6E 00 09]
+if_status2 AI_TARGET, STATUS2_CONFUSION | STATUS2_INFATUATION, AI_CV_FocusPunch2
 is_first_turn_for AI_USER
-if_not_equal 0, [F0 6E 00 09]
+if_not_equal 0, AI_CV_FocusPunch_End
 
-[EA 6E 00 09]:
+AI_CV_FocusPunch2:
 if_random_greater_than 99, Score_Plus1
 
-[F0 6E 00 09]:
+AI_CV_FocusPunch_End:
 end
 
-[F1 6E 00 09]:
+AI_CV_Trick_New:
 get_hold_effect AI_USER
-if_in_bytes [41 6F 00 09], [11 6F 00 09]
-if_in_bytes [45 6F 00 09], [1F 6F 00 09]
-if_in_bytes [49 6F 00 09], [2D 6F 00 09]
+if_in_bytes AI_CV_Trick_EffectsToEncourage, AI_CV_Trick3
+if_in_bytes AI_CV_Trick_EffectsToEncourage2, AI_CV_Trick4
+if_in_bytes AI_CV_Trick_EffectsToEncourage3, AI_CV_Trick5
 score -3
 end
 
-[11 6F 00 09]:
+AI_CV_Trick3:
 get_hold_effect AI_TARGET
-if_in_bytes [41 6F 00 09], Score_Minus3
+if_in_bytes AI_CV_Trick_EffectsToEncourage, Score_Minus3
 score +5
 end
 
-[1F 6F 00 09]:
+AI_CV_Trick4:
 get_hold_effect AI_TARGET
-if_in_bytes [45 6F 00 09], Score_Minus3
+if_in_bytes AI_CV_Trick_EffectsToEncourage2, Score_Minus3
 score +5
 end
 
-[2D 6F 00 09]:
+AI_CV_Trick5:
 get_hold_effect AI_TARGET
-if_in_bytes [51 6F 00 09], Score_Minus3
+if_in_bytes AI_CV_Trick_EffectsToDiscourage, Score_Minus3
 if_random_greater_than 49, Score_Plus2
 end
 
-[41 6F 00 09]:
-0x44
-0x45
-0x46
+AI_CV_Trick_EffectsToEncourage:
+HOLD_EFFECT_CHOICE_SPECS
+HOLD_EFFECT_CHOICE_BAND
+HOLD_EFFECT_CHOICE_SCARF
 
-[45 6F 00 09]:
-0x55
-0x56
-0x57
+AI_CV_Trick_EffectsToEncourage2:
+HOLD_EFFECT_0x55
+HOLD_EFFECT_0x56
+HOLD_EFFECT_DESTINY_KNOT
 
-[49 6F 00 09]:
-0xA
-0xB
-0xC
-0xD
-0xE
-0x18
-0x4A
+AI_CV_Trick_EffectsToEncourage3:
+HOLD_EFFECT_CONFUSE_SPICY
+HOLD_EFFECT_CONFUSE_DRY
+HOLD_EFFECT_CONFUSE_SWEET
+HOLD_EFFECT_CONFUSE_BITTER
+HOLD_EFFECT_CONFUSE_SOUR
+HOLD_EFFECT_MACHO_BRACE
+HOLD_EFFECT_LAGGING_TAIL
 
-[51 6F 00 09]:
-0xA
-0xB
-0xC
-0xD
-0xE
-0x18
-0x44
-0x45
-0x46
-0x4A
-0x55
-0x56
-0x57
+AI_CV_Trick_EffectsToDiscourage:
+HOLD_EFFECT_CONFUSE_SPICY
+HOLD_EFFECT_CONFUSE_DRY
+HOLD_EFFECT_CONFUSE_SWEET
+HOLD_EFFECT_CONFUSE_BITTER
+HOLD_EFFECT_CONFUSE_SOUR
+HOLD_EFFECT_MACHO_BRACE
+HOLD_EFFECT_CHOICE_SPECS
+HOLD_EFFECT_CHOICE_BAND
+HOLD_EFFECT_CHOICE_SCARF
+HOLD_EFFECT_LAGGING_TAIL
+HOLD_EFFECT_0x55
+HOLD_EFFECT_0x56
+HOLD_EFFECT_DESTINY_KNOT
 
-[80 6F 00 09]:
+AI_CV_ChangeSelfAbility_New:
 get_ability AI_USER
-if_not_in_bytes [BB 6F 00 09], [8D 6F 00 09]
+if_not_in_bytes AI_CV_ChangeSelfAbility_AbilitiesToEncourage, AI_CV_ChangeSelfAbility2
 score -1
 
-[8D 6F 00 09]:
-if_not_in_bytes [E6 6F 00 09], [98 6F 00 09]
+AI_CV_ChangeSelfAbility2:
+if_not_in_bytes AI_CV_ChangeSelfAbility_AbilitiesToDiscourage, AI_CV_ChangeSelfAbility3
 score +1
 
-[98 6F 00 09]:
+AI_CV_ChangeSelfAbility3:
 get_ability AI_TARGET
-if_not_in_bytes [BB 6F 00 09], [AB 6F 00 09]
-if_random_less_than 50, [AB 6F 00 09]
+if_not_in_bytes AI_CV_ChangeSelfAbility_AbilitiesToEncourage, AI_CV_ChangeSelfAbility4
+if_random_less_than 50, AI_CV_ChangeSelfAbility4
 score +2
 
-[AB 6F 00 09]:
-if_not_in_bytes [E6 6F 00 09], [BA 6F 00 09]
+AI_CV_ChangeSelfAbility4:
+if_not_in_bytes AI_CV_ChangeSelfAbility_AbilitiesToDiscourage, AI_CV_ChangeSelfAbility_End
 if_random_greater_than 49, Score_Minus2
 
-[BA 6F 00 09]:
+AI_CV_ChangeSelfAbility_End:
 end
 
-[BB 6F 00 09]:
-0x3
-0x4
-0x8
-0x9
-0xA
-0xB
-0x12
-0x13
-0x19
-0x1B
-0x1F
-0x21
-0x22
-0x25
-0x2B
-0x2C
-0x2F
-0x31
-0x38
-0x3D
-0x3F
-0x4A
-0x4B
-0x4E
-0x51
-0x55
-0x5D
-0x62
-0x6F
-0x72
-0x73
-0x74
-0x8E
-0x92
-0x9C
-0x9D
-0xA5
-0xB3
-0xB9
-0xCA
-0xD6
-0xD8
+AI_CV_ChangeSelfAbility_AbilitiesToEncourage:
+ABILITY_SPEED_BOOST
+ABILITY_BATTLE_ARMOR
+ABILITY_SAND_VEIL
+ABILITY_STATIC
+ABILITY_VOLT_ABSORB
+ABILITY_WATER_ABSORB
+ABILITY_FLASH_FIRE
+ABILITY_SHIELD_DUST
+ABILITY_WONDER_GUARD
+ABILITY_EFFECT_SPORE
+ABILITY_LIGHTNING_ROD
+ABILITY_SWIFT_SWIM
+ABILITY_CHLOROPHYLL
+ABILITY_HUGE_POWER
+ABILITY_SOUNDPROOF
+ABILITY_RAIN_DISH
+ABILITY_THICK_FAT
+ABILITY_FLAME_BODY
+ABILITY_CUTE_CHARM
+ABILITY_SHED_SKIN
+ABILITY_MARVEL_SCALE
+ABILITY_PURE_POWER
+ABILITY_SHELL_ARMOR
+ABILITY_MOTOR_DRIVE
+ABILITY_SNOW_CLOAK
+ABILITY_HEATPROOF
+ABILITY_HYDRATION
+ABILITY_MAGIC_GUARD
+ABILITY_SOLID_ROCK
+ABILITY_STORM_DRAIN
+ABILITY_ICE_BODY
+ABILITY_FILTER
+ABILITY_OVERCOAT
+ABILITY_SAND_RUSH
+ABILITY_MAGIC_BOUNCE
+ABILITY_SAP_SIPPER
+ABILITY_AROMA_VEIL
+ABILITY_FUR_COAT
+ABILITY_BULLETPROOF
+ABILITY_SLUSH_RUSH
+ABILITY_DAZZLING
+ABILITY_QUEENLY_MAJESTY
 
-[E6 6F 00 09]:
-0x23
-0x32
-0x35
-0x36
-0x64
-0x67
-0x6B
-0x6C
-0x70
-0x76
-0x77
-0x7F
-0x81
-0x98
+AI_CV_ChangeSelfAbility_AbilitiesToDiscourage:
+ABILITY_ILLUMINATE
+ABILITY_RUN_AWAY
+ABILITY_PICKUP
+ABILITY_TRUANT
+ABILITY_STALL
+ABILITY_KLUTZ
+ABILITY_ANTICIPATION
+ABILITY_FOREWARN
+ABILITY_SLOW_START
+ABILITY_HONEY_GATHER
+ABILITY_FRISK
+ABILITY_UNNERVE
+ABILITY_DEFEATIST
+ABILITY_MUMMY
 
-[00 70 00 09]:
+AI_CV_Superpower_New_ish:
 if_type_effectiveness AI_EFFECTIVENESS_x0_25, Score_Minus1
 if_type_effectiveness AI_EFFECTIVENESS_x0_5, Score_Minus1
 if_stat_level_less_than AI_USER, STAT_ATK, 6, Score_Minus1
-if_target_faster [22 70 00 09]
+if_target_faster AI_CV_Superpower2
 if_hp_less_than AI_USER, 41, Score_Minus1
 end
 
-[22 70 00 09]:
+AI_CV_Superpower2:
 if_hp_less_than AI_USER, 60, Score_Minus1
 end
 
-[2A 70 00 09]:
-if_hp_more_than AI_TARGET, 30, [39 70 00 09]
-if_random_less_than 100, [39 70 00 09]
+AI_CV_MagicCoat:
+if_hp_more_than AI_TARGET, 30, AI_CV_MagicCoat2
+if_random_less_than 100, AI_CV_MagicCoat2
 score -1
 
-[39 70 00 09]:
+AI_CV_MagicCoat2:
 is_first_turn_for AI_USER
-if_equal 0, [48 70 00 09]
+if_equal 0, AI_CV_MagicCoat4
 if_random_greater_than 149, Score_Plus1
 end
 
-[48 70 00 09]:
+AI_CV_MagicCoat4:
 if_random_greater_than 29, Score_Minus1
 end
 
-[4F 70 00 09]:
+AI_CV_Recycle:
 get_used_held_item AI_USER
-if_not_in_bytes [61 70 00 09], Score_Minus2
+if_not_in_bytes AI_CV_Recycle_ItemsToEncourage, Score_Minus2
 if_random_greater_than 49, Score_Plus1
 end
 
-[61 70 00 09]:
-0x86
-0x8D
-0xAE
+AI_CV_Recycle_ItemsToEncourage:
+ITEM_CHESTO_BERRY
+ITEM_LUM_BERRY
+ITEM_STARF_BERRY
 
-[65 70 00 09]:
+AI_CV_Revenge:
 if_status AI_TARGET, STATUS1_SLEEP, Score_Minus2
 if_status2 AI_TARGET, STATUS2_CONFUSION | STATUS2_INFATUATION, Score_Minus2
 if_random_greater_than 179, Score_Plus2
 end
 
-[80 70 00 09]:
+AI_CV_BrickBreak_New:
 if_side_affecting AI_TARGET, SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN, Score_Plus1
 end
 
-[8B 70 00 09]:
-if_hp_less_than AI_TARGET, 30, [A0 70 00 09]
+AI_CV_KnockOff:
+if_hp_less_than AI_TARGET, 30, AI_CV_KnockOff_End
 is_first_turn_for AI_USER
-if_more_than 0, [A0 70 00 09]
+if_more_than 0, AI_CV_KnockOff_End
 if_random_greater_than 179, Score_Plus1
 
-[A0 70 00 09]:
+AI_CV_KnockOff_End:
 end
 
-[A1 70 00 09]:
+AI_CV_Endeavor:
 if_hp_less_than AI_TARGET, 70, Score_Minus1
-if_target_faster [B8 70 00 09]
+if_target_faster AI_CV_Endeavor2
 if_hp_more_than AI_USER, 40, Score_Minus1
 score +1
 end
 
-[B8 70 00 09]:
+AI_CV_Endeavor2:
 if_hp_more_than AI_USER, 50, Score_Minus1
 score +1
 end
 
-[C2 70 00 09]:
+AI_CV_Eruption_New:
 if_type_effectiveness AI_EFFECTIVENESS_x0_25, Score_Minus1
 if_type_effectiveness AI_EFFECTIVENESS_x0_5, Score_Minus1
-if_move 0x11C, [EA 70 00 09]
-if_move 0x143, [EA 70 00 09]
-if_move 0x22D, [00 71 00 09]
-if_move 0x27C, [00 71 00 09]
+if_move MOVE_ERUPTION, AI_CV_Eruption3
+if_move MOVE_WATER_SPOUT, AI_CV_Eruption3
+if_move 0x22D, AI_CV_Eruption5
+if_move 0x27C, AI_CV_Eruption5
 
-[EA 70 00 09]:
+AI_CV_Eruption3:
 if_target_faster AI_CV_Eruption2 // the one in "standard" code
 if_hp_less_than AI_TARGET, 51, Score_Minus1
 end
 
-[F8 70 00 09]: // unreachable?
+AI_CV_Eruption4: // unreachable?
 if_hp_less_than AI_USER, 71, Score_Minus1
 end
 
-[00 71 00 09]:
+AI_CV_Eruption5:
 if_hp_less_than AI_TARGET, 51, Score_Minus1
 end
 
-[08 71 00 09]:
+AI_CV_Imprison:
 is_first_turn_for AI_USER
-if_more_than 0, [16 71 00 09]
+if_more_than 0, AI_CV_Imprison_End
 if_random_greater_than 99, Score_Plus2
 
-[16 71 00 09]:
+AI_CV_Imprison_End:
 end
 
-[17 71 00 09]:
+AI_CV_Refresh:
 if_hp_less_than AI_TARGET, 50, Score_Minus1
 end
 
-[1F 71 00 09]:
+AI_CV_Snatch_New:
 is_first_turn_for AI_USER
-if_equal 1, [65 71 00 09]
-if_target_faster [42 71 00 09]
-if_hp_not_equal AI_USER, 100, [6C 71 00 09]
-if_hp_less_than AI_TARGET, 70, [6C 71 00 09]
+if_equal 1, AI_CV_Snatch3
+if_target_faster AI_CV_Snatch2
+if_hp_not_equal AI_USER, 100, AI_CV_Snatch5
+if_hp_less_than AI_TARGET, 70, AI_CV_Snatch5
 if_random_greater_than 99, Score_Minus2
 end
 
-[42 71 00 09]:
-if_hp_more_than AI_TARGET, 25, [6C 71 00 09]
-if_has_move_with_effect AI_TARGET, EFFECT_RESTORE_HP, [65 71 00 09]
-if_has_move_with_effect AI_TARGET, EFFECT_MORNING_SUN, [65 71 00 09]
-if_has_move_with_effect AI_TARGET, EFFECT_SOFT_BOILED, [65 71 00 09]
+AI_CV_Snatch2:
+if_hp_more_than AI_TARGET, 25, AI_CV_Snatch5
+if_has_move_with_effect AI_TARGET, EFFECT_RESTORE_HP, AI_CV_Snatch3
+if_has_move_with_effect AI_TARGET, EFFECT_HEAL_WEATHER, AI_CV_Snatch3
+if_has_move_with_effect AI_TARGET, EFFECT_SOFT_BOILED, AI_CV_Snatch3
 if_random_greater_than 229, Score_Plus1
 end
 
-[65 71 00 09]:
+AI_CV_Snatch3:
 if_random_greater_than 149, Score_Plus2
 end
 
-[6C 71 00 09]:
+AI_CV_Snatch5:
 if_random_greater_than 29, Score_Minus2
 end
 
-[73 71 00 09]:
+AI_CV_MudSport:
 if_hp_less_than AI_USER, 50, Score_Minus1
 get_target_type1
 if_equal TYPE_ELECTRIC, Score_Plus1
@@ -5158,18 +5157,18 @@ if_equal TYPE_ELECTRIC, Score_Plus1
 score -1
 end
 
-[8D 71 00 09]:
+AI_CV_Overheat:
 if_type_effectiveness AI_EFFECTIVENESS_x0_25, Score_Minus1
 if_type_effectiveness AI_EFFECTIVENESS_x0_5, Score_Minus1
-if_target_faster [A7 71 00 09]
+if_target_faster AI_CV_Overheat2
 if_hp_less_than AI_USER, 61, Score_Minus1
 end
 
-[A7 71 00 09]:
+AI_CV_Overheat2:
 if_hp_less_than AI_USER, 81, Score_Minus1
 end
 
-[AF 71 00 09]:
+AI_CV_WaterSport:
 if_hp_less_than AI_USER, 50, Score_Minus1
 get_target_type1
 if_equal TYPE_FIRE, Score_Plus1
@@ -5178,15 +5177,15 @@ if_equal TYPE_FIRE, Score_Plus1
 score -1
 end
 
-[C9 71 00 09]:
-if_target_faster [DD 71 00 09]
-if_hp_more_than AI_USER, 50, [DC 71 00 09]
+AI_CV_DragonDance:
+if_target_faster AI_CV_DragonDance2
+if_hp_more_than AI_USER, 50, AI_CV_DragonDance_End
 if_random_greater_than 69, Score_Minus1
 
-[DC 71 00 09]:
+AI_CV_DragonDance_End:
 end
 
-[DD 71 00 09]:
+AI_CV_DragonDance2:
 if_random_greater_than 127, Score_Plus1
 end
 
@@ -5219,7 +5218,7 @@ if_random_greater_than 49, Score_Minus1
 end
 
 [43 72 00 09]:
-if_side_affecting AI_USER, 0x3, Score_Plus1
+if_side_affecting AI_USER, SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN, Score_Plus1
 end
 
 [4E 72 00 09]:
@@ -5230,7 +5229,7 @@ end
 [5A 72 00 09]:
 0x1F2
 
-[5E 72 00 09]:
+AI_CV_Hurricane:
 get_weather
 if_equal AI_WEATHER_SUN, Score_Minus2
 if_equal AI_WEATHER_RAIN, Score_Plus2

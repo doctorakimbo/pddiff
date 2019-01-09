@@ -1912,8 +1912,8 @@ stray text:
 = 1D9C74 -> 1005000 (repoint): AI_CheckBadMove
 		  Implements: enough stuff to warrant breaking the usual format
 		  * Removes old AI for: every +2/-2, psywave, sleep talk, minimize, sonic boom (check later to make sure all of these are now new moves - if not, it may be a bug)
-		  * AI will now use Knock Off on itemless foes (due to buff)
-		  * Bugfixes: checks for "ultra effective" as well against Wonder Guard instead of strictly exactly 2x SE; Safeguard, Curse, Yawn, and Taunt are now checked; Curse isn't used when at less than half HP at the start of the turn
+		  * Bugfixes: checks for "ultra effective" as well against Wonder Guard instead of strictly exactly 2x SE
+		  * Other improvements: Safeguard, Curse, Yawn, and Taunt are now checked; Sky Attack counts as a risky move; Curse isn't used when at less than half HP at the start of the turn; AI will now use Knock Off on itemless foes (due to buff)
 		  * New mechanics that old scripts are updated for: electric-type paralysis immunity, dark-type Prankster immunity, grass-type powder immunity, Lightning Rod (immunity), Motor Drive, Poison Heal, Magic Guard, Leaf Guard, Storm Drain, Overcoat, Big Pecks, Sap Sipper, Aroma Veil, Sweet Veil, Bulletproof, Dazzling, Queenly Majesty
 		  * Moves that bypass AI restrictions: burn moves that aren't Will-O-Wisp (this only bypasses the Fire-type check); trapping moves that aren't Mean Look / Block; switch-out moves that aren't Baton Pass; stat-resetting moves that aren't Haze; phazing moves that aren't Roar / Whirlwind
 		  * New moves: 0x27D, 0x2A6 (factored into Attract script)
@@ -1924,7 +1924,19 @@ stray text:
 		  Glitch?: [effect1E], which is clearly freeze-related, checks Flame Body instead of Magma Armor
 		  Glitch?: [effect3C] -> [effect3D] -> [effect3A] is fallthrough (might be intended, check again after determining what these are)
 ? 1DA445 -> 1005C00 (repoint): AI_CheckViability
-		  Implements: (later)
+		  Implements: enough stuff to warrant breaking the usual format
+		  * Removes old AI for: every +2/-2, conversion, sleep talk, smelling salts, skill swap, blaze kick, poison tail (check later to make sure all of these are now new moves - if not, it may be a bug)
+		  * Bugfixes: won't use a speed-lowering move like Mud Shot if the target is immune; no longer inexplicably encourages Toxic when it has a +SpDef move; no longer inexplicably discourages Protect/encourages Snatch when the opponent has specifically Defense Curl; Protect/Snatch correctly factors in all healing moves instead of just vanilla Recover-types; sandstorm and hail are no longer the wrong way around in the Fly script; Facade correctly checks the user for status instead of the target; Brick Break is encouraged vs Light Screen, not just Reflect
+		  * Other improvements: instead of a bizarre mix of moves, Mirror Move tries to prioritize any copiable move; doesn't discourage recovery when the user is faster; encourages OHKO moves after use of Mind Reader; Mean Look (why?), Dragon Dance (why?), and Knock Off are no longer encouraged to be Encored; Teleport is encouraged to be Encored; instead of encouraging stealing a short list of items, Thief is encouraged for all items that don't have a downside; Chlorophyll users prioritize Sunny Day; Volt Absorb, Water Absorb, Soundproof, Thick Fat, Flame Body, and Shell Armor are considered "good" abilities; "bad" abilities (to avoid/get rid of) are also listed
+		  * New mechanics that old scripts are updated for: p/s split (also includes removing the discouraging of, for example, -Atk moves or Reflect on a water-type since it can have physical STAB now), new Lightning Rod, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, [ability8B], Choice items, Assault Vest, Lagging Tail
+		  * Major changed probabilities: Mirror Move no longer has probability involved
+		  * New moves: 0x22D, 0x27C (factored into Eruption script); 0x161, 0x20E, 0x264, 0x265, 0x266, 0x267, 0x283 (factored into [effect58] script); 0x258, 0x272, 0x27A (factored into [effectE3] script); 0x1F2 (factored into [effectE8] script)
+		  * New move effects: Work Up, Hurricane, Quiver Dance, Coil, [effectF5], Hone Claws !!!!!!!!!!!!!!!!!!!!!!!!!!!PUT THE REST OF THE EFFECTS HERE!!!
+		  Relies on: new AI script commands, BattleMove refactor
+		  Glitch?: due to misaligned goto, Substitute will fall through into the Hyper Beam logic under certain circumstances
+		  Glitch?: might cause inexplicable use of recovery moves at full HP, this might be a misreading though (test)
+		  Glitch?: Destiny Knot is considered a "bad" item for Thief?
+		  Glitch?: an AI script for Sandstorm is fully implemented but not actually accessed
 ? 1DBA8D -> 1007300 (repoint): AI_SetupFirstTurn - do it itself later 49 FA 1B 08
 		  Implements: (later)
 ? 1DBB3B -> 1007380 (repoint): AI_DoubleBattle - do it itself later F7 FA 1B 08

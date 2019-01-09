@@ -926,9 +926,9 @@ BattleMove.extraFlags: 8765 4321
 8 = FLAG_RECOIL_MOVE or FLAG_PUNCH_MOVE
 
 BattleMove.categoryFlags: 4321
-1 = DOES_SPECIAL_DMG
-2 = SPECIAL_MOVE
-3 = STATUS_MOVE
+1 = FLAG_DOES_SPECIAL_DMG
+2 = FLAG_SPECIAL_MOVE
+3 = FLAG_STATUS_MOVE
 4 = (empty)
 (BattleMove.categoryFlags >> 1 = BattleMove.category)
 
