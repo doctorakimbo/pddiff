@@ -1,0 +1,7 @@
+atkFD_???()
+{
+	if(gBattleMons[gBattlerAttacker].0x21 == gBattleMons[gBattlerTarget].0x21 || gBattleMons[gBattlerAttacker].0x21 == gBattleMons[gBattlerTarget].0x22 || gBattleMons[gBattlerAttacker].0x22 == gBattleMons[gBattlerTarget].0x22 || gBattleMons[gBattlerAttacker].0x22 == gBattleMons[gBattlerTarget].0x22)
+		gBattleScriptCurrInstr += 5
+	else
+		gBattleScriptCurrInstr = T1_READ_PTR(gBattleScriptCurrInstr[1])
+}

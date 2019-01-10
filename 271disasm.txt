@@ -1,0 +1,217 @@
+lbl1: @221B78, @221B94, @221BB0, @221BCC
+r4 = r0
+r5 = r1
+r2 = 1/2/3/4
+r3 = 0
+fn_222240_J()
+r0 = r4
+r1 = r5
+fn_221C58_J()
+return r0
+
+
+
+
+fn_222240_J:
+r5 = r0
+r8 = r1
+r4 = r3
+r1 = &s0
+r0 = data_36A90C_J
+ldmia r0!, {r3, r6, r7}
+stmia r1!, {r3, r6, r7}
+ldmia r0!, {r3, r6}
+stmia r1!, {r3, r6}
+r0 = r5
+r1 = r8
+r3 = r4
+fn_222278_J()
+goto loc_64728
+
+
+
+
+loc_64728:
+r4 *= 4
+r7 = &s0
+r1 = r7 + r4
+r0 = *(r5 + 0x18)
+r1 = *r1
+call_via_r1()
+r2 = r0
+r0 = r5
+r1 = r8
+npc_apply_anim_looping()
+return
+
+
+
+
+fn_222278_J:
+r8 = r0
+r9 = r1
+r4 = r2
+r6 = r3
+r1 = *(r0 + 0x10)
+r0 = &s0
+*r0 = r1
+r1 = r8
+r0 = *(r1 + 0x12)
+r5 = &s0
+r5 += 2
+*r5 = r0
+r0 = r8
+r1 = r4
+FieldObjectSetDirection()
+r1 = data_222348_J
+r2 = r4 - 1
+r2 *= 2
+r0 = *(r1 + r2)
+goto loc_646AC
+
+
+
+
+loc_646AC:
+r1 = &s0
+r2 = 0
+r1 = *(r0 + r2)
+r0 = 0
+r2 = *(r5 + r0)
+r0 = r8
+npc_coords_shift()
+r0 = r9
+r1 = r4
+r2 = r6
+oamt_npc_ministep_reset()
+r2 = r9
+r2 += 0x2C
+r1 = *r2
+r0 = -0x41
+r0 &= r1
+*r2 = r0
+r1 = r8
+r0 = *r1
+r1 = 4
+r0 |= r1
+r2 = r8
+*r2 = r0
+r0 = 1
+r1 = r9
+*(r1 + 0x32) = r0
+return
+
+
+
+
+fn_221C58_J:
+r4 = r1
+fn_221C78_J()
+goto loc_64CA4
+
+
+
+
+loc_64CA4:
+if(r0 != 0) goto lbl2
+
+r0 = 0
+goto lbl3
+
+lbl2:
+r0 = 2
+*(r4 + 0x32) = r0
+r0 = 1
+goto lbl3
+
+lbl3:
+return r0
+
+
+
+
+fn_221C78_J:
+r4 = r0
+r5 = r1
+r0 = r5
+fn_221CA0_J()
+goto loc_64C10
+
+
+
+
+loc_64C10:
+if(r0 != 0) goto lbl2
+
+r0 = 0
+goto lbl3
+
+lbl2:
+r0 = r4
+npc_coords_shift_still
+r0 = *r4
+r1 = 8
+r0 |= r1
+*r4 = r0
+r2 = r5
+r2 += 0x2C
+r0 = *r2
+r1 = 0x40
+r0 |= r1
+*r2 = r0
+r0 = 1
+goto lbl3
+
+lbl3:
+return r0
+
+
+
+
+fn_221CA0_J:
+r4 = r0
+r0 = *(r4 + 0x36)
+r0++
+*(r4 + 0x36) = r0
+if(r0 > 2) goto lbl2
+
+r1 = *(r4 + 0x34)
+r0 = data_222348_J
+r1--
+r1 *= 2
+r1 = *(r0 + r1)
+goto loc_68C30
+
+lbl2:
+goto loc_68C3E
+
+
+
+
+loc_68C30:
+r0 = r4
+little_step()
+r0 = *(r4 + 0x38)
+r0++
+*(r4 + 0x38) = r0
+goto lbl3
+
+loc_68C3E:
+r0 = 0
+*(r4 + 0x36) = r0
+goto lbl3
+
+lbl3:
+r1 = 0x38
+r0 = *(r4 + r1)
+if(r0 > 0xF) goto lbl4
+
+r0 = 0
+goto lbl5
+
+lbl4:
+r0 = 1
+goto lbl5
+
+lbl5:
+return r0

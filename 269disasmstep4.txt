@@ -1,0 +1,21 @@
+atkFE_statbooststomovepower()
+{
+	r0 = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+	r6 = 0
+	
+	for(i = 0; i < 7; i++)
+	{
+		r1 = gBattleMons[r0].(0x19 + i)
+		
+		if(r1 > 6)
+		{
+			if(gBattleScriptCurrInstr[2] == 0)
+				r6 += (r1 - 6)
+			else
+				r6++
+		}
+	}
+	
+	gDynamicBasePower = gBattleMoves[gCurrentMove].power + (r6 * 20)
+	gBattleScriptCurrInstr += 3
+}

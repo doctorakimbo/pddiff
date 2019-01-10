@@ -1,0 +1,49 @@
+lbl1: @EB7FC0
+r5 = gBattleScriptCurrInstr
+r4 = *r5
+r0 = *(r4 + 1)
+GetBattlerForBattleScript()
+r2 = gBattleMons
+r1 = 0x58
+r0 *= r1
+r2 += r0
+r2 = *(r2 + 0x2E)
+r1 = *(r4 + 2)
+r0 = *(r4 + 4)
+if(r0 != 0) goto lbl2
+
+if(r1 != r2) goto lbl6
+
+goto lbl5
+
+lbl2:
+if(r0 != 1) goto lbl3
+
+if(r1 == r2) goto lbl6
+
+goto lbl5
+
+lbl3:
+if(r0 != 2) goto lbl4
+
+if(r1 <= r2) goto lbl6
+
+goto lbl5
+
+lbl4:
+if(r1 bcs r2) goto lbl6
+
+goto lbl5
+
+lbl5:
+r4 += r9
+goto lbl7
+
+lbl6:
+r0 = T1_READ_PTR(*(r4 + 5))
+r4 = r0
+goto lbl7
+
+lbl7:
+*r5 = r4
+return

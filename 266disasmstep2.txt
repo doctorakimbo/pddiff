@@ -1,0 +1,23 @@
+atkFB_???()
+{
+	r0 = GetBattlerForBattleScript(*(*gBattleScriptCurrInstr + 1))
+	r6 = (r0 * 0x58) + gBattleMons + *(*gBattleScriptCurrInstr + 3)
+	r7 = (r0 * 0x58) + gBattleMons + *(*gBattleScriptCurrInstr + 4)
+	
+	if(r0 == 0) // 1byte
+	{
+		r0 = *r6
+		r1 = *r7
+		*r6 = r1
+		*r7 = r0
+	}
+	else // 2byte
+	{
+		r0 = *r6
+		r1 = *r7
+		*r6 = r1
+		*r7 = r0
+	}
+	
+	*gBattleScriptCurrInstr += 5
+}

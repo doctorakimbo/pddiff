@@ -1,0 +1,7 @@
+lbl1: @EB8100
+r7 = gBattleScriptCurrInstr
+r6 = *r7
+r4 = T1_READ_PTR(*(r6 + 1))
+call r4
+r6 += 5
+*r7 = r6

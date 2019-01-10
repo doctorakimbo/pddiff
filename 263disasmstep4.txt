@@ -1,0 +1,9 @@
+atkF8_doubledamageatlowhp()
+{
+	battler = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+	
+	if(gBattleMons[battler].hp * 2 <= gBattleMons[battler].maxHP)
+		gDynamicBasePower = gBattleMoves[gCurrentMove].power * 2
+	
+	gBattleScriptCurrInstr += 2
+}

@@ -1,0 +1,10 @@
+atkF8_???()
+{
+	r1 = GetBattlerForBattleScript(*(*gBattleScriptCurrInstr + 1))
+	r0 = (*((r1 * 0x58) + gBattleMons + 0x28) / *((r1 * 0x58) + gBattleMons + 0x2C)) * 2
+	
+	if(r0 <= r1)
+		*gBattleMoveDamage = *((*gCurrentMove * 0xC) + gBattleMoves + 1) * 2
+	
+	*gBattleScriptCurrInstr += 2
+}

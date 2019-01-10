@@ -1,0 +1,30 @@
+lbl1: @EB7E00
+r5 = gBattleScriptCurrInstr
+r4 = *r5
+r0 = *(r4 + 1)
+fn_16634_J()
+r6 = gBattleMons
+r1 = 0x58
+r1 *= r0
+r1 += r6
+r0 = *(r1 + 0x28)
+r1 = *(r1 + 0x2C)
+r0 *= 2
+if(r0 > r1) goto lbl2
+
+r0 = gCurrentMove
+r2 = gBattleMoves
+r6 = gBattleMoveDamage
+r1 = *r0
+r0 = r1 * 2
+r0 += r1
+r0 *= 4
+r0 += r2
+r0 = *(r0 + 1)
+r0 *= 2
+*r6 = 0
+
+lbl2:
+r4 += 2
+*r5 = r4
+return
