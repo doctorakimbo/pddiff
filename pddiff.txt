@@ -73,6 +73,7 @@ abilities:
 + 0x88 = Multiscale
 + 0x89 = Toxic Boost
 + 0x8A = Flare Boost
+= 0x8B = (ai wants to use sunny day if it has this)
 + 0x8C = Telepathy
 + 0x8D = Moody
 + 0x8E = Overcoat
@@ -148,6 +149,8 @@ item effects:
 + 0x52 = Assault Vest
 + 0x53 = Eviolite
 + 0x54 = Life Orb (effectparam = 1/X HP lost)
+= 0x55 = (ai doesn't want to steal this), (ai wants to trick this to the opponent)
+= 0x56 = (ai doesn't want to steal this), (ai wants to trick this to the opponent)
 + 0x57 = Destiny Knot
 
 item IDs:
@@ -156,11 +159,15 @@ item IDs:
 
 move IDs:
 (Mirror Move, Assist, "Conversion?", "Aeroblast?", and "Sacred Fire?" can't be called by metronome)
+= 0x161 = (has effect 0x58, ai wants to use on poisoned targets)
 = 0x181 = (can't be called by metronome)
 = 0x1BA = (can't be called by metronome)
 = 0x1E6 = (can't be called by metronome)
+= 0x1F2 = (ai wants to use this immediately after a move with effect 0xE8)
 = 0x207 = (can't be copied by mimic or called by metronome)
 + 0x208 = Trick Room
+= 0x20E = (has effect 0x58, ai wants to use on statused targets)
+= 0x22D = (has Eruption effect, but ai calculates using the target's HP instead of the user's)
 = 0x23A = (can't be called by metronome)
 = 0x240 = (ai won't use moves with effect 0xE5 if it knows the target has this move)
 = 0x253 = (can't be called by metronome)
@@ -168,14 +175,23 @@ move IDs:
 = 0x255 = (can't be called by metronome)
 = 0x256 = (can't be called by metronome)
 = 0x257 = (special message in atk97_tryinfatuating)
+= 0x258 = (has effect 0xE3, ai wants to use this when target has low HP)
 = 0x25E = (can't be called by metronome)
 = 0x25F = (can't be called by metronome)
 = 0x260 = (can't be called by metronome)
 = 0x261 = (can't be called by metronome)
 = 0x262 = (can't be called by metronome)
+= 0x264 = (has effect 0x58, ai wants to use on sleeping targets)
+= 0x265 = (has effect 0x58, ai wants to use on infatuated targets)
+= 0x266 = (has effect 0x58, ai wants to use on burned targets)
+= 0x267 = (has effect 0x58, ai wants to use on frozen targets)
 = 0x26C = (can't be called by metronome)
 = 0x26D = (can't be called by metronome)
+= 0x272 = (has effect 0xE3, ai wants to use this when user has low HP)
+= 0x27A = (has effect 0xE3, ai wants to use this when target has low HP)
+= 0x27C = (has Eruption effect, but ai calculates using the target's HP instead of the user's)
 = 0x27D = (has attract effect, but ai will use on infatuated targets, but not on targets immune to spatk drops)
+= 0x283 = (has effect 0x58, ai wants to use on poisoned targets)
 = 0x28C = Magma Storm/Infestation
 = 0x28E = Infestation/Magma Storm
 = 0x294 = (can't be called by metronome)
@@ -186,35 +202,52 @@ move IDs:
 = 0x2A8 = (can't be called by metronome)
 
 move effects:
-= 0x1E = (ai won't use if target is ice-type, has Flame Body (clearly intended to be Magma Armor), has status, has Safeguard, or sun is up)
-= 0x32 = (ai won't use if target has -6 evasion, has Clear Body or Own Tempo, has Safeguard, or is confused)
-= 0x37 = (won't miss)
-= 0x38 = (won't miss)
-= 0x3A = (ai won't use if target has lowered attacking stats or user has boosted attacking stats)
-= 0x3B = (ai won't use if target has lowered defenses or user has boosted defenses)
-= 0x3C = (ai won't use if target and user are exactly the same type)
-= 0x3D = (ai won't use if target has user's primary type)
+= 0x0E = (ai wants to encore this)
+= 0x1E = (ai won't use if target is ice-type, has Flame Body (clearly intended to be Magma Armor), has status, has Safeguard, or sun is up), (if opponent used this last and is slower and has no status, ai doesn't want to use Substitute)
+= 0x32 = (ai won't use if target has -6 evasion, has Clear Body or Own Tempo, has Safeguard, or is confused), (uses same main ai script as confusion moves)
+= 0x34 = (ai wants to use if target is faster or steel-type and doesn't resist the move)
+= 0x37 = (won't miss), (ai wants to encore this)
+= 0x38 = (won't miss), (ai wants to encore this)
+= 0x3A = Power Swap
+= 0x3B = Guard Swap
+= 0x3C = (ai won't use if target and user are exactly the same type), (ai wants to encore this)
+= 0x3D = (ai won't use if target has user's primary type), (ai wants to use if super effective)
 = 0x3F = (won't miss)
-= 0x40 = (ai won't use if conditions for either paralysis or poison immunity are met)
-= 0x5D = (ai won't use if target is immune to the move's type or target isn't poisoned)
+= 0x40 = (ai won't use if conditions for either paralysis or poison immunity are met), (ai wants to use if target is faster), (ai doesn't want to use if target or user have low HP), (if opponent used this last and is slower and has no status, ai doesn't want to use Substitute)
+= 0x58 = (ai does completely different things depending on which move is specifically used, see move list above; Smelling Salts uses this)
+= 0x5D = (ai won't use if target is immune to the move's type or target isn't poisoned), (ai wants to use this)
 = 0x68 = (won't miss)
 = 0x85 = Tailwind
-= 0x8A = (ai won't use if conditions for burn immunity are met)
-= 0x8B = (ai won't use if conditions for poison immunity are met)
+= 0x86 = (ai wants to use if target is faster), (ai doesn't want to use if target is slower), (ai wants to encore this)
+= 0x8A = (ai won't use if conditions for burn immunity are met), (ai wants to encore this)
+= 0x8B = (ai won't use if conditions for poison immunity are met), (ai wants to encore this)
 = 0xC6 = (ai won't use if user has +6 evasion)
 = 0xD1 = Work Up
+= 0xD6 = (ai doesn't want to use if resisted or user has low HP)
+= 0xD7 = (ai doesn't want to use if resisted or user has low HP)
+= 0xDD = (ai doesn't want to use if resisted or user has low HP)
 = 0xDF = (ai won't use if user has +6 evasion)
 = 0xE1 = Frost Breath
-= 0xE5 = (ai won't use if target has move 0x240)
+= 0xE3 = (ai doesn't want to use if resisted), (if used from move 0x258 or 0x27A, ai wants to use if target has low HP), (if used from move 0x272, ai wants to use if user has low HP)
+= 0xE4 = (ai wants to encore this)
+= 0xE5 = (ai won't use if target has move 0x240), (ai wants to encore this)
+= 0xE6 = (ai wants to use if target has screens up)
+= 0xE8 = (ai wants to use right after using move 0x1F2)
 = 0xEE = Hurricane
-= 0xEF = (ai won't use if target has -6 spatk or -6 spdef)
-= 0xF0 = (ai won't use if user has +6 atk or +6 def)
+= 0xEF = (ai won't use if target has -6 spatk or -6 spdef), (uses same main ai script as -spdef)
+= 0xF0 = (ai won't use if user has +6 atk or +6 def), (ai wants to use if user has high HP)
 = 0xF1 = Quiver Dance
 = 0xF2 = Coil
-= 0xF3 = (ai won't use if user has +6 atk, +6 spatk, or +6 speed)
-= 0xF4 = (ai won't use if user has +6 atk, +6 speed, or +6 evasion)
-= 0xF5 = (ai won't use if user has +6 speed or +6 evasion)
+= 0xF3 = (ai won't use if user has +6 atk, +6 spatk, or +6 speed), (ai wants to use if user has high HP)
+= 0xF4 = (ai won't use if user has +6 atk, +6 speed, or +6 evasion), (uses same main ai script as Dragon Dance)
+= 0xF5 = (ai won't use if user has +6 speed or +6 evasion), (uses same main ai script as +speed)
 = 0xF6 = Hone Claws
+= 0xF8 = (ai wants to use if target is faster), (ai doesn't want to use if target is slower)
+= 0xF9 = (ai wants to use if target doesn't have status and user does), (ai doesn't want to use if target has stat 0x16 or 0x17 not equal to zero)
+= 0xFA = (ai wants to encore this)
+= 0xFB = (ai doesn't want to use if target has stat 0x16 or 0x17 not equal to zero), (ai wants to encore this)
+= 0xFC = (ai won't use if target is slower), (ai wants to use if target is faster)
+= 0xFE = (ai wants to encore this)
 
 itemdata:
 all prices divided by 10
@@ -1917,21 +1950,20 @@ stray text:
 		  * New mechanics that old scripts are updated for: electric-type paralysis immunity, dark-type Prankster immunity, grass-type powder immunity, Lightning Rod (immunity), Motor Drive, Poison Heal, Magic Guard, Leaf Guard, Storm Drain, Overcoat, Big Pecks, Sap Sipper, Aroma Veil, Sweet Veil, Bulletproof, Dazzling, Queenly Majesty
 		  * Moves that bypass AI restrictions: burn moves that aren't Will-O-Wisp (this only bypasses the Fire-type check); trapping moves that aren't Mean Look / Block; switch-out moves that aren't Baton Pass; stat-resetting moves that aren't Haze; phazing moves that aren't Roar / Whirlwind
 		  * New moves: 0x27D, 0x2A6 (factored into Attract script)
-		  * New move effects: [effect1E], [effect32], [effect3A], [effect3B], [effect3C], [effect3D], [effect40], [effect5D], Tailwind, [effect8A], [effect8B], [effectC6], Work Up, [effectDF], [effectE5], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws
+		  * New move effects: [effect1E], [effect32], Power Swap, Guard Swap, [effect3C], [effect3D], [effect40], [effect5D], Tailwind, [effect8A], [effect8B], [effectC6], Work Up, [effectDF], [effectE5], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws
 		  Relies on: new AI script commands, BattleMove refactor
 		  Glitch?: due to misaligned goto, only will-o-wisp is checked for prankster immunity
 		  Glitch?: looks like thunder wave is checked against electric-types twice instead of electric and ground (might be a transcription error? test this)
 		  Glitch?: [effect1E], which is clearly freeze-related, checks Flame Body instead of Magma Armor
-		  Glitch?: [effect3C] -> [effect3D] -> [effect3A] is fallthrough (might be intended, check again after determining what these are)
-? 1DA445 -> 1005C00 (repoint): AI_CheckViability
+		  Glitch?: [effect3C] -> [effect3D] -> Power Swap is fallthrough (might be intended, check again after determining what these are)
+= 1DA445 -> 1005C00 (repoint): AI_CheckViability
 		  Implements: enough stuff to warrant breaking the usual format
 		  * Removes old AI for: every +2/-2, conversion, sleep talk, smelling salts, skill swap, blaze kick, poison tail (check later to make sure all of these are now new moves - if not, it may be a bug)
 		  * Bugfixes: won't use a speed-lowering move like Mud Shot if the target is immune; no longer inexplicably encourages Toxic when it has a +SpDef move; no longer inexplicably discourages Protect/encourages Snatch when the opponent has specifically Defense Curl; Protect/Snatch correctly factors in all healing moves instead of just vanilla Recover-types; sandstorm and hail are no longer the wrong way around in the Fly script; Facade correctly checks the user for status instead of the target; Brick Break is encouraged vs Light Screen, not just Reflect
 		  * Other improvements: instead of a bizarre mix of moves, Mirror Move tries to prioritize any copiable move; doesn't discourage recovery when the user is faster; encourages OHKO moves after use of Mind Reader; Mean Look (why?), Dragon Dance (why?), and Knock Off are no longer encouraged to be Encored; Teleport is encouraged to be Encored; instead of encouraging stealing a short list of items, Thief is encouraged for all items that don't have a downside; Chlorophyll users prioritize Sunny Day; Volt Absorb, Water Absorb, Soundproof, Thick Fat, Flame Body, and Shell Armor are considered "good" abilities; "bad" abilities (to avoid/get rid of) are also listed
 		  * New mechanics that old scripts are updated for: p/s split (also includes removing the discouraging of, for example, -Atk moves or Reflect on a water-type since it can have physical STAB now), new Lightning Rod, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, [ability8B], Choice items, Assault Vest, Lagging Tail
-		  * Major changed probabilities: Mirror Move no longer has probability involved
 		  * New moves: 0x22D, 0x27C (factored into Eruption script); 0x161, 0x20E, 0x264, 0x265, 0x266, 0x267, 0x283 (factored into [effect58] script); 0x258, 0x272, 0x27A (factored into [effectE3] script); 0x1F2 (factored into [effectE8] script)
-		  * New move effects: Work Up, Hurricane, Quiver Dance, Coil, [effectF5], Hone Claws !!!!!!!!!!!!!!!!!!!!!!!!!!!PUT THE REST OF THE EFFECTS HERE!!!
+		  * New move effects: [effect32], [effect34], Power Swap, Guard Swap, [effect3D], [effect40], [effect58], [effect5D], [effect86], Work Up, [effectD6], [effectD7], [effectDD], Hurricane, [effectE3], [effectE6], [effectE8], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws, [effectF8], [effectF9], [effectFB], [effectFC]
 		  Relies on: new AI script commands, BattleMove refactor
 		  Glitch?: due to misaligned goto, Substitute will fall through into the Hyper Beam logic under certain circumstances
 		  Glitch?: might cause inexplicable use of recovery moves at full HP, this might be a misreading though (test)
@@ -1950,7 +1982,7 @@ stray text:
 in order:
 repointed ai scripts
 new battle script commands
-new field scripts for items
+new battle/field scripts for items
 new movement action functions
 battle ai scripts
 battle scripts
