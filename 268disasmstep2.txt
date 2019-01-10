@@ -1,0 +1,12 @@
+atkFD_???()
+{
+	r6 = (*gBattlerAttacker * 0x58) + gBattleMons + 0x21
+	r7 = (*gBattlerTarget * 0x58) + gBattleMons + 0x21
+	
+	if(*r6 == *r7 || *r6 == *(r7 + 1) || *(r6 + 1) == *r7 || *(r6 + 1) == *(r7 + 1))
+		*gBattleScriptCurrInstr += 5
+	else
+		*gBattleScriptCurrInstr = T1_READ_PTR(*(*gBattleScriptCurrInstr + 1))
+	
+	*gBattleScriptCurrInstr = *gBattleScriptCurrInstr
+}

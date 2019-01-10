@@ -1,0 +1,80 @@
+atkFA_swaporcopymondata()
+{
+	switch(gBattleScriptCurrInstr[1])
+	{
+	case 0: // 1byte
+		r1 = gBattleMons[gBattlerAttacker].(gBattleScriptCurrInstr[3])
+		r2 = gBattleMons[gBattlerTarget].(gBattleScriptCurrInstr[3])
+		
+		switch(gBattleScriptCurrInstr[2])
+		{
+		case 0:
+			r1 = (r1 + r2) / 2
+			gBattleMons[gBattlerAttacker].(gBattleScriptCurrInstr[3]) = r1
+			gBattleMons[gBattlerTarget].(gBattleScriptCurrInstr[3]) = r1
+			break;
+		case 1:
+			gBattleMons[gBattlerAttacker].(gBattleScriptCurrInstr[3]) = r2
+			gBattleMons[gBattlerTarget].(gBattleScriptCurrInstr[3]) = r1
+			break;
+		case 2:
+			gBattleMons[gBattlerAttacker].(gBattleScriptCurrInstr[3]) = r2
+			break;
+		default:
+			gBattleMons[gBattlerTarget].(gBattleScriptCurrInstr[3]) = r1
+			break;
+		}
+		
+		break;
+	case 1: // 2byte
+		r1 = gBattleMons[gBattlerAttacker].(gBattleScriptCurrInstr[3])
+		r2 = gBattleMons[gBattlerTarget].(gBattleScriptCurrInstr[3])
+		
+		switch(gBattleScriptCurrInstr[2])
+		{
+		case 0:
+			r1 = (r1 + r2) / 2
+			gBattleMons[gBattlerAttacker].(gBattleScriptCurrInstr[3]) = r1
+			gBattleMons[gBattlerTarget].(gBattleScriptCurrInstr[3]) = r1
+			break;
+		case 1:
+			gBattleMons[gBattlerAttacker].(gBattleScriptCurrInstr[3]) = r2
+			gBattleMons[gBattlerTarget].(gBattleScriptCurrInstr[3]) = r1
+			break;
+		case 2:
+			gBattleMons[gBattlerAttacker].(gBattleScriptCurrInstr[3]) = r2
+			break;
+		default:
+			gBattleMons[gBattlerTarget].(gBattleScriptCurrInstr[3]) = r1
+			break;
+		}
+		
+		break;
+	default: // 4byte
+		r1 = gBattleMons[gBattlerAttacker].(gBattleScriptCurrInstr[3])
+		r2 = gBattleMons[gBattlerTarget].(gBattleScriptCurrInstr[3])
+		
+		switch(gBattleScriptCurrInstr[2])
+		{
+		case 0:
+			r1 = (r1 + r2) / 2
+			gBattleMons[gBattlerAttacker].(gBattleScriptCurrInstr[3]) = r1
+			gBattleMons[gBattlerTarget].(gBattleScriptCurrInstr[3]) = r1
+			break;
+		case 1:
+			gBattleMons[gBattlerAttacker].(gBattleScriptCurrInstr[3]) = r2
+			gBattleMons[gBattlerTarget].(gBattleScriptCurrInstr[3]) = r1
+			break;
+		case 2:
+			gBattleMons[gBattlerAttacker].(gBattleScriptCurrInstr[3]) = r2
+			break;
+		default:
+			gBattleMons[gBattlerTarget].(gBattleScriptCurrInstr[3]) = r1
+			break;
+		}
+		
+		break;
+	}
+	
+	gBattleScriptCurrInstr += 4
+}

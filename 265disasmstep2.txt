@@ -1,0 +1,83 @@
+atkFA_???()
+{
+	r6 = (*gBattlerAttacker * 0x58) + gBattleMons + *(*gBattleScriptCurrInstr + 3)
+	r7 = (*gBattlerTarget * 0x58) + gBattleMons + *(*gBattleScriptCurrInstr + 3)
+
+	switch(*(*gBattleScriptCurrInstr + 1))
+	{
+	case 0: // 1byte
+		r1 = *r6
+		r2 = *r7
+		
+		switch(*(*gBattleScriptCurrInstr + 2))
+		{
+		case 0:
+			r1 = (r1 + r2) / 2
+			*r6 = r1
+			*r7 = r1
+			break;
+		case 1:
+			*r6 = r2
+			*r7 = r1
+			break;
+		case 2:
+			*r6 = *r7
+			break;
+		default:
+			*r7 = *r6
+			break;
+		}
+		
+		break;
+	case 1: // 2byte
+		r1 = *r6
+		r2 = *r7
+		
+		switch(*(*gBattleScriptCurrInstr + 2))
+		{
+		case 0:
+			r1 = (r1 + r2) / 2
+			*r6 = r1
+			*r7 = r1
+			break;
+		case 1:
+			*r6 = r2
+			*r7 = r1
+			break;
+		case 2:
+			*r6 = *r7
+			break;
+		default:
+			*r7 = *r6
+			break;
+		}
+		
+		break;
+	default: // 4byte
+		r1 = *r6
+		r2 = *r7
+		
+		switch(*(*gBattleScriptCurrInstr + 2))
+		{
+		case 0:
+			r1 = (r1 + r2) / 2
+			*r6 = r1
+			*r7 = r1
+			break;
+		case 1:
+			*r6 = r2
+			*r7 = r1
+			break;
+		case 2:
+			*r6 = *r7
+			break;
+		default:
+			*r7 = *r6
+			break;
+		}
+		
+		break;
+	}
+	
+	*gBattleScriptCurrInstr += 4
+}

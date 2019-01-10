@@ -1,0 +1,38 @@
+lbl1: @EB8030
+r5 = gBattleScriptCurrInstr
+r4 = *r5
+r2 = gBattleMons
+r0 = gBattlerAttacker
+r6 = *r0
+r7 = *(r0 + 1)
+r1 = 0x58
+r6 *= r1
+r6 += r2
+r6 += 0x21
+r7 *= r1
+r7 += r2
+r7 += 0x21
+r0 = *r6
+r1 = *r7
+r2 = *(r7 + 1)
+if(r0 == r1) goto lbl2
+
+if(r0 == r2) goto lbl2
+
+r0 = *(r6 + 1)
+
+if(r0 == r1) goto lbl2
+
+if(r0 == r2) goto lbl2
+
+r0 = T1_READ_PTR(*(r4 + 1))
+r4 = r0
+goto lbl3
+
+lbl2:
+r4 += 5
+goto lbl3
+
+lbl3:
+*r5 = r4
+return

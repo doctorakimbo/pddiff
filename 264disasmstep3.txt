@@ -1,0 +1,19 @@
+atkF9_setmondata()
+{
+	r0 = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+	
+	switch(gBattleScriptCurrInstr[2])
+	{
+	case 0:
+		gBattleMons[r1].(gBattleScriptCurrInstr[3]) = gBattleScriptCurrInstr[4] // 1byte
+		break;
+	case 1:
+		gBattleMons[r1].(gBattleScriptCurrInstr[3]) = gBattleScriptCurrInstr[4] // 2byte
+		break;
+	case else:
+		gBattleMons[r1].(gBattleScriptCurrInstr[3]) = gBattleScriptCurrInstr[4] // 4byte
+		break;
+	}
+	
+	gBattleScriptCurrInstr += 8
+}

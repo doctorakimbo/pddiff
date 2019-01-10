@@ -1,0 +1,5 @@
+atkFF_exec()
+{
+	call T1_READ_PTR(gBattleScriptCurrInstr[1])
+	gBattleScriptCurrInstr += 5
+}

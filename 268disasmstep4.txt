@@ -1,0 +1,7 @@
+atkFD_jumpifnocommontype()
+{
+	if(gBattleMons[gBattlerAttacker].type1 == gBattleMons[gBattlerTarget].type1 || gBattleMons[gBattlerAttacker].type1 == gBattleMons[gBattlerTarget].type2 || gBattleMons[gBattlerAttacker].type2 == gBattleMons[gBattlerTarget].type1 || gBattleMons[gBattlerAttacker].type2 == gBattleMons[gBattlerTarget].type2)
+		gBattleScriptCurrInstr += 5
+	else
+		gBattleScriptCurrInstr = T1_READ_PTR(gBattleScriptCurrInstr[1])
+}

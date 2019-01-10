@@ -994,13 +994,24 @@ AI_SCRIPT_NEW_AI = (1 << 0xA)
 gPokemonStoragePtr->0x824C = gPokemonStoragePtr->registeredItems
 
 
-new battle ai commands:
+new battle script commands:
+F8: doubledamageatlowhp (byte battler)
+F9: setmondata (byte size_case, byte index, var_size data)
+FA: swaporcopymondata (byte size_case, byte operation_case, byte index)
+FB: swapdataonmon (byte battler/size_case, byte null, byte index1, byte index2)
+FC: jumpifitem (byte battler, 2byte value, byte operation_case, 4byte dest)
+FD: jumpifnocommontype (4byte dest)
+FE: statbooststomovepower (byte battler, byte operation_case)
+FF: exec (4byte asm_func_ptr)
+
+
+new battle ai script commands:
 2A: if_bits_set (byte mask, 4byte dest)
 2B: if_bits_not_set (byte mask, 4byte dest)
 32: is_same_type (byte is_attacker_single_typed)
-33: get_move_attribute (byte which_byte)
+33: get_move_attribute (byte index)
 52: get_considered_move_target_type
 53: get_considered_move_category
 54: get_considered_move_extra_flags
 56: exec (4byte asm_func_ptr)
-57: if_tailwind_timer_isnt (byte side, byte value, 4byte dest)
+57: if_tailwind_timer_not_equal (byte side, byte value, 4byte dest)

@@ -1,0 +1,51 @@
+lbl1: @EB8090
+r5 = gBattleScriptCurrInstr
+r4 = *r5
+r0 = *(r4 + 1)
+GetBattlerForBattleScript()
+r2 = gBattleMons
+r1 = 0x58
+r0 *= r1
+r0 += r2
+r0 += 0x19
+r6 = 0
+r7 = 0
+r2 = *(r4 + 2)
+goto lbl2
+
+lbl2:
+r1 = *(r0 + r7)
+if(r1 <= 6) goto lbl5
+
+if(r2 != 0) goto lbl3
+
+r1 -= 6
+goto lbl4
+
+lbl3:
+r1 = 1
+goto lbl4
+
+lbl4:
+r6 += r1
+goto lbl5
+
+lbl5:
+r7++
+if(r7 != 7) goto lbl2
+
+r1 = 0x14
+r6 *= r1
+r0 = gCurrentMove
+r2 = gBattleMoves
+r7 = gDynamicBasePower
+r1 = *r0
+r0 = 0xC
+r0 *= r1
+r0 += r2
+r0 = *(r0 + 1)
+r0 += r6
+*r7 = r0
+r4 += 3
+*r5 = r4
+return

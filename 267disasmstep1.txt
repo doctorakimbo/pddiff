@@ -1,0 +1,45 @@
+atkFC_???()
+{
+	r5 = gBattleScriptCurrInstr
+	r4 = *r5
+	r0 = GetBattlerForBattleScript(*(r4 + 1))
+	r2 = gBattleMons
+	r1 = 0x58
+	r0 *= r1
+	r2 += r0
+	r2 = *(r2 + 0x2E)
+	r1 = *(r4 + 2)
+	r0 = *(r4 + 4)
+	
+	switch(r0)
+	{
+	case 0:
+		if(r1 == r2)
+			*r5 = T1_READ_PTR(*(r4 + 5))
+		else
+			*r5 += r9
+			
+		break;
+	case 1:
+		if(r1 != r2)
+			*r5 = T1_READ_PTR(*(r4 + 5))
+		else
+			*r5 += r9
+			
+		break;
+	case 2:
+		if(r1 > r2)
+			*r5 = T1_READ_PTR(*(r4 + 5))
+		else
+			*r5 += r9
+			
+		break;
+	default:
+		if(r1 < r2)
+			*r5 = T1_READ_PTR(*(r4 + 5))
+		else
+			*r5 += r9
+			
+		break;
+	}
+}

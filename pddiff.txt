@@ -204,7 +204,7 @@ move IDs:
 move effects:
 = 0x0E = (ai wants to encore this)
 = 0x1E = (ai won't use if target is ice-type, has Flame Body (clearly intended to be Magma Armor), has status, has Safeguard, or sun is up), (if opponent used this last and is slower and has no status, ai doesn't want to use Substitute)
-= 0x32 = (ai won't use if target has -6 evasion, has Clear Body or Own Tempo, has Safeguard, or is confused), (uses same main ai script as confusion moves)
+= 0x32 = (ai won't use if target has -6 evasion, has Clear Body or Own Tempo, has Safeguard, or is confused), (uses same main ai script as confusion moves), ("setup" move)
 = 0x34 = (ai wants to use if target is faster or steel-type and doesn't resist the move)
 = 0x37 = (won't miss), (ai wants to encore this)
 = 0x38 = (won't miss), (ai wants to encore this)
@@ -213,20 +213,22 @@ move effects:
 = 0x3C = (ai won't use if target and user are exactly the same type), (ai wants to encore this)
 = 0x3D = (ai won't use if target has user's primary type), (ai wants to use if super effective)
 = 0x3F = (won't miss)
-= 0x40 = (ai won't use if conditions for either paralysis or poison immunity are met), (ai wants to use if target is faster), (ai doesn't want to use if target or user have low HP), (if opponent used this last and is slower and has no status, ai doesn't want to use Substitute)
+= 0x40 = (ai won't use if conditions for either paralysis or poison immunity are met), (ai wants to use if target is faster), (ai doesn't want to use if target or user have low HP), (if opponent used this last and is slower and has no status, ai doesn't want to use Substitute), ("setup" move)
 = 0x58 = (ai does completely different things depending on which move is specifically used, see move list above; Smelling Salts uses this)
 = 0x5D = (ai won't use if target is immune to the move's type or target isn't poisoned), (ai wants to use this)
 = 0x68 = (won't miss)
 = 0x85 = Tailwind
 = 0x86 = (ai wants to use if target is faster), (ai doesn't want to use if target is slower), (ai wants to encore this)
-= 0x8A = (ai won't use if conditions for burn immunity are met), (ai wants to encore this)
-= 0x8B = (ai won't use if conditions for poison immunity are met), (ai wants to encore this)
+= 0x8A = (ai won't use if conditions for burn immunity are met), (ai wants to encore this), ("setup" move)
+= 0x8B = (ai won't use if conditions for poison immunity are met), (ai wants to encore this), ("setup" move)
+= 0xAE = ("setup" move)
 = 0xC6 = (ai won't use if user has +6 evasion)
 = 0xD1 = Work Up
+= 0xD4 = ("setup" move)
 = 0xD6 = (ai doesn't want to use if resisted or user has low HP)
 = 0xD7 = (ai doesn't want to use if resisted or user has low HP)
 = 0xDD = (ai doesn't want to use if resisted or user has low HP)
-= 0xDF = (ai won't use if user has +6 evasion)
+= 0xDF = (ai won't use if user has +6 evasion), ("setup" move)
 = 0xE1 = Frost Breath
 = 0xE3 = (ai doesn't want to use if resisted), (if used from move 0x258 or 0x27A, ai wants to use if target has low HP), (if used from move 0x272, ai wants to use if user has low HP)
 = 0xE4 = (ai wants to encore this)
@@ -234,13 +236,13 @@ move effects:
 = 0xE6 = (ai wants to use if target has screens up)
 = 0xE8 = (ai wants to use right after using move 0x1F2)
 = 0xEE = Hurricane
-= 0xEF = (ai won't use if target has -6 spatk or -6 spdef), (uses same main ai script as -spdef)
-= 0xF0 = (ai won't use if user has +6 atk or +6 def), (ai wants to use if user has high HP)
+= 0xEF = (ai won't use if target has -6 spatk or -6 spdef), (uses same main ai script as -spdef), ("setup" move)
+= 0xF0 = (ai won't use if user has +6 atk or +6 def), (ai wants to use if user has high HP), ("setup" move)
 = 0xF1 = Quiver Dance
 = 0xF2 = Coil
-= 0xF3 = (ai won't use if user has +6 atk, +6 spatk, or +6 speed), (ai wants to use if user has high HP)
-= 0xF4 = (ai won't use if user has +6 atk, +6 speed, or +6 evasion), (uses same main ai script as Dragon Dance)
-= 0xF5 = (ai won't use if user has +6 speed or +6 evasion), (uses same main ai script as +speed)
+= 0xF3 = (ai won't use if user has +6 atk, +6 spatk, or +6 speed), (ai wants to use if user has high HP), ("setup" move)
+= 0xF4 = (ai won't use if user has +6 atk, +6 speed, or +6 evasion), (uses same main ai script as Dragon Dance), ("setup" move)
+= 0xF5 = (ai won't use if user has +6 speed or +6 evasion), (uses same main ai script as +speed), ("setup" move)
 = 0xF6 = Hone Claws
 = 0xF8 = (ai wants to use if target is faster), (ai doesn't want to use if target is slower)
 = 0xF9 = (ai wants to use if target doesn't have status and user does), (ai doesn't want to use if target has stat 0x16 or 0x17 not equal to zero)
@@ -456,6 +458,7 @@ stray text:
 ! expand 399C90 (battle anim palettes???) to [BROKEN] (11EDD80)
 + expand 39FDB0 (field object graphics info pointers) from 174 entries to 256 (j4EFDA0, e14EFDA0)
 ! expand 3A65BC (movement action functions) from 170 entries to 226 (j221550, eUNKNOWN)
+	! add bonus m.a.f. table at (j2218D8, eUNKNOWN)
 + expand 3ACC08 (battle anim sprites) from 289 entries to 462 (1200300)
 	+ also set 3AD048 (gBattleAnimPicTable[136]) to 1200740
 	+ also set 3AD350 (gBattleAnimPicTable[233]) to 1200A48
@@ -1370,7 +1373,7 @@ stray text:
 + 0C9528 -> 11FC000 (repoint): BattleAICmd_nullsub_56 (see 261disasm)
 		  Implements: new battle ai script command (BattleAICmd_exec); executes the given ASM function then continues running the AI script
 = 0C952C -> ?????? (repoint; j183190): BattleAICmd_nullsub_57 (see 262disasm)
-		  Implements: new battle ai script command (BattleAICmd_if_tailwind_timer_isnt); jumps if the given side's tailwind timer is a given value
+		  Implements: new battle ai script command (BattleAICmd_if_tailwind_timer_not_equal); jumps if the given side's tailwind timer is a given value
 = 0C97FC: oei_task_add (see 205disasm)
 		  Implements: option to not execute task08_080C9820, need more info
 		  Required knowledge: j0203BFF0
@@ -1441,8 +1444,9 @@ stray text:
 		  Implements: correct ids for rearranged pokeballs
 		  Relies on: all calls to ItemIdToBallId to use correct parameters
 + 0EF972, 0F02D6: 14 DC -> 00 00 (no longer limited to 12 types of pokeballs)
-+ 0EFD2A: 0D 68 -> 08 47
+- 0EFD2A: 0D 68 -> 08 47
   0EFD4C: 18 40 02 02 -> 01 AB EE 09 (jumps (bx) to extra fn at 1EEAB00, then back (jEEAB00, see 217disasm))
+  RE-REPOINT THIS TO FIRST HALF
 		  Implements: critical capture animation
 ! 0F11F2: 0B -> 1F (max pokeball types 12 -> 32)
 		  GLITCH!: breaks battle animations, some other change probably needed
@@ -1514,11 +1518,13 @@ stray text:
 		  Requires in future: fn_3C7418_J
 ! 10457A: 01 68 -> 87 46
   10458C: F0 AC 03 02 -> 40 B4 EE 09 (jumps (mov) to extra fn at 1EEB440, then back (jEEB440, see 228disasm))
+  RE-REPOINT THIS TO FIRST HALF
 		  Implements: cleans up extra data display from sub_810603C
 		  Requires in future: fn_EEB450_J
 		  Note: doesn't work yet, need more stuff
 ! 1045E0: 01 68 -> 87 46
   1045E8: F0 AC 03 02 -> 48 B4 EE 09 (jumps (mov) to extra fn at 1EEB448, then back (jEEB448, see 229disasm))
+  RE-REPOINT THIS TO FIRST HALF
   		  Implements: cleans up extra data display from sub_810603C
 		  Requires in future: fn_EEB450_J
 		  Note: doesn't work yet, need more stuff
@@ -1969,22 +1975,106 @@ stray text:
 		  Glitch?: might cause inexplicable use of recovery moves at full HP, this might be a misreading though (test)
 		  Glitch?: Destiny Knot is considered a "bad" item for Thief?
 		  Glitch?: an AI script for Sandstorm is fully implemented but not actually accessed
-? 1DBA8D -> 1007300 (repoint): AI_SetupFirstTurn - do it itself later 49 FA 1B 08
-		  Implements: (later)
-? 1DBB3B -> 1007380 (repoint): AI_DoubleBattle - do it itself later F7 FA 1B 08
-		  Implements: (later)
+- 1DBA8D -> 1007300 (repoint): AI_SetupFirstTurn
+		  Implements: changes which moves the AI counts as setup (removes every +2/-2, Conversion; adds sleep, Toxic, [effect32], [effect40], [effect8A], [effect8B], [effectAE], Work Up, [effectD4], [effectDF], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws)
+		  Note: check later to make sure all of the removed ones are now new moves - if not, it may be a bug
+		  GLITCH!: This actually does nothing at all due to a misplaced pointer
+- 1DBB3B -> 1007380 (repoint): AI_Unknown
+		  Implements: AI layer that discourages supereffective moves for some reason
 + 1DD0C9: C5 -> CC (no idea what this does (m4a))
 + 1E3B27: D0 -> E0 (no idea what this does (isagbprn))
 ! 1EA14C+: [text and data, go through here thoroughly later; jp 1D9634+]
 
 
+= ?????? (j221B78): movement action function 0xC2
+  ?????? (j221B94): movement action function 0xC3
+  ?????? (j221BB0): movement action function 0xC4  
+  ?????? (j221BCC): movement action function 0xC5 (see 271disasm)
+		Implements: 
+= ?????? (j221BE8): movement action function 0xC6
+  ?????? (j221C04): movement action function 0xC7
+  ?????? (j221C20): movement action function 0xC8
+  ?????? (j221C3C): movement action function 0xC9
+= ?????? (j221D08): movement action function 0xD2
+  ?????? (j221D24): movement action function 0xD3
+  ?????? (j221D40): movement action function 0xD4
+  ?????? (j221D5C): movement action function 0xD5
+= ?????? (j221D78): movement action function 0xD6
+  ?????? (j221D94): movement action function 0xD7
+  ?????? (j221DB0): movement action function 0xD8
+  ?????? (j221DCC): movement action function 0xD9
+= ?????? (j221F88): movement action function 0xDA
+  ?????? (j221FA4): movement action function 0xDB
+  ?????? (j221FC0): movement action function 0xDC
+  ?????? (j221FDC): movement action function 0xDD
+= ?????? (j221FF8): movement action function 0xDE
+  ?????? (j222014): movement action function 0xDF
+  ?????? (j222030): movement action function 0xE0
+  ?????? (j22204C): movement action function 0xE1
+= ?????? (j222068): movement action function 0xCA
+  ?????? (j222084): movement action function 0xCB
+  ?????? (j2220A0): movement action function 0xCC
+  ?????? (j2220BC): movement action function 0xCD
+= ?????? (j2220D8): movement action function 0xCE
+  ?????? (j2220F4): movement action function 0xCF
+  ?????? (j222110): movement action function 0xD0
+  ?????? (j22212C): movement action function 0xD1
+= ?????? (j222358): movement action function 0xBE
+  ?????? (j22237E): movement action function 0xBF
+  ?????? (j2223A4): movement action function 0xC0
+  ?????? (j2223CA): movement action function 0xC1
+= ?????? (j222404): movement action function 0xBA
+  ?????? (j22242A): movement action function 0xBB
+  ?????? (j222450): movement action function 0xBC
+  ?????? (j222478): movement action function 0xBD
+= ?????? (j222630): movement action function 0xB6
+  ?????? (j22264C): movement action function 0xB7
+  ?????? (j222668): movement action function 0xB8
+  ?????? (j222684): movement action function 0xB9
+= ?????? (j2226B0): movement action function 0xB2
+  ?????? (j2226CC): movement action function 0xB3
+  ?????? (j2226E8): movement action function 0xB4
+  ?????? (j222704): movement action function 0xB5
+= ?????? (j222818): movement action function 0xAE
+  ?????? (j222832): movement action function 0xAF
+  ?????? (j22284C): movement action function 0xB0
+  ?????? (j222866): movement action function 0xB1
+= ?????? (j22292C): movement action function 0xAA
+  ?????? (j222946): movement action function 0xAB
+  ?????? (j222960): movement action function 0xAC
+  ?????? (j22297A): movement action function 0xAD
+
+
+
+
+- EB7E00: atkF8_doubledamageatlowhp (see 263disasm)
+		  Implements: new battle script command that doubles damage if the given mon is at less than half HP
+- EB7E60: atkF9_setmondata (see 264disasm)
+		  Implements: new battle script command that sets any given data for the given mon
+- EB7EB0: atkFA_swaporcopymondata (see 265disasm)
+		  Implements: new battle script command that swaps, copies, or averages any given data for the attacker and target, depending on case (0 = average the two and set both to that average; 1 = swap the two; 2 = set the attacker's to the target's; 3 = set the target's to the attacker's)
+- EB7F70: atkFB_swapdataonmon (see 266disasm)
+		  Implements: new battle script command that swaps the two given values for the given mon
+		  Glitch?: first param controls data size and battler index, second param is never read; obviously one of those is meant for the second param
+- EB7FC0: atkFC_jumpifitem (see 267disasm)
+		  Implements: new battle script command that jumps if the held item comparison is true, depending on case (0 = equal, 1 = not equal, 2 = less than, 3 = greater than)
+- EB8030: atkFD_jumpifnocommontype (see 268disasm)
+		  Implements: new battle script command that jumps if the attacker and target don't share any types
+- EB8090: atkFE_statbooststomovepower (see 269disasm)
+		  Implements: new battle script command that either counts the stat boosts (case 0) or counts the boosted stats (case 1), then adds that to the base power
+		  Note: this isn't the way it works in the actual games, stat drops should subtract from the number (for case 0, what even is case 1?)
+- EB8100: atkFF_exec (see 270disasm)
+		  Implements: new battle script command that executes the given ASM function then continues running the battle script
+
+
+
+(starts at 0xAA)
+
 
 in order:
-repointed ai scripts
-new battle script commands
-new battle/field scripts for items
+new battle/field scripts for items (soone)
 new movement action functions
-battle ai scripts
+battle ai scripts (AI_New)
 battle scripts
 misc animation scripts (1B 9C 1B 08 -> 64 35 30 09)
 move animation scripts

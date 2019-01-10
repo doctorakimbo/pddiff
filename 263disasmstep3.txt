@@ -1,0 +1,9 @@
+atkF8_???()
+{
+	r1 = GetBattlerForBattleScript(gBattleScriptCurrInstr[1])
+	
+	if(gBattleMons[r1].0x28 * 2 <= gBattleMons[r1].0x2C)
+		gBattleMoveDamage = gBattleMoves[gCurrentMove].1 * 2
+	
+	gBattleScriptCurrInstr += 2
+}
