@@ -265,7 +265,6 @@ leftovers: effparam = 10 -> 0xFF
 sea incense: effparam = 5 -> 20
 lax incense: effparam = 5 -> 10
 changed fieldscriptptrs: pomeg-tamato
-changed battlescriptptrs: choice band, stick
 
 pokeball types:
 + 0x01 = Ultra Ball -> Master Ball
@@ -2068,12 +2067,10 @@ stray text:
 
 
 
-(starts at 0xAA)
-
 
 in order:
-new battle/field scripts for items (soone)
 new movement action functions
+new battle/field scripts for items (pomeg-tamato E2E640)
 battle ai scripts (AI_New)
 battle scripts
 misc animation scripts (1B 9C 1B 08 -> 64 35 30 09)
