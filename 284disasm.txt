@@ -1,0 +1,50 @@
+lbl1: @22292C, @222946, @222960, @22297A
+r4 = r0
+r5 = r1
+r2 = 1/2/3/4
+fn_2229AA_J()
+r0 = r4
+r1 = r5
+fn_222994_J()
+return r0
+
+
+
+
+fn_2229AA_J:
+r4 = r0
+r5 = r1
+fn_2229E0_J()
+r0 = *(r4 + 0x18)
+fn_63440()
+r2 = r0
+r0 = r4
+r1 = r5
+fn_63554()
+return
+
+
+
+
+fn_2229E0_J:
+r6 = r0
+r8 = r1
+r5 = r2
+r1 = *(r6 + 0x10)
+r0 = &s0
+*r0 = r1
+r1 = r8
+r0 = *(r1 + 0x12)
+r4 = &s0
+r4 += 2
+*r4 = r0
+r0 = r6
+r1 = r5
+SetEventObjectDirection()
+r0 = r5 - 1
+r1 = 1
+r0 ^= r1
+r0++
+r1 = &s0
+r2 = r4
+goto loc_647EC

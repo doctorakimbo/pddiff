@@ -1,0 +1,123 @@
+fn_E2E640_J()
+{
+	data_03005EE8_J = fn_E2E660_J
+	fn_A16D0()
+}
+
+
+
+
+
+fn_E2E660_J(arg0, arg1)
+{
+	r4 = &gPlayerParty[data_0203B0A0.9]
+	
+	// item data structure is different in en, remember to fix
+	if(GetMonData(r4, gItems[gSpecialVar_ItemId].0x24) == 0 && GetMonData(r4, 0x20) == 0xFF)
+		r7 = 1
+	else
+		r7 = 0
+	
+	PlaySE(5)
+	
+	if(r7 != 0)
+	{
+		data_0203B0C0 = 0
+		fn_1202F8(data_3DDE0B_J, 1)
+		schedule_bg_copy_tilemap_to_vram(2)
+		gTasks[arg0].0 = arg1
+	}
+	else
+	{
+		fn_124DC0(arg0)
+		data_03005EE8_J = fn_E2E728_J
+	}
+}
+
+
+
+
+
+fn_E2E728_J(arg0)
+{
+	r4 = &gPlayerParty[data_0203B0A0.9]
+	
+	// item data structure is different in en, remember to fix
+	r7 = gItems[gSpecialVar_ItemId].0x24 - 0x1A
+	r0 = GetMonData(r4, r7)
+	
+	if(r0 != 0)
+	{
+		if(r0 <= 10)
+			r0 = 0
+		else
+			r0 -= 10
+		
+		gSpecialVar_0x8004 = r0
+		SetMonData(r4, r7, gSpecialVar_0x8004)
+	}
+	else
+		r6 = 1
+	
+	r0 = GetMonData(r4, 0x20)
+	
+	if(r0 != 255)
+	{
+		if(r0 < 100)
+			r0 += 10
+		elseif(r0 < 200)
+			r0 += 5
+		elseif(r0 < 254)
+			r0 += 2
+		else
+			r0 = 255
+		
+		gSpecialVar_0x8004 = r0
+		SetMonData(r4, 0x20, gSpecialVar_0x8004)
+	}
+	else
+		r6 += 2
+	
+	r2 = GetMonData(r4, 0x39)
+	CalculateMonStats(r4)
+	
+	if(r2 == 1)
+	{
+		gSpecialVar_0x8004 = 1
+		SetMonData(r4, 0x39, gSpecialVar_0x8004)
+	}
+	
+	data_0203B0C0 = 1
+	fn_A2294(4, r4, gSpecialVar_ItemId)
+	PlaySE(1)
+	RemoveBagItem(gSpecialVar_ItemId, 1)
+	fn_1202E0(r4, gStringVar1)
+	fn_E2E8CC_J(r7)
+	
+	switch(r6)
+	{
+	case 0:
+		r1 = data_E2E918_J
+		break;
+	case 1:
+		r1 = data_E2E963_J
+		break;
+	default:
+		r1 = data_E2E93C_J
+		break;
+	}
+	
+	StringExpandPlaceholders(gStringVar4, r1)
+	fn_1202F8(gStringVar4, 1)
+	schedule_bg_copy_tilemap_to_vram(2)
+	gTasks[arg0].0 = fn_1255BC
+}
+
+
+
+
+
+fn_E2E8CC_J(as_r7 arg0)
+{
+	StringCopy(gStringVar1[20], data_E2E900_J[arg0]) // array size 4
+}

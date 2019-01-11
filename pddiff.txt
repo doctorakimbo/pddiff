@@ -1989,63 +1989,82 @@ stray text:
   ?????? (j221B94): movement action function 0xC3
   ?????? (j221BB0): movement action function 0xC4  
   ?????? (j221BCC): movement action function 0xC5 (see 271disasm)
-		Implements: 
+		  Implements: works like regular walking, but the directions are different (south/west = southwest, north = northwest, east = southeast)
 = ?????? (j221BE8): movement action function 0xC6
   ?????? (j221C04): movement action function 0xC7
   ?????? (j221C20): movement action function 0xC8
-  ?????? (j221C3C): movement action function 0xC9
+  ?????? (j221C3C): movement action function 0xC9 (see 272disasm)
+		  Implements: works like regular walking, but the directions are different (north/east = northeast, south = southeast, west = northwest)
 = ?????? (j221D08): movement action function 0xD2
   ?????? (j221D24): movement action function 0xD3
   ?????? (j221D40): movement action function 0xD4
-  ?????? (j221D5C): movement action function 0xD5
+  ?????? (j221D5C): movement action function 0xD5 (see 273disasm)
+		  Implements: works like regular running, but the directions are different (south/west = southwest, north = northwest, east = southeast)
 = ?????? (j221D78): movement action function 0xD6
   ?????? (j221D94): movement action function 0xD7
   ?????? (j221DB0): movement action function 0xD8
-  ?????? (j221DCC): movement action function 0xD9
+  ?????? (j221DCC): movement action function 0xD9 (see 274disasm)
+		  Implements: works like regular running, but the directions are different (north/east = northeast, south = southeast, west = northwest)
 = ?????? (j221F88): movement action function 0xDA
   ?????? (j221FA4): movement action function 0xDB
   ?????? (j221FC0): movement action function 0xDC
-  ?????? (j221FDC): movement action function 0xDD
+  ?????? (j221FDC): movement action function 0xDD (see 275disasm)
+		  Implements: works like regular "ministep" speed 1 (?), but the directions are different (south/west = southwest, north = northwest, east = southeast)
 = ?????? (j221FF8): movement action function 0xDE
   ?????? (j222014): movement action function 0xDF
   ?????? (j222030): movement action function 0xE0
-  ?????? (j22204C): movement action function 0xE1
+  ?????? (j22204C): movement action function 0xE1 (see 276disasm)
+		  Implements: works like regular "ministep" speed 1 (?), but the directions are different (north/east = northeast, south = southeast, west = northwest)
 = ?????? (j222068): movement action function 0xCA
   ?????? (j222084): movement action function 0xCB
   ?????? (j2220A0): movement action function 0xCC
-  ?????? (j2220BC): movement action function 0xCD
+  ?????? (j2220BC): movement action function 0xCD (see 277disasm)
+		  Implements: works like regular "ministep" speed 0 (?), but the directions are different (south/west = southwest, north = northwest, east = southeast)
 = ?????? (j2220D8): movement action function 0xCE
   ?????? (j2220F4): movement action function 0xCF
   ?????? (j222110): movement action function 0xD0
-  ?????? (j22212C): movement action function 0xD1
+  ?????? (j22212C): movement action function 0xD1 (see 278disasm)
+		  Implements: works like regular "ministep" speed 0 (?), but the directions are different (north/east = northeast, south = southeast, west = northwest)
 = ?????? (j222358): movement action function 0xBE
   ?????? (j22237E): movement action function 0xBF
   ?????? (j2223A4): movement action function 0xC0
-  ?????? (j2223CA): movement action function 0xC1
+  ?????? (j2223CA): movement action function 0xC1 (see 279disasm)
+		  Implements: works like regular jumping (speed 0), but in the opposite direction
 = ?????? (j222404): movement action function 0xBA
   ?????? (j22242A): movement action function 0xBB
   ?????? (j222450): movement action function 0xBC
-  ?????? (j222478): movement action function 0xBD
+  ?????? (j222478): movement action function 0xBD (see 280disasm)
+		  Implements: works like regular jumping (speed 2), but in the opposite direction
 = ?????? (j222630): movement action function 0xB6
   ?????? (j22264C): movement action function 0xB7
   ?????? (j222668): movement action function 0xB8
-  ?????? (j222684): movement action function 0xB9
+  ?????? (j222684): movement action function 0xB9 (see 281disasm)
+		  Implements: works like regular walking (speed 1), but in the opposite direction
 = ?????? (j2226B0): movement action function 0xB2
   ?????? (j2226CC): movement action function 0xB3
   ?????? (j2226E8): movement action function 0xB4
-  ?????? (j222704): movement action function 0xB5
+  ?????? (j222704): movement action function 0xB5 (see 282disasm)
+		  Implements: works like regular walking (speed 0), but in the opposite direction
 = ?????? (j222818): movement action function 0xAE
   ?????? (j222832): movement action function 0xAF
   ?????? (j22284C): movement action function 0xB0
-  ?????? (j222866): movement action function 0xB1
+  ?????? (j222866): movement action function 0xB1 (see 283disasm)
+		  Implements: works like regular slow-walking, but in the opposite direction
 = ?????? (j22292C): movement action function 0xAA
   ?????? (j222946): movement action function 0xAB
   ?????? (j222960): movement action function 0xAC
-  ?????? (j22297A): movement action function 0xAD
+  ?????? (j22297A): movement action function 0xAD (see 284disasm)
+		  Implements: works like regular slow-walking (again? maybe this is wrong), but in the opposite direction
 
 
+  
+= E2E640: ItemUseOutOfBattle_EVReduction (see 285disasm)
+		  Implements: field function for EV-reduction berries
+		  Required knowledge: j03005EE8
+		  <<<<<NOT DONE>>>>>
 
 
+  
 - EB7E00: atkF8_doubledamageatlowhp (see 263disasm)
 		  Implements: new battle script command that doubles damage if the given mon is at less than half HP
 - EB7E60: atkF9_setmondata (see 264disasm)
@@ -2069,8 +2088,7 @@ stray text:
 
 
 in order:
-new movement action functions
-new battle/field scripts for items (pomeg-tamato E2E640)
+new field scripts for items (pomeg-tamato E2E640)
 battle ai scripts (AI_New)
 battle scripts
 misc animation scripts (1B 9C 1B 08 -> 64 35 30 09)

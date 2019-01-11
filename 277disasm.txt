@@ -1,0 +1,12 @@
+lbl1: @222068, @222084, @2220A0, @2220BC
+r4 = r0
+r5 = r1
+r2 = 1/2/3/4
+r3 = 0
+fn_222240_J()
+r0 = r4
+r1 = r5
+fn_222148_J()
+return r0
+
+// just see 275disasm with speed 0

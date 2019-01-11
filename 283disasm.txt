@@ -1,0 +1,52 @@
+lbl1: @222818, @222832, @22284C, @222866
+r4 = r0
+r5 = r1
+r2 = 1/2/3/4
+fn_222880_J()
+r0 = r4
+r1 = r5
+fn_2228D8_J()
+return r0
+
+// just 282disasm, but slow walking
+
+
+
+
+fn_222880_J:
+r4 = r0
+r5 = r1
+fn_222898_J()
+goto loc_64BE6
+
+
+
+
+loc_64BE6:
+	npc_apply_anim_looping(eventObject, sprite, GetMoveDirectionAnimNum(eventObject->facingDirection));
+}
+
+
+
+
+fn_222898_J:
+r6 = r0
+r8 = r1
+r5 = r2
+r1 = *(r6 + 0x10)
+r0 = &s0
+*r0 = r1
+r1 = r8
+r0 = *(r1 + 0x12)
+r4 = &s0
+r4 += 2
+*r4 = r0
+r0 = r6
+r1 = r5
+SetEventObjectDirection()
+r0 = r5 - 1
+r1 = 1
+r0 ^= r1
+r0++
+r1 = &s0
+goto loc_64B92

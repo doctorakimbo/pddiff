@@ -1,0 +1,52 @@
+lbl1: @221D08, @221D24, @221D40, @221D5C
+r4 = r0
+r5 = r1
+r2 = 1/2/3/4
+r3 = 0
+fn_221ED8_J()
+r0 = r4
+r1 = r5
+fn_221DE8_J()
+return r0
+
+// just see 271disasm but running
+
+
+
+
+fn_221ED8_J:
+r4 = r0
+r5 = r1
+fn_221EF0_J()
+goto loc_65F6E
+
+loc_65F6E:
+	npc_apply_anim_looping(eventObject, sprite, GetRunningDirectionAnimNum(eventObject->facingDirection));
+}
+
+
+
+
+fn_221EF0_J:
+r6 = r0
+r8 = r1
+r5 = r2
+r1 = *(r6 + 0x10)
+r0 = &s0
+*r0 = r1
+r1 = r8
+r0 = *(r1 + 0x12)
+r4 = &s0
+r4 += 2
+*r4 = r0
+r0 = r6
+r1 = r5
+SetEventObjectDirection()
+r1 = data_222348_J
+r2 = r5 - 1
+r2 *= 2
+r0 = *(r1 + r2)
+goto loc_65F18
+
+
+etc.

@@ -1,0 +1,100 @@
+lbl1: @221BE8, @221C04, @221C20, @221C3C
+r4 = r0
+r5 = r1
+r2 = 1/2/3/4
+r3 = 0
+fn_2222C4_J()
+r0 = r4
+r1 = r5
+fn_221C68_J()
+return r0
+
+// this whole thing is basically just regular walking, but with data_222348_J[] (plus 4) as a lookup for the actual directions
+thus
+06 00 08 00 07 00 08 00
+DIR_SOUTH = DIR_SOUTHEAST
+DIR_NORTH = DIR_NORTHEAST
+DIR_WEST = DIR_NORTHWEST
+DIR_EAST = DIR_NORTHEAST
+
+
+
+
+fn_2222C4_J:
+r5 = r0
+r8 = r1
+r4 = r3
+r1 = &s0
+r0 = data_3A6884
+ldmia r0!, {r3, r6, r7}
+stmia r1!, {r3, r6, r7}
+ldmia r0!, {r3, r6}
+stmia r1!, {r3, r6}
+r0 = r5
+r1 = r8
+r3 = r4
+fn_2222FC_J()
+goto loc_64728
+
+
+
+
+fn_2222FC_J:
+r8 = r0
+r9 = r1
+r4 = r2
+r6 = r3
+r1 = *(r0 + 0x10)
+r0 = &s0
+*r0 = r1
+r1 = r8
+r0 = *(r1 + 0x12)
+r5 = &s0
+r5 += 2
+*r5 = r0
+r0 = r8
+r1 = r4
+FieldObjectSetDirection()
+r1 = data_222348_J
+r2 = r4 + 3
+r2 *= 2
+r0 = *(r1 + r2)
+goto loc_646AC
+
+
+
+
+fn_221C68_J:
+r4 = r1
+fn_221C8C_J()
+goto loc_64CA4
+
+
+
+
+fn_221C8C_J:
+r4 = r0
+r5 = r1
+r0 = r5
+fn_221CD4_J()
+goto loc_64C10
+
+
+
+
+fn_221CD4_J:
+r4 = r0
+r0 = *(r4 + 0x36)
+r0++
+*(r4 + 0x36) = r0
+if(r0 > 2) goto lbl2
+
+r1 = *(r4 + 0x34)
+r0 = data_222348_J
+r1 += 3
+r1 *= 2
+r1 = *(r0 + r1)
+goto loc_68C30
+
+lbl2:
+goto loc_68C3E

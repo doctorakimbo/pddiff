@@ -1,0 +1,124 @@
+fn_E2E640_J()
+{
+	data_03005EE8_J = fn_E2E660_J
+	fn_A16D0()
+}
+
+
+
+
+
+fn_E2E660_J(taskId, arg1)
+{
+	mon = &gPlayerParty[data_0203B0A0.9]
+	
+	// item data structure is different in en, remember to fix
+	if(GetMonData(mon, gItems[gSpecialVar_ItemId].secondaryId) == 0 && GetMonData(mon, MON_DATA_FRIENDSHIP) == 255)
+		noEffect = TRUE
+	else
+		noEffect = FALSE
+	
+	PlaySE(5)
+	
+	if(noEffect)
+	{
+		data_0203B0C0 = 0
+		fn_1202F8(data_3DDE0B_J, 1)
+		schedule_bg_copy_tilemap_to_vram(2)
+		gTasks[taskId].func = arg1
+	}
+	else
+	{
+		fn_124DC0(taskId)
+		data_03005EE8_J = fn_E2E728_J
+	}
+}
+
+
+
+
+
+fn_E2E728_J(taskId)
+{
+	mon = &gPlayerParty[data_0203B0A0.9]
+	
+	// item data structure is different in en, remember to fix
+	statId = gItems[gSpecialVar_ItemId].secondaryId
+	ev = GetMonData(mon, statId)
+	
+	if(ev != 0)
+	{
+		if(ev <= 10)
+			ev = 0
+		else
+			ev -= 10
+		
+		gSpecialVar_0x8004 = ev
+		SetMonData(mon, statId, gSpecialVar_0x8004)
+	}
+	else
+		r6 = 1
+	
+	happiness = GetMonData(mon, MON_DATA_FRIENDSHIP)
+	
+	if(happiness != 255)
+	{
+		if(happiness < 100)
+			happiness += 10
+		elseif(happiness < 200)
+			happiness += 5
+		elseif(happiness < 254)
+			happiness += 2
+		else
+			happiness = 255
+		
+		gSpecialVar_0x8004 = happiness
+		SetMonData(mon, MON_DATA_FRIENDSHIP, gSpecialVar_0x8004)
+	}
+	else
+		r6 += 2
+	
+	oldHP = GetMonData(mon, MON_DATA_HP)
+	CalculateMonStats(mon)
+	
+	if(oldHP == 1)
+	{
+		gSpecialVar_0x8004 = 1
+		SetMonData(mon, MON_DATA_HP, gSpecialVar_0x8004)
+	}
+	
+	data_0203B0C0 = 1
+	fn_A2294(4, mon, gSpecialVar_ItemId)
+	PlaySE(1)
+	RemoveBagItem(gSpecialVar_ItemId, 1)
+	fn_1202E0(mon, gStringVar1)
+	fn_E2E8CC_J(statId - MON_DATA_HP_EV)
+	
+	switch(r6)
+	{
+	case 0:
+		r1 = data_E2E918_J
+		break;
+	case 1:
+		r1 = data_E2E963_J
+		break;
+	default:
+		r1 = data_E2E93C_J
+		break;
+	}
+	
+	StringExpandPlaceholders(gStringVar4, r1)
+	fn_1202F8(gStringVar4, 1)
+	schedule_bg_copy_tilemap_to_vram(2)
+	gTasks[taskId].func = fn_1255BC
+}
+
+
+
+
+
+fn_E2E8CC_J(as_r7 index)
+{
+	StringCopy(gStringVar1[20], data_E2E900_J[index]) // array size 4
+	// if this does what I think it does, changing that 20 to something further down is necessary
+}

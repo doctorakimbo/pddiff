@@ -1,0 +1,127 @@
+fn_222358_J/fn_22237E_J/fn_2223A4_J/fn_2223CA_J(arg0, arg1)
+{
+	r2 = 1/2/3/4
+	fn_22249C_J(arg0, arg1, r2, 1, 2)
+	fn_2223F0_J(arg0, arg1)
+}
+
+
+
+
+fn_22249C_J(arg0, arg1, arg2, arg3, arg4)
+{
+	fn_2224C4_J(arg0, arg1, arg2, arg3, arg4)
+	npc_apply_anim_looping(eventObject, sprite, GetMoveDirectionAnimNum(eventObject->facingDirection));
+    DoShadowFieldEffect(eventObject);
+}
+
+
+
+
+fn_2224C4_J(arg0, arg1, arg2, arg3, arg4)
+{
+	memcpy(&s1, data_36A9E0_J, 6)
+	s3 = 0
+	s3.5 = 0
+	SetEventObjectDirection(arg0, arg2)
+	s0 = *(&s1 + (arg3 * 2))
+	r0 = ((arg2 - 1) ^ 1) + 1
+	r3 = *(&s1 + (arg3 * 2))
+	MoveCoordsInDirection(arg2, r5, r6, r3, r3)
+	ShiftEventObjectCoords(eventObject, eventObject->currentCoords.x + x, eventObject->currentCoords.y + y);
+    sub_809783C(sprite, direction, speed, a5);
+    sprite->data[2] = 1;
+    sprite->animPaused = 0;
+    eventObject->triggerGroundEffectsOnMove = 1;
+    eventObject->disableCoveringGroundEffects = 1;
+}
+
+
+
+
+fn_2223F0_J(arg0, arg1)
+{
+	if(fn_22254C_J(arg0, arg1))
+	{
+		eventObject->hasShadow = FALSE;
+		sprite->data[2] = 2;
+		return TRUE;
+	}
+	return FALSE;
+}
+
+
+
+
+fn_22254C_J(arg0, arg1)
+{
+	if(fn_22255C_J(arg0, arg1) == 0xFF)
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+
+
+
+fn_22255C_J(arg0, arg1)
+{
+	return fn_2225C4_J(arg0, arg1, data_222570_J)
+}
+
+
+
+
+fn_2225C4_J(arg0, arg1, arg2)
+{
+	memcpy(&s1, data_36A9E6_J, 6)
+	
+	if(arg2(arg1) == 1 && *(&s1 + (*(arg1 + 0x36) * 2) != 0)
+	{
+		s3 = 0
+		s3.5 = 0
+		r0 = (((*(arg0 + 0x18) >> 4) - 1) ^ 1) + 1
+		r3 = *(&s1 + (*(arg1 + 0x36) * 2))
+		MoveCoordsInDirection(r0, r4, r5, r3, r3)
+		ShiftEventObjectCoords(eventObject, eventObject->currentCoords.x + x, eventObject->currentCoords.y + y);
+		eventObject->triggerGroundEffectsOnMove = TRUE;
+		eventObject->disableCoveringGroundEffects = TRUE;
+	}
+	elseany
+	{
+		ShiftStillEventObjectCoords(eventObject);
+		eventObject->triggerGroundEffectsOnStop = TRUE;
+		eventObject->landingJump = TRUE;
+		sprite->animPaused = TRUE;
+	}
+	
+	return result;
+}
+
+
+
+
+fn_222570_J(arg0)
+{
+	memcpy(&s0, data_36B280_J, 6)
+	memcpy(&s2, data_36B286_J, 3)
+	
+	if(*(arg0 + 0x36) != 0)
+		Step1(arg0, ((*(arg0 + 0x34) - 1) ^ 1) + 1)
+	
+	sprite->pos2.y = sub_8097820(sprite->data[6] >> v6[sprite->data[4]], sprite->data[5]);
+
+    sprite->data[6]++;
+
+    if (sprite->data[6] == (v5[sprite->data[4]] >> 1))
+        v2 = 1;
+
+    if (sprite->data[6] >= v5[sprite->data[4]])
+    {
+        sprite->pos2.y = 0;
+        v2 = -1;
+    }
+
+    return v2;
+}

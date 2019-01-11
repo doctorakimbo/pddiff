@@ -1,0 +1,13 @@
+lbl1: @2226B0, @2226CC, @2226E8, @222704
+r4 = r0
+r5 = r1
+r2 = 1/2/3/4
+r3 = 0
+fn_222720_J()
+r0 = r4
+r1 = r5
+fn_2227A0_J()
+return r0
+
+
+// just 281disasm with different parameters

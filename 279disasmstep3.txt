@@ -1,0 +1,129 @@
+fn_222358_J/fn_22237E_J/fn_2223A4_J/fn_2223CA_J(eventObject, sprite)
+{
+	direction = 1/2/3/4
+	fn_22249C_J(eventObject, sprite, direction, 1, 2)
+	fn_2223F0_J(eventObject, sprite)
+}
+
+// basically a jump, but moves in direction ((direction - 1) ^ 1) + 1
+thus:
+DIR_SOUTH = 01 - 1 = 00 ^ 1 = 01 + 1 = 10 = DIR_NORTH
+DIR_NORTH = 10 - 1 = 01 ^ 1 = 00 + 1 = 01 = DIR_SOUTH
+DIR_WEST = 11 - 1 = 10 ^ 1 = 11 + 1 = 100 = DIR_EAST
+DIR_EAST = 100 - 1 = 11 ^ 1 = 10 + 1 = 11 = DIR_WEST
+
+
+
+
+fn_22249C_J(eventObject, sprite, direction, speed, a5)
+{
+	fn_2224C4_J(eventObject, sprite, direction, speed, a5)
+	npc_apply_anim_looping(eventObject, sprite, GetMoveDirectionAnimNum(eventObject->facingDirection));
+    DoShadowFieldEffect(eventObject);
+}
+
+
+
+
+fn_2224C4_J(eventObject, sprite, direction, speed, a5)
+{
+	memcpy(displacements, data_36A9E0_J, sizeof(data_36A9E0_J));
+	x = 0;
+	y = 0;
+	SetEventObjectDirection(eventObject, direction);
+	MoveCoordsInDirection(((direction - 1) ^ 1) + 1, &x, &y, displacements[speed], displacements[speed])
+	ShiftEventObjectCoords(eventObject, eventObject->currentCoords.x + x, eventObject->currentCoords.y + y);
+    sub_809783C(sprite, direction, speed, a5);
+    sprite->data[2] = 1;
+    sprite->animPaused = 0;
+    eventObject->triggerGroundEffectsOnMove = 1;
+    eventObject->disableCoveringGroundEffects = 1;
+}
+
+
+
+
+fn_2223F0_J(eventObject, sprite)
+{
+	if(fn_22254C_J(eventObject, sprite))
+	{
+		eventObject->hasShadow = FALSE;
+		sprite->data[2] = 2;
+		return TRUE;
+	}
+	return FALSE;
+}
+
+
+
+
+fn_22254C_J(eventObject, sprite)
+{
+	if(fn_22255C_J(eventObject, sprite) == 0xFF)
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+
+
+
+fn_22255C_J(eventObject, sprite)
+{
+	return fn_2225C4_J(eventObject, sprite, fn_222570_J)
+}
+
+
+
+
+fn_2225C4_J(eventObject, sprite, callback)
+{
+	memcpy(displacements, data_36A9E6_J, 6)
+	
+	if(callback(sprite) == 1 && displacements[sprite->data[4]] != 0)
+	{
+		x = 0;
+		y = 0;
+		MoveCoordsInDirection((((eventObject->movementDirection - 1) ^ 1) + 1, &x, &y, displacements[sprite->data[4]], displacements[sprite->data[4]])
+		ShiftEventObjectCoords(eventObject, eventObject->currentCoords.x + x, eventObject->currentCoords.y + y);
+		eventObject->triggerGroundEffectsOnMove = TRUE;
+		eventObject->disableCoveringGroundEffects = TRUE;
+	}
+	else
+	{
+		ShiftStillEventObjectCoords(eventObject);
+		eventObject->triggerGroundEffectsOnStop = TRUE;
+		eventObject->landingJump = TRUE;
+		sprite->animPaused = TRUE;
+	}
+	
+	return result;
+}
+
+
+
+
+fn_222570_J(sprite)
+{
+	memcpy(v5, data_36B280_J, 6);
+	memcpy(v6, data_36B286_J, 3);
+	
+	if(sprite->data[4])
+		Step1(sprite, ((sprite->data[3] - 1) ^ 1) + 1);
+	
+	sprite->pos2.y = sub_8097820(sprite->data[6] >> v6[sprite->data[4]], sprite->data[5]);
+
+    sprite->data[6]++;
+
+    if (sprite->data[6] == (v5[sprite->data[4]] >> 1))
+        v2 = 1;
+
+    if (sprite->data[6] >= v5[sprite->data[4]])
+    {
+        sprite->pos2.y = 0;
+        v2 = -1;
+    }
+
+    return v2;
+}

@@ -1,0 +1,89 @@
+fn_221B78_J/fn_221B94_J/fn_221BB0_J/fn_221BCC_J(eventObject, sprite)
+{
+	direction = 1/2/3/4;
+	fn_222240_J(eventObject, sprite, direction, 0)
+	return fn_221C58_J(eventObject, sprite)
+}
+
+// this whole thing is basically just regular walking, but with data_222348_J[] as a lookup for the actual directions
+thus
+05 00 07 00 05 00 06 00
+DIR_SOUTH = DIR_SOUTHWEST
+DIR_NORTH = DIR_NORTHWEST
+DIR_WEST = DIR_SOUTHWEST
+DIR_EAST = DIR_SOUTHEAST
+
+
+fn_222240_J(eventObject, sprite, direction, speed) // almost do_go_anim
+{
+	memcpy(functions, data_3A6884, sizeof(data_3A6884));
+	fn_222278_J(eventObject, sprite, direction, speed)
+	npc_apply_anim_looping(eventObject, sprite, functions[speed](eventObject->facingDirection));
+}
+
+
+
+
+fn_222278_J(eventObject, sprite, direction, speed) // almost npc_apply_direction
+{
+	x = eventObject->currentCoords.x
+	y = eventObject->currentCoords.y
+	FieldObjectSetDirection(eventObject, direction)
+	MoveCoords(data_222348_J[direction - 1], &x, &y);
+	ShiftEventObjectCoords(eventObject, x, y)
+	oamt_npc_ministep_reset(sprite, direction, speed)
+	sprite->animPaused = FALSE;
+	eventObject->triggerGroundEffectsOnMove = TRUE;
+	sprite->data[2] = 1;
+}
+
+
+
+
+fn_221C58_J(eventObject, sprite)
+{
+	if(fn_221C78_J(eventObject, sprite))
+	{
+		sprite->data[2] = 2;
+		return TRUE;
+	}
+	
+	return FALSE;
+}
+
+
+
+
+fn_221C78_J(eventObject, sprite)
+{
+	if(fn_221CA0_J(sprite))
+	{
+		ShiftStillEventObjectCoords(eventObject);
+		eventObject->triggerGroundEffectsOnStop = TRUE;
+		sprite->animPaused = TRUE;
+		return TRUE;
+	}
+	
+	return FALSE;
+}
+
+
+
+
+fn_221CA0_J(sprite)
+{
+	sprite->data[4]++
+	
+	if(sprite->data[4] > 2)
+		sprite->data[4] = 0;
+	else
+	{
+		Step1(sprite, data_222348_J[sprite->data[3] - 1])
+		sprite->data[5]++
+	}
+	
+	if(sprite->data[5] > 0xF)
+		return TRUE;
+	else
+		return FALSE;
+}
