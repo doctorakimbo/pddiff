@@ -2055,16 +2055,11 @@ stray text:
   ?????? (j222960): movement action function 0xAC
   ?????? (j22297A): movement action function 0xAD (see 284disasm)
 		  Implements: works like regular slow-walking (again? maybe this is wrong), but in the opposite direction
-
-
-  
+? E27BA0: ??? (soon)
 = E2E640: ItemUseOutOfBattle_EVReduction (see 285disasm)
 		  Implements: field function for EV-reduction berries
 		  Required knowledge: j03005EE8
 		  <<<<<NOT DONE>>>>>
-
-
-  
 - EB7E00: atkF8_doubledamageatlowhp (see 263disasm)
 		  Implements: new battle script command that doubles damage if the given mon is at less than half HP
 - EB7E60: atkF9_setmondata (see 264disasm)
@@ -2083,12 +2078,13 @@ stray text:
 		  Note: this isn't the way it works in the actual games, stat drops should subtract from the number (for case 0, what even is case 1?)
 - EB8100: atkFF_exec (see 270disasm)
 		  Implements: new battle script command that executes the given ASM function then continues running the battle script
+? FE5000: ??? (soon)
 
 
 
 
 in order:
-new field scripts for items (pomeg-tamato E2E640)
+new field scripts for items (E27BA0, FE5000)
 battle ai scripts (AI_New)
 battle scripts
 misc animation scripts (1B 9C 1B 08 -> 64 35 30 09)
