@@ -1,0 +1,72 @@
+fn_FE5000_J()
+{
+	data_03005EE8_J = fn_FE5020_J
+	fn_A16D0()
+}
+
+
+
+
+
+fn_FE5020_J(arg0, arg1)
+{
+	mon = gPlayerParty[data_0203B0A0.9]
+	ability = GetAbilityBySpecies(GetMonData(mon, MON_DATA_SPECIES), GetMonData(mon, MON_DATA_ALT_ABILITY) ^ 1)
+	
+	if(ability == ABILITY_NONE || ability == GetMonAbility(mon))
+		r7 = TRUE
+	else
+		r7 = FALSE
+	
+	PlaySE(5)
+	
+	if(r7)
+	{
+		data_0203B0C0 = 0
+		fn_1202F8(data_3DDE0B_J, 1)
+		schedule_bg_copy_tilemap_to_vram(2)
+		gTasks[arg0].0 = arg1
+	}
+	else
+	{
+		fn_124DC0(arg0)
+		data_03005EE8_J = fn_FE50F0_J
+	}
+}
+
+
+
+
+
+fn_FE50F0_J(arg0)
+{
+	mon = gPlayerParty[data_0203B0A0.9]
+	SetMonData(mon, MON_DATA_ALT_ABILITY, &(GetMonData(mon, MON_DATA_ALT_ABILITY) ^ 1))
+	data_0203B0C0 = 1
+	fn_A2294(4, mon, gSpecialVar_ItemId)
+	PlaySE(1)
+	RemoveBagItem(gSpecialVar_ItemId, 1)
+	fn_1202E0(mon, gStringVar1)
+	gSpecialVar_0x8004 = data_0203B0A0.9
+	gSpecialVar_0x8005 = 1
+	fn_FE51FC_J()
+	StringExpandPlaceholders(gStringVar4, data_FE5260_J)
+	fn_1202F8(gStringVar4, 1)
+	schedule_bg_copy_tilemap_to_vram(2)
+	gTasks[arg0].0 = fn_1255BC
+}
+
+
+
+
+
+fn_FE51FC_J()
+{
+	if(gSpecialVar_0x8004 <= 5)
+	{
+		r1 = data_20C274_J[GetMonAbility(gPlayerParty[gSpecialVar_0x8004])] // array size 8
+		
+		if(gSpecialVar_0x8005 <= 2)
+			StringCopy(gStringVar1 + (gSpecialVar_0x8005 * 0x14), r1)
+	}
+}

@@ -1945,8 +1945,9 @@ stray text:
 ! 1D9444 -> 1050260 (repoint): BattleScript_ObliviousPreventsAttraction (see 57disasm)
 		  Implements: atk97_tryinfatuating has unknown message for move ID 257
 		  Note: import during atk97_tryinfatuating
-? 1D9C1C: ptr ED BC 1D 08 -> 30 C0 1F 09 (add new AI table entry for script at 11FC030)
-		  Implements: (later)
+= 1D9C1C: ptr ED BC 1D 08 -> 30 C0 1F 09 (add new AI table entry for script at 11FC030)
+		  Implements: New level of smart AI ()
+		  Requires in future: IsMoveBlockedByAbility (j251DA0)
 = 1D9C74 -> 1005000 (repoint): AI_CheckBadMove
 		  Implements: enough stuff to warrant breaking the usual format
 		  * Removes old AI for: every +2/-2, psywave, sleep talk, minimize, sonic boom (check later to make sure all of these are now new moves - if not, it may be a bug)
@@ -2055,11 +2056,12 @@ stray text:
   ?????? (j222960): movement action function 0xAC
   ?????? (j22297A): movement action function 0xAD (see 284disasm)
 		  Implements: works like regular slow-walking (again? maybe this is wrong), but in the opposite direction
-? E27BA0: ??? (soon)
+= E27BA0: ItemUseOutOfBattle_Honey (see 286disasm)
+		  Implements: field function for Honey
+		  Required knowledge: j02039910, j0203BFF0
 = E2E640: ItemUseOutOfBattle_EVReduction (see 285disasm)
 		  Implements: field function for EV-reduction berries
 		  Required knowledge: j03005EE8
-		  <<<<<NOT DONE>>>>>
 - EB7E00: atkF8_doubledamageatlowhp (see 263disasm)
 		  Implements: new battle script command that doubles damage if the given mon is at less than half HP
 - EB7E60: atkF9_setmondata (see 264disasm)
@@ -2078,13 +2080,15 @@ stray text:
 		  Note: this isn't the way it works in the actual games, stat drops should subtract from the number (for case 0, what even is case 1?)
 - EB8100: atkFF_exec (see 270disasm)
 		  Implements: new battle script command that executes the given ASM function then continues running the battle script
-? FE5000: ??? (soon)
+= FE5000: ItemUseOutOfBattle_AbilityChange (see 287disasm)
+		  Implements: field function for Ability Capsule
+		  Required knowledge: j03005EE8
+		  Glitch?: looks like it's using the old ability name table, easily fixed for en
 
 
 
 
 in order:
-new field scripts for items (E27BA0, FE5000)
 battle ai scripts (AI_New)
 battle scripts
 misc animation scripts (1B 9C 1B 08 -> 64 35 30 09)

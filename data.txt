@@ -127,6 +127,7 @@ FC 6D 03 02: 30 6D 03 02: gMapHeader
 38 6E 03 02: 6C 6D 03 02: gEventObjects (atkEF_handleballthrow: Lure Ball boosted if this[0] is 1) (gIsPlayerFishing?)
 78 70 03 02: AC 6F 03 02: gPlayerAvatar
 		   : F4 6F 03 02: gSpecialVar_0x8004
+		   : F6 6F 03 02: gSpecialVar_0x8005
 		   : FC 6F 03 02: ?????? (sub_808C9C4: set to created window)
 								 (sub_808CBA4: window stored here is deleted)
 								 (sub_808CC74: used as window to print to)
@@ -172,6 +173,7 @@ B6 97 03 02: 02 97 03 02: ??????
 8C 98 03 02: D8 97 03 02: gBagPockets
 34 99 03 02: 80 98 03 02: gShopDataPtr
 8C 99 03 02: D8 98 03 02: gNamingScreenData
+		   : 10 99 03 02: ??????
 D4 99 03 02: 4C 99 03 02: ??????
 E4 99 03 02: 5C 99 03 02: ??????
 00 9A 03 02: 78 99 03 02: gAIScriptPtr
@@ -573,6 +575,7 @@ funcs e,j,desc:
 040B08 = 0401FC = CopyMon
 040B14 = 040208 = GiveMonToPlayer
 040C3C = 040330 = CalculatePlayerPartyCount
+040D38 = 04042C = GetAbilityBySpecies
 040D7C = 040470 = GetMonAbility
 04101C = 04070C = CalculatePPWithBonus
 042EB4 = 0425A4 = GetNatureFromPersonality
@@ -731,6 +734,7 @@ funcs e,j,desc:
 09FE40 = 09FD20 = PrintMoneyAmountInMoneyBox
 0A029C = 0A0574 = CreateScriptedWildMon
 0A0E90 = 0A2164 = GetSafariZoneFlag
+0A103C = 0A2310 = SetUpItemUseOnFieldCallback
 0A10C4 = 0A2398 = DisplayCannotUseItemMessage
 0A16D0 = 0A29A4 = ?????
 0A2294 = 0A3554 = ?????

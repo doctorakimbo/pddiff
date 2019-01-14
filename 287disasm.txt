@@ -1,0 +1,173 @@
+lbl1: @FE5000
+r2 = data_03005EE8_J
+r1 = fn_FE5020_J
+*r2 = r1
+fn_A16D0()
+return
+
+
+
+
+
+fn_FE5020_J:
+r8 = r1
+r6 = r0
+r7 = 0
+r1 = data_0203B0A0
+r1 = *(r1 + 9)
+r0 = 0x64
+r1 *= r0
+r0 = gPlayerParty
+r4 = r1 + r0
+r0 = r4
+r1 = 0x2E
+GetMonData()
+r5 = 1
+r5 ^= r0
+r0 = r4
+r1 = 0xB
+GetMonData()
+r1 = r5
+fn_4042C_J()
+if(r0 == 0) goto lbl2
+
+r5 = r0
+r0 = r4
+GetMonAbility()
+if(r0 != r5) goto lbl3
+
+goto lbl2
+
+lbl2:
+r7 = 1
+goto lbl3
+
+lbl3:
+r0 = 5
+PlaySE()
+if(r7 == 0) goto lbl4
+
+r1 = data_0203B0C0
+r0 = 0
+*r1 = r0
+r0 = data_3DDE0B_J
+r1 = 1
+fn_1202F8()
+r0 = 2
+schedule_bg_copy_tilemap_to_vram()
+r1 = gTasks
+r0 = r6 * 4
+r0 += r6
+r0 *= 8
+r0 += r1
+r1 = r8
+*r0 = r1
+goto lbl5
+
+lbl4:
+r0 = r6
+fn_124DC0()
+r1 = data_03005EE8_J
+r0 = fn_FE50F0_J
+*r1 = r0
+goto lbl5
+
+lbl5:
+return
+
+
+
+
+
+fn_FE50F0_J:
+r8 = r0
+r6 = data_0203B0A0
+r1 = *(r6 + 9)
+r0 = 0x64
+r4 = r1
+r4 *= r0
+r0 = gPlayerParty
+r4 += r0
+r0 = r4
+r1 = 0x2E
+GetMonData()
+r1 = 1
+r1 ^= r0
+s0 = r1
+r0 = r4
+r1 = 0x2E
+r2 = &s0
+SetMonData()
+r1 = data_0203B0C0
+r0 = 1
+*r1 = r0
+r5 = gSpecialVar_ItemId
+r2 = *r5
+r3 = 0xFFFF // overwritten by function call
+r0 = 4
+r1 = r4
+fn_A2294()
+r0 = 1
+PlaySE()
+r0 = *r5
+r1 = 1
+RemoveBagItem()
+r1 = gStringVar1
+r0 = r4
+fn_1202E0()
+r0 = *(r6 + 9)
+r1 = gSpecialVar_0x8004
+*r1 = r0
+r0 = 1
+r1 = data_02036FF6_J
+*r1 = r0
+fn_FE51FC_J()
+r4 = gStringVar4
+r1 = data_FE5260_J
+r0 = r4
+StringExpandPlaceholders()
+r0 = r4
+r1 = 1
+fn_1202F8()
+r0 = 2
+schedule_bg_copy_tilemap_to_vram()
+r1 = gTasks
+r2 = r8
+r0 = r2 * 4
+r0 += r8
+r0 *= 8
+r0 += r1
+r1 = fn_1255BC
+*r0 = r1
+return
+
+
+
+
+
+fn_FE51FC_J:
+r1 = gSpecialVar_0x8004
+r1 = *r1
+if(r1 > 5) goto lbl2
+
+r2 = 0x64
+r1 *= r2
+r0 = gPlayerParty
+r0 += r1
+GetMonAbility()
+r0 *= 8
+r1 = data_20C274_J
+r1 += r0
+r0 = data_02036FF6_J
+r0 = *r0
+if(r0 > 2) goto lbl2
+
+r2 = 0x14
+r0 *= r2
+r2 = gStringVar1
+r0 += r2
+StringCopy()
+goto lbl2
+
+lbl2:
+return

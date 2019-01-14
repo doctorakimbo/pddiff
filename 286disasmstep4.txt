@@ -1,0 +1,28 @@
+fn_E27BA0_J(taskId)
+{
+	data_02039910_J = fn_E27BBA_J
+	SetUpItemUseOnFieldCallback(taskId)
+}
+
+
+
+
+fn_E27BBA_J(taskId)
+{
+	ScriptContext1_SetupScript(script_E27BEC_J)
+	DestroyTask(taskId)
+}
+
+
+
+
+script_E27BEC_J:
+45 AE 01 01 00 11 01 F0 BF 03 02 9D 00 00 00 9C 33 00 11 00 F0 BF 03 02 27 02
+
+takeitem 0x1AE, 1
+writebytetoaddr 1, 0203BFF0_J
+setfieldeffectargument 0, 0
+dofieldeffect 51
+writebytetoaddr 0, 0203BFF0_J
+waitstate
+end

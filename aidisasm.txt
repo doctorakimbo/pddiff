@@ -1,0 +1,471 @@
+asm1: @11FC4B4
+r4 = gBattleResources
+r4 = *r4
+r4 = *(r4 + 0x14)
+r0 = *(r4 + 2)
+r1 = gBattlerAttacker
+r1 = *r1
+r2 = 0x58
+r1 *= r2
+r2 = gBattleMons
+r1 += r2
+r1 += 0xC
+r3 = 0
+goto lbl2
+
+lbl2:
+r2 = *(r1 + r3)
+if(r0 == r2) goto lbl3
+
+r3 += 2
+if(r3 < 8) goto lbl2
+
+r0 = 0
+goto lbl4
+
+lbl3:
+r1 += 0x18
+r3 /= 2
+r0 = *(r1 + r3)
+goto lbl4
+
+lbl4:
+*(r4 + 8) = r0
+return
+
+
+
+
+
+asm2: @11FC4E8
+bkpt 0x0000
+return
+
+
+
+
+
+asm3: @11FC4EE
+r0 = gBattlerTarget
+r0 = *r0
+r1 = 0x58
+r0 *= r1
+r1 = gBattleMons
+r0 += r1
+r0 = *r0
+r1 = 0x1C
+r0 *= r1
+r1 = gBaseStats
+r0 += r1
+r2 = *(r0 + 1)
+r3 = *(r0 + 4)
+if(r3 >= r2) goto lbl2
+
+r1 = 0
+goto lbl3
+
+lbl2:
+r1 = 1
+goto lbl3
+
+lbl3:
+r0 = gBattleResources
+r0 = *r0
+r0 = *(r0 + 0x14)
+*(r0 + 8) = r1
+return
+
+
+
+
+
+asm4: @11FC51E
+r0 = gBattlerTarget
+r0 = *r0
+r1 = 2
+r0 &= r1
+r0 >>= 1
+r0++
+r1 = data_0203D500_J
+r1 = *(r1 + r0)
+r0 = gBattleResources
+r0 = *r0
+r0 = *(r0 + 0x14)
+*(r0 + 8) = r1
+return
+
+
+
+
+
+asm5: @11FC53A
+r0 = gBattlerTarget
+r5 = *r0
+r0 = 0x58
+r0 *= r5
+r1 = gBattleMons
+r0 += r1
+r0 = *r0
+r1 = 0x1C
+r0 *= r1
+r1 = gBaseStats
+r0 += r1
+r4 = *(r0 + 1)
+r5 = *(r0 + 4)
+if(r4 >= 0x5F) goto lbl3
+
+if(r5 >= 0x5F) goto lbl3
+
+r4 = *(r0 + 2)
+r5 = *(r0 + 5)
+if(r4 >= 0x64) goto lbl2
+
+if(r5 < 0x64) goto lbl3
+
+goto lbl2
+
+lbl2:
+r0 = 0
+goto lbl4
+
+lbl3:
+r0 = 1
+goto lbl4
+
+lbl4:
+r4 = gBattleResources
+r4 = *r4
+r4 = *(r4 + 0x14)
+*(r4 + 8) = r0
+return
+
+
+
+
+
+asm6: @11FC57A
+r0 = gBattlerTarget
+r5 = *r0
+r0 = 0
+r1 = r5 * 2
+r2 = gBattlerPartyIndexes
+r1 = *(r2 + r1)
+r2 = gRecordedAbilities
+r1 = *(r2 + r1)
+if(r1 == 0) goto lbl2
+
+r1 = 0x58
+r5 *= r1
+r1 = gBattleMons
+r5 += r1
+r4 = *r5
+r5 += 0x21
+r1 = 0x1C
+r4 *= r1
+r1 = gBaseStats
+r4 += r1
+r0 = gBattleResources
+r0 = *r0
+r0 = *(r0 + 0x14)
+r6 = *(r0 + 2)
+r0 = *(r4 + 0x16)
+r1 = r6
+r2 = *r5
+r3 = *(r5 + 1)
+IsMoveBlockedByAbility()
+if(r0 != 0) goto lbl2
+
+r0 = *(r4 + 0x17)
+r1 = r6
+r2 = *r5
+r3 = *(r5 + 1)
+IsMoveBlockedByAbility()
+
+lbl2:
+r4 = gBattleResources
+r4 = *r4
+r4 = *(r4 + 0x14)
+*(r4 + 8) = r0
+return
+
+
+
+
+
+asm7: @11FC5D6
+r4 = gBattleWeather
+r4 = *(r4 + 2)
+if(r4 == 0) goto lbl2
+
+r4 = 1
+goto lbl2
+
+lbl2:
+r5 = 0
+r6 = 0
+s1 = r6
+goto lbl3
+
+lbl3:
+r0 = 0x64
+r0 *= r6
+r1 = gEnemyParty
+r0 += r1
+s0 = r0
+r1 = 0x39
+GetMonData()
+if(r0 == 0) goto lbl4
+
+r0 = s0
+r1 = 0x2D
+GetMonData()
+if(r0 != 0) goto lbl4
+
+r0 = s0
+r1 = 0x3D
+GetMonData()
+r1 = s1
+r1 += r0
+s1 = r1
+r5++
+goto lbl4
+
+lbl4:
+r6++
+if(r6 < 6) goto lbl3
+
+r0 = s1
+r1 = r5
+svc_6()
+r0 -= 0x64
+r0 >>= 0x1F
+r0 ^= r4
+r4 = gBattleResources
+r4 = *r4
+r4 = *(r4 + 0x14)
+*(r4 + 8) = r0
+return
+
+
+
+
+
+asm8: @11FC63E
+r0 = gBattleResources
+r0 = *r0
+r0 = *(r0 + 0x14)
+r6 = *(r0 + 2)
+r4 = 0
+goto lbl2
+
+lbl2:
+r0 = gBattleTypeFlags
+r0 = *r0
+r1 = 1
+r0 &= r1
+if(r0 == 0) goto lbl3
+
+if(r4 == 1) goto lbl4
+
+goto lbl3
+
+lbl3:
+if(r4 == 0) goto lbl4
+
+r0 = gWasMonShown
+r0 = *r0
+r1 = 1
+r1 <<= r4
+r0 &= r1
+if(r0 == 0) goto lbl5
+
+goto lbl4
+
+lbl4:
+r0 = gPlayerParty
+r1 = 0x64
+r1 *= r4
+r0 += r1
+r5 = r0
+r1 = 0x39
+GetMonData()
+if(r0 == 0) goto lbl5
+
+r0 = r5
+r1 = 0x2D
+GetMonData()
+if(r0 != 0) goto lbl5
+
+r0 = r5
+r1 = 0xB
+GetMonData()
+r1 = r0
+r0 = r6
+asm8pt5()
+r1 = 8
+r1 &= r0
+if(r1 != 0) goto lbl6
+
+goto lbl5
+
+lbl5:
+r4++
+if(r4 < 6) goto lbl2
+
+goto lbl6
+
+lbl6:
+r4 = gBattleResources
+r4 = *r4
+r4 = *(r4 + 0x14)
+*(r4 + 8) = r0
+return
+
+
+
+
+
+asm8pt5: @11FC6BA
+r4 = r0
+r5 = r1
+r0 = 0x1C
+r0 *= r5
+r6 = gBaseStats
+r6 += r0
+r2 = *(r6 + 0x16)
+r0 = r4
+r1 = r5
+AI_TypeCalc()
+r2 = *(r6 + 0x17)
+r6 = r0
+r0 = r4
+r1 = r5
+AI_TypeCalc()
+if(r0 >= r6) goto lbl2
+
+r0 = r6
+goto lbl2
+
+lbl2:
+return r0
+
+
+
+
+
+asm9: @11FC6EA
+r0 = 0
+s0 = r0
+goto lbl2
+
+lbl2:
+r6 = gBattlerTarget
+r0 = *r6
+r0 *= 2
+r1 = gBattlerPartyIndexes
+r0 = *(r1 + r0)
+r1 = 0xC
+r0 *= r1
+r1 = data_0203B970_J
+r0 += r1
+r2 = s0
+r1 = r2 * 2
+r1 = *(r0 + r1)
+goto lbl3
+
+lbl3:
+r2--
+if(r2 < 0) goto lbl4
+
+r3 = r2 * 2
+r3 = *(r0 + r3)
+if(r1 != r3) goto lbl3
+
+goto lbl8
+
+lbl4:
+s1 = r1
+r2 = gBattleMoves
+r0 = 0xC
+r0 *= r1
+r0 += r2
+s2 = r0
+r0 = *(r0 + 1)
+if(r0 <= 1) goto lbl8
+
+r0 = gDynamicBasePower
+r1 = 0
+*r0 = r1
+r0 = gBattleStruct
+r0 = *r0
+*(r0 + 0x13) = r1
+r0 = gBattleScripting
+r3 = 1
+*(r0 + 0xE) = r3
+r0 = gMoveResultFlags
+*r0 = r1
+r0 = gCritMultiplier
+*r0 = r3
+r5 = gCurrentMove
+r0 = s1
+*r5 = r0
+r4 = gBattlerAttacker
+r1 = *r4
+r0 = *r6
+AI_CalcDmg()
+r0 = *r5
+r2 = *r4
+r1 = *r6
+TypeCalc()
+r4 = gBattleMoveDamage
+r0 = *r4
+r1 = s2
+r1 = *r1
+if(r1 == 0x1D) goto lbl5
+
+if(r1 != 0x2C) goto lbl6
+
+r0 *= 2
+goto lbl6
+
+lbl5:
+r0 *= 4
+goto lbl6
+
+lbl6:
+*r4 = r0
+if(r0 != 0) goto lbl7
+
+r3 = 1
+*r4 = r3
+goto lbl7
+
+lbl7:
+r6 = gBattlerAttacker
+r2 = gBattleMons
+r1 = *r6
+r0 = 0x58
+r0 *= r1
+r0 += r2
+r1 = *(r0 + 0x28)
+r0 = *r4
+if(r1 > r0) goto lbl8
+
+r0 = 1
+goto lbl9
+
+lbl8:
+r0 = s0
+r0++
+s0 = r0
+if(r0 < 4) goto lbl2
+
+r0 = 0
+goto lbl9
+
+lbl9:
+r4 = gBattleResources
+r4 = *r4
+r4 = *(r4 + 0x14)
+*(r4 + 8) = r0
+return

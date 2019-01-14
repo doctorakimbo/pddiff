@@ -1,0 +1,26 @@
+lbl1: @E27BA0
+r4 = r0
+r0 = pc
+r0 += 0x13
+r1 = data_02039910_J
+*r1 = r0
+r0 = r4
+SetUpItemUseOnFieldCallback()
+return
+
+
+
+
+fn_E27BBA_J:
+r4 = r0
+r0 = script_E27BEC_J
+ScriptContext1_SetupScript()
+r0 = r4
+DestroyTask()
+return
+
+
+
+
+script_E27BEC_J:
+45 AE 01 01 00 11 01 F0 BF 03 02 9D 00 00 00 9C 33 00 11 00 F0 BF 03 02 27 02

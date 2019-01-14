@@ -1,0 +1,193 @@
+GetRemainingPP() @11FC4B4
+{
+	for(i = 0; i < 4; i++)
+	{
+		if(gBattleResources->ai.moveConsidered == gBattleMons[gBattlerAttacker].moves[i])
+		{
+			gBattleResources->ai.funcResult = gBattleMons[gBattlerAttacker].pp[i];
+			return;
+		}
+	}
+
+	gBattleResources->ai.funcResult = 0;
+}
+
+
+
+
+
+CreateBreakpoint() @11FC4E8
+{
+	bkpt 0x0
+}
+
+
+
+
+
+IsTargetSpecialAttacker() @11FC4EE
+{
+	if(gBaseStats[gBattleMons[gBattlerTarget].species].baseAttack < gBaseStats[gBattleMons[gBattlerTarget].species].baseSpAttack)
+		gBattleResources->ai.funcResult = TRUE;
+	else
+		gBattleResources->ai.funcResult = FALSE;
+}
+
+
+
+
+
+asm4() @11FC51E
+{
+	gBattleResources->ai.funcResult = data_0203D500_J.1[(gBattlerTarget & BIT_FLANK) >> 1]
+}
+
+
+
+
+
+IsTargetOffensive() @11FC53A
+{	
+	if(gBaseStats[gBattleMons[gBattlerTarget].species].baseAttack >= 95 || gBaseStats[gBattleMons[gBattlerTarget].species].baseSpAttack >= 95)
+		gBattleResources->ai.funcResult = TRUE;
+	elseif(gBaseStats[gBattleMons[gBattlerTarget].species].baseDefense < 100 && gBaseStats[gBattleMons[gBattlerTarget].species].baseSpDefense < 100)
+		gBattleResources->ai.funcResult = TRUE;
+	else
+		gBattleResources->ai.funcResult = FALSE;
+	}
+}
+
+
+
+
+
+CouldMoveBeBlockedByTargetAbility() @11FC57A
+{
+	if(gRecordedAbilities[gBattlerPartyIndexes[gBattlerTarget]] != 0)
+	{
+		if(IsMoveBlockedByAbility(gBaseStats[gBattleMons[gBattlerTarget].species].ability1, gBattleResources->ai.moveConsidered, gBattleMons[gBattlerTarget].type1, gBattleMons[gBattlerTarget].type2)
+			gBattleResources->ai.funcResult = TRUE;
+		elseif(IsMoveBlockedByAbility(gBaseStats[gBattleMons[gBattlerTarget].species].ability2, gBattleResources->ai.moveConsidered, gBattleMons[gBattlerTarget].type1, gBattleMons[gBattlerTarget].type2)
+			gBattleResources->ai.funcResult = TRUE;
+		else
+			gBattleResources->ai.funcResult = FALSE;
+	}
+	else
+		gBattleResources->ai.funcResult = FALSE;
+}
+
+
+
+
+
+IsAIPartyVerySlow() @11FC5D6
+{
+	if(gTrickRoomTurns != 0)
+		trickRoom = TRUE;
+	else
+		trickRoom = FALSE;
+	
+	numMons = 0;
+	totalSpeed = 0;
+	
+	for(i = 0; i < 6; i++)
+	{
+		if(GetMonData(&gEnemyParty[i], MON_DATA_HP) != 0 && GetMonData(&gEnemyParty[i], MON_DATA_IS_EGG) == 0)
+		{
+			totalSpeed += GetMonData(&gEnemyParty[i], MON_DATA_SPEED);
+			numMons++;
+		}
+	}
+	
+	if((totalSpeed / numMons) < 100)
+		gBattleResources->ai.funcResult = TRUE ^ trickRoom;
+	else
+		gBattleResources->ai.funcResult = FALSE ^ trickRoom;
+}
+
+
+
+
+
+asm8() @11FC63E
+{
+	for(i = 0; i < 6; i++)
+	{
+		if(gWasMonShown[i] || i == 0 || (i == 1 && (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)))
+		{
+			if(GetMonData(&gPlayerParty[i], MON_DATA_HP) != 0 && !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
+			{
+				flags = AI_GetBestResultFromTypeCalc(gBattleResources->ai.moveConsidered, GetMonData(&gPlayerParty[i], MON_DATA_SPECIES))
+					
+				if(flags & MOVE_RESULT_DOESNT_AFFECT_FOE)
+				{
+					gBattleResources->ai.funcResult = flags;
+					break;
+				}
+			}
+		}
+	}
+	
+	gBattleResources->ai.funcResult = flags;
+}
+
+
+
+
+
+AI_GetBestResultFromTypeCalc(move, species)
+{
+	ability1Result = AI_TypeCalc(move, species, gBaseStats[species].ability1);
+	ability2Result = AI_TypeCalc(move, species, gBaseStats[species].ability2);
+	
+	if(ability2Result > ability1Result)
+		return ability2Result;
+	else
+		return ability1Result;
+}
+
+
+
+
+
+asm9() @11FC6EA
+{
+	for(i = 0; i < 4; i++)
+	{
+		r2 = i
+		move = data_0203B970_J[gBattlerPartyIndexes[gBattlerTarget]][i]
+
+		do
+		{
+			r2--
+			
+			if(r2 < 0 && gBattleMoves[move].power > 1)
+			{
+				gDynamicBasePower = 0;
+				gBattleStruct->dynamicMoveType = 0;
+				gBattleScripting.dmgMultiplier = 1;
+				gMoveResultFlags = 0;
+				gCritMultiplier = 1;
+				gCurrentMove = move;
+				AI_CalcDmg(gBattlerTarget, gBattlerAttacker)
+				TypeCalc(gCurrentMove, gBattlerAttacker, gBattlerTarget)
+				
+				if(gBattleMoves[move].effect == EFFECT_MULTI_HIT)
+					gBattleMoveDamage *= 4;
+				elseif(gBattleMoves[move].effect == EFFECT_DOUBLE_HIT)
+					gBattleMoveDamage *= 2;
+				
+				if(gBattleMoveDamage == 0)
+					gBattleMoveDamage = 1;
+				
+				if(gBattleMoveDamage > gBattleMons[gBattlerAttacker].hp)
+				{
+					gBattleResources->ai.funcResult = TRUE;
+					return;
+				}
+			}
+		} while(move != data_0203B970_J[gBattlerPartyIndexes[gBattlerTarget]][r2])
+	}
+	
+	gBattleResources->ai.funcResult = FALSE:
+}
