@@ -5494,18 +5494,18 @@ if_equal TRUE, AI_New_ScoreMinus32
 AI_New_CheckImmunityAbilities:
 exec CouldMoveBeBlockedByTargetAbility
 if_equal TRUE, AI_New_ScoreMinus32
-if_hp_not_equal AI_USER, 100, [C2 C0 1F 09]
+if_hp_not_equal AI_USER, 100, AI_New_CheckTargetEffectED
 get_ability AI_USER
-if_equal ABILITY_KLUTZ, [C2 C0 1F 09]
+if_equal ABILITY_KLUTZ, AI_New_CheckTargetEffectED
 get_hold_effect AI_USER
-if_not_equal HOLD_EFFECT_FOCUS_SASH, [C2 C0 1F 09]
-if_target_slower [C2 C0 1F 09]
-if_not_effect EFFECT_QUICK_ATTACK, [C2 C0 1F 09]
+if_not_equal HOLD_EFFECT_FOCUS_SASH, AI_New_CheckTargetEffectED
+if_target_slower AI_New_CheckTargetEffectED
+if_not_effect EFFECT_QUICK_ATTACK, AI_New_CheckTargetEffectED
 exec [EA C6 1F 09]
-if_equal FALSE, [C2 C0 1F 09]
+if_equal FALSE, AI_New_CheckTargetEffectED
 score +6
 
-[C2 C0 1F 09]:
+AI_New_CheckTargetEffectED:
 get_last_used_bank_move AI_TARGET
 get_move_effect_from_result
 if_not_equal 0xED, AI_New_CheckIfCanFaint
@@ -5581,44 +5581,44 @@ if_effect EFFECT_SUBSTITUTE, AI_New_Substitute
 if_effect EFFECT_PROTECT, AI_New_Protect
 get_considered_move
 get_move_effect_from_result
-if_in_bytes [2E C3 1F 09], [38 C3 1F 09]
-if_effect EFFECT_FOCUS_PUNCH, [38 C3 1F 09]
-if_effect EFFECT_OHKO, [38 C3 1F 09]
+if_in_bytes AI_New_UnknownEffectList, AI_New_Unknown
+if_effect EFFECT_FOCUS_PUNCH, AI_New_Unknown
+if_effect EFFECT_OHKO, AI_New_Unknown
 if_effect EFFECT_PURSUIT, AI_New_Pursuit
 if_effect EFFECT_REST, AI_New_Rest
-if_effect 0xED, [4B C2 1F 09]
+if_effect 0xED, AI_New_EffectED
 if_effect EFFECT_BATON_PASS, AI_New_BatonPass
-if_effect 0x3E, [ED C1 1F 09]
-if_effect 0xB1, [E2 C1 1F 09]
+if_effect 0x3E, AI_New_Effect3E
+if_effect 0xB1, AI_New_EffectB1
 end
 
-[E2 C1 1F 09]:
+AI_New_EffectB1:
 if_status2 AI_TARGET, STATUS2_SUBSTITUTE, AI_New_ScoreMinus32
 end
 
-[ED C1 1F 09]:
-if_move 0x27B, [13 C2 1F 09]
+AI_New_Effect3E:
+if_move 0x27B, AI_New_Effect3E_Move27B
 get_last_used_bank_move AI_TARGET
 get_move_attribute ATTR_CATEGORY_FLAGS
 if_bits_set FLAG_SPECIAL_MOVE, AI_New // ???????
-if_bits_set FLAG_STATUS_MOVE, [07 C2 1F 09]
+if_bits_set FLAG_STATUS_MOVE, AI_New_Effect3E_CheckIfSpecial
 score +1
 end
 
-[07 C2 1F 09]:
+AI_New_Effect3E_CheckIfSpecial:
 exec IsTargetSpecialAttacker
 if_equal TRUE, AI_New // ???????
 end
 
-[13 C2 1F 09]:
+AI_New_Effect3E_Move27B:
 get_last_used_bank_move AI_TARGET
 get_move_attribute ATTR_CATEGORY_FLAGS
 if_bits_not_set FLAG_SPECIAL_MOVE, AI_New // ???????
-if_bits_set FLAG_STATUS_MOVE, [26 C2 1F 09]
+if_bits_set FLAG_STATUS_MOVE, AI_New_Effect3E_CheckIfPhysical
 score +1
 end
 
-[26 C2 1F 09]:
+AI_New_Effect3E_CheckIfPhysical:
 exec IsTargetSpecialAttacker
 if_equal FALSE, AI_New // ???????
 end
@@ -5633,59 +5633,59 @@ end
 [46 C2 1F 09]: // unreachable?
 exec CreateBreakpoint
 
-[4B C2 1F 09]:
+AI_New_EffectED:
 if_target_slower AI_New_ScoreMinus32
 exec [1E C5 1F 09]
 if_equal 0x1, AI_New_ScoreMinus32
 exec IsTargetOffensive
-if_equal FALSE, [DE C2 1F 09]
-if_cant_faint [85 C2 1F 09]
+if_equal FALSE, AI_New_EffectED_CheckIfCanFaint
+if_cant_faint AI_New_EffectED_CheckChoiceItems
 get_ability AI_TARGET
-if_equal ABILITY_KLUTZ, [83 C2 1F 09]
+if_equal ABILITY_KLUTZ, AI_New_EffectED_ScorePlus12Continue
 get_hold_effect AI_TARGET
-if_not_equal HOLD_EFFECT_FOCUS_SASH, [83 C2 1F 09]
-if_hp_equal AI_TARGET, 100, [85 C2 1F 09]
+if_not_equal HOLD_EFFECT_FOCUS_SASH, AI_New_EffectED_ScorePlus12Continue
+if_hp_equal AI_TARGET, 100, AI_New_EffectED_CheckChoiceItems
 
-[83 C2 1F 09]:
+AI_New_EffectED_ScorePlus12Continue:
 score +12
 
-[85 C2 1F 09]:
+AI_New_EffectED_CheckChoiceItems:
 get_ability AI_TARGET
-if_equal ABILITY_KLUTZ, [A3 C2 1F 09]
+if_equal ABILITY_KLUTZ, AI_New_EffectED_CheckPP
 get_hold_effect AI_TARGET
-if_equal HOLD_EFFECT_CHOICE_SPECS, [A1 C2 1F 09]
-if_equal HOLD_EFFECT_CHOICE_BAND, [A1 C2 1F 09]
-if_not_equal HOLD_EFFECT_CHOICE_SCARF, [A3 C2 1F 09]
+if_equal HOLD_EFFECT_CHOICE_SPECS, AI_New_EffectED_ScorePlus4Continue
+if_equal HOLD_EFFECT_CHOICE_BAND, AI_New_EffectED_ScorePlus4Continue
+if_not_equal HOLD_EFFECT_CHOICE_SCARF, AI_New_EffectED_CheckPP
 
-[A1 C2 1F 09]:
+AI_New_EffectED_ScorePlus4Continue:
 score +4
 
-[A3 C2 1F 09]:
+AI_New_EffectED_CheckPP:
 exec GetRemainingPP
-if_more_than 2, [D3 C2 1F 09]
+if_more_than 2, AI_New_EffectED_CheckStatusMove
 if_random_less_than 128, AI_New_ScoreMinus32
 get_last_used_bank_move AI_TARGET
 get_move_attribute ATTR_CATEGORY_FLAGS
 if_bits_not_set FLAG_STATUS_MOVE, [C4 C2 1F 09]
-if_random_less_than 160, [D3 C2 1F 09]
+if_random_less_than 160, AI_New_EffectED_CheckStatusMove
 
 [C4 C2 1F 09]:
 exec [EA C6 1F 09]
-if_equal FALSE, [D3 C2 1F 09]
+if_equal FALSE, AI_New_EffectED_CheckStatusMove
 score +5
 score +8
 
-[D3 C2 1F 09]:
+AI_New_EffectED_CheckStatusMove:
 get_last_used_bank_move AI_TARGET
 get_move_attribute ATTR_CATEGORY_FLAGS
 if_bits_not_set FLAG_STATUS_MOVE, AI_New_92PercentChanceScorePlus8
 end
 
-[DE C2 1F 09]:
-if_cant_faint [E5 C2 1F 09]
+AI_New_EffectED_CheckIfCanFaint:
+if_cant_faint AI_New_EffectED_CheckIfStatusMove
 score +3
 
-[E5 C2 1F 09]:
+AI_New_EffectED_CheckIfStatusMove:
 get_last_used_bank_move AI_TARGET
 get_move_attribute ATTR_CATEGORY_FLAGS
 if_bits_not_set FLAG_STATUS_MOVE, AI_New_60PercentChanceScorePlus2
@@ -5714,7 +5714,7 @@ exec [1E C5 1F 09]
 if_equal 0x1, AI_New_ScorePlus4
 end
 
-[2E C3 1F 09]:
+AI_New_UnknownEffectList:
 EFFECT_ATTACK_UP
 EFFECT_SPEED_UP
 0xF0
@@ -5725,7 +5725,7 @@ EFFECT_COIL
 0xF5
 EFFECT_HONE_CLAWS
 
-[38 C3 1F 09]:
+AI_New_Unknown:
 if_status2 AI_USER, STATUS2_SUBSTITUTE, AI_New_92PercentChanceScorePlus2
 exec [1E C5 1F 09]
 if_equal 0x1, AI_New_60PercentChanceScorePlus2
@@ -5733,7 +5733,7 @@ if_hp_not_equal AI_USER, 100, [64 C3 1F 09]
 get_ability AI_USER
 if_equal ABILITY_KLUTZ, [64 C3 1F 09]
 get_hold_effect AI_USER
-if_equal HOLD_EFFECT_FOCUS_SASH, [72 C3 1F 09]
+if_equal HOLD_EFFECT_FOCUS_SASH, AI_New_ScorePlus16
 
 [64 C3 1F 09]:
 exec [EA C6 1F 09]
@@ -5741,7 +5741,7 @@ if_equal 0x1, AI_New_ScoreMinus32
 score +3
 end
 
-[72 C3 1F 09]:
+AI_New_ScorePlus16:
 score +16
 end
 
@@ -5759,7 +5759,7 @@ AI_New_TurnEndBoostAbility:
 if_effect EFFECT_PROTECT, AI_New_TurnEndBoostAbility_ProtectOrSub
 if_not_effect EFFECT_SUBSTITUTE, AI_New_End
 
-AI_New_TurnEndBoostAbility_ProtectOrSub:
+AI_New_TurnEndBoostAbility_StallMove:
 if_target_faster AI_New_92PercentChanceScorePlus2
 end
 
@@ -5822,7 +5822,7 @@ end
 AI_New_Protect:
 get_last_used_bank_move AI_USER
 get_move_effect_from_result
-if_not_equal EFFECT_PROTECT, [2E C4 1F 09]
+if_not_equal EFFECT_PROTECT, AI_New_StallMove
 if_equal EFFECT_PROTECT, AI_New_ScoreMinus32
 end
 
@@ -5831,37 +5831,37 @@ get_last_used_bank_move AI_USER
 get_move_effect_from_result
 if_equal EFFECT_SUBSTITUTE, AI_New_ScoreMinus32
 
-[2E C4 1F 09]:
+AI_New_StallMove:
 get_ability AI_USER
-if_equal ABILITY_KLUTZ, [3E C4 1F 09]
+if_equal ABILITY_KLUTZ, AI_New_StallMove_CheckPoison
 get_hold_effect AI_USER
 if_equal HOLD_EFFECT_CRITICAL_UP, AI_New_92PercentChanceScorePlus2
 
-[3E C4 1F 09]:
-if_not_status AI_USER, STATUS1_POISON | STATUS1_TOXIC_POISON, [53 C4 1F 09]
+AI_New_StallMove_CheckPoison:
+if_not_status AI_USER, STATUS1_POISON | STATUS1_TOXIC_POISON, AI_New_StallMove_CheckHailAbilities
 get_ability AI_USER
 if_equal ABILITY_POISON_HEAL, AI_New_92PercentChanceScorePlus2
 score -4
 end
 
-[53 C4 1F 09]:
+AI_New_StallMove_CheckHailAbilities:
 get_ability AI_USER
-if_equal ABILITY_ICE_BODY, [61 C4 1F 09]
-if_not_equal ABILITY_SNOW_CLOAK, [69 C4 1F 09]
+if_equal ABILITY_ICE_BODY, AI_New_StallMove_CheckHail
+if_not_equal ABILITY_SNOW_CLOAK, AI_New_StallMove_CheckRain
 
-[61 C4 1F 09]:
+AI_New_StallMove_CheckHail:
 get_weather
 if_equal AI_WEATHER_HAIL, AI_New_92PercentChanceScorePlus2
 end
 
-[69 C4 1F 09]:
+AI_New_StallMove_CheckRain:
 get_ability AI_USER
-if_not_equal ABILITY_RAIN_DISH, [79 C4 1F 09]
+if_not_equal ABILITY_RAIN_DISH, AI_New_StallMove_CheckSand
 get_weather
 if_equal AI_WEATHER_RAIN, AI_New_92PercentChanceScorePlus2
 end
 
-[79 C4 1F 09]:
+AI_New_StallMove_CheckSand:
 get_ability AI_USER
 if_not_equal ABILITY_SAND_VEIL, AI_New_End
 get_weather
