@@ -37,7 +37,7 @@ IsTargetSpecialAttacker() @11FC4EE
 
 
 
-asm4() @11FC51E
+OpponentHasBadMatchup() @11FC51E
 {
 	gBattleResources->ai.funcResult = data_0203D500_J.1[(gBattlerTarget & BIT_FLANK) >> 1]
 }
@@ -150,7 +150,7 @@ AI_GetBestResultFromTypeCalc(move, species)
 
 
 
-asm9() @11FC6EA
+CanActivePlayerMonKO() @11FC6EA
 {
 	for(i = 0; i < 4; i++)
 	{

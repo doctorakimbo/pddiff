@@ -5470,16 +5470,16 @@ score -8
 
 AI_New_CheckStatusOnSubstitute:
 get_ability AI_USER
-if_equal ABILITY_INFILTRATOR, [5C C0 1F 09]
-if_not_status2 AI_TARGET, STATUS2_SUBSTITUTE, [5C C0 1F 09]
+if_equal ABILITY_INFILTRATOR, AI_New_CheckFocusSash
+if_not_status2 AI_TARGET, STATUS2_SUBSTITUTE, AI_New_CheckFocusSash
 get_considered_move
 get_move_attribute ATTR_EXTRA_FLAGS
-if_bits_set FLAG_SOUND_MOVE, [5C C0 1F 09]
+if_bits_set FLAG_SOUND_MOVE, AI_New_CheckFocusSash
 get_considered_move
 get_move_attribute ATTR_CATEGORY_FLAGS
 if_bits_set FLAG_STATUS_MOVE, AI_New_ScoreMinus32
 
-[5C C0 1F 09]:
+AI_New_CheckFocusSash:
 get_considered_move
 get_move_attribute ATTR_CATEGORY_FLAGS
 if_bits_not_set FLAG_STATUS_MOVE, AI_New_CheckImmunityAbilities
@@ -5488,7 +5488,7 @@ get_ability AI_USER
 if_equal ABILITY_KLUTZ, AI_New_CheckImmunityAbilities
 get_hold_effect AI_USER
 if_not_equal HOLD_EFFECT_FOCUS_SASH, AI_New_CheckImmunityAbilities
-exec [EA C6 1F 09]
+exec CanActivePlayerMonKO
 if_equal TRUE, AI_New_ScoreMinus32
 
 AI_New_CheckImmunityAbilities:
@@ -5501,7 +5501,7 @@ get_hold_effect AI_USER
 if_not_equal HOLD_EFFECT_FOCUS_SASH, AI_New_CheckTargetEffectED
 if_target_slower AI_New_CheckTargetEffectED
 if_not_effect EFFECT_QUICK_ATTACK, AI_New_CheckTargetEffectED
-exec [EA C6 1F 09]
+exec CanActivePlayerMonKO
 if_equal FALSE, AI_New_CheckTargetEffectED
 score +6
 
@@ -5516,7 +5516,7 @@ if_random_less_than 128, AI_New_CheckIfCanFaint
 score +5
 
 AI_New_CheckIfCanFaint:
-if_cant_faint [29 C1 1F 09]
+if_cant_faint AI_New_CheckEffect86
 score +10
 get_how_powerful_move_is
 if_not_equal MOVE_MOST_POWERFUL, AI_New_CheckChoiceItems
@@ -5526,9 +5526,9 @@ AI_New_CheckChoiceItems:
 get_ability AI_USER
 if_equal ABILITY_KLUTZ, AI_New_CheckMoveAccuracy
 get_hold_effect AI_USER
-if_equal HOLD_EFFECT_CHOICE_SPECS, [29 C1 1F 09]
-if_equal HOLD_EFFECT_CHOICE_BAND, [29 C1 1F 09]
-if_equal HOLD_EFFECT_CHOICE_SCARF, [29 C1 1F 09]
+if_equal HOLD_EFFECT_CHOICE_SPECS, AI_New_CheckEffect86
+if_equal HOLD_EFFECT_CHOICE_BAND, AI_New_CheckEffect86
+if_equal HOLD_EFFECT_CHOICE_SCARF, AI_New_CheckEffect86
 
 AI_New_CheckMoveAccuracy:
 get_considered_move
@@ -5541,11 +5541,11 @@ if_not_equal 0, AI_New_CheckPriority
 score +8
 
 AI_New_CheckPriority:
-if_target_slower [29 C1 1F 09]
-if_not_effect EFFECT_QUICK_ATTACK, [29 C1 1F 09]
+if_target_slower AI_New_CheckEffect86
+if_not_effect EFFECT_QUICK_ATTACK, AI_New_CheckEffect86
 score +8
 
-[29 C1 1F 09]:
+AI_New_CheckEffect86:
 if_not_effect 0x86, AI_New_CheckChoiceItems2
 exec IsAIPartyVerySlow
 if_equal TRUE, AI_New_ScorePlus6
@@ -5566,7 +5566,7 @@ if_not_equal 0, AI_New_CheckMoveEffect
 get_considered_move_power
 if_less_than 5, AI_New_ScoreMinus32
 exec [3E C6 1F 09]
-if_not_equal 0x6, AI_New_ScoreMinus32 // ?????????????
+if_not_equal 0x6, AI_New_ScoreMinus32 // pretty sure this means "if immunities on opposing team", code doesn't seem to match this though?
 end
 
 AI_New_CheckMoveEffect:
@@ -5618,7 +5618,7 @@ if_bits_set FLAG_STATUS_MOVE, AI_New_Effect3E_CheckIfPhysical
 score +1
 end
 
-AI_New_Effect3E_CheckIfPhysical:
+AI_New_Effect3E_CheckIfPhysical: // never actually reached due to faulty logic
 exec IsTargetSpecialAttacker
 if_equal FALSE, AI_New // ???????
 end
@@ -5626,8 +5626,8 @@ end
 AI_New_BatonPass:
 count_usable_party_mons AI_USER
 if_equal 0, AI_New_End
-exec [1E C5 1F 09]
-if_equal 0x1, AI_New_60PercentChanceScorePlus4
+exec OpponentHasBadMatchup
+if_equal TRUE, AI_New_60PercentChanceScorePlus4
 end
 
 [46 C2 1F 09]: // unreachable?
@@ -5635,8 +5635,8 @@ exec CreateBreakpoint
 
 AI_New_EffectED:
 if_target_slower AI_New_ScoreMinus32
-exec [1E C5 1F 09]
-if_equal 0x1, AI_New_ScoreMinus32
+exec OpponentHasBadMatchup
+if_equal TRUE, AI_New_ScoreMinus32
 exec IsTargetOffensive
 if_equal FALSE, AI_New_EffectED_CheckIfCanFaint
 if_cant_faint AI_New_EffectED_CheckChoiceItems
@@ -5666,11 +5666,11 @@ if_more_than 2, AI_New_EffectED_CheckStatusMove
 if_random_less_than 128, AI_New_ScoreMinus32
 get_last_used_bank_move AI_TARGET
 get_move_attribute ATTR_CATEGORY_FLAGS
-if_bits_not_set FLAG_STATUS_MOVE, [C4 C2 1F 09]
+if_bits_not_set FLAG_STATUS_MOVE, AI_New_EffectED_CheckIfCanBeKOed
 if_random_less_than 160, AI_New_EffectED_CheckStatusMove
 
-[C4 C2 1F 09]:
-exec [EA C6 1F 09]
+AI_New_EffectED_CheckIfCanBeKOed:
+exec CanActivePlayerMonKO
 if_equal FALSE, AI_New_EffectED_CheckStatusMove
 score +5
 score +8
@@ -5710,8 +5710,8 @@ score -3
 end
 
 AI_New_Pursuit:
-exec [1E C5 1F 09]
-if_equal 0x1, AI_New_ScorePlus4
+exec OpponentHasBadMatchup
+if_equal TRUE, AI_New_ScorePlus4
 end
 
 AI_New_UnknownEffectList:
@@ -5727,17 +5727,17 @@ EFFECT_HONE_CLAWS
 
 AI_New_Unknown:
 if_status2 AI_USER, STATUS2_SUBSTITUTE, AI_New_92PercentChanceScorePlus2
-exec [1E C5 1F 09]
-if_equal 0x1, AI_New_60PercentChanceScorePlus2
-if_hp_not_equal AI_USER, 100, [64 C3 1F 09]
+exec OpponentHasBadMatchup
+if_equal TRUE, AI_New_60PercentChanceScorePlus2
+if_hp_not_equal AI_USER, 100, AI_New_Unknown_CheckIfCanBeKOed
 get_ability AI_USER
-if_equal ABILITY_KLUTZ, [64 C3 1F 09]
+if_equal ABILITY_KLUTZ, AI_New_Unknown_CheckIfCanBeKOed
 get_hold_effect AI_USER
 if_equal HOLD_EFFECT_FOCUS_SASH, AI_New_ScorePlus16
 
-[64 C3 1F 09]:
-exec [EA C6 1F 09]
-if_equal 0x1, AI_New_ScoreMinus32
+AI_New_Unknown_CheckIfCanBeKOed:
+exec CanActivePlayerMonKO
+if_equal TRUE, AI_New_ScoreMinus32
 score +3
 end
 
@@ -5756,7 +5756,7 @@ if_random_greater_than 19, AI_New_ScorePlus2
 end
 
 AI_New_TurnEndBoostAbility:
-if_effect EFFECT_PROTECT, AI_New_TurnEndBoostAbility_ProtectOrSub
+if_effect EFFECT_PROTECT, AI_New_TurnEndBoostAbility_StallMove
 if_not_effect EFFECT_SUBSTITUTE, AI_New_End
 
 AI_New_TurnEndBoostAbility_StallMove:
