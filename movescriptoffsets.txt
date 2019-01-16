@@ -42,6 +42,9 @@ E2 A8 1B 08 00 00 05 09 40 00 05 09 60 00 05 09 00 40 05 09 00 40 05 09 00 40 05
 
 [BC A8 1B 08] = [00 69 1D 08] = BattleScript_EffectHit
 [0A A9 1B 08] = [4E 69 1D 08] = BattleScript_MoveEnd
+[13 A9 1B 08] = [57 69 1D 08] = BattleScript_MakeMoveMissed
 [1A A9 1B 08] = [5E 69 1D 08] = BattleScript_PrintMoveMissed
+[1C A9 1B 08] = [60 69 1D 08] = BattleScript_MoveMissedPause
+[AC BD 1B 08] = [F0 7D 1D 08] = BattleScript_ButItFailedAtkStringPpReduce
 [AE BD 1B 08] = [F2 7D 1D 08] = BattleScript_ButItFailed
 [F5 CA 1B 08] = [39 8B 1D 08] = BattleScript_SafeguardProtected

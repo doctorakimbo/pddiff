@@ -158,51 +158,186 @@ item IDs:
 + 0x1AE = Honey
 
 move IDs:
-(Mirror Move, Assist, "Conversion?", "Aeroblast?", and "Sacred Fire?" can't be called by metronome)
+(Mirror Move, Assist, Diamond Storm, and Strength Sap can't be called by metronome)
+= 0xA0 = (chance to raise sp. atk), (can't be called by metronome)
+= 0xA7 = (chance to lower user's speed)
+= 0xB1 = (can't be called by metronome)
+= 0xDD = (can't be called by metronome)
+= 0x127 = (chance to raise sp. atk)
 = 0x12E = (has poison-chance hit effect, but if used by a poison-type, it badly poisons instead)
 = 0x161 = (has effect 0x58, ai wants to use on poisoned targets)
+= 0x163 = (chance to flinch)
+= 0x164 = (chance to confuse)
+= 0x167 = (chance to confuse)
+= 0x168 = (unclear in code; either chance to lower defense or +1 evasion)
+= 0x16A = (chance to lower user's speed)
+- 0x16C = Flare Blitz
+= 0x16D = (chance to paralyze)
+= 0x16F = (unclear in code; either rapid spin effect or +2 speed)
+= 0x170 = (chance to poison)
+= 0x171 = (chance to flinch)
+= 0x175 = (chance to flinch)
+= 0x177 = (chance to lower sp. def)
+= 0x179 = (chance to flinch)
+= 0x17D = (chance to lower sp. def)
+= 0x17E = (chance to lower sp. def)
+= 0x180 = (chance to lower sp. def)
 = 0x181 = (can't be called by metronome)
-= 0x1BA = (can't be called by metronome)
+= 0x183 = (unclear in code; either effect 0x58 or +2 sp. atk)
+= 0x189 = (chance to lower accuracy)
+= 0x18C = (chance to lower accuracy)
+= 0x18D = (chance to lower sp. def)
+= 0x18E = (chance to confuse)
+= 0x18F = (harshly lowers user's sp. atk afterwards)
+= 0x191 = (harshly lowers user's sp. atk afterwards)
+= 0x194 = (chance to poison)
+= 0x195 = (chance to flinch)
+= 0x199 = (chance to raise sp. atk)
+= 0x1A2 = (chance to sharply raise speed)
+= 0x1A3 = (chance to confuse or raise user's accuracy)
+= 0x1A4 = (chance to raise all stats)
+= 0x1A5 = (chance to poison)
+- 0x1A6 = Thunder Fang
+- 0x1A7 = Ice Fang
+- 0x1A8 = Fire Fang
+= 0x1A9 = (chance to confuse user)
+= 0x1AA = (chance to raise speed)
+= 0x1AC = (chance to lower sp. def or confuse)
+= 0x1AE = (chance to sleep)
+= 0x1AF = (chance to confuse user)
+= 0x1B1 = (chance to raise evasion)
+= 0x1B2 = (harshly lowers user's sp. atk afterwards)
+= 0x1B3 = (chance to paralyze)
+= 0x1B4 = (chance to harshly lower user's defense)
+= 0x1B5 = (chance to lower accuracy)
+= 0x1B6 = (chance to harshly lower defense)
+= 0x1B9 = (chance to lower speed)
+- 0x1BA = Diamond Storm
+= 0x1BC = (chance to raise sp. atk)
+= 0x1BF = (chance to lower evasion)
+= 0x1C0 = (chance to raise sp. atk)
+= 0x1C1 = (chance to lower defense or freeze)
+= 0x1C2 = (chance to lower defense or flinch)
+= 0x1C5 = (chance to lower accuracy or poison)
+= 0x1C6 = (chance to harshly lower speed)
+= 0x1C7 = (chance to lower sp. def)
+= 0x1C9 = (chance to raise accuracy)
+= 0x1CB = (chance to burn user)
+= 0x1CC = (chance to confuse)
+= 0x1CD = (chance to raise sp. def)
+= 0x1CE = (chance to sharply raise target's evasion)
+= 0x1CF = (chance to sleep)
+= 0x1D1 = (chance to paralyze user)
+= 0x1D2 = (chance to lower accuracy or confuse)
+= 0x1D4 = (chance to lower user's sp. def)
+= 0x1D5 = (chance to raise sp. atk)
+= 0x1D6 = (chance to sleep or confuse)
+= 0x1D9 = (unclear in code; either chance to sharply raise target's attack or +2 evasion)
+= 0x1DB = (chance to poison user)
+= 0x1DE = (unclear in code; either 1/3 recoil or +2 accuracy)
+= 0x1E1 = (chance to sharply raise target's sp. atk)
+= 0x1E2 = (chance to lower user's attack or sp. atk)
+= 0x1E4 = (unclear in code; either lowers defense afterwards or -1 evasion)
+= 0x1E5 = (unclear in code; either chance to harshly lower sp. def or +3 defense)
 = 0x1E6 = (can't be called by metronome)
+= 0x1E9 = (chance to lower speed)
+= 0x1ED = (chance to lower accuracy)
 = 0x1F2 = (ai wants to use this immediately after a move with effect 0xE8)
-= 0x207 = (can't be copied by mimic or called by metronome)
+= 0x1F3 = (chance to flinch)
+= 0x1F4 = (chance to flinch)
+= 0x1FA = (chance to lower sp. atk)
+= 0x1FB = (chance to burn)
+= 0x1FE = (chance to burn)
+= 0x1FF = (chance to lower sp. atk)
+= 0x203 = (unclear in code; either raises speed afterwards or -1 attack)
+= 0x204 = (unclear in code; either chance to lower attack or +1 accuracy)
+= 0x207 = (chance to confuse), (can't be copied by mimic or called by metronome)
 + 0x208 = Trick Room
+= 0x20A = (+3 evasion)
 = 0x20E = (has effect 0x58, ai wants to use on statused targets)
+= 0x20F = (chance to raise speed)
+= 0x210 = (chance to lower sp. atk)
+= 0x212 = (unclear in code; either effect 0x58 or -2 sp. atk)
+= 0x213 = (chance to raise attack)
+= 0x214 = (-1 sp. atk with perfect accuracy)
+= 0x215 = (-1 attack with perfect accuracy)
+= 0x21A = (chance to paralyze)
+= 0x21B = (chance to freeze)
+= 0x21C = (chance to flinch)
+= 0x21D = (chance to lower evasion)
+= 0x21E = (chance to flinch)
+= 0x21F = (chance to raise speed)
+= 0x220 = (unclear in code; either chance to lower defense or +1 evasion)
+= 0x221 = (chance to flinch)
+= 0x222 = (chance to confuse)
+= 0x223 = (chance to lower sp. def)
+= 0x225 = (chance to raise sp. atk)
 = 0x22D = (has Eruption effect, but ai calculates using the target's HP instead of the user's)
+= 0x22E = (unclear in code; either chance to lower defense or +1 evasion)
+= 0x22F = (lowers user's attack and harshly lowers user's defense afterwards)
+= 0x231 = (chance to lower speed)
+= 0x232 = (chance to burn or flinch)
+= 0x236 = (chance to lower speed or raise user's speed)
+= 0x237 = (unclear in code; either chance to lower defense or +1 evasion)
+= 0x238 = (unclear in code; either chance to lower defense or +1 evasion)
+= 0x239 = (chance to lower speed)
 = 0x23A = (can't be called by metronome)
+= 0x23B = (chance to lower evasion)
 = 0x240 = (ai won't use moves with effect 0xE5 if it knows the target has this move)
-= 0x253 = (can't be called by metronome)
-= 0x254 = (can't be called by metronome)
-= 0x255 = (can't be called by metronome)
-= 0x256 = (can't be called by metronome)
+= 0x244 = (chance to sleep)
+= 0x245 = (chance to raise all stats)
+= 0x246 = (tri attack effect)
+= 0x247 = (unclear in code; either chance to lower defense or +1 evasion)
+= 0x249 = (chance to raise sp. atk)
+= 0x24A = (chance to paralyze)
+= 0x24B = (chance to sharply raise target's sp. atk)
+= 0x24C = (chance to lower sp. def)
+= 0x24D = (chance to paralyze)
+= 0x250 = (chance to lower speed)
+= 0x253 = (chance to lower sp. def), (can't be called by metronome)
+= 0x254 = (chance to lower sp. atk), (can't be called by metronome)
+= 0x255 = (unclear in code; either chance to lower attack or +1 accuracy), (can't be called by metronome)
+= 0x256 = (unclear in code; either chance to lower defense or +1 evasion), (can't be called by metronome)
 = 0x257 = (special message in atk97_tryinfatuating)
 = 0x258 = (has effect 0xE3, ai wants to use this when target has low HP)
-= 0x25E = (can't be called by metronome)
-= 0x25F = (can't be called by metronome)
-= 0x260 = (can't be called by metronome)
+= 0x25E = (chance to harshly lower speed or confuse), (can't be called by metronome)
+= 0x25F = (chance to harshly lower sp. def or confuse), (can't be called by metronome)
+= 0x260 = (chance to lower defense or confuse), (can't be called by metronome)
 = 0x261 = (can't be called by metronome)
 = 0x262 = (can't be called by metronome)
 = 0x264 = (has effect 0x58, ai wants to use on sleeping targets)
 = 0x265 = (has effect 0x58, ai wants to use on infatuated targets)
 = 0x266 = (has effect 0x58, ai wants to use on burned targets)
 = 0x267 = (has effect 0x58, ai wants to use on frozen targets)
+= 0x269 = (chance to burn)
 = 0x26C = (can't be called by metronome)
 = 0x26D = (can't be called by metronome)
 = 0x272 = (has effect 0xE3, ai wants to use this when user has low HP)
+= 0x275 = (unclear in code; either raises target's evasion afterwards or -1 sp. def)
+= 0x276 = (unclear in code; either chance to raise target's accuracy or +1 sp. atk)
 = 0x27A = (has effect 0xE3, ai wants to use this when target has low HP)
 = 0x27B = (has effect 0x3E, ai wants to use when target is special and (glitched!) when target is physical)
 = 0x27C = (has Eruption effect, but ai calculates using the target's HP instead of the user's)
 = 0x27D = (has attract effect, but ai will use on infatuated targets, but not on targets immune to spatk drops)
 = 0x27E = (has sleep effect, but sleeps the target even if it already has a status)
+= 0x27F = (unclear in code; either chance to harshly lower sp. def or +3 defense)
 = 0x283 = (has effect 0x58, ai wants to use on poisoned targets)
 - 0x288 = Draining Kiss
+= 0x289 = (harshly lowers user's attack afterwards)
+= 0x28A = (harshly lowers user's sp. atk afterwards)
 = 0x28C = Magma Storm/Infestation
 = 0x28E = Infestation/Magma Storm
 = 0x294 = (can't be called by metronome)
-= 0x2A4 = (can't be called by metronome)
+= 0x296 = (unclear in code; either chance to lower attack or +1 accuracy)
+= 0x297 = (unclear in code; either chance to harshly lower accuracy or +3 speed)
+= 0x298 = (chance to paralyze)
+= 0x29A = (chance to lower accuracy or flinch)
+= 0x29C = (chance to flinch)
+= 0x29D = (chance to paralyze)
+- 0x2A4 = Strength Sap
 = 0x2A5 = (can't be called by metronome)
 = 0x2A6 = (has attract effect, but ai also won't use on targets immune to poisoning)
-= 0x2A7 = (special-cased in focus punch setup to print string 0x217; can't be called by metronome)
+= 0x2A7 = (special-cased in focus punch setup to print string 0x217), (can't be called by metronome)
 = 0x2A8 = (can't be called by metronome)
 
 move effects:
@@ -254,7 +389,7 @@ move effects:
 = 0xF8 = (ai wants to use if target is faster), (ai doesn't want to use if target is slower)
 = 0xF9 = (ai wants to use if target doesn't have status and user does), (ai doesn't want to use if target has stat 0x16 or 0x17 not equal to zero)
 = 0xFA = (ai wants to encore this)
-= 0xFB = (ai doesn't want to use if target has stat 0x16 or 0x17 not equal to zero), (ai wants to encore this)
+= 0xFB = (ai doesn't want to use if user is holding an item (? stat 0x16 or 0x17 != 0)), (ai wants to encore this)
 = 0xFC = (ai won't use if target is slower), (ai wants to use if target is faster)
 = 0xFE = (ai wants to encore this)
 
@@ -353,6 +488,7 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0x19E = "[PKMN] is hurt by its [ITEM]!"
 = 0x20E = "[PKMN] became trapped by swirling magma!"/"[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"
 = 0x20F = "[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"/"[PKMN] became trapped by swirling magma!"
+? 0x212 = "[PKMN]'s stat changes were removed!"
 = 0x217 = (tightening focus message but for move id 0x2A7)
 
 grafics:
@@ -1913,13 +2049,28 @@ stray text:
   1D51C4: 6D 53 -> CD 52
 		  Implements: switches around weather cases for Weather Ball animation (sun -> "ice", sand -> "fire", hail -> "rock")
 		  Relies on: probably means that the weather constant is changed from (none, sun, rain, sand, hail) to (none, hail, rain, sun, sand) (why???)
-- 1D65A8: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything) <MERGE THIS CHECK>
+- 1D65A8, 1D65EC: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything) <MERGE THIS CHECK>
 - 1D696D -> 1050000 (repoint): BattleScript_EffectSleep_New (see movescripts.txt)
 		  Implements: [move27E]
 - 1D69DC -> 1050040 (repoint): BattleScript_EffectPoisonHit_New (see movescripts.txt)
 		  Implements: [move12E]
 - 1D69E7 -> 1050060 (repoint): BattleScript_EffectAbsorb_New (see movescripts.txt)
 		  Implements: Draining Kiss
+= 1D6A55, 1D6A60, 1D6A6B -> 1054000 (repoint): BattleScript_ParameterizedEffectHit (see movescripts.txt)
+  1D6B77, 1D6B82, 1D6900, 1D6B8D, 1D6900, 1D6900, 1D6B98 -> 1054010 (repoint): BattleScript_ParameterizedStatUp
+  1D6BEC, 1D6BF7, 1D6900 (the one before 1D6C02), 1D6C02, 1D6C0D -> 1054020 (repoint): BattleScript_ParameterizedStatDown
+  ??? -> 1054030 (repoint): BattleScript_ParameterizedStatDownPerfectAccuracy
+		  Implements: refactor all additional-effect hit moves and stat-up/stat-down moves into a parameterized script to free up space for more effects (too many actual moves to list here, see the move list near the top; below is the list of effects refactored by this)
+			EffectHit: EFFECT_BURN_HIT, EFFECT_FREEZE_HIT, EFFECT_PARALYZE_HIT
+			StatUp: EFFECT_ATTACK_UP, EFFECT_DEFENSE_UP, EFFECT_SPEED_UP, EFFECT_SPECIAL_ATTACK_UP, EFFECT_SPECIAL_DEFENSE_UP, EFFECT_ACCURACY_UP, EFFECT_EVASION_UP
+			StatDown: EFFECT_ATTACK_DOWN (indirectly), EFFECT_DEFENSE_DOWN, EFFECT_SPEED_DOWN, EFFECT_SPECIAL_ATTACK_DOWN (indirectly), EFFECT_SPECIAL_DEFENSE_DOWN, EFFECT_ACCURACY_DOWN, EFFECT_EVASION_DOWN
+			StatDownPerfectAccuracy: EFFECT_ATTACK_DOWN (indirectly), EFFECT_SPECIAL_ATTACK_DOWN (indirectly)
+		  Required knowledge: whether the area around gStringVar4 is the same in en
+		  Note: code is horrifying, get someone to fix this
+		  Note: Diamond Storm has gen 6 effect
+- 1D6A76 -> 1053960 (repoint): BattleScript_EffectExplosion_New (see movescripts.txt)
+  1D6AF6 -> 1053968 (repoint): BattleScript_EffectDreamEater_New (see movescripts.txt)
+		  Implements: adds a duplicate attackcanceler and attackstring to the script; only guess is that this is somehow related to the change in atk02_attackstring
 = 1D6ABE, 1D6AD9, 1D6D4A, 1D7663, 1D7B78, 1D7B90, 1D7CDA, 1D839C, 1D94E8, 1D9502, 1D9519: 10 -> 12
   1D6D8F: 02 -> 03
   1D6D98, 1D89A1: 04 -> 05
@@ -1929,6 +2080,12 @@ stray text:
   1D89D9: 06 -> 07
   1D8E7B: 0B -> 0C
 		  Implements: part of moveend refactor
+- 1D6BE1 -> 1052DB0 (repoint): BattleScript_EffectAttackDown (see movescripts.txt)
+  1D6900 (the one after 1D6BF7) -> 1052470 (repoint): BattleScript_AttackDown_Standard (see movescripts.txt)
+		  Implements: [move214], [move215], Strength Sap; also refactors into the parameterized script
+? 1D6C72 -> 10500E0 (repoint): BattleScript_EffectHaze_New (see movescripts.txt)
+		  Implements: Clear Smog
+		  <<<NOT DONE>>>
 + 1D6CCD: 01 60 69 1D 08 -> 00 00 00 00 00 (Roar/Whirlwind have perfect accuracy)
 + 1D6D51, 1D766A: 40 -> 00 (Endure displays the pokemon getting hit and enduring all hits of multihit moves, not the old behavior of it hitting once then getting endured)
 + 1D7011: BattleScript_EffectRecoilIfMiss (see movescripts.txt)
@@ -2022,7 +2179,7 @@ stray text:
 		  * Bugfixes: checks for "ultra effective" as well against Wonder Guard instead of strictly exactly 2x SE
 		  * Other improvements: Safeguard, Curse, Yawn, and Taunt are now checked; Sky Attack counts as a risky move; Curse isn't used when at less than half HP at the start of the turn; AI will now use Knock Off on itemless foes (due to buff)
 		  * New mechanics that old scripts are updated for: electric-type paralysis immunity, dark-type Prankster immunity, grass-type powder immunity, Lightning Rod (immunity), Motor Drive, Poison Heal, Magic Guard, Leaf Guard, Storm Drain, Overcoat, Big Pecks, Sap Sipper, Aroma Veil, Sweet Veil, Bulletproof, Dazzling, Queenly Majesty
-		  * Moves that bypass AI restrictions: burn moves that aren't Will-O-Wisp (this only bypasses the Fire-type check); trapping moves that aren't Mean Look / Block; switch-out moves that aren't Baton Pass; stat-resetting moves that aren't Haze; phazing moves that aren't Roar / Whirlwind
+		  * Moves that bypass AI restrictions: burn moves that aren't Will-O-Wisp (this only bypasses the Fire-type check); trapping moves that aren't Mean Look / Block; switch-out moves that aren't Baton Pass; stat-resetting moves that aren't Haze (aka Clear Smog); phazing moves that aren't Roar / Whirlwind (aka Dragon Tail/Circle Throw)
 		  * New moves: 0x27D, 0x2A6 (factored into Attract script)
 		  * New move effects: [effect1E], [effect32], Power Swap, Guard Swap, [effect3C], [effect3D], [effect40], [effect5D], Tailwind, [effect8A], [effect8B], [effectC6], Work Up, [effectDF], [effectE5], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws
 		  Relies on: new AI script commands, BattleMove refactor
