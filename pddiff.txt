@@ -2111,6 +2111,7 @@ stray text:
 		  Relies on: atk80_manipulatedamage changes
 = 1D70F8 -> 105039D (repoint): BattleScript_EffectConfuseAndLowerEvasion (see movescripts.txt)
 		  Implements: removes +2 Atk effect entirely (folded into +1 Atk), adds new effect for confuse + -1 evasion
+		  Glitch?: Stench and Oblivious block this move entirely?
 		  <<< NOT DONE >>>
 + 1D71F6: Part of BattleScript_EffectParalyze (see movescripts.txt)
 		  Implements: Electric-type paralysis immunity (Thunder Wave)
