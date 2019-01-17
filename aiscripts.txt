@@ -735,7 +735,7 @@ if_effect EFFECT_SUPERPOWER, AI_CBM_HighRiskForDamage_New
 if_effect EFFECT_ENDEAVOR, AI_CBM_HighRiskForDamage_New
 if_effect EFFECT_LOW_KICK, AI_CBM_HighRiskForDamage_New
 if_effect EFFECT_SLEEP, AI_CBM_Sleep_New
-if_effect EFFECT_0x1E, [19 54 00 09]
+if_effect EFFECT_FREEZE, [19 54 00 09]
 if_effect EFFECT_TOXIC, AI_CBM_Toxic_New
 if_effect EFFECT_POISON, AI_CBM_Toxic_New
 if_effect EFFECT_0x8B, AI_CBM_Toxic_New
@@ -825,7 +825,7 @@ if_effect EFFECT_PSYCH_UP, AI_CBM_Haze
 if_effect EFFECT_EXPLOSION, AI_CBM_Explosion
 if_effect EFFECT_ROAR, AI_CBM_Roar_CheckWhichMove
 if_effect EFFECT_OHKO, AI_CBM_OneHitKO
-if_effect EFFECT_0x32, [6E 5A 00 09]
+if_effect EFFECT_CONFUSE_EVASION_DOWN, AI_CBM_ConfuseAndEvasionDown
 if_effect EFFECT_CURSE, AI_CBM_Curse_New
 if_effect EFFECT_ATTRACT, AI_CBM_Attract_New
 if_effect EFFECT_BELLY_DRUM, AI_CBM_BellyDrum
@@ -856,7 +856,7 @@ if_equal ABILITY_VITAL_SPIRIT, Score_Minus10
 if_equal ABILITY_SWEET_VEIL, Score_Minus10
 goto CheckIfLeafGuardCancelsStatus
 
-[19 54 00 09]:
+AI_CBM_Freeze:
 get_target_type1
 if_equal_ TYPE_ICE, Score_Minus10
 get_target_type2
@@ -1342,7 +1342,7 @@ if_equal ABILITY_STURDY, Score_Minus10
 if_level_cond 1, Score_Minus10
 end
 
-[6E 5A 00 09]:
+AI_CBM_ConfuseAndEvasionDown:
 if_stat_level_equal AI_TARGET, STAT_EVASION, 0, Score_Minus10
 get_ability AI_TARGET
 if_equal ABILITY_CLEAR_BODY, Score_Minus10
@@ -3528,7 +3528,7 @@ if_effect EFFECT_TRAP, AI_CV_Trap
 if_effect EFFECT_MEAN_LOOK, AI_CV_Trap
 if_effect EFFECT_HIGH_CRITICAL, AI_CV_HighCrit
 if_effect EFFECT_FLATTER, AI_CV_Flatter
-if_effect EFFECT_0x32, AI_CV_Confuse
+if_effect EFFECT_CONFUSE_EVASION_DOWN, AI_CV_Confuse
 if_effect EFFECT_CONFUSE, AI_CV_Confuse
 if_effect EFFECT_0x34, [63 66 00 09]
 if_effect EFFECT_POWER_SWAP, AI_CV_PowerSwap
@@ -4270,7 +4270,7 @@ if_target_faster AI_CV_Substitute_End
 get_last_used_bank_move AI_TARGET
 get_move_effect_from_result
 if_equal EFFECT_SLEEP, AI_CV_Substitute5
-if_equal EFFECT_0x1E, AI_CV_Substitute5
+if_equal EFFECT_FREEZE, AI_CV_Substitute5
 if_equal EFFECT_TOXIC, AI_CV_Substitute5
 if_equal EFFECT_0x40, AI_CV_Substitute5
 if_equal EFFECT_POISON, AI_CV_Substitute5
@@ -5385,7 +5385,7 @@ EFFECT_TOXIC
 EFFECT_LIGHT_SCREEN
 EFFECT_FOCUS_ENERGY
 EFFECT_CONFUSE
-EFFECT_0x32
+EFFECT_CONFUSE_EVASION_DOWN
 EFFECT_0x40
 EFFECT_REFLECT
 EFFECT_POISON

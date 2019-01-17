@@ -334,6 +334,7 @@ move IDs:
 = 0x29A = (chance to lower accuracy or flinch)
 = 0x29C = (chance to flinch)
 = 0x29D = (chance to paralyze)
+= 0x29F = (ground -> flying neutral, water -> ice/poison SE, bypasses Levitate)
 - 0x2A4 = Strength Sap
 = 0x2A5 = (can't be called by metronome)
 = 0x2A6 = (has attract effect, but ai also won't use on targets immune to poisoning)
@@ -341,9 +342,8 @@ move IDs:
 = 0x2A8 = (can't be called by metronome)
 
 move effects:
-= 0x0E = (ai wants to encore this)
-= 0x1E = (ai won't use if target is ice-type, has Flame Body (clearly intended to be Magma Armor), has status, has Safeguard, or sun is up), (if opponent used this last and is slower and has no status, ai doesn't want to use Substitute)
-= 0x32 = (ai won't use if target has -6 evasion, has Clear Body or Own Tempo, has Safeguard, or is confused), (uses same main ai script as confusion moves), ("setup" move)
+= 0x1E = freeze
+= 0x32 = confuse and lower evasion
 = 0x34 = (ai wants to use if target is faster or steel-type and doesn't resist the move)
 = 0x37 = (won't miss), (ai wants to encore this)
 = 0x38 = (won't miss), (ai wants to encore this)
@@ -452,7 +452,7 @@ metatiles:
 0xE3: (runs script_68277E_J (msgbox 8B 70 46 0A 1A FE 8B 70 44 00 02 50 4B 02 AB FF) when examined)
 0xE4: (runs script_682787_J (msgbox 87 5B 8B 5F B0 AB FE 15 06 1A 00 8B 70 00 46 50 06 28 AB FF) when examined)
 
-battle strings (ADD 9 TO ALL, 0D77C8 = num):
+battle strings (ADD 9 TO ALL):
 ! 0xC2 = "[PKMN]'s [ABILITY] [CHANGED] its [STAT]!" <DON'T ADD 9> <REFACTOR LATER>
 ! 0xC8 = (special message for move ID 257?) <DON'T ADD 9> <probably refactor later to not remove the old C8, "prevents romance">
 ! 0xD5 = "drastically " <DON'T ADD 9>
@@ -479,16 +479,18 @@ battle strings (ADD 9 TO ALL, 0D77C8 = num):
 ! 0x194 = "[PKMN]'s Ability became Mummy!"
 ! 0x195 = "[DEFENDER]'s [ABILITY] hurt [ATTACKER]! (placeholder)"
 ! 0x196 = "[DEFENDER]'s [ABILITY] lowered [ATTACKER]'s [STAT]! (placeholder)"
-= 0x197 = (typeboost bcs 1E effect)
+! 0x197 = "The [ITEM] strengthened [MOVE]'s power!" <CHECK THAT THIS IS THE RIGHT MSG>
 + 0x198 = "The effects of the [ITEM] prevent status moves from being used!"
 + 0x199 = "[PKMN]'s [ABILITY] raised its [STAT]! (placeholder)" <REFACTOR LATER>
 + 0x19B = "[PKMN]'s [ABILITY] bounced [MOVE] back! (placeholder)"
 ! 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]! (placeholder)"
 ! 0x19D = "[PKMN] restored HP using its [ABILITY]! (placeholder)"
 ! 0x19E = "[PKMN] is hurt by its [ITEM]!"
+- 0x20C = "[PKMN] is already frozen! (placeholder)"
+- 0x20D = "[PKMN]'s [ABILITY] prevents freezing! (placeholder)"
 = 0x20E = "[PKMN] became trapped by swirling magma!"/"[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"
 = 0x20F = "[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"/"[PKMN] became trapped by swirling magma!"
-? 0x212 = "[PKMN]'s stat changes were removed!"
+- 0x212 = "[PKMN]'s stat changes were removed!"
 = 0x217 = (tightening focus message but for move id 0x2A7)
 
 grafics:
@@ -728,14 +730,13 @@ stray text:
 		  Implements: Possibly tracks number of times each of player's moves are used?
 		  Required knowledge: j0203B970
 + 01E408: atk04_critcalc (see 19disasm) (ALSO 250530: 10 00 08 00 04 00 03 00 02 00 -> 18 00 08 00 02 00 01 00 01 00)
-		  Implements: Klutz (crit boost items), Mold Breaker+ (vs Shell Armor), Super Luck, Frost Breath, modern crit stages; removes Poison Tail/Blaze Kick crit+ (now unused?)
-		  Removes (now unused?): Poison Tail/Blaze Kick crit+
+		  Implements: Klutz (crit boost items), Mold Breaker+ (vs Shell Armor), Super Luck, Frost Breath, modern crit stages; removes Poison Tail/Blaze Kick crit+ (now unused)
 = 01E59C: atk05_damagecalc (see 20disasm)
 		  Implements: Sniper, 2x -> 1.5x crit damage; removes gBattleScripting.dmgMultiplier, Charge boost, Helping Hand boost (moved to CalculateBaseDamage)
 		  Relies on: above being moved to CalculateBaseDamage
 = 01E848: atk06_typecalc (see 21disasm) (ALSO 25DEEE: 00 00 -> 1D 09)
-		  Implements: Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Levitate, Wonder Guard, Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Galvanize (type change), Expert Belt, (typeboost items with param bcs 1E), ice immunity to sheer cold
-		  Relies on: ConsumeItem (e01FCCC, j01F4DC), script_1F552_J (e1FD42), gChosenActionByBattler changed to something else
+		  Implements: Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Levitate, Wonder Guard, Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Galvanize (type change), Expert Belt, Gems, ice immunity to sheer cold
+		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_UseGem (e1FD42, j1F552), gChosenActionByBattler changed to something else
 		  Requires in future: HasItemWithTypeEffect, AteAbilityConversionTable (j168CB4)
 		  Note: check wonder guard vs canceled se (elec on water/ground, fire on rock/grass)
 = 01EDF4: TypeCalc (see 22disasm)
@@ -2056,12 +2057,12 @@ stray text:
 		  Implements: [move12E]
 - 1D69E7 -> 1050060 (repoint): BattleScript_EffectAbsorb_New (see movescripts.txt)
 		  Implements: Draining Kiss
-= 1D6A55, 1D6A60, 1D6A6B -> 1054000 (repoint): BattleScript_ParameterizedEffectHit (see movescripts.txt)
+= 1D6A55, 1D6A60, 1D6A6B, 1D6DB2, 1D6E69, 1D6E7D, 1D6900 (the one after 1D6FC8) -> 1054000 (repoint): BattleScript_ParameterizedEffectHit (see movescripts.txt)
   1D6B77, 1D6B82, 1D6900, 1D6B8D, 1D6900, 1D6900, 1D6B98 -> 1054010 (repoint): BattleScript_ParameterizedStatUp
   1D6BEC, 1D6BF7, 1D6900 (the one before 1D6C02), 1D6C02, 1D6C0D -> 1054020 (repoint): BattleScript_ParameterizedStatDown
   ??? -> 1054030 (repoint): BattleScript_ParameterizedStatDownPerfectAccuracy
-		  Implements: refactor all additional-effect hit moves and stat-up/stat-down moves into a parameterized script to free up space for more effects (too many actual moves to list here, see the move list near the top; below is the list of effects refactored by this)
-			EffectHit: EFFECT_BURN_HIT, EFFECT_FREEZE_HIT, EFFECT_PARALYZE_HIT
+		  Implements: refactor all additional-effect hit moves and stat-up/stat-down moves into a parameterized script to reduce redundant code (too many actual moves to list here, see the move list near the top; below is the list of effects refactored by this)
+			EffectHit: EFFECT_BURN_HIT, EFFECT_FREEZE_HIT, EFFECT_PARALYZE_HIT, EFFECT_FLINCH_HIT, EFFECT_PAY_DAY, EFFECT_TRI_ATTACK, EFFECT_HIGH_CRITICAL (?)
 			StatUp: EFFECT_ATTACK_UP, EFFECT_DEFENSE_UP, EFFECT_SPEED_UP, EFFECT_SPECIAL_ATTACK_UP, EFFECT_SPECIAL_DEFENSE_UP, EFFECT_ACCURACY_UP, EFFECT_EVASION_UP
 			StatDown: EFFECT_ATTACK_DOWN (indirectly), EFFECT_DEFENSE_DOWN, EFFECT_SPEED_DOWN, EFFECT_SPECIAL_ATTACK_DOWN (indirectly), EFFECT_SPECIAL_DEFENSE_DOWN, EFFECT_ACCURACY_DOWN, EFFECT_EVASION_DOWN
 			StatDownPerfectAccuracy: EFFECT_ATTACK_DOWN (indirectly), EFFECT_SPECIAL_ATTACK_DOWN (indirectly)
@@ -2070,7 +2071,11 @@ stray text:
 		  Note: Diamond Storm has gen 6 effect
 - 1D6A76 -> 1053960 (repoint): BattleScript_EffectExplosion_New (see movescripts.txt)
   1D6AF6 -> 1053968 (repoint): BattleScript_EffectDreamEater_New (see movescripts.txt)
-		  Implements: adds a duplicate attackcanceler and attackstring to the script; only guess is that this is somehow related to the change in atk02_attackstring
+  1D6F01 -> 1053970 (repoint): BattleScript_EffectRazorWind_New (see movescripts.txt)
+  1D6FC8 -> 1053978 (repoint): BattleScript_EffectTrap_New (see movescripts.txt)
+  1D6FF9 -> 1053980 (repoint): BattleScript_EffectDoubleHit_New (see movescripts.txt)
+  1D7092 -> 1053988 (repoint): BattleScript_EffectRecoil_New (see movescripts.txt)
+		  Implements: adds a duplicate attackcanceler and attackstring to the scripts; only guess is that this is somehow related to the change in atk02_attackstring
 = 1D6ABE, 1D6AD9, 1D6D4A, 1D7663, 1D7B78, 1D7B90, 1D7CDA, 1D839C, 1D94E8, 1D9502, 1D9519: 10 -> 12
   1D6D8F: 02 -> 03
   1D6D98, 1D89A1: 04 -> 05
@@ -2083,14 +2088,30 @@ stray text:
 - 1D6BE1 -> 1052DB0 (repoint): BattleScript_EffectAttackDown (see movescripts.txt)
   1D6900 (the one after 1D6BF7) -> 1052470 (repoint): BattleScript_AttackDown_Standard (see movescripts.txt)
 		  Implements: [move214], [move215], Strength Sap; also refactors into the parameterized script
-? 1D6C72 -> 10500E0 (repoint): BattleScript_EffectHaze_New (see movescripts.txt)
+- 1D6C72 -> 10500E0 (repoint): BattleScript_EffectHaze_New (see movescripts.txt)
 		  Implements: Clear Smog
-		  <<<NOT DONE>>>
+		  Relies on: BattleScript_DamageAndEffect
+- 1D6C83 -> 10500B0 (repoint): BattleScript_EffectBide (see movescripts.txt)
+		  Implements: Bide can now miss
+- 1D6CB1 -> 10519C0 (repoint): BattleScript_EffectPhaze (see movescripts.txt)
+		  Implements: Dragon Tail/Circle Throw
+		  Relies on: BattleScript_DamageAndEffect
 + 1D6CCD: 01 60 69 1D 08 -> 00 00 00 00 00 (Roar/Whirlwind have perfect accuracy)
 + 1D6D51, 1D766A: 40 -> 00 (Endure displays the pokemon getting hit and enduring all hits of multihit moves, not the old behavior of it hitting once then getting endured)
+- 1D6D9D -> 10502D0 (repoint): BattleScript_EffectFreeze (see movescripts.txt)
+		  Implements: removes Conversion entirely, adds new effect for moves that freeze without doing damage (aka Hypnosis for freeze)
+= 1D6F99 -> 1053760 (repoint): BattleScript_EffectSetDamageOrMove29F (see movescripts.txt)
+		  Implements: [move29F] does regular damage with two exceptions: it bypasses Levitate, and it uses an altered type chart where Water is weak to Ice and Poison and Flying is neutral to Ground; condenses Sonic Boom into Dragon Rage's effect slot to free up space
+		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_UseGem (e1FD42, j1F552), HasItemWithTypeEffect, AteAbilityConversionTable (j168CB4), gChosenActionByBattler changed to something else
+		  Relies on: AlternateTypeCalc (j1833D0)
+		  Glitch: AteAbilityConversionTable ptr is wrong, currently points to j168CA4; fix when importing (not like it matters)
+		  Glitch?: the Levitate bypassing is done by temporarily swapping abilities, which means if used on a target with Levitate, [move29F] doesn't receive the effects of the user's Adaptability, Normalize, Tinted Lens, or Klutz (as in, Expert Belt actually works despite Klutz); the target receives the effects of the user's Solid Rock, Filter, and Wonder Guard; and if both mons have Levitate, the target is still immune to the move
 + 1D7011: BattleScript_EffectRecoilIfMiss (see movescripts.txt)
 		  Implements: [High] Jump Kick crashes through Ghost-types, always does half HP recoil
 		  Relies on: atk80_manipulatedamage changes
+= 1D70F8 -> 105039D (repoint): BattleScript_EffectConfuseAndLowerEvasion (see movescripts.txt)
+		  Implements: removes +2 Atk effect entirely (folded into +1 Atk), adds new effect for confuse + -1 evasion
+		  <<< NOT DONE >>>
 + 1D71F6: Part of BattleScript_EffectParalyze (see movescripts.txt)
 		  Implements: Electric-type paralysis immunity (Thunder Wave)
 + 1D7581, 1D81B5, 1D82AB, 1D8417: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything)
@@ -2181,20 +2202,20 @@ stray text:
 		  * New mechanics that old scripts are updated for: electric-type paralysis immunity, dark-type Prankster immunity, grass-type powder immunity, Lightning Rod (immunity), Motor Drive, Poison Heal, Magic Guard, Leaf Guard, Storm Drain, Overcoat, Big Pecks, Sap Sipper, Aroma Veil, Sweet Veil, Bulletproof, Dazzling, Queenly Majesty
 		  * Moves that bypass AI restrictions: burn moves that aren't Will-O-Wisp (this only bypasses the Fire-type check); trapping moves that aren't Mean Look / Block; switch-out moves that aren't Baton Pass; stat-resetting moves that aren't Haze (aka Clear Smog); phazing moves that aren't Roar / Whirlwind (aka Dragon Tail/Circle Throw)
 		  * New moves: 0x27D, 0x2A6 (factored into Attract script)
-		  * New move effects: [effect1E], [effect32], Power Swap, Guard Swap, [effect3C], [effect3D], [effect40], [effect5D], Tailwind, [effect8A], [effect8B], [effectC6], Work Up, [effectDF], [effectE5], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws
+		  * New move effects: freeze, confuse and lower evasion, Power Swap, Guard Swap, [effect3C], [effect3D], [effect40], [effect5D], Tailwind, [effect8A], [effect8B], [effectC6], Work Up, [effectDF], [effectE5], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws
 		  Relies on: new AI script commands, BattleMove refactor
 		  Glitch?: due to misaligned goto, only will-o-wisp is checked for prankster immunity
 		  Glitch?: looks like thunder wave is checked against electric-types twice instead of electric and ground (might be a transcription error? test this)
-		  Glitch?: [effect1E], which is clearly freeze-related, checks Flame Body instead of Magma Armor
+		  Glitch?: freeze effect (1E) checks Flame Body instead of Magma Armor
 		  Glitch?: [effect3C] -> [effect3D] -> Power Swap is fallthrough (might be intended, check again after determining what these are)
 = 1DA445 -> 1005C00 (repoint): AI_CheckViability
 		  Implements: enough stuff to warrant breaking the usual format
 		  * Removes old AI for: every +2/-2, conversion, sleep talk, smelling salts, skill swap, blaze kick, poison tail (check later to make sure all of these are now new moves - if not, it may be a bug)
 		  * Bugfixes: won't use a speed-lowering move like Mud Shot if the target is immune; no longer inexplicably encourages Toxic when it has a +SpDef move; no longer inexplicably discourages Protect/encourages Snatch when the opponent has specifically Defense Curl; Protect/Snatch correctly factors in all healing moves instead of just vanilla Recover-types; sandstorm and hail are no longer the wrong way around in the Fly script; Facade correctly checks the user for status instead of the target; Brick Break is encouraged vs Light Screen, not just Reflect
-		  * Other improvements: instead of a bizarre mix of moves, Mirror Move tries to prioritize any copiable move; doesn't discourage recovery when the user is faster; encourages OHKO moves after use of Mind Reader; Mean Look (why?), Dragon Dance (why?), and Knock Off are no longer encouraged to be Encored; Teleport is encouraged to be Encored; instead of encouraging stealing a short list of items, Thief is encouraged for all items that don't have a downside; Chlorophyll users prioritize Sunny Day; Volt Absorb, Water Absorb, Soundproof, Thick Fat, Flame Body, and Shell Armor are considered "good" abilities; "bad" abilities (to avoid/get rid of) are also listed
+		  * Other improvements: instead of a bizarre mix of moves, Mirror Move tries to prioritize any copiable move; doesn't discourage recovery when the user is faster; encourages OHKO moves after use of Mind Reader; Mean Look (why?), Dragon Dance (why?), and Knock Off are no longer encouraged to be Encored; Teleport and +Sp. Def are encouraged to be Encored; instead of encouraging stealing a short list of items, Thief is encouraged for all items that don't have a downside; Chlorophyll users prioritize Sunny Day; Volt Absorb, Water Absorb, Soundproof, Thick Fat, Flame Body, and Shell Armor are considered "good" abilities; "bad" abilities (to avoid/get rid of) are also listed
 		  * New mechanics that old scripts are updated for: p/s split (also includes removing the discouraging of, for example, -Atk moves or Reflect on a water-type since it can have physical STAB now), new Lightning Rod, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, [ability8B], Choice items, Assault Vest, Lagging Tail
 		  * New moves: 0x22D, 0x27C (factored into Eruption script); 0x161, 0x20E, 0x264, 0x265, 0x266, 0x267, 0x283 (factored into [effect58] script); 0x258, 0x272, 0x27A (factored into [effectE3] script); 0x1F2 (factored into [effectE8] script)
-		  * New move effects: [effect32], [effect34], Power Swap, Guard Swap, [effect3D], [effect40], [effect58], [effect5D], [effect86], Work Up, [effectD6], [effectD7], [effectDD], Hurricane, [effectE3], [effectE6], [effectE8], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws, [effectF8], [effectF9], [effectFB], [effectFC]
+		  * New move effects: confuse and lower evasion, [effect34], Power Swap, Guard Swap, [effect3D], [effect40], [effect58], [effect5D], [effect86], Work Up, [effectD6], [effectD7], [effectDD], Hurricane, [effectE3], [effectE6], [effectE8], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws, [effectF8], [effectF9], [effectFB], [effectFC]
 		  Relies on: new AI script commands, BattleMove refactor
 		  Glitch?: due to misaligned goto, Substitute will fall through into the Hyper Beam logic under certain circumstances
 		  Glitch?: might cause inexplicable use of recovery moves at full HP, this might be a misreading though (test)

@@ -11,7 +11,7 @@ addr e: addr j: desc
 D0 1C 02 02: 4C 1C 02 02: gStringVar1
 F0 1C 02 02: 60 1C 02 02: gStringVar2
 04 1D 02 02: 74 1C 02 02: gStringVar3
-18 1D 02 02: 88 1C 02 02: gStringVar4
+18 1D 02 02: 88 1C 02 02: gStringVar4 (PD: gDynamicScript)
 		   : 10 1D 02 02: ?????? (GetMoveRelearnerMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
 								 (GetNumberOfRelearnableMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
 74 29 02 02: E4 28 02 02: gBattle_BG0_X
