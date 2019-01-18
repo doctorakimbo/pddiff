@@ -41,12 +41,16 @@ E2 A8 1B 08 00 00 05 09 40 00 05 09 60 00 05 09 00 40 05 09 00 40 05 09 00 40 05
 
 
 [BC A8 1B 08] = [00 69 1D 08] = BattleScript_EffectHit
+[DC A8 1B 08] = [20 69 1D 08] = BattleScript_EffectHit_DoubleDamage
+[E2 A8 1B 08] = [26 69 1D 08] = BattleScript_HitFromAtkCanceler
+[EC A8 1B 08] = [30 69 1D 08] = BattleScript_HitFromCritCalc
 [F0 A8 1B 08] = [34 69 1D 08] = BattleScript_HitFromAtkAnimation
 [0A A9 1B 08] = [4E 69 1D 08] = BattleScript_MoveEnd
 [13 A9 1B 08] = [57 69 1D 08] = BattleScript_MakeMoveMissed
 [1A A9 1B 08] = [5E 69 1D 08] = BattleScript_PrintMoveMissed
 [1C A9 1B 08] = [60 69 1D 08] = BattleScript_MoveMissedPause
-[5A AB 1B 08] = [] = BattleScript_EffectStatUp
+[5A AB 1B 08] = [9E 6B 1D 08] = BattleScript_EffectStatUp
+[CF AB 1B 08] = [13 6C 1D 08] = BattleScript_EffectStatDown
 [AC BD 1B 08] = [F0 7D 1D 08] = BattleScript_ButItFailedAtkStringPpReduce
 [AE BD 1B 08] = [F2 7D 1D 08] = BattleScript_ButItFailed
 [C0 BD 1B 08] = [04 7E 1D 08] = BattleScript_NotAffected

@@ -739,7 +739,7 @@ if_effect EFFECT_FREEZE, [19 54 00 09]
 if_effect EFFECT_TOXIC, AI_CBM_Toxic_New
 if_effect EFFECT_POISON, AI_CBM_Toxic_New
 if_effect EFFECT_0x8B, AI_CBM_Toxic_New
-if_effect EFFECT_0x40, [72 54 00 09]
+if_effect EFFECT_RANDOM_POISON_OR_PARALYZE, AI_CBM_RandomPoisonOrParalyze
 if_effect EFFECT_PARALYZE, AI_CBM_Paralyze_New
 if_effect EFFECT_0x8A, AI_CBM_Burn_New
 if_effect EFFECT_BURN, AI_CBM_Burn_New
@@ -816,8 +816,8 @@ if_effect EFFECT_MAGNITUDE, AI_CBM_Magnitude
 if_effect EFFECT_TRICK, AI_CBM_TrickAndKnockOff
 if_effect EFFECT_SNORE, AI_CBM_DamageDuringSleep
 if_effect EFFECT_REFRESH, AI_CBM_Refresh
-if_effect EFFECT_0x3C, [3D 59 00 09]
-if_effect EFFECT_0x3D, [45 59 00 09]
+if_effect EFFECT_REFLECT_TYPE, AI_CBM_ReflectType
+if_effect EFFECT_SYNCHRONOISE, AI_CBM_Synchronoise
 if_effect EFFECT_POWER_SWAP, AI_CBM_PowerSwap
 if_effect EFFECT_GUARD_SWAP, AI_CBM_GuardSwap
 if_effect EFFECT_HAZE, AI_CBM_Haze_CheckWhichMove
@@ -880,7 +880,7 @@ if_equal ABILITY_POISON_HEAL, Score_Minus10
 if_equal ABILITY_MAGIC_GUARD, Score_Minus10
 goto CheckIfLeafGuardCancelsStatus
 
-[72 54 00 09]:
+AI_CBM_RandomPoisonOrParalyze:
 get_target_type1
 if_equal_ TYPE_POISON, Score_Minus10
 if_equal_ TYPE_STEEL, Score_Minus10
@@ -1256,12 +1256,12 @@ AI_CBM_Refresh:
 if_not_status AI_USER, STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON, Score_Minus10
 end
 
-[3D 59 00 09]:
+AI_CBM_ReflectType:
 is_same_type 0
 if_equal 0, Score_Minus10
-goto [45 59 00 09]
+goto AI_CBM_Synchronoise
 
-[45 59 00 09]
+AI_CBM_Synchronoise
 is_same_type 1
 if_equal 0, Score_Minus10
 goto AI_CBM_PowerSwap
@@ -3530,11 +3530,11 @@ if_effect EFFECT_HIGH_CRITICAL, AI_CV_HighCrit
 if_effect EFFECT_FLATTER, AI_CV_Flatter
 if_effect EFFECT_CONFUSE_EVASION_DOWN, AI_CV_Confuse
 if_effect EFFECT_CONFUSE, AI_CV_Confuse
-if_effect EFFECT_0x34, [63 66 00 09]
+if_effect EFFECT_PAYBACK_DOUBLE_ON_STEEL, AI_CV_PaybackAndHitsSteelDouble
 if_effect EFFECT_POWER_SWAP, AI_CV_PowerSwap
 if_effect EFFECT_GUARD_SWAP, AI_CV_GuardSwap
-if_effect EFFECT_0x3D, [3E 67 00 09]
-if_effect EFFECT_0x40, [52 67 00 09]
+if_effect EFFECT_SYNCHRONOISE, AI_CV_Synchronoise
+if_effect EFFECT_RANDOM_POISON_OR_PARALYZE, AI_CV_RandomPoisonOrParalyze
 if_effect EFFECT_POISON, AI_CV_Poison
 if_effect EFFECT_PARALYZE, AI_CV_Paralyze
 if_effect EFFECT_VITAL_THROW, AI_CV_VitalThrow
@@ -4137,19 +4137,19 @@ if_hp_less_than AI_TARGET, 30, Score_Minus1
 AI_CV_Confuse_End:
 end
 
-[63 66 00 09]:
+AI_CV_PaybackAndHitsSteelDouble:
 [ERROR] (FF FF)
 
-[65 66 00 09]: // probably the intended [63 66 00 09]
-if_type_effectiveness AI_EFFECTIVENESS_x0_25, [87 66 00 09]
-if_type_effectiveness AI_EFFECTIVENESS_x0_5, [87 66 00 09]
+AI_CV_PaybackAndHitsSteelDouble_Actual: // probably the intended AI_CV_PaybackAndHitsSteelDouble
+if_type_effectiveness AI_EFFECTIVENESS_x0_25, AI_CV_PaybackAndHitsSteelDouble_End
+if_type_effectiveness AI_EFFECTIVENESS_x0_5, AI_CV_PaybackAndHitsSteelDouble_End
 if_target_faster Score_Plus2
 get_target_type1
 if_equal TYPE_STEEL, Score_Plus2
 get_target_type2
 if_equal TYPE_STEEL, Score_Plus2
 
-[87 66 00 09]:
+AI_CV_PaybackAndHitsSteelDouble_End:
 end
 
 AI_CV_PowerSwap:
@@ -4198,28 +4198,28 @@ AI_CV_GuardSwap4:
 if_random_greater_than 49, Score_Plus3
 end
 
-[3E 67 00 09]:
-if_type_effectiveness AI_EFFECTIVENESS_x2, [4B 67 00 09]
-if_type_effectiveness AI_EFFECTIVENESS_x4, [4B 67 00 09]
+AI_CV_Synchronoise:
+if_type_effectiveness AI_EFFECTIVENESS_x2, AI_CV_Synchronoise2
+if_type_effectiveness AI_EFFECTIVENESS_x4, AI_CV_Synchronoise2
 end
 
-[4B 67 00 09]:
+AI_CV_Synchronoise2:
 if_random_greater_than 127, Score_Plus1
 end
 
-[52 67 00 09]:
-if_hp_less_than AI_USER, 50, [60 67 00 09]
-if_hp_more_than AI_TARGET, 50, [62 67 00 09]
+AI_CV_RandomPoisonOrParalyze:
+if_hp_less_than AI_USER, 50, AI_CV_RandomPoisonOrParalyze_ScoreMinus1
+if_hp_more_than AI_TARGET, 50, AI_CV_RandomPoisonOrParalyze2
 
-[60 67 00 09]:
+AI_CV_RandomPoisonOrParalyze_ScoreMinus1:
 score -1
 
-[62 67 00 09]:
-if_target_faster [70 67 00 09]
+AI_CV_RandomPoisonOrParalyze2:
+if_target_faster AI_CV_RandomPoisonOrParalyze3
 if_hp_less_than AI_USER, 71, Score_Minus1
 end
 
-[70 67 00 09]:
+AI_CV_RandomPoisonOrParalyze3:
 if_random_greater_than 19, Score_Plus3
 end
 
@@ -4272,7 +4272,7 @@ get_move_effect_from_result
 if_equal EFFECT_SLEEP, AI_CV_Substitute5
 if_equal EFFECT_FREEZE, AI_CV_Substitute5
 if_equal EFFECT_TOXIC, AI_CV_Substitute5
-if_equal EFFECT_0x40, AI_CV_Substitute5
+if_equal EFFECT_RANDOM_POISON_OR_PARALYZE, AI_CV_Substitute5
 if_equal EFFECT_POISON, AI_CV_Substitute5
 if_equal EFFECT_PARALYZE, AI_CV_Substitute5
 if_equal EFFECT_BURN, AI_CV_Substitute5
@@ -4398,7 +4398,7 @@ EFFECT_ATTACK_UP
 EFFECT_DEFENSE_UP
 EFFECT_SPEED_UP
 EFFECT_SPECIAL_ATTACK_UP
-EFFECT_0xE
+EFFECT_SPECIAL_DEFENSE_UP
 EFFECT_HAZE
 EFFECT_ROAR
 EFFECT_TOXIC
@@ -4406,11 +4406,11 @@ EFFECT_LIGHT_SCREEN
 EFFECT_REST
 EFFECT_SUPER_FANG
 EFFECT_CONFUSE
-EFFECT_0x37
-EFFECT_0x38
+EFFECT_POWER_SPLIT
+EFFECT_GUARD_SPLIT
 EFFECT_POWER_SWAP
 EFFECT_GUARD_SWAP
-EFFECT_0x3C
+EFFECT_REFLECT_TYPE
 EFFECT_REFLECT
 EFFECT_POISON
 EFFECT_PARALYZE
@@ -5386,7 +5386,7 @@ EFFECT_LIGHT_SCREEN
 EFFECT_FOCUS_ENERGY
 EFFECT_CONFUSE
 EFFECT_CONFUSE_EVASION_DOWN
-EFFECT_0x40
+EFFECT_RANDOM_POISON_OR_PARALYZE
 EFFECT_REFLECT
 EFFECT_POISON
 EFFECT_PARALYZE
@@ -5589,7 +5589,7 @@ if_effect EFFECT_PURSUIT, AI_New_Pursuit
 if_effect EFFECT_REST, AI_New_Rest
 if_effect 0xED, AI_New_EffectED
 if_effect EFFECT_BATON_PASS, AI_New_BatonPass
-if_effect 0x3E, AI_New_Effect3E
+if_effect EFFECT_FOUL_PLAY, AI_New_FoulPlay
 if_effect 0xB1, AI_New_EffectB1
 end
 
@@ -5597,29 +5597,29 @@ AI_New_EffectB1:
 if_status2 AI_TARGET, STATUS2_SUBSTITUTE, AI_New_ScoreMinus32
 end
 
-AI_New_Effect3E:
-if_move 0x27B, AI_New_Effect3E_Move27B
+AI_New_FoulPlay:
+if_move 0x27B, AI_New_SpecialFoulPlay
 get_last_used_bank_move AI_TARGET
 get_move_attribute ATTR_CATEGORY_FLAGS
 if_bits_set FLAG_SPECIAL_MOVE, AI_New // ???????
-if_bits_set FLAG_STATUS_MOVE, AI_New_Effect3E_CheckIfSpecial
+if_bits_set FLAG_STATUS_MOVE, AI_New_FoulPlay_CheckIfSpecial
 score +1
 end
 
-AI_New_Effect3E_CheckIfSpecial:
+AI_New_FoulPlay_CheckIfSpecial:
 exec IsTargetSpecialAttacker
 if_equal TRUE, AI_New // ???????
 end
 
-AI_New_Effect3E_Move27B:
+AI_New_SpecialFoulPlay:
 get_last_used_bank_move AI_TARGET
 get_move_attribute ATTR_CATEGORY_FLAGS
 if_bits_not_set FLAG_SPECIAL_MOVE, AI_New // ???????
-if_bits_set FLAG_STATUS_MOVE, AI_New_Effect3E_CheckIfPhysical
+if_bits_set FLAG_STATUS_MOVE, AI_New_FoulPlay_CheckIfPhysical
 score +1
 end
 
-AI_New_Effect3E_CheckIfPhysical: // never actually reached due to faulty logic
+AI_New_FoulPlay_CheckIfPhysical: // never actually reached due to faulty logic
 exec IsTargetSpecialAttacker
 if_equal FALSE, AI_New // ???????
 end

@@ -503,6 +503,9 @@ goto BattleScript_EffectHit
 BattleScript_ParameterizedEffectHit (pj): @1054000
 31 9B 1C 02 02 50 40 05 09 08 28 80 40 05 09
 
+BattleScript_ParameterizedEffectAltTypeCalcHit (pj): @1053720
+00 02 31 9B 1C 02 02 50 37 05 09 08 03 00 01 1C A9 1B 08 00 00 28 80 40 05 09 04 05 FF D1 33 18 08 07 00 28 F0 A8 1B 08 FF FF FF FF FF FF FF FF E5 3D 02 02 3A 37 05 09
+
 BattleScript_ParameterizedStatUp (pj): @1054010
 31 9B 1C 02 02 58 40 05 09 08 28 80 40 05 09
 
@@ -540,6 +543,15 @@ BattleScript_ParameterizedEffectHit:
 copyarray vDynamicScriptData, Data_ParameterizedEffectHit, 0x8
 goto BattleScript_Parameterized
 
+BattleScript_ParameterizedEffectAltTypeCalcHit:
+attackcanceler
+attackstring
+copyarray vDynamicScriptData, Data_ParameterizedEffectAltTypeCalcHit, 0x8
+ppreduce
+attackcanceler
+accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
+goto BattleScript_Parameterized
+
 BattleScript_ParameterizedStatUp:
 copyarray vDynamicScriptData, Data_ParameterizedStatUpHit, 0x8
 goto BattleScript_Parameterized
@@ -555,6 +567,10 @@ goto BattleScript_Parameterized
 Data_ParameterizedEffectHit:
 cEFFECT_CHOOSER
 BattleScript_ParameterizedEffectHit_SetMoveEffect2
+
+Data_ParameterizedEffectAltTypeCalcHit:
+cEFFECT_CHOOSER
+BattleScript_ParameterizedEffectAltTypeCalcHit_DoTypeCalc
 
 Data_ParameterizedStatUp:
 sSTATCHANGER
@@ -967,6 +983,14 @@ MOVE_0x25F: MOVE_EFFECT_CONFUSION
 MOVE_0x260: MOVE_EFFECT_CONFUSION
 MOVE_0x29A: MOVE_EFFECT_FLINCH
 
+BattleScript_ParameterizedEffectAltTypeCalcHit_DoTypeCalc:
+critcalc
+damagecalc
+exec AlternateTypeCalc
+adjustnormaldamage
+attackcanceler
+goto BattleScript_HitFromAtkAnimation
+
 
 BattleScript_EffectBurnHit (fe): @1D6A55
 2E 85 3E 02 02 03 28 00 69 1D 08
@@ -979,6 +1003,9 @@ BattleScript_EffectParalyzeHit (fe): @1D6A6B
 
 BattleScript_ParameterizedEffectHit (pe): @1054000 <FIX THIS>
 31 9B 1C 02 02 50 40 05 09 08 28 80 40 05 09
+
+BattleScript_ParameterizedEffectAltTypeCalcHit (pe): @1053720 <FIX THIS>
+00 02 31 9B 1C 02 02 50 37 05 09 08 03 00 01 1C A9 1B 08 00 00 28 80 40 05 09 04 05 FF D1 33 18 08 07 00 28 F0 A8 1B 08 FF FF FF FF FF FF FF FF E5 3D 02 02 3A 37 05 09
 
 BattleScript_ParameterizedStatUp (pe): @1054010 <FIX THIS>
 31 9B 1C 02 02 58 40 05 09 08 28 80 40 05 09
@@ -1080,6 +1107,24 @@ BattleScript_EffectRecoil_New (pj): @1053988
 
 BattleScript_EffectRecoil_New (pe): @1053988
 00 02 28 92 70 1D 08
+
+
+
+// and this happens again?:
+BattleScript_EffectSkyAttack_New (pj): @10539A8
+00 02 28 5D B2 1B 08
+
+BattleScript_EffectSkyAttack_New (pe): @10539A8
+00 02 28 A1 72 1D 08
+
+
+
+// and this happens again?:
+BattleScript_EffectRage_New (pj): @10539B0
+00 02 28 09 B3 1B 08
+
+BattleScript_EffectRage_New (pe): @10539B0
+00 02 28 4D 73 1D 08
 
 
 
@@ -1587,5 +1632,689 @@ goto BattleScript_ConfuseAndLowerEvasion_MoveAnimation
 BattleScript_EffectAttackUp2 (fe): @1D70F8
 2E DE 3F 02 02 21 28 9E 6B 1D 08
 
-BattleScript_EffectConfuseAndLowerEvasion (pe): @105039D <FIX THIS>
-00 02 03 39 20 00 1E 00 01 24 04 05 09 1E 00 0C 24 04 05 09 01 AE BD 1B 08 00 00 1E 00 14 2F 04 05 09 1D 00 07 00 00 00 E3 03 05 09 1F 00 20 00 E3 03 05 09 09 0A 2E E5 3D 02 02 07 16 0F 12 40 00 28 E5 03 05 09 09 0A 2E 3E 3F 02 02 97 89 01 1F 04 05 09 29 03 E7 3D 02 02 02 0F 04 05 09 29 00 E7 3D 02 02 03 1F 04 05 09 39 20 00 28 17 04 05 09 47 45 00 01 34 3F 02 02 13 54 45 3C 08 12 40 00 28 0A A9 1B 08 10 47 01 12 40 00 28 0A A9 1B 08 10 CA 00 12 40 00 28 E3 03 05 09
+BattleScript_EffectConfuseAndLowerEvasion (pe): @105039D
+00 02 03 39 20 00 1E 00 01 24 04 05 09 1E 00 0C 24 04 05 09 01 F2 7D 1D 08 00 00 1E 00 14 2F 04 05 09 1D 00 07 00 00 00 E3 03 05 09 1F 00 20 00 E3 03 05 09 09 0A 2E 85 3E 02 02 07 16 0F 12 40 00 28 E5 03 05 09 09 0A 2E DE 3F 02 02 97 89 01 1F 04 05 09 29 03 87 3E 02 02 02 0F 04 05 09 29 00 87 3E 02 02 03 1F 04 05 09 39 20 00 28 17 04 05 09 47 45 00 01 D4 3F 02 02 13 88 E5 3F 08 12 40 00 28 4E 69 1D 08 10 47 01 12 40 00 28 4E 69 1D 08 10 CA 00 12 40 00 28 E3 03 05 09
+
+
+
+
+
+
+
+BattleScript_EffectDefenseUp2 (fj): @1BB0BF
+2E 3E 3F 02 02 22 28 5A AB 1B 08
+
+setstatchanger STAT_DEF, 2, FALSE
+goto BattleScript_EffectStatUp
+
+
+BattleScript_Effect??? (pj): @10527C0
+00 02 31 88 1C 02 02 D1 27 05 09 10 28 2C 27 05 09 29 02 42 3B 02 02 00 EC 27 05 09 28 E1 27 05 09 2E E5 3D 02 02 D2 28 E2 A8 1B 08 2E E5 3D 02 02 D1 28 E2 A8 1B 08
+
+BattleScript_??? (pj): @105272C
+2C 3E 3B 02 02 CC 3C 02 02 01 64 27 05 09 2C 3F 3B 02 02 CC 3C 02 02 01 6F 27 05 09 2C 40 3B 02 02 CC 3C 02 02 01 7A 27 05 09 2C 41 3B 02 02 CC 3C 02 02 01 85 27 05 09 2E 8E 1C 02 02 00 28 88 1C 02 02 2E 8E 1C 02 02 01 28 88 1C 02 02 2E 8E 1C 02 02 02 28 88 1C 02 02 2E 8E 1C 02 02 03 28 88 1C 02 02
+
+attackcanceler
+attackstring
+copyarray vDynamicScript, BattleScript_???_CheckIfTargetAlreadyMoved, 0x10
+goto BattleScript_???_CheckTargetTurn
+
+BattleScript_???_CheckIfTargetAlreadyMoved:
+jumpifbyte CMP_GREATER_THAN, gCurrentTurnActionNumber, vDynamicScript[6], BattleScript_???_TargetAlreadyMoved
+goto BattleScript_???_TargetHasntMoved
+
+BattleScript_???_TargetHasntMoved:
+setmoveeffect EFFECT_WATER_SPORT
+goto BattleScript_HitFromAtkCanceler
+
+BattleScript_???_TargetAlreadyMoved:
+setmoveeffect EFFECT_POISON_TAIL
+goto BattleScript_HitFromAtkCanceler
+
+BattleScript_???_CheckTargetTurn:
+jumpifbyteequal gBattlerByTurnOrder[0], gBattlerTarget, BattleScript_???_TargetGoesFirst
+jumpifbyteequal gBattlerByTurnOrder[1], gBattlerTarget, BattleScript_???_TargetGoesSecond
+jumpifbyteequal gBattlerByTurnOrder[2], gBattlerTarget, BattleScript_???_TargetGoesThird
+jumpifbyteequal gBattlerByTurnOrder[3], gBattlerTarget, BattleScript_???_TargetGoesFourth
+
+BattleScript_???_TargetGoesFirst:
+setbyte vDynamicScript[6], 0
+goto vDynamicScript
+
+BattleScript_???_TargetGoesSecond:
+setbyte vDynamicScript[6], 1
+goto vDynamicScript
+
+BattleScript_???_TargetGoesThird:
+setbyte vDynamicScript[6], 2
+goto vDynamicScript
+
+BattleScript_???_TargetGoesFourth:
+setbyte vDynamicScript[6], 3
+goto vDynamicScript
+
+
+BattleScript_EffectDefenseUp2 (fe): @1D7103
+2E DE 3F 02 02 22 28 9E 6B 1D 08
+
+BattleScript_Effect??? (pe): @10527C0
+00 02 31 18 1D 02 02 D1 27 05 09 10 28 2C 27 05 09 29 02 E2 3B 02 02 00 EC 27 05 09 28 E1 27 05 09 2E 85 3E 02 02 D2 28 26 69 1D 08 2E 85 3E 02 02 D1 28 26 69 1D 08
+
+BattleScript_??? (pe): @105272C
+2C DE 3B 02 02 6C 3D 02 02 01 64 27 05 09 2C DF 3B 02 02 6C 3D 02 02 01 6F 27 05 09 2C E0 3B 02 02 6C 3D 02 02 01 7A 27 05 09 2C E1 3B 02 02 6C 3D 02 02 01 85 27 05 09 2E 1E 1D 02 02 00 28 18 1D 02 02 2E 1E 1D 02 02 01 28 18 1D 02 02 2E 1E 1D 02 02 02 28 18 1D 02 02 2E 1E 1D 02 02 03 28 18 1D 02 02
+
+
+
+
+
+
+
+BattleScript_EffectSpeedUp2 (fj): @1BB0CA
+2E 3E 3F 02 02 23 28 5A AB 1B 08
+
+setstatchanger STAT_SPEED, 2, FALSE
+goto BattleScript_EffectStatUp
+
+
+BattleScript_EffectPaybackAndHitsSteelDouble (pj): @1053998
+00 02 28 D0 12 86 08
+
+BattleScript_EffectPaybackAndHitsSteelDouble_ActualScript (pj): @8612D0
+22 00 08 DC A8 1B 08 29 00 42 3B 02 02 00 BC A8 1B 08 29 00 42 3B 02 02 01 00 13 86 08 29 00 42 3B 02 02 02 60 7D E2 08 28 DC A8 1B 08 FF FF FF 29 00 CC 3C 02 02 00 E0 7C E2 08 29 00 CC 3C 02 02 01 F0 7C E2 08 29 00 CC 3C 02 02 02 00 7D E2 08 28 10 7D E2 08
+
+BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerLeftMovedFirst (pj): @E27CE0
+29 00 3E 3B 02 02 00 DC A8 1B 08 28 BC A8 1B 08 29 00 3E 3B 02 02 01 DC A8 1B 08 28 BC A8 1B 08 29 00 3E 3B 02 02 02 DC A8 1B 08 28 BC A8 1B 08 29 00 3E 3B 02 02 03 DC A8 1B 08 28 BC A8 1B 08 29 00 41 3B 02 02 00 BC A8 1B 08 28 DC A8 1B 08 29 00 41 3B 02 02 01 BC A8 1B 08 28 DC A8 1B 08 29 00 41 3B 02 02 02 BC A8 1B 08 28 DC A8 1B 08 29 00 41 3B 02 02 03 BC A8 1B 08 28 DC A8 1B 08 29 00 CC 3C 02 02 00 20 7D E2 08 29 00 CC 3C 02 02 01 30 7D E2 08 29 00 CC 3C 02 02 02 40 7D E2 08 28 50 7D E2 08
+
+attackcanceler
+attackstring
+goto BattleScript_EffectPaybackAndHitsSteelDouble_ActualScript
+
+BattleScript_EffectPaybackAndHitsSteelDouble_ActualScript:
+jumpiftype BS_TARGET, TYPE_STEEL, BattleScript_EffectHit_DoubleDamage
+jumpifbyte CMP_EQUAL, gCurrentTurnActionNumber, 0, BattleScript_EffectHit
+jumpifbyte CMP_EQUAL, gCurrentTurnActionNumber, 1, BattleScript_PaybackAndHitsSteelDouble_CheckIfTargetMovedFirst
+jumpifbyte CMP_EQUAL, gCurrentTurnActionNumber, 2, BattleScript_PaybackAndHitsSteelDouble_CheckIfTargetMovesLast
+goto BattleScript_EffectHit_DoubleDamage
+
+BattleScript_PaybackAndHitsSteelDouble_CheckIfTargetMovedFirst:
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_LEFT, BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerLeftMovedFirst
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_LEFT, BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentLeftMovedFirst
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_RIGHT, BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerRightMovedFirst
+goto BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentRightMovedFirst
+
+BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerLeftMovedFirst:
+jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[0], B_POSITION_PLAYER_LEFT, BattleScript_EffectHit_DoubleDamage
+goto BattleScript_EffectHit
+
+BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentLeftMovedFirst:
+jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[0], B_POSITION_OPPONENT_LEFT, BattleScript_EffectHit_DoubleDamage
+goto BattleScript_EffectHit
+
+BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerRightMovedFirst:
+jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[0], B_POSITION_PLAYER_RIGHT, BattleScript_EffectHit_DoubleDamage
+goto BattleScript_EffectHit
+
+BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentRightMovedFirst:
+jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[0], B_POSITION_OPPONENT_RIGHT, BattleScript_EffectHit_DoubleDamage
+goto BattleScript_EffectHit
+
+BattleScript_PaybackAndHitsSteelDouble_CheckIfTargetMovesLast:
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_LEFT, BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerLeftMovesLast
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_LEFT, BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentLeftMovesLast
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_RIGHT, BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerRightMovesLast
+goto BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentRightMovesLast
+
+BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerLeftMovesLast:
+jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[3], B_POSITION_PLAYER_LEFT, BattleScript_EffectHit
+goto BattleScript_EffectHit_DoubleDamage
+
+BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentLeftMovesLast:
+jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[3], B_POSITION_OPPONENT_LEFT, BattleScript_EffectHit
+goto BattleScript_EffectHit_DoubleDamage
+
+BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerRightMovesLast:
+jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[3], B_POSITION_PLAYER_RIGHT, BattleScript_EffectHit
+goto BattleScript_EffectHit_DoubleDamage
+
+BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentRightMovesLast:
+jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[3], B_POSITION_OPPONENT_RIGHT, BattleScript_EffectHit
+goto BattleScript_EffectHit_DoubleDamage
+
+
+BattleScript_EffectSpeedUp2 (fe): @1D710E
+2E DE 3F 02 02 23 28 9E 6B 1D 08
+
+BattleScript_EffectPaybackAndHitsSteelDouble (pe): @1053998
+00 02 28 D0 12 86 08
+
+BattleScript_EffectPaybackAndHitsSteelDouble_ActualScript (pe): @8612D0
+22 00 08 20 69 1D 08 29 00 E2 3B 02 02 00 00 69 1D 08 29 00 E2 3B 02 02 01 00 13 86 08 29 00 E2 3B 02 02 02 60 7D E2 09 28 20 69 1D 08 FF FF FF 29 00 6C 3D 02 02 00 E0 7C E2 09 29 00 6C 3D 02 02 01 F0 7C E2 09 29 00 6C 3D 02 02 02 00 7D E2 09 28 10 7D E2 09
+
+BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerLeftMovedFirst (pe): @1E27CE0
+29 00 DE 3B 02 02 00 20 69 1D 08 28 00 69 1D 08 29 00 DE 3B 02 02 01 20 69 1D 08 28 00 69 1D 08 29 00 DE 3B 02 02 02 20 69 1D 08 28 00 69 1D 08 29 00 DE 3B 02 02 03 20 69 1D 08 28 00 69 1D 08 29 00 E1 3B 02 02 00 00 69 1D 08 28 20 69 1D 08 29 00 E1 3B 02 02 01 00 69 1D 08 28 20 69 1D 08 29 00 E1 3B 02 02 02 00 69 1D 08 28 20 69 1D 08 29 00 E1 3B 02 02 03 00 69 1D 08 28 20 69 1D 08 29 00 6C 3D 02 02 00 20 7D E2 09 29 00 6C 3D 02 02 01 30 7D E2 09 29 00 6C 3D 02 02 02 40 7D E2 09 28 50 7D E2 09
+
+
+
+
+
+
+
+BattleScript_EffectPowerSplit (pj): @10524C0
+00 02 03 01 1C A9 1B 08 00 00 FA 01 00 02 FA 01 00 08 09 0A 10 00 02 12 40 00 28 0A A9 1B 08
+
+attackcanceler
+attackstring
+ppreduce
+accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
+swaporcopymondata ATKFA_2BYTE, ATKFA_AVERAGEBOTH, ATKFA_ATKSTAT
+swaporcopymondata ATKFA_2BYTE, ATKFA_AVERAGEBOTH, ATKFA_SPATKSTAT
+attackanimation
+waitanimation
+printstring STRINGID_PKMNSHAREDPOWER
+waitmessage 0x40
+goto BattleScript_MoveEnd
+
+
+BattleScript_EffectPowerSplit (pe): @10524C0
+00 02 03 01 60 69 1D 08 00 00 FA 01 00 02 FA 01 00 08 09 0A 10 09 02 12 40 00 28 4E 69 1D 08
+
+
+
+
+
+
+
+BattleScript_EffectGuardSplit (pj): @10524C0
+00 02 03 01 1C A9 1B 08 00 00 FA 01 00 04 FA 01 00 0A 09 0A 10 01 02 12 40 00 28 0A A9 1B 08
+
+attackcanceler
+attackstring
+ppreduce
+accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
+swaporcopymondata ATKFA_2BYTE, ATKFA_AVERAGEBOTH, ATKFA_DEFSTAT
+swaporcopymondata ATKFA_2BYTE, ATKFA_AVERAGEBOTH, ATKFA_SPDEFSTAT
+attackanimation
+waitanimation
+printstring STRINGID_PKMNSHAREDGUARD
+waitmessage 0x40
+goto BattleScript_MoveEnd
+
+
+BattleScript_EffectGuardSplit (pe): @10524E0
+00 02 03 01 60 69 1D 08 00 00 FA 01 00 04 FA 01 00 0A 09 0A 10 0A 02 12 40 00 28 4E 69 1D 08
+
+
+
+
+
+
+
+BattleScript_EffectAttackDown2 (fj): @1BB0FE
+2E 3E 3F 02 02 A1 28 CF AB 1B 08
+
+setstatchanger STAT_ATK, 2, TRUE
+goto BattleScript_EffectStatDown
+
+
+BattleScript_EffectPowerSwap (pj): @1052500
+00 02 03 01 1C A9 1B 08 00 00 FA 00 01 19 FA 00 01 1C 09 0A 10 02 02 12 40 00 28 0A A9 1B 08
+
+attackcanceler
+attackstring
+ppreduce
+accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
+swaporcopymondata ATKFA_1BYTE, ATKFA_SWAP, ATKFA_ATKSTAGES
+swaporcopymondata ATKFA_1BYTE, ATKFA_SWAP, ATKFA_SPATKSTAGES
+attackanimation
+waitanimation
+printstring STRINGID_PKMNSWITCHEDATKCHANGES
+waitmessage 0x40
+goto BattleScript_MoveEnd
+
+
+BattleScript_EffectAttackDown2 (fe): @1D7142
+2E DE 3F 02 02 A1 28 13 6C 1D 08
+
+BattleScript_EffectPowerSwap (pe): @1052500
+00 02 03 01 60 69 1D 08 00 00 FA 00 01 19 FA 00 01 1C 09 0A 10 0B 02 12 40 00 28 4E 69 1D 08
+
+
+
+
+
+
+
+BattleScript_EffectDefenseDown2 (fj): @1BB109
+2E 3E 3F 02 02 A2 28 CF AB 1B 08
+
+setstatchanger STAT_DEF, 2, TRUE
+goto BattleScript_EffectStatDown
+
+
+BattleScript_EffectGuardSwap (pj): @1052520
+00 02 03 01 1C A9 1B 08 00 00 FA 00 01 1A FA 00 01 1D 09 0A 10 03 02 12 40 00 28 0A A9 1B 08
+
+attackcanceler
+attackstring
+ppreduce
+accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
+swaporcopymondata ATKFA_1BYTE, ATKFA_SWAP, ATKFA_DEFSTAGES
+swaporcopymondata ATKFA_1BYTE, ATKFA_SWAP, ATKFA_SPDEFSTAGES
+attackanimation
+waitanimation
+printstring STRINGID_PKMNSWITCHEDDEFCHANGES
+waitmessage 0x40
+goto BattleScript_MoveEnd
+
+
+BattleScript_EffectDefenseDown2 (fe): @1D714D
+2E DE 3F 02 02 A2 28 13 6C 1D 08
+
+BattleScript_EffectGuardSwap (pe): @1052520
+00 02 03 01 60 69 1D 08 00 00 FA 00 01 1A FA 00 01 1D 09 0A 10 0C 02 12 40 00 28 4E 69 1D 08
+
+
+
+
+
+
+
+BattleScript_EffectSpeedDown2 (fj): @1BB114
+2E 3E 3F 02 02 A3 28 CF AB 1B 08
+
+setstatchanger STAT_SPEED, 2, TRUE
+goto BattleScript_EffectStatDown
+
+
+BattleScript_EffectReflectType (pj): @1052540
+00 02 03 01 1C A9 1B 08 00 00 FA 00 02 21 FA 00 02 22 09 0A 10 04 02 12 40 00 28 0A A9 1B 08
+
+attackcanceler
+attackstring
+ppreduce
+accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
+swaporcopymondata ATKFA_1BYTE, ATKFA_ATTACKERCOPIESTARGET, ATKFA_TYPE1
+swaporcopymondata ATKFA_1BYTE, ATKFA_ATTACKERCOPIESTARGET, ATKFA_TYPE2
+attackanimation
+waitanimation
+printstring STRINGID_XSTYPEBECAMESAMEASYSTYPE
+waitmessage 0x40
+goto BattleScript_MoveEnd
+
+
+BattleScript_EffectSpeedDown2 (fe): @1D7158
+2E DE 3F 02 02 A3 28 13 6C 1D 08
+
+BattleScript_EffectReflectType (pe): @1052540
+00 02 03 01 60 69 1D 08 00 00 FA 00 02 21 FA 00 02 22 09 0A 10 0D 02 12 40 00 28 4E 69 1D 08
+
+
+
+
+
+
+
+BattleScript_EffectSynchronoise (pj): @1050580
+FD AC BD 1B 08 28 E2 A8 1B 08
+
+jumpifnocommontype BattleScript_ButItFailedAtkStringPpReduce
+goto BattleScript_HitFromAtkCanceler
+
+
+BattleScript_EffectSynchronoise (pe): @1050580
+FD F0 7D 1D 08 28 26 69 1D 08
+
+
+
+
+
+
+
+BattleScript_EffectSpecialDefenseDown2 (fj): @1BB11F
+2E 3E 3F 02 02 A5 28 CF AB 1B 08
+
+setstatchanger STAT_SPDEF, 2, TRUE
+goto BattleScript_EffectStatDown
+
+
+BattleScript_EffectFoulPlay (pj): @1050590
+2A 00 AA 3C 02 02 7B 02 BF 05 05 09 00 01 1A A9 1B 08 00 00 FA 01 01 02 FA 00 01 19 02 03 04 05 06 07 FA 01 01 02 FA 00 01 19 28 F0 A8 1B 08 00 01 1A A9 1B 08 00 00 FA 01 01 08 FA 00 01 1C 02 03 04 05 06 07 FA 01 01 08 FA 00 01 1C 28 F0 A8 1B 08
+
+jumpifmove 0x27B, BattleScript_FoulPlay_SpecialAttack
+attackcanceler
+accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+swaporcopymondata ATKFA_2BYTE, ATKFA_SWAP, ATKFA_ATKSTAT
+swaporcopymondata ATKFA_1BYTE, ATKFA_SWAP, ATKFA_ATKSTAGES
+attackstring
+ppreduce
+critcalc
+damagecalc
+typecalc
+adjustnormaldamage
+swaporcopymondata ATKFA_2BYTE, ATKFA_SWAP, ATKFA_ATKSTAT
+swaporcopymondata ATKFA_1BYTE, ATKFA_SWAP, ATKFA_ATKSTAGES
+goto BattleScript_HitFromAtkAnimation
+
+BattleScript_FoulPlay_SpecialAttack:
+attackcanceler
+accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+swaporcopymondata ATKFA_2BYTE, ATKFA_SWAP, ATKFA_SPATKSTAT
+swaporcopymondata ATKFA_1BYTE, ATKFA_SWAP, ATKFA_SPATKSTAGES
+attackstring
+ppreduce
+critcalc
+damagecalc
+typecalc
+adjustnormaldamage
+swaporcopymondata ATKFA_2BYTE, ATKFA_SWAP, ATKFA_SPATKSTAT
+swaporcopymondata ATKFA_1BYTE, ATKFA_SWAP, ATKFA_SPATKSTAGES
+goto BattleScript_HitFromAtkAnimation
+
+BattleScript_EffectSpecialDefenseDown2 (fe): @1D7163
+2E DE 3F 02 02 A5 28 13 6C 1D 08
+
+BattleScript_EffectFoulPlay (pe): @1050590
+2A 00 4A 3D 02 02 7B 02 BF 05 05 09 00 01 5E 69 1D 08 00 00 FA 01 01 02 FA 00 01 19 02 03 04 05 06 07 FA 01 01 02 FA 00 01 19 28 34 69 1D 08 00 01 5E 69 1D 08 00 00 FA 01 01 08 FA 00 01 1C 02 03 04 05 06 07 FA 01 01 08 FA 00 01 1C 28 34 69 1D 08
+
+
+
+
+
+
+
+BattleScript_EffectHealPulse (pj): @10505F0
+00 02 03 01 AE BD 1B 08 FF FF 7B 8D BD 1B 08 00 09 0A 35 30 3D 02 02 00 01 00 00 0B 00 0C 00 10 4B 00 12 40 00 28 0A A9 1B 08
+
+attackcanceler
+attackstring
+ppreduce
+accuracycheck BattleScript_ButItFailed, NO_ACC_CALC_CHECK_LOCK_ON
+tryhealhalfhealth BattleScript_AlreadyAtFullHp, BS_TARGET
+attackanimation
+waitanimation
+orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+healthbarupdate BS_TARGET
+datahpupdate BS_TARGET
+printstring STRINGID_PKMNREGAINEDHEALTH
+waitmessage 0x40
+goto BattleScript_MoveEnd
+
+
+BattleScript_EffectHealPulse (pe): @10505F0
+00 02 03 01 F2 7D 1D 08 FF FF 7B D1 7D 1D 08 00 09 0A 35 D0 3D 02 02 00 01 00 00 0B 00 0C 00 10 4B 00 12 40 00 28 4E 69 1D 08
+
+
+
+
+
+
+
+BattleScript_EffectRandomPoisonOrParalyze (pj): @10539A0
+00 02 28 10 38 05 09
+
+BattleScript_EffectRandomPoisonOrParalyze_ActualScript (pj): @1053810
+1C 00 FF 00 00 00 AC BD 1B 08 22 00 03 50 38 05 09 22 00 08 50 38 05 09 1E 00 11 50 38 05 09 22 00 0D 70 38 05 09 1E 00 07 70 38 05 09 28 20 06 05 09 FF FF FF FF FF FF FF FF FF FF FF FF FF FF 22 00 0D AC BD 1B 08 1E 00 07 AC BD 1B 08 28 9E B1 1B 08 FF FF FF FF FF FF FF FF FF FF FF FF FF 22 00 03 AC BD 1B 08 22 00 08 AC BD 1B 08 1E 00 11 AC BD 1B 08 28 3D B1 1B 08
+
+BattleScript_RandomPoisonOrParalyze_ChooseEffect (pj): @1050620
+00 01 1A A9 1B 08 00 00 8D 00 29 00 D2 3C 02 02 02 3D B1 1B 08 29 00 D2 3C 02 02 03 9E B1 1B 08 29 00 D2 3C 02 02 04 3D B1 1B 08 29 00 D2 3C 02 02 05 9E B1 1B 08
+
+attackcanceler
+attackstring
+goto BattleScript_EffectRandomPoisonOrParalyze_ActualScript
+
+BattleScript_EffectRandomPoisonOrParalyze_ActualScript:
+jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_ButItFailedAtkStringPpReduce
+jumpiftype BS_TARGET, TYPE_POISON, BattleScript_RandomPoisonOrParalyze_CantPoison
+jumpiftype BS_TARGET, TYPE_STEEL, BattleScript_RandomPoisonOrParalyze_CantPoison
+jumpifability BS_TARGET, ABILITY_IMMUNITY, BattleScript_RandomPoisonOrParalyze_CantPoison
+jumpiftype BS_TARGET, TYPE_ELECTRIC, BattleScript_RandomPoisonOrParalyze_CantParalyze
+jumpifability BS_TARGET, ABILITY_LIMBER, BattleScript_RandomPoisonOrParalyze_CantParalyze
+goto BattleScript_RandomPoisonOrParalyze_ChooseEffect
+
+BattleScript_RandomPoisonOrParalyze_CantPoison:
+jumpiftype BS_TARGET, TYPE_ELECTRIC, BattleScript_ButItFailedAtkStringPpReduce
+jumpifability BS_TARGET, ABILITY_LIMBER, BattleScript_ButItFailedAtkStringPpReduce
+goto BattleScript_EffectParalyze
+
+BattleScript_RandomPoisonOrParalyze_CantParalyze:
+jumpiftype BS_TARGET, TYPE_POISON, BattleScript_ButItFailedAtkStringPpReduce
+jumpiftype BS_TARGET, TYPE_STEEL, BattleScript_ButItFailedAtkStringPpReduce
+jumpifability BS_TARGET, ABILITY_IMMUNITY, BattleScript_ButItFailedAtkStringPpReduce
+goto BattleScript_EffectPoison
+
+BattleScript_RandomPoisonOrParalyze_ChooseEffect:
+attackcanceler
+accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+setmultihitcounter 0x0
+jumpifbyte CMP_EQUAL, gMultiHitCounter, 2, BattleScript_EffectPoison
+jumpifbyte CMP_EQUAL, gMultiHitCounter, 3, BattleScript_EffectParalyze
+jumpifbyte CMP_EQUAL, gMultiHitCounter, 4, BattleScript_EffectPoison
+jumpifbyte CMP_EQUAL, gMultiHitCounter, 5, BattleScript_EffectParalyze
+
+
+BattleScript_EffectRandomPoisonOrParalyze (pe): @10539A0
+00 02 28 10 38 05 09
+
+BattleScript_EffectRandomPoisonOrParalyze_ActualScript (pe): @1053810
+1C 00 FF 00 00 00 F0 7D 1D 08 22 00 03 50 38 05 09 22 00 08 50 38 05 09 1E 00 11 50 38 05 09 22 00 0D 70 38 05 09 1E 00 07 70 38 05 09 28 20 06 05 09 FF FF FF FF FF FF FF FF FF FF FF FF FF FF 22 00 0D F0 7D 1D 08 1E 00 07 F0 7D 1D 08 28 E2 71 1D 08 FF FF FF FF FF FF FF FF FF FF FF FF FF 22 00 03 F0 7D 1D 08 22 00 08 F0 7D 1D 08 1E 00 11 F0 7D 1D 08 28 81 71 1D 08
+
+BattleScript_RandomPoisonOrParalyze_ChooseEffect (pe): @1050620
+00 01 5E 69 1D 08 00 00 8D 00 29 00 72 3D 02 02 02 81 71 1D 08 29 00 72 3D 02 02 03 E2 71 1D 08 29 00 72 3D 02 02 04 81 71 1D 08 29 00 72 3D 02 02 05 E2 71 1D 08
+
+
+
+
+
+
+
+BattleScript_EffectAccuracyDownHit (fj): @1BB252
+2E E5 3D 02 02 1B 28 BC A8 1B 08
+
+setmoveeffect MOVE_EFFECT_ACC_MINUS_1
+goto BattleScript_EffectHit
+
+BattleScript_EffectAccuracyDownHit (pj): @1052F40
+2A 01 AA 3C 02 02 9E 02 00 40 05 09 00 02 03 01 1C A9 1B 08 00 00 1D 00 00 00 00 01 EC A8 1B 08 41 00 2A 05 09 29 02 40 50 00 03 1A 0A A9 1B 08 2E 3E 3F 02 02 B6 89 01 0A A9 1B 08 29 03 E7 3D 02 02 02 9A 2F 05 09 29 00 E7 3D 02 02 03 0A A9 1B 08 39 20 00 28 A2 2F 05 09 47 45 00 01 34 3F 02 02 13 54 45 3C 08 12 40 00 28 0A A9 1B 08
+
+if_not_move 0x29E, BattleScript_ParameterizedEffectHit
+attackcanceler
+attackstring
+ppreduce
+accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
+jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_HitFromCritCalc
+call BattleScript_DamageAndEffect
+jumpifbyte CMP_GREATER_THAN, gRngValue, 26, BattleScript_MoveEnd // 10% of below happening
+setstatchanger STAT_ACC, 3, TRUE
+statbuffchange 0x1, BattleScript_MoveEnd
+jumpifbyte CMP_LESS_THAN, cMULTISTRING_CHOOSER, 0x2, BattleScript_AccuracyDown3Hit_PlayAnimation
+jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x3, BattleScript_MoveEnd
+pause 0x20
+goto BattleScript_AccuracyDown3Hit_PrintString
+
+BattleScript_AccuracyDown3Hit_PlayAnimation:
+setgraphicalstatchangevalues
+playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+
+BattleScript_AccuracyDown3Hit_PrintString:
+printfromtable gStatDownStringIds
+waitmessage 0x40
+goto BattleScript_MoveEnd
+
+
+
+
+BattleScript_EffectAccuracyDownHit (fe): @1D7296
+2E 85 3E 02 02 1B 28 00 69 1D 08
+
+BattleScript_EffectAccuracyDownHit (pe): @1052F40
+2A 01 4A 3D 02 02 9E 02 00 40 05 09 00 02 03 01 60 69 1D 08 00 00 1D 00 00 00 00 01 30 69 1D 08 41 00 2A 05 09 29 02 00 50 00 03 1A 4E 69 1D 08 2E DE 3F 02 02 B6 89 01 4E 69 1D 08 29 03 87 3E 02 02 02 9A 2F 05 09 29 00 87 3E 02 02 03 4E 69 1D 08 39 20 00 28 A2 2F 05 09 47 45 00 01 D4 3F 02 02 13 88 E5 3F 08 12 40 00 28 4E 69 1D 08
+
+
+
+
+
+
+
+BattleScript_Effect??? (fj): @1BB3D7
+00 01 1A A9 1B 08 00 00 02 03 06 36 2C 3D 02 02 06 A0 69 28 F0 A8 1B 08
+
+attackcanceler
+accuracycheck [1A A9 1B 08], ACC_CURR_MOVE
+attackstring
+ppreduce
+typecalc
+bicbyte [2C 3D 02 02], 0x6
+psywavedamageeffect
+adjustsetdamage
+goto [F0 A8 1B 08]
+
+
+BattleScript_Effect??? (pj): @10539B8
+00 02 28 40 23 05 09
+
+attackcanceler
+attackstring
+goto BattleScript_Effect???_ActualScript
+
+
+BattleScript_Effect???_ActualScript (pj): @1052340
+2A 00 AA 3C 02 02 61 01 A0 7F 69 08 00 01 1A A9 1B 08 00 00 02 1D 00 00 00 00 01 BC A8 1B 08 2A 00 AA 3C 02 02 0E 02 B0 23 05 09 2A 00 AA 3C 02 02 09 01 C0 23 05 09 2A 00 AA 3C 02 02 64 02 E0 23 05 09 2A 00 AA 3C 02 02 83 02 00 24 05 09 2A 00 AA 3C 02 02 66 02 20 24 05 09 2A 00 AA 3C 02 02 67 02 40 24 05 09 28 E4 09 05 09 FF FF FF FF 1C 00 FF 00 00 00 49 C0 1B 08 28 BC A8 1B 08 FF 1C 00 40 00 00 00 CF 23 05 09 28 BC A8 1B 08 31 28 2A 02 02 BB 47 3C 08 03 28 60 24 05 09 FF FF 1C 00 07 00 00 00 EF 23 05 09 28 BC A8 1B 08 31 28 2A 02 02 B0 47 3C 08 04 28 60 24 05 09 FF FF 1C 00 88 00 00 00 0F 24 05 09 28 BC A8 1B 08 31 28 2A 02 02 B4 47 3C 08 03 28 60 24 05 09 FF FF 1C 00 10 00 00 00 2F 24 05 09 28 BC A8 1B 08 31 28 2A 02 02 B7 47 3C 08 04 28 60 24 05 09 FF FF 1C 00 20 00 00 00 4F 24 05 09 28 BC A8 1B 08 31 28 2A 02 02 BE 47 3C 08 04 28 60 24 05 09 FF FF 2E E5 3D 02 02 A4 28 49 C0 1B 08
+
+BattleScript_??? (pj): @10509E4
+03 2E 32 3F 02 02 02 04 05 06 07 29 04 2C 3D 02 02 29 F0 A8 1B 08 09 0A 0E 5C 00 3A 0B 00 0C 00 0D 12 40 00 0F 12 40 00 19 00 00 00 00 00 00 20 00 01 10 00 25 0A 05 09 20 00 00 11 00 0A A9 1B 08 29 00 CC 3C 02 02 00 51 0A 05 09 29 00 CC 3C 02 02 01 5F 0A 05 09 29 00 CC 3C 02 02 02 6D 0A 05 09 29 00 CC 3C 02 02 03 7B 0A 05 09 38 94 3B 02 02 00 00 0F 00 28 89 0A 05 09 38 EC 3B 02 02 00 00 0F 00 28 89 0A 05 09 38 44 3C 02 02 00 00 0F 00 28 89 0A 05 09 38 9C 3C 02 02 00 00 0F 00 28 89 0A 05 09 31 28 2A 02 02 C7 47 3C 08 05 10 3B 00 12 40 00 28 0A A9 1B 08
+
+BattleScript_??? (pj): @697FA0
+1C 00 08 00 00 00 DC A8 1B 08 28 BC A8 1B 08
+
+jumpifmove 0x161, [A0 7F 69 08]
+attackcanceler
+accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+attackstring
+jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_EffectHit
+jumpifmove 0x20E, [B0 23 05 09]
+jumpifmove MOVE_SMELLING_SALTS, [C0 23 05 09]
+jumpifmove 0x264, [E0 23 05 09]
+jumpifmove 0x283, [00 24 05 09]
+jumpifmove 0x266, [20 24 05 09]
+jumpifmove 0x267, [40 24 05 09]
+goto [E4 09 05 09]
+
+[B0 23 05 09]:
+jumpifstatus BS_TARGET, STATUS1_ANY, [49 C0 1B 08]
+goto BattleScript_EffectHit
+
+[C0 23 05 09]:
+jumpifstatus BS_TARGET, STATUS1_PARALYSIS, [CF 23 05 09]
+goto BattleScript_EffectHit
+
+[CF 23 05 09]:
+copyarray gBattleTextBuff1, [BB 47 3C 08], 0x3
+goto [60 24 05 09]
+
+[E0 23 05 09]:
+jumpifstatus BS_TARGET, STATUS1_SLEEP, [EF 23 05 09]
+goto BattleScript_EffectHit
+
+[EF 23 05 09]:
+copyarray gBattleTextBuff1, [B0 47 3C 08], 0x4
+goto [60 24 05 09]
+
+[00 24 05 09]:
+jumpifstatus BS_TARGET, STATUS1_POISON | STATUS1_TOXIC_POISON, [0F 24 05 09]
+goto BattleScript_EffectHit
+
+[0F 24 05 09]:
+copyarray gBattleTextBuff1, [B4 47 3C 08], 0x3
+goto [60 24 05 09]
+
+[20 24 05 09]:
+jumpifstatus BS_TARGET, STATUS1_BURN, [2F 24 05 09]
+goto BattleScript_EffectHit
+
+[2F 24 05 09]:
+copyarray gBattleTextBuff1, [B7 47 3C 08], 0x4
+goto [60 24 05 09]
+
+[40 24 05 09]:
+jumpifstatus BS_TARGET, STATUS1_FREEZE, [4F 24 05 09]
+goto BattleScript_EffectHit
+
+[4F 24 05 09]:
+copyarray gBattleTextBuff1, [BE 47 3C 08], 0x4
+goto [60 24 05 09]
+
+[60 24 05 09]:
+setmoveeffect MOVE_EFFECT_REMOVE_PARALYSIS | MOVE_EFFECT_CERTAIN
+goto [49 C0 1B 08]
+
+[E4 09 05 09]:
+ppreduce
+setbyte sDMG_MULTIPLIER, 2
+critcalc
+damagecalc
+typecalc
+adjustnormaldamage
+jumpifbyte CMP_COMMON_BITS, gMoveResultFlags, 0x29, BattleScript_HitFromAtkAnimation
+attackanimation
+waitanimation
+effectivenesssound
+hitanimation BS_TARGET
+waitstate
+healthbarupdate BS_TARGET
+datahpupdate BS_TARGET
+critmessage
+waitmessage 0x40
+resultmessage
+waitmessage 0x40
+tryfaintmon BS_TARGET, FALSE, NULL
+// if_hp_zero BS_TARGET, BattleScript_MoveEnd
+jumpifstat BS_TARGET, CMP_NOT_EQUAL, 0x10, 0, [25 0A 05 09]
+jumpifstat BS_TARGET, CMP_EQUAL, 0x11, 0, BattleScript_MoveEnd
+
+[25 0A 05 09]:
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_LEFT, [51 0A 05 09]
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_LEFT, [5F 0A 05 09]
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_RIGHT, [6D 0A 05 09]
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_RIGHT, [7B 0A 05 09]
+
+[51 0A 05 09]:
+bicword gBattleMons[B_POSITION_PLAYER_LEFT].status2, STATUS2_INFATUATION
+goto [89 0A 05 09]
+
+[5F 0A 05 09]:
+bicword gBattleMons[B_POSITION_OPPONENT_LEFT].status2, STATUS2_INFATUATION
+goto [89 0A 05 09]
+
+[6D 0A 05 09]:
+bicword gBattleMons[B_POSITION_PLAYER_RIGHT].status2, STATUS2_INFATUATION
+goto [89 0A 05 09]
+
+[7B 0A 05 09]:
+bicword gBattleMons[B_POSITION_OPPONENT_RIGHT].status2, STATUS2_INFATUATION
+goto [89 0A 05 09]
+
+[89 0A 05 09]:
+copyarray gBattleTextBuff1, [C7 47 3C 08], 0x5
+printstring STRINGID_PKMNHEALEDPARALYSIS
+waitmessage 0x40
+goto BattleScript_MoveEnd
+
+[A0 7F 69 08]:
+jumpifstatus BS_TARGET, STATUS1_POISON, BattleScript_EffectHit_DoubleDamage // not toxic?
+goto BattleScript_EffectHit
+
+
+BattleScript_Effect??? (fe): @1D741B
+00 01 5E 69 1D 08 00 00 02 03 06 36 CC 3D 02 02 06 A0 69 28 34 69 1D 08
+
+BattleScript_Effect??? (pe): @10539B8
+00 02 28 40 23 05 09
+
+BattleScript_Effect???_ActualScript (pe): @1052340
+2A 00 AA 3C 02 02 61 01 A0 7F 69 09 00 01 1A A9 1B 08 00 00 02 1D 00 00 00 00 01 BC A8 1B 08 2A 00 AA 3C 02 02 0E 02 B0 23 05 09 2A 00 AA 3C 02 02 09 01 C0 23 05 09 2A 00 AA 3C 02 02 64 02 E0 23 05 09 2A 00 AA 3C 02 02 83 02 00 24 05 09 2A 00 AA 3C 02 02 66 02 20 24 05 09 2A 00 AA 3C 02 02 67 02 40 24 05 09 28 E4 09 05 09 FF FF FF FF 1C 00 FF 00 00 00 49 C0 1B 08 28 BC A8 1B 08 FF 1C 00 40 00 00 00 CF 23 05 09 28 BC A8 1B 08 31 28 2A 02 02 BB 47 3C 08 03 28 60 24 05 09 FF FF 1C 00 07 00 00 00 EF 23 05 09 28 BC A8 1B 08 31 28 2A 02 02 B0 47 3C 08 04 28 60 24 05 09 FF FF 1C 00 88 00 00 00 0F 24 05 09 28 BC A8 1B 08 31 28 2A 02 02 B4 47 3C 08 03 28 60 24 05 09 FF FF 1C 00 10 00 00 00 2F 24 05 09 28 BC A8 1B 08 31 28 2A 02 02 B7 47 3C 08 04 28 60 24 05 09 FF FF 1C 00 20 00 00 00 4F 24 05 09 28 BC A8 1B 08 31 28 2A 02 02 BE 47 3C 08 04 28 60 24 05 09 FF FF 2E E5 3D 02 02 A4 28 49 C0 1B 08
+
+BattleScript_??? (pe): @10509E4
+03 2E 32 3F 02 02 02 04 05 06 07 29 04 2C 3D 02 02 29 F0 A8 1B 08 09 0A 0E 5C 00 3A 0B 00 0C 00 0D 12 40 00 0F 12 40 00 19 00 00 00 00 00 00 20 00 01 10 00 25 0A 05 09 20 00 00 11 00 0A A9 1B 08 29 00 CC 3C 02 02 00 51 0A 05 09 29 00 CC 3C 02 02 01 5F 0A 05 09 29 00 CC 3C 02 02 02 6D 0A 05 09 29 00 CC 3C 02 02 03 7B 0A 05 09 38 94 3B 02 02 00 00 0F 00 28 89 0A 05 09 38 EC 3B 02 02 00 00 0F 00 28 89 0A 05 09 38 44 3C 02 02 00 00 0F 00 28 89 0A 05 09 38 9C 3C 02 02 00 00 0F 00 28 89 0A 05 09 31 28 2A 02 02 C7 47 3C 08 05 10 3B 00 12 40 00 28 0A A9 1B 08
+
+BattleScript_??? (pe): @1697FA0
+1C 00 08 00 00 00 DC A8 1B 08 28 BC A8 1B 08
