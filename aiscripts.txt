@@ -807,7 +807,7 @@ if_effect EFFECT_0xEF, [8E 58 00 09]
 if_effect EFFECT_MEMENTO, AI_CBM_Memento
 if_effect EFFECT_BATON_PASS, AI_CBM_BatonPass_CheckWhichMove
 if_effect EFFECT_DREAM_EATER, AI_CBM_DreamEater
-if_effect EFFECT_0x5D, [D5 58 00 09]
+if_effect EFFECT_VENOM_DRENCH, AI_CBM_VenomDrench
 if_effect EFFECT_STOCKPILE, AI_CBM_Stockpile
 if_effect EFFECT_SPIT_UP, AI_CBM_SpitUpAndSwallow
 if_effect EFFECT_SWALLOW, AI_CBM_SpitUpAndSwallow
@@ -1216,7 +1216,7 @@ if_not_status AI_TARGET, STATUS1_SLEEP, Score_Minus8
 if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
 end
 
-[D5 58 00 09]:
+AI_CBM_VenomDrench:
 if_not_status AI_TARGET, STATUS1_POISON | STATUS1_TOXIC_POISON, Score_Minus8
 if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
 end
@@ -3541,13 +3541,13 @@ if_effect EFFECT_VITAL_THROW, AI_CV_VitalThrow
 if_effect EFFECT_SUBSTITUTE, AI_CV_Substitute_New
 if_effect EFFECT_RECHARGE, AI_CV_Recharge
 if_effect EFFECT_DISABLE, AI_CV_Disable
-if_effect EFFECT_0x58, [89 68 00 09]
+if_effect EFFECT_DOUBLE_DAMAGE_ON_STATUS, AI_CV_DoubleDamageOnStatus
 if_effect EFFECT_COUNTER, AI_CV_Counter_New
 if_effect EFFECT_ENCORE, AI_CV_Encore_NewData
 if_effect EFFECT_PAIN_SPLIT, AI_CV_PainSplit
 if_effect EFFECT_LOCK_ON, AI_CV_LockOn
-if_effect EFFECT_0x5D, AI_CV_LockOn
-if_effect EFFECT_SNORE, Score_Plus2
+if_effect EFFECT_VENOM_DRENCH, AI_CV_LockOn
+if_effect EFFECT_USABLE_WHILE_ASLEEP, Score_Plus2
 if_effect EFFECT_FAKE_OUT, Score_Plus2
 if_effect EFFECT_DESTINY_BOND, AI_CV_DestinyBond
 if_effect EFFECT_FLAIL, AI_CV_Flail
@@ -4318,18 +4318,18 @@ if_random_greater_than 99, Score_Minus1
 AI_CV_Disable_End:
 end
 
-[89 68 00 09]:
-if_move MOVE_SMELLING_SALTS, [C2 68 00 09]
+AI_CV_DoubleDamageOnStatus:
+if_move MOVE_SMELLING_SALTS, AI_CV_SmellingSalts_New
 if_move 0x161, [CD 68 00 09]
 if_move 0x283, [CD 68 00 09]
-if_move 0x264, [D8 68 00 09]
+if_move MOVE_WAKE_UP_SLAP, AI_CV_WakeUpSlap
 if_move 0x266, [E3 68 00 09]
 if_move 0x267, [EE 68 00 09]
-if_move 0x20E, [F9 68 00 09]
+if_move MOVE_HEX, AI_CV_Hex
 if_move 0x265, [04 69 00 09]
 end
 
-[C2 68 00 09]:
+AI_CV_SmellingSalts_New:
 if_status AI_TARGET, STATUS1_PARALYSIS, Score_Plus1
 end
 
@@ -4337,7 +4337,7 @@ end
 if_status AI_TARGET, STATUS1_POISON | STATUS1_TOXIC_POISON, Score_Plus1
 end
 
-[D8 68 00 09]:
+AI_CV_WakeUpSlap:
 if_status AI_TARGET, STATUS1_SLEEP, Score_Plus1
 end
 
@@ -4349,7 +4349,7 @@ end
 if_status AI_TARGET, STATUS1_FREEZE, Score_Plus1
 end
 
-[F9 68 00 09]:
+AI_CV_Hex:
 if_status AI_TARGET, STATUS1_ANY, Score_Plus1
 end
 

@@ -213,6 +213,7 @@ C0 B0 03 02: 34 B0 03 02: ??????
 		   : 70 B9 03 02: ?????? (appears to be an array of unknown objects; first field is a 4-entry array of 2 bytes each, second field is a 4-entry array of 1 byte each)
 								 (atk02_attackstring: when player attacks: insert [gCurrentMove, 0] into the first empty slot for the mon, or increment the field2 of the first entry where field1 = gCurrentMove and field2 != 0xFF, whichever comes first)
 								 (atk02_attackstring: when player attacks: if neither of the above is available, insert [gCurrentMove, 0] into the last slot where field2 != 0xFF; if even that fails, insert it into the first slot)
+FF B9 03 02: FF B9 03 02: gHasDisplayedStatString
 00 BB 03 02: 00 BB 03 02: gLoadedSave_ExtraItemData
 		   : 30 BF 03 02: ?????? (appears to be (0-3) array of ptrs to Sprites, (4) int)
 								 (fn_EB8398_J: Set this[moveId] to the created sprite)
