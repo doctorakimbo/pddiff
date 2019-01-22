@@ -483,7 +483,7 @@ battle strings (ADD 9 TO ALL):
 ! 0x194 = "[PKMN]'s Ability became Mummy!"
 ! 0x195 = "[DEFENDER]'s [ABILITY] hurt [ATTACKER]! (placeholder)"
 ! 0x196 = "[DEFENDER]'s [ABILITY] lowered [ATTACKER]'s [STAT]! (placeholder)"
-! 0x197 = "The [ITEM] strengthened [MOVE]'s power!" <CHECK THAT THIS IS THE RIGHT MSG>
+! 0x197 = "The [ITEM] strengthened [MOVE]'s power!"
 + 0x198 = "The effects of the [ITEM] prevent status moves from being used!"
 + 0x199 = "[PKMN]'s [ABILITY] raised its [STAT]! (placeholder)" <REFACTOR LATER>
 + 0x19B = "[PKMN]'s [ABILITY] bounced [MOVE] back! (placeholder)"
@@ -813,7 +813,8 @@ stray text:
 		  Implements: need more info
 		  Requires in future: script_229DE_J, script_229EF_J
 = 020F00: (see 29disasm)
-		  Implements: Smelling Salts now does...something (need more info)
+		  Implements: Smelling Salts effect now removes all status
+		  Relies on: [effect58] implementation
 ! 020F78: (see 29disasm) (last part of SetMoveEffect)
 		  Implements: Magic Guard (move recoil)
 		  GLITCH!: Rock Head stopped working completely/Magic Guard doesn't work, some other change probably needed
@@ -2155,6 +2156,9 @@ stray text:
 = 1D7296 -> 1052F40 (repoint): BattleScript_EffectAccuracyDownHit (see movescripts.txt)
 		  Implements: [move29E], also refactors into the parameterized script
 		  Relies on: BattleScript_ParameterizedEffectHit
+= 1D741B -> 10539B8 (repoint): BattleScript_??? (see movescripts.txt)
+		  Implements: removes Psywave effect entirely, adds new effect for ??? (Smelling Salts is moved into this effect)
+		  Relies on: changes at 0x20F00
 + 1D7581, 1D81B5, 1D82AB, 1D8417: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything)
 + 1D7747: 17 -> 27 (Minimize +1 -> +2 evasion)
 = 1D7BF5: 60 -> 30 (part of weather refactor - sun)

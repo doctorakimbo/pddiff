@@ -183,7 +183,7 @@ SetMoveEffect(primary, certain)
 				goto lbl_part10_2
 			}
 		...
-		case MOVE_EFFECT_REMOVE_PARALYSIS:
+		case MOVE_EFFECT_REMOVE_STATUS:
 			if(!(gBattleMons[gBattlerTarget].status1 & STATUS1_ANY))
 				gBattleScriptCurrInstr++;
 			else
