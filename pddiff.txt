@@ -364,6 +364,7 @@ move effects:
 = 0x60 = (unknown hardcoded parameterized additional effects)
 = 0x61 = (unknown hardcoded parameterized additional effects)
 = 0x68 = (perfect-accuracy Trick that doesn't fail if used by the AI but fails if either side doesn't have an item)
+= 0x6E = Incinerate
 = 0x85 = Tailwind
 = 0x86 = (ai wants to use if target is faster), (ai doesn't want to use if target is slower), (ai wants to encore this), (ai wants to use if party average speed is very low), (ai doesn't want to use if party average speed isn't very low)
 = 0x8A = (ai won't use if conditions for burn immunity are met), (ai wants to encore this), ("setup" move)
@@ -500,6 +501,7 @@ battle strings (ADD 9 TO ALL):
 - 0x203 = "[PKMN] switched all changes to its Defense and Sp. Def with its target!"
 - 0x204 = "[ATTACKER]'s type became the same as [TARGET]'s type!"
 = 0x205 = (message on successful [effect68] move)
+- 0x206 = "[PKMN]'s [ITEM] was burned up!"
 - 0x20C = "[PKMN] is already frozen! (placeholder)"
 - 0x20D = "[PKMN]'s [ABILITY] prevents freezing! (placeholder)"
 = 0x20E = "[PKMN] became trapped by swirling magma!"/"[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"
@@ -2079,8 +2081,10 @@ stray text:
 		  Implements: Heal Pulse
 - 1D66A8 <except done on the new table>: 00 69 1D 08 -> A0 39 05 09 (BattleScript_EffectRandomPoisonOrParalyze (see movescripts.txt))
 		  Implements: move that either poisons or paralyzes, randomly choosing which
-= 1D6760 <except done on the new table>: 00 69 1D 08 -> 80 0C 05 09 (BattleScript_Effect??? (see movescripts.txt))
-		  Implements: 
+- 1D6760 <except done on the new table>: 00 69 1D 08 -> 80 0C 05 09 (BattleScript_EffectIncinerate (see movescripts.txt))
+		  Implements: Incinerate
+		  Glitch?: Due to off-by-one error, Retro Mail gets incinerated and Enigma Berry doesn't
+		  Glitch?: No upper limit, so Power items, Apricorn balls, Honey, and Destiny Knot get incinerated
 - 1D696D -> 1050000 (repoint): BattleScript_EffectSleep_New (see movescripts.txt)
 		  Implements: [move27E]
 - 1D69DC -> 1050040 (repoint): BattleScript_EffectPoisonHit_New (see movescripts.txt)

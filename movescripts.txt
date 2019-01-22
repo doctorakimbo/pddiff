@@ -2822,7 +2822,7 @@ BattleScript_GhostsImmuneToTrapping (pe): @1053800
 
 
 
-BattleScript_Effect??? (pj): @1050C80
+BattleScript_EffectIncinerate (pj): @1050C80
 00 01 1A A9 1B 08 00 00 02 03 04 05 06 07 09 0A 0E 5C 00 3A 0B 00 0C 00 0D 12 40 00 0F 12 40 00 FC 00 84 00 02 B2 0C 05 09 FC 00 AF 00 02 C9 0C 05 09 20 00 00 17 00 2E 0D 05 09 20 00 02 16 77 C9 0C 05 09 28 2E 0D 05 09 29 00 CC 3C 02 02 00 F9 0C 05 09 29 00 CC 3C 02 02 01 08 0D 05 09 29 00 CC 3C 02 02 02 17 0D 05 09 31 C8 3C 02 02 7A 3C 02 02 02 28 26 0D 05 09 31 C8 3C 02 02 72 3B 02 02 02 28 26 0D 05 09 31 C8 3C 02 02 CA 3B 02 02 02 28 26 0D 05 09 31 C8 3C 02 02 22 3C 02 02 02 28 26 0D 05 09 6A 00 10 06 02 12 40 00 19 00 00 00 00 00 00 28 0A A9 1B 08
 
 attackcanceler
@@ -2844,43 +2844,58 @@ critmessage
 waitmessage 0x40
 resultmessage
 waitmessage 0x40
-jumpifitem BS_TARGET, ITEM_RETRO_MAIL, ATKFC_LESS_THAN, BattleScript_???_CheckItem2 // off by one
-jumpifitem BS_TARGET, ITEM_ENIGMA_BERRY, ATKFC_LESS_THAN, BattleScript_???_RemoveItem // off by one
+jumpifitem BS_TARGET, ITEM_RETRO_MAIL, ATKFC_LESS_THAN, BattleScript_Incinerate_CheckItem2 // off by one
+jumpifitem BS_TARGET, ITEM_ENIGMA_BERRY, ATKFC_LESS_THAN, BattleScript_Incinerate_RemoveItem // off by one
 
-BattleScript_???_CheckItem2:
-// jumpifitem BS_TARGET, 0x177, ATKFC_GREATER_THAN, BattleScript_???_RemoveItem
-jumpifstat BS_TARGET, CMP_EQUAL, 0x17, 0x0, BattleScript_???_End
-jumpifstat BS_TARGET, CMP_GREATER_THAN, 0x16, 0x77, BattleScript_???_RemoveItem
-goto BattleScript_???_End
+BattleScript_Incinerate_CheckItem2:
+// jumpifitem BS_TARGET, (ITEM_NORMAL_GEM - 1), ATKFC_GREATER_THAN, BattleScript_Incinerate_RemoveItem // wrong
+jumpifstat BS_TARGET, CMP_EQUAL, 0x17, 0x0, BattleScript_Incinerate_End
+jumpifstat BS_TARGET, CMP_GREATER_THAN, 0x16, 0x77, BattleScript_Incinerate_RemoveItem
+goto BattleScript_Incinerate_End
 
-BattleScript_???_RemoveItem:
-jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_LEFT, BattleScript_???_PlayerLeft
-jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_LEFT, BattleScript_???_OpponentLeft
-jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_RIGHT, BattleScript_???_PlayerRight
+BattleScript_Incinerate_RemoveItem:
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_LEFT, BattleScript_Incinerate_PlayerLeft
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_LEFT, BattleScript_Incinerate_OpponentLeft
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_RIGHT, BattleScript_Incinerate_PlayerRight
 copyhword gLastUsedItem, gBattleMons[B_POSITION_OPPONENT_RIGHT].item
-goto BattleScript_???_DoRemoveItem
+goto BattleScript_Incinerate_DoRemoveItem
 
-BattleScript_???_PlayerLeft:
+BattleScript_Incinerate_PlayerLeft:
 copyhword gLastUsedItem, gBattleMons[B_POSITION_PLAYER_LEFT].item
-goto BattleScript_???_DoRemoveItem
+goto BattleScript_Incinerate_DoRemoveItem
 
-BattleScript_???_OpponentLeft:
+BattleScript_Incinerate_OpponentLeft:
 copyhword gLastUsedItem, gBattleMons[B_POSITION_OPPONENT_LEFT].item
-goto BattleScript_???_DoRemoveItem
+goto BattleScript_Incinerate_DoRemoveItem
 
-BattleScript_???_PlayerRight:
+BattleScript_Incinerate_PlayerRight:
 copyhword gLastUsedItem, gBattleMons[B_POSITION_PLAYER_RIGHT].item
-goto BattleScript_???_DoRemoveItem
+goto BattleScript_Incinerate_DoRemoveItem
 
-BattleScript_???_DoRemoveItem:
+BattleScript_Incinerate_DoRemoveItem:
 removeitem BS_TARGET
-printstring 0x206
+printstring STRINGID_PKMNSITEMBURNEDUP
 waitmessage 0x40
 
-BattleScript_???_End:
+BattleScript_Incinerate_End:
 tryfaintmon BS_TARGET, FALSE, NULL
 goto BattleScript_MoveEnd
 
 
-BattleScript_Effect??? (pe): @1050C80 <FIX THIS>
-00 01 1A A9 1B 08 00 00 02 03 04 05 06 07 09 0A 0E 5C 00 3A 0B 00 0C 00 0D 12 40 00 0F 12 40 00 FC 00 84 00 02 B2 0C 05 09 FC 00 AF 00 02 C9 0C 05 09 20 00 00 17 00 2E 0D 05 09 20 00 02 16 77 C9 0C 05 09 28 2E 0D 05 09 29 00 CC 3C 02 02 00 F9 0C 05 09 29 00 CC 3C 02 02 01 08 0D 05 09 29 00 CC 3C 02 02 02 17 0D 05 09 31 C8 3C 02 02 7A 3C 02 02 02 28 26 0D 05 09 31 C8 3C 02 02 72 3B 02 02 02 28 26 0D 05 09 31 C8 3C 02 02 CA 3B 02 02 02 28 26 0D 05 09 31 C8 3C 02 02 22 3C 02 02 02 28 26 0D 05 09 6A 00 10 06 02 12 40 00 19 00 00 00 00 00 00 28 0A A9 1B 08
+BattleScript_EffectIncinerate (pe): @1050C80
+00 01 5E 69 1D 08 00 00 02 03 04 05 06 07 09 0A 0E 5C 00 3A 0B 00 0C 00 0D 12 40 00 0F 12 40 00 FC 00 84 00 02 B2 0C 05 09 FC 00 AF 00 02 C9 0C 05 09 20 00 00 17 00 2E 0D 05 09 20 00 02 16 77 C9 0C 05 09 28 2E 0D 05 09 29 00 6C 3D 02 02 00 F9 0C 05 09 29 00 6C 3D 02 02 01 08 0D 05 09 29 00 6C 3D 02 02 02 17 0D 05 09 31 68 3D 02 02 1A 3D 02 02 02 28 26 0D 05 09 31 68 3D 02 02 12 3C 02 02 02 28 26 0D 05 09 31 68 3D 02 02 6A 3C 02 02 02 28 26 0D 05 09 31 68 3D 02 02 C2 3C 02 02 02 28 26 0D 05 09 6A 00 10 0F 02 12 40 00 19 00 00 00 00 00 00 28 4E 69 1D 08
+
+
+
+
+
+
+
+
+
+
+
+BattleScript_Effect??? (fj): @
+BattleScript_Effect??? (pj): @
+BattleScript_Effect??? (fe): @
+BattleScript_Effect??? (pe): @
