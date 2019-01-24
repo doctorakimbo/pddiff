@@ -781,7 +781,7 @@ if_effect EFFECT_SPECIAL_ATTACK_UP, AI_CBM_SpecialAttackUp
 if_effect EFFECT_SPECIAL_DEFENSE_UP, AI_CBM_SpecialDefenseUp
 if_effect EFFECT_ACCURACY_UP, AI_CBM_AccuracyUp
 if_effect EFFECT_EVASION_UP, AI_CBM_EvasionUp
-if_effect EFFECT_0xC6, AI_CBM_EvasionUp
+if_effect EFFECT_MINIMIZE, AI_CBM_EvasionUp
 if_effect EFFECT_0xDF, AI_CBM_EvasionUp
 if_effect EFFECT_COSMIC_POWER, AI_CBM_CosmicPower
 if_effect EFFECT_BULK_UP, AI_CBM_BulkUp
@@ -3578,7 +3578,7 @@ if_effect EFFECT_HAIL, AI_CV_Hail_New
 if_effect EFFECT_FACADE, AI_CV_Facade_New
 if_effect EFFECT_FOCUS_PUNCH, AI_CV_FocusPunch
 if_effect EFFECT_TRICK, AI_CV_Trick_New
-if_effect EFFECT_ROLE_PLAY, AI_CV_ChangeSelfAbility_New
+if_effect EFFECT_ABILITY_TRANSFER, AI_CV_AbilityTransfer
 if_effect EFFECT_SUPERPOWER, AI_CV_Superpower_New_ish
 if_effect EFFECT_MAGIC_COAT, AI_CV_MagicCoat
 if_effect EFFECT_RECYCLE, AI_CV_Recycle
@@ -4450,7 +4450,7 @@ EFFECT_WILL_O_WISP
 EFFECT_FOLLOW_ME
 EFFECT_CHARGE
 EFFECT_TRICK
-EFFECT_ROLE_PLAY
+EFFECT_ABILITY_TRANSFER
 EFFECT_INGRAIN
 EFFECT_RECYCLE
 EFFECT_SKILL_SWAP
@@ -4940,29 +4940,29 @@ HOLD_EFFECT_0x55
 HOLD_EFFECT_0x56
 HOLD_EFFECT_DESTINY_KNOT
 
-AI_CV_ChangeSelfAbility_New:
+AI_CV_AbilityTransfer:
 get_ability AI_USER
-if_not_in_bytes AI_CV_ChangeSelfAbility_AbilitiesToEncourage, AI_CV_ChangeSelfAbility2
+if_not_in_bytes AI_CV_AbilityTransfer_AbilitiesToEncourage, AI_CV_AbilityTransfer2
 score -1
 
-AI_CV_ChangeSelfAbility2:
-if_not_in_bytes AI_CV_ChangeSelfAbility_AbilitiesToDiscourage, AI_CV_ChangeSelfAbility3
+AI_CV_AbilityTransfer2:
+if_not_in_bytes AI_CV_AbilityTransfer_AbilitiesToDiscourage, AI_CV_AbilityTransfer3
 score +1
 
-AI_CV_ChangeSelfAbility3:
+AI_CV_AbilityTransfer3:
 get_ability AI_TARGET
-if_not_in_bytes AI_CV_ChangeSelfAbility_AbilitiesToEncourage, AI_CV_ChangeSelfAbility4
-if_random_less_than 50, AI_CV_ChangeSelfAbility4
+if_not_in_bytes AI_CV_AbilityTransfer_AbilitiesToEncourage, AI_CV_AbilityTransfer4
+if_random_less_than 50, AI_CV_AbilityTransfer4
 score +2
 
-AI_CV_ChangeSelfAbility4:
-if_not_in_bytes AI_CV_ChangeSelfAbility_AbilitiesToDiscourage, AI_CV_ChangeSelfAbility_End
+AI_CV_AbilityTransfer4:
+if_not_in_bytes AI_CV_AbilityTransfer_AbilitiesToDiscourage, AI_CV_AbilityTransfer_End
 if_random_greater_than 49, Score_Minus2
 
-AI_CV_ChangeSelfAbility_End:
+AI_CV_AbilityTransfer_End:
 end
 
-AI_CV_ChangeSelfAbility_AbilitiesToEncourage:
+AI_CV_AbilityTransfer_AbilitiesToEncourage:
 ABILITY_SPEED_BOOST
 ABILITY_BATTLE_ARMOR
 ABILITY_SAND_VEIL
@@ -5006,7 +5006,7 @@ ABILITY_SLUSH_RUSH
 ABILITY_DAZZLING
 ABILITY_QUEENLY_MAJESTY
 
-AI_CV_ChangeSelfAbility_AbilitiesToDiscourage:
+AI_CV_AbilityTransfer_AbilitiesToDiscourage:
 ABILITY_ILLUMINATE
 ABILITY_RUN_AWAY
 ABILITY_PICKUP
@@ -5402,7 +5402,7 @@ EFFECT_DEFENSE_CURL
 EFFECT_TORMENT
 EFFECT_FLATTER
 EFFECT_WILL_O_WISP
-EFFECT_0xAE
+EFFECT_CHARGE
 EFFECT_INGRAIN
 EFFECT_YAWN
 EFFECT_IMPRISON
@@ -5591,10 +5591,10 @@ if_effect EFFECT_REST, AI_New_Rest
 if_effect 0xED, AI_New_EffectED
 if_effect EFFECT_BATON_PASS, AI_New_BatonPass
 if_effect EFFECT_FOUL_PLAY, AI_New_FoulPlay
-if_effect 0xB1, AI_New_EffectB1
+if_effect EFFECT_TRICK, AI_New_Trick
 end
 
-AI_New_EffectB1:
+AI_New_Trick:
 if_status2 AI_TARGET, STATUS2_SUBSTITUTE, AI_New_ScoreMinus32
 end
 
