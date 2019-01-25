@@ -162,7 +162,7 @@ move IDs:
 = 0xA0 = (chance to raise sp. atk), (can't be called by metronome)
 = 0xA7 = (chance to lower user's speed)
 = 0xB1 = (can't be called by metronome)
-= 0xDD = (can't be called by metronome)
+= 0xDD = (calculates damage as if any Sp. Atk boosts were added to Attack, then has a 20% chance to raise Atk and Sp. Atk), (can't be called by metronome)
 = 0x127 = (chance to raise sp. atk)
 = 0x12E = (has poison-chance hit effect, but if used by a poison-type, it badly poisons instead)
 = 0x161 = (does double damage to poisoned targets (but NOT toxiced targets))
@@ -245,7 +245,7 @@ move IDs:
 = 0x1E9 = (chance to lower speed)
 - 0x1EB = Gastro Acid
 = 0x1ED = (chance to lower accuracy)
-= 0x1F2 = (ai wants to use this immediately after a move with effect 0xE8)
+= 0x1F2 = ([effectE8] does double damage if used after this move)
 = 0x1F3 = (chance to flinch)
 = 0x1F4 = (chance to flinch)
 = 0x1FA = (chance to lower sp. atk)
@@ -275,6 +275,8 @@ move IDs:
 = 0x222 = (chance to confuse)
 = 0x223 = (chance to lower sp. def)
 = 0x225 = (chance to raise sp. atk)
+= 0x227 = (turns target into pure Rock-type)
+- 0x229 = Soak
 - 0x22A = Simple Beam
 - 0x22B = Worry Seed
 = 0x22D = Wring Out/Crush Grip
@@ -288,7 +290,7 @@ move IDs:
 = 0x239 = (chance to lower speed)
 = 0x23A = (can't be called by metronome)
 = 0x23B = (chance to lower evasion)
-= 0x240 = (ai won't use moves with effect 0xE5 if it knows the target has this move)
+= 0x240 = ([effectE5] forces this move on the target)
 = 0x244 = (chance to sleep)
 = 0x245 = (chance to raise all stats)
 = 0x246 = (tri attack effect)
@@ -304,7 +306,7 @@ move IDs:
 = 0x255 = (unclear in code; either chance to lower attack or +1 accuracy), (can't be called by metronome)
 = 0x256 = (unclear in code; either chance to lower defense or +1 evasion), (can't be called by metronome)
 = 0x257 = (special message in atk97_tryinfatuating)
-= 0x258 = (has effect 0xE3, ai wants to use this when target has low HP)
+= 0x258 = (has Brine effect)
 = 0x25E = (chance to harshly lower speed or confuse), (can't be called by metronome)
 = 0x25F = (chance to harshly lower sp. def or confuse), (can't be called by metronome)
 = 0x260 = (chance to lower defense or confuse), (can't be called by metronome)
@@ -318,10 +320,12 @@ move IDs:
 = 0x26C = (can't be called by metronome)
 = 0x26D = (can't be called by metronome)
 - 0x26E = Stored Power
-= 0x272 = (has effect 0xE3, ai wants to use this when user has low HP)
+= 0x272 = (has Brine effect, but doubles when the user has less than half HP, not the target)
 = 0x275 = (unclear in code; either raises target's evasion afterwards or -1 sp. def)
 = 0x276 = (unclear in code; either chance to raise target's accuracy or +1 sp. atk)
-= 0x27A = (has effect 0xE3, ai wants to use this when target has low HP)
+= 0x277 = (turns target into pure Bug-type)
+= 0x279 = (turns target into pure Ghost-type)
+= 0x27A = (has Brine effect)
 = 0x27B = (has Foul Play effect, but uses the target's Sp. Atk)
 = 0x27C = Crush Grip/Wring Out
 - 0x27D = Captivate
@@ -387,14 +391,21 @@ move effects:
 = 0xD8 = (lowers Sp. Def after use)/[move1B4]
 = 0xD9 = (unknown hardcoded parameterized additional effects)
 = 0xDA = (unknown hardcoded parameterized additional effects)
-= 0xDD = (ai doesn't want to use if resisted or user has low HP)
-= 0xDF = (ai won't use if user has +6 evasion), ("setup" move)
+= 0xDB = (calculates damage as if any Defense boosts were added to Sp. Atk, then has a 20% chance to raise Def and Sp. Atk)/[moveDD]
+= 0xDC = Typhoon
+= 0xDD = V-Create
+= 0xDE = chance to lower all stats
+= 0xDF = -1 accuracy +2 evasion to target
+= 0xE0 = hits 3 times
 = 0xE1 = Frost Breath
-= 0xE3 = (ai doesn't want to use if resisted), (if used from move 0x258 or 0x27A, ai wants to use if target has low HP), (if used from move 0x272, ai wants to use if user has low HP)
-= 0xE4 = (ai wants to encore this)
-= 0xE5 = (ai won't use if target has move 0x240), (ai wants to encore this)
-= 0xE6 = (ai wants to use if target has screens up)
-= 0xE8 = (ai wants to use right after using move 0x1F2)
+= 0xE2 = (unknown - it seems to be a simple paralysis chance attack that becomes a freeze chance attack if the move is Blizzard - maybe just unfinished?)
+= 0xE3 = Brine/(double damage if user at less than half HP)
+= 0xE4 = Soak + equivalents
+= 0xE5 = overwrites a random one of the target's moves with [move240]
+= 0xE6 = removes Reflect/Light Screen from the user's side, but does double damage when it does
+= 0xE7 = does damage based on the user's Defense stat instead of its Attack stat
+= 0xE8 = does double damage if used immediately after [move1F2]
+= 0xE9 = Revelation Dance
 = 0xED = (ai wants to use a status move right after the target used this), (ai won't use if target is slower), (ai won't use if it has a type advantage on the target), (ai wants to use if it can KO the target), (ai wants to use if target is choiced), (ai wants to use if target just used an attack), (ai won't use if target is defensive and just used a status move)
 = 0xEE = Hurricane
 = 0xEF = (ai won't use if target has -6 spatk or -6 spdef), (uses same main ai script as -spdef), ("setup" move)
@@ -513,10 +524,13 @@ battle strings (ADD 9 TO ALL):
 - 0x202 = "[PKMN] switched all changes to its Attack and Sp. Atk with its target!"
 - 0x203 = "[PKMN] switched all changes to its Defense and Sp. Def with its target!"
 - 0x204 = "[ATTACKER]'s type became the same as [TARGET]'s type!"
-= 0x205 = (message on successful [effect68] move)
+- 0x205 = "[PKMN] switched items with its target! (?????????????)"
 - 0x206 = "[PKMN]'s [ITEM] was burned up!"
 - 0x207 = "[PKMN]'s Ability was suppressed!"
 - 0x208 = "[PKMN] acquired [ABILITY]!"
+- 0x209 = "[PKMN] transformed into the [TYPE] type!"
+- 0x20A = "[PKMN] was given (move240)! (placeholder)"
+- 0x20B = "The (move1F2) strengthened the attack! (placeholder)"
 - 0x20C = "[PKMN] is already frozen! (placeholder)"
 - 0x20D = "[PKMN]'s [ABILITY] prevents freezing! (placeholder)"
 = 0x20E = "[PKMN] became trapped by swirling magma!"/"[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"
@@ -2126,6 +2140,7 @@ stray text:
 = 1D68EC <except done on the new table>: DC 69 1D 08 -> 80 3A 05 09 (BattleScript_EffectAtkAndSpAtkUp (see movescripts.txt))
 		  Implements: removes Poison Tail effect entirely (folded into poison hit), adds new effect for +Atk/+Sp. Atk moves (modern Growth, Work Up, Energize)
 		  Relies on: weather refactor, BattleScript_Parameterized (to not break Poison Tail)
+		  Note: stat boost anim was wrong, see movescripts.txt
 - 1D696D -> 1050000 (repoint): BattleScript_EffectSleep_New (see movescripts.txt)
 		  Implements: [move27E]
 - 1D69DC -> 1050040 (repoint): BattleScript_EffectPoisonHit_New (see movescripts.txt)
@@ -2319,7 +2334,7 @@ stray text:
 		  Relies on: weather refactor
 = 1D841B -> 1053B60 (repoint): BattleScript_EffectStatTwoDownHit (see movescripts.txt)
 		  Implements: [move289]
-		  Relies on: BattleScript_Parameterized, BattleScript_DoDamageFunction, BattleScript_PlayStatDownAnim
+		  Relies on: BattleScript_Parameterized, BattleScript_DoDamageFunction, BattleScript_PlayStatChangeAnim
 = 1D8A72: 02 -> 01 (part of DoFieldEndTurnEffects changes)
 = 1D8B6E: Part of BattleScript_LeechSeedTurnDrain (see movescripts.txt)
 		  Implements: Magic Guard (vs Leech Seed)
@@ -2399,7 +2414,7 @@ stray text:
 		  * New mechanics that old scripts are updated for: electric-type paralysis immunity, dark-type Prankster immunity, grass-type powder immunity, Lightning Rod (immunity), Motor Drive, Poison Heal, Magic Guard, Leaf Guard, Storm Drain, Overcoat, Big Pecks, Sap Sipper, Aroma Veil, Sweet Veil, Bulletproof, Dazzling, Queenly Majesty
 		  * Moves that bypass AI restrictions: burn moves that aren't Will-O-Wisp (this only bypasses the Fire-type check); trapping moves that aren't Mean Look / Block (aka Spirit Shackle, etc); switch-out moves that aren't Baton Pass (aka U-Turn/Volt Switch); stat-resetting moves that aren't Haze (aka Clear Smog); phazing moves that aren't Roar / Whirlwind (aka Dragon Tail/Circle Throw)
 		  * New moves: Captivate, 0x2A6 (factored into Attract script)
-		  * New move effects: freeze, (confuse and lower evasion), Power Swap, Guard Swap, Reflect Type, Synchronoise, (poison or paralysis, chooses one at random), Venom Drench, Tailwind, (burn user and target), (poison user and target), [effectC6], Work Up, [effectDF], [effectE5], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws
+		  * New move effects: freeze, (confuse and lower evasion), Power Swap, Guard Swap, Reflect Type, Synchronoise, (poison or paralysis, chooses one at random), Venom Drench, Tailwind, (burn user and target), (poison user and target), Work Up, (-1 accuracy +2 evasion to target), (overwrites a random one of the target's moves with [move240]), [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws
 		  Relies on: new AI script commands, BattleMove refactor
 		  Glitch?: due to misaligned goto, only will-o-wisp is checked for prankster immunity
 		  Glitch?: looks like thunder wave is checked against electric-types twice instead of electric and ground (might be a transcription error? test this)
@@ -2411,8 +2426,8 @@ stray text:
 		  * Bugfixes: won't use a speed-lowering move like Mud Shot if the target is immune; no longer inexplicably encourages Toxic when it has a +SpDef move; no longer inexplicably discourages Protect/encourages Snatch when the opponent has specifically Defense Curl; Protect/Snatch correctly factors in all healing moves instead of just vanilla Recover-types; sandstorm and hail are no longer the wrong way around in the Fly script; Facade correctly checks the user for status instead of the target; Brick Break is encouraged vs Light Screen, not just Reflect
 		  * Other improvements: instead of a bizarre mix of moves, Mirror Move tries to prioritize any copiable move; doesn't discourage recovery when the user is faster; encourages OHKO moves after use of Mind Reader; Mean Look (because Spirit Shackle uses the same effect byte), Dragon Dance (why?), and Knock Off are no longer encouraged to be Encored; Teleport and +Sp. Def are encouraged to be Encored; instead of encouraging stealing a short list of items, Thief is encouraged for all items that don't have a downside; Chlorophyll users prioritize Sunny Day; Volt Absorb, Water Absorb, Soundproof, Thick Fat, Flame Body, and Shell Armor are considered "good" abilities; "bad" abilities (to avoid/get rid of) are also listed
 		  * New mechanics that old scripts are updated for: p/s split (also includes removing the discouraging of, for example, -Atk moves or Reflect on a water-type since it can have physical STAB now), new Lightning Rod, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, [ability8B], Choice items, Assault Vest, Lagging Tail
-		  * New moves: 0x22D, 0x27C (factored into Eruption script); 0x161, Hex, Wake-Up Slap, 0x265, 0x266, 0x267, 0x283 (factored into double-damage-on-status script); 0x258, 0x272, 0x27A (factored into [effectE3] script); 0x1F2 (factored into [effectE8] script)
-		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, [effectDD], Hurricane, [effectE3], [effectE6], [effectE8], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws, [effectF8], [effectF9], [effectFB], [effectFC]
+		  * New moves: 0x22D, 0x27C (factored into Eruption script); 0x161, Hex, Wake-Up Slap, 0x265, 0x266, 0x267, 0x283 (factored into double-damage-on-status script); 0x258, 0x272, 0x27A (factored into Brine script); 0x1F2 (factored into (does double damage if used immediately after [move1F2]) script)
+		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, V-Create, Hurricane, Brine, (removes Reflect/Light Screen from the user's side, but does double damage when it does), (does double damage if used immediately after [move1F2]), [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws, [effectF8], [effectF9], [effectFB], [effectFC]
 		  Relies on: new AI script commands, BattleMove refactor
 		  Glitch?: due to misaligned goto, Substitute will fall through into the Hyper Beam logic under certain circumstances
 		  Glitch?: due to misaligned goto, (Payback that always doubles power vs Steel-types) will probably crash
@@ -2421,7 +2436,7 @@ stray text:
 		  Glitch?: an AI script for Sandstorm is fully implemented but not actually accessed
 		  Glitch?: Venom Drench uses Lock-On's AI script
 - 1DBA8D -> 1007300 (repoint): AI_SetupFirstTurn
-		  Implements: changes which moves the AI counts as setup (removes every +2/-2, Conversion; adds sleep, Toxic, (confuse and lower evasion), (poison or paralysis, chooses one at random), (burn user and target), (poison user and target), Charge, Work Up, Dragon Dance, [effectDF], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws)
+		  Implements: changes which moves the AI counts as setup (removes every +2/-2, Conversion; adds sleep, Toxic, (confuse and lower evasion), (poison or paralysis, chooses one at random), (burn user and target), (poison user and target), Charge, Work Up, Dragon Dance, (-1 accuracy +2 evasion to target), [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws)
 		  GLITCH!: This actually does nothing at all due to a misplaced pointer
 - 1DBB3B -> 1007380 (repoint): AI_Unknown
 		  Implements: AI layer that discourages supereffective moves for some reason
@@ -2528,18 +2543,54 @@ stray text:
 		  Implements: field function for Ability Capsule
 		  Required knowledge: j03005EE8
 		  Glitch?: looks like it's using the old ability name table, easily fixed for en
-=1051D80: BattleScript_Effect??? (see movescripts.txt)
-		  Implements: 
+-1051320: BattleScript_EffectAllStatsDownHit (see movescripts.txt)
+		  Implements: (move that has a chance to lower all of the target's stats, aka Ancient Power in reverse)
+		  Note: stat boost anim was wrong, see movescripts.txt
+		  Note: fixed to end move instead of "stats can't be lowered", see movescripts.txt
+-1051480: BattleScript_EffectDoubleDamageAtLowHP (see movescripts.txt)
+		  Implements: Brine/(one other move), [move272]
+-10514A0: BattleScript_EffectChangeTargetType (see movescripts.txt)
+		  Implements: Soak/[move227]/[move277]/[move279]
+		  Note: <<<IMPORTANT - CHECK SOAK MSG>>> (message 0x209)
+-1051580: BattleScript_EffectGiveTargetMove240 (see movescripts.txt)
+		  Implements: (move that overwrites a random one of the target's moves with [move240])
+-1051700: BattleScript_EffectRemoveOwnScreensForDoubleDamage (see movescripts.txt)
+		  Implements: (move that removes Reflect/Light Screen from the user's side, but does double damage when it does)
+		  Note: Also add in the Brick Break changes from my battle message overhaul
+-1051790: BattleScript_EffectDamageFromDefense (see movescripts.txt)
+		  Implements: (move that does damage based on the user's Defense stat instead of its Attack stat)
+-10517C0: BattleScript_EffectDoubleDamageAfterMove1F2 (see movescripts.txt)
+		  Implements: (move that does double damage if used immediately after [move1F2])
+-1051840: BattleScript_EffectRevelationDance (see movescripts.txt)
+		  Implements: Revelation Dance
+		  Relies on: SetTypeToBattlerType1 (jEB8340, e1EB8340)
+=1051D80: BattleScript_EffectCalcWithExtraBoosts (see movescripts.txt)
+		  Implements: (move that calculates damage as if any Defense boosts were added to Sp. Atk, then has a 20% chance to raise Def and Sp. Atk); [moveDD]
+		  Required knowledge: whether the area around gStringVar4 is the same in en
+		  Note: on paper, it looks like stat drops are factored in inconsistently (only if one stat is above +0) - for example (moveDD), +0 Atk/-2 Sp. Atk results in +0 Atk, -3 Atk/-2 Sp. Atk results in -3 Atk, and +3 Atk/-2 Sp. Atk results in +1 Atk
+		  Glitch?: Might crash if combined boosts are greater than +6 (or less than +0 if one of them is positive)
+		  Glitch?: [moveDD] crashes if Atk is at +6 but Sp. Atk isn't
+-1053A90: BattleScript_EffectVCreate (see movescripts.txt)
+		  Implements: V-Create/Nova Inferno
+-1053AA0: BattleScript_Effect??? (see movescripts.txt)
+		  Implements: [effectE2], unclear what this is
 -1053CB0: BattleScript_EffectHammerArm (see movescripts.txt)
 		  Implements: Hammer Arm
-		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatDownAnim
+		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatChangeAnim
 -1053CE0: BattleScript_EffectCloseCombat (see movescripts.txt)
 		  Implements: Close Combat
-		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatDownAnim
+		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatChangeAnim
 -1053D30: BattleScript_EffectDefensiveStatAlwaysDownHit (see movescripts.txt)
 		  Implements: (move that lowers Sp. Def after use), [move1B4]
-		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatDownAnim
-
+		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatChangeAnim
+-1053DB0: BattleScript_EffectTyphoon (see movescripts.txt)
+		  Implements: Typhoon
+		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatChangeAnim
+-1053E90: BattleScript_EffectTargetAccDownEvasionUp2 (see movescripts.txt)
+		  Implements: (move that gives -1 accuracy +2 evasion to target)
+		  Relies on: BattleScript_PlayStatChangeAnim
+-11BA7EF: BattleScript_EffectTripleHit (see movescripts.txt)
+		  Implements: (move that hits 3 times)
 
 
 

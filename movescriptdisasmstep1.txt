@@ -294,3 +294,58 @@ fn_1833D0_J()
 	
 	*r6 = r0
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fn_EB8340_J()
+{
+	r2 = gBattleMons
+	r0 = gBattlerAttacker
+	r1 = *r0
+	r0 = 0x58
+	r1 *= r0
+	r1 += r2
+	r1 += 0x21
+	r0 = *r1
+	r4 = gBattleStruct
+	r1 = *r4
+	r0 += 0xC0
+	*(r1 + 0x13) = r0
+	r1 = gBattleScriptCurrInstr
+	r0 = *r1
+	r0++
+	*r1 = r0
+}

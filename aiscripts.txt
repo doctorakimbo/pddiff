@@ -782,7 +782,7 @@ if_effect EFFECT_SPECIAL_DEFENSE_UP, AI_CBM_SpecialDefenseUp
 if_effect EFFECT_ACCURACY_UP, AI_CBM_AccuracyUp
 if_effect EFFECT_EVASION_UP, AI_CBM_EvasionUp
 if_effect EFFECT_MINIMIZE, AI_CBM_EvasionUp
-if_effect EFFECT_0xDF, AI_CBM_EvasionUp
+if_effect EFFECT_TARGET_ACCURACY_DOWN_EVASION_UP_2, AI_CBM_EvasionUp
 if_effect EFFECT_COSMIC_POWER, AI_CBM_CosmicPower
 if_effect EFFECT_BULK_UP, AI_CBM_BulkUp
 if_effect EFFECT_0xF0, AI_CBM_BulkUp
@@ -832,7 +832,7 @@ if_effect EFFECT_BELLY_DRUM, AI_CBM_BellyDrum
 if_effect EFFECT_FAKE_OUT, AI_CBM_FakeOut
 if_effect EFFECT_HELPING_HAND, AI_CBM_HelpingHand
 if_effect EFFECT_RECYCLE, AI_CBM_Recycle
-if_effect EFFECT_0xE5, [26 5B 00 09]
+if_effect EFFECT_GIVE_MOVE_240, AI_CBM_GiveMove240
 if_effect EFFECT_TELEPORT, Score_Minus10
 // now missing from this list: every +2/-2, psywave, sleep talk, minimize, sonic boom
 // also knock off, but that's no longer purely support, so this actually makes sense
@@ -1406,7 +1406,7 @@ get_used_held_item AI_USER
 if_equal 0, Score_Minus10
 end
 
-[26 5B 00 09]:
+AI_CBM_GiveMove240:
 if_has_move AI_TARGET, 0x240, Score_Minus10
 end
 
@@ -3596,12 +3596,12 @@ if_effect EFFECT_WATER_SPORT, AI_CV_WaterSport
 if_effect EFFECT_DRAGON_DANCE, AI_CV_DragonDance
 if_effect EFFECT_QUIVER_DANCE, AI_CV_DragonDance
 if_effect EFFECT_0xF4, AI_CV_DragonDance
-if_effect EFFECT_HAMMER_ARM, [E4 71 00 09]
-if_effect EFFECT_CLOSE_COMBAT, [E4 71 00 09]
-if_effect EFFECT_0xDD, [E4 71 00 09]
-if_effect EFFECT_0xE3, [06 72 00 09]
-if_effect EFFECT_0xE6, [43 72 00 09]
-if_effect EFFECT_0xE8, [4E 72 00 09]
+if_effect EFFECT_HAMMER_ARM, AI_CV_LowersSpeedOrDefenses
+if_effect EFFECT_CLOSE_COMBAT, AI_CV_LowersSpeedOrDefenses
+if_effect EFFECT_V_CREATE, AI_CV_LowersSpeedOrDefenses
+if_effect EFFECT_BRINE, AI_CV_DoubleAtLowHP
+if_effect EFFECT_REMOVE_OWN_SCREENS_DOUBLE_DAMAGE, AI_CV_RemoveOwnScreensForDoubleDamage
+if_effect EFFECT_DOUBLE_DAMAGE_AFTER_MOVE_1F2, AI_CV_DoubleDamageAfterMove1F2
 if_effect EFFECT_HURRICANE, AI_CV_Hurricane
 if_effect EFFECT_0xF0, [6C 72 00 09]
 if_effect EFFECT_0xF3, [89 72 00 09]
@@ -4461,8 +4461,8 @@ EFFECT_TEETER_DANCE
 EFFECT_MUD_SPORT
 EFFECT_WATER_SPORT
 EFFECT_CAMOUFLAGE
-EFFECT_0xE4
-EFFECT_0xE5
+EFFECT_SOAK
+EFFECT_GIVE_MOVE_240
 EFFECT_0xFA
 EFFECT_0xFB
 EFFECT_0xFE
@@ -5190,44 +5190,44 @@ AI_CV_DragonDance2:
 if_random_greater_than 127, Score_Plus1
 end
 
-[E4 71 00 09]:
+AI_CV_LowersSpeedOrDefenses:
 if_type_effectiveness AI_EFFECTIVENESS_x0_25, Score_Minus1
 if_type_effectiveness AI_EFFECTIVENESS_x0_5, Score_Minus1
-if_target_faster [FE 71 00 09]
+if_target_faster AI_CV_LowersSpeedOrDefenses2
 if_hp_less_than AI_USER, 41, Score_Minus1
 end
 
-[FE 71 00 09]:
+AI_CV_LowersSpeedOrDefenses2:
 if_hp_less_than AI_USER, 60, Score_Minus1
 end
 
-[06 72 00 09]:
+AI_CV_DoubleAtLowHP:
 if_type_effectiveness AI_EFFECTIVENESS_x0_25, Score_Minus1
 if_type_effectiveness AI_EFFECTIVENESS_x0_5, Score_Minus1
-if_move 0x258, [27 72 00 09]
-if_move 0x27A, [27 72 00 09]
-if_move 0x272, [35 72 00 09]
+if_move 0x258, AI_CV_Brine
+if_move 0x27A, AI_CV_Brine
+if_move 0x272, AI_CV_DoubleAtLowUserHP
 
-[27 72 00 09]:
+AI_CV_Brine:
 if_hp_less_than AI_TARGET, 51, Score_Plus2
 if_random_greater_than 49, Score_Minus1
 end
 
-[35 72 00 09]:
+AI_CV_DoubleAtLowUserHP:
 if_hp_less_than AI_USER, 51, Score_Plus2
 if_random_greater_than 49, Score_Minus1
 end
 
-[43 72 00 09]:
+AI_CV_RemoveOwnScreensForDoubleDamage:
 if_side_affecting AI_USER, SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN, Score_Plus1
 end
 
-[4E 72 00 09]:
+AI_CV_DoubleDamageAfterMove1F2:
 get_last_used_bank_move AI_USER
-if_in_hwords [5A 72 00 09], Score_Plus1
+if_in_hwords AI_Data_EffectE8DoesDoubleDamageAfter, Score_Plus1
 end
 
-[5A 72 00 09]:
+AI_Data_EffectE8DoesDoubleDamageAfter:
 0x1F2
 
 AI_CV_Hurricane:
@@ -5414,7 +5414,7 @@ EFFECT_WORK_UP
 EFFECT_CALM_MIND
 EFFECT_DRAGON_DANCE
 EFFECT_CAMOUFLAGE
-EFFECT_0xDF
+EFFECT_TARGET_ACCURACY_DOWN_EVASION_UP_2
 EFFECT_0xEF
 EFFECT_0xF0
 EFFECT_QUIVER_DANCE

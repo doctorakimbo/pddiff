@@ -115,3 +115,44 @@ AlternateTypeCalc()
 
 table_168CA4_J:
 (broken)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SetTypeToBattlerType1()
+{
+	gBattleStruct->dynamicMoveType = gBattleMons[gBattlerAttacker].type1 + 0xC0;
+	gBattleScriptCurrInstr++;
+}

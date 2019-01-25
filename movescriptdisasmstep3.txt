@@ -91,3 +91,44 @@ fn_1833D0_J()
 	
 	gBattleScriptCurrInstr++
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fn_EB8340_J()
+{
+	gBattleStruct->0x13 = gBattleMons[gBattlerAttacker].0x21 + 0xC0
+	gBattleScriptCurrInstr++
+}

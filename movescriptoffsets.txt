@@ -45,8 +45,10 @@ B0 3C 05 09 E0 3C 05 09 30 3D 05 09 00 40 05 09 00 40 05 09 80 1D 05 09 B0 3D 05
 [DC A8 1B 08] = [20 69 1D 08] = BattleScript_EffectHit_DoubleDamage
 [E2 A8 1B 08] = [26 69 1D 08] = BattleScript_HitFromAtkCanceler
 [E3 A8 1B 08] = [27 69 1D 08] = BattleScript_HitFromAccCheck
+[EA A8 1B 08] = [2E 69 1D 08] = BattleScript_HitFromAtkString
 [EC A8 1B 08] = [30 69 1D 08] = BattleScript_HitFromCritCalc
 [F0 A8 1B 08] = [34 69 1D 08] = BattleScript_HitFromAtkAnimation
+[F2 A8 1B 08] = [36 69 1D 08] = BattleScript_HitFromEffectivenessSound
 [03 A9 1B 08] = [47 69 1D 08] = BattleScript_HitFromTryFaintMon
 [0A A9 1B 08] = [4E 69 1D 08] = BattleScript_MoveEnd
 [13 A9 1B 08] = [57 69 1D 08] = BattleScript_MakeMoveMissed
@@ -54,6 +56,7 @@ B0 3C 05 09 E0 3C 05 09 30 3D 05 09 00 40 05 09 00 40 05 09 80 1D 05 09 B0 3D 05
 [1C A9 1B 08] = [60 69 1D 08] = BattleScript_MoveMissedPause
 [5A AB 1B 08] = [9E 6B 1D 08] = BattleScript_EffectStatUp
 [CF AB 1B 08] = [13 6C 1D 08] = BattleScript_EffectStatDown
+[A8 AC 1B 08] = [EC 6C 1D 08] = BattleScript_MultiHitLoop
 [AC BD 1B 08] = [F0 7D 1D 08] = BattleScript_ButItFailedAtkStringPpReduce
 [AE BD 1B 08] = [F2 7D 1D 08] = BattleScript_ButItFailed
 [C0 BD 1B 08] = [04 7E 1D 08] = BattleScript_NotAffected
@@ -61,3 +64,4 @@ B0 3C 05 09 E0 3C 05 09 30 3D 05 09 00 40 05 09 00 40 05 09 80 1D 05 09 B0 3D 05
 [F5 CA 1B 08] = [39 8B 1D 08] = BattleScript_SafeguardProtected
 
 [48 45 3C 08] = [7C E5 3F 08] = gStatUpStringIds
+[54 45 3C 08] = [88 E5 3F 08] = gStatDownStringIds

@@ -11,7 +11,7 @@ addr e: addr j: desc
 D0 1C 02 02: 4C 1C 02 02: gStringVar1
 F0 1C 02 02: 60 1C 02 02: gStringVar2
 04 1D 02 02: 74 1C 02 02: gStringVar3
-18 1D 02 02: 88 1C 02 02: gStringVar4 (PD: vDynamicScript)
+18 1D 02 02: 88 1C 02 02: gStringVar4
 		   : 10 1D 02 02: ?????? (GetMoveRelearnerMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
 								 (GetNumberOfRelearnableMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
 74 29 02 02: E4 28 02 02: gBattle_BG0_X
@@ -88,6 +88,7 @@ C4 3F 02 02: 24 3F 02 02: gBattleScripting
 D2 3F 02 02: 32 3F 02 02: sDMG_MULTIPLIER
 D4 3F 02 02: 34 3F 02 02: sB_ANIM_ARG1
 D8 3F 02 02: 38 3F 02 02: sMOVEEND_STATE
+DA 3F 02 02: 3A 3F 02 02: sMULTIHIT_EFFECT
 DE 3F 02 02: 3E 3F 02 02: sSTATCHANGER
 DF 3F 02 02: 3F 3F 02 02: sSTAT_ANIM_PLAYED (FRPD) / sSECOND_STATCHANGER (PD)
 E8 3F 02 02: 48 3F 02 02: gBattleStruct
