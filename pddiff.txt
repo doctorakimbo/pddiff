@@ -208,7 +208,7 @@ move IDs:
 = 0x1B1 = (chance to raise evasion)
 = 0x1B2 = (harshly lowers user's sp. atk afterwards)
 = 0x1B3 = (chance to paralyze)
-= 0x1B4 = (chance to harshly lower user's defense)
+= 0x1B4 = (harshly lowers user's defense after use)
 = 0x1B5 = (chance to lower accuracy)
 = 0x1B6 = (chance to harshly lower defense)
 - 0x1B8 = Energize
@@ -382,9 +382,11 @@ move effects:
 = 0xA3 = 50% recoil
 = 0xAB = double damage on target with speed boosts, does no damage to target with speed drops
 = 0xD1 = Work Up/Growth/Energize
-= 0xD4 = ("setup" move)
-= 0xD6 = (ai doesn't want to use if resisted or user has low HP)
-= 0xD7 = (ai doesn't want to use if resisted or user has low HP)
+= 0xD6 = Hammer Arm
+= 0xD7 = Close Combat
+= 0xD8 = (lowers Sp. Def after use)/[move1B4]
+= 0xD9 = (unknown hardcoded parameterized additional effects)
+= 0xDA = (unknown hardcoded parameterized additional effects)
 = 0xDD = (ai doesn't want to use if resisted or user has low HP)
 = 0xDF = (ai won't use if user has +6 evasion), ("setup" move)
 = 0xE1 = Frost Breath
@@ -2131,12 +2133,12 @@ stray text:
 - 1D69E7 -> 1050060 (repoint): BattleScript_EffectAbsorb_New (see movescripts.txt)
 		  Implements: Draining Kiss
 = 1D6A55 (first one), 1D6A60, 1D6A6B, 1D6DB2, 1D6E69, 1D6E7D, 1D6900 (the one after 1D6FC8), 1D725F, 1D726A, 1D7275, 1D7280, 1D728B, 1D6900 (the one after 1D7296), 1D72C9, 1D6900 (the one after 1D750D), 1D752C, 1D7977, 1D7A47, 1D7E16, 1D817E -> 1054000 (repoint): BattleScript_ParameterizedEffectHit (see movescripts.txt)
-  1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeCalcHit (see movescripts.txt)
+  1D7119, 1D7124, [effectD9], [effectDA] -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeCalcHit (see movescripts.txt)
   1D6B77, 1D6B82, 1D6900, 1D6B8D, 1D6900, 1D6900, 1D6B98 -> 1054010 (repoint): BattleScript_ParameterizedStatUp (see movescripts.txt)
   1D6BEC, 1D6BF7, 1D6900 (the one before 1D6C02), 1D6C02, 1D6C0D -> 1054020 (repoint): BattleScript_ParameterizedStatDown (see movescripts.txt)
   [none yet] -> 1054030 (repoint): BattleScript_ParameterizedStatDownPerfectAccuracy (see movescripts.txt)
 		  Implements: refactor all additional-effect hit moves and stat-up/stat-down moves into a parameterized script to reduce redundant code (too many actual moves to list here, see the move list near the top; below is the list of effects refactored by this)
-			EffectHit: EFFECT_BURN_HIT, EFFECT_FREEZE_HIT, EFFECT_PARALYZE_HIT, EFFECT_FLINCH_HIT, EFFECT_PAY_DAY, EFFECT_TRI_ATTACK, EFFECT_0x2B, EFFECT_ATTACK_DOWN_HIT, EFFECT_DEFENSE_DOWN_HIT, EFFECT_SPEED_DOWN_HIT, EFFECT_SPECIAL_ATTACK_DOWN_HIT, EFFECT_SPECIAL_DEFENSE_DOWN_HIT, EFFECT_ACCURACY_DOWN_HIT (indirectly), EFFECT_EVASION_DOWN_HIT, EFFECT_CONFUSE_HIT, EFFECT_0x60, EFFECT_0x61, EFFECT_THAW_HIT, EFFECT_ALL_STATS_UP_HIT, EFFECT_UPROAR, EFFECT_SUPERPOWER, EFFECT_STAT_TWO_DOWN_HIT (indirectly)
+			EffectHit: EFFECT_BURN_HIT, EFFECT_FREEZE_HIT, EFFECT_PARALYZE_HIT, EFFECT_FLINCH_HIT, EFFECT_PAY_DAY, EFFECT_TRI_ATTACK, EFFECT_0x2B, EFFECT_ATTACK_DOWN_HIT, EFFECT_DEFENSE_DOWN_HIT, EFFECT_SPEED_DOWN_HIT, EFFECT_SPECIAL_ATTACK_DOWN_HIT, EFFECT_SPECIAL_DEFENSE_DOWN_HIT, EFFECT_ACCURACY_DOWN_HIT (indirectly), EFFECT_EVASION_DOWN_HIT, EFFECT_CONFUSE_HIT, EFFECT_0x60, EFFECT_0x61, EFFECT_THAW_HIT, EFFECT_ALL_STATS_UP_HIT, EFFECT_UPROAR, EFFECT_SUPERPOWER, EFFECT_STAT_TWO_DOWN_HIT (indirectly), EFFECT_0xD9, EFFECT_0xDA
 			EffectAltTypeCalcHit: EFFECT_0x35, EFFECT_0x36
 			StatUp: EFFECT_ATTACK_UP, EFFECT_DEFENSE_UP, EFFECT_SPEED_UP, EFFECT_SPECIAL_ATTACK_UP, EFFECT_SPECIAL_DEFENSE_UP, EFFECT_ACCURACY_UP, EFFECT_EVASION_UP
 			StatDown: EFFECT_ATTACK_DOWN (indirectly), EFFECT_DEFENSE_DOWN, EFFECT_SPEED_DOWN, EFFECT_SPECIAL_ATTACK_DOWN (indirectly), EFFECT_SPECIAL_DEFENSE_DOWN, EFFECT_ACCURACY_DOWN, EFFECT_EVASION_DOWN
@@ -2317,7 +2319,7 @@ stray text:
 		  Relies on: weather refactor
 = 1D841B -> 1053B60 (repoint): BattleScript_EffectStatTwoDownHit (see movescripts.txt)
 		  Implements: [move289]
-		  Relies on: BattleScript_Parameterized, BattleScript_DoDamageFunction
+		  Relies on: BattleScript_Parameterized, BattleScript_DoDamageFunction, BattleScript_PlayStatDownAnim
 = 1D8A72: 02 -> 01 (part of DoFieldEndTurnEffects changes)
 = 1D8B6E: Part of BattleScript_LeechSeedTurnDrain (see movescripts.txt)
 		  Implements: Magic Guard (vs Leech Seed)
@@ -2410,7 +2412,7 @@ stray text:
 		  * Other improvements: instead of a bizarre mix of moves, Mirror Move tries to prioritize any copiable move; doesn't discourage recovery when the user is faster; encourages OHKO moves after use of Mind Reader; Mean Look (because Spirit Shackle uses the same effect byte), Dragon Dance (why?), and Knock Off are no longer encouraged to be Encored; Teleport and +Sp. Def are encouraged to be Encored; instead of encouraging stealing a short list of items, Thief is encouraged for all items that don't have a downside; Chlorophyll users prioritize Sunny Day; Volt Absorb, Water Absorb, Soundproof, Thick Fat, Flame Body, and Shell Armor are considered "good" abilities; "bad" abilities (to avoid/get rid of) are also listed
 		  * New mechanics that old scripts are updated for: p/s split (also includes removing the discouraging of, for example, -Atk moves or Reflect on a water-type since it can have physical STAB now), new Lightning Rod, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, [ability8B], Choice items, Assault Vest, Lagging Tail
 		  * New moves: 0x22D, 0x27C (factored into Eruption script); 0x161, Hex, Wake-Up Slap, 0x265, 0x266, 0x267, 0x283 (factored into double-damage-on-status script); 0x258, 0x272, 0x27A (factored into [effectE3] script); 0x1F2 (factored into [effectE8] script)
-		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, [effectD6], [effectD7], [effectDD], Hurricane, [effectE3], [effectE6], [effectE8], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws, [effectF8], [effectF9], [effectFB], [effectFC]
+		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, [effectDD], Hurricane, [effectE3], [effectE6], [effectE8], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws, [effectF8], [effectF9], [effectFB], [effectFC]
 		  Relies on: new AI script commands, BattleMove refactor
 		  Glitch?: due to misaligned goto, Substitute will fall through into the Hyper Beam logic under certain circumstances
 		  Glitch?: due to misaligned goto, (Payback that always doubles power vs Steel-types) will probably crash
@@ -2419,7 +2421,7 @@ stray text:
 		  Glitch?: an AI script for Sandstorm is fully implemented but not actually accessed
 		  Glitch?: Venom Drench uses Lock-On's AI script
 - 1DBA8D -> 1007300 (repoint): AI_SetupFirstTurn
-		  Implements: changes which moves the AI counts as setup (removes every +2/-2, Conversion; adds sleep, Toxic, (confuse and lower evasion), (poison or paralysis, chooses one at random), (burn user and target), (poison user and target), Charge, Work Up, [effectD4], [effectDF], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws)
+		  Implements: changes which moves the AI counts as setup (removes every +2/-2, Conversion; adds sleep, Toxic, (confuse and lower evasion), (poison or paralysis, chooses one at random), (burn user and target), (poison user and target), Charge, Work Up, Dragon Dance, [effectDF], [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws)
 		  GLITCH!: This actually does nothing at all due to a misplaced pointer
 - 1DBB3B -> 1007380 (repoint): AI_Unknown
 		  Implements: AI layer that discourages supereffective moves for some reason
@@ -2526,6 +2528,21 @@ stray text:
 		  Implements: field function for Ability Capsule
 		  Required knowledge: j03005EE8
 		  Glitch?: looks like it's using the old ability name table, easily fixed for en
+=1051D80: BattleScript_Effect??? (see movescripts.txt)
+		  Implements: 
+-1053CB0: BattleScript_EffectHammerArm (see movescripts.txt)
+		  Implements: Hammer Arm
+		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatDownAnim
+-1053CE0: BattleScript_EffectCloseCombat (see movescripts.txt)
+		  Implements: Close Combat
+		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatDownAnim
+-1053D30: BattleScript_EffectDefensiveStatAlwaysDownHit (see movescripts.txt)
+		  Implements: (move that lowers Sp. Def after use), [move1B4]
+		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatDownAnim
+
+
+
+
 
 
 
