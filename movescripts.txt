@@ -5516,3 +5516,218 @@ goto BattleScript_EffectHit
 
 BattleScript_EffectRevelationDance (pe): @1051840
 FF 41 83 EB 09 28 00 69 1D 08
+
+
+
+
+
+
+
+
+
+
+BattleScript_EffectSurf (pj): @158B0
+00 02 03 C2 25 2A 01 AA 3C 02 02 39 00 EF 58 01 08 21 00 00 00 04 00 01 E0 58 01 08 35 30 3D 02 02 00 00 04 00 2E 32 3F 02 02 02 28 EF 58 01 08 38 30 3D 02 02 00 00 04 00 2E 32 3F 02 02 01 01 28 59 01 08 00 00 04 05 06 07 09 0A 0E 5C 00 3A 0B 00 0C 00 0D 12 40 00 0F 12 40 00 10 30 01 12 01 00 19 00 00 00 00 00 00 2E 38 3F 02 02 00 49 02 12 7A B4 58 01 08 3D 39 20 00 06 0E 0F 12 40 00 28 19 59 01 08
+
+attackcanceler
+attackstring
+ppreduce
+selectfirstvalidtarget
+
+BattleScript_HitsAllWithUnderwaterBonusLoop:
+movevaluescleanup
+jumpifnotmove MOVE_SURF, BattleScript_DoHitAllWithUnderwaterBonus
+jumpifnostatus3 BS_TARGET, STATUS3_UNDERWATER, BattleScript_HitsAllNoUnderwaterBonus
+orword gHitMarker, HITMARKER_IGNORE_UNDERWATER
+setbyte sDMG_MULTIPLIER, 0x2
+goto BattleScript_DoHitAllWithUnderwaterBonus
+
+BattleScript_HitsAllNoUnderwaterBonus:
+bicword gHitMarker, HITMARKER_IGNORE_UNDERWATER
+setbyte sDMG_MULTIPLIER, 0x1
+
+BattleScript_DoHitAllWithUnderwaterBonus:
+accuracycheck BattleScript_HitAllWithUnderwaterBonusMissed, ACC_CURR_MOVE
+critcalc
+damagecalc
+typecalc
+adjustnormaldamage
+attackanimation
+waitanimation
+effectivenesssound
+hitanimation BS_TARGET
+waitstate
+healthbarupdate BS_TARGET
+datahpupdate BS_TARGET
+critmessage
+waitmessage 0x40
+resultmessage
+waitmessage 0x40
+printstring STRINGID_EMPTYSTRING3
+waitmessage 0x1
+tryfaintmon BS_TARGET, FALSE, NULL
+
+BattleScript_HitAllWithUnderwaterBonusMoveEnd:
+setbyte sMOVEEND_STATE, 0x0
+moveend 0x2, 0x12
+jumpifnexttargetvalid BattleScript_HitsAllWithUnderwaterBonusLoop
+end
+
+BattleScript_HitAllWithUnderwaterBonusMissed:
+pause 0x20
+typecalc
+effectivenesssound
+resultmessage
+waitmessage 0x40
+goto BattleScript_HitAllWithUnderwaterBonusMoveEnd
+
+
+BattleScript_EffectSurf (pe): @1609C
+00 02 03 C2 25 2A 01 4A 3D 02 02 39 00 DB 60 01 08 21 00 00 00 04 00 01 CC 60 01 08 35 D0 3D 02 02 00 00 04 00 2E D2 3F 02 02 02 28 DB 60 01 08 38 D0 3D 02 02 00 00 04 00 2E D2 3F 02 02 01 01 14 61 01 08 00 00 04 05 06 07 09 0A 0E 5C 00 3A 0B 00 0C 00 0D 12 40 00 0F 12 40 00 10 30 01 12 01 00 19 00 00 00 00 00 00 2E D8 3F 02 02 00 49 02 12 7A A0 60 01 08 3D 39 20 00 06 0E 0F 12 40 00 28 05 61 01 08
+
+
+
+
+
+
+
+
+
+
+BattleScript_Effect??? (pj): @1051850
+2A 00 AA 3C 02 02 C8 01 00 61 8B 08 28 40 45 81 08
+
+BattleScript_Effect??? (pj): @8B6100
+00 02 03 C2 25 21 00 00 00 00 00 01 2E 61 8B 08 2E E5 3D 02 02 18 35 30 3D 02 02 00 00 04 00 2E 32 3F 02 02 01 28 43 61 8B 08 FF FF FF FF 2E E5 3D 02 02 1B 35 30 3D 02 02 00 00 04 00 2E 32 3F 02 02 01 01 82 61 8B 08 00 00 04 05 06 07 09 0A 0E 5C 00 3A 0B 00 0C 00 0D 12 40 00 0F 12 40 00 15 28 66 61 8B 08 10 30 01 12 01 00 19 00 00 00 00 00 00 2E 38 3F 02 02 00 49 02 12 7A 04 61 8B 08 3D 39 20 00 06 0E 0F 12 40 00 2E 38 3F 02 02 00 49 02 12 7A 04 61 8B 08 3D
+
+BattleScript_Effect??? (pj): @814540
+00 02 03 C2 25 21 00 00 00 00 00 01 6E 45 81 08 2E E5 3D 02 02 18 35 30 3D 02 02 00 00 04 00 2E 32 3F 02 02 01 28 83 45 81 08 FF FF FF FF 2E E5 3D 02 02 18 35 30 3D 02 02 00 00 04 00 2E 32 3F 02 02 01 01 CC 45 81 08 00 00 04 05 06 07 09 0A 0E 5C 00 3A 0B 00 0C 00 0D 12 40 00 0F 12 40 00 15 28 B0 45 81 08 FF FF FF FF FF FF FF FF FF FF 10 30 01 12 01 00 19 00 00 00 00 00 00 2E 38 3F 02 02 00 49 02 12 7A 44 45 81 08 3D 39 20 00 06 0E 0F 12 40 00 2E 38 3F 02 02 00 49 02 12 7A 44 45 81 08 3D
+
+jumpifmove 0x1C8, [00 61 8B 08]
+goto [40 45 81 08]
+
+[00 61 8B 08]:
+attackcanceler
+attackstring
+ppreduce
+selectfirstvalidtarget
+
+[04 61 8B 08]:
+jumpifnostatus3 BS_TARGET, 0x0, [2E 61 8B 08]
+setbyte [E5 3D 02 02], 0x18
+orword [30 3D 02 02], 0x40000
+setbyte [32 3F 02 02], 0x1
+goto [43 61 8B 08]
+
+[2E 61 8B 08]:
+setbyte [E5 3D 02 02], 0x1B
+orword [30 3D 02 02], 0x40000
+setbyte [32 3F 02 02], 0x1
+
+[43 61 8B 08]:
+accuracycheck [82 61 8B 08], ACC_CURR_MOVE
+critcalc
+damagecalc
+typecalc
+adjustnormaldamage
+attackanimation
+waitanimation
+effectivenesssound
+hitanimation BS_TARGET
+waitstate
+healthbarupdate BS_TARGET
+datahpupdate BS_TARGET
+critmessage
+waitmessage 0x40
+resultmessage
+waitmessage 0x40
+seteffectwithchance
+goto [66 61 8B 08]
+
+[66 61 8B 08]:
+printstring 0x130
+waitmessage 0x1
+tryfaintmon BS_TARGET, FALSE, NULL
+setbyte sMOVEEND_STATE, 0x0
+moveend 0x2, 0x12
+jumpifnexttargetvalid [04 61 8B 08]
+end
+
+[82 61 8B 08]:
+pause 0x20
+typecalc
+effectivenesssound
+resultmessage
+waitmessage 0x40
+setbyte sMOVEEND_STATE, 0x0
+moveend 0x2, 0x12
+jumpifnexttargetvalid [04 61 8B 08]
+end
+
+[40 45 81 08]:
+attackcanceler
+attackstring
+ppreduce
+selectfirstvalidtarget
+
+[44 45 81 08]:
+jumpifnostatus3 BS_TARGET, 0x0, [6E 45 81 08]
+setbyte [E5 3D 02 02], 0x18
+orword [30 3D 02 02], 0x40000
+setbyte [32 3F 02 02], 0x1
+goto [83 45 81 08]
+
+[6E 45 81 08]:
+setbyte [E5 3D 02 02], 0x18
+orword [30 3D 02 02], 0x40000
+setbyte [32 3F 02 02], 0x1
+
+[83 45 81 08]:
+accuracycheck [CC 45 81 08], ACC_CURR_MOVE
+critcalc
+damagecalc
+typecalc
+adjustnormaldamage
+attackanimation
+waitanimation
+effectivenesssound
+hitanimation BS_TARGET
+waitstate
+healthbarupdate BS_TARGET
+datahpupdate BS_TARGET
+critmessage
+waitmessage 0x40
+resultmessage
+waitmessage 0x40
+seteffectwithchance
+goto [B0 45 81 08]
+
+[B0 45 81 08]:
+printstring 0x130
+waitmessage 0x1
+tryfaintmon BS_TARGET, FALSE, NULL
+setbyte sMOVEEND_STATE, 0x0
+moveend 0x2, 0x12
+jumpifnexttargetvalid [44 45 81 08]
+end
+
+[CC 45 81 08]:
+pause 0x20
+typecalc
+effectivenesssound
+resultmessage
+waitmessage 0x40
+setbyte sMOVEEND_STATE, 0x0
+moveend 0x2, 0x12
+jumpifnexttargetvalid [44 45 81 08]
+end
+
+
+BattleScript_Effect??? (pe): @1051850
+2A 00 4A 3D 02 02 C8 01 00 61 8B 08 28 40 45 81 08
+
+BattleScript_Effect??? (pe): @8B6100 <FIX THIS>
+00 02 03 C2 25 21 00 00 00 00 00 01 2E 61 8B 08 2E E5 3D 02 02 18 35 30 3D 02 02 00 00 04 00 2E 32 3F 02 02 01 28 43 61 8B 08 FF FF FF FF 2E E5 3D 02 02 1B 35 30 3D 02 02 00 00 04 00 2E 32 3F 02 02 01 01 82 61 8B 08 00 00 04 05 06 07 09 0A 0E 5C 00 3A 0B 00 0C 00 0D 12 40 00 0F 12 40 00 15 28 66 61 8B 08 10 30 01 12 01 00 19 00 00 00 00 00 00 2E 38 3F 02 02 00 49 02 12 7A 04 61 8B 08 3D 39 20 00 06 0E 0F 12 40 00 2E 38 3F 02 02 00 49 02 12 7A 04 61 8B 08 3D
+
+BattleScript_Effect??? (pe): @814540 <FIX THIS>
+00 02 03 C2 25 21 00 00 00 00 00 01 6E 45 81 08 2E E5 3D 02 02 18 35 30 3D 02 02 00 00 04 00 2E 32 3F 02 02 01 28 83 45 81 08 FF FF FF FF 2E E5 3D 02 02 18 35 30 3D 02 02 00 00 04 00 2E 32 3F 02 02 01 01 CC 45 81 08 00 00 04 05 06 07 09 0A 0E 5C 00 3A 0B 00 0C 00 0D 12 40 00 0F 12 40 00 15 28 B0 45 81 08 FF FF FF FF FF FF FF FF FF FF 10 30 01 12 01 00 19 00 00 00 00 00 00 2E 38 3F 02 02 00 49 02 12 7A 44 45 81 08 3D 39 20 00 06 0E 0F 12 40 00 2E 38 3F 02 02 00 49 02 12 7A 44 45 81 08 3D

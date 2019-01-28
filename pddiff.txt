@@ -406,6 +406,7 @@ move effects:
 = 0xE7 = does damage based on the user's Defense stat instead of its Attack stat
 = 0xE8 = does double damage if used immediately after [move1F2]
 = 0xE9 = Revelation Dance
+= 0xEA = Surf
 = 0xED = (ai wants to use a status move right after the target used this), (ai won't use if target is slower), (ai won't use if it has a type advantage on the target), (ai wants to use if it can KO the target), (ai wants to use if target is choiced), (ai wants to use if target just used an attack), (ai won't use if target is defensive and just used a status move)
 = 0xEE = Hurricane
 = 0xEF = (ai won't use if target has -6 spatk or -6 spdef), (uses same main ai script as -spdef), ("setup" move)
@@ -715,6 +716,9 @@ stray text:
 		  Implements: Storm Drain (redirection), Mold Breaker+ (vs redirection)
 		  Relies on: gChosenActionByBattler changed to something else
 		  Note: test deeply - incomprehensible code
+= 01609C: BattleScript_EffectSurf (see movescripts.txt)
+		  Implements: Surf targets all mons but user
+		  Relies on: moveend refactor
 ! 016460: 0C 29 1B D8 0B 4A 0C 49 -> 00 00 00 00 0B 4A 97 46
   016494: 74 3D 02 02 -> E0 31 A2 08 (jumps (mov) to fn at A231E0, then back; see 07disasm)
 		  Implements: new pokeballs (throw action)
@@ -2564,6 +2568,9 @@ stray text:
 -1051840: BattleScript_EffectRevelationDance (see movescripts.txt)
 		  Implements: Revelation Dance
 		  Relies on: SetTypeToBattlerType1 (jEB8340, e1EB8340)
+=1051850: BattleScript_Effect??? (see movescripts.txt)
+		  Implements: 
+		  Relies on: moveend refactor
 =1051D80: BattleScript_EffectCalcWithExtraBoosts (see movescripts.txt)
 		  Implements: (move that calculates damage as if any Defense boosts were added to Sp. Atk, then has a 20% chance to raise Def and Sp. Atk); [moveDD]
 		  Required knowledge: whether the area around gStringVar4 is the same in en
