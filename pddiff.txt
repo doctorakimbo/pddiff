@@ -159,199 +159,345 @@ item IDs:
 
 move IDs:
 (Mirror Move, Assist, Diamond Storm, and Strength Sap can't be called by metronome)
-= 0xA0 = (chance to raise sp. atk), (can't be called by metronome)
-= 0xA7 = (chance to lower user's speed)
-= 0xB1 = (can't be called by metronome)
-= 0xDD = (calculates damage as if any Sp. Atk boosts were added to Attack, then has a 20% chance to raise Atk and Sp. Atk), (can't be called by metronome)
-= 0x127 = (chance to raise sp. atk)
-= 0x12E = (has poison-chance hit effect, but if used by a poison-type, it badly poisons instead)
-= 0x161 = (does double damage to poisoned targets (but NOT toxiced targets))
-= 0x163 = (chance to flinch)
-= 0x164 = (chance to confuse)
-= 0x167 = (chance to confuse)
-= 0x168 = (unclear in code; either chance to lower defense or +1 evasion)
-= 0x16A = (chance to lower user's speed)
+= 0x8C = (non-attacking move)
+= 0x95 = (attacking move)
+= 0xA0 = (attacking move with chance to raise sp. atk), (can't be called by metronome)
+= 0xA7 = (attacking move with chance to lower user's speed)
+= 0xA9 = (attacking move)
+= 0xB0 = (non-attacking move)
+= 0xB1 = (attacking move), (can't be called by metronome)
+= 0xDD = (attacking move that calculates damage as if any Sp. Atk boosts were added to Attack, then has a 20% chance to raise Atk and Sp. Atk), (can't be called by metronome)
+= 0x126 = (attacking move)
+= 0x127 = (attacking move with chance to raise sp. atk)
+= 0x128 = (attacking move)
+= 0x12E = (attacking move with chance to poison, but if used by a poison-type, it badly poisons instead)
+= 0x161 = (attacking move that does double damage to poisoned targets (but NOT toxiced targets))
+= 0x163 = (attacking move with chance to flinch)
+= 0x164 = (attacking move with chance to confuse)
+= 0x165 = (attacking move)
+= 0x166 = (attacking move)
+= 0x167 = (attacking move with chance to confuse)
+= 0x168 = (attacking move with chance to lower defense)
+= 0x169 = (attacking move)
+= 0x16A = (attacking move with chance to lower user's speed)
+= 0x16B = (attacking move)
 - 0x16C = Flare Blitz
-= 0x16D = (chance to paralyze)
-= 0x16F = (unclear in code; either rapid spin effect or +2 speed)
-= 0x170 = (chance to poison)
-= 0x171 = (chance to flinch)
-= 0x175 = (chance to flinch)
-= 0x177 = (chance to lower sp. def)
-= 0x179 = (chance to flinch)
-= 0x17D = (chance to lower sp. def)
-= 0x17E = (chance to lower sp. def)
-= 0x180 = (chance to lower sp. def)
-= 0x181 = (can't be called by metronome)
-= 0x183 = (unclear in code; either double-damage-on-status effect or +2 sp. atk)
-= 0x189 = (chance to lower accuracy)
-= 0x18C = (chance to lower accuracy)
-= 0x18D = (chance to lower sp. def)
-= 0x18E = (chance to confuse)
-= 0x18F = (harshly lowers user's sp. atk afterwards)
-= 0x191 = (harshly lowers user's sp. atk afterwards)
-= 0x194 = (chance to poison)
-= 0x195 = (chance to flinch)
-= 0x199 = (chance to raise sp. atk)
-= 0x1A2 = (chance to sharply raise speed)
-= 0x1A3 = (chance to confuse or raise user's accuracy)
-= 0x1A4 = (chance to raise all stats)
-= 0x1A5 = (chance to poison)
+= 0x16D = (attacking move with chance to paralyze)
+= 0x16E = (attacking move)
+= 0x16F = (non-attacking move, +2 speed)
+= 0x170 = (attacking move with chance to poison)
+= 0x171 = (attacking move with chance to flinch)
+= 0x172 = (attacking move)
+= 0x173 = (attacking move)
+= 0x174 = (attacking move)
+= 0x175 = (attacking move with chance to flinch)
+= 0x176 = (attacking move)
+= 0x177 = (attacking move with chance to lower sp. def)
+= 0x178 = (attacking move)
+= 0x179 = (attacking move with chance to flinch)
+= 0x17A = (attacking move)
+= 0x17B = (attacking move)
+= 0x17C = (attacking move)
+= 0x17D = (attacking move with chance to lower sp. def)
+= 0x17E = (attacking move with chance to lower sp. def)
+= 0x17F = (attacking move)
+= 0x180 = (attacking move with chance to lower sp. def)
+= 0x181 = (non-attacking move), (can't be called by metronome)
+= 0x182 = (attacking move)
+= 0x183 = (non-attacking move, +2 sp. atk)
+= 0x184 = (attacking move)
+= 0x185 = (attacking move)
+= 0x186 = (attacking move)
+= 0x187 = (attacking move)
+= 0x188 = (attacking move)
+= 0x189 = (attacking move with chance to lower accuracy)
+= 0x18A = (attacking move)
+= 0x18B = (attacking move)
+= 0x18C = (attacking move with chance to lower accuracy)
+= 0x18D = (attacking move with chance to lower sp. def)
+= 0x18E = (attacking move with chance to confuse)
+= 0x18F = (attacking move that harshly lowers user's sp. atk afterwards)
+- 0x190 = Discharge
+= 0x191 = (attacking move that harshly lowers user's sp. atk afterwards)
+= 0x192 = (attacking move)
+= 0x193 = (attacking move)
+= 0x194 = (attacking move with chance to poison)
+= 0x195 = (attacking move with chance to flinch)
+= 0x196 = (attacking move)
+= 0x197 = (attacking move)
+= 0x198 = (attacking move)
+= 0x199 = (attacking move with chance to raise sp. atk)
+= 0x19A = (attacking move)
+= 0x19B = (attacking move)
+= 0x19C = (attacking move)
+= 0x19D = (non-attacking move)
+= 0x19E = (non-attacking move)
+= 0x19F = (attacking move)
+= 0x1A0 = (attacking move)
+= 0x1A1 = (attacking move)
+= 0x1A2 = (attacking move with chance to sharply raise speed)
+= 0x1A3 = (attacking move with chance to confuse or raise user's accuracy)
+= 0x1A4 = (attacking move with chance to raise all stats)
+= 0x1A5 = (attacking move with chance to poison)
 - 0x1A6 = Thunder Fang
 - 0x1A7 = Ice Fang
 - 0x1A8 = Fire Fang
-= 0x1A9 = (chance to confuse user)
-= 0x1AA = (chance to raise speed)
-= 0x1AC = (chance to lower sp. def or confuse)
-= 0x1AE = (chance to sleep)
-= 0x1AF = (chance to confuse user)
-= 0x1B1 = (chance to raise evasion)
-= 0x1B2 = (harshly lowers user's sp. atk afterwards)
-= 0x1B3 = (chance to paralyze)
-= 0x1B4 = (harshly lowers user's defense after use)
-= 0x1B5 = (chance to lower accuracy)
-= 0x1B6 = (chance to harshly lower defense)
+= 0x1A9 = (attacking move with chance to confuse user)
+= 0x1AA = (attacking move with chance to raise speed)
+= 0x1AB = (attacking move)
+= 0x1AC = (attacking move with chance to lower sp. def or confuse)
+= 0x1AD = (non-attacking move)
+= 0x1AE = (non-attacking move with chance to sleep (?))
+= 0x1AF = (attacking move with chance to confuse user)
+= 0x1B0 = (attacking move)
+= 0x1B1 = (attacking move with chance to raise evasion)
+= 0x1B2 = (attacking move that harshly lowers user's sp. atk afterwards)
+= 0x1B3 = (attacking move with chance to paralyze)
+= 0x1B4 = (attacking move that harshly lowers user's defense afterwards)
+= 0x1B5 = (attacking move with chance to lower accuracy)
+= 0x1B6 = (attacking move with chance to harshly lower defense)
+= 0x1B7 = (attacking move)
 - 0x1B8 = Energize
-= 0x1B9 = (chance to lower speed)
+= 0x1B9 = (attacking move with chance to lower speed)
 - 0x1BA = Diamond Storm
-= 0x1BC = (chance to raise sp. atk)
-= 0x1BF = (chance to lower evasion)
-= 0x1C0 = (chance to raise sp. atk)
-= 0x1C1 = (chance to lower defense or freeze)
-= 0x1C2 = (chance to lower defense or flinch)
-= 0x1C5 = (chance to lower accuracy or poison)
-= 0x1C6 = (chance to harshly lower speed)
-= 0x1C7 = (chance to lower sp. def)
-= 0x1C9 = (chance to raise accuracy)
-= 0x1CB = (chance to burn user)
-= 0x1CC = (chance to confuse)
-= 0x1CD = (chance to raise sp. def)
-= 0x1CE = (chance to sharply raise target's evasion)
-= 0x1CF = (chance to sleep)
-= 0x1D1 = (chance to paralyze user)
-= 0x1D2 = (chance to lower accuracy or confuse)
-= 0x1D4 = (chance to lower user's sp. def)
-= 0x1D5 = (chance to raise sp. atk)
-= 0x1D6 = (chance to sleep or confuse)
-= 0x1D9 = (unclear in code; either chance to sharply raise target's attack or +2 evasion)
-= 0x1DB = (chance to poison user)
-= 0x1DE = (unclear in code; either 1/3 recoil or +2 accuracy)
-= 0x1E1 = (chance to sharply raise target's sp. atk)
-= 0x1E2 = (chance to lower user's attack or sp. atk)
-= 0x1E4 = (unclear in code; either lowers defense afterwards or -1 evasion)
-= 0x1E5 = (unclear in code; either chance to harshly lower sp. def or +3 defense)
-= 0x1E6 = (can't be called by metronome)
+= 0x1BB = (attacking move)
+= 0x1BC = (attacking move with chance to raise sp. atk)
+= 0x1BD = (non-attacking move)
+= 0x1BE = (attacking move)
+= 0x1BF = (attacking move with chance to lower evasion)
+= 0x1C0 = (attacking move with chance to raise sp. atk)
+= 0x1C1 = (attacking move with chance to lower defense or freeze)
+= 0x1C2 = (attacking move with chance to lower defense or flinch)
+= 0x1C3 = (attacking move)
+= 0x1C4 = (attacking move)
+= 0x1C5 = (attacking move with chance to lower accuracy or poison)
+= 0x1C6 = (attacking move with chance to harshly lower speed)
+= 0x1C7 = (attacking move with chance to lower sp. def)
+= 0x1C8 = Sandblast
+= 0x1C9 = (attacking move with chance to raise accuracy)
+= 0x1CA = (attacking move)
+= 0x1CB = (attacking move with chance to burn user)
+= 0x1CC = (attacking move with chance to confuse)
+= 0x1CD = (attacking move with chance to raise sp. def)
+= 0x1CE = (attacking move with chance to sharply raise target's evasion)
+= 0x1CF = (attacking move with chance to sleep)
+= 0x1D0 = (attacking move)
+= 0x1D1 = (attacking move with chance to paralyze user)
+= 0x1D2 = (attacking move with chance to lower accuracy or confuse)
+= 0x1D3 = (attacking move)
+= 0x1D4 = (attacking move with chance to lower user's sp. def)
+= 0x1D5 = (attacking move with chance to raise sp. atk)
+= 0x1D6 = (attacking move with chance to sleep or confuse)
+= 0x1D7 = (attacking move)
+= 0x1D8 = (attacking move)
+= 0x1D9 = (attacking move with chance to sharply raise target's attack)
+= 0x1DA = (attacking move)
+= 0x1DB = (attacking move with chance to poison user)
+= 0x1DC = (attacking move)
+= 0x1DD = (attacking move)
+= 0x1DE = (non-attacking move, +2 accuracy)
+= 0x1DF = (attacking move)
+= 0x1E0 = (attacking move)
+= 0x1E1 = (attacking move with chance to sharply raise target's sp. atk)
+= 0x1E2 = (attacking move with chance to lower user's attack or sp. atk)
+= 0x1E3 = (non-attacking move)
+= 0x1E4 = (non-attacking move, -1 evasion)
+- 0x1E5 = Lava Plume
+= 0x1E6 = (attacking move), (can't be called by metronome)
 - 0x1E7 = Raid
-= 0x1E9 = (chance to lower speed)
+= 0x1E8 = (attacking move)
+= 0x1E9 = (attacking move with chance to lower speed)
+= 0x1EA = (non-attacking move)
 - 0x1EB = Gastro Acid
-= 0x1ED = (chance to lower accuracy)
-= 0x1F2 = ([effectE8] does double damage if used after this move)
-= 0x1F3 = (chance to flinch)
-= 0x1F4 = (chance to flinch)
-= 0x1FA = (chance to lower sp. atk)
-= 0x1FB = (chance to burn)
-= 0x1FE = (chance to burn)
-= 0x1FF = (chance to lower sp. atk)
-= 0x203 = (unclear in code; either raises speed afterwards or -1 attack)
-= 0x204 = (unclear in code; either chance to lower attack or +1 accuracy)
-= 0x207 = (chance to confuse), (can't be copied by mimic or called by metronome)
+= 0x1EC = (non-attacking move)
+= 0x1ED = (attacking move with chance to lower accuracy)
+= 0x1EE = (attacking move)
+= 0x1EF = (attacking move)
+= 0x1F0 = (attacking move)
+= 0x1F1 = (non-attacking move)
+= 0x1F2 = (non-attacking move), ([effectE8] does double damage if used after this move)
+= 0x1F3 = (attacking move with chance to flinch)
+= 0x1F4 = (non-attacking move, chance to flinch (?))
+= 0x1F5 = (attacking move)
+= 0x1F6 = (attacking move)
+= 0x1F7 = (attacking move)
+= 0x1F8 = (non-attacking move)
+= 0x1F9 = (attacking move)
+= 0x1FA = (attacking move with chance to lower sp. atk)
+= 0x1FB = (attacking move with chance to burn)
+= 0x1FC = (attacking move)
+= 0x1FD = (attacking move)
+= 0x1FE = (attacking move with chance to burn)
+= 0x1FF = (attacking move with chance to lower sp. atk)
+= 0x200 = (attacking move)
+= 0x201 = (attacking move)
+= 0x202 = (attacking move)
+= 0x203 = (non-attacking move, -1 attack)
+= 0x204 = (attacking move with chance to lower attack)
+= 0x205 = (attacking move)
+= 0x206 = (non-attacking move)
+= 0x207 = (attacking move with chance to confuse), (can't be copied by mimic or called by metronome)
 + 0x208 = Trick Room
-= 0x20A = (+3 evasion)
+= 0x209 = (attacking move)
+= 0x20A = (attacking move with 50% recoil)
+= 0x20B = (attacking move)
+= 0x20C = (attacking move)
+= 0x20D = (attacking move)
 - 0x20E = Hex
-= 0x20F = (chance to raise speed)
-= 0x210 = (chance to lower sp. atk)
-= 0x212 = (unclear in code; either double-damage-on-status effect or -2 sp. atk)
-= 0x213 = (chance to raise attack)
-= 0x214 = (-1 sp. atk with perfect accuracy)
-= 0x215 = (-1 attack with perfect accuracy)
-= 0x21A = (chance to paralyze)
-= 0x21B = (chance to freeze)
-= 0x21C = (chance to flinch)
-= 0x21D = (chance to lower evasion)
-= 0x21E = (chance to flinch)
-= 0x21F = (chance to raise speed)
-= 0x220 = (unclear in code; either chance to lower defense or +1 evasion)
-= 0x221 = (chance to flinch)
-= 0x222 = (chance to confuse)
-= 0x223 = (chance to lower sp. def)
-= 0x225 = (chance to raise sp. atk)
-= 0x227 = (turns target into pure Rock-type)
+= 0x20F = (attacking move with chance to raise speed)
+= 0x210 = (attacking move with chance to lower sp. atk)
+= 0x211 = (attacking move)
+= 0x212 = (non-attacking move, -2 sp. atk)
+= 0x213 = (attacking move with chance to raise attack)
+= 0x214 = (non-attacking move, -1 sp. atk with perfect accuracy)
+= 0x215 = (non-attacking move, -1 attack with perfect accuracy)
+= 0x216 = (attacking move)
+= 0x217 = (attacking move)
+= 0x218 = (attacking move)
+= 0x219 = (non-attacking move)
+= 0x21A = (attacking move with chance to paralyze)
+= 0x21B = (attacking move with chance to freeze)
+= 0x21C = (attacking move with chance to flinch)
+= 0x21D = (attacking move with chance to lower evasion)
+= 0x21E = (attacking move with chance to flinch)
+= 0x21F = (attacking move with chance to raise speed)
+= 0x220 = (attacking move with chance to lower defense)
+= 0x221 = (attacking move with chance to flinch)
+= 0x222 = (attacking move with chance to confuse)
+= 0x223 = (attacking move with chance to lower sp. def)
+= 0x224 = (attacking move)
+= 0x225 = (attacking move with chance to raise sp. atk)
+= 0x226 = (attacking move)
+= 0x227 = (non-attacking move, turns target into pure Rock-type)
+= 0x228 = (attacking move)
 - 0x229 = Soak
 - 0x22A = Simple Beam
 - 0x22B = Worry Seed
+= 0x22C = (attacking move)
 = 0x22D = Wring Out/Crush Grip
-= 0x22E = (unclear in code; either chance to lower defense or +1 evasion)
-= 0x22F = (lowers user's attack and harshly lowers user's defense afterwards)
-= 0x231 = (chance to lower speed)
-= 0x232 = (chance to burn or flinch)
-= 0x236 = (chance to lower speed or raise user's speed)
-= 0x237 = (unclear in code; either chance to lower defense or +1 evasion)
-= 0x238 = (unclear in code; either chance to lower defense or +1 evasion)
-= 0x239 = (chance to lower speed)
-= 0x23A = (can't be called by metronome)
-= 0x23B = (chance to lower evasion)
-= 0x240 = ([effectE5] forces this move on the target)
-= 0x244 = (chance to sleep)
-= 0x245 = (chance to raise all stats)
-= 0x246 = (tri attack effect)
-= 0x247 = (unclear in code; either chance to lower defense or +1 evasion)
-= 0x249 = (chance to raise sp. atk)
-= 0x24A = (chance to paralyze)
-= 0x24B = (chance to sharply raise target's sp. atk)
-= 0x24C = (chance to lower sp. def)
-= 0x24D = (chance to paralyze)
-= 0x250 = (chance to lower speed)
-= 0x253 = (chance to lower sp. def), (can't be called by metronome)
-= 0x254 = (chance to lower sp. atk), (can't be called by metronome)
-= 0x255 = (unclear in code; either chance to lower attack or +1 accuracy), (can't be called by metronome)
-= 0x256 = (unclear in code; either chance to lower defense or +1 evasion), (can't be called by metronome)
-= 0x257 = (special message in atk97_tryinfatuating)
-= 0x258 = (has Brine effect)
-= 0x25E = (chance to harshly lower speed or confuse), (can't be called by metronome)
-= 0x25F = (chance to harshly lower sp. def or confuse), (can't be called by metronome)
-= 0x260 = (chance to lower defense or confuse), (can't be called by metronome)
-= 0x261 = (can't be called by metronome)
-= 0x262 = (can't be called by metronome)
+= 0x22E = (attacking move with chance to lower defense)
+= 0x22F = (attacking move that lowers user's attack and harshly lowers user's defense afterwards)
+= 0x230 = (attacking move)
+= 0x231 = (attacking move with chance to lower speed)
+= 0x232 = (attacking move with chance to burn or flinch)
+= 0x233 = (attacking move)
+= 0x234 = (attacking move)
+= 0x235 = (attacking move)
+= 0x236 = (attacking move with chance to lower speed or raise user's speed)
+= 0x237 = (attacking move with chance to lower defense)
+= 0x238 = (attacking move with chance to lower defense)
+= 0x239 = (attacking move with chance to lower speed)
+= 0x23A = (attacking move with [effectF7], but it doesn't actually execute that effect), (can't be called by metronome)
+= 0x23B = (attacking move with chance to lower evasion)
+= 0x23C = (non-attacking move)
+= 0x23D = (non-attacking move)
+= 0x23E = (non-attacking move)
+= 0x23F = (non-attacking move)
+= 0x240 = (non-attacking move), ([effectE5] forces this move on the target)
+= 0x241 = (attacking move)
+= 0x242 = (attacking move)
+= 0x243 = (attacking move)
+= 0x244 = (attacking move with chance to sleep)
+= 0x245 = (attacking move with chance to raise all stats)
+= 0x246 = (attacking move with tri attack effect)
+= 0x247 = (attacking move with chance to lower defense)
+= 0x248 = (attacking move)
+= 0x249 = (attacking move with chance to raise sp. atk)
+= 0x24A = (attacking move with chance to paralyze)
+= 0x24B = (attacking move with chance to sharply raise target's sp. atk)
+= 0x24C = (attacking move with chance to lower sp. def)
+= 0x24D = (attacking move with chance to paralyze)
+= 0x24E = (attacking move)
+= 0x24F = (attacking move)
+= 0x250 = (attacking move with chance to lower speed)
+= 0x251 = (attacking move)
+= 0x252 = (attacking move)
+= 0x253 = (attacking move with chance to lower sp. def), (can't be called by metronome)
+= 0x254 = (attacking move with chance to lower sp. atk), (can't be called by metronome)
+= 0x255 = (attacking move with chance to lower attack), (can't be called by metronome)
+= 0x256 = (attacking move with chance to lower defense), (can't be called by metronome)
+= 0x257 = (attacking move), (special message in atk97_tryinfatuating)
+= 0x258 = (attacking move with Brine effect)
+= 0x259 = (non-attacking move)
+= 0x25A = (non-attacking move)
+= 0x25B = (non-attacking move)
+= 0x25C = (non-attacking move)
+= 0x25D = (attacking move)
+= 0x25E = (attacking move with chance to harshly lower speed or confuse), (can't be called by metronome)
+= 0x25F = (attacking move with chance to harshly lower sp. def or confuse), (can't be called by metronome)
+= 0x260 = (attacking move with chance to lower defense or confuse), (can't be called by metronome)
+= 0x261 = (attacking move), (can't be called by metronome)
+= 0x262 = (attacking move), (can't be called by metronome)
+= 0x263 = (attacking move)
 - 0x264 = Wake-Up Slap
-= 0x265 = (double damage if it cures infatuation)
-= 0x266 = (double damage if it cures burn)
-= 0x267 = (double damage if it cures freeze)
-= 0x269 = (chance to burn)
-= 0x26C = (can't be called by metronome)
-= 0x26D = (can't be called by metronome)
+= 0x265 = (attacking move that does double damage if it cures infatuation)
+= 0x266 = (attacking move that does double damage if it cures burn)
+= 0x267 = (attacking move that does double damage if it cures freeze)
+= 0x268 = (non-attacking move)
+= 0x269 = (attacking move with chance to burn)
+= 0x26A = (attacking move)
+= 0x26B = (non-attacking move)
+= 0x26C = (non-attacking move), (can't be called by metronome)
+= 0x26D = (non-attacking move), (can't be called by metronome)
 - 0x26E = Stored Power
-= 0x272 = (has Brine effect, but doubles when the user has less than half HP, not the target)
-= 0x275 = (unclear in code; either raises target's evasion afterwards or -1 sp. def)
-= 0x276 = (unclear in code; either chance to raise target's accuracy or +1 sp. atk)
-= 0x277 = (turns target into pure Bug-type)
-= 0x279 = (turns target into pure Ghost-type)
-= 0x27A = (has Brine effect)
-= 0x27B = (has Foul Play effect, but uses the target's Sp. Atk)
+= 0x26F = (attacking move)
+= 0x270 = (attacking move)
+= 0x271 = (attacking move)
+= 0x272 = (attacking move with Brine effect, but doubles when the user has less than half HP, not the target)
+= 0x273 = (non-attacking move)
+= 0x274 = (non-attacking move)
+= 0x275 = (non-attacking move, -1 sp. def)
+= 0x276 = (non-attacking move, +1 sp. atk)
+= 0x277 = (non-attacking move, turns target into pure Bug-type)
+= 0x278 = (attacking move)
+= 0x279 = (non-attacking move, turns target into pure Ghost-type)
+= 0x27A = (attacking move with Brine effect)
+= 0x27B = (attacking move with Foul Play effect, but uses the target's Sp. Atk)
 = 0x27C = Crush Grip/Wring Out
 - 0x27D = Captivate
-= 0x27E = (has sleep effect, but sleeps the target even if it already has a status)
-= 0x27F = (unclear in code; either chance to harshly lower sp. def or +3 defense)
-= 0x283 = (double damage if it cures poison)
+= 0x27E = (non-attacking move that sleep effect, but sleeps the target even if it already has a status)
+= 0x27F = (non-attacking move, +3 defense)
+= 0x280 = (attacking move)
+= 0x281 = (attacking move)
+= 0x282 = (non-attacking move)
+= 0x283 = (attacking move that does double damage if it cures poison)
+= 0x284 = (attacking move)
+= 0x285 = (attacking move)
+= 0x286 = (attacking move)
+= 0x287 = (non-attacking move)
 - 0x288 = Draining Kiss
-= 0x289 = (has Overheat effect, but harshly lowers user's attack instead of sp. atk)
-= 0x28A = (harshly lowers user's sp. atk afterwards)
+= 0x289 = (attacking move with Overheat effect, but harshly lowers user's attack instead of sp. atk)
+= 0x28A = (attacking move that harshly lowers user's sp. atk afterwards)
+= 0x28B = (attacking move)
 = 0x28C = Magma Storm/Infestation
+= 0x28D = (attacking move)
 = 0x28E = Infestation/Magma Storm
-= 0x294 = (can't be called by metronome)
-= 0x296 = (unclear in code; either chance to lower attack or +1 accuracy)
-= 0x297 = (unclear in code; either chance to harshly lower accuracy or +3 speed)
-= 0x298 = (chance to paralyze)
-= 0x29A = (chance to lower accuracy or flinch)
-= 0x29C = (chance to flinch)
-= 0x29D = (chance to paralyze)
-= 0x29E = (chance to severely lower accuracy)
-= 0x29F = (ground -> flying neutral, water -> ice/poison SE, bypasses Levitate)
-= 0x2A3 = (damage and Venom Drench effect)
+= 0x28F = (non-attacking move)
+= 0x290 = (non-attacking move)
+= 0x291 = (non-attacking move)
+= 0x292 = (attacking move)
+= 0x293 = (attacking move)
+= 0x294 = (attacking move), (can't be called by metronome)
+= 0x295 = (attacking move)
+= 0x296 = (attacking move with chance to lower attack)
+= 0x297 = (attacking move with chance to harshly lower accuracy)
+= 0x298 = (attacking move with chance to paralyze)
+= 0x299 = (attacking move)
+= 0x29A = (attacking move with chance to lower accuracy or flinch)
+= 0x29B = (attacking move)
+= 0x29C = (attacking move with chance to flinch)
+= 0x29D = (attacking move with chance to paralyze)
+= 0x29E = (attacking move with chance to severely lower accuracy)
+= 0x29F = (attacking move), (ground -> flying neutral, water -> ice/poison SE, bypasses Levitate)
+= 0x2A0 = (attacking move)
+= 0x2A1 = (attacking move)
+= 0x2A2 = (attacking move)
+= 0x2A3 = (attacking move with Venom Drench effect)
 - 0x2A4 = Strength Sap
-= 0x2A5 = (can't be called by metronome)
-= 0x2A6 = (has Attract effect, but also poisons)
-= 0x2A7 = (has Counter effect, but does half of Counter's damage and prints string 0x218 if failed), (special-cased in focus punch setup to print string 0x217), (can't be called by metronome)
-= 0x2A8 = (can't be called by metronome)
+= 0x2A5 = (non-attacking move), (can't be called by metronome)
+= 0x2A6 = (non-attacking move with Attract effect, but also poisons)
+= 0x2A7 = (attacking move with Counter effect, but does half of Counter's damage and prints string 0x218 if failed), (special-cased in focus punch setup to print string 0x217), (can't be called by metronome)
+= 0x2A8 = (outside of Sucker Punch table), (can't be called by metronome)
 
 move effects:
 = 0x1E = freeze
@@ -407,16 +553,19 @@ move effects:
 = 0xE8 = does double damage if used immediately after [move1F2]
 = 0xE9 = Revelation Dance
 = 0xEA = Surf
-= 0xED = (ai wants to use a status move right after the target used this), (ai won't use if target is slower), (ai won't use if it has a type advantage on the target), (ai wants to use if it can KO the target), (ai wants to use if target is choiced), (ai wants to use if target just used an attack), (ai won't use if target is defensive and just used a status move)
+= 0xEB = Bulldoze/Sandblast
+= 0xEC = Discharge/Lava Plume/Sludge Wave
+= 0xED = Sucker Punch
 = 0xEE = Hurricane
-= 0xEF = (ai won't use if target has -6 spatk or -6 spdef), (uses same main ai script as -spdef), ("setup" move)
-= 0xF0 = (ai won't use if user has +6 atk or +6 def), (ai wants to use if user has high HP), ("setup" move), (ai wants to use behind substitute), (ai wants to use if it has a type advantage), (ai wants to use with active focus sash), (ai won't use if target can KO user)
+= 0xEF = lowers Sp. Atk and Sp. Def
+= 0xF0 = +2 Attack +2 Defense -1 Speed to user
 = 0xF1 = Quiver Dance
 = 0xF2 = Coil
-= 0xF3 = (ai won't use if user has +6 atk, +6 spatk, or +6 speed), (ai wants to use if user has high HP), ("setup" move)
-= 0xF4 = (ai won't use if user has +6 atk, +6 speed, or +6 evasion), (uses same main ai script as Dragon Dance), ("setup" move)
-= 0xF5 = (ai won't use if user has +6 speed or +6 evasion), (uses same main ai script as +speed), ("setup" move)
+= 0xF3 = Shell Smash
+= 0xF4 = boosts Attack, Speed, and evasion
+= 0xF5 = boosts Speed and evasion
 = 0xF6 = Hone Claws
+= 0xF7 = Ground-type; if used on Protect, does half damage and harshly lowers user's Sp. Atk
 = 0xF8 = (ai wants to use if target is faster), (ai doesn't want to use if target is slower)
 = 0xF9 = (ai wants to use if target doesn't have status and user does), (ai doesn't want to use if target is holding an item (? stat 0x16 or 0x17 != 0))
 = 0xFA = (ai wants to encore this)
@@ -538,8 +687,10 @@ battle strings (ADD 9 TO ALL):
 = 0x20F = "[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"/"[PKMN] became trapped by swirling magma!"
 - 0x212 = "[PKMN]'s stat changes were removed!"
 - 0x214 = "[PKMN]'s [ABILITY] prevents its item from being removed! (?????????????)"
+- 0x215 = "[PKMN] couldn't fully protect itself and got hurt! (placeholder)"
 = 0x217 = (tightening focus message but for move id 0x2A7)
 = 0x218 = (failure message for move id 0x2A7)
+- 0x21C = "[PKMN]'s stats won't go any higher! (?????????????)"
 - 0x221 = "[PKMN] switched items with its target!"
 - 0x222 = "[PKMN] acquired [ABILITY]!"
 
@@ -2259,6 +2410,7 @@ stray text:
 		  Relies on: changes at 0x20F00
 		  Note: <<<IMPORTANT - CHECK SMELLINGSALTS/WAKEUPSLAP MSG>>>
 		  Note: If above is just cure status msg, rewrite this code for correct msg
+		  Note: remove Psywave, the move, first
 - 1D7433 -> 10539C0 (repoint): BattleScript_EffectCounter_New (see movescripts.txt)
 		  Implements: [move2A7]
 - 1D749C -> 1050AA0 (repoint): BattleScript_EffectUsableWhileAsleep (see movescripts.txt)
@@ -2361,7 +2513,7 @@ stray text:
 		  * At full HP with Focus Sash, won't use status moves if it could be brought down to its sash
 		  * Won't use moves that would be blocked by immunity abilities
 		  * At full HP with Focus Sash, tries to use priority if the target is faster and it could be brought down to its sash
-		  * If target's last move had effect 0xED, tries to use status moves
+		  * If target just used Sucker Punch, tries to use status moves
 		  * Tries to use a move that can KO
 		  * If it can KO, tries to use the most powerful move it has
 		  * If it can KO and isn't choiced, tries to use moves with 100% accuracy
@@ -2376,17 +2528,17 @@ stray text:
 		  * Tries to use [move27B] if the target last used a special move
 		  * (something, glitched) to [move27B] if the target last used a physical move, or last used a status move but has higher Attack
 		  * Tries to use Baton Pass if it has living teammates and it has a type advantage
-		  * Won't use effect 0xED if the target is slower
-		  * Won't use effect 0xED if it has a type advantage
-		  * If target doesn't have active Focus Sash and can be OHKOed, tries to use effect 0xED
-		  * If target just used an attack, tries to use effect 0xED
-		  * If target is offensive and choiced, tries to use effect 0xED
-		  * If target is offensive, uses effect 0xED less often if the move has low PP
-		  * If target is offensive, the move has low PP, and the user can be KOed, tries to use effect 0xED
-		  * If target is defensive and just used a status move, won't use effect 0xED
+		  * Won't use Sucker Punch if the target is slower
+		  * Won't use Sucker Punch if it has a type advantage
+		  * If target doesn't have active Focus Sash and can be OHKOed, tries to use Sucker Punch
+		  * If target just used an attack, tries to use Sucker Punch
+		  * If target is offensive and choiced, tries to use Sucker Punch
+		  * If target is offensive, uses Sucker Punch less often if the move has low PP
+		  * If target is offensive, the move has low PP, and the user can be KOed, tries to use Sucker Punch
+		  * If target is defensive and just used a status move, won't use Sucker Punch
 		  * Tries not to use Rest unless it has a berry or Hydration in rain
 		  * Tries to use Pursuit if it has a type advantage
-		  * (effect list for below: +Atk, +Spe, 0xF0, Quiver Dance, Coil, 0xF3, 0xF4, 0xF5, Hone Claws, Focus Punch, OHKO)
+		  * (effect list for below: +Atk, +Spe, (+2 Atk +2 Def -1 Spe), Quiver Dance, Coil, Shell Smash, (+Atk +Spe +evasion), (+Spe +evasion), Hone Claws, Focus Punch, OHKO)
 		  * Tries to use effectlist moves if behind Substitute
 		  * Tries to use effectlist moves if it has a type advantage
 		  * Tries to use effectlist moves if Focus Sash active
@@ -2418,7 +2570,7 @@ stray text:
 		  * New mechanics that old scripts are updated for: electric-type paralysis immunity, dark-type Prankster immunity, grass-type powder immunity, Lightning Rod (immunity), Motor Drive, Poison Heal, Magic Guard, Leaf Guard, Storm Drain, Overcoat, Big Pecks, Sap Sipper, Aroma Veil, Sweet Veil, Bulletproof, Dazzling, Queenly Majesty
 		  * Moves that bypass AI restrictions: burn moves that aren't Will-O-Wisp (this only bypasses the Fire-type check); trapping moves that aren't Mean Look / Block (aka Spirit Shackle, etc); switch-out moves that aren't Baton Pass (aka U-Turn/Volt Switch); stat-resetting moves that aren't Haze (aka Clear Smog); phazing moves that aren't Roar / Whirlwind (aka Dragon Tail/Circle Throw)
 		  * New moves: Captivate, 0x2A6 (factored into Attract script)
-		  * New move effects: freeze, (confuse and lower evasion), Power Swap, Guard Swap, Reflect Type, Synchronoise, (poison or paralysis, chooses one at random), Venom Drench, Tailwind, (burn user and target), (poison user and target), Work Up, (-1 accuracy +2 evasion to target), (overwrites a random one of the target's moves with [move240]), [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws
+		  * New move effects: freeze, (confuse and lower evasion), Power Swap, Guard Swap, Reflect Type, Synchronoise, (poison or paralysis, chooses one at random), Venom Drench, Tailwind, (burn user and target), (poison user and target), Work Up, (-1 accuracy +2 evasion to target), (overwrites a random one of the target's moves with [move240]), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws
 		  Relies on: new AI script commands, BattleMove refactor
 		  Glitch?: due to misaligned goto, only will-o-wisp is checked for prankster immunity
 		  Glitch?: looks like thunder wave is checked against electric-types twice instead of electric and ground (might be a transcription error? test this)
@@ -2431,7 +2583,7 @@ stray text:
 		  * Other improvements: instead of a bizarre mix of moves, Mirror Move tries to prioritize any copiable move; doesn't discourage recovery when the user is faster; encourages OHKO moves after use of Mind Reader; Mean Look (because Spirit Shackle uses the same effect byte), Dragon Dance (why?), and Knock Off are no longer encouraged to be Encored; Teleport and +Sp. Def are encouraged to be Encored; instead of encouraging stealing a short list of items, Thief is encouraged for all items that don't have a downside; Chlorophyll users prioritize Sunny Day; Volt Absorb, Water Absorb, Soundproof, Thick Fat, Flame Body, and Shell Armor are considered "good" abilities; "bad" abilities (to avoid/get rid of) are also listed
 		  * New mechanics that old scripts are updated for: p/s split (also includes removing the discouraging of, for example, -Atk moves or Reflect on a water-type since it can have physical STAB now), new Lightning Rod, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, [ability8B], Choice items, Assault Vest, Lagging Tail
 		  * New moves: 0x22D, 0x27C (factored into Eruption script); 0x161, Hex, Wake-Up Slap, 0x265, 0x266, 0x267, 0x283 (factored into double-damage-on-status script); 0x258, 0x272, 0x27A (factored into Brine script); 0x1F2 (factored into (does double damage if used immediately after [move1F2]) script)
-		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, V-Create, Hurricane, Brine, (removes Reflect/Light Screen from the user's side, but does double damage when it does), (does double damage if used immediately after [move1F2]), [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws, [effectF8], [effectF9], [effectFB], [effectFC]
+		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, V-Create, Hurricane, Brine, (removes Reflect/Light Screen from the user's side, but does double damage when it does), (does double damage if used immediately after [move1F2]), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws, [effectF8], [effectF9], [effectFB], [effectFC]
 		  Relies on: new AI script commands, BattleMove refactor
 		  Glitch?: due to misaligned goto, Substitute will fall through into the Hyper Beam logic under certain circumstances
 		  Glitch?: due to misaligned goto, (Payback that always doubles power vs Steel-types) will probably crash
@@ -2440,7 +2592,7 @@ stray text:
 		  Glitch?: an AI script for Sandstorm is fully implemented but not actually accessed
 		  Glitch?: Venom Drench uses Lock-On's AI script
 - 1DBA8D -> 1007300 (repoint): AI_SetupFirstTurn
-		  Implements: changes which moves the AI counts as setup (removes every +2/-2, Conversion; adds sleep, Toxic, (confuse and lower evasion), (poison or paralysis, chooses one at random), (burn user and target), (poison user and target), Charge, Work Up, Dragon Dance, (-1 accuracy +2 evasion to target), [effectEF], [effectF0], Quiver Dance, Coil, [effectF3], [effectF4], [effectF5], Hone Claws)
+		  Implements: changes which moves the AI counts as setup (removes every +2/-2, Conversion; adds sleep, Toxic, (confuse and lower evasion), (poison or paralysis, chooses one at random), (burn user and target), (poison user and target), Charge, Work Up, Dragon Dance, (-1 accuracy +2 evasion to target), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws)
 		  GLITCH!: This actually does nothing at all due to a misplaced pointer
 - 1DBB3B -> 1007380 (repoint): AI_Unknown
 		  Implements: AI layer that discourages supereffective moves for some reason
@@ -2568,9 +2720,20 @@ stray text:
 -1051840: BattleScript_EffectRevelationDance (see movescripts.txt)
 		  Implements: Revelation Dance
 		  Relies on: SetTypeToBattlerType1 (jEB8340, e1EB8340)
-=1051850: BattleScript_Effect??? (see movescripts.txt)
-		  Implements: 
+=1051850: BattleScript_EffectSpreadStatDownHit (see movescripts.txt)
+		  Implements: Bulldoze, Sandblast
 		  Relies on: moveend refactor
+		  Glitch?: might hit underwater foes, check
+=1051870: BattleScript_EffectSpreadStatusHit (see movescripts.txt)
+		  Implements: Discharge, Lava Plume, Sludge Wave
+		  Relies on: moveend refactor
+		  Glitch?: might hit underwater foes, check
+-1051910: BattleScript_EffectSpAtkSpDefDown (see movescripts.txt)
+		  Implements: (move that lowers Sp. Atk and Sp. Def)
+		  Relies on: BattleScript_LowerOneOfMultipleStats
+-1051970: BattleScript_EffectHoneClaws (see movescripts.txt)
+		  Implements: Hone Claws
+		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
 =1051D80: BattleScript_EffectCalcWithExtraBoosts (see movescripts.txt)
 		  Implements: (move that calculates damage as if any Defense boosts were added to Sp. Atk, then has a 20% chance to raise Def and Sp. Atk); [moveDD]
 		  Required knowledge: whether the area around gStringVar4 is the same in en
@@ -2581,6 +2744,11 @@ stray text:
 		  Implements: V-Create/Nova Inferno
 -1053AA0: BattleScript_Effect??? (see movescripts.txt)
 		  Implements: [effectE2], unclear what this is
+=1053AA8: BattleScript_EffectSuckerPunch (see movescripts.txt)
+		  Implements: Sucker Punch
+		  Required knowledge: whether the area around gStringVar4 is the same in en
+=1053AB8: BattleScript_Effect??? (see movescripts.txt)
+		  Implements: 
 -1053CB0: BattleScript_EffectHammerArm (see movescripts.txt)
 		  Implements: Hammer Arm
 		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatChangeAnim
@@ -2596,8 +2764,30 @@ stray text:
 -1053E90: BattleScript_EffectTargetAccDownEvasionUp2 (see movescripts.txt)
 		  Implements: (move that gives -1 accuracy +2 evasion to target)
 		  Relies on: BattleScript_PlayStatChangeAnim
+-1053EE0: BattleScript_EffectUserAtkDefUp2SpeedDown (see movescripts.txt)
+		  Implements: (move that gives +2 Attack +2 Defense -1 Speed to user)
+		  Relies on: BattleScript_PlayStatChangeAnim
+-1055600: BattleScript_EffectCoil (see movescripts.txt)
+		  Implements: Coil
+		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
+-1055670: BattleScript_EffectQuiverDance (see movescripts.txt)
+		  Implements: Quiver Dance
+		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
+-10556E0: BattleScript_EffectShellSmash (see movescripts.txt)
+		  Implements: Shell Smash
+		  Relies on: BattleScript_PlayStatChangeAnim
+-10557E0: BattleScript_EffectAtkSpeedEvasionUp (see movescripts.txt)
+		  Implements: (move that boosts Attack, Speed, and evasion)
+		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
+-1055850: BattleScript_EffectSpeedEvasionUp (see movescripts.txt)
+		  Implements: (move that boosts Speed and evasion)
+		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
+-10558A0: BattleScript_EffectPartiallyBypassProtect (see movescripts.txt)
+		  Implements: (a Ground-type move that if used on Protect, does half damage and harshly lowers user's Sp. Atk), [move23A]
 -11BA7EF: BattleScript_EffectTripleHit (see movescripts.txt)
 		  Implements: (move that hits 3 times)
+-1697F80: BattleScript_EffectHurricane (see movescripts.txt)
+		  Implements: Hurricane
 
 
 

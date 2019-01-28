@@ -785,15 +785,15 @@ if_effect EFFECT_MINIMIZE, AI_CBM_EvasionUp
 if_effect EFFECT_TARGET_ACCURACY_DOWN_EVASION_UP_2, AI_CBM_EvasionUp
 if_effect EFFECT_COSMIC_POWER, AI_CBM_CosmicPower
 if_effect EFFECT_BULK_UP, AI_CBM_BulkUp
-if_effect EFFECT_0xF0, AI_CBM_BulkUp
+if_effect EFFECT_USER_ATK_DEF_UP_2_SPEED_DOWN, AI_CBM_BulkUp
 if_effect EFFECT_WORK_UP, AI_CBM_WorkUp // NEW
 if_effect EFFECT_CALM_MIND, AI_CBM_CalmMind
 if_effect EFFECT_DRAGON_DANCE, AI_CBM_DragonDance
 if_effect EFFECT_QUIVER_DANCE, AI_CBM_QuiverDance // NEW
 if_effect EFFECT_COIL, AI_CBM_Coil // NEW
-if_effect EFFECT_0xF3, [3D 57 00 09]
-if_effect EFFECT_0xF4, [56 57 00 09]
-if_effect EFFECT_0xF5, [6F 57 00 09]
+if_effect EFFECT_SHELL_SMASH, AI_CBM_ShellSmash
+if_effect EFFECT_ATK_SPEED_EVASION_UP, AI_CBM_AtkSpeedEvasionUp
+if_effect EFFECT_SPEED_EVASION_UP, AI_CBM_SpeedEvasionUp
 if_effect EFFECT_HONE_CLAWS, AI_CBM_HoneClaws // NEW
 if_effect EFFECT_ATTACK_DOWN, AI_CBM_AttackDown
 if_effect EFFECT_DEFENSE_DOWN, AI_CBM_DefenseDown_New
@@ -803,7 +803,7 @@ if_effect EFFECT_SPECIAL_DEFENSE_DOWN, AI_CBM_SpecialDefenseDown
 if_effect EFFECT_ACCURACY_DOWN, AI_CBM_AccuracyDown
 if_effect EFFECT_EVASION_DOWN, AI_CBM_EvasionDown
 if_effect EFFECT_TICKLE, AI_CBM_Tickle
-if_effect EFFECT_0xEF, [8E 58 00 09]
+if_effect EFFECT_SPATK_SPDEF_DOWN, AI_CBM_SpAtkSpDefDown
 if_effect EFFECT_MEMENTO, AI_CBM_Memento
 if_effect EFFECT_BATON_PASS, AI_CBM_BatonPass_CheckWhichMove
 if_effect EFFECT_DREAM_EATER, AI_CBM_DreamEater
@@ -1123,19 +1123,19 @@ if_stat_level_equal AI_USER, STAT_DEF, 12, Score_Minus8
 if_stat_level_equal AI_USER, STAT_ACC, 12, Score_Minus8
 end
 
-[3D 57 00 09]:
+AI_CBM_ShellSmash:
 if_stat_level_equal AI_USER, STAT_ATK, 12, Score_Minus10
 if_stat_level_equal AI_USER, STAT_SPATK, 12, Score_Minus8
 if_stat_level_equal AI_USER, STAT_SPEED, 12, Score_Minus8
 end
 
-[56 57 00 09]:
+AI_CBM_AtkSpeedEvasionUp:
 if_stat_level_equal AI_USER, STAT_ATK, 12, Score_Minus10
 if_stat_level_equal AI_USER, STAT_SPEED, 12, Score_Minus8
 if_stat_level_equal AI_USER, STAT_EVASION, 12, Score_Minus8
 end
 
-[6F 57 00 09]:
+AI_CBM_SpeedEvasionUp:
 if_stat_level_equal AI_USER, STAT_SPEED, 12, Score_Minus10
 if_stat_level_equal AI_USER, STAT_EVASION, 12, Score_Minus8
 end
@@ -1190,7 +1190,7 @@ if_stat_level_equal AI_TARGET, STAT_ATK, 0, Score_Minus10
 if_stat_level_equal AI_TARGET, STAT_DEF, 0, Score_Minus8
 end
 
-[8E 58 00 09]:
+AI_CBM_SpAtkSpDefDown:
 if_stat_level_equal AI_TARGET, STAT_SPATK, 0, Score_Minus10
 if_stat_level_equal AI_TARGET, STAT_SPDEF, 0, Score_Minus8
 end
@@ -3491,7 +3491,7 @@ if_effect EFFECT_DEFENSE_UP, AI_CV_DefenseUp_New
 if_effect EFFECT_BULK_UP, AI_CV_DefenseUp_New
 if_effect EFFECT_COIL, AI_CV_DefenseUp_New
 if_effect EFFECT_SPEED_UP, AI_CV_SpeedUp
-if_effect EFFECT_0xF5, AI_CV_SpeedUp
+if_effect EFFECT_SPEED_EVASION_UP, AI_CV_SpeedUp
 if_effect EFFECT_SPECIAL_ATTACK_UP, AI_CV_SpAtkUp_New_ish
 if_effect EFFECT_WORK_UP, AI_CV_SpAtkUp_New_ish
 if_effect EFFECT_SPECIAL_DEFENSE_UP, AI_CV_SpDefUp_New
@@ -3508,7 +3508,7 @@ if_effect EFFECT_SPEED_DOWN_HIT, AI_CV_SpeedDownFromChance_New
 if_effect EFFECT_SPEED_DOWN, AI_CV_SpeedDown
 if_effect EFFECT_SPECIAL_ATTACK_DOWN, AI_CV_SpAtkDown_New
 if_effect EFFECT_SPECIAL_DEFENSE_DOWN, AI_CV_SpDefDown
-if_effect EFFECT_0xEF, AI_CV_SpDefDown
+if_effect EFFECT_SPATK_SPDEF_DOWN, AI_CV_SpDefDown
 if_effect EFFECT_ACCURACY_DOWN, AI_CV_AccuracyDown_New_ish
 if_effect EFFECT_EVASION_DOWN, AI_CV_EvasionDown
 if_effect EFFECT_HAZE, AI_CV_Haze
@@ -3595,7 +3595,7 @@ if_effect EFFECT_OVERHEAT, AI_CV_Overheat
 if_effect EFFECT_WATER_SPORT, AI_CV_WaterSport
 if_effect EFFECT_DRAGON_DANCE, AI_CV_DragonDance
 if_effect EFFECT_QUIVER_DANCE, AI_CV_DragonDance
-if_effect EFFECT_0xF4, AI_CV_DragonDance
+if_effect EFFECT_ATK_SPEED_EVASION_UP, AI_CV_DragonDance
 if_effect EFFECT_HAMMER_ARM, AI_CV_LowersSpeedOrDefenses
 if_effect EFFECT_CLOSE_COMBAT, AI_CV_LowersSpeedOrDefenses
 if_effect EFFECT_V_CREATE, AI_CV_LowersSpeedOrDefenses
@@ -3603,8 +3603,8 @@ if_effect EFFECT_BRINE, AI_CV_DoubleAtLowHP
 if_effect EFFECT_REMOVE_OWN_SCREENS_DOUBLE_DAMAGE, AI_CV_RemoveOwnScreensForDoubleDamage
 if_effect EFFECT_DOUBLE_DAMAGE_AFTER_MOVE_1F2, AI_CV_DoubleDamageAfterMove1F2
 if_effect EFFECT_HURRICANE, AI_CV_Hurricane
-if_effect EFFECT_0xF0, [6C 72 00 09]
-if_effect EFFECT_0xF3, [89 72 00 09]
+if_effect EFFECT_USER_ATK_DEF_UP_2_SPEED_DOWN, AI_CV_UserAtkDefUp2SpeedDown
+if_effect EFFECT_SHELL_SMASH, AI_CV_ShellSmash
 if_effect EFFECT_0xF9, [A0 72 00 09]
 if_effect EFFECT_0xFB, [B4 72 00 09]
 if_effect EFFECT_0xFC, [CB 72 00 09]
@@ -5236,23 +5236,23 @@ if_equal AI_WEATHER_SUN, Score_Minus2
 if_equal AI_WEATHER_RAIN, Score_Plus2
 end
 
-[6C 72 00 09]:
+AI_CV_UserAtkDefUp2SpeedDown:
 if_hp_less_than AI_USER, 40, Score_Minus1
-if_hp_less_than AI_USER, 71, [82 72 00 09]
-if_random_less_than 70, [82 72 00 09]
+if_hp_less_than AI_USER, 71, AI_CV_UserAtkDefUp2SpeedDown_2
+if_random_less_than 70, AI_CV_UserAtkDefUp2SpeedDown_2
 score +1
 
-[82 72 00 09]:
+AI_CV_UserAtkDefUp2SpeedDown_2:
 if_random_greater_than 49, Score_Plus1
 end
 
-[89 72 00 09]:
+AI_CV_ShellSmash:
 if_hp_less_than AI_USER, 60, Score_Minus1
 score +1
-if_hp_less_than AI_USER, 91, [9F 72 00 09]
+if_hp_less_than AI_USER, 91, AI_CV_ShellSmash_End
 if_random_greater_than 99, Score_Plus1
 
-[9F 72 00 09]:
+AI_CV_ShellSmash_End:
 end
 
 [A0 72 00 09]:
@@ -5415,13 +5415,13 @@ EFFECT_CALM_MIND
 EFFECT_DRAGON_DANCE
 EFFECT_CAMOUFLAGE
 EFFECT_TARGET_ACCURACY_DOWN_EVASION_UP_2
-EFFECT_0xEF
-EFFECT_0xF0
+EFFECT_SPATK_SPDEF_DOWN
+EFFECT_USER_ATK_DEF_UP_2_SPEED_DOWN
 EFFECT_QUIVER_DANCE
 EFFECT_COIL
-EFFECT_0xF3
-EFFECT_0xF4
-EFFECT_0xF5
+EFFECT_SHELL_SMASH
+EFFECT_ATK_SPEED_EVASION_UP
+EFFECT_SPEED_EVASION_UP
 EFFECT_HONE_CLAWS
 
 
@@ -5496,21 +5496,21 @@ if_equal TRUE, AI_New_ScoreMinus32
 AI_New_CheckImmunityAbilities:
 exec CouldMoveBeBlockedByTargetAbility
 if_equal TRUE, AI_New_ScoreMinus32
-if_hp_not_equal AI_USER, 100, AI_New_CheckTargetEffectED
+if_hp_not_equal AI_USER, 100, AI_New_CheckTargetSuckerPunch
 get_ability AI_USER
-if_equal ABILITY_KLUTZ, AI_New_CheckTargetEffectED
+if_equal ABILITY_KLUTZ, AI_New_CheckTargetSuckerPunch
 get_hold_effect AI_USER
-if_not_equal HOLD_EFFECT_FOCUS_SASH, AI_New_CheckTargetEffectED
-if_target_slower AI_New_CheckTargetEffectED
-if_not_effect EFFECT_QUICK_ATTACK, AI_New_CheckTargetEffectED
+if_not_equal HOLD_EFFECT_FOCUS_SASH, AI_New_CheckTargetSuckerPunch
+if_target_slower AI_New_CheckTargetSuckerPunch
+if_not_effect EFFECT_QUICK_ATTACK, AI_New_CheckTargetSuckerPunch
 exec CanActivePlayerMonKO
-if_equal FALSE, AI_New_CheckTargetEffectED
+if_equal FALSE, AI_New_CheckTargetSuckerPunch
 score +6
 
-AI_New_CheckTargetEffectED:
+AI_New_CheckTargetSuckerPunch:
 get_last_used_bank_move AI_TARGET
 get_move_effect_from_result
-if_not_equal 0xED, AI_New_CheckIfCanFaint
+if_not_equal EFFECT_SUCKER_PUNCH, AI_New_CheckIfCanFaint
 get_considered_move
 get_move_attribute ATTR_CATEGORY_FLAGS
 if_bits_not_set FLAG_STATUS_MOVE, AI_New_CheckIfCanFaint
@@ -5588,7 +5588,7 @@ if_effect EFFECT_FOCUS_PUNCH, AI_New_Unknown
 if_effect EFFECT_OHKO, AI_New_Unknown
 if_effect EFFECT_PURSUIT, AI_New_Pursuit
 if_effect EFFECT_REST, AI_New_Rest
-if_effect 0xED, AI_New_EffectED
+if_effect EFFECT_SUCKER_PUNCH, AI_New_SuckerPunch
 if_effect EFFECT_BATON_PASS, AI_New_BatonPass
 if_effect EFFECT_FOUL_PLAY, AI_New_FoulPlay
 if_effect EFFECT_TRICK, AI_New_Trick
@@ -5635,59 +5635,59 @@ end
 [46 C2 1F 09]: // unreachable?
 exec CreateBreakpoint
 
-AI_New_EffectED:
+AI_New_SuckerPunch:
 if_target_slower AI_New_ScoreMinus32
 exec OpponentHasBadMatchup
 if_equal TRUE, AI_New_ScoreMinus32
 exec IsTargetOffensive
-if_equal FALSE, AI_New_EffectED_CheckIfCanFaint
-if_cant_faint AI_New_EffectED_CheckChoiceItems
+if_equal FALSE, AI_New_SuckerPunch_CheckIfCanFaint
+if_cant_faint AI_New_SuckerPunch_CheckChoiceItems
 get_ability AI_TARGET
-if_equal ABILITY_KLUTZ, AI_New_EffectED_ScorePlus12Continue
+if_equal ABILITY_KLUTZ, AI_New_SuckerPunch_ScorePlus12Continue
 get_hold_effect AI_TARGET
-if_not_equal HOLD_EFFECT_FOCUS_SASH, AI_New_EffectED_ScorePlus12Continue
-if_hp_equal AI_TARGET, 100, AI_New_EffectED_CheckChoiceItems
+if_not_equal HOLD_EFFECT_FOCUS_SASH, AI_New_SuckerPunch_ScorePlus12Continue
+if_hp_equal AI_TARGET, 100, AI_New_SuckerPunch_CheckChoiceItems
 
-AI_New_EffectED_ScorePlus12Continue:
+AI_New_SuckerPunch_ScorePlus12Continue:
 score +12
 
-AI_New_EffectED_CheckChoiceItems:
+AI_New_SuckerPunch_CheckChoiceItems:
 get_ability AI_TARGET
-if_equal ABILITY_KLUTZ, AI_New_EffectED_CheckPP
+if_equal ABILITY_KLUTZ, AI_New_SuckerPunch_CheckPP
 get_hold_effect AI_TARGET
-if_equal HOLD_EFFECT_CHOICE_SPECS, AI_New_EffectED_ScorePlus4Continue
-if_equal HOLD_EFFECT_CHOICE_BAND, AI_New_EffectED_ScorePlus4Continue
-if_not_equal HOLD_EFFECT_CHOICE_SCARF, AI_New_EffectED_CheckPP
+if_equal HOLD_EFFECT_CHOICE_SPECS, AI_New_SuckerPunch_ScorePlus4Continue
+if_equal HOLD_EFFECT_CHOICE_BAND, AI_New_SuckerPunch_ScorePlus4Continue
+if_not_equal HOLD_EFFECT_CHOICE_SCARF, AI_New_SuckerPunch_CheckPP
 
-AI_New_EffectED_ScorePlus4Continue:
+AI_New_SuckerPunch_ScorePlus4Continue:
 score +4
 
-AI_New_EffectED_CheckPP:
+AI_New_SuckerPunch_CheckPP:
 exec GetRemainingPP
-if_more_than 2, AI_New_EffectED_CheckStatusMove
+if_more_than 2, AI_New_SuckerPunch_CheckStatusMove
 if_random_less_than 128, AI_New_ScoreMinus32
 get_last_used_bank_move AI_TARGET
 get_move_attribute ATTR_CATEGORY_FLAGS
-if_bits_not_set FLAG_STATUS_MOVE, AI_New_EffectED_CheckIfCanBeKOed
-if_random_less_than 160, AI_New_EffectED_CheckStatusMove
+if_bits_not_set FLAG_STATUS_MOVE, AI_New_SuckerPunch_CheckIfCanBeKOed
+if_random_less_than 160, AI_New_SuckerPunch_CheckStatusMove
 
-AI_New_EffectED_CheckIfCanBeKOed:
+AI_New_SuckerPunch_CheckIfCanBeKOed:
 exec CanActivePlayerMonKO
-if_equal FALSE, AI_New_EffectED_CheckStatusMove
+if_equal FALSE, AI_New_SuckerPunch_CheckStatusMove
 score +5
 score +8
 
-AI_New_EffectED_CheckStatusMove:
+AI_New_SuckerPunch_CheckStatusMove:
 get_last_used_bank_move AI_TARGET
 get_move_attribute ATTR_CATEGORY_FLAGS
 if_bits_not_set FLAG_STATUS_MOVE, AI_New_92PercentChanceScorePlus8
 end
 
-AI_New_EffectED_CheckIfCanFaint:
-if_cant_faint AI_New_EffectED_CheckIfStatusMove
+AI_New_SuckerPunch_CheckIfCanFaint:
+if_cant_faint AI_New_SuckerPunch_CheckIfStatusMove
 score +3
 
-AI_New_EffectED_CheckIfStatusMove:
+AI_New_SuckerPunch_CheckIfStatusMove:
 get_last_used_bank_move AI_TARGET
 get_move_attribute ATTR_CATEGORY_FLAGS
 if_bits_not_set FLAG_STATUS_MOVE, AI_New_60PercentChanceScorePlus2
@@ -5719,12 +5719,12 @@ end
 AI_New_UnknownEffectList:
 EFFECT_ATTACK_UP
 EFFECT_SPEED_UP
-0xF0
+EFFECT_USER_ATK_DEF_UP_2_SPEED_DOWN
 EFFECT_QUIVER_DANCE
 EFFECT_COIL
-0xF3
-0xF4
-0xF5
+EFFECT_SHELL_SMASH
+EFFECT_ATK_SPEED_EVASION_UP
+EFFECT_SPEED_EVASION_UP
 EFFECT_HONE_CLAWS
 
 AI_New_Unknown:

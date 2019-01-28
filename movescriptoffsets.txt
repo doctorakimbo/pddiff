@@ -46,6 +46,7 @@ B0 3C 05 09 E0 3C 05 09 30 3D 05 09 00 40 05 09 00 40 05 09 80 1D 05 09 B0 3D 05
 [E2 A8 1B 08] = [26 69 1D 08] = BattleScript_HitFromAtkCanceler
 [E3 A8 1B 08] = [27 69 1D 08] = BattleScript_HitFromAccCheck
 [EA A8 1B 08] = [2E 69 1D 08] = BattleScript_HitFromAtkString
+[EB A8 1B 08] = [2F 69 1D 08] = BattleScript_HitFromPPReduce
 [EC A8 1B 08] = [30 69 1D 08] = BattleScript_HitFromCritCalc
 [F0 A8 1B 08] = [34 69 1D 08] = BattleScript_HitFromAtkAnimation
 [F2 A8 1B 08] = [36 69 1D 08] = BattleScript_HitFromEffectivenessSound
@@ -60,6 +61,7 @@ B0 3C 05 09 E0 3C 05 09 30 3D 05 09 00 40 05 09 00 40 05 09 80 1D 05 09 B0 3D 05
 [AC BD 1B 08] = [F0 7D 1D 08] = BattleScript_ButItFailedAtkStringPpReduce
 [AE BD 1B 08] = [F2 7D 1D 08] = BattleScript_ButItFailed
 [C0 BD 1B 08] = [04 7E 1D 08] = BattleScript_NotAffected
+[55 C4 1B 08] = [99 84 1D 08] = BattleScript_CantLowerMultipleStats
 [A3 C5 1B 08] = [E7 85 1D 08] = BattleScript_CantRaiseMultipleStats
 [F5 CA 1B 08] = [39 8B 1D 08] = BattleScript_SafeguardProtected
 
