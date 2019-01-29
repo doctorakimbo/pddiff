@@ -2720,60 +2720,60 @@ moveend 0x0, 0x0
 end
 
 
-BattleScript_Effect??? (pj): @1052250
+BattleScript_EffectBestow (pj): @1052250
 00 02 03 FC 00 00 00 00 AE BD 1B 08 FC 01 01 00 02 AE BD 1B 08 29 00 CB 3C 02 02 00 A0 22 05 09 29 00 CB 3C 02 02 01 B0 22 05 09 29 00 CB 3C 02 02 02 C0 22 05 09 29 00 CB 3C 02 02 03 D0 22 05 09 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 31 C8 3C 02 02 72 3B 02 02 02 28 E0 22 05 09 FF 31 C8 3C 02 02 CA 3B 02 02 02 28 00 23 05 09 FF 31 C8 3C 02 02 22 3C 02 02 02 28 E0 22 05 09 FF 31 C8 3C 02 02 7A 3C 02 02 02 28 00 23 05 09 FF D2 E5 22 05 09 09 0A 10 05 02 12 40 00 28 0A A9 1B 08 FF FF FF FF FF FF FF FF FF FF FF FF FF FF 31 88 1C 02 02 CB 3C 02 02 02 31 CB 3C 02 02 CC 3C 02 02 01 31 CC 3C 02 02 88 1C 02 02 01 D2 23 23 05 09 31 CB 3C 02 02 88 1C 02 02 02 28 E5 22 05 09
 
 attackcanceler
 attackstring
 ppreduce
-jumpifitem BS_TARGET, ITEM_NONE, ATKFC_EQUAL, BattleScript_ButItFailed
+jumpifitem BS_TARGET, ITEM_NONE, ATKFC_NOT_EQUAL, BattleScript_ButItFailed
 jumpifitem BS_ATTACKER, (ITEM_NONE + 1), ATKFC_LESS_THAN, BattleScript_ButItFailed
-jumpifbyte CMP_EQUAL, gBattlerAttacker, B_POSITION_PLAYER_LEFT, BattleScript_Effect???_PlayerLeft
-jumpifbyte CMP_EQUAL, gBattlerAttacker, B_POSITION_OPPONENT_LEFT, BattleScript_Effect???_OpponentLeft
-jumpifbyte CMP_EQUAL, gBattlerAttacker, B_POSITION_PLAYER_RIGHT, BattleScript_Effect???_PlayerRight
-jumpifbyte CMP_EQUAL, gBattlerAttacker, B_POSITION_OPPONENT_RIGHT, BattleScript_Effect???_OpponentRight
+jumpifbyte CMP_EQUAL, gBattlerAttacker, B_POSITION_PLAYER_LEFT, BattleScript_EffectBestow_PlayerLeft
+jumpifbyte CMP_EQUAL, gBattlerAttacker, B_POSITION_OPPONENT_LEFT, BattleScript_EffectBestow_OpponentLeft
+jumpifbyte CMP_EQUAL, gBattlerAttacker, B_POSITION_PLAYER_RIGHT, BattleScript_EffectBestow_PlayerRight
+jumpifbyte CMP_EQUAL, gBattlerAttacker, B_POSITION_OPPONENT_RIGHT, BattleScript_EffectBestow_OpponentRight
 
-BattleScript_???_PlayerLeft:
+BattleScript_Bestow_PlayerLeft:
 copyhword gLastUsedItem, gBattleMons[B_POSITION_PLAYER_LEFT].item
-goto BattleScript_???_SwapItems_DontSwapSidesFirst
+goto BattleScript_Bestow_SwapItems_DontSwapSidesFirst
 
-BattleScript_???_OpponentLeft:
+BattleScript_Bestow_OpponentLeft:
 copyhword gLastUsedItem, gBattleMons[B_POSITION_OPPONENT_LEFT].item
-goto BattleScript_???_SwapItems_SwapSidesFirst
+goto BattleScript_Bestow_SwapItems_SwapSidesFirst
 
-BattleScript_???_PlayerRight:
+BattleScript_Bestow_PlayerRight:
 copyhword gLastUsedItem, gBattleMons[B_POSITION_PLAYER_RIGHT].item
-goto BattleScript_???_SwapItems_DontSwapSidesFirst
+goto BattleScript_Bestow_SwapItems_DontSwapSidesFirst
 
-BattleScript_???_OpponentRight:
+BattleScript_Bestow_OpponentRight:
 copyhword gLastUsedItem, gBattleMons[B_POSITION_OPPONENT_RIGHT].item
-goto BattleScript_???_SwapItems_SwapSidesFirst
+goto BattleScript_Bestow_SwapItems_SwapSidesFirst
 
-BattleScript_???_SwapItems_DontSwapSidesFirst:
-tryswapitems BattleScript_???_DoAnimation
+BattleScript_Bestow_SwapItems_DontSwapSidesFirst:
+tryswapitems BattleScript_Bestow_DoAnimation
 
-BattleScript_???_DoAnimation:
+BattleScript_Bestow_DoAnimation:
 attackanimation
 waitanimation
 printstring 0x205
 waitmessage 0x40
 goto BattleScript_MoveEnd
 
-BattleScript_???_SwapItems_SwapSidesFirst:
+BattleScript_Bestow_SwapItems_SwapSidesFirst:
 copyhword gStringVar4, (gBattlerAttacker, gBattlerTarget)
 copybyte gBattlerAttacker, gBattlerTarget
 copybyte gBattlerTarget, gStringVar4
-tryswapitems BattleScript_???_SwapSides
+tryswapitems BattleScript_Bestow_SwapSides
 
-BattleScript_???_SwapSides:
+BattleScript_Bestow_SwapSides:
 copyhword (gBattlerAttacker, gBattlerTarget), gStringVar4
-goto BattleScript_???_DoAnimation
+goto BattleScript_Bestow_DoAnimation
 
 
 BattleScript_EffectTripleKick (fe): @1D75E6
 00 02 03 2E D6 3F 02 02 00 2E D7 3F 02 02 00 8E 26 03 E3 01 B7 76 1D 08 E3 00 79 76 1D 08 2A 00 4C 3D 02 02 D6 00 1A 76 1D 08 1C 01 07 00 00 00 79 76 1D 08 01 79 76 1D 08 00 00 25 2F D6 3F 02 02 0A 2F D0 3F 02 02 01 31 50 3F 02 02 D6 3F 02 02 02 04 05 06 07 29 04 CC 3D 02 02 29 79 76 1D 08 09 0A 0E 5C 00 3A 0B 00 0C 00 0D 12 40 00 10 30 01 12 01 00 2E D8 3F 02 02 00 49 02 10 29 04 CC 3D 02 02 40 8D 76 1D 08 27 F8 75 1D 08 28 8D 76 1D 08 39 20 00 29 00 D0 3F 02 02 00 8D 76 1D 08 36 CC 3D 02 02 01 0F 12 40 00 29 00 D0 3F 02 02 00 B7 76 1D 08 29 04 CC 3D 02 02 08 B7 76 1D 08 31 B8 2A 02 02 CC 3F 02 02 06 10 22 00 12 40 00 15 19 00 00 00 00 00 00 2E D8 3F 02 02 0E 49 00 00 3D
 
-BattleScript_Effect??? (pe): @1052250
+BattleScript_EffectBestow (pe): @1052250
 00 02 03 FC 00 00 00 00 F2 7D 1D 08 FC 01 01 00 02 F2 7D 1D 08 29 00 6B 3D 02 02 00 A0 22 05 09 29 00 6B 3D 02 02 01 B0 22 05 09 29 00 6B 3D 02 02 02 C0 22 05 09 29 00 6B 3D 02 02 03 D0 22 05 09 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 31 68 3D 02 02 12 3C 02 02 02 28 E0 22 05 09 FF 31 68 3D 02 02 6A 3C 02 02 02 28 00 23 05 09 FF 31 68 3D 02 02 C2 3C 02 02 02 28 E0 22 05 09 FF 31 68 3D 02 02 1A 3D 02 02 02 28 00 23 05 09 FF D2 E5 22 05 09 09 0A 10 0E 02 12 40 00 28 4E 69 1D 08 FF FF FF FF FF FF FF FF FF FF FF FF FF FF 31 18 1D 02 02 6B 3D 02 02 02 31 6B 3D 02 02 6C 3D 02 02 01 31 6C 3D 02 02 18 1D 02 02 01 D2 23 23 05 09 31 6B 3D 02 02 18 1D 02 02 02 28 E5 22 05 09
 
 
@@ -2809,8 +2809,8 @@ jumpifbyte CMP_EQUAL, gBattleTypeFlags, MOVE_RESULT_NOT_VERY_EFFECTIVE, BattleSc
 call BattleScript_DoDamageFunction
 jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_HitFromTryFaintMon
 jumpifability BS_TARGET, ABILITY_STICKY_HOLD, BattleScript_Thief_StickyHoldMsg
-jumpifitem BS_TARGET, ITEM_NONE, ATKFC_NOT_EQUAL, BattleScript_HitFromTryFaintMon
-jumpifitem BS_ATTACKER, ITEM_NONE, ATKFC_EQUAL, BattleScript_HitFromTryFaintMon
+jumpifitem BS_TARGET, ITEM_NONE, ATKFC_EQUAL, BattleScript_HitFromTryFaintMon
+jumpifitem BS_ATTACKER, ITEM_NONE, ATKFC_NOT_EQUAL, BattleScript_HitFromTryFaintMon
 jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_LEFT, BattleScript_Thief_PlayerLeft
 jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_LEFT, BattleScript_Thief_OpponentLeft
 jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_RIGHT, BattleScript_Thief_PlayerRight
@@ -7022,42 +7022,181 @@ BattleScript_EffectPayback_ActualScript (pe): @1051BA0 <FIX THIS>
 
 
 
-BattleScript_Effect??? (pj): @1051C50
+BattleScript_EffectPsychoShift (pj): @1051C50
 00 02 03 1C 00 FF 00 00 00 AE BD 1B 08 29 00 CB 3C 02 02 00 8D 1C 05 09 29 00 CB 3C 02 02 01 9C 1C 05 09 29 00 CB 3C 02 02 02 AB 1C 05 09 31 88 1C 02 02 98 3C 02 02 04 28 BA 1C 05 09 31 88 1C 02 02 90 3B 02 02 04 28 BA 1C 05 09 31 88 1C 02 02 E8 3B 02 02 04 28 BA 1C 05 09 31 88 1C 02 02 40 3C 02 02 04 28 BA 1C 05 09 CD AE BD 1B 08 10 A7 00 12 40 00 98 01 29 00 88 1C 02 02 10 EA BE 1B 08 29 00 88 1C 02 02 40 A1 B1 1B 08 29 00 88 1C 02 02 80 9F AD 1B 08 29 00 88 1C 02 02 08 2C A9 1B 08 29 00 88 1C 02 02 07 40 B1 1B 08
 
 attackcanceler
 attackstring
 ppreduce
 jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_ButItFailed
-jumpifbyte CMP_EQUAL, gBattlerAttacker, B_POSITION_PLAYER_LEFT, [8D 1C 05 09]
-jumpifbyte CMP_EQUAL, gBattlerAttacker, B_POSITION_OPPONENT_LEFT, [9C 1C 05 09]
-jumpifbyte CMP_EQUAL, gBattlerAttacker, B_POSITION_PLAYER_RIGHT, [AB 1C 05 09]
-copyword gStringVar4, [98 3C 02 02]
-goto [BA 1C 05 09]
+jumpifbyte CMP_EQUAL, gBattlerAttacker, B_POSITION_PLAYER_LEFT, BattleScript_PsychoShift_PlayerLeft
+jumpifbyte CMP_EQUAL, gBattlerAttacker, B_POSITION_OPPONENT_LEFT, BattleScript_PsychoShift_OpponentLeft
+jumpifbyte CMP_EQUAL, gBattlerAttacker, B_POSITION_PLAYER_RIGHT, BattleScript_PsychoShift_PlayerRight
+copyword gStringVar4, gBattleMons[B_POSITION_OPPONENT_RIGHT].status1
+goto BattleScript_PsychoShift_ShiftStatus
 
-[8D 1C 05 09]:
-copyword gStringVar4, [90 3B 02 02]
-goto [BA 1C 05 09]
+BattleScript_PsychoShift_PlayerLeft:
+copyword gStringVar4, gBattleMons[B_POSITION_PLAYER_LEFT].status1
+goto BattleScript_PsychoShift_ShiftStatus
 
-[9C 1C 05 09]:
-copyword gStringVar4, [E8 3B 02 02]
-goto [BA 1C 05 09]
+BattleScript_PsychoShift_OpponentLeft:
+copyword gStringVar4, gBattleMons[B_POSITION_OPPONENT_LEFT].status1
+goto BattleScript_PsychoShift_ShiftStatus
 
-[AB 1C 05 09]:
-copyword gStringVar4, [40 3C 02 02]
-goto [BA 1C 05 09]
+BattleScript_PsychoShift_PlayerRight:
+copyword gStringVar4, gBattleMons[B_POSITION_PLAYER_RIGHT].status1
+goto BattleScript_PsychoShift_ShiftStatus
 
-[BA 1C 05 09]:
+BattleScript_PsychoShift_ShiftStatus:
 cureifburnedparalysedorpoisoned BattleScript_ButItFailed
-printstring 0xA7
+printstring STRINGID_PKMNSTATUSNORMAL
 waitmessage 0x40
 updatestatusicon BS_ATTACKER
-jumpifbyte CMP_EQUAL, gStringVar4, 0x10, [EA BE 1B 08]
-jumpifbyte CMP_EQUAL, gStringVar4, 0x40, [A1 B1 1B 08]
-jumpifbyte CMP_EQUAL, gStringVar4, 0x80, [9F AD 1B 08]
-jumpifbyte CMP_EQUAL, gStringVar4, 0x8, [2C A9 1B 08]
-jumpifbyte CMP_EQUAL, gStringVar4, 0x7, [40 B1 1B 08]
+jumpifbyte CMP_EQUAL, gStringVar4, STATUS1_BURN, BattleScript_WillOWisp_AfterPPReduce
+jumpifbyte CMP_EQUAL, gStringVar4, STATUS1_PARALYSIS, BattleScript_EffectParalyze_AfterPPReduce
+jumpifbyte CMP_EQUAL, gStringVar4, STATUS1_TOXIC_POISON, BattleScript_EffectToxic_AfterPPReduce
+jumpifbyte CMP_EQUAL, gStringVar4, STATUS1_POISON, BattleScript_EffectSleep_AfterPPReduce
+jumpifbyte CMP_EQUAL, gStringVar4, STATUS1_SLEEP, BattleScript_EffectPoison_AfterPPReduce
 
 
-BattleScript_Effect??? (pe): @1051C50 <FIX THIS>
-00 02 03 1C 00 FF 00 00 00 AE BD 1B 08 29 00 CB 3C 02 02 00 8D 1C 05 09 29 00 CB 3C 02 02 01 9C 1C 05 09 29 00 CB 3C 02 02 02 AB 1C 05 09 31 88 1C 02 02 98 3C 02 02 04 28 BA 1C 05 09 31 88 1C 02 02 90 3B 02 02 04 28 BA 1C 05 09 31 88 1C 02 02 E8 3B 02 02 04 28 BA 1C 05 09 31 88 1C 02 02 40 3C 02 02 04 28 BA 1C 05 09 CD AE BD 1B 08 10 A7 00 12 40 00 98 01 29 00 88 1C 02 02 10 EA BE 1B 08 29 00 88 1C 02 02 40 A1 B1 1B 08 29 00 88 1C 02 02 80 9F AD 1B 08 29 00 88 1C 02 02 08 2C A9 1B 08 29 00 88 1C 02 02 07 40 B1 1B 08
+BattleScript_EffectPsychoShift (pe): @1051C50
+00 02 03 1C 00 FF 00 00 00 F2 7D 1D 08 29 00 6B 3D 02 02 00 8D 1C 05 09 29 00 6B 3D 02 02 01 9C 1C 05 09 29 00 6B 3D 02 02 02 AB 1C 05 09 31 18 1D 02 02 38 3D 02 02 04 28 BA 1C 05 09 31 18 1D 02 02 30 3C 02 02 04 28 BA 1C 05 09 31 18 1D 02 02 88 3C 02 02 04 28 BA 1C 05 09 31 18 1D 02 02 E0 3C 02 02 04 28 BA 1C 05 09 CD F2 7D 1D 08 10 A7 00 12 40 00 98 01 29 00 18 1D 02 02 10 2E 7F 1D 08 29 00 18 1D 02 02 40 E5 71 1D 08 29 00 18 1D 02 02 80 E3 6D 1D 08 29 00 18 1D 02 02 08 70 69 1D 08 29 00 18 1D 02 02 07 84 71 1D 08
+
+
+
+
+
+
+
+
+
+
+BattleScript_EffectPowerTrick (pj): @1051D00
+2A 00 AA 3C 02 02 91 02 21 1D 05 09 00 02 03 FB 01 01 02 04 09 0A 10 10 02 12 40 00 28 0A A9 1B 08 00 02 03 FB 01 01 08 0A 09 0A 10 11 02 12 40 00 28 0A A9 1B 08
+
+jumpifmove 0x291, BattleScript_PowerTrick_Move291
+attackcanceler
+attackstring
+ppreduce
+swapdataonmon BS_ATTACKER, ATKFB_2BYTE, ATKFB_ATKSTAT, ATKFB_DEFSTAT
+attackanimation
+waitanimation
+printstring 0x210
+waitmessage 0x40
+goto BattleScript_MoveEnd
+
+BattleScript_PowerTrick_Move291:
+attackcanceler
+attackstring
+ppreduce
+swapdataonmon BS_ATTACKER, ATKFB_2BYTE, ATKFB_SPATKSTAT, ATKFB_SPDEFSTAT
+attackanimation
+waitanimation
+printstring 0x211
+waitmessage 0x40
+goto BattleScript_MoveEnd
+
+
+BattleScript_EffectPowerTrick (pe): @1051D00
+2A 00 4A 3D 02 02 91 02 21 1D 05 09 00 02 03 FB 01 01 02 04 09 0A 10 19 02 12 40 00 28 4E 69 1D 08 00 02 03 FB 01 01 08 0A 09 0A 10 1A 02 12 40 00 28 4E 69 1D 08
+
+
+
+
+
+
+
+
+
+
+BattleScript_EffectAcrobatics (pj): @1051D40
+FC 01 00 00 00 E2 A8 1B 08 28 DC A8 1B 08
+
+jumpifitem BS_ATTACKER, ITEM_NONE, ATKFC_NOT_EQUAL, BattleScript_HitFromAtkCanceler
+goto BattleScript_EffectHit_DoubleDamage
+
+
+BattleScript_EffectAcrobatics (pe): @1051D40
+FC 01 00 00 00 26 69 1D 08 28 20 69 1D 08
+
+
+
+
+
+
+
+
+
+
+BattleScript_EffectMetalBurst (pj): @1051D50
+00 A1 5B 1D 05 09 28 60 1D 05 09 A2 AC BD 1B 08 01 1A A9 1B 08 00 00 02 03 80 01 80 01 80 03 4A 69 28 F0 A8 1B 08
+
+attackcanceler
+counterdamagecalculator BattleScript_MetalBurst_CheckSpecialDmg
+goto BattleScript_MetalBurst_WasDamaged
+
+BattleScript_MetalBurst_CheckSpecialDmg:
+mirrorcoatdamagecalculator BattleScript_ButItFailedAtkStringPpReduce
+
+BattleScript_MetalBurst_WasDamaged:
+accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+attackstring
+ppreduce
+manipulatedamage ATK80_DMG_HALVED
+manipulatedamage ATK80_DMG_HALVED
+manipulatedamage ATK80_DMG_TRIPLED // total = 0.75x counter/mirrorcoat dmg = 1.5x damage taken
+typecalc2
+adjustsetdamage
+goto BattleScript_HitFromAtkAnimation
+
+
+BattleScript_EffectMetalBurst (pe): @1051D50
+00 A1 5B 1D 05 09 28 60 1D 05 09 A2 F0 7D 1D 08 01 5E 69 1D 08 00 00 02 03 80 01 80 01 80 03 4A 69 28 34 69 1D 08
+
+
+
+
+
+
+
+
+
+
+BattleScript_EffectChangeAbilityToBCThenHit (pj): @1052D20
+00 02 03 01 1C A9 1B 08 00 00 1E 01 BC EC A8 1B 08 F9 01 00 20 BC 00 00 00 10 16 02 12 40 00 28 EC A8 1B 08
+
+attackcanceler
+attackstring
+ppreduce
+accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
+jumpifability BS_ATTACKER, 0xBC, BattleScript_HitFromCritCalc
+setmondata BS_ATTACKER, ATKF9_1BYTE, ATKF9_ABILITY, 0xBC
+printstring 0x216
+waitmessage 0x40
+goto BattleScript_HitFromCritCalc
+
+
+BattleScript_EffectChangeAbilityToBCThenHit (pe): @1052D20
+00 02 03 01 60 69 1D 08 00 00 1E 01 BC 30 69 1D 08 F9 01 00 20 BC 00 00 00 10 1F 02 12 40 00 28 30 69 1D 08
+
+
+
+
+
+
+
+
+
+
+BattleScript_EffectUseExplosionInstead (pj): @1053940
+00 10 FF 01 12 40 00 2E AA 3C 02 02 99 2E AB 3C 02 02 00 28 32 AA 1B 08
+
+attackcanceler
+printstring 0x1FF
+waitmessage 0x40
+sethword gCurrentMove, MOVE_EXPLOSION
+goto BattleScript_EffectExplosion
+
+
+BattleScript_EffectUseExplosionInstead (pe): @1053940
+00 10 08 02 12 40 00 2E 4A 3D 02 02 99 2E 4B 3D 02 02 00 28 76 6A 1D 08

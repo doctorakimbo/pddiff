@@ -469,12 +469,12 @@ move IDs:
 = 0x289 = (attacking move with Overheat effect, but harshly lowers user's attack instead of sp. atk)
 = 0x28A = (attacking move that harshly lowers user's sp. atk afterwards)
 = 0x28B = (attacking move)
-= 0x28C = Magma Storm/Infestation
+- 0x28C = Infestation
 = 0x28D = (attacking move)
-= 0x28E = Infestation/Magma Storm
+- 0x28E = Magma Storm
 = 0x28F = (non-attacking move)
 = 0x290 = (non-attacking move)
-= 0x291 = (non-attacking move)
+= 0x291 = (non-attacking move with Power Trick effect, but swaps the user's Sp. Atk and Sp. Def instead)
 = 0x292 = (attacking move)
 = 0x293 = (attacking move)
 = 0x294 = (attacking move), (can't be called by metronome)
@@ -520,7 +520,7 @@ move effects:
 = 0x5D = Venom Drench/[move2A3]
 = 0x60 = (unknown hardcoded parameterized additional effects)
 = 0x61 = (unknown hardcoded parameterized additional effects)
-= 0x68 = perfect-accuracy Trick that doesn't fail if used by the AI but fails if either side doesn't have an item
+= 0x68 = Bestow
 = 0x6E = Incinerate
 = 0x82 = Punishment
 = 0x83 = Stored Power/(+6 speed = 110 power, +5/+4 speed = 100 power, +3/+2 speed = 90 power, else displayed base power)
@@ -567,12 +567,13 @@ move effects:
 = 0xF6 = Hone Claws
 = 0xF7 = Ground-type; if used on Protect, does half damage and harshly lowers user's Sp. Atk
 = 0xF8 = Payback
-= 0xF9 = (ai wants to use if target doesn't have status and user does), (ai doesn't want to use if target is holding an item (? stat 0x16 or 0x17 != 0))
-= 0xFA = (ai wants to encore this)
-= 0xFB = (ai doesn't want to use if user is holding an item (? stat 0x16 or 0x17 != 0)), (ai wants to encore this)
-= 0xFC = (ai won't use if target is slower), (ai wants to use if target is faster)
+= 0xF9 = Psycho Shift
+= 0xFA = Power Trick/[move291]
+= 0xFB = Acrobatics
+= 0xFC = Metal Burst
 + 0xFD = (currently unused)
-= 0xFE = (ai wants to encore this)
+= 0xFE = changes the user's ability to [abilityBC], then does damage
+= 0xFF = just uses Explosion instead
 
 itemdata:
 all prices divided by 10
@@ -670,12 +671,13 @@ battle strings (ADD 9 TO ALL):
 ! 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]! (placeholder)"
 ! 0x19D = "[PKMN] restored HP using its [ABILITY]! (placeholder)"
 ! 0x19E = "[PKMN] is hurt by its [ITEM]!"
+- 0x1FF = "[PKMN] decided to explode! (placeholder)"
 - 0x200 = "[PKMN] shared its power with the target!"
 - 0x201 = "[PKMN] shared its guard with the target!"
 - 0x202 = "[PKMN] switched all changes to its Attack and Sp. Atk with its target!"
 - 0x203 = "[PKMN] switched all changes to its Defense and Sp. Def with its target!"
 - 0x204 = "[ATTACKER]'s type became the same as [TARGET]'s type!"
-- 0x205 = "[PKMN] switched items with its target! (?????????????)"
+- 0x205 = "[PKMN] received [ITEM]!"
 - 0x206 = "[PKMN]'s [ITEM] was burned up!"
 - 0x207 = "[PKMN]'s Ability was suppressed!"
 - 0x208 = "[PKMN] acquired [ABILITY]!"
@@ -684,11 +686,14 @@ battle strings (ADD 9 TO ALL):
 - 0x20B = "The (move1F2) strengthened the attack! (placeholder)"
 - 0x20C = "[PKMN] is already frozen! (placeholder)"
 - 0x20D = "[PKMN]'s [ABILITY] prevents freezing! (placeholder)"
-= 0x20E = "[PKMN] became trapped by swirling magma!"/"[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"
-= 0x20F = "[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"/"[PKMN] became trapped by swirling magma!"
+! 0x20E = "[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"
+! 0x20F = "[PKMN] became trapped by swirling magma!"
+- 0x210 = "[PKMN] switched its Attack and Defense!"
+- 0x211 = "[PKMN] switched its Sp. Atk and Sp. Def!"
 - 0x212 = "[PKMN]'s stat changes were removed!"
 - 0x214 = "[PKMN]'s [ABILITY] prevents its item from being removed! (?????????????)"
 - 0x215 = "[PKMN] couldn't fully protect itself and got hurt! (placeholder)"
+- 0x216 = "[PKMN]'s Ability became (abilityBC)! (placeholder)"
 = 0x217 = (tightening focus message but for move id 0x2A7)
 = 0x218 = (failure message for move id 0x2A7)
 - 0x21C = "[PKMN]'s stats won't go any higher! (?????????????)"
@@ -923,7 +928,7 @@ stray text:
 		  Implements: Magic Bounce, Protean, Mold Breaker+ (vs Magic Bounce)
 		  Glitch: If the Magic Bounce user has Magic Coat, Magic Bounce activating against a Pressure user will deduct 1 PP from Magic Coat
 = 01DC7C: AccuracyCalcHelper (see 16disasm)
-		  Implements: No Guard, the following not missing: Toxic from poison-types, Stomp on Minimize, Hurricane in rain, Blizzard in hail, Struggle, Bide, Mimic, Pain Split, Lock-On, Foresight, Role Play, Yawn, Imprison (?), Magic Coat (?), Snatch (?), Power Split, Guard Split, Heal Pulse, [effect68]
+		  Implements: No Guard, the following not missing: Toxic from poison-types, Stomp on Minimize, Hurricane in rain, Blizzard in hail, Struggle, Bide, Mimic, Pain Split, Lock-On, Foresight, Role Play, Yawn, Imprison (?), Magic Coat (?), Snatch (?), Power Split, Guard Split, Heal Pulse, Bestow
 		  Relies on: weather refactor
 = 01DDC4 -> 01DE30 (repoint): atk01_accuracycheck (see 17disasm)
 		  Implements: Keen Eye ignoring evasion, Tangled Feet, Snow Cloak, Klutz (acc/evasion items), Mold Breaker+ (vs acc/evasion), Unaware (acc/evasion), (ability93), Victory Star, Wide Lens, Hurricane acc- in sun, removes some first-battle code
@@ -1800,8 +1805,8 @@ stray text:
 		  Implements: critical capture animation
 ! 0F11F2: 0B -> 1F (max pokeball types 12 -> 32)
 		  GLITCH!: breaks battle animations, some other change probably needed
-= 0F1D14: AnimTask_GetTrappedMoveAnimId (see 218disasm)
-		  Implements: end-of-turn animations for Magma Storm and Infestation will show up
+- 0F1D14: AnimTask_GetTrappedMoveAnimId (see 218disasm)
+		  Implements: end-of-turn animations for Infestation and Magma Storm will show up
 		  Relies on: actual animations being implemented
 = 0F3270: 09 -> 0B (pkmnnamelength)
 		  Note: might actually run into issues, looks like jp hof might have extra space just in case western mons are transferred, en hof obviously doesn't
@@ -2246,17 +2251,25 @@ stray text:
 + 13EF9C: sub_813EF9C (see 251disasm)
 		  Implements: number of itemfinder arrows gradually increases as item is closer (instead of just close = 4 and far = 2)
 ! 15F9B4-1C68EC: [event scripts, just use advancemap for this part later]
+- 1C6F34 (second one) -> 1300000 (repoint): Move_Pound (see animscripts.txt)
+		  Implements: changes the Pound animation somehow (TEST)
 + 1C8146: D4 -> D8 (remove a sound effect from Thunderbolt, this might fix the associated glitch?)
 + 1CA99F: 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 05 0B 02 0D 04 01 08 ->
 		  1C 80 00 C0 0C 05 04 0C 05 0B 02 0D 04 01 08 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
 		  Implements: makes Agility animation script less redundant but doesn't seem to actually do anything functionally
 + 1CADE9: 19 -> 1C (properly loop a sound in Sky Attack's script, fixing a glitch specific to attacking your partner)
+= 1CD2E0 -> 1307850 (repoint): Move_Ice_Punch (see animscripts.txt)
+		  Implements: 
+- 1D08B5 -> 13076C0 (repoint): Move_Fire_Punch (see animscripts.txt)
+		  Implements: changes the Fire Punch animation somehow (TEST)
 = 1D51AA: 01 -> 03
   1D51BA: 03 -> 01
   1D51BC: CD 52 -> 6D 53
   1D51C4: 6D 53 -> CD 52
 		  Implements: switches around weather cases for Weather Ball animation (sun -> "ice", sand -> "fire", hail -> "rock")
 		  Relies on: probably means that the weather constant is changed from (none, sun, rain, sand, hail) to (none, hail, rain, sun, sand) (why???)
+- 1D5C5F -> 1303564 (repoint): General_TurnTrap (see animscripts.txt)
+		  Implements: Infestation and Magma Storm end-of-turn animations
 - 1D65A8, 1D65EC, 1D66E0, 1D673C, 1D6744, 1D67A8 <except done on the new table>: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything)
 - 1D6684 <except done on the new table>: 00 69 1D 08 -> C0 24 05 09 (BattleScript_EffectPowerSplit (see movescripts.txt))
 		  Implements: Power Split
@@ -2422,13 +2435,13 @@ stray text:
 		  Relies on: BattleScript_DamageAndEffect, BattleScript_LowerOneOfMultipleStats
 		  Note: remove Conversion 2, the move, first
 + 1D7581, 1D81B5, 1D82AB, 1D8417: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything)
-- 1D75E6 -> 1052250 (repoint): BattleScript_Effect??? (see movescripts.txt)
-		  Implements: removes Triple Kick entirely, adds new effect for (perfect-accuracy Trick that doesn't fail if used by the AI but fails if either side doesn't have an item)
+- 1D75E6 -> 1052250 (repoint): BattleScript_EffectBestow (see movescripts.txt)
+		  Implements: removes Triple Kick entirely, adds new effect for Bestow
 		  Note: remove Triple Kick, the move, first
+		  Note: <<<IMPORTANT - CHECK BESTOW MSG>>> (message 0x205)
 - 1D76C9 -> 1052620 (repoint): BattleScript_EffectThief (see movescripts.txt)
 		  Implements: Unclear, only change seems to be that the Sticky Hold message is different
 		  Relies on: BattleScript_DoDamageFunction
-		  Glitch?: attacker and target seem to be mixed up when opponent uses it, meaning it will end up giving the target the item
 - 1D76D4 -> 1053AD0 (repoint): BattleScript_EffectEscapePrevention (see movescripts.txt)
 		  Implements: Spirit Shackle, etc.; Ghost-type immunity to trapping
 + 1D7747: 17 -> 27 (Minimize +1 -> +2 evasion)
@@ -2584,13 +2597,14 @@ stray text:
 		  * Other improvements: instead of a bizarre mix of moves, Mirror Move tries to prioritize any copiable move; doesn't discourage recovery when the user is faster; encourages OHKO moves after use of Mind Reader; Mean Look (because Spirit Shackle uses the same effect byte), Dragon Dance (why?), and Knock Off are no longer encouraged to be Encored; Teleport and +Sp. Def are encouraged to be Encored; instead of encouraging stealing a short list of items, Thief is encouraged for all items that don't have a downside; Chlorophyll users prioritize Sunny Day; Volt Absorb, Water Absorb, Soundproof, Thick Fat, Flame Body, and Shell Armor are considered "good" abilities; "bad" abilities (to avoid/get rid of) are also listed
 		  * New mechanics that old scripts are updated for: p/s split (also includes removing the discouraging of, for example, -Atk moves or Reflect on a water-type since it can have physical STAB now), new Lightning Rod, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, [ability8B], Choice items, Assault Vest, Lagging Tail
 		  * New moves: 0x22D, 0x27C (factored into Eruption script); 0x161, Hex, Wake-Up Slap, 0x265, 0x266, 0x267, 0x283 (factored into double-damage-on-status script); 0x258, 0x272, 0x27A (factored into Brine script); 0x1F2 (factored into (does double damage if used immediately after [move1F2]) script)
-		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, V-Create, Hurricane, Brine, (removes Reflect/Light Screen from the user's side, but does double damage when it does), (does double damage if used immediately after [move1F2]), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws, Payback, [effectF9], [effectFB], [effectFC]
+		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, V-Create, Hurricane, Brine, (removes Reflect/Light Screen from the user's side, but does double damage when it does), (does double damage if used immediately after [move1F2]), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws, Payback, Psycho Shift, Acrobatics, Metal Burst
 		  Relies on: new AI script commands, BattleMove refactor
 		  Glitch?: due to misaligned goto, Substitute will fall through into the Hyper Beam logic under certain circumstances
 		  Glitch?: due to misaligned goto, (Payback that always doubles power vs Steel-types) will probably crash
 		  Glitch?: might cause inexplicable use of recovery moves at full HP, this might be a misreading though (test)
 		  Glitch?: Destiny Knot is considered a "bad" item for Thief?
 		  Glitch?: an AI script for Sandstorm is fully implemented but not actually accessed
+		  Glitch?: Psycho Shift -> Acrobatics is fallthrough
 		  Glitch?: Venom Drench uses Lock-On's AI script
 - 1DBA8D -> 1007300 (repoint): AI_SetupFirstTurn
 		  Implements: changes which moves the AI counts as setup (removes every +2/-2, Conversion; adds sleep, Toxic, (confuse and lower evasion), (poison or paralysis, chooses one at random), (burn user and target), (poison user and target), Charge, Work Up, Dragon Dance, (-1 accuracy +2 evasion to target), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws)
@@ -2735,14 +2749,27 @@ stray text:
 -1051970: BattleScript_EffectHoneClaws (see movescripts.txt)
 		  Implements: Hone Claws
 		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
-=1051C50: BattleScript_??? (see movescripts.txt)
-		  Implements: 
+-1051C50: BattleScript_EffectPsychoShift (see movescripts.txt)
+		  Implements: Psycho Shift
+		  Glitch?: Poison and Sleep cases are reversed
+		  Note: Removes status before checking for most failures, is that how it works?
+		  Note: Messages might be wrong, check
+-1051D00: BattleScript_EffectPowerTrick (see movescripts.txt)
+		  Implements: Power Trick, [move291]
+-1051D40: BattleScript_EffectAcrobatics (see movescripts.txt)
+		  Implements: Acrobatics
+-1051D50: BattleScript_EffectMetalBurst (see movescripts.txt)
+		  Implements: Metal Burst
 =1051D80: BattleScript_EffectCalcWithExtraBoosts (see movescripts.txt)
 		  Implements: (move that calculates damage as if any Defense boosts were added to Sp. Atk, then has a 20% chance to raise Def and Sp. Atk); [moveDD]
 		  Required knowledge: whether the area around gStringVar4 is the same in en
 		  Note: on paper, it looks like stat drops are factored in inconsistently (only if one stat is above +0) - for example ([moveDD]), +0 Atk/-2 Sp. Atk results in +0 Atk, -3 Atk/-2 Sp. Atk results in -3 Atk, and +3 Atk/-2 Sp. Atk results in +1 Atk
 		  Glitch?: Might crash if combined boosts are greater than +6 (or less than +0 if one of them is positive)
 		  Glitch?: [moveDD] crashes if Atk is at +6 but Sp. Atk isn't
+-1052D20: BattleScript_EffectChangeAbilityToBCThenHit (see movescripts.txt)
+		  Implements: (move that changes the user's ability to [abilityBC] and then does damage)
+-1053940: BattleScript_EffectUseExplosionInstead (see movescripts.txt)
+		  Implements: (move that just uses Explosion instead)
 -1053A90: BattleScript_EffectVCreate (see movescripts.txt)
 		  Implements: V-Create/Nova Inferno
 -1053AA0: BattleScript_Effect??? (see movescripts.txt)
@@ -2792,14 +2819,3 @@ stray text:
 		  Implements: (move that hits 3 times)
 -1697F80: BattleScript_EffectHurricane (see movescripts.txt)
 		  Implements: Hurricane
-
-
-
-
-
-
-
-in order:
-battle scripts
-misc animation scripts (1B 9C 1B 08 -> 64 35 30 09)
-move animation scripts

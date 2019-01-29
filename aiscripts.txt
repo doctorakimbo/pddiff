@@ -3605,9 +3605,9 @@ if_effect EFFECT_DOUBLE_DAMAGE_AFTER_MOVE_1F2, AI_CV_DoubleDamageAfterMove1F2
 if_effect EFFECT_HURRICANE, AI_CV_Hurricane
 if_effect EFFECT_USER_ATK_DEF_UP_2_SPEED_DOWN, AI_CV_UserAtkDefUp2SpeedDown
 if_effect EFFECT_SHELL_SMASH, AI_CV_ShellSmash
-if_effect EFFECT_0xF9, [A0 72 00 09]
-if_effect EFFECT_0xFB, [B4 72 00 09]
-if_effect EFFECT_0xFC, [CB 72 00 09]
+if_effect EFFECT_PSYCHO_SHIFT, AI_CV_PsychoShift
+if_effect EFFECT_ACROBATICS, AI_CV_Acrobatics
+if_effect EFFECT_METAL_BURST, AI_CV_MetalBurst
 end
 
 AI_CV_Sleep:
@@ -4463,9 +4463,9 @@ EFFECT_WATER_SPORT
 EFFECT_CAMOUFLAGE
 EFFECT_SOAK
 EFFECT_GIVE_MOVE_240
-EFFECT_0xFA
-EFFECT_0xFB
-EFFECT_0xFE
+EFFECT_POWER_TRICK
+EFFECT_ACROBATICS
+EFFECT_BECOME_ABILITY_BC_HIT
 
 AI_CV_PainSplit:
 if_hp_less_than AI_TARGET, 80, Score_Minus1
@@ -5255,18 +5255,18 @@ if_random_greater_than 99, Score_Plus1
 AI_CV_ShellSmash_End:
 end
 
-[A0 72 00 09]:
+AI_CV_PsychoShift:
 if_status AI_TARGET, STATUS1_ANY, Score_Minus5
 if_status AI_USER, STATUS1_SLEEP | STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON, Score_Plus2
 
-[B4 72 00 09]:
+AI_CV_Acrobatics:
 // if_has_any_item AI_USER, Score_Minus1
 if_stat_level_not_equal AI_USER, 0x16, 0, Score_Minus1
 if_stat_level_not_equal AI_USER, 0x17, 0, Score_Minus1
 if_random_greater_than 49, Score_Plus2
 end
 
-[CB 72 00 09]:
+AI_CV_MetalBurst:
 if_target_slower Score_Minus8
 if_random_greater_than 149, Score_Plus2
 end
