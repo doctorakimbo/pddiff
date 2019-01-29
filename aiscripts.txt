@@ -3562,7 +3562,7 @@ if_effect EFFECT_BATON_PASS, AI_CV_BatonPass
 if_effect EFFECT_PURSUIT, AI_CV_Pursuit
 if_effect EFFECT_TAILWIND, AI_CV_EncourageIfSlower
 if_effect EFFECT_TRICK_ROOM, AI_CV_EncourageIfSlower
-if_effect EFFECT_0xF8, AI_CV_EncourageIfSlower
+if_effect EFFECT_PAYBACK, AI_CV_EncourageIfSlower
 if_effect EFFECT_RAIN_DANCE, AI_CV_RainDance_New
 if_effect EFFECT_SUNNY_DAY, AI_CV_SunnyDay_New
 if_effect EFFECT_BELLY_DRUM, AI_CV_BellyDrum

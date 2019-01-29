@@ -566,11 +566,12 @@ move effects:
 = 0xF5 = boosts Speed and evasion
 = 0xF6 = Hone Claws
 = 0xF7 = Ground-type; if used on Protect, does half damage and harshly lowers user's Sp. Atk
-= 0xF8 = (ai wants to use if target is faster), (ai doesn't want to use if target is slower)
+= 0xF8 = Payback
 = 0xF9 = (ai wants to use if target doesn't have status and user does), (ai doesn't want to use if target is holding an item (? stat 0x16 or 0x17 != 0))
 = 0xFA = (ai wants to encore this)
 = 0xFB = (ai doesn't want to use if user is holding an item (? stat 0x16 or 0x17 != 0)), (ai wants to encore this)
 = 0xFC = (ai won't use if target is slower), (ai wants to use if target is faster)
++ 0xFD = (currently unused)
 = 0xFE = (ai wants to encore this)
 
 itemdata:
@@ -2583,7 +2584,7 @@ stray text:
 		  * Other improvements: instead of a bizarre mix of moves, Mirror Move tries to prioritize any copiable move; doesn't discourage recovery when the user is faster; encourages OHKO moves after use of Mind Reader; Mean Look (because Spirit Shackle uses the same effect byte), Dragon Dance (why?), and Knock Off are no longer encouraged to be Encored; Teleport and +Sp. Def are encouraged to be Encored; instead of encouraging stealing a short list of items, Thief is encouraged for all items that don't have a downside; Chlorophyll users prioritize Sunny Day; Volt Absorb, Water Absorb, Soundproof, Thick Fat, Flame Body, and Shell Armor are considered "good" abilities; "bad" abilities (to avoid/get rid of) are also listed
 		  * New mechanics that old scripts are updated for: p/s split (also includes removing the discouraging of, for example, -Atk moves or Reflect on a water-type since it can have physical STAB now), new Lightning Rod, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, [ability8B], Choice items, Assault Vest, Lagging Tail
 		  * New moves: 0x22D, 0x27C (factored into Eruption script); 0x161, Hex, Wake-Up Slap, 0x265, 0x266, 0x267, 0x283 (factored into double-damage-on-status script); 0x258, 0x272, 0x27A (factored into Brine script); 0x1F2 (factored into (does double damage if used immediately after [move1F2]) script)
-		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, V-Create, Hurricane, Brine, (removes Reflect/Light Screen from the user's side, but does double damage when it does), (does double damage if used immediately after [move1F2]), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws, [effectF8], [effectF9], [effectFB], [effectFC]
+		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, V-Create, Hurricane, Brine, (removes Reflect/Light Screen from the user's side, but does double damage when it does), (does double damage if used immediately after [move1F2]), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws, Payback, [effectF9], [effectFB], [effectFC]
 		  Relies on: new AI script commands, BattleMove refactor
 		  Glitch?: due to misaligned goto, Substitute will fall through into the Hyper Beam logic under certain circumstances
 		  Glitch?: due to misaligned goto, (Payback that always doubles power vs Steel-types) will probably crash
@@ -2734,10 +2735,12 @@ stray text:
 -1051970: BattleScript_EffectHoneClaws (see movescripts.txt)
 		  Implements: Hone Claws
 		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
+=1051C50: BattleScript_??? (see movescripts.txt)
+		  Implements: 
 =1051D80: BattleScript_EffectCalcWithExtraBoosts (see movescripts.txt)
 		  Implements: (move that calculates damage as if any Defense boosts were added to Sp. Atk, then has a 20% chance to raise Def and Sp. Atk); [moveDD]
 		  Required knowledge: whether the area around gStringVar4 is the same in en
-		  Note: on paper, it looks like stat drops are factored in inconsistently (only if one stat is above +0) - for example (moveDD), +0 Atk/-2 Sp. Atk results in +0 Atk, -3 Atk/-2 Sp. Atk results in -3 Atk, and +3 Atk/-2 Sp. Atk results in +1 Atk
+		  Note: on paper, it looks like stat drops are factored in inconsistently (only if one stat is above +0) - for example ([moveDD]), +0 Atk/-2 Sp. Atk results in +0 Atk, -3 Atk/-2 Sp. Atk results in -3 Atk, and +3 Atk/-2 Sp. Atk results in +1 Atk
 		  Glitch?: Might crash if combined boosts are greater than +6 (or less than +0 if one of them is positive)
 		  Glitch?: [moveDD] crashes if Atk is at +6 but Sp. Atk isn't
 -1053A90: BattleScript_EffectVCreate (see movescripts.txt)
@@ -2747,8 +2750,9 @@ stray text:
 =1053AA8: BattleScript_EffectSuckerPunch (see movescripts.txt)
 		  Implements: Sucker Punch
 		  Required knowledge: whether the area around gStringVar4 is the same in en
-=1053AB8: BattleScript_Effect??? (see movescripts.txt)
-		  Implements: 
+=1053AB8: BattleScript_EffectPayback (see movescripts.txt)
+		  Implements: Payback
+		  Required knowledge: whether the area around gStringVar4 is the same in en
 -1053CB0: BattleScript_EffectHammerArm (see movescripts.txt)
 		  Implements: Hammer Arm
 		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatChangeAnim
