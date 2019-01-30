@@ -158,7 +158,7 @@ item IDs:
 + 0x1AE = Honey
 
 move IDs:
-(Mirror Move, Assist, Diamond Storm, and Strength Sap can't be called by metronome)
+(Mirror Move, Assist, Diamond Storm, Strength Sap, and the move just after the end of defined moves can't be called by metronome)
 = 0x8C = (non-attacking move)
 = 0x95 = (attacking move)
 = 0xA0 = (attacking move with chance to raise sp. atk), (can't be called by metronome)
@@ -273,7 +273,7 @@ move IDs:
 = 0x1C5 = (attacking move with chance to lower accuracy or poison)
 = 0x1C6 = (attacking move with chance to harshly lower speed)
 = 0x1C7 = (attacking move with chance to lower sp. def)
-= 0x1C8 = Sandblast
+- 0x1C8 = Sandblast
 = 0x1C9 = (attacking move with chance to raise accuracy)
 = 0x1CA = (attacking move)
 = 0x1CB = (attacking move with chance to burn user)
@@ -497,7 +497,6 @@ move IDs:
 = 0x2A5 = (non-attacking move), (can't be called by metronome)
 = 0x2A6 = (non-attacking move with Attract effect, but also poisons)
 = 0x2A7 = (attacking move with Counter effect, but does half of Counter's damage and prints string 0x218 if failed), (special-cased in focus punch setup to print string 0x217), (can't be called by metronome)
-= 0x2A8 = (outside of Sucker Punch table), (can't be called by metronome)
 
 move effects:
 = 0x1E = freeze
