@@ -16,6 +16,8 @@ F0 1C 02 02: 60 1C 02 02: gStringVar2
 								 (GetNumberOfRelearnableMoves: ptr to data that's read from exactly as if it was gLevelUpLearnsets)
 74 29 02 02: E4 28 02 02: gBattle_BG0_X
 76 29 02 02: E6 28 02 02: gBattle_BG0_Y
+78 29 02 02: E8 28 02 02: gBattle_BG1_X
+7A 29 02 02: EA 28 02 02: gBattle_BG1_Y
 8C 29 02 02: FC 28 02 02: gDisplayedStringBattle
 B8 2A 02 02: 28 2A 02 02: gBattleTextBuff1
 C8 2A 02 02: 38 2A 02 02: gBattleTextBuff2
@@ -153,6 +155,7 @@ B8 7A 03 02: EC 79 03 02: gPaletteFade
 C8 7A 03 02: FC 79 03 02: ??????
 		   : 14 7B 03 02: ?????? (fn_9396A8_J: some sort of data is copied into this)
 02 7F 03 02: 36 7E 03 02: gBattleAnimArgs
+1A 7F 03 02: 4E 7E 03 02: ??????
 30 7F 03 02: 64 7E 03 02: ??????
 34 7F 03 02: 68 7E 03 02: gWeatherPtr
 94 83 03 02: C8 82 03 02: gWeatherPtr->altGammaShifts
@@ -690,10 +693,15 @@ funcs e,j,desc:
 0722CC = 071A70 = PlaySE
 0723E0 = 071B84 = IsSEPlaying
 072760 = 071F04 = DestroyAnimVisualTask
+0730C0 = 072864 = ?????
+073788 = 072F2C = ?????
 0751C4 = 074968 = GetBattlerSide
 0751D8 = 07497C = GetBattlerPosition
 0751E8 = 07498C = GetBattlerAtPosition
 075290 = 074A34 = IsDoubleBattle
+0752A0 = 074A44 = ?????
+0753B4 = 074B58 = ?????
+07543C = 074BE0 = ?????
 07741C = 076BB4 = CreateTask
 077508 = 076CA0 = DestroyTask
 07761C = 076DB4 = SwitchTaskToFollowupFunc
@@ -738,8 +746,8 @@ funcs e,j,desc:
 0A0E90 = 0A2164 = GetSafariZoneFlag
 0A103C = 0A2310 = SetUpItemUseOnFieldCallback
 0A10C4 = 0A2398 = DisplayCannotUseItemMessage
-0A16D0 = 0A29A4 = ?????
-0A2294 = 0A3554 = ?????
+0B490C = 0B5BCC = ?????
+0BC1F8 = 0BD4B8 = SetAnimBgAttribute
 0BD09C = 0BE35C = MovePlayerOnBike
 0BD488 = 0BE748 = IsRunningDisallowed
 0BFC50 = 0C0E20 = GetHealLocationIndexByMap
@@ -769,10 +777,6 @@ funcs e,j,desc:
 10B8F0 = 10C3EC = bag_menu_print
 10F904 = 110438 = MoveMenuCursor
 11B0D0 = 11B914 = InUnionRoom
-1202E0 = 120AD0 = ?????
-1202F8 = 120AE8 = ?????
-124DC0 = 125724 = ?????
-1255BC = 125F20 = ?????
 125A78 = 1263C4 = ItemIdToBattleMoveId
 12E51C = 12ED24 = AddTextPrinterParameterized3
 12E5A4 = 12EDAC = AddTextPrinterParameterized4

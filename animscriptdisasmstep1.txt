@@ -1,0 +1,60 @@
+AnimTask_BlizzardUnknown(arg0)
+{
+	r6 = arg0
+	r5 = 0
+	SetGpuReg(0x50, 0x3F42)
+	SetGpuReg(0x52, 0x1000)
+	fn_BD4B8_J(1, 4, 1)
+	fn_BD4B8_J(1, 0, 0)
+	
+	if(fn_72F2C_J() == 0)
+		fn_BD4B8_J(1, 3, 1)
+	
+	r0 = gBattle_BG1_X
+	*r0 = r5
+	r4 = gBattle_BG1_Y
+	*r4 = r5
+	SetGpuReg(0x14, 0)
+	SetGpuReg(0x16, *r4)
+	fn_74A44_J(&s0)
+	r0 = &s0
+	r0 = *(r0 + 9)
+	fn_74BE0_J(r0, data_1231C10_J)
+	r0 = &s0
+	r0 = *(r0 + 9)
+	r2 = &s0
+	r2 = *(r2 + 0xA)
+	fn_74B58_J(r0, data_12317A0_J, r2)
+	r1 = &s0
+	r1 = *(r1 + 8)
+	r1 *= 0x10
+	LoadCompressedPalette(data_1231BF0_J, r1, 0x20)
+	
+	if(fn_72F2C_J() != 0)
+	{
+		r0 = &s0
+		r0 = *(r0 + 8)
+		fn_72864_J(r0, s1, 0, 0)
+	}
+	
+	r0 = gBattleAnimArgs
+	r1 = 0
+	r0 = *(r0 + r1)
+	
+	if(r0 != 0)
+	{
+		r4 = data_02037E4E_J
+		r0 = *r0
+		
+		if(GetBattlerSide(r0) != 0)
+			r5 = 1
+	}
+	
+	r0 = gTasks
+	r1 = 0x28
+	r1 *= r6
+	r1 += r0
+	*(r1 + 8) = r5
+	r0 = fn_B5BCC_J
+	*r1 = r0
+}

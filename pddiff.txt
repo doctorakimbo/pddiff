@@ -2252,13 +2252,33 @@ stray text:
 ! 15F9B4-1C68EC: [event scripts, just use advancemap for this part later]
 - 1C6F34 (second one) -> 1300000 (repoint): Move_Pound (see animscripts.txt)
 		  Implements: changes the Pound animation somehow (TEST)
-+ 1C8146: D4 -> D8 (remove a sound effect from Thunderbolt, this might fix the associated glitch?)
+- 1C6FB8 -> 1305D78 (repoint): Move_Poison_Powder (see animscripts.txt)
+		  Implements: adds something to the Poison Powder animation (TEST)
+- 1C70E9 -> 1305EC0 (repoint): Move_Stun_Spore (see animscripts.txt)
+		  Implements: adds something to the Stun Spore animation (TEST)
+- 1C7217 -> 1306008 (repoint): Move_Sleep_Powder (see animscripts.txt)
+		  Implements: adds something to the Sleep Powder animation (TEST)
+- 1C7AF5 -> 1303958 (repoint): Move_Fire_Blast (see animscripts.txt)
+		  Implements: adds a new background for Fire Blast animation
++ 1C8146: D4 -> D8 (remove a sound effect from Thunderbolt animation script, this might fix the associated glitch?)
+= 1C8BC1 -> 1306E60 (repoint): Move_Waterfall (see animscripts.txt)
+		  Implements: 
+- 1CA6D1 -> 1308918 (repoint): Move_Earthquake (see animscripts.txt)
+		  Implements: adds a new background for Earthquake animation
 + 1CA99F: 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 05 0B 02 0D 04 01 08 ->
 		  1C 80 00 C0 0C 05 04 0C 05 0B 02 0D 04 01 08 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
 		  Implements: makes Agility animation script less redundant but doesn't seem to actually do anything functionally
-+ 1CADE9: 19 -> 1C (properly loop a sound in Sky Attack's script, fixing a glitch specific to attacking your partner)
-= 1CD2E0 -> 1307850 (repoint): Move_Ice_Punch (see animscripts.txt)
-		  Implements: 
++ 1CADE9: 19 -> 1C (properly loop a sound in Sky Attack's animation script, fixing a glitch specific to attacking your partner)
+- 1CD2E0 -> 1307850 (repoint): Move_Ice_Punch (see animscripts.txt)
+		  Implements: changes the Ice Punch animation somehow (TEST)
+- 1CD6CA -> 1307770 (repoint): Move_Thunder_Punch (see animscripts.txt)
+		  Implements: changes the Thunder Punch animation somehow (TEST)
+- 1CE768 -> 1304EE0 (repoint): Move_Blizzard (see animscripts.txt)
+		  Implements: completely overhauls Blizzard animation
+- 1CE9EE -> 13051B8 (repoint): Move_Hydro_Pump (see animscripts.txt)
+		  Implements: completely overhauls Hydro Pump animation
+- 1CFA15 -> 13062A8 (repoint): Move_Flamethrower (see animscripts.txt)
+		  Implements: adds a new background for Flamethrower animation
 - 1D08B5 -> 13076C0 (repoint): Move_Fire_Punch (see animscripts.txt)
 		  Implements: changes the Fire Punch animation somehow (TEST)
 = 1D51AA: 01 -> 03
