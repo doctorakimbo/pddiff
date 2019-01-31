@@ -159,19 +159,23 @@ item IDs:
 
 move IDs:
 (Mirror Move, Assist, Diamond Storm, Strength Sap, and the move just after the end of defined moves can't be called by metronome)
-= 0x8C = (non-attacking move)
-= 0x95 = (attacking move)
-= 0xA0 = (attacking move with chance to raise sp. atk), (can't be called by metronome)
-= 0xA7 = (attacking move with chance to lower user's speed)
-= 0xA9 = (attacking move)
-= 0xB0 = (non-attacking move)
-= 0xB1 = (attacking move), (can't be called by metronome)
-= 0xDD = (attacking move that calculates damage as if any Sp. Atk boosts were added to Attack, then has a 20% chance to raise Atk and Sp. Atk), (can't be called by metronome)
-= 0x126 = (attacking move)
-= 0x127 = (attacking move with chance to raise sp. atk)
-= 0x128 = (attacking move)
-= 0x12E = (attacking move with chance to poison, but if used by a poison-type, it badly poisons instead)
-= 0x161 = (attacking move that does double damage to poisoned targets (but NOT toxiced targets))
+(Removed: Clamp, Barrage, Psywave, Conversion, Triple Kick, Spider Web, Conversion 2, Aeroblast, Sacred Fire, Arm Thrust, Tail Glow, Luster Purge, Mist Ball, Needle Arm, Doom Desire, Psycho Boost)
+= 0x80 = (attacking move), (has electric-related animation)
+= 0x8C = (non-attacking move), (animation is sweating then Tackle)
+= 0x95 = (attacking move), (has Psywave animation)
+= 0xA0 = (attacking move with chance to raise sp. atk), (can't be called by metronome), (has fire-related animation)
+= 0xA7 = (attacking move with chance to lower user's speed), (animation involves a white circle of light somehow)
+= 0xA9 = (attacking move), (animation is Sky Uppercut with Megahorn's background)
+= 0xB0 = (non-attacking move), (has Will-O-Wisp animation)
+= 0xB1 = (attacking move), (can't be called by metronome), (has Pound animation, probably placeholder)
+= 0xDD = (attacking move that calculates damage as if any Sp. Atk boosts were added to Attack, then has a 20% chance to raise Atk and Sp. Atk), (can't be called by metronome), (has Pound animation, probably placeholder)
+= 0x124 = (attacking move), (has Giga-Drain-related animation)
+= 0x126 = (attacking move), (has Rapid Spin animation)
+= 0x127 = (attacking move with chance to raise sp. atk), (has wind-related animation)
+= 0x128 = (attacking move), (has wind-related animation)
+= 0x12E = (attacking move with chance to poison, but if used by a poison-type, it badly poisons instead), (has Poison Tail animation)
+= 0x161 = (attacking move that does double damage to poisoned targets (but NOT toxiced targets)), (has Sludge Bomb animation)
+= 0x162 = (attacking move), (has ice-related animation)
 = 0x163 = (attacking move with chance to flinch)
 = 0x164 = (attacking move with chance to confuse)
 = 0x165 = (attacking move)
@@ -488,7 +492,7 @@ move IDs:
 = 0x29C = (attacking move with chance to flinch)
 = 0x29D = (attacking move with chance to paralyze)
 = 0x29E = (attacking move with chance to severely lower accuracy)
-= 0x29F = (attacking move), (ground -> flying neutral, water -> ice/poison SE, bypasses Levitate)
+= 0x29F = (attacking move), (ground -> flying neutral, ice/poison -> water SE, bypasses Levitate)
 = 0x2A0 = (attacking move)
 = 0x2A1 = (attacking move)
 = 0x2A2 = (attacking move)
@@ -504,8 +508,8 @@ move effects:
 = 0x32 = confuse and lower evasion
 = 0x33 = if target moved first, damage with chance to raise speed; otherwise, damage with chance to raise sp. atk
 = 0x34 = Payback that always doubles power vs Steel-types
-= 0x35 = (ground -> flying neutral, water -> ice/poison SE, unknown hardcoded parameterized additional effects)
-= 0x36 = (ground -> flying neutral, water -> ice/poison SE, unknown hardcoded parameterized additional effects)
+= 0x35 = (ground -> flying neutral, ice/poison -> water SE, unknown hardcoded parameterized additional effects)
+= 0x36 = (ground -> flying neutral, ice/poison -> water SE, unknown hardcoded parameterized additional effects)
 = 0x37 = Power Split
 = 0x38 = Guard Split
 = 0x3A = Power Swap
@@ -2261,32 +2265,63 @@ stray text:
 - 1C7AF5 -> 1303958 (repoint): Move_Fire_Blast (see animscripts.txt)
 		  Implements: adds a new background for Fire Blast animation
 + 1C8146: D4 -> D8 (remove a sound effect from Thunderbolt animation script, this might fix the associated glitch?)
-= 1C8BC1 -> 1306E60 (repoint): Move_Waterfall (see animscripts.txt)
-		  Implements: 
+- 1C8BC1 -> 1306E60 (repoint): Move_Waterfall (see animscripts.txt)
+		  Implements: adds something to the Waterfall animation (TEST)
+- 1C9FA9 -> 1E2A2A0 (repoint): Move_??? (see animscripts.txt)
+		  Implements: [moveA0] animation
+- 1CA0BE -> 1D2340 (repoint): Move_??? ([moveB0] has Will-O-Wisp animation)
 - 1CA6D1 -> 1308918 (repoint): Move_Earthquake (see animscripts.txt)
 		  Implements: adds a new background for Earthquake animation
 + 1CA99F: 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 05 0B 02 0D 04 01 08 ->
 		  1C 80 00 C0 0C 05 04 0C 05 0B 02 0D 04 01 08 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
 		  Implements: makes Agility animation script less redundant but doesn't seem to actually do anything functionally
+- 1CACD3 -> 93FB70 (repoint): Move_??? (see animscripts.txt)
+		  Implements: [move8C] animation
 + 1CADE9: 19 -> 1C (properly loop a sound in Sky Attack's animation script, fixing a glitch specific to attacking your partner)
+- 1CBFBC -> 1305900 (repoint): Move_Skill_Swap (see animscripts.txt)
+		  Implements: changes background for Skill Swap animation
+- 1CC0B8 -> 1CB4E1 (repoint): Move_??? ([move126] has Rapid Spin animation)
+- 1CC0FB -> 1308520 (repoint): Move_??? (see animscripts.txt)
+		  Implements: [move127] animation
+- 1CC212 -> 1E29E90 (repoint): Move_??? (see animscripts.txt)
+		  Implements: [move128] animation
+- 1CC513 -> 1D10C2 (repoint): Move_??? ([move12E] has Poison Tail animation)
 - 1CD2E0 -> 1307850 (repoint): Move_Ice_Punch (see animscripts.txt)
 		  Implements: changes the Ice Punch animation somehow (TEST)
 - 1CD6CA -> 1307770 (repoint): Move_Thunder_Punch (see animscripts.txt)
 		  Implements: changes the Thunder Punch animation somehow (TEST)
+- 1CD793 -> 1C6F34 (repoint): Move_??? ([moveDD] has Pound animation, probably placeholder)
+- 1CE29E -> 142C700 (repoint): Move_??? (see animscripts.txt)
+		  Implements: [move80] animation
 - 1CE768 -> 1304EE0 (repoint): Move_Blizzard (see animscripts.txt)
 		  Implements: completely overhauls Blizzard animation
 - 1CE9EE -> 13051B8 (repoint): Move_Hydro_Pump (see animscripts.txt)
 		  Implements: completely overhauls Hydro Pump animation
+- 1CF75D -> 1C6F34 (repoint): Move_??? ([moveB1] has Pound animation, probably placeholder)
 - 1CFA15 -> 13062A8 (repoint): Move_Flamethrower (see animscripts.txt)
 		  Implements: adds a new background for Flamethrower animation
+- 1CFECB -> 1E29F10 (repoint): Move_??? (see animscripts.txt)
+		  Implements: [moveA7] animation
 - 1D08B5 -> 13076C0 (repoint): Move_Fire_Punch (see animscripts.txt)
 		  Implements: changes the Fire Punch animation somehow (TEST)
+- 1D1518 -> 1E29BA0 (repoint): Move_??? (see animscripts.txt)
+		  Implements: [moveA9] animation
+- 1D2E93 -> 1E29D80 (repoint): Move_??? (see animscripts.txt)
+		  Implements: [move124] animation
+- 1D42C0 -> 1306918 (repoint): Move_Overheat (see animscripts.txt)
+		  Implements: changes the Overheat animation somehow (including a new background) (TEST)
+- 1D45B2 -> 13052A8 (repoint): Move_Hydro_Cannon (see animscripts.txt)
+		  Implements: completely overhauls Hydro Cannon animation
+= 1D499B -> 1E2A100 (repoint): Move_??? (see animscripts.txt)
+		  Implements: [move162] animation <<<<<<<FINISH THIS>>>>>>>
+- 1D4A9F -> 1CF1E2 (repoint): Move_??? ([move161] has Sludge Bomb animation)
 = 1D51AA: 01 -> 03
   1D51BA: 03 -> 01
   1D51BC: CD 52 -> 6D 53
   1D51C4: 6D 53 -> CD 52
 		  Implements: switches around weather cases for Weather Ball animation (sun -> "ice", sand -> "fire", hail -> "rock")
 		  Relies on: probably means that the weather constant is changed from (none, sun, rain, sand, hail) to (none, hail, rain, sun, sand) (why???)
+= 1D53D9 -> 
 - 1D5C5F -> 1303564 (repoint): General_TurnTrap (see animscripts.txt)
 		  Implements: Infestation and Magma Storm end-of-turn animations
 - 1D65A8, 1D65EC, 1D66E0, 1D673C, 1D6744, 1D67A8 <except done on the new table>: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything)
