@@ -176,25 +176,25 @@ move IDs:
 = 0x12E = (attacking move with chance to poison, but if used by a poison-type, it badly poisons instead), (has Poison Tail animation)
 = 0x161 = (attacking move that does double damage to poisoned targets (but NOT toxiced targets)), (has Sludge Bomb animation)
 = 0x162 = (attacking move), (has ice-related animation)
-= 0x163 = (attacking move with chance to flinch)
-= 0x164 = (attacking move with chance to confuse)
-= 0x165 = (attacking move)
-= 0x166 = (attacking move)
-= 0x167 = (attacking move with chance to confuse)
-= 0x168 = (attacking move with chance to lower defense)
-= 0x169 = (attacking move)
-= 0x16A = (attacking move with chance to lower user's speed)
-= 0x16B = (attacking move)
+- 0x163 = Grand Boulder
+- 0x164 = Soul Break
+- 0x165 = Stardust
+- 0x166 = Raze Earth
+- 0x167 = Possess
+- 0x168 = Devastate
+- 0x169 = Metal Blast
+= 0x16A = (attacking move with chance to lower user's speed), (has fist-related animation)
+= 0x16B = (attacking move), (animation appears to be a flurry of punches and kicks)
 - 0x16C = Flare Blitz
-= 0x16D = (attacking move with chance to paralyze)
-= 0x16E = (attacking move)
-= 0x16F = (non-attacking move, +2 speed)
-= 0x170 = (attacking move with chance to poison)
-= 0x171 = (attacking move with chance to flinch)
-= 0x172 = (attacking move)
-= 0x173 = (attacking move)
-= 0x174 = (attacking move)
-= 0x175 = (attacking move with chance to flinch)
+= 0x16D = (attacking move with chance to paralyze), (has Arm Thrust animation)
+= 0x16E = (attacking move), (animation has charge-up and then Sand Attack sounds)
+- 0x16F = Rock Polish
+= 0x170 = (attacking move with chance to poison), (has poison-related animation)
+- 0x171 = Dark Pulse
+- 0x172 = Night Slash
+- 0x173 = Aqua Tail
+- 0x174 = Seed Bomb
+= 0x175 = (attacking move with chance to flinch), (has Fury Cutter animation)
 = 0x176 = (attacking move)
 = 0x177 = (attacking move with chance to lower sp. def)
 = 0x178 = (attacking move)
@@ -2312,8 +2312,8 @@ stray text:
 		  Implements: changes the Overheat animation somehow (including a new background) (TEST)
 - 1D45B2 -> 13052A8 (repoint): Move_Hydro_Cannon (see animscripts.txt)
 		  Implements: completely overhauls Hydro Cannon animation
-= 1D499B -> 1E2A100 (repoint): Move_??? (see animscripts.txt)
-		  Implements: [move162] animation <<<<<<<FINISH THIS>>>>>>>
+- 1D499B -> 1E2A100 (repoint): Move_??? (see animscripts.txt)
+		  Implements: [move162] animation
 - 1D4A9F -> 1CF1E2 (repoint): Move_??? ([move161] has Sludge Bomb animation)
 = 1D51AA: 01 -> 03
   1D51BA: 03 -> 01
@@ -2321,7 +2321,8 @@ stray text:
   1D51C4: 6D 53 -> CD 52
 		  Implements: switches around weather cases for Weather Ball animation (sun -> "ice", sand -> "fire", hail -> "rock")
 		  Relies on: probably means that the weather constant is changed from (none, sun, rain, sand, hail) to (none, hail, rain, sun, sand) (why???)
-= 1D53D9 -> 
+- 1D53D9 -> 14294F0 (repoint): Move_Grand_Boulder (see animscripts.txt)
+		  Implements: Grand Boulder animation
 - 1D5C5F -> 1303564 (repoint): General_TurnTrap (see animscripts.txt)
 		  Implements: Infestation and Magma Storm end-of-turn animations
 - 1D65A8, 1D65EC, 1D66E0, 1D673C, 1D6744, 1D67A8 <except done on the new table>: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything)
@@ -2740,6 +2741,8 @@ stray text:
   ?????? (j222960): movement action function 0xAC
   ?????? (j22297A): movement action function 0xAD (see 284disasm)
 		  Implements: works like regular slow-walking (again? maybe this is wrong), but in the opposite direction
+- 814082: Move_Flare_Blitz (see animscripts.txt)
+		  Implements: Flare Blitz animation
 = E27BA0: ItemUseOutOfBattle_Honey (see 286disasm)
 		  Implements: field function for Honey
 		  Required knowledge: j02039910, j0203BFF0
@@ -2871,5 +2874,35 @@ stray text:
 		  Implements: (a Ground-type move that if used on Protect, does half damage and harshly lowers user's Sp. Atk), [move23A]
 -11BA7EF: BattleScript_EffectTripleHit (see movescripts.txt)
 		  Implements: (move that hits 3 times)
+-13041C8: Move_Possess (see animscripts.txt)
+		  Implements: Possess animation
+-13064B0: Move_??? (see animscripts.txt)
+		  Implements: [move170] animation
+-1308F80: Move_Raze_Earth (see animscripts.txt)
+		  Implements: Raze Earth animation
+-1309350: Move_??? (see animscripts.txt)
+		  Implements: [move16E] animation
+-130A350: Move_??? (see animscripts.txt)
+		  Implements: [move16A] animation
+-130A6F0: Move_Seed_Bomb (see animscripts.txt)
+		  Implements: Seed Bomb animation
+=130A950: Move_??? (see animscripts.txt)
+		  Implements: 
+-13C4990: Move_Soul_Break (see animscripts.txt)
+		  Implements: Soul Break animation
+-140E074: Move_??? (see animscripts.txt)
+		  Implements: [move16B] animation
+-1429760: Move_Stardust (see animscripts.txt)
+		  Implements: Stardust animation
+-14297E0: Move_Devastate (see animscripts.txt)
+		  Implements: Devastate animation
+-1429870: Move_Metal_Blast (see animscripts.txt)
+		  Implements: Metal Blast animation
+-1429A90: Move_Aqua_Tail (see animscripts.txt)
+		  Implements: Aqua Tail animation
+-142A090: Move_Night_Slash (see animscripts.txt)
+		  Implements: Night Slash animation
+-142A128: Move_Dark_Pulse (see animscripts.txt)
+		  Implements: Dark Pulse animation
 -1697F80: BattleScript_EffectHurricane (see movescripts.txt)
 		  Implements: Hurricane
