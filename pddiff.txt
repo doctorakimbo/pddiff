@@ -169,7 +169,7 @@ move IDs:
 = 0xB0 = (non-attacking move), (has Will-O-Wisp animation)
 = 0xB1 = (attacking move), (can't be called by metronome), (has Pound animation, probably placeholder)
 = 0xDD = (attacking move that calculates damage as if any Sp. Atk boosts were added to Attack, then has a 20% chance to raise Atk and Sp. Atk), (can't be called by metronome), (has Pound animation, probably placeholder)
-= 0x124 = (attacking move), (has Giga-Drain-related animation)
+= 0x124 = (attacking move), (has Giga-Drain-related animation on Feint Attack's background)
 = 0x126 = (attacking move), (has Rapid Spin animation)
 = 0x127 = (attacking move with chance to raise sp. atk), (has wind-related animation)
 = 0x128 = (attacking move), (has wind-related animation)
@@ -184,10 +184,10 @@ move IDs:
 - 0x168 = Devastate
 - 0x169 = Metal Blast
 = 0x16A = (attacking move with chance to lower user's speed), (has fist-related animation)
-= 0x16B = (attacking move), (animation appears to be a flurry of punches and kicks)
+= 0x16B = (attacking move), (animation appears to be a flurry of punches and kicks on Seismic Toss's background)
 - 0x16C = Flare Blitz
 = 0x16D = (attacking move with chance to paralyze), (has Arm Thrust animation)
-= 0x16E = (attacking move), (animation has charge-up and then Sand Attack sounds)
+= 0x16E = (attacking move), (animation has Focus Energy and then Sand Attack sound)
 - 0x16F = Rock Polish
 = 0x170 = (attacking move with chance to poison), (has poison-related animation)
 - 0x171 = Dark Pulse
@@ -195,27 +195,27 @@ move IDs:
 - 0x173 = Aqua Tail
 - 0x174 = Seed Bomb
 = 0x175 = (attacking move with chance to flinch), (has Fury Cutter animation)
-= 0x176 = (attacking move)
-= 0x177 = (attacking move with chance to lower sp. def)
-= 0x178 = (attacking move)
-= 0x179 = (attacking move with chance to flinch)
-= 0x17A = (attacking move)
-= 0x17B = (attacking move)
-= 0x17C = (attacking move)
-= 0x17D = (attacking move with chance to lower sp. def)
-= 0x17E = (attacking move with chance to lower sp. def)
-= 0x17F = (attacking move)
-= 0x180 = (attacking move with chance to lower sp. def)
-= 0x181 = (non-attacking move), (can't be called by metronome)
-= 0x182 = (attacking move)
-= 0x183 = (non-attacking move, +2 sp. atk)
-= 0x184 = (attacking move)
-= 0x185 = (attacking move)
-= 0x186 = (attacking move)
-= 0x187 = (attacking move)
-= 0x188 = (attacking move)
-= 0x189 = (attacking move with chance to lower accuracy)
-= 0x18A = (attacking move)
+- 0x176 = X-Scissor
+= 0x177 = (attacking move with chance to lower sp. def), (has Uproar animation)
+- 0x178 = Dragon Pulse
+= 0x179 = (attacking move with chance to flinch), (has Vital Throw animation)
+= 0x17A = (attacking move), (has steel-related animation)
+- 0x17B = Drain Punch
+= 0x17C = (attacking move), (has wind-related animation)
+= 0x17D = (attacking move with chance to lower sp. def), (animation has Focus Energy and then thwack sound)
+= 0x17E = (attacking move with chance to lower sp. def), (animation has bubble sounds)
+- 0x17F = Brave Bird
+- 0x180 = Earth Power
+= 0x181 = (non-attacking move), (can't be called by metronome), (animation is Trick with Feint Attack's background)
+= 0x182 = (attacking move), (animation is Focus Energy three times followed by Mega Punch)
+- 0x183 = Nasty Plot
+- 0x184 = Bullet Punch
+= 0x185 = (attacking move), (animation involves a lot of rock-drop sounds)
+= 0x186 = (attacking move), (has ice-related animation)
+= 0x187 = (attacking move), (animation is Slash with Icy Wind's background)
+= 0x188 = (attacking move), (animation involves the Destiny Bond shadow and a ghost background somehow)
+= 0x189 = (attacking move with chance to lower accuracy), (animation involves explosions somehow)
+= 0x18A = (attacking move), (animation has psybeam and then slash sound)
 = 0x18B = (attacking move)
 = 0x18C = (attacking move with chance to lower accuracy)
 = 0x18D = (attacking move with chance to lower sp. def)
@@ -2671,6 +2671,8 @@ stray text:
 ! 1EA14C+: [text and data, go through here thoroughly later; jp 1D9634+]
 
 
+= ?????? (j20E550): Move_??? (see animscripts.txt)
+		  Implements: [move187] animation
 = ?????? (j221B78): movement action function 0xC2
   ?????? (j221B94): movement action function 0xC3
   ?????? (j221BB0): movement action function 0xC4  
@@ -2872,24 +2874,44 @@ stray text:
 		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
 -10558A0: BattleScript_EffectPartiallyBypassProtect (see movescripts.txt)
 		  Implements: (a Ground-type move that if used on Protect, does half damage and harshly lowers user's Sp. Atk), [move23A]
+=11AADD0: Move_??? (see animscripts.txt)
+		  Implements: 
 -11BA7EF: BattleScript_EffectTripleHit (see movescripts.txt)
 		  Implements: (move that hits 3 times)
 -13041C8: Move_Possess (see animscripts.txt)
 		  Implements: Possess animation
+-1306328: Move_??? (see animscripts.txt)
+		  Implements: [move185] animation
 -13064B0: Move_??? (see animscripts.txt)
 		  Implements: [move170] animation
+-1308368: Move_??? (see animscripts.txt)
+		  Implements: [move17D] animation
+-13087A8: Move_??? (see animscripts.txt)
+		  Implements: [move188] animation
+-1308DC0: Move_??? (see animscripts.txt)
+		  Implements: [move18A] animation
 -1308F80: Move_Raze_Earth (see animscripts.txt)
 		  Implements: Raze Earth animation
 -1309350: Move_??? (see animscripts.txt)
 		  Implements: [move16E] animation
+-1309598: Move_??? (see animscripts.txt)
+		  Implements: [move17E] animation
 -130A350: Move_??? (see animscripts.txt)
 		  Implements: [move16A] animation
 -130A6F0: Move_Seed_Bomb (see animscripts.txt)
 		  Implements: Seed Bomb animation
-=130A950: Move_??? (see animscripts.txt)
-		  Implements: 
+-130A950: Move_X_Scissor (see animscripts.txt)
+		  Implements: X-Scissor animation
+-130ABB0: Move_??? (see animscripts.txt)
+		  Implements: [move189] animation
 -13C4990: Move_Soul_Break (see animscripts.txt)
 		  Implements: Soul Break animation
+-13C49C0: Move_??? (see animscripts.txt)
+		  Implements: [move17A] animation
+-140D880: Move_Drain_Punch (see animscripts.txt)
+		  Implements: Drain Punch animation
+-140DAC8: Move_Earth_Power (see animscripts.txt)
+		  Implements: Earth Power animation
 -140E074: Move_??? (see animscripts.txt)
 		  Implements: [move16B] animation
 -1429760: Move_Stardust (see animscripts.txt)
@@ -2898,11 +2920,27 @@ stray text:
 		  Implements: Devastate animation
 -1429870: Move_Metal_Blast (see animscripts.txt)
 		  Implements: Metal Blast animation
+-1429A60: Move_??? (see animscripts.txt)
+		  Implements: [move17C] animation
 -1429A90: Move_Aqua_Tail (see animscripts.txt)
 		  Implements: Aqua Tail animation
 -142A090: Move_Night_Slash (see animscripts.txt)
 		  Implements: Night Slash animation
 -142A128: Move_Dark_Pulse (see animscripts.txt)
 		  Implements: Dark Pulse animation
+-142A20C: Move_??? (see animscripts.txt)
+		  Implements: [move181] animation
+-142A7F0: Move_Bullet_Punch (see animscripts.txt)
+		  Implements: Bullet Punch animation
+-142C316: Move_??? (see animscripts.txt)
+		  Implements: [move186] animation
+-142C4A8: Move_Nasty_Plot (see animscripts.txt)
+		  Implements: Nasty Plot animation
+-142CFD8: Move_??? (see animscripts.txt)
+		  Implements: [move182] animation
 -1697F80: BattleScript_EffectHurricane (see movescripts.txt)
 		  Implements: Hurricane
+-1699E26: Move_Dragon_Pulse (see animscripts.txt)
+		  Implements: Dragon Pulse animation
+-169A3A0: Move_Brave_Bird (see animscripts.txt)
+		  Implements: Brave Bird animation

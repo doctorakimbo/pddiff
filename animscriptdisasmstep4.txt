@@ -1,4 +1,4 @@
-AnimTask_BlizzardUnknown(arg0)
+AnimTask_BlizzardUnknown(taskId)
 {
 	SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL)
 	SetGpuReg(REG_OFFSET_BLDALPHA, 0x1000)
@@ -21,10 +21,30 @@ AnimTask_BlizzardUnknown(arg0)
 		fn_730C0(s2, s1, 0, 0)
 	
 	if(gBattleAnimArgs[0] != 0 && GetBattlerSide(data_02037F1A) != 0)
-		r5 = 1
+		gTasks[taskId].data[0] = 1
 	else
-		r5 = 0
+		gTasks[taskId].data[0] = 0
 	
-	gTasks[arg0].8 = r5
-	gTasks[arg0].0 = fn_B490C
+	gTasks[taskId].func = fn_B490C
+}
+
+
+
+
+
+
+
+Callback_Move18AUnknown(arg0)
+{
+	arg0.pos1.x = fn_74480(data_02037F1A, 2)
+	
+	if(data_02037F1A & 1)
+		arg0.pos1.y = 40
+	else
+		arg0.pos1.y = 80
+	
+	arg0.data[6] = 0
+	arg0.data[7] = 4
+	arg0.callback = fn_E43F0
+	SetGpuReg(REG_OFFSET_BLDALPHA, 0x400)
 }

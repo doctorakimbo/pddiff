@@ -28,3 +28,24 @@ AnimTask_BlizzardUnknown(arg0)
 	gTasks[arg0].8 = r5
 	gTasks[arg0].0 = fn_B5BCC_J
 }
+
+
+
+
+
+
+
+Callback_Move18AUnknown(arg0)
+{
+	arg0.0x20 = fn_73C24_J(data_02037F1A, 2)
+	
+	if(data_02037F1A & 1)
+		arg0.0x22 = 0x28
+	else
+		arg0.0x22 = 0x54
+	
+	arg0.0x3A = 0
+	arg0.0x3C = 4
+	arg0.0x1C = fn_E53CC_J
+	SetGpuReg(0x52, 0x400)
+}

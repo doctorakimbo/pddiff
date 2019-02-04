@@ -695,6 +695,7 @@ funcs e,j,desc:
 072760 = 071F04 = DestroyAnimVisualTask
 0730C0 = 072864 = ?????
 073788 = 072F2C = ?????
+074480 = 073C24 = ?????
 0751C4 = 074968 = GetBattlerSide
 0751D8 = 07497C = GetBattlerPosition
 0751E8 = 07498C = GetBattlerAtPosition
@@ -763,6 +764,7 @@ funcs e,j,desc:
 0D87BC = 0D980C = BattlePutTextOnWindow
 0D99D8 = 0DA9C0 = TryWriteSector
 0DA1A8 = 0DB190 = CalculateChecksum
+0E43F0 = 0E53CC = ?????
 0F67A4 = 0F77FC = schedule_bg_copy_tilemap_to_vram
 0F6F1C = 0F7F7C = NewMenuHelpers_DrawStdWindowFrame
 0F7808 = 0F8868 = DisplayItemMessageOnField
