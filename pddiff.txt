@@ -29,7 +29,7 @@ abilities:
 + 0x56 = Simple
 + 0x57 = Dry Skin
 + 0x58 = Download
-= 0x59 = Iron Fist/Reckless (boosts extraFlags & 0x10 moves by 20%)
++ 0x59 = Iron Fist
 + 0x5A = Poison Heal
 + 0x5B = Adaptability
 + 0x5C = Skill Link
@@ -60,7 +60,7 @@ abilities:
 + 0x75 = Snow Warning
 + 0x76 = Honey Gather
 + 0x77 = Frisk
-= 0x78 = Reckless/Iron Fist (boosts extraFlags & 0x80 moves by 20%)
++ 0x78 = Reckless
 + 0x7A = Flower Gift
 + 0x7D = Sheer Force
 + 0x7E = Contrary
@@ -100,7 +100,7 @@ abilities:
 + 0xA5 = Aroma Veil
 + 0xA6 = Aura Break
 + 0xA8 = Tough Claws
-= 0xAA = Mega Launcher/Strong Jaw (boosts extraFlags & 0x20 moves by 50%)
++ 0xAA = Strong Jaw
 + 0xAC = Grass Pelt
 + 0xAD = Sweet Veil
 + 0xAE = Aerilate
@@ -115,7 +115,7 @@ abilities:
 + 0xB8 = Protean
 + 0xB9 = Bulletproof
 + 0xBA = Cheek Pouch
-= 0xBC = Strong Jaw/Mega Launcher (boosts extraFlags & 0x40 moves by 50%)
++ 0xBC = Mega Launcher
 + 0xC0 = Stamina
 + 0xC3 = Compaction
 + 0xCA = Slush Rush
@@ -158,7 +158,7 @@ item IDs:
 + 0x1AE = Honey
 
 move IDs:
-(Mirror Move, Assist, Diamond Storm, Strength Sap, and the move just after the end of defined moves can't be called by metronome)
+(Mirror Move, Assist, Strength Sap, and the move just after the end of defined moves can't be called by metronome)
 (Removed: Clamp, Barrage, Psywave, Conversion, Triple Kick, Spider Web, Conversion 2, Aeroblast, Sacred Fire, Arm Thrust, Tail Glow, Luster Purge, Mist Ball, Needle Arm, Doom Desire, Psycho Boost)
 = 0x80 = (attacking move), (has electric-related animation)
 = 0x8C = (non-attacking move), (animation is sweating then Tackle)
@@ -176,40 +176,40 @@ move IDs:
 = 0x12E = (attacking move with chance to poison, but if used by a poison-type, it badly poisons instead), (has Poison Tail animation)
 = 0x161 = (attacking move that does double damage to poisoned targets (but NOT toxiced targets)), (has Sludge Bomb animation)
 = 0x162 = (attacking move), (has ice-related animation)
-- 0x163 = Grand Boulder
-- 0x164 = Soul Break
-- 0x165 = Stardust
-- 0x166 = Raze Earth
-- 0x167 = Possess
-- 0x168 = Devastate
-- 0x169 = Metal Blast
++ 0x163 = Grand Boulder
++ 0x164 = Soul Break
++ 0x165 = Stardust
++ 0x166 = Raze Earth
++ 0x167 = Possess
++ 0x168 = Devastate
++ 0x169 = Metal Blast
 = 0x16A = (attacking move with chance to lower user's speed), (has fist-related animation)
 = 0x16B = (attacking move), (animation appears to be a flurry of punches and kicks on Seismic Toss's background)
-- 0x16C = Flare Blitz
++ 0x16C = Flare Blitz
 = 0x16D = (attacking move with chance to paralyze), (has Arm Thrust animation)
 = 0x16E = (attacking move), (animation has Focus Energy and then Sand Attack sound)
-- 0x16F = Rock Polish
++ 0x16F = Rock Polish
 = 0x170 = (attacking move with chance to poison), (has poison-related animation)
-- 0x171 = Dark Pulse
-- 0x172 = Night Slash
-- 0x173 = Aqua Tail
-- 0x174 = Seed Bomb
++ 0x171 = Dark Pulse
++ 0x172 = Night Slash
++ 0x173 = Aqua Tail
++ 0x174 = Seed Bomb
 = 0x175 = (attacking move with chance to flinch), (has Fury Cutter animation)
-- 0x176 = X-Scissor
++ 0x176 = X-Scissor
 = 0x177 = (attacking move with chance to lower sp. def), (has Uproar animation)
-- 0x178 = Dragon Pulse
++ 0x178 = Dragon Pulse
 = 0x179 = (attacking move with chance to flinch), (has Vital Throw animation)
 = 0x17A = (attacking move), (has steel-related animation)
-- 0x17B = Drain Punch
++ 0x17B = Drain Punch
 = 0x17C = (attacking move), (has wind-related animation)
 = 0x17D = (attacking move with chance to lower sp. def), (animation has Focus Energy and then thwack sound)
 = 0x17E = (attacking move with chance to lower sp. def), (animation has bubble sounds)
-- 0x17F = Brave Bird
-- 0x180 = Earth Power
++ 0x17F = Brave Bird
++ 0x180 = Earth Power
 = 0x181 = (non-attacking move), (can't be called by metronome), (animation is Trick with Feint Attack's background)
 = 0x182 = (attacking move), (animation is Focus Energy three times followed by Mega Punch)
-- 0x183 = Nasty Plot
-- 0x184 = Bullet Punch
++ 0x183 = Nasty Plot
++ 0x184 = Bullet Punch
 = 0x185 = (attacking move), (animation involves a lot of rock-drop sounds)
 = 0x186 = (attacking move), (has ice-related animation)
 = 0x187 = (attacking move), (animation is Slash with Icy Wind's background)
@@ -221,7 +221,7 @@ move IDs:
 = 0x18D = (attacking move with chance to lower sp. def)
 = 0x18E = (attacking move with chance to confuse)
 = 0x18F = (attacking move that harshly lowers user's sp. atk afterwards)
-- 0x190 = Discharge
++ 0x190 = Discharge
 = 0x191 = (attacking move that harshly lowers user's sp. atk afterwards)
 = 0x192 = (attacking move)
 = 0x193 = (attacking move)
@@ -243,9 +243,9 @@ move IDs:
 = 0x1A3 = (attacking move with chance to confuse or raise user's accuracy)
 = 0x1A4 = (attacking move with chance to raise all stats)
 = 0x1A5 = (attacking move with chance to poison)
-- 0x1A6 = Thunder Fang
-- 0x1A7 = Ice Fang
-- 0x1A8 = Fire Fang
++ 0x1A6 = Thunder Fang
++ 0x1A7 = Ice Fang
++ 0x1A8 = Fire Fang
 = 0x1A9 = (attacking move with chance to confuse user)
 = 0x1AA = (attacking move with chance to raise speed)
 = 0x1AB = (attacking move)
@@ -261,9 +261,9 @@ move IDs:
 = 0x1B5 = (attacking move with chance to lower accuracy)
 = 0x1B6 = (attacking move with chance to harshly lower defense)
 = 0x1B7 = (attacking move)
-- 0x1B8 = Energize
++ 0x1B8 = Energize
 = 0x1B9 = (attacking move with chance to lower speed)
-- 0x1BA = Diamond Storm
+= 0x1BA = (attacking move with chance to raise defense), (can't be called by metronome)
 = 0x1BB = (attacking move)
 = 0x1BC = (attacking move with chance to raise sp. atk)
 = 0x1BD = (non-attacking move)
@@ -277,7 +277,7 @@ move IDs:
 = 0x1C5 = (attacking move with chance to lower accuracy or poison)
 = 0x1C6 = (attacking move with chance to harshly lower speed)
 = 0x1C7 = (attacking move with chance to lower sp. def)
-- 0x1C8 = Sandblast
++ 0x1C8 = Sandblast
 = 0x1C9 = (attacking move with chance to raise accuracy)
 = 0x1CA = (attacking move)
 = 0x1CB = (attacking move with chance to burn user)
@@ -306,13 +306,13 @@ move IDs:
 = 0x1E2 = (attacking move with chance to lower user's attack or sp. atk)
 = 0x1E3 = (non-attacking move)
 = 0x1E4 = (non-attacking move, -1 evasion)
-- 0x1E5 = Lava Plume
++ 0x1E5 = Lava Plume
 = 0x1E6 = (attacking move), (can't be called by metronome)
-- 0x1E7 = Raid
++ 0x1E7 = Raid
 = 0x1E8 = (attacking move)
 = 0x1E9 = (attacking move with chance to lower speed)
 = 0x1EA = (non-attacking move)
-- 0x1EB = Gastro Acid
++ 0x1EB = Gastro Acid
 = 0x1EC = (non-attacking move)
 = 0x1ED = (attacking move with chance to lower accuracy)
 = 0x1EE = (attacking move)
@@ -347,7 +347,7 @@ move IDs:
 = 0x20B = (attacking move)
 = 0x20C = (attacking move)
 = 0x20D = (attacking move)
-- 0x20E = Hex
++ 0x20E = Hex
 = 0x20F = (attacking move with chance to raise speed)
 = 0x210 = (attacking move with chance to lower sp. atk)
 = 0x211 = (attacking move)
@@ -374,9 +374,9 @@ move IDs:
 = 0x226 = (attacking move)
 = 0x227 = (non-attacking move, turns target into pure Rock-type)
 = 0x228 = (attacking move)
-- 0x229 = Soak
-- 0x22A = Simple Beam
-- 0x22B = Worry Seed
++ 0x229 = Soak
++ 0x22A = Simple Beam
++ 0x22B = Worry Seed
 = 0x22C = (attacking move)
 = 0x22D = Wring Out/Crush Grip
 = 0x22E = (attacking move with chance to lower defense)
@@ -433,7 +433,7 @@ move IDs:
 = 0x261 = (attacking move), (can't be called by metronome)
 = 0x262 = (attacking move), (can't be called by metronome)
 = 0x263 = (attacking move)
-- 0x264 = Wake-Up Slap
++ 0x264 = Wake-Up Slap
 = 0x265 = (attacking move that does double damage if it cures infatuation)
 = 0x266 = (attacking move that does double damage if it cures burn)
 = 0x267 = (attacking move that does double damage if it cures freeze)
@@ -443,7 +443,7 @@ move IDs:
 = 0x26B = (non-attacking move)
 = 0x26C = (non-attacking move), (can't be called by metronome)
 = 0x26D = (non-attacking move), (can't be called by metronome)
-- 0x26E = Stored Power
++ 0x26E = Stored Power
 = 0x26F = (attacking move)
 = 0x270 = (attacking move)
 = 0x271 = (attacking move)
@@ -458,7 +458,7 @@ move IDs:
 = 0x27A = (attacking move with Brine effect)
 = 0x27B = (attacking move with Foul Play effect, but uses the target's Sp. Atk)
 = 0x27C = Crush Grip/Wring Out
-- 0x27D = Captivate
++ 0x27D = Captivate
 = 0x27E = (non-attacking move that sleep effect, but sleeps the target even if it already has a status)
 = 0x27F = (non-attacking move, +3 defense)
 = 0x280 = (attacking move)
@@ -469,13 +469,13 @@ move IDs:
 = 0x285 = (attacking move)
 = 0x286 = (attacking move)
 = 0x287 = (non-attacking move)
-- 0x288 = Draining Kiss
++ 0x288 = Draining Kiss
 = 0x289 = (attacking move with Overheat effect, but harshly lowers user's attack instead of sp. atk)
 = 0x28A = (attacking move that harshly lowers user's sp. atk afterwards)
 = 0x28B = (attacking move)
-- 0x28C = Infestation
++ 0x28C = Infestation
 = 0x28D = (attacking move)
-- 0x28E = Magma Storm
++ 0x28E = Magma Storm
 = 0x28F = (non-attacking move)
 = 0x290 = (non-attacking move)
 = 0x291 = (non-attacking move with Power Trick effect, but swaps the user's Sp. Atk and Sp. Def instead)
@@ -497,7 +497,7 @@ move IDs:
 = 0x2A1 = (attacking move)
 = 0x2A2 = (attacking move)
 = 0x2A3 = (attacking move with Venom Drench effect)
-- 0x2A4 = Strength Sap
+! 0x2A4 = Strength Sap (not implemented)
 = 0x2A5 = (non-attacking move), (can't be called by metronome)
 = 0x2A6 = (non-attacking move with Attract effect, but also poisons)
 = 0x2A7 = (attacking move with Counter effect, but does half of Counter's damage and prints string 0x218 if failed), (special-cased in focus punch setup to print string 0x217), (can't be called by metronome)
