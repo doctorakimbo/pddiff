@@ -34,7 +34,7 @@ AnimTask_BlizzardUnknown(taskId)
 
 
 
-Callback_Move18AUnknown(arg0)
+Callback_PsychoCutUnknown(arg0)
 {
 	arg0.pos1.x = fn_74480(data_02037F1A, 2)
 	

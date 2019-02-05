@@ -65,7 +65,7 @@ AnimTask_BlizzardUnknown(arg0)
 
 
 
-Callback_Move18AUnknown(arg0)
+Callback_PsychoCutUnknown(arg0)
 {
 	r5 = arg0
 	r4 = data_02037F1A

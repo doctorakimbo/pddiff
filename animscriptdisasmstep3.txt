@@ -35,7 +35,7 @@ AnimTask_BlizzardUnknown(arg0)
 
 
 
-Callback_Move18AUnknown(arg0)
+Callback_PsychoCutUnknown(arg0)
 {
 	arg0.0x20 = fn_73C24_J(data_02037F1A, 2)
 	

@@ -158,7 +158,7 @@ item IDs:
 + 0x1AE = Honey
 
 move IDs:
-(Mirror Move, Assist, Strength Sap, and the move just after the end of defined moves can't be called by metronome)
+(Mirror Move, Assist, Switcheroo, Chatter, (unimplemented Strength Sap), and the move just after the end of defined moves can't be called by metronome; Chatter can't be copied by Mimic)
 (Removed: Clamp, Barrage, Psywave, Conversion, Triple Kick, Spider Web, Conversion 2, Aeroblast, Sacred Fire, Arm Thrust, Tail Glow, Luster Purge, Mist Ball, Needle Arm, Doom Desire, Psycho Boost)
 = 0x80 = (attacking move), (has electric-related animation)
 = 0x8C = (non-attacking move), (animation is sweating then Tackle)
@@ -183,10 +183,10 @@ move IDs:
 + 0x167 = Possess
 + 0x168 = Devastate
 + 0x169 = Metal Blast
-= 0x16A = (attacking move with chance to lower user's speed), (has fist-related animation)
+- 0x16A = Hammer Arm
 = 0x16B = (attacking move), (animation appears to be a flurry of punches and kicks on Seismic Toss's background)
 + 0x16C = Flare Blitz
-= 0x16D = (attacking move with chance to paralyze), (has Arm Thrust animation)
+- 0x16D = Force Palm
 = 0x16E = (attacking move), (animation has Focus Energy and then Sand Attack sound)
 + 0x16F = Rock Polish
 = 0x170 = (attacking move with chance to poison), (has poison-related animation)
@@ -194,42 +194,42 @@ move IDs:
 + 0x172 = Night Slash
 + 0x173 = Aqua Tail
 + 0x174 = Seed Bomb
-= 0x175 = (attacking move with chance to flinch), (has Fury Cutter animation)
+- 0x175 = Air Slash
 + 0x176 = X-Scissor
-= 0x177 = (attacking move with chance to lower sp. def), (has Uproar animation)
+- 0x177 = Bug Buzz
 + 0x178 = Dragon Pulse
-= 0x179 = (attacking move with chance to flinch), (has Vital Throw animation)
-= 0x17A = (attacking move), (has steel-related animation)
+- 0x179 = Dragon Rush
+- 0x17A = Power Gem
 + 0x17B = Drain Punch
 = 0x17C = (attacking move), (has wind-related animation)
 = 0x17D = (attacking move with chance to lower sp. def), (animation has Focus Energy and then thwack sound)
 = 0x17E = (attacking move with chance to lower sp. def), (animation has bubble sounds)
 + 0x17F = Brave Bird
 + 0x180 = Earth Power
-= 0x181 = (non-attacking move), (can't be called by metronome), (animation is Trick with Feint Attack's background)
+- 0x181 = Switcheroo
 = 0x182 = (attacking move), (animation is Focus Energy three times followed by Mega Punch)
 + 0x183 = Nasty Plot
 + 0x184 = Bullet Punch
 = 0x185 = (attacking move), (animation involves a lot of rock-drop sounds)
-= 0x186 = (attacking move), (has ice-related animation)
+- 0x186 = Ice Shard
 = 0x187 = (attacking move), (animation is Slash with Icy Wind's background)
-= 0x188 = (attacking move), (animation involves the Destiny Bond shadow and a ghost background somehow)
-= 0x189 = (attacking move with chance to lower accuracy), (animation involves explosions somehow)
-= 0x18A = (attacking move), (animation has psybeam and then slash sound)
-= 0x18B = (attacking move)
-= 0x18C = (attacking move with chance to lower accuracy)
-= 0x18D = (attacking move with chance to lower sp. def)
-= 0x18E = (attacking move with chance to confuse)
-= 0x18F = (attacking move that harshly lowers user's sp. atk afterwards)
+- 0x188 = Shadow Sneak
+- 0x189 = Mud Bomb
+- 0x18A = Psycho Cut
+- 0x18B = Zen Headbutt
+- 0x18C = Mirror Shot
+- 0x18D = Flash Cannon
+= 0x18E = (attacking move with chance to confuse), (animation involves a tackle and large amounts of rocks)
+- 0x18F = Draco Meteor
 + 0x190 = Discharge
-= 0x191 = (attacking move that harshly lowers user's sp. atk afterwards)
-= 0x192 = (attacking move)
-= 0x193 = (attacking move)
-= 0x194 = (attacking move with chance to poison)
-= 0x195 = (attacking move with chance to flinch)
-= 0x196 = (attacking move)
-= 0x197 = (attacking move)
-= 0x198 = (attacking move)
+- 0x191 = Leaf Storm
+= 0x192 = (attacking move), (animation involves some kind of mon movement)
+- 0x193 = Rock Wrecker
+= 0x194 = (attacking move with chance to poison), (poison-related animation with a lot of bubble sounds)
+- 0x195 = Iron Head
+- 0x196 = Magnet Bomb
+- 0x197 = Stone Edge
+- 0x198 = Grass Knot
 = 0x199 = (attacking move with chance to raise sp. atk)
 = 0x19A = (attacking move)
 = 0x19B = (attacking move)
@@ -291,7 +291,7 @@ move IDs:
 = 0x1D3 = (attacking move)
 = 0x1D4 = (attacking move with chance to lower user's sp. def)
 = 0x1D5 = (attacking move with chance to raise sp. atk)
-= 0x1D6 = (attacking move with chance to sleep or confuse)
+- 0x1D6 = Shadow Clamp
 = 0x1D7 = (attacking move)
 = 0x1D8 = (attacking move)
 = 0x1D9 = (attacking move with chance to sharply raise target's attack)
@@ -340,7 +340,7 @@ move IDs:
 = 0x204 = (attacking move with chance to lower attack)
 = 0x205 = (attacking move)
 = 0x206 = (non-attacking move)
-= 0x207 = (attacking move with chance to confuse), (can't be copied by mimic or called by metronome)
+- 0x207 = Chatter
 + 0x208 = Trick Room
 = 0x209 = (attacking move)
 = 0x20A = (attacking move with 50% recoil)
@@ -2321,8 +2321,8 @@ stray text:
   1D51C4: 6D 53 -> CD 52
 		  Implements: switches around weather cases for Weather Ball animation (sun -> "ice", sand -> "fire", hail -> "rock")
 		  Relies on: probably means that the weather constant is changed from (none, sun, rain, sand, hail) to (none, hail, rain, sun, sand) (why???)
-- 1D53D9 -> 14294F0 (repoint): Move_Grand_Boulder (see animscripts.txt)
-		  Implements: Grand Boulder animation
+- 1D53D9 -> 14294F0 (repoint): Move_Stone_Edge (see animscripts.txt)
+		  Implements: Grand Boulder/Stone Edge animation
 - 1D5C5F -> 1303564 (repoint): General_TurnTrap (see animscripts.txt)
 		  Implements: Infestation and Magma Storm end-of-turn animations
 - 1D65A8, 1D65EC, 1D66E0, 1D673C, 1D6744, 1D67A8 <except done on the new table>: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything)
@@ -2384,7 +2384,6 @@ stray text:
 			StatDownPerfectAccuracy: EFFECT_ATTACK_DOWN (indirectly), EFFECT_SPECIAL_ATTACK_DOWN (indirectly)
 		  Required knowledge: whether the area around gStringVar4 is the same in en
 		  Note: code is horrifying, get someone to fix this
-		  Note: Diamond Storm has gen 6 effect
 - 1D6A76 -> 1053960 (repoint): BattleScript_EffectExplosion_New (see movescripts.txt)
   1D6AF6 -> 1053968 (repoint): BattleScript_EffectDreamEater_New (see movescripts.txt)
   1D6F01 -> 1053970 (repoint): BattleScript_EffectRazorWind_New (see movescripts.txt)
@@ -2874,44 +2873,60 @@ stray text:
 		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
 -10558A0: BattleScript_EffectPartiallyBypassProtect (see movescripts.txt)
 		  Implements: (a Ground-type move that if used on Protect, does half damage and harshly lowers user's Sp. Atk), [move23A]
-=11AADD0: Move_??? (see animscripts.txt)
-		  Implements: 
+-11AADD0: Move_Zen_Headbutt (see animscripts.txt)
+		  Implements: Zen Headbutt animation
 -11BA7EF: BattleScript_EffectTripleHit (see movescripts.txt)
 		  Implements: (move that hits 3 times)
+-13037E0: Move_??? (see animscripts.txt)
+		  Implements: [move192] animation
 -13041C8: Move_Possess (see animscripts.txt)
 		  Implements: Possess animation
 -1306328: Move_??? (see animscripts.txt)
 		  Implements: [move185] animation
 -13064B0: Move_??? (see animscripts.txt)
 		  Implements: [move170] animation
+-1306BF0: Move_Leaf_Storm (see animscripts.txt)
+		  Implements: Leaf Storm animation
+-1307950: Move_??? (see animscripts.txt)
+		  Implements: [move18E] animation
 -1308368: Move_??? (see animscripts.txt)
 		  Implements: [move17D] animation
--13087A8: Move_??? (see animscripts.txt)
-		  Implements: [move188] animation
--1308DC0: Move_??? (see animscripts.txt)
-		  Implements: [move18A] animation
+-13083D0: Move_??? (see animscripts.txt)
+		  Implements: [move194] animation
+-13087A8: Move_Shadow_Sneak (see animscripts.txt)
+		  Implements: Shadow Sneak animation
+-1308DC0: Move_Psycho_Cut (see animscripts.txt)
+		  Implements: Psycho Cut animation
 -1308F80: Move_Raze_Earth (see animscripts.txt)
 		  Implements: Raze Earth animation
+-13091A0: Move_Rock_Wrecker (see animscripts.txt)
+		  Implements: Rock Wrecker animation
 -1309350: Move_??? (see animscripts.txt)
 		  Implements: [move16E] animation
 -1309598: Move_??? (see animscripts.txt)
 		  Implements: [move17E] animation
--130A350: Move_??? (see animscripts.txt)
-		  Implements: [move16A] animation
+-130A350: Move_Hammer_Arm (see animscripts.txt)
+		  Implements: Hammer Arm animation
 -130A6F0: Move_Seed_Bomb (see animscripts.txt)
 		  Implements: Seed Bomb animation
 -130A950: Move_X_Scissor (see animscripts.txt)
 		  Implements: X-Scissor animation
--130ABB0: Move_??? (see animscripts.txt)
-		  Implements: [move189] animation
+-130ABB0: Move_Mud_Bomb (see animscripts.txt)
+		  Implements: Mud Bomb animation
+-13C4910: Move_Iron_Head (see animscripts.txt)
+		  Implements: Iron Head animation
 -13C4990: Move_Soul_Break (see animscripts.txt)
 		  Implements: Soul Break animation
--13C49C0: Move_??? (see animscripts.txt)
-		  Implements: [move17A] animation
+-13C49C0: Move_Power_Gem (see animscripts.txt)
+		  Implements: Power Gem animation
+-140D316: Move_Mirror_Shot (see animscripts.txt)
+		  Implements: Mirror Shot animation
 -140D880: Move_Drain_Punch (see animscripts.txt)
 		  Implements: Drain Punch animation
 -140DAC8: Move_Earth_Power (see animscripts.txt)
 		  Implements: Earth Power animation
+-140DE22: Move_Flash_Cannon (see animscripts.txt)
+		  Implements: Flash Cannon animation
 -140E074: Move_??? (see animscripts.txt)
 		  Implements: [move16B] animation
 -1429760: Move_Stardust (see animscripts.txt)
@@ -2928,19 +2943,27 @@ stray text:
 		  Implements: Night Slash animation
 -142A128: Move_Dark_Pulse (see animscripts.txt)
 		  Implements: Dark Pulse animation
--142A20C: Move_??? (see animscripts.txt)
-		  Implements: [move181] animation
+-142A20C: Move_Switcheroo (see animscripts.txt)
+		  Implements: Switcheroo animation
 -142A7F0: Move_Bullet_Punch (see animscripts.txt)
 		  Implements: Bullet Punch animation
--142C316: Move_??? (see animscripts.txt)
-		  Implements: [move186] animation
+-142C316: Move_Ice_Shard (see animscripts.txt)
+		  Implements: Ice Shard animation
 -142C4A8: Move_Nasty_Plot (see animscripts.txt)
 		  Implements: Nasty Plot animation
+-142C800: Move_Discharge (see animscripts.txt)
+		  Implements: Discharge animation
 -142CFD8: Move_??? (see animscripts.txt)
 		  Implements: [move182] animation
+=1696040: Move_??? (see animscripts.txt)
+		  Implements: 
 -1697F80: BattleScript_EffectHurricane (see movescripts.txt)
 		  Implements: Hurricane
 -1699E26: Move_Dragon_Pulse (see animscripts.txt)
 		  Implements: Dragon Pulse animation
+-1699EE0: Move_Draco_Meteor (see animscripts.txt)
+		  Implements: Draco Meteor animation
+-169A20A: Move_Magnet_Bomb (see animscripts.txt)
+		  Implements: Magnet Bomb animation
 -169A3A0: Move_Brave_Bird (see animscripts.txt)
 		  Implements: Brave Bird animation
