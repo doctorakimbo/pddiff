@@ -58,7 +58,7 @@ tasks/callbacks:
 [41 55 07 08] = [9D 5D 07 08] = (used by [move16E], [move17D], [move17E], Shadow Sneak, Mud Bomb, [move194])
 [25 56 07 08] = [81 5E 07 08] = (used by Egg Bomb, Seed Bomb, Mud Bomb)
 [11 59 07 08] = [6D 61 07 08] = AnimTask_BlendMonInAndOut
-[2D 5A 07 08] = [89 62 07 08] = (used by [moveA0])
+[2D 5A 07 08] = [89 62 07 08] = (used by Fiery Dance)
 [01 84 09 08] = [F9 89 09 08] = AnimTask_ShakeMon
 [25 85 09 08] = [1D 8B 09 08] = AnimTask_ShakeMon2
 [D9 86 09 08] = [D1 8C 09 08] = (used by [moveA7] and [move192])
@@ -84,7 +84,7 @@ tasks/callbacks:
 [FD 68 0B 08] = [3D 56 0B 08] = (used by Hydro Pump, Hydro Cannon, [move16E], [move17E], Leaf Storm, Rock Wrecker)
 [6D 6B 0B 08] = [AD 58 0B 08] = (used by Possess)
 [E1 72 0B 08] = [21 60 0B 08] = (used by Shadow Sneak)
-[A1 88 0B 08] = [E1 75 0B 08] = (used by [moveA0])
+[A1 88 0B 08] = [E1 75 0B 08] = (used by Fiery Dance)
 [65 90 0B 08] = [A5 7D 0B 08] = (used by Possess)
 [31 93 0B 08] = [71 80 0B 08] = (used by Possess)
 [79 98 0B 08] = [B9 85 0B 08] = (used by Possess)
@@ -202,7 +202,7 @@ anims 2/templates:
 [04 EA 3A 08] = [C0 74 3E 08] = (used by Ancient Power and Grand Boulder/Stone Edge)
 [48 EB 3A 08] = [04 76 3E 08] = (used by Hydro Pump and [move16E])
 [F4 EB 3A 08] = [B0 76 3E 08] = (used by Soul Break)
-[8C ED 3A 08] = [48 78 3E 08] = (used by [moveA0])
+[8C ED 3A 08] = [48 78 3E 08] = (used by Fiery Dance)
 [A4 ED 3A 08] = [60 78 3E 08] = (used by Overheat)
 [8C EE 3A 08] = [48 79 3E 08] = (used by Clamp)
 [68 F0 3A 08] = [24 7B 3E 08] = gSimplePaletteBlendSpriteTemplate
@@ -241,7 +241,7 @@ sounds:
 0x87 = SE_W152  // Crabhammer		(used by Waterfall)
 0x88 = SE_W026  // Jump Kick		(used by [move80])
 0x89 = SE_W172  // Flame Wheel		(used by Fire Punch and Flare Blitz)
-0x8A = SE_W172B // Flame Wheel 2	(used by [moveA0], Overheat, Flare Blitz)
+0x8A = SE_W172B // Flame Wheel 2	(used by Fiery Dance, Overheat, Flare Blitz)
 0x8B = SE_W053  // Flamethrower		(used by Flamethrower)
 0x8C = SE_W007  // Fire Punch		(used by Fire Punch and Overheat)
 0x8D = SE_W092  // Toxic			(used by [move194])
@@ -266,7 +266,7 @@ sounds:
 0xBD = SE_W109  // Confuse Ray		(used by Shadow Sneak)
 0xC1 = SE_W060B // Psybeam 2		(used by Psycho Boost, Possess, Psycho Cut)
 0xC2 = SE_W076  // Solar Beam		(used by [moveA7])
-0xC4 = SE_W100  // Teleport			(used by [moveA0])
+0xC4 = SE_W100  // Teleport			(used by Fiery Dance)
 0xC7 = SE_W129  // Swift			(used by Double-Edge)
 0xC9 = SE_W112  // Barrier			(used by Stardust and Draco Meteor)
 0xCF = SE_W070  // Strength			(used by Raze Earth)
