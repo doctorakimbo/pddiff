@@ -230,24 +230,24 @@ move IDs:
 + 0x196 = Magnet Bomb
 + 0x197 = Stone Edge
 + 0x198 = Grass Knot
-= 0x199 = (attacking move with chance to raise sp. atk)
-= 0x19A = (attacking move)
-= 0x19B = (attacking move)
-= 0x19C = (attacking move)
-= 0x19D = (non-attacking move)
-= 0x19E = (non-attacking move)
-= 0x19F = (attacking move)
-= 0x1A0 = (attacking move)
-= 0x1A1 = (attacking move)
-= 0x1A2 = (attacking move with chance to sharply raise speed)
-= 0x1A3 = (attacking move with chance to confuse or raise user's accuracy)
-= 0x1A4 = (attacking move with chance to raise all stats)
-= 0x1A5 = (attacking move with chance to poison)
+- 0x199 = Charge Beam
+= 0x19A = (attacking move), (animation is a tornado of leaves, but this move isn't Leaf Tornado?)
+= 0x19B = (attacking move), (animation involves a tackle and water)
+- 0x19C = Attack Order
+- 0x19D = Defend Order
+- 0x19E = Heal Order
+= 0x19F = (attacking move), (animation is a double tackle)
+= 0x1A0 = (attacking move), (animation generates a lot of objects and has same background as Psycho Cut)
+= 0x1A1 = (attacking move), (has Superpower animation)
+- 0x1A2 = Magma Rush
+= 0x1A3 = (attacking move with chance to confuse or raise user's accuracy), (animation is a pulse move on Cosmic Power's background)
+- 0x1A4 = Ominous Wind
+= 0x1A5 = (attacking move with chance to poison), (has poison-related animation with slashing sound)
 + 0x1A6 = Thunder Fang
 + 0x1A7 = Ice Fang
 + 0x1A8 = Fire Fang
-= 0x1A9 = (attacking move with chance to confuse user)
-= 0x1AA = (attacking move with chance to raise speed)
+- 0x1A9 = Crash Impact
+- 0x1AA = Spin Tail
 = 0x1AB = (attacking move)
 = 0x1AC = (attacking move with chance to lower sp. def or confuse)
 = 0x1AD = (non-attacking move)
@@ -2891,8 +2891,18 @@ stray text:
 		  Implements: [move170] animation
 -1306BF0: Move_Leaf_Storm (see animscripts.txt)
 		  Implements: Leaf Storm animation
+-1306F58: Move_??? (see animscripts.txt)
+		  Implements: [move1A5] animation
+-1307478: Move_Fire_Fang (see animscripts.txt)
+		  Implements: Fire Fang animation
+-1307510: Move_Thunder_Fang (see animscripts.txt)
+		  Implements: Thunder Fang animation
+-1307600: Move_Ice_Fang (see animscripts.txt)
+		  Implements: Ice Fang animation
 -1307950: Move_??? (see animscripts.txt)
 		  Implements: [move18E] animation
+-1307F70: Move_??? (see animscripts.txt)
+		  Implements: [move19B] animation
 -1308368: Move_??? (see animscripts.txt)
 		  Implements: [move17D] animation
 -13083D0: Move_??? (see animscripts.txt)
@@ -2913,16 +2923,28 @@ stray text:
 		  Implements: Hammer Arm animation
 -130A6F0: Move_Seed_Bomb (see animscripts.txt)
 		  Implements: Seed Bomb animation
+-130A828: Move_??? (see animscripts.txt)
+		  Implements: [move1A0] animation
 -130A950: Move_X_Scissor (see animscripts.txt)
 		  Implements: X-Scissor animation
 -130ABB0: Move_Mud_Bomb (see animscripts.txt)
 		  Implements: Mud Bomb animation
+-1340000: Move_??? (see animscripts.txt)
+		  Implements: [move19A] animation
 -13C4910: Move_Iron_Head (see animscripts.txt)
 		  Implements: Iron Head animation
 -13C4990: Move_Soul_Break (see animscripts.txt)
 		  Implements: Soul Break animation
 -13C49C0: Move_Power_Gem (see animscripts.txt)
 		  Implements: Power Gem animation
+-140D086: Move_??? (see animscripts.txt)
+		  Implements: [move19F] animation
+-140D0F6: Move_Defend_Order (see animscripts.txt)
+		  Implements: Defend Order animation
+-140D14C: Move_Attack_Order (see animscripts.txt)
+		  Implements: Attack Order animation
+-140D18A: Move_Heal_Order (see animscripts.txt)
+		  Implements: Heal Order animation
 -140D316: Move_Mirror_Shot (see animscripts.txt)
 		  Implements: Mirror Shot animation
 -140D880: Move_Drain_Punch (see animscripts.txt)
@@ -2947,6 +2969,8 @@ stray text:
 		  Implements: Night Slash animation
 -142A128: Move_Dark_Pulse (see animscripts.txt)
 		  Implements: Dark Pulse animation
+=142A175: Move_??? (see animscripts.txt)
+		  Implements: 
 -142A20C: Move_Switcheroo (see animscripts.txt)
 		  Implements: Switcheroo animation
 -142A7F0: Move_Bullet_Punch (see animscripts.txt)
@@ -2955,12 +2979,15 @@ stray text:
 		  Implements: Ice Shard animation
 -142C4A8: Move_Nasty_Plot (see animscripts.txt)
 		  Implements: Nasty Plot animation
+-142C4CC: Move_Ominous_Wind (see animscripts.txt)
+		  Implements: Ominous Wind animation
 -142C800: Move_Discharge (see animscripts.txt)
 		  Implements: Discharge animation
 -142CFD8: Move_??? (see animscripts.txt)
 		  Implements: [move182] animation
-=1696040: Move_??? (see animscripts.txt)
-		  Implements: 
+-1696040: Move_Charge_Beam (see animscripts.txt)
+		  Implements: Charge Beam animation
+		  Note: changed ptr to 169605B, otherwise it doesn't work (?????? TEST)
 -1697F80: BattleScript_EffectHurricane (see movescripts.txt)
 		  Implements: Hurricane
 -1699E26: Move_Dragon_Pulse (see animscripts.txt)
@@ -2971,3 +2998,5 @@ stray text:
 		  Implements: Magnet Bomb animation
 -169A3A0: Move_Brave_Bird (see animscripts.txt)
 		  Implements: Brave Bird animation
+-1E29CA0: Move_??? (see animscripts.txt)
+		  Implements: [move1A3] animation
