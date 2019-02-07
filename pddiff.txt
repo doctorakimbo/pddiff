@@ -158,9 +158,9 @@ item IDs:
 + 0x1AE = Honey
 
 move IDs:
-(Mirror Move, Assist, Switcheroo, Chatter, (unimplemented Strength Sap), and the move just after the end of defined moves can't be called by metronome; Chatter can't be copied by Mimic)
+(Mirror Move, Assist, Switcheroo, Chatter, (unimplemented Strength Sap), and the move just after the end of defined moves can't be called by Metronome; Chatter can't be copied by Mimic)
 (Removed: Clamp, Barrage, Psywave, Conversion, Triple Kick, Spider Web, Conversion 2, Aeroblast, Sacred Fire, Arm Thrust, Tail Glow, Luster Purge, Mist Ball, Needle Arm, Doom Desire, Psycho Boost)
-= 0x80 = (attacking move), (animation is Quick Attack with electricity)
+= 0x80 = (attacking move), (has Mach Volt animation)
 = 0x8C = (non-attacking move), (animation is sweating while flashing rapidly, then Tackle)
 = 0x95 = (attacking move), (has Psywave animation)
 ! 0xA0 = Fiery Dance (not implemented)
@@ -248,24 +248,24 @@ move IDs:
 + 0x1A8 = Fire Fang
 + 0x1A9 = Crash Impact
 + 0x1AA = Spin Tail
-= 0x1AB = (attacking move)
-= 0x1AC = (attacking move with chance to lower sp. def or confuse)
-= 0x1AD = (non-attacking move)
-= 0x1AE = (non-attacking move with chance to sleep (?))
-= 0x1AF = (attacking move with chance to confuse user)
-= 0x1B0 = (attacking move)
-= 0x1B1 = (attacking move with chance to raise evasion)
-= 0x1B2 = (attacking move that harshly lowers user's sp. atk afterwards)
-= 0x1B3 = (attacking move with chance to paralyze)
-= 0x1B4 = (attacking move that harshly lowers user's defense afterwards)
-= 0x1B5 = (attacking move with chance to lower accuracy)
-= 0x1B6 = (attacking move with chance to harshly lower defense)
-= 0x1B7 = (attacking move)
+- 0x1AB = Double Spin
+= 0x1AC = (attacking move with chance to lower sp. def or confuse), (animation has Perish Song sound)
+= 0x1AD = (non-attacking move), (animation appears to be missing)
+- 0x1AE = Deep Yawn
+- 0x1AF = Raging Flame
+= 0x1B0 = (attacking move), (has Fire Spin animation)
+- 0x1B1 = Wave Splash
+- 0x1B2 = Deluge
+- 0x1B3 = Aqua Bolt
+- 0x1B4 = Giga Spark
+= 0x1B5 = (attacking move with chance to lower accuracy), (has Mirror Shot animation)
+= 0x1B6 = (attacking move with chance to harshly lower defense), (animation is Thunder with some parts removed)
+- 0x1B7 = Mach Volt
 + 0x1B8 = Energize
-= 0x1B9 = (attacking move with chance to lower speed)
-= 0x1BA = (attacking move with chance to raise defense), (can't be called by metronome)
-= 0x1BB = (attacking move)
-= 0x1BC = (attacking move with chance to raise sp. atk)
+= 0x1B9 = (attacking move with chance to lower speed), (animation is Magical Leaf with the attack part replaced with Vine Whip)
+= 0x1BA = (attacking move with chance to raise defense), (can't be called by metronome), (animation is Magical Leaf with the attack part replaced with Tackle)
+- 0x1BB = Poison Leaf
+= 0x1BC = (attacking move with chance to raise sp. atk), (animation is Growth, Ingrain, and then Frenzy Plant)
 = 0x1BD = (non-attacking move)
 = 0x1BE = (attacking move)
 = 0x1BF = (attacking move with chance to lower evasion)
@@ -2292,8 +2292,8 @@ stray text:
 + 1CD6CA -> 1307770 (repoint): Move_Thunder_Punch (see animscripts.txt)
 		  Implements: makes the fist in Thunder Punch animation yellow
 + 1CD793 -> 1C6F34 (repoint): Move_??? ([moveDD] has Pound animation, presumably placeholder)
-+ 1CE29E -> 142C700 (repoint): Move_??? (see animscripts.txt)
-		  Implements: [move80] animation
++ 1CE29E -> 142C700 (repoint): Move_Mach_Volt (see animscripts.txt)
+		  Implements: [move80]/Mach Volt animation
 + 1CE768 -> 1304EE0 (repoint): Move_Blizzard (see animscripts.txt)
 		  Implements: completely overhauls Blizzard animation
 + 1CE9EE -> 13051B8 (repoint): Move_Hydro_Pump (see animscripts.txt)
@@ -2388,6 +2388,7 @@ stray text:
 			StatDownPerfectAccuracy: EFFECT_ATTACK_DOWN (indirectly), EFFECT_SPECIAL_ATTACK_DOWN (indirectly)
 		  Required knowledge: whether the area around gStringVar4 is the same in en
 		  Note: code is horrifying, get someone to fix this
+		  Glitch?: Zen Headbutt is missing its flinch chance, Double Spin is missing its +Atk chance, and (check Poison Leaf, maybe this one is correct) (might just be transcription errors)
 - 1D6A76 -> 1053960 (repoint): BattleScript_EffectExplosion_New (see movescripts.txt)
   1D6AF6 -> 1053968 (repoint): BattleScript_EffectDreamEater_New (see movescripts.txt)
   1D6F01 -> 1053970 (repoint): BattleScript_EffectRazorWind_New (see movescripts.txt)
@@ -2885,6 +2886,8 @@ stray text:
 		  Implements: [move192] animation
 -13041C8: Move_Possess (see animscripts.txt)
 		  Implements: Possess animation
+=1306150: Move_??? (see animscripts.txt)
+		  Implements: <<<<<<<<FINISH THIS>>>>>>>>
 -1306328: Move_??? (see animscripts.txt)
 		  Implements: [move185] animation
 -13064B0: Move_??? (see animscripts.txt)
@@ -2919,6 +2922,12 @@ stray text:
 		  Implements: [move16E] animation
 -1309598: Move_??? (see animscripts.txt)
 		  Implements: [move17E] animation
+-1309E68: Move_Poison_Leaf (see animscripts.txt)
+		  Implements: Poison Leaf
+-130A078: Move_??? (see animscripts.txt)
+		  Implements: [move1AC] animation
+-130A1CB: Move_Wave_Splash (see animscripts.txt)
+		  Implements: Wave Splash animation
 -130A350: Move_Hammer_Arm (see animscripts.txt)
 		  Implements: Hammer Arm animation
 -130A6F0: Move_Seed_Bomb (see animscripts.txt)
@@ -2937,6 +2946,8 @@ stray text:
 		  Implements: Soul Break animation
 -13C49C0: Move_Power_Gem (see animscripts.txt)
 		  Implements: Power Gem animation
+-140CF90: Move_??? (see animscripts.txt)
+		  Implements: [move1BA] animation
 -140D086: Move_??? (see animscripts.txt)
 		  Implements: [move19F] animation
 -140D0F6: Move_Defend_Order (see animscripts.txt)
@@ -2946,9 +2957,16 @@ stray text:
 -140D18A: Move_Heal_Order (see animscripts.txt)
 		  Implements: Heal Order animation
 -140D316: Move_Mirror_Shot (see animscripts.txt)
-		  Implements: Mirror Shot animation
+		  Implements: Mirror Shot/[move1B5] animation
+-140D632: Move_??? (see animscripts.txt)
+		  Implements: [move1BC] animation
 -140D880: Move_Drain_Punch (see animscripts.txt)
 		  Implements: Drain Punch animation
+-140D906: Move_??? (see animscripts.txt)
+		  Implements: [move1B9] animation
+!140DA56: Move_??? (see animscripts.txt)
+		  Implements: [move1AD] animation
+		  GLITCH!: There's nothing here?
 -140DAC8: Move_Earth_Power (see animscripts.txt)
 		  Implements: Earth Power animation
 -140DE22: Move_Flash_Cannon (see animscripts.txt)
@@ -2967,22 +2985,34 @@ stray text:
 		  Implements: Aqua Tail animation
 -142A090: Move_Night_Slash (see animscripts.txt)
 		  Implements: Night Slash animation
+-142A0D4: Move_Deep_Yawn (see animscripts.txt)
+		  Implements: Deep Yawn animation
 -142A128: Move_Dark_Pulse (see animscripts.txt)
 		  Implements: Dark Pulse animation
-=142A175: Move_??? (see animscripts.txt)
-		  Implements: 
+-142A175: Move_Double_Spin (see animscripts.txt)
+		  Implements: Double Spin animation
 -142A20C: Move_Switcheroo (see animscripts.txt)
 		  Implements: Switcheroo animation
 -142A7F0: Move_Bullet_Punch (see animscripts.txt)
 		  Implements: Bullet Punch animation
+-142A888: Move_Aqua_Bolt (see animscripts.txt)
+		  Implements: Aqua Bolt animation
+-142A96E: Move_Raging_Flame (see animscripts.txt)
+		  Implements: Raging Flame animation
 -142C316: Move_Ice_Shard (see animscripts.txt)
 		  Implements: Ice Shard animation
 -142C4A8: Move_Nasty_Plot (see animscripts.txt)
 		  Implements: Nasty Plot animation
 -142C4CC: Move_Ominous_Wind (see animscripts.txt)
 		  Implements: Ominous Wind animation
+-142C660: Move_??? (see animscripts.txt)
+		  Implements: [move1B6] animation
+-142C7AC: Move_Deluge (see animscripts.txt)
+		  Implements: Deluge animation
 -142C800: Move_Discharge (see animscripts.txt)
 		  Implements: Discharge animation
+-142CB10: Move_Giga_Spark (see animscripts.txt)
+		  Implements: Giga Spark animation
 -142CFD8: Move_??? (see animscripts.txt)
 		  Implements: [move182] animation
 -1696040: Move_Charge_Beam (see animscripts.txt)
