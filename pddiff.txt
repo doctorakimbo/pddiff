@@ -230,24 +230,24 @@ move IDs:
 + 0x196 = Magnet Bomb
 + 0x197 = Stone Edge
 + 0x198 = Grass Knot
-- 0x199 = Charge Beam
++ 0x199 = Charge Beam
 = 0x19A = (attacking move), (animation is a tornado of leaves, but this move isn't Leaf Tornado?)
 = 0x19B = (attacking move), (animation involves a tackle and water)
-- 0x19C = Attack Order
-- 0x19D = Defend Order
-- 0x19E = Heal Order
++ 0x19C = Attack Order
++ 0x19D = Defend Order
++ 0x19E = Heal Order
 = 0x19F = (attacking move), (animation is a double tackle)
 = 0x1A0 = (attacking move), (animation generates a lot of objects and has same background as Psycho Cut)
 = 0x1A1 = (attacking move), (has Superpower animation)
-- 0x1A2 = Magma Rush
++ 0x1A2 = Magma Rush
 = 0x1A3 = (attacking move with chance to confuse or raise user's accuracy), (animation is a pulse move on Cosmic Power's background)
-- 0x1A4 = Ominous Wind
++ 0x1A4 = Ominous Wind
 = 0x1A5 = (attacking move with chance to poison), (has poison-related animation with slashing sound)
 + 0x1A6 = Thunder Fang
 + 0x1A7 = Ice Fang
 + 0x1A8 = Fire Fang
-- 0x1A9 = Crash Impact
-- 0x1AA = Spin Tail
++ 0x1A9 = Crash Impact
++ 0x1AA = Spin Tail
 = 0x1AB = (attacking move)
 = 0x1AC = (attacking move with chance to lower sp. def or confuse)
 = 0x1AD = (non-attacking move)
@@ -520,7 +520,7 @@ move effects:
 = 0x40 = poison or paralysis, chooses one at random
 = 0x58 = moves that double damage on status are all grouped here ((does double damage to poisoned targets (but NOT toxiced targets)), Hex, and Smelling Salts/equivalents), but hardcoded based on move ID
 = 0x5D = Venom Drench/[move2A3]
-= 0x60 = (unknown hardcoded parameterized additional effects)
+= 0x60 = (unknown hardcoded parameterized additional effects), (Crash Impact uses this)
 = 0x61 = (unknown hardcoded parameterized additional effects), (Shadow Clamp uses this)
 = 0x68 = Bestow
 = 0x6E = Incinerate
@@ -546,7 +546,7 @@ move effects:
 = 0xDF = -1 accuracy +2 evasion to target
 = 0xE0 = hits 3 times
 = 0xE1 = Frost Breath
-= 0xE2 = (unknown - it seems to be a simple paralysis chance attack that becomes a freeze chance attack if the move is Blizzard - maybe just unfinished?)
+= 0xE2 = Blizzard
 = 0xE3 = Brine/(double damage if user at less than half HP)
 = 0xE4 = Soak + equivalents
 = 0xE5 = overwrites a random one of the target's moves with [move240]
@@ -674,7 +674,7 @@ battle strings (ADD 9 TO ALL):
 ! 0x19D = "[PKMN] restored HP using its [ABILITY]! (placeholder)"
 ! 0x19E = "[PKMN] is hurt by its [ITEM]!"
 - 0x1FF = "[PKMN] decided to explode! (placeholder)"
-- 0x200 = "[PKMN] shared its power with the target!"
++ 0x200 = "[PKMN] shared its power with the target!"
 - 0x201 = "[PKMN] shared its guard with the target!"
 - 0x202 = "[PKMN] switched all changes to its Attack and Sp. Atk with its target!"
 - 0x203 = "[PKMN] switched all changes to its Defense and Sp. Def with its target!"
@@ -2329,8 +2329,8 @@ stray text:
 		  Implements: Grand Boulder/Stone Edge animation
 + 1D5C5F -> 1303564 (repoint): General_TurnTrap (see animscripts.txt)
 		  Implements: Infestation and Magma Storm end-of-turn animations
-- 1D65A8, 1D65EC, 1D66E0, 1D673C, 1D6744, 1D67A8 <except done on the new table>: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything)
-- 1D6684 <except done on the new table>: 00 69 1D 08 -> C0 24 05 09 (BattleScript_EffectPowerSplit (see movescripts.txt))
++ 1D65A8, 1D65EC, 1D66E0, 1D673C, 1D6744, 1D67A8 <except done on the new table>: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything)
++ 1D6684 <except done on the new table>: 00 69 1D 08 -> C0 24 05 09 (BattleScript_EffectPowerSplit (see movescripts.txt))
 		  Implements: Power Split
 - 1D6688 <except done on the new table>: 00 69 1D 08 -> E0 24 05 09 (BattleScript_EffectGuardSplit (see movescripts.txt))
 		  Implements: Guard Split
@@ -2754,23 +2754,23 @@ stray text:
 = E2E640: ItemUseOutOfBattle_EVReduction (see 285disasm)
 		  Implements: field function for EV-reduction berries
 		  Required knowledge: j03005EE8
-- EB7E00: atkF8_doubledamageatlowhp (see 263disasm)
++ EB7E00: atkF8_doubledamageatlowhp (see 263disasm)
 		  Implements: new battle script command that doubles damage if the given mon is at less than half HP
-- EB7E60: atkF9_setmondata (see 264disasm)
++ EB7E60: atkF9_setmondata (see 264disasm)
 		  Implements: new battle script command that sets any given data for the given mon
-- EB7EB0: atkFA_swaporcopymondata (see 265disasm)
++ EB7EB0: atkFA_swaporcopymondata (see 265disasm)
 		  Implements: new battle script command that swaps, copies, or averages any given data for the attacker and target, depending on case (0 = average the two and set both to that average; 1 = swap the two; 2 = set the attacker's to the target's; 3 = set the target's to the attacker's)
-- EB7F70: atkFB_swapdataonmon (see 266disasm)
++ EB7F70: atkFB_swapdataonmon (see 266disasm)
 		  Implements: new battle script command that swaps the two given values for the given mon
 		  Glitch?: first param controls data size and battler index, second param is never read; obviously one of those is meant for the second param
-- EB7FC0: atkFC_jumpifitem (see 267disasm)
++ EB7FC0: atkFC_jumpifitem (see 267disasm)
 		  Implements: new battle script command that jumps if the held item comparison is true, depending on case (0 = equal, 1 = not equal, 2 = less than, 3 = greater than)
-- EB8030: atkFD_jumpifnocommontype (see 268disasm)
++ EB8030: atkFD_jumpifnocommontype (see 268disasm)
 		  Implements: new battle script command that jumps if the attacker and target don't share any types
-- EB8090: atkFE_statbooststomovepower (see 269disasm)
++ EB8090: atkFE_statbooststomovepower (see 269disasm)
 		  Implements: new battle script command that either counts the stat boosts (case 0) or counts the boosted stats (case 1), then adds that to the base power
 		  Note: this isn't the way it works in the actual games, stat drops should subtract from the number (for case 0, what even is case 1?)
-- EB8100: atkFF_exec (see 270disasm)
++ EB8100: atkFF_exec (see 270disasm)
 		  Implements: new battle script command that executes the given ASM function then continues running the battle script
 = FE5000: ItemUseOutOfBattle_AbilityChange (see 287disasm)
 		  Implements: field function for Ability Capsule
@@ -2834,8 +2834,8 @@ stray text:
 		  Implements: (move that just uses Explosion instead)
 -1053A90: BattleScript_EffectVCreate (see movescripts.txt)
 		  Implements: V-Create/Nova Inferno
--1053AA0: BattleScript_Effect??? (see movescripts.txt)
-		  Implements: [effectE2], unclear what this is
+-1053AA0: BattleScript_EffectBlizzard (see movescripts.txt)
+		  Implements: Blizzard has its own effect byte, unclear why
 =1053AA8: BattleScript_EffectSuckerPunch (see movescripts.txt)
 		  Implements: Sucker Punch
 		  Required knowledge: whether the area around gStringVar4 is the same in en

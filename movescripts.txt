@@ -5173,25 +5173,25 @@ BattleScript_EffectTripleHit (pe): @11BA7EF
 
 
 
-BattleScript_Effect??? (pj): @1053AA0
+BattleScript_EffectBlizzard (pj): @1053AA0
 00 02 28 E1 15 E3 08
 
-BattleScript_Effect???_ActualScript (pj): @E315E1
+BattleScript_EffectBlizzard_ActualScript (pj): @E315E1
 2A 00 AA 3C 02 02 3B 00 1C AA 1B 08 28 27 AA 1B 08
 
 attackcanceler
 attackstring
-goto BattleScript_Effect???_ActualScript
+goto BattleScript_EffectBlizzard_ActualScript
 
-BattleScript_Effect???_ActualScript:
+BattleScript_EffectBlizzard_ActualScript:
 jumpifmove MOVE_BLIZZARD, BattleScript_EffectFreezeHit
 goto BattleScript_EffectParalyzeHit
 
 
-BattleScript_Effect??? (pe): @1053AA0
+BattleScript_EffectBlizzard (pe): @1053AA0
 00 02 28 E1 15 E3 09
 
-BattleScript_Effect???_ActualScript (pj): @1E315E1
+BattleScript_EffectBlizzard_ActualScript (pj): @1E315E1
 2A 00 4A 3D 02 02 3B 00 60 6A 1D 08 28 6B 6A 1D 08
 
 
