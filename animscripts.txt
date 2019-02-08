@@ -5688,38 +5688,38 @@ Move_??? (pe): @140D632
 
 
 
-Move_??? (pj): @1306150
+Move_Dazzle_Powder (pj): @1306150
 00 55 27 1C A2 00 3F 0A 06 04 04 02 F8 0C 2F 09 82 06 E2 FF EA FF 75 00 50 00 05 00 01 00 02 F8 0C 2F 09 82 06 0A 00 EA FF 75 00 50 00 FB FF 01 00 02 F8 0C 2F 09 82 06 E7 FF EA FF 75 00 70 00 05 00 03 00 04 0F 02 F8 0C 2F 09 82 06 FB FF EA FF 75 00 50 00 FB FF 01 00 02 F8 0C 2F 09 82 06 05 00 EA FF 75 00 60 00 05 00 01 00 02 F8 0C 2F 09 82 06 00 00 EA FF 75 00 45 00 FB FF 01 00 02 F8 0C 2F 09 82 06 F1 FF EA FF 75 00 70 00 05 00 02 00 04 1E 02 F8 0C 2F 09 82 06 F1 FF EA FF 75 00 70 00 05 00 02 00 02 F8 0C 2F 09 82 06 0F 00 EA FF 75 00 50 00 FB FF 01 00 02 F8 0C 2F 09 82 06 F6 FF EA FF 75 00 60 00 07 00 02 00 02 F8 0C 2F 09 82 06 FB FF EA FF 75 00 5A 00 F8 FF 00 00 04 14 02 F8 0C 2F 09 82 06 F6 FF EA FF 75 00 50 00 FB FF 01 00 02 F8 0C 2F 09 82 06 00 00 EA FF 75 00 59 00 05 00 02 00 02 F8 0C 2F 09 82 06 14 00 EA FF 75 00 70 00 F8 FF 02 00 02 F8 0C 2F 09 82 06 05 00 EA FF 75 00 50 00 05 00 01 00 03 9D AE 0B 08 02 06 04 00 03 00 04 00 04 00 0D 00 39 7F 05 08
 
-gUnknownMove1BDSpriteTemplate (pj): @12F0CF8
+gUnknownDazzlePowderSpriteTemplate (pj): @12F0CF8
 55 27 55 27 38 0A 37 08 D0 9E 3A 08 00 00 00 00 F0 11 1F 08 A9 35 0A 08
 
 loadspritegfx ANIM_TAG_UNUSED_POWDER
 loopsewithpan SE_W077, SOUND_PAN_TARGET, 10, 6
 delay 4
-createsprite gUnknownMove1BDSpriteTemplate, ANIM_TARGET, 2, -30, -22, 117, 80, 5, 1
-createsprite gUnknownMove1BDSpriteTemplate, ANIM_TARGET, 2, 10, -22, 117, 80, -5, 1
-createsprite gUnknownMove1BDSpriteTemplate, ANIM_TARGET, 2, -25, -22, 117, 112, 5, 3
+createsprite gUnknownDazzlePowderSpriteTemplate, ANIM_TARGET, 2, -30, -22, 117, 80, 5, 1
+createsprite gUnknownDazzlePowderSpriteTemplate, ANIM_TARGET, 2, 10, -22, 117, 80, -5, 1
+createsprite gUnknownDazzlePowderSpriteTemplate, ANIM_TARGET, 2, -25, -22, 117, 112, 5, 3
 delay 15
-createsprite gUnknownMove1BDSpriteTemplate, ANIM_TARGET, 2, -5, -22, 117, 80, -5, 1
-createsprite gUnknownMove1BDSpriteTemplate, ANIM_TARGET, 2, 5, -22, 117, 96, 5, 1
-createsprite gUnknownMove1BDSpriteTemplate, ANIM_TARGET, 2, 0, -22, 117, 69, -5, 1
-createsprite gUnknownMove1BDSpriteTemplate, ANIM_TARGET, 2, -15, -22, 117, 112, 5, 2
+createsprite gUnknownDazzlePowderSpriteTemplate, ANIM_TARGET, 2, -5, -22, 117, 80, -5, 1
+createsprite gUnknownDazzlePowderSpriteTemplate, ANIM_TARGET, 2, 5, -22, 117, 96, 5, 1
+createsprite gUnknownDazzlePowderSpriteTemplate, ANIM_TARGET, 2, 0, -22, 117, 69, -5, 1
+createsprite gUnknownDazzlePowderSpriteTemplate, ANIM_TARGET, 2, -15, -22, 117, 112, 5, 2
 delay 30
-createsprite gUnknownMove1BDSpriteTemplate, ANIM_TARGET, 2, -15, -22, 117, 112, 5, 2
-createsprite gUnknownMove1BDSpriteTemplate, ANIM_TARGET, 2, 15, -22, 117, 80, -5, 1
-createsprite gUnknownMove1BDSpriteTemplate, ANIM_TARGET, 2, -10, -22, 117, 96, 7, 2
-createsprite gUnknownMove1BDSpriteTemplate, ANIM_TARGET, 2, -5, -22, 117, 90, -8, 0
+createsprite gUnknownDazzlePowderSpriteTemplate, ANIM_TARGET, 2, -15, -22, 117, 112, 5, 2
+createsprite gUnknownDazzlePowderSpriteTemplate, ANIM_TARGET, 2, 15, -22, 117, 80, -5, 1
+createsprite gUnknownDazzlePowderSpriteTemplate, ANIM_TARGET, 2, -10, -22, 117, 96, 7, 2
+createsprite gUnknownDazzlePowderSpriteTemplate, ANIM_TARGET, 2, -5, -22, 117, 90, -8, 0
 delay 20
-createsprite gUnknownMove1BDSpriteTemplate, ANIM_TARGET, 2, -10, -22, 117, 80, -5, 1
-createsprite gUnknownMove1BDSpriteTemplate, ANIM_TARGET, 2, 0, -22, 117, 89, 5, 2
-createsprite gUnknownMove1BDSpriteTemplate, ANIM_TARGET, 2, 20, -22, 117, 112, -8, 2
-createsprite gUnknownMove1BDSpriteTemplate, ANIM_TARGET, 2, 5, -22, 117, 80, 5, 1
+createsprite gUnknownDazzlePowderSpriteTemplate, ANIM_TARGET, 2, -10, -22, 117, 80, -5, 1
+createsprite gUnknownDazzlePowderSpriteTemplate, ANIM_TARGET, 2, 0, -22, 117, 89, 5, 2
+createsprite gUnknownDazzlePowderSpriteTemplate, ANIM_TARGET, 2, 20, -22, 117, 112, -8, 2
+createsprite gUnknownDazzlePowderSpriteTemplate, ANIM_TARGET, 2, 5, -22, 117, 80, 5, 1
 createvisualtask [9D AE 0B 08], 2, 4, 3, 4, 4, 13, RGB(25, 25, 31)
 waitforvisualfinish
 end
 
-gUnknownMove1BDSpriteTemplate:
+gUnknownDazzlePowderSpriteTemplate:
 .tileTag = ANIM_TAG_UNUSED_POWDER
 .paletteTag = ANIM_TAG_UNUSED_POWDER
 .oam = [38 0A 37 08]
@@ -5729,8 +5729,8 @@ gUnknownMove1BDSpriteTemplate:
 .callback = [A9 35 0A 08]
 
 
-Move_??? (pe): @1306150 <FIX THIS>
+Move_Dazzle_Powder (pe): @1306150 <FIX THIS>
 00 55 27 1C A2 00 3F 0A 06 04 04 02 F8 0C 2F 09 82 06 E2 FF EA FF 75 00 50 00 05 00 01 00 02 F8 0C 2F 09 82 06 0A 00 EA FF 75 00 50 00 FB FF 01 00 02 F8 0C 2F 09 82 06 E7 FF EA FF 75 00 70 00 05 00 03 00 04 0F 02 F8 0C 2F 09 82 06 FB FF EA FF 75 00 50 00 FB FF 01 00 02 F8 0C 2F 09 82 06 05 00 EA FF 75 00 60 00 05 00 01 00 02 F8 0C 2F 09 82 06 00 00 EA FF 75 00 45 00 FB FF 01 00 02 F8 0C 2F 09 82 06 F1 FF EA FF 75 00 70 00 05 00 02 00 04 1E 02 F8 0C 2F 09 82 06 F1 FF EA FF 75 00 70 00 05 00 02 00 02 F8 0C 2F 09 82 06 0F 00 EA FF 75 00 50 00 FB FF 01 00 02 F8 0C 2F 09 82 06 F6 FF EA FF 75 00 60 00 07 00 02 00 02 F8 0C 2F 09 82 06 FB FF EA FF 75 00 5A 00 F8 FF 00 00 04 14 02 F8 0C 2F 09 82 06 F6 FF EA FF 75 00 50 00 FB FF 01 00 02 F8 0C 2F 09 82 06 00 00 EA FF 75 00 59 00 05 00 02 00 02 F8 0C 2F 09 82 06 14 00 EA FF 75 00 70 00 F8 FF 02 00 02 F8 0C 2F 09 82 06 05 00 EA FF 75 00 50 00 05 00 01 00 03 9D AE 0B 08 02 06 04 00 03 00 04 00 04 00 0D 00 39 7F 05 08
 
-gUnknownMove1BDSpriteTemplate (pe): @12F0CF8 <FIX THIS>
+gUnknownDazzlePowderSpriteTemplate (pe): @12F0CF8 <FIX THIS>
 55 27 55 27 38 0A 37 08 D0 9E 3A 08 00 00 00 00 F0 11 1F 08 A9 35 0A 08

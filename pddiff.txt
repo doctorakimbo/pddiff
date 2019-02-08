@@ -266,7 +266,7 @@ move IDs:
 = 0x1BA = (attacking move with chance to raise defense), (can't be called by metronome), (animation is Magical Leaf with the attack part replaced with Tackle)
 - 0x1BB = Poison Leaf
 = 0x1BC = (attacking move with chance to raise sp. atk), (animation is Growth, Ingrain, and then Frenzy Plant)
-= 0x1BD = (non-attacking move)
+- 0x1BD = Dazzle Powder
 = 0x1BE = (attacking move)
 = 0x1BF = (attacking move with chance to lower evasion)
 = 0x1C0 = (attacking move with chance to raise sp. atk)
@@ -2886,8 +2886,8 @@ stray text:
 		  Implements: [move192] animation
 -13041C8: Move_Possess (see animscripts.txt)
 		  Implements: Possess animation
-=1306150: Move_??? (see animscripts.txt)
-		  Implements: <<<<<<<<FINISH THIS>>>>>>>>
+=1306150: Move_Dazzle_Powder (see animscripts.txt)
+		  Implements: Dazzle Powder animation
 -1306328: Move_??? (see animscripts.txt)
 		  Implements: [move185] animation
 -13064B0: Move_??? (see animscripts.txt)

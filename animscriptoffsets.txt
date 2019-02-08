@@ -68,7 +68,7 @@ tasks/callbacks:
 [05 90 09 08] = [FD 95 09 08] = (used by Roar)
 [B9 92 09 08] = [B1 98 09 08] = AnimTask_ScaleMonAndRestore
 [DD 95 09 08] = [D5 9B 09 08] = (used by [move16B], Ice Shard, [move19F], Double Spin, [move1BA])
-[A9 35 0A 08] = [] = (used by [move1BD])
+[A9 35 0A 08] = [] = (used by Dazzle Powder)
 [65 3D 0A 08] = [A5 2A 0A 08] = AnimRazorLeafParticle
 [5D 3E 0A 08] = [9D 2B 0A 08] = (used by Poison Leaf)
 [85 54 0A 08] = [C5 41 0A 08] = (used by Magical Leaf, [move1B9], [move1BA])
@@ -104,7 +104,7 @@ tasks/callbacks:
 [35 9D 0B 08] = [75 8A 0B 08] = (used by Iron Tail and Aqua Tail)
 [75 A7 0B 08] = [B5 94 0B 08] = (used by Earthquake, Wave Splash, Deluge)
 [C1 AA 0B 08] = [01 98 0B 08] = (used by Earth Power)
-[9D AE 0B 08] = [DD 9B 0B 08] = (used by Poison Powder, Stun Spore, Sleep Powder, Spark, Psycho Boost, [move170], Shadow Sneak, Psycho Cut, Discharge, Giga Spark, [move1BD])
+[9D AE 0B 08] = [DD 9B 0B 08] = (used by Poison Powder, Stun Spore, Sleep Powder, Spark, Psycho Boost, [move170], Shadow Sneak, Psycho Cut, Discharge, Giga Spark, Dazzle Powder)
 [A9 B3 0B 08] = [E9 A0 0B 08] = (used by Thunder Punch, Thunder, Hydro Cannon, Thunder Fang, [move1B6])
 [21 B8 0B 08] = [61 A5 0B 08] = (used by Fire Punch, Ice Punch, [move170], Shadow Sneak, [move192])
 [F9 B9 0B 08] = [39 A7 0B 08] = (used by [move1A5])
@@ -168,7 +168,7 @@ oam data:
 [00 0A 37 08] = [D0 C9 3A 08] = (used by Razor Leaf, Egg Bomb, Seed Bomb, Poison Leaf)
 [08 0A 37 08] = [D8 C9 3A 08] = (used by Infestation, Pound, [move127], [move162], [move17E], [move185], Shadow Sneak, Mud Bomb, Draco Meteor)
 [28 0A 37 08] = [F8 C9 3A 08] = (used by Razor Leaf and Poison Leaf)
-[38 0A 37 08] = [] = (used by [move1BD])
+[38 0A 37 08] = [] = (used by Dazzle Powder)
 [60 0A 37 08] = [30 CA 3A 08] = (used by [move1A0])
 [68 0A 37 08] = [38 CA 3A 08] = (used by Hydro Pump, Hammer Arm, [move16E], [move17E], Wave Splash)
 [70 0A 37 08] = [40 CA 3A 08] = (used by [move16E], [move170], [move17D], Leaf Storm, [move192], Rock Wrecker, Wave Splash)
@@ -186,7 +186,7 @@ anims 2/templates:
 [5C D3 39 08] = [54 4E 3D 08] = gHorizontalLungeSpriteTemplate
 [8C D3 39 08] = [84 4E 3D 08] = gSlideMonToOriginalPosSpriteTemplate
 [A4 D3 39 08] = [9C 4E 3D 08] = gSlideMonToOffsetSpriteTemplate
-[D0 9E 3A 08] = [] = (used by [move1BD])
+[D0 9E 3A 08] = [] = (used by Dazzle Powder)
 [D4 9E 3A 08] = [90 29 3E 08] = gSleepPowderParticleSpriteTemplate
 [EC 9E 3A 08] = [A8 29 3E 08] = gStunSporeParticleSpriteTemplate
 [04 9F 3A 08] = [C0 29 3E 08] = gPoisonPowderParticleSpriteTemplate
@@ -304,7 +304,7 @@ sounds:
 0x9D = SE_W056  // Hydro Pump		(used by Hydro Pump, Hydro Cannon, Wave Splash)
 0x9F = SE_W030  // Horn Attack		(used by [move1A0])
 0xA0 = SE_W039  // Tail Whip		(used by Mud Bomb)
-0xA2 = SE_W077  // Poison Powder	(used by Poison Powder, Stun Spore, Sleep Powder, Magical Leaf, [move1B9], [move1BA], Poison Leaf, [move1BD])
+0xA2 = SE_W077  // Poison Powder	(used by Poison Powder, Stun Spore, Sleep Powder, Magical Leaf, [move1B9], [move1BA], Poison Leaf, Dazzle Powder)
 0xA4 = SE_W082  // Dragon Rage		(used by Ancient Power, Overheat, Grand Boulder/Stone Edge, [move16E], [move17D], [move182])
 0xA6 = SE_W195  // Perish Song		(used by [move1AC])
 0xAA = SE_W120  // Self-Destruct	(used by Egg Bomb, Seed Bomb, Mud Bomb, Magnet Bomb)
