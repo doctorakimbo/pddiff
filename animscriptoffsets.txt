@@ -55,7 +55,7 @@ F0 AE 1A 08 00 00 30 09 A6 3C 1B 08 21 AF 1A 08 1F BE 1A 08 A9 BC 1A 08 11 D4 1A
 
 
 tasks/callbacks:
-[41 55 07 08] = [9D 5D 07 08] = (used by [move16E], [move17D], [move17E], Shadow Sneak, Mud Bomb, [move194], Wave Splash)
+[41 55 07 08] = [9D 5D 07 08] = (used by [move16E], Focus Blast, [move17E], Shadow Sneak, Mud Bomb, [move194], Wave Splash)
 [25 56 07 08] = [81 5E 07 08] = (used by Egg Bomb, Seed Bomb, Mud Bomb)
 [11 59 07 08] = [6D 61 07 08] = AnimTask_BlendMonInAndOut
 [2D 5A 07 08] = [89 62 07 08] = (used by Fiery Dance)
@@ -67,29 +67,31 @@ tasks/callbacks:
 [A5 8E 09 08] = [9D 94 09 08] = AnimTask_WindUpLunge
 [05 90 09 08] = [FD 95 09 08] = (used by Roar)
 [B9 92 09 08] = [B1 98 09 08] = AnimTask_ScaleMonAndRestore
-[DD 95 09 08] = [D5 9B 09 08] = (used by [move16B], Ice Shard, [move19F], Double Spin, [move1BA])
-[A9 35 0A 08] = [] = (used by Dazzle Powder)
+[DD 95 09 08] = [D5 9B 09 08] = (used by Close Combat, Ice Shard, Double Hit/Double Shot, Double Spin, Guardian Leaf)
+[A9 35 0A 08] = [E9 22 0A 08] = (used by Poison Powder, Stun Spore, Sleep Powder, Dazzle Powder)
 [65 3D 0A 08] = [A5 2A 0A 08] = AnimRazorLeafParticle
 [5D 3E 0A 08] = [9D 2B 0A 08] = (used by Poison Leaf)
-[85 54 0A 08] = [C5 41 0A 08] = (used by Magical Leaf, [move1B9], [move1BA])
+[85 54 0A 08] = [C5 41 0A 08] = (used by Magical Leaf, [move1B9], Guardian Leaf)
 [59 55 0A 08] = [99 42 0A 08] = (used by [move170], [move1A0], Wave Splash)
-[95 79 0A 08] = [D5 66 0A 08] = (used by [move1AC])
+[95 79 0A 08] = [D5 66 0A 08] = (used by Tone-Deaf)
 [B1 89 0A 08] = [F1 76 0A 08] = (used by [move17C])
 [21 C2 0A 08] = [61 AF 0A 08] = (used by Aurora Beam and Charge Beam)
 [C1 C3 0A 08] = [01 B1 0A 08] = (used by Flamethrower and Hydro Pump)
 [4D C6 0A 08] = [8D B3 0A 08] = (used by Deluge)
 [51 DC 0A 08] = [91 C9 0A 08] = (used by Raze Earth)
 [65 ED 0A 08] = [A5 DA 0A 08] = AnimTask_BlendBackground
-[99 ED 0A 08] = [D9 DA 0A 08] = (used by Thunder and [move1B6])
+[99 ED 0A 08] = [D9 DA 0A 08] = (used by Thunder and Megashock)
 [E1 F4 0A 08] = [21 E2 0A 08] = (used by [move80]/Mach Volt and Aqua Bolt)
 [15 1C 0B 08] = [81 0B 0B 08] = AnimBasicFistOrFoot
 [19 20 0B 08] = [59 0D 0B 08] = (used by Hammer Arm)
-[F1 27 0B 08] = [31 15 0B 08] = (used by [move16B] and Dragon Pulse)
+[F1 27 0B 08] = [31 15 0B 08] = (used by Close Combat and Dragon Pulse)
 [0D 2C 0B 08] = [4D 19 0B 08] = (used by [move127])
+[DD 2C 0B 08] = [1D 1A 0B 08] = (used by [move1CA])
+[29 3B 0B 08] = [69 28 0B 08] = (used by Psygatling)
 [25 40 0B 08] = [65 2D 0B 08] = (used by Psycho Cut)
 [F5 4A 0B 08] = [35 38 0B 08] = (used by Skill Swap)
-[25 56 0B 08] = [65 43 0B 08] = (used by [move17D], [move194])
-[F5 58 0B 08] = [35 46 0B 08] = (used by [move185])
+[25 56 0B 08] = [65 43 0B 08] = (used by Focus Blast, [move194])
+[F5 58 0B 08] = [35 46 0B 08] = (used by Avalanche)
 [3D 5A 0B 08] = [7D 47 0B 08] = (used by Infestation)
 [D1 5A 0B 08] = [11 48 0B 08] = AnimTask_LoadSandstormBackground
 [FD 68 0B 08] = [3D 56 0B 08] = (used by Hydro Pump, Hydro Cannon, [move16E], [move17E], Leaf Storm, Rock Wrecker)
@@ -101,19 +103,21 @@ tasks/callbacks:
 [79 98 0B 08] = [B9 85 0B 08] = (used by Possess)
 [25 99 0B 08] = [65 86 0B 08] = (used by Possess)
 [AD 99 0B 08] = [ED 86 0B 08] = (used by Metal Blast, Power Gem, Bullet Punch, Flash Cannon, Iron Head, Magnet Bomb)
-[35 9D 0B 08] = [75 8A 0B 08] = (used by Iron Tail and Aqua Tail)
-[75 A7 0B 08] = [B5 94 0B 08] = (used by Earthquake, Wave Splash, Deluge)
+[35 9D 0B 08] = [75 8A 0B 08] = (used by Iron Tail, Aqua Tail, Toxin Spray)
+[55 A1 0B 08] = [95 8E 0B 08] = (used by Dig and Burrow)
+[AD A3 0B 08] = [ED 90 0B 08] = (used by Dig and Burrow)
+[75 A7 0B 08] = [B5 94 0B 08] = (used by Earthquake, Wave Splash, Deluge, [move1CA])
 [C1 AA 0B 08] = [01 98 0B 08] = (used by Earth Power)
-[9D AE 0B 08] = [DD 9B 0B 08] = (used by Poison Powder, Stun Spore, Sleep Powder, Spark, Psycho Boost, [move170], Shadow Sneak, Psycho Cut, Discharge, Giga Spark, Dazzle Powder)
-[A9 B3 0B 08] = [E9 A0 0B 08] = (used by Thunder Punch, Thunder, Hydro Cannon, Thunder Fang, [move1B6])
+[9D AE 0B 08] = [DD 9B 0B 08] = (used by Poison Powder, Stun Spore, Sleep Powder, Sludge, Spark, Psycho Boost, [move170], Shadow Sneak, Psycho Cut, Discharge, Giga Spark, Dazzle Powder, Toxin Spray, [move1CA], Psygatling, Psyburn)
+[A9 B3 0B 08] = [E9 A0 0B 08] = (used by Thunder Punch, Thunder, Hydro Cannon, Thunder Fang, Megashock)
 [21 B8 0B 08] = [61 A5 0B 08] = (used by Fire Punch, Ice Punch, [move170], Shadow Sneak, [move192])
 [F9 B9 0B 08] = [39 A7 0B 08] = (used by [move1A5])
-[B9 BA 0B 08] = [F9 A7 0B 08] = (used by Mega Punch, Fire Punch, Ice Punch, Fire Blast, [move80]/Mach Volt, [move16B], [move182], Charge Beam, Ice Fang, Fire Fang)
-[FD BA 0B 08] = [3D A8 0B 08] = (used by [moveA7], Mirror Shot)
+[B9 BA 0B 08] = [F9 A7 0B 08] = (used by Mega Punch, Fire Punch, Ice Punch, Fire Blast, [move80]/Mach Volt, Silver Wind, Close Combat, Giga Impact, Charge Beam, Ice Fang, Fire Fang, Starfreeze, Icicle Punch, Frostbite, Sonic Sand)
+[FD BA 0B 08] = [3D A8 0B 08] = (used by [moveA7], Silver Wind, Mirror Shot/Shine Bomb, Sonic Sand)
 [E1 BC 0B 08] = [21 AA 0B 08] = AnimTask_BlendParticle
 [59 BE 0B 08] = [99 AB 0B 08] = (used by [move80]/Mach Volt)
 [21 C9 0B 08] = [61 B6 0B 08] = (used by Power Gem)
-[ED CA 0B 08] = [2D B8 0B 08] = (used by Hydro Pump, Blizzard, Thunder, Skill Swap, [move162], [move16E], X-Scissor, [move17D], Psycho Cut, Leaf Storm, [move194], [move1A0], [move1B6])
+[ED CA 0B 08] = [2D B8 0B 08] = (used by Hydro Pump, Blizzard, Thunder, Mach Punch, Skill Swap, Silver Wind, [move162], [move16E], X-Scissor, Focus Blast, Psycho Cut, Leaf Storm, [move194], [move1A0], Megashock, Magnum Punch, Sonic Sand, Psyburn)
 [E1 CB 0B 08] = [21 B9 0B 08] = AnimTask_GetAttackerSide
 [0D CC 0B 08] = [4D B9 0B 08] = AnimTask_GetTargetSide
 [D1 D0 0B 08] = [11 BE 0B 08] = (used by Overheat)
@@ -130,7 +134,7 @@ tasks/callbacks:
 [85 FF 0D 08] = [9D EF 0D 08] = (used by Double Spin)
 [41 2D 0E 08] = [5D 1D 0E 08] = (used by [move8C])
 [A9 2F 0E 08] = [C5 1F 0E 08] = (used by [move8C])
-[F9 34 0E 08] = [19 25 0E 08] = (used by Mirror Shot)
+[F9 34 0E 08] = [19 25 0E 08] = (used by Mirror Shot/Shine Bomb)
 [FD 41 0E 08] = [1D 32 0E 08] = (used by Draco Meteor)
 [11 53 0E 08] = [35 43 0E 08] = (used by [move192])
 
@@ -142,8 +146,11 @@ subroutines:
 [5E CC 1A 08] = [A2 8C 1C 08] = UnderWaterAttack1
 [1C D9 1A 08] = [60 99 1C 08] = Growth1
 [DF DB 1A 08] = [23 9C 1C 08] = RockSlide1
+[04 DE 1A 08] = [48 9E 1C 08] = IcyWind1
+[C6 E8 1A 08] = [0A A9 1C 08] = DigSetUp1
 [23 F2 1A 08] = [67 B2 1C 08] = EndureEffect
 [C2 1A 1B 08] = [06 DB 1C 08] = RoarEffect
+[2E 1F 1B 08] = [72 DF 1C 08] = SandAttack1
 [82 24 1B 08] = [C6 E4 1C 08] = AuroraBeam1
 [74 27 1B 08] = [B8 E7 1C 08] = Blizzard1
 [FA 28 1B 08] = [3E E9 1C 08] = PowderSnow1
@@ -152,6 +159,7 @@ subroutines:
 [0C 49 1B 08] = [50 09 1D 08] = FireMoveEffect
 [C6 93 1B 08] = [0A 54 1D 08] = FreezeEffect1
 [4A 94 1B 08] = [8E 54 1D 08] = FreezeEffect2
+[9E 95 1B 08] = [E2 55 1D 08] = IcyWindEffect2
 [85 96 1B 08] = [C9 56 1D 08] = HealingEffect
 [17 97 1B 08] = [5B 57 1D 08] = PoisonBubblesEffect
 [90 98 1B 08] = [D4 58 1D 08] = ElectricityEffect
@@ -166,13 +174,13 @@ anims 1:
 
 oam data:
 [00 0A 37 08] = [D0 C9 3A 08] = (used by Razor Leaf, Egg Bomb, Seed Bomb, Poison Leaf)
-[08 0A 37 08] = [D8 C9 3A 08] = (used by Infestation, Pound, [move127], [move162], [move17E], [move185], Shadow Sneak, Mud Bomb, Draco Meteor)
+[08 0A 37 08] = [D8 C9 3A 08] = (used by Infestation, Pound, [move127], [move162], [move17E], Avalanche, Shadow Sneak, Mud Bomb, Draco Meteor)
 [28 0A 37 08] = [F8 C9 3A 08] = (used by Razor Leaf and Poison Leaf)
-[38 0A 37 08] = [] = (used by Dazzle Powder)
+[38 0A 37 08] = [08 CA 3A 08] = (used by Poison Powder, Stun Spore, Sleep Powder, Dazzle Powder)
 [60 0A 37 08] = [30 CA 3A 08] = (used by [move1A0])
 [68 0A 37 08] = [38 CA 3A 08] = (used by Hydro Pump, Hammer Arm, [move16E], [move17E], Wave Splash)
-[70 0A 37 08] = [40 CA 3A 08] = (used by [move16E], [move170], [move17D], Leaf Storm, [move192], Rock Wrecker, Wave Splash)
-[C0 0A 37 08] = [90 CA 3A 08] = (used by [move1AC])
+[70 0A 37 08] = [40 CA 3A 08] = (used by [move16E], [move170], Focus Blast, Leaf Storm, [move192], Rock Wrecker, Wave Splash)
+[C0 0A 37 08] = [90 CA 3A 08] = (used by Tone-Deaf)
 [C8 0A 37 08] = [98 CA 3A 08] = (used by Psycho Cut)
 [D0 0A 37 08] = [A0 CA 3A 08] = (used by Psycho Cut)
 [C8 0A 37 08] = [98 CA 3A 08] = (used by [move170] and Shadow Sneak)
@@ -180,13 +188,13 @@ oam data:
 [30 0B 37 08] = [00 CB 3A 08] = (used by [move1A5])
 [88 0B 37 08] = [58 CB 3A 08] = (used by Fire Punch, Ice Punch, [move192])
 [90 0B 37 08] = [60 CB 3A 08] = (used by [move16E])
-[F0 0B 37 08] = [C0 CB 3A 08] = (used by [move194])
+[F0 0B 37 08] = [C0 CB 3A 08] = (used by [move194], [move1CA])
 
 anims 2/templates:
 [5C D3 39 08] = [54 4E 3D 08] = gHorizontalLungeSpriteTemplate
 [8C D3 39 08] = [84 4E 3D 08] = gSlideMonToOriginalPosSpriteTemplate
 [A4 D3 39 08] = [9C 4E 3D 08] = gSlideMonToOffsetSpriteTemplate
-[D0 9E 3A 08] = [] = (used by Dazzle Powder)
+[D0 9E 3A 08] = [8C 29 3E 08] = (used by Poison Powder, Stun Spore, Sleep Powder, Dazzle Powder)
 [D4 9E 3A 08] = [90 29 3E 08] = gSleepPowderParticleSpriteTemplate
 [EC 9E 3A 08] = [A8 29 3E 08] = gStunSporeParticleSpriteTemplate
 [04 9F 3A 08] = [C0 29 3E 08] = gPoisonPowderParticleSpriteTemplate
@@ -194,23 +202,25 @@ anims 2/templates:
 [4C A1 3A 08] = [08 2C 3E 08] = gRazorLeafParticleSpriteTemplate
 [64 A1 3A 08] = [20 2C 3E 08] = gTwisterLeafParticleSpriteTemplate
 [90 A1 3A 08] = [4C 2C 3E 08] = (used by Poison Leaf)
+[C0 A1 3A 08] = [7C 2C 3E 08] = (used by Starfreeze)
 [08 A3 3A 08] = [C4 2D 3E 08] = gIngrainRootSpriteTemplate
 [20 A3 3A 08] = [DC 2D 3E 08] = gFrenzyPlantRootSpriteTemplate
-[88 AD 3A 08] = [44 38 3E 08] = (used by [move1AC])
-[C0 AD 3A 08] = [7C 38 3E 08] = (used by [move1AC])
+[88 AD 3A 08] = [44 38 3E 08] = (used by Tone-Deaf)
+[C0 AD 3A 08] = [7C 38 3E 08] = (used by Tone-Deaf)
 [2C B2 3A 08] = [E8 3C 3E 08] = (used by Dark Pulse, Dragon Pulse, [move1A3])
 [0C B3 3A 08] = [C8 3D 3E 08] = (used by [move128])
 [48 B4 3A 08] = [04 3F 3E 08] = gAngerMarkSpriteTemplate
 [D4 B4 3A 08] = [90 3F 3E 08] = (used by [move17E], Shadow Sneak, Mud Bomb)
 [D8 B4 3A 08] = [94 3F 3E 08] = (used by Egg Bomb, Seed Bomb, Magnet Bomb)
+[7C B8 3A 08] = [38 43 3E 08] = (used by Lovely Kiss and Icy Kiss)
 [F4 CF 3A 08] = [B0 5A 3E 08] = (used by Waterfall)
-[0C D0 3A 08] = [C8 5A 3E 08] = (used by [move19B])
+[0C D0 3A 08] = [C8 5A 3E 08] = (used by Aqua Jet)
 [B4 D0 3A 08] = [70 5B 3E 08] = (used by Waterfall, Water Pulse, Aqua Tail, Aqua Bolt)
-[24 D1 3A 08] = [E0 5B 3E 08] = (used by Fire Punch)
+[24 D1 3A 08] = [E0 5B 3E 08] = (used by Fire Punch and Psyburn)
 [94 D1 3A 08] = [50 5C 3E 08] = (used by Raze Earth)
 [8C D2 3A 08] = [48 5D 3E 08] = (used by Infestation)
 [40 D3 3A 08] = [FC 5D 3E 08] = (used by Flare Blitz)
-[7C D4 3A 08] = [38 5F 3E 08] = (used by Thunder Punch, Thunder, Thunder Fang, [move1B6])
+[7C D4 3A 08] = [38 5F 3E 08] = (used by Thunder Punch, Thunder, Thunder Fang, Megashock)
 [08 D5 3A 08] = [C4 5F 3E 08] = (used by Spark, Discharge, Giga Spark)
 [B4 D5 3A 08] = [70 60 3E 08] = (used by Spark, Discharge, Giga Spark)
 [CC D5 3A 08] = [88 60 3E 08] = (used by Discharge)
@@ -220,18 +230,22 @@ anims 2/templates:
 [A4 D8 3A 08] = [60 63 3E 08] = (used by Ice Punch)
 [54 D9 3A 08] = [10 64 3E 08] = (used by Blizzard and [move162])
 [6C D9 3A 08] = [28 64 3E 08] = (used by Blizzard and [move162])
-[2C DA 3A 08] = [E8 64 3E 08] = (used by Flash Cannon and Magnet Bomb)
+[2C DA 3A 08] = [E8 64 3E 08] = (used by Flash Cannon, Magnet Bomb, Magnum Punch)
 [10 DC 3A 08] = [CC 66 3E 08] = (used by Pound and Hammer Arm)
 [54 DC 3A 08] = [10 67 3E 08] = gFistFootSpriteTemplate
 [04 DD 3A 08] = [C0 67 3E 08] = gMegaPunchKickSpriteTemplate
+[64 DF 3A 08] = [20 6A 3E 08] = (used by Toxin Spray)
 [60 E0 3A 08] = [1C 6B 3E 08] = (used by [move127])
+[FC E0 3A 08] = [B8 6B 3E 08] = (used by Fly and Glide)
+[14 E1 3A 08] = [D0 6B 3E 08] = (used by Fly and Glide)
 [9C E3 3A 08] = [58 6E 3E 08] = (used by Defend Order)
 [38 E5 3A 08] = [F4 6F 3E 08] = (used by Amnesia and Nasty Plot)
 [8C E6 3A 08] = [48 71 3E 08] = (used by [moveA7])
 [14 E7 3A 08] = [D0 71 3E 08] = (used by Psycho Boost)
-[EC E8 3A 08] = [A8 73 3E 08] = (used by [move185])
+[EC E8 3A 08] = [A8 73 3E 08] = (used by Avalanche)
 [F8 E8 3A 08] = [B4 73 3E 08] = (used by Rock Slide and Grand Boulder/Stone Edge)
-[10 E9 3A 08] = [CC 73 3E 08] = (used by Rock Blast, [move18E], Rock Wrecker)
+[10 E9 3A 08] = [CC 73 3E 08] = (used by Rock Blast, Rock Climb, Rock Wrecker)
+[28 E9 3A 08] = [E4 73 3E 08] = (used by [move1CA])
 [64 E9 3A 08] = [20 74 3E 08] = (used by Wave Splash)
 [7C E9 3A 08] = [38 74 3E 08] = (used by Magma Storm)
 [94 E9 3A 08] = [50 74 3E 08] = (used by Heat Wave and Ominous Wind)
@@ -248,12 +262,13 @@ anims 2/templates:
 [A4 ED 3A 08] = [60 78 3E 08] = (used by Overheat)
 [74 EE 3A 08] = [30 79 3E 08] = (used by Thunder Fang, Ice Fang, Fire Fang)
 [8C EE 3A 08] = [48 79 3E 08] = (used by Clamp)
+[08 F0 3A 08] = [C4 7A 3E 08] = (used by Dig and Burrow)
 [68 F0 3A 08] = [24 7B 3E 08] = gSimplePaletteBlendSpriteTemplate
 [80 F0 3A 08] = [3C 7B 3E 08] = gComplexPaletteBlendSpriteTemplate
-[CC F0 3A 08] = [88 7B 3E 08] = (used by Ancient Power, Grand Boulder/Stone Edge, [move185], Mirror Shot)
+[CC F0 3A 08] = [88 7B 3E 08] = (used by Ancient Power, Grand Boulder/Stone Edge, Avalanche, Mirror Shot/Shine Bomb)
 [3C F1 3A 08] = [F8 7B 3E 08] = (used by Fire Punch, Ice Punch, [move170], Shadow Sneak, [move192])
 [4C F1 3A 08] = [08 7C 3E 08] = gBasicHitSplatSpriteTemplate
-[7C F1 3A 08] = [38 7C 3E 08] = (used by Hydro Pump, Hydro Cannon, [move19B])
+[7C F1 3A 08] = [38 7C 3E 08] = (used by Hydro Pump, Hydro Cannon, Aqua Jet)
 [C4 F1 3A 08] = [80 7C 3E 08] = (used by X-Scissor)
 
 templates:
@@ -263,83 +278,89 @@ templates:
 [F0 55 3C 08] = [5C F7 3F 08] = (used by [move192])
 
 sounds:
+0x16 = ???							(used by Latent Power)
 0x6F = SE_W085  // Thunderbolt		(used by [move80]/Mach Volt)
 0x70 = SE_W085B // Thunderbolt 2	(used by Thunder Wave, [move80]/Mach Volt, Spark, Discharge, Charge Beam, Aqua Bolt, Giga Spark)
 0x71 = SE_W231  // Harden			(used by Metal Blast, Power Gem, Bullet Punch, Flash Cannon, Iron Head, Magnet Bomb)
 0x72 = SE_W171  // Nightmare		(used by Possess)
 0x73 = SE_W233  // Vital Throw		(used by [move192])
-0x74 = SE_W233B // Vital Throw 2	(used by Mega Punch, Iron Tail, Stardust, [move16B], Aqua Tail, [move17D], [move182], Draco Meteor)
+0x74 = SE_W233B // Vital Throw 2	(used by Mega Punch, Iron Tail, Stardust, Close Combat, Aqua Tail, Focus Blast, Giga Impact, Draco Meteor, Icicle Punch)
 0x76 = SE_W145B // Bubble 2			(used by [move17E])
-0x77 = SE_W145C // Bubble 3			(used by Waterfall, Water Pulse, Aqua Tail, [move17E], [move194], Aqua Bolt)
+0x77 = SE_W145C // Bubble 3			(used by Sludge, Waterfall, Water Pulse, Aqua Tail, [move17E], [move194], Aqua Bolt, Toxin Spray)
 0x79 = SE_W015  // Cut				(used by Soul Break and Psycho Cut)
-0x7A = SE_W081  // String Shot		(used by Ice Punch, Flash Cannon, Magnet Bomb)
-0x7C = SE_W088  // Rock Throw		(used by Rock Slide, Rock Blast, Grand Boulder/Stone Edge, Raze Earth, [move185], [move18E], Rock Wrecker)
-0x7D = SE_W016  // Gust				(used by Ice Shard, Ominous Wind)
-0x7E = SE_W016B // Gust 2			(used by Ice Shard, Ominous Wind)
+0x7A = SE_W081  // String Shot		(used by Ice Punch, Flash Cannon, Magnet Bomb, Magnum Punch)
+0x7C = SE_W088  // Rock Throw		(used by Rock Slide, Rock Blast, Grand Boulder/Stone Edge, Raze Earth, Avalanche, Rock Climb, Rock Wrecker)
+0x7D = SE_W016  // Gust				(used by Ice Shard, Ominous Wind, Frostbite)
+0x7E = SE_W016B // Gust 2			(used by Ice Shard, Ominous Wind, Frostbite)
 0x7F = SE_W003  // Double Slap		(used by Pound, Arm Thrust, [move127], Frenzy Plant, [move170], Ice Shard, Shadow Sneak, Double Spin, [move1BC])
-0x80 = SE_W104  // Double Team		(used by Agility and Hammer Arm)
-0x81 = SE_W013  // Razor Wind		(used by Razor Leaf, [move128], X-Scissor, Leaf Storm, [move1A5], Poison Leaf)
+0x80 = SE_W104  // Double Team		(used by Fly, Agility, Hammer Arm, Glide)
+0x81 = SE_W013  // Razor Wind		(used by Fly, Razor Leaf, [move128], X-Scissor, Leaf Storm, [move1A5], Poison Leaf, Glide)
+0x82 = SE_W196  // Icy Wind			(used by Starfreeze, Icicle Punch, Frostbite, Icy Kiss)
 0x83 = SE_W086  // Thunder Wave		(used by Thunder Wave and Aqua Bolt)
-0x84 = SE_W004  // Comet Punch		(used by Ice Punch, Thunder Punch, [move16B], Drain Punch, Flash Cannon, [move192], Magnet Bomb, [move19A], [move19F], [move1BA])
-0x85 = SE_W025  // Mega Kick		(used by Mega Punch, [move16B], [move182])
-0x86 = SE_W025B // Mega Kick 2		(used by [moveA7], Hammer Arm, [move18E])
+0x84 = SE_W004  // Comet Punch		(used by Ice Punch, Thunder Punch, Mach Punch, Close Combat, Drain Punch, Flash Cannon, [move192], Magnet Bomb, Wood Hammer, Double Hit/Double Shot, Guardian Leaf, Magnum Punch, Psycho Punch)
+0x85 = SE_W025  // Mega Kick		(used by Mega Punch, Close Combat, Giga Impact, Icicle Punch)
+0x86 = SE_W025B // Mega Kick 2		(used by Dig, [moveA7], Hammer Arm, Rock Climb, Burrow)
 0x87 = SE_W152  // Crabhammer		(used by Waterfall)
-0x88 = SE_W026  // Jump Kick		(used by Vine Whip, [move80]/Mach Volt, [move19B], [move1B9], [move1BA])
+0x88 = SE_W026  // Jump Kick		(used by Vine Whip, [move80]/Mach Volt, Aqua Jet, [move1B9], Guardian Leaf)
 0x89 = SE_W172  // Flame Wheel		(used by Fire Punch and Flare Blitz)
 0x8A = SE_W172B // Flame Wheel 2	(used by Dragon Rage, Fiery Dance, Overheat, Flare Blitz, Fire Fang, Raging Flame)
-0x8B = SE_W053  // Flamethrower		(used by Flamethrower)
+0x8B = SE_W053  // Flamethrower		(used by Flamethrower and Psyburn)
 0x8C = SE_W007  // Fire Punch		(used by Fire Punch and Overheat)
 0x8D = SE_W092  // Toxic			(used by [move194])
 0x8F = SE_W221B // Sacred Fire 2	(used by Infestation and Magma Storm)
-0x91 = SE_W036  // Take Down		(used by [move18E])
+0x91 = SE_W036  // Take Down		(used by Rock Climb)
 0x92 = SE_W059  // Blizzard			(used by Blizzard, [move162], Leaf Storm)
 0x93 = SE_W059B // Blizzard 2		(used by Blizzard and [move162])
 0x94 = SE_W010  // Scratch			(used by Ingrain, Frenzy Plant, [move1BC])
 0x95 = SE_W011  // Vice-Grip		(used by Clamp)
 0x96 = SE_W017  // Wing Attack		(used by [move127] and Brave Bird)
-0x98 = SE_W028  // Sand Attack		(used by [move16E])
+0x97 = SE_W019  // Fly				(used by Fly and Glide)
+0x98 = SE_W028  // Sand Attack		(used by Sand Attack, [move16E], Sonic Sand)
 0x99 = SE_W013B // Razor Wind 2		(used by [move128], Double Spin, Poison Leaf)
 0x9A = SE_W044  // Bite				(used by Thunder Fang, Ice Fang, Fire Fang)
 0x9C = SE_W057  // Surf				(used by Wave Splash and Deluge)
 0x9D = SE_W056  // Hydro Pump		(used by Hydro Pump, Hydro Cannon, Wave Splash)
-0x9F = SE_W030  // Horn Attack		(used by [move1A0])
+0x9F = SE_W030  // Horn Attack		(used by [move1A0] and Psygatling)
 0xA0 = SE_W039  // Tail Whip		(used by Mud Bomb)
-0xA2 = SE_W077  // Poison Powder	(used by Poison Powder, Stun Spore, Sleep Powder, Magical Leaf, [move1B9], [move1BA], Poison Leaf, Dazzle Powder)
-0xA4 = SE_W082  // Dragon Rage		(used by Ancient Power, Overheat, Grand Boulder/Stone Edge, [move16E], [move17D], [move182])
-0xA6 = SE_W195  // Perish Song		(used by [move1AC])
+0xA2 = SE_W077  // Poison Powder	(used by Poison Powder, Stun Spore, Sleep Powder, Magical Leaf, [move1B9], Guardian Leaf, Poison Leaf, Dazzle Powder)
+0xA4 = SE_W082  // Dragon Rage		(used by Ancient Power, Overheat, Grand Boulder/Stone Edge, [move16E], Focus Blast, Giga Impact)
+0xA6 = SE_W195  // Perish Song		(used by Tone-Deaf)
 0xAA = SE_W120  // Self-Destruct	(used by Egg Bomb, Seed Bomb, Mud Bomb, Magnet Bomb)
 0xAB = SE_W153  // Explosion		(used by Raze Earth)
 0xAD = SE_W071  // Absorb			(used by [move124])
 0xAF = SE_W062  // Bubble Beam		(used by Charge Beam)
 0xB0 = SE_W062B // Bubble Beam 2	(used by Dark Pulse, Dragon Pulse, [move1A3])
 0xB6 = SE_W060  // Psybeam			(used by Psycho Boost, Possess, Shadow Sneak)
-0xB9 = SE_W043  // Leer				(used by Psycho Boost, Power Gem, Mirror Shot)
-0xBA = SE_W207  // Swagger			(used by [move8C], Arm Thrust, Mirror Shot, Rock Wrecker)
+0xB9 = SE_W043  // Leer				(used by Psycho Boost, Power Gem, Mirror Shot/Shine Bomb)
+0xBA = SE_W207  // Swagger			(used by [move8C], Arm Thrust, Mirror Shot/Shine Bomb, Rock Wrecker)
 0xBB = SE_W207B // Swagger 2		(used by Rage and Raging Flame)
 0xBD = SE_W109  // Confuse Ray		(used by Shadow Sneak)
 0xC1 = SE_W060B // Psybeam 2		(used by Psycho Boost, Possess, Psycho Cut)
 0xC2 = SE_W076  // Solar Beam		(used by [moveA7])
 0xC4 = SE_W100  // Teleport			(used by Fiery Dance)
-0xC7 = SE_W129  // Swift			(used by Double-Edge)
+0xC7 = SE_W129  // Swift			(used by Double-Edge and Starfreeze)
+0xC8 = SE_W115  // Reflect			(used by Hidden Power)
 0xC9 = SE_W112  // Barrier			(used by Stardust, Draco Meteor, Defend Order)
 0xCF = SE_W070  // Strength			(used by Raze Earth)
 0xD0 = SE_W063  // Hyper Beam		(used by Rock Wrecker)
 0xD2 = SE_W179  // Reversal			(used by Skill Swap)
-0xD6 = SE_W161B // Tri Attack 2		(used by Thunder Punch, Thunder, Thunder Fang, [move1B6])
-0xE2 = SE_W291  // Dive				(used by [move19B] and Wave Splash)
+0xD6 = SE_W161B // Tri Attack 2		(used by Thunder Punch, Thunder, Thunder Fang, Megashock)
+0xDB = SE_W213  // Attract			(used by Lovely Kiss and Icy Kiss)
+0xDF = SE_W328  // Sand Tomb		(used by [move1CA])
+0xE2 = SE_W291  // Dive				(used by Aqua Jet and Wave Splash)
 0xE3 = SE_W089  // Earthquake		(used by Earthquake)
-0xE4 = SE_W239  // Twister			(used by [move19A])
-0xE7 = SE_W327  // Sky Uppercut		(used by [move16B] and Dragon Pulse)
+0xE4 = SE_W239  // Twister			(used by Wood Hammer)
+0xE7 = SE_W327  // Sky Uppercut		(used by Close Combat and Dragon Pulse)
 
 new backgrounds:
 34: used by Leaf Storm
 35: used by Leaf Storm
-40: used by Skill Swap, Psycho Cut, [move1A0]
+40: used by Skill Swap, Psycho Cut, [move1A0], Psyburn
 62: used by Hydro Cannon and Wave Splash
 63: used by Hydro Cannon and Wave Splash
 67: used by [move194]
 70: used by [move16E]
-72: used by [move17D]
+72: used by Focus Blast
 73: used by Hydro Pump
 89: used by Fire Blast
 90: used by Fire Blast
@@ -354,7 +375,7 @@ new sprite gfx:
 304: used by Fire Punch and Fire Fang
 305: used by [move192]
 337: used by Mud Bomb
-339: used by [move185]
+339: used by Avalanche
 357: used by Shadow Sneak
 369: used by Psycho Cut
 389: used by [move192]
@@ -368,11 +389,12 @@ new sprite gfx:
 399: used by Rock Wrecker
 400: used by [move170]
 401: used by [move17E]
-402: used by [move17D]
+402: used by Focus Blast
 405: used by Leaf Storm
 407: used by [move1A5]
 408: used by [move1A5]
 409: used by [move1A5]
+414: used by [move1CA]
 419: used by [move194]
 421: used by [move194]
 422: used by [move127]
