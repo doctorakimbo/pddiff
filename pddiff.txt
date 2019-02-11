@@ -158,7 +158,7 @@ item IDs:
 + 0x1AE = Honey
 
 move IDs:
-(Mirror Move, Assist, Switcheroo, Guardian Leaf (why?), Chatter, (unimplemented Strength Sap), and the move just after the end of defined moves can't be called by Metronome; Chatter can't be copied by Mimic)
+(Mirror Move, Assist, Switcheroo, (unimplemented Guardian Leaf), Chatter, (unimplemented Strength Sap), and the move just after the end of defined moves can't be called by Metronome; Chatter can't be copied by Mimic)
 (Removed: Clamp, Barrage, Psywave, Conversion, Triple Kick, Spider Web, Conversion 2, Aeroblast, Sacred Fire, Arm Thrust, Tail Glow, Luster Purge, Mist Ball, Needle Arm, Doom Desire, Psycho Boost)
 = 0x80 = (attacking move), (has Mach Volt animation)
 = 0x8C = (non-attacking move), (animation is sweating while flashing rapidly, then Tackle)
@@ -184,7 +184,7 @@ move IDs:
 + 0x168 = Devastate
 + 0x169 = Metal Blast
 + 0x16A = Hammer Arm
-- 0x16B = Close Combat
++ 0x16B = Close Combat
 + 0x16C = Flare Blitz
 + 0x16D = Force Palm
 = 0x16E = (attacking move), (animation has Focus Energy and then Sand Attack sound)
@@ -202,15 +202,15 @@ move IDs:
 + 0x17A = Power Gem
 + 0x17B = Drain Punch
 = 0x17C = (attacking move), (has wind-related animation)
-- 0x17D = Focus Blast
++ 0x17D = Focus Blast
 = 0x17E = (attacking move with chance to lower sp. def), (animation has bubble sounds)
 + 0x17F = Brave Bird
 + 0x180 = Earth Power
 + 0x181 = Switcheroo
-- 0x182 = Giga Impact
++ 0x182 = Giga Impact
 + 0x183 = Nasty Plot
 + 0x184 = Bullet Punch
-- 0x185 = Avalanche
++ 0x185 = Avalanche
 + 0x186 = Ice Shard
 = 0x187 = (attacking move), (animation is Slash with Icy Wind's background)
 + 0x188 = Shadow Sneak
@@ -219,7 +219,7 @@ move IDs:
 + 0x18B = Zen Headbutt
 + 0x18C = Mirror Shot
 + 0x18D = Flash Cannon
-- 0x18E = Rock Climb
++ 0x18E = Rock Climb
 + 0x18F = Draco Meteor
 + 0x190 = Discharge
 + 0x191 = Leaf Storm
@@ -231,12 +231,12 @@ move IDs:
 + 0x197 = Stone Edge
 + 0x198 = Grass Knot
 + 0x199 = Charge Beam
-- 0x19A = Wood Hammer
-- 0x19B = Aqua Jet
++ 0x19A = Wood Hammer
++ 0x19B = Aqua Jet
 + 0x19C = Attack Order
 + 0x19D = Defend Order
 + 0x19E = Heal Order
-- 0x19F = Double Hit
++ 0x19F = Double Hit
 = 0x1A0 = (attacking move), (animation generates a lot of objects and has same background as Psycho Cut)
 = 0x1A1 = (attacking move), (has Superpower animation)
 + 0x1A2 = Magma Rush
@@ -249,63 +249,63 @@ move IDs:
 + 0x1A9 = Crash Impact
 + 0x1AA = Spin Tail
 + 0x1AB = Double Spin
-- 0x1AC = Tone-Deaf
++ 0x1AC = Tone-Deaf
 = 0x1AD = (non-attacking move), (animation appears to be missing)
 + 0x1AE = Deep Yawn
 + 0x1AF = Raging Flame
-- 0x1B0 = Magma Ring
++ 0x1B0 = Magma Ring
 + 0x1B1 = Wave Splash
 + 0x1B2 = Deluge
 + 0x1B3 = Aqua Bolt
 + 0x1B4 = Giga Spark
-- 0x1B5 = Shine Bomb
-- 0x1B6 = Megashock
++ 0x1B5 = Shine Bomb
++ 0x1B6 = Megashock
 + 0x1B7 = Mach Volt
 + 0x1B8 = Energize
 = 0x1B9 = (attacking move with chance to lower speed), (animation is Magical Leaf with the attack part replaced with Vine Whip)
-- 0x1BA = Guardian Leaf
+! 0x1BA = Guardian Leaf (not implemented)
 + 0x1BB = Poison Leaf
 = 0x1BC = (attacking move with chance to raise sp. atk), (animation is Growth, Ingrain, and then Frenzy Plant)
-- 0x1BD = Dazzle Powder
-- 0x1BE = Starfreeze
-- 0x1BF = Icicle Punch
-- 0x1C0 = Frostbite
-- 0x1C1 = Icy Kiss
-- 0x1C2 = Magnum Punch
-- 0x1C3 = Double Shot
-- 0x1C4 = Toxin Spray
-- 0x1C5 = Smogscreen
-- 0x1C6 = Burrow
-- 0x1C7 = Sonic Sand
++ 0x1BD = Dazzle Powder
++ 0x1BE = Starfreeze
++ 0x1BF = Icicle Punch
++ 0x1C0 = Frostbite
++ 0x1C1 = Icy Kiss
++ 0x1C2 = Magnum Punch
++ 0x1C3 = Double Shot
++ 0x1C4 = Toxin Spray
++ 0x1C5 = Smogscreen
++ 0x1C6 = Burrow
++ 0x1C7 = Sonic Sand
 + 0x1C8 = Sandblast
-- 0x1C9 = Glide
++ 0x1C9 = Glide
 = 0x1CA = (attacking move), (has sand-related animation)
-- 0x1CB = Psygatling
-- 0x1CC = Psycho Punch
-- 0x1CD = Psyburn
-- 0x1CE = Latent Power
-- 0x1CF = Hypnopulse
++ 0x1CB = Psygatling
++ 0x1CC = Psycho Punch
++ 0x1CD = Psyburn
++ 0x1CE = Latent Power
++ 0x1CF = Hypnopulse
 = 0x1D0 = (attacking move)
-- 0x1D1 = Bug Noise
++ 0x1D1 = Bug Noise
 = 0x1D2 = (attacking move with chance to lower accuracy or confuse)
 = 0x1D3 = (attacking move)
-- 0x1D4 = Diamond Blast
++ 0x1D4 = Diamond Blast
 = 0x1D5 = (attacking move with chance to raise sp. atk)
 + 0x1D6 = Shadow Clamp
 = 0x1D7 = (attacking move)
 = 0x1D8 = (attacking move)
-- 0x1D9 = Dragon Beat
++ 0x1D9 = Dragon Beat
 = 0x1DA = (attacking move)
-- 0x1DB = Dark Resolve
++ 0x1DB = Dark Resolve
 = 0x1DC = (attacking move)
 = 0x1DD = (attacking move)
-- 0x1DE = Dark Hand
++ 0x1DE = Dark Hand
 = 0x1DF = (attacking move)
 = 0x1E0 = (attacking move)
-- 0x1E1 = Geo Impact
++ 0x1E1 = Geo Impact
 = 0x1E2 = (attacking move with chance to lower user's attack or sp. atk)
 = 0x1E3 = (non-attacking move)
-- 0x1E4 = Defog
++ 0x1E4 = Defog
 + 0x1E5 = Lava Plume
 = 0x1E6 = (attacking move), (can't be called by metronome)
 + 0x1E7 = Raid
@@ -520,8 +520,8 @@ move effects:
 = 0x40 = poison or paralysis, chooses one at random
 = 0x58 = moves that double damage on status are all grouped here ((does double damage to poisoned targets (but NOT toxiced targets)), Hex, and Smelling Salts/equivalents), but hardcoded based on move ID
 = 0x5D = Venom Drench/[move2A3]
-= 0x60 = (unknown hardcoded parameterized additional effects), (Crash Impact/Raging Flame use this)
-= 0x61 = (unknown hardcoded parameterized additional effects), (Shadow Clamp uses this)
+= 0x60 = hardcoded parameterized additional effects, ai uses this for all "chance to give user a status problem" moves
+= 0x61 = hardcoded parameterized additional effects, ai uses this for sleep chance moves
 = 0x68 = Bestow
 = 0x6E = Incinerate
 = 0x82 = Punishment
@@ -539,7 +539,7 @@ move effects:
 = 0xD7 = Close Combat
 = 0xD8 = (lowers Sp. Def after use)/Giga Spark
 = 0xD9 = (unknown hardcoded parameterized additional effects)
-= 0xDA = (unknown hardcoded parameterized additional effects)
+= 0xDA = hardcoded parameterized additional effects, ai uses this for all "chance to raise target's stat" moves
 = 0xDB = (calculates damage as if any Defense boosts were added to Sp. Atk, then has a 20% chance to raise Def and Sp. Atk)/[moveDD]
 = 0xDC = Typhoon
 = 0xDD = V-Create
@@ -547,7 +547,7 @@ move effects:
 = 0xDF = -1 accuracy +2 evasion to target
 = 0xE0 = hits 3 times
 = 0xE1 = Frost Breath
-= 0xE2 = Blizzard
+= 0xE2 = Blizzard/Starfreeze
 = 0xE3 = Brine/(double damage if user at less than half HP)
 = 0xE4 = Soak + equivalents
 = 0xE5 = overwrites a random one of the target's moves with [move240]
@@ -680,25 +680,25 @@ battle strings (ADD 9 TO ALL):
 - 0x202 = "[PKMN] switched all changes to its Attack and Sp. Atk with its target!"
 - 0x203 = "[PKMN] switched all changes to its Defense and Sp. Def with its target!"
 - 0x204 = "[ATTACKER]'s type became the same as [TARGET]'s type!"
-- 0x205 = "[PKMN] received [ITEM]!"
++ 0x205 = "[DEFENDER] received [ITEM] from [ATTACKER]!"
 + 0x206 = "[PKMN]'s [ITEM] was burned up!"
 - 0x207 = "[PKMN]'s Ability was suppressed!"
 - 0x208 = "[PKMN] acquired [ABILITY]!"
 - 0x209 = "[PKMN] transformed into the [TYPE] type!"
 - 0x20A = "[PKMN] was given (move240)! (placeholder)"
 - 0x20B = "The (move1F2) strengthened the attack! (placeholder)"
-- 0x20C = "[PKMN] is already frozen! (placeholder)"
-- 0x20D = "[PKMN]'s [ABILITY] prevents freezing! (placeholder)"
++ 0x20C = "[PKMN] is already frozen! (placeholder)"
++ 0x20D = "[PKMN]'s [ABILITY] prevents freezing! (placeholder)"
 ! 0x20E = "[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"
 ! 0x20F = "[PKMN] became trapped by swirling magma!"
 - 0x210 = "[PKMN] switched its Attack and Defense!"
 - 0x211 = "[PKMN] switched its Sp. Atk and Sp. Def!"
-- 0x212 = "[PKMN]'s stat changes were removed!"
-- 0x214 = "[PKMN]'s [ABILITY] prevents its item from being removed! (?????????????)"
++ 0x212 = "[PKMN]'s stat changes were removed!"
++ 0x214 = "[PKMN]'s [ABILITY] prevents its item from being removed! (?????????????)"
 - 0x215 = "[PKMN] couldn't fully protect itself and got hurt! (placeholder)"
 - 0x216 = "[PKMN]'s Ability became Mega Launcher! (placeholder)"
-= 0x217 = (tightening focus message but for move id 0x2A7)
-= 0x218 = (failure message for move id 0x2A7)
++ 0x217 = "(move2A7) will be used! (placeholder)"
++ 0x218 = "(move2A7) failed! (placeholder)"
 - 0x21C = "[PKMN]'s stats won't go any higher! (?????????????)"
 - 0x221 = "[PKMN] switched items with its target!"
 - 0x222 = "[PKMN] acquired [ABILITY]!"
@@ -1118,7 +1118,7 @@ stray text:
 		  Implements: Snow Cloak (hail immunity), Dry Skin (sun HP loss), Solar Power (HP loss), Magic Guard (vs weather damage), Ice Body (hail immunity), Overcoat (vs weather), Sand Rush (sand immunity), Sand Force (sand immunity), Slush Rush (hail immunity), Safety Goggles (vs weather), Klutz (Safety Goggles vs weather)
 		  Relies on: weather refactor
 		  Note: Test heavily, incomprehensible code
-- 028E90: atk97_tryinfatuating (see 57disasm)
++ 028E90: atk97_tryinfatuating (see 57disasm)
 		  Implements: refactors to include extra param (if set to 1, skip actually infatuating) - makes it usable as a JumpIfCantInfatuate()
 		  Relies on: battlescripts change to accomodate above
 + 02975C: B1 -> FF (allows Metronome to select moves up to 0x1FF - Note: there are even more moves than that)
@@ -2382,14 +2382,14 @@ stray text:
   1D6BEC, 1D6BF7, 1D6900 (the one before 1D6C02), 1D6C02, 1D6C0D -> 1054020 (repoint): BattleScript_ParameterizedStatDown (see movescripts.txt)
   [none yet] -> 1054030 (repoint): BattleScript_ParameterizedStatDownPerfectAccuracy (see movescripts.txt)
 		  Implements: refactor all additional-effect hit moves and stat-up/stat-down moves into a parameterized script to reduce redundant code (too many actual moves to list here, see the move list near the top; below is the list of effects refactored by this)
-			EffectHit: EFFECT_BURN_HIT, EFFECT_FREEZE_HIT, EFFECT_PARALYZE_HIT, EFFECT_FLINCH_HIT, EFFECT_PAY_DAY, EFFECT_TRI_ATTACK, EFFECT_HIGH_CRIT, EFFECT_ATTACK_DOWN_HIT, EFFECT_DEFENSE_DOWN_HIT, EFFECT_SPEED_DOWN_HIT, EFFECT_SPECIAL_ATTACK_DOWN_HIT, EFFECT_SPECIAL_DEFENSE_DOWN_HIT, EFFECT_ACCURACY_DOWN_HIT (indirectly), EFFECT_EVASION_DOWN_HIT, EFFECT_CONFUSE_HIT, EFFECT_0x60, EFFECT_0x61, EFFECT_THAW_HIT, EFFECT_STAT_UP_HIT, EFFECT_UPROAR, EFFECT_SUPERPOWER, EFFECT_STAT_TWO_DOWN_HIT (indirectly), EFFECT_0xD9, EFFECT_0xDA
+			EffectHit: EFFECT_BURN_HIT, EFFECT_FREEZE_HIT, EFFECT_PARALYZE_HIT, EFFECT_FLINCH_HIT, EFFECT_PAY_DAY, EFFECT_TRI_ATTACK, EFFECT_HIGH_CRIT, EFFECT_ATTACK_DOWN_HIT, EFFECT_DEFENSE_DOWN_HIT, EFFECT_SPEED_DOWN_HIT, EFFECT_SPECIAL_ATTACK_DOWN_HIT, EFFECT_SPECIAL_DEFENSE_DOWN_HIT, EFFECT_ACCURACY_DOWN_HIT (indirectly), EFFECT_EVASION_DOWN_HIT, EFFECT_CONFUSE_HIT, EFFECT_SELF_STATUS_HIT, EFFECT_SLEEP_HIT, EFFECT_THAW_HIT, EFFECT_STAT_UP_HIT, EFFECT_UPROAR, EFFECT_SUPERPOWER, EFFECT_STAT_TWO_DOWN_HIT (indirectly), EFFECT_0xD9, EFFECT_TARGET_STAT_UP_HIT
 			EffectAltTypeCalcHit: EFFECT_0x35, EFFECT_0x36
 			StatUp: EFFECT_ATTACK_UP, EFFECT_DEFENSE_UP, EFFECT_SPEED_UP, EFFECT_SPECIAL_ATTACK_UP, EFFECT_SPECIAL_DEFENSE_UP, EFFECT_ACCURACY_UP, EFFECT_EVASION_UP
 			StatDown: EFFECT_ATTACK_DOWN (indirectly), EFFECT_DEFENSE_DOWN, EFFECT_SPEED_DOWN, EFFECT_SPECIAL_ATTACK_DOWN (indirectly), EFFECT_SPECIAL_DEFENSE_DOWN, EFFECT_ACCURACY_DOWN, EFFECT_EVASION_DOWN
 			StatDownPerfectAccuracy: EFFECT_ATTACK_DOWN (indirectly), EFFECT_SPECIAL_ATTACK_DOWN (indirectly)
 		  Required knowledge: whether the area around gStringVar4 is the same in en
 		  Note: code is horrifying, get someone to fix this
-		  Glitch?: Zen Headbutt is missing its flinch chance, Double Spin is missing its +Atk chance, Poison Leaf is missing its poison chance, and (check Starfreeze, maybe this one is correct) (might just be transcription errors)
+		  Glitch?: Zen Headbutt is missing its flinch chance, Double Spin is missing its +Atk chance, and Poison Leaf is missing its poison chance (might just be transcription errors)
 + 1D6A76 -> 1053960 (repoint): BattleScript_EffectExplosion_New (see movescripts.txt)
   1D6AF6 -> 1053968 (repoint): BattleScript_EffectDreamEater_New (see movescripts.txt)
   1D6F01 -> 1053970 (repoint): BattleScript_EffectRazorWind_New (see movescripts.txt)
@@ -2430,17 +2430,18 @@ stray text:
   1D6900 (the one after 1D6BF7) -> 1052470 (repoint): BattleScript_AttackDown_Standard (see movescripts.txt)
 		  Implements: [move214], [move215], Strength Sap; also refactors into the parameterized script
 		  Relies on: BattleScript_ParameterizedStatDown, BattleScript_ParameterizedStatDownPerfectAccuracy
-- 1D6C72 -> 10500E0 (repoint): BattleScript_EffectHaze_New (see movescripts.txt)
++ 1D6C72 -> 10500E0 (repoint): BattleScript_EffectHaze_New (see movescripts.txt)
 		  Implements: Clear Smog
 		  Relies on: BattleScript_DamageAndEffect
-- 1D6C83 -> 10500B0 (repoint): BattleScript_EffectBide (see movescripts.txt)
-		  Implements: Bide can now miss
-- 1D6CB1 -> 10519C0 (repoint): BattleScript_EffectPhaze (see movescripts.txt)
++ 1D6C83 -> 10500B0 (repoint): BattleScript_EffectBide (see movescripts.txt)
+		  Implements: adds an accuracy check to Magic Coat, but it's specified elsewhere to not miss anyway? (also, since when did Magic Coat have a target?)
+		  Relies on: AccuracyCalcHelper (so the move can't miss)
++ 1D6CB1 -> 10519C0 (repoint): BattleScript_EffectPhaze (see movescripts.txt)
 		  Implements: Dragon Tail/Circle Throw
 		  Relies on: BattleScript_DamageAndEffect
 + 1D6CCD: 01 60 69 1D 08 -> 00 00 00 00 00 (Roar/Whirlwind have perfect accuracy)
 + 1D6D51, 1D766A: 40 -> 00 (Endure displays the pokemon getting hit and enduring all hits of multihit moves, not the old behavior of it hitting once then getting endured)
-- 1D6D9D -> 10502D0 (repoint): BattleScript_EffectFreeze (see movescripts.txt)
++ 1D6D9D -> 10502D0 (repoint): BattleScript_EffectFreeze (see movescripts.txt)
 		  Implements: removes Conversion entirely, adds new effect for moves that freeze without doing damage (aka Hypnosis for freeze)
 		  Note: remove Conversion, the move, first
 = 1D6F99 -> 1053760 (repoint): BattleScript_EffectSetDamageOrMove29F (see movescripts.txt)
@@ -2483,36 +2484,32 @@ stray text:
 = 1D741B -> 10539B8 (repoint): BattleScript_EffectDoubleDamageOnStatus (see movescripts.txt)
 		  Implements: removes Psywave effect entirely, adds new effect for (does double damage to poisoned targets (but NOT toxiced targets)), Hex, and moves that cure status and double damage when they do so (Smelling Salts is moved into this effect, plus options for Wake-Up Slap, (double damage if it cures infatuation), (double damage if it cures burn), (double damage if it cures freeze), and (double damage if it cures poison))
 		  Relies on: changes at 0x20F00
-		  Note: <<<IMPORTANT - CHECK SMELLINGSALTS/WAKEUPSLAP MSG>>>
-		  Note: If above is just cure status msg, rewrite this code for correct msg
-		  Note: remove Psywave, the move, first
-- 1D7433 -> 10539C0 (repoint): BattleScript_EffectCounter_New (see movescripts.txt)
+		  Note: Since it just displays status cure msg in real games, rewrite this code for correct msg
++ 1D7433 -> 10539C0 (repoint): BattleScript_EffectCounter_New (see movescripts.txt)
 		  Implements: [move2A7]
-- 1D749C -> 1050AA0 (repoint): BattleScript_EffectUsableWhileAsleep (see movescripts.txt)
+		  Note: message scrolls off too soon, maybe add wait
++ 1D749C -> 1050AA0 (repoint): BattleScript_EffectUsableWhileAsleep (see movescripts.txt)
 		  Implements: condenses Sleep Talk into Snore's effect slot to free up space
-		  Note: change Sleep Talk's effect byte first
-- 1D74D6 -> 1050AA0 (repoint): BattleScript_EffectVenomDrench (see movescripts.txt)
++ 1D74D6 -> 1050AC0 (repoint): BattleScript_EffectVenomDrench (see movescripts.txt)
 		  Implements: removes Conversion 2 entirely, adds new effect for Venom Drench/[move2A3]
 		  Relies on: BattleScript_DamageAndEffect, BattleScript_LowerOneOfMultipleStats
-		  Note: remove Conversion 2, the move, first
+		  Note: stat-down animation color is -Atk only, fix this to be gray later
 + 1D7581, 1D81B5, 1D82AB, 1D8417: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything)
-- 1D75E6 -> 1052250 (repoint): BattleScript_EffectBestow (see movescripts.txt)
++ 1D75E6 -> 1052250 (repoint): BattleScript_EffectBestow (see movescripts.txt)
 		  Implements: removes Triple Kick entirely, adds new effect for Bestow
-		  Note: remove Triple Kick, the move, first
-		  Note: <<<IMPORTANT - CHECK BESTOW MSG>>> (message 0x205)
-- 1D76C9 -> 1052620 (repoint): BattleScript_EffectThief (see movescripts.txt)
++ 1D76C9 -> 1052620 (repoint): BattleScript_EffectThief (see movescripts.txt)
 		  Implements: Unclear, only change seems to be that the Sticky Hold message is different
 		  Relies on: BattleScript_DoDamageFunction
-- 1D76D4 -> 1053AD0 (repoint): BattleScript_EffectEscapePrevention (see movescripts.txt)
++ 1D76D4 -> 1053AD0 (repoint): BattleScript_EffectEscapePrevention (see movescripts.txt)
 		  Implements: Spirit Shackle, etc.; Ghost-type immunity to trapping
 + 1D7747: 17 -> 27 (Minimize +1 -> +2 evasion)
-- 1D7938 -> 1052B20 (repoint): BattleScript_EffectFailsOnSameGender (see movescripts.txt)
++ 1D7938 -> 1052B20 (repoint): BattleScript_EffectFailsOnSameGender (see movescripts.txt)
 		  Implements: Captivate, [move2A6]
 		  Relies on: atk97_tryinfatuating changes
 		  Glitch?: Mold Breaker is done by swapping abilities, meaning Simple targets (and probably others) won't work right?
-- 1D7995 -> 10539E8 (repoint): BattleScript_EffectSwitchOutMove (see movescripts.txt)
++ 1D7995 -> 10539E8 (repoint): BattleScript_EffectSwitchOutMove (see movescripts.txt)
 		  Implements: U-Turn/Volt Switch
-		  Note: looks like "went back to" is missing? fix later
+		  Note: "went back to" is missing, fix later
 = 1D79CD -> 10539F0 (repoint): BattleScript_EffectPunishment (see movescripts.txt)
 		  Implements: removes Sonic Boom effect entirely (folded into Dragon Rage), adds new effect for Punishment
 		  Relies on: BattleScript_EffectSetDamageOrMove29F (to not break existing Sonic Boom)
@@ -2525,17 +2522,17 @@ stray text:
 		  Implements: removes -Atk chance effect entirely (folded into something else), adds new effect that poisons user and target
 		  Relies on: BattleScript_Parameterized (to not break existing -Atk chance)
 = 1D7BF5: 60 -> 30 (part of weather refactor - sun)
-- 1D805C -> 1052E60 (repoint): BattleScript_EffectMustFocus (see movescripts.txt)
++ 1D805C -> 1052E60 (repoint): BattleScript_EffectMustFocus (see movescripts.txt)
 		  Implements: some move that does +2 Def/+2 Sp. Def but only if the user isn't attacked
-		  Glitch?: crashes if Defense is at +6 but Sp. Def isn't
+		  GLITCH!: crashes if Defense is at +6 but Sp. Def isn't
 = 1D806E -> 1053A60 (repoint): BattleScript_EffectPlusSpeedDoubleDamageMinusSpeedNoDamage (see movescripts.txt)
 		  Implements: removes Smelling Salts effect entirely (folded into DoubleDamageOnStatus), adds new effect for (double damage on target with speed boosts, does no damage to target with speed drops)
 		  Relies on: BattleScript_EffectDoubleDamageOnStatus (to not break Smelling Salts)
-- 1D80B6 -> 11BA88C (repoint): BattleScript_EffectCharge_New (see movescripts.txt)
++ 1D80B6 -> 11BA88C (repoint): BattleScript_EffectCharge_New (see movescripts.txt)
 		  Implements: Charge Sp. Def boost
 		  Relies on: changes at 1D80BA
 		  Note: Code is hideously broken, fix later
-- 1D80BA: 09 0A -> 00 00
++ 1D80BA: 09 0A -> 00 00
 		  Implements: removes Charge animation (moved to BattleScript_EffectCharge_New)
 		  Relies on: BattleScript_EffectCharge_New
 - 1D80F8 -> 1055D80 (repoint): BattleScript_EffectTrick (see movescripts.txt)
@@ -2576,11 +2573,12 @@ stray text:
 		  Implements: if the move used to force out was above ID 0x200, don't play the move animation (presumably for dragon tail, etc.)
 + 1D9015 -> 1052EE0 (repoint): BattleScript_FocusPunchSetUp (see movescripts.txt)
 		  Implements: [move2A7] prints string 0x217 instead of "tightening its focus"; need more info
+		  Note: it doesn't actually do this, some other change probably needed
 + 1D90B1 -> 018539 (repoint): BattleScript_MoveUsedFlinched (10 4A 00 12 40 00 1E 01 50 4B 85 01 08 28 4E 69 1D 08 2E DE 3F 02 02 13 89 41 4E 69 1D 08 29 00 87 3E 02 02 02 4E 69 1D 08 47 45 01 01 D4 3F 02 02 10 A2 01 12 40 00 28 4E 69 1D 08) (implements steadfast)
 + 1D9366: 1C -> 16 (resets the statchanger, needed for Intimidate to keep working after addition of Defiant)
-- 1D9444 -> 1050260 (repoint): BattleScript_ObliviousPreventsAttraction (see 57disasm)
-		  Implements: atk97_tryinfatuating has unknown message for move ID 0x257
-		  Note: import during atk97_tryinfatuating
++ 1D9444 -> 1050260 (repoint): BattleScript_ObliviousPreventsAttraction (see 57disasm)
+		  Implements: Oblivious changed from "prevents romance" to "made [MOVE] useless", EXCEPT for move ID 0x257 ("prevents romance" presumably replaced with new msg)
+		  Note: more coding needed to re-add "prevents romance"
 = 1D9C1C: ptr ED BC 1D 08 -> 30 C0 1F 09 (add new AI table entry for script at 11FC030)
 		  Implements: New level of smart AI (enough stuff to warrant breaking the usual format)
 		  * Won't use Explosion
@@ -2838,7 +2836,7 @@ stray text:
 -1053A90: BattleScript_EffectVCreate (see movescripts.txt)
 		  Implements: V-Create/Nova Inferno
 -1053AA0: BattleScript_EffectBlizzard (see movescripts.txt)
-		  Implements: Blizzard has its own effect byte, unclear why
+		  Implements: Blizzard has its own effect byte that it shares with Starfreeze, unclear why
 =1053AA8: BattleScript_EffectSuckerPunch (see movescripts.txt)
 		  Implements: Sucker Punch
 		  Required knowledge: whether the area around gStringVar4 is the same in en
