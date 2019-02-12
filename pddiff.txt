@@ -158,7 +158,7 @@ item IDs:
 + 0x1AE = Honey
 
 move IDs:
-(Mirror Move, Assist, Switcheroo, (unimplemented Guardian Leaf), Chatter, (unimplemented Strength Sap), and the move just after the end of defined moves can't be called by Metronome; Chatter can't be copied by Mimic)
+(Mirror Move, Assist, Switcheroo, (unimplemented Guardian Leaf), Nova Inferno, Chatter, (unimplemented Strength Sap), and the move just after the end of defined moves can't be called by Metronome; Chatter can't be copied by Mimic)
 (Removed: Clamp, Barrage, Psywave, Conversion, Triple Kick, Spider Web, Conversion 2, Aeroblast, Sacred Fire, Arm Thrust, Tail Glow, Luster Purge, Mist Ball, Needle Arm, Doom Desire, Psycho Boost)
 = 0x80 = (attacking move), (has Mach Volt animation)
 = 0x8C = (non-attacking move), (animation is sweating while flashing rapidly, then Tackle)
@@ -285,32 +285,32 @@ move IDs:
 + 0x1CD = Psyburn
 + 0x1CE = Latent Power
 + 0x1CF = Hypnopulse
-= 0x1D0 = (attacking move)
+- 0x1D0 = Gravity Wave
 + 0x1D1 = Bug Noise
-= 0x1D2 = (attacking move with chance to lower accuracy or confuse)
-= 0x1D3 = (attacking move)
+- 0x1D2 = Angry Swarm
+- 0x1D3 = Rock Tumble
 + 0x1D4 = Diamond Blast
-= 0x1D5 = (attacking move with chance to raise sp. atk)
+- 0x1D5 = Paleobreath
 + 0x1D6 = Shadow Clamp
-= 0x1D7 = (attacking move)
-= 0x1D8 = (attacking move)
+= 0x1D7 = (attacking move), (has Spite animation)
+= 0x1D8 = (attacking move), (has Soul Break animation)
 + 0x1D9 = Dragon Beat
-= 0x1DA = (attacking move)
+- 0x1DA = Vengeance
 + 0x1DB = Dark Resolve
-= 0x1DC = (attacking move)
-= 0x1DD = (attacking move)
+- 0x1DC = Dark Cutter
+- 0x1DD = Dark Roar
 + 0x1DE = Dark Hand
-= 0x1DF = (attacking move)
-= 0x1E0 = (attacking move)
+- 0x1DF = Corner
+- 0x1E0 = Metal Pincer
 + 0x1E1 = Geo Impact
-= 0x1E2 = (attacking move with chance to lower user's attack or sp. atk)
-= 0x1E3 = (non-attacking move)
+- 0x1E2 = Magnet Force
+- 0x1E3 = Roost
 + 0x1E4 = Defog
 + 0x1E5 = Lava Plume
-= 0x1E6 = (attacking move), (can't be called by metronome)
+- 0x1E6 = Nova Inferno
 + 0x1E7 = Raid
-= 0x1E8 = (attacking move with chance to harshly lower sp. def)
-= 0x1E9 = (attacking move with chance to lower speed)
+- 0x1E8 = Acid Spray
+- 0x1E9 = Electroweb
 = 0x1EA = (non-attacking move)
 + 0x1EB = Gastro Acid
 = 0x1EC = (non-attacking move)
@@ -2390,6 +2390,7 @@ stray text:
 		  Required knowledge: whether the area around gStringVar4 is the same in en
 		  Note: code is horrifying, get someone to fix this
 		  Glitch?: Zen Headbutt is missing its flinch chance, Double Spin is missing its +Atk chance, and Poison Leaf is missing its poison chance (might just be transcription errors)
+		  Note: check Magnet Force in Vega; if it lowers the user's stats, fix the Vega description; if it lowers the target's stats, it's bugged in PD
 + 1D6A76 -> 1053960 (repoint): BattleScript_EffectExplosion_New (see movescripts.txt)
   1D6AF6 -> 1053968 (repoint): BattleScript_EffectDreamEater_New (see movescripts.txt)
   1D6F01 -> 1053970 (repoint): BattleScript_EffectRazorWind_New (see movescripts.txt)
@@ -2673,6 +2674,8 @@ stray text:
 
 = ?????? (j20E550): Move_??? (see animscripts.txt)
 		  Implements: [move187] animation
+= ?????? (j20E5A0): Move_Dark_Cutter (see animscripts.txt)
+		  Implements: Dark Cutter animation
 = ?????? (j221B78): movement action function 0xC2
   ?????? (j221B94): movement action function 0xC3
   ?????? (j221BB0): movement action function 0xC4  
@@ -2911,6 +2914,8 @@ stray text:
 		  Implements: Ice Fang animation
 -1307950: Move_Rock_Climb (see animscripts.txt)
 		  Implements: Rock Climb animation
+=1307D70: Move_??? (see animscripts.txt)
+		  Implements: <<<<<FINISH THIS>>>>>
 -1307F70: Move_Aqua_Jet (see animscripts.txt)
 		  Implements: Aqua Jet animation
 -1308368: Move_Focus_Blast (see animscripts.txt)
@@ -2931,6 +2936,8 @@ stray text:
 		  Implements: [move17E] animation
 -1309E68: Move_Poison_Leaf (see animscripts.txt)
 		  Implements: Poison Leaf animation
+-1309F90: Move_Bug_Noise (see animscripts.txt)
+		  Implements: Bug Noise animation
 -130A078: Move_Tone_Deaf (see animscripts.txt)
 		  Implements: Tone-Deaf animation
 -130A1CB: Move_Wave_Splash (see animscripts.txt)
@@ -2943,10 +2950,14 @@ stray text:
 		  Implements: [move1A0] animation
 -130A950: Move_X_Scissor (see animscripts.txt)
 		  Implements: X-Scissor animation
+-130A9D0: Move_Raid (see animscripts.txt)
+		  Implements: Raid animation
 -130ABB0: Move_Mud_Bomb (see animscripts.txt)
 		  Implements: Mud Bomb animation
 -130ADA0: Move_Psyburn (see animscripts.txt)
 		  Implements: Psyburn animation
+-130B0B0: Move_Metal_Pincer (see animscripts.txt)
+		  Implements: Metal Pincer animation
 -130B130: Move_??? (see animscripts.txt)
 		  Implements: [move1CA] animation
 -1340000: Move_Wood_Hammer (see animscripts.txt)
@@ -2954,9 +2965,11 @@ stray text:
 -13C4910: Move_Iron_Head (see animscripts.txt)
 		  Implements: Iron Head animation
 -13C4990: Move_Soul_Break (see animscripts.txt)
-		  Implements: Soul Break animation
+		  Implements: Soul Break/[move1D8] animation
 -13C49C0: Move_Power_Gem (see animscripts.txt)
 		  Implements: Power Gem animation
+-140CEA0: Move_Lava_Plume (see animscripts.txt)
+		  Implements: Lava Plume animation
 -140CF90: Move_Guardian_Leaf (see animscripts.txt)
 		  Implements: Guardian Leaf animation
 -140D086: Move_Double_Hit (see animscripts.txt)
@@ -2967,6 +2980,8 @@ stray text:
 		  Implements: Attack Order animation
 -140D18A: Move_Heal_Order (see animscripts.txt)
 		  Implements: Heal Order animation
+-140D296: Move_Angry_Swarm (see animscripts.txt)
+		  Implements: Angry Swarm
 -140D316: Move_Mirror_Shot (see animscripts.txt)
 		  Implements: Mirror Shot/Shine Bomb animation
 -140D430: Move_Sonic_Sand (see animscripts.txt)
@@ -2974,6 +2989,8 @@ stray text:
 		  Glitch?: background goes the wrong direction when used by ai
 -140D632: Move_??? (see animscripts.txt)
 		  Implements: [move1BC] animation
+-140D820: Move_Defog (see animscripts.txt)
+		  Implements: Defog animation
 -140D880: Move_Drain_Punch (see animscripts.txt)
 		  Implements: Drain Punch animation
 -140D906: Move_??? (see animscripts.txt)
@@ -2981,12 +2998,22 @@ stray text:
 !140DA56: Move_??? (see animscripts.txt)
 		  Implements: [move1AD] animation
 		  GLITCH!: There's nothing here?
+-140DA7C: Move_Corner (see animscripts.txt)
+		  Implements: Corner animation
 -140DAC8: Move_Earth_Power (see animscripts.txt)
 		  Implements: Earth Power animation
+-140DB3C: Move_Gravity_Wave (see animscripts.txt)
+		  Implements: Gravity Wave animation
 -140DC08: Move_Magnum_Punch (see animscripts.txt)
 		  Implements: Magnum Punch animation
+-140DCAC: Move_Diamond_Blast (see animscripts.txt)
+		  Implements: Diamond Blast animation
 -140DE22: Move_Flash_Cannon (see animscripts.txt)
 		  Implements: Flash Cannon animation
+-140DF20: Move_Magnet_Force (see animscripts.txt)
+		  Implements: Magnet Force animation
+-140DFC0: Move_Paleobreath (see animscripts.txt)
+		  Implements: Paleobreath animation
 -140E074: Move_Close_Combat (see animscripts.txt)
 		  Implements: Close Combat animation
 -1429760: Move_Stardust (see animscripts.txt)
@@ -3011,9 +3038,8 @@ stray text:
 		  Implements: Double Spin animation
 -142A20C: Move_Switcheroo (see animscripts.txt)
 		  Implements: Switcheroo animation
-=142A78E: Move_Hypnopulse (see animscripts.txt)
+-142A78E: Move_Hypnopulse (see animscripts.txt)
 		  Implements: Hypnopulse animation
-		  <<<<< FINISH THIS >>>>>
 -142A7F0: Move_Bullet_Punch (see animscripts.txt)
 		  Implements: Bullet Punch animation
 -142A888: Move_Aqua_Bolt (see animscripts.txt)
@@ -3026,6 +3052,12 @@ stray text:
 		  Implements: Icicle Punch animation
 -142BF8A: Move_Toxin_Spray (see animscripts.txt)
 		  Implements: Toxin Spray animation
+-142BFFE: Move_Dark_Hand (see animscripts.txt)
+		  Implements: Dark Hand animation
+-142C1A0: Move_Dark_Roar (see animscripts.txt)
+		  Implements: Dark Roar animation
+-142C1BE: Move_Dragon_Beat (see animscripts.txt)
+		  Implements: Dragon Beat animation
 -142C2AA: Move_Frostbite (see animscripts.txt)
 		  Implements: Frostbite animation
 -142C316: Move_Ice_Shard (see animscripts.txt)
@@ -3036,6 +3068,8 @@ stray text:
 		  Implements: Nasty Plot animation
 -142C4CC: Move_Ominous_Wind (see animscripts.txt)
 		  Implements: Ominous Wind animation
+-142C612: Move_Dark_Resolve (see animscripts.txt)
+		  Implements: Dark Resolve animation
 -142C660: Move_Megashock (see animscripts.txt)
 		  Implements: Megashock animation
 -142C7AC: Move_Deluge (see animscripts.txt)
@@ -3044,6 +3078,8 @@ stray text:
 		  Implements: Discharge animation
 -142CB10: Move_Giga_Spark (see animscripts.txt)
 		  Implements: Giga Spark animation
+-142CDC0: Move_Shadow_Clamp (see animscripts.txt)
+		  Implements: Shadow Clamp animation
 -142CE84: Move_Latent_Power (see animscripts.txt)
 		  Implements: Latent Power animation
 -142CFD8: Move_Giga_Impact (see animscripts.txt)
@@ -3054,13 +3090,15 @@ stray text:
 -1697F80: BattleScript_EffectHurricane (see movescripts.txt)
 		  Implements: Hurricane
 -1699D70: Move_Psycho_Punch (see animscripts.txt)
-		  Implements: Psycho Punch
+		  Implements: Psycho Punch animation
 -1699DCA: Move_Glide (see animscripts.txt)
 		  Implements: Glide animation
 -1699E26: Move_Dragon_Pulse (see animscripts.txt)
 		  Implements: Dragon Pulse animation
 -1699EE0: Move_Draco_Meteor (see animscripts.txt)
 		  Implements: Draco Meteor animation
+-169A040: Move_Geo_Impact (see animscripts.txt)
+		  Implements: Geo Impact animation
 -169A19A: Move_Psygatling (see animscripts.txt)
 		  Implements: Psygatling animation
 -169A20A: Move_Magnet_Bomb (see animscripts.txt)
@@ -3069,5 +3107,11 @@ stray text:
 		  Implements: Brave Bird animation
 -169A4F0: Move_Burrow (see animscripts.txt)
 		  Implements: Burrow animation
+-16B40F0: Move_Acid_Spray (see animscripts.txt)
+		  Implements: Acid Spray animation
+-16B4C70: Move_Electroweb (see animscripts.txt)
+		  Implements: Electroweb animation
+-1E24E80: Move_Nova_Inferno (see animscripts.txt)
+		  Implements: Nova Inferno animation
 -1E29CA0: Move_??? (see animscripts.txt)
 		  Implements: [move1A3] animation
