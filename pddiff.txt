@@ -537,7 +537,7 @@ move effects:
 = 0xD1 = Work Up/Growth/Energize
 = 0xD6 = Hammer Arm
 = 0xD7 = Close Combat
-= 0xD8 = (lowers Sp. Def after use)/Giga Spark
+= 0xD8 = Diamond Blast/Giga Spark
 = 0xD9 = (unknown hardcoded parameterized additional effects)
 = 0xDA = hardcoded parameterized additional effects, ai uses this for all "chance to raise target's stat" moves
 = 0xDB = (calculates damage as if any Defense boosts were added to Sp. Atk, then has a 20% chance to raise Def and Sp. Atk)/[moveDD]
@@ -674,7 +674,7 @@ battle strings (ADD 9 TO ALL):
 ! 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]! (placeholder)"
 ! 0x19D = "[PKMN] restored HP using its [ABILITY]! (placeholder)"
 ! 0x19E = "[PKMN] is hurt by its [ITEM]!"
-- 0x1FF = "[PKMN] decided to explode! (placeholder)"
++ 0x1FF = "[PKMN] decided to explode! (placeholder)"
 + 0x200 = "[PKMN] shared its power with the target!"
 + 0x201 = "[PKMN] shared its guard with the target!"
 - 0x202 = "[PKMN] switched all changes to its Attack and Sp. Atk with its target!"
@@ -682,26 +682,28 @@ battle strings (ADD 9 TO ALL):
 - 0x204 = "[ATTACKER]'s type became the same as [TARGET]'s type!"
 + 0x205 = "[DEFENDER] received [ITEM] from [ATTACKER]!"
 + 0x206 = "[PKMN]'s [ITEM] was burned up!"
-- 0x207 = "[PKMN]'s Ability was suppressed!"
-- 0x208 = "[PKMN] acquired [ABILITY]!"
-- 0x209 = "[PKMN] transformed into the [TYPE] type!"
-- 0x20A = "[PKMN] was given (move240)! (placeholder)"
-- 0x20B = "The (move1F2) strengthened the attack! (placeholder)"
++ 0x207 = "[PKMN]'s Ability was suppressed!"
++ 0x208 = "[PKMN] acquired [ABILITY]!"
++ 0x209 = "[PKMN] transformed into the [TYPE] type!"
++ 0x20A = "[PKMN] was given (move240)! (placeholder)"
++ 0x20B = "The (move1F2) strengthened the attack! (placeholder)"
 + 0x20C = "[PKMN] is already frozen! (placeholder)"
 + 0x20D = "[PKMN]'s [ABILITY] prevents freezing! (placeholder)"
 ! 0x20E = "[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"
 ! 0x20F = "[PKMN] became trapped by swirling magma!"
-- 0x210 = "[PKMN] switched its Attack and Defense!"
-- 0x211 = "[PKMN] switched its Sp. Atk and Sp. Def!"
++ 0x210 = "[PKMN] switched its Attack and Defense!"
++ 0x211 = "[PKMN] switched its Sp. Atk and Sp. Def!"
 + 0x212 = "[PKMN]'s stat changes were removed!"
-+ 0x214 = "[PKMN]'s [ABILITY] prevents its item from being removed! (?????????????)"
-- 0x215 = "[PKMN] couldn't fully protect itself and got hurt! (placeholder)"
-- 0x216 = "[PKMN]'s Ability became Mega Launcher! (placeholder)"
++ 0x214 = "[PKMN]'s [ABILITY] prevents its item from being removed!" (?????????????)
++ 0x215 = "[PKMN] couldn't fully protect itself and got hurt! (placeholder)"
++ 0x216 = "[PKMN]'s Ability became Mega Launcher! (placeholder)"
 + 0x217 = "(move2A7) will be used! (placeholder)"
 + 0x218 = "(move2A7) failed! (placeholder)"
-- 0x21C = "[PKMN]'s stats won't go any higher! (?????????????)"
-- 0x221 = "[PKMN] switched items with its target!"
-- 0x222 = "[PKMN] acquired [ABILITY]!"
++ 0x21C = "[PKMN]'s stats won't go any higher!" (?????????????)
++ 0x221 = "[PKMN] switched items with its target!"
++ 0x222 = "[PKMN] acquired [ABILITY]!"
++ 0x247 = "[Your/The opposing] team's Reflect wore off!" <EN ONLY>
++ 0x248 = "[Your/The opposing] team's Light Screen wore off!" <EN ONLY>
 
 grafics:
 = 3BF58C (3860F0 old, 783890 new)
@@ -1148,7 +1150,7 @@ stray text:
 		  Relies on: GetWeatherTurns, weather refactor
 + 02BFC4: Part of atkD0_settaunt (see 62disasm)
 		  Implements: Oblivious Taunt immunity, Taunt 2->3 turns
-- 02C670 -> EB8130 (repoint): atkD9_scaledamagebyhealthratio (see 253disasm)
++ 02C670 -> EB8130 (repoint): atkD9_scaledamagebyhealthratio (see 253disasm)
 		  Implements: refactors to include extra param for the mon whose hp it's scaled for (presumably for Wring Out, etc.); also appears to set the groundwork for this formula to work right with a base power of 0 (always 0 damage) for some reason
 		  Relies on: battlescripts change to accomodate above
 + 02CCC0: atkE2_switchoutabilities (see 63disasm)
@@ -2350,11 +2352,9 @@ stray text:
 = 1D67BC <except done on the new table>: FC 79 1D 08 -> EC 80 01 08 (BattleScript_EffectTailwind (j178FC, see movescripts.txt))
 		  Implements: removes Synthesis effect entirely (folded into Morning Sun), adds new effect for Tailwind
 		  Relies on: DoFieldEndTurnEffects changes (to make space)
-		  Note: change Synthesis's effect byte first
 = 1D67C0 <except done on the new table>: FC 79 1D 08 -> B8 80 01 08 (BattleScript_EffectTrickRoom (j178C8, see movescripts.txt))
 		  Implements: removes Moonlight effect entirely (folded into Morning Sun), adds new effect for Trick Room
 		  Relies on: DoFieldEndTurnEffects changes (to make space)
-		  Note: change Moonlight's effect byte first
 + 1D67DC <except done on the new table>: 00 69 1D 08 -> C0 0F 05 09 (BattleScript_EffectChipAway (see movescripts.txt))
 		  Implements: Chip Away/Sacred Sword
 		  Glitch?: supposed to ignore evasion boosts, but accuracy is calculated before temporarily setting stats to +0, so this doesn't work
@@ -2443,7 +2443,6 @@ stray text:
 + 1D6D51, 1D766A: 40 -> 00 (Endure displays the pokemon getting hit and enduring all hits of multihit moves, not the old behavior of it hitting once then getting endured)
 + 1D6D9D -> 10502D0 (repoint): BattleScript_EffectFreeze (see movescripts.txt)
 		  Implements: removes Conversion entirely, adds new effect for moves that freeze without doing damage (aka Hypnosis for freeze)
-		  Note: remove Conversion, the move, first
 = 1D6F99 -> 1053760 (repoint): BattleScript_EffectSetDamageOrMove29F (see movescripts.txt)
 		  Implements: [move29F] does regular damage with two exceptions: it bypasses Levitate, and it uses an altered type chart where Water is weak to Ice and Poison and Flying is neutral to Ground; condenses Sonic Boom into Dragon Rage's effect slot to free up space
 		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_UseGem (e1FD42, j1F552), HasItemWithTypeEffect, AteAbilityConversionTable (j168CB4), gChosenActionByBattler changed to something else
@@ -2493,7 +2492,7 @@ stray text:
 + 1D74D6 -> 1050AC0 (repoint): BattleScript_EffectVenomDrench (see movescripts.txt)
 		  Implements: removes Conversion 2 entirely, adds new effect for Venom Drench/[move2A3]
 		  Relies on: BattleScript_DamageAndEffect, BattleScript_LowerOneOfMultipleStats
-		  Note: stat-down animation color is -Atk only, fix this to be gray later
+		  Note: stat-change animation color is only the first stat, fix this to be gray later
 + 1D7581, 1D81B5, 1D82AB, 1D8417: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything)
 + 1D75E6 -> 1052250 (repoint): BattleScript_EffectBestow (see movescripts.txt)
 		  Implements: removes Triple Kick entirely, adds new effect for Bestow
@@ -2535,22 +2534,19 @@ stray text:
 + 1D80BA: 09 0A -> 00 00
 		  Implements: removes Charge animation (moved to BattleScript_EffectCharge_New)
 		  Relies on: BattleScript_EffectCharge_New
-- 1D80F8 -> 1055D80 (repoint): BattleScript_EffectTrick (see movescripts.txt)
++ 1D80F8 -> 1055D80 (repoint): BattleScript_EffectTrick (see movescripts.txt)
 		  Implements: Trick no longer fails when used by the AI
-		  Note: Change C4 00 to en's sticky hold msg id
-- 1D8126 -> 1050440 (repoint): BattleScript_EffectAbilityTransfer (see movescripts.txt)
+		  Note: Sticky Hold message scrolls off too soon, maybe add wait
++ 1D8126 -> 1050440 (repoint): BattleScript_EffectAbilityTransfer (see movescripts.txt)
 		  Implements: Entrainment; condenses Skill Swap into Role Play's effect slot to free up space
-		  Note: <<<IMPORTANT - CHECK ENTRAINMENT MSG>>> (message 0x222)
 = 1D8189 -> 1050480 (repoint): BattleScript_EffectMagicCoat (see movescripts.txt)
 		  Implements: adds an accuracy check to Magic Coat, but it's specified elsewhere to not miss anyway? (also, since when did Magic Coat have a target?)
 		  Relies on: AccuracyCalcHelper (so the move can't miss)
-- 1D82A9 -> 1053A70 (repoint): BattleScript_EffectHPScaled (see movescripts.txt)
++ 1D82A9 -> 1053A70 (repoint): BattleScript_EffectHPScaled (see movescripts.txt)
 		  Implements: Wring Out/Crush Grip
 		  Relies on: atkD9_scaledamagebyhealthratio changes
-- 1D82AF -> 1051160 (repoint): BattleScript_EffectChangeTargetAbility (see movescripts.txt)
++ 1D82AF -> 1051160 (repoint): BattleScript_EffectChangeTargetAbility (see movescripts.txt)
 		  Implements: Gastro Acid, Worry Seed, Simple Beam
-		  Note: change Skill Swap's effect byte first
-		  Note: <<<IMPORTANT - CHECK WORRY SEED MSG>>> (message 0x208)
 = 1D82CB -> 10504A0 (repoint): BattleScript_EffectImprison (see movescripts.txt)
 		  Implements: adds an accuracy check to Imprison, but it's specified elsewhere to not miss anyway? (also, since when did Imprison have a target?)
 		  Relies on: AccuracyCalcHelper (so the move can't miss)
@@ -2665,10 +2661,10 @@ stray text:
 		  Glitch?: an AI script for Sandstorm is fully implemented but not actually accessed
 		  Glitch?: Psycho Shift -> Acrobatics is fallthrough
 		  Glitch?: Venom Drench uses Lock-On's AI script
-- 1DBA8D -> 1007300 (repoint): AI_SetupFirstTurn
++ 1DBA8D -> 1007300 (repoint): AI_SetupFirstTurn
 		  Implements: changes which moves the AI counts as setup (removes every +2/-2, Conversion; adds sleep, Toxic, (confuse and lower evasion), (poison or paralysis, chooses one at random), (burn user and target), (poison user and target), Charge, Work Up, Dragon Dance, (-1 accuracy +2 evasion to target), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws)
 		  GLITCH!: This actually does nothing at all due to a misplaced pointer
-- 1DBB3B -> 1007380 (repoint): AI_Unknown
++ 1DBB3B -> 1007380 (repoint): AI_Unknown
 		  Implements: AI layer that discourages supereffective moves for some reason
 + 1DD0C9: C5 -> CC (no idea what this does (m4a))
 + 1E3B27: D0 -> E0 (no idea what this does (isagbprn))
@@ -2747,7 +2743,7 @@ stray text:
   ?????? (j222960): movement action function 0xAC
   ?????? (j22297A): movement action function 0xAD (see 284disasm)
 		  Implements: works like regular slow-walking (again? maybe this is wrong), but in the opposite direction
-- 814082: Move_Flare_Blitz (see animscripts.txt)
++ 814082: Move_Flare_Blitz (see animscripts.txt)
 		  Implements: Flare Blitz animation
 = E27BA0: ItemUseOutOfBattle_Honey (see 286disasm)
 		  Implements: field function for Honey
@@ -2777,25 +2773,25 @@ stray text:
 		  Implements: field function for Ability Capsule
 		  Required knowledge: j03005EE8
 		  Glitch?: looks like it's using the old ability name table, easily fixed for en
--1051320: BattleScript_EffectAllStatsDownHit (see movescripts.txt)
++1051320: BattleScript_EffectAllStatsDownHit (see movescripts.txt)
 		  Implements: (move that has a chance to lower all of the target's stats, aka Ancient Power in reverse)
 		  Note: stat boost anim was wrong, see movescripts.txt
 		  Note: fixed to end move instead of "stats can't be lowered", see movescripts.txt
--1051480: BattleScript_EffectDoubleDamageAtLowHP (see movescripts.txt)
++1051480: BattleScript_EffectDoubleDamageAtLowHP (see movescripts.txt)
 		  Implements: Brine/(one other move), [move272]
--10514A0: BattleScript_EffectChangeTargetType (see movescripts.txt)
++10514A0: BattleScript_EffectChangeTargetType (see movescripts.txt)
 		  Implements: Soak/[move227]/[move277]/[move279]
-		  Note: <<<IMPORTANT - CHECK SOAK MSG>>> (message 0x209)
--1051580: BattleScript_EffectGiveTargetMove240 (see movescripts.txt)
++1051580: BattleScript_EffectGiveTargetMove240 (see movescripts.txt)
 		  Implements: (move that overwrites a random one of the target's moves with [move240])
--1051700: BattleScript_EffectRemoveOwnScreensForDoubleDamage (see movescripts.txt)
++1051700: BattleScript_EffectRemoveOwnScreensForDoubleDamage (see movescripts.txt)
 		  Implements: (move that removes Reflect/Light Screen from the user's side, but does double damage when it does)
-		  Note: Also add in the Brick Break changes from my battle message overhaul
--1051790: BattleScript_EffectDamageFromDefense (see movescripts.txt)
+		  Note: Also added in the Brick Break changes from my battle message overhaul
++1051790: BattleScript_EffectDamageFromDefense (see movescripts.txt)
 		  Implements: (move that does damage based on the user's Defense stat instead of its Attack stat)
--10517C0: BattleScript_EffectDoubleDamageAfterMove1F2 (see movescripts.txt)
++10517C0: BattleScript_EffectDoubleDamageAfterMove1F2 (see movescripts.txt)
 		  Implements: (move that does double damage if used immediately after [move1F2])
--1051840: BattleScript_EffectRevelationDance (see movescripts.txt)
+		  Note: message scrolls off too soon, maybe add wait
++1051840: BattleScript_EffectRevelationDance (see movescripts.txt)
 		  Implements: Revelation Dance
 		  Relies on: SetTypeToBattlerType1 (jEB8340, e1EB8340)
 =1051850: BattleScript_EffectSpreadStatDownHit (see movescripts.txt)
@@ -2806,22 +2802,24 @@ stray text:
 		  Implements: Discharge, Lava Plume, Sludge Wave
 		  Relies on: moveend refactor
 		  Glitch?: might hit underwater foes, check
--1051910: BattleScript_EffectSpAtkSpDefDown (see movescripts.txt)
++1051910: BattleScript_EffectSpAtkSpDefDown (see movescripts.txt)
 		  Implements: (move that lowers Sp. Atk and Sp. Def)
 		  Relies on: BattleScript_LowerOneOfMultipleStats
--1051970: BattleScript_EffectHoneClaws (see movescripts.txt)
+		  Note: stat-change animation color is only the first stat, fix this to be gray later
++1051970: BattleScript_EffectHoneClaws (see movescripts.txt)
 		  Implements: Hone Claws
 		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
--1051C50: BattleScript_EffectPsychoShift (see movescripts.txt)
+		  Note: stat-change animation color is only the first stat, fix this to be gray later
++1051C50: BattleScript_EffectPsychoShift (see movescripts.txt)
 		  Implements: Psycho Shift
-		  Glitch?: Poison and Sleep cases are reversed
+		  GLITCH!: Poison and Sleep cases are reversed
 		  Note: Removes status before checking for most failures, is that how it works?
-		  Note: Messages might be wrong, check
--1051D00: BattleScript_EffectPowerTrick (see movescripts.txt)
+		  Note: Messages might be different than gen 7, check
++1051D00: BattleScript_EffectPowerTrick (see movescripts.txt)
 		  Implements: Power Trick, [move291]
--1051D40: BattleScript_EffectAcrobatics (see movescripts.txt)
++1051D40: BattleScript_EffectAcrobatics (see movescripts.txt)
 		  Implements: Acrobatics
--1051D50: BattleScript_EffectMetalBurst (see movescripts.txt)
++1051D50: BattleScript_EffectMetalBurst (see movescripts.txt)
 		  Implements: Metal Burst
 =1051D80: BattleScript_EffectCalcWithExtraBoosts (see movescripts.txt)
 		  Implements: (move that calculates damage as if any Defense boosts were added to Sp. Atk, then has a 20% chance to raise Def and Sp. Atk); [moveDD]
@@ -2829,13 +2827,13 @@ stray text:
 		  Note: on paper, it looks like stat drops are factored in inconsistently (only if one stat is above +0) - for example ([moveDD]), +0 Atk/-2 Sp. Atk results in +0 Atk, -3 Atk/-2 Sp. Atk results in -3 Atk, and +3 Atk/-2 Sp. Atk results in +1 Atk
 		  Glitch?: Might crash if combined boosts are greater than +6 (or less than +0 if one of them is positive)
 		  Glitch?: [moveDD] crashes if Atk is at +6 but Sp. Atk isn't
--1052D20: BattleScript_EffectChangeAbilityToMegaLauncherThenHit (see movescripts.txt)
++1052D20: BattleScript_EffectChangeAbilityToMegaLauncherThenHit (see movescripts.txt)
 		  Implements: (move that changes the user's ability to Mega Launcher and then does damage)
--1053940: BattleScript_EffectUseExplosionInstead (see movescripts.txt)
++1053940: BattleScript_EffectUseExplosionInstead (see movescripts.txt)
 		  Implements: (move that just uses Explosion instead)
--1053A90: BattleScript_EffectVCreate (see movescripts.txt)
++1053A90: BattleScript_EffectVCreate (see movescripts.txt)
 		  Implements: V-Create/Nova Inferno
--1053AA0: BattleScript_EffectBlizzard (see movescripts.txt)
++1053AA0: BattleScript_EffectBlizzard (see movescripts.txt)
 		  Implements: Blizzard has its own effect byte that it shares with Starfreeze, unclear why
 =1053AA8: BattleScript_EffectSuckerPunch (see movescripts.txt)
 		  Implements: Sucker Punch
@@ -2843,40 +2841,49 @@ stray text:
 =1053AB8: BattleScript_EffectPayback (see movescripts.txt)
 		  Implements: Payback
 		  Required knowledge: whether the area around gStringVar4 is the same in en
--1053CB0: BattleScript_EffectHammerArm (see movescripts.txt)
++1053CB0: BattleScript_EffectHammerArm (see movescripts.txt)
 		  Implements: Hammer Arm
 		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatChangeAnim
--1053CE0: BattleScript_EffectCloseCombat (see movescripts.txt)
++1053CE0: BattleScript_EffectCloseCombat (see movescripts.txt)
 		  Implements: Close Combat
 		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatChangeAnim
--1053D30: BattleScript_EffectDefensiveStatAlwaysDownHit (see movescripts.txt)
-		  Implements: (move that lowers Sp. Def after use), Giga Spark
+		  Note: stat-change animation color is only the first stat, fix this to be gray later
++1053D30: BattleScript_EffectDefensiveStatAlwaysDownHit (see movescripts.txt)
+		  Implements: Diamond Blast, Giga Spark
 		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatChangeAnim
--1053DB0: BattleScript_EffectTyphoon (see movescripts.txt)
++1053DB0: BattleScript_EffectTyphoon (see movescripts.txt)
 		  Implements: Typhoon
 		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatChangeAnim
--1053E90: BattleScript_EffectTargetAccDownEvasionUp2 (see movescripts.txt)
+		  Note: stat-change animation color is only the first stat, fix this to be gray later
++1053E90: BattleScript_EffectTargetAccDownEvasionUp2 (see movescripts.txt)
 		  Implements: (move that gives -1 accuracy +2 evasion to target)
 		  Relies on: BattleScript_PlayStatChangeAnim
--1053EE0: BattleScript_EffectUserAtkDefUp2SpeedDown (see movescripts.txt)
+		  Note: target appears to be the user?
++1053EE0: BattleScript_EffectUserAtkDefUp2SpeedDown (see movescripts.txt)
 		  Implements: (move that gives +2 Attack +2 Defense -1 Speed to user)
 		  Relies on: BattleScript_PlayStatChangeAnim
--1055600: BattleScript_EffectCoil (see movescripts.txt)
+		  Note: stat-change animation color is only the first stat, fix this to be gray later
++1055600: BattleScript_EffectCoil (see movescripts.txt)
 		  Implements: Coil
 		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
--1055670: BattleScript_EffectQuiverDance (see movescripts.txt)
+		  Note: stat-change animation color is only the first stat, fix this to be gray later
++1055670: BattleScript_EffectQuiverDance (see movescripts.txt)
 		  Implements: Quiver Dance
 		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
--10556E0: BattleScript_EffectShellSmash (see movescripts.txt)
+		  Note: stat-change animation color is only the first stat, fix this to be gray later
++10556E0: BattleScript_EffectShellSmash (see movescripts.txt)
 		  Implements: Shell Smash
 		  Relies on: BattleScript_PlayStatChangeAnim
--10557E0: BattleScript_EffectAtkSpeedEvasionUp (see movescripts.txt)
+		  Note: stat-change animation color is only the first stat, fix this to be gray later
++10557E0: BattleScript_EffectAtkSpeedEvasionUp (see movescripts.txt)
 		  Implements: (move that boosts Attack, Speed, and evasion)
 		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
--1055850: BattleScript_EffectSpeedEvasionUp (see movescripts.txt)
+		  Note: stat-change animation color is only the first stat, fix this to be gray later
++1055850: BattleScript_EffectSpeedEvasionUp (see movescripts.txt)
 		  Implements: (move that boosts Speed and evasion)
 		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
--10558A0: BattleScript_EffectPartiallyBypassProtect (see movescripts.txt)
+		  Note: stat-change animation color is only the first stat, fix this to be gray later
++10558A0: BattleScript_EffectPartiallyBypassProtect (see movescripts.txt)
 		  Implements: (a Ground-type move that if used on Protect, does half damage and harshly lowers user's Sp. Atk), [move23A]
 -11AADD0: Move_Zen_Headbutt (see animscripts.txt)
 		  Implements: Zen Headbutt animation
