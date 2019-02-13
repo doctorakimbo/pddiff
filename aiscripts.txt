@@ -3601,7 +3601,7 @@ if_effect EFFECT_CLOSE_COMBAT, AI_CV_LowersSpeedOrDefenses
 if_effect EFFECT_V_CREATE, AI_CV_LowersSpeedOrDefenses
 if_effect EFFECT_BRINE, AI_CV_DoubleAtLowHP
 if_effect EFFECT_REMOVE_OWN_SCREENS_DOUBLE_DAMAGE, AI_CV_RemoveOwnScreensForDoubleDamage
-if_effect EFFECT_DOUBLE_DAMAGE_AFTER_MOVE_1F2, AI_CV_DoubleDamageAfterMove1F2
+if_effect EFFECT_BOOSTED_BY_SHARP_CLAWS, AI_CV_BoostedBySharpClaws
 if_effect EFFECT_HURRICANE, AI_CV_Hurricane
 if_effect EFFECT_USER_ATK_DEF_UP_2_SPEED_DOWN, AI_CV_UserAtkDefUp2SpeedDown
 if_effect EFFECT_SHELL_SMASH, AI_CV_ShellSmash
@@ -5222,13 +5222,13 @@ AI_CV_RemoveOwnScreensForDoubleDamage:
 if_side_affecting AI_USER, SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN, Score_Plus1
 end
 
-AI_CV_DoubleDamageAfterMove1F2:
+AI_CV_BoostedBySharpClaws:
 get_last_used_bank_move AI_USER
-if_in_hwords AI_Data_EffectE8DoesDoubleDamageAfter, Score_Plus1
+if_in_hwords AI_Data_SharpClawsEffectDoesDoubleDamageAfter, Score_Plus1
 end
 
-AI_Data_EffectE8DoesDoubleDamageAfter:
-0x1F2
+AI_Data_SharpClawsEffectDoesDoubleDamageAfter:
+MOVE_HONE_CLAWS
 
 AI_CV_Hurricane:
 get_weather

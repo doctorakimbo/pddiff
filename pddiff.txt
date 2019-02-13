@@ -292,8 +292,8 @@ move IDs:
 + 0x1D4 = Diamond Blast
 + 0x1D5 = Paleobreath
 + 0x1D6 = Shadow Clamp
-= 0x1D7 = (attacking move), (has Spite animation)
-= 0x1D8 = (attacking move), (has Soul Break animation)
+- 0x1D7 = Cursed Wrath
+- 0x1D8 = Life Drain
 + 0x1D9 = Dragon Beat
 + 0x1DA = Vengeance
 + 0x1DB = Dark Resolve
@@ -311,31 +311,31 @@ move IDs:
 + 0x1E7 = Raid
 + 0x1E8 = Acid Spray
 + 0x1E9 = Electroweb
-= 0x1EA = (non-attacking move)
+- 0x1EA = Shell Smash
 + 0x1EB = Gastro Acid
-= 0x1EC = (non-attacking move)
-= 0x1ED = (attacking move with chance to lower accuracy)
-= 0x1EE = (attacking move)
-= 0x1EF = (attacking move)
-= 0x1F0 = (attacking move)
-= 0x1F1 = (non-attacking move)
-= 0x1F2 = (non-attacking move), ([effectE8] does double damage if used after this move)
-= 0x1F3 = (attacking move with chance to flinch)
-= 0x1F4 = (non-attacking move)
-= 0x1F5 = (attacking move)
-= 0x1F6 = (attacking move with chance to flinch)
-= 0x1F7 = (attacking move)
-= 0x1F8 = (non-attacking move)
-= 0x1F9 = (attacking move)
-= 0x1FA = (attacking move with chance to lower sp. atk)
-= 0x1FB = (attacking move with chance to burn)
-= 0x1FC = (attacking move)
-= 0x1FD = (attacking move)
-= 0x1FE = (attacking move with chance to burn)
-= 0x1FF = (attacking move with chance to lower sp. atk)
-= 0x200 = (attacking move)
-= 0x201 = (attacking move)
-= 0x202 = (attacking move)
+= 0x1EC = (non-attacking move), (has Toxic animation)
+- 0x1ED = Leaf Tornado
+= 0x1EE = (attacking move), (animation is Bite followed by Crunch)
+- 0x1EF = Bulldoze
+= 0x1F0 = (attacking move), (has Slash animation)
+- 0x1F1 = Quiver Dance
+- 0x1F2 = Hone Claws
+- 0x1F3 = Icicle Crash
+- 0x1F4 = Coil
+- 0x1F5 = Drill Run
+- 0x1F6 = Heart Stamp
+= 0x1F7 = (attacking move), (animation is Tackle with Silver Wind's background)
+- 0x1F8 = Work Up
+- 0x1F9 = Sludge Wave
+= 0x1FA = (attacking move with chance to lower sp. atk), (animation is Rollout but recolored)
+- 0x1FB = Inferno
+- 0x1FC = Wild Charge
+- 0x1FD = Sharpshoot
+- 0x1FE = Scald
+= 0x1FF = (attacking move with chance to lower sp. atk), (animation has Moonlight sound effect)
+= 0x200 = (attacking move), (animation has attacker turn white and a large amount of something appear and do something)
+= 0x201 = (attacking move), (animation is Silver Wind with a completely new background)
+= 0x202 = (attacking move), (animation spawns one object with one sound effect, everything else unknown)
 = 0x203 = (non-attacking move, -1 attack)
 = 0x204 = (attacking move with chance to lower attack)
 = 0x205 = (attacking move)
@@ -343,7 +343,7 @@ move IDs:
 + 0x207 = Chatter
 + 0x208 = Trick Room
 = 0x209 = (attacking move)
-= 0x20A = (attacking move with 50% recoil)
+- 0x20A = Head Smash
 = 0x20B = (attacking move)
 = 0x20C = (attacking move)
 = 0x20D = (attacking move)
@@ -351,10 +351,10 @@ move IDs:
 = 0x20F = (attacking move with chance to raise speed)
 = 0x210 = (attacking move with chance to lower sp. atk)
 = 0x211 = (attacking move)
-= 0x212 = (non-attacking move, -2 sp. atk)
+- 0x212 = Eerie Impulse
 = 0x213 = (attacking move with chance to raise attack)
-= 0x214 = (non-attacking move, -1 sp. atk with perfect accuracy)
-= 0x215 = (non-attacking move, -1 attack with perfect accuracy)
+- 0x214 = Confide
+- 0x215 = Play Nice
 = 0x216 = (attacking move)
 = 0x217 = (attacking move)
 = 0x218 = (attacking move)
@@ -460,7 +460,7 @@ move IDs:
 = 0x27C = Crush Grip/Wring Out
 + 0x27D = Captivate
 = 0x27E = (non-attacking move that sleep effect, but sleeps the target even if it already has a status)
-= 0x27F = (non-attacking move, +3 defense)
+- 0x27F = Cotton Guard
 = 0x280 = (attacking move)
 = 0x281 = (attacking move)
 = 0x282 = (non-attacking move)
@@ -553,7 +553,7 @@ move effects:
 = 0xE5 = overwrites a random one of the target's moves with [move240]
 = 0xE6 = removes Reflect/Light Screen from the user's side, but does double damage when it does
 = 0xE7 = does damage based on the user's Defense stat instead of its Attack stat
-= 0xE8 = does double damage if used immediately after [move1F2]
+= 0xE8 = does double damage if used immediately after Hone Claws
 = 0xE9 = Revelation Dance
 = 0xEA = Surf
 = 0xEB = Bulldoze/Sandblast
@@ -686,7 +686,7 @@ battle strings (ADD 9 TO ALL):
 + 0x208 = "[PKMN] acquired [ABILITY]!"
 + 0x209 = "[PKMN] transformed into the [TYPE] type!"
 + 0x20A = "[PKMN] was given (move240)! (placeholder)"
-+ 0x20B = "The (move1F2) strengthened the attack! (placeholder)"
+- 0x20B = "Its sharpened claws strengthened the attack! (placeholder)"
 + 0x20C = "[PKMN] is already frozen! (placeholder)"
 + 0x20D = "[PKMN]'s [ABILITY] prevents freezing! (placeholder)"
 ! 0x20E = "[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"
@@ -2429,7 +2429,7 @@ stray text:
 		  Implements: part of moveend refactor
 = 1D6BE1 -> 1052DB0 (repoint): BattleScript_EffectAttackDown (see movescripts.txt)
   1D6900 (the one after 1D6BF7) -> 1052470 (repoint): BattleScript_AttackDown_Standard (see movescripts.txt)
-		  Implements: [move214], [move215], Strength Sap; also refactors into the parameterized script
+		  Implements: Confide, Play Nice, Strength Sap; also refactors into the parameterized script
 		  Relies on: BattleScript_ParameterizedStatDown, BattleScript_ParameterizedStatDownPerfectAccuracy
 + 1D6C72 -> 10500E0 (repoint): BattleScript_EffectHaze_New (see movescripts.txt)
 		  Implements: Clear Smog
@@ -2652,8 +2652,8 @@ stray text:
 		  * Bugfixes: won't use a speed-lowering move like Mud Shot if the target is immune; no longer inexplicably encourages Toxic when it has a +SpDef move; no longer inexplicably discourages Protect/encourages Snatch when the opponent has specifically Defense Curl; Protect/Snatch correctly factors in all healing moves instead of just vanilla Recover-types; sandstorm and hail are no longer the wrong way around in the Fly script; Facade correctly checks the user for status instead of the target; Brick Break is encouraged vs Light Screen, not just Reflect
 		  * Other improvements: instead of a bizarre mix of moves, Mirror Move tries to prioritize any copiable move; doesn't discourage recovery when the user is faster; encourages OHKO moves after use of Mind Reader; Mean Look (because Spirit Shackle uses the same effect byte), Dragon Dance (why?), and Knock Off are no longer encouraged to be Encored; Teleport and +Sp. Def are encouraged to be Encored; instead of encouraging stealing a short list of items, Thief is encouraged for all items that don't have a downside; Chlorophyll users prioritize Sunny Day; Volt Absorb, Water Absorb, Soundproof, Thick Fat, Flame Body, and Shell Armor are considered "good" abilities; "bad" abilities (to avoid/get rid of) are also listed
 		  * New mechanics that old scripts are updated for: p/s split (also includes removing the discouraging of, for example, -Atk moves or Reflect on a water-type since it can have physical STAB now), new Lightning Rod, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, [ability8B], Choice items, Assault Vest, Lagging Tail
-		  * New moves: 0x22D, 0x27C (factored into Eruption script); 0x161, Hex, Wake-Up Slap, 0x265, 0x266, 0x267, 0x283 (factored into double-damage-on-status script); 0x258, 0x272, 0x27A (factored into Brine script); 0x1F2 (factored into (does double damage if used immediately after [move1F2]) script)
-		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, V-Create, Hurricane, Brine, (removes Reflect/Light Screen from the user's side, but does double damage when it does), (does double damage if used immediately after [move1F2]), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws, Payback, Psycho Shift, Acrobatics, Metal Burst
+		  * New moves: 0x22D, 0x27C (factored into Eruption script); 0x161, Hex, Wake-Up Slap, 0x265, 0x266, 0x267, 0x283 (factored into double-damage-on-status script); 0x258, 0x272, 0x27A (factored into Brine script); Hone Claws (factored into (does double damage if used immediately after Hone Claws) script)
+		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, V-Create, Hurricane, Brine, (removes Reflect/Light Screen from the user's side, but does double damage when it does), (does double damage if used immediately after Hone Claws), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws, Payback, Psycho Shift, Acrobatics, Metal Burst
 		  Relies on: new AI script commands, BattleMove refactor
 		  Glitch?: due to misaligned goto, Substitute will fall through into the Hyper Beam logic under certain circumstances
 		  Glitch?: due to misaligned goto, (Payback that always doubles power vs Steel-types) will probably crash
@@ -2748,6 +2748,8 @@ stray text:
 		  Implements: works like regular slow-walking (again? maybe this is wrong), but in the opposite direction
 + 814082: Move_Flare_Blitz (see animscripts.txt)
 		  Implements: Flare Blitz animation
+- 8B6040: Move_Sludge_Wave (see animscripts.txt)
+		  Implements: Sludge Wave animation
 = E27BA0: ItemUseOutOfBattle_Honey (see 286disasm)
 		  Implements: field function for Honey
 		  Required knowledge: j02039910, j0203BFF0
@@ -2791,8 +2793,8 @@ stray text:
 		  Note: Also added in the Brick Break changes from my battle message overhaul
 +1051790: BattleScript_EffectDamageFromDefense (see movescripts.txt)
 		  Implements: (move that does damage based on the user's Defense stat instead of its Attack stat)
-+10517C0: BattleScript_EffectDoubleDamageAfterMove1F2 (see movescripts.txt)
-		  Implements: (move that does double damage if used immediately after [move1F2])
++10517C0: BattleScript_EffectBoostedBySharpClaws (see movescripts.txt)
+		  Implements: (move that does double damage if used immediately after Hone Claws)
 		  Note: message scrolls off too soon, maybe add wait
 +1051840: BattleScript_EffectRevelationDance (see movescripts.txt)
 		  Implements: Revelation Dance
@@ -2892,11 +2894,18 @@ stray text:
 		  Implements: Zen Headbutt animation
 +11BA7EF: BattleScript_EffectTripleHit (see movescripts.txt)
 		  Implements: (move that hits 3 times)
+-1300090: Move_??? (see animscripts.txt)
+		  Implements: [move1FF] animation
+-1300110: Move_??? (see animscripts.txt)
+		  Implements: [move201] animation
+		  Note: bg scrolls when it shouldn't when used by the opponent (or doesn't scroll when it should when used by the player?)
 !13037E0: Move_Power_Whip (see animscripts.txt)
 		  Implements: Power Whip animation
 		  GLITCH!: game crash
 +13041C8: Move_Possess (see animscripts.txt)
 		  Implements: Possess animation
+-13053F0: Move_??? (see animscripts.txt)
+		  Implements: [move202] animation
 +1306150: Move_Dazzle_Powder (see animscripts.txt)
 		  Implements: Dazzle Powder animation
 +1306328: Move_Avalanche (see animscripts.txt)
@@ -2907,6 +2916,10 @@ stray text:
 		  Implements: Leaf Storm animation
 +1306F58: Move_Cross_Poison (see animscripts.txt)
 		  Implements: Cross Poison animation
+-1306FE8: Move_Leaf_Tornado (see animscripts.txt)
+		  Implements: Leaf Tornado animation
+-13071E8: Move_Inferno (see animscripts.txt)
+		  Implements: Inferno animation
 !1307478: Move_Fire_Fang (see animscripts.txt)
 		  Implements: Fire Fang animation
 		  GLITCH!: game crash
@@ -2916,16 +2929,20 @@ stray text:
 		  Implements: Ice Fang animation
 +1307950: Move_Rock_Climb (see animscripts.txt)
 		  Implements: Rock Climb animation
-=1307D70: Move_??? (see animscripts.txt)
-		  Implements: <<<<<FINISH THIS>>>>>
+-1307D70: Move_Shell_Smash (see animscripts.txt)
+		  Implements: Shell Smash animation
 +1307F70: Move_Aqua_Jet (see animscripts.txt)
 		  Implements: Aqua Jet animation
+-13080C0: Move_Gastro_Acid (see animscripts.txt)
+		  Implements: Gastro Acid animation
 +1308368: Move_Focus_Blast (see animscripts.txt)
 		  Implements: Focus Blast animation
 +13083D0: Move_Gunk_Shot (see animscripts.txt)
 		  Implements: Gunk Shot animation
 +13087A8: Move_Shadow_Sneak (see animscripts.txt)
 		  Implements: Shadow Sneak animation
+-1308970: Move_Icicle_Crash (see animscripts.txt)
+		  Implements: Icicle Crash animation
 +1308DC0: Move_Psycho_Cut (see animscripts.txt)
 		  Implements: Psycho Cut animation
 !1308F80: Move_Raze_Earth (see animscripts.txt)
@@ -2949,6 +2966,10 @@ stray text:
 		  GLITCH!: game crash
 +130A350: Move_Hammer_Arm (see animscripts.txt)
 		  Implements: Hammer Arm animation
+-130A3A0: Move_??? (see animscripts.txt)
+		  Implements: [move200] animation
+-130A5C0: Move_Hone_Claws (see animscripts.txt)
+		  Implements: Hone Claws animation
 +130A6F0: Move_Seed_Bomb (see animscripts.txt)
 		  Implements: Seed Bomb animation
 +130A828: Move_??? (see animscripts.txt)
@@ -3115,9 +3136,27 @@ stray text:
 		  Implements: Burrow animation
 -16B40F0: Move_Acid_Spray (see animscripts.txt)
 		  Implements: Acid Spray animation
+-16B42A0: Move_Quiver_Dance (see animscripts.txt)
+		  Implements: Quiver Dance animation
+-16B4320: Move_Heart_Stamp (see animscripts.txt)
+		  Implements: Heart Stamp animation
+-16B43A0: Move_Sharpshoot (see animscripts.txt)
+		  Implements: Sharpshoot animation
+-16B4420: Move_??? (see animscripts.txt)
+		  Implements: [move1F7] animation
+-16B4510: Move_Scald (see animscripts.txt)
+		  Implements: Scald animation
+-16B4580: Move_??? (see animscripts.txt)
+		  Implements: [move1FA] animation
+-16B4B20: Move_Work_Up (see animscripts.txt)
+		  Implements: Work Up animation
+-16B4B60: Move_Wild_Charge (see animscripts.txt)
+		  Implements: Wild Charge animation
 -16B4C70: Move_Electroweb (see animscripts.txt)
 		  Implements: Electroweb animation
 -1E24E80: Move_Nova_Inferno (see animscripts.txt)
 		  Implements: Nova Inferno animation
 -1E29CA0: Move_??? (see animscripts.txt)
 		  Implements: [move1A3] animation
+-1E29FF0: Move_??? (see animscripts.txt)
+		  Implements: [move1EE] animation
