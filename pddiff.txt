@@ -187,9 +187,9 @@ move IDs:
 + 0x16B = Close Combat
 + 0x16C = Flare Blitz
 + 0x16D = Force Palm
-= 0x16E = (attacking move), (animation has Focus Energy and then Sand Attack sound)
++ 0x16E = Aura Sphere
 + 0x16F = Rock Polish
-= 0x170 = (attacking move with chance to poison), (has poison-related animation)
++ 0x170 = Poison Jab
 + 0x171 = Dark Pulse
 + 0x172 = Night Slash
 + 0x173 = Aqua Tail
@@ -203,7 +203,7 @@ move IDs:
 + 0x17B = Drain Punch
 = 0x17C = (attacking move), (has wind-related animation)
 + 0x17D = Focus Blast
-= 0x17E = (attacking move with chance to lower sp. def), (animation has bubble sounds)
++ 0x17E = Energy Ball
 + 0x17F = Brave Bird
 + 0x180 = Earth Power
 + 0x181 = Switcheroo
@@ -223,9 +223,9 @@ move IDs:
 + 0x18F = Draco Meteor
 + 0x190 = Discharge
 + 0x191 = Leaf Storm
-= 0x192 = (attacking move), (animation involves some kind of mon movement)
++ 0x192 = Power Whip
 + 0x193 = Rock Wrecker
-= 0x194 = (attacking move with chance to poison), (poison-related animation with a lot of bubble sounds)
++ 0x194 = Gunk Shot
 + 0x195 = Iron Head
 + 0x196 = Magnet Bomb
 + 0x197 = Stone Edge
@@ -237,7 +237,7 @@ move IDs:
 + 0x19D = Defend Order
 + 0x19E = Heal Order
 + 0x19F = Double Hit
-= 0x1A0 = (attacking move), (animation generates a lot of objects and has same background as Psycho Cut)
+= 0x1A0 = (attacking move), (animation jabs lots of unknown sprites inward and has same background as Psycho Cut)
 = 0x1A1 = (attacking move), (has Superpower animation)
 + 0x1A2 = Magma Rush
 = 0x1A3 = (attacking move with chance to confuse or raise user's accuracy), (animation is a pulse move on Cosmic Power's background)
@@ -262,10 +262,10 @@ move IDs:
 + 0x1B6 = Megashock
 + 0x1B7 = Mach Volt
 + 0x1B8 = Energize
-= 0x1B9 = (attacking move with chance to lower speed), (animation is Magical Leaf with the attack part replaced with Vine Whip)
++ 0x1B9 = Wild Growth
 ! 0x1BA = Guardian Leaf (not implemented)
 + 0x1BB = Poison Leaf
-= 0x1BC = (attacking move with chance to raise sp. atk), (animation is Growth, Ingrain, and then Frenzy Plant)
++ 0x1BC = Rapid Growth
 + 0x1BD = Dazzle Powder
 + 0x1BE = Starfreeze
 + 0x1BF = Icicle Punch
@@ -279,38 +279,38 @@ move IDs:
 + 0x1C7 = Sonic Sand
 + 0x1C8 = Sandblast
 + 0x1C9 = Glide
-= 0x1CA = (attacking move), (has sand-related animation)
++ 0x1CA = Typhoon
 + 0x1CB = Psygatling
 + 0x1CC = Psycho Punch
 + 0x1CD = Psyburn
 + 0x1CE = Latent Power
 + 0x1CF = Hypnopulse
-- 0x1D0 = Gravity Wave
++ 0x1D0 = Gravity Wave
 + 0x1D1 = Bug Noise
-- 0x1D2 = Angry Swarm
-- 0x1D3 = Rock Tumble
++ 0x1D2 = Angry Swarm
++ 0x1D3 = Rock Tumble
 + 0x1D4 = Diamond Blast
-- 0x1D5 = Paleobreath
++ 0x1D5 = Paleobreath
 + 0x1D6 = Shadow Clamp
 = 0x1D7 = (attacking move), (has Spite animation)
 = 0x1D8 = (attacking move), (has Soul Break animation)
 + 0x1D9 = Dragon Beat
-- 0x1DA = Vengeance
++ 0x1DA = Vengeance
 + 0x1DB = Dark Resolve
-- 0x1DC = Dark Cutter
-- 0x1DD = Dark Roar
++ 0x1DC = Dark Cutter
++ 0x1DD = Dark Roar
 + 0x1DE = Dark Hand
-- 0x1DF = Corner
-- 0x1E0 = Metal Pincer
++ 0x1DF = Corner
++ 0x1E0 = Metal Pincer
 + 0x1E1 = Geo Impact
-- 0x1E2 = Magnet Force
-- 0x1E3 = Roost
++ 0x1E2 = Magnet Force
++ 0x1E3 = Roost
 + 0x1E4 = Defog
 + 0x1E5 = Lava Plume
-- 0x1E6 = Nova Inferno
++ 0x1E6 = Nova Inferno
 + 0x1E7 = Raid
-- 0x1E8 = Acid Spray
-- 0x1E9 = Electroweb
++ 0x1E8 = Acid Spray
++ 0x1E9 = Electroweb
 = 0x1EA = (non-attacking move)
 + 0x1EB = Gastro Acid
 = 0x1EC = (non-attacking move)
@@ -538,7 +538,7 @@ move effects:
 = 0xD6 = Hammer Arm
 = 0xD7 = Close Combat
 = 0xD8 = Diamond Blast/Giga Spark
-= 0xD9 = (unknown hardcoded parameterized additional effects)
+= 0xD9 = (unknown hardcoded parameterized additional effects), (Magnet Force uses this)
 = 0xDA = hardcoded parameterized additional effects, ai uses this for all "chance to raise target's stat" moves
 = 0xDB = (calculates damage as if any Defense boosts were added to Sp. Atk, then has a 20% chance to raise Def and Sp. Atk)/[moveDD]
 = 0xDC = Typhoon
@@ -677,9 +677,9 @@ battle strings (ADD 9 TO ALL):
 + 0x1FF = "[PKMN] decided to explode! (placeholder)"
 + 0x200 = "[PKMN] shared its power with the target!"
 + 0x201 = "[PKMN] shared its guard with the target!"
-- 0x202 = "[PKMN] switched all changes to its Attack and Sp. Atk with its target!"
-- 0x203 = "[PKMN] switched all changes to its Defense and Sp. Def with its target!"
-- 0x204 = "[ATTACKER]'s type became the same as [TARGET]'s type!"
+! 0x202 = "[PKMN] switched all changes to its Attack and Sp. Atk with its target!"
+! 0x203 = "[PKMN] switched all changes to its Defense and Sp. Def with its target!"
+! 0x204 = "[ATTACKER]'s type became the same as [TARGET]'s type!"
 + 0x205 = "[DEFENDER] received [ITEM] from [ATTACKER]!"
 + 0x206 = "[PKMN]'s [ITEM] was burned up!"
 + 0x207 = "[PKMN]'s Ability was suppressed!"
@@ -2888,113 +2888,119 @@ stray text:
 		  Note: stat-change animation color is only the first stat, fix this to be gray later
 +10558A0: BattleScript_EffectPartiallyBypassProtect (see movescripts.txt)
 		  Implements: (a Ground-type move that if used on Protect, does half damage and harshly lowers user's Sp. Atk), [move23A]
--11AADD0: Move_Zen_Headbutt (see animscripts.txt)
++11AADD0: Move_Zen_Headbutt (see animscripts.txt)
 		  Implements: Zen Headbutt animation
--11BA7EF: BattleScript_EffectTripleHit (see movescripts.txt)
++11BA7EF: BattleScript_EffectTripleHit (see movescripts.txt)
 		  Implements: (move that hits 3 times)
--13037E0: Move_??? (see animscripts.txt)
-		  Implements: [move192] animation
--13041C8: Move_Possess (see animscripts.txt)
+!13037E0: Move_Power_Whip (see animscripts.txt)
+		  Implements: Power Whip animation
+		  GLITCH!: game crash
++13041C8: Move_Possess (see animscripts.txt)
 		  Implements: Possess animation
--1306150: Move_Dazzle_Powder (see animscripts.txt)
++1306150: Move_Dazzle_Powder (see animscripts.txt)
 		  Implements: Dazzle Powder animation
--1306328: Move_Avalanche (see animscripts.txt)
++1306328: Move_Avalanche (see animscripts.txt)
 		  Implements: Avalanche animation
--13064B0: Move_??? (see animscripts.txt)
-		  Implements: [move170] animation
--1306BF0: Move_Leaf_Storm (see animscripts.txt)
++13064B0: Move_Poison_Jab (see animscripts.txt)
+		  Implements: Poison Jab animation
++1306BF0: Move_Leaf_Storm (see animscripts.txt)
 		  Implements: Leaf Storm animation
--1306F58: Move_??? (see animscripts.txt)
-		  Implements: [move1A5] animation
--1307478: Move_Fire_Fang (see animscripts.txt)
++1306F58: Move_Cross_Poison (see animscripts.txt)
+		  Implements: Cross Poison animation
+!1307478: Move_Fire_Fang (see animscripts.txt)
 		  Implements: Fire Fang animation
--1307510: Move_Thunder_Fang (see animscripts.txt)
+		  GLITCH!: game crash
++1307510: Move_Thunder_Fang (see animscripts.txt)
 		  Implements: Thunder Fang animation
--1307600: Move_Ice_Fang (see animscripts.txt)
++1307600: Move_Ice_Fang (see animscripts.txt)
 		  Implements: Ice Fang animation
--1307950: Move_Rock_Climb (see animscripts.txt)
++1307950: Move_Rock_Climb (see animscripts.txt)
 		  Implements: Rock Climb animation
 =1307D70: Move_??? (see animscripts.txt)
 		  Implements: <<<<<FINISH THIS>>>>>
--1307F70: Move_Aqua_Jet (see animscripts.txt)
++1307F70: Move_Aqua_Jet (see animscripts.txt)
 		  Implements: Aqua Jet animation
--1308368: Move_Focus_Blast (see animscripts.txt)
++1308368: Move_Focus_Blast (see animscripts.txt)
 		  Implements: Focus Blast animation
--13083D0: Move_??? (see animscripts.txt)
-		  Implements: [move194] animation
--13087A8: Move_Shadow_Sneak (see animscripts.txt)
++13083D0: Move_Gunk_Shot (see animscripts.txt)
+		  Implements: Gunk Shot animation
++13087A8: Move_Shadow_Sneak (see animscripts.txt)
 		  Implements: Shadow Sneak animation
--1308DC0: Move_Psycho_Cut (see animscripts.txt)
++1308DC0: Move_Psycho_Cut (see animscripts.txt)
 		  Implements: Psycho Cut animation
--1308F80: Move_Raze_Earth (see animscripts.txt)
+!1308F80: Move_Raze_Earth (see animscripts.txt)
 		  Implements: Raze Earth animation
--13091A0: Move_Rock_Wrecker (see animscripts.txt)
+		  GLITCH!: game crash
++13091A0: Move_Rock_Wrecker (see animscripts.txt)
 		  Implements: Rock Wrecker animation
--1309350: Move_??? (see animscripts.txt)
-		  Implements: [move16E] animation
--1309598: Move_??? (see animscripts.txt)
-		  Implements: [move17E] animation
--1309E68: Move_Poison_Leaf (see animscripts.txt)
++1309350: Move_Aura_Sphere (see animscripts.txt)
+		  Implements: Aura Sphere animation
++1309598: Move_Energy_Ball (see animscripts.txt)
+		  Implements: Energy Ball animation
+!1309E68: Move_Poison_Leaf (see animscripts.txt)
 		  Implements: Poison Leaf animation
--1309F90: Move_Bug_Noise (see animscripts.txt)
+		  GLITCH!: game crash
++1309F90: Move_Bug_Noise (see animscripts.txt)
 		  Implements: Bug Noise animation
--130A078: Move_Tone_Deaf (see animscripts.txt)
++130A078: Move_Tone_Deaf (see animscripts.txt)
 		  Implements: Tone-Deaf animation
--130A1CB: Move_Wave_Splash (see animscripts.txt)
+!130A1CB: Move_Wave_Splash (see animscripts.txt)
 		  Implements: Wave Splash animation
--130A350: Move_Hammer_Arm (see animscripts.txt)
+		  GLITCH!: game crash
++130A350: Move_Hammer_Arm (see animscripts.txt)
 		  Implements: Hammer Arm animation
--130A6F0: Move_Seed_Bomb (see animscripts.txt)
++130A6F0: Move_Seed_Bomb (see animscripts.txt)
 		  Implements: Seed Bomb animation
--130A828: Move_??? (see animscripts.txt)
++130A828: Move_??? (see animscripts.txt)
 		  Implements: [move1A0] animation
--130A950: Move_X_Scissor (see animscripts.txt)
++130A950: Move_X_Scissor (see animscripts.txt)
 		  Implements: X-Scissor animation
--130A9D0: Move_Raid (see animscripts.txt)
++130A9D0: Move_Raid (see animscripts.txt)
 		  Implements: Raid animation
--130ABB0: Move_Mud_Bomb (see animscripts.txt)
++130ABB0: Move_Mud_Bomb (see animscripts.txt)
 		  Implements: Mud Bomb animation
--130ADA0: Move_Psyburn (see animscripts.txt)
++130ADA0: Move_Psyburn (see animscripts.txt)
 		  Implements: Psyburn animation
--130B0B0: Move_Metal_Pincer (see animscripts.txt)
++130B0B0: Move_Metal_Pincer (see animscripts.txt)
 		  Implements: Metal Pincer animation
--130B130: Move_??? (see animscripts.txt)
-		  Implements: [move1CA] animation
--1340000: Move_Wood_Hammer (see animscripts.txt)
++130B130: Move_Typhoon (see animscripts.txt)
+		  Implements: Typhoon animation
++1340000: Move_Wood_Hammer (see animscripts.txt)
 		  Implements: Wood Hammer animation
--13C4910: Move_Iron_Head (see animscripts.txt)
++13C4910: Move_Iron_Head (see animscripts.txt)
 		  Implements: Iron Head animation
--13C4990: Move_Soul_Break (see animscripts.txt)
++13C4990: Move_Soul_Break (see animscripts.txt)
 		  Implements: Soul Break/[move1D8] animation
--13C49C0: Move_Power_Gem (see animscripts.txt)
++13C49C0: Move_Power_Gem (see animscripts.txt)
 		  Implements: Power Gem animation
--140CEA0: Move_Lava_Plume (see animscripts.txt)
++140CEA0: Move_Lava_Plume (see animscripts.txt)
 		  Implements: Lava Plume animation
--140CF90: Move_Guardian_Leaf (see animscripts.txt)
++140CF90: Move_Guardian_Leaf (see animscripts.txt)
 		  Implements: Guardian Leaf animation
--140D086: Move_Double_Hit (see animscripts.txt)
++140D086: Move_Double_Hit (see animscripts.txt)
 		  Implements: Double Hit/Double Shot animation
--140D0F6: Move_Defend_Order (see animscripts.txt)
++140D0F6: Move_Defend_Order (see animscripts.txt)
 		  Implements: Defend Order animation
--140D14C: Move_Attack_Order (see animscripts.txt)
++140D14C: Move_Attack_Order (see animscripts.txt)
 		  Implements: Attack Order animation
--140D18A: Move_Heal_Order (see animscripts.txt)
++140D18A: Move_Heal_Order (see animscripts.txt)
 		  Implements: Heal Order animation
--140D296: Move_Angry_Swarm (see animscripts.txt)
++140D296: Move_Angry_Swarm (see animscripts.txt)
 		  Implements: Angry Swarm
--140D316: Move_Mirror_Shot (see animscripts.txt)
++140D316: Move_Mirror_Shot (see animscripts.txt)
 		  Implements: Mirror Shot/Shine Bomb animation
--140D430: Move_Sonic_Sand (see animscripts.txt)
++140D430: Move_Sonic_Sand (see animscripts.txt)
 		  Implements: Sonic Sand animation
-		  Glitch?: background goes the wrong direction when used by ai
--140D632: Move_??? (see animscripts.txt)
-		  Implements: [move1BC] animation
--140D820: Move_Defog (see animscripts.txt)
+		  Note: background goes the wrong direction when used by ai
++140D632: Move_Rapid_Growth (see animscripts.txt)
+		  Implements: Rapid Growth animation
++140D820: Move_Defog (see animscripts.txt)
 		  Implements: Defog animation
--140D880: Move_Drain_Punch (see animscripts.txt)
+!140D880: Move_Drain_Punch (see animscripts.txt)
 		  Implements: Drain Punch animation
--140D906: Move_??? (see animscripts.txt)
-		  Implements: [move1B9] animation
+		  GLITCH!: game crash
++140D906: Move_Wild_Growth (see animscripts.txt)
+		  Implements: Wild Growth animation
 !140DA56: Move_??? (see animscripts.txt)
 		  Implements: [move1AD] animation
 		  GLITCH!: There's nothing here?
