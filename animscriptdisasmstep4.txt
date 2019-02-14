@@ -20,7 +20,7 @@ AnimTask_BlizzardUnknown(taskId)
 	if(fn_73788() != 0)
 		fn_730C0(s2, s1, 0, 0)
 	
-	if(gBattleAnimArgs[0] != 0 && GetBattlerSide(data_02037F1A) != 0)
+	if(gBattleAnimArgs[0] != 0 && GetBattlerSide(data_02037F1A) != B_SIDE_PLAYER)
 		gTasks[taskId].data[0] = 1
 	else
 		gTasks[taskId].data[0] = 0
@@ -47,4 +47,39 @@ Callback_PsychoCutUnknown(arg0)
 	arg0.data[7] = 4
 	arg0.callback = fn_E43F0
 	SetGpuReg(REG_OFFSET_BLDALPHA, 0x400)
+}
+
+
+
+
+
+
+
+AnimTask_Move204Unknown(taskId)
+{
+	SetGpuReg(REG_OFFSET_BLDALPHA, 0)
+	SetGpuReg(REG_OFFSET_BLDCNT, 0)
+	DestroyAnimVisualTask(taskId)
+}
+
+
+
+
+
+
+
+Callback_Move209Unknown(arg0)
+{
+	StartSpriteAfflineAnim(arg0, 1)
+	arg0.pos1.x = fn_74480(data_02037F1A, 2)
+	arg0.pos1.y = fn_74480(data_02037F1A, 3)
+	arg0.data[6] = fn_749D4(0)
+	
+	if(GetBattlerSide(data_02037F1A) == B_SIDE_OPPONENT)
+		arg0.data[7] = -0x10
+	else
+		arg0.data[7] = 0x10
+	
+	arg0.data[0] = 1
+	arg0.callback = fn_AE83C
 }

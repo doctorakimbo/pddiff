@@ -494,7 +494,7 @@ funcs e,j,desc:
 007280 = 006DFC = DestroySprite
 007804 = 007380 = DestroySpriteAndFreeResources
 00838C = 007F08 = StartSpriteAnim
-00843C = 007FB8 = StartSpriteAffineAnim
+00843C = 007FB8 = StartSpriteAfflineAnim
 0086DC = 008258 = LoadSpriteSheet
 00874C = 0082C8 = FreeSpriteTilesByTag
 008928 = 0084A4 = LoadSpritePalette
@@ -696,6 +696,7 @@ funcs e,j,desc:
 0730C0 = 072864 = ?????
 073788 = 072F2C = ?????
 074480 = 073C24 = ?????
+0749D4 = 074178 = ?????
 0751C4 = 074968 = GetBattlerSide
 0751D8 = 07497C = GetBattlerPosition
 0751E8 = 07498C = GetBattlerAtPosition
@@ -747,6 +748,7 @@ funcs e,j,desc:
 0A0E90 = 0A2164 = GetSafariZoneFlag
 0A103C = 0A2310 = SetUpItemUseOnFieldCallback
 0A10C4 = 0A2398 = DisplayCannotUseItemMessage
+0AE83C = 0AFAFC = ?????
 0B490C = 0B5BCC = ?????
 0BC1F8 = 0BD4B8 = SetAnimBgAttribute
 0BD09C = 0BE35C = MovePlayerOnBike

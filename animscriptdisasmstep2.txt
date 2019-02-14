@@ -49,3 +49,38 @@ Callback_PsychoCutUnknown(arg0)
 	*(arg0 + 0x1C) = fn_E53CC_J
 	SetGpuReg(0x52, 0x400)
 }
+
+
+
+
+
+
+
+AnimTask_Move204Unknown(arg0)
+{
+	SetGpuReg(0x52, 0)
+	SetGpuReg(0x50, 0)
+	DestroyAnimVisualTask(arg0)
+}
+
+
+
+
+
+
+
+Callback_Move209Unknown(arg0)
+{
+	StartSpriteAfflineAnim(arg0, 1)
+	*(arg0 + 0x20) = fn_73C24_J(*data_02037E4E_J, 2)
+	*(arg0 + 0x22) = fn_73C24_J(*data_02037E4E_J, 3)
+	*(arg0 + 0x3A) = fn_74178_J(0)
+	
+	if(GetBattlerSide(*data_02037E4E_J) == B_SIDE_OPPONENT)
+		*(arg0 + 0x3C) = -0x10
+	else
+		*(arg0 + 0x3C) = 0x10
+	
+	*(arg0 + 0x2E) = 1
+	*(arg0 + 0x1C) = fn_AFAFC_J
+}

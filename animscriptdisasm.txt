@@ -125,3 +125,70 @@ r1 = 0x400
 r0 = 0x52
 fn_A38_J()
 return
+
+
+
+
+
+
+
+lbl1: @130AB80
+r4 = r0
+r0 = 0x52
+r1 = 0
+fn_A38_J()
+r0 = 0x50
+r1 = 0
+fn_A38_J()
+r0 = r4
+fn_71F04_J()
+return
+
+
+
+
+
+
+
+lbl1: @12F0B80
+r5 = r0
+r1 = 1
+fn_7FB8_J()
+r4 = data_02037E4E_J
+r0 = *r4
+r1 = 2
+fn_73C24_J()
+*(r5 + 0x20) = r0
+r0 = *r4
+r1 = 3
+fn_73C24_J()
+*(r5 + 0x22) = r0
+r0 = 0
+fn_74178_J()
+*(r5 + 0x3A) = r0
+r0 = 0x10
+*(r5 + 0x3C) = r0
+r0 = *r4
+fn_74968_J()
+if(r0 != 1) goto lbl2
+
+r1 = 0x3C
+r0 = *(r5 + r1)
+r0 = -r0
+*(r5 + 0x3C) = r0
+goto lbl2
+
+lbl2:
+r0 = 1
+*(r5 + 0x2E) = r0
+r0 = fn_AFAFC_J
+*(r5 + 0x1C) = r0
+return
+
+
+
+
+
+
+
+lbl1: @12F0768
