@@ -78,7 +78,7 @@ tasks/callbacks:
 [59 55 0A 08] = [99 42 0A 08] = (used by Poison Jab, [move1A0], Wave Splash)
 [75 76 0A 08] = [B5 63 0A 08] = (used by Double Team and Angry Swarm)
 [95 79 0A 08] = [D5 66 0A 08] = (used by Tone-Deaf and Bug Noise)
-[B1 89 0A 08] = [F1 76 0A 08] = (used by [move17C])
+[B1 89 0A 08] = [F1 76 0A 08] = (used by Vacuum Wave)
 [D1 B1 0A 08] = [11 9F 0A 08] = (used by Scary Face and Corner)
 [21 C2 0A 08] = [61 AF 0A 08] = (used by Aurora Beam and Charge Beam)
 [C1 C3 0A 08] = [01 B1 0A 08] = (used by Flamethrower, Hydro Pump, Signal Beam, Diamond Blast)

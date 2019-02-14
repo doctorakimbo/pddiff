@@ -158,7 +158,7 @@ item IDs:
 + 0x1AE = Honey
 
 move IDs:
-(Mirror Move, Assist, Switcheroo, (unimplemented Guardian Leaf), Nova Inferno, Chatter, (unimplemented Strength Sap), and the move just after the end of defined moves can't be called by Metronome; Chatter can't be copied by Mimic)
+(Mirror Move, (unimplemented Fiery Dance), Assist, Switcheroo, (unimplemented Guardian Leaf), Nova Inferno, Chatter, (unimplemented Strength Sap), and the move just after the end of defined moves can't be called by Metronome; Chatter can't be copied by Mimic)
 (Removed: Clamp, Barrage, Psywave, Conversion, Triple Kick, Spider Web, Conversion 2, Aeroblast, Sacred Fire, Arm Thrust, Tail Glow, Luster Purge, Mist Ball, Needle Arm, Doom Desire, Psycho Boost)
 = 0x80 = (attacking move), (has Mach Volt animation)
 = 0x8C = (non-attacking move), (animation is sweating while flashing rapidly, then Tackle)
@@ -201,7 +201,7 @@ move IDs:
 + 0x179 = Dragon Rush
 + 0x17A = Power Gem
 + 0x17B = Drain Punch
-= 0x17C = (attacking move), (has wind-related animation)
++ 0x17C = Vacuum Wave
 + 0x17D = Focus Blast
 + 0x17E = Energy Ball
 + 0x17F = Brave Bird
@@ -212,7 +212,7 @@ move IDs:
 + 0x184 = Bullet Punch
 + 0x185 = Avalanche
 + 0x186 = Ice Shard
-= 0x187 = (attacking move), (animation is Slash with Icy Wind's background)
++ 0x187 = Shadow Claw
 + 0x188 = Shadow Sneak
 + 0x189 = Mud Bomb
 + 0x18A = Psycho Cut
@@ -242,7 +242,7 @@ move IDs:
 + 0x1A2 = Magma Rush
 = 0x1A3 = (attacking move with chance to confuse or raise user's accuracy), (animation is a pulse move on Cosmic Power's background)
 + 0x1A4 = Ominous Wind
-= 0x1A5 = (attacking move with chance to poison), (has poison-related animation with slashing sound)
++ 0x1A5 = Cross Poison
 + 0x1A6 = Thunder Fang
 + 0x1A7 = Ice Fang
 + 0x1A8 = Fire Fang
@@ -250,7 +250,7 @@ move IDs:
 + 0x1AA = Spin Tail
 + 0x1AB = Double Spin
 + 0x1AC = Tone-Deaf
-= 0x1AD = (non-attacking move), (animation appears to be missing)
++ 0x1AD = Dizzy Whirl (animation is broken)
 + 0x1AE = Deep Yawn
 + 0x1AF = Raging Flame
 + 0x1B0 = Magma Ring
@@ -292,8 +292,8 @@ move IDs:
 + 0x1D4 = Diamond Blast
 + 0x1D5 = Paleobreath
 + 0x1D6 = Shadow Clamp
-- 0x1D7 = Cursed Wrath
-- 0x1D8 = Life Drain
++ 0x1D7 = Cursed Wrath
++ 0x1D8 = Life Drain
 + 0x1D9 = Dragon Beat
 + 0x1DA = Vengeance
 + 0x1DB = Dark Resolve
@@ -311,31 +311,31 @@ move IDs:
 + 0x1E7 = Raid
 + 0x1E8 = Acid Spray
 + 0x1E9 = Electroweb
-- 0x1EA = Shell Smash
++ 0x1EA = Shell Smash
 + 0x1EB = Gastro Acid
 = 0x1EC = (non-attacking move), (has Toxic animation)
-- 0x1ED = Leaf Tornado
++ 0x1ED = Leaf Tornado
 = 0x1EE = (attacking move), (animation is Bite followed by Crunch)
-- 0x1EF = Bulldoze
-= 0x1F0 = (attacking move), (has Slash animation)
-- 0x1F1 = Quiver Dance
-- 0x1F2 = Hone Claws
-- 0x1F3 = Icicle Crash
-- 0x1F4 = Coil
-- 0x1F5 = Drill Run
-- 0x1F6 = Heart Stamp
-= 0x1F7 = (attacking move), (animation is Tackle with Silver Wind's background)
-- 0x1F8 = Work Up
-- 0x1F9 = Sludge Wave
-= 0x1FA = (attacking move with chance to lower sp. atk), (animation is Rollout but recolored)
-- 0x1FB = Inferno
-- 0x1FC = Wild Charge
-- 0x1FD = Sharpshoot
-- 0x1FE = Scald
-= 0x1FF = (attacking move with chance to lower sp. atk), (animation has Moonlight sound effect)
-= 0x200 = (attacking move), (animation has attacker turn white and a large amount of something appear and do something)
++ 0x1EF = Bulldoze
++ 0x1F0 = Dual Chop
++ 0x1F1 = Quiver Dance
++ 0x1F2 = Hone Claws
++ 0x1F3 = Icicle Crash
++ 0x1F4 = Coil
++ 0x1F5 = Drill Run
++ 0x1F6 = Heart Stamp
++ 0x1F7 = Steamroller
++ 0x1F8 = Work Up
++ 0x1F9 = Sludge Wave
++ 0x1FA = Struggle Bug
++ 0x1FB = Inferno
++ 0x1FC = Wild Charge
++ 0x1FD = Sharpshoot
++ 0x1FE = Scald
+= 0x1FF = (attacking move with chance to lower sp. atk), (animation is gleaming, then shooting something)
+= 0x200 = (attacking move), (animation has screen turn white and attacker shoots a lot of objects)
 = 0x201 = (attacking move), (animation is Silver Wind with a completely new background)
-= 0x202 = (attacking move), (animation spawns one object with one sound effect, everything else unknown)
+= 0x202 = (attacking move), (animation shoots an unknown object at the foe)
 = 0x203 = (non-attacking move, -1 attack)
 = 0x204 = (attacking move with chance to lower attack)
 = 0x205 = (attacking move)
@@ -343,7 +343,7 @@ move IDs:
 + 0x207 = Chatter
 + 0x208 = Trick Room
 = 0x209 = (attacking move)
-- 0x20A = Head Smash
++ 0x20A = Head Smash
 = 0x20B = (attacking move)
 = 0x20C = (attacking move)
 = 0x20D = (attacking move)
@@ -351,10 +351,10 @@ move IDs:
 = 0x20F = (attacking move with chance to raise speed)
 = 0x210 = (attacking move with chance to lower sp. atk)
 = 0x211 = (attacking move)
-- 0x212 = Eerie Impulse
++ 0x212 = Eerie Impulse
 = 0x213 = (attacking move with chance to raise attack)
-- 0x214 = Confide
-- 0x215 = Play Nice
++ 0x214 = Confide
++ 0x215 = Play Nice
 = 0x216 = (attacking move)
 = 0x217 = (attacking move)
 = 0x218 = (attacking move)
@@ -460,7 +460,7 @@ move IDs:
 = 0x27C = Crush Grip/Wring Out
 + 0x27D = Captivate
 = 0x27E = (non-attacking move that sleep effect, but sleeps the target even if it already has a status)
-- 0x27F = Cotton Guard
++ 0x27F = Cotton Guard
 = 0x280 = (attacking move)
 = 0x281 = (attacking move)
 = 0x282 = (non-attacking move)
@@ -544,7 +544,7 @@ move effects:
 = 0xDC = Typhoon
 = 0xDD = V-Create
 = 0xDE = chance to lower all stats
-= 0xDF = -1 accuracy +2 evasion to target
+= 0xDF = Dizzy Whirl
 = 0xE0 = hits 3 times
 = 0xE1 = Frost Breath
 = 0xE2 = Blizzard/Starfreeze
@@ -686,7 +686,7 @@ battle strings (ADD 9 TO ALL):
 + 0x208 = "[PKMN] acquired [ABILITY]!"
 + 0x209 = "[PKMN] transformed into the [TYPE] type!"
 + 0x20A = "[PKMN] was given (move240)! (placeholder)"
-- 0x20B = "Its sharpened claws strengthened the attack! (placeholder)"
++ 0x20B = "Its sharpened claws strengthened the attack! (placeholder)"
 + 0x20C = "[PKMN] is already frozen! (placeholder)"
 + 0x20D = "[PKMN]'s [ABILITY] prevents freezing! (placeholder)"
 ! 0x20E = "[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"
@@ -869,7 +869,7 @@ stray text:
 = 0124EB: 80 -> 60 (store weather as fullword)
 = 014CD8: GetWhoStrikesFirst (+GetSpeedStat, GetPriority, GetAbilityValues) (see 04disasm/04disasm2)
 		  Implements: Unburden (effect), Quick Feet, Stall, Klutz (speed items), Slow Start (Speed reduction), Sand Rush, Prankster, Gale Wings [gen 6], Slush Rush, Choice Scarf (speed boost), Lagging Tail, Tailwind (effect), Trick Room (effect), 1/4 -> 1/2 paralysis speed cut, removal of badge 3 bonus
-		  Relies on: weather refactor, BattleMove refactor, returns 0 sometimes instead of 1 or 2
+		  Relies on: weather refactor, returns 0 sometimes instead of 1 or 2
 		  Glitch: Stall and Trick Room are in wrong order, Stall goes first in Trick Room (probably doesn't matter in P/D itself)
 = 015910: HandleEndTurn_FinishBattle (see 05disasm)
 		  Implements: EVs recalculated per battle (?)
@@ -920,7 +920,7 @@ stray text:
 		  Glitch?: Might cause castform/terubim to "change" when sand starts/ends; might have done it wrong, check if rain=ice and hail=water accidentally
 = 01A088: Most of AbilityBattleEffects (see 13disasm)
 		  Implements: Stench flinch chance, Lightning Rod boost/immunity, Pressure message, Motor Drive, Anger Point, Unburden (activation), Dry Skin (rain/water healing/immunity), Download, Hydration, Magic Guard (vs contact damage abilities), Klutz (the item effects here), Mold Breaker (message), Mold Breaker+ (vs move-subset immunities/absorbing immunities), Aftermath, Anticipation, Forewarn, Slow Start (upkeep), Storm Drain (boost/immunity), Ice Body, Snow Warning, Frisk, Unnerve (message), Cursed Body, Healer, Weak Armor, Moody, Overcoat (vs powder), Poison Touch, Imposter, Infiltrator (getting affected by hit-reaction abilities when hitting through Substitute), Mummy, Justified, Rattled, Sap Sipper, Iron Barbs, Aroma Veil, Sweet Veil, Gooey, Flower Veil (vs Gooey/Tangling Hair), Bulletproof, Stamina, Water Compaction, Dazzling, Queenly Majesty, Tangling Hair, weather rocks (on abilities), Safety Goggles (vs powder), grass-type powder immunity, dark-type prankster immunity, user affected by hit-reaction abilities when its sound moves hit through Substitute
-		  Relies on: weather refactor, BattleMove refactor, cloud nine/intimidate id change????, gSpecialStatuses[battler].intimidatedMon?
+		  Relies on: weather refactor, cloud nine/intimidate id change????, gSpecialStatuses[battler].intimidatedMon?
 		  Requires in future: GetAbilityUserOnSameSide, GetWeatherTurns, CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Note: Check Weak Armor vs Psyshock, might be wrong
 = 01BC68: ItemBattleEffects (+ CheckUnnerve, IsAffectedBySheerForce, GetPinchThreshholdFromParam, GetMoveWithNoPP, GetPartyIndex, CheckAndRunCheekPouch) (see 14disasm)
@@ -933,11 +933,11 @@ stray text:
 		  Implements: Magic Bounce, Protean, Mold Breaker+ (vs Magic Bounce)
 		  Glitch: If the Magic Bounce user has Magic Coat, Magic Bounce activating against a Pressure user will deduct 1 PP from Magic Coat
 = 01DC7C: AccuracyCalcHelper (see 16disasm)
-		  Implements: No Guard, the following not missing: Toxic from poison-types, Stomp on Minimize, Hurricane in rain, Blizzard in hail, Struggle, Bide, Mimic, Pain Split, Lock-On, Foresight, Role Play, Yawn, Imprison (?), Magic Coat (?), Snatch (?), Power Split, Guard Split, Heal Pulse, Bestow
+		  Implements: No Guard, the following not missing: Toxic from poison-types, Stomp on Minimize, Hurricane in rain, Blizzard in hail, Struggle, Bide (?), Mimic, Pain Split, Lock-On, Foresight, Role Play, Yawn, Imprison (?), Magic Coat (?), Snatch (?), Power Split, Guard Split, Heal Pulse, Bestow
 		  Relies on: weather refactor
 = 01DDC4 -> 01DE30 (repoint): atk01_accuracycheck (see 17disasm)
 		  Implements: Keen Eye ignoring evasion, Tangled Feet, Snow Cloak, Klutz (acc/evasion items), Mold Breaker+ (vs acc/evasion), Unaware (acc/evasion), (ability93), Victory Star, Wide Lens, Hurricane acc- in sun, removes some first-battle code
-		  Relies on: weather refactor, BattleMove refactor, GetAbilityUserOnSameSide
+		  Relies on: weather refactor, GetAbilityUserOnSameSide
 		  Required knowledge: j0203B950
 		  Glitch?: (ability93) might not work unless Victory Star is active on the other side
 		  Note: Check Hustle accuracy vs Psyshock, might be wrong
@@ -956,30 +956,27 @@ stray text:
 		  Note: check wonder guard vs canceled se (elec on water/ground, fire on rock/grass)
 = 01EDF4: TypeCalc (see 22disasm)
 		  Implements: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Storm Drain (immunity), Unnerve (type-resist berries), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Bulletproof, Galvanize (type change), Dazzling, Queenly Majesty, Expert Belt, type-resist berries, grass-type powder immunity
-		  Relies on: battleMove refactor
 		  Requires in future: RunTypeEffectivenessBasedAbilities (j2076B0), IsMoveBlockedByAbility (j251DA0), AteAbilityConversionTable (j168CB4)
 		  Glitch?: Solid Rock might be 3/4 to ALL damage
 = 01EFCC: AI_TypeCalc (see 23disasm)
 		  Implements: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Storm Drain (immunity), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Bulletproof, Dazzling, Queenly Majesty, grass-type powder immunity
-		  Relies on: battleMove refactor
 		  Requires in future: IsMoveBlockedByAbility (j251DA0)
 		  Notes: Of the three, only atk06_typecalc contains the Mold Breaker functionality (besides vs Solid Rock)/Sheer Cold immunity/(bcs 0x1E items), only TypeCalc contains the Hidden Power calc/non-Levitate ability immunities/type-resist berries, and AI_TypeCalc doesn't have anything but the immunity abilities (no Mold Breaker even); not sure what this implies
 = 01F104: atk07_adjustnormaldamage (+HasItemWithTypeEffect, GetWeatherTurns) (see 24disasm)
 		  Implements: modern Sturdy, Klutz (Focus Band, the item effects here), Mold Breaker+ (vs Sturdy), Unnerve (type-resist berries), Infiltrator (foe can endure when hit through Substitute), Focus Sash, type-resist berries, foe can endure when hit by sound moves through Substitute
-		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_ConsumeDamageReductionBerry (e1FD33, j1F543), BattleMove refactor
+		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_ConsumeDamageReductionBerry (e1FD33, j1F543)
 		  Requires in future: ClearFocusBand (j168C88), SetFocusBand (j168C9C), AteAbilityConversionTable (j168CB4)
 		  Glitch: Pointer to AteAbilityConversionTable (j168CB4) instead points to j168CA4
 = 01F2B4 -> 01F394 (repoint): atk08_adjustnormaldamage2 (see 25disasm)
 		  Implements: modern Sturdy, Klutz (enduring (Focus) items), Mold Breaker+ (vs Sturdy), Infiltrator (foe can endure when hit through Substitute), Focus Sash, foe can endure when hit by sound moves through Substitute
-		  Relies on: atk07_adjustnormaldamage, BattleMove refactor
+		  Relies on: atk07_adjustnormaldamage
 		  Note: Actually just calls atk07_adjustnormaldamage with gCurrentMove set to 0
 = 01F5A8: atk0B_healthbarupdate (see 26disasm)
 		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute
-		  Relies on: BattleMove refactor
+		  Relies on: atk0C_datahpupdate changes (to make room)
 		  Note: Removes 10000 hard damage limit, might break something?
 = 01F684 -> 01F6A0 (repoint): atk0C_datahpupdate (see 27disasm)
 		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute, (j0203B950?)
-		  Relies on: BattleMove refactor
 		  Required knowledge: j0203B950
 		  Glitch?: special moves might not be set properly (moveType >= 8 when moveType is now a P/S signifier)
 = 01FBA0: atk0F_resultmessage (+ConsumeItem, BattleScript_ConsumeDamageReductionBerry, script_1F552_J) (see 28disasm)
@@ -987,7 +984,7 @@ stray text:
 		  Relies on: gChosenActionByBattler changed to something else
 = 01FF20: Parts of SetMoveEffect (see 29disasm)
 		  Implements: Leaf Guard (vs secondary effects), Mold Breaker (vs Shield Dust), Infiltrator (secondary effects working through Substitute), Sweet Veil (vs secondary effects), Flower Veil (vs secondary-effect status), secondary effects of sound moves working through Substitute
-		  Relies on: BattleMove refactor, changes at 0206A2
+		  Relies on: changes at 0206A2
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Note: check moves like Superpower when user has sub, appears to be removed
 = 020376: 60 -> 30 (part of weather refactor - sun)
@@ -1024,17 +1021,15 @@ stray text:
 ! 020F78: (see 29disasm) (last part of SetMoveEffect)
 		  Implements: Magic Guard (move recoil)
 		  GLITCH!: Rock Head stopped working completely/Magic Guard doesn't work, some other change probably needed
-= 021124: atk15_seteffectwithchance (see 30disasm)
+- 021124: atk15_seteffectwithchance (see 30disasm)
 		  Implements: Sheer Force (secondary effect removal)
-		  Relies on: BattleMove refactor
 + 0212AC: Large part of atk19_tryfaintmon (see 31disasm)
 		  Implements: Moxie
-= 021640: atk1C_jumpifstatus (see 32disasm)
+- 021640: atk1C_jumpifstatus (see 32disasm)
 		  Implements: Makes room for expanded atk1D_jumpifstatus2
 		  Requires in future: fn_20EFE_J
-= 0216B8 -> 021624 (repoint): atk1D_jumpifstatus2 (+fn_20EFE_J) (see 33disasm)
+- 0216B8 -> 021624 (repoint): atk1D_jumpifstatus2 (+fn_20EFE_J) (see 33disasm)
 		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute
-		  Relies on: BattleMove refactor
 = 021730: atk1E_jumpifability (see 34disasm)
 		  Implements: Leaf Guard, Flower Veil (vs status)
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
@@ -1236,7 +1231,7 @@ stray text:
 		  Implements: Part of gLevelUpLearnsets refactor
 = 03ECEC: CalculateBaseDamage (see 78disasm)
 		  Implements: modern Plus/Minus, Rivalry, Heatproof (fire moves), Dry Skin (fire moves), Iron Fist, Solar Power (boost), Normalize (boost), Technician, Klutz (damage-boosting items), Mold Breaker (damage-reduction abilities, Unaware), Unaware (atk/def/spa/spd), Slow Start (Attack reduction), Reckless, Flower Gift (stat boosts), Sheer Force (boost), Defeatist, Friend Guard, Multiscale, Toxic Boost, Flare Boost, Analytic, Infiltrator (dual screens), Sand Force, Aura Break, Tough Claws, Mega Launcher, Grass Pelt, Aerilate (boost), Dark Aura, Fur Coat, Fairy Aura, Pixilate (boost), Refrigerate (boost), Strong Jaw, Galvanize (boost), "Polkadot Bow", Gems (gen 5 boost), Choice Specs (boost), Muscle Band, Wise Glasses, Assault Vest (boost), Eviolite, Life Orb (boost), Wonder Room (effect), sandstorm Rock SpDef boost, modern spread reduction
-		  Relies on: weather refactor, BattleMove refactor, GetAbilityUserOnSameSide, HasItemWithTypeEffect
+		  Relies on: weather refactor, GetAbilityUserOnSameSide, HasItemWithTypeEffect
 		  Requires in future: AteAbilityConversionTable (j168CB4)
 		  Note: is that how spread reduction works? (only reduced if max targets exist)
 = 03FD64: Part of GetBoxMonData (see 79disasm)
@@ -1772,9 +1767,9 @@ stray text:
   0E5168: 8D 27 7F 00 -> 9F 27 3F 01
   0E5242: 8D 23 5B 00 -> 9F 23 1B 01
 		  Implements: (jp 0x11A -> 0x9F0 start index???)
-= 0E5340: sub_80E5340 (see 213disasm)
+- 0E5340: sub_80E5340 (see 213disasm)
 		  Implements: adds category icon to the move reminder summary screen, other minor adjustments to that screen
-		  Relies on: BattleMove refactor, data_D7DC7C_J
+		  Relies on: data_D7DC7C_J
 ! 0E5444: sub_80E5444 (see 214disasm)
 		  Implements: instead of TYPE/POWER/PP/ACCURACY/EFFECT on the move reminder summary screen, shows 3 (not yet known) graphics
 		  Relies on: graphics actually inserted
@@ -2213,7 +2208,6 @@ stray text:
 		  Relies on: layout rework to make this not look broken
 = 13A124: sub_813A124 (see 247disasm)
 		  Implements: possibly move category icons on summary screen
-		  Relies on: BattleMove refactor
 		  Required knowledge: j0203B0E1, j06009140
 		  Requires in future: fn_D7DEC0_J
 + 13A42E: 10 -> BA
@@ -2640,8 +2634,8 @@ stray text:
 		  * New mechanics that old scripts are updated for: electric-type paralysis immunity, dark-type Prankster immunity, grass-type powder immunity, Lightning Rod (immunity), Motor Drive, Poison Heal, Magic Guard, Leaf Guard, Storm Drain, Overcoat, Big Pecks, Sap Sipper, Aroma Veil, Sweet Veil, Bulletproof, Dazzling, Queenly Majesty
 		  * Moves that bypass AI restrictions: burn moves that aren't Will-O-Wisp (this only bypasses the Fire-type check); trapping moves that aren't Mean Look / Block (aka Spirit Shackle, etc); switch-out moves that aren't Baton Pass (aka U-Turn/Volt Switch); stat-resetting moves that aren't Haze (aka Clear Smog); phazing moves that aren't Roar / Whirlwind (aka Dragon Tail/Circle Throw)
 		  * New moves: Captivate, 0x2A6 (factored into Attract script)
-		  * New move effects: freeze, (confuse and lower evasion), Power Swap, Guard Swap, Reflect Type, Synchronoise, (poison or paralysis, chooses one at random), Venom Drench, Tailwind, (burn user and target), (poison user and target), Work Up, (-1 accuracy +2 evasion to target), (overwrites a random one of the target's moves with [move240]), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws
-		  Relies on: new AI script commands, BattleMove refactor
+		  * New move effects: freeze, (confuse and lower evasion), Power Swap, Guard Swap, Reflect Type, Synchronoise, (poison or paralysis, chooses one at random), Venom Drench, Tailwind, (burn user and target), (poison user and target), Work Up, Dizzy Whirl, (overwrites a random one of the target's moves with [move240]), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws
+		  Relies on: new AI script commands
 		  Glitch?: due to misaligned goto, only will-o-wisp is checked for prankster immunity
 		  Glitch?: looks like thunder wave is checked against electric-types twice instead of electric and ground (might be a transcription error? test this)
 		  Glitch?: freeze effect (1E) checks Flame Body instead of Magma Armor
@@ -2654,7 +2648,7 @@ stray text:
 		  * New mechanics that old scripts are updated for: p/s split (also includes removing the discouraging of, for example, -Atk moves or Reflect on a water-type since it can have physical STAB now), new Lightning Rod, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, [ability8B], Choice items, Assault Vest, Lagging Tail
 		  * New moves: 0x22D, 0x27C (factored into Eruption script); 0x161, Hex, Wake-Up Slap, 0x265, 0x266, 0x267, 0x283 (factored into double-damage-on-status script); 0x258, 0x272, 0x27A (factored into Brine script); Hone Claws (factored into (does double damage if used immediately after Hone Claws) script)
 		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, V-Create, Hurricane, Brine, (removes Reflect/Light Screen from the user's side, but does double damage when it does), (does double damage if used immediately after Hone Claws), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws, Payback, Psycho Shift, Acrobatics, Metal Burst
-		  Relies on: new AI script commands, BattleMove refactor
+		  Relies on: new AI script commands
 		  Glitch?: due to misaligned goto, Substitute will fall through into the Hyper Beam logic under certain circumstances
 		  Glitch?: due to misaligned goto, (Payback that always doubles power vs Steel-types) will probably crash
 		  Glitch?: might cause inexplicable use of recovery moves at full HP, this might be a misreading though (test)
@@ -2663,7 +2657,7 @@ stray text:
 		  Glitch?: Psycho Shift -> Acrobatics is fallthrough
 		  Glitch?: Venom Drench uses Lock-On's AI script
 + 1DBA8D -> 1007300 (repoint): AI_SetupFirstTurn
-		  Implements: changes which moves the AI counts as setup (removes every +2/-2, Conversion; adds sleep, Toxic, (confuse and lower evasion), (poison or paralysis, chooses one at random), (burn user and target), (poison user and target), Charge, Work Up, Dragon Dance, (-1 accuracy +2 evasion to target), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws)
+		  Implements: changes which moves the AI counts as setup (removes every +2/-2, Conversion; adds sleep, Toxic, (confuse and lower evasion), (poison or paralysis, chooses one at random), (burn user and target), (poison user and target), Charge, Work Up, Dragon Dance, Dizzy Whirl, (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws)
 		  GLITCH!: This actually does nothing at all due to a misplaced pointer
 + 1DBB3B -> 1007380 (repoint): AI_Unknown
 		  Implements: AI layer that discourages supereffective moves for some reason
@@ -2672,8 +2666,8 @@ stray text:
 ! 1EA14C+: [text and data, go through here thoroughly later; jp 1D9634+]
 
 
-= ?????? (j20E550): Move_??? (see animscripts.txt)
-		  Implements: [move187] animation
+= ?????? (j20E550): Move_Shadow_Claw (see animscripts.txt)
+		  Implements: Shadow Claw animation
 = ?????? (j20E5A0): Move_Dark_Cutter (see animscripts.txt)
 		  Implements: Dark Cutter animation
 = ?????? (j221B78): movement action function 0xC2
@@ -2748,7 +2742,7 @@ stray text:
 		  Implements: works like regular slow-walking (again? maybe this is wrong), but in the opposite direction
 + 814082: Move_Flare_Blitz (see animscripts.txt)
 		  Implements: Flare Blitz animation
-- 8B6040: Move_Sludge_Wave (see animscripts.txt)
++ 8B6040: Move_Sludge_Wave (see animscripts.txt)
 		  Implements: Sludge Wave animation
 = E27BA0: ItemUseOutOfBattle_Honey (see 286disasm)
 		  Implements: field function for Honey
@@ -2860,10 +2854,9 @@ stray text:
 		  Implements: Typhoon
 		  Relies on: BattleScript_DoDamageFunction, BattleScript_PlayStatChangeAnim
 		  Note: stat-change animation color is only the first stat, fix this to be gray later
-+1053E90: BattleScript_EffectTargetAccDownEvasionUp2 (see movescripts.txt)
-		  Implements: (move that gives -1 accuracy +2 evasion to target)
++1053E90: BattleScript_EffectDizzyWhirl (see movescripts.txt)
+		  Implements: Dizzy Whirl
 		  Relies on: BattleScript_PlayStatChangeAnim
-		  Note: target appears to be the user?
 +1053EE0: BattleScript_EffectUserAtkDefUp2SpeedDown (see movescripts.txt)
 		  Implements: (move that gives +2 Attack +2 Defense -1 Speed to user)
 		  Relies on: BattleScript_PlayStatChangeAnim
@@ -2894,17 +2887,16 @@ stray text:
 		  Implements: Zen Headbutt animation
 +11BA7EF: BattleScript_EffectTripleHit (see movescripts.txt)
 		  Implements: (move that hits 3 times)
--1300090: Move_??? (see animscripts.txt)
++1300090: Move_??? (see animscripts.txt)
 		  Implements: [move1FF] animation
--1300110: Move_??? (see animscripts.txt)
++1300110: Move_??? (see animscripts.txt)
 		  Implements: [move201] animation
-		  Note: bg scrolls when it shouldn't when used by the opponent (or doesn't scroll when it should when used by the player?)
 !13037E0: Move_Power_Whip (see animscripts.txt)
 		  Implements: Power Whip animation
 		  GLITCH!: game crash
 +13041C8: Move_Possess (see animscripts.txt)
 		  Implements: Possess animation
--13053F0: Move_??? (see animscripts.txt)
++13053F0: Move_??? (see animscripts.txt)
 		  Implements: [move202] animation
 +1306150: Move_Dazzle_Powder (see animscripts.txt)
 		  Implements: Dazzle Powder animation
@@ -2916,9 +2908,9 @@ stray text:
 		  Implements: Leaf Storm animation
 +1306F58: Move_Cross_Poison (see animscripts.txt)
 		  Implements: Cross Poison animation
--1306FE8: Move_Leaf_Tornado (see animscripts.txt)
++1306FE8: Move_Leaf_Tornado (see animscripts.txt)
 		  Implements: Leaf Tornado animation
--13071E8: Move_Inferno (see animscripts.txt)
++13071E8: Move_Inferno (see animscripts.txt)
 		  Implements: Inferno animation
 !1307478: Move_Fire_Fang (see animscripts.txt)
 		  Implements: Fire Fang animation
@@ -2929,11 +2921,11 @@ stray text:
 		  Implements: Ice Fang animation
 +1307950: Move_Rock_Climb (see animscripts.txt)
 		  Implements: Rock Climb animation
--1307D70: Move_Shell_Smash (see animscripts.txt)
++1307D70: Move_Shell_Smash (see animscripts.txt)
 		  Implements: Shell Smash animation
 +1307F70: Move_Aqua_Jet (see animscripts.txt)
 		  Implements: Aqua Jet animation
--13080C0: Move_Gastro_Acid (see animscripts.txt)
++13080C0: Move_Gastro_Acid (see animscripts.txt)
 		  Implements: Gastro Acid animation
 +1308368: Move_Focus_Blast (see animscripts.txt)
 		  Implements: Focus Blast animation
@@ -2941,8 +2933,9 @@ stray text:
 		  Implements: Gunk Shot animation
 +13087A8: Move_Shadow_Sneak (see animscripts.txt)
 		  Implements: Shadow Sneak animation
--1308970: Move_Icicle_Crash (see animscripts.txt)
-		  Implements: Icicle Crash animation
+!1308970: Move_Icicle_Crash (see animscripts.txt)
+		  Implements: Icicle Crash animations
+		  GLITCH!: gamecicle crash
 +1308DC0: Move_Psycho_Cut (see animscripts.txt)
 		  Implements: Psycho Cut animation
 !1308F80: Move_Raze_Earth (see animscripts.txt)
@@ -2966,9 +2959,9 @@ stray text:
 		  GLITCH!: game crash
 +130A350: Move_Hammer_Arm (see animscripts.txt)
 		  Implements: Hammer Arm animation
--130A3A0: Move_??? (see animscripts.txt)
++130A3A0: Move_??? (see animscripts.txt)
 		  Implements: [move200] animation
--130A5C0: Move_Hone_Claws (see animscripts.txt)
++130A5C0: Move_Hone_Claws (see animscripts.txt)
 		  Implements: Hone Claws animation
 +130A6F0: Move_Seed_Bomb (see animscripts.txt)
 		  Implements: Seed Bomb animation
@@ -3022,141 +3015,141 @@ stray text:
 		  GLITCH!: game crash
 +140D906: Move_Wild_Growth (see animscripts.txt)
 		  Implements: Wild Growth animation
-!140DA56: Move_??? (see animscripts.txt)
-		  Implements: [move1AD] animation
+!140DA56: Move_Dizzy_Whirl (see animscripts.txt)
+		  Implements: Dizzy Whirl animation
 		  GLITCH!: There's nothing here?
--140DA7C: Move_Corner (see animscripts.txt)
++140DA7C: Move_Corner (see animscripts.txt)
 		  Implements: Corner animation
--140DAC8: Move_Earth_Power (see animscripts.txt)
+!140DAC8: Move_Earth_Power (see animscripts.txt)
 		  Implements: Earth Power animation
--140DB3C: Move_Gravity_Wave (see animscripts.txt)
+		  GLITCH!: game crash
++140DB3C: Move_Gravity_Wave (see animscripts.txt)
 		  Implements: Gravity Wave animation
--140DC08: Move_Magnum_Punch (see animscripts.txt)
++140DC08: Move_Magnum_Punch (see animscripts.txt)
 		  Implements: Magnum Punch animation
--140DCAC: Move_Diamond_Blast (see animscripts.txt)
++140DCAC: Move_Diamond_Blast (see animscripts.txt)
 		  Implements: Diamond Blast animation
--140DE22: Move_Flash_Cannon (see animscripts.txt)
++140DE22: Move_Flash_Cannon (see animscripts.txt)
 		  Implements: Flash Cannon animation
--140DF20: Move_Magnet_Force (see animscripts.txt)
++140DF20: Move_Magnet_Force (see animscripts.txt)
 		  Implements: Magnet Force animation
--140DFC0: Move_Paleobreath (see animscripts.txt)
++140DFC0: Move_Paleobreath (see animscripts.txt)
 		  Implements: Paleobreath animation
--140E074: Move_Close_Combat (see animscripts.txt)
++140E074: Move_Close_Combat (see animscripts.txt)
 		  Implements: Close Combat animation
--1429760: Move_Stardust (see animscripts.txt)
++1429760: Move_Stardust (see animscripts.txt)
 		  Implements: Stardust animation
--14297E0: Move_Devastate (see animscripts.txt)
++14297E0: Move_Devastate (see animscripts.txt)
 		  Implements: Devastate animation
--1429870: Move_Metal_Blast (see animscripts.txt)
++1429870: Move_Metal_Blast (see animscripts.txt)
 		  Implements: Metal Blast animation
--1429A60: Move_??? (see animscripts.txt)
-		  Implements: [move17C] animation
--1429A90: Move_Aqua_Tail (see animscripts.txt)
++1429A60: Move_Vacuum_Wave (see animscripts.txt)
+		  Implements: Vacuum Wave animation
++1429A90: Move_Aqua_Tail (see animscripts.txt)
 		  Implements: Aqua Tail animation
--1429B80: Move_Icy_Kiss (see animscripts.txt)
++1429B80: Move_Icy_Kiss (see animscripts.txt)
 		  Implements: Icy Kiss animation
--142A090: Move_Night_Slash (see animscripts.txt)
++142A090: Move_Night_Slash (see animscripts.txt)
 		  Implements: Night Slash animation
--142A0D4: Move_Deep_Yawn (see animscripts.txt)
++142A0D4: Move_Deep_Yawn (see animscripts.txt)
 		  Implements: Deep Yawn animation
--142A128: Move_Dark_Pulse (see animscripts.txt)
++142A128: Move_Dark_Pulse (see animscripts.txt)
 		  Implements: Dark Pulse animation
--142A175: Move_Double_Spin (see animscripts.txt)
++142A175: Move_Double_Spin (see animscripts.txt)
 		  Implements: Double Spin animation
--142A20C: Move_Switcheroo (see animscripts.txt)
++142A20C: Move_Switcheroo (see animscripts.txt)
 		  Implements: Switcheroo animation
--142A78E: Move_Hypnopulse (see animscripts.txt)
++142A78E: Move_Hypnopulse (see animscripts.txt)
 		  Implements: Hypnopulse animation
--142A7F0: Move_Bullet_Punch (see animscripts.txt)
++142A7F0: Move_Bullet_Punch (see animscripts.txt)
 		  Implements: Bullet Punch animation
--142A888: Move_Aqua_Bolt (see animscripts.txt)
++142A888: Move_Aqua_Bolt (see animscripts.txt)
 		  Implements: Aqua Bolt animation
--142A96E: Move_Raging_Flame (see animscripts.txt)
++142A96E: Move_Raging_Flame (see animscripts.txt)
 		  Implements: Raging Flame animation
--142BCB8: Move_Smogscreen (see animscripts.txt)
++142BCB8: Move_Smogscreen (see animscripts.txt)
 		  Implements: Smogscreen animation
--142BEEC: Move_Icicle_Punch (see animscripts.txt)
++142BEEC: Move_Icicle_Punch (see animscripts.txt)
 		  Implements: Icicle Punch animation
--142BF8A: Move_Toxin_Spray (see animscripts.txt)
++142BF8A: Move_Toxin_Spray (see animscripts.txt)
 		  Implements: Toxin Spray animation
--142BFFE: Move_Dark_Hand (see animscripts.txt)
++142BFFE: Move_Dark_Hand (see animscripts.txt)
 		  Implements: Dark Hand animation
--142C1A0: Move_Dark_Roar (see animscripts.txt)
++142C1A0: Move_Dark_Roar (see animscripts.txt)
 		  Implements: Dark Roar animation
--142C1BE: Move_Dragon_Beat (see animscripts.txt)
++142C1BE: Move_Dragon_Beat (see animscripts.txt)
 		  Implements: Dragon Beat animation
--142C2AA: Move_Frostbite (see animscripts.txt)
++142C2AA: Move_Frostbite (see animscripts.txt)
 		  Implements: Frostbite animation
--142C316: Move_Ice_Shard (see animscripts.txt)
++142C316: Move_Ice_Shard (see animscripts.txt)
 		  Implements: Ice Shard animation
--142C3B0: Move_Starfreeze (see animscripts.txt)
++142C3B0: Move_Starfreeze (see animscripts.txt)
 		  Implements: Starfreeze animation
--142C4A8: Move_Nasty_Plot (see animscripts.txt)
++142C4A8: Move_Nasty_Plot (see animscripts.txt)
 		  Implements: Nasty Plot animation
--142C4CC: Move_Ominous_Wind (see animscripts.txt)
++142C4CC: Move_Ominous_Wind (see animscripts.txt)
 		  Implements: Ominous Wind animation
--142C612: Move_Dark_Resolve (see animscripts.txt)
++142C612: Move_Dark_Resolve (see animscripts.txt)
 		  Implements: Dark Resolve animation
--142C660: Move_Megashock (see animscripts.txt)
++142C660: Move_Megashock (see animscripts.txt)
 		  Implements: Megashock animation
--142C7AC: Move_Deluge (see animscripts.txt)
++142C7AC: Move_Deluge (see animscripts.txt)
 		  Implements: Deluge animation
--142C800: Move_Discharge (see animscripts.txt)
++142C800: Move_Discharge (see animscripts.txt)
 		  Implements: Discharge animation
--142CB10: Move_Giga_Spark (see animscripts.txt)
++142CB10: Move_Giga_Spark (see animscripts.txt)
 		  Implements: Giga Spark animation
--142CDC0: Move_Shadow_Clamp (see animscripts.txt)
++142CDC0: Move_Shadow_Clamp (see animscripts.txt)
 		  Implements: Shadow Clamp animation
--142CE84: Move_Latent_Power (see animscripts.txt)
++142CE84: Move_Latent_Power (see animscripts.txt)
 		  Implements: Latent Power animation
--142CFD8: Move_Giga_Impact (see animscripts.txt)
++142CFD8: Move_Giga_Impact (see animscripts.txt)
 		  Implements: Giga Impact animation
--1696040: Move_Charge_Beam (see animscripts.txt)
++1696040: Move_Charge_Beam (see animscripts.txt)
 		  Implements: Charge Beam animation
-		  Note: changed ptr to 169605B, otherwise it doesn't work (?????? TEST)
--1697F80: BattleScript_EffectHurricane (see movescripts.txt)
++1697F80: BattleScript_EffectHurricane (see movescripts.txt)
 		  Implements: Hurricane
--1699D70: Move_Psycho_Punch (see animscripts.txt)
++1699D70: Move_Psycho_Punch (see animscripts.txt)
 		  Implements: Psycho Punch animation
--1699DCA: Move_Glide (see animscripts.txt)
++1699DCA: Move_Glide (see animscripts.txt)
 		  Implements: Glide animation
--1699E26: Move_Dragon_Pulse (see animscripts.txt)
++1699E26: Move_Dragon_Pulse (see animscripts.txt)
 		  Implements: Dragon Pulse animation
--1699EE0: Move_Draco_Meteor (see animscripts.txt)
++1699EE0: Move_Draco_Meteor (see animscripts.txt)
 		  Implements: Draco Meteor animation
--169A040: Move_Geo_Impact (see animscripts.txt)
++169A040: Move_Geo_Impact (see animscripts.txt)
 		  Implements: Geo Impact animation
--169A19A: Move_Psygatling (see animscripts.txt)
++169A19A: Move_Psygatling (see animscripts.txt)
 		  Implements: Psygatling animation
--169A20A: Move_Magnet_Bomb (see animscripts.txt)
++169A20A: Move_Magnet_Bomb (see animscripts.txt)
 		  Implements: Magnet Bomb animation
--169A3A0: Move_Brave_Bird (see animscripts.txt)
++169A3A0: Move_Brave_Bird (see animscripts.txt)
 		  Implements: Brave Bird animation
--169A4F0: Move_Burrow (see animscripts.txt)
++169A4F0: Move_Burrow (see animscripts.txt)
 		  Implements: Burrow animation
--16B40F0: Move_Acid_Spray (see animscripts.txt)
++16B40F0: Move_Acid_Spray (see animscripts.txt)
 		  Implements: Acid Spray animation
--16B42A0: Move_Quiver_Dance (see animscripts.txt)
++16B42A0: Move_Quiver_Dance (see animscripts.txt)
 		  Implements: Quiver Dance animation
--16B4320: Move_Heart_Stamp (see animscripts.txt)
++16B4320: Move_Heart_Stamp (see animscripts.txt)
 		  Implements: Heart Stamp animation
--16B43A0: Move_Sharpshoot (see animscripts.txt)
++16B43A0: Move_Sharpshoot (see animscripts.txt)
 		  Implements: Sharpshoot animation
--16B4420: Move_??? (see animscripts.txt)
-		  Implements: [move1F7] animation
--16B4510: Move_Scald (see animscripts.txt)
++16B4420: Move_Steamroller (see animscripts.txt)
+		  Implements: Steamroller animation
++16B4510: Move_Scald (see animscripts.txt)
 		  Implements: Scald animation
--16B4580: Move_??? (see animscripts.txt)
-		  Implements: [move1FA] animation
--16B4B20: Move_Work_Up (see animscripts.txt)
++16B4580: Move_Struggle_Bug (see animscripts.txt)
+		  Implements: Struggle Bug animation
++16B4B20: Move_Work_Up (see animscripts.txt)
 		  Implements: Work Up animation
--16B4B60: Move_Wild_Charge (see animscripts.txt)
++16B4B60: Move_Wild_Charge (see animscripts.txt)
 		  Implements: Wild Charge animation
--16B4C70: Move_Electroweb (see animscripts.txt)
++16B4C70: Move_Electroweb (see animscripts.txt)
 		  Implements: Electroweb animation
--1E24E80: Move_Nova_Inferno (see animscripts.txt)
++1E24E80: Move_Nova_Inferno (see animscripts.txt)
 		  Implements: Nova Inferno animation
--1E29CA0: Move_??? (see animscripts.txt)
++1E29CA0: Move_??? (see animscripts.txt)
 		  Implements: [move1A3] animation
--1E29FF0: Move_??? (see animscripts.txt)
++1E29FF0: Move_??? (see animscripts.txt)
 		  Implements: [move1EE] animation
