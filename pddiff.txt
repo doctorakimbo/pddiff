@@ -165,14 +165,14 @@ move IDs:
 = 0x95 = (attacking move), (has Psywave animation)
 ! 0xA0 = Fiery Dance (not implemented)
 = 0xA7 = (attacking move with chance to lower user's speed), (animation is white light covering the screen, then Take Down)
-= 0xA9 = (attacking move), (animation is Sky Uppercut with Megahorn's background)
+= 0xA9 = (attacking move), (animation is Sky Uppercut on Megahorn's background)
 = 0xB0 = (non-attacking move), (has Will-O-Wisp animation)
 = 0xB1 = (attacking move), (can't be called by metronome), (has Pound animation, presumably placeholder)
 = 0xDD = (attacking move that calculates damage as if any Sp. Atk boosts were added to Attack, then has a 20% chance to raise Atk and Sp. Atk), (can't be called by metronome), (has Pound animation, presumably placeholder)
-= 0x124 = (attacking move), (animation is Giga Drain with Feint Attack's background)
+= 0x124 = (attacking move), (animation is Giga Drain on Feint Attack's background)
 = 0x126 = (attacking move), (has Rapid Spin animation)
 = 0x127 = (attacking move with chance to raise sp. atk), (animation is shedding something, then Wing Attack)
-= 0x128 = (attacking move), (animation is Razor Wind chargeup on a sky background)
+= 0x128 = (attacking move), (animation is Razor Wind chargeup on Sky Attack's background)
 = 0x12E = (attacking move with chance to poison, but if used by a poison-type, it badly poisons instead), (has Poison Tail animation)
 = 0x161 = (attacking move that does double damage to poisoned targets (but NOT toxiced targets)), (has Sludge Bomb animation)
 = 0x162 = (attacking move), (animation is Blizzard with gray rocks)
@@ -356,19 +356,19 @@ move IDs:
 + 0x214 = Confide
 + 0x215 = Play Nice
 = 0x216 = (attacking move), (animation has Screech sound and Snarl's background)
-= 0x217 = (attacking move)
-= 0x218 = (attacking move)
-= 0x219 = (non-attacking move)
-= 0x21A = (attacking move with chance to paralyze)
-= 0x21B = (attacking move with chance to freeze)
-= 0x21C = (attacking move with chance to flinch)
-= 0x21D = (attacking move with chance to lower evasion)
-= 0x21E = (attacking move with chance to flinch)
-= 0x21F = (attacking move with chance to raise speed)
-= 0x220 = (attacking move with chance to lower defense)
-= 0x221 = (attacking move with chance to flinch)
-= 0x222 = (attacking move with chance to confuse)
-= 0x223 = (attacking move with chance to lower sp. def)
+- 0x217 = Petal Blizzard
+= 0x218 = (attacking move), (has ice-related animation)
+= 0x219 = (non-attacking move), (animation is Toxic on a new background)
+- 0x21A = Nuzzle
+= 0x21B = (attacking move with chance to freeze), (has ice-related animation)
+= 0x21C = (attacking move with chance to flinch), (has Rock Blast animation, except the rock is shot out instead of thrown)
+= 0x21D = (attacking move with chance to lower evasion), (has ice-related animation with Hail sound)
+= 0x21E = (attacking move with chance to flinch), (animation is Take Down on Focus Blast's background with an additional sprite)
+= 0x21F = (attacking move with chance to raise speed), (animation is Glide on Mach Punch's background with a different sound)
+= 0x220 = (attacking move with chance to lower defense), (animation involves dropping a lot of objects and has Psycho Cut's background)
+= 0x221 = (attacking move with chance to flinch), (animation involves user disappearing, then foe being repeatedly jabbed)
+= 0x222 = (attacking move with chance to confuse), (animation involves foe being hit by some objects, then a jab, then the curse effect)
+= 0x223 = (attacking move with chance to lower sp. def), (has ice-related animation)
 = 0x224 = (attacking move)
 = 0x225 = (attacking move with chance to raise sp. atk)
 = 0x226 = (attacking move)
@@ -2894,18 +2894,36 @@ stray text:
 		  Implements: Fairy Wind animation
 -1300490: Move_Power_Up_Punch (see animscripts.txt)
 		  Implements: Power-Up Punch animation
+-13004E8: Move_??? (see animscripts.txt)
+		  Implements: [move21F] animation
 -1300890: Move_Play_Nice (see animscripts.txt)
 		  Implements: Play Nice animation
+-13008D8: Move_Nuzzle (see animscripts.txt)
+		  Implements: Nuzzle animation
+=1300A10: Move_??? (see animscripts.txt)
+		  Implements: 
 -1300B80: Move_Trick_Room (see animscripts.txt)
 		  Implements: Trick Room animation
+-1301028: Move_??? (see animscripts.txt)
+		  Implements: [move221] animation
 -13014F8: Move_??? (see animscripts.txt)
 		  Implements: [move210] animation
+-1301880: Move_??? (see animscripts.txt)
+		  Implements: [move219] animation
+-1302028: Move_??? (see animscripts.txt)
+		  Implements: [move220] animation
+-1302280: Move_??? (see animscripts.txt)
+		  Implements: [move218] animation
 -1302550: Move_Confide (see animscripts.txt)
 		  Implements: Confide animation
 -1302910: Move_Hex (see animscripts.txt)
 		  Implements: Hex animation
+-1302E58: Move_??? (see animscripts.txt)
+		  Implements: [move222] animation
 -1303098: Move_Chatter (see animscripts.txt)
 		  Implements: Chatter animation
+-1303360: Move_??? (see animscripts.txt)
+		  Implements: [move21C] animation
 !13037E0: Move_Power_Whip (see animscripts.txt)
 		  Implements: Power Whip animation
 		  GLITCH!: game crash
@@ -2913,7 +2931,7 @@ stray text:
 		  Implements: Tailwind animation
 -13039D0: Move_??? (see animscripts.txt)
 		  Implements: [move20C] animation
-=1303DD0: Move_Eerie_Impulse (see animscripts.txt)
+-1303DD0: Move_Eerie_Impulse (see animscripts.txt)
 		  Implements: Eerie Impulse animation
 -1303E58: Move_??? (see animscripts.txt)
 		  Implements: [move205] animation
@@ -2923,14 +2941,19 @@ stray text:
 		  Implements: Possess animation
 -1304450: Move_??? (see animscripts.txt)
 		  Implements: [move209] animation
+-13044C0: Move_??? (see animscripts.txt)
+		  Implements: [move21B] animation
+-1304AD8: Move_??? (see animscripts.txt)
+		  Implements: [move21D] animation
 +13053F0: Move_Disarming_Voice (see animscripts.txt)
 		  Implements: Disarming Voice animation
 -1305570: Move_??? (see animscripts.txt)
 		  Implements: [move216] animation
 -13057C0: Move_??? (see animscripts.txt)
 		  Implements: [move20B] animation
-=13059F0: Move_??? (see animscripts.txt)
-		  Implements: <<<<do animscriptdisasm>>>>
+-13059F0: Move_??? (see animscripts.txt)
+		  Implements: Petal Blizzard animation
+		  Glitch?: Typo in script causes incorrect bg scrolling?
 +1306150: Move_Dazzle_Powder (see animscripts.txt)
 		  Implements: Dazzle Powder animation
 +1306328: Move_Avalanche (see animscripts.txt)
@@ -2964,6 +2987,8 @@ stray text:
 		  Implements: Aqua Jet animation
 +13080C0: Move_Gastro_Acid (see animscripts.txt)
 		  Implements: Gastro Acid animation
+-1308238: Move_??? (see animscripts.txt)
+		  Implements: [move223] animation
 +1308368: Move_Focus_Blast (see animscripts.txt)
 		  Implements: Focus Blast animation
 +13083D0: Move_Gunk_Shot (see animscripts.txt)
@@ -2980,6 +3005,9 @@ stray text:
 		  GLITCH!: game crash
 +13091A0: Move_Rock_Wrecker (see animscripts.txt)
 		  Implements: Rock Wrecker animation
+-1309278: Move_??? (see animscripts.txt)
+		  Implements: [move21E] animation
+		  Note: This move has different sprites for player and opponent sides, but the similar Pound doesn't - look into this
 +1309350: Move_Aura_Sphere (see animscripts.txt)
 		  Implements: Aura Sphere animation
 +1309598: Move_Energy_Ball (see animscripts.txt)

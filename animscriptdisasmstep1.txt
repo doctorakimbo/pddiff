@@ -135,3 +135,64 @@ Callback_Move209Unknown(arg0)
 	r0 = fn_AFAFC_J
 	*(r5 + 0x1C) = r0
 }
+
+
+
+
+
+
+
+AnimTask_Move217Unknown(arg0)
+{
+	r6 = arg0
+	r5 = 0
+	SetGpuReg(0x50, 0x3F42)
+	SetGpuReg(0x52, 0x1000)
+	SetAnimBgAttribute(1, 4, 1)
+	SetAnimBgAttribute(1, 0, 0)
+	
+	if(fn_72F2C_J() == 0)
+		SetAnimBgAttribute(1, 3, 1)
+	
+	r0 = data_020228E8_J
+	*r0 = r5
+	r4 = data_020228EA_J
+	*r4 = r5
+	SetGpuReg(0x14, 0)
+	SetGpuReg(0x16, *r4)
+	fn_74A44_J(&s0)
+	r0 = &s0
+	fn_74BE0_J(*(r0 + 9), data_09233010_J)
+	r0 = &s0
+	r2 = &s0
+	fn_74B58_J(*(r0 + 9), data_09232A50_J, *(r2 + 0xA))
+	r1 = &s0
+	r1 = *(r1 + 8)
+	r1 *= 0x10
+	LoadCompressedPalette(data_09232FF0_J, r1, 0x20)
+	
+	if(fn_72F2C_J() != 0)
+	{
+		r0 = &s0
+		fn_72864_J(*(r0 + 8), &s1, 0, 0)
+	}
+	
+	r0 = data_02037E36_J
+	r1 = 0
+	r0 = 
+	if(*(r0 + r1) != 0)
+	{
+		r4 = data_02037E4E_J
+		
+		if(GetBattlerSide(*r0) == B_SIDE_PLAYER)
+			r5 = 1
+	}
+	
+	r0 = data_030050D0_J
+	r1 = 0x28
+	r1 *= r6
+	r1 += r0
+	*(r1 + 8) = r5
+	r0 = fn_B5BCC_J
+	*r1 = r0
+}
