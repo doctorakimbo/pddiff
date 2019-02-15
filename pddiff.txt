@@ -332,14 +332,14 @@ move IDs:
 + 0x1FC = Wild Charge
 + 0x1FD = Sharpshoot
 + 0x1FE = Scald
-- 0x1FF = Moonblast
-- 0x200 = Dazzling Gleam
-- 0x201 = Fairy Wind
-- 0x202 = Disarming Voice
-- 0x203 = Baby-Doll Eyes
-- 0x204 = Play Rough
++ 0x1FF = Moonblast
++ 0x200 = Dazzling Gleam
++ 0x201 = Fairy Wind
++ 0x202 = Disarming Voice
++ 0x203 = Baby-Doll Eyes
++ 0x204 = Play Rough
 = 0x205 = (attacking move), (animation is the Waterfall charge-up followed by a lunge then something water-related)
-- 0x206 = Tailwind
++ 0x206 = Tailwind
 + 0x207 = Chatter
 + 0x208 = Trick Room
 = 0x209 = (attacking move), (animation does something then hits twice, using Feint Attack's background)
@@ -348,11 +348,11 @@ move IDs:
 = 0x20C = (attacking move), (animation is similar to Silver Wind with ice)
 = 0x20D = (attacking move), (animation plays Swagger sound then hits with something)
 + 0x20E = Hex
-- 0x20F = Flame Charge
-- 0x210 = Snarl
++ 0x20F = Flame Charge
++ 0x210 = Snarl
 = 0x211 = (attacking move), (has Flamethrower animation)
 + 0x212 = Eerie Impulse
-- 0x213 = Power-Up Punch
++ 0x213 = Power-Up Punch
 + 0x214 = Confide
 + 0x215 = Play Nice
 = 0x216 = (attacking move), (animation has Screech sound and Snarl's background)
@@ -1021,15 +1021,16 @@ stray text:
 ! 020F78: (see 29disasm) (last part of SetMoveEffect)
 		  Implements: Magic Guard (move recoil)
 		  GLITCH!: Rock Head stopped working completely/Magic Guard doesn't work, some other change probably needed
-- 021124: atk15_seteffectwithchance (see 30disasm)
++ 021124: atk15_seteffectwithchance (see 30disasm)
 		  Implements: Sheer Force (secondary effect removal)
 + 0212AC: Large part of atk19_tryfaintmon (see 31disasm)
 		  Implements: Moxie
-- 021640: atk1C_jumpifstatus (see 32disasm)
+= 021640: atk1C_jumpifstatus (see 32disasm)
 		  Implements: Makes room for expanded atk1D_jumpifstatus2
 		  Requires in future: fn_20EFE_J
-- 0216B8 -> 021624 (repoint): atk1D_jumpifstatus2 (+fn_20EFE_J) (see 33disasm)
+! 0216B8 -> 021684 (repoint): atk1D_jumpifstatus2 (+fn_20EFE_J) (see 33disasm)
 		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute
+		  GLITCH!: doesn't do that, instead causes Substitute to not fail when Infiltrator mon has one already???
 = 021730: atk1E_jumpifability (see 34disasm)
 		  Implements: Leaf Guard, Flower Veil (vs status)
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
