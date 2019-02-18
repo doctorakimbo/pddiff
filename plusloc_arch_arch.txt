@@ -26,7 +26,10 @@
 035A78 - battle_controller_opponent
 039188 - battle_ai_switch_items
 03A668 - battle_controller_link_opponent
-03D97C - pokemon
+03D97C - pokemon_1
+03ECEC - calculate_base_damage
+03F5B4 - pokemon_2
+0413C0 - pokemon_item_effect
 0423A4 - pokemon_3
 044E30 - trig
 044EC8 - random

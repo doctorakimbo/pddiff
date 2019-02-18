@@ -68,7 +68,7 @@ AnimTask_Move204Unknown(taskId)
 
 
 
-Callback_Move209Unknown(arg0)
+Callback_SuckerPunchUnknown(arg0)
 {
 	StartSpriteAfflineAnim(arg0, 1)
 	arg0.pos1.x = fn_74480(data_02037F1A, 2)
