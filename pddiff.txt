@@ -1,4 +1,4 @@
-CUR THING: j207500 - j20F500 CAN NOW BE ADDED
+CUR THING: j21F930 - j227930 CAN NOW BE ADDED
 
 
 ignore the following (pe):
@@ -805,7 +805,7 @@ stray text:
 + expand 24FB08 (ability descriptions) from 78 entries to 232 (13FD000)
 = expand 24FC40 (ability names) from 78 entries/12 per to 232 entries/16 per (13FF000)
 + expand 25011C (battle script commands) from 248 entries to 256 (EB7A00)
-! expand 2507E8 (uncopiable moves) from 4 entries (mimic) / 19 entries (metronome) to 5 entries (mimic) / 44 entries (metronome) (j20CA40, eUNKNOWN)
++ expand 2507E8 (uncopiable moves) from 4 entries (mimic) / 19 entries (metronome) to 5 entries (mimic) / 44 entries (metronome) (20CA40)
 + expand 250848 (pickup table) from 16 entries to 10 subtables of varying size (1528150)
 + expand 250C04 (move data) from 355 entries to 680 (1010000)
 + expand 2539D4 (cry ids) to encompass all ids (865DE0)
@@ -944,9 +944,8 @@ stray text:
 		  Required knowledge: j0203B950
 		  Glitch?: (ability93) might not work unless Victory Star is active on the other side
 		  Note: Check Hustle accuracy vs Psyshock, might be wrong
-= 01E1D8: Shift entirety of atk02_attackstring down one line to make call to extra func j207790 first (see 18disasm)
++ 01E1D8: Shift entirety of atk02_attackstring down one line to make call to extra func 207790 first (see 18disasm)
 		  Implements: Possibly tracks number of times each of player's moves are used?
-		  Required knowledge: j0203B970
 + 01E408: atk04_critcalc (see 19disasm) (ALSO 250530: 10 00 08 00 04 00 03 00 02 00 -> 18 00 08 00 02 00 01 00 01 00)
 		  Implements: Klutz (crit boost items), Mold Breaker+ (vs Shell Armor), Super Luck, Frost Breath, modern crit stages; removes Poison Tail/Blaze Kick crit+ (now unused)
 = 01E59C: atk05_damagecalc (see 20disasm)
@@ -1400,9 +1399,9 @@ stray text:
 		  Requires in future: GetWalkFastMovementAction_New (j2074F0)
 = 05C14C: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j222CD0, see 120disasm mostly))
 		  Implements: player fastest-walk animations for metatiles 0xB0-0xB5
-= 05C164: PlayerRun (see 121disasm mostly)
++ 05C164: PlayerRun (see 121disasm mostly)
 		  Implements: player run animations for metatiles 0xB0-0xB5
-		  Requires in future: GetPlayerRunMovementAction_New (j207524)
+		  Requires in future: GetPlayerRunMovementAction_New (207524)
 = 05C17C: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j222BA0, see 120disasm mostly))
 		  Implements: player ??? animations for metatiles 0xB0-0xB5 (seems to be FRLG-exclusive)
 = 05C438: PlayCollisionSoundIfNotFacingWarp (see 122disasm)
@@ -2664,9 +2663,9 @@ stray text:
 ! 1EA14C+: [text and data, go through here thoroughly later; jp 1D9634+]
 
 
-= ?????? (j20E550): Move_Shadow_Claw (see animscripts.txt)
++ 20E550: Move_Shadow_Claw (see animscripts.txt)
 		  Implements: Shadow Claw animation
-= ?????? (j20E5A0): Move_Dark_Cutter (see animscripts.txt)
++ 20E5A0: Move_Dark_Cutter (see animscripts.txt)
 		  Implements: Dark Cutter animation
 = ?????? (j221B78): movement action function 0xC2
   ?????? (j221B94): movement action function 0xC3

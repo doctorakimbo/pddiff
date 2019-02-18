@@ -3438,7 +3438,7 @@ Move_Shadow_Claw (pj): @20E550
 (exactly Slash, but with BG_GHOST)
 
 
-Move_Shadow_Claw (pe): @??????
+Move_Shadow_Claw (pe): @20E550
 00 C7 27 14 02 17 04 0F 02 A4 35 3E 08 82 03 01 00 F8 FF 00 00 19 81 00 3F 04 04 02 A4 35 3E 08 82 03 01 00 08 00 00 00 03 1D 8B 09 08 02 05 01 00 04 00 00 00 12 00 01 00 19 81 00 3F 05 15 17 08
 
 
@@ -6839,7 +6839,7 @@ Move_Dark_Cutter (pj): @20E5A0
 (exactly Air Cutter, but with BG_DARK)
 
 
-Move_Dark_Cutter (pe): @??????
+Move_Dark_Cutter (pe): @20E5A0
 00 13 27 00 9A 27 00 97 27 14 01 17 04 00 0A 03 0C 40 06 04 00 03 F1 76 0A 08 02 05 20 00 E8 FF 00 06 02 00 80 00 05 19 79 00 3F 02 AC 32 3E 08 02 04 28 00 E0 FF 00 00 02 00 04 05 03 1D 8B 09 08 02 05 01 00 02 00 00 00 08 00 01 00 03 1D 8B 09 08 02 05 03 00 02 00 00 00 08 00 01 00 05 0D 0B 03 04 00 15 17 08
 
 
