@@ -816,8 +816,8 @@ stray text:
 ! expand 399388 (battle anim sprites???) to [BROKEN] (11ECA80)
 ! expand 399C90 (battle anim palettes???) to [BROKEN] (11EDD80)
 + expand 39FDB0 (field object graphics info pointers) from 174 entries to 256 (j4EFDA0, e14EFDA0)
-! expand 3A65BC (movement action functions) from 170 entries to 226 (j221550, eUNKNOWN)
-	! add bonus m.a.f. table at (j2218D8, eUNKNOWN)
++ expand 3A65BC (movement action functions) from 170 entries to 226 (221550)
+	+ add bonus m.a.f. table at 2218D8
 + expand 3ACC08 (battle anim sprites) from 289 entries to 462 (1200300)
 	+ also set 3AD048 (gBattleAnimPicTable[136]) to 1200740
 	+ also set 3AD350 (gBattleAnimPicTable[233]) to 1200A48
