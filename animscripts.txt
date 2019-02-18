@@ -4389,7 +4389,7 @@ call AuroraBeam1
 call AuroraBeam1
 call AuroraBeam1
 setarg 7, -1
-createsoundtask sub_8158C58, 183, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 3, 6, 0, 10
+createsoundtask [21 DF 0D 08], 183, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 3, 6, 0, 10
 createvisualtask AnimTask_ShakeMon2, 5, ANIM_TARGET, 2, 0, 40, 1
 call AuroraBeam1
 call AuroraBeam1
@@ -5444,7 +5444,7 @@ delay 2
 createsprite gRazorLeafParticleSpriteTemplate, ANIM_ATTACKER, 2, -3, -5, 8
 delay 60
 // end of part taken directly from Magical Leaf
-// the entirety of Vine Whip goes here
+// entire Vine Whip animation goes here
 delay 20
 setarg 7, -1
 waitforvisualfinish
@@ -8032,7 +8032,7 @@ Move_Inferno (pe): @13071E8
 Move_Wild_Charge (pj): @6B4B60
 00 E3 27 00 E4 27 00 E5 27 0A 00 0C 0C 08 02 68 F0 3A 08 02 05 01 00 02 00 00 00 04 00 00 00 05 03 01 F8 0A 08 02 04 00 00 3C 00 02 00 0C 00 19 CE 00 C0 04 1E 19 CE 00 C0 04 1E 19 CE 00 C0 02 18 D7 3A 08 02 01 00 00 04 19 19 CE 00 C0 04 14 19 CE 00 C0 04 0F 19 CE 00 C0 04 0A 04 06 1C CE 00 C0 06 05 05 02 48 D7 3A 08 02 03 00 00 10 00 10 00 04 02 02 48 D7 3A 08 02 03 00 00 F0 FF F0 FF 19 70 00 C0 05 02 68 F0 3A 08 02 05 01 00 04 00 04 00 00 00 00 00 0B 00 0D 00 1B 27 04 14 1D 70 00 3F 13 0E 90 98 1B 08 05 08
 
-// entirety of Charge animation happens first
+// entire Charge animation happens first
 loadspritegfx ANIM_TAG_SPARK_2
 delay 20
 waitplaysewithpan SE_W085B, SOUND_PAN_TARGET, 19
@@ -8053,7 +8053,7 @@ Move_Wild_Charge (pe): @16B4B60
 Move_Sharpshoot (pj): @6B43A0
 00 1E 27 02 5C AA 3A 08 28 00 02 74 AA 3A 08 28 01 01 00 02 74 AA 3A 08 28 01 02 00 02 74 AA 3A 08 28 01 03 00 02 74 AA 3A 08 28 01 04 00 04 78 10 07 FF FF 05 00 97 27 0A 01 0C 0C 08 02 5C D3 39 08 02 02 04 00 04 00 04 06 02 4C F1 3A 08 02 04 00 00 00 00 01 00 02 00 03 01 84 09 08 02 05 01 00 03 00 00 00 06 00 01 00 19 84 00 3F 05 0B 01 0D 08
 
-// entirety of Lock-On animation happens first
+// entire Lock-On animation happens first
 // followed by the entire Tackle animation
 
 
@@ -9947,7 +9947,6 @@ waitforvisualfinish
 end
 
 gUnknownMove223SpriteTemplate:
-B4 28 B4 28 90 0B 37 08 E4 11 1F 08 00 00 00 00 E0 11 2F 09 41 55 07 08
 .tileTag = (ANIM_SPRITES_START + 420)
 .paletteTag = (ANIM_SPRITES_START + 420)
 .oam = [90 0B 37 08]
@@ -9981,13 +9980,26 @@ loadspritegfx ANIM_TAG_IMPACT
 playsewithpan SE_W221B, SOUND_PAN_ATTACKER
 createvisualtask [B9 BA 0B 08], 10, 2, 4, 0, 8, RGB(31, 19, 0)
 createvisualtask AnimTask_ShakeMon, 5, 0, 0, 2, 15, 1
-call [69 71 1B 08]
-call [69 71 1B 08]
+call DragonClawEffect
+call DragonClawEffect
 monbg ANIM_TARGET
 fadetobg 33
-// start of part taken directly from ???
-17 0C 0C 08 19 9A 00 3F 02 74 EE 3A 08 02 06 E0 FF E0 FF 01 00 33 03 33 03 0A 00 02 74 EE 3A 08 02 06 20 00 20 00 05 00 CD FC CD FC 0A 00 04 0A 02 4C F1 3A 08 02 04 F8 FF 00 00 01 00 01 00 03 01 84 09 08 05 05 01 00 00 00 07 00 05 00 02 00 05 19 9A 00 3F 02 74 EE 3A 08 02 06 20 00 E0 FF 07 00 CD FC 33 03 0A 00 02 74 EE 3A 08 02 06 E0 FF 20 00 03 00 33 03 CD FC 0A 00 04 0A 02 4C F1 3A 08 02 04 08 00 00 00 01 00 01 00 03 01 84 09 08 05 05 01 00 00 00 08 00 04 00 02 00
-// end of part taken directly from ???
+// start of part taken directly from Crunch
+setalpha 12, 8
+playsewithpan SE_W044, SOUND_PAN_TARGET
+createsprite [74 EE 3A 08], ANIM_ATTACKER, 2, -32, -32, 1, 819, 819, 10
+createsprite [74 EE 3A 08], ANIM_ATTACKER, 2, 32, 32, 5, -819, -819, 10
+delay 10
+createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, -8, 0, 1, 1
+createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 7, 5, 2
+waitforvisualfinish
+playsewithpan SE_W044, SOUND_PAN_TARGET
+createsprite [74 EE 3A 08], ANIM_ATTACKER, 2, 32, -32, 7, -819, 819, 10
+createsprite [74 EE 3A 08], ANIM_ATTACKER, 2, -32, 32, 3, 819, -819, 10
+delay 10
+createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 8, 0, 1, 1
+createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 8, 4, 2
+// end of part taken directly from Crunch
 createvisualtask [B9 BA 0B 08], 10, 2, 1, 8, 0, RGB(31, 19, 0)
 waitforvisualfinish
 clearmonbg ANIM_TARGET
@@ -9997,4 +10009,829 @@ end
 
 
 Move_??? (pe): @1300A10
-00 2D 27 00 9B 27 00 97 27 19 8F 00 C0 03 B9 BA 0B 08 0A 05 02 00 04 00 00 00 08 00 7F 02 03 01 84 09 08 05 05 00 00 00 00 02 00 0F 00 01 00 0E 69 71 1B 08 0E 69 71 1B 08 0A 01 14 21 17 0C 0C 08 19 9A 00 3F 02 74 EE 3A 08 02 06 E0 FF E0 FF 01 00 33 03 33 03 0A 00 02 74 EE 3A 08 02 06 20 00 20 00 05 00 CD FC CD FC 0A 00 04 0A 02 4C F1 3A 08 02 04 F8 FF 00 00 01 00 01 00 03 01 84 09 08 05 05 01 00 00 00 07 00 05 00 02 00 05 19 9A 00 3F 02 74 EE 3A 08 02 06 20 00 E0 FF 07 00 CD FC 33 03 0A 00 02 74 EE 3A 08 02 06 E0 FF 20 00 03 00 33 03 CD FC 0A 00 04 0A 02 4C F1 3A 08 02 04 08 00 00 00 01 00 01 00 03 01 84 09 08 05 05 01 00 00 00 08 00 04 00 02 00 03 B9 BA 0B 08 0A 05 02 00 01 00 08 00 00 00 7F 02 05 0B 01 0D 15 17 08
+00 2D 27 00 9B 27 00 97 27 19 8F 00 C0 03 F9 A7 0B 08 0A 05 02 00 04 00 00 00 08 00 7F 02 03 F9 89 09 08 05 05 00 00 00 00 02 00 0F 00 01 00 0E AD 31 1D 08 0E AD 31 1D 08 0A 01 14 21 17 0C 0C 08 19 9A 00 3F 02 30 79 3E 08 02 06 E0 FF E0 FF 01 00 33 03 33 03 0A 00 02 30 79 3E 08 02 06 20 00 20 00 05 00 CD FC CD FC 0A 00 04 0A 02 08 7C 3E 08 02 04 F8 FF 00 00 01 00 01 00 03 F9 89 09 08 05 05 01 00 00 00 07 00 05 00 02 00 05 19 9A 00 3F 02 30 79 3E 08 02 06 20 00 E0 FF 07 00 CD FC 33 03 0A 00 02 30 79 3E 08 02 06 E0 FF 20 00 03 00 33 03 CD FC 0A 00 04 0A 02 08 7C 3E 08 02 04 08 00 00 00 01 00 01 00 03 F9 89 09 08 05 05 01 00 00 00 08 00 04 00 02 00 03 F9 A7 0B 08 0A 05 02 00 01 00 08 00 00 00 7F 02 05 0B 01 0D 15 17 08
+
+
+
+
+
+
+
+Move_??? (pj): @1304BD8
+00 86 28 00 87 28 03 B9 BA 0B 08 0A 05 01 00 00 00 00 00 10 00 00 00 05 0A 01 0C 0C 08 03 9D AE 0B 08 02 06 02 00 00 00 04 00 00 00 0B 00 03 64 19 85 00 C0 0E 52 4C 30 09 04 06 0B 01 0D 14 21 16 03 B9 BA 0B 08 0A 05 01 00 00 00 10 00 00 00 00 00 17 02 78 09 2F 09 82 03 10 00 00 00 08 00 05 03 25 85 09 08 02 05 01 00 02 00 00 00 05 00 01 00 19 CF 00 3F 05 15 17 08 02 60 09 2F 09 02 03 28 00 28 00 10 00 04 02 02 60 09 2F 09 02 03 D8 FF D8 FF 10 00 04 02 02 60 09 2F 09 02 03 EC FF 1E 00 10 00 04 02 02 60 09 2F 09 02 03 14 00 D8 FF 10 00 04 02 02 60 09 2F 09 02 03 00 00 28 00 10 00 04 02 02 60 09 2F 09 02 03 00 00 D8 FF 10 00 04 02 02 60 09 2F 09 02 03 28 00 EC FF 10 00 04 02 02 60 09 2F 09 02 03 14 00 00 00 10 00 04 02 02 60 09 2F 09 02 03 28 00 14 00 10 00 04 02 02 60 09 2F 09 02 03 D8 FF EC FF 10 00 04 02 02 60 09 2F 09 02 03 D8 FF 14 00 10 00 04 02 02 60 09 2F 09 02 03 EC FF 1E 00 10 00 04 02 02 60 09 2F 09 02 03 14 00 E2 FF 10 00 04 02 02 60 09 2F 09 02 03 28 00 28 00 10 00 04 02 02 60 09 2F 09 02 03 EC FF E2 FF 10 00 04 02 02 60 09 2F 09 02 03 14 00 1E 00 10 00 04 02 02 60 09 2F 09 02 03 D8 FF 00 00 10 00 04 02 02 60 09 2F 09 02 03 28 00 00 00 10 00 04 02 0F
+
+gUnknownMove225SpriteTemplates (pj): @12F0960
+86 28 86 28 80 0B 37 08 84 9F 3A 08 00 00 00 00 98 9F 3A 08 49 36 0A 08 87 28 87 28 68 0A 37 08 E4 11 1F 08 00 00 00 00 BC A1 3A 08 FD 68 0B 08
+
+loadspritegfx (ANIM_SPRITES_START + 374)
+loadspritegfx (ANIM_SPRITES_START + 375)
+createvisualtask [B9 BA 0B 08], 10, 1, 0, 0, 16, RGB_BLACK
+waitforvisualfinish
+monbg ANIM_TARGET
+setalpha 12, 8
+createvisualtask [9D AE 0B 08], 2, 2, 0, 4, 0, 13, RGB(3, 0, 25)
+playsewithpan SE_W025, SOUND_PAN_ATTACKER
+call Move225_1
+delay 6
+clearmonbg ANIM_TARGET
+blendoff
+fadetobg 33
+waitbgfadeout
+createvisualtask [B9 BA 0B 08], 1, 0, 16, 0, RGB_BLACK
+waitbgfadein
+createsprite gUnknownMove225SpriteTemplate2, ANIM_TARGET, 2, 16, 0, 8
+waitforvisualfinish
+createvisualtask AnimTask_ShakeMon2, 2, 1, 2, 0, 5, 1
+playsewithpan SE_W070, SOUND_PAN_TARGET
+waitforvisualfinish
+restorebg
+waitbgfadein
+end
+
+Move225_1:
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, 40, 40, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, -40, -40, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, -20, 30, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, 20, -30, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, 0, 40, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, 0, -40, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, 40, -20, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, 20, 0, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, 40, 20, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, -40, -20, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, -40, 20, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, -20, 30, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, 20, -30, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, 40, 40, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, -20, -30, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, 20, 30, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, -40, 0, 16
+delay 2
+createsprite gUnknownMove225SpriteTemplate1, ANIM_ATTACKER, 40, 0, 16
+delay 2
+return
+
+gUnknownMove225SpriteTemplate1:
+.tileTag = (ANIM_SPRITES_START + 374)
+.paletteTag = (ANIM_SPRITES_START + 374)
+.oam = [80 0B 37 08]
+.animCmd = [84 9F 3A 08]
+.images = NULL
+.afflineAnims = [98 9F 3A 08]
+.callback = [49 36 0A 08]
+
+gUnknownMove225SpriteTemplate2:
+.tileTag = (ANIM_SPRITES_START + 375)
+.paletteTag = (ANIM_SPRITES_START + 375)
+.oam = [68 0A 37 08]
+.animCmd = gDummySpriteAnimTable
+.images = NULL
+.afflineAnims = [BC A1 3A 08]
+.callback = [FD 68 0B 08]
+
+
+Move_??? (pe): @1304BD8
+00 86 28 00 87 28 03 F9 A7 0B 08 0A 05 01 00 00 00 00 00 10 00 00 00 05 0A 01 0C 0C 08 03 DD 9B 0B 08 02 06 02 00 00 00 04 00 00 00 0B 00 03 64 19 85 00 C0 0E 52 4C 30 09 04 06 0B 01 0D 14 21 16 03 F9 A7 0B 08 0A 05 01 00 00 00 10 00 00 00 00 00 17 02 78 09 2F 09 82 03 10 00 00 00 08 00 05 03 1D 8B 09 08 02 05 01 00 02 00 00 00 05 00 01 00 19 CF 00 3F 05 15 17 08 02 60 09 2F 09 02 03 28 00 28 00 10 00 04 02 02 60 09 2F 09 02 03 D8 FF D8 FF 10 00 04 02 02 60 09 2F 09 02 03 EC FF 1E 00 10 00 04 02 02 60 09 2F 09 02 03 14 00 D8 FF 10 00 04 02 02 60 09 2F 09 02 03 00 00 28 00 10 00 04 02 02 60 09 2F 09 02 03 00 00 D8 FF 10 00 04 02 02 60 09 2F 09 02 03 28 00 EC FF 10 00 04 02 02 60 09 2F 09 02 03 14 00 00 00 10 00 04 02 02 60 09 2F 09 02 03 28 00 14 00 10 00 04 02 02 60 09 2F 09 02 03 D8 FF EC FF 10 00 04 02 02 60 09 2F 09 02 03 D8 FF 14 00 10 00 04 02 02 60 09 2F 09 02 03 EC FF 1E 00 10 00 04 02 02 60 09 2F 09 02 03 14 00 E2 FF 10 00 04 02 02 60 09 2F 09 02 03 28 00 28 00 10 00 04 02 02 60 09 2F 09 02 03 EC FF E2 FF 10 00 04 02 02 60 09 2F 09 02 03 14 00 1E 00 10 00 04 02 02 60 09 2F 09 02 03 D8 FF 00 00 10 00 04 02 02 60 09 2F 09 02 03 28 00 00 00 10 00 04 02 0F
+
+gUnknownMove225SpriteTemplates (pe): @12F0960
+86 28 86 28 50 CB 3A 08 40 2A 3E 08 00 00 00 00 54 2A 3E 08 89 23 0A 08 87 28 87 28 38 CA 3A 08 F0 1C 23 08 00 00 00 00 78 2C 3E 08 3D 56 0B 08
+
+
+
+
+
+
+
+Move_??? (pj): @1305390
+00 9B 27 00 97 27 0A 01 0C 0C 08 19 02 02 3F 02 74 EE 3A 08 02 06 00 00 F0 FF 00 00 00 00 CC 00 0A 00 02 74 EE 3A 08 02 06 00 00 10 00 04 00 00 00 34 FF 0A 00 04 0A 02 4C F1 3A 08 02 04 00 00 00 00 01 00 02 00 03 01 84 09 08 05 05 01 00 00 00 04 00 07 00 01 00 05 0B 01 0D 04 01 08
+
+loadspritegfx ANIM_TAG_SHARP_TEETH
+loadspritegfx ANIM_TAG_IMPACT
+monbg ANIM_TARGET
+setalpha 12, 8
+playse 0x202, SOUND_PAN_TARGET
+createsprite [74 EE 3A 08], ANIM_ATTACKER, 2, 0, -16, 0, 0, 0xCC, 10
+createsprite [74 EE 3A 08], ANIM_ATTACKER, 2, 0, 16, 4, 0, -0xCC, 10
+// rest is taken directly from Bite
+delay 10
+createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 1, 2
+createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 4, 7, 1
+waitforvisualfinish
+clearmonbg ANIM_TARGET
+blendoff
+delay 1
+end
+
+
+Move_??? (pe): @1305390
+00 9B 27 00 97 27 0A 01 0C 0C 08 19 02 02 3F 02 30 79 3E 08 02 06 00 00 F0 FF 00 00 00 00 CC 00 0A 00 02 30 79 3E 08 02 06 00 00 10 00 04 00 00 00 34 FF 0A 00 04 0A 02 08 7C 3E 08 02 04 00 00 00 00 01 00 02 00 03 F9 89 09 08 05 05 01 00 00 00 04 00 07 00 01 00 05 0B 01 0D 04 01 08
+
+
+
+
+
+
+
+Move_??? (pj): @1300D50
+00 2B 27 03 A9 B3 0B 08 02 03 01 01 01 01 01 01 0A 00 28 00 0C 08 08 19 B9 00 C0 02 C4 4D 3C 08 02 02 18 00 F4 FF 03 B9 92 09 08 05 05 FB FF FB FF 0A 00 00 00 01 00 05 03 A9 B3 0B 08 02 03 01 01 01 01 01 01 04 0A 03 25 85 09 08 02 05 01 00 01 00 00 00 09 00 01 00 03 25 85 09 08 02 05 03 00 01 00 00 00 09 00 01 00 05 0B 00 0D 04 01 05 08
+
+loadspritegfx ANIM_TAG_LEER
+createvisualtask [A9 B3 0B 08], 2, 0x101, 0x101, 0x101
+monbg ANIM_ATTACKER
+monbgprio_28 ANIM_ATTACKER
+setalpha 8, 8
+playsewithpan SE_W043, SOUND_PAN_ATTACKER
+createsprite [C4 4D 3C 08], ANIM_ATTACKER, 2, 24, -12
+createvisualtask AnimTask_ScaleMonAndRestore, 5, -5, -5, 10, 0, 1
+waitforvisualfinish
+createvisualtask [A9 B3 0B 08], 2, 0x101, 0x101, 0x101
+// rest is taken directly from Leer
+delay 10
+createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 1, 0, 9, 1
+createvisualtask AnimTask_ShakeMon2, 2, ANIM_DEF_PARTNER, 1, 0, 9, 1
+waitforvisualfinish
+clearmonbg ANIM_ATTACKER
+blendoff
+delay 1
+waitforvisualfinish
+end
+
+
+
+Move_??? (pe): @1300D50
+00 2B 27 03 E9 A0 0B 08 02 03 01 01 01 01 01 01 0A 00 28 00 0C 08 08 19 B9 00 C0 02 30 EF 3F 08 02 02 18 00 F4 FF 03 B1 98 09 08 05 05 FB FF FB FF 0A 00 00 00 01 00 05 03 E9 A0 0B 08 02 03 01 01 01 01 01 01 04 0A 03 1D 8B 09 08 02 05 01 00 01 00 00 00 09 00 01 00 03 1D 8B 09 08 02 05 03 00 01 00 00 00 09 00 01 00 05 0B 00 0D 04 01 05 08
+
+
+
+
+
+
+
+Move_??? (pj): @1305D30
+00 38 28 0A 03 2A 01 14 27 17 04 0A 1B AE 00 C0 3F 02 00 02 A8 00 2F 09 82 06 10 00 00 00 00 00 F0 FF 2C 00 00 00 04 18 03 25 85 09 08 02 05 01 00 04 00 00 00 12 00 01 00 05 0B 03 04 00 05 15 17 08
+
+gUnknownMove228SpriteTemplate (pj): @12F00A8
+38 28 38 28 10 0B 37 08 E4 11 1F 08 00 00 00 00 DC B1 3A 08 99 55 07 08
+
+loadspritegfx (ANIM_SPRITES_START + 296)
+monbg ANIM_DEF_PARTNER
+monbgprio_2A ANIM_TARGET
+fadetobg 39
+waitbgfadein
+delay 10
+panse_1B SE_W103, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 2, 0
+createsprite [A8 00 2F 09], ANIM_TARGET, 2, 16, 0, 0, -16, 44, 0
+delay 24
+createvisualtask AnimTask_ShakeMon2, 2, 1, 4, 0, 18, 1
+waitforvisualfinish
+clearmonbg ANIM_DEF_PARTNER
+delay 0
+waitforvisualfinish
+restorebg
+waitbgfadein
+end
+
+gUnknownMove228SpriteTemplate:
+.tileTag = (ANIM_SPRITES_START + 296)
+.paletteTag = (ANIM_SPRITES_START + 296)
+.oam = [10 0B 37 08]
+.animCmd = gDummySpriteAnimTable
+.images = NULL
+.afflineAnims = [DC B1 3A 08]
+.callback = [99 55 07 08]
+
+
+Move_??? (pe): @1305D30
+00 38 28 0A 03 2A 01 14 27 17 04 0A 1B AE 00 C0 3F 02 00 02 A8 00 2F 09 82 06 10 00 00 00 00 00 F0 FF 2C 00 00 00 04 18 03 1D 8B 09 08 02 05 01 00 04 00 00 00 12 00 01 00 05 0B 03 04 00 05 15 17 08
+
+gUnknownMove228SpriteTemplate (pe): @12F00A8
+38 28 38 28 E0 CA 3A 08 F0 1C 23 08 00 00 00 00 98 3C 3E 08 F5 5D 07 08
+
+
+
+
+
+
+
+Move_Soak (pj): @1300B98
+00 1C 28 03 E9 D5 0A 08 05 00 04 08 19 9C 00 C0 04 2C 19 9C 00 C0 04 2C 19 9C 00 C0 04 2C 1B 9C 00 C0 3F 02 00 03 9D AE 0B 08 02 06 04 00 01 00 05 00 05 00 0D 00 2A 7E 05 08
+
+// entire Water Sport animation happens first
+createvisualtask [9D AE 0B 08], 2, 4, 1, 5, 5, 13, RGB(10, 17, 31)
+waitforvisualfinish
+end
+
+
+Move_Soak (pe): @1300B98
+00 1C 28 03 29 C3 0A 08 05 00 04 08 19 9C 00 C0 04 2C 19 9C 00 C0 04 2C 19 9C 00 C0 04 2C 1B 9C 00 C0 3F 02 00 03 DD 9B 0B 08 02 06 04 00 01 00 05 00 05 00 0D 00 2A 7E 05 08
+
+
+
+
+
+
+
+Move_Simple_Beam (pj): @1305C98
+00 76 28 19 B6 00 C0 14 35 16 03 ED CA 0B 08 05 04 00 FC 00 00 01 00 FF FF 17 03 C1 C3 0A 08 05 01 64 00 1F 21 DF 0D 08 07 C4 00 C0 FF 3F 00 02 00 09 00 00 00 0A 00 0E 09 5D 30 09 0E 09 5D 30 09 03 9D AE 0B 08 02 06 04 00 01 00 04 00 00 00 0C 00 5F 7E 0E 09 5D 30 09 0E 09 5D 30 09 0E 09 5D 30 09 0E 09 5D 30 09 05 15 16 10 07 FF FF 17 08 02 C0 06 2F 09 83 04 0A 00 0A 00 00 00 10 00 04 04 02 C0 06 2F 09 83 04 0A 00 0A 00 00 00 10 00 04 04 0F
+
+gUnknownSimpleBeamSpriteTemplate (pj): @12F06C0
+76 28 76 28 08 0B 37 08 E4 11 1F 08 00 00 00 00 DC B1 3A 08 E5 C2 0A 08
+
+loadspritegfx (ANIM_SPRITES_START + 358)
+playsewithpan SE_W060, SOUND_PAN_ATTACKER
+fadetobg 53
+waitbgfadeout
+createvisualtask [ED CA 0B 08], 5, 0xFC00, 0, 1, -1
+waitbgfadein
+createvisualtask [C1 C3 0A 08], 5, 100
+createsoundtask [21 DF 0D 08], 0xC4, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 2, 9, 0, 10
+call SimpleBeam1
+call SimpleBeam1
+createvisualtask [9D AE 0B 08], 2, 4, 1, 4, 0, 12, RGB(31, 18, 31)
+call SimpleBeam1
+call SimpleBeam1
+call SimpleBeam1
+call SimpleBeam1
+waitforvisualfinish
+restorebg
+waitbgfadeout
+setarg 7, -1
+waitbgfadein
+end
+
+SimpleBeam1:
+createsprite gUnknownSimpleBeamSpriteTemplate, ANIM_TARGET, 3, 10, 10, 0, 16
+delay 4
+createsprite gUnknownSimpleBeamSpriteTemplate, ANIM_TARGET, 3, 10, 10, 0, 16
+delay 4
+return
+
+gUnknownSimpleBeamSpriteTemplate:
+.tileTag = (ANIM_SPRITES_START + 358)
+.paletteTag = (ANIM_SPRITES_START + 358)
+.oam = [08 0B 37 08]
+.animCmd = gDummySpriteAnimTable
+.images = NULL
+.afflineAnims = [DC B1 3A 08]
+.callback = [E5 C2 0A 08]
+
+
+Move_Simple_Beam (pe): @1305C98
+00 76 28 19 B6 00 C0 14 35 16 03 2D B8 0B 08 05 04 00 FC 00 00 01 00 FF FF 17 03 01 B1 0A 08 05 01 64 00 1F 39 CF 0D 08 07 C4 00 C0 FF 3F 00 02 00 09 00 00 00 0A 00 0E 09 5D 30 09 0E 09 5D 30 09 03 DD 9B 0B 08 02 06 04 00 01 00 04 00 00 00 0C 00 5F 7E 0E 09 5D 30 09 0E 09 5D 30 09 0E 09 5D 30 09 0E 09 5D 30 09 05 15 16 10 07 FF FF 17 08 02 C0 06 2F 09 83 04 0A 00 0A 00 00 00 10 00 04 04 02 C0 06 2F 09 83 04 0A 00 0A 00 00 00 10 00 04 04 0F
+
+gUnknownSimpleBeamSpriteTemplate (pe): @12F06C0
+76 28 76 28 D8 CA 3A 08 F0 1C 23 08 00 00 00 00 98 3C 3E 08 25 B0 0A 08
+
+
+
+
+
+
+
+Move_Worry_Seed (pj): @1303118
+00 7E 28 00 7F 28 1C A2 00 C0 06 03 02 B8 08 2F 09 02 06 14 00 10 00 00 00 F8 FF 14 00 E0 FF 04 06 02 B8 08 2F 09 02 06 14 00 F8 FF F4 FF F4 FF 14 00 E0 FF 04 06 02 B8 08 2F 09 02 06 14 00 F8 FF F0 FF 08 00 14 00 E0 FF 05 1C A0 00 3F 0A 04 06 02 D0 08 2F 09 02 05 10 00 14 00 FF FF 02 00 66 00 04 0A 02 D0 08 2F 09 02 05 E0 FF 0E 00 01 00 01 00 5C 00 04 0A 02 D0 08 2F 09 02 05 20 00 10 00 01 00 00 00 52 00 04 0A 02 D0 08 2F 09 02 05 F0 FF 13 00 FF FF 03 00 48 00 06 05 08
+
+gUnknownWorrySeedSpriteTemplates (pj): @12F08B8
+7E 28 7E 28 68 0A 37 08 E4 11 1F 08 00 00 00 00 F0 11 1F 08 55 57 0B 08 7F 28 7F 28 08 0A 37 08 F8 A2 3A 08 00 00 00 00 F0 11 1F 08 29 44 0A 08
+
+loadspritegfx (ANIM_SPRITES_START + 366)
+loadspritegfx (ANIM_SPRITES_START + 367)
+loopsewithpan SE_W077, SOUND_PAN_ATTACKER, 6, 3
+createsprite gUnknownWorrySeedSpriteTemplate1, ANIM_ATTACKER, 2, 20, 16, 0, -8, 20, -32
+delay 6
+createsprite gUnknownWorrySeedSpriteTemplate1, ANIM_ATTACKER, 2, 20, -8, -12, -12, 20, -32
+delay 6
+createsprite gUnknownWorrySeedSpriteTemplate1, ANIM_ATTACKER, 2, 20, -8, -16, 8, 20, -32
+waitforvisualfinish
+loopsewithpan SE_W039, SOUND_PAN_TARGET, 10, 4
+hang1
+createsprite gUnknownWorrySeedSpriteTemplate2, ANIM_ATTACKER, 2, 16, 20, -1, 2, 0x66
+delay 10
+createsprite gUnknownWorrySeedSpriteTemplate2, ANIM_ATTACKER, 2, -32, 14, 1, 1, 0x5C
+delay 10
+createsprite gUnknownWorrySeedSpriteTemplate2, ANIM_ATTACKER, 2, 32, 16, 1, 0, 0x52
+delay 10
+createsprite gUnknownWorrySeedSpriteTemplate2, ANIM_ATTACKER, 2, -32, 19, -1, 3, 0x48
+hang1
+waitforvisualfinish
+end
+
+gUnknownWorrySeedSpriteTemplate1:
+.tileTag = (ANIM_SPRITES_START + 366)
+.paletteTag = (ANIM_SPRITES_START + 366)
+.oam = [68 0A 37 08]
+.animCmd = gDummySpriteAnimTable
+.images = NULL
+.afflineAnims = gDummySpriteAfflineAnimTable
+.callback = [55 57 0B 08]
+
+gUnknownWorrySeedSpriteTemplate2:
+.tileTag = (ANIM_SPRITES_START + 367)
+.paletteTag = (ANIM_SPRITES_START + 367)
+.oam = [08 0A 37 08]
+.animCmd = [F8 A2 3A 08]
+.images = NULL
+.afflineAnims = gDummySpriteAfflineAnimTable
+.callback = [29 44 0A 08]
+
+
+Move_Worry_Seed (pe): @1303118
+00 7E 28 00 7F 28 1C A2 00 C0 06 03 02 B8 08 2F 09 02 06 14 00 10 00 00 00 F8 FF 14 00 E0 FF 04 06 02 B8 08 2F 09 02 06 14 00 F8 FF F4 FF F4 FF 14 00 E0 FF 04 06 02 B8 08 2F 09 02 06 14 00 F8 FF F0 FF 08 00 14 00 E0 FF 05 1C A0 00 3F 0A 04 06 02 D0 08 2F 09 02 05 10 00 14 00 FF FF 02 00 66 00 04 0A 02 D0 08 2F 09 02 05 E0 FF 0E 00 01 00 01 00 5C 00 04 0A 02 D0 08 2F 09 02 05 20 00 10 00 01 00 00 00 52 00 04 0A 02 D0 08 2F 09 02 05 F0 FF 13 00 FF FF 03 00 48 00 06 05 08
+
+gUnknownWorrySeedSpriteTemplates (pe): @12F08B8
+7E 28 7E 28 38 CA 3A 08 F0 1C 23 08 00 00 00 00 FC 1C 23 08 95 44 0B 08 7F 28 7F 28 D8 C9 3A 08 B4 2D 3E 08 00 00 00 00 FC 1C 23 08 69 31 0A 08
+
+
+
+
+
+
+
+Move_??? (pj): @1301B70
+00 97 27 00 4B 28 00 52 28 0A 03 25 4B 4C 00 17 02 2C 03 2F 09 03 04 00 00 00 00 00 00 01 00 02 2C 03 2F 09 03 04 00 00 00 00 01 00 01 00 02 4C F1 3A 08 83 04 00 00 00 00 01 00 02 00 03 25 85 09 08 02 05 01 00 04 00 00 00 02 00 01 00 19 CC 00 C0 04 30 02 84 02 2F 09 03 04 00 00 00 00 00 00 01 00 02 84 02 2F 09 03 04 00 00 00 00 01 00 01 00 02 4C F1 3A 08 83 04 00 00 00 00 01 00 01 00 03 25 85 09 08 02 05 01 00 04 00 00 00 04 00 01 00 04 58 02 2C 03 2F 09 03 04 00 00 00 00 00 00 01 00 02 2C 03 2F 09 03 04 00 00 00 00 01 00 01 00 02 4C F1 3A 08 83 04 00 00 00 00 01 00 01 00 03 25 85 09 08 02 05 01 00 06 00 00 00 06 00 01 00 04 30 02 84 02 2F 09 03 04 00 00 00 00 00 00 01 00 02 84 02 2F 09 03 04 00 00 00 00 01 00 01 00 02 4C F1 3A 08 83 04 00 00 00 00 01 00 00 00 03 25 85 09 08 02 05 01 00 08 00 00 00 08 00 01 00 05 0B 03 15 17 08
+
+loadspritegfx ANIM_TAG_IMPACT
+loadspritegfx (ANIM_SPRITES_START + 315)
+loadspritegfx (ANIM_SPRITES_START + 322)
+monbg ANIM_DEF_PARTNER
+fadetobgfromset 75, 76, NULL
+waitbgfadein
+createsprite gUnknownMoonblastSpriteTemplate1, ANIM_ATTACKER, 3, 0, 0, 0, 1
+createsprite gUnknownMoonblastSpriteTemplate1, ANIM_ATTACKER, 3, 0, 0, 1, 1
+createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 0, 0, 1, 2
+createvisualtask AnimTask_ShakeMon2, 2, 1, 4, 0, 2, 1
+playsewithpan SE_W236, SOUND_PAN_ATTACKER
+delay 48
+createsprite gUnknownMoonblastSpriteTemplate2, ANIM_ATTACKER, 3, 0, 0, 0, 1
+createsprite gUnknownMoonblastSpriteTemplate2, ANIM_ATTACKER, 3, 0, 0, 1, 1
+createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 0, 0, 1, 1
+createvisualtask AnimTask_ShakeMon2, 2, 1, 4, 0, 4, 1
+delay 88
+createsprite gUnknownMoonblastSpriteTemplate1, ANIM_ATTACKER, 3, 0, 0, 0, 1
+createsprite gUnknownMoonblastSpriteTemplate1, ANIM_ATTACKER, 3, 0, 0, 1, 1
+createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 0, 0, 1, 1
+createvisualtask AnimTask_ShakeMon2, 2, 1, 6, 0, 6, 1
+delay 48
+createsprite gUnknownMoonblastSpriteTemplate2, ANIM_ATTACKER, 3, 0, 0, 0, 1
+createsprite gUnknownMoonblastSpriteTemplate2, ANIM_ATTACKER, 3, 0, 0, 1, 1
+reatesprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 0, 0, 1, 0
+createvisualtask AnimTask_ShakeMon2, 2, 1, 8, 0, 8, 1
+waitforvisualfinish
+clearmonbg ANIM_DEF_PARTNER
+restorebg
+waitbgfadein
+end
+
+
+Move_??? (pj): @1301B70
+00 97 27 00 4B 28 00 52 28 0A 03 25 4B 4C 00 17 02 2C 03 2F 09 03 04 00 00 00 00 00 00 01 00 02 2C 03 2F 09 03 04 00 00 00 00 01 00 01 00 02 08 7C 3E 08 83 04 00 00 00 00 01 00 02 00 03 1D 8B 09 08 02 05 01 00 04 00 00 00 02 00 01 00 19 CC 00 C0 04 30 02 84 02 2F 09 03 04 00 00 00 00 00 00 01 00 02 84 02 2F 09 03 04 00 00 00 00 01 00 01 00 02 08 7C 3E 08 83 04 00 00 00 00 01 00 01 00 03 1D 8B 09 08 02 05 01 00 04 00 00 00 04 00 01 00 04 58 02 2C 03 2F 09 03 04 00 00 00 00 00 00 01 00 02 2C 03 2F 09 03 04 00 00 00 00 01 00 01 00 02 08 7C 3E 08 83 04 00 00 00 00 01 00 01 00 03 1D 8B 09 08 02 05 01 00 06 00 00 00 06 00 01 00 04 30 02 84 02 2F 09 03 04 00 00 00 00 00 00 01 00 02 84 02 2F 09 03 04 00 00 00 00 01 00 01 00 02 08 7C 3E 08 83 04 00 00 00 00 01 00 00 00 03 1D 8B 09 08 02 05 01 00 08 00 00 00 08 00 01 00 05 0B 03 15 17 08
+
+
+
+
+
+
+
+Move_??? (pj): @1304960
+00 A3 27 00 84 28 06 0A 02 0C 0C 08 03 9D AE 0B 08 02 06 02 00 00 00 04 00 00 00 0B 00 FF 2F 19 85 00 C0 0E 11 4A 30 09 04 14 0B 02 0D 25 2E 2D 00 17 03 25 85 09 08 02 05 00 00 04 00 00 00 10 00 01 00 02 30 09 2F 09 04 04 06 00 05 00 00 00 00 00 19 AA 00 C0 04 03 02 30 09 2F 09 04 04 F0 FF F1 FF 00 00 00 00 19 AA 00 C0 04 03 02 30 09 2F 09 04 04 10 00 FB FF 00 00 00 00 19 AA 00 C0 04 03 02 30 09 2F 09 04 04 F4 FF 12 00 00 00 00 00 19 AA 00 C0 04 03 02 30 09 2F 09 04 04 00 00 05 00 00 00 00 00 19 AA 00 C0 04 03 05 15 17 06 08 02 9C 9F 3A 08 02 03 00 00 D8 FF 10 00 04 02 02 9C 9F 3A 08 02 03 28 00 EC FF 10 00 04 02 02 9C 9F 3A 08 02 03 14 00 00 00 10 00 04 02 02 9C 9F 3A 08 02 03 28 00 14 00 10 00 04 02 02 9C 9F 3A 08 02 03 D8 FF EC FF 10 00 04 02 02 9C 9F 3A 08 02 03 D8 FF 14 00 10 00 04 02 02 9C 9F 3A 08 02 03 EC FF 1E 00 10 00 04 02 02 9C 9F 3A 08 02 03 14 00 E2 FF 10 00 04 02 02 9C 9F 3A 08 02 03 28 00 28 00 10 00 04 02 02 9C 9F 3A 08 02 03 EC FF E2 FF 10 00 04 02 02 9C 9F 3A 08 02 03 14 00 1E 00 10 00 04 02 02 9C 9F 3A 08 02 03 D8 FF 00 00 10 00 04 02 02 9C 9F 3A 08 02 03 28 00 00 00 10 00 04 02 0F
+
+gUnknownMove22DSpriteTemplate (pj): @12F0930
+84 28 84 28 08 0A 37 08 D4 B4 3A 08 00 00 00 00 F0 11 1F 08 41 55 07 08
+
+loadspritegfx ANIM_TAG_ORBS
+loadspritegfx (ANIM_SPRITES_START + 372)
+hang1
+monbg ANIM_ATK_PARTNER
+setalpha 12, 8
+createvisualtask [9D AE 0B 08], 2, 2, 0, 4, 0, 11, RGB(31, 31, 11)
+playsewithpan SE_W025, SOUND_PAN_ATTACKER
+call Move22D_1
+delay 20
+clearmonbg ANIM_ATK_PARTNER
+blendoff
+fadetobgfromset 46, 45, NULL
+waitbgfadein
+createvisualtask AnimTask_ShakeMon2, 2, 0, 4, 0, 16, 1
+createsprite gUnknownMove22DSpriteTemplate, ANIM_ATTACKER, 4, 6, 5, 0, 0
+playsewithpan SE_W120, SOUND_PAN_ATTACKER
+delay 3
+createsprite gUnknownMove22DSpriteTemplate, ANIM_ATTACKER, 4, -16, -15, 0, 0
+playsewithpan SE_W120, SOUND_PAN_ATTACKER
+delay 3
+createsprite gUnknownMove22DSpriteTemplate, ANIM_ATTACKER, 4, 16, -5, 0, 0
+playsewithpan SE_W120, SOUND_PAN_ATTACKER
+delay 3
+createsprite gUnknownMove22DSpriteTemplate, ANIM_ATTACKER, 4, -12, 18, 0, 0
+playsewithpan SE_W120, SOUND_PAN_ATTACKER
+delay 3
+createsprite gUnknownMove22DSpriteTemplate, ANIM_ATTACKER, 4, 0, 5, 0, 0
+playsewithpan SE_W120, SOUND_PAN_ATTACKER
+delay 3
+waitforvisualfinish
+restorebg
+waitbgfadein
+hang1
+end
+
+Move22D_1:
+createsprite [9C 9F 3A 08], ANIM_ATTACKER, 2, 0, -40, 16
+delay 2
+createsprite [9C 9F 3A 08], ANIM_ATTACKER, 2, 40, -20, 16
+delay 2
+createsprite [9C 9F 3A 08], ANIM_ATTACKER, 2, 20, 0, 16
+delay 2
+createsprite [9C 9F 3A 08], ANIM_ATTACKER, 2, 40, 20, 16
+delay 2
+createsprite [9C 9F 3A 08], ANIM_ATTACKER, 2, -40, -20, 16
+delay 2
+createsprite [9C 9F 3A 08], ANIM_ATTACKER, 2, -40, 20, 16
+delay 2
+createsprite [9C 9F 3A 08], ANIM_ATTACKER, 2, -20, 30, 16
+delay 2
+createsprite [9C 9F 3A 08], ANIM_ATTACKER, 2, 20, -30, 16
+delay 2
+createsprite [9C 9F 3A 08], ANIM_ATTACKER, 2, 40, 40, 16
+delay 2
+createsprite [9C 9F 3A 08], ANIM_ATTACKER, 2, -20, -30, 16
+delay 2
+createsprite [9C 9F 3A 08], ANIM_ATTACKER, 2, 20, 30, 16
+delay 2
+createsprite [9C 9F 3A 08], ANIM_ATTACKER, 2, -40, 0, 16
+delay 2
+createsprite [9C 9F 3A 08], ANIM_ATTACKER, 2, 40, 0, 16
+delay 2
+return
+
+gUnknownMove22DSpriteTemplate:
+.tileTag = (ANIM_SPRITES_START + 372)
+.paletteTag = (ANIM_SPRITES_START + 372)
+.oam = [08 0A 37 08]
+.animCmd = [D4 B4 3A 08]
+.images = NULL
+.afflineAnims = gDummySpriteAfflineAnimTable
+.callback = [41 55 07 08]
+
+
+Move_??? (pe): @1304960
+00 A3 27 00 84 28 06 0A 02 0C 0C 08 03 DD 9B 0B 08 02 06 02 00 00 00 04 00 00 00 0B 00 FF 2F 19 85 00 C0 0E 11 4A 30 09 04 14 0B 02 0D 25 2E 2D 00 17 03 1D 8B 09 08 02 05 00 00 04 00 00 00 10 00 01 00 02 30 09 2F 09 04 04 06 00 05 00 00 00 00 00 19 AA 00 C0 04 03 02 30 09 2F 09 04 04 F0 FF F1 FF 00 00 00 00 19 AA 00 C0 04 03 02 30 09 2F 09 04 04 10 00 FB FF 00 00 00 00 19 AA 00 C0 04 03 02 30 09 2F 09 04 04 F4 FF 12 00 00 00 00 00 19 AA 00 C0 04 03 02 30 09 2F 09 04 04 00 00 05 00 00 00 00 00 19 AA 00 C0 04 03 05 15 17 06 08 02 58 2A 3E 08 02 03 00 00 D8 FF 10 00 04 02 02 58 2A 3E 08 02 03 28 00 EC FF 10 00 04 02 02 58 2A 3E 08 02 03 14 00 00 00 10 00 04 02 02 58 2A 3E 08 02 03 28 00 14 00 10 00 04 02 02 58 2A 3E 08 02 03 D8 FF EC FF 10 00 04 02 02 58 2A 3E 08 02 03 D8 FF 14 00 10 00 04 02 02 58 2A 3E 08 02 03 EC FF 1E 00 10 00 04 02 02 58 2A 3E 08 02 03 14 00 E2 FF 10 00 04 02 02 58 2A 3E 08 02 03 28 00 28 00 10 00 04 02 02 58 2A 3E 08 02 03 EC FF E2 FF 10 00 04 02 02 58 2A 3E 08 02 03 14 00 1E 00 10 00 04 02 02 58 2A 3E 08 02 03 D8 FF 00 00 10 00 04 02 02 58 2A 3E 08 02 03 28 00 00 00 10 00 04 02 0F
+
+gUnknownMove22DSpriteTemplate (pe): @12F0930
+84 28 84 28 D8 C9 3A 08 90 3F 3E 08 00 00 00 00 FC 1C 23 08 9D 5D 07 08
+
+
+
+
+
+
+
+Move_??? (pj): @13019A0
+00 50 28 00 51 28 00 97 27 00 9F 27 0A 03 25 2D 2E 00 17 0C 0C 08 04 01 03 0D 91 09 08 05 05 00 00 1A 00 00 03 02 00 00 00 04 02 19 DB 00 3F 02 4C F1 3A 08 03 04 00 00 00 00 01 00 00 00 03 01 84 09 08 02 05 01 00 03 00 00 00 05 00 01 00 02 FC 02 2F 09 02 06 08 00 05 00 14 00 18 00 0E 00 02 00 02 FC 02 2F 09 02 06 0D 00 05 00 EC FF 18 00 0E 00 01 00 02 FC 02 2F 09 02 06 08 00 0A 00 14 00 E8 FF 0E 00 02 00 02 FC 02 2F 09 02 06 03 00 05 00 EC FF E8 FF 0E 00 02 00 02 FC 02 2F 09 02 06 08 00 00 00 1E 00 12 00 08 00 02 00 02 FC 02 2F 09 02 06 08 00 05 00 1E 00 EE FF 08 00 02 00 02 FC 02 2F 09 02 06 08 00 05 00 E2 FF 12 00 08 00 02 00 02 FC 02 2F 09 02 06 08 00 05 00 E2 FF EE FF 08 00 02 00 03 01 84 09 08 02 05 01 00 00 00 03 00 07 00 01 00 04 26 19 DB 00 3F 02 4C F1 3A 08 03 04 00 00 00 00 01 00 00 00 03 01 84 09 08 02 05 01 00 03 00 00 00 05 00 01 00 02 14 03 2F 09 02 06 F6 FF FA FF 14 00 18 00 0E 00 01 00 02 14 03 2F 09 02 06 FB FF FA FF EC FF 18 00 0E 00 00 00 02 14 03 2F 09 02 06 F6 FF FF FF 14 00 E8 FF 0E 00 01 00 02 14 03 2F 09 02 06 F1 FF FA FF EC FF E8 FF 0E 00 01 00 02 14 03 2F 09 02 06 F6 FF F5 FF 1E 00 12 00 08 00 01 00 02 14 03 2F 09 02 06 F6 FF FA FF 1E 00 EE FF 08 00 01 00 02 14 03 2F 09 02 06 F6 FF FA FF E2 FF 12 00 08 00 01 00 02 14 03 2F 09 02 06 F6 FF FA FF E2 FF EE FF 08 00 01 00 03 01 84 09 08 02 05 01 00 00 00 03 00 07 00 01 00 05 0B 03 0D 15 17 08
+
+gUnknownMove22ESpriteTemplates (pj): @12F02FC
+50 28 50 28 08 0A 37 08 EC E8 3A 08 00 00 00 00 F0 11 1F 08 B9 59 0B 08 51 28 51 28 08 0A 37 08 EC E8 3A 08 00 00 00 00 F0 11 1F 08 B9 59 0B 08
+
+loadspritegfx (ANIM_SPRITES_START + 320)
+loadspritegfx (ANIM_SPRITES_START + 321)
+loadspritegfx ANIM_TAG_IMPACT
+loadspritegfx ANIM_TAG_HANDS_AND_FEET
+monbg ANIM_DEF_PARTNER
+fadetobgfromset 45, 46, NULL
+waitbgfadein
+setalpha 12, 8
+delay 1
+createvisualtask AnimTask_SwayMon, 5, 0, 26, 0x300, 2, 0
+delay 2
+playsewithpan SE_W213, SOUND_PAN_TARGET
+createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 1, 0
+createvisualtask AnimTask_ShakeMon, 2, 1, 3, 0, 5, 1
+createsprite gUnknownMove22ESpriteTemplate1, ANIM_ATTACKER, 2, 8, 5, 20, 24, 14, 2
+createsprite gUnknownMove22ESpriteTemplate1, ANIM_ATTACKER, 2, 13, 5, -20, 24, 14, 1
+createsprite gUnknownMove22ESpriteTemplate1, ANIM_ATTACKER, 2, 8, 10, 20, -24, 14, 2
+createsprite gUnknownMove22ESpriteTemplate1, ANIM_ATTACKER, 2, 3, 5, -20, -24, 14, 2
+createsprite gUnknownMove22ESpriteTemplate1, ANIM_ATTACKER, 2, 8, 0, 30, 18, 8, 2
+createsprite gUnknownMove22ESpriteTemplate1, ANIM_ATTACKER, 2, 8, 5, 30, -18, 8, 2
+createsprite gUnknownMove22ESpriteTemplate1, ANIM_ATTACKER, 2, 8, 5, -30, 18, 8, 2
+createsprite gUnknownMove22ESpriteTemplate1, ANIM_ATTACKER, 2, 8, 5, -30, -18, 8, 2
+createvisualtask AnimTask_ShakeMon, 2, 1, 0, 3, 7, 1
+delay 38
+playsewithpan SE_W213, SOUND_PAN_TARGET
+createsprite gBasicHitSplatSpriteTemplate, 3, 0, 0, 1, 0
+createvisualtask AnimTask_ShakeMon, 2, 1, 3, 0, 5, 1
+createsprite gUnknownMove22ESpriteTemplate2, ANIM_ATTACKER, 2, -10, -6, 20, 24, 14, 1
+createsprite gUnknownMove22ESpriteTemplate2, ANIM_ATTACKER, 2, -5, -6, -20, 24, 14, 0
+createsprite gUnknownMove22ESpriteTemplate2, ANIM_ATTACKER, 2, -10, -1, 20, -24, 14, 1
+createsprite gUnknownMove22ESpriteTemplate2, ANIM_ATTACKER, 2, -15, -6, -20, -24, 14, 1
+createsprite gUnknownMove22ESpriteTemplate2, ANIM_ATTACKER, 2, -10, -11, 30, 18, 8, 1
+createsprite gUnknownMove22ESpriteTemplate2, ANIM_ATTACKER, 2, -10, -6, 30, -18, 8, 1
+createsprite gUnknownMove22ESpriteTemplate2, ANIM_ATTACKER, 2, -10, -6, -30, 18, 8, 1
+createsprite gUnknownMove22ESpriteTemplate2, ANIM_ATTACKER, 2, -10, -6, -30, -18, 8, 1
+createvisualtask AnimTask_ShakeMon, 2, 1, 0, 3, 7, 1
+waitforvisualfinish
+clearmonbg ANIM_DEF_PARTNER
+blendoff
+restorebg
+waitbgfadein
+end
+
+gUnknownMove22ESpriteTemplate1:
+.tileTag = (ANIM_SPRITES_START + 320)
+.paletteTag = (ANIM_SPRITES_START + 320)
+.oam = [08 0A 37 08]
+.animCmd = [EC E8 3A 08]
+.images = NULL
+.afflineAnims = gDummySpriteAfflineAnimTable
+.callback = [B9 59 0B 08]
+
+gUnknownMove22ESpriteTemplate2:
+.tileTag = (ANIM_SPRITES_START + 321)
+.paletteTag = (ANIM_SPRITES_START + 321)
+.oam = [08 0A 37 08]
+.animCmd = [EC E8 3A 08]
+.images = NULL
+.afflineAnims = gDummySpriteAfflineAnimTable
+.callback = [B9 59 0B 08]
+
+
+Move_??? (pe): @13019A0
+00 50 28 00 51 28 00 97 27 00 9F 27 0A 03 25 2D 2E 00 17 0C 0C 08 04 01 03 05 97 09 08 05 05 00 00 1A 00 00 03 02 00 00 00 04 02 19 DB 00 3F 02 08 7C 3E 08 03 04 00 00 00 00 01 00 00 00 03 F9 89 09 08 02 05 01 00 03 00 00 00 05 00 01 00 02 FC 02 2F 09 02 06 08 00 05 00 14 00 18 00 0E 00 02 00 02 FC 02 2F 09 02 06 0D 00 05 00 EC FF 18 00 0E 00 01 00 02 FC 02 2F 09 02 06 08 00 0A 00 14 00 E8 FF 0E 00 02 00 02 FC 02 2F 09 02 06 03 00 05 00 EC FF E8 FF 0E 00 02 00 02 FC 02 2F 09 02 06 08 00 00 00 1E 00 12 00 08 00 02 00 02 FC 02 2F 09 02 06 08 00 05 00 1E 00 EE FF 08 00 02 00 02 FC 02 2F 09 02 06 08 00 05 00 E2 FF 12 00 08 00 02 00 02 FC 02 2F 09 02 06 08 00 05 00 E2 FF EE FF 08 00 02 00 03 F9 89 09 08 02 05 01 00 00 00 03 00 07 00 01 00 04 26 19 DB 00 3F 02 08 7C 3E 08 03 04 00 00 00 00 01 00 00 00 03 F9 89 09 08 02 05 01 00 03 00 00 00 05 00 01 00 02 14 03 2F 09 02 06 F6 FF FA FF 14 00 18 00 0E 00 01 00 02 14 03 2F 09 02 06 FB FF FA FF EC FF 18 00 0E 00 00 00 02 14 03 2F 09 02 06 F6 FF FF FF 14 00 E8 FF 0E 00 01 00 02 14 03 2F 09 02 06 F1 FF FA FF EC FF E8 FF 0E 00 01 00 02 14 03 2F 09 02 06 F6 FF F5 FF 1E 00 12 00 08 00 01 00 02 14 03 2F 09 02 06 F6 FF FA FF 1E 00 EE FF 08 00 01 00 02 14 03 2F 09 02 06 F6 FF FA FF E2 FF 12 00 08 00 01 00 02 14 03 2F 09 02 06 F6 FF FA FF E2 FF EE FF 08 00 01 00 03 F9 89 09 08 02 05 01 00 00 00 03 00 07 00 01 00 05 0B 03 0D 15 17 08
+
+gUnknownMove22ESpriteTemplates (pe): @12F02FC
+50 28 50 28 D8 C9 3A 08 A8 73 3E 08 00 00 00 00 FC 1C 23 08 F9 46 0B 08 51 28 51 28 D8 C9 3A 08 A8 73 3E 08 00 00 00 00 FC 1C 23 08 F9 46 0B 08
+
+
+
+
+
+
+
+Move_??? (pj): @1304DC0
+00 8F 28 0A 03 0C 0C 0B 03 39 CC 0B 08 05 01 07 00 21 07 00 00 DE 4D 30 09 13 11 4E 30 09 03 B9 BA 0B 08 0A 05 1B 00 01 00 00 00 0C 00 00 00 05 0E 74 4E 30 09 25 57 58 00 16 03 B9 BA 0B 08 0A 05 19 00 01 00 08 00 00 00 00 00 05 13 3F 4E 30 09 03 FD BA 0B 08 0A 05 01 00 01 00 00 00 0C 00 00 00 05 0E 74 4E 30 09 25 57 58 00 16 03 FD BA 0B 08 0A 05 04 00 01 00 08 00 00 00 00 00 05 19 D0 00 3F 02 64 0A 2F 09 2C 02 01 00 28 00 03 25 85 09 08 02 05 01 00 06 00 00 00 13 00 01 00 05 02 8C D3 39 08 02 03 00 00 00 00 05 00 05 0B 03 0D 15 17 08 04 0C 03 B9 BA 0B 08 0A 05 02 00 01 00 08 00 00 00 00 00 03 75 A7 0B 08 05 03 00 00 02 00 10 00 19 A4 00 C0 03 B9 BA 0B 08 0A 05 02 00 01 00 00 00 0F 00 FC 00 04 14 03 B9 BA 0B 08 0A 05 02 00 01 00 0F 00 00 00 FC 00 05 04 14 19 91 00 C0 03 A5 8E 09 08 05 07 00 00 D8 FF 02 00 0C 00 18 00 3C 00 03 00 04 10 0F
+
+gUnknownMove22FSpriteTemplate (pj): @12F0A64
+8F 28 8F 28 10 0A 37 08 E4 11 1F 08 00 00 00 00 F0 11 1F 08 AD 4A 0B 08
+
+loadspritegfx (ANIM_SPRITES_START + 383)
+monbg ANIM_DEF_PARTNER
+setalpha 12, 11
+createvisualtask AnimTask_GetTargetIsAttackerPartner, 5, ARG_RET_ID
+jumpretfalse Move22FAgainstOpponent
+goto Move22FAgainstPartner
+
+Move22FAgainstOpponent:
+createvisualtask [B9 BA 0B 08], 10, 27, 1, 0, 12, RGB_BLACK
+waitforvisualfinish
+call Move22F_1
+fadetobgfromset 87, 88, NULL
+waitbgfadein
+createvisualtask [B9 BA 0B 08], 10, 27, 1, 8, 0, RGB_BLACK
+waitforvisualfinish
+goto Move22FContinue
+
+Move22FAgainstPartner:
+createvisualtask [B9 BA 0B 08], 10, 1, 1, 0, 12, RGB_BLACK
+waitforvisualfinish
+call Move22F_1
+fadetobgfromset 87, 88, NULL
+waitbgfadein
+createvisualtask [FD BA 0B 08], 10, 4, 1, 8, 0, RGB_BLACK
+waitforvisualfinish
+
+Move22FContinue:
+playsewithpan SE_W063, SOUND_PAN_TARGET
+createsprite [64 0A 2F 09], ANIM_ATTACKER, 0x2C, 1, 40
+createvisualtask AnimTask_ShakeMon2, 2, 1, 6, 0, 19, 1
+waitforvisualfinish
+createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 5
+waitforvisualfinish
+clearmonbg ANIM_DEF_PARTNER
+blendoff
+restorebg
+waitbgfadein
+end
+
+Move22F_1:
+delay 12
+createvisualtask [B9 BA 0B 08], 10, 2, 1, 8, 0, RGB_BLACK
+createvisualtask [75 A7 0B 08], 5, 0, 2, 16
+playsewithpan SE_W082, SOUND_PAN_ATTACKER
+createvisualtask [B9 BA 0B 08], 10, 2, 1, 0, 15, RGB(28, 7, 0)
+delay 20
+createvisualtask [B9 BA 0B 08], 10, 2, 1, 15, 0, RGB(28, 7, 0)
+waitforvisualfinish
+delay 20
+playsewithpan SE_W036, SOUND_PAN_ATTACKER
+createvisualtask AnimTask_WindUpLunge, 5, 0, -40, 2, 12, 24, 60, 3
+delay 16
+return
+
+gUnknownMove22FSpriteTemplate:
+.tileTag = (ANIM_SPRITES_START + 383)
+.paletteTag = (ANIM_SPRITES_START + 383)
+.oam = [10 0A 37 08]
+.animCmd = gDummySpriteAnimTable
+.images = NULL
+.afflineAnims = gDummySpriteAfflineAnimTable
+.callback = [AD 4A 0B 08]
+
+
+Move_??? (pe): @1304DC0
+00 8F 28 0A 03 0C 0C 0B 03 79 B9 0B 08 05 01 07 00 21 07 00 00 DE 4D 30 09 13 11 4E 30 09 03 F9 A7 0B 08 0A 05 1B 00 01 00 00 00 0C 00 00 00 05 0E 74 4E 30 09 25 57 58 00 16 03 F9 A7 0B 08 0A 05 19 00 01 00 08 00 00 00 00 00 05 13 3F 4E 30 09 03 3D A8 0B 08 0A 05 01 00 01 00 00 00 0C 00 00 00 05 0E 74 4E 30 09 25 57 58 00 16 03 3D A8 0B 08 0A 05 04 00 01 00 08 00 00 00 00 00 05 19 D0 00 3F 02 64 0A 2F 09 2C 02 01 00 28 00 03 1D 8B 09 08 02 05 01 00 06 00 00 00 13 00 01 00 05 02 84 4E 3D 08 02 03 00 00 00 00 05 00 05 0B 03 0D 15 17 08 04 0C 03 F9 A7 0B 08 0A 05 02 00 01 00 08 00 00 00 00 00 03 B5 94 0B 08 05 03 00 00 02 00 10 00 19 A4 00 C0 03 F9 A7 0B 08 0A 05 02 00 01 00 00 00 0F 00 FC 00 04 14 03 F9 A7 0B 08 0A 05 02 00 01 00 0F 00 00 00 FC 00 05 04 14 19 91 00 C0 03 9D 94 09 08 05 07 00 00 D8 FF 02 00 0C 00 18 00 3C 00 03 00 04 10 0F
+
+gUnknownMove22FSpriteTemplate (pe): @12F0A64
+8F 28 8F 28 E0 C9 3A 08 F0 1C 23 08 00 00 00 00 FC 1C 23 08 ED 37 0B 08
+
+
+
+
+
+
+
+Move_??? (pj): @1301740
+00 4A 28 00 C7 27 0A 00 0C 0C 08 14 21 16 19 B8 00 C0 02 6C 02 2F 09 02 02 00 00 00 00 04 16 03 2D B2 0B 08 02 07 4A 28 02 00 02 00 9F 62 10 00 00 00 00 00 04 18 05 02 E8 AA 3A 08 82 03 01 00 00 00 00 00 03 25 85 09 08 02 05 01 00 04 00 00 00 12 00 01 00 19 81 00 3F 05 0B 00 0D 04 01 15 17 08
+
+gUnknownMove230SpriteTemplate (pj): @12F026C
+4A 28 4A 28 D0 0B 37 08 E4 11 1F 08 00 00 00 00 38 B1 3A 08 3D 85 0A 08
+
+loadspritegfx (ANIM_SPRITES_START + 314)
+loadspritegfx ANIM_TAG_SLASH
+monbg ANIM_ATTACKER
+setalpha 12, 8
+fadetobg 33
+waitbgfadeout
+playsewithpan SE_W014, SOUND_PAN_ATTACKER
+createsprite gUnknownMove230SpriteTemplate, ANIM_ATTACKER, 2, 0, 0
+delay 22
+createvisualtask [2D B2 0B 08], 2, (ANIM_SPRITES_START + 314), 2, 2, RGB(31, 20, 24), 16, 0, 0
+delay 24
+waitforvisualfinish
+createsprite [E8 AA 3A 08], ANIM_TARGET, 2, 1, 0, 0
+createvisualtask AnimTask_ShakeMon2, 2, 1, 4, 0, 18, 1
+playsewithpan SE_W013, SOUND_PAN_TARGET
+waitforvisualfinish
+clearmonbg ANIM_ATTACKER
+blendoff
+delay 1
+restorebg
+waitbgfadein
+end
+
+gUnknownMove230SpriteTemplate:
+.tileTag = (ANIM_SPRITES_START + 314)
+.paletteTag = (ANIM_SPRITES_START + 314)
+.oam = [D0 0B 37 08]
+.animCmd = gDummySpriteAnimTable
+.images = NULL
+.afflineAnims = [38 B1 3A 08]
+.callback = [3D 85 0A 08]
+
+
+Move_??? (pe): @1301740
+00 4A 28 00 C7 27 0A 00 0C 0C 08 14 21 16 19 B8 00 C0 02 6C 02 2F 09 02 02 00 00 00 00 04 16 03 6D 9F 0B 08 02 07 4A 28 02 00 02 00 9F 62 10 00 00 00 00 00 04 18 05 02 A4 35 3E 08 82 03 01 00 00 00 00 00 03 1D 8B 09 08 02 05 01 00 04 00 00 00 12 00 01 00 19 81 00 3F 05 0B 00 0D 04 01 15 17 08
+
+gUnknownMove230SpriteTemplate (pe): @12F026C
+4A 28 4A 28 A0 CB 3A 08 F0 1C 23 08 00 00 00 00 F4 3B 3E 08 7D 72 0A 08
+
+
+
+
+
+
+
+Move_??? (pj): @13070F0
+00 85 28 00 41 28 14 4A 16 03 ED CA 0B 08 05 04 00 F8 00 00 01 00 FF FF 17 0A 03 2A 01 0C 0C 08 0E 68 71 30 09 02 A4 D3 39 08 02 05 00 00 18 00 00 00 00 00 06 00 04 07 02 80 01 2F 09 02 04 00 00 00 00 01 00 00 00 03 01 84 09 08 02 05 01 00 03 00 00 00 06 00 01 00 19 84 00 3F 02 8C D3 39 08 02 03 00 00 00 00 09 00 05 0B 03 0D 15 16 10 07 FF FF 17 08 FF FF FF 02 48 09 2F 09 03 04 00 00 00 00 38 00 00 00 1C A2 00 C0 07 07 04 02 02 48 09 2F 09 03 04 00 00 00 00 38 00 04 00 04 02 02 48 09 2F 09 03 04 00 00 00 00 38 00 08 00 04 02 02 48 09 2F 09 03 04 00 00 00 00 38 00 0C 00 04 02 02 48 09 2F 09 03 04 00 00 00 00 38 00 10 00 04 02 02 48 09 2F 09 03 04 00 00 00 00 38 00 14 00 04 02 02 48 09 2F 09 03 04 00 00 00 00 38 00 18 00 05 0F
+
+gUnknownMove231SpriteTemplate (pj): @12F0948
+85 28 85 28 08 0A 37 08 8C D2 3A 08 00 00 00 00 F0 11 1F 08 A9 E0 0A 08
+
+loadspritegfx (ANIM_SPRITES_START + 373)
+loadspritegfx (ANIM_SPRITES_START + 305)
+fadetobg 74
+waitbgfadeout
+createvisualtask [ED CA 0B 08], 5, 0xF800, 0, 1, -1
+waitbgfadein
+monbg ANIM_DEF_PARTNER
+monbgprio_2A ANIM_TARGET
+setalpha 12, 8
+call Move231_1
+createsprite gSlideMonToOffsetSpriteTemplate, ANIM_ATTACKER, 2, 0, 24, 0, 0, 6
+delay 7
+createsprite gUnknownPowerWhipSpriteTemplate2, ANIM_ATTACKER, 0, 0, 1, 0
+createvisualtask AnimTask_ShakeMon, 2, 1, 3, 0, 6, 1
+playsewithpan SE_W004, SOUND_PAN_TARGET
+createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 9
+waitforvisualfinish
+clearmonbg ANIM_DEF_PARTNER
+blendoff
+restorebg
+waitbgfadeout
+setarg 7, -1
+waitbgfadein
+end
+
+Move231_1:
+createsprite gUnknownMove231SpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 0
+loopsewithpan SE_W077, SOUND_PAN_ATTACKER, 7, 7
+delay 2
+createsprite gUnknownMove231SpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 4
+delay 2
+createsprite gUnknownMove231SpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 8
+delay 2
+createsprite gUnknownMove231SpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 12
+delay 2
+createsprite gUnknownMove231SpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 16
+delay 2
+createsprite gUnknownMove231SpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 20
+delay 2
+createsprite gUnknownMove231SpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 24
+waitforvisualfinish
+return
+
+gUnknownMove231SpriteTemplate:
+.tileTag = (ANIM_SPRITES_START + 373)
+.paletteTag = (ANIM_SPRITES_START + 373)
+.oam = [08 0A 37 08]
+.animCmd = [8C D2 3A 08]
+.images = NULL
+.afflineAnims = gDummySpriteAfflineAnimTable
+.callback = [A9 E0 0A 08]
+
+
+Move_??? (pe): @13070F0
+00 85 28 00 41 28 14 4A 16 03 2D B8 0B 08 05 04 00 F8 00 00 01 00 FF FF 17 0A 03 2A 01 0C 0C 08 0E 68 71 30 09 02 9C 4E 3D 08 02 05 00 00 18 00 00 00 00 00 06 00 04 07 02 80 01 2F 09 02 04 00 00 00 00 01 00 00 00 03 F9 89 09 08 02 05 01 00 03 00 00 00 06 00 01 00 19 84 00 3F 02 84 4E 3D 08 02 03 00 00 00 00 09 00 05 0B 03 0D 15 16 10 07 FF FF 17 08 FF FF FF 02 48 09 2F 09 03 04 00 00 00 00 38 00 00 00 1C A2 00 C0 07 07 04 02 02 48 09 2F 09 03 04 00 00 00 00 38 00 04 00 04 02 02 48 09 2F 09 03 04 00 00 00 00 38 00 08 00 04 02 02 48 09 2F 09 03 04 00 00 00 00 38 00 0C 00 04 02 02 48 09 2F 09 03 04 00 00 00 00 38 00 10 00 04 02 02 48 09 2F 09 03 04 00 00 00 00 38 00 14 00 04 02 02 48 09 2F 09 03 04 00 00 00 00 38 00 18 00 05 0F
+
+gUnknownMove231SpriteTemplate (pe): @12F0948
+85 28 85 28 D8 C9 3A 08 48 5D 3E 08 00 00 00 00 FC 1C 23 08 E9 CD 0A 08
+
+
+
+
+
+
+
+Move_??? (pj): @1301448
+00 49 28 00 2D 27 00 97 27 0A 03 0C 0C 08 03 0D CC 0B 08 02 00 21 07 01 00 F0 14 30 09 14 29 16 03 ED CA 0B 08 05 04 00 FA 00 00 01 00 FF FF 17 19 89 00 C0 02 3C 02 2F 09 02 04 00 00 00 00 0D 00 50 01 05 04 10 19 89 00 3F 02 54 02 2F 09 83 00 04 07 02 4C F1 3A 08 82 04 00 00 00 00 01 00 00 00 03 01 84 09 08 02 05 01 00 00 00 08 00 0C 00 01 00 03 11 59 07 08 03 05 01 00 1F 00 0C 00 01 00 01 00 19 8A 00 3F 0E 0C 49 1B 08 04 07 02 8C D3 39 08 02 03 00 00 00 00 09 00 05 0B 03 0D 15 16 10 07 FF FF 17 08 14 2A 13 67 14 30 09
+
+loadspritegfx 0x2849
+loadspritegfx ANIM_TAG_SMALL_EMBER
+loadspritegfx ANIM_TAG_IMPACT
+monbg ANIM_DEF_PARTNER
+setalpha 12, 8
+createvisualtask AnimTask_GetTargetSide, 2
+jumprettrue Move232AgainstPlayer
+fadetobg 41
+
+Move232Continue:
+waitbgfadeout
+createvisualtask [ED CA 0B 08], 5, 0xFA00, 0, 1, -1
+waitbgfadein
+playsewithpan SE_W172, SOUND_PAN_ATTACKER
+createsprite [3C 02 2F 09], ANIM_ATTACKER, 2, 0, 0, 13, 0x150
+delay 16
+playsewithpan SE_W172, SOUND_PAN_TARGET
+createsprite [54 02 2F 09], ANIM_TARGET, 3
+delay 7
+createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 2, 0, 0, 1, 0
+createvisualtask AnimTask_ShakeMon, 2, 1, 0, 8, 12, 1
+createvisualtask AnimTask_BlendMonInAndOut, 3, 1, 31, 12, 1, 1
+playsewithpan SE_W172B, SOUND_PAN_TARGET
+call FireMoveEffect
+delay 7
+createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 9
+waitforvisualfinish
+clearmonbg ANIM_DEF_PARTNER
+restorebg
+waitbgfadeout
+setarg 7, -1
+waitbgfadein
+end
+
+Move232AgainstPlayer:
+fadetobg 42
+goto Move232Continue
+
+
+[3C 02 2F 09]:
+[54 02 2F 09]:
+
+
+
+
+
+Move_??? (pe): @1301448 <FIX THIS>
+00 49 28 00 2D 27 00 97 27 0A 03 0C 0C 08 03 0D CC 0B 08 02 00 21 07 01 00 F0 14 30 09 14 29 16 03 ED CA 0B 08 05 04 00 FA 00 00 01 00 FF FF 17 19 89 00 C0 02 3C 02 2F 09 02 04 00 00 00 00 0D 00 50 01 05 04 10 19 89 00 3F 02 54 02 2F 09 83 00 04 07 02 4C F1 3A 08 82 04 00 00 00 00 01 00 00 00 03 01 84 09 08 02 05 01 00 00 00 08 00 0C 00 01 00 03 11 59 07 08 03 05 01 00 1F 00 0C 00 01 00 01 00 19 8A 00 3F 0E 0C 49 1B 08 04 07 02 8C D3 39 08 02 03 00 00 00 00 09 00 05 0B 03 0D 15 16 10 07 FF FF 17 08 14 2A 13 67 14 30 09
