@@ -849,7 +849,7 @@ MOVE_0x232: MOVE_EFFECT_BURN
 MOVE_0x236: MOVE_EFFECT_SPEED_MINUS_1
 MOVE_0x237: MOVE_EFFECT_DEF_MINUS_1
 MOVE_0x238: MOVE_EFFECT_DEF_MINUS_1
-MOVE_0x239: MOVE_EFFECT_SPEED_MINUS_1
+MOVE_LOW_SWEEP: MOVE_EFFECT_SPEED_MINUS_1
 MOVE_0x23B: MOVE_EFFECT_EVA_MINUS_1
 MOVE_0x244: MOVE_EFFECT_SLEEP
 MOVE_0x245: MOVE_EFFECT_ALL_STATS_UP | MOVE_EFFECT_AFFECTS_USER
@@ -6284,8 +6284,8 @@ MOVE_0x235
 MOVE_0x236
 MOVE_0x237
 MOVE_0x238
-MOVE_0x239
-MOVE_0x23A
+MOVE_LOW_SWEEP
+MOVE_FEINT
 MOVE_0x23B
 MOVE_0x241
 MOVE_0x242
@@ -6921,7 +6921,7 @@ BattleScript_EffectPartiallyBypassProtect (pj): @10558A0
 
 attackcanceler
 attackstring
-jumpifmove 0x23A, BattleScript_HitFromAtkCanceler
+jumpifmove MOVE_FEINT, BattleScript_HitFromAtkCanceler
 jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_LEFT, BattleScript_PartiallyBypassProtect_PlayerLeft
 jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_LEFT, BattleScript_PartiallyBypassProtect_OpponentLeft
 jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_RIGHT, BattleScript_PartiallyBypassProtect_PlayerRight
