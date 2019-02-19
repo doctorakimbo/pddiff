@@ -1,4 +1,5 @@
-CUR THING: j168C00 (get it ready first)
+CUR THING: j168C00 (too complex for now)
+		   j251800 (clear the way first)
 
 
 
@@ -85,7 +86,7 @@ abilities:
 + 0x90 = Regenerator
 + 0x91 = Big Pecks
 + 0x92 = Sand Rush
-- 0x93 = Wonder Skin
++ 0x93 = Wonder Skin
 + 0x94 = Analytic
 + 0x96 = Imposter
 + 0x97 = Infiltrator
@@ -373,19 +374,19 @@ move IDs:
 = 0x222 = (attacking move with chance to confuse), (animation involves foe being hit by some objects, then a jab, then the curse effect)
 = 0x223 = (attacking move with chance to lower sp. def), (animation has something spin over top of the foe, then the foe turns gray)
 = 0x224 = (attacking move), (animation is Dragon Claw charge-up, then Crunch)
-= 0x225 = (attacking move with chance to raise sp. atk), (animation involves charging up then shooting something, with [move224]'s background)
-= 0x226 = (attacking move), (animation is Bite with some parameter differences and a different sound)
-= 0x227 = (non-attacking move, turns target into pure Rock-type), (animation is heavily Leer-based)
+= 0x225 = (attacking move with chance to raise sp. atk), (animation involves charging up while flashing blue, then shooting something, with [move224]'s background)
+= 0x226 = (attacking move), (animation is a gentle bite)
+= 0x227 = (non-attacking move, turns target into pure Rock-type), (animation is Leer that inverts colors)
 = 0x228 = (attacking move), (animation is Screech with different soundwave sprite and Hex's background)
 + 0x229 = Soak
 + 0x22A = Simple Beam
 + 0x22B = Worry Seed
 = 0x22C = (attacking move), (animation has Moonblast sparkles emanate from user and opponent, on Moonblast's background)
 = 0x22D = (attacking move with Wring Out effect), (animation involves orbs and explosion sounds)
-= 0x22E = (attacking move with chance to lower defense), (animation involves hitting twice and produces a large amount of objects)
-= 0x22F = (attacking move that lowers user's attack and harshly lowers user's defense afterwards), (animation involves glowing reddish and a huge tackle)
-= 0x230 = (attacking move), (animation involves the Swords Dance sound then a slash)
-= 0x231 = (attacking move with chance to lower speed), (animation involves powder sounds then a hit that's shared with Power Whip somehow)
+= 0x22E = (attacking move with chance to lower defense), (animation involves hitting twice as the user sways, and produces a large amount of objects on the foe)
+= 0x22F = (attacking move that lowers user's attack and harshly lowers user's defense afterwards), (animation involves charging up while flashing orange, then a huge tackle)
+= 0x230 = (attacking move), (animation is Swords Dance then Slash)
+= 0x231 = (attacking move with chance to lower speed), (animation involves powder (assumed) spreading outward from the user then a hit that's shared with Power Whip somehow)
 = 0x232 = (attacking move with chance to burn or flinch)
 = 0x233 = (attacking move)
 = 0x234 = (attacking move)
@@ -852,7 +853,7 @@ stray text:
 + expand 40C0A4 (ball sprite templates (? duplicate)) from 12 entries to 26 (A237E0)
 	+ also set 40C104 (gUnknown_840C0A4[ITEM_POKE_BALL]) to A23840
 + expand 40C1C4 (color that mon sprite flashes on release from each ball) from 12 entries to 48 (A24240)
-- expand 456C50 (unknown quest-log-related list of flags) from 17 entries to 19 (j6B0CCC, e16B0CCC)
++ expand 456C50 (unknown quest-log-related list of flags) from 17 entries to 19 (j6B0CCC, e16B0CCC)
 + expand 4886E8 (move descriptions) from from 355 entries to 680 (1020000)
 
 = 006884: ptr 217818 (gUnusedJapaneseFireRedLeafGreenMaleFontGlyphs - emerald name) -> B07500 (gFont2JapaneseGlyphs)
@@ -1390,21 +1391,21 @@ stray text:
 = 05B9D4: PlayerNotOnBikeMoving (see 117disasm)
 		  Implements: running always-on toggle, something else
 		  Required knowledge: j02030C00D
-- 05BB5C: 30 1C 01 A9 22 1C 07 F0 -> 00 48 00 47 71 2A 22 08 (jumps (bx) to extra fn at 222A70, then back (see 118disasm))
++ 05BB5C: 30 1C 01 A9 22 1C 07 F0 -> 00 48 00 47 71 2A 22 08 (jumps (bx) to extra fn at 222A70, then back (see 118disasm))
 		  Implements: forced movement for metatiles 0xB0-0xB5
 + 05BCEC: sub_805BCEC (see 119disasm)
 		  Implements: Strength boulders able to be moved onto metatile 0x1F
-- 05C104: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 E1 2A 22 08 (jumps (bx) to extra fn at 222AE0, then back (see 120disasm))
++ 05C104: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 E1 2A 22 08 (jumps (bx) to extra fn at 222AE0, then back (see 120disasm))
 		  Implements: player walk animations for metatiles 0xB0-0xB5
 = 05C11C: PlayerGoSpeed2 (see 121disasm)
 		  Implements: player fast-walk animations for metatiles 0xB0-0xB5
 		  Requires in future: GetWalkFastMovementAction_New (j2074F0)
-- 05C14C: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 D1 2C 22 08 (jumps (bx) to extra fn at 222CD0, then back (see 120disasm mostly))
++ 05C14C: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 D1 2C 22 08 (jumps (bx) to extra fn at 222CD0, then back (see 120disasm mostly))
 		  Implements: player fastest-walk animations for metatiles 0xB0-0xB5
 + 05C164: PlayerRun (see 121disasm mostly)
 		  Implements: player run animations for metatiles 0xB0-0xB5
 		  Requires in future: GetPlayerRunMovementAction_New (207524)
-- 05C17C: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 A0 2B 22 08 (jumps (bx) to extra fn at 222BA0, then back (see 120disasm mostly))
++ 05C17C: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 A1 2B 22 08 (jumps (bx) to extra fn at 222BA0, then back (see 120disasm mostly))
 		  Implements: player ??? animations for metatiles 0xB0-0xB5 (seems to be FRLG-exclusive)
 = 05C438: PlayCollisionSoundIfNotFacingWarp (see 122disasm)
 		  Implements: Need more info
@@ -1674,7 +1675,7 @@ stray text:
 		  Requires in future: fn_168A10_J, fn_168AC0_J
 + 0B565C: 00 -> 01 (set Shadow Ball sprite.data[0] to 1 instead of 0; no idea what this did)
 + 0BC128, 0F171C: 6E -> 6C (set gBattleAnimTarget to gBattlerTarget instead of gEffectBattler; these unknown animation routines are called by the item steal animation)
-- 0BD3C8: 01 A9 2A 1C A6 F7 28 FB -> 00 48 00 47 61 2C 22 08 (jumps (bx) to extra fn at 222C60, then back (see 195disasm))
++ 0BD3C8: 01 A9 2A 1C A6 F7 28 FB -> 00 48 00 47 61 2C 22 08 (jumps (bx) to extra fn at 222C60, then back (see 195disasm))
 		  Implements: forced movement for metatiles 0xB0-0xB5 (on bike)
 + 0BF1E4: ptr 34 E2 41 08 -> DC 42 FE 08 (Mail "From " -> "")
 + 0BFC7C: 13 -> 15 (heal locations 20 -> 22)
@@ -2669,72 +2670,72 @@ stray text:
 		  Implements: Shadow Claw animation
 + 20E5A0: Move_Dark_Cutter (see animscripts.txt)
 		  Implements: Dark Cutter animation
-- 221B78: movement action function 0xC2
++ 221B78: movement action function 0xC2
   221B94: movement action function 0xC3
   221BB0: movement action function 0xC4  
   221BCC: movement action function 0xC5 (see 271disasm)
 		  Implements: works like regular walking, but the directions are different (south/west = southwest, north = northwest, east = southeast)
-- 221BE8: movement action function 0xC6
++ 221BE8: movement action function 0xC6
   221C04: movement action function 0xC7
   221C20: movement action function 0xC8
   221C3C: movement action function 0xC9 (see 272disasm)
 		  Implements: works like regular walking, but the directions are different (north/east = northeast, south = southeast, west = northwest)
-- 221D08: movement action function 0xD2
++ 221D08: movement action function 0xD2
   221D24: movement action function 0xD3
   221D40: movement action function 0xD4
   221D5C: movement action function 0xD5 (see 273disasm)
 		  Implements: works like regular running, but the directions are different (south/west = southwest, north = northwest, east = southeast)
-- 221D78: movement action function 0xD6
++ 221D78: movement action function 0xD6
   221D94: movement action function 0xD7
   221DB0: movement action function 0xD8
   221DCC: movement action function 0xD9 (see 274disasm)
 		  Implements: works like regular running, but the directions are different (north/east = northeast, south = southeast, west = northwest)
-- 221F88: movement action function 0xDA
++ 221F88: movement action function 0xDA
   221FA4: movement action function 0xDB
   221FC0: movement action function 0xDC
   221FDC: movement action function 0xDD (see 275disasm)
 		  Implements: works like regular "ministep" speed 1 (?), but the directions are different (south/west = southwest, north = northwest, east = southeast)
-- 221FF8: movement action function 0xDE
++ 221FF8: movement action function 0xDE
   222014: movement action function 0xDF
   222030: movement action function 0xE0
   22204C: movement action function 0xE1 (see 276disasm)
 		  Implements: works like regular "ministep" speed 1 (?), but the directions are different (north/east = northeast, south = southeast, west = northwest)
-- 222068: movement action function 0xCA
++ 222068: movement action function 0xCA
   222084: movement action function 0xCB
   2220A0: movement action function 0xCC
   2220BC: movement action function 0xCD (see 277disasm)
 		  Implements: works like regular "ministep" speed 0 (?), but the directions are different (south/west = southwest, north = northwest, east = southeast)
-- 2220D8: movement action function 0xCE
++ 2220D8: movement action function 0xCE
   2220F4: movement action function 0xCF
   222110: movement action function 0xD0
   22212C: movement action function 0xD1 (see 278disasm)
 		  Implements: works like regular "ministep" speed 0 (?), but the directions are different (north/east = northeast, south = southeast, west = northwest)
-- 222358: movement action function 0xBE
++ 222358: movement action function 0xBE
   22237E: movement action function 0xBF
   2223A4: movement action function 0xC0
   2223CA: movement action function 0xC1 (see 279disasm)
 		  Implements: works like regular jumping (speed 0), but in the opposite direction
-- 222404: movement action function 0xBA
++ 222404: movement action function 0xBA
   22242A: movement action function 0xBB
   222450: movement action function 0xBC
   222478: movement action function 0xBD (see 280disasm)
 		  Implements: works like regular jumping (speed 2), but in the opposite direction
-- 222630: movement action function 0xB6
++ 222630: movement action function 0xB6
   22264C: movement action function 0xB7
   222668: movement action function 0xB8
   222684: movement action function 0xB9 (see 281disasm)
 		  Implements: works like regular walking (speed 1), but in the opposite direction
-- 2226B0: movement action function 0xB2
++ 2226B0: movement action function 0xB2
   2226CC: movement action function 0xB3
   2226E8: movement action function 0xB4
   222704: movement action function 0xB5 (see 282disasm)
 		  Implements: works like regular walking (speed 0), but in the opposite direction
-- 222818: movement action function 0xAE
++ 222818: movement action function 0xAE
   222832: movement action function 0xAF
   22284C: movement action function 0xB0
   222866: movement action function 0xB1 (see 283disasm)
 		  Implements: works like regular slow-walking, but in the opposite direction
-- 22292C: movement action function 0xAA
++ 22292C: movement action function 0xAA
   222946: movement action function 0xAB
   222960: movement action function 0xAC
   22297A: movement action function 0xAD (see 284disasm)
@@ -2896,13 +2897,13 @@ stray text:
 		  Implements: Play Nice animation
 +13008D8: Move_Nuzzle (see animscripts.txt)
 		  Implements: Nuzzle animation
--1300A10: Move_??? (see animscripts.txt)
++1300A10: Move_??? (see animscripts.txt)
 		  Implements: [move224] animation
 +1300B80: Move_Trick_Room (see animscripts.txt)
 		  Implements: Trick Room animation
--1300B98: Move_Soak (see animscripts.txt)
++1300B98: Move_Soak (see animscripts.txt)
 		  Implements: Soak animation
--1300D50: Move_??? (see animscripts.txt)
++1300D50: Move_??? (see animscripts.txt)
 		  Implements: [move227] animation
 +1301028: Move_??? (see animscripts.txt)
 		  Implements: [move221] animation
@@ -2910,13 +2911,13 @@ stray text:
 		  Implements: 
 +13014F8: Move_Snarl (see animscripts.txt)
 		  Implements: Snarl animation
--1301740: Move_??? (see animscripts.txt)
++1301740: Move_??? (see animscripts.txt)
 		  Implements: [move230] animation
 +1301880: Move_Venom_Drench (see animscripts.txt)
 		  Implements: Venom Drench animation
--13019A0: Move_??? (see animscripts.txt)
++13019A0: Move_??? (see animscripts.txt)
 		  Implements: [move22E] animation
--1301B70: Move_??? (see animscripts.txt)
++1301B70: Move_??? (see animscripts.txt)
 		  Implements: [move22C] animation
 +1302028: Move_??? (see animscripts.txt)
 		  Implements: [move220] animation
@@ -2931,8 +2932,9 @@ stray text:
 		  GLITCH!: game crash
 +1303098: Move_Chatter (see animscripts.txt)
 		  Implements: Chatter animation
--1303118: Move_Worry_Seed (see animscripts.txt)
+!1303118: Move_Worry_Seed (see animscripts.txt)
 		  Implements: Worry Seed animation
+		  GLITCH!: game crash
 +1303360: Move_??? (see animscripts.txt)
 		  Implements: [move21C] animation
 !13037E0: Move_Power_Whip (see animscripts.txt)
@@ -2954,15 +2956,16 @@ stray text:
 		  Implements: Sucker Punch animation
 +13044C0: Move_??? (see animscripts.txt)
 		  Implements: [move21B] animation
--1304960: Move_??? (see animscripts.txt)
+!1304960: Move_??? (see animscripts.txt)
 		  Implements: [move22D] animation
+		  GLITCH!: game crash
 +1304AD8: Move_??? (see animscripts.txt)
 		  Implements: [move21D] animation
--1304BD8: Move_??? (see animscripts.txt)
++1304BD8: Move_??? (see animscripts.txt)
 		  Implements: [move225] animation
--1304DC0: Move_??? (see animscripts.txt)
++1304DC0: Move_??? (see animscripts.txt)
 		  Implements: [move22F] animation
--1305390: Move_??? (see animscripts.txt)
++1305390: Move_??? (see animscripts.txt)
 		  Implements: [move226] animation
 +13053F0: Move_Disarming_Voice (see animscripts.txt)
 		  Implements: Disarming Voice animation
@@ -2970,12 +2973,11 @@ stray text:
 		  Implements: Boomburst animation
 +13057C0: Move_Clear_Smog (see animscripts.txt)
 		  Implements: Clear Smog animation
--------------13059F0: Move_Petal_Blizzard (see animscripts.txt)
++13059F0: Move_Petal_Blizzard (see animscripts.txt)
 		  Implements: Petal Blizzard animation
-		  Glitch?: Typo in script causes incorrect bg scrolling?
--1305C98: Move_Simple_Beam (see animscripts.txt)
++1305C98: Move_Simple_Beam (see animscripts.txt)
 		  Implements: Simple Beam animation
--1305D30: Move_??? (see animscripts.txt)
++1305D30: Move_??? (see animscripts.txt)
 		  Implements: [move228] animation
 +1306150: Move_Dazzle_Powder (see animscripts.txt)
 		  Implements: Dazzle Powder animation
@@ -2993,7 +2995,7 @@ stray text:
 		  Implements: Cross Poison animation
 +1306FE8: Move_Leaf_Tornado (see animscripts.txt)
 		  Implements: Leaf Tornado animation
--13070F0: Move_??? (see animscripts.txt)
++13070F0: Move_??? (see animscripts.txt)
 		  Implements: [move231] animation
 +13071E8: Move_Inferno (see animscripts.txt)
 		  Implements: Inferno animation
