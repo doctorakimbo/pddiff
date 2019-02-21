@@ -1,0 +1,11 @@
+lbl1: @11FEFE0
+r0 = data_02037F1A
+r1 = *r0
+r2 = *(r0 + 1)
+*r0 = r2
+*(r0 + 1) = r1
+r0 = data_02037E08_J
+r1 = *r0
+r1++
+*r0 = r1
+return

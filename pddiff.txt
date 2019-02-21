@@ -1451,6 +1451,10 @@ stray text:
 		  Required knowledge: j0203D2FF
 ! 070682: 73 F1 6F FA -> 00 00 00 00
 		  Implements: Removes something palette-related (replaced by functionality in 07049A)
+= 0722A4 -> 11FEFE0 (repoint): ??? (see 288disasm)
+		  Implements: new animation script command that 
+= 0722A8 -> 11FEF90 (repoint): ??? (see 289disasm)
+		  Implements: new animation script command that 
 ! 078A6E: F7 F7 BD FC -> 00 00 00 00
 		  Implements: never fades in the green palette on title screen (still does if intro skipped), not yet clear what this means
 = 078BFC: 00 23 C1 5E 06 48 -> 07 49 08 47 08 BC
@@ -2990,7 +2994,7 @@ stray text:
 +13044C0: Move_??? (see animscripts.txt)
 		  Implements: [move21B] animation
 =1304848: Move_??? (see animscripts.txt)
-		  Implements: <<<<<<<<IMPORTANT NOTE (put here so I'll notice it): E1 EF 1F 09 91 EF 1F 09 (hang1 and hang2)>>>>>>>>
+		  Implements: 
 !1304960: Move_??? (see animscripts.txt)
 		  Implements: [move22D] animation
 		  GLITCH!: game crash
