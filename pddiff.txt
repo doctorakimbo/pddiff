@@ -1,6 +1,7 @@
 CUR THING: j168C00 (too complex for now)
 		   j250C04-j25265C is now ready
-
+		   j1FF300-j20F500 is now ready
+		   j1830C0-j183B40 is now ready
 
 
 ignore the following (pe):
