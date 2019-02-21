@@ -1,0 +1,39 @@
+lbl1: @11FEF90
+r6 = sBattleAnimScriptPtr
+r4 = gBattleAnimAttacker
+r7 = data_0203B980
+r5 = *r6
+r0 = *(r5 + 1)
+if(r0 == 3) goto lbl2
+
+r1 = *r4
+*r7 = r1
+if(r0 == 1) goto lbl3
+
+if(r0 == 2) goto lbl4
+
+r0 = *r4
+*(r4 + 1) = r0
+goto lbl5
+
+lbl2:
+r0 = *r7
+*r4 = r0
+goto lbl5
+
+lbl3:
+r0 = *(r4 + 1)
+*r4 = r0
+goto lbl5
+
+lbl4:
+r0 = *(r4 + 1)
+r1 = *r4
+*r4 = r0
+*(r4 + 1) = r1
+goto lbl5
+
+lbl5:
+r5 += 2
+*r6 = r5
+return

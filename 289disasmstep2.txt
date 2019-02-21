@@ -1,0 +1,24 @@
+fn_11FEF90()
+{
+	if(*(*sBattleAnimScriptPtr + 1) == 3)
+		*gBattleAnimAttacker = *data_0203B980
+	else
+	{
+		*data_0203B980 = *gBattleAnimAttacker
+		
+		switch(*(*sBattleAnimScriptPtr + 1))
+		{
+		case 0:
+			*gBattleAnimTarget = *gBattleAnimAttacker
+			break;
+		case 1:
+			*gBattleAnimAttacker = *gBattleAnimTarget
+			break;
+		case 2:
+			swap(*gBattleAnimAttacker, *gBattleAnimTarget)
+			break;
+		}
+	}
+	
+	*sBattleAnimScriptPtr += 2
+}

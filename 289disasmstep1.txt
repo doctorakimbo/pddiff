@@ -1,0 +1,40 @@
+fn_11FEF90()
+{
+	r6 = sBattleAnimScriptPtr
+	r4 = gBattleAnimAttacker
+	r7 = data_0203B980
+	r5 = *r6
+	r0 = *(r5 + 1)
+	
+	if(r0 == 3)
+	{
+		r0 = *r7
+		*r4 = r0
+	}
+	else
+	{
+		r1 = *r4
+		*r7 = r1
+		
+		switch(r0)
+		{
+		case 0:
+			r0 = *r4
+			*(r4 + 1) = r0
+			break;
+		case 1:
+			r0 = *(r4 + 1)
+			*r4 = r0
+			break;
+		case 2:
+			r0 = *(r4 + 1)
+			r1 = *r4
+			*r4 = r0
+			*(r4 + 1) = r1
+			break;
+		}
+	}
+	
+	r5 += 2
+	*r6 = r5
+}

@@ -1,0 +1,24 @@
+ScriptCmd_storeorloadbattlers()
+{
+	if(sBattleAnimScriptPtr[1] == 3)
+		(gBattleAnimAttacker, gBattleAnimTarget) = gAnimBattlersBackup
+	else
+	{
+		gAnimBattlersBackup = (gBattleAnimAttacker, gBattleAnimTarget)
+		
+		switch(sBattleAnimScriptPtr[1])
+		{
+		case 0:
+			gBattleAnimTarget = gBattleAnimAttacker
+			break;
+		case 1:
+			gBattleAnimAttacker = gBattleAnimTarget
+			break;
+		case 2:
+			swap(gBattleAnimAttacker, gBattleAnimTarget)
+			break;
+		}
+	}
+	
+	sBattleAnimScriptPtr += 2
+}

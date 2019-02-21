@@ -862,10 +862,9 @@ stray text:
 		  (wait until playthrough - is this the equivalent of removing gender colors?)
 = 008CF8, 008D2C, 1361B4: 0A -> 0C (pkmnnamelength)
 = 00960C: 36 -> 33 (some sort of link-related graphics function?, see 1disasm)
-= 00D311: 68 -> 47
-  00D320: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j252400, see 02disasm))
-		  Implements: need more info
-		  Required knowledge: j0203B900, j0203C00D, j0203D500
+- 00D311: 68 -> 47
+  00D320: 4C 2B 02 02 -> 01 24 25 08 (jumps (bx) to extra fn at 252400, then back (see 02disasm))
+		  Implements: clears various data on battle start
 + 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (unclear, but gives more variance to personality values)
 = 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC, 1035AC, 103652, 1036F2, 10378A, 103826, 1038B8, 104DF6, 10647E, 113EE8, 119420, 11AC48, 11AFDE, 11B01C, 1218EC, 136248: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
@@ -877,9 +876,9 @@ stray text:
 		  Implements: Unburden (effect), Quick Feet, Stall, Klutz (speed items), Slow Start (Speed reduction), Sand Rush, Prankster, Gale Wings [gen 6], Slush Rush, Choice Scarf (speed boost), Lagging Tail, Tailwind (effect), Trick Room (effect), 1/4 -> 1/2 paralysis speed cut, removal of badge 3 bonus
 		  Relies on: weather refactor, returns 0 sometimes instead of 1 or 2
 		  Glitch: Stall and Trick Room are in wrong order, Stall goes first in Trick Room (probably doesn't matter in P/D itself)
-= 015910: HandleEndTurn_FinishBattle (see 05disasm)
+- 015910: HandleEndTurn_FinishBattle (see 05disasm)
 		  Implements: EVs recalculated per battle (?)
-		  Requires in future: extra fn j207370
+		  Requires in future: extra fn 207370
 = 015CA0: HandleAction_UseMove (+CheckSwitchToSpreadMoveScript, BattleScript_EffectSpreadMove) (see 06disasm)
 		  Implements: Storm Drain (redirection), Mold Breaker+ (vs redirection)
 		  Relies on: gChosenActionByBattler changed to something else
@@ -929,10 +928,9 @@ stray text:
 		  Relies on: weather refactor, cloud nine/intimidate id change????, gSpecialStatuses[battler].intimidatedMon?
 		  Requires in future: GetAbilityUserOnSameSide, GetWeatherTurns, CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Note: Check Weak Armor vs Psyshock, might be wrong
-= 01BC68: ItemBattleEffects (+ CheckUnnerve, IsAffectedBySheerForce, GetPinchThreshholdFromParam, GetMoveWithNoPP, GetPartyIndex, CheckAndRunCheekPouch) (see 14disasm)
+- 01BC68: ItemBattleEffects (+ CheckUnnerve, IsAffectedBySheerForce, GetPinchThreshholdFromParam, GetMoveWithNoPP, GetPartyIndex, CheckAndRunCheekPouch) (see 14disasm)
 		  Implements: Magic Guard (Life Orb), Klutz (berries, Amulet Coin, Leftovers, White Herb, Mental Herb, Shell Bell, the item effects here), Sheer Force (Life Orb/Shell Bell glitch), Unnerve (Gen3 berries), modern Sitrus Berry, Black Sludge, Life Orb, status cure items/white herb consumed immediately
-		  Required knowledge: j0203B950
-		  Requires in future: GetPinchThreshhold (j207450), PushScriptInstr (j207470)
+		  Requires in future: GetPinchThreshhold (207450), PushScriptInstr (207470)
 		  Glitch?: white herb/amulet coin might not work unless unnerve IS active
 ! 01D402: 97 -> FC (PDONLY, makes mew not disobey)
 + 01D760: atk00_attackcanceler (see 15disasm)
@@ -964,9 +962,9 @@ stray text:
 		  Implements: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Storm Drain (immunity), Unnerve (type-resist berries), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Bulletproof, Galvanize (type change), Dazzling, Queenly Majesty, Expert Belt, type-resist berries, grass-type powder immunity
 		  Requires in future: RunTypeEffectivenessBasedAbilities (j2076B0), IsMoveBlockedByAbility (j251DA0), AteAbilityConversionTable (j168CB4)
 		  Glitch?: Solid Rock might be 3/4 to ALL damage
-= 01EFCC: AI_TypeCalc (see 23disasm)
+- 01EFCC: AI_TypeCalc (see 23disasm)
 		  Implements: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Storm Drain (immunity), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Bulletproof, Dazzling, Queenly Majesty, grass-type powder immunity
-		  Requires in future: IsMoveBlockedByAbility (j251DA0)
+		  Requires in future: IsMoveBlockedByAbility (251DA0)
 		  Notes: Of the three, only atk06_typecalc contains the Mold Breaker functionality (besides vs Solid Rock)/Sheer Cold immunity/(bcs 0x1E items), only TypeCalc contains the Hidden Power calc/non-Levitate ability immunities/type-resist berries, and AI_TypeCalc doesn't have anything but the immunity abilities (no Mold Breaker even); not sure what this implies
 = 01F104: atk07_adjustnormaldamage (+HasItemWithTypeEffect, GetWeatherTurns) (see 24disasm)
 		  Implements: modern Sturdy, Klutz (Focus Band, the item effects here), Mold Breaker+ (vs Sturdy), Unnerve (type-resist berries), Infiltrator (foe can endure when hit through Substitute), Focus Sash, type-resist berries, foe can endure when hit by sound moves through Substitute
@@ -977,13 +975,12 @@ stray text:
 		  Implements: modern Sturdy, Klutz (enduring (Focus) items), Mold Breaker+ (vs Sturdy), Infiltrator (foe can endure when hit through Substitute), Focus Sash, foe can endure when hit by sound moves through Substitute
 		  Relies on: atk07_adjustnormaldamage
 		  Note: Actually just calls atk07_adjustnormaldamage with gCurrentMove set to 0
-= 01F5A8: atk0B_healthbarupdate (see 26disasm)
+- 01F5A8: atk0B_healthbarupdate (see 26disasm)
 		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute
 		  Relies on: atk0C_datahpupdate changes (to make room)
 		  Note: Removes 10000 hard damage limit, might break something?
-= 01F684 -> 01F6A0 (repoint): atk0C_datahpupdate (see 27disasm)
-		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute, (j0203B950?)
-		  Required knowledge: j0203B950
+- 01F684 -> 01F6A0 (repoint): atk0C_datahpupdate (see 27disasm)
+		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute, (0203B950?)
 		  Glitch?: special moves might not be set properly (moveType >= 8 when moveType is now a P/S signifier)
 = 01FBA0: atk0F_resultmessage (+ConsumeItem, BattleScript_ConsumeDamageReductionBerry, script_1F552_J) (see 28disasm)
 		  Implements: Focus Sash (consumption on use)
@@ -1017,10 +1014,10 @@ stray text:
 		  Implements: Modern Struggle
 		  Relies on: changes at 020F78
 		  GLITCH!: Struggle has 100% HP recoil, some other change probably needed
-= 020B70, 020BF8, 1D968D: ptr D1 6B 1D 08 -> XX XX XX 08 (j0229DE)
-= 020BB4, 020C3C: ptr 62 6C 1D 08 -> XX XX XX 08 (j0229EF)
+= 020B70, 020BF8, 1D968D: ptr D1 6B 1D 08 -> D0 31 02 08
+= 020BB4, 020C3C: ptr 62 6C 1D 08 -> EF 31 02 08
 		  Implements: need more info
-		  Requires in future: script_229DE_J, script_229EF_J
+		  Requires in future: script_231D0, script_231EF
 = 020F00: (see 29disasm)
 		  Implements: Smelling Salts effect now removes all status
 		  Relies on: double-damage-on-status effect implementation
@@ -1048,7 +1045,7 @@ stray text:
   022FD4: 04 DC -> 0B DA
   022FE7: D0 -> DA
 		  Implements: Correct stat animations for drastically/severely
-= 02301C: atk48_playstatchangeanimation (+BattleScript_FlowerVeilProtects) (see 36disasm)
+= 02301C: atk48_playstatchangeanimation (+BattleScript_FlowerVeilProtects, script_231D0, script_231EF) (see 36disasm)
 		  Implements: Mold Breaker+ (vs stat-reduction prevention abilities), Contrary, Big Pecks, Infiltrator (vs Mist), Flower Veil (vs stat reduction)
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Glitch: 0x68 (Mold Breaker) is instead 0x97, test mold breaker vs clear body
@@ -1452,10 +1449,10 @@ stray text:
 		  Required knowledge: j0203D2FF
 ! 070682: 73 F1 6F FA -> 00 00 00 00
 		  Implements: Removes something palette-related (replaced by functionality in 07049A)
-= 0722A4 -> 11FEFE0 (repoint): ??? (see 288disasm)
-		  Implements: new animation script command that 
-= 0722A8 -> 11FEF90 (repoint): ??? (see 289disasm)
-		  Implements: new animation script command that 
+- 072B00 -> 11FEFE0 (repoint): ScriptCmd_swapattackerandtarget (see 288disasm)
+		  Implements: new animation script command that swaps the attacker and target pointers
+- 072B04 -> 11FEF90 (repoint): ScriptCmd_storeorloadbattlers (see 289disasm)
+		  Implements: new animation script command that (arg = 0: stores the battlers then sets the target to the attacker; arg = 1: stores the battlers then sets the attacker to the target; arg = 2: stores the battlers then swaps them; arg = 3: loads the stored battlers)
 ! 078A6E: F7 F7 BD FC -> 00 00 00 00
 		  Implements: never fades in the green palette on title screen (still does if intro skipped), not yet clear what this means
 = 078BFC: 00 23 C1 5E 06 48 -> 07 49 08 47 08 BC

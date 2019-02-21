@@ -154,8 +154,10 @@ F8 75 03 02: 2C 75 03 02: gPlttBufferFaded
 B8 7A 03 02: EC 79 03 02: gPaletteFade
 C8 7A 03 02: FC 79 03 02: ??????
 		   : 14 7B 03 02: ?????? (fn_9396A8_J: some sort of data is copied into this)
+D4 7E 03 02: 08 7E 03 02: sBattleAnimScriptPtr
 02 7F 03 02: 36 7E 03 02: gBattleAnimArgs
-1A 7F 03 02: 4E 7E 03 02: ??????
+1A 7F 03 02: 4E 7E 03 02: gBattleAnimAttacker
+1B 7F 03 02: 4F 7E 03 02: gBattleAnimTarget
 30 7F 03 02: 64 7E 03 02: ??????
 34 7F 03 02: 68 7E 03 02: gWeatherPtr
 94 83 03 02: C8 82 03 02: gWeatherPtr->altGammaShifts
@@ -201,9 +203,9 @@ C0 B0 03 02: 34 B0 03 02: ??????
 44 B1 03 02: B8 B0 03 02: ??????
 		   : 00 B8 03 02: ?????? (fn_4151F2_J: sprite and palette data temporarily stored here)
 								 (fn_415262_J: sprite and palette data temporarily stored here)
-           : 00 B9 03 02: gDestinyBondUses (sub_8032768: zeroed starting from here to 0203BB00)
+00 B9 03 02: 00 B9 03 02: gDestinyBondUses (sub_8032768: zeroed starting from here to 0203BB00)
 18 B9 03 02: 18 B9 03 02: gRecordedAbilities
-		   : 50 B9 03 02: ?????? (appears to be an array of bits, one for each battler)
+50 B9 03 02: 50 B9 03 02: ?????? (appears to be an array of bits, one for each battler)
 								 (ItemBattleEffects: all cleared at start of cases ITEMEFFECT_ON_SWITCH_IN and ITEMEFFECT_TURN_END)
 								 (ItemBattleEffects: only executes case ITEMEFFECT_MOVE_END if this battler's bit is set)
 								 (atk01_accuracycheck: set the target's bit and clears others if the move doesn't miss (only if accuracy was checked at all))
@@ -217,6 +219,7 @@ C0 B0 03 02: 34 B0 03 02: ??????
 70 B9 03 02: 70 B9 03 02: ?????? (appears to be an array of unknown objects; first field is a 4-entry array of 2 bytes each, second field is a 4-entry array of 1 byte each)
 								 (atk02_attackstring: when player attacks: insert [gCurrentMove, 0] into the first empty slot for the mon, or increment the field2 of the first entry where field1 = gCurrentMove and field2 != 0xFF, whichever comes first)
 								 (atk02_attackstring: when player attacks: if neither of the above is available, insert [gCurrentMove, 0] into the last slot where field2 != 0xFF; if even that fails, insert it into the first slot)
+80 B9 03 02: 80 B9 03 02: gAnimBattlersBackup
 FF B9 03 02: FF B9 03 02: gHasPlayedStatAnimation
 00 BB 03 02: 00 BB 03 02: gLoadedSave_ExtraItemData
 		   : 30 BF 03 02: ?????? (appears to be (0-3) array of ptrs to Sprites, (4) int)
@@ -243,7 +246,7 @@ FF B9 03 02: FF B9 03 02: gHasPlayedStatAnimation
 		   : F4 BF 03 02: ?????? (CanUseNewAI: If gBattleTypeFlags & 0x100 (BATTLE_TYPE_BATTLE_TOWER?), read the AI flags from here)
 								 (BattleAI_SetupAIData: When the AI flags would be set to 7 ("highest"), read them from here instead)
 00 C0 03 02: 00 C0 03 02: ?????? (NewGameInitData: zeroed starting from here to 0203CEC4)
-		   : 0D C0 03 02: ?????? (sub_8032768: this.1 is set to 0)
+0D C0 03 02: 0D C0 03 02: ?????? (sub_8032768: this.1 is set to 0)
 								 (music_something: this.1 is set to 0)
 								 {SoftForceDirection: if (this.0 & 2) isn't set, the player isn't on foot, surfing, or (?acrobike), there's not an existing direction, and this.1 isn't 0, this.2 corresponds to the new direction: this.2 & DPAD_DOWN = south, this.2 & DPAD_UP = north, this.2 & DPAD_LEFT = west, otherwise east}
 								 (MovePlayerAvatarUsingKeypadInput: MovePlayerOnBike is only run if (this.0 & 2) isn't set, otherwise MovePlayerNotOnBike)
@@ -346,7 +349,7 @@ B4 C2 03 02: B4 C2 03 02: gDaycareParentMoves[1]
 								 (fn_415714_J: if this[0xF] isn't set and arg0 is 0, rotate the first three bytes left 4)
 								 (fn_415714_J: if this[0xF] isn't set and arg0 is 1, rotate the first three bytes right 4)
 								 (fn_415714_J: set this[0xF])
-           : 00 D5 03 02: ?????? (sub_8032768: zeroed starting from here to 0203D600)
+00 D5 03 02: 00 D5 03 02: ?????? (sub_8032768: zeroed starting from here to 0203D600)
 								 (fn_E9EA40_J: set to 0 at start)
 								 (fn_E9EBB0_J: if data_0203D52A_J is 0xFF, increment this and set REG_BLDY to this each frame until 0x10, then set data_0203D52A_J to 0xFE)
 								 (fn_E9EBB0_J: if data_0203D52A_J is 0xFE, decrement this and set REG_BLDY to this each frame until 0, then set data_0203D52A_J to 0)
@@ -585,7 +588,7 @@ funcs e,j,desc:
 04101C = 04070C = CalculatePPWithBonus
 042EB4 = 0425A4 = GetNatureFromPersonality
 043298 = 042988 = SpeciesToNationalPokedexNum
-043A70 = CheckPartyPokerus
+043A70 = 04312C = CheckPartyPokerus
 043AD8 = 043194 = CheckPartyHasHadPokerus
 043C2C = 043278 = CanMonLearnTMHM
 043DD4 = 043420 = GetLevelUpMovesBySpecies
