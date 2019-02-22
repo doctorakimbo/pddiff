@@ -372,7 +372,7 @@ move IDs:
 = 0x21F = (attacking move with chance to raise speed), (animation is Glide on Mach Punch's background)
 = 0x220 = (attacking move with chance to lower defense), (animation is similar to Psychic but produces a lot of objects on the foe and has Psycho Cut's background)
 = 0x221 = (attacking move with chance to flinch), (animation involves user disappearing, then foe being repeatedly jabbed)
-= 0x222 = (attacking move with chance to confuse), (animation involves foe being hit by some objects, then a jab, then the curse effect)
+= 0x222 = (attacking move with chance to confuse), (animation involves foe being surrounded by some objects, then the curse effect)
 = 0x223 = (attacking move with chance to lower sp. def), (animation has something spin over top of the foe, then the foe turns gray)
 = 0x224 = (attacking move), (animation is Dragon Claw charge-up, then Crunch)
 = 0x225 = (attacking move with chance to raise sp. atk), (animation involves charging up while flashing blue, then shooting something, with [move224]'s background)
@@ -383,7 +383,7 @@ move IDs:
 + 0x22A = Simple Beam
 + 0x22B = Worry Seed
 = 0x22C = (attacking move), (animation has Moonblast sparkles emanate from user and opponent, on Moonblast's background)
-= 0x22D = (attacking move with Wring Out effect), (animation involves orbs and explosion sounds)
+= 0x22D = (attacking move with Wring Out effect), (animation has the foe absorb light then explode)
 = 0x22E = (attacking move with chance to lower defense), (animation involves hitting twice as the user sways, and produces a large amount of objects on the foe)
 = 0x22F = (attacking move that lowers user's attack and harshly lowers user's defense afterwards), (animation involves charging up while flashing orange, then a huge tackle)
 = 0x230 = (attacking move), (animation is Swords Dance then Slash)
@@ -392,7 +392,7 @@ move IDs:
 = 0x233 = (attacking move), (soundwave move that uses the user's cry, on Aura Sphere's background)
 = 0x234 = (attacking move), (animation is a Steel-type Take Down with a new background)
 = 0x235 = (attacking move), (animation is Barrier then Luster Purge, on Psycho Cut's background)
-= 0x236 = (attacking move with chance to lower speed or raise user's speed), (animation involves leaves (assumed) spreading outward from the user twice as much as [move231], with [move231]'s background)
+= 0x236 = (attacking move with chance to lower speed or raise user's speed), (animation involves leaves (assumed) spreading outward from the user and then the target, with [move231]'s background)
 = 0x237 = (attacking move with chance to lower defense), (animation throws something)
 = 0x238 = (attacking move with chance to lower defense), (animation throws something)
 + 0x239 = Low Sweep
@@ -679,7 +679,7 @@ battle strings (ADD 9 TO ALL):
 + 0x19B = "[PKMN]'s [ABILITY] bounced [MOVE] back! (placeholder)"
 ! 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]! (placeholder)"
 ! 0x19D = "[PKMN] restored HP using its [ABILITY]! (placeholder)"
-! 0x19E = "[PKMN] is hurt by its [ITEM]!"
++ 0x19E = "[PKMN] is hurt by its [ITEM]!"
 + 0x1FF = "[PKMN] decided to explode! (placeholder)"
 + 0x200 = "[PKMN] shared its power with the target!"
 + 0x201 = "[PKMN] shared its guard with the target!"
@@ -862,7 +862,7 @@ stray text:
 		  (wait until playthrough - is this the equivalent of removing gender colors?)
 = 008CF8, 008D2C, 1361B4: 0A -> 0C (pkmnnamelength)
 = 00960C: 36 -> 33 (some sort of link-related graphics function?, see 1disasm)
-- 00D311: 68 -> 47
++ 00D311: 68 -> 47
   00D320: 4C 2B 02 02 -> 01 24 25 08 (jumps (bx) to extra fn at 252400, then back (see 02disasm))
 		  Implements: clears various data on battle start
 + 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (unclear, but gives more variance to personality values)
@@ -876,8 +876,8 @@ stray text:
 		  Implements: Unburden (effect), Quick Feet, Stall, Klutz (speed items), Slow Start (Speed reduction), Sand Rush, Prankster, Gale Wings [gen 6], Slush Rush, Choice Scarf (speed boost), Lagging Tail, Tailwind (effect), Trick Room (effect), 1/4 -> 1/2 paralysis speed cut, removal of badge 3 bonus
 		  Relies on: weather refactor, returns 0 sometimes instead of 1 or 2
 		  Glitch: Stall and Trick Room are in wrong order, Stall goes first in Trick Room (probably doesn't matter in P/D itself)
-- 015910: HandleEndTurn_FinishBattle (see 05disasm)
-		  Implements: EVs recalculated per battle (?)
++ 015910: HandleEndTurn_FinishBattle (see 05disasm)
+		  Implements: EVs recalculated per battle
 		  Requires in future: extra fn 207370
 = 015CA0: HandleAction_UseMove (+CheckSwitchToSpreadMoveScript, BattleScript_EffectSpreadMove) (see 06disasm)
 		  Implements: Storm Drain (redirection), Mold Breaker+ (vs redirection)
@@ -928,10 +928,13 @@ stray text:
 		  Relies on: weather refactor, cloud nine/intimidate id change????, gSpecialStatuses[battler].intimidatedMon?
 		  Requires in future: GetAbilityUserOnSameSide, GetWeatherTurns, CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Note: Check Weak Armor vs Psyshock, might be wrong
-- 01BC68: ItemBattleEffects (+ CheckUnnerve, IsAffectedBySheerForce, GetPinchThreshholdFromParam, GetMoveWithNoPP, GetPartyIndex, CheckAndRunCheekPouch) (see 14disasm)
++ 01BC68: ItemBattleEffects (+ CheckUnnerve, IsAffectedBySheerForce, GetPinchThreshholdFromParam, GetMoveWithNoPP, GetPartyIndex, CheckAndRunCheekPouch) (see 14disasm)
 		  Implements: Magic Guard (Life Orb), Klutz (berries, Amulet Coin, Leftovers, White Herb, Mental Herb, Shell Bell, the item effects here), Sheer Force (Life Orb/Shell Bell glitch), Unnerve (Gen3 berries), modern Sitrus Berry, Black Sludge, Life Orb, status cure items/white herb consumed immediately
 		  Requires in future: GetPinchThreshhold (207450), PushScriptInstr (207470)
 		  Glitch?: white herb/amulet coin might not work unless unnerve IS active
+		  GLITCH!: Magic Guard/Klutz/Sheer Force don't stop Life Orb recoil
+		  Note: Life Orb message isn't canon, fix later
+		  Note: Test berries, etc. later once atk01_accuracycheck is added, currently broken
 ! 01D402: 97 -> FC (PDONLY, makes mew not disobey)
 + 01D760: atk00_attackcanceler (see 15disasm)
 		  Implements: Magic Bounce, Protean, Mold Breaker+ (vs Magic Bounce)
@@ -962,10 +965,10 @@ stray text:
 		  Implements: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Storm Drain (immunity), Unnerve (type-resist berries), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Bulletproof, Galvanize (type change), Dazzling, Queenly Majesty, Expert Belt, type-resist berries, grass-type powder immunity
 		  Requires in future: RunTypeEffectivenessBasedAbilities (j2076B0), IsMoveBlockedByAbility (j251DA0), AteAbilityConversionTable (j168CB4)
 		  Glitch?: Solid Rock might be 3/4 to ALL damage
-- 01EFCC: AI_TypeCalc (see 23disasm)
++ 01EFCC: AI_TypeCalc (see 23disasm)
 		  Implements: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Storm Drain (immunity), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Bulletproof, Dazzling, Queenly Majesty, grass-type powder immunity
 		  Requires in future: IsMoveBlockedByAbility (251DA0)
-		  Notes: Of the three, only atk06_typecalc contains the Mold Breaker functionality (besides vs Solid Rock)/Sheer Cold immunity/(bcs 0x1E items), only TypeCalc contains the Hidden Power calc/non-Levitate ability immunities/type-resist berries, and AI_TypeCalc doesn't have anything but the immunity abilities (no Mold Breaker even); not sure what this implies
+		  Notes: Of the three, only atk06_typecalc contains the Mold Breaker functionality (besides vs Solid Rock)/Sheer Cold immunity/Gems, only TypeCalc contains the Hidden Power calc/non-Levitate ability immunities/type-resist berries, and AI_TypeCalc doesn't have anything but the immunity abilities (no Mold Breaker even); not sure what this implies
 = 01F104: atk07_adjustnormaldamage (+HasItemWithTypeEffect, GetWeatherTurns) (see 24disasm)
 		  Implements: modern Sturdy, Klutz (Focus Band, the item effects here), Mold Breaker+ (vs Sturdy), Unnerve (type-resist berries), Infiltrator (foe can endure when hit through Substitute), Focus Sash, type-resist berries, foe can endure when hit by sound moves through Substitute
 		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_ConsumeDamageReductionBerry (e1FD33, j1F543)
@@ -975,11 +978,11 @@ stray text:
 		  Implements: modern Sturdy, Klutz (enduring (Focus) items), Mold Breaker+ (vs Sturdy), Infiltrator (foe can endure when hit through Substitute), Focus Sash, foe can endure when hit by sound moves through Substitute
 		  Relies on: atk07_adjustnormaldamage
 		  Note: Actually just calls atk07_adjustnormaldamage with gCurrentMove set to 0
-- 01F5A8: atk0B_healthbarupdate (see 26disasm)
++ 01F5A8: atk0B_healthbarupdate (see 26disasm)
 		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute
 		  Relies on: atk0C_datahpupdate changes (to make room)
 		  Note: Removes 10000 hard damage limit, might break something?
-- 01F684 -> 01F6A0 (repoint): atk0C_datahpupdate (see 27disasm)
++ 01F684 -> 01F6A0 (repoint): atk0C_datahpupdate (see 27disasm)
 		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute, (0203B950?)
 		  Glitch?: special moves might not be set properly (moveType >= 8 when moveType is now a P/S signifier)
 = 01FBA0: atk0F_resultmessage (+ConsumeItem, BattleScript_ConsumeDamageReductionBerry, script_1F552_J) (see 28disasm)
@@ -1449,9 +1452,9 @@ stray text:
 		  Required knowledge: j0203D2FF
 ! 070682: 73 F1 6F FA -> 00 00 00 00
 		  Implements: Removes something palette-related (replaced by functionality in 07049A)
-- 072B00 -> 11FEFE0 (repoint): ScriptCmd_swapattackerandtarget (see 288disasm)
++ 072B00 -> 11FEFE0 (repoint): ScriptCmd_swapattackerandtarget (see 288disasm)
 		  Implements: new animation script command that swaps the attacker and target pointers
-- 072B04 -> 11FEF90 (repoint): ScriptCmd_storeorloadbattlers (see 289disasm)
++ 072B04 -> 11FEF90 (repoint): ScriptCmd_storeorloadbattlers (see 289disasm)
 		  Implements: new animation script command that (arg = 0: stores the battlers then sets the target to the attacker; arg = 1: stores the battlers then sets the attacker to the target; arg = 2: stores the battlers then swaps them; arg = 3: loads the stored battlers)
 ! 078A6E: F7 F7 BD FC -> 00 00 00 00
 		  Implements: never fades in the green palette on title screen (still does if intro skipped), not yet clear what this means
@@ -2218,11 +2221,12 @@ stray text:
 		  Implements: possibly move category icons on summary screen
 		  Required knowledge: j0203B0E1, j06009140
 		  Requires in future: fn_D7DEC0_J
-+ 13A42E: 10 -> BA
+! 13A42E: 10 -> BA
   13A434: 2D -> 20
   13A44C: 10 -> 9A
   13A452: 26 -> 1C
-		  Implements: no idea what this does
+		  Implements: move status icon on summary screen up/right
+		  Relies on: layout rework to make this not look broken
 ! 13A57E: 24 -> 59
 		  Implements: move HP bar on summary screen down
 		  Relies on: layout rework to make this not look broken
@@ -2957,14 +2961,12 @@ stray text:
 		  Implements: Hex animation
 +1302978: Move_??? (see animscripts.txt)
 		  Implements: [move244] animation
-!1302E58: Move_??? (see animscripts.txt)
++1302E58: Move_??? (see animscripts.txt)
 		  Implements: [move222] animation
-		  GLITCH!: game crash
 +1303098: Move_Chatter (see animscripts.txt)
 		  Implements: Chatter animation
-!1303118: Move_Worry_Seed (see animscripts.txt)
++1303118: Move_Worry_Seed (see animscripts.txt)
 		  Implements: Worry Seed animation
-		  GLITCH!: game crash
 +1303360: Move_??? (see animscripts.txt)
 		  Implements: [move21C] animation
 +1303408: Move_??? (see animscripts.txt)
@@ -2993,9 +2995,8 @@ stray text:
 		  Implements: [move21B] animation
 =1304848: Move_??? (see animscripts.txt)
 		  Implements: 
-!1304960: Move_??? (see animscripts.txt)
++1304960: Move_??? (see animscripts.txt)
 		  Implements: [move22D] animation
-		  GLITCH!: game crash
 +1304AD8: Move_??? (see animscripts.txt)
 		  Implements: [move21D] animation
 +1304BD8: Move_??? (see animscripts.txt)
@@ -3036,9 +3037,8 @@ stray text:
 		  Implements: Cross Poison animation
 +1306FE8: Move_Leaf_Tornado (see animscripts.txt)
 		  Implements: Leaf Tornado animation
-!13070A8: Move_??? (see animscripts.txt)
++13070A8: Move_??? (see animscripts.txt)
 		  Implements: [move236] animation
-		  GLITCH!: game crash
 +13070F0: Move_??? (see animscripts.txt)
 		  Implements: [move231] animation
 +13071E8: Move_Inferno (see animscripts.txt)
@@ -3069,9 +3069,8 @@ stray text:
 		  Implements: Icicle Crash animation
 +1308DC0: Move_Psycho_Cut (see animscripts.txt)
 		  Implements: Psycho Cut animation
-!1308F80: Move_Raze_Earth (see animscripts.txt)
++1308F80: Move_Raze_Earth (see animscripts.txt)
 		  Implements: Raze Earth animation
-		  GLITCH!: game crash
 +13091A0: Move_Rock_Wrecker (see animscripts.txt)
 		  Implements: Rock Wrecker animation
 +1309278: Move_??? (see animscripts.txt)
