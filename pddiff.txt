@@ -2,6 +2,8 @@ CUR THING: j168C00 (too complex for now)
 		   j250C04-j25265C is now ready
 		   j1FF300-j20F500 is now ready
 		   j1830C0-j183B40 is now ready
+		   j3915EC (do this one)
+		   test (gLevelUpLearnsets -> 02021D90)
 
 
 ignore the following (pe):
@@ -988,7 +990,7 @@ stray text:
 = 01FBA0: atk0F_resultmessage (+ConsumeItem, BattleScript_ConsumeDamageReductionBerry, script_1F552_J) (see 28disasm)
 		  Implements: Focus Sash (consumption on use)
 		  Relies on: gChosenActionByBattler changed to something else
-= 01FF20: Parts of SetMoveEffect (see 29disasm)
+- 01FF20: Parts of SetMoveEffect (see 29disasm)
 		  Implements: Leaf Guard (vs secondary effects), Mold Breaker (vs Shield Dust), Infiltrator (secondary effects working through Substitute), Sweet Veil (vs secondary effects), Flower Veil (vs secondary-effect status), secondary effects of sound moves working through Substitute
 		  Relies on: changes at 0206A2
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
@@ -998,7 +1000,7 @@ stray text:
 		  Implements: electric-type immunity to paralysis secondary effects
 + 020596: 0B 4A 0B 49 0B 78 58 21 4B 43 4C 32 9B 18 03 21 01 40 02 31 18 68 08 43 18 60 16 E0 -> 03 21 A8 F1 FC FB 83 1C 15 E0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 		  Implements: max sleep turns 5 -> 4
-= 0206A2: 4B 46 19 78 58 20 41 43 40 46 50 30 09 18 0A 4A F3 78 98 00 80 18 09 68 00 68 01 40 00 29 01 D0 00 F0 13 FD D8 -> 00 00 4B 46 19 78 58 20 48 43 41 46 0B 18 0A 49 F2 78 90 00 40 18 19 6D 00 68 01 40 00 29 01 D0 00 F0 13 FD D0
+- 0206A2: 4B 46 19 78 58 20 41 43 40 46 50 30 09 18 0A 4A F3 78 98 00 80 18 09 68 00 68 01 40 00 29 01 D0 00 F0 13 FD D8 -> 00 00 4B 46 19 78 58 20 48 43 41 46 0B 18 0A 49 F2 78 90 00 40 18 19 6D 00 68 01 40 00 29 01 D0 00 F0 13 FD D0
 		  Implements: extension of changes at 01FF20
 ! 0207A4: ptr 0A 11 02 08 -> 8C 0F 02 08
 		  Implements: 50% recoil effect
@@ -1017,8 +1019,8 @@ stray text:
 		  Implements: Modern Struggle
 		  Relies on: changes at 020F78
 		  GLITCH!: Struggle has 100% HP recoil, some other change probably needed
-= 020B70, 020BF8, 1D968D: ptr D1 6B 1D 08 -> D0 31 02 08
-= 020BB4, 020C3C: ptr 62 6C 1D 08 -> EF 31 02 08
+- 020B70, 020BF8, 1D968D: ptr D1 6B 1D 08 -> D0 31 02 08
+  020BB4, 020C3C: ptr 62 6C 1D 08 -> EF 31 02 08
 		  Implements: need more info
 		  Requires in future: script_231D0, script_231EF
 = 020F00: (see 29disasm)
@@ -1037,7 +1039,7 @@ stray text:
 ! 0216B8 -> 021684 (repoint): atk1D_jumpifstatus2 (+fn_20EFE_J) (see 33disasm)
 		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute
 		  GLITCH!: doesn't do that, instead causes Substitute to not fail when Infiltrator mon has one already???
-= 021730: atk1E_jumpifability (see 34disasm)
+- 021730: atk1E_jumpifability (see 34disasm)
 		  Implements: Leaf Guard, Flower Veil (vs status)
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 + 021818: atk1F_jumpifsideaffecting (see 35disasm)
@@ -1048,7 +1050,7 @@ stray text:
   022FD4: 04 DC -> 0B DA
   022FE7: D0 -> DA
 		  Implements: Correct stat animations for drastically/severely
-= 02301C: atk48_playstatchangeanimation (+BattleScript_FlowerVeilProtects, script_231D0, script_231EF) (see 36disasm)
+- 02301C: atk48_playstatchangeanimation (+BattleScript_FlowerVeilProtects, script_231D0, script_231EF) (see 36disasm)
 		  Implements: Mold Breaker+ (vs stat-reduction prevention abilities), Contrary, Big Pecks, Infiltrator (vs Mist), Flower Veil (vs stat reduction)
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Glitch: 0x68 (Mold Breaker) is instead 0x97, test mold breaker vs clear body
@@ -1059,10 +1061,9 @@ stray text:
 		  Implements: Stench flinch chance, Klutz (choice item locking), Poison Touch, Choice Specs (locking), Choice Scarf (locking), non-hardcoded spread moves
 		  Relies on: AbilityBattleEffects/ItemBattleEffects new cases, Choice Band effect ID change, gChosenActionByBattler changed to something else, CheckSwitchToSpreadMoveScript (j1588C, e16078), BattleScript_EffectSpreadMove (j158B0, e1609C), rest of moveend refactor
 		  Notes: Inert call to ItemBattleEffects (arg 2)?
-= 023E88: atk4B_returnatktoball (see 38disasm)
+- 023E88: atk4B_returnatktoball (see 38disasm)
 		  Implements: need more info
-		  Required knowledge: j0203B960
-		  Requires in future: extra fn j2058E0
+		  Requires in future: extra fn 2058E0
 ! 023ED8: atk4C_getswitchedmondata (see 39disasm)
 		  Implements: need more info
 		  GLITCH!: always sends out the third pokemon?
@@ -1073,10 +1074,10 @@ stray text:
 		  Implements: modern Sturdy, Klutz (enduring (Focus) items), Mold Breaker+ (vs Sturdy), Focus Sash
 		  Requires in future: ClearFocusBand (j168C88), SetFocusBand (j168C9C)
 		  Notes: False Swipe appears to be removed, check; check that infiltrating set-damage moves hit through sub
-= 02615C: atk6A_removeitem (see 41disasm)
+- 02615C: atk6A_removeitem (see 41disasm)
 		  Implements: Cheek Pouch
 		  Relies on: CheckAndRunCheekPouch (j1C5FC, e1CDEC), BattleScript_CheekPouchHeals (j1C728)
-		  Requires in future: PushScriptInstr (j207470)
+		  Requires in future: PushScriptInstr (207470)
 		  Glitch?: .item is off by 20, items aren't removed???
 = 027220: atk7A_jumpifnexttargetvalid (see 42disasm)
 		  Implements: Telepathy
@@ -1101,7 +1102,7 @@ stray text:
 ! 027BC8 -> 027B78 (repoint): atk88_negativedamage (see 49disasm)
 		  Implements: Magic Guard (vs Liquid Ooze), Big Root (draining moves), Klutz (Big Root on draining moves)
 		  Note: something about the above two causes a crash, figure out later
-= 027BFC: ChangeStatBuffs (+CheckLeafGuardAndFlowerVeil) (see 50disasm)
+- 027BFC: ChangeStatBuffs (+CheckLeafGuardAndFlowerVeil) (see 50disasm)
 		  Implements: Simple, Mold Breaker+ (vs stat-reduction prevention abilities), Contrary, Big Pecks, Infiltrator (vs Mist), "drastically/severely"
 		  Relies on: BattleScript_FlowerVeilProtects (j22A00, e23200)
 		  Glitch?: Flower Veil msg called at wrong time
@@ -1173,7 +1174,7 @@ stray text:
 = 02D508: Part of atkEF_handleballthrow (+ add part at A23260_J) (see 67disasm)
 		  Implements: Quick Ball (gen 6), Dusk Ball (gen 6), Park Ball, Heal Ball (catch rate), Cherish Ball, Moon Ball, Friend Ball, Heavy Ball, Level Ball, Love Ball, Lure Ball (gen 6), Fast Ball, ensures ball thrown in Safari Zone is Safari Ball
 		  Required knowledge: gLastUsedItemType (j0203FE00), j02023FE0, j02023FF8, j0202429C, j02026D6C, j03005542
-		  Relies on: 02D500, etc
+		  Relies on: 02D500, etc; HandleAction_UseMove changes
 		  Note: Fast Ball has manual table (A24300), different for base patch and P/D
 		  Note: Check again - Heal Ball currently has secondaryId of 0, making it never work
 		  Glitch?: Love Ball is boosted if pkmn are different genders, but "genderless" is counted as a third gender
@@ -1184,17 +1185,17 @@ stray text:
   02D764: 28 88 -> AF 46
   02D7B8: 68 3D 02 02 -> 30 AB EE 08 (jumps (mov) to fn at EEAB30, then back; see 67disasm)
 		  Implements: critical capture
-		  Relies on: 02D500, etc
+		  Relies on: 02D500, etc; HandleAction_UseMove changes
 		  Required knowledge: gLastUsedItemType (j0203FE00), gCritCapture (j0203FE04)
 ! 02EA10: HandleInputChooseMove (see 68disasm)
 		  Implements: Removes the "switch which?" text when moving moves in battle with SELECT
 = 02EF58: HandleMoveSwitching (see 69disasm)
 		  Implements: Need more info
 		  Note: merging changes from english and changes from pd is necessary - return to this later
-= 030830: MoveSelectionDisplayMoveNames (see 70disasm)
+- 030830: MoveSelectionDisplayMoveNames (see 70disasm)
 		  Implements: Need more info (possibly displays the type icons in the info box)
-		  Required knowledge: j02020024, j0203BF30, j0203BF40, j0203BF70, j0203D300, j0203D340, j0203D380, j0203D480
-		  Requires in future: fn_1833C0_J
+		  Requires in future: fn_1833C0
+= 03085A, 04EF5E, 06BE72, 09B4EC, 0BD824, 0BFA7C, 0CC8F8, 0D7630, 0D7ED6, 0D84F6, 0E4DD2, 0E5116, 0E5130, 0E5164, 0E51A2, 0E523E, 10D9B2, 1140B2, 11C590, 11C6C2, 12564C, 1258F4, 1259E2, 125B7E, 125C92, 125FB0, 126036, 1260E8, 1261BC, 12624A, 126798, 12682E, 126E0A, 131DE0: 0D -> 20 (movenamelength)
 ! 0308B8: A7 F0 80 FF -> 00 00 00 00
 		  Implements: Removes "PP" for battle move summary (replaced by functionality in 030830); in JP, also makes "Move Type/" -> "Type/", but that's already true
 ! 030924: A7 F0 4A FF -> 00 00 00 00
@@ -1207,11 +1208,10 @@ stray text:
 		  Implements: Removes move selection cursor (replaced by functionality in 030830)
 ! 030A14: MoveSelectionDestroyCursorAt (see 71disasm)
 		  Implements: Removes move selection cursor (replaced by functionality in 030830)
-= 038744: OpponentHandleChoosePokemon (see 72disasm)
+- 038744: OpponentHandleChoosePokemon (see 72disasm)
 		  Implements: New level of smart AI for switching choice (prioritizes mon with Trick Room if team is slow, prioritizes best Trick Room attacker during Trick Room, prioritizes weather setter when weather runs out, prioritizes mon with best type matchup)
 		  Relies on: new AI value
-		  Required knowledge: j020385E2, gWasMonShown (j0203B964), j0203BFF4
-		  Requires in future: GetSideParty (j205D8A), GetFirstAllowableSwitchin (j205D96), GetBestTrickRoomAttacker (j2060FC), GetAvailableWeatherSetter (j206164), ChooseBestSwitchinNewAI (j2061DC), GetMatchupScore (j206292), ShouldUseTrickRoom (j206334), IsTeamSlow (j2063A4), CanUseNewAI (j20649C), GetBestMatchupScore (j2066CC), GetTypeMatchup (j252248)
+		  Requires in future: GetSideParty (205D8A), GetFirstAllowableSwitchin (205D96), GetBestTrickRoomAttacker (2060FC), GetAvailableWeatherSetter (206164), ChooseBestSwitchinNewAI (2061DC), GetMatchupScore (206292), ShouldUseTrickRoom (206334), IsTeamSlow (2063A4), CanUseNewAI (20649C), GetBestMatchupScore (2066CC), GetTypeMatchup (252248)
 + 03937C: FindMonThatAbsorbsOpponentsMove (see 73disasm)
 		  Implements: AI understands new absorbing abilities (Lightning Rod, Motor Drive, Dry Skin, Storm Drain, Sap Sipper)
 = 039A80: ShouldSwitch (see 74disasm)
@@ -1241,7 +1241,7 @@ stray text:
 		  Relies on: weather refactor, GetAbilityUserOnSameSide, HasItemWithTypeEffect
 		  Requires in future: AteAbilityConversionTable (j168CB4)
 		  Note: is that how spread reduction works? (only reduced if max targets exist)
-= 03FD64: Part of GetBoxMonData (see 79disasm)
+- 03FD64: Part of GetBoxMonData (see 79disasm)
 		  Implements: nothing???
 		  Requires in future: fn_206776_J, fn_206784_J
 = 0400B6: 40 05 04 -> 80 05 44
@@ -1255,6 +1255,7 @@ stray text:
 = 040B15: B5 A5 F1 B5 F9 01 BC -> 4B 9F 46 E0 3A A2 08 (jumps (mov) to fn at A23AE0, then back; see 80disasm)
 		  Implements: Heal Ball
 		  Required knowledge: gLastUsedItemType (j0203FE00)
+		  Relies on: HandleAction_UseMove changes
 = 040B90: SendMonToPC (see 81disasm)
 		  Implements: Part of CompressedBoxPokemon refactor, allowing 14->22 boxes
 		  Requires in future: CopyMonToBox (j3C5FA0)
@@ -1284,8 +1285,8 @@ stray text:
 		  Implements: Allows forbiddenmons to get individual cries
 + 043890: MonGainEVs (see 88disasm)
 		  Implements: Power items, EV per-stat limit 255->252
-= 043A70: CheckPartyPokerus (see 89disasm)
-		  Implements: need more info (reads only last bit of MON_DATA_POKERUS instead of last 4 bits)
+- 043A70: CheckPartyPokerus (see 89disasm)
+		  Implements: reads only last bit of MON_DATA_POKERUS instead of last 4 bits
 = 043C84: GetMoveRelearnerMoves (see 90disasm)
 		  Implements: max level-up moves 20 -> 24, need more info (gLevelUpLearnsets -> *j02021D10)
 		  Required knowledge: j02021D10
@@ -1324,10 +1325,9 @@ stray text:
 		  Implements: No actual change, but allows new incenses to be added easily (table at j455AE/e45FEA)
 + 046000: DetermineEggSpeciesAndParentSlots (see 99disasm)
 		  Implements: Allows NidoranM+ and Volbeat to have female offspring when breeding with Ditto
-! 046024, 0460A6: 84 -> B7 (PDONLY, changes ditto index to #183)
-= 046112: FF F7 DD FD -> ?? ?? ?? ?? (changes call to BuildEggMoveset to instead call fn at j2072F0 (this calls BuildEggMoveset inside it anyway), see 101disasm)
+! 046024, 0460A6, 207304: 84 -> B7 (PDONLY, changes ditto index to #183)
+- 046112: FF F7 DD FD -> C1 F1 ED F8 (changes call to BuildEggMoveset to instead call fn at 2072F0 (this calls BuildEggMoveset inside it anyway), see 101disasm)
 		  Implements: modern ability inheritance
-= ??????: 84 -> B7 (PDONLY, changes ditto index to #183)
 + 046120: 2D 21 FA F7 2B F9 09 48 -> 00 49 08 47 01 89 EE 08 (jumps (bx) to fn at EE8900, then back; see 101disasm)
 		  Implements: modern pokeball inheritance
 		  GLITCH!: doesn't seem to actually work?
@@ -1336,12 +1336,12 @@ stray text:
 		  GLITCH!: Crashes upon receiving egg; maybe a problem with recompilation
 = 04623E: 05 22 20 23 F7 F7 07 -> 01 22 20 23 ?? ?? ?? ?? (instead of calling CreateMon(..., 5, ...), calls CreateMonWithNature_New(..., 1, ...); see 102disasm)
 		  Implements: egg hatch level 5 -> 1, (item72), need more info (something to do with personality values)
-		  Requires in future: fn_251B58_J, fn_251B8C_J, fn_251BA4_J, CreateMonWithNature_New (j251D2A)
-= 046390: 01 38 00 90 -> ?? ?? ?? ?? (calls new fn at j251AE0, see 103disasm)
+		  Requires in future: fn_251B58_J, fn_251B8C_J, fn_251BA4_J, CreateMonWithNature_New (j251D2A), fn_3915EC_J
+- 046390: 01 38 00 90 -> 0B F2 A6 FB (calls new fn at 251AE0, see 103disasm)
 		  Implements: Magma Armor/Flame Body overworld effect
 		  Glitch?: Magma Armor doesn't work
 + 046CBE: 05 -> 01 (egg hatch level 5 -> 1)
-= 046D46: 30 1C 29 1C -> ?? ?? ?? ?? (calls new fn at j207344, see 104disasm)
+- 046D46: 30 1C 29 1C -> C0 F1 FD FA (calls new fn at 207344, see 104disasm)
 		  Implements: needed for modern pokeball inheritance; something involving alt ability
 + 046DDA: F9 F7 CF FA -> 00 00 00 00 (needed for modern pokeball inheritance)
 = ~048440: Unclear how to translate this to English rom (minidisasm12)
@@ -1363,7 +1363,6 @@ stray text:
 		  Implements: extra bag space
 + 04C440: SavePlayerBag (see 108disasm)
 		  Implements: extra bag space
-= 04EF5E, 06BE72, 09B4EC, 0BD824, 0BFA7C, 0CC8F8, 0D7630, 0D7ED6, 0D84F6, 0E4DD2, 0E5116, 0E5130, 0E5164, 0E51A2, 0E523E, 10D9B2, 1140B2, 11C590, 11C6C2, 12564C, 1258F4, 1259E2, 125B7E, 125C92, 125FB0, 126036, 1260E8, 1261BC, 12624A, 126798, 12682E, 126E0A, 131DE0: 0D -> 20 (movenamelength)
 + ?????? (j4E8A2): Unclear how to translate this to English rom (minidisasm15)
 		  Implements: Removes gender symbol somewhere, seems to be removed in english already
 ! 054A00: 06 -> 04 (PDONLY, moves starting position in new game two tiles north)
@@ -1374,33 +1373,30 @@ stray text:
 		  Implements: no idea what this does (some kind of warp, already prevented in map group 1, is now also prevented in map group 0x2501)
 + 055D6C: sub_8055D6C (see 111disasm)
 		  Implements: possibly allows music to be dynamically changed
-= 055F88: music_something (see 112disasm)
+- 055F88: music_something (see 112disasm)
 		  Implements: Set 0203C00D to 0 when this function is run (???)
 + 059F34: sub_8059F34 (see 113disasm)
 		  Implements: Makes room for changes at 059F4C
 + 059F4C: sub_8059F4C (see 113disasm)
 		  Implements: Not completely sure, but possibly implements RSE's MetatileBehavior_IsLongGrass() for FRLG
-= 05A9BC: 01 28 25 D0 01 28 02 DC 00 28 51 D0 -> 03 28 7E D8 00 4B 18 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (j183100, see 114disasm))
+- 05A9BC: 01 28 25 D0 01 28 02 DC 00 28 51 D0 -> 03 28 7E D8 00 4B 18 47 01 31 18 08 (jumps (bx) to extra fn at 183100, then back (see 114disasm))
 		  Implements: Unsure, but DrawMetatile(1, ...) and DrawMetatile(2, ...) swapped functionality and there's a new DrawMetatile(3, ...) that uses all available resources at once
-= 05B3E0: player_step (see 115disasm)
+- 05B3E0: player_step (see 115disasm)
 		  Implements: Need more info, something about semi-forced steps
-		  Required knowledge: j02030C00D
-		  Requires in future: SoftForceDirection (j2074A0)
-= 05B4D4: MovePlayerAvatarUsingKeypadInput (see 116disasm)
+		  Requires in future: SoftForceDirection (2074A0)
+- 05B4D4: MovePlayerAvatarUsingKeypadInput (see 116disasm)
 		  Implements: Need more info, extra requirement for bike
-		  Required knowledge: j02030C00D
-= 05B9D4: PlayerNotOnBikeMoving (see 117disasm)
+- 05B9D4: PlayerNotOnBikeMoving (see 117disasm)
 		  Implements: running always-on toggle, something else
-		  Required knowledge: j02030C00D
 + 05BB5C: 30 1C 01 A9 22 1C 07 F0 -> 00 48 00 47 71 2A 22 08 (jumps (bx) to extra fn at 222A70, then back (see 118disasm))
 		  Implements: forced movement for metatiles 0xB0-0xB5
 + 05BCEC: sub_805BCEC (see 119disasm)
 		  Implements: Strength boulders able to be moved onto metatile 0x1F
 + 05C104: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 E1 2A 22 08 (jumps (bx) to extra fn at 222AE0, then back (see 120disasm))
 		  Implements: player walk animations for metatiles 0xB0-0xB5
-= 05C11C: PlayerGoSpeed2 (see 121disasm)
+- 05C11C: PlayerGoSpeed2 (see 121disasm)
 		  Implements: player fast-walk animations for metatiles 0xB0-0xB5
-		  Requires in future: GetWalkFastMovementAction_New (j2074F0)
+		  Requires in future: GetWalkFastMovementAction_New (2074F0) (MAKE SURE IT EXISTS)
 + 05C14C: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 D1 2C 22 08 (jumps (bx) to extra fn at 222CD0, then back (see 120disasm mostly))
 		  Implements: player fastest-walk animations for metatiles 0xB0-0xB5
 + 05C164: PlayerRun (see 121disasm mostly)
@@ -1408,11 +1404,10 @@ stray text:
 		  Requires in future: GetPlayerRunMovementAction_New (207524)
 + 05C17C: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 A1 2B 22 08 (jumps (bx) to extra fn at 222BA0, then back (see 120disasm mostly))
 		  Implements: player ??? animations for metatiles 0xB0-0xB5 (seems to be FRLG-exclusive)
-= 05C438: PlayCollisionSoundIfNotFacingWarp (see 122disasm)
+- 05C438: PlayCollisionSoundIfNotFacingWarp (see 122disasm)
 		  Implements: Need more info
-		  Required knowledge: j02030C00D
 + 05F2E0: 97 -> FF (152 -> 255 max object graphics ids)
-= 067D44: F1 F7 0A FF -> ?? ?? ?? ?? (changes call to sub_8059B5C to instead call fn at j183380, see 123disasm)
+- 067D44: F1 F7 0A FF -> 1B F1 1C FB (changes call to sub_8059B5C to instead call fn at 183380, see 123disasm)
 		  Implements: Not certain, possibly IsSandOrDeepSand; adds metatiles 0xE0 and 0xE2 to whatever check this is
 = 06CAC8: sub_806CAC8 (see 124disasm)
 		  Implements: multi-registration SELECT menu, something else (possibly two-speed bike)
@@ -1544,7 +1539,7 @@ stray text:
 		  Implements: Part of CompressedBoxPokemon refactor
 		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
 + 08C95C: sub_808C95C (see 158disasm)
-		  Implements: Eliminates the delay on something in the PC (can't figure out what it is even after I implemented it)
+		  Implements: Eliminates the delay on something in the PC (can't figure out what it is even after implementing it)
 = 08C9C4: sub_808C9C4 (+ add part at EEA2C0_J) (see 159disasm)
 		  Implements: need more info
 		  Required knowledge: j02036FFC
@@ -1835,7 +1830,7 @@ stray text:
 ! 102B50: 01 F0 2E FE -> 00 00 00 00
   102B58: 01 F0 2A FE -> 00 00 00 00
   102B60: 01 F0 26 FE -> 00 00 00 00
-		  Implements: don't remove three windows (pokedex screen - TEST)
+		  Implements: don't remove three windows (pokedex screen)
 		  Note: currently just breaks things (probably running out of memory)
 = 102C28: sub_8102C28 (see 219disasm)
 		  Implements: for one specific function (pokedex main screen?): change a tile type, always use natdex, and replace the TABLE OF CONTENTS text with something - need more info
