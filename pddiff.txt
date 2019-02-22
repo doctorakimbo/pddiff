@@ -2370,7 +2370,7 @@ stray text:
 		  Glitch?: always infatuates, skipping check?
 = 1D68EC <except done on the new table>: DC 69 1D 08 -> 80 3A 05 09 (BattleScript_EffectAtkAndSpAtkUp (see movescripts.txt))
 		  Implements: removes Poison Tail effect entirely (folded into poison hit), adds new effect for +Atk/+Sp. Atk moves (modern Growth, Work Up, Energize)
-		  Relies on: weather refactor, BattleScript_Parameterized (to not break Poison Tail)
+		  Relies on: weather refactor
 		  Note: stat boost anim was wrong, see movescripts.txt
 + 1D696D -> 1050000 (repoint): BattleScript_EffectSleep_New (see movescripts.txt)
 		  Implements: [move27E]
