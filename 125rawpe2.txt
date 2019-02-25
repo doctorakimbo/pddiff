@@ -1,0 +1,4 @@
+(68277E)
+0F 00 [4A 3A 54 08] 09 03 02 0F 00 [5A 3A 54 08] 09 03 02
+
+translate these strings

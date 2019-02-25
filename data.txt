@@ -1,7 +1,7 @@
 addr e: addr j: desc
 
 		   : 24 00 02 02: ??????
-		   : 30 04 02 02: gWindows
+B4 04 02 02: 30 04 02 02: gWindows
 3C 06 02 02: B8 05 02 02: gSprites
 		   : E8 0D 02 02: gSprites[0x1E].data[5]
 		   : EC 15 02 02: gSprites[0x3E]
@@ -129,9 +129,9 @@ FC 6D 03 02: 30 6D 03 02: gMapHeader
 13 6E 03 02: 47 6D 03 02: gMapHeader.mapType
 38 6E 03 02: 6C 6D 03 02: gEventObjects (atkEF_handleballthrow: Lure Ball boosted if this[0] is 1) (gIsPlayerFishing?)
 78 70 03 02: AC 6F 03 02: gPlayerAvatar
-		   : F4 6F 03 02: gSpecialVar_0x8004
-		   : F6 6F 03 02: gSpecialVar_0x8005
-		   : FC 6F 03 02: ?????? (sub_808C9C4: set to created window)
+C0 70 03 02: F4 6F 03 02: gSpecialVar_0x8004
+C2 70 03 02: F6 6F 03 02: gSpecialVar_0x8005
+C8 70 03 02: FC 6F 03 02: ?????? (sub_808C9C4: set to created window)
 								 (sub_808CBA4: window stored here is deleted)
 								 (sub_808CC74: used as window to print to)
 D0 70 03 02: 04 70 03 02: gSpecialVar_Result
@@ -151,6 +151,7 @@ FF 70 03 02: 33 70 03 02: ??????
 F8 71 03 02: 2C 71 03 02: gPlttBufferUnfaded
 		   : CC 72 03 02: ??????
 F8 75 03 02: 2C 75 03 02: gPlttBufferFaded
+F8 77 03 02: 2C 77 03 02: ??????
 B8 7A 03 02: EC 79 03 02: gPaletteFade
 C8 7A 03 02: FC 79 03 02: ??????
 		   : 14 7B 03 02: ?????? (fn_9396A8_J: some sort of data is copied into this)
@@ -266,7 +267,7 @@ B4 C2 03 02: B4 C2 03 02: gDaycareParentMoves[1]
 								 (fn_E9EBB0_J: If data_0203D52A_J is 0, data_0203D50A_J is 1, A is pressed, and (data_0203D562_J + data_0203D561_J) != 0, set this.0xC to data_E9FBC4_J[fn_E9F92C_J(data_0203D562_J + data_0203D561_J) - 1] then start playing the music at this.0xC)
 								 (fn_E9EBB0_J: If data_0203D52A_J is 0, data_0203D50A_J is 1, A is pressed, and (data_0203D562_J + data_0203D561_J) != 0, set this.0xE to 1)
 								 (fn_E9EBB0_J: If data_0203D52A_J is 0, data_0203D50A_J is 1, A is pressed, and (data_0203D562_J + data_0203D561_J) == 0, set this.0xE to 0)
-		   : 27 CB 03 02: ?????? (InitStartMenuStep/fn_E9D4A2_J: if set, skip START menu items 3-5)
+27 CB 03 02: 27 CB 03 02: ?????? (InitStartMenuStep/fn_E9D4A2_J: if set, skip START menu items 3-5)
 								 (InitStartMenuStep/fn_E9D4A2_J: if set, s4 = 9F 59 60 98 FF for menu item 3; otherwise s4 = gSaveBlock1Ptr->location (which shouldn't happen))
 		   : 28 CB 03 02: ?????? (appears to be an array of 64 bits)
 								 (fn_E9FA12_J: this function returns the number of bits in the array that are set)
@@ -317,7 +318,7 @@ B4 C2 03 02: B4 C2 03 02: gDaycareParentMoves[1]
 								 (fn_EE51C0: if the A button is pressed with data_0203D2EC_J != 1, set this to 1 and prepare to exit)
 		   : FA D2 03 02: ?????? (fn_EE5000: set this to the created task on start)
 								 (fn_EE51C0: destroy this task on exit)
-		   : FF D2 03 02: ?????? (fn_EE5000: set to 1 on start)
+FF D2 03 02: FF D2 03 02: ?????? (fn_EE5000: set to 1 on start)
 								 (fn_EE51C0: set to 0 on exit)
 								 (InitStartMenuStep: set to 1 when this is called with parameter 5 (final step))
 								 (TransferPlttBuffer: if this isn't 0 and addr 0x3000000 is 0x7F60, do... something, otherwise delete palette 0xBA)
@@ -421,10 +422,10 @@ B4 C2 03 02: B4 C2 03 02: gDaycareParentMoves[1]
 00 FE 03 02: 00 FE 03 02: gLastUsedItemType
 04 FE 03 02: 04 FE 03 02: gCritCapture
 		   
-		   : 00 00 00 03: ??????
+00 00 00 03: 00 00 00 03: ??????
 		   : E8 08 00 03: ??????
 		   : E8 0D 00 03: ??????
-		   : 9C 0F 00 03: ??????
+9C 0F 00 03: 9C 0F 00 03: ??????
 AE 0F 00 03: AE 0F 00 03: sPrimaryTilesetCBCounter
 B0 0F 00 03: B0 0F 00 03: sPrimaryTilesetCBBufferSize
 B2 0F 00 03: B2 0F 00 03: sSecondaryTilesetCBCounter
