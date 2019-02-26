@@ -280,3 +280,165 @@ r1 += r0
 r0 = fn_B5BCC_J
 *r1 = r0
 return
+
+
+
+
+
+
+
+lbl1: @169224_J
+r5 = r0
+r6 = gBattleAnimArgs
+r1 = 0
+r0 = *(r6 + r1)
+if(r0 != 0) goto lbl2
+
+r4 = gBattleAnimAttacker
+r0 = *r4
+r1 = 2
+fn_16929C_J()
+*(r5 + 0x20) = r0
+r0 = *r4
+r1 = 3
+fn_16929C_J()
+*(r5 + 0x22) = r0
+goto lbl2
+
+lbl2:
+r0 = *(r6 + 2)
+*(r5 + 0x2E) = r0
+r0 = fn_B4A64_J
+*(r5 + 0x1C) = r0
+return
+
+
+
+
+
+
+
+fn_16929C_J:
+r5 = r0
+r4 = r1
+if(r4 > 4) goto lbl4
+
+r0 = r4 * 4
+r1 = jumptable
+r0 += r1
+r0 = *r0
+goto r0
+
+jumptable:
+0: lbl2
+1: lbl3
+2: lbl2
+3: lbl4
+4: loc_1296D8_J // almost certainly meant to be lbl4 (1692D8_J)
+
+lbl2:
+r4 = data_169204_J
+r0 = r5
+GetBattlerPosition()
+r0 *= 4
+r1 = gBattleTypeFlags
+r1 = *r1
+r2 = 1
+r1 &= r2
+r1 *= 0x10
+r0 += r1
+r0 += r4
+r0 = *r0
+goto lbl11
+
+lbl3:
+r4 = data_169204_J
+r0 = r5
+GetBattlerPosition()
+r0 *= 4
+r1 = gBattleTypeFlags
+r1 = *r1
+r2 = 1
+r1 &= r2
+r1 *= 0x10
+r0 += r1
+r0 += r4
+r0 = *(r0 + 1)
+goto lbl11
+
+lbl4:
+r0 = r5
+GetBattlerPosition()
+if(r0 == 0) goto lbl5
+
+r0 = gBattleSpritesDataPtr
+r0 = *r0
+r1 = *r0
+r0 = r5 * 4
+r1 += r0
+r0 = *(r1 + 2)
+if(r0 != 0) goto lbl7
+
+r1 = gBattlerPartyIndexes
+r0 = r5 * 2
+r0 += r1
+r1 = *r0
+r0 = 0x64
+r0 *= r1
+r1 = gEnemyParty
+goto lbl6
+
+lbl5:
+r0 = gBattleSpritesDataPtr
+r0 = *r0
+r1 = *r0
+r0 = r5 * 4
+r1 += r0
+r0 = *(r1 + 2)
+if(r0 != 0) goto lbl7
+
+r1 = gBattlerPartyIndexes
+r0 = r5 * 2
+r0 += r1
+r1 = *r0
+r0 = 0x64
+r0 *= r1
+r1 = gPlayerParty
+goto lbl6
+
+lbl6:
+r0 += r1
+r1 = 0xB
+GetMonData()
+r1 = r0
+goto lbl8
+
+lbl7:
+r1 = *(r1 + 2)
+goto lbl8
+
+lbl8:
+r0 = r5
+if(r4 != r3) goto lbl9
+
+r2 = 1
+goto lbl10
+
+lbl9:
+r2 = 0
+goto lbl10
+
+lbl10:
+fn_168B70_J()
+goto lbl11
+
+lbl11:
+return r0
+
+
+
+
+
+
+
+fn_168B70_J:

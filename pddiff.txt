@@ -1,8 +1,17 @@
-CUR THING: j168C80-j168FC0 (too complex for now)
-		   j250C04-j25265C is now ready
-		   j1FF300-j20F500 is now ready
+CUR THING: j168B70-j16926C (too complex for now)
 		   j1830C0-j183B40 is now ready
-		   j3915EC is now ready
+		   j1FF300-j20F500 is now ready
+		   j250C04-j25265C is now ready
+		   j3C5BC0-j3C65C0
+		   j3C6FC8-j3C7480
+		   j3C7654-j3C76FC
+		   j3C77DC-j3C7970
+		   j3C79F4-j3C7A1C
+		   j3C7BF0-j3C7CAC
+		   j3C7D70-j3C7DF4
+		   j4147C0-j415ACB
+		   j416959-j416A1E
+		   j43FAB0-j440124
 
 
 ignore the following (pe):
@@ -379,7 +388,7 @@ move IDs:
 = 0x225 = (attacking move with chance to raise sp. atk), (animation involves charging up while flashing blue, then shooting something, with [move224]'s background)
 = 0x226 = (attacking move), (animation is a gentle bite)
 = 0x227 = (non-attacking move, turns target into pure Rock-type), (animation is Leer that inverts colors)
-= 0x228 = (attacking move), (animation is Screech with different soundwave sprite and Hex's background)
+= 0x228 = (attacking move), (animation is Screech with a different soundwave sprite and Hex's background)
 + 0x229 = Soak
 + 0x22A = Simple Beam
 + 0x22B = Worry Seed
@@ -413,13 +422,13 @@ move IDs:
 = 0x247 = (attacking move with chance to lower defense), (animation is a series of seven punches)
 = 0x248 = (attacking move), (animation is a Steel-type Megahorn with a new background)
 = 0x249 = (attacking move with chance to raise sp. atk), (animation charges up, then shoots a lightning bolt straight up that then comes down on the target)
-= 0x24A = (attacking move with chance to paralyze)
-= 0x24B = (attacking move with chance to sharply raise target's sp. atk)
-= 0x24C = (attacking move with chance to lower sp. def)
-= 0x24D = (attacking move with chance to paralyze)
-= 0x24E = (attacking move)
-= 0x24F = (attacking move)
-= 0x250 = (attacking move with chance to lower speed)
+= 0x24A = (attacking move with chance to paralyze), (animation charges electricity, then tackles, which leaves foe shocked)
+= 0x24B = (attacking move with chance to sharply raise target's sp. atk), (has explosion-related animation)
+= 0x24C = (attacking move with chance to lower sp. def), (animation is Safeguard, then shooting something, with a new background)
+= 0x24D = (attacking move with chance to paralyze), (animation has user charge and turn purple, then tackle the foe, creating ghostly fire)
+= 0x24E = (attacking move), (animation is Screech with a different soundwave sprite)
+= 0x24F = (attacking move), (animation involves a cutting sound on Water Pulse's background)
+= 0x250 = (attacking move with chance to lower speed), (animation is ??????)
 = 0x251 = (attacking move)
 = 0x252 = (attacking move)
 = 0x253 = (attacking move with chance to lower sp. def), (can't be called by metronome)
@@ -1696,25 +1705,24 @@ stray text:
 		  Implements: PDONLY; makes it easier to add new custom (?????) (and changes them), this also removes the ability to set them for a specific map within a section (what are they, though?)
 + 0C6DA0: BattleAI_SetupAIData (see 199disasm)
 		  Implements: instead of 7 (previous "smartest" AI), the flags are set to the current value of 0203BFF4
-= 0C7038: BattleAI_DoAIProcessing (see 200disasm)
+- 0C7038: BattleAI_DoAIProcessing (see 200disasm)
 		  Implements: New level of smart AI for when to switch (switches if it's weak to opponents and opponents aren't weak to it)
-		  Requires in future: AI_CleanupSmartSwitching (j205910), AISetup_SmartSwitching (j205940), GetOpponentMatchupScore (j205A84), CopyMonToBattleMon (j205B0C), GetMatchupScore (206292), CanUseNewAI (20649C), GetBestMatchupScore (2066CC)
-		  jjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+		  Requires in future: AI_CleanupSmartSwitching (j205910), AISetup_SmartSwitching (205940), GetOpponentMatchupScore (205A84), CopyMonToBattleMon (205B0C), GetMatchupScore (206292), CanUseNewAI (20649C), GetBestMatchupScore (2066CC)
 		  Note: doesn't actually switch, that must be elsewhere
 + 0C71D0: RecordAbilityBattle (see 201disasm)
 		  Implements: records abilities in a separate gRecordedAbilities array instead of in gBattleResources->battleHistory
 		  Relies on: BattleAICmd_check_ability changes
-= 0C82D0 -> ?????? (repoint; j1830C0): BattleAICmd_nullsub_2A (see 254disasm)
+- 0C82D0 -> 1830C0 (repoint): BattleAICmd_nullsub_2A (see 254disasm)
 		  Implements: new battle ai script command (BattleAICmd_if_bits_set); jumps if the given bits in funcResult are set
-= 0C82D4 -> ?????? (repoint; j1832D0): BattleAICmd_nullsub_2B (see 255disasm)
+- 0C82D4 -> 1832D0 (repoint): BattleAICmd_nullsub_2B (see 255disasm)
 		  Implements: new battle ai script command (BattleAICmd_if_bits_not_set); jumps if the given bits in funcResult are not set
 + 0C841C: BattleAICmd_check_ability (see 202disasm)
 		  Implements: reads abilities from a separate gRecordedAbilities array instead of from gBattleResources->battleHistory
 		  Relies on: RecordAbilityBattle changes
-= 0C86F0 -> ?????? (repoint; j183200): BattleAICmd_nullsub_32 (see 256disasm)
+- 0C86F0 -> 183200 (repoint): BattleAICmd_nullsub_32 (see 256disasm)
 		  Implements: new battle ai script command (BattleAICmd_is_same_type); checks if attacker is same type as target and stores answer in funcResult - set param to 1 if attacker is single-typed
 		  Glitch?: param = 1 seems to be intended to check if user and target share any types, it doesn't do that (may be decompilation error?)
-= 0C86F4 -> ?????? (repoint; j183290): BattleAICmd_nullsub_33 (see 257disasm)
+- 0C86F4 -> j183290 (repoint): BattleAICmd_nullsub_33 (see 257disasm)
 		  Implements: new battle ai script command (BattleAICmd_get_move_attribute); gets the given byte of the move in funcResult and stores it in funcResult
 = 0C8886: 07 -> 03
   0C889A: 18 -> 0C
@@ -1735,12 +1743,12 @@ stray text:
 		  Implements: new battle ai script command (BattleAICmd_get_considered_move_extra_flags); gets the extra flags (sound, powder, punch, etc.) of the considered move and stores them in funcResult
 + 0C9528 -> 11FC000 (repoint): BattleAICmd_nullsub_56 (see 261disasm)
 		  Implements: new battle ai script command (BattleAICmd_exec); executes the given ASM function then continues running the AI script
-= 0C952C -> ?????? (repoint; j183190): BattleAICmd_nullsub_57 (see 262disasm)
+- 0C952C -> 183190 (repoint): BattleAICmd_nullsub_57 (see 262disasm)
 		  Implements: new battle ai script command (BattleAICmd_if_tailwind_timer_not_equal); jumps if the given side's tailwind timer is a given value
-= 0C97FC: oei_task_add (see 205disasm)
+- 0C97FC: oei_task_add (see 205disasm)
 		  Implements: option to not execute task08_080C9820, need more info
 		  Required knowledge: j0203BFF0
-= 0C9820 -> 0C981C (repoint): task08_080C9820 (see 206disasm)
+- 0C9820 -> 0C981C (repoint): task08_080C9820 (see 206disasm)
 		  Implements: makes room for oei_task_add changes
 		  Relies on: oei_task_add changes (makes room for these changes)
 + 0CA424: GetPokedexRatingText (see 207disasm)
@@ -1943,6 +1951,7 @@ stray text:
 		  Relies on: use of flags 0x894, 0x8AC, 0x8AD, 0x8A3, 0x82C
 = 10CF90: GetRunningBehaviorFromGraphicsId (see 236disasm)
 		  Implements: gives trainers with graphics ids 0x10, 0x26, 0x2F, 0x36, and 0x9D rematch hop behavior 0x4E; reverts trainers with graphics ids 0x27 and 0x28 to the standard rematch hop behavior (0x4D); makes it easier to give more trainers custom rematch hop behaviors
+		  Relies on: new overworld NPC sprites
 		  Requires in future: data_508000_J
 + ?????? (j10E3BA): 01 -> 00 (changes the letter spacing in the pc item menu, but this is already done in english)
 + ?????? (j10E4D0): 04 -> 00 (moves some printer left four units, this is already done in english - might cause problems if it needs to move left anyway)
@@ -2080,32 +2089,32 @@ stray text:
 		  Implements: move HP values on summary screen down/right
 		  Relies on: layout rework to make this not look broken
 		  Note: seems like it went so far right it's offscreen?
-= 137132: 11 68 0A 79 32 32 12 06 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DD70, see 243disasm))
+- 137132: 11 68 0A 79 32 32 12 06 -> 00 49 08 47 71 DD E2 09 (jumps (bx) to extra fn at 1E2DD70, then back (jE2DD70, see 243disasm))
 		  Implements: move Attack value on summary screen left (TEST) and color it according to nature
 ! 137148: 16 -> 01 
 		  Implements: move Attack value on summary screen up
 		  Relies on: layout rework to make this not look broken
-= 137158: 11 68 8A 79 32 32 12 06 12 0E -> 00 00 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DDC6, see 243disasm))
+- 137158: 11 68 8A 79 32 32 12 06 12 0E -> 00 00 00 49 08 47 C7 DD E2 09 (jumps (bx) to extra fn at 1E2DDC6, then back (jE2DDC6, see 243disasm))
 		  Implements: move Defense value on summary screen left (TEST) and color it according to nature
 ! 13716E: 23 -> 11 
 		  Implements: move Defense value on summary screen up
 		  Relies on: layout rework to make this not look broken
-= 13717E: 11 68 0A 7A 32 32 12 06 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DE14, see 243disasm))
+- 13717E: 11 68 0A 7A 32 32 12 06 -> 00 49 08 47 15 DE E2 09 (jumps (bx) to extra fn at 1E2DE14, then back (jE2DE14, see 243disasm))
 		  Implements: move Sp. Atk value on summary screen left (TEST) and color it according to nature
 ! 137194: 30 -> 21 
 		  Implements: move Sp. Atk value on summary screen up
 		  Relies on: layout rework to make this not look broken
-= 1371A4: 11 68 8A 7A 32 32 12 06 12 0E -> 00 00 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DE62, see 243disasm))
+- 1371A4: 11 68 8A 7A 32 32 12 06 12 0E -> 00 00 00 49 08 47 63 DE E2 09 (jumps (bx) to extra fn at 1E2DE62, then back (jE2DE62, see 243disasm))
 		  Implements: move Sp. Def value on summary screen left (TEST) and color it according to nature
 ! 1371BA: 3D -> 31
 		  Implements: move Sp. Def value on summary screen up
 		  Relies on: layout rework to make this not look broken
-= 1371CA: 11 68 0A 7B 32 32 12 06 -> 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DEB0, see 243disasm))
+- 1371CA: 11 68 0A 7B 32 32 12 06 -> 00 49 08 47 B1 DE E2 09 (jumps (bx) to extra fn at 1E2DEB0, then back (jE2DEB0, see 243disasm))
 		  Implements: move Speed value on summary screen left (TEST) and color it according to nature
 ! 1371E0: 4A -> 41
 		  Implements: move Speed value on summary screen up
 		  Relies on: layout rework to make this not look broken
-= 1371F0: 11 68 8A 7B 0F 32 12 06 12 0E -> 00 00 00 49 08 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2DEFE, see 243disasm))
+- 1371F0: 11 68 8A 7B 0F 32 12 06 12 0E -> 00 00 00 49 08 47 FE DE E2 09 (jumps (bx) to extra fn at 1E2DEFE, then back (jE2DEFE, see 243disasm))
   137206: 57 -> 50
 		  Implements: move something on summary screen up/right, TEST
 ! 13721A: 0F -> 78
@@ -2622,6 +2631,7 @@ stray text:
 		  * Tries to use Protect or Substitute with Sand Veil in sand
 		  * Tries to use Taunt if target is defensive
 		  * Tries to use Taunt if target just used a status move
+		  Relies on: new AI script commands
 		  Required knowledge: j0203B970, j0203D500
 		  Requires in future: IsMoveBlockedByAbility (j251DA0)
 		  Glitch?: Foul Play logic has cases that loop back to the start of the AI function, this may cause infinite loops
@@ -2745,12 +2755,6 @@ stray text:
 		  Implements: Flare Blitz animation
 + 8B6040: Move_Sludge_Wave (see animscripts.txt)
 		  Implements: Sludge Wave animation
-= E27BA0: ItemUseOutOfBattle_Honey (see 286disasm)
-		  Implements: field function for Honey
-		  Required knowledge: j02039910, j0203BFF0
-= E2E640: ItemUseOutOfBattle_EVReduction (see 285disasm)
-		  Implements: field function for EV-reduction berries
-		  Required knowledge: j03005EE8
 + EB7E00: atkF8_doubledamageatlowhp (see 263disasm)
 		  Implements: new battle script command that doubles damage if the given mon is at less than half HP
 + EB7E60: atkF9_setmondata (see 264disasm)
@@ -2769,9 +2773,8 @@ stray text:
 		  Note: this isn't the way it works in the actual games, stat drops should subtract from the number (for case 0, what even is case 1?)
 + EB8100: atkFF_exec (see 270disasm)
 		  Implements: new battle script command that executes the given ASM function then continues running the battle script
-= FE5000: ItemUseOutOfBattle_AbilityChange (see 287disasm)
+- FE5000: ItemUseOutOfBattle_AbilityChange (see 287disasm)
 		  Implements: field function for Ability Capsule
-		  Required knowledge: j03005EE8
 		  Glitch?: looks like it's using the old ability name table, easily fixed for en
 +1051320: BattleScript_EffectAllStatsDownHit (see movescripts.txt)
 		  Implements: (move that has a chance to lower all of the target's stats, aka Ancient Power in reverse)
@@ -2946,6 +2949,11 @@ stray text:
 		  Implements: [move22E] animation
 +1301B70: Move_??? (see animscripts.txt)
 		  Implements: [move22C] animation
+=1301C88: Move_??? (see animscripts.txt)
+		  Implements: 
+		  Requires in future: Callback_Move251Unknown (j169224)
+-1301F80: Move_??? (see animscripts.txt)
+		  Implements: [move24B] animation
 +1302028: Move_??? (see animscripts.txt)
 		  Implements: [move220] animation
 +1302280: Move_Freeze_Dry (see animscripts.txt)
@@ -2968,6 +2976,8 @@ stray text:
 		  Implements: [move21C] animation
 +1303408: Move_??? (see animscripts.txt)
 		  Implements: [move23D] animation
+-1303478: Move_??? (see animscripts.txt)
+		  Implements: [move24F] animation
 +13037E0: Move_Power_Whip (see animscripts.txt)
 		  Implements: Power Whip animation
 +13038E8: Move_Tailwind (see animscripts.txt)
@@ -2990,8 +3000,10 @@ stray text:
 		  Implements: Sucker Punch animation
 +13044C0: Move_??? (see animscripts.txt)
 		  Implements: [move21B] animation
-=13045B0: Move_??? (see animscripts.txt)
-		  Implements: 
+-13045B0: Move_??? (see animscripts.txt)
+		  Implements: [move24A] animation
+-1304738: Move_??? (see animscripts.txt)
+		  Implements: [move24C] animation
 +1304848: Move_??? (see animscripts.txt)
 		  Implements: [move249] animation
 +1304960: Move_??? (see animscripts.txt)
@@ -3006,6 +3018,8 @@ stray text:
 		  Implements: [move226] animation
 +13053F0: Move_Disarming_Voice (see animscripts.txt)
 		  Implements: Disarming Voice animation
+-1305420: Move_??? (see animscripts.txt)
+		  Implements: [move24E] animation
 +1305500: Move_??? (see animscripts.txt)
 		  Implements: [move233] animation
 +1305570: Move_Boomburst (see animscripts.txt)
@@ -3054,6 +3068,8 @@ stray text:
 		  Implements: Shell Smash animation
 +1307F70: Move_Aqua_Jet (see animscripts.txt)
 		  Implements: Aqua Jet animation
+-1307FF8: Move_??? (see animscripts.txt)
+		  Implements: [move250] animation
 +13080C0: Move_Gastro_Acid (see animscripts.txt)
 		  Implements: Gastro Acid animation
 +1308238: Move_??? (see animscripts.txt)
@@ -3104,6 +3120,8 @@ stray text:
 		  Implements: Play Rough animation
 +130ABB0: Move_Mud_Bomb (see animscripts.txt)
 		  Implements: Mud Bomb animation
+-130AC50: Move_??? (see animscripts.txt)
+		  Implements: [move24D] animation
 +130ADA0: Move_Psyburn (see animscripts.txt)
 		  Implements: Psyburn animation
 +130B0B0: Move_Metal_Pincer (see animscripts.txt)
@@ -3278,7 +3296,12 @@ stray text:
 		  Implements: Electroweb animation
 +1E24E80: Move_Nova_Inferno (see animscripts.txt)
 		  Implements: Nova Inferno animation
+-1E27BA0: ItemUseOutOfBattle_Honey (see 286disasm)
+		  Implements: field function for Honey
+		  Relies on: oei_task_add changes
 +1E29CA0: Move_??? (see animscripts.txt)
 		  Implements: [move1A3] animation
 +1E29FF0: Move_??? (see animscripts.txt)
 		  Implements: [move1EE] animation
+-1E2E640: ItemUseOutOfBattle_EVReduction (see 285disasm)
+		  Implements: field function for EV-reduction berries
