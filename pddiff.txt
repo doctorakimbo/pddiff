@@ -1,4 +1,4 @@
-CUR THING: j168C00 (too complex for now)
+CUR THING: j168C80-j168FC0 (too complex for now)
 		   j250C04-j25265C is now ready
 		   j1FF300-j20F500 is now ready
 		   j1830C0-j183B40 is now ready
@@ -132,7 +132,7 @@ abilities:
 = 0xDB = Queenly Majesty/Dazzling
 + 0xDD = Tangling Hair
 
-(old kid: 16F8C4, old item: 0x125, route 4, fix wildmons route15)
+(old kid: 16F8C4, fix wildmons route15)
 item effects:
 + typebooster IDs: (if effectparam = 0, type-resist berries; if effectparam >= 30, Gems; otherwise typeboosters as normal)
 + 0x18 = Macho Brace if effectparam is 0, otherwise Power item (effectparam = stat ID)
@@ -161,7 +161,7 @@ item effects:
 + 0x57 = Destiny Knot
 
 item IDs:
-= 0x72 = (key item, increases the chances of something personality-value related to 1/256 instead of 1/65536)
++ 0x72 = Shiny Charm
 + 0x1AE = Honey
 
 move IDs:
@@ -412,7 +412,7 @@ move IDs:
 = 0x246 = (attacking move with tri attack effect), (animation is Psychic on the user, then superimpose something on the target, then Psychic on the target, on Psycho Cut's background)
 = 0x247 = (attacking move with chance to lower defense), (animation is a series of seven punches)
 = 0x248 = (attacking move), (animation is a Steel-type Megahorn with a new background)
-= 0x249 = (attacking move with chance to raise sp. atk), (has electricity-related animation)
+= 0x249 = (attacking move with chance to raise sp. atk), (animation charges up, then shoots a lightning bolt straight up that then comes down on the target)
 = 0x24A = (attacking move with chance to paralyze)
 = 0x24B = (attacking move with chance to sharply raise target's sp. atk)
 = 0x24C = (attacking move with chance to lower sp. def)
@@ -641,8 +641,8 @@ metatiles:
 0xE0: (IsSandOrDeepSand (? unsure) returns TRUE; cave battle background)
 0xE1: (underwater battle background)
 0xE2: (IsSandOrDeepSand (? unsure) returns TRUE; underwater battle background)
-0xE3: (runs script_68277E_J (msgbox 8B 70 46 0A 1A FE 8B 70 44 00 02 50 4B 02 AB FF) when examined)
-0xE4: (runs script_682787_J (msgbox 87 5B 8B 5F B0 AB FE 15 06 1A 00 8B 70 00 46 50 06 28 AB FF) when examined)
+0xE3: (runs script_68277E_J (msgbox "The trash can is full of garbage.") when examined)
+0xE4: (runs script_682787_J (msgbox "Nope, there's only trash here.") when examined)
 
 battle strings (ADD 9 TO ALL):
 ! 0x3B = "[PKMN] [STATUSCUREMESSAGE]" <DON'T ADD 9>
@@ -1229,10 +1229,10 @@ stray text:
 = 03A4E8: Part of ShouldUseItem (see 75disasm)
 		  Implements: AI use of X Sp. Def and X Evasion
 		  Relies on: new table entries for gItemEffectTable
-- 03DD98: CreateMonWithNature (see 76disasm) - more accurately now CreateMonWithRandomNature
-		  Implements: Synchronize overworld effect, Cute Charm overworld effect, (item72), need more info (something to do with personality values)
-		  Required knowledge: var_403E
++ 03DD98: CreateMonWithNature (see 76disasm) - more accurately now CreateMonWithRandomNature
+		  Implements: Synchronize overworld effect, Cute Charm overworld effect, Shiny Charm, modern shiny chance, var_403E will give 1/X chance of shiny when nonzero
 		  Requires in future: GetNature_CheckSynchronize (251B30), fn_251B58, fn_251BA4, CuteCharmOverworldEffect (251CB6), fn_251CF4, fn_3915EC
+		  Note: Synchronize doesn't work yet, something else probably needed
 ! 03E564, 03E73C, 125240: 2F 01 -> FC 00 (PDONLY, changes shedinja index to #252 (empty slot))
 = 03E192: Part of GiveBoxMonInitialMoveset (see 77disasm)
 		  Implements: Part of gLevelUpLearnsets refactor
@@ -1338,8 +1338,8 @@ stray text:
 ! 046216: 14 1C 2D 04 2D 0C FE F7 54 FE -> 00 48 00 47 01 EA E2 09 00 00 (jumps (bx) to extra fn at 1E2EA00, then back (jE2EA00, see 102disasm))
 		  Implements: Everstone nature inheritance
 		  GLITCH!: Crashes upon receiving egg; maybe a problem with recompilation
-- 04623E: 05 22 20 23 F7 F7 07 -> 01 22 20 23 0B F2 72 FD (instead of calling CreateMon(..., 5, ...), calls CreateMonWithNature_New(..., 1, ...); see 102disasm)
-		  Implements: egg hatch level 5 -> 1, (item72), need more info (something to do with personality values)
++ 04623E: 05 22 20 23 F7 F7 07 FC -> 01 22 20 23 0B F2 72 FD (instead of calling CreateMon(..., 5, ...), calls CreateMonWithNature_New(..., 1, ...); see 102disasm)
+		  Implements: egg hatch level 5 -> 1, Shiny Charm (eggs), modern shiny chance (eggs), var_403E will give 1/X chance of shiny when nonzero (eggs)
 		  Requires in future: fn_251B58, fn_251B8C, fn_251BA4, CreateMonWithNature_New (251D2A), fn_3915EC
 + 046390: 01 38 00 90 -> 0B F2 A6 FB (calls new fn at 251AE0, see 103disasm)
 		  Implements: Magma Armor/Flame Body overworld effect
@@ -1420,20 +1420,20 @@ stray text:
 		  Relies on: CompressedBoxPokemon refactor
 		  Required knowledge: j0203C00D, j0203CB54, j0203D2E0, j0203D2E1, j0203D2E2, gRegisteredItemListSize (j0203D2E4), j0203D2EC, j0203D2ED, j0203D2EE, j0203D2F9, j0203D2FA, j0203D2FF
 		  Requires in future: GetRegisteredItemList, UnregisterItem, fn_183A90_J, fn_EE5000, fn_EE51C0, fn_EE540C, fn_EE543E, fn_EE54D6, fn_EE5510, CompactRegisteredItems (jEE5528), fn_EE561C, fn_EE5654, fn_EE56BC
-- 06D1F0: GetInteractedMetatileScript (see 125disasm)
++ 06D1F0: GetInteractedMetatileScript (see 125disasm)
 		  Implements: scripts for metatiles 0xE3 and 0xE4, makes it easier to add more scripted metatiles
-		  Requires in future: script_68277E, script_682787
+		  Requires in future: script_168277E, script_1682787
 + 06DE28: sub_806DE28 (see 126disasm)
 		  Implements: Strength boulders disappear when moved onto metatile 0x1F
 + 06DE70: sub_806DE70 (see 127disasm)
 		  Implements: Unclear, metatile 0x1F behavior brought closer to that of MB_ICE
 + 06E5C0: GetFlagPointer (see 128disasm)
 		  Implements: flags above 0xF000
-- 06F01C: InitStartMenuStep (+ add parts at E9D3D4, E9D48C, E9D4E2) (see 129disasm)
-		  Implements: Need more info (something about START menu)
++ 06F01C: InitStartMenuStep (+ add parts at E9D3D4, E9D48C, E9D4E2) (see 129disasm)
+		  Implements: New graphical START menu
 		  Requires in future: fn_E9D53C, fn_E9D586
-- 06F280: ProcessMenuInput (+ add part at E9D4A2) (see 130disasm)
-		  Implements: possibly retools START menu into 3x2 grid
++ 06F280: ProcessMenuInput (+ add part at E9D4A2) (see 130disasm)
+		  Implements: Retools START menu into 3x2 grid
 		  Requires in future: fn_E9D53C, fn_E9D586
 ! 06FEA0: HideStartMenuWindow (see 131disasm)
 		  Implements: changes menu close sfx from SE_SELECT to (sound_0x200)
@@ -1446,8 +1446,9 @@ stray text:
 		  Implements: Removes tileset 1 animations (replaced by functionality in 06FFBC)
 ! 07008A: 73 F1 8D FD -> 00 00 00 00
 		  Implements: Removes tileset 2 animations (replaced by functionality in 06FFBC)
-- 07049A: 0C 48 03 60 61 7A 03 20 08 40 -> 01 48 87 46 C0 46 20 D3 E9 09 (jumps (mov) to fn at 1E9D320, then back; (jE9D320, see 133disasm))
+! 07049A: 0C 48 03 60 61 7A 03 20 08 40 -> 01 48 87 46 C0 46 20 D3 E9 09 (jumps (mov) to fn at 1E9D320, then back; (jE9D320, see 133disasm))
 		  Implements: Something palette-related
+		  Note: Currently just makes screen permanently off-white, other changes probably needed
 ! 070682: 73 F1 6F FA -> 00 00 00 00
 		  Implements: Removes something palette-related (replaced by functionality in 07049A)
 + 072B00 -> 11FEFE0 (repoint): ScriptCmd_swapattackerandtarget (see 288disasm)
@@ -1462,8 +1463,8 @@ stray text:
 		  Required knowledge: j020370C0
 ! 0791EE: 06 -> FC (PDONLY, title screen cry charizard -> (species252))
 + 079282, 0EC852: C0 0F -> 01 20 (sound will always become stereo when game loaded from title screen)
-- 0793DA: Part of sub_80792C8 (+ add part at 2075E0) (see 135disasm)
-		  Implements: Need more info (title screen animation related)
++ 0793DA: Part of sub_80792C8 (+ add part at 2075E0) (see 135disasm)
+		  Implements: title screen animation related, no idea what this did
 		  Requires in future: fn_2075E0
 + 07A294: ApplyGammaShift (+ add part at F1C000, +table_F10000) (see 136disasm)
 		  Implements: RSE Drought weather capability
@@ -1479,16 +1480,17 @@ stray text:
 = 081C0A: 0E 49 38 7E 00 07 80 0E 04 38 -> 01 49 08 47 00 00 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE300F0, see 139disasm))
 		  Implements: Need more info
 		  Required knowledge: j03005548
-- 0829FC: sub_80829FC (see 140disasm)
+! 0829FC: sub_80829FC (see 140disasm)
 		  Implements: Need more info (something to do with personality values)
 		  Relies on: CreateMonWithNature changed params ("CreateMonWithRandomNature")
 		  Requires in future: fn_251B58, fn_251BA4, fn_251BBA, fn_251BE4, ForceUnownFormOnPersonality (251C92)
+		  GLITCH!: creates missingno instead
 + 0830B8: UpdateRepelCounter (see 141disasm)
 		  Implements: new repel system
 		  Relies on: VAR_REPEL_STEP_COUNT refactor (repel type is stored in high byte of VAR_REPEL_STEP_COUNT)
 		  Requires in future: EventScript_RepelWoreOffUseAnother (e1E2FF90, jE2FF90), fn_1E2FFE0
 + 083119, 0A19A5: 04 -> 06 (part of VAR_REPEL_STEP_COUNT refactor)
-- 0832EC: 00 06 00 0E -> CE F1 E8 FB (calls new fn at j251AC0, see 142disasm)
++ 0832EC: 00 06 00 0E -> CE F1 E8 FB (calls new fn at j251AC0, see 142disasm)
 		  Implements: Unclear, possibly makes water tiles only cause encounters when player is surfing (is there a possibility of standing on water tiles otherwise?)
 + 088B9E: C0 0F -> 01 20 (sound will always become stereo no matter what options menu says)
 = 089088: sub_8089088 (see 143disasm)
@@ -1542,13 +1544,15 @@ stray text:
 		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
 + 08C95C: sub_808C95C (see 158disasm)
 		  Implements: Eliminates the delay on something in the PC (can't figure out what it is even after implementing it)
-- 08C9C4: sub_808C9C4 (+ add part at EEA2C0) (see 159disasm)
-		  Implements: need more info
-- 08CBA4: sub_808CBA4 (see 160disasm)
-		  Implements: need more info
-- 08CC74: sub_808CC74 (+ add part at EEA33C) (see 161disasm)
-		  Implements: need more info (possibly box summary images on scroll)
++ 08C9C4: sub_808C9C4 (+ add part at EEA2C0) (see 159disasm)
+		  Implements: background for box summary images for Jump option (creation)
++ 08CBA4: sub_808CBA4 (see 160disasm)
+		  Implements: background for box summary images for Jump option (deletion)
++ 08CC74: sub_808CC74 (+ add part at EEA33C) (see 161disasm)
+		  Implements: Box summary images for Jump option
 		  Requires in future: EEA4E2, GetStringLength (EEA53E), EEA554
+		  Note: box 14 -> box 1 transition is bugged because there are going to be more boxes later
+		  Note: text is a bit misaligned, fix later
 + 08E8D8: 88 42 5B DB 15 28 59 DC -> 00 4A 10 47 6F A4 E2 09 (jumps (bx) to extra fn at 1E2A46E, then back (jE2A46E, see 162disasm))
   08E958: 05 20 E3 F7 B7 FC 01 F0 -> 00 48 00 47 B9 A4 E2 09 (jumps (bx) to extra fn at 1E2A4B8, then back (jE2A4B8, see 162disasm))
 		  Implements: adds extra menus to wallpaper categories
@@ -1690,7 +1694,7 @@ stray text:
 		  Implements: makes it easier to add new town map points of interest
 ! 0C3D40: sub_80C3D40 (see 198disasm)
 		  Implements: PDONLY; makes it easier to add new custom (?????) (and changes them), this also removes the ability to set them for a specific map within a section (what are they, though?)
-- 0C6DA0: BattleAI_SetupAIData (see 199disasm)
++ 0C6DA0: BattleAI_SetupAIData (see 199disasm)
 		  Implements: instead of 7 (previous "smartest" AI), the flags are set to the current value of 0203BFF4
 = 0C7038: BattleAI_DoAIProcessing (see 200disasm)
 		  Implements: New level of smart AI for when to switch (switches if it's weak to opponents and opponents aren't weak to it)
@@ -2988,7 +2992,7 @@ stray text:
 		  Implements: [move21B] animation
 =13045B0: Move_??? (see animscripts.txt)
 		  Implements: 
--1304848: Move_??? (see animscripts.txt)
++1304848: Move_??? (see animscripts.txt)
 		  Implements: [move249] animation
 +1304960: Move_??? (see animscripts.txt)
 		  Implements: [move22D] animation
