@@ -81,6 +81,7 @@ tasks/callbacks:
 [85 54 0A 08] = [C5 41 0A 08] = (used by Magical Leaf, Wild Growth, Guardian Leaf)
 [59 55 0A 08] = [99 42 0A 08] = (used by Poison Jab, Psyshock, Wave Splash, Freeze-Dry)
 [99 6D 0A 08] = [D9 5A 0A 08] = (used by [move249] and [move24D])
+[3D 6E 0A 08] = [7D 5B 0A 08] = (used by [move24B])
 [75 76 0A 08] = [B5 63 0A 08] = (used by Double Team and Angry Swarm)
 [95 79 0A 08] = [D5 66 0A 08] = (used by Tone-Deaf and Bug Noise)
 [3D 85 0A 08] = [7D 72 0A 08] = (used by [move230])
@@ -122,7 +123,7 @@ tasks/callbacks:
 [25 56 0B 08] = [65 43 0B 08] = (used by Focus Blast, Gunk Shot, Dazzling Gleam, [move241])
 [55 57 0B 08] = [95 44 0B 08] = (used by Icicle Crash, Worry Seed, [move237], [move238])
 [F5 58 0B 08] = [35 46 0B 08] = (used by Avalanche)
-[B9 59 0B 08] = [F9 46 0B 08] = (used by Gastro Acid, Icicle Crash, [move220], [move22E], [move24B])
+[B9 59 0B 08] = [F9 46 0B 08] = (used by Gastro Acid, Icicle Crash, [move220], [move22E])
 [3D 5A 0B 08] = [7D 47 0B 08] = (used by Infestation and Leaf Tornado)
 [D1 5A 0B 08] = [11 48 0B 08] = AnimTask_LoadSandstormBackground
 [69 5D 0B 08] = [A9 4A 0B 08] = (used by Petal Blizzard)
@@ -275,6 +276,7 @@ anims 2/templates:
 [1C A6 3A 08] = [D8 30 3E 08] = (used by Frost Breath)
 [E8 AA 3A 08] = [A4 35 3E 08] = (used by [move230])
 [44 AB 3A 08] = [00 36 3E 08] = (used by [move249] and [move24D])
+[9C AB 3A 08] = [58 36 3E 08] = (used by [move24B]
 [88 AD 3A 08] = [44 38 3E 08] = (used by Tone-Deaf and Bug Noise)
 [C0 AD 3A 08] = [7C 38 3E 08] = (used by Tone-Deaf and Bug Noise)
 [D0 AE 3A 08] = [8C 39 3E 08] = (used by Confide)
@@ -339,7 +341,7 @@ anims 2/templates:
 [D4 E7 3A 08] = [90 72 3E 08] = (used by Electroweb)
 [20 E8 3A 08] = [DC 72 3E 08] = (used by Electroweb)
 [38 E8 3A 08] = [F4 72 3E 08] = gLinearStingerSpriteTemplate
-[EC E8 3A 08] = [A8 73 3E 08] = (used by Avalanche, Icicle Crash, [move220], [move22E], [move24B])
+[EC E8 3A 08] = [A8 73 3E 08] = (used by Avalanche, Icicle Crash, [move220], [move22E])
 [F8 E8 3A 08] = [B4 73 3E 08] = (used by Rock Slide and Grand Boulder/Stone Edge)
 [10 E9 3A 08] = [CC 73 3E 08] = (used by Rock Blast, Rock Climb, Rock Wrecker, [move21C])
 [28 E9 3A 08] = [E4 73 3E 08] = (used by Typhoon)
@@ -568,8 +570,8 @@ new sprite gfx:
 323: used by [move251]
 324: used by [move251]
 325: used by [move251]
+336: used by [move24B]
 337: used by Mud Bomb and [move24B]
-338: used by [move24B]
 339: used by Avalanche and Icicle Crash
 340: used by Freeze-Dry
 341: used by [move249]
