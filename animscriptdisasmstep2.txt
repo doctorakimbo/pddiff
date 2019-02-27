@@ -125,3 +125,99 @@ AnimTask_Move217Unknown(arg0)
 	*((arg0 * 0x28) + gTasks + 8) = r5
 	*((arg0 * 0x28) + gTasks) = fn_B5BCC_J
 }
+
+
+
+
+
+
+
+Callback_Move251Unknown(arg0)
+{
+	if(*gBattleAnimArgs == 0)
+	{
+		*(arg0 + 0x20) = fn_16929C_J(*gBattleAnimAttacker, 2)
+		*(arg0 + 0x22) = fn_16929C_J(*gBattleAnimAttacker, 3)
+	}
+	
+	*(arg0 + 0x2E) = *(gBattleAnimArgs + 2)
+	*(arg0 + 0x1C) = fn_B4A64_J
+}
+
+
+
+
+
+
+
+fn_16929C_J(arg0, arg1)
+{
+	switch(arg1)
+	{
+	case 0:
+	case 2:
+		return *((GetBattlerPosition(arg0) * 4) + ((*gBattleTypeFlags & 1) * 0x10) + data_169204_J)
+	case 1:
+		return *((GetBattlerPosition(arg0) * 4) + ((*gBattleTypeFlags & 1) * 0x10) + data_169204_J + 1)
+	case 3:
+		if(GetBattlerPosition(arg0) != 0)
+		{
+			if(*((arg0 * 4) + *(*gBattleSpritesDataPtr) + 2) == 0)
+				r1 = GetMonData((*((arg0 * 2) + gBattlerPartyIndexes) * 0x64) + gEnemyParty, 0xB)
+			else
+				r1 = *(r1 + 2)
+		}
+		else
+		{
+			if(*((arg0 * 4) + *(*gBattleSpritesDataPtr) + 2) == 0)
+				r1 = GetMonData((*((arg0 * 2) + gBattlerPartyIndexes) * 0x64) + gPlayerParty, 0xB)
+			else
+				r1 = *(r1 + 2)
+		}
+		
+		if(arg1 != r3)
+			return fn_168B70_J(arg0, r1, 0)
+		else
+			return fn_168B70_J(arg0, r1, 1)
+	case 4:
+		gamecrash()
+	}
+	
+	return r0
+}
+
+
+
+
+
+
+
+fn_168B70_J(arg0, arg1, arg2)
+{
+	if(GetBattlerSide(arg0) != 0)
+		r5 = fn_73D34_J(arg0, arg1)
+	else
+		r5 = fn_73D34_J(arg0, arg1) - fn_73EF0_J(arg0, arg1)
+	
+	r4 = *((GetBattlerPosition(arg0) * 4) + ((*gBattleTypeFlags & 1) * 0x10) + data_169204_J + 1) + r5
+	
+	if(arg2 != 0)
+	{
+		if(GetBattlerSide(arg0) == 0)
+			r4 += 8
+		
+		if(r4 > 0x68)
+			r4 = 0x68
+	}
+	
+	return r4
+}
+
+
+
+
+
+
+
+data_169204_J:
+48 48 00 00 B0 20 00 00 30 20 00 00 70 48 00 00 20 48 00 00 C8 20 00 00 5A 50 00 00 98 18 00 00

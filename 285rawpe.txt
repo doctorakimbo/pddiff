@@ -3,11 +3,11 @@
 [] = translate
 
 18 E9 E2 09 = FD 02 1A 00 11 36 50 14 00 15 12 02 10 AB FE FD 03 19 00 07 0F 9F 52 7E 64 37 00 0B 37 50 10 AB FC 09 FF
-			  __ __ ha    chi?? t  to    na tsui  ta !     __ __ no    ki so PO I  N  TO ga    sa ga t  ta  !
+			  __ __ ha     cho  t  to    na tsui  ta !     __ __ no    ki so PO I  N  TO ga    sa ga t  ta  !
 3C E9 E2 09 = FD 02 1A 00 0B 02 0A 03 16 00 15 12 02 13 02 29 AB FE FD 03 19 00 07 0F 9F 52 7E 64 37 00 0B 37 50 10 AB FC 09 FF
 			  __ __ ha    sa i  to u  ni    na tsui  te i  ru !     __ __ no    ki so PO I  N  TO ga    sa ga t  ta !
 63 E9 E2 09 = FD 02 1A 00 11 36 50 14 00 15 12 02 10 AB FE FD 03 19 00 07 0F 9F 52 7E 64 1A 00 0B 37 27 15 02 FC 09 FF
-			  __ __ ha    chi?? t  to    na tsui  ta !     __ __ no    ki so PO I  N  TO ha    sa ga ra na i
+			  __ __ ha     cho  t  to    na tsui  ta !     __ __ no    ki so PO I  N  TO ha    sa ga ra na i
 			  
 __ became more friendly. However, its base __ fell!
 __ adores you! However, its base __ fell!

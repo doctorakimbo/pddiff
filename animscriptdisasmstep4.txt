@@ -124,3 +124,100 @@ AnimTask_PetalBlizzardUnknown(arg0)
 	gTasks[arg0].data[0] = r5
 	gTasks[arg0].func = fn_B490C
 }
+
+
+
+
+
+
+
+Callback_Move251Unknown(arg0)
+{
+	if(gBattleAnimArgs[0] == 0)
+	{
+		arg0.pos1.x = fn_16926C_J(gBattleAnimAttacker, 2)
+		arg0.pos1.y = fn_16926C_J(gBattleAnimAttacker, 3)
+	}
+	
+	arg0.data[0] = gBattleAnimArgs[2]
+	arg0.callback = fn_B37A4
+}
+
+
+
+
+
+
+
+fn_16926C_J(battler, case)
+{
+	switch(case)
+	{
+	case 0:
+	case 2:
+		return data_169204_J[gBattleTypeFlags & BATTLE_TYPE_DOUBLE][GetBattlerPosition(battler)].0
+	case 1:
+		return data_169204_J[gBattleTypeFlags & BATTLE_TYPE_DOUBLE][GetBattlerPosition(battler)].1
+	case 3:
+		if(GetBattlerPosition(battler) != 0)
+		{
+			if((*gBattleSpritesDataPtr).battlerData[battler].transformSpecies == SPECIES_NONE)
+				species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler]], MON_DATA_SPECIES)
+			else
+				species = (*gBattleSpritesDataPtr).battlerData[battler].transformSpecies
+		}
+		else
+		{
+			if((*gBattleSpritesDataPtr).battlerData[battler].transformSpecies == SPECIES_NONE)
+				species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler]], MON_DATA_SPECIES)
+			else
+				species = (*gBattleSpritesDataPtr).battlerData[battler].transformSpecies
+		}
+		
+		if(case != 3)
+			return fn_168B70_J(battler, species, 0)
+		else
+			return fn_168B70_J(battler, species, 1)
+	case 4:
+		gamecrash()
+	}
+	
+	return r0
+}
+
+
+
+
+
+
+
+fn_168B70_J(battler, species, arg2)
+{
+	if(GetBattlerSide(battler) != 0)
+		r5 = fn_74590(battler, species)
+	else
+		r5 = fn_74590(battler, species) - fn_7474C(battler, species)
+	
+	r4 = data_169204_J[gBattleTypeFlags & BATTLE_TYPE_DOUBLE][GetBattlerPosition(battler)].1 + r5
+	
+	if(arg2 != 0)
+	{
+		if(GetBattlerSide(battler) == 0)
+			r4 += 8
+		
+		if(r4 > 0x68)
+			r4 = 0x68
+	}
+	
+	return r4
+}
+
+
+
+
+
+
+
+data_169204_J:
+48 48 00 00 B0 20 00 00 30 20 00 00 70 48 00 00
+20 48 00 00 C8 20 00 00 5A 50 00 00 98 18 00 00

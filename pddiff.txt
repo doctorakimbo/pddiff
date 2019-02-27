@@ -429,7 +429,7 @@ move IDs:
 = 0x24E = (attacking move), (animation is Screech with a different soundwave sprite)
 = 0x24F = (attacking move), (animation shoots something that makes a cutting sound, on Water Pulse's background)
 = 0x250 = (attacking move with chance to lower speed), (animation slowly covers the foe in something as the screen slowly darkens, then a flurry of hit sounds when the screen is completely black)
-= 0x251 = (attacking move)
+= 0x251 = (attacking move), (animation involves Supersonic sound)
 = 0x252 = (attacking move)
 = 0x253 = (attacking move with chance to lower sp. def), (can't be called by metronome)
 = 0x254 = (attacking move with chance to lower sp. atk), (can't be called by metronome)
@@ -1842,13 +1842,12 @@ stray text:
   102B60: 01 F0 26 FE -> 00 00 00 00
 		  Implements: don't remove three windows (pokedex screen)
 		  Note: currently just breaks things (probably running out of memory)
-= 102C28: sub_8102C28 (see 219disasm)
+- 102C28: sub_8102C28 (see 219disasm)
 		  Implements: for one specific function (pokedex main screen?): change a tile type, always use natdex, and replace the TABLE OF CONTENTS text with something - need more info
-		  Requires in future: fn_3C7C00_J, CopyBytes (j3C7C40), fn_3C7C4E_J
-= 102FFE: 00 F0 C3 FC -> ?? ?? ?? ?? (changes call to sub_8103988 to instead call fn at j4151A0, which just adds a call to fn_3C7400_J after; see 220disasm)
+		  Requires in future: fn_3C7C00, CopyBytes (3C7C40), fn_3C7C4E
+- 102FFE: 00 F0 C3 FC -> 12 F3 CF F8 (changes call to sub_8103988 to instead call fn at 4151A0, which just adds a call to fn_3C7400 after; see 220disasm)
 		  Implements: clears all sprites from memory, something else (need more info)
-		  Required knowledge: j0203D080, j03003E98
-		  Requires in future: fn_3C7418_J
+		  Requires in future: fn_3C7418
 = 103024, 1032E4, 103BD0: 7D 28 10 08 -> XX XX XX 08 (instead of setting callback to sub_810287C, set it to fn at j3C7A00, which is just sub_807249C followed by CB2_ReturnToFieldWithOpenMenu (sub_80568A8))
 		  Implements: some input, instead of moving to a new menu, does something volume-related then exits the pokedex
 = 103028: 00 F0 A8 F8 -> ?? ?? ?? ?? (changes call to sub_810317C to instead call fn at j4151AC, which just adds a call to fn_4151F2_J after; see 221disasm)
@@ -1857,26 +1856,23 @@ stray text:
 		  Requires in future: fn_4152D4_J
 = 103084: 04 F0 26 F9 -> ?? ?? ?? ?? (changes call to ListMenuGetScrollAndRow to instead call fn at j4151C4, which just adds a call to fn_4151D2_J after; see 222disasm)
 		  Implements: need more info (displays some stuff)
-		  Required knowledge: j0203D080, j0203D090, j0203D100, j0203D300, j0203D330, j0203D4F0, j0203D800, j03000DE8, j06012300, j06012400, j06012A00, j06015A00, j06015E00
-		  Requires in future: fn_1690E0_J, fn_3C6FD0_J, fn_3C74B0_J, fn_3C7660_J, fn_3C76A4_J, fn_3C76C0_J, fn_3C7800_J, fn_3C7868_J, fn_3C7884_J, fn_3C7D90_J, fn_4154F0_J, fn_41553E_J, fn_41563C_J, fn_415714_J, fn_4159E0_J, fn_415A54_J
-= 10309E: 03 F0 EB FF -> ?? ?? ?? ?? (changes call to ListMenuHandleInputGetItemId to instead call fn at j4150E0, see 223disasm)
+		  Requires in future: fn_1690E0_J, fn_3C6FD0, fn_3C74B0, fn_3C7660, fn_3C76A4, fn_3C76C0, fn_3C7800, fn_3C7868, fn_3C7884, fn_3C7D90, fn_4154F0, fn_41553E, fn_41563C, fn_415714, fn_4159E0, fn_415A54
+= 10309E: 03 F0 EB FF -> 12 F3 1F F8 (changes call to ListMenuHandleInputGetItemId to instead call fn at j4150E0, see 223disasm)
 		  Implements: changes pokedex list to be 4 entries wide instead of vertical, adds ability to hold R to skip to top/bottom of dex, some other stuff (need more info)
-		  Required knowledge: j0203B800
-		  Requires in future: fn_3C7700_J, fn_415262_J, fn_4152D4_J, fn_4154F0_J
-= 10317C: sub_810317C (seee 224disasm)
+		  Requires in future: fn_1690E0_J, fn_3C6FD0, fn_3C74B0, fn_3C7660, fn_3C76A4, fn_3C76C0, fn_3C7700, fn_3C7800, fn_3C7868, fn_3C7884, fn_3C7D90, fn_415262, fn_4152D4, fn_4154F0, fn_41553E, fn_41563C, fn_415714, fn_4159E0, fn_415A54
+- 10317C: sub_810317C (seee 224disasm)
 		  Implements: need more info
-		  Required knowledge: j0203D090, j030008E8, j06000000
-		  Requires in future: fn_3C7350_J, fn_3C7C00_J, fn_416970_J
+		  Requires in future: fn_3C7350, fn_3C7C00, fn_416970
 + 103350: 00 F0 4E FB -> 00 00 00 00 (remove scroll indicator from search screen)
-= 10345C: sub_810345C (see 225disasm)
+- 10345C: sub_810345C (see 225disasm)
 		  Implements: on some pokedex screen, replace the SEARCH text with something - need more info
-		  Requires in future: fn_3C7C00_J
+		  Requires in future: fn_3C7C00
 + 103550: 68 35 10 08 -> 74 38 10 08 (regional and national lists are now identical)
-= 103940: C2 8E 83 8E -> 10 F3 D0 FE (add call to fn at j4154A0, see 226disasm)
+- 103940: C2 8E 83 8E -> 11 F3 AE FD (add call to fn at 4154A0, see 226disasm)
 		  Implements: something to do with 4-entries-wide dex listing
-! 1039F0: sub_81039F0 (see 227disasm)
+- 1039F0: sub_81039F0 (see 227disasm)
 		  Implements: something to do with 4-entries-wide dex listing
-		  Note: Currently just prevents down arrow on dex list from disappearing
+		  Note: Currently just prevents down arrow on dex list from disappearing (TRY NOW)
 ! 103A64: 00 F0 E6 FF -> 00 00 00 00 (removes numbers from dex list)
 ! 103A78: 04 F0 76 F9 -> 00 00 00 00
   103A98: 04 F0 66 F9 -> 00 00 00 00
@@ -1884,8 +1880,7 @@ stray text:
 		  Implements: removes caught icon and types from dex list
 = 1043A2: 01 F0 3B FD -> ?? ?? ?? ?? (changes call to sub_8105E1C to instead call fn at j4151B8, which just adds a call to fn_3C7400_J after; see 220disasm)
 		  Implements: clears all sprites from memory, something else (need more info)
-		  Required knowledge: j0203D080, j03003E98
-		  Requires in future: fn_3C7418_J
+		  Requires in future: fn_3C7418
 ! 10457A: 01 68 -> 87 46
   10458C: F0 AC 03 02 -> 40 B4 EE 09 (jumps (mov) to extra fn at 1EEB440, then back (jEEB440, see 228disasm))
   RE-REPOINT THIS TO FIRST HALF
@@ -2956,7 +2951,7 @@ stray text:
 +1301B70: Move_??? (see animscripts.txt)
 		  Implements: [move22C] animation
 =1301C88: Move_??? (see animscripts.txt)
-		  Implements: 
+		  Implements: [move251] animation
 		  Requires in future: Callback_Move251Unknown (j169224)
 +1301F80: Move_??? (see animscripts.txt)
 		  Implements: [move24B] animation

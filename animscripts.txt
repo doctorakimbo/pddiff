@@ -12425,7 +12425,7 @@ gUnknownMove251SpriteTemplate1:
 .afflineAnims = [CC B5 3A 08]
 .callback = [41 55 07 08]
 
-gUnknownMove251SpriteTemplate1:
+gUnknownMove251SpriteTemplate2:
 .tileTag = (ANIM_SPRITES_START + 324)
 .paletteTag = (ANIM_SPRITES_START + 324)
 .oam = [10 0A 37 08]
@@ -12434,7 +12434,7 @@ gUnknownMove251SpriteTemplate1:
 .afflineAnims = gDummySpriteAfflineAnimTable
 .callback = Callback_Move251Unknown
 
-gUnknownMove251SpriteTemplate1:
+gUnknownMove251SpriteTemplate3:
 .tileTag = (ANIM_SPRITES_START + 325)
 .paletteTag = (ANIM_SPRITES_START + 325)
 .oam = [10 0A 37 08]
