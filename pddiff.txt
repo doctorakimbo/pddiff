@@ -1,4 +1,4 @@
-CUR THING: j168B6C-j169366 -> e178B6C-e179366 is now ready (NEW)
+CUR THING: j168B6C-j169366 -> e178B6C-e179366 is now ready
 		   j1830C0-j183B40 is now ready
 		   j1FF300-j20F500 is now ready
 		   j250C04-j25265C is now ready
@@ -385,7 +385,7 @@ move IDs:
 = 0x222 = (attacking move with chance to confuse), (animation involves foe being surrounded by some objects, then the curse effect)
 = 0x223 = (attacking move with chance to lower sp. def), (animation has something spin over top of the foe, then the foe turns gray)
 = 0x224 = (attacking move), (animation is Dragon Claw charge-up, then Crunch)
-= 0x225 = (attacking move with chance to raise sp. atk), (animation involves charging up while flashing blue, then shooting something, with [move224]'s background)
+= 0x225 = (attacking move with chance to raise sp. atk), (animation involves charging up while flashing blue, then shooting something, on [move224]'s background)
 = 0x226 = (attacking move), (animation is a gentle bite)
 = 0x227 = (non-attacking move, turns target into pure Rock-type), (animation is Leer that inverts colors)
 = 0x228 = (attacking move), (animation is Screech with a different soundwave sprite and Hex's background)
@@ -396,7 +396,7 @@ move IDs:
 = 0x22D = (attacking move with Wring Out effect), (animation has the foe absorb light then explode)
 = 0x22E = (attacking move with chance to lower defense), (animation involves hitting twice as the user sways, and produces a large amount of objects on the foe)
 = 0x22F = (attacking move that lowers user's attack and harshly lowers user's defense afterwards), (animation involves charging up while flashing orange, then a huge tackle)
-= 0x230 = (attacking move), (animation is Swords Dance then Slash)
+= 0x230 = (attacking move), (animation is Swords Dance then Slash, on [move224]'s background)
 = 0x231 = (attacking move with chance to lower speed), (animation involves leaves (assumed) spreading outward from the user then a hit that's shared with Power Whip somehow)
 = 0x232 = (attacking move with chance to burn or flinch), (animation is Bounce with different graphics and fire effects)
 = 0x233 = (attacking move), (soundwave move that uses the user's cry, on Aura Sphere's background)
@@ -430,11 +430,11 @@ move IDs:
 = 0x24F = (attacking move), (animation shoots something that makes a cutting sound, on Water Pulse's background)
 = 0x250 = (attacking move with chance to lower speed), (animation slowly covers the foe in something as the screen slowly darkens, then a flurry of hit sounds when the screen is completely black)
 = 0x251 = (attacking move), (animation involves Supersonic sound)
-= 0x252 = (attacking move)
-= 0x253 = (attacking move with chance to lower sp. def), (can't be called by metronome)
-= 0x254 = (attacking move with chance to lower sp. atk), (can't be called by metronome)
-= 0x255 = (attacking move with chance to lower attack), (can't be called by metronome)
-= 0x256 = (attacking move with chance to lower defense), (can't be called by metronome)
+= 0x252 = (attacking move), (animation is Knock Off on [move224]'s background)
+= 0x253 = (attacking move with chance to lower sp. def), (can't be called by metronome), (has Pound animation; not implemented)
+= 0x254 = (attacking move with chance to lower sp. atk), (can't be called by metronome), (has Pound animation; not implemented)
+= 0x255 = (attacking move with chance to lower attack), (can't be called by metronome), (has Pound animation; not implemented)
+= 0x256 = (attacking move with chance to lower defense), (can't be called by metronome), (has Pound animation; not implemented)
 = 0x257 = (attacking move), (special message in atk97_tryinfatuating)
 = 0x258 = (attacking move with Brine effect)
 = 0x259 = (non-attacking move)
@@ -876,7 +876,7 @@ stray text:
   00D320: 4C 2B 02 02 -> 01 24 25 08 (jumps (bx) to extra fn at 252400, then back (see 02disasm))
 		  Implements: clears various data on battle start
 + 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (unclear, but gives more variance to personality values)
-= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC, 1035AC, 103652, 1036F2, 10378A, 103826, 1038B8, 104DF6, 10647E, 113EE8, 119420, 11AC48, 11AFDE, 11B01C, 1218EC, 136248: 0B -> 10 (pkmnnamelength)
+= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC, 1035AC, 103652, 1036F2, 10378A, 103826, 1038B8, 104DF6, 105EF6, 10647E, 113EE8, 119420, 11AC48, 11AFDE, 11B01C, 1218EC, 136248: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: pkmnnamelength, something else - need more info
@@ -972,16 +972,16 @@ stray text:
 		  Requires in future: HasItemWithTypeEffect, AteAbilityConversionTable (j168CB4)
 		  Note: check wonder guard vs canceled se (elec on water/ground, fire on rock/grass)
 = 01EDF4: TypeCalc (see 22disasm)
-		  Implements: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Storm Drain (immunity), Unnerve (type-resist berries), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Bulletproof, Galvanize (type change), Dazzling, Queenly Majesty, Expert Belt, type-resist berries, grass-type powder immunity
-		  Requires in future: RunTypeEffectivenessBasedAbilities (j2076B0), IsMoveBlockedByAbility (j251DA0), AteAbilityConversionTable (j168CB4)
-		  Glitch?: Solid Rock might be 3/4 to ALL damage
+		  Implements: AI checks for: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Storm Drain (immunity), Unnerve (type-resist berries), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Bulletproof, Galvanize (type change), Dazzling, Queenly Majesty, Expert Belt, type-resist berries, grass-type powder immunity
+		  Requires in future: HasItemWithTypeEffect, RunTypeEffectivenessBasedAbilities (j2076B0), IsMoveBlockedByAbility (251DA0), AteAbilityConversionTable (j168CB4, e178CB4)
+		  Glitch?: Solid Rock might be 3/4 to ALL damage, doesn't really matter but AI might get confused
 + 01EFCC: AI_TypeCalc (see 23disasm)
-		  Implements: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Storm Drain (immunity), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Bulletproof, Dazzling, Queenly Majesty, grass-type powder immunity
+		  Implements: AI checks for: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Storm Drain (immunity), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Bulletproof, Dazzling, Queenly Majesty, grass-type powder immunity
 		  Requires in future: IsMoveBlockedByAbility (251DA0)
 		  Notes: Of the three, only atk06_typecalc contains the Mold Breaker functionality (besides vs Solid Rock)/Sheer Cold immunity/Gems, only TypeCalc contains the Hidden Power calc/non-Levitate ability immunities/type-resist berries, and AI_TypeCalc doesn't have anything but the immunity abilities (no Mold Breaker even); not sure what this implies
 = 01F104: atk07_adjustnormaldamage (+HasItemWithTypeEffect, GetWeatherTurns) (see 24disasm)
 		  Implements: modern Sturdy, Klutz (Focus Band, the item effects here), Mold Breaker+ (vs Sturdy), Unnerve (type-resist berries), Infiltrator (foe can endure when hit through Substitute), Focus Sash, type-resist berries, foe can endure when hit by sound moves through Substitute
-		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_ConsumeDamageReductionBerry (e1FD33, j1F543)
+		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_ConsumeDamageReductionBerry (e1FD33, j1F543), weather refactor (for GetWeatherTurns)
 		  Requires in future: ClearFocusBand (j168C88), SetFocusBand (j168C9C), AteAbilityConversionTable (j168CB4)
 		  Glitch: Pointer to AteAbilityConversionTable (j168CB4) instead points to j168CA4
 = 01F2B4 -> 01F394 (repoint): atk08_adjustnormaldamage2 (see 25disasm)
@@ -1080,9 +1080,9 @@ stray text:
 + 024EC0: 08 1C 21 30 00 78 02 28 5E D0 08 1C 22 30 00 78 02 28 59 D0 08 1C 20 30 00 78 1A 28 54 D0 -> 20 31 48 78 02 28 5F D0 88 78 02 28 5C D0 08 78 1A 28 59 D0 62 28 57 D0 00 00 00 00 00 00
 		  Implements: Magic Guard (vs Spikes)
 + 025A0E: 05 -> 06 (+1 max digits for money)
-= 025FE0: atk69_adjustsetdamage (see 40disasm)
+- 025FE0: atk69_adjustsetdamage (see 40disasm)
 		  Implements: modern Sturdy, Klutz (enduring (Focus) items), Mold Breaker+ (vs Sturdy), Focus Sash
-		  Requires in future: ClearFocusBand (j168C88), SetFocusBand (j168C9C)
+		  Requires in future: ClearFocusBand (j168C88, e178C88), SetFocusBand (j168C9C, e178C9C)
 		  Notes: False Swipe appears to be removed, check; check that infiltrating set-damage moves hit through sub
 + 02615C: atk6A_removeitem (see 41disasm)
 		  Implements: Cheek Pouch
@@ -1123,9 +1123,9 @@ stray text:
 		  Implements: Skill Link
 + 02883C: atk92_setlightscreen (see 53disasm)
 		  Implements: Light Clay (Light Screen), Klutz (Light Clay on Light Screen)
-= 028908: atk93_tryKO (see 54disasm)
+- 028908: atk93_tryKO (see 54disasm)
 		  Implements: Klutz (enduring (Focus) items vs OHKO moves), Mold Breaker+ (vs Sturdy for OHKO moves), Focus Sash (OHKO moves), Sheer Cold lower accuracy from non-Ice-types
-		  Requires in future: ClearFocusBand (j168C88), SetFocusBand (j168C9C)
+		  Requires in future: ClearFocusBand (j168C88, e178C88), SetFocusBand (j168C9C, e178C9C)
 		  Glitch?: Subtracting 0x10 instead of 10 means Sheer Cold is 14% accuracy when used by non-Ice-types, should be 20% (check online, maybe wrong)
 = 028C98: atk95_setsandstorm (see 55disasm)
 		  Implements: Smooth Rock (manual sand), Klutz (Smooth Rock manual sand)
@@ -1144,11 +1144,10 @@ stray text:
 + 029C79: 32 -> 22
   029C90: 8B 7B -> 04 23 (Encore always lasts 3 turns)
 = 02A240: 60 -> 30 (part of weather refactor - sun)
-= 02A3C8 -> ?????? (repoint; j168F08): atkAA_setdestinybond (see 252disasm)
+- 02A3C8 -> 178F08 (repoint; j168F08): atkAA_setdestinybond (see 252disasm)
 		  Implements: refactors to include extra param (goto the address if it fails); adds a counter for consecutive uses that works similar to, but independent from, the Protect one
-		  Required knowledge: gDestinyBondUses (j0203B900)
-		  Relies on: battlescripts change to accomodate above
 		  Note: this is incorrect behavior, it should just always fail when used consecutively
+		  Note: the code as written would cause a game crash, also required changing 6E 75 1D 08 -> 98 8F 17 08
 + 02A566: 8E 1C -> 04 26 (Spite always removes 4 PP)
 = 02B2D4: atkBB_setsunny (see 58disasm)
 		  Implements: Heat Rock (manual sun), Klutz (Heat Rock manual sun)
@@ -1504,8 +1503,8 @@ stray text:
 + 088B9E: C0 0F -> 01 20 (sound will always become stereo no matter what options menu says)
 = 089088: sub_8089088 (see 143disasm)
 		  Implements: When backing out of (trainer card?), implement possibility that it returns to some mysteryfunc enormous menu instead of the START menu (need A LOT more info)
-		  Required knowledge: j0203D51F, (needed for fn_E9EA00_J: j0203CB1C, j0203CB24, j0203CB26, j0203CB28, j0203D100, j0203D200, j0203D500, j0203D502, j0203D504, j0203D50A, j0203D51E, j0203D51F, j0203D520, j0203D528, j0203D52A, gMysteryFuncWindows (j0203D530), j0203D550, j0203D552, j0203D560, j0203D561, j0203D562, j0203D570, j0203D571, gMysteryFuncUnknownListSize (j0203D580), gMysteryFuncUnknownList (j0203D582), j0203D680, j0203D681, j0203D682, j0203D690)
-		  Requires in future: fn_E9E980_J, fn_E9EA00_J (and all subfunctions: fn_168900_J, fn_42BE70_J, fn_E9EA40_J, fn_E9EAA4_J, fn_E9EB36_J, fn_E9EBB0_J, fn_E9EF98_J, fn_E9F056_J, fn_E9F204_J, fn_E9F272_J, fn_E9F398_J, fn_E9F478_J, fn_E9F6F4_J, fn_E9F8B0_J, fn_E9F92C_J, fn_E9F966_J, fn_E9FA12_J, fn_E9FC04_J, fn_E9FC28_J, fn_E9FE26_J, fn_E9FE5A_J, AddElementToUnknownList (jE9FE82), SortUnknownListNumerically (jE9FEA8), fn_E9FED4_J, fn_E9FFDC_J, fn_EA00EA_J, fn_EA0110_J, fn_EA0158_J, fn_EA0540_J, fn_EA05F4_J, fn_EA06C6_J, fn_EA06E8_J, fn_EA0B60_J)
+		  jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+		  Requires in future: fn_1E9E980, fn_E9EA00_J (and all subfunctions: fn_168900_J, fn_42BE70_J, fn_E9EA40_J, fn_E9EAA4_J, fn_E9EB36_J, fn_E9EBB0_J, fn_E9EF98_J, fn_E9F056_J, fn_E9F204_J, fn_E9F272_J, fn_E9F398_J, fn_E9F478_J, fn_E9F6F4_J, fn_E9F8B0_J, fn_E9F92C_J, fn_E9F966_J, fn_E9FA12_J, fn_E9FC04_J, fn_E9FC28_J, fn_E9FE26_J, fn_E9FE5A_J, AddElementToUnknownList (jE9FE82), SortUnknownListNumerically (jE9FEA8), fn_E9FED4_J, fn_E9FFDC_J, fn_EA00EA_J, fn_EA0110_J, fn_EA0158_J, fn_EA0540_J, fn_EA05F4_J, fn_EA06C6_J, fn_EA06E8_J, fn_EA0B60_J)
 = 08A006: 06 -> 07
   08A028: 7A -> 72
   08A090: 76 -> 6E
@@ -1681,10 +1680,10 @@ stray text:
   0A1A68: 66 F0 C4 FF -> 00 00 00 00
 		  Implements: need more info (appears to remove functions that delete blank bag slots when an item is used up, probably reimplemented elsewhere)
 		  Note: this doesn't actually do anything apparently
-= 0B3834: sub_80B3834 (see 194disasm)
-		  Implements: In an unknown animation routine only used by Skill Swap in vanilla, allows gBattleAnimArgs[1] to choose between 3 options for the sprite/palette tags (gBattleAnimArgs[1] = 0 is the standard one)
-		  Relies on: animation scripts setting the value correctly
-		  Requires in future: fn_168A10_J, fn_168AC0_J
+- 0B3834: sub_80B3834 (see 194disasm)
+		  Implements: In an unknown animation routine only used by Skill Swap in vanilla, allows gBattleAnimArgs[1] to choose between 3 options for the sprite/palette tags (gBattleAnimArgs[1] = 0 is the standard one); new Skill Swap animation
+		  Relies on: Move_Skill_Swap
+		  Requires in future: fn_168A10, fn_168AC0
 + 0B565C: 00 -> 01 (set Shadow Ball sprite.data[0] to 1 instead of 0; no idea what this did)
 + 0BC128, 0F171C: 6E -> 6C (set gBattleAnimTarget to gBattlerTarget instead of gEffectBattler; these unknown animation routines are called by the item steal animation)
 + 0BD3C8: 01 A9 2A 1C A6 F7 28 FB -> 00 48 00 47 61 2C 22 08 (jumps (bx) to extra fn at 222C60, then back (see 195disasm))
@@ -1735,11 +1734,11 @@ stray text:
 		  Note: it removes the null check for moves, which shouldn't actually matter; also it still doesn't fix the bug where it checks the user's moves instead of the opponents'
 + 0C8FB0: BattleAICmd_if_doesnt_have_move_with_effect (see 204disasm)
 		  Implements: Fixes a bug where the function would always consider opponents to have the specified move effect
-= 0C9518 -> ?????? (repoint; j168CC8): BattleAICmd_nullsub_52 (see 258disasm)
+- 0C9518 -> 178CC8 (repoint; j168CC8): BattleAICmd_nullsub_52 (see 258disasm)
 		  Implements: new battle ai script command (BattleAICmd_get_considered_move_target_type); gets the target type (single, all foes, field, etc.) of the considered move and stores it in funcResult
-= 0C951C -> ?????? (repoint; j168CF4): BattleAICmd_nullsub_53 (see 259disasm)
+- 0C951C -> 178CF4 (repoint; j168CF4): BattleAICmd_nullsub_53 (see 259disasm)
 		  Implements: new battle ai script command (BattleAICmd_get_considered_move_category); gets the category (physical, special, status) of the considered move and stores it in funcResult
-= 0C9520 -> ?????? (repoint; j168D20): BattleAICmd_nullsub_54 (see 260disasm)
+- 0C9520 -> 178CF4 (repoint; j168D20): BattleAICmd_nullsub_54 (see 260disasm)
 		  Implements: new battle ai script command (BattleAICmd_get_considered_move_extra_flags); gets the extra flags (sound, powder, punch, etc.) of the considered move and stores them in funcResult
 + 0C9528 -> 11FC000 (repoint): BattleAICmd_nullsub_56 (see 261disasm)
 		  Implements: new battle ai script command (BattleAICmd_exec); executes the given ASM function then continues running the AI script
@@ -1845,22 +1844,21 @@ stray text:
 ! 102C28: sub_8102C28 (see 219disasm)
 		  Implements: for one specific function (pokedex main screen?): change a tile type, always use natdex, and replace the TABLE OF CONTENTS text with a POKEDEX logo
 		  Requires in future: fn_3C7C00, CopyBytes (3C7C40), fn_3C7C4E
-		  Relies on: palette changes to make this not look broken
+		  Relies on: palette rework to make this not look broken
 + 102FFE: 00 F0 C3 FC -> 12 F3 CF F8 (changes call to sub_8103988 to instead call fn at 4151A0, which just adds a call to fn_3C7400 after; see 220disasm)
 		  Implements: clears all sprites from memory, something else (need more info)
 		  Requires in future: fn_3C7418
-= 103024, 1032E4, 103BD0: 7D 28 10 08 -> XX XX XX 08 (instead of setting callback to sub_810287C, set it to fn at j3C7A00, which is just sub_807249C followed by CB2_ReturnToFieldWithOpenMenu (sub_80568A8))
+- 103024, 1032E4, 103BD0: 7D 28 10 08 -> 01 7A 3C 08 (instead of setting callback to sub_810287C, set it to fn at 3C7A00, which is just sub_807249C followed by CB2_ReturnToFieldWithOpenMenu (sub_80568A8)) (see miniraw28pe)
 		  Implements: some input, instead of moving to a new menu, does something volume-related then exits the pokedex
-= 103028: 00 F0 A8 F8 -> ?? ?? ?? ?? (changes call to sub_810317C to instead call fn at j4151AC, which just adds a call to fn_4151F2_J after; see 221disasm)
+- 103028: 00 F0 A8 F8 -> 12 F3 C0 F8 (changes call to sub_810317C to instead call fn at 4151AC, which just adds a call to fn_4151F2 after; see 221disasm)
 		  Implements: loads some mon's front pic, need more info
-		  Required knowledge: j0203B800, j03003E98
-		  Requires in future: fn_4152D4_J
-= 103084: 04 F0 26 F9 -> ?? ?? ?? ?? (changes call to ListMenuGetScrollAndRow to instead call fn at j4151C4, which just adds a call to fn_4151D2_J after; see 222disasm)
+		  Requires in future: <222/223pe>, fn_4152D4
+- 103084: 04 F0 26 F9 -> 12 F3 9E F8 (changes call to ListMenuGetScrollAndRow to instead call fn at 4151C4, which just adds a call to fn_4151D2 after; see 222disasm)
 		  Implements: need more info (displays some stuff)
-		  Requires in future: fn_1690E0_J, fn_3C6FD0, fn_3C74B0, fn_3C7660, fn_3C76A4, fn_3C76C0, fn_3C7800, fn_3C7868, fn_3C7884, fn_3C7D90, fn_4154F0, fn_41553E, fn_41563C, fn_415714, fn_4159E0, fn_415A54
-= 10309E: 03 F0 EB FF -> 12 F3 1F F8 (changes call to ListMenuHandleInputGetItemId to instead call fn at j4150E0, see 223disasm)
+		  Requires in future: fn_1690E0, fn_3C6FD0, fn_3C74B0, fn_3C7660, fn_3C76A4, fn_3C76C0, fn_3C7800, fn_3C7868, fn_3C7884, fn_3C7D90, fn_4154F0, fn_41553E, fn_41563C, fn_415714, fn_4159E0, fn_415A54
+- 10309E: 03 F0 EB FF -> 12 F3 1F F8 (changes call to ListMenuHandleInputGetItemId to instead call fn at 4150E0, see 223disasm)
 		  Implements: changes pokedex list to be 4 entries wide instead of vertical, adds ability to hold R to skip to top/bottom of dex, some other stuff (need more info)
-		  Requires in future: fn_1690E0_J, fn_3C6FD0, fn_3C74B0, fn_3C7660, fn_3C76A4, fn_3C76C0, fn_3C7700, fn_3C7800, fn_3C7868, fn_3C7884, fn_3C7D90, fn_415262, fn_4152D4, fn_4154F0, fn_41553E, fn_41563C, fn_415714, fn_4159E0, fn_415A54
+		  Requires in future: fn_1690E0, fn_3C6FD0, fn_3C74B0, fn_3C7660, fn_3C76A4, fn_3C76C0, fn_3C7700, fn_3C7800, fn_3C7868, fn_3C7884, fn_3C7D90, fn_415262, fn_4152D4, fn_4154F0, fn_41553E, fn_41563C, fn_415714, fn_4159E0, fn_415A54
 ! 10317C: sub_810317C (seee 224disasm)
 		  Implements: adds a POKEDEX logo to the top of the main list
 		  Relies on: layout and palette rework to make this not look broken
@@ -1880,36 +1878,37 @@ stray text:
   103A98: 04 F0 66 F9 -> 00 00 00 00
   103AB2: 04 F0 59 F9 -> 00 00 00 00
 		  Implements: removes caught icon and types from dex list
-= 1043A2: 01 F0 3B FD -> ?? ?? ?? ?? (changes call to sub_8105E1C to instead call fn at j4151B8, which just adds a call to fn_3C7400_J after; see 220disasm)
+- 1043A2: 01 F0 3B FD -> 10 F3 09 FF (changes call to sub_8105E1C to instead call fn at 4151B8, which just adds a call to fn_3C7400 after; see 220disasm)
 		  Implements: clears all sprites from memory, something else (need more info)
 		  Requires in future: fn_3C7418
-! 10457A: 01 68 -> 87 46
-  10458C: F0 AC 03 02 -> 40 B4 EE 09 (jumps (mov) to extra fn at 1EEB440, then back (jEEB440, see 228disasm))
-  RE-REPOINT THIS TO FIRST HALF
+- 10457A: 01 68 -> 87 46
+  10458C: F0 AC 03 02 -> 40 B4 EE 08 (jumps (mov) to extra fn at EEB440, then back (see 228disasm))
+  RE-REPOINT THIS TO FIRST HALF!!!!!!!!!!!!!!!!!!!!!!
 		  Implements: cleans up extra data display from sub_810603C
-		  Requires in future: fn_EEB450_J
+		  Requires in future: fn_EEB450
 		  Note: doesn't work yet, need more stuff
-! 1045E0: 01 68 -> 87 46
-  1045E8: F0 AC 03 02 -> 48 B4 EE 09 (jumps (mov) to extra fn at 1EEB448, then back (jEEB448, see 229disasm))
-  RE-REPOINT THIS TO FIRST HALF
+- 1045E0: 01 68 -> 87 46
+  1045E8: F0 AC 03 02 -> 48 B4 EE 08 (jumps (mov) to extra fn at EEB448, then back (see 229disasm))
+  RE-REPOINT THIS TO FIRST HALF!!!!!!!!!!!!!!!!!!!!!!
   		  Implements: cleans up extra data display from sub_810603C
-		  Requires in future: fn_EEB450_J
+		  Requires in future: fn_EEB450
 		  Note: doesn't work yet, need more stuff
 + 104E06: 02 -> 00 (changes font on habitat listing cards (to leave space for extra characters))
-= 104F5E: FF 21 FF F6 7C FA -> 33 21 ?? ?? ?? ?? (changes call to FillWindowPixelBuffer(0, 0xFF) to instead call fn_3C7C00_J(0, 0x33))
+- 104F5E: FF 21 FF F6 7C FA -> 33 21 C2 F2 4E FE (changes call to FillWindowPixelBuffer(0, 0xFF) to instead call fn_3C7C00(0, 0x33))
 		  Implements: need more info
-		  Note: parameters passed to fn_3C7C00_J are unused
-= 105E1C: sub_8105E1C (see 230disasm)
+		  Note: parameters passed to fn_3C7C00 are unused
+- 105E1C: sub_8105E1C (see 230disasm)
 		  Implements: need more info
-		  Requires in future: fn_3C7C00_J
-! 10611E: Part of sub_810603C (see 231disasm)
+		  Requires in future: fn_3C7C00
+- 10611E: Part of sub_810603C (see 231disasm)
+  RE-REPOINT THIS TO FIRST HALF!!!!!!!!!!!!!!!!!!!!!!
 		  Implements: displays egg groups and wild hold items in pokedex list
 		  Relies on: layout rework to make this not look broken
-		  Requires in future: fn_EEB476_J
+		  Requires in future: fn_EEB476
 + 1063D0: FE F7 FA F9 -> 00 00 00 00 (removes "Area" label on pokedex detail screen 2)
 + 106490: 02 -> 00 (changes font for names on pokedex detail screen 2 (to leave space for extra characters))
 ! 106531: D1 -> 00 (remove size comparison graphic on pokedex detail screen)
-= 10676A: FD F6 77 FE -> ?? ?? ?? ?? (changes call to FillWindowPixelBuffer to instead call fn at j3C7C00; need more info)
+- 10676A: FD F6 77 FE -> C1 F2 49 FA (changes call to FillWindowPixelBuffer to instead call fn at 3C7C00; need more info)
 + 106CC2: FF 20 FE F7 C8 F9 -> 00 00 00 00 00 00
   106D0C: 05 -> 07
   106DB8: 57 E0 -> 00 00
@@ -2259,9 +2258,9 @@ stray text:
 + 13D31C: sub_813D31C (see 249disasm)
 		  Implements: displayed berry tag number in berry pouch is independent of internal item order - read from what G3T calls "mystery byte 02"
 + 13D668: 98 -> 88 (supposedly moves scroll arrows left in berry pouch, not sure what it really does)
-= 13ED3C: sub_813ED3C (see 250disasm)
+- 13ED3C: sub_813ED3C (see 250disasm)
 		  Implements: Need more info (possibly allows for a new type of hidden items (7), which contains more than 1x of the item? + something else itemfinder related (dings?))
-		  Requires in future: fn_43FD84_J, fn_43FD94_J, fn_43FDA2_J
+		  Requires in future: fn_43FD84, fn_43FD94, fn_43FDA2
 + 13EED0: E0 -> F0
   13EED2: D2 02 -> 52 03
   13EED8: 0E -> 3C
@@ -2295,7 +2294,7 @@ stray text:
 + 1CACD3 -> 93FB70 (repoint): Move_Entrainment (see animscripts.txt)
 		  Implements: Entrainment animation
 + 1CADE9: 19 -> 1C (properly loop a sound in Sky Attack's animation script, fixing a glitch specific to attacking your partner)
-= 1CBFBC -> 1305900 (repoint): Move_Skill_Swap (see animscripts.txt)
+- 1CBFBC -> 1305900 (repoint): Move_Skill_Swap (see animscripts.txt)
 		  Implements: changes background for Skill Swap animation
 		  Relies on: sub_80B3834 changes
 + 1CC0B8 -> 1CB4E1 (repoint): Move_??? ([move126] has Rapid Spin animation)
@@ -2634,9 +2633,8 @@ stray text:
 		  * Tries to use Protect or Substitute with Sand Veil in sand
 		  * Tries to use Taunt if target is defensive
 		  * Tries to use Taunt if target just used a status move
-		  Relies on: new AI script commands
-		  Required knowledge: j0203B970, j0203D500
-		  Requires in future: IsMoveBlockedByAbility (j251DA0)
+		  Relies on: new AI script commands, weather refactor
+		  Requires in future: IsMoveBlockedByAbility (251DA0)
 		  Glitch?: Foul Play logic has cases that loop back to the start of the AI function, this may cause infinite loops
 		  Glitch?: [move27B] checks if a move isn't special to determine that it is physical - but it could be status too; fix this by moving the status move check above that
 		  Glitch?: sub encouragement for berries only checks Lansat (?)
@@ -2648,7 +2646,7 @@ stray text:
 		  * Moves that bypass AI restrictions: burn moves that aren't Will-O-Wisp (this only bypasses the Fire-type check); trapping moves that aren't Mean Look / Block (aka Spirit Shackle, etc); switch-out moves that aren't Baton Pass (aka U-Turn/Volt Switch); stat-resetting moves that aren't Haze (aka Clear Smog); phazing moves that aren't Roar / Whirlwind (aka Dragon Tail/Circle Throw)
 		  * New moves: Captivate, 0x2A6 (factored into Attract script)
 		  * New move effects: freeze, (confuse and lower evasion), Power Swap, Guard Swap, Reflect Type, Synchronoise, (poison or paralysis, chooses one at random), Venom Drench, Tailwind, (burn user and target), (poison user and target), Work Up, Dizzy Whirl, (overwrites a random one of the target's moves with [move240]), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws
-		  Relies on: new AI script commands
+		  Relies on: new AI script commands, weather refactor
 		  Glitch?: due to misaligned goto, only will-o-wisp is checked for prankster immunity
 		  Glitch?: looks like thunder wave is checked against electric-types twice instead of electric and ground (might be a transcription error? test this)
 		  Glitch?: freeze effect (1E) checks Flame Body instead of Magma Armor
@@ -2661,7 +2659,7 @@ stray text:
 		  * New mechanics that old scripts are updated for: p/s split (also includes removing the discouraging of, for example, -Atk moves or Reflect on a water-type since it can have physical STAB now), new Lightning Rod, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, [ability8B], Choice items, Assault Vest, Lagging Tail
 		  * New moves: 0x22D, 0x27C (factored into Eruption script); 0x161, Hex, Wake-Up Slap, 0x265, 0x266, 0x267, 0x283 (factored into double-damage-on-status script); 0x258, 0x272, 0x27A (factored into Brine script); Hone Claws (factored into (does double damage if used immediately after Hone Claws) script)
 		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, V-Create, Hurricane, Brine, (removes Reflect/Light Screen from the user's side, but does double damage when it does), (does double damage if used immediately after Hone Claws), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws, Payback, Psycho Shift, Acrobatics, Metal Burst
-		  Relies on: new AI script commands
+		  Relies on: new AI script commands, weather refactor
 		  Glitch?: due to misaligned goto, Substitute will fall through into the Hyper Beam logic under certain circumstances
 		  Glitch?: due to misaligned goto, (Payback that always doubles power vs Steel-types) will probably crash
 		  Glitch?: might cause inexplicable use of recovery moves at full HP, this might be a misreading though (test)
@@ -2902,6 +2900,8 @@ stray text:
 		  Implements: Power-Up Punch animation
 +13004E8: Move_??? (see animscripts.txt)
 		  Implements: [move21F] animation
+=1300578: Move_??? (see animscripts.txt)
+		  Implements: 
 +13006A8: Move_??? (see animscripts.txt)
 		  Implements: [move243] animation
 +13006F8: Move_??? (see animscripts.txt)
@@ -2938,6 +2938,8 @@ stray text:
 		  Implements: [move232] animation
 +13014F8: Move_Snarl (see animscripts.txt)
 		  Implements: Snarl animation
+-13015E0: Move_??? (see animscripts.txt)
+		  Implements: [move252] animation
 +1301740: Move_??? (see animscripts.txt)
 		  Implements: [move230] animation
 +1301830: Move_??? (see animscripts.txt)
@@ -2952,9 +2954,8 @@ stray text:
 		  Implements: [move22E] animation
 +1301B70: Move_??? (see animscripts.txt)
 		  Implements: [move22C] animation
-=1301C88: Move_??? (see animscripts.txt)
+-1301C88: Move_??? (see animscripts.txt)
 		  Implements: [move251] animation
-		  Requires in future: Callback_Move251Unknown (j169224)
 +1301F80: Move_??? (see animscripts.txt)
 		  Implements: [move24B] animation
 +1302028: Move_??? (see animscripts.txt)

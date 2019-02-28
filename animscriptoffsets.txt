@@ -120,6 +120,7 @@ tasks/callbacks:
 [D9 46 0B 08] = [19 34 0B 08] = (used by Chatter and Eerie Impulse)
 [AD 4A 0B 08] = [ED 37 0B 08] = (used by [move22F] and [move246])
 [F5 4A 0B 08] = [35 38 0B 08] = (used by Skill Swap)
+[F5 4C 0B 08] = [35 3A 0B 08] = (used by Skill Swap)
 [25 56 0B 08] = [65 43 0B 08] = (used by Focus Blast, Gunk Shot, Dazzling Gleam, [move241])
 [55 57 0B 08] = [95 44 0B 08] = (used by Icicle Crash, Worry Seed, [move237], [move238])
 [F5 58 0B 08] = [35 46 0B 08] = (used by Avalanche)
@@ -230,7 +231,7 @@ oam data:
 [28 0A 37 08] = [F8 C9 3A 08] = (used by Razor Leaf, Poison Leaf, Petal Blizzard)
 [38 0A 37 08] = [08 CA 3A 08] = (used by Poison Powder, Stun Spore, Sleep Powder, Dazzle Powder)
 [48 0A 37 08] = [18 CA 3A 08] = (used by [move249] and [move24D])
-[60 0A 37 08] = [30 CA 3A 08] = (used by Psyshock, Freeze-Dry, [move241])
+[60 0A 37 08] = [30 CA 3A 08] = (used by Skill Swap, Psyshock, Freeze-Dry, [move241])
 [68 0A 37 08] = [38 CA 3A 08] = (used by Hydro Pump, Hammer Arm, Aura Sphere, Energy Ball, Wave Splash, Icicle Crash, Moonblast, Dazzling Gleam, [move21D], [move225], Worry Seed, [move237], [move238])
 [70 0A 37 08] = [40 CA 3A 08] = (used by Aura Sphere, Poison Jab, Focus Blast, Leaf Storm, Power Whip, Rock Wrecker, Wave Splash, Tail Slap)
 [C0 0A 37 08] = [90 CA 3A 08] = (used by Tone-Deaf and Bug Noise)
@@ -336,6 +337,7 @@ anims 2/templates:
 [18 E4 3A 08] = [D4 6E 3E 08] = (used by Hone Claws)
 [30 E4 3A 08] = [EC 6E 3E 08] = (used by Hypnopulse)
 [38 E5 3A 08] = [F4 6F 3E 08] = (used by Amnesia and Nasty Plot)
+[48 E6 3A 08] = [04 71 3E 08] = (used by Skill Swap)
 [8C E6 3A 08] = [48 71 3E 08] = (used by [moveA7])
 [14 E7 3A 08] = [D0 71 3E 08] = (used by Psycho Boost)
 [D4 E7 3A 08] = [90 72 3E 08] = (used by Electroweb)
@@ -492,7 +494,7 @@ new backgrounds:
 30: used by [move248]
 31: used by Trick Room
 32: used by Snarl and Boomburst
-33: used by [move224], [move225], [move230]
+33: used by [move224], [move225], [move230], [move252]
 34: used by Leaf Storm
 35: used by Leaf Storm
 37: used by Venom Drench
@@ -556,6 +558,8 @@ new sprite gfx:
 305: used by Power Whip and [move231]
 306: used by [move246]
 307: used by [move241]
+310: used by Skill Swap
+311: used by Skill Swap
 312: used by Moonblast
 313: used by [move232]
 314: used by [move230]
