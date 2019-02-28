@@ -1,4 +1,4 @@
-CUR THING: j168B70-j16926C (too complex for now)
+CUR THING: j168B6C-j169366 -> e178B6C-e179366 is now ready (NEW)
 		   j1830C0-j183B40 is now ready
 		   j1FF300-j20F500 is now ready
 		   j250C04-j25265C is now ready
@@ -1842,10 +1842,11 @@ stray text:
   102B60: 01 F0 26 FE -> 00 00 00 00
 		  Implements: don't remove three windows (pokedex screen)
 		  Note: currently just breaks things (probably running out of memory)
-- 102C28: sub_8102C28 (see 219disasm)
-		  Implements: for one specific function (pokedex main screen?): change a tile type, always use natdex, and replace the TABLE OF CONTENTS text with something - need more info
+! 102C28: sub_8102C28 (see 219disasm)
+		  Implements: for one specific function (pokedex main screen?): change a tile type, always use natdex, and replace the TABLE OF CONTENTS text with a POKEDEX logo
 		  Requires in future: fn_3C7C00, CopyBytes (3C7C40), fn_3C7C4E
-- 102FFE: 00 F0 C3 FC -> 12 F3 CF F8 (changes call to sub_8103988 to instead call fn at 4151A0, which just adds a call to fn_3C7400 after; see 220disasm)
+		  Relies on: palette changes to make this not look broken
++ 102FFE: 00 F0 C3 FC -> 12 F3 CF F8 (changes call to sub_8103988 to instead call fn at 4151A0, which just adds a call to fn_3C7400 after; see 220disasm)
 		  Implements: clears all sprites from memory, something else (need more info)
 		  Requires in future: fn_3C7418
 = 103024, 1032E4, 103BD0: 7D 28 10 08 -> XX XX XX 08 (instead of setting callback to sub_810287C, set it to fn at j3C7A00, which is just sub_807249C followed by CB2_ReturnToFieldWithOpenMenu (sub_80568A8))
@@ -1860,19 +1861,20 @@ stray text:
 = 10309E: 03 F0 EB FF -> 12 F3 1F F8 (changes call to ListMenuHandleInputGetItemId to instead call fn at j4150E0, see 223disasm)
 		  Implements: changes pokedex list to be 4 entries wide instead of vertical, adds ability to hold R to skip to top/bottom of dex, some other stuff (need more info)
 		  Requires in future: fn_1690E0_J, fn_3C6FD0, fn_3C74B0, fn_3C7660, fn_3C76A4, fn_3C76C0, fn_3C7700, fn_3C7800, fn_3C7868, fn_3C7884, fn_3C7D90, fn_415262, fn_4152D4, fn_4154F0, fn_41553E, fn_41563C, fn_415714, fn_4159E0, fn_415A54
-- 10317C: sub_810317C (seee 224disasm)
-		  Implements: need more info
+! 10317C: sub_810317C (seee 224disasm)
+		  Implements: adds a POKEDEX logo to the top of the main list
+		  Relies on: layout and palette rework to make this not look broken
 		  Requires in future: fn_3C7350, fn_3C7C00, fn_416970
 + 103350: 00 F0 4E FB -> 00 00 00 00 (remove scroll indicator from search screen)
-- 10345C: sub_810345C (see 225disasm)
-		  Implements: on some pokedex screen, replace the SEARCH text with something - need more info
++ 10345C: sub_810345C (see 225disasm)
+		  Implements: on pokedex search screen, replace the SEARCH text with a POKEDEX logo
 		  Requires in future: fn_3C7C00
 + 103550: 68 35 10 08 -> 74 38 10 08 (regional and national lists are now identical)
-- 103940: C2 8E 83 8E -> 11 F3 AE FD (add call to fn at 4154A0, see 226disasm)
-		  Implements: something to do with 4-entries-wide dex listing
-- 1039F0: sub_81039F0 (see 227disasm)
-		  Implements: something to do with 4-entries-wide dex listing
-		  Note: Currently just prevents down arrow on dex list from disappearing (TRY NOW)
++ 103940: C2 8E 83 8E -> 11 F3 AE FD (add call to fn at 4154A0, see 226disasm)
+		  Implements: something to do with 4-entries-wide dex listing (no idea what)
++ 1039F0: sub_81039F0 (see 227disasm)
+		  Implements: something to do with 4-entries-wide dex listing (no idea what)
+		  Note: Currently just prevents down arrow on dex list from disappearing
 ! 103A64: 00 F0 E6 FF -> 00 00 00 00 (removes numbers from dex list)
 ! 103A78: 04 F0 76 F9 -> 00 00 00 00
   103A98: 04 F0 66 F9 -> 00 00 00 00
