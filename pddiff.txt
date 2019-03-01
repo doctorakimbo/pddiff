@@ -1083,7 +1083,6 @@ stray text:
 + 025FE0: atk69_adjustsetdamage (see 40disasm)
 		  Implements: for set-damage moves: modern Sturdy, Klutz (enduring (Focus) items), Mold Breaker+ (vs Sturdy), Focus Sash
 		  Requires in future: ClearFocusBand (j168C88, e178C88), SetFocusBand (j168C9C, e178C9C)
-		  Notes: check that infiltrating set-damage moves hit through sub
 		  Note: need Sturdy msg ("[PKMN] hung on with Sturdy!")
 + 02615C: atk6A_removeitem (see 41disasm)
 		  Implements: Cheek Pouch
