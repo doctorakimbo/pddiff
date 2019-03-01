@@ -431,12 +431,12 @@ move IDs:
 = 0x250 = (attacking move with chance to lower speed), (animation slowly covers the foe in something as the screen slowly darkens, then a flurry of hit sounds when the screen is completely black)
 = 0x251 = (attacking move), (animation involves emitting something with the Supersonic sound, while the foe is hit without any obvious cause)
 + 0x252 = Dragon Tail
-= 0x253 = (attacking move with chance to lower sp. def), (can't be called by metronome), (has Pound animation; not implemented)
-= 0x254 = (attacking move with chance to lower sp. atk), (can't be called by metronome), (has Pound animation; not implemented)
-= 0x255 = (attacking move with chance to lower attack), (can't be called by metronome), (has Pound animation; not implemented)
-= 0x256 = (attacking move with chance to lower defense), (can't be called by metronome), (has Pound animation; not implemented)
-= 0x257 = (attacking move), (special message in atk97_tryinfatuating)
-= 0x258 = (attacking move with Brine effect)
+= 0x253 = (attacking move with chance to lower sp. def), (can't be called by metronome), (has Pound animation, presumably placeholder)
+= 0x254 = (attacking move with chance to lower sp. atk), (can't be called by metronome), (has Pound animation, presumably placeholder)
+= 0x255 = (attacking move with chance to lower attack), (can't be called by metronome), (has Pound animation, presumably placeholder)
+= 0x256 = (attacking move with chance to lower defense), (can't be called by metronome), (has Pound animation, presumably placeholder)
+= 0x257 = (attacking move), (special message in atk97_tryinfatuating), (animation is a punch that creates the Attract effects)
+- 0x258 = Brine
 = 0x259 = (non-attacking move)
 = 0x25A = (non-attacking move)
 = 0x25B = (non-attacking move)
@@ -2901,8 +2901,8 @@ stray text:
 		  Implements: Power-Up Punch animation
 +13004E8: Move_??? (see animscripts.txt)
 		  Implements: [move21F] animation
-=1300578: Move_??? (see animscripts.txt)
-		  Implements: 
+-1300578: Move_??? (see animscripts.txt)
+		  Implements: [move253] animation
 +13006A8: Move_??? (see animscripts.txt)
 		  Implements: [move243] animation
 +13006F8: Move_??? (see animscripts.txt)
@@ -2957,6 +2957,8 @@ stray text:
 		  Implements: [move22C] animation
 +1301C88: Move_??? (see animscripts.txt)
 		  Implements: [move251] animation
+=1301F00: Move_??? (see animscripts.txt)
+		  Implements: 
 +1301F80: Move_??? (see animscripts.txt)
 		  Implements: [move24B] animation
 +1302028: Move_??? (see animscripts.txt)
