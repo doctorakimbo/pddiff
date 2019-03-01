@@ -1,4 +1,4 @@
-CUR THING: j168B6C-j169366 -> e178B6C-e179366 is now ready
+CUR THING: j168A10-j169366 -> e178A10-e179366 is now ready
 		   j1830C0-j183B40 is now ready
 		   j1FF300-j20F500 is now ready
 		   j250C04-j25265C is now ready
@@ -385,7 +385,7 @@ move IDs:
 = 0x222 = (attacking move with chance to confuse), (animation involves foe being surrounded by some objects, then the curse effect)
 = 0x223 = (attacking move with chance to lower sp. def), (animation has something spin over top of the foe, then the foe turns gray)
 = 0x224 = (attacking move), (animation is Dragon Claw charge-up, then Crunch)
-= 0x225 = (attacking move with chance to raise sp. atk), (animation involves charging up while flashing blue, then shooting something, on [move224]'s background)
+= 0x225 = (attacking move with chance to raise sp. atk), (animation involves charging up while flashing blue, then shooting something, on Dragon Tail's background)
 = 0x226 = (attacking move), (animation is a gentle bite)
 = 0x227 = (non-attacking move, turns target into pure Rock-type), (animation is Leer that inverts colors)
 = 0x228 = (attacking move), (animation is Screech with a different soundwave sprite and Hex's background)
@@ -396,7 +396,7 @@ move IDs:
 = 0x22D = (attacking move with Wring Out effect), (animation has the foe absorb light then explode)
 = 0x22E = (attacking move with chance to lower defense), (animation involves hitting twice as the user sways, and produces a large amount of objects on the foe)
 = 0x22F = (attacking move that lowers user's attack and harshly lowers user's defense afterwards), (animation involves charging up while flashing orange, then a huge tackle)
-= 0x230 = (attacking move), (animation is Swords Dance then Slash, on [move224]'s background)
+= 0x230 = (attacking move), (animation is Swords Dance then Slash, on Dragon Tail's background)
 = 0x231 = (attacking move with chance to lower speed), (animation involves leaves (assumed) spreading outward from the user then a hit that's shared with Power Whip somehow)
 = 0x232 = (attacking move with chance to burn or flinch), (animation is Bounce with different graphics and fire effects)
 = 0x233 = (attacking move), (soundwave move that uses the user's cry, on Aura Sphere's background)
@@ -429,8 +429,8 @@ move IDs:
 = 0x24E = (attacking move), (animation is Screech with a different soundwave sprite)
 = 0x24F = (attacking move), (animation shoots something that makes a cutting sound, on Water Pulse's background)
 = 0x250 = (attacking move with chance to lower speed), (animation slowly covers the foe in something as the screen slowly darkens, then a flurry of hit sounds when the screen is completely black)
-= 0x251 = (attacking move), (animation involves Supersonic sound)
-= 0x252 = (attacking move), (animation is Knock Off on [move224]'s background)
+= 0x251 = (attacking move), (animation involves emitting something with the Supersonic sound, while the foe is hit without any obvious cause)
++ 0x252 = Dragon Tail
 = 0x253 = (attacking move with chance to lower sp. def), (can't be called by metronome), (has Pound animation; not implemented)
 = 0x254 = (attacking move with chance to lower sp. atk), (can't be called by metronome), (has Pound animation; not implemented)
 = 0x255 = (attacking move with chance to lower attack), (can't be called by metronome), (has Pound animation; not implemented)
@@ -688,7 +688,7 @@ battle strings (ADD 9 TO ALL):
 + 0x199 = "[PKMN]'s [ABILITY] raised its [STAT]! (placeholder)" <REFACTOR LATER>
 + 0x19B = "[PKMN]'s [ABILITY] bounced [MOVE] back! (placeholder)"
 ! 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]! (placeholder)"
-! 0x19D = "[PKMN] restored HP using its [ABILITY]! (placeholder)"
++ 0x19D = "[PKMN] restored HP using its [ABILITY]! (placeholder)"
 + 0x19E = "[PKMN] is hurt by its [ITEM]!"
 + 0x1FF = "[PKMN] decided to explode! (placeholder)"
 + 0x200 = "[PKMN] shared its power with the target!"
@@ -944,7 +944,7 @@ stray text:
 		  Glitch?: white herb/amulet coin might not work unless unnerve IS active
 		  GLITCH!: Magic Guard/Klutz/Sheer Force don't stop Life Orb recoil
 		  Note: Life Orb message isn't canon, fix later
-		  Note: Test berries, etc. later once atk01_accuracycheck is added, currently broken
+		  Note: Berries don't activate on indirect damage, test again once atk01_accuracycheck is added
 ! 01D402: 97 -> FC (PDONLY, makes mew not disobey)
 + 01D760: atk00_attackcanceler (see 15disasm)
 		  Implements: Magic Bounce, Protean, Mold Breaker+ (vs Magic Bounce)
@@ -1080,16 +1080,15 @@ stray text:
 + 024EC0: 08 1C 21 30 00 78 02 28 5E D0 08 1C 22 30 00 78 02 28 59 D0 08 1C 20 30 00 78 1A 28 54 D0 -> 20 31 48 78 02 28 5F D0 88 78 02 28 5C D0 08 78 1A 28 59 D0 62 28 57 D0 00 00 00 00 00 00
 		  Implements: Magic Guard (vs Spikes)
 + 025A0E: 05 -> 06 (+1 max digits for money)
-- 025FE0: atk69_adjustsetdamage (see 40disasm)
-		  Implements: modern Sturdy, Klutz (enduring (Focus) items), Mold Breaker+ (vs Sturdy), Focus Sash
++ 025FE0: atk69_adjustsetdamage (see 40disasm)
+		  Implements: for set-damage moves: modern Sturdy, Klutz (enduring (Focus) items), Mold Breaker+ (vs Sturdy), Focus Sash
 		  Requires in future: ClearFocusBand (j168C88, e178C88), SetFocusBand (j168C9C, e178C9C)
-		  Notes: False Swipe appears to be removed, check; check that infiltrating set-damage moves hit through sub
+		  Notes: check that infiltrating set-damage moves hit through sub
+		  Note: need Sturdy msg ("[PKMN] hung on with Sturdy!")
 + 02615C: atk6A_removeitem (see 41disasm)
 		  Implements: Cheek Pouch
 		  Relies on: CheckAndRunCheekPouch (j1C5FC, e1CDEC), BattleScript_CheekPouchHeals (j1C728)
 		  Requires in future: PushScriptInstr (207470)
-		  Glitch?: .item is off by 20, items aren't removed???
-		  Note: check this when berries work again
 = 027220: atk7A_jumpifnexttargetvalid (see 42disasm)
 		  Implements: Telepathy
 		  Relies on: GetAbilityUserOnSameSide
@@ -1123,10 +1122,10 @@ stray text:
 		  Implements: Skill Link
 + 02883C: atk92_setlightscreen (see 53disasm)
 		  Implements: Light Clay (Light Screen), Klutz (Light Clay on Light Screen)
-- 028908: atk93_tryKO (see 54disasm)
++ 028908: atk93_tryKO (see 54disasm)
 		  Implements: Klutz (enduring (Focus) items vs OHKO moves), Mold Breaker+ (vs Sturdy for OHKO moves), Focus Sash (OHKO moves), Sheer Cold lower accuracy from non-Ice-types
 		  Requires in future: ClearFocusBand (j168C88, e178C88), SetFocusBand (j168C9C, e178C9C)
-		  Glitch?: Subtracting 0x10 instead of 10 means Sheer Cold is 14% accuracy when used by non-Ice-types, should be 20% (check online, maybe wrong)
+		  Note: Subtracting 0x10 instead of 10 means Sheer Cold is 14% accuracy when used by non-Ice-types, should be 20%, fix later
 = 028C98: atk95_setsandstorm (see 55disasm)
 		  Implements: Smooth Rock (manual sand), Klutz (Smooth Rock manual sand)
 		  Relies on: GetWeatherTurns, weather refactor
@@ -1144,7 +1143,7 @@ stray text:
 + 029C79: 32 -> 22
   029C90: 8B 7B -> 04 23 (Encore always lasts 3 turns)
 = 02A240: 60 -> 30 (part of weather refactor - sun)
-- 02A3C8 -> 178F08 (repoint; j168F08): atkAA_setdestinybond (see 252disasm)
++ 02A3C8 -> 178F08 (repoint; j168F08): atkAA_setdestinybond (see 252disasm)
 		  Implements: refactors to include extra param (goto the address if it fails); adds a counter for consecutive uses that works similar to, but independent from, the Protect one
 		  Note: this is incorrect behavior, it should just always fail when used consecutively
 		  Note: the code as written would cause a game crash, also required changing 6E 75 1D 08 -> 98 8F 17 08
@@ -1680,7 +1679,7 @@ stray text:
   0A1A68: 66 F0 C4 FF -> 00 00 00 00
 		  Implements: need more info (appears to remove functions that delete blank bag slots when an item is used up, probably reimplemented elsewhere)
 		  Note: this doesn't actually do anything apparently
-- 0B3834: sub_80B3834 (see 194disasm)
++ 0B3834: sub_80B3834 (see 194disasm)
 		  Implements: In an unknown animation routine only used by Skill Swap in vanilla, allows gBattleAnimArgs[1] to choose between 3 options for the sprite/palette tags (gBattleAnimArgs[1] = 0 is the standard one); new Skill Swap animation
 		  Relies on: Move_Skill_Swap
 		  Requires in future: fn_168A10, fn_168AC0
@@ -1734,11 +1733,11 @@ stray text:
 		  Note: it removes the null check for moves, which shouldn't actually matter; also it still doesn't fix the bug where it checks the user's moves instead of the opponents'
 + 0C8FB0: BattleAICmd_if_doesnt_have_move_with_effect (see 204disasm)
 		  Implements: Fixes a bug where the function would always consider opponents to have the specified move effect
-- 0C9518 -> 178CC8 (repoint; j168CC8): BattleAICmd_nullsub_52 (see 258disasm)
++ 0C9518 -> 178CC8 (repoint; j168CC8): BattleAICmd_nullsub_52 (see 258disasm)
 		  Implements: new battle ai script command (BattleAICmd_get_considered_move_target_type); gets the target type (single, all foes, field, etc.) of the considered move and stores it in funcResult
-- 0C951C -> 178CF4 (repoint; j168CF4): BattleAICmd_nullsub_53 (see 259disasm)
++ 0C951C -> 178CF4 (repoint; j168CF4): BattleAICmd_nullsub_53 (see 259disasm)
 		  Implements: new battle ai script command (BattleAICmd_get_considered_move_category); gets the category (physical, special, status) of the considered move and stores it in funcResult
-- 0C9520 -> 178CF4 (repoint; j168D20): BattleAICmd_nullsub_54 (see 260disasm)
++ 0C9520 -> 178D20 (repoint; j168D20): BattleAICmd_nullsub_54 (see 260disasm)
 		  Implements: new battle ai script command (BattleAICmd_get_considered_move_extra_flags); gets the extra flags (sound, powder, punch, etc.) of the considered move and stores them in funcResult
 + 0C9528 -> 11FC000 (repoint): BattleAICmd_nullsub_56 (see 261disasm)
 		  Implements: new battle ai script command (BattleAICmd_exec); executes the given ASM function then continues running the AI script
@@ -1834,8 +1833,7 @@ stray text:
 		  Implements: changes the tilemap for overworld sign messages
 		  Relies on: graphic itself actually changed
 + 1025EC: C1 -> C2 (allocate 16 more bytes for ?????? (pokedex screen))
-! 1028B8: D0 29 10 08 -> D8 2B 10 08 (change case 5 to be identical to case 9 in some pokedex func - TEST)
-		  Note: currently just automatically jumps to list from table of contents
+! 1028B8: D0 29 10 08 -> D8 2B 10 08 (opening the pokedex opens the pokedex list - do later)
 ! 102B50: 01 F0 2E FE -> 00 00 00 00
   102B58: 01 F0 2A FE -> 00 00 00 00
   102B60: 01 F0 26 FE -> 00 00 00 00
@@ -1848,17 +1846,19 @@ stray text:
 + 102FFE: 00 F0 C3 FC -> 12 F3 CF F8 (changes call to sub_8103988 to instead call fn at 4151A0, which just adds a call to fn_3C7400 after; see 220disasm)
 		  Implements: clears all sprites from memory, something else (need more info)
 		  Requires in future: fn_3C7418
-- 103024, 1032E4, 103BD0: 7D 28 10 08 -> 01 7A 3C 08 (instead of setting callback to sub_810287C, set it to fn at 3C7A00, which is just sub_807249C followed by CB2_ReturnToFieldWithOpenMenu (sub_80568A8)) (see miniraw28pe)
-		  Implements: some input, instead of moving to a new menu, does something volume-related then exits the pokedex
-- 103028: 00 F0 A8 F8 -> 12 F3 C0 F8 (changes call to sub_810317C to instead call fn at 4151AC, which just adds a call to fn_4151F2 after; see 221disasm)
-		  Implements: loads some mon's front pic, need more info
+! 103024, 1032E4, 103BD0: 7D 28 10 08 -> 01 7A 3C 08 (instead of setting callback to sub_810287C, set it to fn at 3C7A00, which is just sub_807249C followed by CB2_ReturnToFieldWithOpenMenu (sub_80568A8)) (see miniraw28pe)
+		  Implements: Closing the Pokedex list closes the Pokedex - do later
++ 103028: 00 F0 A8 F8 -> 12 F3 C0 F8 (changes call to sub_810317C to instead call fn at 4151AC, which just adds a call to fn_4151F2 after; see 221disasm)
+		  Implements: loads some mon's front pic, need more info - needed for 222/223disasm
 		  Requires in future: <222/223pe>, fn_4152D4
-- 103084: 04 F0 26 F9 -> 12 F3 9E F8 (changes call to ListMenuGetScrollAndRow to instead call fn at 4151C4, which just adds a call to fn_4151D2 after; see 222disasm)
+! 103084: 04 F0 26 F9 -> 12 F3 9E F8 (changes call to ListMenuGetScrollAndRow to instead call fn at 4151C4, which just adds a call to fn_4151D2 after; see 222disasm)
 		  Implements: need more info (displays some stuff)
 		  Requires in future: fn_1690E0, fn_3C6FD0, fn_3C74B0, fn_3C7660, fn_3C76A4, fn_3C76C0, fn_3C7800, fn_3C7868, fn_3C7884, fn_3C7D90, fn_4154F0, fn_41553E, fn_41563C, fn_415714, fn_4159E0, fn_415A54
-- 10309E: 03 F0 EB FF -> 12 F3 1F F8 (changes call to ListMenuHandleInputGetItemId to instead call fn at 4150E0, see 223disasm)
+		  GLITCH!: game crash
+! 10309E: 03 F0 EB FF -> 12 F3 1F F8 (changes call to ListMenuHandleInputGetItemId to instead call fn at 4150E0, see 223disasm)
 		  Implements: changes pokedex list to be 4 entries wide instead of vertical, adds ability to hold R to skip to top/bottom of dex, some other stuff (need more info)
 		  Requires in future: fn_1690E0, fn_3C6FD0, fn_3C74B0, fn_3C7660, fn_3C76A4, fn_3C76C0, fn_3C7700, fn_3C7800, fn_3C7868, fn_3C7884, fn_3C7D90, fn_415262, fn_4152D4, fn_4154F0, fn_41553E, fn_41563C, fn_415714, fn_4159E0, fn_415A54
+		  GLITCH!: game crash
 ! 10317C: sub_810317C (seee 224disasm)
 		  Implements: adds a POKEDEX logo to the top of the main list
 		  Relies on: layout and palette rework to make this not look broken
@@ -1878,37 +1878,38 @@ stray text:
   103A98: 04 F0 66 F9 -> 00 00 00 00
   103AB2: 04 F0 59 F9 -> 00 00 00 00
 		  Implements: removes caught icon and types from dex list
-- 1043A2: 01 F0 3B FD -> 10 F3 09 FF (changes call to sub_8105E1C to instead call fn at 4151B8, which just adds a call to fn_3C7400 after; see 220disasm)
++ 1043A2: 01 F0 3B FD -> 10 F3 09 FF (changes call to sub_8105E1C to instead call fn at 4151B8, which just adds a call to fn_3C7400 after; see 220disasm)
 		  Implements: clears all sprites from memory, something else (need more info)
 		  Requires in future: fn_3C7418
-- 10457A: 01 68 -> 87 46
+! 10457A: 01 68 -> 87 46
   10458C: F0 AC 03 02 -> 40 B4 EE 08 (jumps (mov) to extra fn at EEB440, then back (see 228disasm))
-  RE-REPOINT THIS TO FIRST HALF!!!!!!!!!!!!!!!!!!!!!!
 		  Implements: cleans up extra data display from sub_810603C
+		  Relies on: sub_810603C
 		  Requires in future: fn_EEB450
-		  Note: doesn't work yet, need more stuff
-- 1045E0: 01 68 -> 87 46
+! 1045E0: 01 68 -> 87 46
   1045E8: F0 AC 03 02 -> 48 B4 EE 08 (jumps (mov) to extra fn at EEB448, then back (see 229disasm))
-  RE-REPOINT THIS TO FIRST HALF!!!!!!!!!!!!!!!!!!!!!!
   		  Implements: cleans up extra data display from sub_810603C
+		  Relies on: sub_810603C
 		  Requires in future: fn_EEB450
-		  Note: doesn't work yet, need more stuff
 + 104E06: 02 -> 00 (changes font on habitat listing cards (to leave space for extra characters))
-- 104F5E: FF 21 FF F6 7C FA -> 33 21 C2 F2 4E FE (changes call to FillWindowPixelBuffer(0, 0xFF) to instead call fn_3C7C00(0, 0x33))
-		  Implements: need more info
+! 104F5E: FF 21 FF F6 7C FA -> 33 21 C2 F2 4E FE (changes call to FillWindowPixelBuffer(0, 0xFF) to instead call fn_3C7C00(0, 0x33))
+		  Implements: adds a POKEDEX logo to the top of the habitat listing page
+		  Relies on: layout and palette rework to make this not look broken
 		  Note: parameters passed to fn_3C7C00 are unused
-- 105E1C: sub_8105E1C (see 230disasm)
-		  Implements: need more info
+! 105E1C: sub_8105E1C (see 230disasm)
+		  Implements: adds a POKEDEX logo to the top of the pokemon info page 1
+		  Relies on: layout and palette rework to make this not look broken
 		  Requires in future: fn_3C7C00
-- 10611E: Part of sub_810603C (see 231disasm)
-  RE-REPOINT THIS TO FIRST HALF!!!!!!!!!!!!!!!!!!!!!!
+! 10611E: Part of sub_810603C (see 231disasm)
 		  Implements: displays egg groups and wild hold items in pokedex list
 		  Relies on: layout rework to make this not look broken
 		  Requires in future: fn_EEB476
 + 1063D0: FE F7 FA F9 -> 00 00 00 00 (removes "Area" label on pokedex detail screen 2)
 + 106490: 02 -> 00 (changes font for names on pokedex detail screen 2 (to leave space for extra characters))
 ! 106531: D1 -> 00 (remove size comparison graphic on pokedex detail screen)
-- 10676A: FD F6 77 FE -> C1 F2 49 FA (changes call to FillWindowPixelBuffer to instead call fn at 3C7C00; need more info)
+! 10676A: FD F6 77 FE -> C1 F2 49 FA (changes call to FillWindowPixelBuffer to instead call fn at 3C7C00)
+		  Implements: adds a POKEDEX logo to the top of the pokemon info page 2
+		  Relies on: layout and palette rework to make this not look broken
 + 106CC2: FF 20 FE F7 C8 F9 -> 00 00 00 00 00 00
   106D0C: 05 -> 07
   106DB8: 57 E0 -> 00 00
@@ -2258,8 +2259,8 @@ stray text:
 + 13D31C: sub_813D31C (see 249disasm)
 		  Implements: displayed berry tag number in berry pouch is independent of internal item order - read from what G3T calls "mystery byte 02"
 + 13D668: 98 -> 88 (supposedly moves scroll arrows left in berry pouch, not sure what it really does)
-- 13ED3C: sub_813ED3C (see 250disasm)
-		  Implements: Need more info (possibly allows for a new type of hidden items (7), which contains more than 1x of the item? + something else itemfinder related (dings?))
++ 13ED3C: sub_813ED3C (see 250disasm)
+		  Implements: Need more info (possibly allows for a new type of hidden items (7), which contains more than 1x of the item?); fixes the dings/graphics from sub_813EF9C
 		  Requires in future: fn_43FD84, fn_43FD94, fn_43FDA2
 + 13EED0: E0 -> F0
   13EED2: D2 02 -> 52 03
@@ -2294,7 +2295,7 @@ stray text:
 + 1CACD3 -> 93FB70 (repoint): Move_Entrainment (see animscripts.txt)
 		  Implements: Entrainment animation
 + 1CADE9: 19 -> 1C (properly loop a sound in Sky Attack's animation script, fixing a glitch specific to attacking your partner)
-- 1CBFBC -> 1305900 (repoint): Move_Skill_Swap (see animscripts.txt)
++ 1CBFBC -> 1305900 (repoint): Move_Skill_Swap (see animscripts.txt)
 		  Implements: changes background for Skill Swap animation
 		  Relies on: sub_80B3834 changes
 + 1CC0B8 -> 1CB4E1 (repoint): Move_??? ([move126] has Rapid Spin animation)
@@ -2938,8 +2939,8 @@ stray text:
 		  Implements: [move232] animation
 +13014F8: Move_Snarl (see animscripts.txt)
 		  Implements: Snarl animation
--13015E0: Move_??? (see animscripts.txt)
-		  Implements: [move252] animation
++13015E0: Move_Dragon_Tail (see animscripts.txt)
+		  Implements: Dragon Tail animation
 +1301740: Move_??? (see animscripts.txt)
 		  Implements: [move230] animation
 +1301830: Move_??? (see animscripts.txt)
@@ -2954,7 +2955,7 @@ stray text:
 		  Implements: [move22E] animation
 +1301B70: Move_??? (see animscripts.txt)
 		  Implements: [move22C] animation
--1301C88: Move_??? (see animscripts.txt)
++1301C88: Move_??? (see animscripts.txt)
 		  Implements: [move251] animation
 +1301F80: Move_??? (see animscripts.txt)
 		  Implements: [move24B] animation

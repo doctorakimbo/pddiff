@@ -494,7 +494,7 @@ new backgrounds:
 30: used by [move248]
 31: used by Trick Room
 32: used by Snarl and Boomburst
-33: used by [move224], [move225], [move230], [move252]
+33: used by [move224], [move225], [move230], Dragon Tail
 34: used by Leaf Storm
 35: used by Leaf Storm
 37: used by Venom Drench
