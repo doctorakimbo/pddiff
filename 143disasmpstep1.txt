@@ -347,7 +347,7 @@ fn_E9F398_J()
 		r0 = 0x20
 		r0 *= 4
 		r0 += r6
-		memcpy(r0, data_E9F6B4_J, 0x20)
+		memcpy(r0, data_E9F6B4_J, 0x20) // callback fn_E9F4AC_J
 		r1 = data_E9F54C_J
 		r2 = r4 * 4
 		r1 = *(r1 + r2)
@@ -365,7 +365,7 @@ fn_E9F398_J()
 		r0 = 0x20
 		r0 *= 4
 		r0 += r6
-		memcpy(r0, data_E9F6CC_J, 0x20)
+		memcpy(r0, data_E9F6CC_J, 0x20) // callback fn_E9F4AC_J
 		r1 = data_E9F52C_J
 		r2 = r4 * 4
 		r1 = *(r1 + r2)
@@ -1571,7 +1571,7 @@ fn_EA05F4_J(arg0, arg1, arg2, NULL, arg4, arg5)
 	r6 = arg2
 	LoadSpriteSheet(data_EA062C_J)
 	LoadSpritePalette(data_EA0634_J)
-	r0 = CreateSprite(data_EA063C_J, arg4, arg5, 0)
+	r0 = CreateSprite(data_EA063C_J, arg4, arg5, 0) // callback fn_EA0662_J
 	r1 = gSprites
 	r2 = 0x44
 	r0 *= r2
@@ -1735,7 +1735,7 @@ fn_EA0158_J()
 	*r0 = r1
 	r4 = LoadSpriteSheet(data_EA02E0_J)
 	LoadSpritePalette(data_EA02F0_J)
-	r0 = CreateSprite(data_EA0318_J, 0x58, 0x7A, 0)
+	r0 = CreateSprite(data_EA0318_J, 0x58, 0x7A, 0) // callback fn_EA03E0_J
 	r1 = 0x44
 	r1 *= r0
 	s0 = r0
@@ -1750,7 +1750,7 @@ fn_EA0158_J()
 	*(r0 + 0x38) = r1
 	r4 = LoadSpriteSheet(data_EA02E8_J)
 	LoadSpritePalette(data_EA02F8_J)
-	CreateSprite(data_EA0330_J, 0x68, 0x7B, 0)
+	CreateSprite(data_EA0330_J, 0x68, 0x7B, 0) // callback fn_EA04FC_J
 	r0 = fn_EA0110_J()
 	
 	if(r0 != 0)
@@ -1956,4 +1956,306 @@ fn_E9FE82_J(arg0)
 	r0 = *r4
 	r0++
 	*r4 = r0
+}
+
+
+
+
+
+
+fn_E9F4AC_J(arg0, arg1)
+{
+	r4 = arg0
+	r5 = arg1
+	r0 = data_0203D51E_J
+	r0 = *r0
+	
+	if(r0 == r5)
+	{
+		r2 = 0
+		r3 = 0x28
+		r0 = *(r4 + r3)
+		
+		if(r0 != 0xF2)
+		{
+			r0 += 2
+			*(r4 + r3) = r0
+		}
+	}
+	else
+	{
+		r2 = 1
+		r3 = 0x28
+		r0 = *(r4 + r3)
+		
+		if(r0 != 0xE0)
+		{
+			r0 -= 2
+			*(r4 + r3) = r0
+		}
+	}
+	
+	r0 = data_0203D570_J
+	r0 = *(r0 + r2)
+	r1 = *(r4 + 5)
+	r2 = 0xF
+	r1 &= r2
+	r0 *= 0x10
+	r1 |= r0
+	*(r4 + 5) = r1
+}
+
+
+
+
+
+
+fn_EA04FC_J(arg0)
+{
+	r4 = arg0
+	r0 = data_0203D680_J
+	r0 = *r0 / 7
+	r1 = *r0 % 7
+	r2 = 0x20
+	r0 *= r2
+	r1 *= r2
+	r2 = 0xE0
+	r0 += r2
+	r1 -= 0x60
+	r2 = 0x28
+	r2 += r4
+	*r2 = r0
+	*(r2 + 1) = r1
+}
+
+
+
+
+
+
+fn_EA0662_J(arg0)
+{
+	r4 = arg0
+	r0 = *(r4 + 0x36)
+	
+	if(r0 >= 0x10)
+	{
+		r0 = 0
+		*(r4 + 0x36) = r0
+		r0 = 0x29
+		r0 += r4
+		r1 = *r0
+		if(r1 == 0xF8)
+		{
+			r1 = 0xFA
+			r2 = *(r4 + 0x2E)
+			r2 *= 4
+			r1 -= r2
+			*r0 = r1
+		}
+		else
+		{
+			r1 = 0xF8
+			*r0 = r1
+		}
+	}
+	else
+	{
+		r0++
+		*(r4 + 0x36 = r0
+	}
+	
+	r0 = *(r4 + 0x2E)
+	
+	if(r0 != 1)
+	{
+		r0 = *(r4 + 3)
+		r1 = 0x20
+		r0 |= r1
+		*(r4 + 3) = r0
+	}
+	else
+	{
+		r0 = *(r4 + 3)
+		r1 = 0xDF
+		r0 &= r1
+		*(r4 + 3) = r0
+	}
+	
+	r0 = *(r4 + 0x30)
+	r0 = *r0
+	r1 = *(r4 + 0x34)
+	
+	if(r0 == r1)
+	{
+		r0 = *(r4 + 1)
+		r1 = 2
+		r0 |= r1
+		*(r4 + 1) = r0
+	}
+	else
+	{
+		r0 = *(r4 + 1)
+		r1 = 0xFD
+		r0 &= r1
+		*(r4 + 1) = r0
+	}
+}
+
+
+
+
+
+
+fn_EA03E0_J(arg0)
+{
+	r4 = arg0
+	r1 = data_0203D690_J
+	r2 = *r1
+
+	if(r2 == 0)
+		return
+
+	if(r2 == 1)
+	{
+		r2 = 2
+		*r1 = r2
+		r2 = 0x40
+		r1 = 0x28
+		r1 += r4
+		*(r1 + 1) = r2
+	}
+	else
+	{
+		r2 = 0
+		*r1 = r2
+		r0 = data_0203D680_J
+		r1 = *r0
+		
+		if(r1 >= 7)
+		{
+			r1 -= 7
+			r0 = 0
+		}
+		else
+			r0 = 0x40
+		
+		r2 = data_0203D680_J
+		r2 = *(r2 + 2)
+		r2 *= 0x80
+		r0 += r2
+		r2 = 0x20
+		
+		if(r1 == 0)
+			r3 = 9
+		elseif(r1 == 6)
+			r3 = 0xF7
+		else
+			r3 = 0
+		
+		r1 *= r2
+		r2 = 0xA0
+		r1 += r2
+		r2 = 0x28
+		r2 += r4
+		r1 += r3
+		*r2 = r1
+		r1 = 0xE0
+		*(r2 + 1) = r1
+		r1 = *(r4 + 0x34)
+		r0 *= 0x20
+		r1 += r0
+		r0 = *(r4 + 4)
+		r3 = 0x3FF
+		r0 &= r3
+		r0 *= 0x20
+		r3 = data_06010000_J
+		r0 += r3
+		memcpy(r0, r1, 0x800)
+		r0 = data_0203D680_J
+		r1 = *(r0 + 2)
+		
+		if(r1 != 0)
+		{
+			r1 = *r0
+			r0 = *(r0 + 1)
+			r0 += r1
+			r0 *= 2
+			r1 = data_0203D582_J
+			r0 = *(r1 + r0)
+			r5 = r0
+			r1 = 0
+			r2 = 1
+			fn_104AB0()
+			
+			if(r0 == 0)
+				r2 = data_EA0752_J
+			else
+			{
+				r0 = r5 - 1
+				r0 *= r2
+				r1 = data_B52324
+				ConvertIntToDecimalStringN(data_02030D68A_J, *r1, 1, 3)
+
+				for(r2 = 0; ; r2++)
+				{
+					r0 = data_02030D68A_J
+					r1 = *(r0 + r2)
+					if(r1 != 0)
+						break
+
+					r1 = 0xA1
+					*(r0 + r2) = r1
+				}
+				r0 = data_02030D688_J
+				r1 = 0xF9
+				*r0 = r1
+				r1 = 8
+				*(r0 + 1) = r1
+				r2 = r0
+			}
+			
+			r0 = data_0203D680_J
+			r0 = *r0
+			
+			if(r0 < 7)
+				r1 = data_EA0528_J
+			else
+				r1 = data_EA0538_J
+			
+			fn_EA0540_J(*(r4 + 0x38), r1, r2)
+			r0 = r5
+			r1 = 0
+			r2 = 1
+			fn_104AB0()
+			
+			if(r0 == 0)
+				r2 = data_EA0758_J
+			else
+				r2 = fn_EA05E6_J(r5, 0xB)
+			
+			r0 = data_0203D680_J
+			r0 = *r0
+			
+			if(r0 < 7)
+				r1 = data_EA0520_J
+			else
+				r1 = data_EA0530_J
+			
+			fn_EA0540_J(*(r4 + 0x38), r1, r2)
+		}
+	}
+}
+
+
+
+
+
+
+fn_EA05E6_J(arg0, arg1)
+{
+	r2 = data_144_J
+	r2 = *r2
+	r0 = arg0 * arg1
+	return r0 + r2
 }

@@ -224,7 +224,7 @@ fn_E9F398_J()
 	for(r4 = 0; r4 < 4; r4++)
 	{
 		r0 = (r4 * 0x20) + data_0203D200_J
-		memcpy(r0, data_E9F6B4_J, 0x20)
+		memcpy(r0, data_E9F6B4_J, 0x20) // callback fn_E9F4AC_J
 		*(r0 + 0x14) = *((r4 * 4) + data_E9F54C_J)
 		CreateSpriteAndAnimate(r0, 0x48, (r4 * 0x14) + 0x32, r3)
 	}
@@ -232,7 +232,7 @@ fn_E9F398_J()
 	for(r4 = 0; r4 < 4; r4++)
 	{
 		r0 = (r4 * 0x20) + data_0203D300_J
-		memcpy(r0, data_E9F6CC_J, 0x20)
+		memcpy(r0, data_E9F6CC_J, 0x20) // callback fn_E9F4AC_J
 		*(r0 + 0x14) = *((r4 * 4) + data_E9F52C_J)
 		*r0 = r4
 		CreateSpriteAndAnimate(r0, 0x20, (r4 * 0x14) + 0x2F, r3)
@@ -926,7 +926,7 @@ fn_EA05F4_J(arg0, arg1, arg2, NULL, arg4, arg5)
 {
 	LoadSpriteSheet(data_EA062C_J)
 	LoadSpritePalette(data_EA0634_J)
-	r0 = CreateSprite(data_EA063C_J, arg4, arg5, 0)
+	r0 = CreateSprite(data_EA063C_J, arg4, arg5, 0) // callback fn_EA0662_J
 	*((r0 * 0x44) + gSprites + 0x2E) = arg0
 	*((r0 * 0x44) + gSprites + 0x34) = arg1
 	*((r0 * 0x44) + gSprites + 0x30) = arg2
@@ -1035,14 +1035,14 @@ fn_EA0158_J()
 	*data_0203D690_J = 1
 	r4 = LoadSpriteSheet(data_EA02E0_J)
 	LoadSpritePalette(data_EA02F0_J)
-	s0 = CreateSprite(data_EA0318_J, 0x58, 0x7A, 0)
+	s0 = CreateSprite(data_EA0318_J, 0x58, 0x7A, 0) // callback fn_EA03E0_J
 	*((s0 * 0x44) + gSprites + 0x2E) = r4
 	*((s0 * 0x44) + gSprites + 0x30) = 0
 	*((s0 * 0x44) + gSprites + 0x34) = data_EADA90_J
 	*((s0 * 0x44) + gSprites + 0x38) = s0
 	LoadSpriteSheet(data_EA02E8_J)
 	LoadSpritePalette(data_EA02F8_J)
-	CreateSprite(data_EA0330_J, 0x68, 0x7B, 0)
+	CreateSprite(data_EA0330_J, 0x68, 0x7B, 0) // callback fn_EA04FC_J
 	r0 = fn_EA0110_J()
 	
 	if(r0 != 0)
@@ -1178,4 +1178,161 @@ fn_E9FE82_J(arg0)
 	
 	*(r7 + data_0203D580_J + 2) = arg0
 	*data_0203D580_J++
+}
+
+
+
+
+
+
+fn_E9F4AC_J(arg0, arg1)
+{
+	if(*data_0203D51E_J == arg1)
+	{
+		r2 = 0
+		
+		if(*(arg0 + 0x28) != 0xF2)
+			*(arg0 + 0x28) += 2
+	}
+	else
+	{
+		r2 = 1
+		
+		if(*(arg0 + 0x28) != 0xE0)
+			*(arg0 + 0x28) -= 2
+	}
+	
+	*(arg0 + 5) = LAST_FOUR_BITS(*(arg0 + 5)) | (*(data_0203D570_J + r2) * 0x10)
+}
+
+
+
+
+
+
+fn_EA04FC_J(arg0)
+{
+	*(arg0 + 0x28) = ((*data_0203D680_J / 7) * 0x20) + 0xE0
+	*(arg0 + 0x29) = ((*data_0203D680_J % 7) * 0x20) - 0x60
+}
+
+
+
+
+
+
+fn_EA0662_J(arg0)
+{
+	if(*(arg0 + 0x36) < 0x10)
+		*(arg0 + 0x36)++
+	else
+	{
+		*(arg0 + 0x36) = 0
+		
+		if(*(arg0 + 0x29) != 0xF8)
+			*(arg0 + 0x29) = 0xF8
+		else
+			*(arg0 + 0x29) = 0xFA - (*(arg0 + 0x2E) * 4)
+	}
+	
+	if(*(arg0 + 0x2E) != 1)
+		*(arg0 + 3) |= 0x20
+	else
+		*(arg0 + 3) &= 0xDF
+	
+	if(*(*(arg0 + 0x30)) == *(arg0 + 0x34))
+		*(arg0 + 1) |= 2
+	else
+		*(arg0 + 1) &= 0xFD
+}
+
+
+
+
+
+
+fn_EA03E0_J(arg0)
+{
+	if(*data_0203D690_J == 0)
+		return
+
+	if(*data_0203D690_J == 1)
+	{
+		*data_0203D690_J = 2
+		*(arg0 + 0x29) = 0x40
+	}
+	else
+	{
+		*data_0203D690_J = 0
+		r1 = *data_0203D680_J
+		
+		if(r1 >= 7)
+		{
+			r1 -= 7
+			r0 = 0
+		}
+		else
+			r0 = 0x40
+		
+		r0 += (*(data_0203D680_J + 2) * 0x80)
+		
+		if(r1 == 0)
+			r3 = 9
+		elseif(r1 == 6)
+			r3 = 0xF7
+		else
+			r3 = 0
+		
+		*(arg0 + 0x28) = (r1 * 0x20) + 0xA0
+		*(arg0 + 0x29) = 0xE0
+		memcpy(((*(arg0 + 4) & 0x3FF) * 0x20) + data_06010000_J, (r0 * 0x20) + *(arg0 + 0x34), 0x800)
+		
+		if(*(data_0203D680_J + 2) != 0)
+		{
+			r5 = *(((*data_0203D680_J + *(data_0203D680_J + 1)) * 2) + data_0203D582_J)
+			
+			if(fn_104AB0(r5, 0, 1) == 0)
+				r2 = data_EA0752_J
+			else
+			{
+				ConvertIntToDecimalStringN(data_02030D68A_J, *(((r5 - 1) * 2) + data_B52324), 1, 3)
+
+				for(r2 = 0; *(data_02030D68A_J + r2) == 0; r2++)
+					*(data_02030D68A_J + r2) = 0xA1
+				
+				*data_02030D688_J = 0xF9
+				*(data_02030D688_J + 1) = 8
+				r2 = data_02030D688_J
+			}
+			
+			if(*data_0203D680_J < 7)
+				r1 = data_EA0528_J
+			else
+				r1 = data_EA0538_J
+			
+			fn_EA0540_J(*(arg0 + 0x38), r1, r2)
+			
+			if(fn_104AB0(r5, 0, 1) == 0)
+				r2 = data_EA0758_J
+			else
+				r2 = GetMonNamePtr(r5, 11)
+			
+			if(*data_0203D680_J < 7)
+				r1 = data_EA0520_J
+			else
+				r1 = data_EA0530_J
+			
+			fn_EA0540_J(*(arg0 + 0x38), r1, r2)
+		}
+	}
+}
+
+
+
+
+
+
+GetMonNamePtr(num, nameLength)
+{
+	return (num * nameLength) + gSpeciesNames
 }

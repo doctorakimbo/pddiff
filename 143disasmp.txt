@@ -473,7 +473,7 @@ lbl4:
 r0 = 0x20
 r0 *= 4
 r0 += r6
-r1 = data_E9F6B4_J
+r1 = data_E9F6B4_J // callback fn_E9F4AC_J
 r2 = 0x20
 memcpy()
 r1 = data_E9F54C_J
@@ -496,7 +496,7 @@ lbl5:
 r0 = 0x20
 r0 *= 4
 r0 += r6
-r1 = data_E9F6CC_J
+r1 = data_E9F6CC_J // callback fn_E9F4AC_J
 r2 = 0x20
 memcpy()
 r1 = data_E9F52C_J
@@ -1976,7 +1976,7 @@ LoadSpritePalette()
 r1 = s5
 r2 = s6
 r3 = 0
-r0 = data_EA063C_J
+r0 = data_EA063C_J // callback fn_EA0662_J
 CreateSprite()
 r1 = gSprites
 r2 = 0x44
@@ -2154,7 +2154,7 @@ LoadSpriteSheet()
 r4 = r0
 r0 = data_EA02F0_J
 LoadSpritePalette()
-r0 = data_EA0318_J
+r0 = data_EA0318_J // callback fn_EA03E0_J
 r1 = 0x58
 r2 = 0x7A
 r3 = 0
@@ -2176,7 +2176,7 @@ LoadSpriteSheet()
 r4 = r0
 r0 = data_EA02F8_J
 LoadSpritePalette()
-r0 = data_EA0330_J
+r0 = data_EA0330_J // callback fn_EA04FC_J
 r1 = 0x68
 r2 = 0x7B
 r3 = 0
@@ -2430,3 +2430,332 @@ goto lbl4
 
 lbl4:
 return
+
+
+
+
+
+
+fn_E9F4AC_J:
+r4 = r0
+r5 = r1
+r0 = data_0203D51E_J
+r0 = *r0
+if(r0 != r5) goto lbl2
+
+r2 = 0
+r3 = 0x28
+r0 = *(r4 + r3)
+if(r0 == 0xF2) goto lbl3
+
+r0 += 2
+*(r4 + r3) = r0
+goto lbl3
+
+lbl2:
+r2 = 1
+r3 = 0x28
+r0 = *(r4 + r3)
+if(r0 == 0xE0) goto lbl3
+
+r0 -= 2
+*(r4 + r3) = r0
+goto lbl3
+
+lbl3:
+r0 = data_0203D570_J
+r0 = *(r0 + r2)
+r1 = *(r4 + 5)
+r2 = 0xF
+r1 &= r2
+r0 *= 0x10
+r1 |= r0
+*(r4 + 5) = r1
+return
+
+
+
+
+
+
+fn_EA04FC_J:
+r4 = r0
+r0 = data_0203D680_J
+r0 = *r0
+r1 = 7
+svc_6()
+r2 = 0x20
+r0 *= r2
+r1 *= r2
+r2 = 0xE0
+r0 += r2
+r1 -= 0x60
+r2 = 0x28
+r2 += r4
+*r2 = r0
+*(r2 + 1) = r1
+return
+
+
+
+
+
+
+fn_EA0662_J:
+r4 = r0
+r0 = *(r4 + 0x36)
+if(r0 < 0x10) goto lbl3
+
+r0 = 0
+*(r4 + 0x36) = r0
+r0 = 0x29
+r0 += r4
+r1 = *r0
+if(r1 != 0xF8) goto lbl2
+
+r1 = 0xFA
+r2 = *(r4 + 0x2E)
+r2 *= 4
+r1 -= r2
+*r0 = r1
+goto lbl4
+
+lbl2:
+r1 = 0xF8
+*r0 = r1
+goto lbl4
+
+lbl3:
+r0++
+*(r4 + 0x36 = r0
+goto lbl4
+
+lbl4:
+r0 = *(r4 + 0x2E)
+if(r0 == 1) goto lbl5
+
+r0 = *(r4 + 3)
+r1 = 0x20
+r0 |= r1
+*(r4 + 3) = r0
+goto lbl6
+
+lbl5:
+r0 = *(r4 + 3)
+r1 = 0xDF
+r0 &= r1
+*(r4 + 3) = r0
+goto lbl6
+
+lbl6:
+r0 = *(r4 + 0x30)
+r0 = *r0
+r1 = *(r4 + 0x34)
+if(r0 != r1) goto lbl7
+
+r0 = *(r4 + 1)
+r1 = 2
+r0 |= r1
+*(r4 + 1) = r0
+goto lbl8
+
+lbl7:
+r0 = *(r4 + 1)
+r1 = 0xFD
+r0 &= r1
+*(r4 + 1) = r0
+goto lbl8
+
+lbl8:
+return
+
+
+
+
+
+
+fn_EA03E0_J:
+r4 = r0
+r1 = data_0203D690_J
+r2 = *r1
+if(r2 != 0) goto lbl2
+
+goto lbl(4fa)
+
+lbl2:
+if(r2 != 1) goto lbl3
+
+r2 = 2
+*r1 = r2
+r2 = 0x40
+r1 = 0x28
+r1 += r4
+*(r1 + 1) = r2
+goto lbl(4fa)
+
+lbl3:
+r2 = 0
+*r1 = r2
+r0 = data_0203D680_J
+r1 = *r0
+if(r1 < 7) goto lbl4
+
+r1 -= 7
+r0 = 0
+goto lbl5
+
+lbl4:
+r0 = 0x40
+goto lbl5
+
+lbl5:
+r2 = data_0203D680_J
+r2 = *(r2 + 2)
+r2 *= 0x80
+r0 += r2
+r3 = 0
+r2 = 0x20
+if(r1 != 0) goto lbl6
+
+r3 = 9
+goto lbl7
+
+lbl6:
+if(r1 != 6) goto lbl7
+
+r3 = 0xF7
+goto lbl7
+
+lbl7:
+r1 *= r2
+r2 = 0xA0
+r1 += r2
+r2 = 0x28
+r2 += r4
+r1 += r3
+*r2 = r1
+r1 = 0xE0
+*(r2 + 1) = r1
+r1 = *(r4 + 0x34)
+r0 *= 0x20
+r1 += r0
+r0 = *(r4 + 4)
+r3 = 0x3FF
+r0 &= r3
+r0 *= 0x20
+r3 = data_06010000_J
+r0 += r3
+r2 = 0x800
+memcpy()
+r0 = data_0203D680_J
+r1 = *(r0 + 2)
+if(r1 == 0) goto lbl(4fa)
+
+r1 = *r0
+r0 = *(r0 + 1)
+r0 += r1
+r0 *= 2
+r1 = data_0203D582_J
+r0 = *(r1 + r0)
+r5 = r0
+r1 = 0
+r2 = 1
+fn_104AB0()
+if(r0 != 0) goto lbl8
+
+r2 = data_EA0752_J
+goto lbl11
+
+lbl8:
+r0 = r5 - 1
+r0 *= r2
+r1 = data_B52324
+r1 = *r1
+r0 = data_02030D68A_J
+r2 = 1
+r3 = 3
+ConvertIntToDecimalStringN()
+r2 = 0
+goto lbl9
+
+lbl9:
+r0 = data_02030D68A_J
+r1 = *(r0 + r2)
+if(r1 != 0) goto lbl10
+
+r1 = 0xA1
+*(r0 + r2) = r1
+r2++
+goto lbl9
+
+lbl10:
+r0 = data_02030D688_J
+r1 = 0xF9
+*r0 = r1
+r1 = 8
+*(r0 + 1) = r1
+r2 = r0
+goto lbl11
+
+lbl11:
+r0 = data_0203D680_J
+r0 = *r0
+if(r0 >= 7) goto lbl12
+
+r1 = data_EA0528_J
+goto lbl13
+
+lbl12:
+r1 = data_EA0538_J
+goto lbl13
+
+lbl13:
+r0 = *(r4 + 0x38)
+fn_EA0540_J()
+r0 = r5
+r1 = 0
+r2 = 1
+fn_104AB0()
+if(r0 != 0) goto lbl14
+
+r2 = data_EA0758_J
+goto lbl15
+
+lbl14:
+r0 = r5
+r1 = 8 // 0xB in en
+fn_EA05E6_J()
+r2 = r0
+goto lbl15
+
+lbl15:
+r0 = data_0203D680_J
+r0 = *r0
+if(r0 >= 7) goto lbl16
+
+r1 = data_EA0520_J
+goto lbl17
+
+lbl16:
+r1 = data_EA0530_J
+goto lbl17
+
+lbl17:
+r0 = *(r4 + 0x38)
+fn_EA0540_J()
+goto lbl18
+
+lbl18:
+return
+
+
+
+
+
+
+fn_EA05E6_J:
+r2 = data_144_J
+r2 = *r2
+r0 *= r1
+r0 += r2
+return r0

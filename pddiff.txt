@@ -431,12 +431,12 @@ move IDs:
 = 0x250 = (attacking move with chance to lower speed), (animation slowly covers the foe in something as the screen slowly darkens, then a flurry of hit sounds when the screen is completely black)
 = 0x251 = (attacking move), (animation involves emitting something with the Supersonic sound, while the foe is hit without any obvious cause)
 + 0x252 = Dragon Tail
-= 0x253 = (attacking move with chance to lower sp. def), (can't be called by metronome), (has Pound animation, presumably placeholder)
-= 0x254 = (attacking move with chance to lower sp. atk), (can't be called by metronome), (has Pound animation, presumably placeholder)
-= 0x255 = (attacking move with chance to lower attack), (can't be called by metronome), (has Pound animation, presumably placeholder)
-= 0x256 = (attacking move with chance to lower defense), (can't be called by metronome), (has Pound animation, presumably placeholder)
+= 0x253 = (attacking move with chance to lower sp. def), (can't be called by metronome), (has Pound animation; not implemented)
+= 0x254 = (attacking move with chance to lower sp. atk), (can't be called by metronome), (has Pound animation; not implemented)
+= 0x255 = (attacking move with chance to lower attack), (can't be called by metronome), (has Pound animation; not implemented)
+= 0x256 = (attacking move with chance to lower defense), (can't be called by metronome), (has Pound animation; not implemented)
 = 0x257 = (attacking move), (special message in atk97_tryinfatuating), (animation is a punch that creates the Attract effects)
-- 0x258 = Brine
++ 0x258 = Brine
 = 0x259 = (non-attacking move)
 = 0x25A = (non-attacking move)
 = 0x25B = (non-attacking move)
@@ -876,7 +876,7 @@ stray text:
   00D320: 4C 2B 02 02 -> 01 24 25 08 (jumps (bx) to extra fn at 252400, then back (see 02disasm))
 		  Implements: clears various data on battle start
 + 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (unclear, but gives more variance to personality values)
-= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC, 1035AC, 103652, 1036F2, 10378A, 103826, 1038B8, 104DF6, 105EF6, 10647E, 113EE8, 119420, 11AC48, 11AFDE, 11B01C, 1218EC, 136248: 0B -> 10 (pkmnnamelength)
+= 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC, 1035AC, 103652, 1036F2, 10378A, 103826, 1038B8, 104DF6, 105EF6, 10647E, 113EE8, 119420, 11AC48, 11AFDE, 11B01C, 1218EC, 136248, 1EA04DE: 0B -> 10 (pkmnnamelength)
 = 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: pkmnnamelength, something else - need more info
@@ -1499,10 +1499,9 @@ stray text:
 + 0832EC: 00 06 00 0E -> CE F1 E8 FB (calls new fn at j251AC0, see 142disasm)
 		  Implements: Unclear, possibly makes water tiles only cause encounters when player is surfing (is there a possibility of standing on water tiles otherwise?)
 + 088B9E: C0 0F -> 01 20 (sound will always become stereo no matter what options menu says)
-= 089088: sub_8089088 (see 143disasm)
-		  Implements: When backing out of (trainer card?), implement possibility that it returns to some mysteryfunc enormous menu instead of the START menu (need A LOT more info)
-		  jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
-		  Requires in future: fn_1E9E980, fn_E9EA00_J (and all subfunctions: fn_168900_J, fn_42BE70_J, fn_E9EA40_J, fn_E9EAA4_J, fn_E9EB36_J, fn_E9EBB0_J, fn_E9EF98_J, fn_E9F056_J, fn_E9F204_J, fn_E9F272_J, fn_E9F398_J, fn_E9F478_J, fn_E9F6F4_J, fn_E9F8B0_J, fn_E9F92C_J, fn_E9F966_J, fn_E9FA12_J, fn_E9FC04_J, fn_E9FC28_J, fn_E9FE26_J, fn_E9FE5A_J, AddElementToUnknownList (jE9FE82), SortUnknownListNumerically (jE9FEA8), fn_E9FED4_J, fn_E9FFDC_J, fn_EA00EA_J, fn_EA0110_J, fn_EA0158_J, fn_EA0540_J, fn_EA05F4_J, fn_EA06C6_J, fn_EA06E8_J, fn_EA0B60_J)
++ 089088: sub_8089088 (see 143disasm)
+		  Implements: If the PokeTab is open, exiting the trainer card returns to the PokeTab
+		  Requires in future: fn_1E9E980, fn_1E9EA00 (and all subfunctions: fn_178900, fn_142BE70, fn_1E9EA40, fn_1E9EAA4, fn_1E9EB36, fn_1E9EBB0, fn_1E9EF98, fn_1E9F056, fn_1E9F204, fn_1E9F272, fn_1E9F398, fn_1E9F478, fn_1E9F6F4, fn_1E9F8B0, fn_1E9F92C, fn_1E9F966, fn_1E9FA12, fn_1E9FC04, fn_1E9FC28, fn_1E9FE26, fn_1E9FE5A, AddElementToUnknownList (1E9FE82), SortUnknownListNumerically (1E9FEA8), fn_1E9FED4, fn_1E9FFDC, fn_1EA00EA, fn_1EA0110, fn_1EA0158, fn_1EA0540, fn_1EA05F4, fn_1EA06C6, fn_1EA06E8, fn_1EA0B60)
 = 08A006: 06 -> 07
   08A028: 7A -> 72
   08A090: 76 -> 6E
@@ -2900,8 +2899,8 @@ stray text:
 		  Implements: Power-Up Punch animation
 +13004E8: Move_??? (see animscripts.txt)
 		  Implements: [move21F] animation
--1300578: Move_??? (see animscripts.txt)
-		  Implements: [move253] animation
++1300578: Move_??? (see animscripts.txt)
+		  Implements: [move257] animation
 +13006A8: Move_??? (see animscripts.txt)
 		  Implements: [move243] animation
 +13006F8: Move_??? (see animscripts.txt)
