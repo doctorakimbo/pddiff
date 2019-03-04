@@ -12486,9 +12486,9 @@ Move_Dragon_Tail (pe): @13015E0
 Move_??? (pj): @1300578
 00 E8 27 00 97 27 00 9F 27 1C CD 00 C0 0C 03 0A 02 0C 09 08 03 C9 67 07 08 02 02 28 71 0A 00 19 88 00 C0 04 0F 02 4C F1 3A 08 83 04 00 00 00 00 01 00 01 00 02 54 DC 3A 08 84 05 00 00 00 00 08 00 01 00 00 00 03 01 84 09 08 02 05 01 00 03 00 00 00 06 00 01 00 05 0B 02 19 DB 00 3F 02 74 B7 3A 08 83 02 A0 00 E0 FF 02 74 B7 3A 08 83 02 00 FF D8 FF 02 74 B7 3A 08 83 02 80 00 F0 FF 02 74 B7 3A 08 83 02 A0 01 DA FF 02 74 B7 3A 08 83 02 80 FF EA FF 02 74 B7 3A 08 83 02 80 FE E1 FF 05 1D DC 00 00 0F 03 A9 AF 0A 08 05 00 02 8C B7 3A 08 28 03 10 00 00 01 00 00 02 8C B7 3A 08 28 03 E0 00 F0 00 0F 00 02 8C B7 3A 08 28 03 7E 00 10 01 1E 00 02 8C B7 3A 08 28 03 50 00 E0 00 2D 00 02 8C B7 3A 08 28 03 AA 00 10 01 3C 00 02 8C B7 3A 08 28 03 28 00 00 01 4B 00 02 8C B7 3A 08 28 03 70 00 00 01 5A 00 02 8C B7 3A 08 28 03 C8 00 10 01 5A 00 04 4B 03 9D AE 0B 08 02 06 04 00 04 00 04 00 00 00 0A 00 3F 6F 08
 
-loadspritegfx 0x27E8
+loadspritegfx ANIM_TAG_RED_HEART
 loadspritegfx ANIM_TAG_IMPACT
-loadspritegfx 0x279F
+loadspritegfx ANIM_TAG_HANDS_AND_FEET
 loopsewithpan SE_W204, SOUND_PAN_ATTACKER, 12, 3
 monbg ANIM_ATK_PARTNER
 setalpha 9, 8
@@ -12534,4 +12534,97 @@ Move_??? (pe): @1300578
 
 
 Move_??? (pj): @1301F00
-Move_??? (pe): @1301F00 <FIX THIS>
+00 5E 28 19 B8 00 C0 02 4C 04 2F 09 02 02 00 00 00 00 06 02 4C 04 2F 09 02 02 00 00 00 00 06 05 03 D9 46 0B 08 02 00 06 03 D9 46 0B 08 02 00 06 19 9B 00 C0 04 10 19 91 00 C0 05 08
+
+gUnknownMove259SpriteTemplate (pj): @12F044C
+5E 28 5E 28 64 04 2F 09 E4 11 1F 08 00 00 00 00 38 B1 3A 08 3D 85 0A 08 00 05 00 C0 00 08 00 00 00 07 00 00 00 08 00 00
+
+loadspritegfx (ANIM_SPRITES_START + 334)
+playsewithpan SE_W014, SOUND_PAN_ATTACKER
+createsprite gUnknownMove259SpriteTemplate, ANIM_ATTACKER, 2, 0, 0
+swapattackerandtarget
+createsprite gUnknownMove259SpriteTemplate, ANIM_ATTACKER, 2, 0, 0
+swapattackerandtarget
+waitforvisualfinish
+createvisualtask [D9 46 0B 08], 2
+swapattackerandtarget
+createvisualtask [D9 46 0B 08], 2
+swapattackerandtarget
+playsewithpan SE_W029, SOUND_PAN_ATTACKER
+delay 16
+playsewithpan SE_W036, SOUND_PAN_ATTACKER
+waitforvisualfinish
+end
+
+gUnknownMove259SpriteTemplate:
+.tileTag = (ANIM_SPRITES_START + 334)
+.paletteTag = (ANIM_SPRITES_START + 334)
+.oam = gUnknownMove259Oam
+.animCmd = gDummySpriteAnimTable
+.images = NULL
+.afflineAnims = [38 B1 3A 08]
+.callback = [3D 85 0A 08]
+
+gUnknownMove259Oam:
+00 05 00 C0 00 08 00 00 00 07 00 00 00 08 00 00
+
+
+Move_??? (pe): @1301F00
+00 5E 28 19 B8 00 C0 02 4C 04 2F 09 02 02 00 00 00 00 06 02 4C 04 2F 09 02 02 00 00 00 00 06 05 03 19 34 0B 08 02 00 06 03 19 34 0B 08 02 00 06 19 9B 00 C0 04 10 19 91 00 C0 05 08
+
+gUnknownMove259SpriteTemplate (pe): @12F044C
+5E 28 5E 28 64 04 2F 09 F0 1C 23 08 00 00 00 00 F4 3B 3E 08 7D 72 0A 08 00 05 00 C0 00 08 00 00 00 07 00 00 00 08 00 00
+
+
+
+
+
+
+
+Move_??? (pj): @1301F40
+00 5F 28 19 B8 00 C0 02 74 04 2F 09 02 02 00 00 00 00 06 02 74 04 2F 09 02 02 00 00 00 00 06 05 03 D9 46 0B 08 02 00 06 03 D9 46 0B 08 02 00 06 19 9B 00 C0 04 10 19 91 00 C0 05 08
+
+gUnknownMove25ASpriteTemplate (pj): @12F0474
+5F 28 5F 28 64 04 2F 09 E4 11 1F 08 00 00 00 00 38 B1 3A 08 3D 85 0A 08
+
+loadspritegfx (ANIM_SPRITES_START + 335)
+playsewithpan SE_W014, SOUND_PAN_ATTACKER
+createsprite gUnknownMove25ASpriteTemplate, ANIM_ATTACKER, 2, 0, 0
+swapattackerandtarget
+createsprite gUnknownMove25ASpriteTemplate, ANIM_ATTACKER, 2, 0, 0
+swapattackerandtarget
+waitforvisualfinish
+createvisualtask [D9 46 0B 08], 2
+swapattackerandtarget
+createvisualtask [D9 46 0B 08], 2
+swapattackerandtarget
+playsewithpan SE_W029, SOUND_PAN_ATTACKER
+delay 16
+playsewithpan SE_W036, SOUND_PAN_ATTACKER
+waitforvisualfinish
+end
+
+gUnknownMove25ASpriteTemplate:
+.tileTag = (ANIM_SPRITES_START + 335)
+.paletteTag = (ANIM_SPRITES_START + 335)
+.oam = gUnknownMove259Oam
+.animCmd = gDummySpriteAnimTable
+.images = NULL
+.afflineAnims = [38 B1 3A 08]
+.callback = [3D 85 0A 08]
+
+
+Move_??? (pe): @1301F40
+00 5F 28 19 B8 00 C0 02 74 04 2F 09 02 02 00 00 00 00 06 02 74 04 2F 09 02 02 00 00 00 00 06 05 03 19 34 0B 08 02 00 06 03 19 34 0B 08 02 00 06 19 9B 00 C0 04 10 19 91 00 C0 05 08
+
+gUnknownMove25ASpriteTemplate (pe): @12F0474
+5F 28 5F 28 64 04 2F 09 F0 1C 23 08 00 00 00 00 F4 3B 3E 08 7D 72 0A 08
+
+
+
+
+
+
+
+Move_??? (pj): @1305950
+Move_??? (pj): @1305950 <FIX THIS>

@@ -202,6 +202,7 @@ B4 B0 03 02: 28 B0 03 02: ??????
 C0 B0 03 02: 34 B0 03 02: ??????
 40 B1 03 02: B4 B0 03 02: ??????
 44 B1 03 02: B8 B0 03 02: ??????
+6D B1 03 02: E1 B0 03 02: ??????
 00 B8 03 02: 00 B8 03 02: ?????? (fn_4151F2_J: sprite and palette data temporarily stored here)
 								 (fn_415262_J: sprite and palette data temporarily stored here)
 00 B9 03 02: 00 B9 03 02: gDestinyBondUses (sub_8032768: zeroed starting from here to 0203BB00)
@@ -340,7 +341,7 @@ FF D2 03 02: FF D2 03 02: ?????? (fn_EE5000: set to 1 on start)
 								 (InitStartMenuStep/fn_E9D4A2_J: set to and used as the window id)
 20 D4 03 02: 20 D4 03 02: ?????? (Appears to be a SpriteSheet object)
 							     (fn_EB8398_J: Set to {data = data_E95DDC, size = 0x100, tag = (0x78A0 + moveId)} then call LoadSpriteSheet())
-		   : 80 D4 03 02: gBackupMonData
+80 D4 03 02: 80 D4 03 02: gBackupMonData
 F0 D4 03 02: F0 D4 03 02: ?????? (fn_4154F0_J: from 0 to 0xB, set this[i] to i)
 								 (fn_41553E_J: use (gTasks[0].data->scrollOffset + this[arg0]) as an index into gTasks[0].data->items)
 								 (fn_41553E_J: calculate sprite coordinates using this[arg0])
