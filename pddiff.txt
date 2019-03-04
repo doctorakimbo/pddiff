@@ -1,19 +1,3 @@
-CUR THING: j168A10-j169366 -> e178A10-e179366 is now ready
-		   j1830C0-j183B40 is now ready
-		   j1FF300-j20F500 is now ready
-		   j250C04-j25265C is now ready
-		   j3C5BC0-j3C65C0 is now ready
-		   j3C6FC8-j3C7480 is now ready
-		   j3C7654-j3C76FC is now ready
-		   j3C77DC-j3C7970 is now ready
-		   j3C79F4-j3C7A1C is now ready
-		   j3C7BF0-j3C7CAC is now ready
-		   j3C7D70-j3C7DF4 is now ready
-		   j4147C0-j415ACB is now ready
-		   j416959-j416A1E is now ready
-		   j43FAB0-j440124 is now ready
-
-
 ignore the following (pe):
 00 30 A2 08
 F0 30 A2 08
@@ -654,7 +638,7 @@ metatiles:
 0xE4: (runs script_682787_J (msgbox "Nope, there's only trash here.") when examined)
 
 battle strings (ADD 9 TO ALL):
-! 0x3B = "[PKMN] [STATUSCUREMESSAGE]" <DON'T ADD 9>
++ 0x3B = "[PKMN] was cured of its [STATUS] problem! (FIX THIS)" <DON'T ADD 9>
 ! 0xC2 = "[PKMN]'s [ABILITY] [CHANGED] its [STAT]!" <DON'T ADD 9> <REFACTOR LATER>
 ! 0xC8 = (special message for move ID 0x257?) <DON'T ADD 9> <probably refactor later to not remove the old C8, "prevents romance">
 ! 0xD5 = "drastically " <DON'T ADD 9>
@@ -672,7 +656,7 @@ battle strings (ADD 9 TO ALL):
 ! 0x189 = "[PKMN]'s [ABILITY] alerted it to [MOVE]!"
 ! 0x18A = "[PKMN]'s [ABILITY] made it shudder!"
 ! 0x18B = "[ATTACKER] frisked [DEFENDER] and found its [ITEM]!"
-! 0x18C = "[Your/The opposing] team was protected by [PKMN]'s [ABILITY]! (placeholder)"
++ 0x18C = "[Your/The opposing] team was protected by [ABILITY]! (placeholder)"
 ! 0x18D = "[PKMN]'s [ABILITY] makes [your/the opposing] team too nervous to eat Berries! (placeholder)"
 ! 0x18E = "[PKMN] twisted the dimensions!"
 ! 0x18F = "The twisted dimensions returned to normal!"
@@ -871,7 +855,7 @@ stray text:
 = 0069F0: ptr 227B30 (gUnusedJapaneseFireRedLeafGreenFemaleFontGlyphs - emerald name) -> B07500 (gFont2JapaneseGlyphs)
 		  (wait until playthrough - is this the equivalent of removing gender colors?)
 = 008CF8, 008D2C, 1361B4: 0A -> 0C (pkmnnamelength)
-= 00960C: 36 -> 33 (some sort of link-related graphics function?, see 1disasm)
++ 00960C: 36 -> 33 (some sort of link-related graphics function?, see 1disasm)
 + 00D311: 68 -> 47
   00D320: 4C 2B 02 02 -> 01 24 25 08 (jumps (bx) to extra fn at 252400, then back (see 02disasm))
 		  Implements: clears various data on battle start
@@ -881,18 +865,17 @@ stray text:
   0116C8: 4C 2B 02 02 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE2FD90, see 03disasm))
 		  Implements: pkmnnamelength, something else - need more info
 		  Required knowledge: j020385E2, unknown data table at j1400000
-= 0124EB: 80 -> 60 (store weather as fullword)
-= 014CD8: GetWhoStrikesFirst (+GetSpeedStat, GetPriority, GetAbilityValues) (see 04disasm/04disasm2)
++ 0124EB: 80 -> 60 (store weather as fullword)
++ 014CD8: GetWhoStrikesFirst (+GetSpeedStat, GetPriority, GetAbilityValues) (see 04disasm/04disasm2)
 		  Implements: Unburden (effect), Quick Feet, Stall, Klutz (speed items), Slow Start (Speed reduction), Sand Rush, Prankster, Gale Wings [gen 6], Slush Rush, Choice Scarf (speed boost), Lagging Tail, Tailwind (effect), Trick Room (effect), 1/4 -> 1/2 paralysis speed cut, removal of badge 3 bonus
 		  Relies on: weather refactor, returns 0 sometimes instead of 1 or 2
 		  Glitch: Stall and Trick Room are in wrong order, Stall goes first in Trick Room (probably doesn't matter in P/D itself)
+		  Note: Unburden, Slow Start, Tailwind, and Trick Room can't be tested yet, test after the rest is imported
 + 015910: HandleEndTurn_FinishBattle (see 05disasm)
 		  Implements: EVs recalculated per battle
 		  Requires in future: extra fn 207370
-= 015CA0: HandleAction_UseMove (+CheckSwitchToSpreadMoveScript, BattleScript_EffectSpreadMove) (see 06disasm)
++ 015CA0: HandleAction_UseMove (+CheckSwitchToSpreadMoveScript, BattleScript_EffectSpreadMove) (see 06disasm)
 		  Implements: Storm Drain (redirection), Mold Breaker+ (vs redirection)
-		  Relies on: gChosenActionByBattler changed to something else
-		  Note: test deeply - incomprehensible code
 = 01609C: BattleScript_EffectSurf (see movescripts.txt)
 		  Implements: Surf targets all mons but user
 		  Relies on: moveend refactor
@@ -914,12 +897,14 @@ stray text:
   017930: 1D 2A 0D D1 01 98 01 88 00 29 09 D0 15 48 81 42 06 D0 2A 88 91 42 03 D0 30 68 04 43 20 06 04 0E -> 44 2A 0D D3 46 2A 0B D8 01 98 01 88 00 29 07 D0 14 48 81 42 04 D0 2A 88 91 42 01 D0 30 68 04 43
 		  Implements: Klutz (choice item locking), Choice Specs (locking), Choice Scarf (locking)
 		  Relies on: Choice Band effect ID change
-= 017BE0: D4 80 01 08 44 81 01 08 9C 81 01 08 -> 8A 80 01 08 50 81 01 08 E6 81 01 08
++ 017BE0: D4 80 01 08 44 81 01 08 9C 81 01 08 -> 8A 80 01 08 50 81 01 08 E6 81 01 08
   01801C: 48 46 00 28 00 D0 06 E1 62 46 11 68 C8 78 01 30 C8 70 FC E0 -> A0 E7 10 9A 01 12 40 00 3E 10 98 01 12 40 00 3E 00 00 00 00
   018050: Large part of DoFieldEndTurnEffects (+battlescripts) (see 09disasm)
 		  Implements: Tailwind (upkeep), Trick Room (upkeep), permahail
 		  Relies on: weather refactor; BattleScript_SandStormHailEnds/BattleScript_DamagingWeatherContinues work with sun; params are changed (6 = rain -> tailwind, 7 = sand -> trick room, 8 = sun -> all weather, 9 = hail -> nop)
 		  Glitch?: check if tailwind works on both sides, code's weird
+		  Note: Tailwind and Trick Room can't be tested yet, test after the rest is imported
+		  Note: messages and effects are wrong, need something else
 + 018308: FA 83 01 08 78 84 01 08 C0 84 01 08 40 85 01 08 88 85 01 08 EC 85 01 08 34 86 01 08 -> E2 83 01 08 3A 84 01 08 76 84 01 08 94 85 01 08 D4 85 01 08 1E 86 01 08 58 86 01 08
   018344: E2 83 01 08 -> C6 83 01 08
   01834C: Large part of DoBattlerEndTurnEffects (+unknown battlescript) (see 10disasm)
@@ -930,9 +915,8 @@ stray text:
 		  Implements: 20% -> 25% thaw chance
 + 019814: Part of AtkCanceller_UnableToUseMove (see 11disasm)
 		  Implements: 50% -> 33% confusion hit chance
-= 019DAC: CastformDataTypeChange (+added mysteryfunc, +GetAbilityUserOnSameSide) (see 12disasm)
++ 019DAC: CastformDataTypeChange (+added mysteryfunc, +GetAbilityUserOnSameSide) (see 12disasm)
           Implements: part of weather refactor
-		  Glitch?: Might cause castform/terubim to "change" when sand starts/ends; might have done it wrong, check if rain=ice and hail=water accidentally
 = 01A088: Most of AbilityBattleEffects (see 13disasm)
 		  Implements: Stench flinch chance, Lightning Rod boost/immunity, Pressure message, Motor Drive, Anger Point, Unburden (activation), Dry Skin (rain/water healing/immunity), Download, Hydration, Magic Guard (vs contact damage abilities), Klutz (the item effects here), Mold Breaker (message), Mold Breaker+ (vs move-subset immunities/absorbing immunities), Aftermath, Anticipation, Forewarn, Slow Start (upkeep), Storm Drain (boost/immunity), Ice Body, Snow Warning, Frisk, Unnerve (message), Cursed Body, Healer, Weak Armor, Moody, Overcoat (vs powder), Poison Touch, Imposter, Infiltrator (getting affected by hit-reaction abilities when hitting through Substitute), Mummy, Justified, Rattled, Sap Sipper, Iron Barbs, Aroma Veil, Sweet Veil, Gooey, Flower Veil (vs Gooey/Tangling Hair), Bulletproof, Stamina, Water Compaction, Dazzling, Queenly Majesty, Tangling Hair, weather rocks (on abilities), Safety Goggles (vs powder), grass-type powder immunity, dark-type prankster immunity, user affected by hit-reaction abilities when its sound moves hit through Substitute
 		  Relies on: weather refactor, cloud nine/intimidate id change????, gSpecialStatuses[battler].intimidatedMon?
@@ -951,11 +935,10 @@ stray text:
 		  Glitch: If the Magic Bounce user has Magic Coat, Magic Bounce activating against a Pressure user will deduct 1 PP from Magic Coat
 = 01DC7C: AccuracyCalcHelper (see 16disasm)
 		  Implements: No Guard, the following not missing: Toxic from poison-types, Stomp on Minimize, Hurricane in rain, Blizzard in hail, Struggle, Bide (?), Mimic, Pain Split, Lock-On, Foresight, Role Play, Yawn, Imprison (?), Magic Coat (?), Snatch (?), Power Split, Guard Split, Heal Pulse, Bestow
-		  Relies on: weather refactor
+		  Relies on: weather refactor, atk01_accuracycheck (to make room)
 = 01DDC4 -> 01DE30 (repoint): atk01_accuracycheck (see 17disasm)
 		  Implements: Keen Eye ignoring evasion, Tangled Feet, Snow Cloak, Klutz (acc/evasion items), Mold Breaker+ (vs acc/evasion), Unaware (acc/evasion), Wonder Skin, Victory Star, Wide Lens, Hurricane acc- in sun, removes some first-battle code
 		  Relies on: weather refactor, GetAbilityUserOnSameSide
-		  Required knowledge: j0203B950
 		  Glitch?: Wonder Skin might not work unless Victory Star is active on the other side
 		  Note: This isn't how Wonder Skin actually works; PD implementation lowers them to 60% of their normal accuracy while real games lower them to a flat 50% accuracy
 		  Note: Check Hustle accuracy vs Psyshock, might be wrong
@@ -995,15 +978,15 @@ stray text:
 + 01F684 -> 01F6A0 (repoint): atk0C_datahpupdate (see 27disasm)
 		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute, (0203B950?)
 		  Glitch?: special moves might not be set properly (moveType >= 8 when moveType is now a P/S signifier)
-= 01FBA0: atk0F_resultmessage (+ConsumeItem, BattleScript_ConsumeDamageReductionBerry, script_1F552_J) (see 28disasm)
+! 01FBA0: atk0F_resultmessage (+ConsumeItem, BattleScript_ConsumeDamageReductionBerry, script_1F552_J) (see 28disasm)
 		  Implements: Focus Sash (consumption on use)
-		  Relies on: gChosenActionByBattler changed to something else
+		  GLITCH!: removes the hanging-on animation and breaks the message
 = 01FF20: Parts of SetMoveEffect (see 29disasm)
 		  Implements: Leaf Guard (vs secondary effects), Mold Breaker (vs Shield Dust), Infiltrator (secondary effects working through Substitute), Sweet Veil (vs secondary effects), Flower Veil (vs secondary-effect status), secondary effects of sound moves working through Substitute
 		  Relies on: changes at 0206A2, weather refactor
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Note: check moves like Superpower when user has sub, appears to be removed
-= 020376: 60 -> 30 (part of weather refactor - sun)
++ 020376: 60 -> 30 (part of weather refactor - sun)
 + 0203E4: (see 29disasm)
 		  Implements: electric-type immunity to paralysis secondary effects
 + 020596: 0B 4A 0B 49 0B 78 58 21 4B 43 4C 32 9B 18 03 21 01 40 02 31 18 68 08 43 18 60 16 E0 -> 03 21 A8 F1 FC FB 83 1C 15 E0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
@@ -1027,11 +1010,11 @@ stray text:
 		  Implements: Modern Struggle
 		  Relies on: changes at 020F78
 		  GLITCH!: Struggle has 100% HP recoil, some other change probably needed
-= 020B70, 020BF8, 1D968D: ptr D1 6B 1D 08 -> D0 31 02 08
++ 020B70, 020BF8, 1D968D: ptr D1 6B 1D 08 -> DE 31 02 08
   020BB4, 020C3C: ptr 62 6C 1D 08 -> EF 31 02 08
 		  Implements: need more info
-		  Requires in future: script_231D0, script_231EF
-= 020F00: (see 29disasm)
+		  Requires in future: script_231DE, script_231EF
++ 020F00: (see 29disasm)
 		  Implements: Smelling Salts effect now removes all status
 		  Relies on: double-damage-on-status effect implementation
 ! 020F78: (see 29disasm) (last part of SetMoveEffect)
@@ -1059,11 +1042,9 @@ stray text:
   022FD4: 04 DC -> 0B DA
   022FE7: D0 -> DA
 		  Implements: Correct stat animations for drastically/severely
-= 02301C: atk48_playstatchangeanimation (+BattleScript_FlowerVeilProtects, script_231D0, script_231EF) (see 36disasm)
++ 02301C: atk48_playstatchangeanimation (+BattleScript_FlowerVeilProtects, script_231DE, script_231EF) (see 36disasm)
 		  Implements: Mold Breaker+ (vs stat-reduction prevention abilities), Contrary, Big Pecks, Infiltrator (vs Mist), Flower Veil (vs stat reduction)
-		  Relies on: weather refactor
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
-		  Glitch: 0x68 (Mold Breaker) is instead 0x97, test mold breaker vs clear body
 = 023366, 023BC0, 023BD6, 023BE0, 023BEC: 11 -> 13
   02337C: C4 33 02 08 A0 34 02 08 5C 35 02 08 80 35 02 08 98 35 02 08 C0 35 02 08 E4 35 02 08 8C 36 02 08 02 37 02 08 38 37 02 08 D8 37 02 08 CC 36 02 08 EC 36 02 08 1C 38 02 08 60 38 02 08 40 3A 02 08 28 3B 02 08 B4 3B 02 08 2D 4E 2E 4D 2B 78 58 27 -> CC 33 02 08 44 34 02 08 C0 34 02 08 DC 34 02 08 F8 34 02 08 14 35 02 08 34 35 02 08 E4 35 02 08 4C 36 02 08 02 37 02 08 38 37 02 08 D8 37 02 08 7A 36 02 08 96 36 02 08 AE 36 02 08 1C 38 02 08 60 38 02 08 40 3A 02 08 28 3B 02 08 B4 3B 02 08
   0233C4 -> 0233CC (repoint): Large part of atk49_moveend (see 37disasm)
@@ -1111,10 +1092,10 @@ stray text:
 ! 027BC8 -> 027B78 (repoint): atk88_negativedamage (see 49disasm)
 		  Implements: Magic Guard (vs Liquid Ooze), Big Root (draining moves), Klutz (Big Root on draining moves)
 		  Note: something about the above two causes a crash, figure out later
-= 027BFC: ChangeStatBuffs (+CheckLeafGuardAndFlowerVeil) (see 50disasm)
++ 027BFC: ChangeStatBuffs (+CheckLeafGuardAndFlowerVeil) (see 50disasm)
 		  Implements: Simple, Mold Breaker+ (vs stat-reduction prevention abilities), Contrary, Big Pecks, Infiltrator (vs Mist), "drastically/severely"
-		  Relies on: BattleScript_FlowerVeilProtects (j22A00, e23200), weather refactor
-		  Glitch?: Flower Veil msg called at wrong time
+		  Relies on: BattleScript_FlowerVeilProtects (j22A00, e23200)
+		  Note: "drastically/severely" strings don't work right, fix later
 + 028190: atk8C_confuseifrepeatingattackends (see 51disasm)
 		  Implements: Makes room for expanded atk8D_setmultihitcounter
 + 0281D0 -> 0281C8 (repoint): atk8D_setmultihitcounter (see 52disasm)
@@ -2487,10 +2468,12 @@ stray text:
 + 1D7296 -> 1052F40 (repoint): BattleScript_EffectAccuracyDownHit (see movescripts.txt)
 		  Implements: [move29E], also refactors into the parameterized script
 		  Relies on: BattleScript_ParameterizedEffectHit
-= 1D741B -> 10539B8 (repoint): BattleScript_EffectDoubleDamageOnStatus (see movescripts.txt)
++ 1D741B -> 10539B8 (repoint): BattleScript_EffectDoubleDamageOnStatus (see movescripts.txt)
 		  Implements: removes Psywave effect entirely, adds new effect for (does double damage to poisoned targets (but NOT toxiced targets)), Hex, and moves that cure status and double damage when they do so (Smelling Salts is moved into this effect, plus options for Wake-Up Slap, (double damage if it cures infatuation), (double damage if it cures burn), (double damage if it cures freeze), and (double damage if it cures poison))
 		  Relies on: changes at 0x20F00
-		  Note: Since it just displays status cure msg in real games, rewrite this code for correct msg
+		  GLITCH!: attract cure move always doubles damage
+		  Note: Is poison but not toxic intended behavior?
+		  Note: Since it just displays status cure msg in real games, rewrite this code for correct msg later
 + 1D7433 -> 10539C0 (repoint): BattleScript_EffectCounter_New (see movescripts.txt)
 		  Implements: [move2A7]
 		  Note: message scrolls off too soon, maybe add wait
