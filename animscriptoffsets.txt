@@ -84,7 +84,7 @@ tasks/callbacks:
 [3D 6E 0A 08] = [7D 5B 0A 08] = (used by [move24B])
 [75 76 0A 08] = [B5 63 0A 08] = (used by Double Team and Angry Swarm)
 [95 79 0A 08] = [D5 66 0A 08] = (used by Tone-Deaf and Bug Noise)
-[3D 85 0A 08] = [7D 72 0A 08] = (used by [move230], [move259], [move25A])
+[3D 85 0A 08] = [7D 72 0A 08] = (used by [move230], Power Split, Guard Split)
 [B1 89 0A 08] = [F1 76 0A 08] = (used by Vacuum Wave)
 [E1 AC 0A 08] = [21 9A 0A 08] = (used by Astonish, Hex, [move23F])
 [A9 AF 0A 08] = [E9 9C 0A 08] = (used by Attract and [move257])
@@ -118,7 +118,7 @@ tasks/callbacks:
 [29 3B 0B 08] = [69 28 0B 08] = (used by Psygatling)
 [35 3C 0B 08] = [75 29 0B 08] = (used by [move232])
 [25 40 0B 08] = [65 2D 0B 08] = (used by Psycho Cut and [move24F])
-[D9 46 0B 08] = [19 34 0B 08] = (used by Chatter, Eerie Impulse, [move259], [move25A])
+[D9 46 0B 08] = [19 34 0B 08] = (used by Chatter, Eerie Impulse, Power Split, Guard Split)
 [AD 4A 0B 08] = [ED 37 0B 08] = (used by [move22F] and [move246])
 [F5 4A 0B 08] = [35 38 0B 08] = (used by Skill Swap)
 [F5 4C 0B 08] = [35 3A 0B 08] = (used by Skill Swap)
@@ -283,7 +283,7 @@ anims 2/templates:
 [C0 AD 3A 08] = [7C 38 3E 08] = (used by Tone-Deaf and Bug Noise)
 [D0 AE 3A 08] = [8C 39 3E 08] = (used by Confide)
 [90 AF 3A 08] = [4C 3A 3E 08] = (used by Dark Hand)
-[38 B1 3A 08] = [F4 3B 3E 08] = (used by [move230], [move259], [move25A])
+[38 B1 3A 08] = [F4 3B 3E 08] = (used by [move230], Power Split, Guard Split)
 [DC B1 3A 08] = [98 3C 3E 08] = (used by Disarming Voice, Boomburst, [move228], Simple Beam, [move233], [move24E])
 [2C B2 3A 08] = [E8 3C 3E 08] = (used by Dark Pulse, Dragon Pulse, [move1A3])
 [0C B3 3A 08] = [C8 3D 3E 08] = gRazorWindTornadoSpriteTemplate
@@ -422,7 +422,7 @@ sounds:
 0x8D = SE_W092  // Toxic			(used by Gunk Shot)
 0x8E = SE_W221  // Sacred Fire		(used by Blast Burn and Nova Inferno)
 0x8F = SE_W221B // Sacred Fire 2	(used by Infestation, Magma Storm, Inferno, [move224])
-0x91 = SE_W036  // Take Down		(used by Rock Climb, Work Up, [move205], Head Smash, Confide, [move21E], [move22F], [move234], [move259], [move25A])
+0x91 = SE_W036  // Take Down		(used by Rock Climb, Work Up, [move205], Head Smash, Confide, [move21E], [move22F], [move234], Power Split, Guard Split)
 0x92 = SE_W059  // Blizzard			(used by Blizzard, [move162], Leaf Storm)
 0x93 = SE_W059B // Blizzard 2		(used by Blizzard and [move162])
 0x94 = SE_W010  // Scratch			(used by Ingrain, Frenzy Plant, Rapid Growth, Hone Claws)
@@ -432,7 +432,7 @@ sounds:
 0x98 = SE_W028  // Sand Attack		(used by Sand Attack, Aura Sphere, Sonic Sand)
 0x99 = SE_W013B // Razor Wind 2		(used by Poison Sting, Hurricane, Double Spin, Poison Leaf, [move23E])
 0x9A = SE_W044  // Bite				(used by Bite, Crunch, Thunder Fang, Ice Fang, Fire Fang, [move1EE], [move224])
-0x9B = SE_W029  // Headbutt			(used by [move259] and [move25A])
+0x9B = SE_W029  // Headbutt			(used by Power Split and Guard Split)
 0x9C = SE_W057  // Surf				(used by Wave Splash, Deluge, Sludge Wave)
 0x9D = SE_W056  // Hydro Pump		(used by Hydro Pump, Hydro Cannon, Wave Splash)
 0x9F = SE_W030  // Horn Attack		(used by Poison Sting, Psyshock, Psygatling, [move221], [move22E])
@@ -451,7 +451,7 @@ sounds:
 0xB3 = SE_W118  // Metronome		(used by Confide)
 0xB6 = SE_W060  // Psybeam			(used by Scary Face, Psycho Boost, Possess, Shadow Sneak, Corner, Hex, [move221], Simple Beam, [move250])
 0xB7 = SE_W185  // Feint Attack		(used by Camouflage, [move222], [move23C])
-0xB8 = SE_W014  // Swords Dance		(used by [move230], [move259], [move25A])
+0xB8 = SE_W014  // Swords Dance		(used by [move230], Power Split, Guard Split)
 0xB9 = SE_W043  // Leer				(used by Scary Face, Mean Look, Psycho Boost, Power Gem, Mirror Shot/Shine Bomb, Corner, Hex, [move227])
 0xBA = SE_W207  // Swagger			(used by Entrainment, Arm Thrust, Mirror Shot/Shine Bomb, Rock Wrecker, [move21C], [move238])
 0xBB = SE_W207B // Swagger 2		(used by Rage and Raging Flame)
@@ -578,8 +578,8 @@ new sprite gfx:
 323: used by [move251]
 324: used by [move251]
 325: used by [move251]
-334: used by [move259]
-335: used by [move25A]
+334: used by Power Split
+335: used by Guard Split
 336: used by [move24B]
 337: used by Mud Bomb and [move24B]
 339: used by Avalanche and Icicle Crash

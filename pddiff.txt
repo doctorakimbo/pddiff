@@ -154,6 +154,8 @@ item effects:
 + 0x57 = Destiny Knot
 
 item IDs:
++ 0x3D = X Sp. Def
++ 0x3E = X Evasion
 + 0x72 = Shiny Charm
 + 0x1AE = Honey
 
@@ -421,8 +423,8 @@ move IDs:
 = 0x256 = (attacking move with chance to lower defense), (can't be called by metronome), (has Pound animation; not implemented)
 = 0x257 = (attacking move), (special message in atk97_tryinfatuating), (animation is a punch that creates the Attract effects)
 + 0x258 = Brine
-= 0x259 = (non-attacking move), (animation is both using Swords Dance with different graphics, then both doing something)
-= 0x25A = (non-attacking move), (animation is [move259] with different graphics)
++ 0x259 = Power Split
++ 0x25A = Guard Split
 = 0x25B = (non-attacking move)
 = 0x25C = (non-attacking move)
 = 0x25D = (attacking move)
@@ -643,7 +645,7 @@ battle strings (ADD 9 TO ALL):
 ! 0xC8 = (special message for move ID 0x257?) <DON'T ADD 9> <probably refactor later to not remove the old C8, "prevents romance">
 ! 0xD5 = "drastically " <DON'T ADD 9>
 ! 0xD6 = "severely " <DON'T ADD 9> (what happens to the old D5 and D6?)
-! 0xE9 = "The sunlight is strong. (?????????????)"
+! 0xE9 = "[PKMN] is hurt by its [ABILITY]! (placeholder)" <DON'T ADD 9>
 ! 0xEB = "[PKMN]'s [ABILITY] made it hail! (placeholder)" <DON'T ADD 9>
 = 0x180 = "[PKMN]'s [ABILITY] nullified the effects of weather!" <ADD THIS AFTER IMPORTING ABILITYBATTLEEFFECTS>
 = 0x181 = "[PKMN]'s [ITEM] let it move first!"
@@ -658,10 +660,10 @@ battle strings (ADD 9 TO ALL):
 ! 0x18B = "[ATTACKER] frisked [DEFENDER] and found its [ITEM]!"
 + 0x18C = "[Your/The opposing] team was protected by [ABILITY]! (placeholder)"
 ! 0x18D = "[PKMN]'s [ABILITY] makes [your/the opposing] team too nervous to eat Berries! (placeholder)"
-! 0x18E = "[PKMN] twisted the dimensions!"
-! 0x18F = "The twisted dimensions returned to normal!"
-! 0x190 = "The Tailwind blew from behind [your/the opposing] team!"
-! 0x191 = "[Your/The opposing] team's Tailwind petered out!"
++ 0x18E = "[PKMN] twisted the dimensions!"
++ 0x18F = "The twisted dimensions returned to normal!"
++ 0x190 = "The Tailwind blew from behind [your/the opposing] team!"
++ 0x191 = "[Your/The opposing] team's Tailwind petered out!"
 ! 0x192 = "[PKMN]'s [ABILITY] maxed its Attack! (placeholder)"
 ! 0x193 = "[DEFENDER]'s [ABILITY] disabled [ATTACKER]'s [MOVE]! (placeholder)"
 ! 0x194 = "[PKMN]'s Ability became Mummy!"
@@ -835,9 +837,9 @@ stray text:
 + expand 3EEC98 (heal location map indexes) from 20 entries to 22 (FE4400)
 + expand 3EECE8 (gSpecialVar_LastTalked values to be set on respawn per heal location) from 20 entries to 22 (FE4480)
 + repoint 3F55A4 (ai script commands) to 11FB800
-- expand 3FE538 (damaging weather continue messages) from 2 entries to 3 (3FE53A, don't do this until DoFieldEndTurnEffects changes done)
-- expand 3FE53C (damaging weather end messages) from 2 entries to 3 (1D8B18, don't do this until DoFieldEndTurnEffects changes done)
-- reduce 3FE540 (rain messages) from 3 entries to 2 (3FE542, don't do this until DoFieldEndTurnEffects changes done)
++ expand 3FE538 (damaging weather continue messages) from 2 entries to 3 (3FE53A)
++ expand 3FE53C (damaging weather end messages) from 2 entries to 3 (1D8B18)
++ reduce 3FE540 (rain messages) from 3 entries to 2 (3FE542)
 + expand 3FE5A0 (partial trapping messages) from 6 entries to 8 (1053700)
 + expand 3FE664 (partial trapping moves) from 6 entries to 8 (1303552)
 + expand 3FEA70 (japanese grammar) from 118 entries to 183 (1040000)
@@ -861,9 +863,9 @@ stray text:
 		  Implements: clears various data on battle start
 + 011357: 20 08 40 88 21 8A 46 00 28 -> 31 09 06 09 0E 8A 46 02 E0 (unclear, but gives more variance to personality values)
 = 0113E0, 0113F2, 011466, 011478, 011526, 011538, 0115BA, 0115CC, 034D26, 040FE2, 0435A6, 049720, 053AB0, 053B16, 06BCAA, 06BCF2, 093E20, 09F4FE, 0A08E6, 0BD814, 0CB0F6, 0CBE8C, 0CDEE0, 0CE572, 0CE7B0, 0E64F4, 0F32FC, 1035AC, 103652, 1036F2, 10378A, 103826, 1038B8, 104DF6, 105EF6, 10647E, 113EE8, 119420, 11AC48, 11AFDE, 11B01C, 1218EC, 136248, 1EA04DE: 0B -> 10 (pkmnnamelength)
-- 011688: 0E 49 -> 10 47
++ 011688: 0E 49 -> 10 47
   0116C8: 4C 2B 02 02 -> 91 FD E2 09 (jumps (bx) to extra fn at 1E2FD90, then back (jE2FD90, see 03disasm))
-		  Implements: allows specifically hardcoded teams (customized EVs, etc)
+		  Implements: allows specifically hardcoded trainer teams (customized EVs, etc)
 		  Note: table at 1400000 is the hardcoded teams, add them once full version released
 + 0124EB: 80 -> 60 (store weather as fullword)
 + 014CD8: GetWhoStrikesFirst (+GetSpeedStat, GetPriority, GetAbilityValues) (see 04disasm/04disasm2)
@@ -929,15 +931,14 @@ stray text:
 		  Glitch?: white herb/amulet coin might not work unless unnerve IS active
 		  GLITCH!: Magic Guard/Klutz/Sheer Force don't stop Life Orb recoil
 		  Note: Life Orb message isn't canon, fix later
-		  Note: Berries don't activate on indirect damage, test again once atk01_accuracycheck is added
-- 01D402: 97 -> FC (makes mew not disobey)
++ 01D402: 97 -> FC (makes mew not disobey)
 + 01D760: atk00_attackcanceler (see 15disasm)
 		  Implements: Magic Bounce, Protean, Mold Breaker+ (vs Magic Bounce)
 		  Glitch: If the Magic Bounce user has Magic Coat, Magic Bounce activating against a Pressure user will deduct 1 PP from Magic Coat
-= 01DC7C: AccuracyCalcHelper (see 16disasm)
++ 01DC7C: AccuracyCalcHelper (see 16disasm)
 		  Implements: No Guard, the following not missing: Toxic from poison-types, Stomp on Minimize, Hurricane in rain, Blizzard in hail, Struggle, Bide (?), Mimic, Pain Split, Lock-On, Foresight, Role Play, Yawn, Imprison (?), Magic Coat (?), Snatch (?), Power Split, Guard Split, Heal Pulse, Bestow
 		  Relies on: weather refactor, atk01_accuracycheck (to make room)
-= 01DDC4 -> 01DE30 (repoint): atk01_accuracycheck (see 17disasm)
++ 01DDC4 -> 01DE30 (repoint): atk01_accuracycheck (see 17disasm)
 		  Implements: Keen Eye ignoring evasion, Tangled Feet, Snow Cloak, Klutz (acc/evasion items), Mold Breaker+ (vs acc/evasion), Unaware (acc/evasion), Wonder Skin, Victory Star, Wide Lens, Hurricane acc- in sun, removes some first-battle code
 		  Relies on: weather refactor, GetAbilityUserOnSameSide
 		  Glitch?: Wonder Skin might not work unless Victory Star is active on the other side
@@ -982,17 +983,16 @@ stray text:
 ! 01FBA0: atk0F_resultmessage (+ConsumeItem, BattleScript_ConsumeDamageReductionBerry, script_1F552_J) (see 28disasm)
 		  Implements: Focus Sash (consumption on use)
 		  GLITCH!: removes the hanging-on animation and breaks the message
-= 01FF20: Parts of SetMoveEffect (see 29disasm)
++ 01FF20: Parts of SetMoveEffect (see 29disasm)
 		  Implements: Leaf Guard (vs secondary effects), Mold Breaker (vs Shield Dust), Infiltrator (secondary effects working through Substitute), Sweet Veil (vs secondary effects), Flower Veil (vs secondary-effect status), secondary effects of sound moves working through Substitute
 		  Relies on: changes at 0206A2, weather refactor
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
-		  Note: check moves like Superpower when user has sub, appears to be removed
 + 020376: 60 -> 30 (part of weather refactor - sun)
 + 0203E4: (see 29disasm)
 		  Implements: electric-type immunity to paralysis secondary effects
 + 020596: 0B 4A 0B 49 0B 78 58 21 4B 43 4C 32 9B 18 03 21 01 40 02 31 18 68 08 43 18 60 16 E0 -> 03 21 A8 F1 FC FB 83 1C 15 E0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 		  Implements: max sleep turns 5 -> 4
-= 0206A2: 4B 46 19 78 58 20 41 43 40 46 50 30 09 18 0A 4A F3 78 98 00 80 18 09 68 00 68 01 40 00 29 01 D0 00 F0 13 FD D8 -> 00 00 4B 46 19 78 58 20 48 43 41 46 0B 18 0A 49 F2 78 90 00 40 18 19 6D 00 68 01 40 00 29 01 D0 00 F0 13 FD D0
++ 0206A2: 4B 46 19 78 58 20 41 43 40 46 50 30 09 18 0A 4A F3 78 98 00 80 18 09 68 00 68 01 40 00 29 01 D0 00 F0 13 FD D8 -> 00 00 4B 46 19 78 58 20 48 43 41 46 0B 18 0A 49 F2 78 90 00 40 18 19 6D 00 68 01 40 00 29 01 D0 00 F0 13 FD D0
 		  Implements: extension of changes at 01FF20
 ! 0207A4: ptr 0A 11 02 08 -> 8C 0F 02 08
 		  Implements: 50% recoil effect
@@ -1031,10 +1031,11 @@ stray text:
 ! 0216B8 -> 021684 (repoint): atk1D_jumpifstatus2 (+fn_20EFE_J) (see 33disasm)
 		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute
 		  GLITCH!: doesn't do that, instead causes Substitute to not fail when Infiltrator mon has one already???
-= 021730: atk1E_jumpifability (see 34disasm)
++ 021730: atk1E_jumpifability (see 34disasm)
 		  Implements: Leaf Guard, Flower Veil (vs status)
 		  Relies on: weather refactor
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
+		  Note: Flower Veil msg is wrong
 + 021818: atk1F_jumpifsideaffecting (see 35disasm)
 		  Implements: Infiltrator (vs Safeguard)
 		  Note: incorrect message ("but it failed" vs "was protected by Safeguard"), fix later
@@ -1070,7 +1071,7 @@ stray text:
 		  Implements: Cheek Pouch
 		  Relies on: CheckAndRunCheekPouch (j1C5FC, e1CDEC), BattleScript_CheekPouchHeals (j1C728)
 		  Requires in future: PushScriptInstr (207470)
-= 027220: atk7A_jumpifnexttargetvalid (see 42disasm)
++ 027220: atk7A_jumpifnexttargetvalid (see 42disasm)
 		  Implements: Telepathy
 		  Relies on: GetAbilityUserOnSameSide
 = 0274A8: atk7D_setrain (see 43disasm)
@@ -1083,14 +1084,15 @@ stray text:
 		  Note: script_1D694E loaded but never used
 = 027830: UproarWakeUpCheck (see 46disasm)
 		  Implements: Makes room for expanded atk84_jumpifcantmakeasleep
-= 0278CC -> 0278A8 (repoint): atk84_jumpifcantmakeasleep (see 47disasm)
++ 0278CC -> 0278A8 (repoint): atk84_jumpifcantmakeasleep (see 47disasm)
 		  Implements: Leaf Guard (sleep), Sweet Veil, Flower Veil (sleep)
 		  Relies on: GetAbilityUserOnSameSide, weather refactor
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
-		  Glitch?: Leaf Guard doesn't prevent Rest
-! 027AE4: atk87_stockpiletohpheal (see 48disasm)
+		  Note: Leaf Guard doesn't prevent Rest in P/D
+		  Note: Flower Veil msg is wrong
++ 027AE4: atk87_stockpiletohpheal (see 48disasm)
 		  Implements: Makes room for expanded atk88_negativedamage
-! 027BC8 -> 027B78 (repoint): atk88_negativedamage (see 49disasm)
++ 027BC8 -> 027B78 (repoint): atk88_negativedamage (see 49disasm)
 		  Implements: Magic Guard (vs Liquid Ooze), Big Root (draining moves), Klutz (Big Root on draining moves)
 		  Note: something about the above two causes a crash, figure out later
 + 027BFC: ChangeStatBuffs (+CheckLeafGuardAndFlowerVeil) (see 50disasm)
@@ -1110,10 +1112,12 @@ stray text:
 = 028C98: atk95_setsandstorm (see 55disasm)
 		  Implements: Smooth Rock (manual sand), Klutz (Smooth Rock manual sand)
 		  Relies on: GetWeatherTurns, weather refactor
-= 028CF0: atk96_weatherdamage (see 56disasm)
++ 028CF0: atk96_weatherdamage (see 56disasm)
 		  Implements: Snow Cloak (hail immunity), Dry Skin (sun HP loss), Solar Power (HP loss), Magic Guard (vs weather damage), Ice Body (hail immunity), Overcoat (vs weather), Sand Rush (sand immunity), Sand Force (sand immunity), Slush Rush (hail immunity), Safety Goggles (vs weather), Klutz (Safety Goggles vs weather)
 		  Relies on: weather refactor
 		  Note: Test heavily, incomprehensible code
+		  Note: Slush Rush doesn't give hail immunity in canon (but it should)
+		  GLITCH!: Klutz goes into an infinite loop when damage would be dealt
 + 028E90: atk97_tryinfatuating (see 57disasm)
 		  Implements: refactors to include extra param (if set to 1, skip actually infatuating) - makes it usable as a JumpIfCantInfatuate()
 		  Relies on: battlescripts change to accomodate above
@@ -1123,7 +1127,7 @@ stray text:
   029B58: CB 7A -> 05 23 (Disable always lasts 4 turns)
 + 029C79: 32 -> 22
   029C90: 8B 7B -> 04 23 (Encore always lasts 3 turns)
-- 02A240: 60 -> 30 (part of weather refactor - sun)
++ 02A240: 60 -> 30 (part of weather refactor - sun)
 + 02A3C8 -> 178F08 (repoint; j168F08): atkAA_setdestinybond (see 252disasm)
 		  Implements: refactors to include extra param (goto the address if it fails); adds a counter for consecutive uses that works similar to, but independent from, the Protect one
 		  Note: this is incorrect behavior, it should just always fail when used consecutively
@@ -1132,10 +1136,10 @@ stray text:
 = 02B2D4: atkBB_setsunny (see 58disasm)
 		  Implements: Heat Rock (manual sun), Klutz (Heat Rock manual sun)
 		  Relies on: GetWeatherTurns, weather refactor
-- 02B5F2: 60 -> 30 (part of weather refactor - sun)
++ 02B5F2: 60 -> 30 (part of weather refactor - sun)
 + 02B678: atkC1_hiddenpowercalc (see 59disasm)
 		  Implements: Hidden Power = 60 power, Hidden Power Fairy (!)
-= 02B774: atkC2_selectfirstvalidtarget (see 60disasm)
++ 02B774: atkC2_selectfirstvalidtarget (see 60disasm)
 		  Implements: Telepathy
 		  Relies on: GetAbilityUserOnSameSide
 = 02BC74: atkC8_sethail (see 61disasm)
@@ -1154,7 +1158,7 @@ stray text:
 		  Implements: Honey Gather, modern pickup tables
 + 02CFD8: atkE8_settypebasedhalvers (+ uncalled mysteryfunc) (see 66disasm)
 		  Implements: Makes room for mysteryfunc
-- 02D0D0: 07 -> 03
++ 02D0D0: 07 -> 03
   02D0EC: 18 -> 0C
   02D100: 60 -> 30
   02D114: 80 -> C0 (part of weather refactor)
@@ -1191,7 +1195,7 @@ stray text:
 ! 030924: A7 F0 4A FF -> 00 00 00 00
 		  Implements: Removes PP numbers for battle move summary (replaced by functionality in 030830)
 = 030991, 0D851B: 1A -> 18 (typenamelength)
-- 0309A0: A7 F0 0C FF -> 00 00 00 00
+! 0309A0: A7 F0 0C FF -> 00 00 00 00
 		  Implements: Removes "Type/" + type names for battle move summary (replaced by functionality in 030830)
 ! 0309CC: MoveSelectionCreateCursorAt (see 71disasm)
 		  Implements: Removes move selection cursor (replaced by functionality in 030830)
@@ -1203,7 +1207,7 @@ stray text:
 		  Requires in future: GetSideParty (205D8A), GetFirstAllowableSwitchin (205D96), GetBestTrickRoomAttacker (2060FC), GetAvailableWeatherSetter (206164), ChooseBestSwitchinNewAI (2061DC), GetMatchupScore (206292), ShouldUseTrickRoom (206334), IsTeamSlow (2063A4), CanUseNewAI (20649C), GetBestMatchupScore (2066CC), GetTypeMatchup (252248)
 + 03937C: FindMonThatAbsorbsOpponentsMove (see 73disasm)
 		  Implements: AI understands new absorbing abilities (Lightning Rod, Motor Drive, Dry Skin, Storm Drain, Sap Sipper)
-- 039A80: ShouldSwitch (see 74disasm)
++ 039A80: ShouldSwitch (see 74disasm)
 		  Implements: New level of smart AI for when to switch (switches if: has Regenerator, locked into resisted move, cursed, yawned, has a good Trick Room attacker under Trick Room, weather setter is in battle when weather runs out, weather setter isn't in battle when weather runs out, has a mon that's immune when existing mon might get double-targetted, or has a good stallmon under good stall conditions), locks switching for better type matchups behind the new level of smart AI
 		  Relies on: GetSpeedStat (j1456A, e14D4A), new AI value
 		  Requires in future: ShouldSwitchIfMightBeDoubleTargeted (205058), CopyMonToBattleMon (205B0C), GetMonThatCanWithstandBiggestAttack (205C80), GetGoodStallMon (205CF6), GetSideParty (205D8A), GetFirstAllowableSwitchin (205D96), CanDoSevereDamage (205E14), IsMonFasterThan (205EE8), ShouldSwitchIfTrickRoom (205F48), ShouldSwitchIfWeatherTeam (205FDE), GetAITarget (2060C0), GetBestTrickRoomAttacker (2060FC), GetAvailableWeatherSetter (206164), GetSlowMonWithLowHP (20621C), IsMoveSuperEffective (206418), CanUseNewAI (20649C), ShouldSwitchIfStallMon (2064C6), HasHealingMove (2065CC), HasDamagingStatusThatWorks (206600), GetBestMatchupScore (2066CC), ShouldSwitch_NewAI (251E40), ShouldSwitchIfLockedMoveOrRegenerator (251E8C), ShouldSwitchIfCurseOrYawn (251FD0)
@@ -1211,7 +1215,7 @@ stray text:
 		  Glitch?: (ShouldSwitchIfMightBeDoubleTargeted) checks ITEM_FOCUS_SASH in GetHoldEffectParam, not GetHoldEffect
 		  Glitch?: (GetAITarget) in doubles with both mons alive, it does checks on the AI's right slot instead of choosing a random player slot
 		  Glitch?: in general, uses raw stats when I assume they meant base stats
-= 03A4E8: Part of ShouldUseItem (see 75disasm)
++ 03A4E8: Part of ShouldUseItem (see 75disasm)
 		  Implements: AI use of X Sp. Def and X Evasion
 		  Relies on: new table entries for gItemEffectTable
 + 03DD98: CreateMonWithNature (see 76disasm) - more accurately now CreateMonWithRandomNature
@@ -1224,7 +1228,7 @@ stray text:
 = 03EAFE, 03EB2E: 40 -> 80
   03EB52: 40 00 40 18 01 88 0D 48 08 40 -> 80 00 40 18 40 88 00 00 00 00
 		  Implements: Part of gLevelUpLearnsets refactor
-= 03ECEC: CalculateBaseDamage (see 78disasm)
+r= 03ECEC: CalculateBaseDamage (see 78disasm)
 		  Implements: modern Plus/Minus, Rivalry, Heatproof (fire moves), Dry Skin (fire moves), Iron Fist, Solar Power (boost), Normalize (boost), Technician, Klutz (damage-boosting items), Mold Breaker (damage-reduction abilities, Unaware), Unaware (atk/def/spa/spd), Slow Start (Attack reduction), Reckless, Flower Gift (stat boosts), Sheer Force (boost), Defeatist, Friend Guard, Multiscale, Toxic Boost, Flare Boost, Analytic, Infiltrator (dual screens), Sand Force, Aura Break, Tough Claws, Mega Launcher, Grass Pelt, Aerilate (boost), Dark Aura, Fur Coat, Fairy Aura, Pixilate (boost), Refrigerate (boost), Strong Jaw, Galvanize (boost), "Polkadot Bow", Gems (gen 5 boost), Choice Specs (boost), Muscle Band, Wise Glasses, Assault Vest (boost), Eviolite, Life Orb (boost), Wonder Room (effect), sandstorm Rock SpDef boost, modern spread reduction
 		  Relies on: weather refactor, GetAbilityUserOnSameSide, HasItemWithTypeEffect
 		  Requires in future: AteAbilityConversionTable (j168CB4)
@@ -1250,7 +1254,7 @@ r= 040B15: B5 A5 F1 B5 F9 01 BC -> 4B 9F 46 E0 3A A2 08 (jumps (mov) to fn at A2
 		  Requires in future: CopyMonToBox (j3C5FA0)
 = 040FA0: IsPokemonStorageFull (see 82disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
-= 0415D0: B0 16 04 08 44 17 04 08 -> 6C 16 04 08 98 16 04 08
++ 0415D0: B0 16 04 08 44 17 04 08 -> 6C 16 04 08 98 16 04 08
   0415F6: 29 48 29 -> 42 48 42
   04160C: 25 -> 3E
   041622: 21 -> 3A
@@ -1261,8 +1265,8 @@ r= 040B15: B5 A5 F1 B5 F9 01 BC -> 4B 9F 46 E0 3A A2 08 (jumps (mov) to fn at A2
 + 041C46: Part of PokemonUseItemEffects (see 84disasm)
 		  Implements: Revive case 0xFC - restores 1/4 HP (new item?)
 		  Note: needs testing when item itself implemented
-= 042D50-042DA4: Completely removed (replaced with fn_41714_E)
-= 042DA4: sub_8042DA4 (see 85disasm)
++ 042D50-042DA4: Completely removed (replaced with fn_41714_E)
++ 042DA4: sub_8042DA4 (see 85disasm)
 		  Implements: Messages for X Sp. Def and X Evasion
 		  Relies on: fn_41714_E
 = 042EC4: GetEvolutionTargetSpecies (see 86disasm)
@@ -1542,8 +1546,9 @@ r= 080650: 0D -> 7F
 + 08F4E4, 08F566: 02 -> 00 (changes PC summary font size (to leave space for extra characters))
 + 08FD34: 00 B5 05 F0 37 F8 12 20 -> 00 48 00 47 01 A4 E2 09 (jumps (bx) to extra fn at 1E2A400, then back (jE2A400, see 163disasm))
 		  Implements: Adds "special" wallpaper category option on menu
--TRANSLATE 08FD68: 01 2C 16 D0 01 2C 02 DC -> 00 48 00 47 33 A4 E2 09 (jumps (bx) to extra fn at 1E2A432, then back (jE2A432, see 164disasm))
++ 08FD68: 01 2C 16 D0 01 2C 02 DC -> 00 48 00 47 33 A4 E2 09 (jumps (bx) to extra fn at 1E2A432, then back (jE2A432, see 164disasm))
 		  Implements: Adds extra menu for "special" wallpapers
+		  Note: The wallpapers are, in order: "Best Pals", "Four Beasts", "Machu", "Hatenazemi" (?), and "Retro"
 = 08FE54: sub_808FE54 (see 165disasm)
 		  Implements: Part of CompressedBoxPokemon refactor
 		  Requires in future: GetCompressedBoxMonFromBox (j3C5F84)
@@ -1697,7 +1702,7 @@ r= 080650: 0D -> 7F
 		  Glitch?: param = 1 seems to be intended to check if user and target share any types, it doesn't do that (may be decompilation error?)
 + 0C86F4 -> j183290 (repoint): BattleAICmd_nullsub_33 (see 257disasm)
 		  Implements: new battle ai script command (BattleAICmd_get_move_attribute); gets the given byte of the move in funcResult and stores it in funcResult
-= 0C8886: 07 -> 03
++ 0C8886: 07 -> 03
   0C889A: 18 -> 0C
   0C88AE: 60 -> 30
   0C88C2: 80 -> C0
@@ -1735,7 +1740,7 @@ r= 080650: 0D -> 7F
 + 0D75FC, 0D7E96, 0D7EAE: B1 20 40 00 -> FF 20 80 00 (max moves 354 -> 1020)
 + 0D77BC: 08 D9 03 49 FF 20 08 70 0D E0 00 00 81 01 00 00 8C 29 02 02 -> 08 D3 03 49 30 1A 08 E0 00 00 00 00 82 01 00 00 00 00 08 09
 		  Implements: if the string number is greater than the total strings (386), read from the expanded string table instead (1080000), giving an additional 208 strings for a total of 594 (603 in english due to jumping the gun on modernization)
-= 0D7FF2, 0D8610, 136714, FE5214: 0D -> 20 (abilitynamelength; btw check decap kludge for more namelengths)
+= 0D7FF2, 0D8610, 136714, FE5214: 0D -> 20 (abilitynamelength)
 ! 0D814A: 5A -> 59 (PDONLY, trainer class 5A no longer takes the rival's name)
 = 0D991E: CA 19 -> 38 47
   0D995C: F6 0F 00 00 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jA24EA0, see 210disasm))
@@ -2306,12 +2311,13 @@ r= 13A124: sub_813A124 (see 247disasm)
 + 1D499B -> 1E2A100 (repoint): Move_??? (see animscripts.txt)
 		  Implements: [move162] animation
 + 1D4A9F -> 1CF1E2 (repoint): Move_??? ([move161] has Sludge Bomb animation)
-- 1D51AA: 01 -> 03
++ 1D51AA: 01 -> 03
   1D51BA: 03 -> 01
   1D51BC: CD 52 -> 6D 53
   1D51C4: 6D 53 -> CD 52
 		  Implements: switches around weather cases for Weather Ball animation (sun -> "ice", sand -> "fire", hail -> "rock")
 		  Relies on: probably means that the weather constant is changed from (none, sun, rain, sand, hail) to (none, hail, rain, sun, sand) (why???)
+		  Note: check again after weather refactor is done
 + 1D53D9 -> 14294F0 (repoint): Move_Stone_Edge (see animscripts.txt)
 		  Implements: Grand Boulder/Stone Edge animation
 + 1D5C5F -> 1303564 (repoint): General_TurnTrap (see animscripts.txt)
@@ -2333,10 +2339,10 @@ r= 13A124: sub_813A124 (see 247disasm)
 		  Glitch?: No upper limit, so Power items, Apricorn balls, Honey, and Destiny Knot get incinerated
 + 1D67B4 <except done on the new table>: 00 69 1D 08 -> F8 39 05 09 (BattleScript_EffectStatBoostsToPower (see movescripts.txt))
 		  Implements: Stored Power, (+6 speed = 110 power, +5/+4 speed = 100 power, +3/+2 speed = 90 power, else displayed base power)
-- 1D67BC <except done on the new table>: FC 79 1D 08 -> EC 80 01 08 (BattleScript_EffectTailwind (j178FC, see movescripts.txt))
++ 1D67BC <except done on the new table>: FC 79 1D 08 -> EC 80 01 08 (BattleScript_EffectTailwind (j178FC, see movescripts.txt))
 		  Implements: removes Synthesis effect entirely (folded into Morning Sun), adds new effect for Tailwind
 		  Relies on: DoFieldEndTurnEffects changes (to make space)
-- 1D67C0 <except done on the new table>: FC 79 1D 08 -> B8 80 01 08 (BattleScript_EffectTrickRoom (j178C8, see movescripts.txt))
++ 1D67C0 <except done on the new table>: FC 79 1D 08 -> B8 80 01 08 (BattleScript_EffectTrickRoom (j178C8, see movescripts.txt))
 		  Implements: removes Moonlight effect entirely (folded into Morning Sun), adds new effect for Trick Room
 		  Relies on: DoFieldEndTurnEffects changes (to make space)
 + 1D67DC <except done on the new table>: 00 69 1D 08 -> C0 0F 05 09 (BattleScript_EffectChipAway (see movescripts.txt))
@@ -2350,7 +2356,7 @@ r= 13A124: sub_813A124 (see 247disasm)
 		  Relies on: BattleScript_Parameterized
 		  Note: Doesn't show the status animation when infatuation starts
 		  Glitch?: always infatuates, skipping check?
-- 1D68EC <except done on the new table>: DC 69 1D 08 -> 80 3A 05 09 (BattleScript_EffectAtkAndSpAtkUp (see movescripts.txt))
++ 1D68EC <except done on the new table>: DC 69 1D 08 -> 80 3A 05 09 (BattleScript_EffectAtkAndSpAtkUp (see movescripts.txt))
 		  Implements: removes Poison Tail effect entirely (folded into poison hit), adds new effect for +Atk/+Sp. Atk moves (modern Growth, Work Up, Energize)
 		  Relies on: weather refactor
 		  Note: stat boost anim was wrong, see movescripts.txt
@@ -2437,7 +2443,6 @@ r= 13A124: sub_813A124 (see 247disasm)
 		  Relies on: AlternateTypeCalc (j1833D0)
 		  Glitch: AteAbilityConversionTable ptr is wrong, currently points to j168CA4; fix when importing (not like it matters)
 		  Glitch?: the Levitate bypassing is done by temporarily swapping abilities, which means if used on a target with Levitate, [move29F] doesn't receive the effects of the user's Adaptability, Normalize, Tinted Lens, or Klutz (as in, Expert Belt actually works despite Klutz); the target receives the effects of the user's Solid Rock, Filter, and Wonder Guard; and if both mons have Levitate, the target is still immune to the move
-		  Note: change Sonic Boom's effect byte first
 + 1D7011: BattleScript_EffectRecoilIfMiss (see movescripts.txt)
 		  Implements: [High] Jump Kick crashes through Ghost-types, always does half HP recoil
 		  Relies on: atk80_manipulatedamage changes
@@ -2501,11 +2506,11 @@ r= 13A124: sub_813A124 (see 247disasm)
 		  Implements: removes -Def chance effect entirely (folded into something else), adds new effect that burns user and target
 + 1D7A3C -> 1697D00 (repoint): BattleScript_EffectPoisonUserAndTarget (see movescripts.txt)
 		  Implements: removes -Atk chance effect entirely (folded into something else), adds new effect that poisons user and target
-- 1D7BF5: 60 -> 30 (part of weather refactor - sun)
++ 1D7BF5: 60 -> 30 (part of weather refactor - sun)
 + 1D805C -> 1052E60 (repoint): BattleScript_EffectMustFocus (see movescripts.txt)
 		  Implements: some move that does +2 Def/+2 Sp. Def but only if the user isn't attacked
 		  GLITCH!: crashes if Defense is at +6 but Sp. Def isn't
-- 1D806E -> 1053A60 (repoint): BattleScript_EffectPlusSpeedDoubleDamageMinusSpeedNoDamage (see movescripts.txt)
++ 1D806E -> 1053A60 (repoint): BattleScript_EffectPlusSpeedDoubleDamageMinusSpeedNoDamage (see movescripts.txt)
 		  Implements: removes Smelling Salts effect entirely (folded into DoubleDamageOnStatus), adds new effect for (double damage on target with speed boosts, does no damage to target with speed drops)
 + 1D80B6 -> 11BA88C (repoint): BattleScript_EffectCharge_New (see movescripts.txt)
 		  Implements: Charge Sp. Def boost
@@ -2519,7 +2524,7 @@ r= 13A124: sub_813A124 (see 247disasm)
 		  Note: Sticky Hold message scrolls off too soon, maybe add wait
 + 1D8126 -> 1050440 (repoint): BattleScript_EffectAbilityTransfer (see movescripts.txt)
 		  Implements: Entrainment; condenses Skill Swap into Role Play's effect slot to free up space
-= 1D8189 -> 1050480 (repoint): BattleScript_EffectMagicCoat (see movescripts.txt)
++ 1D8189 -> 1050480 (repoint): BattleScript_EffectMagicCoat (see movescripts.txt)
 		  Implements: adds an accuracy check to Magic Coat, but it's specified elsewhere to not miss anyway? (also, since when did Magic Coat have a target?)
 		  Relies on: AccuracyCalcHelper (so the move can't miss)
 + 1D82A9 -> 1053A70 (repoint): BattleScript_EffectHPScaled (see movescripts.txt)
@@ -2527,24 +2532,26 @@ r= 13A124: sub_813A124 (see 247disasm)
 		  Relies on: atkD9_scaledamagebyhealthratio changes
 + 1D82AF -> 1051160 (repoint): BattleScript_EffectChangeTargetAbility (see movescripts.txt)
 		  Implements: Gastro Acid, Worry Seed, Simple Beam
-= 1D82CB -> 10504A0 (repoint): BattleScript_EffectImprison (see movescripts.txt)
++ 1D82CB -> 10504A0 (repoint): BattleScript_EffectImprison (see movescripts.txt)
 		  Implements: adds an accuracy check to Imprison, but it's specified elsewhere to not miss anyway? (also, since when did Imprison have a target?)
 		  Relies on: AccuracyCalcHelper (so the move can't miss)
-= 1D830C -> 10504C0 (repoint): BattleScript_EffectSnatch (see movescripts.txt)
++ 1D830C -> 10504C0 (repoint): BattleScript_EffectSnatch (see movescripts.txt)
 		  Implements: adds an accuracy check to Snatch, but it's specified elsewhere to not miss anyway? (also, since when did Snatch have a target?)
 		  Relies on: AccuracyCalcHelper (so the move can't miss)
-- 1D8415 -> 1051220 (repoint): BattleScript_EffectWeatherDependent (see movescripts.txt)
++ 1D8415 -> 1051220 (repoint): BattleScript_EffectWeatherDependent (see movescripts.txt)
 		  Implements: Raid, weather ball animation in sandstorm is set to the animation in hail
 		  Relies on: weather refactor
+		  Note: check weather ball miss in sand once weather refactor is done, might be wrong ptr
+		  Note: check Raid effect once weather refactor is done, might not work
 + 1D841B -> 1053B60 (repoint): BattleScript_EffectStatTwoDownHit (see movescripts.txt)
 		  Implements: [move289]
 		  Relies on: BattleScript_Parameterized, BattleScript_DoDamageFunction, BattleScript_PlayStatChangeAnim
-- 1D8A72: 02 -> 01 (part of DoFieldEndTurnEffects changes)
-- 1D8B6E: Part of BattleScript_LeechSeedTurnDrain (see movescripts.txt)
++ 1D8A72: 02 -> 01 (part of DoFieldEndTurnEffects changes)
+! 1D8B6E: Part of BattleScript_LeechSeedTurnDrain (see movescripts.txt)
 		  Implements: Magic Guard (vs Leech Seed)
 		  Relies on: script at j17D18/e18508
 		  Note: implementation is actually caused by atk88_negativedamage changes, this just enables that to work on Leech Seed
-		  Note: Looks broken for Magic Guard vs Liquid Ooze case
+		  GLITCH!: message is mangled for Magic Guard on Liquid Ooze
 + 1D8C10 -> 1051B20 (repoint): BattleScript_SuccessForceOut (see movescripts.txt)
 		  Implements: if the move used to force out was above ID 0x200, don't play the move animation (presumably for dragon tail, etc.)
 + 1D9015 -> 1052EE0 (repoint): BattleScript_FocusPunchSetUp (see movescripts.txt)
@@ -2556,6 +2563,7 @@ r= 13A124: sub_813A124 (see 247disasm)
 		  Implements: Oblivious changed from "prevents romance" to "made [MOVE] useless", EXCEPT for move ID 0x257 ("prevents romance" presumably replaced with new msg)
 		  Note: more coding needed to re-add "prevents romance"
 r= 1D9C1C: ptr ED BC 1D 08 -> 30 C0 1F 09 (add new AI table entry for script at 11FC030)
+			btw temp 2064C0: 01 21 08 40 -> 01 20 00 00
 		  Implements: New level of smart AI (enough stuff to warrant breaking the usual format)
 		  * Won't use Explosion
 		  * Won't use status moves on Substitute (unless Infiltrator or sound move)
@@ -2726,6 +2734,7 @@ r= 1DA445 -> 1005C00 (repoint): AI_CheckViability
   222960: movement action function 0xAC
   22297A: movement action function 0xAD (see 284disasm)
 		  Implements: works like regular slow-walking (again? maybe this is wrong), but in the opposite direction
++ 3C44F4: E8 00 E9 00 E5 00 ED 00 F0 00 F3 00 EE 00 F4 00 -> E8 00 E9 00 E5 00 ED 00 F0 00 F3 00 EE 00 F1 00 F4 00 (part of DoFieldEndTurnEffects changes)
 + 814082: Move_Flare_Blitz (see animscripts.txt)
 		  Implements: Flare Blitz animation
 + 8B6040: Move_Sludge_Wave (see animscripts.txt)
@@ -2930,10 +2939,10 @@ r= 1DA445 -> 1005C00 (repoint): AI_CheckViability
 		  Implements: [move22C] animation
 +1301C88: Move_??? (see animscripts.txt)
 		  Implements: [move251] animation
--1301F00: Move_??? (see animscripts.txt)
-		  Implements: [move259] animation
--1301F40: Move_??? (see animscripts.txt)
-		  Implements: [move25A] animation
++1301F00: Move_Power_Split (see animscripts.txt)
+		  Implements: Power Split animation
++1301F40: Move_Guard_Split (see animscripts.txt)
+		  Implements: Guard Split animation
 +1301F80: Move_??? (see animscripts.txt)
 		  Implements: [move24B] animation
 +1302028: Move_??? (see animscripts.txt)

@@ -12533,17 +12533,17 @@ Move_??? (pe): @1300578
 
 
 
-Move_??? (pj): @1301F00
+Move_Power_Split (pj): @1301F00
 00 5E 28 19 B8 00 C0 02 4C 04 2F 09 02 02 00 00 00 00 06 02 4C 04 2F 09 02 02 00 00 00 00 06 05 03 D9 46 0B 08 02 00 06 03 D9 46 0B 08 02 00 06 19 9B 00 C0 04 10 19 91 00 C0 05 08
 
-gUnknownMove259SpriteTemplate (pj): @12F044C
+gUnknownPowerSplitSpriteTemplate (pj): @12F044C
 5E 28 5E 28 64 04 2F 09 E4 11 1F 08 00 00 00 00 38 B1 3A 08 3D 85 0A 08 00 05 00 C0 00 08 00 00 00 07 00 00 00 08 00 00
 
 loadspritegfx (ANIM_SPRITES_START + 334)
 playsewithpan SE_W014, SOUND_PAN_ATTACKER
-createsprite gUnknownMove259SpriteTemplate, ANIM_ATTACKER, 2, 0, 0
+createsprite gUnknownPowerSplitSpriteTemplate, ANIM_ATTACKER, 2, 0, 0
 swapattackerandtarget
-createsprite gUnknownMove259SpriteTemplate, ANIM_ATTACKER, 2, 0, 0
+createsprite gUnknownPowerSplitSpriteTemplate, ANIM_ATTACKER, 2, 0, 0
 swapattackerandtarget
 waitforvisualfinish
 createvisualtask [D9 46 0B 08], 2
@@ -12556,23 +12556,23 @@ playsewithpan SE_W036, SOUND_PAN_ATTACKER
 waitforvisualfinish
 end
 
-gUnknownMove259SpriteTemplate:
+gUnknownPowerSplitSpriteTemplate:
 .tileTag = (ANIM_SPRITES_START + 334)
 .paletteTag = (ANIM_SPRITES_START + 334)
-.oam = gUnknownMove259Oam
+.oam = gUnknownPowerSplitOam
 .animCmd = gDummySpriteAnimTable
 .images = NULL
 .afflineAnims = [38 B1 3A 08]
 .callback = [3D 85 0A 08]
 
-gUnknownMove259Oam:
+gUnknownPowerSplitOam:
 00 05 00 C0 00 08 00 00 00 07 00 00 00 08 00 00
 
 
-Move_??? (pe): @1301F00
+Move_Power_Split (pe): @1301F00
 00 5E 28 19 B8 00 C0 02 4C 04 2F 09 02 02 00 00 00 00 06 02 4C 04 2F 09 02 02 00 00 00 00 06 05 03 19 34 0B 08 02 00 06 03 19 34 0B 08 02 00 06 19 9B 00 C0 04 10 19 91 00 C0 05 08
 
-gUnknownMove259SpriteTemplate (pe): @12F044C
+gUnknownPowerSplitSpriteTemplate (pe): @12F044C
 5E 28 5E 28 64 04 2F 09 F0 1C 23 08 00 00 00 00 F4 3B 3E 08 7D 72 0A 08 00 05 00 C0 00 08 00 00 00 07 00 00 00 08 00 00
 
 
@@ -12581,17 +12581,17 @@ gUnknownMove259SpriteTemplate (pe): @12F044C
 
 
 
-Move_??? (pj): @1301F40
+Move_Guard_Split (pj): @1301F40
 00 5F 28 19 B8 00 C0 02 74 04 2F 09 02 02 00 00 00 00 06 02 74 04 2F 09 02 02 00 00 00 00 06 05 03 D9 46 0B 08 02 00 06 03 D9 46 0B 08 02 00 06 19 9B 00 C0 04 10 19 91 00 C0 05 08
 
-gUnknownMove25ASpriteTemplate (pj): @12F0474
+gUnknownGuardSplitSpriteTemplate (pj): @12F0474
 5F 28 5F 28 64 04 2F 09 E4 11 1F 08 00 00 00 00 38 B1 3A 08 3D 85 0A 08
 
 loadspritegfx (ANIM_SPRITES_START + 335)
 playsewithpan SE_W014, SOUND_PAN_ATTACKER
-createsprite gUnknownMove25ASpriteTemplate, ANIM_ATTACKER, 2, 0, 0
+createsprite gUnknownGuardSplitSpriteTemplate, ANIM_ATTACKER, 2, 0, 0
 swapattackerandtarget
-createsprite gUnknownMove25ASpriteTemplate, ANIM_ATTACKER, 2, 0, 0
+createsprite gUnknownGuardSplitSpriteTemplate, ANIM_ATTACKER, 2, 0, 0
 swapattackerandtarget
 waitforvisualfinish
 createvisualtask [D9 46 0B 08], 2
@@ -12604,20 +12604,20 @@ playsewithpan SE_W036, SOUND_PAN_ATTACKER
 waitforvisualfinish
 end
 
-gUnknownMove25ASpriteTemplate:
+gUnknownGuardSplitSpriteTemplate:
 .tileTag = (ANIM_SPRITES_START + 335)
 .paletteTag = (ANIM_SPRITES_START + 335)
-.oam = gUnknownMove259Oam
+.oam = gUnknownPowerSplitOam
 .animCmd = gDummySpriteAnimTable
 .images = NULL
 .afflineAnims = [38 B1 3A 08]
 .callback = [3D 85 0A 08]
 
 
-Move_??? (pe): @1301F40
+Move_Guard_Split (pe): @1301F40
 00 5F 28 19 B8 00 C0 02 74 04 2F 09 02 02 00 00 00 00 06 02 74 04 2F 09 02 02 00 00 00 00 06 05 03 19 34 0B 08 02 00 06 03 19 34 0B 08 02 00 06 19 9B 00 C0 04 10 19 91 00 C0 05 08
 
-gUnknownMove25ASpriteTemplate (pe): @12F0474
+gUnknownGuardSplitSpriteTemplate (pe): @12F0474
 5F 28 5F 28 64 04 2F 09 F0 1C 23 08 00 00 00 00 F4 3B 3E 08 7D 72 0A 08
 
 
