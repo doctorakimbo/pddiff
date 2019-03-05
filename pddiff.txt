@@ -1,3 +1,9 @@
+(CHCEK THAT 1833D0 IS FREED UP)
+(CHECK A0 1D 02 02 DURING MOVE REMINDER SEQUENCE)
+
+
+
+
 ignore the following (pe):
 00 30 A2 08
 F0 30 A2 08
@@ -425,18 +431,18 @@ move IDs:
 + 0x258 = Brine
 + 0x259 = Power Split
 + 0x25A = Guard Split
-= 0x25B = (non-attacking move)
-= 0x25C = (non-attacking move)
-= 0x25D = (attacking move)
-= 0x25E = (attacking move with chance to harshly lower speed or confuse), (can't be called by metronome)
-= 0x25F = (attacking move with chance to harshly lower sp. def or confuse), (can't be called by metronome)
-= 0x260 = (attacking move with chance to lower defense or confuse), (can't be called by metronome)
-= 0x261 = (attacking move), (can't be called by metronome)
-= 0x262 = (attacking move), (can't be called by metronome)
-= 0x263 = (attacking move)
+- 0x25B = Power Swap
+- 0x25C = Guard Swap
+= 0x25D = (attacking move), (animation is user disappearing, hits appearing on foe, then user reappearing, on Feint Attack's background)
+= 0x25E = (attacking move with chance to harshly lower speed or confuse), (can't be called by metronome), (has Pound animation, presumably placeholder)
+= 0x25F = (attacking move with chance to harshly lower sp. def or confuse), (can't be called by metronome), (has Pound animation, presumably placeholder)
+= 0x260 = (attacking move with chance to lower defense or confuse), (can't be called by metronome), (has Pound animation, presumably placeholder)
+= 0x261 = (attacking move), (can't be called by metronome), (has Pound animation, presumably placeholder)
+= 0x262 = (attacking move), (can't be called by metronome), (has Pound animation, presumably placeholder)
+= 0x263 = (attacking move), (animation is five hits, each type-related: Ice, Ghost, Grass, Fire, Normal)
 + 0x264 = Wake-Up Slap
-= 0x265 = (attacking move that does double damage if it cures infatuation)
-= 0x266 = (attacking move that does double damage if it cures burn)
+= 0x265 = (attacking move that does double damage if it cures infatuation), (animation is a slap, then the foe turns gray while the Perish Song sound plays)
+= 0x266 = (attacking move that does double damage if it cures burn), (has ice-related animation)
 = 0x267 = (attacking move that does double damage if it cures freeze)
 = 0x268 = (non-attacking move)
 = 0x269 = (attacking move with chance to burn)
@@ -460,7 +466,7 @@ move IDs:
 = 0x27B = (attacking move with Foul Play effect, but uses the target's Sp. Atk)
 = 0x27C = Wring Out/Crush Grip
 + 0x27D = Captivate
-= 0x27E = (non-attacking move that sleep effect, but sleeps the target even if it already has a status)
+= 0x27E = (non-attacking move that has sleep effect, but sleeps the target even if it already has a status)
 + 0x27F = Cotton Guard
 = 0x280 = (attacking move)
 = 0x281 = (attacking move)
@@ -1164,10 +1170,10 @@ stray text:
   02D114: 80 -> C0 (part of weather refactor)
 = 02D500, 02D6A0, 02D71C: 68 3D 02 02 -> 00 FE 03 02 (see 67disasm)
 		  Implements: Need more info
-		  Relies on: changes at 016460
-= 02D508: Part of atkEF_handleballthrow (+ add part at A23260_J) (see 67disasm)
+		  Relies on: changes at 016460; 02D500, etc
+= 02D508: Part of atkEF_handleballthrow (+ add part at A23260) (see 67disasm)
 		  Implements: Quick Ball (gen 6), Dusk Ball (gen 6), Park Ball, Heal Ball (catch rate), Cherish Ball, Moon Ball, Friend Ball, Heavy Ball, Level Ball, Love Ball, Lure Ball (gen 6), Fast Ball, ensures ball thrown in Safari Zone is Safari Ball
-		  Required knowledge: j02023FE0, j02023FF8, j0202429C, j02026D6C, j03005542
+		  Required knowledge: j02023FF8
 		  Relies on: 02D500, etc; HandleAction_UseMove changes
 		  Note: Fast Ball has manual table (A24300), different for base patch and P/D
 		  Note: Check again - Heal Ball currently has secondaryId of 0, making it never work
@@ -1228,10 +1234,10 @@ stray text:
 = 03EAFE, 03EB2E: 40 -> 80
   03EB52: 40 00 40 18 01 88 0D 48 08 40 -> 80 00 40 18 40 88 00 00 00 00
 		  Implements: Part of gLevelUpLearnsets refactor
-r= 03ECEC: CalculateBaseDamage (see 78disasm)
+= 03ECEC: CalculateBaseDamage (see 78disasm)
 		  Implements: modern Plus/Minus, Rivalry, Heatproof (fire moves), Dry Skin (fire moves), Iron Fist, Solar Power (boost), Normalize (boost), Technician, Klutz (damage-boosting items), Mold Breaker (damage-reduction abilities, Unaware), Unaware (atk/def/spa/spd), Slow Start (Attack reduction), Reckless, Flower Gift (stat boosts), Sheer Force (boost), Defeatist, Friend Guard, Multiscale, Toxic Boost, Flare Boost, Analytic, Infiltrator (dual screens), Sand Force, Aura Break, Tough Claws, Mega Launcher, Grass Pelt, Aerilate (boost), Dark Aura, Fur Coat, Fairy Aura, Pixilate (boost), Refrigerate (boost), Strong Jaw, Galvanize (boost), "Polkadot Bow", Gems (gen 5 boost), Choice Specs (boost), Muscle Band, Wise Glasses, Assault Vest (boost), Eviolite, Life Orb (boost), Wonder Room (effect), sandstorm Rock SpDef boost, modern spread reduction
 		  Relies on: weather refactor, GetAbilityUserOnSameSide, HasItemWithTypeEffect
-		  Requires in future: AteAbilityConversionTable (j168CB4)
+		  Requires in future: AteAbilityConversionTable (e178CB4, j168CB4)
 		  Note: is that how spread reduction works? (only reduced if max targets exist)
 ! 03FD64: Part of GetBoxMonData (see 79disasm)
 		  Implements: nothing???
@@ -1245,9 +1251,8 @@ r= 03ECEC: CalculateBaseDamage (see 78disasm)
   04085E: C9 -> 89
   040862: 79 -> 7D
 		  Implements: part of CompressedBoxPokemon refactor
-r= 040B15: B5 A5 F1 B5 F9 01 BC -> 4B 9F 46 E0 3A A2 08 (jumps (mov) to fn at A23AE0, then back; see 80disasm)
+= 040B15: B5 A5 F1 B5 F9 01 BC -> 4B 9F 46 E0 3A A2 08 (jumps (mov) to fn at A23AE0, then back; see 80disasm)
 		  Implements: Heal Ball
-		  Required knowledge: gLastUsedItemType (j0203FE00)
 		  Relies on: 02D500, etc; HandleAction_UseMove changes
 = 040B90: SendMonToPC (see 81disasm)
 		  Implements: Part of CompressedBoxPokemon refactor, allowing 14->22 boxes
@@ -1269,9 +1274,8 @@ r= 040B15: B5 A5 F1 B5 F9 01 BC -> 4B 9F 46 E0 3A A2 08 (jumps (mov) to fn at A2
 + 042DA4: sub_8042DA4 (see 85disasm)
 		  Implements: Messages for X Sp. Def and X Evasion
 		  Relies on: fn_41714_E
-= 042EC4: GetEvolutionTargetSpecies (see 86disasm)
+- 042EC4: GetEvolutionTargetSpecies (see 86disasm)
 		  Implements: new evolution methods (day/night happiness for FRLG, single-gender levelup, location-based, specific move, specific move type, level during day/night, level during day/night with item, specific mon in party, specific type in party, single-gender stone, trade for specific mon, overworld weather), allows species 0 to have 20 branched evolutions (??? need more info)
-		  Required knowledge: j03005540
 + 043214: CD 24 64 -> FF 24 A4 (410 -> 1020 maximum pkmn species?)
 + 043304: SpeciesToCryId (see 87disasm)
 		  Implements: Allows forbiddenmons to get individual cries
@@ -1280,13 +1284,14 @@ r= 040B15: B5 A5 F1 B5 F9 01 BC -> 4B 9F 46 E0 3A A2 08 (jumps (mov) to fn at A2
 + 043A70: CheckPartyPokerus (see 89disasm)
 		  Implements: reads only last bit of MON_DATA_POKERUS instead of last 4 bits
 = 043C84: GetMoveRelearnerMoves (see 90disasm)
-		  Implements: max level-up moves 20 -> 24, need more info (gLevelUpLearnsets -> *j02021D10)
+		  Implements: max level-up moves 20 -> 24, gLevelUpLearnsets -> ptr at j02021D10
 		  Required knowledge: j02021D10
+		  Relies on: j02021D10 set elsewhere (probably in the move reminder event script)
 = 043DEE: 0E 48 84 46 -> 00 00 00 00
   043E02: 1A 88 60 46 10 40 08 80 02 -> 58 88 00 00 00 00 08 80 04
 		  Implements: Part of gLevelUpLearnsets refactor
 = 043E2C: GetNumberOfRelearnableMoves (see 91disasm)
-		  Implements: need more info (gLevelUpLearnsets -> *j02021D10)
+		  Implements: gLevelUpLearnsets -> ptr at j02021D10
 		  Required knowledge: j02021D10
 + 043FA6: 97 2C 04 D9 -> 00 00 04 E0
 		  Implements: species is always valid even before natdex
@@ -1382,6 +1387,7 @@ r= 040B15: B5 A5 F1 B5 F9 01 BC -> 4B 9F 46 E0 3A A2 08 (jumps (mov) to fn at A2
 		  Implements: Need more info, extra requirement for bike
 + 05B9D4: PlayerNotOnBikeMoving (see 117disasm)
 		  Implements: running always-on toggle, something else
+		  Note: slows down Surf, which probably uses Mach Bike code but that's elsewhere
 + 05BB5C: 30 1C 01 A9 22 1C 07 F0 -> 00 48 00 47 71 2A 22 08 (jumps (bx) to extra fn at 222A70, then back (see 118disasm))
 		  Implements: forced movement for metatiles 0xB0-0xB5
 + 05BCEC: sub_805BCEC (see 119disasm)
@@ -1424,14 +1430,13 @@ r= 040B15: B5 A5 F1 B5 F9 01 BC -> 4B 9F 46 E0 3A A2 08 (jumps (mov) to fn at A2
 		  Requires in future: fn_E9D53C, fn_E9D586
 ! 06FEA0: HideStartMenuWindow (see 131disasm)
 		  Implements: changes menu close sfx from SE_SELECT to (sound_0x200)
-= 06FFBC: sub_806FFBC (see 132disasm)
+- 06FFBC: sub_806FFBC (see 132disasm)
 		  Implements: Need more info
 		  Relies on: Possible metatileAttributes refactor
-		  Required knowledge: j02037B14
-		  Requires in future: fn_939620_J, fn_9396A8_J, fn_939728_J
-! 07004E: 73 F1 AB FD -> 00 00 00 00
+		  Requires in future: fn_939620, fn_9396A8, fn_939728
+- 07004E: 73 F1 AB FD -> 00 00 00 00
 		  Implements: Removes tileset 1 animations (replaced by functionality in 06FFBC)
-! 07008A: 73 F1 8D FD -> 00 00 00 00
+- 07008A: 73 F1 8D FD -> 00 00 00 00
 		  Implements: Removes tileset 2 animations (replaced by functionality in 06FFBC)
 ! 07049A: 0C 48 03 60 61 7A 03 20 08 40 -> 01 48 87 46 C0 46 20 D3 E9 09 (jumps (mov) to fn at 1E9D320, then back; (jE9D320, see 133disasm))
 		  Implements: Something palette-related
@@ -1444,10 +1449,10 @@ r= 040B15: B5 A5 F1 B5 F9 01 BC -> 4B 9F 46 E0 3A A2 08 (jumps (mov) to fn at A2
 		  Implements: new animation script command that (arg = 0: stores the battlers then sets the target to the attacker; arg = 1: stores the battlers then sets the attacker to the target; arg = 2: stores the battlers then swaps them; arg = 3: loads the stored battlers)
 ! 078A6E: F7 F7 BD FC -> 00 00 00 00
 		  Implements: never fades in the green palette on title screen (still does if intro skipped), not yet clear what this means
-= 078BFC: 00 23 C1 5E 06 48 -> 07 49 08 47 08 BC
+- 078BFC: 00 23 C1 5E 06 48 -> 07 49 08 47 08 BC
   078C1C: 8B 0A 00 00 -> 51 52 38 09 (jumps (bx) to extra fn at 1385250, then back (j385250, see 134disasm))
 		  Implements: almost certainly title screen silhouette fading
-		  Required knowledge: j020370C0
+		  Note: one of the graphics points to the middle of an unrelated table for some reason?
 ! 0791EE: 06 -> FC (PDONLY, title screen cry charizard -> (species252))
 + 079282, 0EC852: C0 0F -> 01 20 (sound will always become stereo when game loaded from title screen)
 + 0793DA: Part of sub_80792C8 (+ add part at 2075E0) (see 135disasm)
@@ -1461,12 +1466,11 @@ r= 040B15: B5 A5 F1 B5 F9 01 BC -> 4B 9F 46 E0 3A A2 08 (jumps (mov) to fn at A2
 + 07FC5C: BattleSetup_GetTerrainId (+table_7AF530) (see 138disasm)
 		  Implements: various new metatiles' battle terrain, plus makes it easier to add more
 ! 080008: 5A -> 53 (PDONLY, "Champion" battle intro happens for trainer class 0x5A -> 0x53)
-r= 080650: 0D -> 7F
-  08066C: 70 06 08 08 -> XX XX XX 08 (expands the possible trainer encounter musics from 14 to 128; new switch table at jE2E040 (currently only 3/14 in FR and 16/128 in PD are used); see minidisasm16)
+= 080650: 0D -> 7F
+  08066C: 70 06 08 08 -> 40 E0 E2 09 (expands the possible trainer encounter musics from 14 to 128; new switch table at 1E2E040 (jE2E040, currently only 3/14 in FR and 16/128 in PD are used); see minidisasm16)
 		  Relies on: new music actually inserted
-= 081C0A: 0E 49 38 7E 00 07 80 0E 04 38 -> 01 49 08 47 00 00 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jE300F0, see 139disasm))
-		  Implements: Need more info
-		  Required knowledge: j03005548
+- 081C0A: 0E 49 38 7E 00 07 80 0E 04 38 -> 01 49 08 47 00 00 F1 00 E3 09 (jumps (bx) to extra fn at 1E300F0, then back (jE300F0, see 139disasm))
+		  Implements: Need more info (trainer sighting)
 ! 0829FC: sub_80829FC (see 140disasm)
 		  Implements: Need more info (something to do with personality values)
 		  Relies on: CreateMonWithNature changed params ("CreateMonWithRandomNature")
@@ -1725,7 +1729,6 @@ r= 080650: 0D -> 7F
 		  Implements: new battle ai script command (BattleAICmd_if_tailwind_timer_not_equal); jumps if the given side's tailwind timer is a given value
 + 0C97FC: oei_task_add (see 205disasm)
 		  Implements: option to not execute task08_080C9820, need more info
-		  Required knowledge: j0203BFF0
 + 0C9820 -> 0C981C (repoint): task08_080C9820 (see 206disasm)
 		  Implements: makes room for oei_task_add changes
 		  Relies on: oei_task_add changes (makes room for these changes)
@@ -1743,15 +1746,15 @@ r= 080650: 0D -> 7F
 = 0D7FF2, 0D8610, 136714, FE5214: 0D -> 20 (abilitynamelength)
 ! 0D814A: 5A -> 59 (PDONLY, trainer class 5A no longer takes the rival's name)
 = 0D991E: CA 19 -> 38 47
-  0D995C: F6 0F 00 00 -> XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jA24EA0, see 210disasm))
+  0D995C: F6 0F 00 00 -> A1 4E A2 08 (jumps (bx) to extra fn at A24EA0, then back (see 210disasm))
 		  Implements: saves all the extra data into the extra blank space at the end of save blocks
 		  Required knowledge: j0203C0C8, j0203C320, j0203CEC0
 		  Note: check the sizes of the saves in english, might no longer have enough space
-= 0D9BFE: 0F 4A 89 18 08 80 0E 48 01 68 -> 01 4A 97 46 00 00 XX XX XX 08 (jumps (mov) to extra fn at XXXXXX, then back (j207280, see 211disasm))
+= 0D9BFE: 0F 4A 89 18 08 80 0E 48 01 68 -> 01 4A 97 46 00 00 80 72 20 08 (jumps (mov) to extra fn at 207280, then back (see 211disasm))
 		  Implements: saves all the extra data into the extra blank space at the end of save blocks
 		  Required knowledge: j0203C0C8, j0203C320, j0203CEC0
 		  Note: check the sizes of the saves in english, might no longer have enough space
-= 0D9EDC: 28 04 05 0C 0D 2D C5 D9 -> 00 48 00 47 XX XX XX 08 (jumps (bx) to extra fn at XXXXXX, then back (jA24E40, see 212disasm))
+= 0D9EDC: 28 04 05 0C 0D 2D C5 D9 -> 00 48 00 47 41 4E A2 08 (jumps (bx) to extra fn at A24E40, then back (see 212disasm))
 		  Implements: loads all the extra data from the extra blank space at the end of save blocks
 		  Required knowledge: j0203C0C8, j0203C320, j0203CEC0
 		  Note: check the sizes of the saves in english, might no longer have enough space
@@ -1911,13 +1914,11 @@ r= 080650: 0D -> 7F
 = 10A000: ItemMenu_Register (see 234disasm)
 		  Implements: register multiple items with SELECT
 		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList, UnregisterItem
-		  Required knowledge: j0203CB54
 + 10A6BC, 10A7EA, 10A8A2, 10A982, 10AA14, 1329E8, 132B0E, 132C00, 132CE6, 132D76, 13E508, 13E626, 13E6D0, 13E7A2, 13E832: 00 04 40 0C -> 00 00 40 08 (store money as 32-bit integer instead of 16-bit)
 + 10A6CA, 10A990, 1329F6, 132CF4, 13E516, 13E7B0: 06 -> 08 (extra 2 digits for money in sell screen)
 = 10AD10: UseRegisteredKeyItemOnField (see 235disasm)
 		  Implements: something involving the new multiple SELECT items feature
 		  Relies on: CompressedBoxPokemon refactor, GetRegisteredItemList
-		  Required knowledge: j0203D2E0
 = 10CCD8: 92 02 -> 94 08
   10CCE0: 96 -> AC
   10CCE8: 97 -> AD
@@ -2205,9 +2206,9 @@ r= 080650: 0D -> 7F
 ! 13A028: 98 -> 20
 		  Implements: move move selection cursor on summary screen left
 		  Relies on: layout rework to make this not look broken
-r= 13A124: sub_813A124 (see 247disasm)
+- 13A124: sub_813A124 (see 247disasm)
 		  Implements: possibly move category icons on summary screen
-		  Requires in future: fn_D7DEC0_J
+		  Requires in future: fn_1D7DEC0
 ! 13A42E: 10 -> BA
   13A434: 2D -> 20
   13A44C: 10 -> 9A
@@ -2368,7 +2369,7 @@ r= 13A124: sub_813A124 (see 247disasm)
 		  Implements: Draining Kiss
 		  GLITCH!: crashes when not Draining Kiss
 + 1D6A55 (first one), 1D6A60, 1D6A6B, 1D6DB2, 1D6E69, 1D6E7D, 1D6900 (the one after 1D6FC8), 1D725F, 1D726A, 1D7275, 1D7280, 1D728B, 1D6900 (the one after 1D7296), 1D72C9, 1D6900 (the one after 1D750D), 1D752C, 1D7977, 1D7A47, 1D7E16, 1D817E, [effectD9], [effectDA] -> 1054000 (repoint): BattleScript_ParameterizedEffectHit (see movescripts.txt)
-= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeCalcHit (see movescripts.txt)
+r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeCalcHit (see movescripts.txt)
 + 1D6B77, 1D6B82, 1D6900, 1D6B8D, 1D6900, 1D6900, 1D6B98 -> 1054010 (repoint): BattleScript_ParameterizedStatUp (see movescripts.txt)
 + 1D6BEC, 1D6BF7, 1D6900 (the one before 1D6C02), 1D6C02, 1D6C0D -> 1054020 (repoint): BattleScript_ParameterizedStatDown (see movescripts.txt)
 + [none yet] -> 1054030 (repoint): BattleScript_ParameterizedStatDownPerfectAccuracy (see movescripts.txt)
@@ -2562,7 +2563,7 @@ r= 13A124: sub_813A124 (see 247disasm)
 + 1D9444 -> 1050260 (repoint): BattleScript_ObliviousPreventsAttraction (see 57disasm)
 		  Implements: Oblivious changed from "prevents romance" to "made [MOVE] useless", EXCEPT for move ID 0x257 ("prevents romance" presumably replaced with new msg)
 		  Note: more coding needed to re-add "prevents romance"
-r= 1D9C1C: ptr ED BC 1D 08 -> 30 C0 1F 09 (add new AI table entry for script at 11FC030)
+- 1D9C1C: ptr ED BC 1D 08 -> 30 C0 1F 09 (add new AI table entry for script at 11FC030)
 			btw temp 2064C0: 01 21 08 40 -> 01 20 00 00
 		  Implements: New level of smart AI (enough stuff to warrant breaking the usual format)
 		  * Won't use Explosion
@@ -2620,7 +2621,7 @@ r= 1D9C1C: ptr ED BC 1D 08 -> 30 C0 1F 09 (add new AI table entry for script at 
 		  Glitch?: Foul Play logic has cases that loop back to the start of the AI function, this may cause infinite loops
 		  Glitch?: [move27B] checks if a move isn't special to determine that it is physical - but it could be status too; fix this by moving the status move check above that
 		  Glitch?: sub encouragement for berries only checks Lansat (?)
-r= 1D9C74 -> 1005000 (repoint): AI_CheckBadMove
+- 1D9C74 -> 1005000 (repoint): AI_CheckBadMove
 		  Implements: enough stuff to warrant breaking the usual format
 		  * Bugfixes: checks for "ultra effective" as well against Wonder Guard instead of strictly exactly 2x SE
 		  * Other improvements: Safeguard, Curse, Yawn, and Taunt are now checked; Sky Attack counts as a risky move; Curse isn't used when at less than half HP at the start of the turn; AI will now use Knock Off on itemless foes (due to buff)
@@ -2634,7 +2635,7 @@ r= 1D9C74 -> 1005000 (repoint): AI_CheckBadMove
 		  Glitch?: freeze effect (1E) checks Flame Body instead of Magma Armor
 		  Glitch?: Reflect Type -> Synchronoise -> Power Swap is fallthrough
 		  Glitch?: [move2A3] won't be used if Venom Drench would have no effect, despite also doing damage
-r= 1DA445 -> 1005C00 (repoint): AI_CheckViability
+- 1DA445 -> 1005C00 (repoint): AI_CheckViability
 		  Implements: enough stuff to warrant breaking the usual format
 		  * Bugfixes: won't use a speed-lowering move like Mud Shot if the target is immune; no longer inexplicably encourages Toxic when it has a +SpDef move; no longer inexplicably discourages Protect/encourages Snatch when the opponent has specifically Defense Curl; Protect/Snatch correctly factors in all healing moves instead of just vanilla Recover-types; sandstorm and hail are no longer the wrong way around in the Fly script; Facade correctly checks the user for status instead of the target; Brick Break is encouraged vs Light Screen, not just Reflect
 		  * Other improvements: instead of a bizarre mix of moves, Mirror Move tries to prioritize any copiable move; doesn't discourage recovery when the user is faster; encourages OHKO moves after use of Mind Reader; Mean Look (because Spirit Shackle uses the same effect byte), Dragon Dance (why?), and Knock Off are no longer encouraged to be Encored; Teleport and +Sp. Def are encouraged to be Encored; instead of encouraging stealing a short list of items, Thief is encouraged for all items that don't have a downside; Chlorophyll users prioritize Sunny Day; Volt Absorb, Water Absorb, Soundproof, Thick Fat, Flame Body, and Shell Armor are considered "good" abilities; "bad" abilities (to avoid/get rid of) are also listed
@@ -2923,6 +2924,8 @@ r= 1DA445 -> 1005C00 (repoint): AI_CheckViability
 		  Implements: Snarl animation
 +13015E0: Move_Dragon_Tail (see animscripts.txt)
 		  Implements: Dragon Tail animation
+-1301678: Move_??? (see animscripts.txt)
+		  Implements: [move265] animation
 +1301740: Move_??? (see animscripts.txt)
 		  Implements: [move230] animation
 +1301830: Move_??? (see animscripts.txt)
@@ -2947,18 +2950,26 @@ r= 1DA445 -> 1005C00 (repoint): AI_CheckViability
 		  Implements: [move24B] animation
 +1302028: Move_??? (see animscripts.txt)
 		  Implements: [move220] animation
+=1302150: Move_??? (see animscripts.txt)
+		  Implements: 
 +1302280: Move_Freeze_Dry (see animscripts.txt)
 		  Implements: Freeze-Dry animation
 +1302550: Move_Confide (see animscripts.txt)
 		  Implements: Confide animation
+-1302590: Move_??? (see animscripts.txt)
+		  Implements: [move266] animation
 +1302828: Move_??? (see animscripts.txt)
 		  Implements: [move23C] animation
 +1302910: Move_Hex (see animscripts.txt)
 		  Implements: Hex animation
 +1302978: Move_??? (see animscripts.txt)
 		  Implements: [move244] animation
+-1302C80: Move_??? (see animscripts.txt)
+		  Implements: [move263] animation
 +1302E58: Move_??? (see animscripts.txt)
 		  Implements: [move222] animation
+-1303030: Move_Wake_Up_Slap (see animscripts.txt)
+		  Implements: Wake-Up Slap animation
 +1303098: Move_Chatter (see animscripts.txt)
 		  Implements: Chatter animation
 +1303118: Move_Worry_Seed (see animscripts.txt)
@@ -3017,8 +3028,12 @@ r= 1DA445 -> 1005C00 (repoint): AI_CheckViability
 		  Implements: Boomburst animation
 +13057C0: Move_Clear_Smog (see animscripts.txt)
 		  Implements: Clear Smog animation
-=1305950: Move_??? (see animscripts.txt)
-		  Implements: 
+-1305950: Move_Power_Swap (see animscripts.txt)
+		  Implements: Power Swap animation
+		  Relies on: sub_80B3834 changes
+-13059A0: Move_Guard_Swap (see animscripts.txt)
+		  Implements: Guard Swap animation
+		  Relies on: sub_80B3834 changes
 +13059F0: Move_Petal_Blizzard (see animscripts.txt)
 		  Implements: Petal Blizzard animation
 +1305C98: Move_Simple_Beam (see animscripts.txt)
@@ -3067,6 +3082,8 @@ r= 1DA445 -> 1005C00 (repoint): AI_CheckViability
 		  Implements: Gastro Acid animation
 +1308238: Move_??? (see animscripts.txt)
 		  Implements: [move223] animation
+-1308290: Move_??? (see animscripts.txt)
+		  Implements: [move25D] animation
 +1308368: Move_Focus_Blast (see animscripts.txt)
 		  Implements: Focus Blast animation
 +13083D0: Move_Gunk_Shot (see animscripts.txt)
