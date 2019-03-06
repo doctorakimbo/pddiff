@@ -1,8 +1,3 @@
-(1833D0 is freed up)
-
-
-
-
 ignore the following (pe):
 00 30 A2 08
 F0 30 A2 08
@@ -173,8 +168,8 @@ move IDs:
 = 0xA7 = (attacking move with chance to lower user's speed), (animation is white light covering the screen, then Take Down)
 + 0xA9 = Accelerock
 = 0xB0 = (non-attacking move), (has Will-O-Wisp animation)
-= 0xB1 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented)
-= 0xDD = (attacking move that calculates damage as if any Sp. Atk boosts were added to Attack, then has a 20% chance to raise Atk and Sp. Atk), (can't be called by metronome), (has Pound animation; not implemented)
+! 0xB1 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented)
+! 0xDD = (attacking move that calculates damage as if any Sp. Atk boosts were added to Attack, then has a 20% chance to raise Atk and Sp. Atk), (can't be called by metronome), (has Pound animation; not implemented)
 = 0x124 = (attacking move), (animation is Giga Drain on Feint Attack's background)
 = 0x126 = (attacking move), (has Rapid Spin animation)
 = 0x127 = (attacking move with chance to raise sp. atk), (animation is shedding something, then Wing Attack)
@@ -422,10 +417,10 @@ move IDs:
 = 0x250 = (attacking move with chance to lower speed), (animation slowly covers the foe in something as the screen slowly darkens, then a flurry of hit sounds when the screen is completely black)
 = 0x251 = (attacking move), (animation involves emitting something with the Supersonic sound, while the foe is hit without any obvious cause)
 + 0x252 = Dragon Tail
-= 0x253 = (attacking move with chance to lower sp. def), (can't be called by metronome), (has Pound animation; not implemented)
-= 0x254 = (attacking move with chance to lower sp. atk), (can't be called by metronome), (has Pound animation; not implemented)
-= 0x255 = (attacking move with chance to lower attack), (can't be called by metronome), (has Pound animation; not implemented)
-= 0x256 = (attacking move with chance to lower defense), (can't be called by metronome), (has Pound animation; not implemented)
+! 0x253 = (attacking move with chance to lower sp. def), (can't be called by metronome), (has Pound animation; not implemented)
+! 0x254 = (attacking move with chance to lower sp. atk), (can't be called by metronome), (has Pound animation; not implemented)
+! 0x255 = (attacking move with chance to lower attack), (can't be called by metronome), (has Pound animation; not implemented)
+! 0x256 = (attacking move with chance to lower defense), (can't be called by metronome), (has Pound animation; not implemented)
 = 0x257 = (attacking move), (special message in atk97_tryinfatuating), (animation is a punch that creates the Attract effects)
 + 0x258 = Brine
 + 0x259 = Power Split
@@ -433,28 +428,28 @@ move IDs:
 + 0x25B = Power Swap
 + 0x25C = Guard Swap
 + 0x25D = Foul Play
-= 0x25E = (attacking move with chance to harshly lower speed or confuse), (can't be called by metronome), (has Pound animation; not implemented)
-= 0x25F = (attacking move with chance to harshly lower sp. def or confuse), (can't be called by metronome), (has Pound animation; not implemented)
-= 0x260 = (attacking move with chance to lower defense or confuse), (can't be called by metronome), (has Pound animation; not implemented)
-= 0x261 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented)
-= 0x262 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented)
+! 0x25E = (attacking move with chance to harshly lower speed or confuse), (can't be called by metronome), (has Pound animation; not implemented)
+! 0x25F = (attacking move with chance to harshly lower sp. def or confuse), (can't be called by metronome), (has Pound animation; not implemented)
+! 0x260 = (attacking move with chance to lower defense or confuse), (can't be called by metronome), (has Pound animation; not implemented)
+! 0x261 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented)
+! 0x262 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented)
 = 0x263 = (attacking move), (animation is four hits, each type-related - Ice, Ghost, Grass, Fire - while something spins superimposed on the foe, then a final hit)
 + 0x264 = Wake-Up Slap
 = 0x265 = (attacking move that does double damage if it cures infatuation), (animation is a slap, then everything turns gray while the Perish Song sound plays)
 = 0x266 = (attacking move that does double damage if it cures burn), (animation creates something then does the ice effect)
-= 0x267 = (attacking move that does double damage if it cures freeze)
-= 0x268 = (non-attacking move)
-= 0x269 = (attacking move with chance to burn)
-= 0x26A = (attacking move)
-= 0x26B = (non-attacking move)
-= 0x26C = (non-attacking move), (can't be called by metronome)
-= 0x26D = (non-attacking move), (can't be called by metronome)
+= 0x267 = (attacking move that does double damage if it cures freeze), (animation creates ice around the foe, then shatters it with a punch)
+= 0x268 = (non-attacking move), (has ice-related animation)
+= 0x269 = (attacking move with chance to burn), (has fire-related animation on Psychic's background)
+= 0x26A = (attacking move), (animation involves the Swords Dance sound then a tackle)
+- 0x26B = Heal Pulse
+= 0x26C = (non-attacking move), (can't be called by metronome), (animation is Sleep Powder with different graphics for the powder)
+= 0x26D = (non-attacking move), (can't be called by metronome), (animation involves bubble sounds)
 + 0x26E = Stored Power
-= 0x26F = (attacking move)
-= 0x270 = (attacking move)
-= 0x271 = (attacking move)
-= 0x272 = (attacking move with Brine effect, but doubles when the user has less than half HP, not the target)
-= 0x273 = (non-attacking move)
+= 0x26F = (attacking move), (animation is Vital Throw while something spins superimposed on the foe)
+= 0x270 = (attacking move), (has Fly-related animation)
+= 0x271 = (attacking move), (has Bounce-related animation)
+= 0x272 = (attacking move with Brine effect, but doubles when the user has less than half HP, not the target), (has Flame Wheel animation with a new background)
+= 0x273 = (non-attacking move), (animation has Seismic Toss's background)
 = 0x274 = (non-attacking move)
 = 0x275 = (non-attacking move, -1 sp. def)
 = 0x276 = (non-attacking move, +1 sp. atk)
@@ -498,7 +493,7 @@ move IDs:
 = 0x29C = (attacking move with chance to flinch)
 = 0x29D = (attacking move with chance to paralyze)
 = 0x29E = (attacking move with chance to severely lower accuracy)
-= 0x29F = (attacking move), (ground -> flying neutral, ice/poison -> water SE, bypasses Levitate)
+= 0x29F = (attacking move), (Ground-type but neutral on Flying and bypasses Levitate)
 = 0x2A0 = (attacking move)
 = 0x2A1 = (attacking move)
 = 0x2A2 = (attacking move)
@@ -552,7 +547,7 @@ move effects:
 = 0xDD = V-Create
 = 0xDE = chance to lower all stats
 = 0xDF = Dizzy Whirl
-= 0xE0 = hits 3 times
+= 0xE0 = Metal Pincer
 = 0xE1 = Frost Breath
 = 0xE2 = Blizzard/Starfreeze
 = 0xE3 = Brine/(double damage if user at less than half HP)
@@ -2381,7 +2376,7 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 			StatUp: EFFECT_ATTACK_UP, EFFECT_DEFENSE_UP, EFFECT_SPEED_UP, EFFECT_SPECIAL_ATTACK_UP, EFFECT_SPECIAL_DEFENSE_UP, EFFECT_ACCURACY_UP, EFFECT_EVASION_UP
 			StatDown: EFFECT_ATTACK_DOWN (indirectly), EFFECT_DEFENSE_DOWN, EFFECT_SPEED_DOWN, EFFECT_SPECIAL_ATTACK_DOWN (indirectly), EFFECT_SPECIAL_DEFENSE_DOWN, EFFECT_ACCURACY_DOWN, EFFECT_EVASION_DOWN
 			StatDownPerfectAccuracy: EFFECT_ATTACK_DOWN (indirectly), EFFECT_SPECIAL_ATTACK_DOWN (indirectly)
-		  Relies on: BattleScript_ParameterizedEffectAltTypeCalcHit relies on AlternateTypeCalc (j1833D0)
+		  Relies on: BattleScript_ParameterizedEffectAltTypeCalcHit relies on AlternateTypeCalc (1833D0)
 		  Note: code is horrifying, get someone to fix this
 		  Glitch?: Poison Leaf is missing its poison chance (might just be transcription error)
 		  Note: check Magnet Force in Vega; if it lowers the user's stats, fix the Vega description; if it lowers the target's stats, it's bugged in PD
@@ -2443,7 +2438,7 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 = 1D6F99 -> 1053760 (repoint): BattleScript_EffectSetDamageOrMove29F (see movescripts.txt)
 		  Implements: [move29F] does regular damage with two exceptions: it bypasses Levitate, and it uses an altered type chart where Water is weak to Ice and Poison and Flying is neutral to Ground; condenses Sonic Boom into Dragon Rage's effect slot to free up space
 		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_UseGem (e1FD42, j1F552), HasItemWithTypeEffect, AteAbilityConversionTable (j168CB4), gChosenActionByBattler changed to something else
-		  Relies on: AlternateTypeCalc (j1833D0)
+		  Relies on: AlternateTypeCalc (1833D0)
 		  Glitch: AteAbilityConversionTable ptr is wrong, currently points to j168CA4; fix when importing (not like it matters)
 		  Glitch?: the Levitate bypassing is done by temporarily swapping abilities, which means if used on a target with Levitate, [move29F] doesn't receive the effects of the user's Adaptability, Normalize, Tinted Lens, or Klutz (as in, Expert Belt actually works despite Klutz); the target receives the effects of the user's Solid Rock, Filter, and Wonder Guard; and if both mons have Levitate, the target is still immune to the move
 + 1D7011: BattleScript_EffectRecoilIfMiss (see movescripts.txt)
@@ -2875,13 +2870,17 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 +11AADD0: Move_Zen_Headbutt (see animscripts.txt)
 		  Implements: Zen Headbutt animation
 +11BA7EF: BattleScript_EffectTripleHit (see movescripts.txt)
-		  Implements: (move that hits 3 times)
+		  Implements: Metal Pincer
 +1300048: Move_??? (see animscripts.txt)
 		  Implements: [move242] animation
 +1300090: Move_Moonblast (see animscripts.txt)
 		  Implements: Moonblast animation
 +1300110: Move_Fairy_Wind (see animscripts.txt)
 		  Implements: Fairy Wind animation
+-13002F8: Move_??? (see animscripts.txt)
+		  Implements: [move269] animation
+=1300428: Move_??? (see animscripts.txt)
+		  Implements: 
 +1300490: Move_Power_Up_Punch (see animscripts.txt)
 		  Implements: Power-Up Punch animation
 +13004E8: Move_??? (see animscripts.txt)
@@ -2918,6 +2917,8 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: [move221] animation
 +1301228: Move_??? (see animscripts.txt)
 		  Implements: [move241] animation
+-13013A0: Move_??? (see animscripts.txt)
+		  Implements: [move26D] animation
 +13013D8: Move_??? (see animscripts.txt)
 		  Implements: [move23B] animation
 +1301448: Move_??? (see animscripts.txt)
@@ -2944,6 +2945,10 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: [move22C] animation
 +1301C88: Move_??? (see animscripts.txt)
 		  Implements: [move251] animation
+-1301D38: Move_??? (see animscripts.txt)
+		  Implements: [move270] animation
+-1301DC0: Move_??? (see animscripts.txt)
+		  Implements: [move271] animation
 +1301F00: Move_Power_Split (see animscripts.txt)
 		  Implements: Power Split animation
 +1301F40: Move_Guard_Split (see animscripts.txt)
@@ -2952,10 +2957,12 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: [move24B] animation
 +1302028: Move_??? (see animscripts.txt)
 		  Implements: [move220] animation
-=1302150: Move_??? (see animscripts.txt)
-		  Implements: 
+-1302150: Move_??? (see animscripts.txt)
+		  Implements: [move267] animation
 +1302280: Move_Freeze_Dry (see animscripts.txt)
 		  Implements: Freeze-Dry animation
+-13023A0: Move_Stored_Power (see animscripts.txt)
+		  Implements: Stored Power animation
 +1302550: Move_Confide (see animscripts.txt)
 		  Implements: Confide animation
 +1302590: Move_??? (see animscripts.txt)
@@ -2966,6 +2973,8 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: Hex animation
 +1302978: Move_??? (see animscripts.txt)
 		  Implements: [move244] animation
+-1302C10: Move_??? (see animscripts.txt)
+		  Implements: [move26F] animation
 +1302C80: Move_??? (see animscripts.txt)
 		  Implements: [move263] animation
 +1302E58: Move_??? (see animscripts.txt)
@@ -2976,6 +2985,8 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: Chatter animation
 +1303118: Move_Worry_Seed (see animscripts.txt)
 		  Implements: Worry Seed animation
+-13031B8: Move_??? (see animscripts.txt)
+		  Implements: [move272] animation
 +1303360: Move_??? (see animscripts.txt)
 		  Implements: [move21C] animation
 +1303408: Move_??? (see animscripts.txt)
@@ -3016,8 +3027,12 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: [move21D] animation
 +1304BD8: Move_??? (see animscripts.txt)
 		  Implements: [move225] animation
+-1304D68: Move_??? (see animscripts.txt)
+		  Implements: [move26A] animation
 +1304DC0: Move_??? (see animscripts.txt)
 		  Implements: [move22F] animation
+-1305060: Move_??? (see animscripts.txt)
+		  Implements: [move26C] animation
 +1305390: Move_??? (see animscripts.txt)
 		  Implements: [move226] animation
 +13053F0: Move_Disarming_Voice (see animscripts.txt)
@@ -3030,6 +3045,8 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: Boomburst animation
 +13057C0: Move_Clear_Smog (see animscripts.txt)
 		  Implements: Clear Smog animation
+-1305828: Move_??? (see animscripts.txt)
+		  Implements: [move273] animation
 +1305950: Move_Power_Swap (see animscripts.txt)
 		  Implements: Power Swap animation
 		  Relies on: sub_80B3834 changes
@@ -3096,6 +3113,10 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: Icicle Crash animation
 +1308DC0: Move_Psycho_Cut (see animscripts.txt)
 		  Implements: Psycho Cut animation
+-1308E60: Move_Heal_Pulse (see animscripts.txt)
+		  Implements: Heal Pulse animation
+-1308F30: Move_??? (see animscripts.txt)
+		  Implements: [move268] animation
 +1308F80: Move_Raze_Earth (see animscripts.txt)
 		  Implements: Raze Earth animation
 +13091A0: Move_Rock_Wrecker (see animscripts.txt)

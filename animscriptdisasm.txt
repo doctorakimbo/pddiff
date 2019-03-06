@@ -510,3 +510,189 @@ return r0
 
 data_169204_J:
 48 48 00 00 B0 20 00 00 30 20 00 00 70 48 00 00 20 48 00 00 C8 20 00 00 5A 50 00 00 98 18 00 00
+
+
+
+
+
+
+
+lbl1: @168930_J
+r6 = r0
+r4 = gBattleAnimTarget
+r0 = *r4
+r1 = 2
+fn_74480()
+r0 = LOWEST_BYTE(r0)
+r0 <<= 0x10
+r1 = 0xFFE00000
+r0 += r1
+r5 = r0 >> 0x10
+r0 = *r4
+r1 = 3
+fn_74480()
+r0 = LOWEST_BYTE(r0)
+r0 <<= 0x10
+r1 = 0xFFDC0000
+r0 += r1
+r4 = r0 >> 0x10
+fn_73788()
+if(r0 == 0) goto lbl2
+
+r0 = r5 << 0x10
+r1 = 0xFFFA0000
+r0 += r1
+r5 = r0 >> 0x10
+goto lbl2
+
+lbl2:
+r1 = 0x3F40
+r0 = 0x50
+SetGpuReg()
+r1 = 0x1000
+r0 = 0x52
+SetGpuReg()
+r0 = gUnknownMove268SpriteTemplate
+r1 = LAST_TWO_BYTES(r5)
+r2 = LAST_TWO_BYTES(r4)
+r3 = 4
+CreateSprite()
+r4 = r0
+r0 = 0x28BD
+fn_8380_J()
+r0 <<= 0x10
+r1 = 0xFFFF0000
+if(r0 != r1) goto lbl3
+
+r0 = 0x44
+r0 *= r4
+r0 += r1
+r0 += 0x3E
+r1 = *r0
+r2 = 4
+r1 |= r2
+*r0 = r1
+goto lbl3
+
+lbl3:
+r0 = 0x44
+r0 *= r4
+r1 = gSprites
+r0 += r1
+r1 = data_38356C_J
+fn_85D4_J()
+r1 = gTasks
+r0 = 0x28
+r0 *= r6
+r0 += r1
+*(r0 + 0x26) = r4
+r1 = fn_183630
+*r0 = r1
+return
+
+
+
+
+
+
+
+fn_183630:
+r2 = gTasks
+r1 = r0 * 4
+r1 += r0
+r1 *= 8
+r1 += r2
+r0 = *(r1 + 0xA)
+r0++
+r2 = r0
+*(r1 + 0xA) = r0
+if(r0 != 0xA) goto lbl2
+
+r0 = fn_18367C
+*r1 = r0
+r0 = 0
+*(r1 + 0xA) = r0
+goto lbl3
+
+lbl2:
+r0 = r2
+r1 = 0x10
+r1 -= r0
+r1 <<= 8
+r1 |= r0
+r0 = 0x52
+SetGpuReg()
+goto lbl3
+
+lbl3:
+return
+
+
+
+
+
+
+
+fn_18367C:
+r4 = r0
+r0 = 0x28BD
+fn_8564_J()
+r2 = r0
+r1 = gTasks
+r0 = r4 * 4
+r0 += r4
+r0 *= 8
+r5 = r0 + r1
+r0 = *(r5 + 0xA)
+r1 = r0 + 1
+*(r5 + 0xA) = r1
+if(r0 <= 0xD) goto lbl2
+
+r0 = *(r5 + 0xC)
+r0++
+r6 = 0
+*(r5 + 0xC) = r0
+if(r0 != 3) goto lbl2
+
+r3 = gPlttBufferFaded
+r2 *= 0x10
+r12 = r2
+r1 = 0x10D
+r1 += r12
+r1 *= 2
+r1 += r3
+r4 = *r1
+r2 = 0x10E
+r2 += r12
+r2 *= 2
+r2 += r3
+r0 = *r2
+*r1 = r0
+r0 = 0x10F
+r0 += r12
+r0 *= 2
+r0 += r3
+r1 = *r0
+*r2 = r1
+*r0 = r4
+*(r5 + 0xC) = r6
+r0 = *(r5 + 0xE)
+r0++
+*(r5 + 0xE) = r0
+if(r0 != 3) goto lbl2
+
+*(r5 + 0xE) = r6
+*(r5 + 0xA) = r6
+r0 = *(r5 + 0x10)
+r0++
+*(r5 + 0x10) = r0
+if(r0 != 2) goto lbl2
+
+r0 = 9
+*(r5 + 0xA) = r0
+r0 = fn_77D70_J
+*r5 = r0
+goto lbl2
+
+lbl2:
+return

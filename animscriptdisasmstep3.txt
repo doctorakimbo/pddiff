@@ -222,3 +222,89 @@ fn_168B70_J(arg0, arg1, arg2)
 data_169204_J:
 48 48 00 00 B0 20 00 00 30 20 00 00 70 48 00 00
 20 48 00 00 C8 20 00 00 5A 50 00 00 98 18 00 00
+
+
+
+
+
+
+
+AnimTask_Move268Unknown(arg0)
+{
+	r5 = fn_74480(gBattleAnimTarget, 2) - 0x20
+	r4 = fn_74480(gBattleAnimTarget, 3) - 0x24
+	
+	if(fn_73788() != 0)
+		r5 -= 6
+	
+	SetGpuReg(0x50, 0x3F40)
+	SetGpuReg(0x52, 0x1000)
+	r4 = CreateSprite(gUnknownMove268SpriteTemplate, r5, r4, 4)
+	
+	if(GetSpriteTileStartByTag(0x28BD) == -1)
+		gSprites[r4].0x3E |= 4
+	
+	SetSubspriteTables(&gSprites[r4], data_3BF554)
+	gTasks[arg0].0x26 = r4
+	gTasks[arg0].0 = fn_183630
+}
+
+
+
+
+
+
+
+fn_183630(arg0)
+{
+	r2 = gTasks[arg0].0xA
+	gTasks[arg0].0xA++
+	
+	if(gTasks[arg0].0xA == 0xA)
+	{
+		gTasks[arg0].0 = fn_18367C
+		gTasks[arg0].0xA = 0
+	}
+	else
+		SetGpuReg(0x52, CONCAT_BYTES(0x10 - r2, 0x10 - r2))
+}
+
+
+
+
+
+
+
+fn_18367C(arg0)
+{
+	gTasks[arg0].0xA++
+	
+	if(gTasks[arg0].0xA > 0xD)
+	{
+		gTasks[arg0].0xC++
+		
+		if(gTasks[arg0].0xC == 3)
+		{
+			r3 = IndexOfSpritePaletteTag(0x28BD)
+			temp = gPlttBufferFaded[0x10D][r3]
+			gPlttBufferFaded[0x10D][r3] = gPlttBufferFaded[0x10E][r3]
+			gPlttBufferFaded[0x10E][r3] = gPlttBufferFaded[0x10F][r3]
+			gPlttBufferFaded[0x10F][r3] = temp
+			gTasks[arg0].0xC = 0
+			gTasks[arg0].0xE++
+			
+			if(gTasks[arg0].0xE == 3)
+			{
+				gTasks[arg0].0xE = 0
+				gTasks[arg0].0xA = 0
+				gTasks[arg0].0x10++
+				
+				if(gTasks[arg0].0x10 == 2)
+				{
+					gTasks[arg0].0xA = 9
+					gTasks[arg0].0 = fn_785D8
+				}
+			}
+		}
+	}
+}

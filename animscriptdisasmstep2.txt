@@ -221,3 +221,88 @@ fn_168B70_J(arg0, arg1, arg2)
 
 data_169204_J:
 48 48 00 00 B0 20 00 00 30 20 00 00 70 48 00 00 20 48 00 00 C8 20 00 00 5A 50 00 00 98 18 00 00
+
+
+
+
+
+
+
+AnimTask_Move268Unknown(arg0)
+{
+	r5 = fn_74480(*gBattleAnimTarget, 2) - 0x20
+	r4 = fn_74480(*gBattleAnimTarget, 3) - 0x24
+	
+	if(fn_73788() != 0)
+		r5 -= 6
+	
+	SetGpuReg(0x50, 0x3F40)
+	SetGpuReg(0x52, 0x1000)
+	r4 = CreateSprite(gUnknownMove268SpriteTemplate, r5, r4, 4)
+	
+	if(GetSpriteTileStartByTag(0x28BD) == -1)
+		*((r4 * 0x44) + gSprites + 0x3E) |= 4
+	
+	SetSubspriteTables((r4 * 0x44) + gSprites, data_3BF554)
+	*((arg0 * 0x28) + gTasks + 0x26) = r4
+	*((arg0 * 0x28) + gTasks) = fn_183630
+}
+
+
+
+
+
+
+
+fn_183630(arg0)
+{
+	r2 = *((arg0 * 0x28) + gTasks + 0xA)
+	*((arg0 * 0x28) + gTasks + 0xA)++
+	
+	if(*((arg0 * 0x28) + gTasks + 0xA) == 0xA)
+	{
+		*((arg0 * 0x28) + gTasks) = fn_18367C
+		*((arg0 * 0x28) + gTasks + 0xA) = 0
+	}
+	else
+		SetGpuReg(0x52, CONCAT_BYTES(0x10 - r2, 0x10 - r2))
+}
+
+
+
+
+
+
+
+fn_18367C(arg0)
+{
+	*((arg0 * 0x28) + gTasks + 0xA)++
+	
+	if(*((arg0 * 0x28) + gTasks + 0xA) > 0xD)
+	{
+		*((arg0 * 0x28) + gTasks + 0xC)++
+		
+		if(*((arg0 * 0x28) + gTasks + 0xC) == 3)
+		{
+			temp = *((((IndexOfSpritePaletteTag(0x28BD) * 0x10) + 0x10D) * 2) + gPlttBufferFaded)
+			*((((IndexOfSpritePaletteTag(0x28BD) * 0x10) + 0x10D) * 2) + gPlttBufferFaded) = *((((IndexOfSpritePaletteTag(0x28BD) * 0x10) + 0x10E) * 2) + gPlttBufferFaded)
+			*((((IndexOfSpritePaletteTag(0x28BD) * 0x10) + 0x10E) * 2) + gPlttBufferFaded) = *((((IndexOfSpritePaletteTag(0x28BD) * 0x10) + 0x10F) * 2) + gPlttBufferFaded)
+			*((((IndexOfSpritePaletteTag(0x28BD) * 0x10) + 0x10F) * 2) + gPlttBufferFaded) = temp
+			*((arg0 * 0x28) + gTasks + 0xC) = 0
+			*((arg0 * 0x28) + gTasks + 0xE)++
+			
+			if(*((arg0 * 0x28) + gTasks + 0xE) == 3)
+			{
+				*((arg0 * 0x28) + gTasks + 0xE) = 0
+				*((arg0 * 0x28) + gTasks + 0xA) = 0
+				*((arg0 * 0x28) + gTasks + 0x10)++
+				
+				if(*((arg0 * 0x28) + gTasks + 0x10) == 2)
+				{
+					*((arg0 * 0x28) + gTasks + 0xA) = 9
+					*((arg0 * 0x28) + gTasks) = fn_785D8
+				}
+			}
+		}
+	}
+}

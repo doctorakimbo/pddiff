@@ -221,3 +221,89 @@ fn_168B70_J(battler, species, arg2)
 data_169204_J:
 48 48 00 00 B0 20 00 00 30 20 00 00 70 48 00 00
 20 48 00 00 C8 20 00 00 5A 50 00 00 98 18 00 00
+
+
+
+
+
+
+
+AnimTask_Move268Unknown(taskId)
+{
+	x = fn_74480(gBattleAnimTarget, 2) - 0x20
+	y = fn_74480(gBattleAnimTarget, 3) - 0x24
+	
+	if(fn_73788() != 0)
+		x -= 6
+	
+	SetGpuReg(REG_OFFSET_BLDCNT, 0x3F40)
+	SetGpuReg(REG_OFFSET_BLDALPHA, 0x1000)
+	newSprite = CreateSprite(gUnknownMove268SpriteTemplate, x, y, 4)
+	
+	if(GetSpriteTileStartByTag(0x28BD) == -1)
+		gSprites[newSprite].invisible = TRUE
+	
+	SetSubspriteTables(&gSprites[newSprite], data_3BF554)
+	gTasks[taskId].data[0xF] = newSprite
+	gTasks[taskId].taskFunc = fn_183630
+}
+
+
+
+
+
+
+
+fn_183630(taskId)
+{
+	r2 = gTasks[taskId].data[1]
+	gTasks[taskId].data[1]++
+	
+	if(gTasks[taskId].data[1] == 0xA)
+	{
+		gTasks[taskId].0 = fn_18367C
+		gTasks[taskId].data[1] = 0
+	}
+	else
+		SetGpuReg(REG_OFFSET_BLDALPHA, CONCAT_BYTES(0x10 - r2, 0x10 - r2))
+}
+
+
+
+
+
+
+
+fn_18367C(taskId)
+{
+	gTasks[taskId].data[1]++
+	
+	if(gTasks[taskId].data[1] > 0xD)
+	{
+		gTasks[taskId].data[2]++
+		
+		if(gTasks[taskId].data[2] == 3)
+		{
+			r3 = IndexOfSpritePaletteTag(0x28BD)
+			temp = gPlttBufferFaded[0x10D][r3]
+			gPlttBufferFaded[0x10D][r3] = gPlttBufferFaded[0x10E][r3]
+			gPlttBufferFaded[0x10E][r3] = gPlttBufferFaded[0x10F][r3]
+			gPlttBufferFaded[0x10F][r3] = temp
+			gTasks[taskId].data[2] = 0
+			gTasks[taskId].data[3]++
+			
+			if(gTasks[taskId].data[3] == 3)
+			{
+				gTasks[taskId].data[3] = 0
+				gTasks[taskId].data[1] = 0
+				gTasks[taskId].data[4]++
+				
+				if(gTasks[taskId].data[4] == 2)
+				{
+					gTasks[taskId].data[1] = 9
+					gTasks[taskId].0 = fn_785D8
+				}
+			}
+		}
+	}
+}
