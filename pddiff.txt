@@ -1,5 +1,4 @@
-(CHCEK THAT 1833D0 IS FREED UP)
-(CHECK A0 1D 02 02 DURING MOVE REMINDER SEQUENCE)
+(1833D0 is freed up)
 
 
 
@@ -431,18 +430,18 @@ move IDs:
 + 0x258 = Brine
 + 0x259 = Power Split
 + 0x25A = Guard Split
-- 0x25B = Power Swap
-- 0x25C = Guard Swap
-= 0x25D = (attacking move), (animation is user disappearing, hits appearing on foe, then user reappearing, on Feint Attack's background)
-= 0x25E = (attacking move with chance to harshly lower speed or confuse), (can't be called by metronome), (has Pound animation, presumably placeholder)
-= 0x25F = (attacking move with chance to harshly lower sp. def or confuse), (can't be called by metronome), (has Pound animation, presumably placeholder)
-= 0x260 = (attacking move with chance to lower defense or confuse), (can't be called by metronome), (has Pound animation, presumably placeholder)
-= 0x261 = (attacking move), (can't be called by metronome), (has Pound animation, presumably placeholder)
-= 0x262 = (attacking move), (can't be called by metronome), (has Pound animation, presumably placeholder)
-= 0x263 = (attacking move), (animation is five hits, each type-related: Ice, Ghost, Grass, Fire, Normal)
++ 0x25B = Power Swap
++ 0x25C = Guard Swap
++ 0x25D = Foul Play
+= 0x25E = (attacking move with chance to harshly lower speed or confuse), (can't be called by metronome), (has Pound animation; not implemented)
+= 0x25F = (attacking move with chance to harshly lower sp. def or confuse), (can't be called by metronome), (has Pound animation; not implemented)
+= 0x260 = (attacking move with chance to lower defense or confuse), (can't be called by metronome), (has Pound animation; not implemented)
+= 0x261 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented)
+= 0x262 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented)
+= 0x263 = (attacking move), (animation is four hits, each type-related - Ice, Ghost, Grass, Fire - while something spins superimposed on the foe, then a final hit)
 + 0x264 = Wake-Up Slap
-= 0x265 = (attacking move that does double damage if it cures infatuation), (animation is a slap, then the foe turns gray while the Perish Song sound plays)
-= 0x266 = (attacking move that does double damage if it cures burn), (has ice-related animation)
+= 0x265 = (attacking move that does double damage if it cures infatuation), (animation is a slap, then everything turns gray while the Perish Song sound plays)
+= 0x266 = (attacking move that does double damage if it cures burn), (animation creates something then does the ice effect)
 = 0x267 = (attacking move that does double damage if it cures freeze)
 = 0x268 = (non-attacking move)
 = 0x269 = (attacking move with chance to burn)
@@ -714,71 +713,71 @@ battle strings (ADD 9 TO ALL):
 + 0x248 = "[Your/The opposing] team's Light Screen wore off!" <EN ONLY>
 
 grafics:
-= 3BF58C (3860F0 old, 783890 new)
-= 3CD5E8 (395324 old, 90C190 new)
-= 3CE5FC (396334 old, 396D18 new)
-= 3CE738 (3964D0 old, 396394 new)
-= 3CE758 (3964F0 old, 3963B4 new)
-= 3EF524 (3B60AC old, 8E1C70 new)
-= 3EF59C (3B6124 old, 8E1CF0 new)
-= 3EF61C (3B61A4 old, 8DC3D0 new)
-= 3F089C (3B7424 old, 8DD390 new)
-= 3F0AFC (3B7684 old, 77C4F0 new)
-= 405DC4 (3CBF9C old, E2A880 new)
-= 40644C (3CC624 old, E2B180 new)
-= 406654 (3CC82C old, E2BB10 new)
-= 4071D0 (3CD3A8 old, E2C570 new)
-= 407B9C (3CDD74 old, 96A430 new)
-= 408D98 (3CEF70 old, 96B5E0 new)
-= 40CB8C (3D3EA8 old, 8F8780 new)
-= 40D228 (3D4544 old, 8E99B0 new)
-= 40E158 (3D5474 old, 8F8C70 new)
-= 40E904 (3D5C20 old, 8F7F60 new)
-= 40F240 (3D655C old, 8F9260 new)
-= 40F944 (3D6C60 old, 8F7640 new)
-= 410198 (3D74B4 old, 204D10 new)
-= 4105B4 (3D78D0 old, 427E80 new)
-= 410E30 (3D867C old, 428700 new)
-= 4129C0 (3DA20C old, 7FC460 new)
-= 440274 (404928 old, E98420 new)
-= 4403AC (404A60 old, E98420 new)
-= 443620 (407FB8 old, E016A0 new)
-= 452C94 (411AFC old, 411C1C new)
-= 45A1C6 (419956 old, 41994C new)
-= 45A20C (41999C old, 419910 new)
-= 45A242 (4199D2 old, 419958 new)
-= 45A278 (419A08 old, 4199A0 new)
-= 460F14 (423228 old, 8DBCC0 new)
-= 46163C (423950 old, 68AE40 new)
-= 461D14 (424028 old, 8DEF50 new)
-= 4623EC (424700 old, 8DD7B0 new)
-= 46386C (426D84 old, 426D80 new)
-= 463B20 (427460 old, 4267BC new)
-= 463B88 (427C40 old, 427C80 new)
-= 463C80 (427D38 old, 427C80 new)
-= 466620 (42F9A8 old, 922730 new)
-= D0051C (C0051C old, EB8990 new)
-= E82700 (D826B0 old, 924320 new)
-= E85068 (D85074 old, 251A80 new)
-= E9A460 (42631C old, 4F3040 new)
-= E9B598 (427680 old, 427654 new)
-= E9B750 (4279DC old, 427950 new)
-= E9B950 (427870 old, 427828 new)
-= E9BBCC (427B0C old, 427AF4 new)
-= E9C3D8 (3964B0 old, 396374 new)
-= E9C3F8 (396470 old, 396334 new)
-= E9C418 (396490 old, 396354 new)
-= E9C438 (396510 old, 396470 new)
-= E9CAEC (396BD0 old, 39CE04 new)
-= EAB6C4 (3835A4 old, D97800 new)
-= EAB8C4 (383604 old, F00000 new)
-= EAD390 (385018 old, 8E0B00 new)
-= EAD5E8 (385228 old, F03730 new)
-= EAD608 (385248 old, 8E38A0 new)
-= EADEE4 (385B24 old, F03460 new)
-= EAE094 (385CD8 old, F03020 new)
-= EAE0B4 (385CF8 old, F01A00 new)
-= EAE374 (385FDC old, F03050 new)
+= 3BF58C (3860F0 old, 783890 new) - ???
+= 3CD5E8 (395324 old, 90C190 new) - badges
+= 3CE5FC (396334 old, 396D18 new) - (tilemap)
+= 3CE738 (3964D0 old, 396394 new) - (not graphics)
+= 3CE758 (3964F0 old, 3963B4 new) - (not graphics)
+= 3EF524 (3B60AC old, 8E1C70 new) - head icon on map (male)
+= 3EF59C (3B6124 old, 8E1CF0 new) - head icon on map (female)
+= 3EF61C (3B61A4 old, 8DC3D0 new) - map graphics
+= 3F089C (3B7424 old, 8DD390 new) - (tilemap)
+= 3F0AFC (3B7684 old, 77C4F0 new) - (tilemap)
+= 405DC4 (3CBF9C old, E2A880 new) - intro gengar
+= 40644C (3CC624 old, E2B180 new) - (tilemap)
+= 406654 (3CC82C old, E2BB10 new) - intro nidorino
+= 4071D0 (3CD3A8 old, E2C570 new) - (tilemap)
+= 407B9C (3CDD74 old, 96A430 new) - intro gengar back
+= 408D98 (3CEF70 old, 96B5E0 new) - (tilemap)
+= 40CB8C (3D3EA8 old, 8F8780 new) - credits charizard 1
+= 40D228 (3D4544 old, 8E99B0 new) - credits charizard 2
+= 40E158 (3D5474 old, 8F8C70 new) - credits venusaur 1
+= 40E904 (3D5C20 old, 8F7F60 new) - credits venusaur 2
+= 40F240 (3D655C old, 8F9260 new) - credits blastoise 1
+= 40F944 (3D6C60 old, 8F7640 new) - credits blastoise 2
+= 410198 (3D74B4 old, 204D10 new) - credits pikachu 1
+= 4105B4 (3D78D0 old, 427E80 new) - credits pikachu 2
+= 410E30 (3D867C old, 428700 new) - credits red
+= 4129C0 (3DA20C old, 7FC460 new) - credits blue
+= 440274 (404928 old, E98420 new) - ???
+= 4403AC (404A60 old, E98420 new) - ???
+= 443620 (407FB8 old, E016A0 new) - pokedex map
+= 452C94 (411AFC old, 411C1C new) - (not graphics)
+= 45A1C6 (419956 old, 41994C new) - (not graphics)
+= 45A20C (41999C old, 419910 new) - (not graphics)
+= 45A242 (4199D2 old, 419958 new) - (not graphics)
+= 45A278 (419A08 old, 4199A0 new) - (not graphics)
+= 460F14 (423228 old, 8DBCC0 new) - intro leaf
+= 46163C (423950 old, 68AE40 new) - intro red
+= 461D14 (424028 old, 8DEF50 new) - intro oak
+= 4623EC (424700 old, 8DD7B0 new) - intro blue
+= 46386C (426D84 old, 426D80 new) - ???
+= 463B20 (427460 old, 4267BC new) - ???
+= 463B88 (427C40 old, 427C80 new) - (tilemap)
+= 463C80 (427D38 old, 427C80 new) - (tilemap)
+= 466620 (42F9A8 old, 922730 new) - slot machine gfx
+= D0051C (C0051C old, EB8990 new) - (tilemap)
+= E82700 (D826B0 old, 924320 new) - ???
+= E85068 (D85074 old, 251A80 new) - (tilemap)
+= E9A460 (42631C old, 4F3040 new) - summary screen gfx
+= E9B598 (427680 old, 427654 new) - (tilemap)
+= E9B750 (4279DC old, 427950 new) - (tilemap)
+= E9B950 (427870 old, 427828 new) - (tilemap)
+= E9BBCC (427B0C old, 427AF4 new) - (tilemap)
+= E9C3D8 (3964B0 old, 396374 new) - (not graphics)
+= E9C3F8 (396470 old, 396334 new) - (not graphics)
+= E9C418 (396490 old, 396354 new) - (not graphics)
+= E9C438 (396510 old, 396470 new) - box gfx
+= E9CAEC (396BD0 old, 39CE04 new) - (tilemap)
+= EAB6C4 (3835A4 old, D97800 new) - (not graphics)
+= EAB8C4 (383604 old, F00000 new) - title screen pokemon logo
+= EAD390 (385018 old, 8E0B00 new) - (tilemap)
+= EAD5E8 (385228 old, F03730 new) - (not graphics)
+= EAD608 (385248 old, 8E38A0 new) - title screen charizard
+= EADEE4 (385B24 old, F03460 new) - (tilemap)
+= EAE094 (385CD8 old, F03020 new) - (not graphics)
+= EAE0B4 (385CF8 old, F01A00 new) - title screen copyright
+= EAE374 (385FDC old, F03050 new) - (tilemap)
 
 stray text:
 = 3FDB92 (3C3D0A old, 3C3C3F new)
@@ -1274,8 +1273,8 @@ stray text:
 + 042DA4: sub_8042DA4 (see 85disasm)
 		  Implements: Messages for X Sp. Def and X Evasion
 		  Relies on: fn_41714_E
-- 042EC4: GetEvolutionTargetSpecies (see 86disasm)
-		  Implements: new evolution methods (day/night happiness for FRLG, single-gender levelup, location-based, specific move, specific move type, level during day/night, level during day/night with item, specific mon in party, specific type in party, single-gender stone, trade for specific mon, overworld weather), allows species 0 to have 20 branched evolutions (??? need more info)
++ 042EC4: GetEvolutionTargetSpecies (see 86disasm)
+		  Implements: new evolution methods (day/night happiness for FRLG, single-gender levelup, location-based, specific move, specific move type, level during day/night, level during day/night with item, specific mon in party, specific type in party, single-gender stone, trade for specific mon, overworld weather), allows species 0 to have 20 branched evolutions (need more info)
 + 043214: CD 24 64 -> FF 24 A4 (410 -> 1020 maximum pkmn species?)
 + 043304: SpeciesToCryId (see 87disasm)
 		  Implements: Allows forbiddenmons to get individual cries
@@ -1284,15 +1283,14 @@ stray text:
 + 043A70: CheckPartyPokerus (see 89disasm)
 		  Implements: reads only last bit of MON_DATA_POKERUS instead of last 4 bits
 = 043C84: GetMoveRelearnerMoves (see 90disasm)
-		  Implements: max level-up moves 20 -> 24, gLevelUpLearnsets -> ptr at j02021D10
-		  Required knowledge: j02021D10
-		  Relies on: j02021D10 set elsewhere (probably in the move reminder event script)
+		  Implements: max level-up moves 20 -> 24, gLevelUpLearnsets -> ptr at 02021DA0
+		  Relies on: 02021DA0 set elsewhere (probably in the move reminder event script)
 = 043DEE: 0E 48 84 46 -> 00 00 00 00
   043E02: 1A 88 60 46 10 40 08 80 02 -> 58 88 00 00 00 00 08 80 04
 		  Implements: Part of gLevelUpLearnsets refactor
 = 043E2C: GetNumberOfRelearnableMoves (see 91disasm)
-		  Implements: gLevelUpLearnsets -> ptr at j02021D10
-		  Required knowledge: j02021D10
+		  Implements: gLevelUpLearnsets -> ptr at 02021DA0
+		  Relies on: 02021DA0 set elsewhere (probably in the move reminder event script)
 + 043FA6: 97 2C 04 D9 -> 00 00 04 E0
 		  Implements: species is always valid even before natdex
 ! 044034: 62 40 04 08 5C 40 04 08 62 40 04 08 62 40 04 08 5C 40 04 08 62 40 04 08 62 40 04 08 54 40 04 08 -> 54 40 04 08 5C 40 04 08 D8 32 85 08 D0 32 85 08 30 8F 8D 08 E0 64 86 08 58 00 74 08 A0 0F 8C 08 (changes table to point to other scripts, see 92disasm)
@@ -1394,9 +1392,10 @@ stray text:
 		  Implements: Strength boulders able to be moved onto metatile 0x1F
 + 05C104: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 E1 2A 22 08 (jumps (bx) to extra fn at 222AE0, then back (see 120disasm))
 		  Implements: player walk animations for metatiles 0xB0-0xB5
-+ 05C11C: PlayerGoSpeed2 (see 121disasm)
+! 05C11C: PlayerGoSpeed2 (see 121disasm)
 		  Implements: player fast-walk animations for metatiles 0xB0-0xB5
-		  Requires in future: GetWalkFastMovementAction_New (2074F0) (MAKE SURE IT EXISTS)
+		  Requires in future: GetWalkFastMovementAction_New (2074F0)
+		  GLITCH!: crashes when biking on stairs
 + 05C14C: 00 B5 00 06 00 0E 07 F0 -> 00 49 08 47 D1 2C 22 08 (jumps (bx) to extra fn at 222CD0, then back (see 120disasm mostly))
 		  Implements: player fastest-walk animations for metatiles 0xB0-0xB5
 + 05C164: PlayerRun (see 121disasm mostly)
@@ -1430,13 +1429,14 @@ stray text:
 		  Requires in future: fn_E9D53C, fn_E9D586
 ! 06FEA0: HideStartMenuWindow (see 131disasm)
 		  Implements: changes menu close sfx from SE_SELECT to (sound_0x200)
-- 06FFBC: sub_806FFBC (see 132disasm)
+! 06FFBC: sub_806FFBC (see 132disasm)
 		  Implements: Need more info
 		  Relies on: Possible metatileAttributes refactor
 		  Requires in future: fn_939620, fn_9396A8, fn_939728
-- 07004E: 73 F1 AB FD -> 00 00 00 00
+		  Note: doesn't actually work, something else probably needed
+! 07004E: 73 F1 AB FD -> 00 00 00 00
 		  Implements: Removes tileset 1 animations (replaced by functionality in 06FFBC)
-- 07008A: 73 F1 8D FD -> 00 00 00 00
+! 07008A: 73 F1 8D FD -> 00 00 00 00
 		  Implements: Removes tileset 2 animations (replaced by functionality in 06FFBC)
 ! 07049A: 0C 48 03 60 61 7A 03 20 08 40 -> 01 48 87 46 C0 46 20 D3 E9 09 (jumps (mov) to fn at 1E9D320, then back; (jE9D320, see 133disasm))
 		  Implements: Something palette-related
@@ -1449,9 +1449,10 @@ stray text:
 		  Implements: new animation script command that (arg = 0: stores the battlers then sets the target to the attacker; arg = 1: stores the battlers then sets the attacker to the target; arg = 2: stores the battlers then swaps them; arg = 3: loads the stored battlers)
 ! 078A6E: F7 F7 BD FC -> 00 00 00 00
 		  Implements: never fades in the green palette on title screen (still does if intro skipped), not yet clear what this means
-- 078BFC: 00 23 C1 5E 06 48 -> 07 49 08 47 08 BC
+! 078BFC: 00 23 C1 5E 06 48 -> 07 49 08 47 08 BC
   078C1C: 8B 0A 00 00 -> 51 52 38 09 (jumps (bx) to extra fn at 1385250, then back (j385250, see 134disasm))
 		  Implements: almost certainly title screen silhouette fading
+		  Relies on: graphics changes to make this not look broken
 		  Note: one of the graphics points to the middle of an unrelated table for some reason?
 ! 0791EE: 06 -> FC (PDONLY, title screen cry charizard -> (species252))
 + 079282, 0EC852: C0 0F -> 01 20 (sound will always become stereo when game loaded from title screen)
@@ -1469,7 +1470,7 @@ stray text:
 = 080650: 0D -> 7F
   08066C: 70 06 08 08 -> 40 E0 E2 09 (expands the possible trainer encounter musics from 14 to 128; new switch table at 1E2E040 (jE2E040, currently only 3/14 in FR and 16/128 in PD are used); see minidisasm16)
 		  Relies on: new music actually inserted
-- 081C0A: 0E 49 38 7E 00 07 80 0E 04 38 -> 01 49 08 47 00 00 F1 00 E3 09 (jumps (bx) to extra fn at 1E300F0, then back (jE300F0, see 139disasm))
++ 081C0A: 0E 49 38 7E 00 07 80 0E 04 38 -> 01 49 08 47 00 00 F1 00 E3 09 (jumps (bx) to extra fn at 1E300F0, then back (jE300F0, see 139disasm))
 		  Implements: Need more info (trainer sighting)
 ! 0829FC: sub_80829FC (see 140disasm)
 		  Implements: Need more info (something to do with personality values)
@@ -2206,8 +2207,9 @@ stray text:
 ! 13A028: 98 -> 20
 		  Implements: move move selection cursor on summary screen left
 		  Relies on: layout rework to make this not look broken
-- 13A124: sub_813A124 (see 247disasm)
-		  Implements: possibly move category icons on summary screen
+! 13A124: sub_813A124 (see 247disasm)
+		  Implements: changes the move cursor to be on the second summary screen and makes it blink
+		  Relies on: layout rework to make this not look broken
 		  Requires in future: fn_1D7DEC0
 ! 13A42E: 10 -> BA
   13A434: 2D -> 20
@@ -2563,7 +2565,7 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 + 1D9444 -> 1050260 (repoint): BattleScript_ObliviousPreventsAttraction (see 57disasm)
 		  Implements: Oblivious changed from "prevents romance" to "made [MOVE] useless", EXCEPT for move ID 0x257 ("prevents romance" presumably replaced with new msg)
 		  Note: more coding needed to re-add "prevents romance"
-- 1D9C1C: ptr ED BC 1D 08 -> 30 C0 1F 09 (add new AI table entry for script at 11FC030)
++ 1D9C1C: ptr ED BC 1D 08 -> 30 C0 1F 09 (add new AI table entry for script at 11FC030)
 			btw temp 2064C0: 01 21 08 40 -> 01 20 00 00
 		  Implements: New level of smart AI (enough stuff to warrant breaking the usual format)
 		  * Won't use Explosion
@@ -2621,7 +2623,7 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Glitch?: Foul Play logic has cases that loop back to the start of the AI function, this may cause infinite loops
 		  Glitch?: [move27B] checks if a move isn't special to determine that it is physical - but it could be status too; fix this by moving the status move check above that
 		  Glitch?: sub encouragement for berries only checks Lansat (?)
-- 1D9C74 -> 1005000 (repoint): AI_CheckBadMove
++ 1D9C74 -> 1005000 (repoint): AI_CheckBadMove
 		  Implements: enough stuff to warrant breaking the usual format
 		  * Bugfixes: checks for "ultra effective" as well against Wonder Guard instead of strictly exactly 2x SE
 		  * Other improvements: Safeguard, Curse, Yawn, and Taunt are now checked; Sky Attack counts as a risky move; Curse isn't used when at less than half HP at the start of the turn; AI will now use Knock Off on itemless foes (due to buff)
@@ -2635,7 +2637,7 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Glitch?: freeze effect (1E) checks Flame Body instead of Magma Armor
 		  Glitch?: Reflect Type -> Synchronoise -> Power Swap is fallthrough
 		  Glitch?: [move2A3] won't be used if Venom Drench would have no effect, despite also doing damage
-- 1DA445 -> 1005C00 (repoint): AI_CheckViability
++ 1DA445 -> 1005C00 (repoint): AI_CheckViability
 		  Implements: enough stuff to warrant breaking the usual format
 		  * Bugfixes: won't use a speed-lowering move like Mud Shot if the target is immune; no longer inexplicably encourages Toxic when it has a +SpDef move; no longer inexplicably discourages Protect/encourages Snatch when the opponent has specifically Defense Curl; Protect/Snatch correctly factors in all healing moves instead of just vanilla Recover-types; sandstorm and hail are no longer the wrong way around in the Fly script; Facade correctly checks the user for status instead of the target; Brick Break is encouraged vs Light Screen, not just Reflect
 		  * Other improvements: instead of a bizarre mix of moves, Mirror Move tries to prioritize any copiable move; doesn't discourage recovery when the user is faster; encourages OHKO moves after use of Mind Reader; Mean Look (because Spirit Shackle uses the same effect byte), Dragon Dance (why?), and Knock Off are no longer encouraged to be Encored; Teleport and +Sp. Def are encouraged to be Encored; instead of encouraging stealing a short list of items, Thief is encouraged for all items that don't have a downside; Chlorophyll users prioritize Sunny Day; Volt Absorb, Water Absorb, Soundproof, Thick Fat, Flame Body, and Shell Armor are considered "good" abilities; "bad" abilities (to avoid/get rid of) are also listed
@@ -2924,7 +2926,7 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: Snarl animation
 +13015E0: Move_Dragon_Tail (see animscripts.txt)
 		  Implements: Dragon Tail animation
--1301678: Move_??? (see animscripts.txt)
++1301678: Move_??? (see animscripts.txt)
 		  Implements: [move265] animation
 +1301740: Move_??? (see animscripts.txt)
 		  Implements: [move230] animation
@@ -2956,7 +2958,7 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: Freeze-Dry animation
 +1302550: Move_Confide (see animscripts.txt)
 		  Implements: Confide animation
--1302590: Move_??? (see animscripts.txt)
++1302590: Move_??? (see animscripts.txt)
 		  Implements: [move266] animation
 +1302828: Move_??? (see animscripts.txt)
 		  Implements: [move23C] animation
@@ -2964,11 +2966,11 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: Hex animation
 +1302978: Move_??? (see animscripts.txt)
 		  Implements: [move244] animation
--1302C80: Move_??? (see animscripts.txt)
++1302C80: Move_??? (see animscripts.txt)
 		  Implements: [move263] animation
 +1302E58: Move_??? (see animscripts.txt)
 		  Implements: [move222] animation
--1303030: Move_Wake_Up_Slap (see animscripts.txt)
++1303030: Move_Wake_Up_Slap (see animscripts.txt)
 		  Implements: Wake-Up Slap animation
 +1303098: Move_Chatter (see animscripts.txt)
 		  Implements: Chatter animation
@@ -3028,10 +3030,10 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: Boomburst animation
 +13057C0: Move_Clear_Smog (see animscripts.txt)
 		  Implements: Clear Smog animation
--1305950: Move_Power_Swap (see animscripts.txt)
++1305950: Move_Power_Swap (see animscripts.txt)
 		  Implements: Power Swap animation
 		  Relies on: sub_80B3834 changes
--13059A0: Move_Guard_Swap (see animscripts.txt)
++13059A0: Move_Guard_Swap (see animscripts.txt)
 		  Implements: Guard Swap animation
 		  Relies on: sub_80B3834 changes
 +13059F0: Move_Petal_Blizzard (see animscripts.txt)
@@ -3082,8 +3084,8 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: Gastro Acid animation
 +1308238: Move_??? (see animscripts.txt)
 		  Implements: [move223] animation
--1308290: Move_??? (see animscripts.txt)
-		  Implements: [move25D] animation
++1308290: Move_Foul_Play (see animscripts.txt)
+		  Implements: Foul Play animation
 +1308368: Move_Focus_Blast (see animscripts.txt)
 		  Implements: Focus Blast animation
 +13083D0: Move_Gunk_Shot (see animscripts.txt)
