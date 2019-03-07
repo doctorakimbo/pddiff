@@ -4321,8 +4321,8 @@ end
 
 AI_CV_DoubleDamageOnStatus:
 if_move MOVE_SMELLING_SALTS, AI_CV_SmellingSalts_New
-if_move 0x161, [CD 68 00 09]
-if_move 0x283, [CD 68 00 09]
+if_move MOVE_VENOSHOCK, AI_CV_DoubleDamageOnPoisoned
+if_move 0x283, AI_CV_DoubleDamageOnPoisoned
 if_move MOVE_WAKE_UP_SLAP, AI_CV_WakeUpSlap
 if_move 0x266, [E3 68 00 09]
 if_move 0x267, [EE 68 00 09]
@@ -4334,7 +4334,7 @@ AI_CV_SmellingSalts_New:
 if_status AI_TARGET, STATUS1_PARALYSIS, Score_Plus1
 end
 
-[CD 68 00 09]:
+AI_CV_DoubleDamageOnPoisoned:
 if_status AI_TARGET, STATUS1_PSN_ANY, Score_Plus1
 end
 

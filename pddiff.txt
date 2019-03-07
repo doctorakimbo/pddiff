@@ -175,7 +175,7 @@ move IDs:
 = 0x127 = (attacking move with chance to raise sp. atk), (animation is shedding something, then Wing Attack)
 + 0x128 = Hurricane
 = 0x12E = (attacking move with chance to poison, but if used by a poison-type, it badly poisons instead), (has Poison Tail animation)
-= 0x161 = (attacking move that does double damage to poisoned targets (but NOT toxiced targets)), (has Sludge Bomb animation)
+- 0x161 = Venoshock
 = 0x162 = (attacking move), (animation is Blizzard with gray rocks)
 + 0x163 = Grand Boulder
 + 0x164 = Soul Break
@@ -379,8 +379,8 @@ move IDs:
 + 0x22A = Simple Beam
 + 0x22B = Worry Seed
 = 0x22C = (attacking move), (animation has Moonblast sparkles emanate from user and opponent, on Moonblast's background)
-= 0x22D = (attacking move with Wring Out effect), (animation has the foe absorb light then explode)
-= 0x22E = (attacking move with chance to lower defense), (animation involves hitting twice as the user sways, and produces a large amount of objects on the foe)
+= 0x22D = (attacking move with Wring Out effect), (animation has the foe absorb light then explode, on Draining Kiss's background)
+= 0x22E = (attacking move with chance to lower defense), (animation involves hitting twice as the user sways, and produces a large amount of objects on the foe, on Draining Kiss's background)
 = 0x22F = (attacking move that lowers user's attack and harshly lowers user's defense afterwards), (animation involves charging up while flashing orange, then a huge tackle)
 = 0x230 = (attacking move), (animation is Swords Dance with different graphics then Slash, on Dragon Tail's background)
 = 0x231 = (attacking move with chance to lower speed), (animation involves leaves (assumed) spreading outward from the user then a hit that's shared with Power Whip somehow)
@@ -450,26 +450,26 @@ move IDs:
 + 0x271 = Volt Switch
 = 0x272 = (attacking move with Brine effect, but doubles when the user has less than half HP, not the target), (has Flame Wheel animation with a new background)
 = 0x273 = (non-attacking move), (animation has Seismic Toss's background, can't figure out anything else since it crashes)
-= 0x274 = (non-attacking move)
-= 0x275 = (non-attacking move, -1 sp. def)
-= 0x276 = (non-attacking move, +1 sp. atk)
-= 0x277 = (non-attacking move, turns target into pure Bug-type)
-= 0x278 = (attacking move)
-= 0x279 = (non-attacking move, turns target into pure Ghost-type)
-= 0x27A = (attacking move with Brine effect)
-= 0x27B = (attacking move with Foul Play effect, but uses the target's Sp. Atk)
-= 0x27C = Wring Out/Crush Grip
-+ 0x27D = Captivate
-= 0x27E = (non-attacking move that has sleep effect, but sleeps the target even if it already has a status)
+= 0x274 = (non-attacking move), (animation is Mist with different graphics)
+= 0x275 = (non-attacking move, -1 sp. def), (has Growl animation)
+= 0x276 = (non-attacking move, +1 sp. atk), (has Growl animation)
+= 0x277 = (non-attacking move, turns target into pure Bug-type), (no idea about animation)
+= 0x278 = (attacking move), (animation involves anger then something similar to [move277])
+= 0x279 = (non-attacking move, turns target into pure Ghost-type), (animation is Memento on Shadow Ball's background with an unknown extra part at the end)
+= 0x27A = (attacking move with Brine effect), (has ghost-related animation)
+= 0x27B = (attacking move with Foul Play effect, but uses the target's Sp. Atk), (animation has Draining Kiss's background)
+= 0x27C = (attacking move with Wring Out effect), (animation involves sweating)
++ 0x27D = Captivate !!!has attract animation!!!
+= 0x27E = (non-attacking move that has sleep effect, but sleeps the target even if it already has a status), (animation is Mist with different graphics on Draining Kiss's background)
 + 0x27F = Cotton Guard
-= 0x280 = (attacking move)
-= 0x281 = (attacking move)
-= 0x282 = (non-attacking move)
-= 0x283 = (attacking move that does double damage if it cures poison)
-= 0x284 = (attacking move)
-= 0x285 = (attacking move)
-= 0x286 = (attacking move)
-= 0x287 = (non-attacking move)
+= 0x280 = (attacking move), (has Vital Throw- and Fly- related animation)
+= 0x281 = (attacking move), (has Psycho Boost-related animation)
+= 0x282 = (non-attacking move), (animation runs Focus Energy twice with a new background)
+= 0x283 = (attacking move that does double damage if it cures poison), (animation is short)
+= 0x284 = (attacking move), (animation is a tackle on Focus Blast's background)
+= 0x285 = (attacking move), (animation is Swords Dance then Slash)
+= 0x286 = (attacking move), (has sound-related animation)
+= 0x287 = (non-attacking move), (animation is the first half of Conversion 2, then the second half of Conversion)
 + 0x288 = Draining Kiss
 = 0x289 = (attacking move with Overheat effect, but harshly lowers user's attack instead of sp. atk)
 = 0x28A = (attacking move that harshly lowers user's sp. atk afterwards)
@@ -519,7 +519,7 @@ move effects:
 = 0x3E = Foul Play/[move27B]
 = 0x3F = Heal Pulse
 = 0x40 = poison or paralysis, chooses one at random
-= 0x58 = moves that double damage on status are all grouped here ((does double damage to poisoned targets (but NOT toxiced targets)), Hex, and Smelling Salts/equivalents), but hardcoded based on move ID
+= 0x58 = moves that double damage on status are all grouped here (Venoshock, Hex, and Smelling Salts/equivalents), but hardcoded based on move ID
 = 0x5D = Venom Drench/[move2A3]
 = 0x60 = hardcoded parameterized additional effects, ai uses this for all "chance to give user a status problem" moves
 = 0x61 = hardcoded parameterized additional effects, ai uses this for sleep chance moves
@@ -2469,10 +2469,10 @@ stray text:
 		  Implements: [move29E], also refactors into the parameterized script
 		  Relies on: BattleScript_ParameterizedEffectHit
 + 1D741B -> 10539B8 (repoint): BattleScript_EffectDoubleDamageOnStatus (see movescripts.txt)
-		  Implements: removes Psywave effect entirely, adds new effect for (does double damage to poisoned targets (but NOT toxiced targets)), Hex, and moves that cure status and double damage when they do so (Smelling Salts is moved into this effect, plus options for Wake-Up Slap, (double damage if it cures infatuation), (double damage if it cures burn), (double damage if it cures freeze), and (double damage if it cures poison))
+		  Implements: removes Psywave effect entirely, adds new effect for Venoshock, Hex, and moves that cure status and double damage when they do so (Smelling Salts is moved into this effect, plus options for Wake-Up Slap, (double damage if it cures infatuation), (double damage if it cures burn), (double damage if it cures freeze), and (double damage if it cures poison))
 		  Relies on: changes at 0x20F00
+		  GLITCH!: Venoshock doesn't double on toxic, only regular poison
 		  GLITCH!: attract cure move always doubles damage
-		  Note: Is poison but not toxic intended behavior?
 		  Note: Since it just displays status cure msg in real games, rewrite this code for correct msg later
 + 1D7433 -> 10539C0 (repoint): BattleScript_EffectCounter_New (see movescripts.txt)
 		  Implements: [move2A7]
@@ -2883,8 +2883,8 @@ stray text:
 		  Implements: Fairy Wind animation
 +13002F8: Move_??? (see animscripts.txt)
 		  Implements: [move269] animation
-=1300428: Move_??? (see animscripts.txt)
-		  Implements: 
+-1300428: Move_??? (see animscripts.txt)
+		  Implements: [move274] animation
 +1300490: Move_Power_Up_Punch (see animscripts.txt)
 		  Implements: Power-Up Punch animation
 +13004E8: Move_??? (see animscripts.txt)
@@ -2901,12 +2901,20 @@ stray text:
 		  Implements: Play Nice animation
 +13008D8: Move_Nuzzle (see animscripts.txt)
 		  Implements: Nuzzle animation
+-1300928: Move_??? (see animscripts.txt)
+		  Implements: [move283] animation
+-1300950: Move_Cotton_Guard (see animscripts.txt)
+		  Implements: Cotton Guard animation
 +1300A10: Move_??? (see animscripts.txt)
 		  Implements: [move224] animation
+-1300B08: Move_Draining_Kiss (see animscripts.txt)
+		  Implements: Draining Kiss animation
 +1300B80: Move_Trick_Room (see animscripts.txt)
 		  Implements: Trick Room animation
 +1300B98: Move_Soak (see animscripts.txt)
 		  Implements: Soak animation
+-1300BD8: Move_??? (see animscripts.txt)
+		  Implements: [move27E] animation
 +1300C40: Move_??? (see animscripts.txt)
 		  Implements: [move240] animation
 +1300C90: Move_??? (see animscripts.txt)
@@ -2921,6 +2929,8 @@ stray text:
 		  Implements: [move221] animation
 +1301228: Move_??? (see animscripts.txt)
 		  Implements: [move241] animation
+-1301330: Move_??? (see animscripts.txt)
+		  Implements: [move282] animation
 +13013A0: Move_Bestow (see animscripts.txt)
 		  Implements: Bestow animation
 +13013D8: Move_??? (see animscripts.txt)
@@ -2935,6 +2945,8 @@ stray text:
 		  Implements: [move265] animation
 +1301740: Move_??? (see animscripts.txt)
 		  Implements: [move230] animation
+-13017A8: Move_??? (see animscripts.txt)
+		  Implements: [move285] animation
 +1301830: Move_??? (see animscripts.txt)
 		  Implements: [move238] animation
 +1301880: Move_Venom_Drench (see animscripts.txt)
@@ -2953,6 +2965,8 @@ stray text:
 		  Implements: U-Turn animation
 +1301DC0: Move_Volt_Switch (see animscripts.txt)
 		  Implements: Volt Switch animation
+-1301E78: Move_??? (see animscripts.txt)
+		  Implements: [move277] animation
 +1301F00: Move_Power_Split (see animscripts.txt)
 		  Implements: Power Split animation
 +1301F40: Move_Guard_Split (see animscripts.txt)
@@ -2971,18 +2985,28 @@ stray text:
 		  Implements: Confide animation
 +1302590: Move_??? (see animscripts.txt)
 		  Implements: [move266] animation
+-1302620: Move_??? (see animscripts.txt)
+		  Implements: [move287] animation
 +1302828: Move_??? (see animscripts.txt)
 		  Implements: [move23C] animation
 +1302910: Move_Hex (see animscripts.txt)
 		  Implements: Hex animation
 +1302978: Move_??? (see animscripts.txt)
 		  Implements: [move244] animation
+-1302AC8: Move_??? (see animscripts.txt)
+		  Implements: [move278] animation
 +1302C10: Move_Circle_Throw (see animscripts.txt)
 		  Implements: Circle Throw animation
 +1302C80: Move_??? (see animscripts.txt)
 		  Implements: [move263] animation
+-1302DA8: Move_??? (see animscripts.txt)
+		  Implements: [move27A] animation
 +1302E58: Move_??? (see animscripts.txt)
 		  Implements: [move222] animation
+-1302F00: Move_??? (see animscripts.txt)
+		  Implements: [move27B] animation
+=1302F60: Move_??? (see animscripts.txt)
+		  Implements: 
 +1303030: Move_Wake_Up_Slap (see animscripts.txt)
 		  Implements: Wake-Up Slap animation
 +1303098: Move_Chatter (see animscripts.txt)
@@ -2999,6 +3023,8 @@ stray text:
 		  Implements: [move24F] animation
 +13037E0: Move_Power_Whip (see animscripts.txt)
 		  Implements: Power Whip animation
+-1303888: Move_??? (see animscripts.txt)
+		  Implements: [move284] animation
 +13038E8: Move_Tailwind (see animscripts.txt)
 		  Implements: Tailwind animation
 +13039D0: Move_Frost_Breath (see animscripts.txt)
@@ -3009,12 +3035,20 @@ stray text:
 		  Implements: Eerie Impulse animation
 +1303E58: Move_??? (see animscripts.txt)
 		  Implements: [move205] animation
+-1303FD8: Move_??? (see animscripts.txt)
+		  Implements: [move279] animation
+-1304040: Move_??? (see animscripts.txt)
+		  Implements: [move280] animation
 +13040D8: Move_Baby_Doll_Eyes (see animscripts.txt)
 		  Implements: Baby-Doll Eyes animation
+-1304110: Move_??? (see animscripts.txt)
+		  Implements: [move27C] animation
 +13041C8: Move_Possess (see animscripts.txt)
 		  Implements: Possess animation
 +1304238: Move_??? (see animscripts.txt)
 		  Implements: [move235] animation
+-1304358: Move_??? (see animscripts.txt)
+		  Implements: [move281] animation
 +1304450: Move_Sucker_Punch (see animscripts.txt)
 		  Implements: Sucker Punch animation
 +13044C0: Move_??? (see animscripts.txt)
@@ -3047,6 +3081,8 @@ stray text:
 		  Implements: [move233] animation
 +1305570: Move_Boomburst (see animscripts.txt)
 		  Implements: Boomburst animation
+-13055E0: Move_??? (see animscripts.txt)
+		  Implements: [move286] animation
 +13057C0: Move_Clear_Smog (see animscripts.txt)
 		  Implements: Clear Smog animation
 !1305828: Move_??? (see animscripts.txt)
