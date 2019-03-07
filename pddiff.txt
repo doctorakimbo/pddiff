@@ -160,7 +160,7 @@ item IDs:
 + 0x1AE = Honey
 
 move IDs:
-(Mirror Move, (unimplemented Fiery Dance), Assist, Switcheroo, (unimplemented Guardian Leaf), Nova Inferno, Chatter, Feint, (unimplemented Strength Sap), and the move just after the end of defined moves can't be called by Metronome; Chatter can't be copied by Mimic)
+(Mirror Move, (unimplemented Fiery Dance), Assist, Switcheroo, (unimplemented Guardian Leaf), Nova Inferno, Chatter, Feint, Rage Powder, (unimplemented Strength Sap), and the move just after the end of defined moves can't be called by Metronome; Chatter can't be copied by Mimic)
 (Removed: Clamp, Barrage, Conversion, Triple Kick, Spider Web, Conversion 2, Aeroblast, Sacred Fire, Arm Thrust, Tail Glow, Luster Purge, Mist Ball, Needle Arm, Doom Desire, Psycho Boost)
 = 0x80 = (attacking move), (has Mach Volt animation)
 + 0x8C = Entrainment
@@ -438,18 +438,18 @@ move IDs:
 = 0x265 = (attacking move that does double damage if it cures infatuation), (animation is a slap, then everything turns gray while the Perish Song sound plays)
 = 0x266 = (attacking move that does double damage if it cures burn), (animation creates something then does the ice effect)
 = 0x267 = (attacking move that does double damage if it cures freeze), (animation creates ice around the foe, then shatters it with a punch)
-= 0x268 = (non-attacking move), (has ice-related animation)
-= 0x269 = (attacking move with chance to burn), (has fire-related animation on Psychic's background)
-= 0x26A = (attacking move), (animation involves the Swords Dance sound then a tackle)
-- 0x26B = Heal Pulse
-= 0x26C = (non-attacking move), (can't be called by metronome), (animation is Sleep Powder with different graphics for the powder)
-= 0x26D = (non-attacking move), (can't be called by metronome), (animation involves bubble sounds)
+= 0x268 = (non-attacking move), (animation is just ice effect, might be broken)
+= 0x269 = (attacking move with chance to burn), (animation is a swirl of fire on Psychic's background)
+= 0x26A = (attacking move), (animation is Swords Dance with different graphics then a tackle)
++ 0x26B = Heal Pulse
++ 0x26C = Rage Powder
++ 0x26D = Bestow
 + 0x26E = Stored Power
-= 0x26F = (attacking move), (animation is Vital Throw while something spins superimposed on the foe)
-= 0x270 = (attacking move), (has Fly-related animation)
-= 0x271 = (attacking move), (has Bounce-related animation)
++ 0x26F = Circle Throw
++ 0x270 = U-Turn
++ 0x271 = Volt Switch
 = 0x272 = (attacking move with Brine effect, but doubles when the user has less than half HP, not the target), (has Flame Wheel animation with a new background)
-= 0x273 = (non-attacking move), (animation has Seismic Toss's background)
+= 0x273 = (non-attacking move), (animation has Seismic Toss's background, can't figure out anything else since it crashes)
 = 0x274 = (non-attacking move)
 = 0x275 = (non-attacking move, -1 sp. def)
 = 0x276 = (non-attacking move, +1 sp. atk)
@@ -649,7 +649,7 @@ battle strings (ADD 9 TO ALL):
 ! 0xEB = "[PKMN]'s [ABILITY] made it hail! (placeholder)" <DON'T ADD 9>
 = 0x180 = "[PKMN]'s [ABILITY] nullified the effects of weather!" <ADD THIS AFTER IMPORTING ABILITYBATTLEEFFECTS>
 = 0x181 = "[PKMN]'s [ITEM] let it move first!"
-! 0x183 = "The [ITEM] weakened [MOVE]'s power!"
++ 0x183 = "The [ITEM] weakened [MOVE]'s power!"
 ! 0x184 = "[PKMN] is not affected by [MOVE] thanks to its [ITEM]!"
 ! 0x185 = "[PKMN] breaks the mold!"
 ! 0x186 = "[PKMN] is exerting its pressure!"
@@ -951,12 +951,13 @@ stray text:
 = 01E59C: atk05_damagecalc (see 20disasm)
 		  Implements: Sniper, 2x -> 1.5x crit damage; removes gBattleScripting.dmgMultiplier, Charge boost, Helping Hand boost (moved to CalculateBaseDamage)
 		  Relies on: above being moved to CalculateBaseDamage
-= 01E848: atk06_typecalc (see 21disasm) (ALSO 25DEEE: 00 00 -> 1D 09)
++ 01E848: atk06_typecalc (see 21disasm) (ALSO 25DEEE: 00 00 -> 1D 09)
 		  Implements: Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Levitate, Wonder Guard, Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Galvanize (type change), Expert Belt, Gems, ice immunity to sheer cold
 		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_UseGem (e1FD42, j1F552), gChosenActionByBattler changed to something else
 		  Requires in future: HasItemWithTypeEffect, AteAbilityConversionTable (j168CB4)
 		  Note: check wonder guard vs canceled se (elec on water/ground, fire on rock/grass)
-= 01EDF4: TypeCalc (see 22disasm)
+		  GLITCH!: Mold Breaker on Levitate says that a miss is due to Levitate instead of just a miss
++ 01EDF4: TypeCalc (see 22disasm)
 		  Implements: AI checks for: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Storm Drain (immunity), Unnerve (type-resist berries), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Bulletproof, Galvanize (type change), Dazzling, Queenly Majesty, Expert Belt, type-resist berries, grass-type powder immunity
 		  Requires in future: HasItemWithTypeEffect, RunTypeEffectivenessBasedAbilities (j2076B0), IsMoveBlockedByAbility (251DA0), AteAbilityConversionTable (j168CB4, e178CB4)
 		  Glitch?: Solid Rock might be 3/4 to ALL damage, doesn't really matter but AI might get confused
@@ -964,12 +965,13 @@ stray text:
 		  Implements: AI checks for: Lightning Rod (immunity), Motor Drive (immunity), Dry Skin (immunity), Storm Drain (immunity), Overcoat (vs powder), Sap Sipper (immunity), Aroma Veil, Bulletproof, Dazzling, Queenly Majesty, grass-type powder immunity
 		  Requires in future: IsMoveBlockedByAbility (251DA0)
 		  Notes: Of the three, only atk06_typecalc contains the Mold Breaker functionality (besides vs Solid Rock)/Sheer Cold immunity/Gems, only TypeCalc contains the Hidden Power calc/non-Levitate ability immunities/type-resist berries, and AI_TypeCalc doesn't have anything but the immunity abilities (no Mold Breaker even); not sure what this implies
-= 01F104: atk07_adjustnormaldamage (+HasItemWithTypeEffect, GetWeatherTurns) (see 24disasm)
++ 01F104: atk07_adjustnormaldamage (+HasItemWithTypeEffect, GetWeatherTurns) (see 24disasm)
 		  Implements: modern Sturdy, Klutz (Focus Band, the item effects here), Mold Breaker+ (vs Sturdy), Unnerve (type-resist berries), Infiltrator (foe can endure when hit through Substitute), Focus Sash, type-resist berries, foe can endure when hit by sound moves through Substitute
-		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_ConsumeDamageReductionBerry (e1FD33, j1F543), weather refactor (for GetWeatherTurns)
+		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_ConsumeDamageReductionBerry (e1FD34, j1F544), weather refactor (for GetWeatherTurns)
 		  Requires in future: ClearFocusBand (j168C88), SetFocusBand (j168C9C), AteAbilityConversionTable (j168CB4)
 		  Glitch: Pointer to AteAbilityConversionTable (j168CB4) instead points to j168CA4
-= 01F2B4 -> 01F394 (repoint): atk08_adjustnormaldamage2 (see 25disasm)
+		  Note: Check ates vs se berries after ates work
++ 01F2B4 -> 01F394 (repoint): atk08_adjustnormaldamage2 (see 25disasm)
 		  Implements: modern Sturdy, Klutz (enduring (Focus) items), Mold Breaker+ (vs Sturdy), Infiltrator (foe can endure when hit through Substitute), Focus Sash, foe can endure when hit by sound moves through Substitute
 		  Relies on: atk07_adjustnormaldamage
 		  Note: Actually just calls atk07_adjustnormaldamage with gCurrentMove set to 0
@@ -980,9 +982,11 @@ stray text:
 + 01F684 -> 01F6A0 (repoint): atk0C_datahpupdate (see 27disasm)
 		  Implements: Infiltrator (vs Substitute), sound moves hitting through Substitute, (0203B950?)
 		  Glitch?: special moves might not be set properly (moveType >= 8 when moveType is now a P/S signifier)
-! 01FBA0: atk0F_resultmessage (+ConsumeItem, BattleScript_ConsumeDamageReductionBerry, script_1F552_J) (see 28disasm)
++ 01FBA0: atk0F_resultmessage (+ConsumeItem, BattleScript_ConsumeDamageReductionBerry, BattleScript_UseGem) (see 28disasm)
 		  Implements: Focus Sash (consumption on use)
 		  GLITCH!: removes the hanging-on animation and breaks the message
+		  Note: second use of Focus Sash gives broken message
+		  Note: Had to implement it anyway since so much depends on ConsumeItem, but come back to this
 + 01FF20: Parts of SetMoveEffect (see 29disasm)
 		  Implements: Leaf Guard (vs secondary effects), Mold Breaker (vs Shield Dust), Infiltrator (secondary effects working through Substitute), Sweet Veil (vs secondary effects), Flower Veil (vs secondary-effect status), secondary effects of sound moves working through Substitute
 		  Relies on: changes at 0206A2, weather refactor
@@ -1074,7 +1078,7 @@ stray text:
 + 027220: atk7A_jumpifnexttargetvalid (see 42disasm)
 		  Implements: Telepathy
 		  Relies on: GetAbilityUserOnSameSide
-= 0274A8: atk7D_setrain (see 43disasm)
++ 0274A8: atk7D_setrain (see 43disasm)
 		  Implements: Damp Rock (manual rain), Klutz (Damp Rock manual rain)
 		  Relies on: GetWeatherTurns, weather refactor
 + 0274FC: atk7E_setreflect (see 44disasm)
@@ -1109,7 +1113,7 @@ stray text:
 		  Implements: Klutz (enduring (Focus) items vs OHKO moves), Mold Breaker+ (vs Sturdy for OHKO moves), Focus Sash (OHKO moves), Sheer Cold lower accuracy from non-Ice-types
 		  Requires in future: ClearFocusBand (j168C88, e178C88), SetFocusBand (j168C9C, e178C9C)
 		  Note: Subtracting 0x10 instead of 10 means Sheer Cold is 14% accuracy when used by non-Ice-types, should be 20%, fix later
-= 028C98: atk95_setsandstorm (see 55disasm)
++ 028C98: atk95_setsandstorm (see 55disasm)
 		  Implements: Smooth Rock (manual sand), Klutz (Smooth Rock manual sand)
 		  Relies on: GetWeatherTurns, weather refactor
 + 028CF0: atk96_weatherdamage (see 56disasm)
@@ -1133,7 +1137,7 @@ stray text:
 		  Note: this is incorrect behavior, it should just always fail when used consecutively
 		  Note: the code as written would cause a game crash, also required changing 6E 75 1D 08 -> 98 8F 17 08
 + 02A566: 8E 1C -> 04 26 (Spite always removes 4 PP)
-= 02B2D4: atkBB_setsunny (see 58disasm)
++ 02B2D4: atkBB_setsunny (see 58disasm)
 		  Implements: Heat Rock (manual sun), Klutz (Heat Rock manual sun)
 		  Relies on: GetWeatherTurns, weather refactor
 + 02B5F2: 60 -> 30 (part of weather refactor - sun)
@@ -1142,7 +1146,7 @@ stray text:
 + 02B774: atkC2_selectfirstvalidtarget (see 60disasm)
 		  Implements: Telepathy
 		  Relies on: GetAbilityUserOnSameSide
-= 02BC74: atkC8_sethail (see 61disasm)
++ 02BC74: atkC8_sethail (see 61disasm)
 		  Implements: Icy Rock (manual hail), Klutz (Icy Rock manual hail)
 		  Relies on: GetWeatherTurns, weather refactor
 + 02BFC4: Part of atkD0_settaunt (see 62disasm)
@@ -1228,11 +1232,10 @@ stray text:
 = 03EAFE, 03EB2E: 40 -> 80
   03EB52: 40 00 40 18 01 88 0D 48 08 40 -> 80 00 40 18 40 88 00 00 00 00
 		  Implements: Part of gLevelUpLearnsets refactor
-= 03ECEC: CalculateBaseDamage (see 78disasm)
-		  Implements: modern Plus/Minus, Rivalry, Heatproof (fire moves), Dry Skin (fire moves), Iron Fist, Solar Power (boost), Normalize (boost), Technician, Klutz (damage-boosting items), Mold Breaker (damage-reduction abilities, Unaware), Unaware (atk/def/spa/spd), Slow Start (Attack reduction), Reckless, Flower Gift (stat boosts), Sheer Force (boost), Defeatist, Friend Guard, Multiscale, Toxic Boost, Flare Boost, Analytic, Infiltrator (dual screens), Sand Force, Aura Break, Tough Claws, Mega Launcher, Grass Pelt, Aerilate (boost), Dark Aura, Fur Coat, Fairy Aura, Pixilate (boost), Refrigerate (boost), Strong Jaw, Galvanize (boost), "Polkadot Bow", Gems (gen 5 boost), Choice Specs (boost), Muscle Band, Wise Glasses, Assault Vest (boost), Eviolite, Life Orb (boost), Wonder Room (effect), sandstorm Rock SpDef boost, modern spread reduction
++ 03ECEC: CalculateBaseDamage (see 78disasm)
+		  Implements: modern Plus/Minus, Rivalry, Heatproof (fire moves), Dry Skin (fire moves), Iron Fist, Solar Power (boost), Normalize (boost), Technician, Klutz (damage-boosting items), Mold Breaker (damage-reduction abilities, Unaware), Unaware (atk/def/spa/spd), Slow Start (Attack reduction), Reckless, Flower Gift (stat boosts), Sheer Force (boost), Defeatist, Friend Guard, Multiscale, Toxic Boost, Flare Boost, Analytic, Infiltrator (dual screens), Sand Force, Aura Break, Tough Claws, Mega Launcher, Grass Pelt, Aerilate (boost), Dark Aura, Fur Coat, Fairy Aura, Pixilate (boost), Refrigerate (boost), Strong Jaw, Galvanize (boost), "Polkadot Bow", Gems (gen 5 boost), Choice Specs (boost), Muscle Band, Wise Glasses, Assault Vest (boost), Eviolite, Life Orb (boost), Wonder Room (effect), P/S split, sandstorm Rock SpDef boost, modern spread reduction
 		  Relies on: weather refactor, GetAbilityUserOnSameSide, HasItemWithTypeEffect
 		  Requires in future: AteAbilityConversionTable (e178CB4, j168CB4)
-		  Note: is that how spread reduction works? (only reduced if max targets exist)
 ! 03FD64: Part of GetBoxMonData (see 79disasm)
 		  Implements: nothing???
 		  Requires in future: fn_206776, fn_206784
@@ -2316,6 +2319,7 @@ stray text:
 		  Implements: switches around weather cases for Weather Ball animation (sun -> "ice", sand -> "fire", hail -> "rock")
 		  Relies on: probably means that the weather constant is changed from (none, sun, rain, sand, hail) to (none, hail, rain, sun, sand) (why???)
 		  Note: check again after weather refactor is done
+		  GLITCH!: the cases are wrong
 + 1D53D9 -> 14294F0 (repoint): Move_Stone_Edge (see animscripts.txt)
 		  Implements: Grand Boulder/Stone Edge animation
 + 1D5C5F -> 1303564 (repoint): General_TurnTrap (see animscripts.txt)
@@ -2366,7 +2370,7 @@ stray text:
 		  Implements: Draining Kiss
 		  GLITCH!: crashes when not Draining Kiss
 + 1D6A55 (first one), 1D6A60, 1D6A6B, 1D6DB2, 1D6E69, 1D6E7D, 1D6900 (the one after 1D6FC8), 1D725F, 1D726A, 1D7275, 1D7280, 1D728B, 1D6900 (the one after 1D7296), 1D72C9, 1D6900 (the one after 1D750D), 1D752C, 1D7977, 1D7A47, 1D7E16, 1D817E, [effectD9], [effectDA] -> 1054000 (repoint): BattleScript_ParameterizedEffectHit (see movescripts.txt)
-r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeCalcHit (see movescripts.txt)
++ 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeCalcHit (see movescripts.txt)
 + 1D6B77, 1D6B82, 1D6900, 1D6B8D, 1D6900, 1D6900, 1D6B98 -> 1054010 (repoint): BattleScript_ParameterizedStatUp (see movescripts.txt)
 + 1D6BEC, 1D6BF7, 1D6900 (the one before 1D6C02), 1D6C02, 1D6C0D -> 1054020 (repoint): BattleScript_ParameterizedStatDown (see movescripts.txt)
 + [none yet] -> 1054030 (repoint): BattleScript_ParameterizedStatDownPerfectAccuracy (see movescripts.txt)
@@ -2435,11 +2439,11 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 + 1D6D51, 1D766A: 40 -> 00 (Endure displays the pokemon getting hit and enduring all hits of multihit moves, not the old behavior of it hitting once then getting endured)
 + 1D6D9D -> 10502D0 (repoint): BattleScript_EffectFreeze (see movescripts.txt)
 		  Implements: removes Conversion entirely, adds new effect for moves that freeze without doing damage (aka Hypnosis for freeze)
-= 1D6F99 -> 1053760 (repoint): BattleScript_EffectSetDamageOrMove29F (see movescripts.txt)
-		  Implements: [move29F] does regular damage with two exceptions: it bypasses Levitate, and it uses an altered type chart where Water is weak to Ice and Poison and Flying is neutral to Ground; condenses Sonic Boom into Dragon Rage's effect slot to free up space
++ 1D6F99 -> 1053760 (repoint): BattleScript_EffectSetDamageOrMove29F (see movescripts.txt)
+		  Implements: [move29F] is Ground-type, but bypasses Levitate and is neutral to Flying; condenses Sonic Boom into Dragon Rage's effect slot to free up space
 		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_UseGem (e1FD42, j1F552), HasItemWithTypeEffect, AteAbilityConversionTable (j168CB4), gChosenActionByBattler changed to something else
 		  Relies on: AlternateTypeCalc (1833D0)
-		  Glitch: AteAbilityConversionTable ptr is wrong, currently points to j168CA4; fix when importing (not like it matters)
+		  Glitch: AteAbilityConversionTable ptr is wrong, currently points to j168CA4; fixed when importing (not like it matters)
 		  Glitch?: the Levitate bypassing is done by temporarily swapping abilities, which means if used on a target with Levitate, [move29F] doesn't receive the effects of the user's Adaptability, Normalize, Tinted Lens, or Klutz (as in, Expert Belt actually works despite Klutz); the target receives the effects of the user's Solid Rock, Filter, and Wonder Guard; and if both mons have Levitate, the target is still immune to the move
 + 1D7011: BattleScript_EffectRecoilIfMiss (see movescripts.txt)
 		  Implements: [High] Jump Kick crashes through Ghost-types, always does half HP recoil
@@ -2877,7 +2881,7 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: Moonblast animation
 +1300110: Move_Fairy_Wind (see animscripts.txt)
 		  Implements: Fairy Wind animation
--13002F8: Move_??? (see animscripts.txt)
++13002F8: Move_??? (see animscripts.txt)
 		  Implements: [move269] animation
 =1300428: Move_??? (see animscripts.txt)
 		  Implements: 
@@ -2917,8 +2921,8 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: [move221] animation
 +1301228: Move_??? (see animscripts.txt)
 		  Implements: [move241] animation
--13013A0: Move_??? (see animscripts.txt)
-		  Implements: [move26D] animation
++13013A0: Move_Bestow (see animscripts.txt)
+		  Implements: Bestow animation
 +13013D8: Move_??? (see animscripts.txt)
 		  Implements: [move23B] animation
 +1301448: Move_??? (see animscripts.txt)
@@ -2945,10 +2949,10 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: [move22C] animation
 +1301C88: Move_??? (see animscripts.txt)
 		  Implements: [move251] animation
--1301D38: Move_??? (see animscripts.txt)
-		  Implements: [move270] animation
--1301DC0: Move_??? (see animscripts.txt)
-		  Implements: [move271] animation
++1301D38: Move_U_Turn (see animscripts.txt)
+		  Implements: U-Turn animation
++1301DC0: Move_Volt_Switch (see animscripts.txt)
+		  Implements: Volt Switch animation
 +1301F00: Move_Power_Split (see animscripts.txt)
 		  Implements: Power Split animation
 +1301F40: Move_Guard_Split (see animscripts.txt)
@@ -2957,11 +2961,11 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: [move24B] animation
 +1302028: Move_??? (see animscripts.txt)
 		  Implements: [move220] animation
--1302150: Move_??? (see animscripts.txt)
++1302150: Move_??? (see animscripts.txt)
 		  Implements: [move267] animation
 +1302280: Move_Freeze_Dry (see animscripts.txt)
 		  Implements: Freeze-Dry animation
--13023A0: Move_Stored_Power (see animscripts.txt)
++13023A0: Move_Stored_Power (see animscripts.txt)
 		  Implements: Stored Power animation
 +1302550: Move_Confide (see animscripts.txt)
 		  Implements: Confide animation
@@ -2973,8 +2977,8 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: Hex animation
 +1302978: Move_??? (see animscripts.txt)
 		  Implements: [move244] animation
--1302C10: Move_??? (see animscripts.txt)
-		  Implements: [move26F] animation
++1302C10: Move_Circle_Throw (see animscripts.txt)
+		  Implements: Circle Throw animation
 +1302C80: Move_??? (see animscripts.txt)
 		  Implements: [move263] animation
 +1302E58: Move_??? (see animscripts.txt)
@@ -2985,7 +2989,7 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: Chatter animation
 +1303118: Move_Worry_Seed (see animscripts.txt)
 		  Implements: Worry Seed animation
--13031B8: Move_??? (see animscripts.txt)
++13031B8: Move_??? (see animscripts.txt)
 		  Implements: [move272] animation
 +1303360: Move_??? (see animscripts.txt)
 		  Implements: [move21C] animation
@@ -3027,12 +3031,12 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: [move21D] animation
 +1304BD8: Move_??? (see animscripts.txt)
 		  Implements: [move225] animation
--1304D68: Move_??? (see animscripts.txt)
++1304D68: Move_??? (see animscripts.txt)
 		  Implements: [move26A] animation
 +1304DC0: Move_??? (see animscripts.txt)
 		  Implements: [move22F] animation
--1305060: Move_??? (see animscripts.txt)
-		  Implements: [move26C] animation
++1305060: Move_Rage_Powder (see animscripts.txt)
+		  Implements: Rage Powder animation
 +1305390: Move_??? (see animscripts.txt)
 		  Implements: [move226] animation
 +13053F0: Move_Disarming_Voice (see animscripts.txt)
@@ -3045,8 +3049,9 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: Boomburst animation
 +13057C0: Move_Clear_Smog (see animscripts.txt)
 		  Implements: Clear Smog animation
--1305828: Move_??? (see animscripts.txt)
+!1305828: Move_??? (see animscripts.txt)
 		  Implements: [move273] animation
+		  GLITCH!: game crash
 +1305950: Move_Power_Swap (see animscripts.txt)
 		  Implements: Power Swap animation
 		  Relies on: sub_80B3834 changes
@@ -3113,10 +3118,11 @@ r= 1D7119, 1D7124 -> 1053720 (repoint): BattleScript_ParameterizedEffectAltTypeC
 		  Implements: Icicle Crash animation
 +1308DC0: Move_Psycho_Cut (see animscripts.txt)
 		  Implements: Psycho Cut animation
--1308E60: Move_Heal_Pulse (see animscripts.txt)
++1308E60: Move_Heal_Pulse (see animscripts.txt)
 		  Implements: Heal Pulse animation
--1308F30: Move_??? (see animscripts.txt)
++1308F30: Move_??? (see animscripts.txt)
 		  Implements: [move268] animation
+		  Note: something missing here? check later
 +1308F80: Move_Raze_Earth (see animscripts.txt)
 		  Implements: Raze Earth animation
 +13091A0: Move_Rock_Wrecker (see animscripts.txt)
