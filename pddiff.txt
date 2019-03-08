@@ -366,7 +366,7 @@ move IDs:
 = 0x21D = (attacking move with chance to lower evasion), (animation shoots objects with Hail sounds)
 = 0x21E = (attacking move with chance to flinch), (animation is Take Down on Focus Blast's background with an additional object involved somehow)
 = 0x21F = (attacking move with chance to raise speed), (animation is Glide on Mach Punch's background)
-= 0x220 = (attacking move with chance to lower defense), (animation is similar to Psychic but produces a lot of objects on the foe and has Psycho Cut's background)
+= 0x220 = (attacking move with chance to lower defense), (animation is similar to Psychic but produces a lot of objects on the foe and has Psyshock's background)
 = 0x221 = (attacking move with chance to flinch), (animation involves user disappearing, then foe being repeatedly jabbed)
 = 0x222 = (attacking move with chance to confuse), (animation involves foe being surrounded by some objects, then the curse effect)
 = 0x223 = (attacking move with chance to lower sp. def), (animation has something spin over top of the foe, then the foe turns gray)
@@ -387,7 +387,7 @@ move IDs:
 = 0x232 = (attacking move with chance to burn or flinch), (animation is Bounce with different graphics and fire effects)
 = 0x233 = (attacking move), (soundwave move that uses the user's cry, on Aura Sphere's background)
 = 0x234 = (attacking move), (animation is a Steel-type Take Down with a new background)
-= 0x235 = (attacking move), (animation is Barrier then Luster Purge, on Psycho Cut's background)
+= 0x235 = (attacking move), (animation is Barrier then Luster Purge, on Psyshock's background)
 = 0x236 = (attacking move with chance to lower speed or raise user's speed), (animation involves leaves (assumed) spreading outward from the user and then the target, with [move231]'s background)
 = 0x237 = (attacking move with chance to lower defense), (animation throws something)
 = 0x238 = (attacking move with chance to lower defense), (animation throws something)
@@ -404,7 +404,7 @@ move IDs:
 = 0x243 = (attacking move), (animation throws a single glob of water)
 = 0x244 = (attacking move with chance to sleep), (animation is Aromatherapy edited to become an attack)
 = 0x245 = (attacking move with chance to raise all stats), (animation is Psychic on Cosmic Power's background)
-= 0x246 = (attacking move with tri attack effect), (animation is Psychic on the user, then superimpose something on the target, then Psychic on the target, on Psycho Cut's background)
+= 0x246 = (attacking move with tri attack effect), (animation is Psychic on the user, then superimpose something on the target, then Psychic on the target, on Psyshock's background)
 = 0x247 = (attacking move with chance to lower defense), (animation is a series of seven punches)
 = 0x248 = (attacking move), (animation is a Steel-type Megahorn with a new background)
 = 0x249 = (attacking move with chance to raise sp. atk), (animation charges up, then shoots a lightning bolt straight up that then comes down on the foe)
@@ -471,29 +471,29 @@ move IDs:
 + 0x286 = Synchronoise
 + 0x287 = Reflect Type
 + 0x288 = Draining Kiss
-= 0x289 = (attacking move with Overheat effect, but harshly lowers user's attack instead of sp. atk)
-= 0x28A = (attacking move that harshly lowers user's sp. atk afterwards)
-= 0x28B = (attacking move)
+= 0x289 = (attacking move with Overheat effect, but harshly lowers user's attack instead of sp. atk), (animation involves poison and explosion sounds)
+= 0x28A = (attacking move that harshly lowers user's sp. atk afterwards), (animation shrinks the foe)
+= 0x28B = (attacking move), (animation is Bind with Charm sounds that tints the foe (pink?))
 + 0x28C = Infestation
-= 0x28D = (attacking move)
+= 0x28D = (attacking move), (animation is some sort of tackle)
 + 0x28E = Magma Storm
-= 0x28F = (non-attacking move)
-= 0x290 = (non-attacking move)
-= 0x291 = (non-attacking move with Power Trick effect, but swaps the user's Sp. Atk and Sp. Def instead)
-= 0x292 = (attacking move)
-= 0x293 = (attacking move)
-= 0x294 = (attacking move), (can't be called by metronome)
-= 0x295 = (attacking move)
-= 0x296 = (attacking move with chance to lower attack)
-= 0x297 = (attacking move with chance to harshly lower accuracy)
-= 0x298 = (attacking move with chance to paralyze)
-= 0x299 = (attacking move)
-= 0x29A = (attacking move with chance to lower accuracy or flinch)
-= 0x29B = (attacking move)
-= 0x29C = (attacking move with chance to flinch)
-= 0x29D = (attacking move with chance to paralyze)
-= 0x29E = (attacking move with chance to severely lower accuracy)
-= 0x29F = (attacking move), (Ground-type but neutral on Flying and bypasses Levitate)
+= 0x28F = (non-attacking move), (animation does something to the user then the same thing to the target)
+- 0x290 = Power Trick
+= 0x291 = (non-attacking move with Power Trick effect, but swaps the user's Sp. Atk and Sp. Def instead), (animation is Power Trick with different graphics)
+= 0x292 = (attacking move), (has Fly-related animation)
+= 0x293 = (attacking move), (has Psyshock animation without the psychic background)
+! 0x294 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented)
+= 0x295 = (attacking move), (animation involves a slash, a stab, and a slap, on Shadow Ball's background)
+= 0x296 = (attacking move with chance to lower attack), (animation is Flame Wheel startup, then a tackle)
+= 0x297 = (attacking move with chance to harshly lower accuracy), (animation is Waterfall startup, then Bubble with different graphics, then something electric-related)
+= 0x298 = (attacking move with chance to paralyze), (animation involves Heal Bell's sound on Psyshock's background)
+= 0x299 = (attacking move), (animation is a Steel-type Megahorn with no chargeup and no background)
+= 0x29A = (attacking move with chance to lower accuracy or flinch), (animation is [move127] with different graphics)
+= 0x29B = (attacking move), (animation has Heal Bell sounds and then the foe explodes, on Earthquake's background)
+= 0x29C = (attacking move with chance to flinch), (animation ends in a jab)
+= 0x29D = (attacking move with chance to paralyze), (animation has user send out a floating heart that creates a thunderbolt when it hits the foe, on Draining Kiss's background)
+= 0x29E = (attacking move with chance to severely lower accuracy), (animation creates a lot of stuff, with Petal Dance sound)
+= 0x29F = (attacking move), (Ground-type but neutral on Flying and bypasses Levitate), (animation has user bite foe twice, then charge up, then do a third bite)
 = 0x2A0 = (attacking move)
 = 0x2A1 = (attacking move)
 = 0x2A2 = (attacking move)
@@ -2330,7 +2330,7 @@ stray text:
 + 1D53D9 -> 14294F0 (repoint): Move_Stone_Edge (see animscripts.txt)
 		  Implements: Grand Boulder/Stone Edge animation
 + 1D5C5F -> 1303564 (repoint): General_TurnTrap (see animscripts.txt)
-		  Implements: Infestation and Magma Storm end-of-turn animations
+		  Implements: move animations and end-of-turn animations for Infestation and Magma Storm
 + 1D65A8, 1D65EC, 1D66E0, 1D673C, 1D6744, 1D67A8 <except done on the new table>: 00 -> 26 (certain moves skip pointless Surf check, this doesn't actually do anything)
 + 1D6684 <except done on the new table>: 00 69 1D 08 -> C0 24 05 09 (BattleScript_EffectPowerSplit (see movescripts.txt))
 		  Implements: Power Split
@@ -2936,6 +2936,8 @@ stray text:
 		  Implements: [move221] animation
 +1301228: Move_??? (see animscripts.txt)
 		  Implements: [move241] animation
+-13012E0: Move_??? (see animscripts.txt)
+		  Implements: [move28B] animation
 +1301330: Move_??? (see animscripts.txt)
 		  Implements: [move282] animation
 +13013A0: Move_Bestow (see animscripts.txt)
@@ -3012,8 +3014,8 @@ stray text:
 		  Implements: [move222] animation
 +1302F00: Move_??? (see animscripts.txt)
 		  Implements: [move27B] animation
-=1302F60: Move_??? (see animscripts.txt)
-		  Implements: 
+-1302F60: Move_??? (see animscripts.txt)
+		  Implements: [move289] animation
 +1303030: Move_Wake_Up_Slap (see animscripts.txt)
 		  Implements: Wake-Up Slap animation
 +1303098: Move_Chatter (see animscripts.txt)
@@ -3022,6 +3024,8 @@ stray text:
 		  Implements: Worry Seed animation
 +13031B8: Move_??? (see animscripts.txt)
 		  Implements: [move272] animation
+-13032D8: Move_??? (see animscripts.txt)
+		  Implements: [move295] animation
 +1303360: Move_??? (see animscripts.txt)
 		  Implements: [move21C] animation
 +1303408: Move_??? (see animscripts.txt)
@@ -3034,6 +3038,8 @@ stray text:
 		  Implements: Chip Away animation
 +13038E8: Move_Tailwind (see animscripts.txt)
 		  Implements: Tailwind animation
+-1303928: Move_??? (see animscripts.txt)
+		  Implements: [move28A] animation
 +13039D0: Move_Frost_Breath (see animscripts.txt)
 		  Implements: Frost Breath animation
 +1303D30: Move_??? (see animscripts.txt)
@@ -3104,6 +3110,12 @@ stray text:
 		  Relies on: sub_80B3834 changes
 +13059F0: Move_Petal_Blizzard (see animscripts.txt)
 		  Implements: Petal Blizzard animation
+-1305B70: Move_??? (see animscripts.txt)
+		  Implements: [move299] animation
+-1305C28: Move_Power_Trick (see animscripts.txt)
+		  Implements: Power Trick animation
+-1305C60: Move_??? (see animscripts.txt)
+		  Implements: [move291] animation
 +1305C98: Move_Simple_Beam (see animscripts.txt)
 		  Implements: Simple Beam animation
 +1305D30: Move_??? (see animscripts.txt)
@@ -3120,8 +3132,14 @@ stray text:
 		  Implements: Head Smash animation
 +1306718: Move_Feint (see animscripts.txt)
 		  Implements: Feint animation
+-1306768: Move_??? (see animscripts.txt)
+		  Implements: [move28D] animation
+-13067F0: Move_??? (see animscripts.txt)
+		  Implements: [move296] animation
 +1306BF0: Move_Leaf_Storm (see animscripts.txt)
 		  Implements: Leaf Storm animation
+-1306D08: Move_??? (see animscripts.txt)
+		  Implements: [move297] animation
 +1306F58: Move_Cross_Poison (see animscripts.txt)
 		  Implements: Cross Poison animation
 +1306FE8: Move_Leaf_Tornado (see animscripts.txt)
@@ -3132,6 +3150,8 @@ stray text:
 		  Implements: [move231] animation
 +13071E8: Move_Inferno (see animscripts.txt)
 		  Implements: Inferno animation
+-1307440: Move_??? (see animscripts.txt)
+		  Implements: [move28F] animation
 +1307478: Move_Fire_Fang (see animscripts.txt)
 		  Implements: Fire Fang animation
 +1307510: Move_Thunder_Fang (see animscripts.txt)
@@ -3140,8 +3160,12 @@ stray text:
 		  Implements: Ice Fang animation
 +1307950: Move_Rock_Climb (see animscripts.txt)
 		  Implements: Rock Climb animation
+-1307C10: Move_??? (see animscripts.txt)
+		  Implements: [move29E] animation
 +1307D70: Move_Shell_Smash (see animscripts.txt)
 		  Implements: Shell Smash animation
+-1307EE8: Move_??? (see animscripts.txt)
+		  Implements: [move292] animation
 +1307F70: Move_Aqua_Jet (see animscripts.txt)
 		  Implements: Aqua Jet animation
 +1307FF8: Move_??? (see animscripts.txt)
@@ -3156,10 +3180,16 @@ stray text:
 		  Implements: Focus Blast animation
 +13083D0: Move_Gunk_Shot (see animscripts.txt)
 		  Implements: Gunk Shot animation
+-1308650: Move_??? (see animscripts.txt)
+		  Implements: [move29A] animation
 +13087A8: Move_Shadow_Sneak (see animscripts.txt)
 		  Implements: Shadow Sneak animation
+-13088A0: Move_??? (see animscripts.txt)
+		  Implements: [move298] animation
 +1308970: Move_Icicle_Crash (see animscripts.txt)
 		  Implements: Icicle Crash animation
+-1308CA0: Move_??? (see animscripts.txt)
+		  Implements: [move29F] animation
 +1308DC0: Move_Psycho_Cut (see animscripts.txt)
 		  Implements: Psycho Cut animation
 +1308E60: Move_Heal_Pulse (see animscripts.txt)
@@ -3175,8 +3205,18 @@ stray text:
 		  Implements: [move21E] animation
 +1309350: Move_Aura_Sphere (see animscripts.txt)
 		  Implements: Aura Sphere animation
+-13093D0: Move_??? (see animscripts.txt)
+		  Implements: [move29B] animation
 +1309598: Move_Energy_Ball (see animscripts.txt)
 		  Implements: Energy Ball animation
+-1309690: Move_??? (see animscripts.txt)
+		  Implements: [move293] animation
+=13097C0: Move_??? (see animscripts.txt)
+		  Implements: 
+-1309AF0: Move_??? (see animscripts.txt)
+		  Implements: [move29C] animation
+-1309D98: Move_??? (see animscripts.txt)
+		  Implements: [move29D] animation
 +1309E68: Move_Poison_Leaf (see animscripts.txt)
 		  Implements: Poison Leaf animation
 +1309F90: Move_Bug_Noise (see animscripts.txt)
