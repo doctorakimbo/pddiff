@@ -1,5 +1,3 @@
-draining moves crash!
-
 ignore the following (pe):
 00 30 A2 08
 F0 30 A2 08
@@ -1103,9 +1101,9 @@ stray text:
 		  Requires in future: CheckLeafGuardAndFlowerVeil (e027E3A, j027612)
 		  Note: Leaf Guard doesn't prevent Rest in P/D
 		  Note: Flower Veil msg is wrong
-+ 027AE4: atk87_stockpiletohpheal (see 48disasm)
+= 027AE4: atk87_stockpiletohpheal (see 48disasm)
 		  Implements: Makes room for expanded atk88_negativedamage
-+ 027BC8 -> 027B78 (repoint): atk88_negativedamage (see 49disasm)
+! 027BC8 -> 027B78 (repoint): atk88_negativedamage (see 49disasm)
 		  Implements: Magic Guard (vs Liquid Ooze), Big Root (draining moves), Klutz (Big Root on draining moves)
 		  Note: something about the above two causes a crash, figure out later
 + 027BFC: ChangeStatBuffs (+CheckLeafGuardAndFlowerVeil) (see 50disasm)
