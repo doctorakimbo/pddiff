@@ -306,3 +306,125 @@ fn_18367C(arg0)
 		}
 	}
 }
+
+
+
+
+
+
+
+AnimTask_Move2A0Unknown(taskId)
+{
+	switch(*((taskId * 0x28) + gTasks + 8))
+	{
+	case 0:
+		if(GetBattlerSide(*gBattleAnimAttacker) == 0)
+			r1 = 1
+		else
+			r1 = -1
+		
+		r6 = 0 // ???
+		*((taskId * 0x28) + gTasks + 0xA) = r1
+		
+		if(*gBattleAnimArgs == 0)
+		{
+			*((taskId * 0x28) + gTasks + 0xE) = fn_74480(*gBattleAnimAttacker, 2)
+			*((taskId * 0x28) + gTasks + 0x12) = fn_74480(*gBattleAnimAttacker, 3)
+			*((taskId * 0x28) + gTasks + 0x10) = 0x78 + (*((taskId * 0x28) + gTasks + 0xA) * 0x80)
+		}
+		elseif(*gBattleAnimArgs == 4)
+		{
+			*((taskId * 0x28) + gTasks + 0xE) = 0x78 - (*((taskId * 0x28) + gTasks + 0xA) * 0x80)
+			*((taskId * 0x28) + gTasks + 0x12) = fn_74480(*gBattleAnimTarget, 3)
+			*((taskId * 0x28) + gTasks + 0x10) = fn_74480(*gBattleAnimTarget, 2) - (*((taskId * 0x28) + gTasks + 0xA) * 0x20)
+		}
+		else
+		{
+			if(*gBattleAnimArgs & 1)
+			{
+				*((taskId * 0x28) + gTasks + 0xE) = 0xFFF0
+				*((taskId * 0x28) + gTasks + 0x10) = 0x100
+			}
+			else
+			{
+				*((taskId * 0x28) + gTasks + 0xE) = 0x100
+				*((taskId * 0x28) + gTasks + 0x10) = 0xFFF0
+			}
+			
+			if(*((taskId * 0x28) + gTasks + 0xA) == 1)
+				*((taskId * 0x28) + gTasks + 0x12) = 0x50 - (*gBattleAnimArgs * 0xA)
+			else
+			{
+				*((taskId * 0x28) + gTasks + 0x12) = 0x28 + (*gBattleAnimArgs * 0xA)
+				swap(*((taskId * 0x28) + gTasks + 0xE), *((taskId * 0x28) + gTasks + 0x10))
+			}
+		}
+		
+		if(*((taskId * 0x28) + gTasks + 0xE) < *((taskId * 0x28) + gTasks + 0x10))
+		{
+			*((taskId * 0x28) + gTasks + 0xA) = 1
+			*((taskId * 0x28) + gTasks + 0x14) = 0
+		}
+		else
+		{
+			*((taskId * 0x28) + gTasks + 0xA) = -1
+			*((taskId * 0x28) + gTasks + 0x14) = 3
+		}
+		
+		*((taskId * 0x28) + gTasks + 8)++
+		
+		break;
+	case 1:
+		*((taskId * 0x28) + gTasks + 0xC)++
+		
+		// supposed to be if, but it's wrong?
+		while(*((taskId * 0x28) + gTasks + 0xC) > 0x10000) {}
+		*((taskId * 0x28) + gTasks + 0xC) = 0
+		
+		if(fn_1838B0((taskId * 0x28) + gTasks, taskId) != 0)
+			*((taskId * 0x28) + gTasks + 8)++
+		
+		break;
+	case 2:
+		if(*((taskId * 0x28) + gTasks + 0x16) == 0)
+			DestroyAnimVisualTask(taskId)
+			
+		break;
+	}
+}
+
+
+
+
+
+
+
+fn_1838B0(taskPtr, taskId)
+{
+	r2 = CreateSprite(data_12F1738, *(taskPtr + 0xE), *(taskPtr + 0x12), 0x23)
+	
+	if(r2 != 0x40)
+	{
+		*((r2 * 0x44) + gSprites + 0x3A) = taskId
+		*((r2 * 0x44) + gSprites + 0x3C) = 7
+		*(taskPtr + 0x16)++
+	}
+	
+	*(taskPtr + 0x14) += *(taskPtr + 0xA)
+	
+	if(*(taskPtr + 0x14) > 0x10000)
+		*(taskPtr + 0x14) = 3
+	
+	if(*(taskPtr + 0x14) > 3)
+		*(taskPtr + 0x14) = 0
+	
+	*(taskPtr + 0xE) += (*(taskPtr + 0xA) * 0x10)
+	
+	if(*(taskPtr + 0xA) == 1 && *(taskPtr + 0xE) >= *(taskPtr + 0x10))
+		return 1
+	
+	if(*(taskPtr + 0xA) == -1 && *(taskPtr + 0xE) <= *(taskPtr + 0x10))
+		return 1
+		
+	return 0
+}

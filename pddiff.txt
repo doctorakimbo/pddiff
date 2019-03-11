@@ -494,14 +494,14 @@ move IDs:
 = 0x29D = (attacking move with chance to paralyze), (animation has user send out a floating heart that creates a thunderbolt sound when it hits the foe, on Draining Kiss's background)
 = 0x29E = (attacking move with chance to severely lower accuracy), (animation creates a lot of objects that float up from a white shadow under the foe, with Petal Dance sound)
 = 0x29F = (attacking move), (Ground-type but neutral on Flying and bypasses Levitate), (animation has user bite foe twice, then charge up, then do a third bite)
-= 0x2A0 = (attacking move)
-= 0x2A1 = (attacking move)
-= 0x2A2 = (attacking move)
-= 0x2A3 = (attacking move with Venom Drench effect)
-! 0x2A4 = Strength Sap (not implemented)
-= 0x2A5 = (non-attacking move), (can't be called by metronome)
-= 0x2A6 = (non-attacking move with Attract effect, but also poisons)
-= 0x2A7 = (attacking move with Counter effect, but does half of Counter's damage and prints string 0x218 if failed), (special-cased in focus punch setup to print string 0x217), (can't be called by metronome)
+= 0x2A0 = (attacking move), (animation involves Psybeam sounds and a tackle)
+= 0x2A1 = (attacking move), (animation is similar to Twister, on Thunder's background)
+= 0x2A2 = (attacking move), (animation has something charge up and hit)
+= 0x2A3 = (attacking move with Venom Drench effect), (animation involves Toxic sound and lots of objects)
+! 0x2A4 = Strength Sap (not implemented) !!!has Giga Drain animation!!!
+= 0x2A5 = (non-attacking move), (can't be called by metronome) !!!has Meditate animation!!!
+= 0x2A6 = (non-attacking move with Attract effect, but also poisons), (animation involves Attract sound and poison effect)
+= 0x2A7 = (attacking move with Counter effect, but does half of Counter's damage and prints string 0x218 if failed), (special-cased in focus punch setup to print string 0x217), (can't be called by metronome) !!!has Self-Destruct animation!!!
 
 move effects:
 = 0x1E = freeze
@@ -1016,7 +1016,7 @@ stray text:
 		  Implements: nothing?
 ! 020A20: (see 29disasm)
 		  Implements: Grip Claw, Klutz (Grip Claw), wrapping moves duration 3-6 -> 5-6, battle messages for Infestation and Magma Storm
-		  Note: check if wrap still works (check once below is fixed)
+		  Note: check if wrap still works (check once glitch is fixed)
 		  GLITCH!: Wrap stopped working completely, some other change probably needed
 ! 020AEC: (see 29disasm)
 		  Implements: Modern Struggle
@@ -2648,7 +2648,7 @@ stray text:
 		  * Bugfixes: won't use a speed-lowering move like Mud Shot if the target is immune; no longer inexplicably encourages Toxic when it has a +SpDef move; no longer inexplicably discourages Protect/encourages Snatch when the opponent has specifically Defense Curl; Protect/Snatch correctly factors in all healing moves instead of just vanilla Recover-types; sandstorm and hail are no longer the wrong way around in the Fly script; Facade correctly checks the user for status instead of the target; Brick Break is encouraged vs Light Screen, not just Reflect
 		  * Other improvements: instead of a bizarre mix of moves, Mirror Move tries to prioritize any copiable move; doesn't discourage recovery when the user is faster; encourages OHKO moves after use of Mind Reader; Mean Look (because Spirit Shackle uses the same effect byte), Dragon Dance (why?), and Knock Off are no longer encouraged to be Encored; Teleport and +Sp. Def are encouraged to be Encored; instead of encouraging stealing a short list of items, Thief is encouraged for all items that don't have a downside; Chlorophyll users prioritize Sunny Day; Volt Absorb, Water Absorb, Soundproof, Thick Fat, Flame Body, and Shell Armor are considered "good" abilities; "bad" abilities (to avoid/get rid of) are also listed
 		  * New mechanics that old scripts are updated for: p/s split (also includes removing the discouraging of, for example, -Atk moves or Reflect on a water-type since it can have physical STAB now), new Lightning Rod, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, [ability8B], Choice items, Assault Vest, Lagging Tail
-		  * New moves: 0x22D, Wring Out (factored into Eruption script); Venoshock, Hex, Wake-Up Slap, 0x265, 0x266, 0x267, 0x283 (factored into double-damage-on-status script); 0x258, 0x272, 0x27A (factored into Brine script); Hone Claws (factored into (does double damage if used immediately after Hone Claws) script)
+		  * New moves: 0x22D, Wring Out (factored into Eruption script); Venoshock, Hex, Wake-Up Slap, 0x265, 0x266, 0x267, 0x283 (factored into double-damage-on-status script); Brine, 0x272, 0x27A (factored into Brine script); Hone Claws (factored into (does double damage if used immediately after Hone Claws) script)
 		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, V-Create, Hurricane, Brine, (removes Reflect/Light Screen from the user's side, but does double damage when it does), (does double damage if used immediately after Hone Claws), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws, Payback, Psycho Shift, Acrobatics, Metal Burst
 		  Relies on: new AI script commands, weather refactor
 		  Glitch?: due to misaligned goto, Substitute will fall through into the Hyper Beam logic under certain circumstances
@@ -2667,6 +2667,18 @@ stray text:
 + 1E3B27: D0 -> E0 (no idea what this does (isagbprn))
 ! 1EA14C+: [text, go through here thoroughly after full jp release; jp 1D9634+]
 ! 231EC4+: [data, go through here thoroughly later; jp 1F139C+]
+= 2349CC (j1F3FB0): gMonFrontPicCoords (changed)
+= 2350AC (j1F4690): gMonFrontPicTable (changed)
+= 235E6C (j1F5450): gMonBackPicCoords (changed)
+= 23654C (j1F5B30): gMonBackPicTable (changed)
+= 23730C (j1F68F0): gMonPaletteTable (changed)
+= 23957C (j1F8B60): gTrainerFrontPicTable (changed)
+= 239A1C (j1F9000): gTrainerFrontPicPaletteTable (changed)
+= 23A004 (j1F95E8): gEnemyMonElevation (changed)
+= 23A1A0-23E558 (j1F9784-j1FDB3C): trainer party data (changed)
+= 23E558 (j1FDB3C): gTrainerClassNames (changed)
+= 23EAC8 (j1FDFD8): gTrainers (changed)
+!next: 207226
 
 
 + 20E550: Move_Shadow_Claw (see animscripts.txt)
@@ -3160,10 +3172,14 @@ stray text:
 		  Implements: Ice Fang animation
 +1307950: Move_Rock_Climb (see animscripts.txt)
 		  Implements: Rock Climb animation
+-1307B48: Move_??? (see animscripts.txt)
+		  Implements: [move2A6] animation
 +1307C10: Move_??? (see animscripts.txt)
 		  Implements: [move29E] animation
 +1307D70: Move_Shell_Smash (see animscripts.txt)
 		  Implements: Shell Smash animation
+-1307DB8: Move_??? (see animscripts.txt)
+		  Implements: [move2A1] animation
 +1307EE8: Move_Acrobatics (see animscripts.txt)
 		  Implements: Acrobatics animation
 +1307F70: Move_Aqua_Jet (see animscripts.txt)
@@ -3211,10 +3227,14 @@ stray text:
 		  Implements: Energy Ball animation
 +1309690: Move_Metal_Burst (see animscripts.txt)
 		  Implements: Metal Burst animation
-=13097C0: Move_??? (see animscripts.txt)
-		  Implements: 
+-13097C0: Move_??? (see animscripts.txt)
+		  Implements: [move2A0] animation
+-13099A0: Move_??? (see animscripts.txt)
+		  Implements: [move2A3] animation
 +1309AF0: Move_??? (see animscripts.txt)
 		  Implements: [move29C] animation
+-1309B88: Move_??? (see animscripts.txt)
+		  Implements: [move2A2] animation
 +1309D98: Move_??? (see animscripts.txt)
 		  Implements: [move29D] animation
 +1309E68: Move_Poison_Leaf (see animscripts.txt)

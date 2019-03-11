@@ -90,7 +90,7 @@ Callback_SuckerPunchUnknown(arg0)
 
 
 
-AnimTask_PetalBlizzardUnknown(arg0)
+AnimTask_PetalBlizzardUnknown(taskId)
 {
 	r5 = 0
 	SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL)
@@ -121,8 +121,8 @@ AnimTask_PetalBlizzardUnknown(arg0)
 			r5 = 1
 	}
 	
-	gTasks[arg0].data[0] = r5
-	gTasks[arg0].func = fn_B490C
+	gTasks[taskId].data[0] = r5
+	gTasks[taskId].func = fn_B490C
 }
 
 
@@ -306,4 +306,148 @@ fn_18367C(taskId)
 			}
 		}
 	}
+}
+
+
+
+
+
+
+
+AnimTask_Move2A0Unknown(taskId)
+{
+	switch(gTasks[taskId].data[0])
+	{
+	case 0:
+		if(GetBattlerSide(gBattleAnimAttacker) == 0)
+			gTasks[taskId].data[1] = 1
+		else
+			gTasks[taskId].data[1] = -1
+		
+		if(gBattleAnimArgs[0] == 0)
+		{
+			gTasks[taskId].data[3] = fn_74480(gBattleAnimAttacker, 2)
+			gTasks[taskId].data[5] = fn_74480(gBattleAnimAttacker, 3)
+			gTasks[taskId].data[4] = 0x78 + (gTasks[taskId].data[1] * 0x80)
+		}
+		elseif(gBattleAnimArgs[0] == 4)
+		{
+			gTasks[taskId].data[3] = 0x78 - (gTasks[taskId].data[1] * 0x80)
+			gTasks[taskId].data[5] = fn_74480(gBattleAnimTarget, 3)
+			gTasks[taskId].data[4] = fn_74480(gBattleAnimTarget, 2) - (gTasks[taskId].data[1] * 0x20)
+		}
+		else
+		{
+			if(gBattleAnimArgs[0] & 1)
+			{
+				gTasks[taskId].data[3] = 0xFFF0
+				gTasks[taskId].data[4] = 0x100
+			}
+			else
+			{
+				gTasks[taskId].data[3] = 0x100
+				gTasks[taskId].data[4] = 0xFFF0
+			}
+			
+			if(gTasks[taskId].data[1] == 1)
+				gTasks[taskId].data[5] = 0x50 - (gBattleAnimArgs[0] * 0xA)
+			else
+			{
+				gTasks[taskId].data[5] = 0x28 + (gBattleAnimArgs[0] * 0xA)
+				swap(gTasks[taskId].data[3], gTasks[taskId].data[4])
+			}
+		}
+		
+		if(gTasks[taskId].data[3] < gTasks[taskId].data[4])
+		{
+			gTasks[taskId].data[1] = 1
+			gTasks[taskId].data[6] = 0
+		}
+		else
+		{
+			gTasks[taskId].data[1] = -1
+			gTasks[taskId].data[6] = 3
+		}
+		
+		gTasks[taskId].data[0]++
+		
+		break;
+	case 1:
+		gTasks[taskId].data[2]++
+		
+		// supposed to be if, but it's wrong?
+		while(gTasks[taskId].data[2] > 0x10000) {}
+		gTasks[taskId].data[2] = 0
+		
+		if(fn_1838B0(&gTasks[taskId], taskId) != 0)
+			gTasks[taskId].data[0]++
+		
+		break;
+	case 2:
+		if(gTasks[taskId].data[7] == 0)
+			DestroyAnimVisualTask(taskId)
+			
+		break;
+	}
+}
+
+
+
+
+
+
+
+fn_1838B0(taskPtr, taskId)
+{
+	r2 = CreateSprite(data_12F1738, taskPtr.data[3], taskPtr.data[5], 0x23)
+	
+	if(r2 != 0x40)
+	{
+		gSprites[r2].data[6] = taskId
+		gSprites[r2].data[7] = 7
+		taskPtr.data[7]++
+	}
+	
+	taskPtr.data[6] += taskPtr.data[1]
+	
+	if(taskPtr.data[6] > 0x10000)
+		taskPtr.data[6] = 3
+	
+	if(taskPtr.data[6] > 3)
+		taskPtr.data[6] = 0
+	
+	taskPtr.data[3] += (taskPtr.data[1] * 0x10)
+	
+	if(taskPtr.data[1] == 1 && taskPtr.data[3] >= taskPtr.data[4])
+		return 1
+	
+	if(taskPtr.data[1] == -1 && taskPtr.data[3] <= taskPtr.data[4])
+		return 1
+		
+	return 0
+}
+
+
+
+
+
+
+
+AnimTask_GetAttackerAndTarget(taskId)
+{
+	gBattleAnimArgs[6] = gBattleAnimAttacker;
+	gBattleAnimArgs[7] = gBattleAnimTarget;
+	DestroyAnimVisualTask(taskId);
+}
+
+
+
+
+
+
+
+AnimTask_IsDoubleBattle(taskId)
+{
+	gBattleAnimArgs[5] = gBattleTypeFlags & BATTLE_TYPE_DOUBLE;
+	DestroyAnimVisualTask(taskId);
 }

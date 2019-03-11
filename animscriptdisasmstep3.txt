@@ -308,3 +308,122 @@ fn_18367C(arg0)
 		}
 	}
 }
+
+
+
+
+
+
+
+AnimTask_Move2A0Unknown(taskId)
+{
+	switch(gTasks[taskId].8)
+	{
+	case 0:
+		if(GetBattlerSide(gBattleAnimAttacker) == 0)
+			gTasks[taskId].0xA = 1
+		else
+			gTasks[taskId].0xA = -1
+		
+		if(gBattleAnimArgs.0 == 0)
+		{
+			gTasks[taskId].0xE = fn_74480(gBattleAnimAttacker, 2)
+			gTasks[taskId].0x12 = fn_74480(gBattleAnimAttacker, 3)
+			gTasks[taskId].0x10 = 0x78 + (gTasks[taskId].0xA * 0x80)
+		}
+		elseif(gBattleAnimArgs.0 == 4)
+		{
+			gTasks[taskId].0xE = 0x78 - (gTasks[taskId].0xA * 0x80)
+			gTasks[taskId].0x12 = fn_74480(gBattleAnimTarget, 3)
+			gTasks[taskId].0x10 = fn_74480(gBattleAnimTarget, 2) - (gTasks[taskId].0xA * 0x20)
+		}
+		else
+		{
+			if(gBattleAnimArgs.0 & 1)
+			{
+				gTasks[taskId].0xE = 0xFFF0
+				gTasks[taskId].0x10 = 0x100
+			}
+			else
+			{
+				gTasks[taskId].0xE = 0x100
+				gTasks[taskId].0x10 = 0xFFF0
+			}
+			
+			if(gTasks[taskId].0xA == 1)
+				gTasks[taskId].0x12 = 0x50 - (gBattleAnimArgs.0 * 0xA)
+			else
+			{
+				gTasks[taskId].0x12 = 0x28 + (gBattleAnimArgs.0 * 0xA)
+				swap(gTasks[taskId].0xE, gTasks[taskId].0x10)
+			}
+		}
+		
+		if(gTasks[taskId].0xE < gTasks[taskId].0x10)
+		{
+			gTasks[taskId].0xA = 1
+			gTasks[taskId].0x14 = 0
+		}
+		else
+		{
+			gTasks[taskId].0xA = -1
+			gTasks[taskId].0x14 = 3
+		}
+		
+		gTasks[taskId].8++
+		
+		break;
+	case 1:
+		gTasks[taskId].0xC++
+		
+		// supposed to be if, but it's wrong?
+		while(gTasks[taskId].0xC > 0x10000) {}
+		gTasks[taskId].0xC = 0
+		
+		if(fn_1838B0(&gTasks[taskId], taskId) != 0)
+			gTasks[taskId].8++
+		
+		break;
+	case 2:
+		if(gTasks[taskId].0x16 == 0)
+			DestroyAnimVisualTask(taskId)
+			
+		break;
+	}
+}
+
+
+
+
+
+
+
+fn_1838B0(taskPtr, taskId)
+{
+	r2 = CreateSprite(data_12F1738, taskPtr.0xE, taskPtr.0x12, 0x23)
+	
+	if(r2 != 0x40)
+	{
+		gSprites[r2].0x3A = taskId
+		gSprites[r2].0x3C = 7
+		taskPtr.0x16++
+	}
+	
+	taskPtr.0x14 += taskPtr.0xA
+	
+	if(taskPtr.0x14 > 0x10000)
+		taskPtr.0x14 = 3
+	
+	if(taskPtr.0x14 > 3)
+		taskPtr.0x14 = 0
+	
+	taskPtr.0xE += (taskPtr.0xA * 0x10)
+	
+	if(taskPtr.0xA == 1 && taskPtr.0xE >= taskPtr.0x10)
+		return 1
+	
+	if(taskPtr.0xA == -1 && taskPtr.0xE <= taskPtr.0x10)
+		return 1
+		
+	return 0
+}
