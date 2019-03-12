@@ -958,9 +958,9 @@ stray text:
 + 01E59C: atk05_damagecalc (see 20disasm)
 		  Implements: Sniper, 2x -> 1.5x crit damage; removes gBattleScripting.dmgMultiplier, Charge boost, Helping Hand boost (moved to CalculateBaseDamage)
 		  Relies on: above being moved to CalculateBaseDamage
-+ 01E848: atk06_typecalc (see 21disasm) (ALSO 25DEEE: 00 00 -> 1D 09)
++ 01E848: atk06_typecalc (see 21disasm)
 		  Implements: Adaptability, Normalize (type change), Klutz (the item effects here), Mold Breaker+ (vs Levitate, Wonder Guard, Filter/Solid Rock), Tinted Lens, Solid Rock, Filter, Scrappy, Aerilate (type change), Pixilate (type change), Refrigerate (type change), Galvanize (type change), Expert Belt, Gems, ice immunity to sheer cold
-		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_UseGem (e1FD42, j1F552), gChosenActionByBattler changed to something else
+		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_UseGem (e1FD42, j1F552), sHoldEffectToType change
 		  Requires in future: HasItemWithTypeEffect, AteAbilityConversionTable (j168CB4)
 		  Note: check wonder guard vs canceled se (elec on water/ground, fire on rock/grass)
 		  GLITCH!: Mold Breaker on Levitate says that a miss is due to Levitate instead of just a miss
@@ -1063,7 +1063,7 @@ stray text:
   0233C4 -> 0233CC (repoint): Large part of atk49_moveend (see 37disasm)
   023B28: Another part of atk49_moveend (see 37disasm2)
 		  Implements: Stench flinch chance, Klutz (choice item locking), Poison Touch, Choice Specs (locking), Choice Scarf (locking), non-hardcoded spread moves
-		  Relies on: AbilityBattleEffects/ItemBattleEffects new cases, Choice Band effect ID change, gChosenActionByBattler changed to something else, CheckSwitchToSpreadMoveScript (j1588C, e16078), BattleScript_EffectSpreadMove (j158B0, e1609C), rest of moveend refactor
+		  Relies on: AbilityBattleEffects/ItemBattleEffects new cases, Choice Band effect ID change, CheckSwitchToSpreadMoveScript (j1588C, e16078), BattleScript_EffectSpreadMove (j158B0, e1609C), rest of moveend refactor
 		  Notes: Inert call to ItemBattleEffects (arg 2)?
 + 023E88: atk4B_returnatktoball (see 38disasm)
 		  Implements: need more info
@@ -2448,7 +2448,7 @@ stray text:
 		  Implements: removes Conversion entirely, adds new effect for moves that freeze without doing damage (aka Hypnosis for freeze)
 + 1D6F99 -> 1053760 (repoint): BattleScript_EffectSetDamageOrMove29F (see movescripts.txt)
 		  Implements: [move29F] is Ground-type, but bypasses Levitate and is neutral to Flying; condenses Sonic Boom into Dragon Rage's effect slot to free up space
-		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_UseGem (e1FD42, j1F552), HasItemWithTypeEffect, AteAbilityConversionTable (j168CB4), gChosenActionByBattler changed to something else
+		  Relies on: ConsumeItem (e01FCCC, j01F4DC), BattleScript_UseGem (e1FD42, j1F552), HasItemWithTypeEffect, AteAbilityConversionTable (j168CB4)
 		  Relies on: AlternateTypeCalc (1833D0)
 		  Glitch: AteAbilityConversionTable ptr is wrong, currently points to j168CA4; fixed when importing (not like it matters)
 		  Glitch?: the Levitate bypassing is done by temporarily swapping abilities, which means if used on a target with Levitate, [move29F] doesn't receive the effects of the user's Adaptability, Normalize, Tinted Lens, or Klutz (as in, Expert Belt actually works despite Klutz); the target receives the effects of the user's Solid Rock, Filter, and Wonder Guard; and if both mons have Levitate, the target is still immune to the move
@@ -2666,19 +2666,49 @@ stray text:
 + 1DD0C9: C5 -> CC (no idea what this does (m4a))
 + 1E3B27: D0 -> E0 (no idea what this does (isagbprn))
 ! 1EA14C+: [text, go through here thoroughly after full jp release; jp 1D9634+]
+
 ! 231EC4+: [data, go through here thoroughly later; jp 1F139C+]
-= 2349CC (j1F3FB0): gMonFrontPicCoords (changed)
-= 2350AC (j1F4690): gMonFrontPicTable (changed)
-= 235E6C (j1F5450): gMonBackPicCoords (changed)
-= 23654C (j1F5B30): gMonBackPicTable (changed)
-= 23730C (j1F68F0): gMonPaletteTable (changed)
-= 23957C (j1F8B60): gTrainerFrontPicTable (changed)
-= 239A1C (j1F9000): gTrainerFrontPicPaletteTable (changed)
-= 23A004 (j1F95E8): gEnemyMonElevation (changed)
-= 23A1A0-23E558 (j1F9784-j1FDB3C): trainer party data (changed)
-= 23E558 (j1FDB3C): gTrainerClassNames (changed)
-= 23EAC8 (j1FDFD8): gTrainers (changed)
-!next: 207226
+= 2349CC (j1F3FB0): gMonFrontPicCoords
+= 2350AC (j1F4690): gMonFrontPicTable
+= 235E6C (j1F5450): gMonBackPicCoords
+= 23654C (j1F5B30): gMonBackPicTable
+= 23730C (j1F68F0): gMonPaletteTable
+= 23957C (j1F8B60): gTrainerFrontPicTable
+= 239A1C (j1F9000): gTrainerFrontPicPaletteTable
+= 23A004 (j1F95E8): gEnemyMonElevation
+= 23A1A0-23E558 (j1F9784-j1FDB3C): trainer party data
+= 23E558 (j1FDB3C): gTrainerClassNames
+= 23EAC8 (j1FDFD8): gTrainers
+- 248330 (j20520C): gStandardBattleWindowTemplates
+= 24EE34 (j20BD10): (check graphic at j205328 to figure out what this table is)
+- 24F050 (j20BF24): gTypeEffectiveness
+		  Implements: Fairy, modern Steel
+= 24F220 (j20C0D0): gTrainerMoneyTable
+- 250530 (j20CF38): sCriticalHitChance
+		  Implements: modern crit stages
+- 2507E0 (j20D1E8): sProtectSuccessRates
+		  Implements: multiple protect success rate 1/2 -> 1/3
+- 25081C (j20D224): sNaturePowerMoves
+		  Implements: new Nature Power
+					  (old: Stun Spore, Razor Leaf, Earthquake, Hydro Pump, Surf, Bubble Beam, Rock Slide, Shadow Ball, Swift, Swift)
+					  (new: Energy Ball, Wild Growth, Sonic Sand, Hydro Pump, Surf, Wave Splash, Rock Slide, Diamond Blast, Tri Attack, Earthquake)
+- 250830 (j20D238): sWeightToDamageTable
+		  Implements: very slight changes to Low Kick formula
+- 250890 (j20D298): 00 -> 04 (sTerrainToType)
+		  Implements: Camouflage in link battles = Normal-type -> Ground-type
+		  Note: This is only true in Gen 5
+- 2526EC-2528BC (j20F0F4-j20F2C4): usable item data
+  2528BC (j20F2C4): gItemEffectTable
+		  Implements: modern healing item values, X items +1 -> +2, X Sp. Def, X Evasion, regional souvenirs, other unknown items
+= 252BC8 (j20F5D0): gTMHMLearnsets
+= 254784 (j21118C): gBaseStats
+= 257494-259754 (j213E9C-j21615C): mon level-up learnsets
+= 259754 (j21615C): gEvolutionTable
+= 25D7B4 (j21A1BC): gLevelUpLearnsets
++ 25DEEE (j21A8F6): 00 00 -> 1D 09 (sHoldEffectToType)
+		  Implements: "Polkadot Bow", Fairy Gem, Roseli Berry
+= 25E026 (j21AA2E): sDeoxysBaseStats
+= 
 
 
 + 20E550: Move_Shadow_Claw (see animscripts.txt)
