@@ -752,6 +752,12 @@ grafics:
 = 463C80 (427D38 old, 427C80 new) - (tilemap)
 = 466620 (42F9A8 old, 922730 new) - slot machine gfx
 = D0051C (C0051C old, EB8990 new) - (tilemap)
+= D1F340 (C1F340 old, 11266CC new)
+= D1F604 (C1F604 old, 1126A50 new)
+= D1F794 (C1F794 old, 1126C8C new)
+= D1F928 (C1F928 old, 1126EBC new)
+= D1FABC (C1FABC old, 11270F0 new)
+= E7BB04 (D7BAB4 old, 11273E8 new)
 = E82700 (D826B0 old, 924320 new) - ???
 = E85068 (D85074 old, 251A80 new) - (tilemap)
 = E9A460 (42631C old, 4F3040 new) - summary screen gfx
@@ -801,41 +807,41 @@ stray text:
 	! also set 24802B (gMoveNames[MOVE_BLAST_BURN]) to [BROKEN] 1E0C548
 	! also set 248038 (gMoveNames[MOVE_HYDRO_CANNON]) to [BROKEN] 1E0C550
 = expand 24F1A0 (type names) from 18 entries/7 per to 19 entries/9 per (j411E1C, e1411E1C)
-+ expand 24FB08 (ability descriptions) from 78 entries to 232 (13FD000)
+% expand 24FB08 (ability descriptions) from 78 entries to 232 (13FD000)
 = expand 24FC40 (ability names) from 78 entries/12 per to 232 entries/16 per (13FF000)
 + expand 25011C (battle script commands) from 248 entries to 256 (EB7A00)
 + expand 2507E8 (uncopiable moves) from 4 entries (mimic) / 19 entries (metronome) to 5 entries (mimic) / 44 entries (metronome) (20CA40)
 + expand 250848 (pickup table) from 16 entries to 10 subtables of varying size (1528150)
-+ expand 250C04 (move data) from 355 entries to 680 (1010000)
+% expand 250C04 (move data) from 355 entries to 680 (1010000)
 + expand 2539D4 (cry ids) to encompass all ids (865DE0)
-+ expand 25EF0C (egg moves) from 0x8E8 bytes to 0xFC4 bytes (8B6630)
-+ expand 26056C (ball sprites) from 12 entries to 26 (A23000)
-+ expand 2605CC (ball sprite palettes) from 12 entries to 26 (A230F0)
-+ expand 2606F4 (ball sprite templates (?duplicate)) from 12 entries to 26 (A23380)
+% expand 25EF0C (egg moves) from 0x8E8 bytes to 0xFC4 bytes (8B6630)
+% expand 26056C (ball sprites) from 12 entries to 26 (A23000)
+% expand 2605CC (ball sprite palettes) from 12 entries to 26 (A230F0)
+% expand 2606F4 (ball sprite templates (?duplicate)) from 12 entries to 26 (A23380)
 ! expand 399388 (battle anim sprites???) to [BROKEN] (11ECA80)
 ! expand 399C90 (battle anim palettes???) to [BROKEN] (11EDD80)
-+ expand 39FDB0 (field object graphics info pointers) from 174 entries to 256 (j4EFDA0, e14EFDA0)
+% expand 39FDB0 (overworld event object gfx info pointers) from 174 entries to 256 (j4EFDA0, e14EFDA0)
 + expand 3A65BC (movement action functions) from 170 entries to 226 (221550)
 	+ add bonus m.a.f. table at 2218D8
-+ expand 3ACC08 (battle anim sprites) from 289 entries to 462 (1200300)
+% expand 3ACC08 (battle anim sprites) from 289 entries to 462 (1200300)
 	+ also set 3AD048 (gBattleAnimPicTable[136]) to 1200740
 	+ also set 3AD350 (gBattleAnimPicTable[233]) to 1200A48
 	+ also set 3AD470 (gBattleAnimPicTable[269]) to 1200B68
-+ expand 3AD510 (battle anim palettes) from 289 entries to 462 (1201600)
+% expand 3AD510 (battle anim palettes) from 289 entries to 462 (1201600)
 	+ also set 3AD950 (gBattleAnimPaletteTable[136]) to 1201A40
 	+ also set 3ADC58 (gBattleAnimPaletteTable[233]) to 1201D48
 	+ also set 3ADD78 (gBattleAnimPaletteTable[269]) to 1201E68
-+ expand 3ADE18 (battle anim backgrounds) from 27 entries to 100 (11FF000)
-+ expand 3D2A10 (box wallpapers) from 48 entries to 63 (938980)
-+ expand 3D353C (PC menu options) from 38 entries to 128 (jE2A570, e1E2A570)
-+ expand 3D3740 (raw mon icon palette data) from 3 entries to 6 (ONLY FIRST PTR) (EE4E00)
-+ expand 3D4038 (mon icon palettes) from 6 entries to 16 (jE40000, e1E40000)
-+ expand 3D4294 (item icons/palettes) from 375 entries to 435 (10B8000)
-+ expand 3DB028 (item data) from 375 entries to 435 (10B0000)
-+ expand 3EEBF8 (heal locations) from 20 entries to 22 (FE42E0)
+% expand 3ADE18 (battle anim backgrounds) from 27 entries to 100 (11FF000)
+% expand 3D2A10 (box wallpapers) from 48 entries to 63 (938980)
+% expand 3D353C (PC menu options) from 38 entries to 128 (jE2A570, e1E2A570)
+% expand 3D3740 (raw mon icon palette data) from 3 entries to 6 (ONLY FIRST PTR) (EE4E00)
+% expand 3D4038 (mon icon palettes) from 6 entries to 16 (jE40000, e1E40000)
+% expand 3D4294 (item icons/palettes) from 375 entries to 435 (10B8000)
+% expand 3DB028 (item data) from 375 entries to 435 (10B0000)
+% expand 3EEBF8 (heal locations) from 20 entries to 22 (FE42E0)
 	+ also set 3EEBF0 (sHealLocations[-1]) to FE42D8
-+ expand 3EEC98 (heal location map indexes) from 20 entries to 22 (FE4400)
-+ expand 3EECE8 (gSpecialVar_LastTalked values to be set on respawn per heal location) from 20 entries to 22 (FE4480)
+% expand 3EEC98 (heal location map indexes) from 20 entries to 22 (FE4400)
+% expand 3EECE8 (gSpecialVar_LastTalked values to be set on respawn per heal location) from 20 entries to 22 (FE4480)
 + repoint 3F55A4 (ai script commands) to 11FB800
 + expand 3FE538 (damaging weather continue messages) from 2 entries to 3 (3FE53A)
 + expand 3FE53C (damaging weather end messages) from 2 entries to 3 (1D8B18)
@@ -843,15 +849,15 @@ stray text:
 + expand 3FE5A0 (partial trapping messages) from 6 entries to 8 (1053700)
 + expand 3FE664 (partial trapping moves) from 6 entries to 8 (1303552)
 + expand 3FEA70 (japanese grammar) from 118 entries to 183 (1040000)
-+ expand 40BF48 (unknown pokeball struct) from 12 entries to 26 (A23600)
-+ expand 40BFA8 (unknown pokeball struct) from 12 entries to 26 (A236D0)
-+ expand 40C068 (unknown pokeball struct) from 12 entries to 48 (A24210)
-+ expand 40C074 (ball animation tasks) from 12 entries to 28 (A23A50)
-+ expand 40C0A4 (ball sprite templates (? duplicate)) from 12 entries to 26 (A237E0)
+% expand 40BF48 (unknown pokeball struct) from 12 entries to 26 (A23600)
+% expand 40BFA8 (unknown pokeball struct) from 12 entries to 26 (A236D0)
+% expand 40C068 (unknown pokeball struct) from 12 entries to 48 (A24210)
+% expand 40C074 (ball animation tasks) from 12 entries to 28 (A23A50)
+% expand 40C0A4 (ball sprite templates (? duplicate)) from 12 entries to 26 (A237E0)
 	+ also set 40C104 (gUnknown_840C0A4[ITEM_POKE_BALL]) to A23840
-+ expand 40C1C4 (color that mon sprite flashes on release from each ball) from 12 entries to 48 (A24240)
-+ expand 456C50 (unknown quest-log-related list of flags) from 17 entries to 19 (j6B0CCC, e16B0CCC)
-+ expand 4886E8 (move descriptions) from from 355 entries to 680 (1020000)
+% expand 40C1C4 (color that mon sprite flashes on release from each ball) from 12 entries to 48 (A24240)
+% expand 456C50 (unknown quest-log-related list of flags) from 17 entries to 19 (j6B0CCC, e16B0CCC)
+% expand 4886E8 (move descriptions) from from 355 entries to 680 (1020000)
 
 = 006884: ptr 217818 (gUnusedJapaneseFireRedLeafGreenMaleFontGlyphs - emerald name) -> B07500 (gFont2JapaneseGlyphs)
 = 0069F0: ptr 227B30 (gUnusedJapaneseFireRedLeafGreenFemaleFontGlyphs - emerald name) -> B07500 (gFont2JapaneseGlyphs)
@@ -1434,14 +1440,14 @@ stray text:
 		  Requires in future: fn_E9D53C, fn_E9D586
 ! 06FEA0: HideStartMenuWindow (see 131disasm)
 		  Implements: changes menu close sfx from SE_SELECT to (sound_0x200)
-! 06FFBC: sub_806FFBC (see 132disasm)
+- 06FFBC: sub_806FFBC (see 132disasm)
 		  Implements: Need more info
 		  Relies on: Possible metatileAttributes refactor
 		  Requires in future: fn_939620, fn_9396A8, fn_939728
 		  Note: doesn't actually work, something else probably needed
-! 07004E: 73 F1 AB FD -> 00 00 00 00
+- 07004E: 73 F1 AB FD -> 00 00 00 00
 		  Implements: Removes tileset 1 animations (replaced by functionality in 06FFBC)
-! 07008A: 73 F1 8D FD -> 00 00 00 00
+- 07008A: 73 F1 8D FD -> 00 00 00 00
 		  Implements: Removes tileset 2 animations (replaced by functionality in 06FFBC)
 ! 07049A: 0C 48 03 60 61 7A 03 20 08 40 -> 01 48 87 46 C0 46 20 D3 E9 09 (jumps (mov) to fn at 1E9D320, then back; (jE9D320, see 133disasm))
 		  Implements: Something palette-related
@@ -2708,7 +2714,45 @@ stray text:
 + 25DEEE (j21A8F6): 00 00 -> 1D 09 (sHoldEffectToType)
 		  Implements: "Polkadot Bow", Fairy Gem, Roseli Berry
 = 25E026 (j21AA2E): sDeoxysBaseStats
-= 
+= ?????? (j220C8E): C6 EA -> F9 05 (on some trade-related screen, change "Lv" text to the "Lv" single character; unclear how to translate this to english - check the trade screens when full version)
+= ?????? (j220C9B): 00 -> FF (on some trade-related screen, remove space after jp "and"; unclear how to translate this to english - check the trade screens when full version)
+- 261FA5 (j220E79): 03 -> 02
+  261FB5 (j220E89): 12 -> 11
+		  Implements: move some kind of windows on some trade-related screen left (test)
+= 26CF8C (j22D2F8): gIngameTrades
+= EA1B68 (j230004): a tileset graphic
+= 26D37C-283BB0 (j230204-j246FF0): tileset gfx
+= 29F6C8-2D415C (j263778-j29820C): tileset metatiles
+= 2D4A94 (j298B44): tilesets
+= 2D5224-34EB8C (j2992D4-j312C3C): map data
+= 34EB8C (j312C3C): gMapLayouts
+= 34F188-352004 (j313238-j3160B4): map headers
+= 352004 (j3160B4): gMapGroups
+- 352F0B (j316FBB): 60 -> 70
+  352F16 (j316FC6): 1D -> 1C
+		  Implements: Part of MetatileAttributes refactor
+= 354C28 (j318CB0-j3192F0): door animation gfx
+= 35B550-35B570 (j31F5D8-j31F5F8): door animation palettes
+= 35B5FC (j31F684): A3 -> AC
+  35B608 (j31F690): AC -> A3
+		  Implements: swap two doors (later)
+= 35B968-35B9A8 (j31F9F0-j31FA30): an overworld event object sprite palette
+= 35BB68-39FBC0 (j31FBF0-j363C50): overworld event object sprite gfx
+= 3A00A0 (j364128): gEventObjectGraphicsInfoPointers
+= !next = j367CEE
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 + 20E550: Move_Shadow_Claw (see animscripts.txt)
