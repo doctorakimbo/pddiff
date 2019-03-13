@@ -545,6 +545,13 @@ sounds:
 0x20A = ???							(used by Play Rough)
 0x20B = ???							(used by Play Rough)
 
+background data:
+[58 9C C2 08] = [58 9C D2 08]
+[90 9F C2 08] = [90 9F D2 08]
+[10 A5 C2 08] = [10 A5 D2 08]
+
+
+
 new backgrounds:
 27: used by Fairy Wind
 28: used by Fairy Wind
