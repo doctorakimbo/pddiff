@@ -627,6 +627,8 @@ funcs e,j,desc:
 056158 = 055A18 = GetMapTypeByGroupAndId
 056188 = 055A48 = Overworld_GetMapTypeOfSaveblockLocation
 0561D8 = 055A98 = is_map_type_1_2_3_5_or_6
+0563F0 = 055CB0 = CleanupOverworldWindowsAndTilemaps
+0568A8 = 056168 = CB2_ReturnToFieldWithOpenMenu
 058F48 = 058804 = MapGridGetMetatileIdAt
 058F78 = 058834 = MapGridGetMetatileBehaviorAt
 059B74 = 059430 = MetatileBehavior_IsSandOrDeepSand
@@ -687,9 +689,10 @@ funcs e,j,desc:
 06E6D0 = 06DEC4 = FlagGet
 06ED54 = 06E548 = BuildStartMenuActions
 06EE7C = 06E670 = ShowSafariBallsWindow
+06EF18 = 06E70C = RemoveExtraStartMenuWindows
 06EF44 = 06E738 = PrintStartMenuActions
 06F258 = 06EA4C = ShowStartMenu
-06F4B4 = 06ECA4 = StartMenuPokedexCallback
+06F4B4 = 06ECA4 = StartMenuPlayerNameCallback
 06FED8 = 06F67C = ResetTilesetAnimBuffer
 06FF04 = 06F6A8 = AppendTilesetAnimToBuffer
 0703A8 = 06FB4C = LoadCompressedPalette
@@ -721,11 +724,13 @@ funcs e,j,desc:
 07761C = 076DB4 = SwitchTaskToFollowupFunc
 0785D8 = 077D70 = ?????
 07AF98 = 07A6F8 = weather_get_current
+07B004 = 07A764 = PlayRainStoppingSoundEffect
 081B30 = 08171C = CheckForTrainersWantingBattle
 082A88 = 082674 = GetPersonalityWithUnownForm
 082AB8 = 0826A4 = GetUnownFormFromPersonality
 088E74 = 088A50 = GetSetPokedexFlag
 088E8C = 088A68 = pokedex_count
+08B698 = 08B16C = ShowPlayerTrainerCard
 08B9F4 = 08B490 = StorageGetCurrentBox
 08BA18 = 08B4B4 = GetBoxMonDataFromAnyBox
 08BAA0 = 08B53C = GetBoxMonDataFromSelectedBox

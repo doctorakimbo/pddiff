@@ -1,0 +1,21 @@
+lbl1: @6F4B4
+r0 = gPaletteFade
+r1 = *(r0 + 7)
+r0 = 0x80
+r0 &= r1
+if(r0 == 0) goto lbl2
+
+r0 = 0
+goto lbl3
+
+lbl2:
+PlayRainStoppingSoundEffect()
+RemoveExtraStartMenuWindows()
+CleanupOverworldWindowsAndTilemaps()
+r0 = CB2_ReturnToFieldWithOpenMenu
+ShowPlayerTrainerCard()
+r0 = 1
+goto lbl3
+
+lbl3:
+return r0

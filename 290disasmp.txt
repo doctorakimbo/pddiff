@@ -1,0 +1,31 @@
+lbl1: @E9E900
+r0 = data_0203CB27
+r0 = *r0
+if(r0 != 0) goto lbl2
+
+r0 = StartMenuPlayerNameCallback
+goto r0
+
+lbl2:
+r0 = gPaletteFade
+r1 = *(r0 + 7)
+r0 = 0x80
+r0 &= r1
+if(r0 == 0) goto lbl3
+
+r0 = 0
+goto lbl4
+
+lbl3:
+PlayRainStoppingSoundEffect()
+RemoveExtraStartMenuWindows()
+CleanupOverworldWindowsAndTilemaps()
+r0 = 0
+SetVBlankCallback()
+r0 = fn_1E9EA00
+SetMainCallback2()
+r0 = 1
+goto lbl4
+
+lbl4:
+return

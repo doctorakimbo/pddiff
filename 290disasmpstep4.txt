@@ -1,0 +1,20 @@
+StartMenuPlayerNameCallback_New()
+{
+	if(!gPaletteFade.active)
+	{
+		if(data_0203CB27 != 0)
+		{
+			PlayRainStoppingSoundEffect();
+			RemoveExtraStartMenuWindows();
+			CleanupOverworldWindowsAndTilemaps();
+			SetVBlankCallback(NULL);
+			SetMainCallback2(fn_1E9EA00);
+			
+			return TRUE;
+		}
+		else
+			return StartMenuPlayerNameCallback();
+	}
+	
+	return FALSE;
+}

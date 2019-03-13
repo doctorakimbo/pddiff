@@ -1438,6 +1438,9 @@ stray text:
 + 06F280: ProcessMenuInput (+ add part at E9D4A2) (see 130disasm)
 		  Implements: Retools START menu into 3x2 grid
 		  Requires in future: fn_E9D53C, fn_E9D586
+- 06F4B4 -> 1E9E900 (repoint): StartMenuPlayerNameCallback (see 290disasm)
+		  Implements: PokeTab opens if trainer card is selected and certain var is set
+		  Relies on: functions from sub_8089088 changes
 ! 06FEA0: HideStartMenuWindow (see 131disasm)
 		  Implements: changes menu close sfx from SE_SELECT to (sound_0x200)
 - 06FFBC: sub_806FFBC (see 132disasm)
@@ -2739,8 +2742,10 @@ stray text:
 = 35B968-35B9A8 (j31F9F0-j31FA30): an overworld event object sprite palette
 = 35BB68-39FBC0 (j31FBF0-j363C50): overworld event object sprite gfx
 = 3A00A0 (j364128): gEventObjectGraphicsInfoPointers
-= !next = j367CEE
-
+= 3A3BB0-3A5158 (j367C38-j3691E0): overworld event object graphics info
+= 3A51AC (j369234): 02 -> 0E (sEventObjectSpritePalettes)
+		  Implements: change a palette tag (?)
+= cur j36B390
 
 
 

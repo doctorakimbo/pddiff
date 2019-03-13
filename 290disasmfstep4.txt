@@ -1,0 +1,14 @@
+StartMenuPlayerNameCallback()
+{
+	if(!gPaletteFade.active)
+	{		
+		PlayRainStoppingSoundEffect();
+		RemoveExtraStartMenuWindows();
+		CleanupOverworldWindowsAndTilemaps();
+		ShowPlayerTrainerCard(CB2_ReturnToFieldWithOpenMenu);
+		
+		return TRUE;
+	}
+	
+	return FALSE;
+}
