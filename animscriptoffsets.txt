@@ -546,9 +546,9 @@ sounds:
 0x20B = ???							(used by Play Rough)
 
 background data:
-[58 9C C2 08] = [58 9C D2 08]
-[90 9F C2 08] = [90 9F D2 08]
-[10 A5 C2 08] = [10 A5 D2 08]
+[58 9C C2 08] = [58 9C D2 08] = gBattleAnimBackgroundTilemap_09 (used by BG_HIGHSPEED_OPPONENT, BG_BUG_OPPONENT, Fairy Wind opponent)
+[90 9F C2 08] = [90 9F D2 08] = gBattleAnimBackgroundImage_09 (used by BG_HIGHSPEED, BG_BUG, Fairy Wind)
+[10 A5 C2 08] = [10 A5 D2 08] = gBattleAnimBackgroundTilemap_10 (used by BG_HIGHSPEED_PLAYER, BG_BUG_PLAYER, Fairy Wind player)
 
 
 

@@ -1,0 +1,13 @@
+fn_9BEA4(arg0)
+{
+	PutWindowTilemap(4)
+	
+	if(fn_9A084(*((arg0 * 0x28) + gTasks.data + 0xA), *((arg0 * 0x28) + gTasks.data + 2)) == 1)
+	{
+		fn_13F75C(arg0, data_4167E7, fn_9BF0C)
+		fn_9C094(arg0)
+		fn_9C09C(*((arg0 * 0x28) + gTasks.data + 0xA), *((arg0 * 0x28) + gTasks.data + 2), 1)
+	}
+	else
+		fn_13F75C(arg0, data_416861, fn_9BF98)
+}

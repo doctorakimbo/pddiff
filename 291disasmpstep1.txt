@@ -1,0 +1,33 @@
+fn_168FB0_J(arg0)
+{
+	r5 = arg0
+	r0 = r5 * 4
+	r0 += r5
+	r0 *= 8
+	r1 = gTasks.data
+	r4 = r0 + r1
+	PutWindowTilemap(4)
+	r0 = *(r4 + 0xA)
+	r1 = *(r4 + 2)
+	r6 = r1
+	r6 <<= 0x10
+	r6 += r0
+	
+	if(fn_9A084(r0, r1) == 1)
+	{
+		fn_13F75C(r5, data_4167E7, fn_9BF0C)
+		
+		if(LOWER_TWO_BYTES(r6) == 4)
+		{
+			r6 >>= 0x10
+			r1 = r6
+			
+			if(r1 <= 9 && fn_9A084(0xC, 1) == 1)
+				fn_13F75C(r5, data_169068_J, fn_9BF0C)
+		}
+		
+		fn_9C09C(*(r4 + 0xA), *(r4 + 2), 1)
+	}
+	else
+		fn_13F75C(r5, data_416861, fn_9BF98)
+}

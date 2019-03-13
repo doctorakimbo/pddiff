@@ -1,0 +1,13 @@
+BuyMenuTryMakePurchase(taskId)
+{
+	PutWindowTilemap(4)
+	
+	if(AddBagItem(tItemId, tItemCount) == TRUE)
+	{
+		BuyMenuDisplayMessage(taskId, gText_HereYouGoThankYou, BuyMenuSubtractMoney)
+		nullsub_52(taskId)
+		sub_809C09C(tItemId, tItemCount, 1)
+	}
+	else
+		BuyMenuDisplayMessage(taskId, gText_NoMoreRoomForThis, BuyMenuReturnToItemList)
+}

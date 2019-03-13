@@ -1,0 +1,17 @@
+fn_168FB0_J(arg0)
+{
+	PutWindowTilemap(4)
+	r6 = CONCAT_BYTES(gTasks[arg0].data[1], gTasks[arg0].data[5])
+	
+	if(fn_9A084(gTasks[arg0].data[5], gTasks[arg0].data[1]) == 1)
+	{
+		fn_13F75C(arg0, data_4167E7, fn_9BF0C)
+		
+		if(LOWER_TWO_BYTES(r6) == 4 && HIGHER_TWO_BYTES(r6) <= 9 && fn_9A084(0xC, 1) == 1)
+			fn_13F75C(arg0, data_169068_J, fn_9BF0C)
+		
+		fn_9C09C(gTasks[arg0].data[5], gTasks[arg0].data[1], 1)
+	}
+	else
+		fn_13F75C(arg0, data_416861, fn_9BF98)
+}

@@ -1,0 +1,62 @@
+lbl1: @168FB0
+r5 = r0
+r0 = r5 * 4
+r0 += r5
+r0 *= 8
+r1 = gTasks.data
+r4 = r0 + r1
+r0 = 4
+PutWindowTilemap()
+r0 = *(r4 + 0xA)
+r1 = *(r4 + 2)
+r6 = r1
+r6 <<= 0x10
+r6 += r0
+fn_9A084()
+if(r0 != 1) goto lbl5
+
+r1 = data_4167E7
+r2 = fn_9BF0C
+r0 = r5
+fn_13F75C()
+r0 = r5
+r0 = r6
+if(r0 == 4) goto lbl3
+
+goto lbl2
+
+lbl2:
+r0 = *(r4 + 0xA)
+r1 = *(r4 + 2)
+r2 = 1
+fn_9C09C()
+goto lbl6
+
+lbl3:
+r6 >>= 0x10
+r1 = r6
+if(r1 > 9) goto lbl4
+
+goto lbl2
+
+lbl4:
+r0 = 0xC
+r1 = 1
+fn_9A084()
+if(r0 != 1) goto lbl2
+
+r1 = data_169068_J
+r2 = fn_9BF0C
+r0 = r5
+fn_13F75C()
+goto lbl2
+
+lbl5:
+r1 = data_416861
+r2 = fn_9BF98
+r0 = r5
+fn_13F75C()
+goto lbl6
+
+lbl6:
+return

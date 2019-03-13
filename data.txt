@@ -748,6 +748,7 @@ funcs e,j,desc:
 099E44 = 09984C = SetBagItemsPointers
 099E90 = 099898 = CopyItemName
 099F40 = 099948 = CheckBagHasItem
+09A084 = 099A8C = AddBagItem
 09A1D8 = 099BE0 = RemoveBagItem
 09A798 = 09A1A0 = BagGetItemIdByPocketPosition
 09A7B4 = 09A1BC = BagGetQuantityByPocketPosition
@@ -759,6 +760,9 @@ funcs e,j,desc:
 09A990 = 09A3A0 = ItemId_GetImportance
 09A9D8 = 09A3E8 = ItemId_GetPocket
 09AA20 = 09A430 = ItemId_GetFieldFunc
+09BF0C = 09B8FC = BuyMenuSubtractMoney
+09BF98 = 09B988 = BuyMenuReturnToItemList
+09C094 = 09BA84 = nullsub_52
 09FD58 = 09FC38 = GetMoney
 09FDD8 = 09FCB8 = RemoveMoney
 09FE40 = 09FD20 = PrintMoneyAmountInMoneyBox
@@ -805,6 +809,7 @@ funcs e,j,desc:
 12E5A4 = 12EDAC = AddTextPrinterParameterized4
 133A20 = 13420C = AddScrollIndicatorArrowPair
 13F2F0 = 13FA14 = GetPlayerDirectionTowardsHiddenItem
+13F75C = 13FE80 = BuyMenuDisplayMessage
 1E3B60 = 1C7A84 = CpuFastSet
 1E3B64 = 1C7A88 = CpuSet
 1E3B9C = square root
