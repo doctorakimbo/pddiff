@@ -546,11 +546,15 @@ sounds:
 0x20B = ???							(used by Play Rough)
 
 background data:
-[58 9C C2 08] = [58 9C D2 08] = gBattleAnimBackgroundTilemap_09 (used by BG_HIGHSPEED_OPPONENT, BG_BUG_OPPONENT, Fairy Wind opponent)
-[90 9F C2 08] = [90 9F D2 08] = gBattleAnimBackgroundImage_09 (used by BG_HIGHSPEED, BG_BUG, Fairy Wind)
-[10 A5 C2 08] = [10 A5 D2 08] = gBattleAnimBackgroundTilemap_10 (used by BG_HIGHSPEED_PLAYER, BG_BUG_PLAYER, Fairy Wind player)
-
-
+[C0 5D C2 08] = [C0 5D D2 08]
+[F8 74 C2 08] = [F8 74 D2 08]
+[F8 8A C2 08] = [F8 8A D2 08]
+[F0 8C C2 08] = [F0 8C D2 08]
+[80 8E C2 08] = [80 8E D2 08]
+[58 9C C2 08] = [58 9C D2 08]
+[90 9F C2 08] = [90 9F D2 08]
+[10 A5 C2 08] = [10 A5 D2 08]
+[38 CF D7 08] = [88 CF E7 08]
 
 new backgrounds:
 27: used by Fairy Wind
@@ -580,18 +584,24 @@ new backgrounds:
 51: used by Head Smash
 52: used by Head Smash
 53: used by Simple Beam and Wring Out
-56: used by Frost Breath, [move21B]
+54: (unused)
+55: (unused)
+56: used by Frost Breath and [move21B]
 57: used by Head Smash
+58: (unused)
 59: used by [move234]
 60: used by [move234]
 61: used by [move234] and [move24C]
 62: used by Hydro Cannon, Wave Splash, [move205]
 63: used by Hydro Cannon, Wave Splash, [move205]
 64: used by [move21D]
+65: (unused)
+66: (unused)
 67: used by Gunk Shot
 68: used by [move247]
 69: used by [move24B], [move282]
 70: used by Aura Sphere and [move233]
+71: (unused)
 72: used by Focus Blast, [move21E], Chip Away
 73: used by Hydro Pump and [move23B]
 74: used by [move231] and [move236]
@@ -599,6 +609,8 @@ new backgrounds:
 76: used by Moonblast and [move22C]
 77: used by [move24A]
 78: used by [move24A]
+79: (unused)
+80: (unused)
 81: used by [move24D]
 82: used by [move24D]
 83: used by Tailwind
@@ -614,13 +626,18 @@ new backgrounds:
 93: used by Earthquake, Raze Earth, [move29B], [move29F]
 
 new sprite gfx:
+022: used by Foul Play
+066: used by Rage Powder
+069: used by Dazzle Powder
 289: used by [move274]
+290: (unused)
 291: used by [move283]
 292: used by Aura Sphere
 293: used by Disarming Voice
 294: used by [move233]
 295: used by Boomburst
 296: used by [move228]
+297: (unused)
 298: used by [move24E]
 299: used by [move27E]
 300: used by Pound, [move21E], [move240], [move242], Wake-Up Slap, [move265]
@@ -631,6 +648,7 @@ new sprite gfx:
 305: used by Power Whip, [move231], [move263]
 306: used by [move246]
 307: used by [move241]
+308: (unused)
 309: used by Bestow
 310: used by Power Swap
 311: used by Guard Swap
@@ -665,6 +683,8 @@ new sprite gfx:
 340: used by Freeze-Dry
 341: used by [move249]
 342: used by [move24D]
+343: (unused)
+344: (unused)
 345: used by Stored Power
 346: used by Stored Power
 347: used by [move266]
@@ -672,6 +692,9 @@ new sprite gfx:
 349: used by Power Trick
 350: used by [move291]
 351: used by Circle Throw
+352: (unused)
+353: (unused)
+354: (unused)
 355: used by [move263]
 356: used by [move27A]
 357: used by Shadow Sneak, [move222], [move27A]
@@ -687,6 +710,8 @@ new sprite gfx:
 367: used by Worry Seed
 368: used by [move24F]
 369: used by Psycho Cut
+370: (unused)
+371: (unused)
 372: used by [move22D]
 373: used by Leaf Tornado, [move231], [move236]
 374: used by [move225]
@@ -712,6 +737,7 @@ new sprite gfx:
 394: used by Hydro Cannon and Wave Splash
 395: used by Infestation
 396: used by Raze Earth
+397: (unused)
 398: used by Tail Slap
 399: used by Rock Wrecker
 400: used by Poison Jab
@@ -748,13 +774,22 @@ new sprite gfx:
 431: used by Dazzling Gleam
 432: used by Aura Sphere
 433: used by Aura Sphere
+434: (unused)
+435: (unused)
+436: (unused)
 437: used by [move29B]
 438: used by [move29B]
 439: used by Energy Ball
+440: (unused)
 441: used by Psyshock and Metal Burst
 442: used by Psyshock and Metal Burst
 443: used by [move2A0]
+444: (unused)
 445: used by [move2A0]
+446: (unused)
+447: (unused)
+448: (unused)
+449: (unused)
 450: used by [move29C]
 451: used by [move2A3]
 452: used by [move2A2]
@@ -765,4 +800,5 @@ new sprite gfx:
 457: used by Tone-Deaf and Bug Noise
 458: used by Wave Splash
 459: used by Mud Bomb
+460: (unused)
 461: used by Play Rough
