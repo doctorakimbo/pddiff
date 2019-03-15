@@ -625,6 +625,12 @@ new backgrounds:
 92: used by [move29E]
 93: used by Earthquake, Raze Earth, [move29B], [move29F]
 
+sprite data:
+[80 35 C0 08] = [80 35 D0 08]
+[18 A5 C1 08] = [18 A5 D1 08]
+[DC BD C1 08] = [DC BD D1 08]
+[B0 CF C2 08] = [B0 CF D2 08]
+
 new sprite gfx:
 022: used by Foul Play
 066: used by Rage Powder
