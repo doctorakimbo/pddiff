@@ -775,7 +775,7 @@ grafics:
 = E9B598 -> 1427654 (427680 old, 427654 new) - pokemon summary screen first page tilemap
 = E9B950 -> 1427828 (427870 old, 427828 new) - pokemon summary screen third page tilemap
 = E9B750 -> 1427950 (4279DC old, 427950 new) - pokemon summary screen second page tilemap
-= E9BBCC -> 1427AF4 (427B0C old, 427AF4 new) - (unknown tilemap)
+= E9BBCC -> 1427AF4 (427B0C old, 427AF4 new) - (unknown tilemap, pokemon summary screen)
 = 463B88 -> 463BC8 (427C40 old, 427C80 new) - pokemon summary screen background tilemap
 = 463C80 -> 463BC8 (427D38 old, 427C80 new) - pokemon summary screen background tilemap
 = 466620 (42F9A8 old, 922730 new) - slot machine gfx
@@ -789,7 +789,7 @@ grafics:
 = E82700 -> 924320 (D826B0 old, 924320 new) - party menu background gfx
 = E8362C (D83638 old, 923050 new) - bag gfx (male)
 = E83DBC (D83DC8 old, 923860 new) - bag gfx (female)
-= E85068 -> 251A80 (D85074 old, 251A80 new) - (unknown tilemap)
+= E85068 -> 251A80 (D85074 old, 251A80 new) - (unknown tilemap, tm case)
 
 stray text:
 = 1A5CF1 (19384A old, E00536 new)
@@ -808,11 +808,25 @@ stray text:
 = 3FDDEB (3C3E5C old, 3C3E1D new)
 = 3FE6D5 (3C4685 jp)
 = 415F66 (3DD606 old, 5447D9 new)
+= 415FED (3DD66F jp)
+= 416425 (3DD9B5 jp)
 = 417457 (3DE537 old, 3C3EB6 new)
 = 417494 (3DE55B old, 3DE537 new)
+= 418690 (3DF21C jp)
+= 4186B0 (3DF22F jp)
+= 41969D (3DFE6F jp)
+= 419C62 (3E0241 jp)
+= 419C72 (3E024D jp)
+= 419C92 (3E026C jp)
 = 419CA2 (3E0279 old, 3E06E3 new)
+= 419CA9 (3E0280 jp)
+= 419E36 (3E03A1 jp)
+= 419E3B (3E03A6 jp)
+= 419E46 (3E03AF jp)
 = 41A2E1 (3E06E3 old, 68AE00 new)
 = 41A312 (3E070A old, 3E0709 new)
+= 41B698 (3E148B jp)
+= 41D198 (3E2328 jp)
 ! repoint ptrs at 09D1E0 and 09D248 ("Bill's PC"/"Someone's PC") to the same text (jE00590, e1E00590) (PDONLY)
 
 + expand rom to 2x
@@ -2810,7 +2824,7 @@ stray text:
 = 3F2EE0 (j3B9A68): fly locations table
 = 3F5F26 (j3BCA86): table for warp0_in_pokecenter
 		  Implements: Some kind of link functionality; only the map at (0, 4) returns TRUE, removing all Pokemon Centers from the list
-! 3FB219-3FDF3C (j3C1D85-j3C3F08): [text, go through here thoroughly after full jp release]
+! 3FB219-3FDF3C (j3C1D85-j3C3F08): battle strings [go through here thoroughly after full jp release]
 ! 3FDF3C (j3C3F08): gBattleStringsTable [go through here thoroughly after full jp release]
 + 3FE57C (j3C4548): D5 00 D6 00 -> D7 00 D8 00 (gStatUpStringIds)
 		  Implements: makes room for "drastically"/"severely"
@@ -2830,7 +2844,57 @@ stray text:
 = 415DB8, 415DD1-415F51 (j3DD4DE, j3DD4FA-j3DD5F3): set to all FF
 		  Implements: removes most text from the main dex screen
 		  Relies on: layout rework to make this not look broken
-= cur j3DD66F
+= 4178EB-4180A7 (j3DE850-j3DEDC6): multichoice list strings
+= 4185AD-418690 (j3DF1A5-j3DF21C): storage system related strings
+= 419B44-419C0B (j3E017D-j3E01FB): summary screen related strings
+= 41ADC8-41B285 (j3E0D84-j3E107E): link related strings
+- 41F1C8 (j3E2E6C): tilemap (text window related)
+- 41F44A (j3E3106): 01 -> 00 (reduce letter spacing for font 2)
+= 420D98-436854 (j3E4A3C-j3FA4F8): map preview screen gfx
+= 43E9E8 (j40268C): map preview screen gfx table
+- 4404C8 (j404B7C): palette (pokedex related)
+- 4406E0 (j404D94): palette (pokedex related)
+- 443910 (j4082A8): gfx (pokedex related)
+- 443FC0 (j408958): some mon table (pokedex related)
+- 4442F6 (j408C8E): some mon table (pokedex related)
+- 4445FA (j408F92): some mon table (pokedex related)
+- 4448FE (j409296): some mon table (pokedex related)
+= 44E850 (j40E2D0): gPokedexEntries
+- 451ED1, 451ED9 (j410D39, j410D41): 0F -> 0D (change a palette in some dex window)
+- 451F54-451F6C (j410DBC-j410DD4): some dex windows (moved around)
+- 451F7E (j410DE0): 09 -> 0E (does something to dex menu?)
+- 4520EC (j410F54): 0B -> 0A (some dex scroll arrow limit up one (means some list has one less entry))
+- 45216D (j410FD5): 02 -> 1E (move something right on dex screen)
+- 452182 (j410FEA): 09 -> 0C (unclear, pokedex)
+- 45219C (j411004): 07 00 08 -> 00 00 01 (moves something, pokedex)
+- 4521B5, 4521B8 (j41101D, j411020): C8 -> A0 (move a dex scroll arrow pair left)
+- 4521ED (j411055): 01 02 -> 11 03
+  4521F5 (j41105D): 05 02 -> 15 03
+  4521FD (j411065): 02 07 -> 01 03 (jp 03 07 -> 02 03)
+  452206 (j41106E): 02 -> 14
+  45220D (j411075): 05 05 -> 15 06
+		  Implements: move some dex windows around
+= 4524D0 (j411338): table of mons in habitat order
+= 4527D4 (j41163C): table of pages on the habitat list
+= 452C4C (j411AB4): table of categories on the habitat list
+- E95DBC (j411B7C): palette (list_menu related)
+- E95DDC (j411B9C): uncompressed gfx (list_menu related)
+- 453104 (j413FAC): some bag windows (moved, resized, recolored)
+- 45311C (j413FC4): some bag window (moved, resized, remapped)
+- 453124 (j413FCC): some bag windows (remapped)
+= 45318C (j414034): sVsSeekerData
+- 456E70 (j4172B0): make sure type name ptrs here are repointed (delete this line when done)
+= 459B60 (j4192F0): gTutorMoves
+= 459B7E (j41930E): sTutorLearnsets
+= 459EC4 (j419654): unknown struct (party menu related) [need to merge en and pd changes here]
+= 459EE4 (j419674): unknown struct (party menu related) [need to merge en and pd changes here]
+= 459F04 (j419694): unknown data table [need to merge en and pd changes here]
+- 45A010 (j4197A0): some party menu windows (moved, resized) [only the first 0x30 bytes to avoid overwriting en changes]
+- 45A050 (j4197E0): some party menu windows (moved, resized, remapped) [only the first 0x30 bytes to avoid overwriting en changes]
+- 45A090 (j419820): some party menu windows (moved, resized, remapped) [only the first 0x30 bytes to avoid overwriting en changes]
+- 45A0D0 (j419860): some party menu windows (moved, resized, remapped)
+= 45A180 (j419910): [current]
+
 
 
 
