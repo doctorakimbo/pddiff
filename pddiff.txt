@@ -172,7 +172,7 @@ move IDs:
 ! 0xDD = (attacking move that calculates damage as if any Sp. Atk boosts were added to Attack, then has a 20% chance to raise Atk and Sp. Atk), (can't be called by metronome), (has Pound animation; not implemented)
 = 0x124 = (attacking move), (animation is Giga Drain on Feint Attack's background)
 = 0x126 = (attacking move), (has Rapid Spin animation)
-= 0x127 = (attacking move with chance to raise sp. atk), (animation is shedding something, then Wing Attack)
+= 0x127 = (attacking move with chance to raise sp. atk), (animation is shedding white feathers, then Wing Attack)
 + 0x128 = Hurricane
 = 0x12E = (attacking move with chance to poison, but if used by a poison-type, it badly poisons instead), (has Poison Tail animation)
 + 0x161 = Venoshock
@@ -361,17 +361,17 @@ move IDs:
 + 0x218 = Freeze-Dry
 + 0x219 = Venom Drench
 + 0x21A = Nuzzle
-= 0x21B = (attacking move with chance to freeze), (animation covers the foe in ice, then covers the foe in objects, probably more different ice, on Frost Breath's background)
+= 0x21B = (attacking move with chance to freeze), (animation covers the foe in ice, then covers the foe in snowflakes, on Frost Breath's background)
 = 0x21C = (attacking move with chance to flinch), (has Rock Blast animation, except the rock is shot out instead of thrown)
-= 0x21D = (attacking move with chance to lower evasion), (animation shoots objects with Hail sounds on a ray of light background)
+= 0x21D = (attacking move with chance to lower evasion), (animation shoots diamonds with Hail sounds on a ray of light background)
 = 0x21E = (attacking move with chance to flinch), (animation is Take Down that hits with an open palm, on Focus Blast's background)
 = 0x21F = (attacking move with chance to raise speed), (animation is Glide on Mach Punch's background)
-= 0x220 = (attacking move with chance to lower defense), (animation is similar to Psychic but produces a lot of objects on the foe and has Psyshock's background)
+= 0x220 = (attacking move with chance to lower defense), (animation is user half of Psychic, then smashes the foe, producing orbs, on Psyshock's background)
 = 0x221 = (attacking move with chance to flinch), (animation involves user disappearing, then foe being repeatedly hit, on a purple fire background)
-= 0x222 = (attacking move with chance to confuse), (animation involves foe being surrounded by some objects, then hit, then the curse effect)
-= 0x223 = (attacking move with chance to lower sp. def), (animation has something spin over top of the foe, then the foe turns gray)
+= 0x222 = (attacking move with chance to confuse), (animation has purple lumps appear around the foe's feet, then foe is hit causing the curse effect)
+= 0x223 = (attacking move with chance to lower sp. def), (animation encases the foe in a spinning blue bubble, then the foe turns gray)
 = 0x224 = (attacking move), (animation is Dragon Claw charge-up, then Crunch, on Dragon Tail's background)
-= 0x225 = (attacking move with chance to raise sp. atk), (animation involves charging up while flashing blue, then shooting something, on Dragon Tail's background)
+= 0x225 = (attacking move with chance to raise sp. atk), (animation involves charging up while flashing blue, then shooting an orb, on Dragon Tail's background)
 = 0x226 = (attacking move), (animation is a gentle bite)
 = 0x227 = (non-attacking move, turns target into pure Rock-type), (animation is Leer that inverts colors)
 = 0x228 = (attacking move), (animation is Screech but instead shoots out a horrorface, on Hex's background)
@@ -379,18 +379,18 @@ move IDs:
 + 0x22A = Simple Beam
 + 0x22B = Worry Seed
 = 0x22C = (attacking move), (animation has Moonblast sparkles emanate from user and opponent, on Moonblast's background)
-= 0x22D = (attacking move with Wring Out effect), (animation has the foe absorb light then explode, on Draining Kiss's background)
-= 0x22E = (attacking move with chance to lower defense), (animation involves hitting twice as the user sways, and produces a large amount of objects on the foe, on Draining Kiss's background)
-= 0x22F = (attacking move that lowers user's attack and harshly lowers user's defense afterwards), (animation charges up while flashing orange, then does a huge tackle with a fiery impact background)
-= 0x230 = (attacking move), (animation is Swords Dance with different graphics then Slash, on Dragon Tail's background)
-= 0x231 = (attacking move with chance to lower speed), (animation involves leaves (assumed) spreading outward from the user then a tackle, on a green version of Aura Sphere's background)
-= 0x232 = (attacking move with chance to burn or flinch), (animation is Bounce with different graphics and fire effects on a fiery background)
+= 0x22D = (attacking move with Wring Out effect), (animation has the foe absorb light then hearts explode on it, on Draining Kiss's background)
+= 0x22E = (attacking move with chance to lower defense), (animation involves hitting twice as the user sways, the first producing orbs and the second producing rings, on Draining Kiss's background)
+= 0x22F = (attacking move that lowers user's attack and harshly lowers user's defense afterwards), (animation charges up while flashing orange, then does a huge tackle with a fiery impact background that produces japanese characters) [CHANGE GRAPHICS]
+= 0x230 = (attacking move), (animation is red Swords Dance then Slash, on Dragon Tail's background)
+= 0x231 = (attacking move with chance to lower speed), (animation involves leaves spreading outward from the user then a tackle, on a green version of Aura Sphere's background)
+= 0x232 = (attacking move with chance to burn or flinch), (animation is orange Bounce with fire effects on a fiery background)
 = 0x233 = (attacking move), (animation shoots a purple soundwave that uses the user's cry, on Aura Sphere's background)
 = 0x234 = (attacking move), (animation is a Steel-type Take Down on a gear background)
 = 0x235 = (attacking move), (animation is Barrier then Luster Purge, on Psyshock's background)
-= 0x236 = (attacking move with chance to lower speed or raise user's speed), (animation involves leaves (assumed) spreading outward from the user and then the target, on a green version of Aura Sphere's background)
-= 0x237 = (attacking move with chance to lower defense), (animation throws something)
-= 0x238 = (attacking move with chance to lower defense), (animation throws something)
+= 0x236 = (attacking move with chance to lower speed or raise user's speed), (animation involves leaves spreading outward from the user and then the target, on a green version of Aura Sphere's background)
+= 0x237 = (attacking move with chance to lower defense), (animation throws a mud ball)
+= 0x238 = (attacking move with chance to lower defense), (animation throws a rock)
 + 0x239 = Low Sweep
 + 0x23A = Feint
 = 0x23B = (attacking move with chance to lower evasion), (animation is Bounce with water effects on Hydro Pump's background)
@@ -407,15 +407,15 @@ move IDs:
 = 0x246 = (attacking move with tri attack effect), (animation is Psychic on the user, then a pentagram appears on the target, then Psychic on the target, on Psyshock's background)
 = 0x247 = (attacking move with chance to lower defense), (animation is a series of seven punches on a neon background)
 = 0x248 = (attacking move), (animation is a Steel-type Megahorn)
-= 0x249 = (attacking move with chance to raise sp. atk), (animation charges up, then shoots a lightning bolt straight up that then comes down on the foe)
+= 0x249 = (attacking move with chance to raise sp. atk), (animation charges up, then shoots a sparking orb straight up that then comes down on the foe)
 = 0x24A = (attacking move with chance to paralyze), (animation charges electricity, then tackles with an electrical impact background, which leaves the foe shocked)
-= 0x24B = (attacking move with chance to sharply raise target's sp. atk), (animation superimposes something on the foe for a long time, which eventually explodes, on a fossil background)
-= 0x24C = (attacking move with chance to lower sp. def), (animation is Safeguard, then shooting something, on a sparkly background)
+= 0x24B = (attacking move with chance to sharply raise target's sp. atk), (animation superimposes a slowly building layer of sediment on the foe, which eventually explodes, on a fossil background)
+= 0x24C = (attacking move with chance to lower sp. def), (animation is Safeguard, then shooting sparkly orbs, on a sparkly background)
 = 0x24D = (attacking move with chance to paralyze), (animation has user charge and turn purple, then tackle the foe with a spooky silhouette in the background, creating ghostly fire)
 = 0x24E = (attacking move), (animation is Screech that shoots a glowing music note instead)
-= 0x24F = (attacking move), (animation shoots something that makes a cutting sound, on Water Pulse's background)
-= 0x250 = (attacking move with chance to lower speed), (animation slowly covers the foe in something as the screen slowly darkens, then a flurry of hit sounds when the screen is completely black)
-= 0x251 = (attacking move), (animation involves emitting something with the Supersonic sound, while the foe is hit without any obvious cause)
+= 0x24F = (attacking move), (animation shoots a slashing wave of water, on Water Pulse's background)
+= 0x250 = (attacking move with chance to lower speed), (animation summons a pit of pure darkness beneath the foe, then the screen slowly fades to darkness as a ghostly hand reaches out, then a flurry of hit sounds when the screen is completely black)
+= 0x251 = (attacking move), (animation involves emitting sound waves with the Supersonic sound while yoga pose symbols appear on the user, on Psyshock's background)
 + 0x252 = Dragon Tail
 ! 0x253 = (attacking move with chance to lower sp. def), (can't be called by metronome), (has Pound animation; not implemented)
 ! 0x254 = (attacking move with chance to lower sp. atk), (can't be called by metronome), (has Pound animation; not implemented)
@@ -433,14 +433,14 @@ move IDs:
 ! 0x260 = (attacking move with chance to lower defense or confuse), (can't be called by metronome), (has Pound animation; not implemented)
 ! 0x261 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented)
 ! 0x262 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented)
-= 0x263 = (attacking move), (animation is five hits - blue, purple, green, red, yellow - while something spins superimposed on the foe)
+= 0x263 = (attacking move), (animation is five hits - blue, purple, green, red, yellow - while a rainbow spins around the foe)
 + 0x264 = Wake-Up Slap
 = 0x265 = (attacking move that does double damage if it cures infatuation), (animation is a slap, then everything turns gray while the Perish Song sound plays)
-= 0x266 = (attacking move that does double damage if it cures burn), (animation creates something then does the ice effect)
+= 0x266 = (attacking move that does double damage if it cures burn), (animation creates ice around the foe's feet then covers the foe in ice)
 = 0x267 = (attacking move that does double damage if it cures freeze), (animation creates ice around the foe, then shatters it with a punch)
-= 0x268 = (non-attacking move), (animation is just ice effect, might be broken)
+= 0x268 = (non-attacking move), (animation covers the foe in ice, then creates ice around the foe)
 = 0x269 = (attacking move with chance to burn), (animation is a swirl of fire on Psychic's background)
-= 0x26A = (attacking move), (animation is Swords Dance with different graphics then a tackle)
+= 0x26A = (attacking move), (animation is Swords Dance with a shield instead of a sword, then a tackle that produces the same shield on the foe)
 + 0x26B = Heal Pulse
 + 0x26C = Rage Powder
 + 0x26D = Bestow
@@ -449,15 +449,15 @@ move IDs:
 + 0x270 = U-Turn
 + 0x271 = Volt Switch
 = 0x272 = (attacking move with Brine effect, but doubles when the user has less than half HP, not the target), (has Flame Wheel animation on a fiery background)
-= 0x273 = (non-attacking move), (animation has Seismic Toss's background, can't figure out anything else since it crashes)
+= 0x273 = (non-attacking move), (animation involves emitting sound waves while yoga pose symbols appear on the user, on Seismic Toss's background)
 = 0x274 = (non-attacking move), (animation is brownish Mist)
 = 0x275 = (non-attacking move, -1 sp. def), (has Growl animation)
 = 0x276 = (non-attacking move, +1 sp. atk), (has Growl animation)
-= 0x277 = (non-attacking move, turns target into pure Bug-type), (animation is lots of things flying in all directions, then something swaying in front of foe)
-= 0x278 = (attacking move), (animation is user getting angry, then lots of things (same as [move277]) flying in all directions)
+= 0x277 = (non-attacking move, turns target into pure Bug-type), (animation is a swarm of insects flying in all directions, then a single insect swaying in front of foe)
+= 0x278 = (attacking move), (animation is user getting angry, then a swarm of insects flying in all directions)
 = 0x279 = (non-attacking move, turns target into pure Ghost-type), (animation is Memento, then the foe turns black, on Shadow Ball's background)
-= 0x27A = (attacking move with Brine effect), (animation has lots of things surround the foe, then the center one squeezes, on Shadow Ball's background)
-= 0x27B = (attacking move with Foul Play effect, but uses the target's Sp. Atk), (animation shoots something that does something on the foe, on Draining Kiss's background)
+= 0x27A = (attacking move with Brine effect), (animation has purple lumps appear around the foe's feet, then purple tentacles surround and squeeze it, on Shadow Ball's background)
+= 0x27B = (attacking move with Foul Play effect, but uses the target's Sp. Atk), (animation shoots a card that flips to reveal a joker, on Draining Kiss's background)
 + 0x27C = Wring Out
 + 0x27D = Captivate
 = 0x27E = (non-attacking move that has sleep effect, but sleeps the target even if it already has a status), (animation is pink Mist on Draining Kiss's background)
@@ -471,7 +471,7 @@ move IDs:
 + 0x286 = Synchronoise
 + 0x287 = Reflect Type
 + 0x288 = Draining Kiss
-= 0x289 = (attacking move with Overheat effect, but harshly lowers user's attack instead of sp. atk), (animation shoots something with poison sounds that explodes on the foe, on a poisonous cloud background)
+= 0x289 = (attacking move with Overheat effect, but harshly lowers user's attack instead of sp. atk), (animation shoots brown clouds with poison sounds that explode on the foe into more brown clouds, on a poisonous cloud background)
 = 0x28A = (attacking move that harshly lowers user's sp. atk afterwards), (animation drops the foe into a black hole)
 = 0x28B = (attacking move), (animation is Bind with Charm sounds on a pink background)
 + 0x28C = Infestation
@@ -479,28 +479,28 @@ move IDs:
 + 0x28E = Magma Storm
 + 0x28F = Psycho Shift
 + 0x290 = Power Trick
-= 0x291 = (non-attacking move with Power Trick effect, but swaps the user's Sp. Atk and Sp. Def instead), (animation is Power Trick with different graphics)
+= 0x291 = (non-attacking move with Power Trick effect, but swaps the user's Sp. Atk and Sp. Def instead), (animation is Power Trick but instead of a fist and shield, it's a wand and pentagram)
 + 0x292 = Acrobatics
 + 0x293 = Metal Burst
 ! 0x294 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented)
 + 0x295 = Spirit Shackle
-= 0x296 = (attacking move with chance to lower attack), (animation is Flame Wheel startup, then the user smashes something fiery onto the foe)
-= 0x297 = (attacking move with chance to harshly lower accuracy), (animation is Water Pulse startup, then Bubble with different graphics, then the screen flashes rapidly when the "bubbles" pop)
-= 0x298 = (attacking move with chance to paralyze), (animation has the user emit something stationary with Heal Bell's sound on Psyshock's background)
+= 0x296 = (attacking move with chance to lower attack), (animation is Flame Wheel startup, then the user strikes with a fiery whip)
+= 0x297 = (attacking move with chance to harshly lower accuracy), (animation is Water Pulse startup, then Bubble with much larger bubbles, then the screen flashes rapidly when the bubbles pop)
+= 0x298 = (attacking move with chance to paralyze), (animation involves emitting sound waves with the Heal Bell sound while a huge bronze bell appears on the user, on Psyshock's background)
 + 0x299 = Smart Strike
-= 0x29A = (attacking move with chance to lower accuracy or flinch), (animation is [move127] with different graphics)
-= 0x29B = (attacking move), (animation is user half of Psychic, then something comes up from the user and down to the target with Heal Bell sounds, then the foe explodes, on Earthquake's background)
-= 0x29C = (attacking move with chance to flinch), (animation is something that hits as it slides past the foe in darkness)
+= 0x29A = (attacking move with chance to lower accuracy or flinch), (animation is shedding black feathers, then Wing Attack, on a black background)
+= 0x29B = (attacking move), (animation is user half of Psychic, then pillars of light come up from the user and down to the target with Heal Bell sounds, then the foe explodes, on Earthquake's background)
+= 0x29C = (attacking move with chance to flinch), (animation is a big slap in darkness)
 = 0x29D = (attacking move with chance to paralyze), (animation has user send out a floating heart that creates a thunderbolt sound when it hits the foe, on Draining Kiss's background)
-= 0x29E = (attacking move with chance to severely lower accuracy), (animation creates a lot of objects that float up from a white shadow under the foe, with Petal Dance sound, on a sparkly background)
+= 0x29E = (attacking move with chance to severely lower accuracy), (animation creates a lot of golden circular cutouts that float up from a white shadow under the foe, with Petal Dance sound, on a sparkly background)
 = 0x29F = (attacking move), (Ground-type but neutral on Flying and bypasses Levitate), (animation has user bite foe twice, then charge up, then do a third bite, on Earthquake's background)
-= 0x2A0 = (attacking move), (animation has user disappear then do Volt Tackle animation with different graphics and sounds, but ending in two smashes then a big smash)
+= 0x2A0 = (attacking move), (animation has user disappear then do blue Volt Tackle animation with different sounds, but ending in two smashes then a big smash, all of which create flying bones)
 = 0x2A1 = (attacking move), (animation summons a huge tornado on Thunder's background)
-= 0x2A2 = (attacking move), (animation has user charge up and then shoot something)
-= 0x2A3 = (attacking move with Venom Drench effect), (animation has objects float up from under the foe with poison sounds as the foe turns dark purple, on a poisonous cloud background)
+= 0x2A2 = (attacking move), (animation has user charge up while something mechanical is superimposed on it, then shoot a white orb)
+= 0x2A3 = (attacking move with Venom Drench effect), (animation has huge poison bubbles float up from under the foe with poison sounds as the foe turns dark purple, on a poisonous cloud background)
 ! 0x2A4 = Strength Sap (not implemented)
 = 0x2A5 = (non-attacking move), (can't be called by metronome), (not implemented)
-= 0x2A6 = (non-attacking move with Attract effect, but also poisons), (animation has something rise from the user and fall to the target with Attract sound, then the poison effect plays)
+= 0x2A6 = (non-attacking move with Attract effect, but also poisons), (animation has heart clouds emanate from the user and then the target with Attract sounds, then the poison effect plays)
 = 0x2A7 = (attacking move with Counter effect, but does half of Counter's damage and prints string 0x218 if failed), (special-cased in focus punch setup to print string 0x217), (can't be called by metronome), (not implemented)
 
 move effects:
@@ -726,7 +726,7 @@ grafics:
 = E9C3D8 -> 1396374 (3964B0 old, 396374 new) - palette for "Party Pokemon" dropdown in main box screen
 = 3CE738 -> 1396394 (3964D0 old, 396394 new) - palette for bottom of left window in main box screen
 = 3CE758 -> 13963B4 (3964F0 old, 3963B4 new) - palette for bottom of left window in main box screen during "Move Items"
-= E9C438 -> 1396470 (396510 old, 396470 new) - box gfx
+= E9C438 -> 1396470 (396510 old, 396470 new) - box gfx [need to convert correctly]
 = E9CAEC -> 1396E04 (396BD0 old, 396E04 new) - tilemap for "Party Pokemon" dropdown in main box screen
 + 3CE810 -> 2207D0 (396D18 old, 2207D0 new) - removes the zaps from the sides of "PKMN DATA" header in main box screen
 = 3E0780 (3A5884 old, 504AB0 new) - aerodactyl fossil
@@ -757,9 +757,9 @@ grafics:
 = 4105B4 (3D78D0 old, 427E80 new) - credits pikachu 2
 = 410E30 (3D867C old, 428700 new) - credits red
 = 4129C0 (3DA20C old, 7FC460 new) - credits blue
-= 440274 -> 1E98420 (404928 old, E98420 new) - regional dex gfx [wait until not hideous brown]
-= 4403AC -> 1E98420 (404A60 old, E98420 new) - national dex gfx [wait until not hideous brown]
-= 443620 (407FB8 old, E016A0 new) - pokedex map
++ 440274 -> 1E98420 (404928 old, E98420 new) - regional dex gfx
++ 4403AC -> 1E98420 (404A60 old, E98420 new) - national dex gfx
+= 443620 (407FB8 old, E016A0 new) - pokedex map (main region)
 = 452C94 -> 1411C1C (411AFC old, 411C1C new) - tilemap for TM data in TM case
 = 45A1C6 -> 45A1BC (419956 old, 41994C new) - tilemap for a party menu background rectangle
 = 45A20C -> 45A180 (41999C old, 419910 new) - tilemap for a party menu background rectangle
@@ -1914,16 +1914,14 @@ stray text:
 + 1043A2: 01 F0 3B FD -> 10 F3 09 FF (changes call to sub_8105E1C to instead call fn at 4151B8, which just adds a call to fn_3C7400 after; see 220disasm)
 		  Implements: clears all sprites from memory, something else (need more info)
 		  Requires in future: fn_3C7418
-! 10457A: 01 68 -> 87 46
++ 10457A: 01 68 -> 87 46
   10458C: F0 AC 03 02 -> 40 B4 EE 08 (jumps (mov) to extra fn at EEB440, then back (see 228disasm))
 		  Implements: cleans up extra data display from sub_810603C
 		  Relies on: sub_810603C
-		  Requires in future: fn_EEB450
-! 1045E0: 01 68 -> 87 46
++ 1045E0: 01 68 -> 87 46
   1045E8: F0 AC 03 02 -> 48 B4 EE 08 (jumps (mov) to extra fn at EEB448, then back (see 229disasm))
   		  Implements: cleans up extra data display from sub_810603C
 		  Relies on: sub_810603C
-		  Requires in future: fn_EEB450
 + 104E06: 02 -> 00 (changes font on habitat listing cards (to leave space for extra characters))
 ! 104F5E: FF 21 FF F6 7C FA -> 33 21 C2 F2 4E FE (changes call to FillWindowPixelBuffer(0, 0xFF) to instead call fn_3C7C00(0, 0x33))
 		  Implements: adds a POKEDEX logo to the top of the habitat listing page
@@ -1932,14 +1930,12 @@ stray text:
 ! 105E1C: sub_8105E1C (see 230disasm)
 		  Implements: adds a POKEDEX logo to the top of the pokemon info page 1
 		  Relies on: layout and palette rework to make this not look broken
-		  Requires in future: fn_3C7C00
-! 10611E: Part of sub_810603C (see 231disasm)
++ 10611E: Part of sub_810603C (see 231disasm)
 		  Implements: displays egg groups and wild hold items in pokedex list
 		  Relies on: layout rework to make this not look broken
-		  Requires in future: fn_EEB476
 + 1063D0: FE F7 FA F9 -> 00 00 00 00 (removes "Area" label on pokedex detail screen 2)
 + 106490: 02 -> 00 (changes font for names on pokedex detail screen 2 (to leave space for extra characters))
-! 106531: D1 -> 00 (remove size comparison graphic on pokedex detail screen)
++ 106531: D1 -> 00 (remove size comparison graphic on pokedex detail screen)
 ! 10676A: FD F6 77 FE -> C1 F2 49 FA (changes call to FillWindowPixelBuffer to instead call fn at 3C7C00)
 		  Implements: adds a POKEDEX logo to the top of the pokemon info page 2
 		  Relies on: layout and palette rework to make this not look broken
@@ -2848,51 +2844,48 @@ stray text:
 = 4185AD-418690 (j3DF1A5-j3DF21C): storage system related strings
 = 419B44-419C0B (j3E017D-j3E01FB): summary screen related strings
 = 41ADC8-41B285 (j3E0D84-j3E107E): link related strings
-- 41F1C8 (j3E2E6C): tilemap (text window related)
-- 41F44A (j3E3106): 01 -> 00 (reduce letter spacing for font 2)
+= 41F1C8 (j3E2E6C): out-of-battle text window gfx
++ 41F462 (j3E3106): 01 -> 00 (reduce letter spacing for font 2, doesn't seem to do anything)
 = 420D98-436854 (j3E4A3C-j3FA4F8): map preview screen gfx
 = 43E9E8 (j40268C): map preview screen gfx table
-- 4404C8 (j404B7C): palette (pokedex related)
-- 4406E0 (j404D94): palette (pokedex related)
-- 443910 (j4082A8): gfx (pokedex related)
-- 443FC0 (j408958): some mon table (pokedex related)
-- 4442F6 (j408C8E): some mon table (pokedex related)
-- 4445FA (j408F92): some mon table (pokedex related)
-- 4448FE (j409296): some mon table (pokedex related)
++ 4404C8 (j404B7C): regional pokedex palette
++ 4406E0 (j404D94): national pokedex palette
++ 443910 (j4082A8): remove pokedex map (subregion 1)
+= 443FC0 (j408958): table of mons in alphabetical order
+= 4442F6 (j408C8E): table of mons in type order
+= 4445FA (j408F92): table of mons from lightest to heaviest
+= 4448FE (j409296): table of mons from shortest to tallest
 = 44E850 (j40E2D0): gPokedexEntries
-- 451ED1, 451ED9 (j410D39, j410D41): 0F -> 0D (change a palette in some dex window)
-- 451F54-451F6C (j410DBC-j410DD4): some dex windows (moved around)
-- 451F7E (j410DE0): 09 -> 0E (does something to dex menu?)
-- 4520EC (j410F54): 0B -> 0A (some dex scroll arrow limit up one (means some list has one less entry))
-- 45216D (j410FD5): 02 -> 1E (move something right on dex screen)
-- 452182 (j410FEA): 09 -> 0C (unclear, pokedex)
-- 45219C (j411004): 07 00 08 -> 00 00 01 (moves something, pokedex)
-- 4521B5, 4521B8 (j41101D, j411020): C8 -> A0 (move a dex scroll arrow pair left)
-- 4521ED (j411055): 01 02 -> 11 03
+= 451ED1, 451ED9 (j410D39, j410D41): 0F -> 0D (change the dex border palette, currently just makes it black)
+= 451F54-451F6C (j410DBC-j410DD4): moves dex window, currently just makes it off the right side of the screen
++ 451F78 (j410DE0): 09 -> 0E (does something to dex menu, unclear what)
++ 4520EC (j410F54): 0B -> 0A (dex scroll down arrow disappears early))
+= 45216D (j410FD5): 02 -> 1E (moves pokedex list left) [too far]
+= 452182 (j410FEA): 09 -> 0C (currently just breaks scrolling on dex list
+= 45219C (j411004): 07 00 08 -> 00 00 01 (makes the pokemon names on the dex list disappear)
+= 4521B5, 4521B8 (j41101D, j411020): C8 -> A0 (move a dex scroll arrow pair left)
++ 4521ED (j411055): 01 02 -> 11 03
   4521F5 (j41105D): 05 02 -> 15 03
   4521FD (j411065): 02 07 -> 01 03 (jp 03 07 -> 02 03)
   452206 (j41106E): 02 -> 14
   45220D (j411075): 05 05 -> 15 06
-		  Implements: move some dex windows around
+		  Implements: moves the mon icon, name, type on the back of the dex card to the top right
 = 4524D0 (j411338): table of mons in habitat order
 = 4527D4 (j41163C): table of pages on the habitat list
 = 452C4C (j411AB4): table of categories on the habitat list
-- E95DBC (j411B7C): palette (list_menu related)
-- E95DDC (j411B9C): uncompressed gfx (list_menu related)
-- 453104 (j413FAC): some bag windows (moved, resized, recolored)
-- 45311C (j413FC4): some bag window (moved, resized, remapped)
-- 453124 (j413FCC): some bag windows (remapped)
+= E95DBC (j411B7C): type icon palette
+= E95DDC (j411B9C): type icon gfx [need to figure out how to add another type]
++ 453104 (j413FAC): some bag windows (moved, resized, recolored, remapped) [no idea what this did]
 = 45318C (j414034): sVsSeekerData
-- 456E70 (j4172B0): make sure type name ptrs here are repointed (delete this line when done)
 = 459B60 (j4192F0): gTutorMoves
 = 459B7E (j41930E): sTutorLearnsets
 = 459EC4 (j419654): unknown struct (party menu related) [need to merge en and pd changes here]
 = 459EE4 (j419674): unknown struct (party menu related) [need to merge en and pd changes here]
 = 459F04 (j419694): unknown data table [need to merge en and pd changes here]
-- 45A010 (j4197A0): some party menu windows (moved, resized) [only the first 0x30 bytes to avoid overwriting en changes]
-- 45A050 (j4197E0): some party menu windows (moved, resized, remapped) [only the first 0x30 bytes to avoid overwriting en changes]
-- 45A090 (j419820): some party menu windows (moved, resized, remapped) [only the first 0x30 bytes to avoid overwriting en changes]
-- 45A0D0 (j419860): some party menu windows (moved, resized, remapped)
+= 45A010 (j4197A0): some party menu windows (moved, resized) [only the first 0x30 bytes to avoid overwriting en changes]
+= 45A050 (j4197E0): some party menu windows (moved, resized, remapped) [only the first 0x30 bytes to avoid overwriting en changes]
+= 45A090 (j419820): some party menu windows (moved, resized, remapped) [only the first 0x30 bytes to avoid overwriting en changes]
+= 45A0D0 (j419860): some party menu windows (moved, resized, remapped)
 = 45A180 (j419910): [current]
 
 
@@ -3197,6 +3190,7 @@ stray text:
 		  Implements: Venom Drench animation
 +13018C0: Move_??? (see animscripts.txt)
 		  Implements: [move237] animation
+		  GLITCH!: doesn't look right
 +1301910: Move_??? (see animscripts.txt)
 		  Implements: [move246] animation
 +13019A0: Move_??? (see animscripts.txt)
@@ -3249,6 +3243,7 @@ stray text:
 		  Implements: [move222] animation
 +1302F00: Move_??? (see animscripts.txt)
 		  Implements: [move27B] animation
+		  GLITCH!: doesn't look right
 +1302F60: Move_??? (see animscripts.txt)
 		  Implements: [move289] animation
 +1303030: Move_Wake_Up_Slap (see animscripts.txt)
@@ -3297,7 +3292,7 @@ stray text:
 		  Implements: [move235] animation
 +1304358: Move_Punishment (see animscripts.txt)
 		  Implements: Punishment animation
-		  GLITCH!: HP bars stay black afterwards
+		  Note: Looks like it would fit Payback more
 +1304450: Move_Sucker_Punch (see animscripts.txt)
 		  Implements: Sucker Punch animation
 +13044C0: Move_??? (see animscripts.txt)
@@ -3369,6 +3364,7 @@ stray text:
 		  Implements: Feint animation
 +1306768: Move_Payback (see animscripts.txt)
 		  Implements: Payback animation
+		  Note: Looks like it would fit Punishment more
 +13067F0: Move_??? (see animscripts.txt)
 		  Implements: [move296] animation
 +1306BF0: Move_Leaf_Storm (see animscripts.txt)
@@ -3435,11 +3431,11 @@ stray text:
 		  Implements: Heal Pulse animation
 +1308F30: Move_??? (see animscripts.txt)
 		  Implements: [move268] animation
-		  Note: something missing here? check later
 +1308F80: Move_Raze_Earth (see animscripts.txt)
 		  Implements: Raze Earth animation
 +13091A0: Move_Rock_Wrecker (see animscripts.txt)
 		  Implements: Rock Wrecker animation
+		  GLTICH!: doesn't look right
 +1309278: Move_??? (see animscripts.txt)
 		  Implements: [move21E] animation
 +1309350: Move_Aura_Sphere (see animscripts.txt)

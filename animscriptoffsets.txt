@@ -627,9 +627,17 @@ new backgrounds:
 
 sprite data:
 [80 35 C0 08] = [80 35 D0 08]
+[7C AE C0 08] = [7C AE D0 08]
+[2C B4 C0 08] = [2C B4 D0 08]
 [18 A5 C1 08] = [18 A5 D1 08]
+[0C BD C1 08] = [0C BD D1 08]
 [DC BD C1 08] = [DC BD D1 08]
+[CC E4 C1 08] = [CC E4 D1 08]
+[E0 17 C2 08] = [E0 17 D2 08]
+[50 42 C2 08] = [50 42 D2 08]
 [B0 CF C2 08] = [B0 CF D2 08]
+[0C F0 C2 08] = [0C F0 D2 08]
+[84 25 D8 08] = [D4 25 E8 08]
 
 new sprite gfx:
 022: used by Foul Play
