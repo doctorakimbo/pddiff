@@ -708,94 +708,13 @@ battle strings (ADD 9 TO ALL):
 + 0x247 = "[Your/The opposing] team's Reflect wore off!" <EN ONLY>
 + 0x248 = "[Your/The opposing] team's Light Screen wore off!" <EN ONLY>
 
-grafics:
-! EAB6C4 -> 1D97800 (3835A4 old, D97800 new) - title screen pokemon logo palette
-! EAB8C4 (383604 old, F00000 new) - title screen pokemon logo
-! EAD390 -> 8E0B00 (385018 old, 8E0B00 new) - title screen pokemon logo tilemap
-= EAD5E8 -> F03730 (385228 old, F03730 new) - title screen charizard palette
-= EAD608 (385248 old, 8E38A0 new) - title screen charizard
-= EADEE4 (385B24 old, F03460 new) - title screen charizard tilemap
-= EAE094 (385CD8 old, F03020 new) - title screen background palette
-= EAE0B4 (385CF8 old, F01A00 new) - title screen copyright
-= EAE374 (385FDC old, F03050 new) - title screen background tilemap
-= 3BF58C -> 783890 (3860F0 old, 783890 new) - changes the title screen background to (currently red) [wait for rest of title screen]
-= 3CD5E8 (395324 old, 90C190 new) - badges
-= 3CE5FC -> 1396D18 (396334 old, 396D18 new) - tilemap for left window in main box screen
-= E9C3F8 -> 1396334 (396470 old, 396334 new) - palette for left window in main box screen
-= E9C418 -> 1396354 (396490 old, 396354 new) - palette for "PKMN DATA" header in main box screen
-= E9C3D8 -> 1396374 (3964B0 old, 396374 new) - palette for "Party Pokemon" dropdown in main box screen
-= 3CE738 -> 1396394 (3964D0 old, 396394 new) - palette for bottom of left window in main box screen
-= 3CE758 -> 13963B4 (3964F0 old, 3963B4 new) - palette for bottom of left window in main box screen during "Move Items"
-= E9C438 -> 1396470 (396510 old, 396470 new) - box gfx [need to convert correctly]
-= E9CAEC -> 1396E04 (396BD0 old, 396E04 new) - tilemap for "Party Pokemon" dropdown in main box screen
-+ 3CE810 -> 2207D0 (396D18 old, 2207D0 new) - removes the zaps from the sides of "PKMN DATA" header in main box screen
-= 3E0780 (3A5884 old, 504AB0 new) - aerodactyl fossil
-+ ptr 3E1980 -> 38A428 (3A7484 old, 34E4B0 new) - copy of Blue sprite for naming screen -> actual Blue sprite
-+ ptr E98004 -> 36D888 (3A7DA4 old, 331910 new) - copy of Blue sprite palette for naming screen -> actual Blue sprite palette
-= 3EF524 (3B60AC old, 8E1C70 new) - head icon on map (male)
-= 3EF59C (3B6124 old, 8E1CF0 new) - head icon on map (female)
-= 3EF61C (3B61A4 old, 8DC3D0 new) - town map gfx
-= 3F089C -> 8DD390 (3B7424 old, 8DD390 new) - town map tilemap
-= 3F0AFC -> 77C4F0 (3B7684 old, 77C4F0 new) - town map tilemap (one island)
-= 405DC4 (3CBF9C old, E2A880 new) - intro gengar front
-= 40644C -> 1E2B180 (3CC624 old, E2B180 new) - intro gengar front tilemap
-= 406654 (3CC82C old, E2BB10 new) - intro nidorino back
-= 4071D0 -> 1E2C570 (3CD3A8 old, E2C570 new) - intro nidorino back tilemap
-= 407B9C (3CDD74 old, 96A430 new) - intro gengar back frame 1
-= 408D98 -> 96B5E0 (3CEF70 old, 96B5E0 new) - intro gengar back tilemap
-= 40926C (3CF444 old, E2B390 new) - intro gengar side
-= 4096CC (3CF8A4 old, E2B760 new) - intro nidorino side
-= 409D20 (3CFEF8 old, 96BB30 new) - intro gengar back frame 2
-= 40A3E4 (3D05BC old, 9690C0 new) - intro nidorino animation
-= 40CB8C (3D3EA8 old, 8F8780 new) - credits charizard 1
-= 40D228 (3D4544 old, 8E99B0 new) - credits charizard 2
-= 40E158 (3D5474 old, 8F8C70 new) - credits venusaur 1
-= 40E904 (3D5C20 old, 8F7F60 new) - credits venusaur 2
-= 40F240 (3D655C old, 8F9260 new) - credits blastoise 1
-= 40F944 (3D6C60 old, 8F7640 new) - credits blastoise 2
-= 410198 (3D74B4 old, 204D10 new) - credits pikachu 1
-= 4105B4 (3D78D0 old, 427E80 new) - credits pikachu 2
-= 410E30 (3D867C old, 428700 new) - credits red
-= 4129C0 (3DA20C old, 7FC460 new) - credits blue
-+ 440274 -> 1E98420 (404928 old, E98420 new) - regional dex gfx
-+ 4403AC -> 1E98420 (404A60 old, E98420 new) - national dex gfx
-= 443620 (407FB8 old, E016A0 new) - pokedex map (main region)
-= 452C94 -> 1411C1C (411AFC old, 411C1C new) - tilemap for TM data in TM case
-= 45A1C6 -> 45A1BC (419956 old, 41994C new) - tilemap for a party menu background rectangle
-= 45A20C -> 45A180 (41999C old, 419910 new) - tilemap for a party menu background rectangle
-= 45A242 -> 45A1C8 (4199D2 old, 419958 new) - tilemap for a party menu background rectangle
-= 45A278 -> 45A210 (419A08 old, 4199A0 new) - tilemap for a party menu background rectangle
-= 460F14 (423228 old, 8DBCC0 new) - intro leaf
-= 46163C (423950 old, 68AE40 new) - intro red
-= 461D14 (424028 old, 8DEF50 new) - intro oak
-= 4623EC (424700 old, 8DD7B0 new) - intro blue
-= E9A460 -> 14F3040 (42631C old, 4F3040 new) - pokemon summary screen gfx
-= 46386C -> 1426D80 (426D84 old, 426D80 new) - right half of move selection cursor on pokemon summary screen
-= 463B20 -> 14267BC (427460 old, 4267BC new) - pokerus icon
-= E9B598 -> 1427654 (427680 old, 427654 new) - pokemon summary screen first page tilemap
-= E9B950 -> 1427828 (427870 old, 427828 new) - pokemon summary screen third page tilemap
-= E9B750 -> 1427950 (4279DC old, 427950 new) - pokemon summary screen second page tilemap
-= E9BBCC -> 1427AF4 (427B0C old, 427AF4 new) - (unknown tilemap, pokemon summary screen)
-= 463B88 -> 463BC8 (427C40 old, 427C80 new) - pokemon summary screen background tilemap
-= 463C80 -> 463BC8 (427D38 old, 427C80 new) - pokemon summary screen background tilemap
-= 466620 (42F9A8 old, 922730 new) - slot machine gfx
-= D0051C (C0051C old, EB8990 new) - move selection tilemap (breaks Fight/PKMN/Item/Run due to being Japanese-sized)
-= D1F340 (C1F340 old, 11266CC new) - player singles HP bubble gfx 1
-= D1F604 (C1F604 old, 1126A50 new) - opponent doubles HP bubble gfx 1
-= D1F794 (C1F794 old, 1126C8C new) - player doubles HP bubble gfx
-= D1F928 (C1F928 old, 1126EBC new) - opponent doubles HP bubble gfx 2
-= D1FABC (C1FABC old, 11270F0 new) - player singles HP bubble gfx 2
-= E7BB04 (D7BAB4 old, 11273E8 new) - player EXP bar gfx
-= E82700 -> 924320 (D826B0 old, 924320 new) - party menu background gfx
-= E8362C (D83638 old, 923050 new) - bag gfx (male)
-= E83DBC (D83DC8 old, 923860 new) - bag gfx (female)
-= E85068 -> 251A80 (D85074 old, 251A80 new) - (unknown tilemap, tm case)
-
 stray text:
 = 1A5CF1 (19384A old, E00536 new)
 = 1A5D31 (19386C old, E00536 new)
 = 1A5D6E (19388E old, E0055A new)
 = 1A5DB1 (1938C2 old, E0055A new)
+= 1B583F (19F466 old, E005B0 new)
+= 1B68CD (19FEA4 old, E005C1 new)
 = 3E83A7 (3AF6E1 old, 80B818 new)
 = 3FDAE2 (3C3CA6 jp)
 = 3FDB92 (3C3D0A old, 3C3C3F new)
@@ -810,6 +729,7 @@ stray text:
 = 415F66 (3DD606 old, 5447D9 new)
 = 415FED (3DD66F jp)
 = 416425 (3DD9B5 jp)
+= 4173E4 (3DE4D7 old, 3DE3ED new)
 = 417457 (3DE537 old, 3C3EB6 new)
 = 417494 (3DE55B old, 3DE537 new)
 = 418690 (3DF21C jp)
@@ -838,6 +758,7 @@ stray text:
 	! also set 2481BE (gMoveNames[MOVE_FRENZY_PLANT]) to [BROKEN] 1E0C640
 	! also set 24802B (gMoveNames[MOVE_BLAST_BURN]) to [BROKEN] 1E0C548
 	! also set 248038 (gMoveNames[MOVE_HYDRO_CANNON]) to [BROKEN] 1E0C550
+	= also set ptrs starting at 45A6A8 to new positions
 + expand 24F1A0 (type names) from 18 entries/7 per to 19 entries/9 per (j411E1C, e1411E1C)
 % expand 24FB08 (ability descriptions) from 78 entries to 232 (13FD000)
 = expand 24FC40 (ability names) from 78 entries/12 per to 232 entries/16 per (13FF000)
@@ -853,12 +774,12 @@ stray text:
 % expand 39FDB0 (overworld event object gfx info pointers) from 174 entries to 256 (j4EFDA0, e14EFDA0)
 + expand 3A65BC (movement action functions) from 170 entries to 226 (221550)
 	+ add bonus m.a.f. table at 2218D8
-% expand 3ACC08 (battle anim sprites) from 289 entries to 462 (1200300)
++ expand 3ACC08 (battle anim sprites) from 289 entries to 462 (1200300)
 	+ also set 399388 (battle anim sprites ptr) to 11ECA80
 	+ also set 3AD048 (gBattleAnimPicTable[136]) to 1200740
 	+ also set 3AD350 (gBattleAnimPicTable[233]) to 1200A48
 	+ also set 3AD470 (gBattleAnimPicTable[269]) to 1200B68
-% expand 3AD510 (battle anim palettes) from 289 entries to 462 (1201600)
++ expand 3AD510 (battle anim palettes) from 289 entries to 462 (1201600)
 	+ also set 399C90 (battle anim palettes ptr) to 11EDD80
 	+ also set 3AD950 (gBattleAnimPaletteTable[136]) to 1201A40
 	+ also set 3ADC58 (gBattleAnimPaletteTable[233]) to 1201D48
@@ -2706,9 +2627,9 @@ stray text:
 		  Implements: AI layer that discourages supereffective moves for some reason
 + 1DD0C9: C5 -> CC (no idea what this does (m4a))
 + 1E3B27: D0 -> E0 (no idea what this does (isagbprn))
+
 ! 1EA14C+: [text, go through here thoroughly after full jp release; jp 1D9634+]
 
-! 231EC4+: [data, go through here thoroughly; jp 1F139C+]
 = 2349CC (j1F3FB0): gMonFrontPicCoords
 = 2350AC (j1F4690): gMonFrontPicTable
 = 235E6C (j1F5450): gMonBackPicCoords
@@ -2778,6 +2699,16 @@ stray text:
 + 3A51AC (j369234): 02 -> 0E (sEventObjectSpritePalettes)
 		  Implements: change an event object palette id (?)
 = 3AE340-3BF3F8 (j372370-j383410): map event data
+! EAB6C4 -> 1D97800 (3835A4 old, D97800 new) - title screen pokemon logo palette
+! EAB8C4 (383604 old, F00000 new) - title screen pokemon logo
+! EAD390 -> 8E0B00 (385018 old, 8E0B00 new) - title screen pokemon logo tilemap
+= EAD5E8 -> F03730 (385228 old, F03730 new) - title screen charizard palette
+= EAD608 (385248 old, 8E38A0 new) - title screen charizard
+= EADEE4 (385B24 old, F03460 new) - title screen charizard tilemap
+= EAE094 (385CD8 old, F03020 new) - title screen background palette
+= EAE0B4 (385CF8 old, F01A00 new) - title screen copyright
+= EAE374 (385FDC old, F03050 new) - title screen background tilemap
+= 3BF58C -> 783890 (3860F0 old, 783890 new) - changes the title screen background to (currently red) [wait for rest of title screen]
 + EAE4A8 (j3861D0): japanese "fire red" logo (ignore)
 = 3BF77C (j386500): title screen background fire palette
 = 3C683F (j38D5C3): 12 -> 00 (turns the sand black in overworld sandstorms?)
@@ -2788,10 +2719,20 @@ stray text:
 = 3CAFD0-3CB3D0 (j391E4C-39224C): flashing screen during pkmn center healing [change when pkmn center gfx change]
 = 3CC350 (j3931CC): 3B 9E 41 08 46 9E 41 08 -> 36 9E 41 08 3B 9E 41 08 [doesn't make sense until string changes here are documented]
 = 3CD2E0 (j39501C): badges turn blue after some requirement [change badge gfx first]
+= 3CD5E8 (395324 old, 90C190 new) - badges
 = 3CD8AD (j3955E9): 08 -> 02 (change palette for trainer pic on card (possibly male only)) 
 ! 3CDAB8 (j3957F0): now-unused box selection popup gfx (ignore) [would need to merge en and pd changes here, but it's pointless anyway]
 ! 3CE2B8 (j395FF0): now-unused box selection popup gfx (ignore)
+= 3CE5FC -> 1396D18 (396334 old, 396D18 new) - tilemap for left window in main box screen
+= E9C3F8 -> 1396334 (396470 old, 396334 new) - palette for left window in main box screen
+= E9C418 -> 1396354 (396490 old, 396354 new) - palette for "PKMN DATA" header in main box screen
+= E9C3D8 -> 1396374 (3964B0 old, 396374 new) - palette for "Party Pokemon" dropdown in main box screen
+= 3CE738 -> 1396394 (3964D0 old, 396394 new) - palette for bottom of left window in main box screen
+= 3CE758 -> 13963B4 (3964F0 old, 3963B4 new) - palette for bottom of left window in main box screen during "Move Items"
+= E9C438 -> 1396470 (396510 old, 396470 new) - box gfx [need to convert correctly]
+= E9CAEC -> 1396E04 (396BD0 old, 396E04 new) - tilemap for "Party Pokemon" dropdown in main box screen
 + 3CE7F0 (j396CF8): box cursor palette
++ 3CE810 -> 2207D0 (396D18 old, 2207D0 new) - removes the zaps from the sides of "PKMN DATA" header in main box screen
 = 3CEC40-3D29D0 (j397148-j39AED8): box wallpaper gfx/palettes
 + 3D2AD0 (j39AFD8): box scroll arrows
 + 3D2BCC (j39B0D4): box cursor palette on multiselect mode
@@ -2803,14 +2744,22 @@ stray text:
 = 3DFD50-3E04B0 (j3A4E44-j3A557C): multichoice list string pointers
 = 3E04B0-3E06B8 (j3A557C-j3A577C): gMultichoiceLists
 + ?????? (j3A577C): multichoice list widths (autogenerated in en, so this is useless)
+= 3E0780 (3A5884 old, 504AB0 new) - aerodactyl fossil gfx
 = 3E0FA0 (j3A60A4): kabutops fossil gfx
 = 3E17A0 (j3A68A4): museum fossil palette
++ ptr 3E1980 -> 38A428 (3A7484 old, 34E4B0 new) - copy of Blue sprite for naming screen -> actual Blue sprite
++ ptr E98004 -> 36D888 (3A7DA4 old, 331910 new) - copy of Blue sprite palette for naming screen -> actual Blue sprite palette
 = ?????? (j3A8560): 78 -> 79 (remove space before jp "'s nickname?" in naming screen to offset extra letter in name, unclear how to implement in en)
 + 3EE008 (j3B4DB0): pc box mon markings palette
 = 3EECFC-3EF23C (j3B5A48-j3B5DC4): map location names
 = 3EF27C (j3B5E04): palette for head icon on map (male)
 = 3EF29C (j3B5E24): palette for head icon on map (female)
 = 3EF31C (j3B5EA4): palette for town map "return" button
+= 3EF524 (3B60AC old, 8E1C70 new) - head icon on map (male)
+= 3EF59C (3B6124 old, 8E1CF0 new) - head icon on map (female)
+= 3EF61C (3B61A4 old, 8DC3D0 new) - town map gfx
+= 3F089C -> 8DD390 (3B7424 old, 8DD390 new) - town map tilemap
+= 3F0AFC -> 77C4F0 (3B7684 old, 77C4F0 new) - town map tilemap (one island)
 = 3F1B3C (j3B86C4): map points of interest name/description table
 = 3F1CAC (j3B8834): map location name table
 = 3F1E60 (j3B89E8): map location position table
@@ -2820,8 +2769,10 @@ stray text:
 = 3F2EE0 (j3B9A68): fly locations table
 = 3F5F26 (j3BCA86): table for warp0_in_pokecenter
 		  Implements: Some kind of link functionality; only the map at (0, 4) returns TRUE, removing all Pokemon Centers from the list
+
 ! 3FB219-3FDF3C (j3C1D85-j3C3F08): battle strings [go through here thoroughly after full jp release]
 ! 3FDF3C (j3C3F08): gBattleStringsTable [go through here thoroughly after full jp release]
+
 + 3FE57C (j3C4548): D5 00 D6 00 -> D7 00 D8 00 (gStatUpStringIds)
 		  Implements: makes room for "drastically"/"severely"
 + 3FE602, 3FE608 (j3C45CE, j3C45D4): 10 01 -> 8B 01 (gWeatherContinuesStringIds)
@@ -2831,12 +2782,32 @@ stray text:
 = 3FFA8C (j3C5C64): another window template for learning moves [need to merge en and pd changes here]
 = 3FFA94 (j3C5C6C): a ListMenuTemplate for learning moves [need to merge en and pd changes here]
 = 405DA4 (j3CBF7C): intro gengar palette
+= 405DC4 (3CBF9C old, E2A880 new) - intro gengar front
+= 40644C -> 1E2B180 (3CC624 old, E2B180 new) - intro gengar front tilemap
 = 406634 (j3CC80C): intro nidorino back palette
+= 406654 (3CC82C old, E2BB10 new) - intro nidorino back
+= 4071D0 -> 1E2C570 (3CD3A8 old, E2C570 new) - intro nidorino back tilemap
+= 407B9C (3CDD74 old, 96A430 new) - intro gengar back frame 1
+= 408D98 -> 96B5E0 (3CEF70 old, 96B5E0 new) - intro gengar back tilemap
+= 40926C (3CF444 old, E2B390 new) - intro gengar side
 = 4096AC (j3CF884): intro nidorino front palette
+= 4096CC (3CF8A4 old, E2B760 new) - intro nidorino side
+= 409D20 (3CFEF8 old, 96BB30 new) - intro gengar back frame 2
+= 40A3E4 (3D05BC old, 9690C0 new) - intro nidorino animation
+= 40CB8C (3D3EA8 old, 8F8780 new) - credits charizard 1
+= 40D228 (3D4544 old, 8E99B0 new) - credits charizard 2
+= 40E158 (3D5474 old, 8F8C70 new) - credits venusaur 1
+= 40E904 (3D5C20 old, 8F7F60 new) - credits venusaur 2
+= 40F240 (3D655C old, 8F9260 new) - credits blastoise 1
+= 40F944 (3D6C60 old, 8F7640 new) - credits blastoise 2
+= 410198 (3D74B4 old, 204D10 new) - credits pikachu 1
+= 4105B4 (3D78D0 old, 427E80 new) - credits pikachu 2
 = 410E10 (j3D865C): credits red palette
+= 410E30 (3D867C old, 428700 new) - credits red
 = 411BF8 (j3D9444): credits leaf palette
 = 411C18 (j3D9464): credits leaf
 = 4129A0 (j3DA1EC): credits blue palette
+= 4129C0 (3DA20C old, 7FC460 new) - credits blue
 = 415DB8, 415DD1-415F51 (j3DD4DE, j3DD4FA-j3DD5F3): set to all FF
 		  Implements: removes most text from the main dex screen
 		  Relies on: layout rework to make this not look broken
@@ -2848,8 +2819,11 @@ stray text:
 + 41F462 (j3E3106): 01 -> 00 (reduce letter spacing for font 2, doesn't seem to do anything)
 = 420D98-436854 (j3E4A3C-j3FA4F8): map preview screen gfx
 = 43E9E8 (j40268C): map preview screen gfx table
-+ 4404C8 (j404B7C): regional pokedex palette
-+ 4406E0 (j404D94): national pokedex palette
++ 440274 -> 1E98420 (404928 old, E98420 new) - regional dex gfx
++ 4403AC -> 1E98420 (404A60 old, E98420 new) - national dex gfx
++ 4404C8 (j404B7C): regional dex palette
++ 4406E0 (j404D94): national dex palette
+= 443620 (407FB8 old, E016A0 new) - pokedex map (main region)
 + 443910 (j4082A8): remove pokedex map (subregion 1)
 = 443FC0 (j408958): table of mons in alphabetical order
 = 4442F6 (j408C8E): table of mons in type order
@@ -2875,22 +2849,115 @@ stray text:
 = 452C4C (j411AB4): table of categories on the habitat list
 = E95DBC (j411B7C): type icon palette
 = E95DDC (j411B9C): type icon gfx [need to figure out how to add another type]
+= 452C94 -> 1411C1C (411AFC old, 411C1C new) - tilemap for TM data in TM case
 + 453104 (j413FAC): some bag windows (moved, resized, recolored, remapped) [no idea what this did]
 = 45318C (j414034): sVsSeekerData
 = 459B60 (j4192F0): gTutorMoves
 = 459B7E (j41930E): sTutorLearnsets
 = 459EC4 (j419654): unknown struct (party menu related) [need to merge en and pd changes here]
 = 459EE4 (j419674): unknown struct (party menu related) [need to merge en and pd changes here]
-= 459F04 (j419694): unknown data table [need to merge en and pd changes here]
+= 459F04 (j419694): unknown data table (party menu related) [need to merge en and pd changes here]
 = 45A010 (j4197A0): some party menu windows (moved, resized) [only the first 0x30 bytes to avoid overwriting en changes]
 = 45A050 (j4197E0): some party menu windows (moved, resized, remapped) [only the first 0x30 bytes to avoid overwriting en changes]
 = 45A090 (j419820): some party menu windows (moved, resized, remapped) [only the first 0x30 bytes to avoid overwriting en changes]
 = 45A0D0 (j419860): some party menu windows (moved, resized, remapped)
-= 45A180 (j419910): [current]
+= 45A180 (j419910): tilemap for a party menu background rectangle
+= 45A1C6 -> 45A1BC (419956 old, 41994C new) - tilemap for a party menu background rectangle
+= 45A20C -> 45A180 (41999C old, 419910 new) - tilemap for a party menu background rectangle
+= 45A242 -> 45A1C8 (4199D2 old, 419958 new) - tilemap for a party menu background rectangle
+= 45A278 -> 45A210 (419A08 old, 4199A0 new) - tilemap for a party menu background rectangle
+= 45A5A4 (j419D34): copy of gTMHMMoves (possibly unused)
+= 45A80C (j419F9C): gTMHMMoves
+- 460ED4 (j4231E8): palette (oak intro related)
+= 460F14 (423228 old, 8DBCC0 new) - intro leaf
+- 4615FC (j423910): palette (oak intro related)
+= 46163C (423950 old, 68AE40 new) - intro red
+- 461CD0 (j423FE8): palette (oak intro related)
+= 461D14 (424028 old, 8DEF50 new) - intro oak
+- 4623AC (j4246C0): palette (oak intro related)
+= 4623EC (424700 old, 8DD7B0 new) - intro blue
+= 463190 (j42549C): some tm case windows (moved, resized, remapped) [need to merge en and pd changes here]
+= 4631E0 (j4254EC): some tm case window (remapped) [need to merge en and pd changes here]
+- 46324A (j4255D6): 00 00 -> 10 01 (fairy-type tm color)
+- 463580 (j42590C): pokedex map area coordinates (?)
+- E9B310 (j425A4C): palette (pokemon summary screen related)
+- E9B3D0 (j425B0C): palette (pokemon summary screen related)
+- 463700 (j425B6C): palette (pokemon summary screen related)
+- E9A460 (j425B8C): gfx (pokemon summary screen related)
+= E9A460 -> 14F3040 (42631C old, 4F3040 new) - pokemon summary screen gfx
+- 463720 (j426C38): palette (pokemon summary screen related)
+- 463740 (j426C58): gfx (pokemon summary screen related)
+= 46386C -> 1426D80 (426D84 old, 426D80 new) - right half of move selection cursor on pokemon summary screen
+- 463B00 (j427440): palette (pokemon summary screen related)
+= 463B20 -> 14267BC (427460 old, 4267BC new) - pokerus icon
+- 463B44 (j427484): palette (pokemon summary screen related)
+- E9B598 (j4274C8): pokemon summary screen first page tilemap
+- E9B750 -> 1427654 (427680 old, 427654 new) - pokemon summary screen second page tilemap
+- E9B950 -> 1427828 (427870 old, 427828 new) - pokemon summary screen third page tilemap
+- E9BA9C -> 1427950 (4279DC old, 427950 new) - (unknown tilemap, pokemon summary screen)
+- E9BBCC -> 1427AF4 (427B0C old, 427AF4 new) - (unknown tilemap, pokemon summary screen)
+= 463B88 -> 463BC8 (427C40 old, 427C80 new) - pokemon summary screen background tilemap
+= 463C80 -> 463BC8 (427D38 old, 427C80 new) - pokemon summary screen background tilemap
+- 463F0C (j42D298): some summary screen windows (moved, resized)
+- 463F2C (j42D2B8): some summary screen windows (moved, resized)
+= 463F3C (j42D2C8): some summary screen windows (moved, resized, remapped) [need to merge en and pd changes here]
+= 463F5C (j42D2E8): some summary screen windows (moved, resized, remapped) [need to merge en and pd changes here]
+- 463F7C (j42D308): some summary screen windows (moved, resized, remapped)
+- 464128 (j42D4B4): palette (help system related)
+- 464148 (j42D4D4): pokedex map area coordinates (?)
+= 4643D8 (j42D760): some berry pouch windows (moved, resized, remapped) [need to merge en and pd changes here]
+= 4643F8 (j42D780): some berry pouch window (remapped) [need to merge en and pd changes here]
+= 464440 (j42D788): some berry pouch window (remapped) [need to merge en and pd changes here]
+= 464804 (j42DB8C): some shop menu windows (moved, resized, remapped) [need to merge en and pd changes here]
+- 46483C (j42DBC4): some shop menu windows (moved, resized, remapped)
+- 46487C (j42DC04): some shop menu window (remapped)
+- 464974 (j42DCFC): palette (slot machine related)
+- 4649D4 (j42DD5C): palette (slot machine related)
+- 4649F4 (j42DD7C): palette (slot machine related)
+- 464A14 (42DD9C old, 919B80 new) - gfx???????????????
+- 46504C (j42E3D4): palette (slot machine related)
+- 46506C (42E3F4 old, 919660 new) - gfx???????????????
+- 4665C0 (j42F948): palette (slot machine related)
+= 466620 (42F9A8 old, 922730 new) - slot machine gfx
+- 470B0C (j43E744): uncompressed gfx (text window related)
+- 471DEC (j43FA24): palette (text window related)
+= 479D34 (j447938): unknown struct (trainer tower related) [figure this out later]
+
+! 489C8C-6FC03C: [sound_data, go through here thoroughly after full jp release; jp 44E8CC-6C0C7C]
+
+- D004D8 (jC004D8): gBattleTextboxPalette
+= D0051C (C0051C old, EB8990 new) - gFile_graphics_interface_menu_map_tilemap [need to merge en and pd changes here]
+- D0DD94 (jC0DD94): a battle anim image
+- D11B84 (jC11B84): HP bubble palette
+- D11BA4 (jC11BA4): HP bar palette
+- D11BC4 (jC11BC4): uncompressed gfx (battle interface related)
+- D12404 (jC12404): uncompressed gfx (battle interface related)
+= D1F340 (C1F340 old, 11266CC new) - player singles HP bubble gfx 1
+= D1F604 (C1F604 old, 1126A50 new) - opponent doubles HP bubble gfx 1
+= D1F794 (C1F794 old, 1126C8C new) - player doubles HP bubble gfx
+= D1F928 (C1F928 old, 1126EBC new) - opponent doubles HP bubble gfx 2
+= D1FABC (C1FABC old, 11270F0 new) - player singles HP bubble gfx 2
+= D3018C-E48D58 (jC3018C-jD48D58): mon icons
+= cur: jD49788
 
 
 
 
+
+
+
+
+
+
+
+
+
+= E7BB04 (D7BAB4 old, 11273E8 new) - player EXP bar gfx
+= E82700 -> 924320 (D826B0 old, 924320 new) - party menu background gfx
+- E82BE8 (D82B98 old, 924150 new) - gfx???????????????
+= E8362C (D83638 old, 923050 new) - bag gfx (male)
+= E83DBC (D83DC8 old, 923860 new) - bag gfx (female)
+= E85068 -> 251A80 (D85074 old, 251A80 new) - (unknown tilemap, tm case)
 
 
 
