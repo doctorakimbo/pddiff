@@ -51,29 +51,35 @@ abilities:
 + 0x6C = Forewarn
 + 0x6D = Unaware
 + 0x6E = Tinted Lens
-= 0x6F = Solid Rock/Filter
++ 0x6F = Filter
 + 0x70 = Slow Start
 + 0x71 = Scrappy
 + 0x72 = Storm Drain
 + 0x73 = Ice Body
-= 0x74 = Filter/Solid Rock
++ 0x74 = Solid Rock
 + 0x75 = Snow Warning
 + 0x76 = Honey Gather
 + 0x77 = Frisk
 + 0x78 = Reckless
++ 0x79 = Multitype
 + 0x7A = Flower Gift
++ 0x7B = Bad Dreams
++ 0x7C = Pickpocket
 + 0x7D = Sheer Force
 + 0x7E = Contrary
 + 0x7F = Unnerve
++ 0x80 = Defiant
 + 0x81 = Defeatist
 + 0x82 = Cursed Body
 + 0x83 = Healer
 + 0x84 = Friend Guard
 + 0x85 = Weak Armor
++ 0x86 = Heavy Metal
++ 0x87 = Light Metal
 + 0x88 = Multiscale
 + 0x89 = Toxic Boost
 + 0x8A = Flare Boost
-= 0x8B = (ai wants to use sunny day if it has this)
++ 0x8B = Harvest
 + 0x8C = Telepathy
 + 0x8D = Moody
 + 0x8E = Overcoat
@@ -83,6 +89,7 @@ abilities:
 + 0x92 = Sand Rush
 + 0x93 = Wonder Skin
 + 0x94 = Analytic
++ 0x95 = Illusion
 + 0x96 = Imposter
 + 0x97 = Infiltrator
 + 0x98 = Mummy
@@ -94,18 +101,23 @@ abilities:
 + 0x9E = Prankster
 + 0x9F = Sand Force
 + 0xA0 = Iron Barbs
++ 0xA1 = Zen Mode
 + 0xA2 = Victory Star
-= 0xA3 = Turboblaze/Teravolt
-= 0xA4 = Teravolt/Turboblaze
++ 0xA3 = Turboblaze
++ 0xA4 = Teravolt
 + 0xA5 = Aroma Veil
 + 0xA6 = Aura Break
++ 0xA7 = Parental Bond
 + 0xA8 = Tough Claws
++ 0xA9 = Competitive
 + 0xAA = Strong Jaw
++ 0xAB = Symbiosis
 + 0xAC = Grass Pelt
 + 0xAD = Sweet Veil
 + 0xAE = Aerilate
 + 0xAF = Dark Aura
 + 0xB0 = Gooey
++ 0xB1 = Stance Change
 + 0xB2 = Gale Wings
 + 0xB3 = Fur Coat
 + 0xB4 = Fairy Aura
@@ -115,14 +127,40 @@ abilities:
 + 0xB8 = Protean
 + 0xB9 = Bulletproof
 + 0xBA = Cheek Pouch
++ 0xBB = Magician
 + 0xBC = Mega Launcher
+= 0xBD
+= 0xBE
+= 0xBF
 + 0xC0 = Stamina
+= 0xC1
+= 0xC2
 + 0xC3 = Water Compaction
+= 0xC4
+= 0xC5
+= 0xC6
+= 0xC7
+= 0xC8
+= 0xC9
 + 0xCA = Slush Rush
 + 0xCB = Long Reach
+= 0xCC
+= 0xCD
 + 0xCE = Galvanize
+= 0xCF
+= 0xD0
+= 0xD1
+= 0xD2
+= 0xD3
+= 0xD4
+= 0xD5
 = 0xD6 = Dazzling/Queenly Majesty
+= 0xD7
+= 0xD8
+= 0xD9
+= 0xDA
 = 0xDB = Queenly Majesty/Dazzling
+= 0xDC
 + 0xDD = Tangling Hair
 
 (old kid: 16F8C4, fix wildmons route15)
@@ -1744,7 +1782,7 @@ stray text:
 ! 0E54C0: sub_80E54C0 (see 215disasm)
 		  Implements: need more info (adds extra window and extra (???) when cancel is highlighted on the move reminder summary screen)
 		  Relies on: graphics actually inserted
-! 0EB330: 31 -> 30
++ 0EB330: 31 -> 30
   0EB342: 32 -> 30
   0EB354: 33 -> 31
   0EB378: 35 -> 32
@@ -1778,11 +1816,11 @@ stray text:
 = 0F3270: 09 -> 0B (pkmnnamelength)
 		  Note: might actually run into issues, looks like jp hof might have extra space just in case western mons are transferred, en hof obviously doesn't
 ! 0F3310: 20 28 01 D0 1D 28 07 D1 -> 0A E0 00 00 00 00 00 00 (PDONLY, restores gender markers for pokemon #29 and #32 in hall of fame)
-! 0F7328: A0 -> A1
++ 0F7328: A0 -> A1
   0F7394: 01 02 00 00 02 02 00 00 03 02 00 00 05 02 00 00 06 02 00 00 09 02 00 00 0A 02 00 00 0B 02 00 00 0D 02 00 00 0A 0A 00 00 0B 0A 00 00 0C 0A 00 00 0D 0A 00 00 05 0A 00 00 06 0A 00 00 08 0A 00 00 09 0A 00 00 01 0A 00 00 02 0A 00 00 03 0A 00 00 04 0A 00 00 -> 00 02 00 00 00 02 00 00 01 02 00 00 02 02 00 00 03 02 00 00 05 02 00 00 06 02 00 00 07 02 00 00 09 02 00 00 02 02 00 00 0C 06 00 00 07 06 00 00 0A 02 00 00 06 02 00 00 0B 02 00 00 0D 02 00 00 0E 02 00 00 10 0A 00 00 10 0A 00 00 0F 02 00 00 11 02 00 00
 		  Implements: changes the tilemap for overworld dialog boxes
 		  Relies on: graphic itself actually changed
-! 0F75B8: A0 -> A1
++ 0F75B8: A0 -> A1
   0F7630: 01 02 00 00 02 02 00 00 03 02 00 00 05 02 00 00 06 02 00 00 09 02 00 00 0A 02 00 00 0B 02 00 00 0D 02 00 00 05 0A 00 00 06 0A 00 00 08 0A 00 00 09 0A 00 00 0A 0A 00 00 0B 0A 00 00 0C 0A 00 00 0D 0A 00 00 01 0A 00 00 02 0A 00 00 03 0A 00 00 04 0A 00 00 -> 00 02 00 00 01 02 00 00 00 02 00 00 02 02 00 00 08 06 00 00 03 02 00 00 05 02 00 00 06 02 00 00 07 02 00 00 02 02 00 00 08 06 00 00 08 02 00 00 03 02 00 00 05 02 00 00 06 02 00 00 0A 02 00 00 07 02 00 00 10 0A 00 00 0D 02 00 00 10 0A 00 00 0E 02 00 00
 		  Implements: changes the tilemap for overworld sign messages
 		  Relies on: graphic itself actually changed
@@ -1900,7 +1938,7 @@ stray text:
 		  Requires in future: data_508000_J
 + ?????? (j10E3BA): 01 -> 00 (changes the letter spacing in the pc item menu, but this is already done in english)
 + ?????? (j10E4D0): 04 -> 00 (moves some printer left four units, this is already done in english - might cause problems if it needs to move left anyway)
-! 10EEB6: 01 -> 00
++ 10EEB6: 01 -> 00
   10EEDE: 02 -> 00
   10EEFE: 03 -> 01
   10EF4A: 05 -> 02
@@ -2609,7 +2647,7 @@ stray text:
 		  Implements: enough stuff to warrant breaking the usual format
 		  * Bugfixes: won't use a speed-lowering move like Mud Shot if the target is immune; no longer inexplicably encourages Toxic when it has a +SpDef move; no longer inexplicably discourages Protect/encourages Snatch when the opponent has specifically Defense Curl; Protect/Snatch correctly factors in all healing moves instead of just vanilla Recover-types; sandstorm and hail are no longer the wrong way around in the Fly script; Facade correctly checks the user for status instead of the target; Brick Break is encouraged vs Light Screen, not just Reflect
 		  * Other improvements: instead of a bizarre mix of moves, Mirror Move tries to prioritize any copiable move; doesn't discourage recovery when the user is faster; encourages OHKO moves after use of Mind Reader; Mean Look (because Spirit Shackle uses the same effect byte), Dragon Dance (why?), and Knock Off are no longer encouraged to be Encored; Teleport and +Sp. Def are encouraged to be Encored; instead of encouraging stealing a short list of items, Thief is encouraged for all items that don't have a downside; Chlorophyll users prioritize Sunny Day; Volt Absorb, Water Absorb, Soundproof, Thick Fat, Flame Body, and Shell Armor are considered "good" abilities; "bad" abilities (to avoid/get rid of) are also listed
-		  * New mechanics that old scripts are updated for: p/s split (also includes removing the discouraging of, for example, -Atk moves or Reflect on a water-type since it can have physical STAB now), new Lightning Rod, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, [ability8B], Choice items, Assault Vest, Lagging Tail
+		  * New mechanics that old scripts are updated for: p/s split (also includes removing the discouraging of, for example, -Atk moves or Reflect on a water-type since it can have physical STAB now), new Lightning Rod, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, Harvest, Choice items, Assault Vest, Lagging Tail
 		  * New moves: 0x22D, Wring Out (factored into Eruption script); Venoshock, Hex, Wake-Up Slap, 0x265, 0x266, 0x267, 0x283 (factored into double-damage-on-status script); Brine, 0x272, 0x27A (factored into Brine script); Hone Claws (factored into (does double damage if used immediately after Hone Claws) script)
 		  * New move effects: (confuse and lower evasion), (Payback that always doubles power vs Steel-types), Power Swap, Guard Swap, Synchronoise, (poison or paralysis, chooses one at random), double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, V-Create, Hurricane, Brine, (removes Reflect/Light Screen from the user's side, but does double damage when it does), (does double damage if used immediately after Hone Claws), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws, Payback, Psycho Shift, Acrobatics, Metal Burst
 		  Relies on: new AI script commands, weather refactor
@@ -2815,7 +2853,7 @@ stray text:
 = 4185AD-418690 (j3DF1A5-j3DF21C): storage system related strings
 = 419B44-419C0B (j3E017D-j3E01FB): summary screen related strings
 = 41ADC8-41B285 (j3E0D84-j3E107E): link related strings
-= 41F1C8 (j3E2E6C): out-of-battle text window gfx
++ 41F1C8 (j3E2E6C): out-of-battle text window gfx
 + 41F462 (j3E3106): 01 -> 00 (reduce letter spacing for font 2, doesn't seem to do anything)
 = 420D98-436854 (j3E4A3C-j3FA4F8): map preview screen gfx
 = 43E9E8 (j40268C): map preview screen gfx table
@@ -2850,7 +2888,7 @@ stray text:
 = E95DBC (j411B7C): type icon palette
 = E95DDC (j411B9C): type icon gfx [need to figure out how to add another type]
 = 452C94 -> 1411C1C (411AFC old, 411C1C new) - tilemap for TM data in TM case
-+ 453104 (j413FAC): some bag windows (moved, resized, recolored, remapped) [no idea what this did]
++ 453104 (j413FAC): expand sell windows
 = 45318C (j414034): sVsSeekerData
 = 459B60 (j4192F0): gTutorMoves
 = 459B7E (j41930E): sTutorLearnsets
@@ -2868,70 +2906,69 @@ stray text:
 = 45A278 -> 45A210 (419A08 old, 4199A0 new) - tilemap for a party menu background rectangle
 = 45A5A4 (j419D34): copy of gTMHMMoves (possibly unused)
 = 45A80C (j419F9C): gTMHMMoves
-- 460ED4 (j4231E8): palette (oak intro related)
+= 460ED4 (j4231E8): intro leaf palette
 = 460F14 (423228 old, 8DBCC0 new) - intro leaf
-- 4615FC (j423910): palette (oak intro related)
+= 4615FC (j423910): intro red palette
 = 46163C (423950 old, 68AE40 new) - intro red
-- 461CD0 (j423FE8): palette (oak intro related)
+= 461CD0 (j423FE8): intro oak palette
 = 461D14 (424028 old, 8DEF50 new) - intro oak
-- 4623AC (j4246C0): palette (oak intro related)
+= 4623AC (j4246C0): intro blue palette
 = 4623EC (424700 old, 8DD7B0 new) - intro blue
 = 463190 (j42549C): some tm case windows (moved, resized, remapped) [need to merge en and pd changes here]
 = 4631E0 (j4254EC): some tm case window (remapped) [need to merge en and pd changes here]
-- 46324A (j4255D6): 00 00 -> 10 01 (fairy-type tm color)
-- 463580 (j42590C): pokedex map area coordinates (?)
-- E9B310 (j425A4C): palette (pokemon summary screen related)
-- E9B3D0 (j425B0C): palette (pokemon summary screen related)
-- 463700 (j425B6C): palette (pokemon summary screen related)
-- E9A460 (j425B8C): gfx (pokemon summary screen related)
-= E9A460 -> 14F3040 (42631C old, 4F3040 new) - pokemon summary screen gfx
-- 463720 (j426C38): palette (pokemon summary screen related)
-- 463740 (j426C58): gfx (pokemon summary screen related)
+= 46324A (j4255D6): 00 00 -> 10 01 (fairy-type tm color) [needs actual palette]
+= 463580 (j42590C): pokedex map area coordinates
+= E9B310 (j425A4C): pokemon summary screen main palette
+= E9B3D0 (j425B0C): pokemon summary screen shiny palette
+= 463700 (j425B6C): unknown palette (pokemon summary screen related)
+= E9A460 (j425B8C): pokemon summary screen first page gfx [need to convert correctly]
+= E9A460 -> 14F3040 (42631C old, 4F3040 new) - pokemon summary screen second page gfx [need to convert correctly]
+= 463720 (j426C38): palette for move selection cursor on pokemon summary screen
+= 463740 (j426C58): left half of move selection cursor on pokemon summary screen
 = 46386C -> 1426D80 (426D84 old, 426D80 new) - right half of move selection cursor on pokemon summary screen
-- 463B00 (j427440): palette (pokemon summary screen related)
+= 463B00 (j427440): palette for pokerus icon
 = 463B20 -> 14267BC (427460 old, 4267BC new) - pokerus icon
-- 463B44 (j427484): palette (pokemon summary screen related)
-- E9B598 (j4274C8): pokemon summary screen first page tilemap
-- E9B750 -> 1427654 (427680 old, 427654 new) - pokemon summary screen second page tilemap
-- E9B950 -> 1427828 (427870 old, 427828 new) - pokemon summary screen third page tilemap
-- E9BA9C -> 1427950 (4279DC old, 427950 new) - (unknown tilemap, pokemon summary screen)
-- E9BBCC -> 1427AF4 (427B0C old, 427AF4 new) - (unknown tilemap, pokemon summary screen)
+= 463B44 (j427484): unknown palette (pokemon summary screen related)
+= E9B598 (j4274C8): pokemon summary screen first page tilemap
+= E9B750 -> 1427654 (427680 old, 427654 new) - pokemon summary screen second page tilemap
+= E9B950 -> 1427828 (427870 old, 427828 new) - pokemon summary screen third page tilemap
+= E9BA9C -> 1427950 (4279DC old, 427950 new) - move summary page tilemap
+= E9BBCC -> 1427AF4 (427B0C old, 427AF4 new) - (unknown tilemap, pokemon summary screen)
 = 463B88 -> 463BC8 (427C40 old, 427C80 new) - pokemon summary screen background tilemap
 = 463C80 -> 463BC8 (427D38 old, 427C80 new) - pokemon summary screen background tilemap
-- 463F0C (j42D298): some summary screen windows (moved, resized)
-- 463F2C (j42D2B8): some summary screen windows (moved, resized)
+= 463F0C/463F2C (j42D298/j42D2B8): move name, level, gender up on pokemon summary screen
 = 463F3C (j42D2C8): some summary screen windows (moved, resized, remapped) [need to merge en and pd changes here]
 = 463F5C (j42D2E8): some summary screen windows (moved, resized, remapped) [need to merge en and pd changes here]
-- 463F7C (j42D308): some summary screen windows (moved, resized, remapped)
-- 464128 (j42D4B4): palette (help system related)
-- 464148 (j42D4D4): pokedex map area coordinates (?)
+= 463F7C (j42D308): rearrange the move summary page, most notably switching the two halves
++ 464128 (j42D4B4): help system palette
+= 464148 (j42D4D4): pokedex map area ids
 = 4643D8 (j42D760): some berry pouch windows (moved, resized, remapped) [need to merge en and pd changes here]
 = 4643F8 (j42D780): some berry pouch window (remapped) [need to merge en and pd changes here]
 = 464440 (j42D788): some berry pouch window (remapped) [need to merge en and pd changes here]
 = 464804 (j42DB8C): some shop menu windows (moved, resized, remapped) [need to merge en and pd changes here]
-- 46483C (j42DBC4): some shop menu windows (moved, resized, remapped)
-- 46487C (j42DC04): some shop menu window (remapped)
-- 464974 (j42DCFC): palette (slot machine related)
-- 4649D4 (j42DD5C): palette (slot machine related)
-- 4649F4 (j42DD7C): palette (slot machine related)
-- 464A14 (42DD9C old, 919B80 new) - gfx???????????????
-- 46504C (j42E3D4): palette (slot machine related)
-- 46506C (42E3F4 old, 919660 new) - gfx???????????????
-- 4665C0 (j42F948): palette (slot machine related)
-= 466620 (42F9A8 old, 922730 new) - slot machine gfx
-- 470B0C (j43E744): uncompressed gfx (text window related)
-- 471DEC (j43FA24): palette (text window related)
+= 46483C (j42DBC4): some tm shop menu windows (moved, resized, remapped) [currently broken]
++ 46487C (j42DC04): some shop menu window (remapped) [unclear what this did]
+= 464974 (j42DCFC): palette for slot reel psyduck and pikachu
+= 4649D4 (j42DD5C): palette for slot reel shellder
+= 4649F4 (j42DD7C): palette for slot reel magnemite
+= 464A14 (42DD9C old, 919B80 new) - slot machine reels
+= 46504C (j42E3D4): palette for slot machine clefairy
+= 46506C (42E3F4 old, 919660 new) - slot machine clefairy
+= 4665C0 (j42F948): palette for slot machine score icons
+= 466620 (42F9A8 old, 922730 new) - slot machine score icons
++ 470B0C (j43E744): sign message border gfx
++ 471DEC (j43FA24): text border palette
 = 479D34 (j447938): unknown struct (trainer tower related) [figure this out later]
 
 ! 489C8C-6FC03C: [sound_data, go through here thoroughly after full jp release; jp 44E8CC-6C0C7C]
 
-- D004D8 (jC004D8): gBattleTextboxPalette
++ D004D8 (jC004D8): gBattleTextboxPalette
 = D0051C (C0051C old, EB8990 new) - gFile_graphics_interface_menu_map_tilemap [need to merge en and pd changes here]
-- D0DD94 (jC0DD94): a battle anim image
-- D11B84 (jC11B84): HP bubble palette
-- D11BA4 (jC11BA4): HP bar palette
-- D11BC4 (jC11BC4): uncompressed gfx (battle interface related)
-- D12404 (jC12404): uncompressed gfx (battle interface related)
++ D0DD94 (jC0DD94): Amnesia "?" -> "!"
+= D11B84 (jC11B84): HP bubble palette
+= D11BA4 (jC11BA4): HP bar palette
+= D11BC4 (jC11BC4): HP bar gfx [need to convert correctly]
+= D12404 (jC12404): status effect and pokeball icons [need to convert correctly]
 = D1F340 (C1F340 old, 11266CC new) - player singles HP bubble gfx 1
 = D1F604 (C1F604 old, 1126A50 new) - opponent doubles HP bubble gfx 1
 = D1F794 (C1F794 old, 1126C8C new) - player doubles HP bubble gfx
@@ -2954,7 +2991,7 @@ stray text:
 
 = E7BB04 (D7BAB4 old, 11273E8 new) - player EXP bar gfx
 = E82700 -> 924320 (D826B0 old, 924320 new) - party menu background gfx
-- E82BE8 (D82B98 old, 924150 new) - gfx???????????????
+= E82BE8 (D82B98 old, 924150 new) - party menu pokeball gfx
 = E8362C (D83638 old, 923050 new) - bag gfx (male)
 = E83DBC (D83DC8 old, 923860 new) - bag gfx (female)
 = E85068 -> 251A80 (D85074 old, 251A80 new) - (unknown tilemap, tm case)

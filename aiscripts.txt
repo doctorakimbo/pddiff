@@ -4739,7 +4739,7 @@ if_equal ABILITY_DRY_SKIN, Score_Minus1
 if_equal ABILITY_SOLAR_POWER, Score_Plus1
 if_equal ABILITY_LEAF_GUARD, Score_Plus1
 if_equal ABILITY_FLOWER_GIFT, Score_Plus1
-if_equal ABILITY_0x8B, Score_Plus1
+if_equal ABILITY_HARVEST, Score_Plus1
 end
 
 AI_CV_BellyDrum:
