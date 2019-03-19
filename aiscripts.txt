@@ -832,7 +832,7 @@ if_effect EFFECT_BELLY_DRUM, AI_CBM_BellyDrum
 if_effect EFFECT_FAKE_OUT, AI_CBM_FakeOut
 if_effect EFFECT_HELPING_HAND, AI_CBM_HelpingHand
 if_effect EFFECT_RECYCLE, AI_CBM_Recycle
-if_effect EFFECT_GIVE_MOVE_240, AI_CBM_GiveMove240
+if_effect EFFECT_GIVE_MOVE_240, AI_CBM_ZombieTouch
 if_effect EFFECT_TELEPORT, Score_Minus10
 // now missing from this list: every +2/-2, psywave, sleep talk, minimize, sonic boom
 // also knock off, but that's no longer purely support, so this actually makes sense
@@ -1406,8 +1406,8 @@ get_used_held_item AI_USER
 if_equal 0, Score_Minus10
 end
 
-AI_CBM_GiveMove240:
-if_has_move AI_TARGET, 0x240, Score_Minus10
+AI_CBM_ZombieTouch:
+if_has_move AI_TARGET, MOVE_ZOMBIE_TOUCH, Score_Minus10
 end
 
 

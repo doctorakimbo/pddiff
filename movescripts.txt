@@ -5305,10 +5305,10 @@ BattleScript_EffectChangeTargetType (pe): @10514A0
 
 
 
-BattleScript_EffectGiveTargetMove240 (pj): @1051580
+BattleScript_EffectZombieTouch (pj): @1051580
 00 02 03 01 AE BD 1B 08 00 00 00 00 29 00 CC 3C 02 02 00 B8 15 05 09 29 00 CC 3C 02 02 01 ED 15 05 09 29 00 CC 3C 02 02 02 22 16 05 09 29 00 CC 3C 02 02 03 57 16 05 09 2A 00 50 3B 02 02 40 02 AE BD 1B 08 2A 00 52 3B 02 02 40 02 AE BD 1B 08 2A 00 54 3B 02 02 40 02 AE BD 1B 08 2A 00 56 3B 02 02 40 02 AE BD 1B 08 28 60 25 05 09 2A 00 A8 3B 02 02 40 02 AE BD 1B 08 2A 00 AA 3B 02 02 40 02 AE BD 1B 08 2A 00 AC 3B 02 02 40 02 AE BD 1B 08 2A 00 AE 3B 02 02 40 02 AE BD 1B 08 28 60 25 05 09 2A 00 00 3C 02 02 40 02 AE BD 1B 08 2A 00 02 3C 02 02 40 02 AE BD 1B 08 2A 00 04 3C 02 02 40 02 AE BD 1B 08 2A 00 06 3C 02 02 40 02 AE BD 1B 08 28 60 25 05 09 2A 00 58 3C 02 02 40 02 AE BD 1B 08 2A 00 5A 3C 02 02 40 02 AE BD 1B 08 2A 00 5C 3C 02 02 40 02 AE BD 1B 08 2A 00 5E 3C 02 02 40 02 AE BD 1B 08 28 60 25 05 09
 
-BattleScript_GiveTargetMove240_DoAnim (pj): @1052560
+BattleScript_ZombieTouch_DoAnim (pj): @1052560
 09 0A 8D 00 29 00 D2 3C 02 02 02 90 25 05 09 29 00 D2 3C 02 02 03 B0 25 05 09 29 00 D2 3C 02 02 04 D0 25 05 09 29 00 D2 3C 02 02 05 F0 25 05 09 F9 00 01 0C 40 02 00 00 F9 00 00 24 0A 00 00 00 28 10 26 05 09 FF FF FF FF FF FF FF FF FF FF FF F9 00 01 0E 40 02 00 00 F9 00 00 25 0A 00 00 00 28 10 26 05 09 FF FF FF FF FF FF FF FF FF FF FF F9 00 01 10 40 02 00 00 F9 00 00 26 0A 00 00 00 28 10 26 05 09 FF FF FF FF FF FF FF FF FF FF FF F9 00 01 12 40 02 00 00 F9 00 00 27 0A 00 00 00 28 10 26 05 09 FF FF FF FF FF FF FF FF FF FF FF 10 0A 02 12 40 00 28 0A A9 1B 08
 
 attackcanceler
@@ -5317,78 +5317,78 @@ ppreduce
 accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
 attackcanceler
 attackcanceler
-jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_LEFT, BattleScript_GiveTargetMove240_PlayerLeft
-jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_LEFT, BattleScript_GiveTargetMove240_OpponentLeft
-jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_RIGHT, BattleScript_GiveTargetMove240_PlayerRight
-jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_RIGHT, BattleScript_GiveTargetMove240_OpponentRight
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_LEFT, BattleScript_ZombieTouch_PlayerLeft
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_LEFT, BattleScript_ZombieTouch_OpponentLeft
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_RIGHT, BattleScript_ZombieTouch_PlayerRight
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_RIGHT, BattleScript_ZombieTouch_OpponentRight
 
-BattleScript_GiveTargetMove240_PlayerLeft:
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_LEFT].moves[0], 0x240, BattleScript_ButItFailed
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_LEFT].moves[1], 0x240, BattleScript_ButItFailed
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_LEFT].moves[2], 0x240, BattleScript_ButItFailed
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_LEFT].moves[3], 0x240, BattleScript_ButItFailed
-goto BattleScript_GiveTargetMove240_DoAnim
+BattleScript_ZombieTouch_PlayerLeft:
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_LEFT].moves[0], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_LEFT].moves[1], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_LEFT].moves[2], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_LEFT].moves[3], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+goto BattleScript_ZombieTouch_DoAnim
 
-BattleScript_GiveTargetMove240_OpponentLeft:
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_LEFT].moves[0], 0x240, BattleScript_ButItFailed
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_LEFT].moves[1], 0x240, BattleScript_ButItFailed
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_LEFT].moves[2], 0x240, BattleScript_ButItFailed
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_LEFT].moves[3], 0x240, BattleScript_ButItFailed
-goto BattleScript_GiveTargetMove240_DoAnim
+BattleScript_ZombieTouch_OpponentLeft:
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_LEFT].moves[0], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_LEFT].moves[1], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_LEFT].moves[2], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_LEFT].moves[3], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+goto BattleScript_ZombieTouch_DoAnim
 
-BattleScript_GiveTargetMove240_PlayerRight:
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_RIGHT].moves[0], 0x240, BattleScript_ButItFailed
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_RIGHT].moves[1], 0x240, BattleScript_ButItFailed
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_RIGHT].moves[2], 0x240, BattleScript_ButItFailed
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_RIGHT].moves[3], 0x240, BattleScript_ButItFailed
-goto BattleScript_GiveTargetMove240_DoAnim
+BattleScript_ZombieTouch_PlayerRight:
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_RIGHT].moves[0], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_RIGHT].moves[1], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_RIGHT].moves[2], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_PLAYER_RIGHT].moves[3], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+goto BattleScript_ZombieTouch_DoAnim
 
-BattleScript_GiveTargetMove240_OpponentRight:
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_RIGHT].moves[0], 0x240, BattleScript_ButItFailed
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_RIGHT].moves[1], 0x240, BattleScript_ButItFailed
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_RIGHT].moves[2], 0x240, BattleScript_ButItFailed
-jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_RIGHT].moves[3], 0x240, BattleScript_ButItFailed
-goto BattleScript_GiveTargetMove240_DoAnim
+BattleScript_ZombieTouch_OpponentRight:
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_RIGHT].moves[0], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_RIGHT].moves[1], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_RIGHT].moves[2], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+jumpifhalfword CMP_EQUAL, gBattleMons[B_POSITION_OPPONENT_RIGHT].moves[3], MOVE_ZOMBIE_TOUCH, BattleScript_ButItFailed
+goto BattleScript_ZombieTouch_DoAnim
 
-BattleScript_GiveTargetMove240_DoAnim:
+BattleScript_ZombieTouch_DoAnim:
 attackanimation
 waitanimation
 setmultihitcounter 0x0
-jumpifbyte CMP_EQUAL, gMultiHitCounter, 2, BattleScript_GiveTargetMove240_MoveSlot1
-jumpifbyte CMP_EQUAL, gMultiHitCounter, 3, BattleScript_GiveTargetMove240_MoveSlot2
-jumpifbyte CMP_EQUAL, gMultiHitCounter, 4, BattleScript_GiveTargetMove240_MoveSlot3
-jumpifbyte CMP_EQUAL, gMultiHitCounter, 5, BattleScript_GiveTargetMove240_MoveSlot4
+jumpifbyte CMP_EQUAL, gMultiHitCounter, 2, BattleScript_ZombieTouch_MoveSlot1
+jumpifbyte CMP_EQUAL, gMultiHitCounter, 3, BattleScript_ZombieTouch_MoveSlot2
+jumpifbyte CMP_EQUAL, gMultiHitCounter, 4, BattleScript_ZombieTouch_MoveSlot3
+jumpifbyte CMP_EQUAL, gMultiHitCounter, 5, BattleScript_ZombieTouch_MoveSlot4
 
-BattleScript_GiveTargetMove240_MoveSlot1:
-setmondata BS_TARGET, ATKF9_2BYTE, ATKF9_MOVE1, 0x240
+BattleScript_ZombieTouch_MoveSlot1:
+setmondata BS_TARGET, ATKF9_2BYTE, ATKF9_MOVE1, MOVE_ZOMBIE_TOUCH
 setmondata BS_TARGET, ATKF9_1BYTE, ATKF9_PP1, 10
-goto BattleScript_GiveTargetMove240_PrintString
+goto BattleScript_ZombieTouch_PrintString
 
-BattleScript_GiveTargetMove240_MoveSlot2:
-setmondata BS_TARGET, ATKF9_2BYTE, ATKF9_MOVE2, 0x240
+BattleScript_ZombieTouch_MoveSlot2:
+setmondata BS_TARGET, ATKF9_2BYTE, ATKF9_MOVE2, MOVE_ZOMBIE_TOUCH
 setmondata BS_TARGET, ATKF9_1BYTE, ATKF9_PP2, 10
-goto BattleScript_GiveTargetMove240_PrintString
+goto BattleScript_ZombieTouch_PrintString
 
-BattleScript_GiveTargetMove240_MoveSlot3:
-setmondata BS_TARGET, ATKF9_2BYTE, ATKF9_MOVE3, 0x240
+BattleScript_ZombieTouch_MoveSlot3:
+setmondata BS_TARGET, ATKF9_2BYTE, ATKF9_MOVE3, MOVE_ZOMBIE_TOUCH
 setmondata BS_TARGET, ATKF9_1BYTE, ATKF9_PP3, 10
-goto BattleScript_GiveTargetMove240_PrintString
+goto BattleScript_ZombieTouch_PrintString
 
-BattleScript_GiveTargetMove240_MoveSlot4:
-setmondata BS_TARGET, ATKF9_2BYTE, ATKF9_MOVE4, 0x240
+BattleScript_ZombieTouch_MoveSlot4:
+setmondata BS_TARGET, ATKF9_2BYTE, ATKF9_MOVE4, MOVE_ZOMBIE_TOUCH
 setmondata BS_TARGET, ATKF9_1BYTE, ATKF9_PP4, 10
-goto BattleScript_GiveTargetMove240_PrintString
+goto BattleScript_ZombieTouch_PrintString
 
-BattleScript_GiveTargetMove240_PrintString:
+BattleScript_ZombieTouch_PrintString:
 printstring 0x20A
 waitmessage 0x40
 goto BattleScript_MoveEnd
 
 
-BattleScript_EffectGiveTargetMove240 (pe): @1051580
+BattleScript_EffectZombieTouch (pe): @1051580
 00 02 03 01 F2 7D 1D 08 00 00 00 00 29 00 6C 3D 02 02 00 B8 15 05 09 29 00 6C 3D 02 02 01 ED 15 05 09 29 00 6C 3D 02 02 02 22 16 05 09 29 00 6C 3D 02 02 03 57 16 05 09 2A 00 F0 3B 02 02 40 02 F2 7D 1D 08 2A 00 F2 3B 02 02 40 02 F2 7D 1D 08 2A 00 F4 3B 02 02 40 02 F2 7D 1D 08 2A 00 F6 3B 02 02 40 02 F2 7D 1D 08 28 60 25 05 09 2A 00 48 3C 02 02 40 02 F2 7D 1D 08 2A 00 4A 3C 02 02 40 02 F2 7D 1D 08 2A 00 4C 3C 02 02 40 02 F2 7D 1D 08 2A 00 4E 3C 02 02 40 02 F2 7D 1D 08 28 60 25 05 09 2A 00 A0 3C 02 02 40 02 F2 7D 1D 08 2A 00 A2 3C 02 02 40 02 F2 7D 1D 08 2A 00 A4 3C 02 02 40 02 F2 7D 1D 08 2A 00 A6 3C 02 02 40 02 F2 7D 1D 08 28 60 25 05 09 2A 00 F8 3C 02 02 40 02 F2 7D 1D 08 2A 00 FA 3C 02 02 40 02 F2 7D 1D 08 2A 00 FC 3C 02 02 40 02 F2 7D 1D 08 2A 00 FE 3C 02 02 40 02 F2 7D 1D 08 28 60 25 05 09
 
-BattleScript_GiveTargetMove240_DoAnim (pe): @1052560
+BattleScript_ZombieTouch_DoAnim (pe): @1052560
 09 0A 8D 00 29 00 72 3D 02 02 02 90 25 05 09 29 00 72 3D 02 02 03 B0 25 05 09 29 00 72 3D 02 02 04 D0 25 05 09 29 00 72 3D 02 02 05 F0 25 05 09 F9 00 01 0C 40 02 00 00 F9 00 00 24 0A 00 00 00 28 10 26 05 09 FF FF FF FF FF FF FF FF FF FF FF F9 00 01 0E 40 02 00 00 F9 00 00 25 0A 00 00 00 28 10 26 05 09 FF FF FF FF FF FF FF FF FF FF FF F9 00 01 10 40 02 00 00 F9 00 00 26 0A 00 00 00 28 10 26 05 09 FF FF FF FF FF FF FF FF FF FF FF F9 00 01 12 40 02 00 00 F9 00 00 27 0A 00 00 00 28 10 26 05 09 FF FF FF FF FF FF FF FF FF FF FF 10 13 02 12 40 00 28 4E 69 1D 08
 
 
@@ -6550,7 +6550,7 @@ MOVE_0x23C
 MOVE_0x23D
 MOVE_0x23E
 MOVE_0x23F
-MOVE_0x240
+MOVE_ZOMBIE_TOUCH
 MOVE_POWER_SPLIT
 MOVE_GUARD_SPLIT
 MOVE_POWER_SWAP
