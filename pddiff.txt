@@ -777,45 +777,47 @@ battle strings (ADD 9 TO ALL):
 + 0x248 = "[Your/The opposing] team's Light Screen wore off!" <EN ONLY>
 
 stray text:
-= 1A5CF1 (19384A old, E00536 new)
-= 1A5D31 (19386C old, E00536 new)
-= 1A5D6E (19388E old, E0055A new)
-= 1A5DB1 (1938C2 old, E0055A new)
-= 1B583F (19F466 old, E005B0 new)
-= 1B68CD (19FEA4 old, E005C1 new)
-= 3E83A7 (3AF6E1 old, 80B818 new)
-= 3FDAE2 (3C3CA6 jp)
-= 3FDB92 (3C3D0A old, 3C3C3F new)
-= 3FDBEF (3C3D2B old, 3C3D09 new)
-= 3FDC58 (3C3D6B old, 3C3D3A new)
-= 3FDC95 (3C3D90 old, 3C3D5E new)
-= 3FDCD2 (3C3DB6 old, 3C3D86 new)
-= 3FDD23 (3C3DDD old, 3C3DAC new)
-= 3FDD64 (3C3E05 old, 3C3DCC new)
-= 3FDDEB (3C3E5C old, 3C3E1D new)
-= 3FE6D5 (3C4685 jp)
-= 415F66 (3DD606 old, 5447D9 new)
-= 415FED (3DD66F jp)
-= 416425 (3DD9B5 jp)
-= 4173E4 (3DE4D7 old, 3DE3ED new)
-= 417457 (3DE537 old, 3C3EB6 new)
-= 417494 (3DE55B old, 3DE537 new)
-= 418690 (3DF21C jp)
-= 4186B0 (3DF22F jp)
-= 41969D (3DFE6F jp)
-= 419C62 (3E0241 jp)
-= 419C72 (3E024D jp)
-= 419C92 (3E026C jp)
-= 419CA2 (3E0279 old, 3E06E3 new)
-= 419CA9 (3E0280 jp)
-= 419E36 (3E03A1 jp)
-= 419E3B (3E03A6 jp)
-= 419E46 (3E03AF jp)
-= 41A2E1 (3E06E3 old, 68AE00 new)
-= 41A312 (3E070A old, 3E0709 new)
-= 41B698 (3E148B jp)
-= 41D198 (3E2328 jp)
-! repoint ptrs at 09D1E0 and 09D248 ("Bill's PC"/"Someone's PC") to the same text (jE00590, e1E00590) (PDONLY)
+= 1A5CF1 (19384A old, E00536 new) - one of the PC messages
+= 1A5D31 (19386C old, E00536 new) - one of the PC messages
+= 1A5D6E (19388E old, E0055A new) - one of the PC messages
+= 1A5DB1 (1938C2 old, E0055A new) - one of the PC messages
+= 1B583F (19F466 old, E005B0 new) - "Using [PCOWNER]'s PC" (for help system, now unused)
+= 1B68CD (19FEA4 old, E005C1 new) - the help system description for "Using [PCOWNER]'s PC" (now unused)
+- 3E823A (3AF6E1 old, 80B818 new) - randomly move Rough Skin text
+= 3FDAE2 (3C3CA6 jp) - one of oak's tutorial lines
+= 3FDB92 (3C3D0A old, 3C3C3F new) - one of oak's tutorial lines
+= 3FDBEF (3C3D2B old, 3C3D09 new) - one of oak's tutorial lines
+= 3FDC58 (3C3D6B old, 3C3D3A new) - one of oak's tutorial lines
+= 3FDC95 (3C3D90 old, 3C3D5E new) - one of oak's tutorial lines
+= 3FDCD2 (3C3DB6 old, 3C3D86 new) - one of oak's tutorial lines
+= 3FDD23 (3C3DDD old, 3C3DAC new) - one of oak's tutorial lines
+= 3FDD64 (3C3E05 old, 3C3DCC new) - one of oak's tutorial lines
+= 3FDDEB (3C3E5C old, 3C3E1D new) - one of oak's tutorial lines
+= 3FE6D5 (3C4685 jp) - "What will [PLAYER] do?" (drop optional character in Japanese, probably to make room - might be unnecessary, check after ui redesign)
+- 415F66 (3DD606 old, 5447D9 new) - pokedex "-----" -> empty string
++ 415FED (3DD66F jp) - pokedex "Size" -> "Egg Groups"
+= 416425 (3DD9B5 jp) - "Oak: [PLAYER]! This isn't the time to use that!"
+= 4173E4 (3DE4D7 old, 3DE3ED new) - "Let's enjoy cycling!"
+= 417457 (3DE537 old, 3C3EB6 new) - one of oak's tutorial lines
+= 417494 (3DE55B old, 3DE537 new) - one of oak's tutorial lines
++ 418690 (3DF21C jp) - "Can't deposit the last Pokemon!" (in jp, it changes "If ya deposit that one, ya'd be in big trouble, doncha think?" to "You won't have any Pokemon left!", so no english change needed)
++ 4186B0 (3DF22F jp) - "Can't take any more Pokemon!" (in jp, it changes "There ain't no way y'can carry more Pokemon!" to "You can't carry any more Pokemon!", so no english change needed)
+= 41969D (3DFE6F jp) - Pattern Bush map description (why only this one?)
+- 419C62 (3E0241 jp) - "(>) Page (A) Cancel" -> "(A) Cancel" (one screen on pokemon summary screen)
+- 419C7B (3E0258 jp) - "(<>) Page" -> "" (one screen on pokemon summary screen)
+- 419C82 (3E025F jp) - "(<) Page (A) Detail" -> "(A) Detail" (one screen on pokemon summary screen)
+- 419C92 (3E026C jp) - "(^v) Pick (A) Switch" -> "(A) Switch" (one screen on pokemon summary screen)
+- 419CA2 (3E0279 old, 3E06E3 new) - "(^v) Pick" -> "(A) Pick" (one screen on pokemon summary screen)
+- 419CA9 (3E0280 jp) - "(^v) Pick (A) Delete" -> "(A) Delete" (one screen on pokemon summary screen)
+- 419E36 (3E03A1 jp) - "Mono" -> "Stereo"
+- 419E3B (3E03A6 jp) - "Stereo" -> "Normal"
+- 419E42 (3E03AB jp) - "L = A" -> ""
+- 419E46 (3E03AF jp) - "LR" -> ""
+= 41A2E1 (3E06E3 old, 68AE00 new) - "[PLAYER] had a marvelous battle with the Champion, [RIVAL]." (remove rival name and replace with actual champion)
+= 41A312 (3E070A old, 3E0709 new) - "In the end, [PLAYER] sent out [PKMN] while [RIVAL] countered with [PKMN]." (remove rival name and replace with actual champion)
+= 41B698 (3E148B jp) - "KANTO" (diploma)
+- 41D198 (3E2328 jp) - "Pokemon FireRed Version Staff" -> "Original FireRed Staff"
+= repoint ptrs at 09D1E0 and 09D248 ("Bill's PC"/"Someone's PC") to the same text (jE00590, e1E00590)
 
 + expand rom to 2x
 + expand 1C68F4 (move animations) from 356 entries to 680 (1030000) 
@@ -880,6 +882,24 @@ stray text:
 % expand 40C1C4 (color that mon sprite flashes on release from each ball) from 12 entries to 48 (A24240)
 % expand 456C50 (unknown quest-log-related list of flags) from 17 entries to 19 (j6B0CCC, e16B0CCC)
 % expand 4886E8 (move descriptions) from from 355 entries to 680 (1020000)
+cur changes (do them): guillotine/horn drill/fissure "KO'd in one hit" -> "instantly killed"; (swords dance/agility/barrier/amnesia/acid armor jp spelling, check); whirlwind "blow away" -> "(nigesase)"; roar "force out" -> "(nigesase)"; growth (spatk) -> (atk, spatk), needed to remove "instantly"; clamp -> new move "Raises the user's Speed if it moved after the foe. If not, it raises Sp. Atk."; barrage -> entrainment; crabhammer "attacks by slamming a huge claw down on the foe" -> "bashes the foe with a huge claw"; Sharpen "and raises its Attack" -> ", which raises its Attack"; Conversion -> Fiery Dance; Triple Kick -> new move "The user gathers all of its spiritual energy at a single point, then uses it to hit the foe. Lowers the user's Speed afterwards."; Spider Web -> Accelerock; Snore "Attacks by snoring, which may also cause the foe to flinch. Can only be used while asleep." -> "This move can only be used while asleep. Attacks the foe by snoring loudly."; 
+
+
+
+
+snore+2
+01 02 13 06 27 00 0B 02 3B 16 FE 08 27 50 10 00 2C 3C 19 FE 0A 03 06 37 00 02 1F 1B 14 12 16 FE 15 29 26 03 16 00 3D 48 2E 19 FE 60 52 9D 2D 00 06 04 29 AD
+vs
+37 02 48 06 27 19 00 0C 3A 07 37 FE 06 27 41 19 00 02 11 48 16 FE 1A 2E 19 03 0C 00 3D 48 2E 14 FE 01 02 13 2D 00 24 09 45 19 FE 3D 36 03 10 02 16 00 0D 29 AD
+
+
+
+
+
+
+
+
+
 
 = 006884: ptr 217818 (gUnusedJapaneseFireRedLeafGreenMaleFontGlyphs - emerald name) -> B07500 (gFont2JapaneseGlyphs)
 = 0069F0: ptr 227B30 (gUnusedJapaneseFireRedLeafGreenFemaleFontGlyphs - emerald name) -> B07500 (gFont2JapaneseGlyphs)
@@ -1670,7 +1690,7 @@ stray text:
   09B488: D0 1C 02 02 -> 91 E0 D7 09 (jumps (bx) to extra fn at 1D7E090, then back (jD7E090, see 186disasm))
 		  Implements: Show already-obtained TMs as price "-----"
 + 09B428, 09BC4A, 09BD26: 09 04 09 0C -> 00 00 00 00 (don't cap prices at 65536)
-= 09B430, 09B440: 04 -> 06 (extra 2 digits for prices, this doesn't work right now (cutoff))
+- 09B430, 09B440: 04 -> 06 (extra 2 digits for prices, this doesn't work right now (cutoff))
 + 09B718: 98 -> 90 (move the red arrows for item quantity left one tile (why?))
 + 09B868: 01 -> 02
   09B86E: 02 DC -> 2F D0
@@ -1923,7 +1943,6 @@ stray text:
 		  Relies on: layout and palette rework to make this not look broken
 + 10611E: Part of sub_810603C (see 231disasm)
 		  Implements: displays egg groups and wild hold items in pokedex list
-		  Relies on: layout rework to make this not look broken
 + 1063D0: FE F7 FA F9 -> 00 00 00 00 (removes "Area" label on pokedex detail screen 2)
 + 106490: 02 -> 00 (changes font for names on pokedex detail screen 2 (to leave space for extra characters))
 + 106531: D1 -> 00 (remove size comparison graphic on pokedex detail screen)
@@ -2791,7 +2810,7 @@ data:
 = 3C73A0-3C9CB8 (j38E21C-j390B34): wild mon data
 = 3C9CB8 (j390B34): gWildMonHeaders
 = 3CAFD0-3CB3D0 (j391E4C-39224C): flashing screen during pkmn center healing [change when pkmn center gfx change]
-= 3CC350 (j3931CC): 3B 9E 41 08 46 9E 41 08 -> 36 9E 41 08 3B 9E 41 08 [doesn't make sense until string changes here are documented]
+- 3CC350 (j3931CC): 3B 9E 41 08 46 9E 41 08 -> 36 9E 41 08 3B 9E 41 08 (options menu change)
 = 3CD2E0 (j39501C): badges turn blue after some requirement [change badge gfx first]
 = 3CD5E8 (395324 old, 90C190 new) - badges
 = 3CD8AD (j3955E9): 08 -> 02 (change palette for trainer pic on card (possibly male only)) 
@@ -2843,10 +2862,8 @@ data:
 = 3F2EE0 (j3B9A68): fly locations table
 = 3F5F26 (j3BCA86): table for warp0_in_pokecenter
 		  Implements: Some kind of link functionality; only the map at (0, 4) returns TRUE, removing all Pokemon Centers from the list
-
-! 3FB219-3FDF3C (j3C1D85-j3C3F08): battle strings [go through here thoroughly after full jp release]
-! 3FDF3C (j3C3F08): gBattleStringsTable [go through here thoroughly after full jp release]
-
++ 3FB219-3FDF3C (j3C1D85-j3C3F08): battle strings
++ 3FDF3C (j3C3F08): gBattleStringsTable
 + 3FE57C (j3C4548): D5 00 D6 00 -> D7 00 D8 00 (gStatUpStringIds)
 		  Implements: makes room for "drastically"/"severely"
 + 3FE602, 3FE608 (j3C45CE, j3C45D4): 10 01 -> 8B 01 (gWeatherContinuesStringIds)
@@ -2885,10 +2902,19 @@ data:
 = 415DB8, 415DD1-415F51 (j3DD4DE, j3DD4FA-j3DD5F3): set to all FF
 		  Implements: removes most text from the main dex screen
 		  Relies on: layout rework to make this not look broken
-= 4178EB-4180A7 (j3DE850-j3DEDC6): multichoice list strings
-= 4185AD-418690 (j3DF1A5-j3DF21C): storage system related strings
-= 419B44-419C0B (j3E017D-j3E01FB): summary screen related strings
-= 41ADC8-41B285 (j3E0D84-j3E107E): link related strings
+= 4178EB-4180A7 (j3DE850-j3DEDC6): multichoice list strings [spoilers probably]
++ 4185AD-418690 (j3DF1A5-j3DF21C): storage system option descriptions
+	+ 4185AD (j3DF1A5) - "You can withdraw a Pokemon if you have any in a Box." (in jp, it changes it to this from "Y'can withdraw a Pokemon if ya got any in a Box." so no english change needed)
+	+ 4185E2 (j3DF1C0) - "You can deposit your party Pokemon in any Box." (in jp, it changes it to this from "Y'can deposit yer party Pokemon in any Box." so no english change needed)
+	+ 418611 (j3DF1D7) - "You can move Pokemon that are stored in any Box." (in jp, it changes it to this from "Y'can move Pokemon that're stored in any Box." so no english change needed)
+	+ 418642 (j3DF1F3) - "You can move items held by any Pokemon in a Box or your party." (in jp, it changes it to this from "Y'can move items held by any Pokemon in a Box or yer party." so no english change needed)
+	+ 418681 (j3DF216) - "See you later!" (in jp, it changes it to this from "Y'all come back now, y'hear?" so no english change needed)
+= 419B44-419C0B (j3E017D-j3E01FB): Egg Watch strings (use less line breaks) [requires layout change]
+= 41ADC8-41B285 (j3E0D84-j3E107E): quest log strings
+	= 41ADC8 (j3E0D84) - "Played a lot of games at the Rocket Game Corner in [LOCATION]."
+	= 41AE1E (j3E0DBB) - "[PLAYER] left Prof. Oak's Pokemon Research Lab."
+	= 41AF0C (j3E0E3D) - "Took on [LOCATION] Gym Leader [NAME]'s [PKMN] with [PKMN] and won [BADGE]!"
+	= (the rest are pointed to by a table in 456ACC (j416F64))
 + 41F1C8 (j3E2E6C): out-of-battle text window gfx
 + 41F462 (j3E3106): 01 -> 00 (reduce letter spacing for font 2, doesn't seem to do anything)
 = 420D98-436854 (j3E4A3C-j3FA4F8): map preview screen gfx
@@ -3235,6 +3261,7 @@ entirely new things:
 		  Note: stat-change animation color is only the first stat, fix this to be gray later
 +10558A0: BattleScript_EffectPartiallyBypassProtect (see movescripts.txt)
 		  Implements: (a Ground-type move that if used on Protect, does half damage and harshly lowers user's Sp. Atk), Feint
++1080000: extra battle strings table
 +11AADD0: Move_Zen_Headbutt (see animscripts.txt)
 		  Implements: Zen Headbutt animation
 +11BA7EF: BattleScript_EffectTripleHit (see movescripts.txt)
