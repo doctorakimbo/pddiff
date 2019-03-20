@@ -259,7 +259,7 @@ end2
 BattleScript_FocusPunchSetUpNew (pj): @1052EE0
 2A 01 AA 3C 02 02 A7 02 D1 CF 1B 08 39 40 00 00 00 00 45 01 14 34 3F 02 02 10 17 02 12 40 00 3E
 
-jumpifhalfword CMP_NOT_EQUAL, gCurrentMove, 0x2A7, BattleScript_FocusPunchSetUp
+jumpifhalfword CMP_NOT_EQUAL, gCurrentMove, MOVE_SHELL_TRAP, BattleScript_FocusPunchSetUp
 pause 0x40
 attackcanceler
 attackcanceler
@@ -2516,7 +2516,7 @@ attackstring
 goto BattleScript_EffectCounter_New_ActualScript
 
 BattleScript_EffectCounter_New_ActualScript:
-jumpifnotmove 0x2A7, BattleScript_EffectCounter
+jumpifnotmove MOVE_SHELL_TRAP, BattleScript_EffectCounter
 attackcanceler
 jumpifnodamage BattleScript_Move2A7_Failed
 counterdamagecalculator BattleScript_Move2A7_Failed
@@ -6376,7 +6376,7 @@ MOVE_0x2A0
 MOVE_0x2A1
 MOVE_0x2A2
 MOVE_0x2A3
-MOVE_0x2A7
+MOVE_SHELL_TRAP
 
 // returns FALSE:
 MOVE_NONE

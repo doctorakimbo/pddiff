@@ -129,50 +129,50 @@ abilities:
 + 0xBA = Cheek Pouch
 + 0xBB = Magician
 + 0xBC = Mega Launcher
-- 0xBD = Desolate Land
-- 0xBE = Primordial Sea
-- 0xBF = Delta Stream
++ 0xBD = Desolate Land
++ 0xBE = Primordial Sea
++ 0xBF = Delta Stream
 + 0xC0 = Stamina
-- 0xC1 = Wimp Out
-- 0xC2 = Emergency Exit
++ 0xC1 = Wimp Out
++ 0xC2 = Emergency Exit
 + 0xC3 = Water Compaction
-- 0xC4 = Merciless
-- 0xC5 = Shields Down
-- 0xC6 = Stakeout
-- 0xC7 = Water Bubble
-- 0xC8 = Steelworker
-- 0xC9 = Berserk
++ 0xC4 = Merciless
++ 0xC5 = Shields Down
++ 0xC6 = Stakeout
++ 0xC7 = Water Bubble
++ 0xC8 = Steelworker
++ 0xC9 = Berserk
 + 0xCA = Slush Rush
 + 0xCB = Long Reach
-- 0xCC = Liquid Voice
-- 0xCD = Triage
++ 0xCC = Liquid Voice
++ 0xCD = Triage
 + 0xCE = Galvanize
-- 0xCF = Surge Surfer
-- 0xD0 = Schooling
-- 0xD1 = Disguise
-- 0xD2 = Battle Bond
-- 0xD3 = Power Construct
-- 0xD4 = Corrosion
-- 0xD5 = Comatose
-- 0xD6 = Queenly Majesty
-- 0xD7 = Innards Out
-- 0xD8 = Dancer
-- 0xD9 = Battery
-- 0xDA = Fluffy
-- 0xDB = Dazzling
-- 0xDC = Soul-Heart
++ 0xCF = Surge Surfer
++ 0xD0 = Schooling
++ 0xD1 = Disguise
++ 0xD2 = Battle Bond
++ 0xD3 = Power Construct
++ 0xD4 = Corrosion
++ 0xD5 = Comatose
++ 0xD6 = Queenly Majesty
++ 0xD7 = Innards Out
++ 0xD8 = Dancer
++ 0xD9 = Battery
++ 0xDA = Fluffy
++ 0xDB = Dazzling
++ 0xDC = Soul-Heart
 + 0xDD = Tangling Hair
-- 0xDE = Receiver
-- 0xE0 = Power of Alchemy
-- 0xE1 = Beast Boost
-- 0xE2 = RKS System
-- 0xE3 = Electric Surge
-- 0xE4 = Psychic Surge
-- 0xE5 = Misty Surge
-- 0xE6 = Grassy Surge
-- 0xE7 = Full Metal Body
-- 0xE8 = Shadow Shield
-- 0xE9 = Prism Armor
++ 0xDE = Receiver
++ 0xE0 = Power of Alchemy
++ 0xE1 = Beast Boost
++ 0xE2 = RKS System
++ 0xE3 = Electric Surge
++ 0xE4 = Psychic Surge
++ 0xE5 = Misty Surge
++ 0xE6 = Grassy Surge
++ 0xE7 = Full Metal Body
++ 0xE8 = Shadow Shield
++ 0xE9 = Prism Armor
 
 (old kid: 16F8C4, fix wildmons route15)
 item effects:
@@ -209,7 +209,7 @@ item IDs:
 + 0x1AE = Honey
 
 move IDs:
-(Mirror Move, (unimplemented Fiery Dance), Assist, Switcheroo, (unimplemented Guardian Leaf), Nova Inferno, Chatter, Feint, Rage Powder, (unimplemented Strength Sap), and the move just after the end of defined moves can't be called by Metronome; Chatter can't be copied by Mimic)
+(Mirror Move, (unimplemented Fiery Dance), Assist, Switcheroo, (unimplemented Guardian Leaf), Nova Inferno, Chatter, Feint, Rage Powder, (unimplemented Strength Sap), (unimplemented Shell Trap), and the move just after the end of defined moves can't be called by Metronome; Chatter can't be copied by Mimic)
 (Removed: Clamp, Barrage, Conversion, Triple Kick, Spider Web, Conversion 2, Aeroblast, Sacred Fire, Arm Thrust, Tail Glow, Luster Purge, Mist Ball, Needle Arm, Doom Desire, Psycho Boost)
 = 0x80 = (attacking move), (has Mach Volt animation)
 + 0x8C = Entrainment
@@ -447,7 +447,7 @@ move IDs:
 = 0x23D = (non-attacking move), (animation is Sky Attack charge-up, then Agility)
 = 0x23E = (non-attacking move), (animation is Poison Sting with the final part of Thunder Wave inserted between the needle impact and the poison bubbles)
 = 0x23F = (non-attacking move), (animation is a wait as hit sounds play, then Astonish, on Hex's background)
-- 0x240 = Zombie Touch
++ 0x240 = Zombie Touch
 = 0x241 = (attacking move), (animation shoots three globs of water)
 = 0x242 = (attacking move), (animation is a slap)
 = 0x243 = (attacking move), (animation throws a single glob of water)
@@ -550,7 +550,7 @@ move IDs:
 ! 0x2A4 = Strength Sap (not implemented)
 = 0x2A5 = (non-attacking move), (can't be called by metronome), (not implemented)
 = 0x2A6 = (non-attacking move with Attract effect, but also poisons), (animation has heart clouds emanate from the user and then the target with Attract sounds, then the poison effect plays)
-= 0x2A7 = (attacking move with Counter effect, but does half of Counter's damage and prints string 0x218 if failed), (special-cased in focus punch setup to print string 0x217), (can't be called by metronome), (not implemented)
+! 0x2A7 = Shell Trap (not implemented)
 
 move effects:
 = 0x1E = freeze
@@ -690,90 +690,87 @@ metatiles:
 
 battle strings (ADD 9 TO ALL):
 + 0x3B = "[PKMN] was cured of its [STATUS] problem! (FIX THIS)" <DON'T ADD 9>
-- 0x77 = "[PKMN] stayed awake using its [ABILITY]!" [make sure it's fd10] (same, but change B_DEF_ABILITY to B_LAST_ABILITY to allow for Sweet Veil/Flower Veil) <DON'T ADD 9>
-- 0xB8 = "[ATTACKER] swapped Abilities with its target! [ATTACKER]'s Ability became [ABILITY]! (CHECK THIS)" [make sure it's fd0f, fd18] <DON'T ADD 9>
-- 0xC2 = "Using [ABILITY], the [STAT] of [PKMN] [CHANGED]! (FIX THIS)" <DON'T ADD 9> <REFACTOR LATER> [make sure it's fd10, fd19, fd00, fd01]
-- 0xC6 = "[PKMN]'s [ABILITY] made it the [TYPE] type!" (same, but change B_DEF_NAME_WITH_PREFIX to B_SCR_ACTIVE_NAME_WITH_PREFIX, and B_DEF_ABILITY to B_SCR_ACTIVE_ABILITY, to allow for Protean) <DON'T ADD 9>
-- 0xC7 = "[PKMN]'s [ABILITY] prevents paralysis!" [make sure it's fd11] (same, but change B_DEF_ABILITY to B_LAST_ABILITY to allow for Flower Veil) <DON'T ADD 9>
-- 0xC9 = "[PKMN]'s [ABILITY] prevents poisoning!" [make sure it's fd11] (same, but change B_DEF_ABILITY to B_LAST_ABILITY to allow for Flower Veil) <DON'T ADD 9>
-- 0xCA = "[PKMN]'s Own Tempo prevents confusion!" [make sure it's fd11] <DON'T ADD 9>
-- 0xCD = "Due to [ATTACKER]'s [ABILITY], [DEFENDER]'s [STAT] [CHANGED]! (FIX THIS)" <DON'T ADD 9> <REFACTOR LATER> [make sure it's fd13, fd1a, fd10, fd00, fd01]
++ 0x77 = "[PKMN] stayed awake using its [ABILITY]!" (same, but change B_DEF_ABILITY to B_LAST_ABILITY to allow for Sweet Veil/Flower Veil) <DON'T ADD 9>
++ 0xB8 = "[ATTACKER] swapped Abilities with its target! [ATTACKER]'s Ability became [ABILITY]! (CHECK THIS)" <DON'T ADD 9>
++ 0xC2 = "Using [ABILITY], the [STAT] of [PKMN] [CHANGED]! (FIX THIS)" <DON'T ADD 9> <REFACTOR LATER>
++ 0xC6 = "[PKMN]'s [ABILITY] made it the [TYPE] type!" (same, but change B_DEF_NAME_WITH_PREFIX to B_SCR_ACTIVE_NAME_WITH_PREFIX, and B_DEF_ABILITY to B_SCR_ACTIVE_ABILITY, to allow for Protean) <DON'T ADD 9>
++ 0xC7 = "[PKMN]'s [ABILITY] prevents paralysis!" (same, but change B_DEF_ABILITY to B_LAST_ABILITY to allow for Flower Veil) <DON'T ADD 9>
++ 0xC9 = "[PKMN]'s [ABILITY] prevents poisoning!" (same, but change B_DEF_ABILITY to B_LAST_ABILITY to allow for Flower Veil) <DON'T ADD 9>
++ 0xCA = "[PKMN]'s Own Tempo prevents confusion!" <DON'T ADD 9>
++ 0xCD = "Due to [ATTACKER]'s [ABILITY], [DEFENDER]'s [STAT] [CHANGED]! (FIX THIS)" <DON'T ADD 9> <REFACTOR LATER> [make sure it's fd13, fd1a, fd10, fd00, fd01]
 + 0xD5 = "drastically " <DON'T ADD 9>
 + 0xD6 = "severely " <DON'T ADD 9>
-- 0xE9 = "[PKMN] is hurt by its [ABILITY]! (CHECK THIS)" <DON'T ADD 9> [make sure it's fd0f, fd18]
-- 0xEB = "[PKMN]'s [ABILITY] made it hail! (CHECK THIS)" <DON'T ADD 9> [make sure it's fd13, fd1a]
-- 0x131 = "[PKMN]'s [ABILITY] prevents burns!" [make sure it's fd11] (same, but change B_EFF_ABILITY to B_LAST_ABILITY to allow for Flower Veil) <DON'T ADD 9>
-- 0x138 = "[PKMN]'s [ABILITY] cured its [STATUS] problem!" [make sure it's fd13] (same, but change B_SCR_ACTIVE_ABILITY to B_LAST_ABILITY to allow for Healer) <DON'T ADD 9>
-- 0x164 = "[PKMN]'s [ABILITY] cured its [STATUS] problem!" [make sure it's fd13] (same, but change B_SCR_ACTIVE_ABILITY to B_LAST_ABILITY to allow for Sweet Veil/Flower Veil on switchin) <DON'T ADD 9>
++ 0xE9 = "[PKMN] is hurt by its [ABILITY]! (CHECK THIS)" <DON'T ADD 9>
++ 0xEB = "[PKMN]'s [ABILITY] made it hail! (CHECK THIS)" <DON'T ADD 9>
++ 0x131 = "[PKMN]'s [ABILITY] prevents burns!" (same, but change B_EFF_ABILITY to B_LAST_ABILITY to allow for Flower Veil) <DON'T ADD 9>
++ 0x138 = "[PKMN]'s [ABILITY] cured its [STATUS] problem!" (same, but change B_SCR_ACTIVE_ABILITY to B_LAST_ABILITY to allow for Healer) <DON'T ADD 9>
++ 0x164 = "[PKMN]'s [ABILITY] cured its [STATUS] problem!" (same, but change B_SCR_ACTIVE_ABILITY to B_LAST_ABILITY to allow for Sweet Veil/Flower Veil on switchin) <DON'T ADD 9>
 = 0x16F = (one of the PC messages) <DON'T ADD 9>
 = 0x170 = (one of the PC messages) <DON'T ADD 9>
 = 0x171 = (one of the PC messages) <DON'T ADD 9>
 = 0x172 = (one of the PC messages) <DON'T ADD 9>
-- 0x17D = "Silph Scope unveiled the Ghost's identity! The Ghost was Dusknoir!" <DON'T ADD 9>
++ 0x17D = "Silph Scope unveiled the Ghost's identity! The Ghost was Dusknoir!" <DON'T ADD 9>
 = 0x180 = "[PKMN]'s [ABILITY] nullified the effects of weather!" (do later)
 = 0x181 = "[PKMN]'s [ITEM] let it move first!" (do later)
 + 0x182 = "It is hailing. (CHECK THIS)"
-- 0x183 = "The [ITEM] weakened [MOVE]'s power!" [make sure it's fd16, fd14]
-- 0x184 = "[PKMN] is not affected by [MOVE] thanks to its [ITEM]!" [make sure it's fd10, fd16, fd14]
-- 0x185 = "[PKMN] breaks the mold! (CHECK THIS)" [make sure it's fd13]
-- 0x186 = "[PKMN] is exerting its pressure! (CHECK THIS)" [make sure it's fd13]
-- 0x187 = "[PKMN] can't get it going because of its [ABILITY]! (CHECK THIS)" [make sure it's fd13, fd1a]
-- 0x188 = "[PKMN] finally got its act together!" [make sure it's fd0f]
-- 0x189 = "[PKMN]'s [ABILITY] alerted it to [MOVE]! (CHECK THIS)" [make sure it's fd13, fd1a, fd14]
-- 0x18A = "[PKMN]'s [ABILITY] made it shudder! (CHECK THIS)" [make sure it's fd1a, fd13]
-- 0x18B = "[ATTACKER] frisked its opponent and found its [ITEM]!" [make sure it's fd13, fd16]
-- 0x18C = "[Your/The opposing] team was protected by [ABILITY]!" [make sure it's fd13, fd17]
-- 0x18D = "[PKMN]'s [ABILITY] makes [your/the opposing] team too nervous to eat Berries!" [make sure it's fd13, fd1a, fd2b]
-- 0x18E = "[PKMN] twisted the dimensions!" [make sure it's fd0f]
++ 0x183 = "The [ITEM] weakened [MOVE]'s power!"
++ 0x184 = "[PKMN] is not affected by [MOVE] thanks to its [ITEM]!"
++ 0x185 = "[PKMN] breaks the mold! (CHECK THIS)"
++ 0x186 = "[PKMN] is exerting its pressure! (CHECK THIS)"
++ 0x187 = "[PKMN] can't get it going because of its [ABILITY]! (CHECK THIS)"
++ 0x188 = "[PKMN] finally got its act together!"
++ 0x189 = "[PKMN]'s [ABILITY] alerted it to [MOVE]! (CHECK THIS)"
++ 0x18A = "[PKMN]'s [ABILITY] made it shudder! (CHECK THIS)"
++ 0x18B = "[ATTACKER] frisked its opponent and found its [ITEM]!"
++ 0x18C = "[PKMN] was protected by [ABILITY]!"
++ 0x18D = "[PKMN]'s [ABILITY] makes [your/the opposing] team too nervous to eat Berries!"
++ 0x18E = "[PKMN] twisted the dimensions!"
 + 0x18F = "The twisted dimensions returned to normal!"
-- 0x190 = "The Tailwind blew from behind [your/the opposing] team!" [make sure it's fd28]
-- 0x191 = "[Your/The opposing] team's Tailwind petered out!" [make sure it's fd28]
-- 0x192 = "[PKMN]'s [ABILITY] maxed its Attack!" [make sure it's fe10, fd19]
-- 0x193 = "[DEFENDER]'s [ABILITY] disabled [ATTACKER]'s [MOVE]!" [make sure it's fd10, fd19, fd0f, fd00]
-- 0x194 = "[DEFENDER]'s [DEFABILITY] changed [ATTACKER]'s Ability to [ATKABILITY]!" [make sure it's fd10, fd19, fd0f, fd18]
-- 0x195 = "[DEFENDER]'s [ABILITY] hurt [ATTACKER]!" [make sure it's fd0f, fd10, fd19]
-- 0x196 = "Due to [DEFENDER]'s [ABILITY], [ATTACKER]'s [STAT] [CHANGED]! (FIX THIS)" <REFACTOR LATER> [make sure it's fd10, fd19, fd0f, fd00, fd01]
-- 0x197 = "The [ITEM] strengthened [MOVE]'s power!" [make sure it's fd16, fd14]
-- 0x198 = "The effects of the [ITEM] prevent status moves from being used!" [make sure it's fd16, fd14]
-- 0x199 = "Using [ABILITY], the [STAT] of [PKMN] [CHANGED]! (FIX THIS)" <REFACTOR LATER> [make sure it's fd0f, fd18, fd00, fd01]
-= 0x19A = FD 0F 1A FE 02 19 11 37 00 0D 0A 0C 00 09 3E 27 2A 10 AB
-- 0x19B = "[PKMN]'s [ABILITY] bounced [MOVE] back!" [make sure it's fd10, fd19, fd14]
-- 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]!" [make sure it's fd0f, fd14]
-- 0x19D = "[PKMN] restored HP using its [ABILITY]!" [make sure it's fd13, fd1a]
-- 0x19E = "[PKMN] is hurt by its [ITEM]!" [make sure it's fd13, fd16]
-= 0x1FF = "[PKMN] decided to explode! (placeholder)" 07 20 37 00 45 03 24 50 13 00 0A 0A 16 FE 10 45 28 12 02 10 19 06 FA 09 2E 14 03 23 00 12 06 2E AD FB 0A 19 00 63 57 5D 64 1A 00 0F 03 41 15 FE 54 77 AE 6A 7E 95 78 7E 89 FA 63 57 5D 64 00 14 44 23 00 02 03 19 06 AC FB 26 03 0D 29 16 00 23 0C 00 0A 19 FE 63 57 5D 64 2D 00 20 13 02 29 15 27 FA 0E 02 0B 08 0C 34 16 00 2A 2E 27 08 FA 0C 13 08 2A AD FB 1F 01 00 41 02 10 02 00 09 2E 14 03 1A FE 12 08 09 45 15 AD FB 05 1F 04 00 61 AE 64 00 0C 10 41 2B AC FE 52 7E 61 57 1A 00 26 08 15 02 40 AB FA
-- 0x200 = "[PKMN] shared its power with the target!" [make sure it's fd0f]
-- 0x201 = "[PKMN] shared its guard with the target!" [make sure it's fd0f]
-- 0x202 = "[PKMN] switched all changes to its Attack and Sp. Atk with its target!" [make sure it's fd0f]
-- 0x203 = "[PKMN] switched all changes to its Defense and Sp. Def with its target!" [make sure it's fd0f]
-- 0x204 = "[ATTACKER]'s type became the same as [DEFENDER]'s type!" [make sure it's fd0f, fd29, fd10]
-- 0x205 = "[DEFENDER] received [ITEM] from [ATTACKER]!" [make sure it's fd10, fd0f, fd16]
-- 0x206 = "[PKMN]'s [ITEM] was burned up!" [make sure it's fd10, fd16]
-- 0x207 = "[PKMN]'s Ability was suppressed!" [make sure it's fd10]
-- 0x208 = "[PKMN] acquired [ABILITY]!" [make sure it's fd10, fd17]
-- 0x209 = "[PKMN] transformed into the [TYPE] type!" [make sure it's fd10, fd00]
-- 0x20A = "One of [PKMN]'s moves became Zombie Touch!" [make sure it's fd10]
-- 0x20B = "Its sharpened claws strengthened the attack!"
-- 0x20C = "[PKMN] is already frozen!" [make sure it's fd10]
-- 0x20D = "[PKMN]'s [ABILITY] prevents freezing!" [make sure it's fd10, fd19]
++ 0x190 = "The Tailwind blew from behind [your/the opposing] team!"
++ 0x191 = "[Your/The opposing] team's Tailwind petered out!"
++ 0x192 = "[PKMN]'s [ABILITY] maximized its Attack!"
++ 0x193 = "[DEFENDER]'s [ABILITY] disabled [ATTACKER]'s [MOVE]!"
++ 0x194 = "[DEFENDER]'s [DEFABILITY] changed [ATTACKER]'s Ability to [ATKABILITY]!"
++ 0x195 = "[DEFENDER]'s [ABILITY] hurt [ATTACKER]!"
++ 0x196 = "Due to [DEFENDER]'s [ABILITY], [ATTACKER]'s [STAT] [CHANGED]! (FIX THIS)" <REFACTOR LATER>
++ 0x197 = "The [ITEM] strengthened [MOVE]'s power!"
++ 0x198 = "The effects of the [ITEM] prevent status moves from being used!"
++ 0x199 = "Using [ABILITY], the [STAT] of [PKMN] [CHANGED]! (FIX THIS)" <REFACTOR LATER>
+! 0x19A = "[PKMN] lost some of its HP!"
++ 0x19B = "[PKMN]'s [ABILITY] bounced the [MOVE] back!"
++ 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]!"
++ 0x19D = "[PKMN] restored HP using its [ABILITY]!"
++ 0x19E = "[PKMN] is hurt by its [ITEM]!"
++ 0x1FF = [not copying the whole thing, but it's an error-handling message]
++ 0x200 = "[PKMN] shared its power with the target!"
++ 0x201 = "[PKMN] shared its guard with the target!"
++ 0x202 = "[PKMN] switched all changes to its Attack and Sp. Atk with its target!"
++ 0x203 = "[PKMN] switched all changes to its Defense and Sp. Def with its target!"
++ 0x204 = "[ATTACKER]'s type became the same as [DEFENDER]'s type!"
++ 0x205 = "[DEFENDER] received [ITEM] from [ATTACKER]!"
++ 0x206 = "[PKMN]'s [ITEM] was burned up!"
++ 0x207 = "[PKMN]'s Ability was suppressed!"
++ 0x208 = "[PKMN] acquired [ABILITY]!"
++ 0x209 = "[PKMN] transformed into the [TYPE] type!"
++ 0x20A = "One of [PKMN]'s moves became Zombie Touch!"
++ 0x20B = "Its sharpened claws strengthened the attack!"
++ 0x20C = "[PKMN] is already frozen!"
++ 0x20D = "[PKMN]'s [ABILITY] prevents freezing!"
 ! 0x20E = "[DEFENDER] has been afflicted with an infestation by [ATTACKER]!"
 ! 0x20F = "[PKMN] became trapped by swirling magma!"
-- 0x210 = "[PKMN] switched its Attack and Defense!" [make sure it's fd0f]
-- 0x211 = "[PKMN] switched its Sp. Atk and Sp. Def!" [make sure it's fd0f]
-- 0x212 = "[PKMN]'s stat changes were removed!" [make sure it's fd0f]
-
-FD 0F 1A 00 FD 29 00 FD 10 16 FE 19 28 03 12 50 13 00 0A 03 3A 07 2D FA 13 41 0D 09 00 0D 29 00 10 02 0E 02 16 00 1A 02 50 10 AB
-ATK   ha    		 DEF   ni    no ri u  tsu tte     ko u  ge ki wo    te da su te    su ru    ta i  se i  ni    ha i   tta
-
-+ 0x214 = "[PKMN]'s [ABILITY] prevents its item from being removed!" [make sure it's fd0f, fd29, fd10]
-+ 0x215 = "[PKMN] couldn't fully protect itself and got hurt! (placeholder)"
-+ 0x216 = "[PKMN]'s Ability became Mega Launcher! (placeholder)"
-+ 0x217 = "(move2A7) will be used! (placeholder)"
-+ 0x218 = "(move2A7) failed! (placeholder)"
-= 0x219
-= 0x21A
-= 0x21B
-+ 0x21C = "[PKMN]'s stats won't go any higher!" (?????????????)
++ 0x210 = "[PKMN] switched its Attack and Defense!"
++ 0x211 = "[PKMN] switched its Sp. Atk and Sp. Def!"
++ 0x212 = "[PKMN]'s stat changes were removed!"
+! 0x213 = "[ATTACKER] jumped on top of [DEFENDER]! It's ready to help with its attack!"
++ 0x214 = "[PKMN]'s [ABILITY] prevents its item from being removed!"
++ 0x215 = "[PKMN] couldn't fully protect itself and got hurt!"
++ 0x216 = "[PKMN] transformed! Its Ability became Mega Launcher!"
++ 0x217 = "[PKMN] set a shell trap!"
++ 0x218 = "[PKMN]'s shell trap didn't work!"
+! 0x219 = "[PKMN] can't use [MOVE]!"
+! 0x21A = [broken]
+! 0x21B = [broken]
++ 0x21C = "[PKMN]'s stats won't go any higher!" [technically "[MOVE] won't raise [PKMN]'s stats any higher!" for some reason, but overruled by my modernization]
 + 0x221 = "[PKMN] switched items with its target!"
 + 0x222 = "[PKMN] acquired [ABILITY]!"
 + 0x247 = "[Your/The opposing] team's Reflect wore off!" <EN ONLY>
@@ -831,7 +828,7 @@ stray text:
 	! also set 248038 (gMoveNames[MOVE_HYDRO_CANNON]) to [BROKEN] 1E0C550
 	= also set ptrs starting at 45A6A8 to new positions
 + expand 24F1A0 (type names) from 18 entries/7 per to 19 entries/9 per (j411E1C, e1411E1C)
-% expand 24FB08 (ability descriptions) from 78 entries to 232 (13FD000)
++ expand 24FB08 (ability descriptions) from 78 entries to 232 (13FD000)
 = expand 24FC40 (ability names) from 78 entries/12 per to 232 entries/16 per (13FF000)
 + expand 25011C (battle script commands) from 248 entries to 256 (EB7A00)
 + expand 2507E8 (uncopiable moves) from 4 entries (mimic) / 19 entries (metronome) to 5 entries (mimic) / 44 entries (metronome) (20CA40)
@@ -884,8 +881,8 @@ stray text:
 % expand 456C50 (unknown quest-log-related list of flags) from 17 entries to 19 (j6B0CCC, e16B0CCC)
 % expand 4886E8 (move descriptions) from from 355 entries to 680 (1020000)
 
-= 006884: ptr 217818 (gUnusedJapaneseFireRedLeafGreenMaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
-= 0069F0: ptr 227B30 (gUnusedJapaneseFireRedLeafGreenFemaleFontGlyphs - emerald name) -> 207500 (gFont2JapaneseGlyphs)
+= 006884: ptr 217818 (gUnusedJapaneseFireRedLeafGreenMaleFontGlyphs - emerald name) -> B07500 (gFont2JapaneseGlyphs)
+= 0069F0: ptr 227B30 (gUnusedJapaneseFireRedLeafGreenFemaleFontGlyphs - emerald name) -> B07500 (gFont2JapaneseGlyphs)
 		  (wait until playthrough - is this the equivalent of removing gender colors?)
 = 008CF8, 008D2C, 1361B4, 3E2475: 0A -> 0C (pkmnnamelength)
 + 00960C: 36 -> 33 (some sort of link-related graphics function?, see 1disasm)
@@ -962,6 +959,7 @@ stray text:
 		  Note: check if Unburden has an activation message, if it does it needs to be displayed
 		  Note: check how Flower Veil and Gooey interact (message or no?)
 		  Note: Imposter needs a separate message
+		  Note: Dazzling/QM needs to set the active battler to the mon with that ability, then fix the string to use active battler (otherwise doesn't work for a mon protecting its partner)
 		  GLITCH!: Moody will just skip boosting/dropping if it chooses a stat that's at +6/-6, instead of never choosing that stat
 + 01BC68: ItemBattleEffects (+ CheckUnnerve, IsAffectedBySheerForce, GetPinchThreshholdFromParam, GetMoveWithNoPP, GetPartyIndex, CheckAndRunCheekPouch) (see 14disasm)
 		  Implements: Magic Guard (Life Orb), Klutz (berries, Amulet Coin, Leftovers, White Herb, Mental Herb, Shell Bell, the item effects here), Sheer Force (Life Orb/Shell Bell glitch), Unnerve (Gen3 berries), modern Sitrus Berry, Black Sludge, Life Orb, status cure items/white herb consumed immediately
@@ -2518,7 +2516,7 @@ stray text:
 		  GLITCH!: attract cure move always doubles damage
 		  Note: Since it just displays status cure msg in real games, rewrite this code for correct msg later
 + 1D7433 -> 10539C0 (repoint): BattleScript_EffectCounter_New (see movescripts.txt)
-		  Implements: [move2A7]
+		  Implements: Shell Trap
 		  Note: message scrolls off too soon, maybe add wait
 + 1D749C -> 1050AA0 (repoint): BattleScript_EffectUsableWhileAsleep (see movescripts.txt)
 		  Implements: condenses Sleep Talk into Snore's effect slot to free up space
@@ -2569,6 +2567,7 @@ stray text:
 		  Note: Sticky Hold message scrolls off too soon, maybe add wait
 + 1D8126 -> 1050440 (repoint): BattleScript_EffectAbilityTransfer (see movescripts.txt)
 		  Implements: Entrainment; condenses Skill Swap into Role Play's effect slot to free up space
+		  Note: Skill Swap msg needs what target's ability became
 + 1D8189 -> 1050480 (repoint): BattleScript_EffectMagicCoat (see movescripts.txt)
 		  Implements: adds an accuracy check to Magic Coat, but it's specified elsewhere to not miss anyway? (also, since when did Magic Coat have a target?)
 		  Relies on: AccuracyCalcHelper (so the move can't miss)
@@ -2600,8 +2599,8 @@ stray text:
 + 1D8C10 -> 1051B20 (repoint): BattleScript_SuccessForceOut (see movescripts.txt)
 		  Implements: if the move used to force out was above ID 0x200, don't play the move animation (presumably for dragon tail, etc.)
 + 1D9015 -> 1052EE0 (repoint): BattleScript_FocusPunchSetUp (see movescripts.txt)
-		  Implements: [move2A7] prints string 0x217 instead of "tightening its focus"; need more info
-		  Note: it doesn't actually do this, some other change probably needed
+		  Implements: Shell Trap message
+		  Note: no message, some other change probably needed
 + 1D90B1 -> 018539 (repoint): BattleScript_MoveUsedFlinched (10 4A 00 12 40 00 1E 01 50 4B 85 01 08 28 4E 69 1D 08 2E DE 3F 02 02 13 89 41 4E 69 1D 08 29 00 87 3E 02 02 02 4E 69 1D 08 47 45 01 01 D4 3F 02 02 10 A2 01 12 40 00 28 4E 69 1D 08) (implements steadfast)
 + 1D9366: 1C -> 16 (resets the statchanger, needed for Intimidate to keep working after addition of Defiant)
 + 1D9444 -> 1050260 (repoint): BattleScript_ObliviousPreventsAttraction (see 57disasm)
@@ -2703,7 +2702,7 @@ stray text:
 + 1E3B27: D0 -> E0 (no idea what this does (isagbprn))
 
 data:
-- 209D40-209E48 (j1D9634-j1D973C): part of gFont2JapaneseGlyphs [check what this does and possibly convert this to en]
++ 209D40-209E48 (j1D9634-j1D973C): part of gFont2JapaneseGlyphs [figure out what this does in full version]
 = 20F5A2 (j1DEE96): 07 -> 08 (extension of above changes (gFont2JapaneseGlyphWidths))
 = 2349CC (j1F3FB0): gMonFrontPicCoords
 = 2350AC (j1F4690): gMonFrontPicTable
@@ -2953,7 +2952,7 @@ data:
 = 4623EC (424700 old, 8DD7B0 new) - intro blue
 = 463190 (j42549C): some tm case windows (moved, resized, remapped) [need to merge en and pd changes here]
 = 4631E0 (j4254EC): some tm case window (remapped) [need to merge en and pd changes here]
-= 46324A (j4255D6): 00 00 -> 10 01 (fairy-type tm color) [needs actual palette]
++ 46324A (j4255D6): 00 00 -> 10 01 (fairy-type tm color)
 = 463580 (j42590C): pokedex map area coordinates
 = E9B310 (j425A4C): pokemon summary screen main palette
 = E9B3D0 (j425B0C): pokemon summary screen shiny palette
@@ -3002,27 +3001,27 @@ data:
 + D004D8 (jC004D8): gBattleTextboxPalette
 = D0051C (C0051C old, EB8990 new) - gFile_graphics_interface_menu_map_tilemap [need to merge en and pd changes here]
 + D0DD94 (jC0DD94): Amnesia "?" -> "!"
-= D11B84 (jC11B84): HP bubble palette
-= D11BA4 (jC11BA4): HP bar palette
-- D11BC4 (jC11BC4): HP bar gfx [need to convert correctly] [probably can convert, check]
-- D12404 (jC12404): status effect and pokeball icons [need to convert correctly] [probably can convert, check]
-= D1F340 (C1F340 old, 11266CC new) - player singles HP bubble gfx 1
-= D1F604 (C1F604 old, 1126A50 new) - opponent doubles HP bubble gfx 1
-= D1F794 (C1F794 old, 1126C8C new) - player doubles HP bubble gfx
-= D1F928 (C1F928 old, 1126EBC new) - opponent doubles HP bubble gfx 2
-= D1FABC (C1FABC old, 11270F0 new) - player singles HP bubble gfx 2
++ D11B84 (jC11B84): HP bubble palette
++ D11BA4 (jC11BA4): HP bar palette
++ D11BC4 (jC11BC4): HP bar gfx [need to convert correctly] [probably can convert, check]
++ D12404 (jC12404): status effect and pokeball icons [need to convert correctly] [probably can convert, check]
++ D1F340 (C1F340 old, 11266CC new) - player singles HP bubble gfx 1
++ D1F604 (C1F604 old, 1126A50 new) - opponent doubles HP bubble gfx 1
++ D1F794 (C1F794 old, 1126C8C new) - player doubles HP bubble gfx
++ D1F928 (C1F928 old, 1126EBC new) - opponent doubles HP bubble gfx 2
++ D1FABC (C1FABC old, 11270F0 new) - player singles HP bubble gfx 2
 = D3018C-E48D58 (jC3018C-jD48D58): mon icons
 = E49094-E69EBC (jD49094-jD69E6C): trainer frontsprites/palettes
 = E69EBC-E76F5C (jD69E6C-jD76F0C): trainer backsprites/palettes
-- E76F5C (jD76F0C): "?" mon icon
-= E7BB04 (D7BAB4 old, 11273E8 new) - EXP bar gfx
++ E76F5C (jD76F0C): "?" mon icon
++ E7BB04 (D7BAB4 old, 11273E8 new) - EXP bar gfx
 = E82700 -> 924320 (D826B0 old, 924320 new) - party menu background gfx
-- E829C8 (jD82978): gfx (party menu related)
+= E829C8 (jD82978): party menu palette
 = E82BE8 (D82B98 old, 924150 new) - party menu pokeball gfx
 = E8362C (D83638 old, 923050 new) - bag gfx (male)
 = E83DBC (D83DC8 old, 923860 new) - bag gfx (female)
-- E84560 (D8456C): palette (item menu related)
-- E85068 -> 251A80 (D85074 old, 251A80 new) - (unknown tilemap, tm case) [might be palette actually, check with fairy tm]
++ E84560 (D8456C): bag palette
++ E85068 -> 251A80 (D85074 old, 251A80 new) - tm case tms palette
 = E87028-E93748 (jD87050-jD93770): item icons/palettes
 
 entirely new things:
@@ -3182,6 +3181,7 @@ entirely new things:
 		  GLITCH!: just crashes in general (understandable, this isn't fully implemented)
 +1052D20: BattleScript_EffectChangeAbilityToMegaLauncherThenHit (see movescripts.txt)
 		  Implements: (move that changes the user's ability to Mega Launcher and then does damage)
+		  Note: String doesn't stay long enough
 +1053940: BattleScript_EffectUseExplosionInstead (see movescripts.txt)
 		  Implements: (move that just uses Explosion instead)
 +1053A90: BattleScript_EffectVCreate (see movescripts.txt)
