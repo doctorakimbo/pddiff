@@ -211,28 +211,29 @@ item IDs:
 move IDs:
 (Mirror Move, (unimplemented Fiery Dance), Assist, Switcheroo, (unimplemented Guardian Leaf), Nova Inferno, Chatter, Feint, Rage Powder, (unimplemented Strength Sap), (unimplemented Shell Trap), and the move just after the end of defined moves can't be called by Metronome; Chatter can't be copied by Mimic)
 (Removed: Clamp, Barrage, Conversion, Triple Kick, Spider Web, Conversion 2, Aeroblast, Sacred Fire, Arm Thrust, Tail Glow, Luster Purge, Mist Ball, Needle Arm, Doom Desire, Psycho Boost)
-= 0x80 = (attacking move), (has Mach Volt animation)
+= 0x80 = (attacking move), (has Mach Volt animation), "Raises the user's Speed if it moved after the foe. If not, it raises Sp. Atk."
 + 0x8C = Entrainment
+= 0x98 = (exactly Crabhammer down to the animation and description, but randomly Ice-type)
 ! 0xA0 = Fiery Dance (not implemented)
-= 0xA7 = (attacking move with chance to lower user's speed), (animation is white light covering the screen, then Take Down)
+= 0xA7 = (attacking move with chance to lower user's speed), (animation is white light covering the screen, then Take Down), "The user gathers all of its spiritual energy at a single point, then uses it to hit the foe. Lowers the user's Speed afterwards."
 + 0xA9 = Accelerock
-= 0xB0 = (non-attacking move), (has Will-O-Wisp animation)
-! 0xB1 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented)
-! 0xDD = (attacking move that calculates damage as if any Sp. Atk boosts were added to Attack, then has a 20% chance to raise Atk and Sp. Atk), (can't be called by metronome), (has Pound animation; not implemented)
-= 0x124 = (attacking move), (animation is Giga Drain on Feint Attack's background)
-= 0x126 = (attacking move), (has Rapid Spin animation)
-= 0x127 = (attacking move with chance to raise sp. atk), (animation is shedding white feathers, then Wing Attack)
+= 0xB0 = (non-attacking move), (has Will-O-Wisp animation), "The stimulus causes a response in the user's and foe's bodies, causing them both to become burned."
+! 0xB1 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented), "The user bashes the foe with a mirror. This may also raise the user's Defense, Sp. Atk, or Sp. Def."
+! 0xDD = (attacking move that calculates damage as if any Sp. Atk boosts were added to Attack, then has a 20% chance to raise Atk and Sp. Atk), (can't be called by metronome), (has Pound animation; not implemented), "Skewers the foe with a sword. This may also raise the user's Attack, Sp. Atk, or Speed."
+= 0x124 = (attacking move), (animation is Giga Drain on Feint Attack's background), "Absorbs the foe's life force. Restores the user's HP equal to half the damage dealt."
+= 0x126 = (attacking move), (has Rapid Spin animation), "If the target is faster than the user, this move does more damage. If the target is slower, the move fails."
+= 0x127 = (attacking move with chance to raise sp. atk), (animation is shedding white feathers, then Wing Attack), "Attacks the foe with beautifully sparkling feathers. This may also raise the user's Sp. Atk."
 + 0x128 = Hurricane
-= 0x12E = (attacking move with chance to poison, but if used by a poison-type, it badly poisons instead), (has Poison Tail animation)
+= 0x12E = (attacking move with chance to poison, but if used by a poison-type, it badly poisons instead), (has Poison Tail animation), "If used by a Poison-type, this move may also badly poison. It deals special damage."
 + 0x161 = Venoshock
-= 0x162 = (attacking move), (animation is Blizzard with gray rocks)
-+ 0x163 = Grand Boulder
-+ 0x164 = Soul Break
-+ 0x165 = Stardust
-+ 0x166 = Raze Earth
-+ 0x167 = Possess
-+ 0x168 = Devastate
-+ 0x169 = Metal Blast
+= 0x162 = (attacking move), (animation is Blizzard with gray rocks), "Blows out a breath that is strong against Steel-types. If the user is slower than the foe, the move does more damage."
++ 0x163 = Grand Boulder [Covers the foe completely in rocks. This may also cause the foe to flinch.]
++ 0x164 = Soul Break [Attacks the foe's soul directly. This may also cause the foe to become confused. This move ignores Protect.]
++ 0x165 = Stardust [Attacks foes with an immense downpour of stardust. This move deals physical damage.]
++ 0x166 = Raze Earth [Attacks by cracking and shaking the ground. This deals damage to the user as well, and deals physical damage to the foe.]
++ 0x167 = Possess [Possesses the foe's body for a short time. This may also cause the foe to become confused.]
++ 0x168 = Devastate [The user surrenders to its furious temper and goes on a rampage. This may also lower the foe's Defense stat.]
++ 0x169 = Metal Blast [The user gathers the energy stored in its body and releases it all at once to attack.]
 + 0x16A = Hammer Arm
 + 0x16B = Close Combat
 + 0x16C = Flare Blitz
@@ -288,84 +289,84 @@ move IDs:
 + 0x19E = Heal Order
 + 0x19F = Double Hit
 + 0x1A0 = Psyshock
-= 0x1A1 = (attacking move), (has Superpower animation)
-+ 0x1A2 = Magma Rush
-= 0x1A3 = (attacking move with chance to confuse or raise user's accuracy), (animation is a pulse move on Cosmic Power's background)
+= 0x1A1 = (attacking move), (has Superpower animation), "The user strikes with a head-on blow using all of its power. Critical hits land more easily."
++ 0x1A2 = Magma Rush [Attacks while cloaked in blazing magma. This may also sharply raise the user's Speed stat.]
+= 0x1A3 = (attacking move with chance to confuse or raise user's accuracy), (animation is a pulse move on Cosmic Power's background), "Ejects the foe into a dimension outside all known spacetime. This may also cause the foe to become confused."
 + 0x1A4 = Ominous Wind
 + 0x1A5 = Cross Poison
 + 0x1A6 = Thunder Fang
 + 0x1A7 = Ice Fang
 + 0x1A8 = Fire Fang
-+ 0x1A9 = Crash Impact
-+ 0x1AA = Spin Tail
-+ 0x1AB = Double Spin
-+ 0x1AC = Tone-Deaf
-+ 0x1AD = Dizzy Whirl (animation is broken)
-+ 0x1AE = Deep Yawn
-+ 0x1AF = Raging Flame
-+ 0x1B0 = Magma Ring
-+ 0x1B1 = Wave Splash
-+ 0x1B2 = Deluge
-+ 0x1B3 = Aqua Bolt
-+ 0x1B4 = Giga Spark
-+ 0x1B5 = Shine Bomb
-+ 0x1B6 = Megashock
-+ 0x1B7 = Mach Volt
-+ 0x1B8 = Energize
-+ 0x1B9 = Wild Growth
-! 0x1BA = Guardian Leaf (not implemented)
-+ 0x1BB = Poison Leaf
-+ 0x1BC = Rapid Growth
-+ 0x1BD = Dazzle Powder
-+ 0x1BE = Starfreeze
-+ 0x1BF = Icicle Punch
-+ 0x1C0 = Frostbite
-+ 0x1C1 = Icy Kiss
-+ 0x1C2 = Magnum Punch
-+ 0x1C3 = Double Shot
-+ 0x1C4 = Toxin Spray
-+ 0x1C5 = Smogscreen
-+ 0x1C6 = Burrow
-+ 0x1C7 = Sonic Sand
-+ 0x1C8 = Sandblast
-+ 0x1C9 = Glide
-+ 0x1CA = Typhoon
-+ 0x1CB = Psygatling
-+ 0x1CC = Psycho Punch
-+ 0x1CD = Psyburn
-+ 0x1CE = Latent Power
-+ 0x1CF = Hypnopulse
-+ 0x1D0 = Gravity Wave
-+ 0x1D1 = Bug Noise
-+ 0x1D2 = Angry Swarm
-+ 0x1D3 = Rock Tumble
-+ 0x1D4 = Diamond Blast
-+ 0x1D5 = Paleobreath
-+ 0x1D6 = Shadow Clamp
-+ 0x1D7 = Cursed Wrath
-+ 0x1D8 = Life Drain
-+ 0x1D9 = Dragon Beat
-+ 0x1DA = Vengeance
-+ 0x1DB = Dark Resolve
-+ 0x1DC = Dark Cutter
-+ 0x1DD = Dark Roar
-+ 0x1DE = Dark Hand
-+ 0x1DF = Corner
-+ 0x1E0 = Metal Pincer
-+ 0x1E1 = Geo Impact
-+ 0x1E2 = Magnet Force
++ 0x1A9 = Crash Impact [The user crashes its massive body into the foe, confusing the user afterwards.]
++ 0x1AA = Spin Tail [The user spins its tail around to hit the foe. This may also raise the user's Speed stat.]
++ 0x1AB = Double Spin [Hits twice in a row while spinning around. This may also raise the user's Attack stat.]
++ 0x1AC = Tone-Deaf [Attacks by singing an off-key tune. This may also lower the foe's Sp. Def stat or cause it to become confused.]
++ 0x1AD = Dizzy Whirl (animation is broken) [Dizzies the foe, sharply raising the user's evasiveness and raising its Speed stat, but lowering its accuracy.]
++ 0x1AE = Deep Yawn [The user yawns unusually deeply, enticing drowsiness that causes the foe to immediately fall asleep.]
++ 0x1AF = Raging Flame [Attacks using flames created from sheer rage. This may also cause the user to become confused.]
++ 0x1B0 = Magma Ring [Attacks while surrounding the foe with magma. This prevents the foe from escaping battle. (CHECK SPIRIT SHACKLE)]
++ 0x1B1 = Wave Splash [Stirs up the water to create waves. This may also raise the user's evasiveness.]
++ 0x1B2 = Deluge [Attacks the foe with an enormous, violent wave, harshly lowering the user's Sp. Atk stat afterwards.]
++ 0x1B3 = Aqua Bolt [Attacks the foe with water containing traces of electricity. This may also leave the foe with paralysis.]
++ 0x1B4 = Giga Spark [A high-voltage attack. This may also harshly lower the user's Defense stat.]
++ 0x1B5 = Shine Bomb [Attacks with an intensely shining explosion. This may also lower the foe's accuracy.]
++ 0x1B6 = Megashock [An intense electric shock. This may also harshly lower the foe's Defense stat.]
++ 0x1B7 = Mach Volt [Fires a supersonic shockwave at the foe. This move will always go first.]
++ 0x1B8 = Energize [The user infuses its entire body with electric current, raising its Attack and Sp. Atk stats.]
++ 0x1B9 = Wild Growth [Attacks by making the surrounding foliage grow rapidly. This may also lower the foe's Speed stat.]
+! 0x1BA = Guardian Leaf (not implemented) [Attacks while bolstering its defense with foliage. This may also raise the user's Defense stat.]
++ 0x1BB = Poison Leaf [Poisonous leaves that may also poison the foe. This move is super effective on Water-types.]
++ 0x1BC = Rapid Growth [The user suddenly grows and attacks the foe. This may also raise the user's Sp. Atk stat.]
++ 0x1BD = Dazzle Powder [Sprinkles large amounts of a perplexing powder that causes the foe to become confused.]
++ 0x1BE = Starfreeze [Fires cold, star-shaped objects to attack. This may also leave the target with paralysis.]
++ 0x1BF = Icicle Punch [Strikes with a fist as cold and sharp as an icicle. This may also lower the foe's evasiveness.]
++ 0x1C0 = Frostbite [Blows incredibly cold methane crystals at the foe. This may also raise the user's Sp. Atk stat.]
++ 0x1C1 = Icy Kiss [This move may also lower the user's Defense stat or freeze it. It deals physical damage.]
++ 0x1C2 = Magnum Punch [Attacks with a bullet-like punch. This may also lower the user's Defense stat or cause it to flinch.]
++ 0x1C3 = Double Shot [Shoots bullets out of its body twice in a row. This may also raise the user's accuracy.]
++ 0x1C4 = Toxin Spray [The user attacks by spraying a dangerous toxin from deep inside its body. This may also badly poison the foe.]
++ 0x1C5 = Smogscreen [Attacks with poisonous smoke. This may also lower the foe's accuracy or poison it.]
++ 0x1C6 = Burrow [Attacks from under the foe's feet. This may also harshly lower the foe's Speed stat.]
++ 0x1C7 = Sonic Sand [Attacks foes by throwing sand at supersonic speeds. This may also harshly lower foes' Sp. Def stat.]
++ 0x1C8 = Sandblast [Blows wind carrying countless fine grains of sand. This may also lower the accuracy of those hit. (CHECK LAVA PLUME)]
++ 0x1C9 = Glide [Attacks the foe by flying with wings spread wide. This may also raise the user's accuracy.]
++ 0x1CA = Typhoon [Attacks with a blade of wind. This may also randomly raise or lower the user's stats.]
++ 0x1CB = Psygatling [Attacks by firing bullets made of spiritual energy. This may also leave the user with a burn.]
++ 0x1CC = Psycho Punch [Strikes with a fist infused with mystical power. This may also cause the foe to become confused.]
++ 0x1CD = Psyburn [Incinerates the foe using mysterious powers. This may also raise the user's Sp. Def stat.]
++ 0x1CE = Latent Power [Attacks by emitting a strange energy, which also sharply raises the foe's evasiveness.]
++ 0x1CF = Hypnopulse [Shoots a pulse that induces drowsiness at the foe. This may also cause the foe to fall asleep.]
++ 0x1D0 = Gravity Wave [Manipulates gravity to fling the foe around. This deals more damage the more the foe weighs.]
++ 0x1D1 = Bug Noise [The user flies around emitting a high-pitched shriek. This may also leave the user with paralysis.]
++ 0x1D2 = Angry Swarm [The user flies around to disrupt the air currents. This may also lower the foe's accuracy or cause it to become confused. (FIX NAME/CHECK TRANSLATION LATER)]
++ 0x1D3 = Rock Tumble [The user rolls into the foe for five turns, each hit increasing in power.]
++ 0x1D4 = Diamond Blast [Attacks the foe with a blast that sparkles like diamonds. This may also lower the user's Sp. Def stat.]
++ 0x1D5 = Paleobreath [Blows out an ancient breath. This may also raise the user's Sp. Atk stat.]
++ 0x1D6 = Shadow Clamp [Persistently bites the foe. This may also cause the foe to fall asleep or become confused.]
++ 0x1D7 = Cursed Wrath [Lays a curse on the foe. This move gets stronger the less HP the user has left.]
++ 0x1D8 = Life Drain [An attack that will always leave the foe with at least 1 HP.]
++ 0x1D9 = Dragon Beat [Attacks in a steady rhythm. However, it may also sharply raise the foe's Attack stat.]
++ 0x1DA = Vengeance [This move becomes more powerful if the foe damaged the user this turn.]
++ 0x1DB = Dark Resolve [The user bathes itself in darkness and attacks with extraordinary resolve. The user is poisoned afterwards.]
++ 0x1DC = Dark Cutter [Slashes the foe with sharp winds steeped in darkness. Critical hits land more easily.]
++ 0x1DD = Dark Roar [The user lets out a darkness-tinged roar. This move will always go first.]
++ 0x1DE = Dark Hand [The user uses its hand to carefully plan where to aim next, sharply raising its accuracy.]
++ 0x1DF = Corner [The user attacks, blocking off all of the foe's escape routes. This prevents the foe from escaping battle. (CHECK SPIRIT SHACKLE)]
++ 0x1E0 = Metal Pincer [Snips at the foe using metallic arms or legs, hitting three times in a row.]
++ 0x1E1 = Geo Impact [Attacks by causing a violent impact that starts deep underground. This may also sharply raise the foe's Sp. Atk stat.]
++ 0x1E2 = Magnet Force [Attacks the foe with magnetic energy. This may also lower the foe's Attack or Sp. Atk stats.]
 + 0x1E3 = Roost
 + 0x1E4 = Defog
 + 0x1E5 = Lava Plume
-+ 0x1E6 = Nova Inferno
-+ 0x1E7 = Raid
++ 0x1E6 = Nova Inferno [no description]
++ 0x1E7 = Raid [Strikes the foe, possibly inflicting various status problems depending on the current weather.]
 + 0x1E8 = Acid Spray
 + 0x1E9 = Electroweb
 + 0x1EA = Shell Smash
 + 0x1EB = Gastro Acid
-= 0x1EC = (non-attacking move), (has Toxic animation)
+= 0x1EC = (non-attacking move), (has Toxic animation), "The stimulus causes a response in the user's and foe's bodies, causing them both to become poisoned."
 + 0x1ED = Leaf Tornado
-= 0x1EE = (attacking move), (animation is Bite then Crunch)
+= 0x1EE = (attacking move), (animation is Bite then Crunch), "The user bites at the foe relentlessly, steadily eating away at the foe's body."
 + 0x1EF = Bulldoze
 + 0x1F0 = Dual Chop
 + 0x1F1 = Quiver Dance
@@ -380,7 +381,7 @@ move IDs:
 + 0x1FA = Struggle Bug
 + 0x1FB = Inferno
 + 0x1FC = Wild Charge
-+ 0x1FD = Sharpshoot
++ 0x1FD = Sharpshoot [The user concentrates and takes aim before hitting. This move will always result in a critical hit.]
 + 0x1FE = Scald
 + 0x1FF = Moonblast
 + 0x200 = Dazzling Gleam
@@ -388,7 +389,7 @@ move IDs:
 + 0x202 = Disarming Voice
 + 0x203 = Baby-Doll Eyes
 + 0x204 = Play Rough
-= 0x205 = (attacking move), (animation is the Waterfall charge-up, then a lunge and a huge impact on Hydro Cannon's background)
+= 0x205 = (attacking move), (animation is the Waterfall charge-up, then a lunge and a huge impact on Hydro Cannon's background), "While cloaked in water, the user smashes into the foe with all its strength. This also damages the user [a little]?."
 + 0x206 = Tailwind
 + 0x207 = Chatter
 + 0x208 = Trick Room
@@ -410,12 +411,12 @@ move IDs:
 + 0x218 = Freeze-Dry
 + 0x219 = Venom Drench
 + 0x21A = Nuzzle
-= 0x21B = (attacking move with chance to freeze), (animation covers the foe in ice, then covers the foe in snowflakes, on Frost Breath's background)
-= 0x21C = (attacking move with chance to flinch), (has Rock Blast animation, except the rock is shot out instead of thrown)
-= 0x21D = (attacking move with chance to lower evasion), (animation shoots diamonds with Hail sounds on a ray of light background)
-= 0x21E = (attacking move with chance to flinch), (animation is Take Down that hits with an open palm, on Focus Blast's background)
-= 0x21F = (attacking move with chance to raise speed), (animation is Glide on Mach Punch's background)
-= 0x220 = (attacking move with chance to lower defense), (animation is user half of Psychic, then smashes the foe, producing orbs, on Psyshock's background)
+= 0x21B = (attacking move with chance to freeze), (animation covers the foe in ice, then covers the foe in snowflakes, on Frost Breath's background), "Attacks the foe by striking with incredibly cold ice. This may also freeze the foe solid."
+= 0x21C = (attacking move with chance to flinch), (has Rock Blast animation, except the rock is shot out instead of thrown), "Fires a hard rock like a bullet to attack. This may also cause the foe to flinch."
+= 0x21D = (attacking move with chance to lower evasion), (animation shoots diamonds with Hail sounds on a ray of light background), "Absorbs the light of gemstones and fires it out to attack. This may also lower the foe's evasiveness."
+= 0x21E = (attacking move with chance to flinch), (animation is Take Down that hits with an open palm, on Focus Blast's background), "The user stabs straight out at the foe with a powerful sacred sword. This may also cause the foe to flinch."
+= 0x21F = (attacking move with chance to raise speed), (animation is Glide on Mach Punch's background), "The user smashes into the foe with all its strength with the speed of a jet plane. This may also raise the user's Speed stat."
+= 0x220 = (attacking move with chance to lower defense), (animation is user half of Psychic, then smashes the foe, producing orbs, on Psyshock's background), "The user creates an impact using its powerful mind. This may also lower the foe's Defense stat."
 = 0x221 = (attacking move with chance to flinch), (animation involves user disappearing, then foe being repeatedly hit, on a purple fire background)
 = 0x222 = (attacking move with chance to confuse), (animation has purple lumps appear around the foe's feet, then foe is hit causing the curse effect)
 = 0x223 = (attacking move with chance to lower sp. def), (animation encases the foe in a spinning blue bubble, then the foe turns gray)
@@ -881,20 +882,7 @@ stray text:
 % expand 40C1C4 (color that mon sprite flashes on release from each ball) from 12 entries to 48 (A24240)
 % expand 456C50 (unknown quest-log-related list of flags) from 17 entries to 19 (j6B0CCC, e16B0CCC)
 % expand 4886E8 (move descriptions) from from 355 entries to 680 (1020000)
-cur changes (do them): guillotine/horn drill/fissure "KO'd in one hit" -> "instantly killed"; (swords dance/agility/barrier/amnesia/acid armor jp spelling, check); whirlwind "blow away" -> "(nigesase)"; roar "force out" -> "(nigesase)"; growth (spatk) -> (atk, spatk), needed to remove "instantly"; clamp -> new move "Raises the user's Speed if it moved after the foe. If not, it raises Sp. Atk."; barrage -> entrainment; crabhammer "attacks by slamming a huge claw down on the foe" -> "bashes the foe with a huge claw"; Sharpen "and raises its Attack" -> ", which raises its Attack"; Conversion -> Fiery Dance; Triple Kick -> new move "The user gathers all of its spiritual energy at a single point, then uses it to hit the foe. Lowers the user's Speed afterwards."; Spider Web -> Accelerock; Snore "Attacks by snoring, which may also cause the foe to flinch. Can only be used while asleep." -> "This move can only be used while asleep. Attacks the foe by snoring loudly."; 
-
-
-
-
-snore+2
-01 02 13 06 27 00 0B 02 3B 16 FE 08 27 50 10 00 2C 3C 19 FE 0A 03 06 37 00 02 1F 1B 14 12 16 FE 15 29 26 03 16 00 3D 48 2E 19 FE 60 52 9D 2D 00 06 04 29 AD
-vs
-37 02 48 06 27 19 00 0C 3A 07 37 FE 06 27 41 19 00 02 11 48 16 FE 1A 2E 19 03 0C 00 3D 48 2E 14 FE 01 02 13 2D 00 24 09 45 19 FE 3D 36 03 10 02 16 00 0D 29 AD
-
-
-
-
-
+cur changes (do them): guillotine/horn drill/fissure/sheer cold "KO'd in one hit" -> "instantly killed"; (swords dance/agility/barrier/amnesia/acid armor/swagger jp spelling, check); whirlwind "blow away" -> "(nigesase)"; roar "force out" -> "(nigesase)"; growth "Sp. Atk" -> "Attack and Sp. Atk", needed to remove "instantly"; clamp -> new move; barrage -> entrainment; crabhammer "attacks by slamming a huge claw down on the foe" -> "bashes the foe with a huge claw"; Sharpen "and raises its Attack" -> ", which raises its Attack"; Conversion -> Fiery Dance; Triple Kick -> new move; Spider Web -> Accelerock; Snore "Attacks by snoring, which may also cause the foe to flinch. Can only be used while asleep." -> "This move can only be used while asleep. Attacks the foe by snoring loudly." (test if snore's flinch chance removed); conversion 2 -> new move; Aeroblast -> new move; Octazooka "Attacks by shooting ink into the face and eyes." -> "Shoots ink into the foe's face and eyes."; (False Swipe jp grammar, check); Sacred Fire -> new move; Hidden Power "changes type and power" -> "changes type"; Crunch "Sp. Def" -> "Defense"; Revenge "increases damage" -> "doubles damage"; (Imprison jp grammar, check); Arm Thrust - > new move; Tail Glow -> new move; Luster Purge -> new move; Mist Ball -> Hurricane; Needle Arm -> new move; Sheer Cold "incredible cold" -> "absolute zero"
 
 
 
@@ -3590,9 +3578,10 @@ entirely new things:
 		  Implements: Raze Earth animation
 +13091A0: Move_Rock_Wrecker (see animscripts.txt)
 		  Implements: Rock Wrecker animation
-		  GLTICH!: doesn't look right
+		  GLITCH!: doesn't look right
 +1309278: Move_??? (see animscripts.txt)
 		  Implements: [move21E] animation
+		  GLITCH!: should be a sword?
 +1309350: Move_Aura_Sphere (see animscripts.txt)
 		  Implements: Aura Sphere animation
 +13093D0: Move_??? (see animscripts.txt)
