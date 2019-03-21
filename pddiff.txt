@@ -783,7 +783,7 @@ stray text:
 = 1A5DB1 (1938C2 old, E0055A new) - one of the PC messages
 = 1B583F (19F466 old, E005B0 new) - "Using [PCOWNER]'s PC" (for help system, now unused)
 = 1B68CD (19FEA4 old, E005C1 new) - the help system description for "Using [PCOWNER]'s PC" (now unused)
-- 3E823A (3AF6E1 old, 80B818 new) - randomly move Rough Skin text
+! 3E823A (3AF6E1 old, 80B818 new) - randomly move Rough Skin text [don't do this unless necessary for whatever reason]
 = 3FDAE2 (3C3CA6 jp) - one of oak's tutorial lines
 = 3FDB92 (3C3D0A old, 3C3C3F new) - one of oak's tutorial lines
 = 3FDBEF (3C3D2B old, 3C3D09 new) - one of oak's tutorial lines
@@ -794,7 +794,7 @@ stray text:
 = 3FDD64 (3C3E05 old, 3C3DCC new) - one of oak's tutorial lines
 = 3FDDEB (3C3E5C old, 3C3E1D new) - one of oak's tutorial lines
 = 3FE6D5 (3C4685 jp) - "What will [PLAYER] do?" (drop optional character in Japanese, probably to make room - might be unnecessary, check after ui redesign)
-- 415F66 (3DD606 old, 5447D9 new) - pokedex "-----" -> empty string
++ 415F66 -> 15447D9 (3DD606 old, 5447D9 new) - pokedex "-----" -> empty string
 + 415FED (3DD66F jp) - pokedex "Size" -> "Egg Groups"
 = 416425 (3DD9B5 jp) - "Oak: [PLAYER]! This isn't the time to use that!"
 = 4173E4 (3DE4D7 old, 3DE3ED new) - "Let's enjoy cycling!"
@@ -803,20 +803,19 @@ stray text:
 + 418690 (3DF21C jp) - "Can't deposit the last Pokemon!" (in jp, it changes "If ya deposit that one, ya'd be in big trouble, doncha think?" to "You won't have any Pokemon left!", so no english change needed)
 + 4186B0 (3DF22F jp) - "Can't take any more Pokemon!" (in jp, it changes "There ain't no way y'can carry more Pokemon!" to "You can't carry any more Pokemon!", so no english change needed)
 = 41969D (3DFE6F jp) - Pattern Bush map description (why only this one?)
-- 419C62 (3E0241 jp) - "(>) Page (A) Cancel" -> "(A) Cancel" (one screen on pokemon summary screen)
-- 419C7B (3E0258 jp) - "(<>) Page" -> "" (one screen on pokemon summary screen)
-- 419C82 (3E025F jp) - "(<) Page (A) Detail" -> "(A) Detail" (one screen on pokemon summary screen)
-- 419C92 (3E026C jp) - "(^v) Pick (A) Switch" -> "(A) Switch" (one screen on pokemon summary screen)
-- 419CA2 (3E0279 old, 3E06E3 new) - "(^v) Pick" -> "(A) Pick" (one screen on pokemon summary screen)
-- 419CA9 (3E0280 jp) - "(^v) Pick (A) Delete" -> "(A) Delete" (one screen on pokemon summary screen)
-- 419E36 (3E03A1 jp) - "Mono" -> "Stereo"
-- 419E3B (3E03A6 jp) - "Stereo" -> "Normal"
-- 419E42 (3E03AB jp) - "L = A" -> ""
-- 419E46 (3E03AF jp) - "LR" -> ""
++ 419C62 (3E0241 jp) - "(>) Page (A) Cancel" -> "(A) Cancel" (one screen on pokemon summary screen)
++ 419C7B (3E0258 jp) - "(<>) Page" -> "" (one screen on pokemon summary screen)
++ 419C82 (3E025F jp) - "(<) Page (A) Detail" -> "(A) Detail" (one screen on pokemon summary screen)
++ 419C92 (3E026C jp) - "(^v) Pick (A) Switch" -> "(A) Switch" (one screen on pokemon summary screen)
++ 419CA2 -> 13E06E3 (3E0279 old, 3E06E3 new) - "(^v) Pick" -> "(A) Pick" (one screen on pokemon summary screen)
++ 419CA9 (3E0280 jp) - "(^v) Pick (A) Delete" -> "(A) Delete" (one screen on pokemon summary screen)
++ 419E36 (3E03A1 jp) - "Mono" -> "Stereo"
++ 419E3B (3E03A6 jp) - "Stereo" -> "Normal"
++ 419E46 (3E03AF jp) - "Help" -> ""
 = 41A2E1 (3E06E3 old, 68AE00 new) - "[PLAYER] had a marvelous battle with the Champion, [RIVAL]." (remove rival name and replace with actual champion)
 = 41A312 (3E070A old, 3E0709 new) - "In the end, [PLAYER] sent out [PKMN] while [RIVAL] countered with [PKMN]." (remove rival name and replace with actual champion)
 = 41B698 (3E148B jp) - "KANTO" (diploma)
-- 41D198 (3E2328 jp) - "Pokemon FireRed Version Staff" -> "Original FireRed Staff"
++ 41D198 (3E2328 jp) - "Pokemon FireRed Version Staff" -> "Original FireRed Version Staff"
 = repoint ptrs at 09D1E0 and 09D248 ("Bill's PC"/"Someone's PC") to the same text (jE00590, e1E00590)
 
 + expand rom to 2x
@@ -1690,7 +1689,7 @@ vs
   09B488: D0 1C 02 02 -> 91 E0 D7 09 (jumps (bx) to extra fn at 1D7E090, then back (jD7E090, see 186disasm))
 		  Implements: Show already-obtained TMs as price "-----"
 + 09B428, 09BC4A, 09BD26: 09 04 09 0C -> 00 00 00 00 (don't cap prices at 65536)
-- 09B430, 09B440: 04 -> 06 (extra 2 digits for prices, this doesn't work right now (cutoff))
+! 09B430, 09B440: 04 -> 06 (extra 2 digits for prices, this doesn't work right now (cutoff))
 + 09B718: 98 -> 90 (move the red arrows for item quantity left one tile (why?))
 + 09B868: 01 -> 02
   09B86E: 02 DC -> 2F D0
@@ -2810,7 +2809,7 @@ data:
 = 3C73A0-3C9CB8 (j38E21C-j390B34): wild mon data
 = 3C9CB8 (j390B34): gWildMonHeaders
 = 3CAFD0-3CB3D0 (j391E4C-39224C): flashing screen during pkmn center healing [change when pkmn center gfx change]
-- 3CC350 (j3931CC): 3B 9E 41 08 46 9E 41 08 -> 36 9E 41 08 3B 9E 41 08 (options menu change)
++ 3CC350 (j3931CC): 3B 9E 41 08 46 9E 41 08 -> 36 9E 41 08 EE 00 72 08 (remove Mono as an audio option entirely)
 = 3CD2E0 (j39501C): badges turn blue after some requirement [change badge gfx first]
 = 3CD5E8 (395324 old, 90C190 new) - badges
 = 3CD8AD (j3955E9): 08 -> 02 (change palette for trainer pic on card (possibly male only)) 
