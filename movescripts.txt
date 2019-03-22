@@ -773,7 +773,7 @@ MOVE_GUNK_SHOT: MOVE_EFFECT_POISON
 MOVE_IRON_HEAD: MOVE_EFFECT_FLINCH
 MOVE_CHARGE_BEAM: MOVE_EFFECT_SP_ATK_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
 MOVE_MAGMA_RUSH: MOVE_EFFECT_SPEED_PLUS_2 | MOVE_EFFECT_AFFECTS_USER
-MOVE_0x1A3: MOVE_EFFECT_CONFUSION
+MOVE_WORMHOLE: MOVE_EFFECT_CONFUSION
 MOVE_OMINOUS_WIND: MOVE_EFFECT_ALL_STATS_UP | MOVE_EFFECT_AFFECTS_USER
 MOVE_CROSS_POISON: MOVE_EFFECT_POISON
 MOVE_THUNDER_FANG: MOVE_EFFECT_FLINCH
@@ -843,9 +843,9 @@ MOVE_0x21C: MOVE_EFFECT_FLINCH
 MOVE_0x21D: MOVE_EFFECT_EVA_MINUS_1
 MOVE_0x21E: MOVE_EFFECT_FLINCH
 MOVE_0x21F: MOVE_EFFECT_SPEED_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
-MOVE_0x220: MOVE_EFFECT_DEF_MINUS_1
+MOVE_PSYCHO_CRUSH: MOVE_EFFECT_DEF_MINUS_1
 MOVE_0x221: MOVE_EFFECT_FLINCH
-MOVE_0x222: MOVE_EFFECT_CONFUSION
+MOVE_SOULSTRIKE: MOVE_EFFECT_CONFUSION
 MOVE_0x223: MOVE_EFFECT_SP_DEF_MINUS_1
 MOVE_0x225: MOVE_EFFECT_SP_ATK_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
 MOVE_0x22E: MOVE_EFFECT_DEF_MINUS_1
@@ -878,15 +878,15 @@ MOVE_0x264: MOVE_EFFECT_REMOVE_STATUS
 MOVE_0x265: MOVE_EFFECT_REMOVE_STATUS
 MOVE_0x266: MOVE_EFFECT_REMOVE_STATUS
 MOVE_0x267: MOVE_EFFECT_REMOVE_STATUS
-MOVE_0x269: MOVE_EFFECT_BURN
+MOVE_PYROKINESIS: MOVE_EFFECT_BURN
 MOVE_0x275: [STAT_SPDEF, 1, TRUE]
 MOVE_0x276: [STAT_SPATK, 1, FALSE]
 MOVE_0x27E: MOVE_EFFECT_SLEEP
 MOVE_COTTON_GUARD: [STAT_DEF, 3, FALSE]
 MOVE_0x283: MOVE_EFFECT_REMOVE_STATUS
 MOVE_0x289: MOVE_EFFECT_ATK_MINUS_2 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
-MOVE_0x28A: MOVE_EFFECT_SP_ATK_TWO_DOWN | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
-MOVE_0x296: MOVE_EFFECT_ATK_MINUS_1
+MOVE_BLACK_HOLE: MOVE_EFFECT_SP_ATK_TWO_DOWN | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
+MOVE_FIRE_LASH: MOVE_EFFECT_ATK_MINUS_1
 MOVE_0x297: MOVE_EFFECT_ACC_MINUS_2
 MOVE_0x298: MOVE_EFFECT_PARALYSIS
 MOVE_0x29A: MOVE_EFFECT_ACC_MINUS_1
@@ -971,7 +971,7 @@ return
 
 Data_ParameterizedEffectHit_Effect2Table:
 MOVE_FLARE_BLITZ: MOVE_EFFECT_RECOIL_33_PARALYSIS | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
-MOVE_0x1A3: MOVE_EFFECT_ACC_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
+MOVE_WORMHOLE: MOVE_EFFECT_ACC_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
 MOVE_THUNDER_FANG: MOVE_EFFECT_PARALYSIS
 MOVE_ICE_FANG: MOVE_EFFECT_FREEZE
 MOVE_FIRE_FANG: MOVE_EFFECT_BURN
@@ -1882,67 +1882,67 @@ setstatchanger STAT_SPEED, 2, FALSE
 goto BattleScript_EffectStatUp
 
 
-BattleScript_EffectPaybackAndHitsSteelDouble (pj): @1053998
+BattleScript_EffectGravelBreath (pj): @1053998
 00 02 28 D0 12 86 08
 
-BattleScript_EffectPaybackAndHitsSteelDouble_ActualScript (pj): @8612D0
+BattleScript_EffectGravelBreath_ActualScript (pj): @8612D0
 22 00 08 DC A8 1B 08 29 00 42 3B 02 02 00 BC A8 1B 08 29 00 42 3B 02 02 01 00 13 86 08 29 00 42 3B 02 02 02 60 7D E2 08 28 DC A8 1B 08 FF FF FF 29 00 CC 3C 02 02 00 E0 7C E2 08 29 00 CC 3C 02 02 01 F0 7C E2 08 29 00 CC 3C 02 02 02 00 7D E2 08 28 10 7D E2 08
 
-BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerLeftMovedFirst (pj): @E27CE0
+BattleScript_GravelBreath_CheckIfPlayerLeftMovedFirst (pj): @E27CE0
 29 00 3E 3B 02 02 00 DC A8 1B 08 28 BC A8 1B 08 29 00 3E 3B 02 02 01 DC A8 1B 08 28 BC A8 1B 08 29 00 3E 3B 02 02 02 DC A8 1B 08 28 BC A8 1B 08 29 00 3E 3B 02 02 03 DC A8 1B 08 28 BC A8 1B 08 29 00 41 3B 02 02 00 BC A8 1B 08 28 DC A8 1B 08 29 00 41 3B 02 02 01 BC A8 1B 08 28 DC A8 1B 08 29 00 41 3B 02 02 02 BC A8 1B 08 28 DC A8 1B 08 29 00 41 3B 02 02 03 BC A8 1B 08 28 DC A8 1B 08 29 00 CC 3C 02 02 00 20 7D E2 08 29 00 CC 3C 02 02 01 30 7D E2 08 29 00 CC 3C 02 02 02 40 7D E2 08 28 50 7D E2 08
 
 attackcanceler
 attackstring
-goto BattleScript_EffectPaybackAndHitsSteelDouble_ActualScript
+goto BattleScript_EffectGravelBreath_ActualScript
 
-BattleScript_EffectPaybackAndHitsSteelDouble_ActualScript:
+BattleScript_EffectGravelBreath_ActualScript:
 jumpiftype BS_TARGET, TYPE_STEEL, BattleScript_EffectHit_DoubleDamage
 jumpifbyte CMP_EQUAL, gCurrentTurnActionNumber, 0, BattleScript_EffectHit
-jumpifbyte CMP_EQUAL, gCurrentTurnActionNumber, 1, BattleScript_PaybackAndHitsSteelDouble_CheckIfTargetMovedFirst
-jumpifbyte CMP_EQUAL, gCurrentTurnActionNumber, 2, BattleScript_PaybackAndHitsSteelDouble_CheckIfTargetMovesLast
+jumpifbyte CMP_EQUAL, gCurrentTurnActionNumber, 1, BattleScript_GravelBreath_CheckIfTargetMovedFirst
+jumpifbyte CMP_EQUAL, gCurrentTurnActionNumber, 2, BattleScript_GravelBreath_CheckIfTargetMovesLast
 goto BattleScript_EffectHit_DoubleDamage
 
-BattleScript_PaybackAndHitsSteelDouble_CheckIfTargetMovedFirst:
-jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_LEFT, BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerLeftMovedFirst
-jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_LEFT, BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentLeftMovedFirst
-jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_RIGHT, BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerRightMovedFirst
-goto BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentRightMovedFirst
+BattleScript_GravelBreath_CheckIfTargetMovedFirst:
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_LEFT, BattleScript_GravelBreath_CheckIfPlayerLeftMovedFirst
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_LEFT, BattleScript_GravelBreath_CheckIfOpponentLeftMovedFirst
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_RIGHT, BattleScript_GravelBreath_CheckIfPlayerRightMovedFirst
+goto BattleScript_GravelBreath_CheckIfOpponentRightMovedFirst
 
-BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerLeftMovedFirst:
+BattleScript_GravelBreath_CheckIfPlayerLeftMovedFirst:
 jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[0], B_POSITION_PLAYER_LEFT, BattleScript_EffectHit_DoubleDamage
 goto BattleScript_EffectHit
 
-BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentLeftMovedFirst:
+BattleScript_GravelBreath_CheckIfOpponentLeftMovedFirst:
 jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[0], B_POSITION_OPPONENT_LEFT, BattleScript_EffectHit_DoubleDamage
 goto BattleScript_EffectHit
 
-BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerRightMovedFirst:
+BattleScript_GravelBreath_CheckIfPlayerRightMovedFirst:
 jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[0], B_POSITION_PLAYER_RIGHT, BattleScript_EffectHit_DoubleDamage
 goto BattleScript_EffectHit
 
-BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentRightMovedFirst:
+BattleScript_GravelBreath_CheckIfOpponentRightMovedFirst:
 jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[0], B_POSITION_OPPONENT_RIGHT, BattleScript_EffectHit_DoubleDamage
 goto BattleScript_EffectHit
 
-BattleScript_PaybackAndHitsSteelDouble_CheckIfTargetMovesLast:
-jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_LEFT, BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerLeftMovesLast
-jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_LEFT, BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentLeftMovesLast
-jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_RIGHT, BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerRightMovesLast
-goto BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentRightMovesLast
+BattleScript_GravelBreath_CheckIfTargetMovesLast:
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_LEFT, BattleScript_GravelBreath_CheckIfPlayerLeftMovesLast
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_OPPONENT_LEFT, BattleScript_GravelBreath_CheckIfOpponentLeftMovesLast
+jumpifbyte CMP_EQUAL, gBattlerTarget, B_POSITION_PLAYER_RIGHT, BattleScript_GravelBreath_CheckIfPlayerRightMovesLast
+goto BattleScript_GravelBreath_CheckIfOpponentRightMovesLast
 
-BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerLeftMovesLast:
+BattleScript_GravelBreath_CheckIfPlayerLeftMovesLast:
 jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[3], B_POSITION_PLAYER_LEFT, BattleScript_EffectHit
 goto BattleScript_EffectHit_DoubleDamage
 
-BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentLeftMovesLast:
+BattleScript_GravelBreath_CheckIfOpponentLeftMovesLast:
 jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[3], B_POSITION_OPPONENT_LEFT, BattleScript_EffectHit
 goto BattleScript_EffectHit_DoubleDamage
 
-BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerRightMovesLast:
+BattleScript_GravelBreath_CheckIfPlayerRightMovesLast:
 jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[3], B_POSITION_PLAYER_RIGHT, BattleScript_EffectHit
 goto BattleScript_EffectHit_DoubleDamage
 
-BattleScript_PaybackAndHitsSteelDouble_CheckIfOpponentRightMovesLast:
+BattleScript_GravelBreath_CheckIfOpponentRightMovesLast:
 jumpifbyte CMP_EQUAL, gBattlerByTurnOrder[3], B_POSITION_OPPONENT_RIGHT, BattleScript_EffectHit
 goto BattleScript_EffectHit_DoubleDamage
 
@@ -1950,13 +1950,13 @@ goto BattleScript_EffectHit_DoubleDamage
 BattleScript_EffectSpeedUp2 (fe): @1D710E
 2E DE 3F 02 02 23 28 9E 6B 1D 08
 
-BattleScript_EffectPaybackAndHitsSteelDouble (pe): @1053998
+BattleScript_EffectGravelBreath (pe): @1053998
 00 02 28 D0 12 86 08
 
-BattleScript_EffectPaybackAndHitsSteelDouble_ActualScript (pe): @8612D0
+BattleScript_EffectGravelBreath_ActualScript (pe): @8612D0
 22 00 08 20 69 1D 08 29 00 E2 3B 02 02 00 00 69 1D 08 29 00 E2 3B 02 02 01 00 13 86 08 29 00 E2 3B 02 02 02 60 7D E2 09 28 20 69 1D 08 FF FF FF 29 00 6C 3D 02 02 00 E0 7C E2 09 29 00 6C 3D 02 02 01 F0 7C E2 09 29 00 6C 3D 02 02 02 00 7D E2 09 28 10 7D E2 09
 
-BattleScript_PaybackAndHitsSteelDouble_CheckIfPlayerLeftMovedFirst (pe): @1E27CE0
+BattleScript_GravelBreath_CheckIfPlayerLeftMovedFirst (pe): @1E27CE0
 29 00 DE 3B 02 02 00 20 69 1D 08 28 00 69 1D 08 29 00 DE 3B 02 02 01 20 69 1D 08 28 00 69 1D 08 29 00 DE 3B 02 02 02 20 69 1D 08 28 00 69 1D 08 29 00 DE 3B 02 02 03 20 69 1D 08 28 00 69 1D 08 29 00 E1 3B 02 02 00 00 69 1D 08 28 20 69 1D 08 29 00 E1 3B 02 02 01 00 69 1D 08 28 20 69 1D 08 29 00 E1 3B 02 02 02 00 69 1D 08 28 20 69 1D 08 29 00 E1 3B 02 02 03 00 69 1D 08 28 20 69 1D 08 29 00 6C 3D 02 02 00 20 7D E2 09 29 00 6C 3D 02 02 01 30 7D E2 09 29 00 6C 3D 02 02 02 40 7D E2 09 28 50 7D E2 09
 
 
@@ -2146,7 +2146,7 @@ goto BattleScript_EffectStatDown
 BattleScript_EffectFoulPlay (pj): @1050590
 2A 00 AA 3C 02 02 7B 02 BF 05 05 09 00 01 1A A9 1B 08 00 00 FA 01 01 02 FA 00 01 19 02 03 04 05 06 07 FA 01 01 02 FA 00 01 19 28 F0 A8 1B 08 00 01 1A A9 1B 08 00 00 FA 01 01 08 FA 00 01 1C 02 03 04 05 06 07 FA 01 01 08 FA 00 01 1C 28 F0 A8 1B 08
 
-jumpifmove 0x27B, BattleScript_FoulPlay_SpecialAttack
+jumpifmove MOVE_WILDCARD, BattleScript_Wildcard
 attackcanceler
 accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 swaporcopymondata ATKFA_2BYTE, ATKFA_SWAP, ATKFA_ATKSTAT
@@ -2161,7 +2161,7 @@ swaporcopymondata ATKFA_2BYTE, ATKFA_SWAP, ATKFA_ATKSTAT
 swaporcopymondata ATKFA_1BYTE, ATKFA_SWAP, ATKFA_ATKSTAGES
 goto BattleScript_HitFromAtkAnimation
 
-BattleScript_FoulPlay_SpecialAttack:
+BattleScript_Wildcard:
 attackcanceler
 accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 swaporcopymondata ATKFA_2BYTE, ATKFA_SWAP, ATKFA_SPATKSTAT
@@ -6111,7 +6111,7 @@ MOVE_ROCK_BLAST
 MOVE_SHOCK_WAVE
 MOVE_WATER_PULSE
 MOVE_VENOSHOCK
-MOVE_0x162
+MOVE_GRAVEL_BREATH
 MOVE_GRAND_BOULDER
 MOVE_SOUL_BREAK
 MOVE_STARDUST
@@ -6171,7 +6171,7 @@ MOVE_DOUBLE_HIT
 MOVE_PSYSHOCK
 MOVE_0x1A1
 MOVE_MAGMA_RUSH
-MOVE_0x1A3
+MOVE_WORMHOLE
 MOVE_OMINOUS_WIND
 MOVE_CROSS_POISON
 MOVE_THUNDER_FANG
@@ -6275,9 +6275,9 @@ MOVE_0x21C
 MOVE_0x21D
 MOVE_0x21E
 MOVE_0x21F
-MOVE_0x220
+MOVE_PSYCHO_CRUSH
 MOVE_0x221
-MOVE_0x222
+MOVE_SOULSTRIKE
 MOVE_0x223
 MOVE_0x224
 MOVE_0x225
@@ -6292,7 +6292,7 @@ MOVE_0x231
 MOVE_0x232
 MOVE_0x233
 MOVE_0x234
-MOVE_0x235
+MOVE_BARRIER_BLAST
 MOVE_0x236
 MOVE_0x237
 MOVE_0x238
@@ -6300,13 +6300,13 @@ MOVE_LOW_SWEEP
 MOVE_FEINT
 MOVE_0x23B
 MOVE_0x241
-MOVE_0x242
+MOVE_FIN_SLAP
 MOVE_0x243
 MOVE_0x244
 MOVE_0x245
 MOVE_0x246
 MOVE_0x247
-MOVE_0x248
+MOVE_METAL_HORN
 MOVE_0x249
 MOVE_0x24A
 MOVE_0x24B
@@ -6334,7 +6334,7 @@ MOVE_WAKE_UP_SLAP
 MOVE_0x265
 MOVE_0x266
 MOVE_0x267
-MOVE_0x269
+MOVE_PYROKINESIS
 MOVE_0x26A
 MOVE_STORED_POWER
 MOVE_CIRCLE_THROW
@@ -6353,7 +6353,7 @@ MOVE_SACRED_SWORD
 MOVE_SYNCHRONOISE
 MOVE_DRAINING_KISS
 MOVE_0x289
-MOVE_0x28A
+MOVE_BLACK_HOLE
 MOVE_0x28B
 MOVE_0x28C
 MOVE_PAYBACK
@@ -6362,7 +6362,7 @@ MOVE_ACROBATICS
 MOVE_METAL_BURST
 MOVE_0x294
 MOVE_SPIRIT_SHACKLE
-MOVE_0x296
+MOVE_FIRE_LASH
 MOVE_0x297
 MOVE_0x298
 MOVE_SMART_STRIKE
@@ -6548,7 +6548,7 @@ MOVE_SIMPLE_BEAM
 MOVE_WORRY_SEED
 MOVE_0x23C
 MOVE_0x23D
-MOVE_0x23E
+MOVE_NEUROTOXIN
 MOVE_0x23F
 MOVE_ZOMBIE_TOUCH
 MOVE_POWER_SPLIT
