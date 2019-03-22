@@ -739,7 +739,7 @@ if_effect EFFECT_FREEZE, AI_CBM_Freeze
 if_effect EFFECT_TOXIC, AI_CBM_Toxic_New
 if_effect EFFECT_POISON, AI_CBM_Toxic_New
 if_effect EFFECT_POISON_BOTH, AI_CBM_Toxic_New
-if_effect EFFECT_RANDOM_POISON_OR_PARALYZE, AI_CBM_RandomPoisonOrParalyze
+if_effect EFFECT_NEUROTOXIN, AI_CBM_Neurotoxin
 if_effect EFFECT_PARALYZE, AI_CBM_Paralyze_New
 if_effect EFFECT_BURN_BOTH, AI_CBM_Burn_New
 if_effect EFFECT_BURN, AI_CBM_Burn_New
@@ -880,7 +880,7 @@ if_equal ABILITY_POISON_HEAL, Score_Minus10
 if_equal ABILITY_MAGIC_GUARD, Score_Minus10
 goto CheckIfLeafGuardCancelsStatus
 
-AI_CBM_RandomPoisonOrParalyze:
+AI_CBM_Neurotoxin:
 get_target_type1
 if_equal_ TYPE_POISON, Score_Minus10
 if_equal_ TYPE_STEEL, Score_Minus10
@@ -3535,7 +3535,7 @@ if_effect EFFECT_PAYBACK_DOUBLE_ON_STEEL, AI_CV_PaybackAndHitsSteelDouble
 if_effect EFFECT_POWER_SWAP, AI_CV_PowerSwap
 if_effect EFFECT_GUARD_SWAP, AI_CV_GuardSwap
 if_effect EFFECT_SYNCHRONOISE, AI_CV_Synchronoise
-if_effect EFFECT_RANDOM_POISON_OR_PARALYZE, AI_CV_RandomPoisonOrParalyze
+if_effect EFFECT_NEUROTOXIN, AI_CV_Neurotoxin
 if_effect EFFECT_POISON, AI_CV_Poison
 if_effect EFFECT_PARALYZE, AI_CV_Paralyze
 if_effect EFFECT_VITAL_THROW, AI_CV_VitalThrow
@@ -3600,7 +3600,7 @@ if_effect EFFECT_HAMMER_ARM, AI_CV_LowersSpeedOrDefenses
 if_effect EFFECT_CLOSE_COMBAT, AI_CV_LowersSpeedOrDefenses
 if_effect EFFECT_V_CREATE, AI_CV_LowersSpeedOrDefenses
 if_effect EFFECT_BRINE, AI_CV_DoubleAtLowHP
-if_effect EFFECT_REMOVE_OWN_SCREENS_DOUBLE_DAMAGE, AI_CV_RemoveOwnScreensForDoubleDamage
+if_effect EFFECT_BARRIER_BLAST, AI_CV_BarrierBlast
 if_effect EFFECT_BOOSTED_BY_SHARP_CLAWS, AI_CV_BoostedBySharpClaws
 if_effect EFFECT_HURRICANE, AI_CV_Hurricane
 if_effect EFFECT_USER_ATK_DEF_UP_2_SPEED_DOWN, AI_CV_UserAtkDefUp2SpeedDown
@@ -4208,19 +4208,19 @@ AI_CV_Synchronoise2:
 if_random_greater_than 127, Score_Plus1
 end
 
-AI_CV_RandomPoisonOrParalyze:
-if_hp_less_than AI_USER, 50, AI_CV_RandomPoisonOrParalyze_ScoreMinus1
-if_hp_more_than AI_TARGET, 50, AI_CV_RandomPoisonOrParalyze2
+AI_CV_Neurotoxin:
+if_hp_less_than AI_USER, 50, AI_CV_Neurotoxin_ScoreMinus1
+if_hp_more_than AI_TARGET, 50, AI_CV_Neurotoxin2
 
-AI_CV_RandomPoisonOrParalyze_ScoreMinus1:
+AI_CV_Neurotoxin_ScoreMinus1:
 score -1
 
-AI_CV_RandomPoisonOrParalyze2:
-if_target_faster AI_CV_RandomPoisonOrParalyze3
+AI_CV_Neurotoxin2:
+if_target_faster AI_CV_Neurotoxin3
 if_hp_less_than AI_USER, 71, Score_Minus1
 end
 
-AI_CV_RandomPoisonOrParalyze3:
+AI_CV_Neurotoxin3:
 if_random_greater_than 19, Score_Plus3
 end
 
@@ -5218,7 +5218,7 @@ if_hp_less_than AI_USER, 51, Score_Plus2
 if_random_greater_than 49, Score_Minus1
 end
 
-AI_CV_RemoveOwnScreensForDoubleDamage:
+AI_CV_BarrierBlast:
 if_side_affecting AI_USER, SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN, Score_Plus1
 end
 
@@ -5599,7 +5599,7 @@ if_status2 AI_TARGET, STATUS2_SUBSTITUTE, AI_New_ScoreMinus32
 end
 
 AI_New_FoulPlay:
-if_move 0x27B, AI_New_SpecialFoulPlay
+if_move MOVE_WILDCARD, AI_New_Wildcard
 get_last_used_bank_move AI_TARGET
 get_move_attribute ATTR_CATEGORY_FLAGS
 if_bits_set FLAG_SPECIAL_MOVE, AI_New // ???????
@@ -5612,15 +5612,15 @@ exec IsTargetSpecialAttacker
 if_equal TRUE, AI_New // ???????
 end
 
-AI_New_SpecialFoulPlay:
+AI_New_Wildcard:
 get_last_used_bank_move AI_TARGET
 get_move_attribute ATTR_CATEGORY_FLAGS
 if_bits_not_set FLAG_SPECIAL_MOVE, AI_New // ???????
-if_bits_set FLAG_STATUS_MOVE, AI_New_FoulPlay_CheckIfPhysical
+if_bits_set FLAG_STATUS_MOVE, AI_New_Wildcard_CheckIfPhysical
 score +1
 end
 
-AI_New_FoulPlay_CheckIfPhysical: // never actually reached due to faulty logic
+AI_New_Wildcard_CheckIfPhysical: // never actually reached due to faulty logic
 exec IsTargetSpecialAttacker
 if_equal FALSE, AI_New // ???????
 end
