@@ -738,10 +738,10 @@ if_effect EFFECT_SLEEP, AI_CBM_Sleep_New
 if_effect EFFECT_FREEZE, AI_CBM_Freeze
 if_effect EFFECT_TOXIC, AI_CBM_Toxic_New
 if_effect EFFECT_POISON, AI_CBM_Toxic_New
-if_effect EFFECT_POISON_BOTH, AI_CBM_Toxic_New
+if_effect EFFECT_INFECTION, AI_CBM_Toxic_New
 if_effect EFFECT_NEUROTOXIN, AI_CBM_Neurotoxin
 if_effect EFFECT_PARALYZE, AI_CBM_Paralyze_New
-if_effect EFFECT_BURN_BOTH, AI_CBM_Burn_New
+if_effect EFFECT_INFLAMMATION, AI_CBM_Burn_New
 if_effect EFFECT_BURN, AI_CBM_Burn_New
 if_effect EFFECT_CONFUSE, AI_CBM_Confuse_New
 if_effect EFFECT_SWAGGER, AI_CBM_Confuse_New
@@ -792,8 +792,8 @@ if_effect EFFECT_DRAGON_DANCE, AI_CBM_DragonDance
 if_effect EFFECT_QUIVER_DANCE, AI_CBM_QuiverDance // NEW
 if_effect EFFECT_COIL, AI_CBM_Coil // NEW
 if_effect EFFECT_SHELL_SMASH, AI_CBM_ShellSmash
-if_effect EFFECT_ATK_SPEED_EVASION_UP, AI_CBM_AtkSpeedEvasionUp
-if_effect EFFECT_SPEED_EVASION_UP, AI_CBM_SpeedEvasionUp
+if_effect EFFECT_STRETCH, AI_CBM_Stretch
+if_effect EFFECT_THICKET_SLIP, AI_CBM_ThicketSlip
 if_effect EFFECT_HONE_CLAWS, AI_CBM_HoneClaws // NEW
 if_effect EFFECT_ATTACK_DOWN, AI_CBM_AttackDown
 if_effect EFFECT_DEFENSE_DOWN, AI_CBM_DefenseDown_New
@@ -1129,13 +1129,13 @@ if_stat_level_equal AI_USER, STAT_SPATK, 12, Score_Minus8
 if_stat_level_equal AI_USER, STAT_SPEED, 12, Score_Minus8
 end
 
-AI_CBM_AtkSpeedEvasionUp:
+AI_CBM_Stretch:
 if_stat_level_equal AI_USER, STAT_ATK, 12, Score_Minus10
 if_stat_level_equal AI_USER, STAT_SPEED, 12, Score_Minus8
 if_stat_level_equal AI_USER, STAT_EVASION, 12, Score_Minus8
 end
 
-AI_CBM_SpeedEvasionUp:
+AI_CBM_ThicketSlip:
 if_stat_level_equal AI_USER, STAT_SPEED, 12, Score_Minus10
 if_stat_level_equal AI_USER, STAT_EVASION, 12, Score_Minus8
 end
@@ -1385,7 +1385,7 @@ goto Score_Minus10
 
 AI_CBM_Attract_End_New:
 if_move MOVE_CAPTIVATE, AI_CBM_SpecialAttackDown
-if_move 0x2A6, AI_CBM_Toxic_New
+if_move MOVE_PHEROMONE_POISON, AI_CBM_Toxic_New
 end
 
 AI_CBM_BellyDrum:
@@ -3595,13 +3595,13 @@ if_effect EFFECT_OVERHEAT, AI_CV_Overheat
 if_effect EFFECT_WATER_SPORT, AI_CV_WaterSport
 if_effect EFFECT_DRAGON_DANCE, AI_CV_DragonDance
 if_effect EFFECT_QUIVER_DANCE, AI_CV_DragonDance
-if_effect EFFECT_ATK_SPEED_EVASION_UP, AI_CV_DragonDance
+if_effect EFFECT_STRETCH, AI_CV_DragonDance
 if_effect EFFECT_HAMMER_ARM, AI_CV_LowersSpeedOrDefenses
 if_effect EFFECT_CLOSE_COMBAT, AI_CV_LowersSpeedOrDefenses
 if_effect EFFECT_V_CREATE, AI_CV_LowersSpeedOrDefenses
 if_effect EFFECT_BRINE, AI_CV_DoubleAtLowHP
 if_effect EFFECT_BARRIER_BLAST, AI_CV_BarrierBlast
-if_effect EFFECT_BOOSTED_BY_SHARP_CLAWS, AI_CV_BoostedBySharpClaws
+if_effect EFFECT_DINOSWORD, AI_CV_Dinosword
 if_effect EFFECT_HURRICANE, AI_CV_Hurricane
 if_effect EFFECT_USER_ATK_DEF_UP_2_SPEED_DOWN, AI_CV_UserAtkDefUp2SpeedDown
 if_effect EFFECT_SHELL_SMASH, AI_CV_ShellSmash
@@ -4325,9 +4325,9 @@ if_move MOVE_VENOSHOCK, AI_CV_DoubleDamageOnPoisoned
 if_move 0x283, AI_CV_DoubleDamageOnPoisoned
 if_move MOVE_WAKE_UP_SLAP, AI_CV_WakeUpSlap
 if_move 0x266, [E3 68 00 09]
-if_move 0x267, [EE 68 00 09]
+if_move MOVE_ICE_CRUSH, AI_CV_IceCrush
 if_move MOVE_HEX, AI_CV_Hex
-if_move 0x265, [04 69 00 09]
+if_move MOVE_FAREWELL_SLAP, AI_CV_FarewellSlap
 end
 
 AI_CV_SmellingSalts_New:
@@ -4346,7 +4346,7 @@ end
 if_status AI_TARGET, STATUS1_BURN, Score_Plus1
 end
 
-[EE 68 00 09]:
+AI_CV_IceCrush:
 if_status AI_TARGET, STATUS1_FREEZE, Score_Plus1
 end
 
@@ -4354,7 +4354,7 @@ AI_CV_Hex:
 if_status AI_TARGET, STATUS1_ANY, Score_Plus1
 end
 
-[04 69 00 09]:
+AI_CV_FarewellSlap:
 if_status2 AI_TARGET, STATUS2_INFATUATION, Score_Plus1
 end
 
@@ -4433,8 +4433,8 @@ EFFECT_TAILWIND
 EFFECT_TRICK_ROOM
 EFFECT_RAIN_DANCE
 EFFECT_SUNNY_DAY
-EFFECT_BURN_BOTH
-EFFECT_POISON_BOTH
+EFFECT_INFLAMMATION
+EFFECT_INFECTION
 EFFECT_BELLY_DRUM
 EFFECT_PSYCH_UP
 EFFECT_FUTURE_SIGHT
@@ -5222,12 +5222,12 @@ AI_CV_BarrierBlast:
 if_side_affecting AI_USER, SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN, Score_Plus1
 end
 
-AI_CV_BoostedBySharpClaws:
+AI_CV_Dinosword:
 get_last_used_bank_move AI_USER
-if_in_hwords AI_Data_SharpClawsEffectDoesDoubleDamageAfter, Score_Plus1
+if_in_hwords AI_Data_DinoswordDoesDoubleDamageAfter, Score_Plus1
 end
 
-AI_Data_SharpClawsEffectDoesDoubleDamageAfter:
+AI_Data_DinoswordDoesDoubleDamageAfter:
 MOVE_HONE_CLAWS
 
 AI_CV_Hurricane:
@@ -5396,8 +5396,8 @@ EFFECT_LEECH_SEED
 EFFECT_MINIMIZE
 EFFECT_CURSE
 EFFECT_SWAGGER
-EFFECT_BURN_BOTH
-EFFECT_POISON_BOTH
+EFFECT_INFLAMMATION
+EFFECT_INFECTION
 EFFECT_DEFENSE_CURL
 EFFECT_TORMENT
 EFFECT_FLATTER
@@ -5420,7 +5420,7 @@ EFFECT_USER_ATK_DEF_UP_2_SPEED_DOWN
 EFFECT_QUIVER_DANCE
 EFFECT_COIL
 EFFECT_SHELL_SMASH
-EFFECT_ATK_SPEED_EVASION_UP
+EFFECT_STRETCH
 EFFECT_SPEED_EVASION_UP
 EFFECT_HONE_CLAWS
 
@@ -5723,7 +5723,7 @@ EFFECT_USER_ATK_DEF_UP_2_SPEED_DOWN
 EFFECT_QUIVER_DANCE
 EFFECT_COIL
 EFFECT_SHELL_SMASH
-EFFECT_ATK_SPEED_EVASION_UP
+EFFECT_STRETCH
 EFFECT_SPEED_EVASION_UP
 EFFECT_HONE_CLAWS
 

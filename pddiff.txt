@@ -217,14 +217,14 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 ! 0xA0 = Fiery Dance (not implemented)
 = 0xA7 = [shuukihou (Inspiration?)] (attacking move with chance to lower user's speed), (animation is white light covering the screen, then Take Down), "The user gathers all of its spiritual energy at a single point, then uses it to hit the foe. This lowers the user's Speed afterwards. [CHECK HAMMER ARM]"
 + 0xA9 = Accelerock
-= 0xB0 = [enshou (Inflammation)] (non-attacking move), (has Will-O-Wisp animation), "The stimulus causes a response in the user's and foe's bodies, causing them both to become burned."
+- 0xB0 = Inflammation <card: Spreading Fire> [The stimulus causes a response in the user's and foe's bodies, causing them both to become burned.]
 ! 0xB1 = [no name yet] (attacking move), (can't be called by metronome), (has Pound animation; not implemented), "The user bashes the foe with a mirror. This may also raise the user's Defense, Sp. Atk, or Sp. Def."
 ! 0xDD = [no name yet] (attacking move that calculates damage as if any Sp. Atk boosts were added to Attack, then has a 20% chance to raise Atk and Sp. Atk), (can't be called by metronome), (has Pound animation; not implemented), "The foe is skewered with a sword. This may also raise the user's Attack, Sp. Atk, or Speed."
-= 0x124 = [Life Drain] (attacking move), (animation is Giga Drain on Feint Attack's background), "The user absorbs the foe's life force. Restores the user's HP equal to half the damage dealt."
-= 0x126 = [Quick Turn] (attacking move), (has Rapid Spin animation), "If the target is faster than the user, this move does more damage. If the target is slower, the move fails."
-= 0x127 = [megumi no tsubasa (Goddess Feathers)], (attacking move with chance to raise sp. atk), (animation is shedding white feathers, then Wing Attack), "The foe is attacked with beautifully sparkling feathers. This may also raise the user's Sp. Atk."
+- 0x124 = Vital Drain [The user absorbs the foe's life force. Restores the user's HP equal to half the damage dealt.]
+- 0x126 = Quick Turn [If the foe is faster than the user, this move does more damage. If the foe is slower, the move fails.]
+- 0x127 = Blessed Wings [The foe is attacked with beautifully sparkling wings. This may also raise the user's Sp. Atk.]
 + 0x128 = Hurricane
-= 0x12E = [Bad Poison] (attacking move with chance to poison, but if used by a poison-type, it badly poisons instead), (has Poison Tail animation), "If used by a Poison-type, this move may also badly poison. It deals special damage."
+- 0x12E = Severe Poison [If used by a Poison-type, this move may also badly poison. It deals special damage.]
 + 0x161 = Venoshock
 - 0x162 = Gravel Breath [The user blows out a breath that is strong against Steel-types. If the user is slower than the foe, the move does more damage.]
 + 0x163 = Grand Boulder [The foe is covered completely in rocks. This may also make the foe flinch.]
@@ -289,7 +289,7 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0x19E = Heal Order
 + 0x19F = Double Hit
 + 0x1A0 = Psyshock
-= 0x1A1 = [chokugekidan (Direct Hit)] (attacking move), (has Superpower animation), "The user strikes with a head-on blow using all of its power. Critical hits land more easily."
+- 0x1A1 = Linear Attack [The user strikes with a head-on blow using all of its power. Critical hits land more easily.]
 + 0x1A2 = Magma Rush [The user attacks while cloaked in blazing magma. This may also sharply raise the user's Speed stat.]
 - 0x1A3 = Wormhole [The foe is ejected into a dimension outside all known spacetime. This may also confuse the foe.]
 + 0x1A4 = Ominous Wind
@@ -318,7 +318,7 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0x1BB = Poison Leaf [Poisonous leaves that may also poison the foe. This move is super effective on Water-types.]
 + 0x1BC = Rapid Growth [The user suddenly grows and attacks the foe. This may also raise the user's Sp. Atk stat.]
 + 0x1BD = Dazzle Powder [Large amounts of a perplexing powder are scattered on the foe, which causes it to become confused.]
-+ 0x1BE = Starfreeze [The user fires cold, star-shaped objects to attack. This may also leave the target with paralysis.]
++ 0x1BE = Starfreeze [The user fires cold, star-shaped objects to attack. This may also leave the foe with paralysis.]
 + 0x1BF = Icicle Punch [The user strikes with a fist as cold and sharp as an icicle. This may also lower the foe's evasiveness.]
 + 0x1C0 = Frostbite [Incredibly cold methane crystals are blown at the foe. This may also raise the user's Sp. Atk stat.]
 + 0x1C1 = Icy Kiss [A kiss that may also lower the user's Defense stat or freeze it. It deals physical damage.]
@@ -338,7 +338,7 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0x1CF = Hypnopulse [The user shoots a pulse that induces drowsiness at the foe. This may also cause the foe to fall asleep.]
 + 0x1D0 = Gravity Wave [The user manipulates gravity to fling the foe around. This deals more damage the more the foe weighs.]
 + 0x1D1 = Bug Noise [The user flies around emitting a high-pitched shriek. This may also leave the user with paralysis.]
-+ 0x1D2 = Angry Swarm [The user flies around to disrupt the air currents. This may also lower the foe's accuracy or confuse it. (FIX NAME/CHECK TRANSLATION LATER)]
++ 0x1D2 = Angry Swarm <card: Disturbance Dive> [The user flies around to disrupt the air currents. This may also lower the foe's accuracy or confuse it. (FIX NAME/CHECK TRANSLATION LATER)]
 + 0x1D3 = Rock Tumble [The user rolls into the foe for five turns, each hit increasing in power.]
 + 0x1D4 = Diamond Blast [The foe is attacked with a blast that sparkles like diamonds. This may also lower the user's Sp. Def stat.]
 + 0x1D5 = Paleobreath [The user blows out an ancient breath. This may also raise the user's Sp. Atk stat.]
@@ -364,9 +364,9 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0x1E9 = Electroweb
 + 0x1EA = Shell Smash
 + 0x1EB = Gastro Acid
-= 0x1EC = [kansenshou (Infection)] (non-attacking move), (has Toxic animation), "The stimulus causes a response in the user's and foe's bodies, causing them both to become poisoned."
+- 0x1EC = Infection [The stimulus causes a response in the user's and foe's bodies, causing them both to become poisoned.]
 + 0x1ED = Leaf Tornado
-= 0x1EE = [kuiarasu (Devour)] (attacking move), (animation is Bite then Crunch), "The user bites at the foe relentlessly, steadily eating away at the foe's body."
+- 0x1EE = Devour [The user bites at the foe relentlessly, steadily eating away at the foe's body.]
 + 0x1EF = Bulldoze
 + 0x1F0 = Dual Chop
 + 0x1F1 = Quiver Dance
@@ -389,7 +389,7 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0x202 = Disarming Voice
 + 0x203 = Baby-Doll Eyes
 + 0x204 = Play Rough
-= 0x205 = [Aqua Impact] (attacking move), (animation is the Waterfall charge-up, then a lunge and a huge impact on Hydro Cannon's background), "While cloaked in water, the user smashes into the foe with all its strength. This also damages the user [a little]?."
+- 0x205 = Aqua Impact [While cloaked in water, the user smashes into the foe with all its strength. This also damages the user [a little]?.]
 + 0x206 = Tailwind
 + 0x207 = Chatter
 + 0x208 = Trick Room
@@ -413,84 +413,84 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0x21A = Nuzzle
 = 0x21B = [Freeze Shock] (attacking move with chance to freeze), (animation covers the foe in ice, then covers the foe in snowflakes, on Frost Breath's background), "The foe is struck with incredibly cold ice. This may also freeze the foe solid."
 = 0x21C = [gansekidan (Rock Bullet)] (attacking move with chance to flinch), (has Rock Blast animation, except the rock is shot out instead of thrown), "A hard rock fired like a bullet to attack. This may also make the foe flinch."
-= 0x21D = [Gem Razor] (attacking move with chance to lower evasion), (animation shoots diamonds with Hail sounds on a ray of light background), "The user absorbs the light of gemstones and fires it out to attack. This may also lower the foe's evasiveness."
-= 0x21E = [seikendzuki (Sword Stab)](attacking move with chance to flinch), (animation is Take Down that hits with an open palm, on Focus Blast's background), "The user stabs straight out at the foe with a powerful sacred sword. This may also make the foe flinch."
-= 0x21F = [Jet Shoot] (attacking move with chance to raise speed), (animation is Glide on Mach Punch's background), "The user smashes into the foe with all its strength with the speed of a jet plane. This may also raise the user's Speed stat."
-- 0x220 = Psycho Crush [The user creates an impact using its powerful mind. This may also lower the foe's Defense stat.]
-= 0x221 = [Shadow Attack] (attacking move with chance to flinch), (animation involves user disappearing, then foe being repeatedly hit, on a purple fire background), "The user's shadow detaches itself and leaps at the foe to attack. This may also make the foe flinch."
+- 0x21D = Gem Laser [The user absorbs the light of gemstones and fires it out to attack. This may also lower the foe's evasiveness.]
+= 0x21E = [seikendzuki (Sword Stab)] <card: Beatdown; check translation again> (attacking move with chance to flinch), (animation is Take Down that hits with an open palm, on Focus Blast's background), "The user stabs straight out at the foe with a powerful sacred sword. This may also make the foe flinch."
+- 0x21F = Jet Shoot [The user smashes into the foe with all its strength with the speed of a jet plane. This may also raise the user's Speed stat.]
+- 0x220 = Psy Crush [The user creates an impact using its powerful mind. This may also lower the foe's Defense stat.]
+= 0x221 = [Shadow Attack] <card: Night Attack> (attacking move with chance to flinch), (animation involves user disappearing, then foe being repeatedly hit, on a purple fire background), "The user's shadow detaches itself and leaps at the foe to attack. This may also make the foe flinch."
 - 0x222 = Soulstrike [The foe is attacked with the power of spirits. This may also confuse the foe.]
 = 0x223 = [Clear Ball] (attacking move with chance to lower sp. def), (animation encases the foe in a spinning blue bubble, then the foe turns gray), "A steel ball that shines with a silver glow is thrown at the foe. This may also lower the foe's Sp. Def stat."
-= 0x224 = [Dragon Bite] (attacking move), (animation is Dragon Claw charge-up, then Crunch, on Dragon Tail's background), "The user uses its enormous, sharp teeth and powerful jaws to bite down on the foe."
+- 0x224 = Dragon Bite [The user uses its enormous, sharp teeth and powerful jaws to bite down on the foe.]
 = 0x225 = [RYUUZUBASUTAA (Crown Buster?)] (attacking move with chance to raise sp. atk), (animation involves charging up while flashing blue, then shooting an orb, on Dragon Tail's background), "The user unleashes a horrifying breath from deep within its body. This may also raise the user's Sp. Atk stat."
-= 0x226 = [kajiritsuku (Latch On)](attacking move), (animation is a gentle bite), "The user takes advantage of its small body to stick to the foe by latching on with its jaws."
-= 0x227 = [niramitsukeru (Scowl)] (non-attacking move, turns target into pure Rock-type), (animation is Leer that inverts colors), "The user glares at the foe and uses the power of its cursed gaze to turn the foe into the Rock type. (CHECK SOAK)"
+= 0x226 = [kajiritsuku (Latch On)] <card: Big Bite> (attacking move), (animation is a gentle bite), "The user takes advantage of its small body to stick to the foe by latching on with its jaws."
+= 0x227 = [niramitsukeru (Leer?!)] <card: Leer?!> (non-attacking move, turns target into pure Rock-type), (animation is Leer that inverts colors), "The user glares at the foe and uses the power of its cursed gaze to turn the foe into the Rock type. (CHECK SOAK)"
 = 0x228 = [noroi no sakebi (Cursed Shout)] (attacking move), (animation is Screech but instead shoots out a horrorface, on Hex's background), "The user shouts with a voice loud enough to shatter boulders. Rock-type foes take more damage."
 + 0x229 = Soak
 + 0x22A = Simple Beam
 + 0x22B = Worry Seed
-= 0x22C = [Moon Impact] (attacking move), (animation has Moonblast sparkles emanate from user and opponent, on Moonblast's background), "An intense attack using the power of the moon. This also hurts the user [quite a lot]?."
+- 0x22C = Moon Impact [An intense attack using the power of the moon. This also hurts the user [quite a lot]?.]
 = 0x22D = [Life Energy] (attacking move with Wring Out effect), (animation has the foe absorb light then hearts explode on it, on Draining Kiss's background), "An explosion fueled by the foe's own life force. The power changes depending on the foe's remaining HP. (CHECK WRING OUT)"
 = 0x22E = [Magical Break] (attacking move with chance to lower defense), (animation involves hitting twice as the user sways, the first producing orbs and the second producing rings, on Draining Kiss's background), "The user cloaks itself in a mysterious power, then attacks the foe. This may also lower the foe's Defense stat."
-= 0x22F = [hashanoichigeki (Champion's Blow)] (attacking move that lowers user's attack and harshly lowers user's defense afterwards), (animation charges up while flashing orange, then does a huge tackle with a fiery impact background that produces japanese characters) [CHANGE GRAPHICS], "An attack using the fruits of the user's desperate struggle for enlightenment. Lowers the user's Attack and Defense stats afterwards." [check desc after doing name and figuring out what the animation says]
-= 0x230 = [Dynasword] (attacking move), (animation is red Swords Dance then Slash, on Dragon Tail's background), "The foe is slashed with sharp claws or fins. The power is increased if used after Hone Claws."
+= 0x22F = [hashanoichigeki (Champion's Strike)] <card: Strike of the Champion> (attacking move that lowers user's attack and harshly lowers user's defense afterwards), (animation charges up while flashing orange, then does a huge tackle with a fiery impact background that produces japanese characters) [CHANGE GRAPHICS], "An attack using the fruits of the user's desperate struggle. Lowers the user's Attack and Defense stats afterwards." [check desc after doing name and figuring out what the animation says]
+- 0x230 = Dinosword [The foe is slashed with sharp claws or fins. The power is increased if used after Hone Claws.]
 = 0x231 = [Windmill] (attacking move with chance to lower speed), (animation involves leaves spreading outward from the user then a tackle, on a green version of Aura Sphere's background), "An attack using a small tornado. This may also raise the user's Speed stat."
-= 0x232 = [GURENDAIBU (Crimson Dive)] (attacking move with chance to burn or flinch), (animation is orange Bounce with fire effects on a fiery background), "The user rushes the foe while cloaked in blazing flames. This may also leave the foe with a burn or make it flinch."
+- 0x232 = Crimson Rush [The user rushes the foe while cloaked in blazing flames. This may also leave the foe with a burn or make it flinch.]
 = 0x233 = [touki no otakebi (Fighting Spirit War Cry)] (attacking move), (animation shoots a purple soundwave that uses the user's cry, on Aura Sphere's background), "Unleashes an intense war cry fueled by an overwhelming amount of fighting spirit to do damage."
 = 0x234 = [Impact Site] (attacking move), (animation is a Steel-type Take Down on a gear background), "The user rushes the foe with the force of a bullet. This also hurts the user [a little]?."
 - 0x235 = Barrier Blast [The user attacks the foe with its defensive energy. This move does more damage if the user has barriers such as Reflect.]
 = 0x236 = [Windmill] (attacking move with chance to lower speed or raise user's speed), (animation involves leaves spreading outward from the user and then the target, on a green version of Aura Sphere's background), "An attack using a small tornado. This may also lower the foe's Speed stat or raise the user's Speed stat."
-= 0x237 = [Soil Shot] (attacking move with chance to lower defense), (animation throws a mud ball), "The user scoops up the surrounding soil and throws it. This may also lower the foe's Defense stat."
-= 0x238 = [Rock Sling] (attacking move with chance to lower defense), (animation throws a rock), "The user attacks by throwing a big rock, lowering the foe's Defense stat afterwards. [CHECK LUNGE]"
+- 0x237 = Soil Shot [The user scoops up the surrounding soil and throws it. This may also lower the foe's Defense stat.]
+= 0x238 = [Rock Sling] (attacking move with chance to lower defense), (animation throws a rock), "The user attacks by throwing a big rock, lowering the foe's Defense stat afterwards. [CHECK FIRE LASH]"
 + 0x239 = Low Sweep
 + 0x23A = Feint
-= 0x23B = [Marine Drop] (attacking move with chance to lower evasion), (animation is Bounce with water effects on Hydro Pump's background), "The user drops a large water droplet from above to attack, lowering the foe's evasiveness afterwards. [CHECK LUNGE]"
-= 0x23C = [konohagakure (Leaf Hide)] (non-attacking move), (animation is the Razor Leaf tiny leaves, then Camouflage), "The user hides among the leaves to avoid attacks, raising its Speed stat and evasiveness."
+= 0x23B = [Marine Drop] (attacking move with chance to lower evasion), (animation is Bounce with water effects on Hydro Pump's background), "The user drops a large water droplet from above to attack, lowering the foe's evasiveness afterwards. [CHECK FIRE LASH]"
+- 0x23C = Thicket Slip [The user hides among the foliage to avoid attacks, raising its Speed stat and evasiveness.]
 = 0x23D = [kyuusenkai (Rapid Spin)] (non-attacking move), (animation is Sky Attack charge-up, then Agility), "The user spins around incredibly quickly to throw off the foe's aim, raising the user's Speed stat and evasiveness."
-- 0x23E = Neurotoxin [The foe is injected with a poisonous substance that causes nerve damage, poisoning it or leaving it with paralysis.]
-= 0x23F = [RAPPUon (Knocking Sound)](non-attacking move), (animation is a wait as hit sounds play, then Astonish, on Hex's background), "The foe is frightened by a disturbing noise, lowering its Sp. Atk and Sp. Def stats."
+- 0x23E = Neurotoxin <card: Stun Poison> [The foe is injected with a poisonous substance that causes nerve damage, poisoning it or leaving it with paralysis.]
+= 0x23F = [RAPPUon (Knocking Sound)] (non-attacking move), (animation is a wait as hit sounds play, then Astonish, on Hex's background), "The foe is frightened by a disturbing noise, lowering its Sp. Atk and Sp. Def stats."
 + 0x240 = Zombie Touch [The user touches the foe while behaving like a zombie, changing one of the foe's moves to Zombie Touch.]
 = 0x241 = [Aqua Vulcan] (attacking move), (animation shoots three globs of water), "The user shoots water with the force of a bullet to attack two to five times in a row. [CHECK FURY ATTACK]"
-- 0x242 = Fin Slap (attacking move), (animation is a slap), "The user slaps the foe with all of its strength using a fin."
-= 0x243 = [mizutobashi (Water Splash)] (attacking move), (animation throws a single glob of water), "The user forcefully shoots water at the foe to attack."
+- 0x242 = Fin Smack [The user smacks the foe with all of its strength using a fin.]
+- 0x243 = Splatter [The user forcefully shoots water at the foe to attack.]
 = 0x244 = [Aroma Wind] (attacking move with chance to sleep), (animation is Aromatherapy edited to become an attack), "The user attacks with a calming wind. This may also put the foe to sleep or confuse it."
 = 0x245 = [senseijutsu (Astrology)] (attacking move with chance to raise all stats), (animation is Psychic on Cosmic Power's background), "An attack using the power of the stars. This may also raise all of the user's stats at once. [CHECK ANCIENT POWER]"
 = 0x246 = [onmyoujutsu (Yin-Yang Rite)] (attacking move with tri attack effect), (animation is Psychic on the user, then a pentagram appears on the target, then Psychic on the target, on Psyshock's background), "The foe is attacked using a rite passed down from ancient times. This may also inflict various status problems on the foe."
 = 0x247 = [anaakePANCHI (Drill Punch)](attacking move with chance to lower defense), (animation is a series of seven punches on a neon background), "The foe is punched hard enough to punch a hole through it. This may also lower the foe's Defense stat."
-- 0x248 = Metal Horn (attacking move), (animation is a Steel-type Megahorn), "The foe is tossed using a sharp horn that is as hard as steel."
-= 0x249 = [Power Voltage] (attacking move with chance to raise sp. atk), (animation charges up, then shoots a sparking orb straight up that then comes down on the foe), "The foe is attacked with overflowing electrical energy. This may also raise the user's Sp. Atk stat."
-= 0x24A = [Electro Impact] (attacking move with chance to paralyze), (animation charges electricity, then tackles with an electrical impact background, which leaves the foe shocked), "The user cloaks itself in electricity and attacks the foe. This may also leave the foe with paralysis."
+- 0x248 = Metal Horn [The foe is tossed using a sharp horn that is as hard as steel.]
+- 0x249 = Powervolt [The foe is attacked with overflowing electrical energy. This may also raise the user's Sp. Atk stat.]
+- 0x24A = Electro Impact [The user cloaks itself in electricity and attacks the foe. This may also leave the foe with paralysis.]
 - 0x24B = Gaia Cube [The foe is struck with an object that emits unknown power. This may also raise the foe's Sp. Atk stat.]
-= 0x24C = [hikarinohadou (Light Pulse)] (attacking move with chance to lower sp. def), (animation is Safeguard, then shooting sparkly orbs, on a sparkly background), "The foe is attacked with a radiant pulse of light. This may also lower the foe's Sp. Def stat."
+- 0x24C = Light Pulse [The foe is attacked with a radiant pulse of light. This may also lower the foe's Sp. Def stat.]
 = 0x24D = [maounoikari (Demon King's Wrath)] (attacking move with chance to paralyze), (animation has user charge and turn purple, then tackle the foe with a spooky silhouette in the background, creating ghostly fire), "The foe is attacked with the power of the Demon King's wrath. This may also leave the foe with paralysis."
-= 0x24E = [Magical Voice] (attacking move), (animation is Screech that shoots a glowing music note instead), "The user attacks by producing a special kind of sound wave using its voice. This attack never misses."
-= 0x24F = [Aqua Cutter] (attacking move), (animation shoots a slashing wave of water, on Water Pulse's background), "The foe is slashed with a sharp blade made of water. Critical hits land more easily."
+- 0x24E = Magical Voice [The user attacks by producing a special kind of sound wave with its voice. This attack never misses.]
+- 0x24F = Aqua Cutter [The foe is slashed with a sharp blade made of water. Critical hits land more easily.]
 = 0x250 = [inochitori (Life Steal)] (attacking move with chance to lower speed), (animation summons a pit of pure darkness beneath the foe, then the screen slowly fades to darkness as a ghostly hand reaches out, then a flurry of hit sounds when the screen is completely black), "The user attacks by grabbing and plucking out the foe's life force. This may also leave the foe with paralysis."
-= 0x251 = [Yoga Smash] (attacking move), (animation involves emitting sound waves with the Supersonic sound while yoga pose symbols appear on the user, on Psyshock's background), "The user attacks directly with its mental power. This move deals special damage." [figure out what "jiddaika" is]
+- 0x251 = Yoga Smash [The user attacks directly with its mental power. This move deals special damage.] [figure out what "jiddaika" is]
 + 0x252 = Dragon Tail
 ! 0x253 = [no name yet] (attacking move with chance to lower sp. def), (can't be called by metronome), (has Pound animation; not implemented), "The user attacks with the power of the Wind Spirit. This may also lower the foe's Sp. Def stat."
 ! 0x254 = [no name yet] (attacking move with chance to lower sp. atk), (can't be called by metronome), (has Pound animation; not implemented), "The user attacks with the power of the Water Spirit. This may also lower the foe's Sp. Atk stat."
 ! 0x255 = [no name yet] (attacking move with chance to lower attack), (can't be called by metronome), (has Pound animation; not implemented), "The user attacks with the power of the Fire Spirit. This may also lower the foe's Attack stat."
-! 0x256 = [no name yet] (attacking move with chance to lower defense), (can't be called by metronome), (has Pound animation; not implemented), "The user attacks with the power of the Earth Spirit. This may also lower the foe's Attack stat."
-= 0x257 = [meromeroPANCHI (Love Punch)](attacking move), (the only move that prints "prevents romance" instead of "made [MOVE] useless"), (animation is a punch that creates the Attract effects), "A seductive punch that may cause a foe of the opposite sex to become infatuated with the user."
+! 0x256 = [no name yet] (attacking move with chance to lower defense), (can't be called by metronome), (has Pound animation; not implemented), "The user attacks with the power of the Earth Spirit. This may also lower the foe's Defense stat."
+= 0x257 = [meromeroPANCHI (Love Punch)] (attacking move), (the only move that prints "prevents romance" instead of "made [MOVE] useless"), (animation is a punch that creates the Attract effects), "A seductive punch that may cause a foe of the opposite sex to become infatuated with the user."
 + 0x258 = Brine
 + 0x259 = Power Split
 + 0x25A = Guard Split
 + 0x25B = Power Swap
 + 0x25C = Guard Swap
 + 0x25D = Foul Play
-! 0x25E = (attacking move with chance to harshly lower speed or confuse), (can't be called by metronome), (has Pound animation; not implemented), "The power of the Big Dog distorts the earth. This may also lower the foe's Speed stat."
-! 0x25F = (attacking move with chance to harshly lower sp. def or confuse), (can't be called by metronome), (has Pound animation; not implemented), "The power of the Eagle turns all to nothing. This may also lower the foe's Sp. Def stat."
-! 0x260 = (attacking move with chance to lower defense or confuse), (can't be called by metronome), (has Pound animation; not implemented), "The power of the Lion destroys anything. This may also lower the foe's Defense stat."
-! 0x261 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented), "A wish for peace returns everything to the beginning. This move removes all of the foe's stat changes. [CHECK CLEAR SMOG]"
-! 0x262 = (attacking move), (can't be called by metronome), (has Pound animation; not implemented), "The incarnation of fear drives anyone mad. This move also lowers all of the foe's stats."
+! 0x25E = [no name yet] (attacking move with chance to harshly lower speed or confuse), (can't be called by metronome), (has Pound animation; not implemented), ""The power of the Big Dog distorts the earth." This move may also lower the foe's Speed stat."
+! 0x25F = [no name yet] (attacking move with chance to harshly lower sp. def or confuse), (can't be called by metronome), (has Pound animation; not implemented), ""The power of the Eagle turns all to nothing." This move may also lower the foe's Sp. Def stat."
+! 0x260 = [no name yet] (attacking move with chance to lower defense or confuse), (can't be called by metronome), (has Pound animation; not implemented), ""The power of the Lion destroys anything." This move may also lower the foe's Defense stat."
+! 0x261 = [no name yet] (attacking move), (can't be called by metronome), (has Pound animation; not implemented), ""A wish for peace returns all to its beginning." This move also removes all of the foe's stat changes. [CHECK CLEAR SMOG]"
+! 0x262 = [no name yet] (attacking move), (can't be called by metronome), (has Pound animation; not implemented), ""The incarnation of fear drives anyone mad." This move also lowers all of the foe's stats."
 = 0x263 = [Colorful Attack] (attacking move), (animation is five hits - blue, purple, green, red, yellow - while a rainbow spins around the foe), "The foe is attacked with a move that has no particular type. The type changes depending on the Pokemon using it."
 + 0x264 = Wake-Up Slap
-= 0x265 = [owakareBINTA (Farewell Slap)] (attacking move that does double damage if it cures infatuation), (animation is a slap, then everything turns gray while the Perish Song sound plays), "This move does more damage to infatuated foes, but the foe is then cured of infatuation. [CHECK SMELLING SALTS]"
+- 0x265 = Farewell Slap [This move does more damage to infatuated foes, but the foe is then cured of infatuation. (CHECK SMELLING SALTS)]
 = 0x266 = [Icing] (attacking move that does double damage if it cures burn), (animation creates ice around the foe's feet then covers the foe in ice), "This move does more damage to burned foes, but the foe is then cured of its burn. [CHECK SMELLING SALTS]"
-= 0x267 = [Ice Crush] (attacking move that does double damage if it cures freeze), (animation creates ice around the foe, then shatters it with a punch), "This move does more damage to frozen foes, but the foe is then thawed out. [CHECK SMELLING SALTS]"
-= 0x268 = [kooridzuke (Iced)](non-attacking move), (animation covers the foe in ice, then creates ice around the foe), "The foe is buffeted by supercooled air, causing it to become frozen. "Cold deprives the body of freedom.""
+- 0x267 = Ice Crush [This move does more damage to frozen foes, but the foe is then thawed out. (CHECK SMELLING SALTS)]
+= 0x268 = [kooridzuke (Iced)] <card: Ice Entomb> (non-attacking move), (animation covers the foe in ice, then creates ice around the foe), "The foe is buffeted by supercooled air, causing it to become frozen. "Cold deprives the body of freedom.""
 - 0x269 = Pyrokinesis [The foe is ignited with psychic powers. This may also leave the foe with a burn.]
-= 0x26A = [Barrier Attack] (attacking move), (animation is Swords Dance with a shield instead of a sword, then a tackle that produces the same shield on the foe), "The user slams the foe with its hard body. This move does more damage the higher the user's Defense stat is."
+- 0x26A = Barrier Attack [The user slams the foe with its hard body. This move does more damage the higher the user's Defense stat is.]
 + 0x26B = Heal Pulse
 + 0x26C = Rage Powder
 + 0x26D = Bestow
@@ -498,24 +498,24 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0x26F = Circle Throw
 + 0x270 = U-Turn
 + 0x271 = Volt Switch
-= 0x272 = [kajibanoichigeki (Blow at the Scene of a Fire)] (attacking move with Brine effect, but doubles when the user has less than half HP, not the target), (has Flame Wheel animation on a fiery background), "This move's power doubles if the user's HP is at half or less. [CHECK BRINE]"
-= 0x273 = [Stretch] (non-attacking move), (animation involves emitting sound waves while yoga pose symbols appear on the user, on Seismic Toss's background), "The user does some light exercise to get in shape, raising its Attack and Speed stats and its evasiveness."
+= 0x272 = [kajibanoichigeki (Strike at the Scene of a Fire)] <card: Fire Counterattack> (attacking move with Brine effect, but doubles when the user has less than half HP, not the target), (has Flame Wheel animation on a fiery background), "This move's power doubles if the user's HP is at half or less. [CHECK BRINE]"
+- 0x273 = Stretch [The user does some light exercise to get in shape, raising its Attack and Speed stats and its evasiveness.]
 = 0x274 = [iyananioi (Bad Smell)] (non-attacking move), (animation is brownish Mist), "The user wafts a nose-curling stench over to the foe, lowering its evasiveness and causing it to become confused."
-= 0x275 = [saezuru (Tweet)](non-attacking move, -1 sp. def), (has Growl animation), "A beautiful birdsong that saps the motivation of those that hear it, lowering their Sp. Def stat." [check target]
+- 0x275 = Warble [A beautiful birdsong that saps the motivation of those that hear it, lowering their Sp. Def stat.] [check target]
 = 0x276 = [mushinokoe (Bug Voice)] (non-attacking move, +1 sp. atk), (has Growl animation), "The user summons its fellow insects to hear their cries, which raise the user's Sp. Atk stat."
-= 0x277 = [mushigatsuku (Infestation)](non-attacking move, turns target into pure Bug-type), (animation is a swarm of insects flying in all directions, then a single insect swaying in front of the foe), "The foe is covered in a huge amount of insects, turning it into a Bug-type. [CHECK SOAK]"
-= 0x278 = [mushikaesu (Send Bugs)](attacking move), (animation is user getting angry, then a swarm of insects flying in all directions), "This move becomes more powerful if the foe damaged the user this turn. (CHECK REVENGE)"
+= 0x277 = [mushigatsuku (Infestation)] (non-attacking move, turns target into pure Bug-type), (animation is a swarm of insects flying in all directions, then a single insect swaying in front of the foe), "The foe is covered in a huge amount of insects, turning it into a Bug-type. [CHECK SOAK]"
+= 0x278 = [mushikaesu (Send Bugs)] (attacking move), (animation is user getting angry, then a swarm of insects flying in all directions), "This move becomes more powerful if the foe damaged the user this turn. (CHECK REVENGE)"
 = 0x279 = [hyoui (Possession)] (non-attacking move, turns target into pure Ghost-type), (animation is Memento, then the foe turns black, on Shadow Ball's background), "The user infects the foe with its hatred and malice, turning the foe into a Ghost-type. [CHECK SOAK]"
 = 0x27A = [Soul Shape] (attacking move with Brine effect), (animation has purple lumps appear around the foe's feet, then purple tentacles surround and squeeze it, on Shadow Ball's background), "This move's power doubles if the foe's HP is at half or less. [CHECK BRINE]"
 - 0x27B = Wildcard [An attack that uses the foe's own power. This move does more damage the higher the foe's Sp. Atk stat is. (CHECK FOUL PLAY)]
 + 0x27C = Wring Out
 + 0x27D = Captivate
-= 0x27E = [Dream Mist] (non-attacking move that has sleep effect, but sleeps the target even if it already has a status), (animation is pink Mist on Draining Kiss's background), "Covers the foe in a mist that draws it into a deep slumber. This move overrides other status problems to put the foe to sleep."
+- 0x27E = Dreamy Mist [Covers the foe in a mist that draws it into a deep slumber. This move overrides other status problems to put the foe to sleep.]
 + 0x27F = Cotton Guard
 + 0x280 = Storm Throw
 + 0x281 = Punishment
 = 0x282 = [Magna Rise] (non-attacking move), (animation is Focus Energy twice on a fossil background), "The user absorbs power from the earth, raising its Attack and Defense stats but lowering its Speed stat."
-= 0x283 = [araryouji (Drastic Measures)](attacking move that does double damage if it cures poison), (animation slaps a bandage onto the foe), "This move does more damage to poisoned foes, but the foe is then cured of its poisoning. [CHECK SMELLING SALTS]"
+= 0x283 = [araryouji (Drastic Measures)] (attacking move that does double damage if it cures poison), (animation slaps a bandage onto the foe), "This move does more damage to poisoned foes, but the foe is then cured of its poisoning. [CHECK SMELLING SALTS]"
 + 0x284 = Chip Away
 + 0x285 = Sacred Sword
 + 0x286 = Synchronoise
@@ -523,22 +523,22 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0x288 = Draining Kiss
 = 0x289 = [HEDOROBOMBAA (Sludge Bomber)] (attacking move with Overheat effect, but harshly lowers user's attack instead of sp. atk), (animation shoots brown clouds with poison sounds that explode on the foe into more brown clouds, on a poisonous cloud background), "The user attacks, cloaked in poison, with every ounce of its strength. This lowers the user's Attack stat afterwards."
 - 0x28A = Black Hole [The foe is dragged into a newly opened hole in the fabric of space. This harshly lowers the user's Sp. Atk stat afterwards.]
-= 0x28B = [dakitsuku (Embrace)] (attacking move), (animation is Bind with Charm sounds on a pink background), "The user embraces the foe with its whole body. This prevents the foe from escaping battle. (CHECK SPIRIT SHACKLE)"
+= 0x28B = [dakitsuku (Embrace)] <card: Hug> (attacking move), (animation is Bind with Charm sounds on a pink background), "The user embraces the foe with its whole body. This prevents the foe from escaping battle. (CHECK SPIRIT SHACKLE)"
 + 0x28C = Infestation
 + 0x28D = Payback
 + 0x28E = Magma Storm
 + 0x28F = Psycho Shift
 + 0x290 = Power Trick
-= 0x291 = [Miracle Trick] (non-attacking move with Power Trick effect, but swaps the user's Sp. Atk and Sp. Def instead), (animation is Power Trick but instead of a fist and shield, it's a wand and pentagram), "Using psychic powers, the user swaps the values of its Sp. Atk and Sp. Def stats. [CHECK POWER TRICK]"
+- 0x291 = Wonder Trick [Using psychic powers, the user swaps the values of its Sp. Atk and Sp. Def stats. (CHECK POWER TRICK)]
 + 0x292 = Acrobatics
 + 0x293 = Metal Burst
 + 0x294 = (completely empty slot)
 + 0x295 = Spirit Shackle
-- 0x296 = Fire Lash
-= 0x297 = [Flash Bubble] (attacking move with chance to harshly lower accuracy), (animation is Water Pulse startup, then Bubble with much larger bubbles, then the screen flashes rapidly when the bubbles pop), "The user attacks by shooting bubbles that emit flashes as they pop. This may also lower the foe's accuracy."
++ 0x296 = Fire Lash
+- 0x297 = Flash Bubble [The user attacks by shooting bubbles that emit flashes as they pop. This may also lower the foe's accuracy.]
 = 0x298 = [Hyper Jingle] (attacking move with chance to paralyze), (animation involves emitting sound waves with the Heal Bell sound while a huge bronze bell appears on the user, on Psyshock's background), "The user shakes its entire body, emitting an incredible sound. This may also leave the foe with paralysis."
 + 0x299 = Smart Strike
-= 0x29A = [an'ya no tsubasa (Dark Night Feathers)] (attacking move with chance to lower accuracy or flinch), (animation is shedding black feathers, then Wing Attack, on a black background), "The user obstructs the foe's vision as it attacks using feathers. This may also make the foe flinch or lower its accuracy."
+= 0x29A = [an'ya no tsubasa (Dark Night Wing)] (attacking move with chance to lower accuracy or flinch), (animation is shedding black feathers, then Wing Attack, on a black background), "The user obstructs the foe's vision as it attacks with wings. This may also make the foe flinch or lower its accuracy."
 = 0x29B = [Earth Riser] (attacking move), (animation is user half of Psychic, then pillars of light come up from the user and down to the target with Heal Bell sounds, then the foe explodes, on Earthquake's background), "This move cannot be blocked by Protect, and harshly lowers the user's Sp. Atk stat afterwards."
 = 0x29C = [nagiharau (Sweep Away)] (attacking move with chance to flinch), (animation is a big slap in darkness), "The foe is swept away by sheer power. This may also make the foe flinch."
 = 0x29D = [Lovely Spark] (attacking move with chance to paralyze), (animation has user send out a floating heart that creates a thunderbolt sound when it hits the foe, on Draining Kiss's background), "Enticingly shoots out a burst of electricity. This may also leave the foe with paralysis or cause it to become infatuated."
@@ -546,11 +546,11 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 = 0x29F = [juuounoKIBA (Fang of the Beast King)] (attacking move), (Ground-type but neutral on Flying and bypasses Levitate), (animation has user bite foe twice, then charge up, then do a third bite, on Earthquake's background), "A bite using the power of the King. This move ignores immunities from the Flying type and Levitate. [CHECK THOUSAND ARROWS]"
 = 0x2A0 = [Deadly Bone] (attacking move), (animation has user disappear then do blue Volt Tackle animation with different sounds, but ending in two smashes then a big smash, all of which create flying bones), "A collision that nearly smacks the foe's spirit right out of its body. This move does more damage the more Speed boosts the user has."
 = 0x2A1 = [daisenpuu (Big Whirlwind)] (attacking move), (animation summons a huge tornado on Thunder's background), "The foe is swallowed up and sliced to bits by a storm of blades. This move will always result in a critical hit. (CHECK FROST BREATH)"
-= 0x2A2 = [Launcher Arm] (attacking move), (animation has user charge up while something mechanical is superimposed on it, then shoot a white orb), "The user transforms its arm into a blaster, then fires it. After use, the user's Ability becomes Mega Launcher."
+- 0x2A2 = Launcher Arm [The user transforms its arm into a blaster, then fires it. After use, the user's Ability becomes Mega Launcher.]
 = 0x2A3 = [shikonnnomichibiki (Guidance of the Four Souls)] (attacking move with Venom Drench effect), (animation has huge poison bubbles float up from under the foe with poison sounds as the foe turns dark purple, on a poisonous cloud background), "An attack with an unidentified poison that also lowers the stats of poisoned foes. [CHECK VENOM DRENCH]"
 ! 0x2A4 = Strength Sap (not implemented)
 + 0x2A5 = (completely empty slot)
-= 0x2A6 = [FEROMONdoku (Pheromone Poison)] (non-attacking move with Attract effect, but also poisons), (animation has heart clouds emanate from the user and then the target with Attract sounds, then the poison effect plays), "Blows a captivating poison that causes the foe to lose all reason, poisoning and infatuating it."
+- 0x2A6 = Pheromone Poison [The user blows a captivating poison that causes the foe to lose all reason, poisoning and infatuating it.]
 ! 0x2A7 = Shell Trap (not implemented) (no description)
 
 move effects:
@@ -579,12 +579,12 @@ move effects:
 = 0x83 = Stored Power/(+6 speed = 110 power, +5/+4 speed = 100 power, +3/+2 speed = 90 power, else displayed base power)
 = 0x85 = Tailwind
 = 0x86 = Trick Room
-= 0x8A = burn user and target
-= 0x8B = poison user and target
+= 0x8A = Inflammation
+= 0x8B = Infection
 = 0x8C = hardcoded parameterized additional effects, ai uses this for all "chance to raise a stat" moves
 = 0x8D = Chip Away
 = 0xA3 = 50% recoil
-= 0xAB = double damage on target with speed boosts, does no damage to target with speed drops
+= 0xAB = Quick Turn
 = 0xC8 = hardcoded parameterized additional effects with an extra 30% chance to infatuate the target
 = 0xD1 = Work Up/Growth/Energize
 = 0xD6 = Hammer Arm
@@ -604,8 +604,8 @@ move effects:
 = 0xE4 = Soak + equivalents
 = 0xE5 = Zombie Touch
 = 0xE6 = Barrier Blast
-= 0xE7 = does damage based on the user's Defense stat instead of its Attack stat
-= 0xE8 = does double damage if used immediately after Hone Claws
+= 0xE7 = Barrier Attack
+= 0xE8 = Dinosword
 = 0xE9 = Revelation Dance
 = 0xEA = Surf
 = 0xEB = Bulldoze/Sandblast
@@ -617,17 +617,17 @@ move effects:
 = 0xF1 = Quiver Dance
 = 0xF2 = Coil
 = 0xF3 = Shell Smash
-= 0xF4 = boosts Attack, Speed, and evasion
-= 0xF5 = boosts Speed and evasion
+= 0xF4 = Stretch
+= 0xF5 = Thicket Slip
 = 0xF6 = Hone Claws
 = 0xF7 = Ground-type; if used on Protect, does half damage and harshly lowers user's Sp. Atk
 = 0xF8 = Payback
 = 0xF9 = Psycho Shift
-= 0xFA = Power Trick/[move291]
+= 0xFA = Power Trick/Wonder Trick
 = 0xFB = Acrobatics
 = 0xFC = Metal Burst
 + 0xFD = (currently unused)
-= 0xFE = changes the user's ability to Mega Launcher, then does damage
+= 0xFE = Launcher Arm
 = 0xFF = just uses Explosion instead
 
 itemdata:
@@ -2312,7 +2312,7 @@ cur changes (do them): guillotine/horn drill/fissure/sheer cold "KO'd in one hit
 + 1C9FA9 -> 1E2A2A0 (repoint): Move_Fiery_Dance (see animscripts.txt)
 		  Implements: Fiery Dance animation
 		  GLITCH!: The backgrounds are wrong when used by the player
-+ 1CA0BE -> 1D2340 (repoint): Move_??? ([moveB0] has Will-O-Wisp animation)
++ 1CA0BE -> 1D2340 (repoint): Move_Inflammation (Inflammation has Will-O-Wisp animation)
 + 1CA6D1 -> 1308918 (repoint): Move_Earthquake (see animscripts.txt)
 		  Implements: adds a new background for the Earthquake animation
 + 1CA99F: 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 19 80 00 C0 04 0C 05 0B 02 0D 04 01 08 ->
@@ -2324,12 +2324,12 @@ cur changes (do them): guillotine/horn drill/fissure/sheer cold "KO'd in one hit
 + 1CBFBC -> 1305900 (repoint): Move_Skill_Swap (see animscripts.txt)
 		  Implements: changes background for Skill Swap animation
 		  Relies on: sub_80B3834 changes
-+ 1CC0B8 -> 1CB4E1 (repoint): Move_??? ([move126] has Rapid Spin animation)
-+ 1CC0FB -> 1308520 (repoint): Move_??? (see animscripts.txt)
-		  Implements: [move127] animation
++ 1CC0B8 -> 1CB4E1 (repoint): Move_Quick_Turn (Quick Turn has Rapid Spin animation)
++ 1CC0FB -> 1308520 (repoint): Move_Blessed_Wings (see animscripts.txt)
+		  Implements: Blessed Wings animation
 + 1CC212 -> 1E29E90 (repoint): Move_Hurricane (see animscripts.txt)
 		  Implements: Hurricane animation
-+ 1CC513 -> 1D10C2 (repoint): Move_??? ([move12E] has Poison Tail animation)
++ 1CC513 -> 1D10C2 (repoint): Move_Severe_Poison (Severe Poison has Poison Tail animation)
 + 1CD2E0 -> 1307850 (repoint): Move_Ice_Punch (see animscripts.txt)
 		  Implements: adds something to Ice Punch animation
 + 1CD6CA -> 1307770 (repoint): Move_Thunder_Punch (see animscripts.txt)
@@ -2350,8 +2350,8 @@ cur changes (do them): guillotine/horn drill/fissure/sheer cold "KO'd in one hit
 		  Implements: adds something to Fire Punch animation
 + 1D1518 -> 1E29BA0 (repoint): Move_Accelerock (see animscripts.txt)
 		  Implements: Accelerock animation
-+ 1D2E93 -> 1E29D80 (repoint): Move_??? (see animscripts.txt)
-		  Implements: [move124] animation
++ 1D2E93 -> 1E29D80 (repoint): Move_Vital_Drain (see animscripts.txt)
+		  Implements: Vital Drain animation
 + 1D42C0 -> 1306918 (repoint): Move_Overheat (see animscripts.txt)
 		  Implements: makes user in Overheat animation glow orange and adds a background
 + 1D45B2 -> 13052A8 (repoint): Move_Hydro_Cannon (see animscripts.txt)
@@ -2410,9 +2410,9 @@ cur changes (do them): guillotine/horn drill/fissure/sheer cold "KO'd in one hit
 		  Relies on: weather refactor
 		  Note: stat boost anim was wrong, see movescripts.txt
 + 1D696D -> 1050000 (repoint): BattleScript_EffectSleep_New (see movescripts.txt)
-		  Implements: [move27E]
+		  Implements: Dreamy Mist
 + 1D69DC -> 1050040 (repoint): BattleScript_EffectPoisonHit_New (see movescripts.txt)
-		  Implements: [move12E]
+		  Implements: Severe Poison
 ! 1D69E7 -> 1050060 (repoint): BattleScript_EffectAbsorb_New (see movescripts.txt)
 		  Implements: Draining Kiss
 		  GLITCH!: crashes when not Draining Kiss
@@ -2541,7 +2541,7 @@ cur changes (do them): guillotine/horn drill/fissure/sheer cold "KO'd in one hit
 		  Implements: Spirit Shackle, etc.; Ghost-type immunity to trapping
 + 1D7747: 17 -> 27 (Minimize +1 -> +2 evasion)
 + 1D7938 -> 1052B20 (repoint): BattleScript_EffectFailsOnSameGender (see movescripts.txt)
-		  Implements: Captivate, [move2A6]
+		  Implements: Captivate, Pheromone Poison
 		  Relies on: atk97_tryinfatuating changes
 		  Glitch?: Mold Breaker is done by swapping abilities, meaning Simple targets (and probably others) won't work right?
 + 1D7995 -> 10539E8 (repoint): BattleScript_EffectSwitchOutMove (see movescripts.txt)
@@ -2560,8 +2560,8 @@ cur changes (do them): guillotine/horn drill/fissure/sheer cold "KO'd in one hit
 + 1D805C -> 1052E60 (repoint): BattleScript_EffectMustFocus (see movescripts.txt)
 		  Implements: some move that does +2 Def/+2 Sp. Def but only if the user isn't attacked
 		  GLITCH!: crashes if Defense is at +6 but Sp. Def isn't
-+ 1D806E -> 1053A60 (repoint): BattleScript_EffectPlusSpeedDoubleDamageMinusSpeedNoDamage (see movescripts.txt)
-		  Implements: removes Smelling Salts effect entirely (folded into DoubleDamageOnStatus), adds new effect for (double damage on target with speed boosts, does no damage to target with speed drops)
++ 1D806E -> 1053A60 (repoint): BattleScript_EffectQuickTurn (see movescripts.txt)
+		  Implements: removes Smelling Salts effect entirely (folded into DoubleDamageOnStatus), adds new effect for Quick Turn
 + 1D80B6 -> 11BA88C (repoint): BattleScript_EffectCharge_New (see movescripts.txt)
 		  Implements: Charge Sp. Def boost
 		  Relies on: changes at 1D80BA
@@ -2677,8 +2677,8 @@ cur changes (do them): guillotine/horn drill/fissure/sheer cold "KO'd in one hit
 		  * Other improvements: Safeguard, Curse, Yawn, and Taunt are now checked; Sky Attack counts as a risky move; Curse isn't used when at less than half HP at the start of the turn; AI will now use Knock Off on itemless foes (due to buff)
 		  * New mechanics that old scripts are updated for: electric-type paralysis immunity, dark-type Prankster immunity, grass-type powder immunity, Lightning Rod (immunity), Motor Drive, Poison Heal, Magic Guard, Leaf Guard, Storm Drain, Overcoat, Big Pecks, Sap Sipper, Aroma Veil, Sweet Veil, Bulletproof, Dazzling, Queenly Majesty
 		  * Moves that bypass AI restrictions: burn moves that aren't Will-O-Wisp (this only bypasses the Fire-type check); trapping moves that aren't Mean Look / Block (aka Spirit Shackle, etc); switch-out moves that aren't Baton Pass (aka U-Turn/Volt Switch); stat-resetting moves that aren't Haze (aka Clear Smog); phazing moves that aren't Roar / Whirlwind (aka Dragon Tail/Circle Throw)
-		  * New moves: Captivate, 0x2A6 (factored into Attract script)
-		  * New move effects: freeze, (confuse and lower evasion), Power Swap, Guard Swap, Reflect Type, Synchronoise, Neurotoxin, Venom Drench, Tailwind, (burn user and target), (poison user and target), Work Up, Dizzy Whirl, Zombie Touch, (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws
+		  * New moves: Captivate, Pheromone Poison (factored into Attract script)
+		  * New move effects: freeze, (confuse and lower evasion), Power Swap, Guard Swap, Reflect Type, Synchronoise, Neurotoxin, Venom Drench, Tailwind, Inflammation, Infection, Work Up, Dizzy Whirl, Zombie Touch, (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, Stretch, Thicket Slip, Hone Claws
 		  Relies on: new AI script commands, weather refactor
 		  Glitch?: due to misaligned goto, only will-o-wisp is checked for prankster immunity
 		  Glitch?: looks like thunder wave is checked against electric-types twice instead of electric and ground (might be a transcription error? test this)
@@ -2690,8 +2690,8 @@ cur changes (do them): guillotine/horn drill/fissure/sheer cold "KO'd in one hit
 		  * Bugfixes: won't use a speed-lowering move like Mud Shot if the target is immune; no longer inexplicably encourages Toxic when it has a +SpDef move; no longer inexplicably discourages Protect/encourages Snatch when the opponent has specifically Defense Curl; Protect/Snatch correctly factors in all healing moves instead of just vanilla Recover-types; sandstorm and hail are no longer the wrong way around in the Fly script; Facade correctly checks the user for status instead of the target; Brick Break is encouraged vs Light Screen, not just Reflect
 		  * Other improvements: instead of a bizarre mix of moves, Mirror Move tries to prioritize any copiable move; doesn't discourage recovery when the user is faster; encourages OHKO moves after use of Mind Reader; Mean Look (because Spirit Shackle uses the same effect byte), Dragon Dance (why?), and Knock Off are no longer encouraged to be Encored; Teleport and +Sp. Def are encouraged to be Encored; instead of encouraging stealing a short list of items, Thief is encouraged for all items that don't have a downside; Chlorophyll users prioritize Sunny Day; Volt Absorb, Water Absorb, Soundproof, Thick Fat, Flame Body, and Shell Armor are considered "good" abilities; "bad" abilities (to avoid/get rid of) are also listed
 		  * New mechanics that old scripts are updated for: p/s split (also includes removing the discouraging of, for example, -Atk moves or Reflect on a water-type since it can have physical STAB now), new Lightning Rod, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, Harvest, Choice items, Assault Vest, Lagging Tail
-		  * New moves: 0x22D, Wring Out (factored into Eruption script); Venoshock, Hex, Wake-Up Slap, 0x265, 0x266, 0x267, 0x283 (factored into double-damage-on-status script); Brine, 0x272, 0x27A (factored into Brine script); Hone Claws (factored into (does double damage if used immediately after Hone Claws) script)
-		  * New move effects: (confuse and lower evasion), Gravel Breath, Power Swap, Guard Swap, Synchronoise, Neurotoxin, double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, V-Create, Hurricane, Brine, Barrier Blast, (does double damage if used immediately after Hone Claws), (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws, Payback, Psycho Shift, Acrobatics, Metal Burst
+		  * New moves: 0x22D, Wring Out (factored into Eruption script); Venoshock, Hex, Wake-Up Slap, Farewell Slap, 0x266, Ice Crush, 0x283 (factored into double-damage-on-status script); Brine, 0x272, 0x27A (factored into Brine script); Hone Claws (factored into Dinosword script)
+		  * New move effects: (confuse and lower evasion), Gravel Breath, Power Swap, Guard Swap, Synchronoise, Neurotoxin, double-damage-on-status effects, Venom Drench, Trick Room, Work Up, Hammer Arm, Close Combat, V-Create, Hurricane, Brine, Barrier Blast, Dinosword, (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, Stretch, Thicket Slip, Hone Claws, Payback, Psycho Shift, Acrobatics, Metal Burst
 		  Relies on: new AI script commands, weather refactor
 		  Glitch?: due to misaligned goto, Substitute will fall through into the Hyper Beam logic under certain circumstances
 		  Glitch?: due to misaligned goto, Gravel Breath will probably crash
@@ -2701,7 +2701,7 @@ cur changes (do them): guillotine/horn drill/fissure/sheer cold "KO'd in one hit
 		  Glitch?: Psycho Shift -> Acrobatics is fallthrough
 		  Glitch?: Venom Drench uses Lock-On's AI script
 + 1DBA8D -> 1007300 (repoint): AI_SetupFirstTurn
-		  Implements: changes which moves the AI counts as setup (removes every +2/-2, Conversion; adds sleep, Toxic, (confuse and lower evasion), Neurotoxin, (burn user and target), (poison user and target), Charge, Work Up, Dragon Dance, Dizzy Whirl, (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, (boosts Attack, Speed, and evasion), (boosts Speed and evasion), Hone Claws)
+		  Implements: changes which moves the AI counts as setup (removes every +2/-2, Conversion; adds sleep, Toxic, (confuse and lower evasion), Neurotoxin, Inflammation, Infection, Charge, Work Up, Dragon Dance, Dizzy Whirl, (lowers Sp. Atk and Sp. Def), (+2 Attack +2 Defense -1 Speed to user), Quiver Dance, Coil, Shell Smash, Stretch, Thicket Slip, Hone Claws)
 		  GLITCH!: This actually does nothing at all due to a misplaced pointer
 + 1DBB3B -> 1007380 (repoint): AI_Unknown
 		  Implements: AI layer that discourages supereffective moves for some reason
@@ -3152,10 +3152,10 @@ entirely new things:
 +1051700: BattleScript_EffectBarrierBlast (see movescripts.txt)
 		  Implements: Barrier Blast
 		  Note: Also added in the Brick Break changes from my battle message overhaul
-+1051790: BattleScript_EffectDamageFromDefense (see movescripts.txt)
-		  Implements: (move that does damage based on the user's Defense stat instead of its Attack stat)
-+10517C0: BattleScript_EffectBoostedBySharpClaws (see movescripts.txt)
-		  Implements: (move that does double damage if used immediately after Hone Claws)
++1051790: BattleScript_EffectBarrierAttack (see movescripts.txt)
+		  Implements: Barrier Attack
++10517C0: BattleScript_EffectDinosword (see movescripts.txt)
+		  Implements: Dinosword
 		  Note: message scrolls off too soon, maybe add wait
 +1051840: BattleScript_EffectRevelationDance (see movescripts.txt)
 		  Implements: Revelation Dance
@@ -3182,7 +3182,7 @@ entirely new things:
 		  Note: Removes status before checking for most failures, is that how it works?
 		  Note: Messages might be different than gen 7, check
 +1051D00: BattleScript_EffectPowerTrick (see movescripts.txt)
-		  Implements: Power Trick, [move291]
+		  Implements: Power Trick, Wonder Trick
 +1051D40: BattleScript_EffectAcrobatics (see movescripts.txt)
 		  Implements: Acrobatics
 +1051D50: BattleScript_EffectMetalBurst (see movescripts.txt)
@@ -3194,7 +3194,7 @@ entirely new things:
 		  Glitch?: [moveDD] crashes if Atk is at +6 but Sp. Atk isn't
 		  GLITCH!: just crashes in general (understandable, this isn't fully implemented)
 +1052D20: BattleScript_EffectChangeAbilityToMegaLauncherThenHit (see movescripts.txt)
-		  Implements: (move that changes the user's ability to Mega Launcher and then does damage)
+		  Implements: Launcher Arm
 		  Note: String doesn't stay long enough
 +1053940: BattleScript_EffectUseExplosionInstead (see movescripts.txt)
 		  Implements: (move that just uses Explosion instead)
@@ -3239,12 +3239,12 @@ entirely new things:
 		  Implements: Shell Smash
 		  Relies on: BattleScript_PlayStatChangeAnim
 		  Note: stat-change animation color is only the first stat, fix this to be gray later
-+10557E0: BattleScript_EffectAtkSpeedEvasionUp (see movescripts.txt)
-		  Implements: (move that boosts Attack, Speed, and evasion)
++10557E0: BattleScript_EffectStretch (see movescripts.txt)
+		  Implements: Stretch
 		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
 		  Note: stat-change animation color is only the first stat, fix this to be gray later
-+1055850: BattleScript_EffectSpeedEvasionUp (see movescripts.txt)
-		  Implements: (move that boosts Speed and evasion)
++1055850: BattleScript_EffectThicketSlip (see movescripts.txt)
+		  Implements: Thicket Slip
 		  Relies on: BattleScript_PlayStatChangeAnim, BattleScript_CantRaiseMultipleStats_Unknown
 		  Note: stat-change animation color is only the first stat, fix this to be gray later
 +10558A0: BattleScript_EffectPartiallyBypassProtect (see movescripts.txt)
@@ -3254,8 +3254,8 @@ entirely new things:
 		  Implements: Zen Headbutt animation
 +11BA7EF: BattleScript_EffectTripleHit (see movescripts.txt)
 		  Implements: Metal Pincer
-+1300048: Move_Fin_Slap (see animscripts.txt)
-		  Implements: Fin Slap animation
++1300048: Move_Fin_Smack (see animscripts.txt)
+		  Implements: Fin Smack animation
 +1300090: Move_Moonblast (see animscripts.txt)
 		  Implements: Moonblast animation
 +1300110: Move_Fairy_Wind (see animscripts.txt)
@@ -3266,12 +3266,12 @@ entirely new things:
 		  Implements: [move274] animation
 +1300490: Move_Power_Up_Punch (see animscripts.txt)
 		  Implements: Power-Up Punch animation
-+13004E8: Move_??? (see animscripts.txt)
-		  Implements: [move21F] animation
++13004E8: Move_Jet_Shoot (see animscripts.txt)
+		  Implements: Jet Shoot animation
 +1300578: Move_??? (see animscripts.txt)
 		  Implements: [move257] animation
-+13006A8: Move_??? (see animscripts.txt)
-		  Implements: [move243] animation
++13006A8: Move_Splatter (see animscripts.txt)
+		  Implements: Splatter animation
 +13006F8: Move_Metal_Horn (see animscripts.txt)
 		  Implements: Metal Horn animation
 +1300800: Move_??? (see animscripts.txt)
@@ -3284,16 +3284,16 @@ entirely new things:
 		  Implements: [move283] animation
 +1300950: Move_Cotton_Guard (see animscripts.txt)
 		  Implements: Cotton Guard animation
-+1300A10: Move_??? (see animscripts.txt)
-		  Implements: [move224] animation
++1300A10: Move_Dragon_Bite (see animscripts.txt)
+		  Implements: Dragon Bite animation
 +1300B08: Move_Draining_Kiss (see animscripts.txt)
 		  Implements: Draining Kiss animation
 +1300B80: Move_Trick_Room (see animscripts.txt)
 		  Implements: Trick Room animation
 +1300B98: Move_Soak (see animscripts.txt)
 		  Implements: Soak animation
-+1300BD8: Move_??? (see animscripts.txt)
-		  Implements: [move27E] animation
++1300BD8: Move_Dreamy_Mist (see animscripts.txt)
+		  Implements: Dreamy Mist animation
 +1300C40: Move_Zombie_Touch (see animscripts.txt)
 		  Implements: Zombie Touch animation
 +1300C90: Move_??? (see animscripts.txt)
@@ -3316,33 +3316,33 @@ entirely new things:
 		  Implements: Bestow animation
 +13013D8: Move_??? (see animscripts.txt)
 		  Implements: [move23B] animation
-+1301448: Move_??? (see animscripts.txt)
-		  Implements: [move232] animation
++1301448: Move_Crimson_Rush (see animscripts.txt)
+		  Implements: Crimson Rush animation
 +13014F8: Move_Snarl (see animscripts.txt)
 		  Implements: Snarl animation
 +13015E0: Move_Dragon_Tail (see animscripts.txt)
 		  Implements: Dragon Tail animation
-+1301678: Move_??? (see animscripts.txt)
-		  Implements: [move265] animation
-+1301740: Move_??? (see animscripts.txt)
-		  Implements: [move230] animation
++1301678: Move_Farewell_Slap (see animscripts.txt)
+		  Implements: Farewell Slap animation
++1301740: Move_Dinosword (see animscripts.txt)
+		  Implements: Dinosword animation
 +13017A8: Move_Sacred_Sword (see animscripts.txt)
 		  Implements: Sacred Sword animation
 +1301830: Move_??? (see animscripts.txt)
 		  Implements: [move238] animation
 +1301880: Move_Venom_Drench (see animscripts.txt)
 		  Implements: Venom Drench animation
-+13018C0: Move_??? (see animscripts.txt)
-		  Implements: [move237] animation
++13018C0: Move_Soil_Shot (see animscripts.txt)
+		  Implements: Soil Shot animation
 		  GLITCH!: doesn't look right
 +1301910: Move_??? (see animscripts.txt)
 		  Implements: [move246] animation
 +13019A0: Move_??? (see animscripts.txt)
 		  Implements: [move22E] animation
-+1301B70: Move_??? (see animscripts.txt)
-		  Implements: [move22C] animation
-+1301C88: Move_??? (see animscripts.txt)
-		  Implements: [move251] animation
++1301B70: Move_Moon_Impact (see animscripts.txt)
+		  Implements: Moon Impact animation
++1301C88: Move_Yoga_Smash (see animscripts.txt)
+		  Implements: Yoga Smash animation
 +1301D38: Move_U_Turn (see animscripts.txt)
 		  Implements: U-Turn animation
 +1301DC0: Move_Volt_Switch (see animscripts.txt)
@@ -3355,10 +3355,10 @@ entirely new things:
 		  Implements: Guard Split animation
 +1301F80: Move_Gaia_Cube (see animscripts.txt)
 		  Implements: Gaia Cube animation
-+1302028: Move_Psycho_Crush (see animscripts.txt)
-		  Implements: Psycho Crush animation
-+1302150: Move_??? (see animscripts.txt)
-		  Implements: [move267] animation
++1302028: Move_Psy_Crush (see animscripts.txt)
+		  Implements: Psy Crush animation
++1302150: Move_Ice_Crush (see animscripts.txt)
+		  Implements: Ice Crush animation
 +1302280: Move_Freeze_Dry (see animscripts.txt)
 		  Implements: Freeze-Dry animation
 +13023A0: Move_Stored_Power (see animscripts.txt)
@@ -3369,8 +3369,8 @@ entirely new things:
 		  Implements: [move266] animation
 +1302620: Move_Reflect_Type (see animscripts.txt)
 		  Implements: Reflect Type animation
-+1302828: Move_??? (see animscripts.txt)
-		  Implements: [move23C] animation
++1302828: Move_Thicket_Slip (see animscripts.txt)
+		  Implements: Thicket Slip animation
 +1302910: Move_Hex (see animscripts.txt)
 		  Implements: Hex animation
 +1302978: Move_??? (see animscripts.txt)
@@ -3404,8 +3404,8 @@ entirely new things:
 		  Implements: [move21C] animation
 +1303408: Move_??? (see animscripts.txt)
 		  Implements: [move23D] animation
-+1303478: Move_??? (see animscripts.txt)
-		  Implements: [move24F] animation
++1303478: Move_Aqua_Cutter (see animscripts.txt)
+		  Implements: Aqua Cutter animation
 +13037E0: Move_Power_Whip (see animscripts.txt)
 		  Implements: Power Whip animation
 +1303888: Move_Chip_Away (see animscripts.txt)
@@ -3420,8 +3420,8 @@ entirely new things:
 		  Implements: [move234] animation
 +1303DD0: Move_Eerie_Impulse (see animscripts.txt)
 		  Implements: Eerie Impulse animation
-+1303E58: Move_??? (see animscripts.txt)
-		  Implements: [move205] animation
++1303E58: Move_Aqua_Impact (see animscripts.txt)
+		  Implements: Aqua Impact animation
 +1303FD8: Move_??? (see animscripts.txt)
 		  Implements: [move279] animation
 +1304040: Move_Storm_Throw (see animscripts.txt)
@@ -3441,20 +3441,20 @@ entirely new things:
 		  Implements: Sucker Punch animation
 +13044C0: Move_??? (see animscripts.txt)
 		  Implements: [move21B] animation
-+13045B0: Move_??? (see animscripts.txt)
-		  Implements: [move24A] animation
-+1304738: Move_??? (see animscripts.txt)
-		  Implements: [move24C] animation
-+1304848: Move_??? (see animscripts.txt)
-		  Implements: [move249] animation
++13045B0: Move_Electro_Impact (see animscripts.txt)
+		  Implements: Electro Impact animation
++1304738: Move_Light_Pulse (see animscripts.txt)
+		  Implements: Light Pulse animation
++1304848: Move_Powervolt (see animscripts.txt)
+		  Implements: Powervolt animation
 +1304960: Move_??? (see animscripts.txt)
 		  Implements: [move22D] animation
-+1304AD8: Move_??? (see animscripts.txt)
-		  Implements: [move21D] animation
++1304AD8: Move_Gem_Laser (see animscripts.txt)
+		  Implements: Gem Laser animation
 +1304BD8: Move_??? (see animscripts.txt)
 		  Implements: [move225] animation
-+1304D68: Move_??? (see animscripts.txt)
-		  Implements: [move26A] animation
++1304D68: Move_Barrier_Attack (see animscripts.txt)
+		  Implements: Barrier Attack animation
 +1304DC0: Move_??? (see animscripts.txt)
 		  Implements: [move22F] animation
 +1305060: Move_Rage_Powder (see animscripts.txt)
@@ -3463,8 +3463,8 @@ entirely new things:
 		  Implements: [move226] animation
 +13053F0: Move_Disarming_Voice (see animscripts.txt)
 		  Implements: Disarming Voice animation
-+1305420: Move_??? (see animscripts.txt)
-		  Implements: [move24E] animation
++1305420: Move_Magical_Voice (see animscripts.txt)
+		  Implements: Magical Voice animation
 +1305500: Move_??? (see animscripts.txt)
 		  Implements: [move233] animation
 +1305570: Move_Boomburst (see animscripts.txt)
@@ -3473,8 +3473,8 @@ entirely new things:
 		  Implements: Synchronoise animation
 +13057C0: Move_Clear_Smog (see animscripts.txt)
 		  Implements: Clear Smog animation
-!1305828: Move_??? (see animscripts.txt)
-		  Implements: [move273] animation
+!1305828: Move_Stretch (see animscripts.txt)
+		  Implements: Stretch animation
 		  GLITCH!: game crash
 +1305950: Move_Power_Swap (see animscripts.txt)
 		  Implements: Power Swap animation
@@ -3488,8 +3488,8 @@ entirely new things:
 		  Implements: Smart Strike animation
 +1305C28: Move_Power_Trick (see animscripts.txt)
 		  Implements: Power Trick animation
-+1305C60: Move_??? (see animscripts.txt)
-		  Implements: [move291] animation
++1305C60: Move_Wonder_Trick (see animscripts.txt)
+		  Implements: Wonder Trick animation
 +1305C98: Move_Simple_Beam (see animscripts.txt)
 		  Implements: Simple Beam animation
 +1305D30: Move_??? (see animscripts.txt)
@@ -3513,8 +3513,8 @@ entirely new things:
 		  Implements: Fire Lash animation
 +1306BF0: Move_Leaf_Storm (see animscripts.txt)
 		  Implements: Leaf Storm animation
-+1306D08: Move_??? (see animscripts.txt)
-		  Implements: [move297] animation
++1306D08: Move_Flash_Bubble (see animscripts.txt)
+		  Implements: Flash Bubble animation
 +1306F58: Move_Cross_Poison (see animscripts.txt)
 		  Implements: Cross Poison animation
 +1306FE8: Move_Leaf_Tornado (see animscripts.txt)
@@ -3535,8 +3535,8 @@ entirely new things:
 		  Implements: Ice Fang animation
 +1307950: Move_Rock_Climb (see animscripts.txt)
 		  Implements: Rock Climb animation
-+1307B48: Move_??? (see animscripts.txt)
-		  Implements: [move2A6] animation
++1307B48: Move_Pheromone_Poison (see animscripts.txt)
+		  Implements: Pheromone Poison animation
 +1307C10: Move_??? (see animscripts.txt)
 		  Implements: [move29E] animation
 +1307D70: Move_Shell_Smash (see animscripts.txt)
@@ -3597,8 +3597,8 @@ entirely new things:
 		  Implements: [move2A3] animation
 +1309AF0: Move_??? (see animscripts.txt)
 		  Implements: [move29C] animation
-+1309B88: Move_??? (see animscripts.txt)
-		  Implements: [move2A2] animation
++1309B88: Move_Launcher_Arm (see animscripts.txt)
+		  Implements: Launcher Arm animation
 +1309D98: Move_??? (see animscripts.txt)
 		  Implements: [move29D] animation
 +1309E68: Move_Poison_Leaf (see animscripts.txt)
@@ -3808,7 +3808,7 @@ entirely new things:
 		  Relies on: oei_task_add changes
 +1E29CA0: Move_Wormhole (see animscripts.txt)
 		  Implements: Wormhole animation
-+1E29FF0: Move_??? (see animscripts.txt)
-		  Implements: [move1EE] animation
++1E29FF0: Move_Devour (see animscripts.txt)
+		  Implements: Devour animation
 +1E2E640: ItemUseOutOfBattle_EVReduction (see 285disasm)
 		  Implements: field function for EV-reduction berries
