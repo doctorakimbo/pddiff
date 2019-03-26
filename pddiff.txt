@@ -217,7 +217,7 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 ! 0xA0 = Fiery Dance (not implemented)
 = 0xA7 = [shuukihou (Inspiration?)] (attacking move with chance to lower user's speed), (animation is white light covering the screen, then Take Down), "The user gathers all of its spiritual energy at a single point, then uses it to hit the foe. It lowers the user’s Speed, however."
 + 0xA9 = Accelerock
-- 0xB0 = Inflammation <card: Spreading Fire> [The user's and foe's bodies both react badly, causing them both to become burned.]
++ 0xB0 = Inflammation <card: Spreading Fire> [The user's and foe's bodies both react badly, causing them both to become burned.]
 ! 0xB1 = [no name yet] (attacking move), (can't be called by metronome), (has Pound animation; not implemented), "The user bashes the foe with a mirror. This may also raise the user's Defense, Sp. Atk, or Sp. Def."
 ! 0xDD = [no name yet] (attacking move that calculates damage as if any Sp. Atk boosts were added to Attack, then has a 20% chance to raise Atk and Sp. Atk), (can't be called by metronome), (has Pound animation; not implemented), "The foe is skewered with a sword. This may also raise the user's Attack, Sp. Atk, or Speed."
 - 0x124 = Vital Drain [The user absorbs the foe's life force. Restores the user's HP equal to half the damage dealt.]
