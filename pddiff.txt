@@ -215,7 +215,7 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0x8C = Entrainment
 + 0x98 = Shrimphammer (unfinished)
 ! 0xA0 = Fiery Dance (not implemented)
-= 0xA7 = [shuukihou (Inspiration?)] (attacking move with chance to lower user's speed), (animation is white light covering the screen, then Take Down), "The user gathers all of its spiritual energy at a single point, then uses it to hit the foe. It lowers the user’s Speed, however."
+= 0xA7 = [shuukihou (Inspiration?)] (attacking move that lowers user's speed), (animation is white light covering the screen, then Take Down), "The user gathers all of its spiritual energy at a single point, then uses it to hit the foe. It lowers the user’s Speed, however."
 + 0xA9 = Accelerock
 + 0xB0 = Inflammation <card: Spreading Fire> [The user's and foe's bodies both react badly, causing them both to become burned.]
 ! 0xB1 = [no name yet] (attacking move), (can't be called by metronome), (has Pound animation; not implemented), "The user bashes the foe with a mirror. This may also raise the user's Defense, Sp. Atk, or Sp. Def."
