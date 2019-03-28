@@ -304,7 +304,7 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0x1AD = Dizzy Whirl (animation is broken) [Dizzies the foe, sharply raising the user's evasiveness and raising its Speed stat, but lowering its accuracy.]
 + 0x1AE = Deep Yawn [The user yawns unusually deeply, enticing drowsiness that causes the foe to immediately fall asleep.]
 + 0x1AF = Raging Flame [The user attacks using flames created from sheer rage. This may also cause the user to become confused.]
-+ 0x1B0 = Magma Ring [The user attacks while surrounding the foe with magma. This prevents the foe from escaping battle. (CHECK SPIRIT SHACKLE)]
++ 0x1B0 = Magma Ring [The user attacks while surrounding the foe with magma. The target becomes unable to flee. (CHECK SPIRIT SHACKLE)]
 + 0x1B1 = Wave Splash [Water is stirred up to create waves. This may also raise the user's evasiveness.]
 + 0x1B2 = Deluge [The foe is attacked with an enormous, violent wave, harshly lowering the user's Sp. Atk stat afterwards.]
 + 0x1B3 = Aqua Bolt [The foe is attacked with water containing traces of electricity. This may also leave the foe with paralysis.]
@@ -339,7 +339,7 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0x1D0 = Gravity Wave [The user manipulates gravity to fling the foe around. This deals more damage the more the foe weighs.]
 + 0x1D1 = Bug Noise [The user flies around emitting a high-pitched shriek. This may also leave the user with paralysis.]
 + 0x1D2 = Angry Swarm <card: Disturbance Dive> [The user flies around to disrupt the air currents. This may also lower the foe's accuracy or confuse it. (FIX NAME/CHECK TRANSLATION LATER)]
-+ 0x1D3 = Rock Tumble [The user rolls into the foe for five turns, each hit increasing in power.]
++ 0x1D3 = Rock Tumble [The user rolls into the foe repeatedly over five turns, stronger each time.]
 + 0x1D4 = Diamond Blast [The foe is attacked with a blast that sparkles like diamonds. This may also lower the user's Sp. Def stat.]
 + 0x1D5 = Paleobreath [The user blows out an ancient breath. This may also raise the user's Sp. Atk stat.]
 + 0x1D6 = Shadow Clamp [The user persistently bites the foe. This may also cause the foe to fall asleep or become confused.]
@@ -351,7 +351,7 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0x1DC = Dark Cutter [The foe is slashed with sharp winds steeped in darkness. Critical hits land more easily.]
 + 0x1DD = Dark Roar [The user lets out a darkness-tinged roar. This move always goes first.]
 + 0x1DE = Dark Hand [The user uses its hand to carefully plan where to aim next, sharply raising its accuracy.]
-+ 0x1DF = Corner [The user attacks, blocking off all of the foe's escape routes. This prevents the foe from escaping battle. (CHECK SPIRIT SHACKLE)]
++ 0x1DF = Corner [The user attacks, blocking off all of the foe's escape routes. The target becomes unable to flee. (CHECK SPIRIT SHACKLE)]
 + 0x1E0 = Metal Pincer [The user snips at the foe using metallic arms or legs, hitting three times in a row.]
 + 0x1E1 = Geo Impact [The user attacks by causing a violent impact that starts deep underground. This may also sharply raise the foe's Sp. Atk stat.]
 + 0x1E2 = Magnet Force [The foe is attacked with magnetic energy. This may also lower the foe's Attack or Sp. Atk stats.]
@@ -523,7 +523,7 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0x288 = Draining Kiss
 = 0x289 = [HEDOROBOMBAA (Sludge Bomber)] (attacking move with Overheat effect, but harshly lowers user's attack instead of sp. atk), (animation shoots brown clouds with poison sounds that explode on the foe into more brown clouds, on a poisonous cloud background), "The user attacks, cloaked in poison, with every ounce of its strength. This lowers the user's Attack stat afterwards."
 - 0x28A = Black Hole [The foe is dragged into a newly opened hole in the fabric of space. This harshly lowers the user's Sp. Atk stat afterwards.]
-= 0x28B = [dakitsuku (Embrace)] <card: Hug> (attacking move), (animation is Bind with Charm sounds on a pink background), "The user embraces the foe with its whole body. This prevents the foe from escaping battle. (CHECK SPIRIT SHACKLE)"
+= 0x28B = [dakitsuku (Embrace)] <card: Hug> (attacking move), (animation is Bind with Charm sounds on a pink background), "The user embraces the foe with its whole body. The target becomes unable to flee. (CHECK SPIRIT SHACKLE)"
 + 0x28C = Infestation
 + 0x28D = Payback
 + 0x28E = Magma Storm
