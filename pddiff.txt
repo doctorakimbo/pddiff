@@ -14,6 +14,8 @@ A0 0B 06 09
 00 D0 3F 09
 00 F0 3F 09
 
+(setoguni -> strelan?)
+
 (stench actual desc: 71D9FE)
 ("the pkmn" -> "it"; if "it" would be at the beginning, skip it)
 abilities:
@@ -178,7 +180,7 @@ abilities:
 item effects:
 + typebooster IDs: (if effectparam = 0, type-resist berries; if effectparam >= 30, Gems; otherwise typeboosters as normal)
 + 0x18 = Macho Brace if effectparam is 0, otherwise Power item (effectparam = stat ID)
-+ 0x1D = "Polkadot Bow"
++ 0x1D = Fairy Wing
 + 0x2B = Leftovers if effectparam is 0xFF, otherwise Black Sludge (effectparam = type that heals)
 + 0x43 = Focus Sash
 + 0x44 = Choice Specs
@@ -190,7 +192,7 @@ item effects:
 + 0x4A = Lagging Tail
 + 0x4B = weather rocks (effectparam = weather ID)
 + 0x4C = Expert Belt
-+ 0x4D = Safety Wear
++ 0x4D = Safety Goggles
 + 0x4E = Grip Claw
 + 0x4F = Binding Band
 + 0x50 = Light Clay
@@ -202,11 +204,125 @@ item effects:
 = 0x56 = (ai doesn't want to steal this), (ai wants to trick this to the opponent)
 + 0x57 = Destiny Knot
 
-item IDs:
-+ 0x3D = X Sp. Def
-+ 0x3E = X Evasion
+items:
+= 0x34 = <Sango> Dumpling [One of <Sango>'s famous dumplings. Cures a single Pokemon of any status problems.]
+- 0x36 = Ability Capsule
++ 0x3D = X Sp. Def [Use this item to raise a Pokemon's Sp. Def in battle. The effect disappears after switching out.]
++ 0x3E = X Evasiveness [Use this item to raise a Pokemon's evasiveness in battle. The effect disappears after switching out.]
+= 0x50 = Poke Doll -> Poke Toy
+= 0x57 = Old Gateau
+= 0x58 = Casteliacone
+= 0x59 = Lumiose Galette
+= 0x5A = Shalour Sable
+= 0x5B = Rage Candy Bar
+= 0x5C = Sweet Heart
+= 0x63 = Shiny Stone
+= 0x64 = Dusk Stone
+= 0x65 = Dawn Stone
+= 0x69 = Balm Mushroom
+= 0x70 = Big Nugget
 + 0x72 = Shiny Charm
+= 0x73 = Oval Charm
+= 0xC0 = Deep Sea Tooth -> Analysis Map: "A tooth that raises Clamperl's Sp. Atk when held. It has a sharp silver glow." -> "A forecast map that raises Terubim's Sp. Atk when held. It shows the weather in the past."
+= 0xC1 = Deep Sea Scale -> Forecast Map: "A scale that raises Clamperl's Sp. Def when held. It has a pale pink glow." -> "A weather map that raises Terubim's Sp. Def when held. It shows the weather in the future."
+= 0xE0 = Thick Club -> Pink Soap: "Some sort of hard bone that raises the Attack of Cubone or Marowak when held." -> "A pink orb that raises the Attack of Rivird and Mingola when held."
+= 0xE1 = Stick -> Hula Hoop: "A spring onion that allows Farfetch'd to land critical hits more easily when held." -> "A hula hoop that allows Spinda to land critical hits more easily when held."
+= 0xE2 = Choice Specs
+= 0xE3 = Choice Scarf
+= 0xE4 = Focus Sash
+= 0xE5 = Wide Lens
+= 0xE6 = Muscle Band
+= 0xE7 = Wise Glasses
+= 0xE8 = Lagging Tail
+= 0xE9 = Heat Rock
+= 0xEA = Smooth Rock
+= 0xEB = Damp Rock
+= 0xEC = Icy Rock
+= 0xED = Expert Belt
+= 0xEE = Safety Goggles
+= 0xEF = Grip Claw
+= 0xF0 = Binding Band
+= 0xF1 = Light Clay
+= 0xF2 = Big Root
+= 0xF3 = Assault Vest
+= 0xF4 = Eviolite
+= 0xF5 = Life Orb
+= 0xF6 = Flame Orb
+= 0xF7 = Toxic Orb
+= 0xF8 = Black Sludge
+= 0x10F = Basement Key -> Vega: "A gemstone that allows a certain Pokemon to change form using the power of Lyra."
+= 0x112 = Letter -> Sealed Letter: "An important sealed letter that contains secrets about legendary Pokemon."
+= 0x118 = Meteorite: "The Aura Stone that fell on Meteor Falls. It overflows with the power of Aura."
+= 0x11E = Root Fossil -> Spike Fossil: "The fossil of an ancient, sea-dwelling Pokemon. It appears to be part of a root." -> "The fossil of an ancient, land-dwelling Pokemon. It appears to be part of a spike. (quill? thorn? depends on actual mon)"
+= 0x11F = Claw Fossil -> Fang Fossil: "The fossil of an ancient, sea-dwelling Pokemon. It appears to be part of a claw." -> "The fossil of an ancient, land-dwelling Pokemon. It appears to be part of a fang."
+= 0x15B = Mysterious Charm [A mysterious charm handed down since ancient times in <Setoguni>. It shines all colors of the rainbow.]
+= 0x15C = Stolen Ball [A Pokemon stolen by Team Cosmos. Return it to the young man in <Arazome> City.]
+= 0x15D = Oak's Parcel -> Package: "It contains frozen noodles. Deliver it to the [boy/girl] in [Hashibami] City."
+= 0x160 = Bike Voucher -> PokeSeg Voucher: "Take this to the Cycle Shop in Cerulean to exchange it for a Bicycle." -> "Take this to the PokeSeg Shop in [Kokutan] to exchange it for a PokeSeg."
+= 0x162 = Old Amber -> Dark Fossil: "The fossil of an ancient, land-dwelling Pokemon. It appears to be a clump of pure malice."
+= 0x164 = Lift Key: "The key that operates the elevator in the Rocket Hideout. It bears the Team Rocket logo." -> "The key that operates the elevator in the DH Hideout. It bears the Team DH logo."
+= 0x165 = Dome Fossil -> Unknown [no description]
+= 0x166 = Helix Fossil -> Unknown [no description]
+= 0x168 = Bicycle -> PokeSeg: "An electric-powered vehicle that moves in the direction that the rider's body shifts."
+= 0x175 = Ruby -> Altair: "A gemstone that allows a certain Pokemon to change form using the power of Aquila."
+= 0x176 = Sapphire -> Sirius: "A gemstone that allows a certain Pokemon to change form using the power of Canis Major."
+= 0x177 = Fairy Wing [Increases the power of Fairy-type moves when held.]
+= 0x178 = Normal Gem
+= 0x179 = Grass Gem
+= 0x17A = Fire Gem
+= 0x17B = Water Gem
+= 0x17C = Electric Gem
+= 0x17D = Ice Gem
+= 0x17E = Rock Gem
+= 0x17F = Ground Gem
+= 0x180 = Fighting Gem
+= 0x181 = Flying Gem
+= 0x182 = Bug Gem
+= 0x183 = Poison Gem
+= 0x184 = Psychic Gem
+= 0x185 = Ghost Gem
+= 0x186 = Dragon Gem
+= 0x187 = Dark Gem
+= 0x188 = Steel Gem
+= 0x189 = Fairy Gem
+= 0x18A = Occa Berry
+= 0x18B = Passho Berry
+= 0x18C = Wacan Berry
+= 0x18D = Rindo Berry
+= 0x18E = Yache Berry
+= 0x18F = Chople Berry
+= 0x190 = Kebia Berry
+= 0x191 = Shuca Berry
+= 0x192 = Coba Berry
+= 0x193 = Payapa Berry
+= 0x194 = Tanga Berry
+= 0x195 = Charti Berry
+= 0x196 = Kasib Berry
+= 0x197 = Haban Berry
+= 0x198 = Colbur Berry
+= 0x199 = Babiri Berry
+= 0x19A = Chilan Berry
+= 0x19B = Roseli Berry
+= 0x19C = Power Weight
+= 0x19D = Power Bracer
+= 0x19E = Power Belt
+= 0x19F = Power Lens
+= 0x1A0 = Power Band
+= 0x1A1 = Power Anklet
+= 0x1A2 = Quick Ball
+= 0x1A3 = Dusk Ball
+= 0x1A4 = Park Ball
+= 0x1A5 = Heal Ball
+= 0x1A6 = Cherish Ball
+= 0x1A7 = Fast Ball
+= 0x1A8 = Friend Ball
+= 0x1A9 = Heavy Ball
+= 0x1AA = Level Ball
+= 0x1AB = Love Ball
+= 0x1AC = Lure Ball
+= 0x1AD = Moon Ball
 + 0x1AE = Honey
+= 0x1AF = Destiny Knot
 
 move IDs: [Note: Revisit descriptions on full release to make sure everything is correctly described]
 (Mirror Move, (unimplemented Fiery Dance), Assist, Switcheroo, (unimplemented Guardian Leaf), Nova Inferno, Chatter, Feint, Rage Powder, (unimplemented Strength Sap), (unimplemented Shell Trap), and the move just after the end of defined moves can't be called by Metronome; Chatter can't be copied by Mimic)
@@ -486,7 +602,7 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 = 0x263 = [Colorful Attack] (attacking move), (animation is five hits - blue, purple, green, red, yellow - while a rainbow spins around the foe), "The foe is attacked with a move that has no particular type. The type changes depending on the Pokemon using it."
 + 0x264 = Wake-Up Slap
 - 0x265 = Farewell Slap [This move does more damage to infatuated foes, but the foe is then cured of infatuation. (CHECK SMELLING SALTS)]
-= 0x266 = [Icing] (attacking move that does double damage if it cures burn), (animation creates ice around the foe's feet then covers the foe in ice), "This move does more damage to burned foes, but the foe is then cured of its burn. [CHECK SMELLING SALTS]"
+= 0x266 = [Icing (Icepack?)] (attacking move that does double damage if it cures burn), (animation creates ice around the foe's feet then covers the foe in ice), "This move does more damage to burned foes, but the foe is then cured of its burn. [CHECK SMELLING SALTS]"
 - 0x267 = Ice Crush [This move does more damage to frozen foes, but the foe is then thawed out. (CHECK SMELLING SALTS)]
 = 0x268 = [kooridzuke (Iced)] <card: Ice Entomb> (non-attacking move), (animation covers the foe in ice, then creates ice around the foe), "The foe is buffeted by supercooled air, causing it to become frozen. "Cold deprives the body of freedom.""
 - 0x269 = Pyrokinesis [The foe is ignited with psychic powers. This may also leave the foe with a burn.]
@@ -515,7 +631,7 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0x280 = Storm Throw
 + 0x281 = Punishment
 = 0x282 = [Magna Rise] (non-attacking move), (animation is Focus Energy twice on a fossil background), "The user absorbs power from the earth, raising its Attack and Defense stats but lowering its Speed stat."
-= 0x283 = [araryouji (Drastic Measures)] (attacking move that does double damage if it cures poison), (animation slaps a bandage onto the foe), "This move does more damage to poisoned foes, but the foe is then cured of its poisoning. [CHECK SMELLING SALTS]"
+= 0x283 = [araryouji (Urgent Care)] (attacking move that does double damage if it cures poison), (animation slaps a bandage onto the foe), "This move does more damage to poisoned foes, but the foe is then cured of its poisoning. [CHECK SMELLING SALTS]"
 + 0x284 = Chip Away
 + 0x285 = Sacred Sword
 + 0x286 = Synchronoise
@@ -1264,7 +1380,7 @@ cur changes (do them): guillotine/horn drill/fissure/sheer cold "KO'd in one hit
 		  Glitch?: (GetAITarget) in doubles with both mons alive, it does checks on the AI's right slot instead of choosing a random player slot
 		  Glitch?: in general, uses raw stats when I assume they meant base stats
 + 03A4E8: Part of ShouldUseItem (see 75disasm)
-		  Implements: AI use of X Sp. Def and X Evasion
+		  Implements: AI use of X Sp. Def and X Evasiveness
 		  Relies on: new table entries for gItemEffectTable
 + 03DD98: CreateMonWithNature (see 76disasm) - more accurately now CreateMonWithRandomNature
 		  Implements: Synchronize overworld effect, Cute Charm overworld effect, Shiny Charm, modern shiny chance, var_403E will give 1/X chance of shiny when nonzero
@@ -1277,7 +1393,7 @@ cur changes (do them): guillotine/horn drill/fissure/sheer cold "KO'd in one hit
   03EB52: 40 00 40 18 01 88 0D 48 08 40 -> 80 00 40 18 40 88 00 00 00 00
 		  Implements: Part of gLevelUpLearnsets refactor
 + 03ECEC: CalculateBaseDamage (see 78disasm)
-		  Implements: modern Plus/Minus, Rivalry, Heatproof (fire moves), Dry Skin (fire moves), Iron Fist, Solar Power (boost), Normalize (boost), Technician, Klutz (damage-boosting items), Mold Breaker (damage-reduction abilities, Unaware), Unaware (atk/def/spa/spd), Slow Start (Attack reduction), Reckless, Flower Gift (stat boosts), Sheer Force (boost), Defeatist, Friend Guard, Multiscale, Toxic Boost, Flare Boost, Analytic, Infiltrator (dual screens), Sand Force, Aura Break, Tough Claws, Mega Launcher, Grass Pelt, Aerilate (boost), Dark Aura, Fur Coat, Fairy Aura, Pixilate (boost), Refrigerate (boost), Strong Jaw, Galvanize (boost), "Polkadot Bow", Gems (gen 5 boost), Choice Specs (boost), Muscle Band, Wise Glasses, Assault Vest (boost), Eviolite, Life Orb (boost), Wonder Room (effect), P/S split, sandstorm Rock SpDef boost, modern spread reduction
+		  Implements: modern Plus/Minus, Rivalry, Heatproof (fire moves), Dry Skin (fire moves), Iron Fist, Solar Power (boost), Normalize (boost), Technician, Klutz (damage-boosting items), Mold Breaker (damage-reduction abilities, Unaware), Unaware (atk/def/spa/spd), Slow Start (Attack reduction), Reckless, Flower Gift (stat boosts), Sheer Force (boost), Defeatist, Friend Guard, Multiscale, Toxic Boost, Flare Boost, Analytic, Infiltrator (dual screens), Sand Force, Aura Break, Tough Claws, Mega Launcher, Grass Pelt, Aerilate (boost), Dark Aura, Fur Coat, Fairy Aura, Pixilate (boost), Refrigerate (boost), Strong Jaw, Galvanize (boost), Fairy Wing, Gems (gen 5 boost), Choice Specs (boost), Muscle Band, Wise Glasses, Assault Vest (boost), Eviolite, Life Orb (boost), Wonder Room (effect), P/S split, sandstorm Rock SpDef boost, modern spread reduction
 		  Relies on: weather refactor, GetAbilityUserOnSameSide, HasItemWithTypeEffect
 		  Requires in future: AteAbilityConversionTable (e178CB4, j168CB4)
 ! 03FD64: Part of GetBoxMonData (see 79disasm)
@@ -1306,14 +1422,14 @@ cur changes (do them): guillotine/horn drill/fissure/sheer cold "KO'd in one hit
   041622: 21 -> 3A
   041636: 1B 49 1C -> 34 49 35
   041668: Part of PokemonUseItemEffects (+fn_41714_E) (see 83disasm)
-		  Implements: X Sp. Def, X Evasion (effects)
+		  Implements: X Sp. Def, X Evasiveness (effects)
 		  Relies on: new table entries for gItemEffectTable
 + 041C46: Part of PokemonUseItemEffects (see 84disasm)
 		  Implements: Revive case 0xFC - restores 1/4 HP (new item?)
 		  Note: needs testing when item itself implemented
 + 042D50-042DA4: Completely removed (replaced with fn_41714_E)
 + 042DA4: sub_8042DA4 (see 85disasm)
-		  Implements: Messages for X Sp. Def and X Evasion
+		  Implements: Messages for X Sp. Def and X Evasiveness
 		  Relies on: fn_41714_E
 + 042EC4: GetEvolutionTargetSpecies (see 86disasm)
 		  Implements: new evolution methods (day/night happiness for FRLG, single-gender levelup, location-based, specific move, specific move type, level during day/night, level during day/night with item, specific mon in party, specific type in party, single-gender stone, trade for specific mon, overworld weather), allows species 0 to have 20 branched evolutions (need more info)
@@ -2742,14 +2858,14 @@ data:
 		  Note: This is only true in Gen 5
 + 2526EC-2528BC (j20F0F4-j20F2C4): usable item data
   2528BC (j20F2C4): gItemEffectTable
-		  Implements: modern healing item values, X items +1 -> +2, X Sp. Def, X Evasion, regional treats, other unknown items
+		  Implements: modern healing item values, X items +1 -> +2, X Sp. Def, X Evasiveness, regional treats, other unknown items
 = 252BC8 (j20F5D0): gTMHMLearnsets
 = 254784 (j21118C): gBaseStats
 = 257494-259754 (j213E9C-j21615C): mon level-up learnsets
 = 259754 (j21615C): gEvolutionTable
 = 25D7B4 (j21A1BC): gLevelUpLearnsets
 + 25DEEE (j21A8F6): 00 00 -> 1D 09 (sHoldEffectToType)
-		  Implements: "Polkadot Bow", Fairy Gem, Roseli Berry
+		  Implements: Fairy Wing, Fairy Gem, Roseli Berry
 = 25E026 (j21AA2E): sDeoxysBaseStats
 = ?????? (j220C8E): C6 EA -> F9 05 (on some trade-related screen, change "Lv" text to the "Lv" single character; unclear how to translate this to english - check the trade screens when full version)
 = ?????? (j220C9B): 00 -> FF (on some trade-related screen, remove space after jp "and"; unclear how to translate this to english - check the trade screens when full version)
