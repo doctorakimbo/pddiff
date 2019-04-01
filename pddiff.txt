@@ -208,7 +208,7 @@ item IDs:
 + 0x72 = Shiny Charm
 + 0x1AE = Honey
 
-move IDs: [Note: Revisit descriptions on full release to make sure everything is correctly described]
+move IDs: [Note: Revisit descriptions on full release to make sure everything is correctly described - and redo Knock Off/Mud Sport/Water Sport if modernized]
 (Mirror Move, (unimplemented Fiery Dance), Assist, Switcheroo, (unimplemented Guardian Leaf), Nova Inferno, Chatter, Feint, Rage Powder, (unimplemented Strength Sap), (unimplemented Shell Trap), and the move just after the end of defined moves can't be called by Metronome; Chatter can't be copied by Mimic)
 (Removed: Clamp, Barrage, Conversion, Triple Kick, Spider Web, Conversion 2, Aeroblast, Sacred Fire, Arm Thrust, Tail Glow, Luster Purge, Mist Ball, Needle Arm, Doom Desire, Psycho Boost)
 = 0x80 = [Accel Bolt] (attacking move), (has Mach Volt animation), "Raises the user's Speed if it moved after the foe. If not, it raises Sp. Atk instead."
@@ -220,11 +220,11 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0xB0 = Inflammation <card: Spreading Fire> [The user's and foe's bodies both react badly, causing them both to become burned.]
 ! 0xB1 = [no name yet] (attacking move), (can't be called by metronome), (has Pound animation; not implemented), "The user bashes the foe with a mirror. This may also raise the user's Defense, Sp. Atk, or Sp. Def."
 ! 0xDD = [no name yet] (attacking move that calculates damage as if any Sp. Atk boosts were added to Attack, then has a 20% chance to raise Atk and Sp. Atk), (can't be called by metronome), (has Pound animation; not implemented), "The foe is skewered with a sword. This may also raise the user's Attack, Sp. Atk, or Speed."
-- 0x124 = Vital Drain [The user absorbs the foe's life force. Restores the user's HP equal to half the damage dealt.]
-- 0x126 = Quick Turn [If the foe is faster than the user, this move does more damage. If the foe is slower, the move fails.]
-- 0x127 = Blessed Wings [The foe is attacked with beautifully sparkling wings. This may also raise the user's Sp. Atk.]
++ 0x124 = Vital Drain [The user absorbs the foe's life force. Restores the user's HP equal to half the damage dealt.]
++ 0x126 = Quick Turn [If the foe is faster than the user, this move does more damage. If the foe is slower, the move fails.]
++ 0x127 = Blessed Wings [The foe is attacked with beautifully sparkling wings. This may also raise the user's Sp. Atk.]
 + 0x128 = Hurricane
-- 0x12E = Severe Poison [If used by a Poison-type, this move may also badly poison. It deals special damage.]
++ 0x12E = Severe Poison [If used by a Poison-type, this move may also badly poison. It deals special damage.]
 + 0x161 = Venoshock
 - 0x162 = Gravel Breath [The user blows out a breath that is strong against Steel-types. If the user is slower than the foe, the move does more damage.]
 + 0x163 = Grand Boulder [The foe is covered completely in rocks. This may also make the foe flinch.]
@@ -485,9 +485,9 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 ! 0x262 = [no name yet] (attacking move), (can't be called by metronome), (has Pound animation; not implemented), ""The incarnation of fear drives anyone mad." This move also lowers all of the foe's stats."
 = 0x263 = [Colorful Attack] (attacking move), (animation is five hits - blue, purple, green, red, yellow - while a rainbow spins around the foe), "The foe is attacked with a move that has no particular type. The type changes depending on the Pokemon using it."
 + 0x264 = Wake-Up Slap
-- 0x265 = Farewell Slap [This move does more damage to infatuated foes, but the foe is then cured of infatuation. (CHECK SMELLING SALTS)]
-= 0x266 = [Icing] (attacking move that does double damage if it cures burn), (animation creates ice around the foe's feet then covers the foe in ice), "This move does more damage to burned foes, but the foe is then cured of its burn. [CHECK SMELLING SALTS]"
-- 0x267 = Ice Crush [This move does more damage to frozen foes, but the foe is then thawed out. (CHECK SMELLING SALTS)]
+- 0x265 = Farewell Slap [It doubles in power on an infatuated foe, but cures the foe's infatuation.]
+= 0x266 = [Icing] (attacking move that does double damage if it cures burn), (animation creates ice around the foe's feet then covers the foe in ice), "It doubles in power on a burned foe, but cures the foe's burn."
+- 0x267 = Ice Crush [It doubles in power on a frozen foe, but thaws the foe out.]
 = 0x268 = [kooridzuke (Iced)] <card: Ice Entomb> (non-attacking move), (animation covers the foe in ice, then creates ice around the foe), "The foe is buffeted by supercooled air, causing it to become frozen. "Cold deprives the body of freedom.""
 - 0x269 = Pyrokinesis [The foe is ignited with psychic powers. This may also leave the foe with a burn.]
 - 0x26A = Barrier Attack [The user slams the foe with its hard body. This move does more damage the higher the user's Defense stat is.]
@@ -504,7 +504,7 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 - 0x275 = Warble [A beautiful birdsong that saps the motivation of those that hear it, lowering their Sp. Def stat.] [check target]
 = 0x276 = [mushinokoe (Bug Voice)] (non-attacking move, +1 sp. atk), (has Growl animation), "The user summons its fellow insects to hear their cries, which raise the user's Sp. Atk stat."
 = 0x277 = [mushigatsuku (Infestation)] (non-attacking move, turns target into pure Bug-type), (animation is a swarm of insects flying in all directions, then a single insect swaying in front of the foe), "The foe is covered in a huge amount of insects, turning it into a Bug-type. [CHECK SOAK]"
-= 0x278 = [mushikaesu (Send Bugs)] (attacking move), (animation is user getting angry, then a swarm of insects flying in all directions), "This move becomes more powerful if the foe damaged the user this turn. (CHECK REVENGE)"
+= 0x278 = [mushikaesu (Send Bugs)] (attacking move), (animation is user getting angry, then a swarm of insects flying in all directions), "This move's power doubles if the user has been hurt by the foe this turn."
 = 0x279 = [hyoui (Possession)] (non-attacking move, turns target into pure Ghost-type), (animation is Memento, then the foe turns black, on Shadow Ball's background), "The user infects the foe with its hatred and malice, turning the foe into a Ghost-type. [CHECK SOAK]"
 = 0x27A = [Soul Shape] (attacking move with Brine effect), (animation has purple lumps appear around the foe's feet, then purple tentacles surround and squeeze it, on Shadow Ball's background), "This move's power doubles if the foe's HP is at half or less. [CHECK BRINE]"
 - 0x27B = Wildcard [An attack that uses the foe's own power. This move does more damage the higher the foe's Sp. Atk stat is. (CHECK FOUL PLAY)]
@@ -515,7 +515,7 @@ move IDs: [Note: Revisit descriptions on full release to make sure everything is
 + 0x280 = Storm Throw
 + 0x281 = Punishment
 = 0x282 = [Magna Rise] (non-attacking move), (animation is Focus Energy twice on a fossil background), "The user absorbs power from the earth, raising its Attack and Defense stats but lowering its Speed stat."
-= 0x283 = [araryouji (Drastic Measures)] (attacking move that does double damage if it cures poison), (animation slaps a bandage onto the foe), "This move does more damage to poisoned foes, but the foe is then cured of its poisoning. [CHECK SMELLING SALTS]"
+= 0x283 = [araryouji (Drastic Measures)] (attacking move that does double damage if it cures poison), (animation slaps a bandage onto the foe), "It doubles in power on a poisoned foe, but cures the foe's poisoning."
 + 0x284 = Chip Away
 + 0x285 = Sacred Sword
 + 0x286 = Synchronoise
