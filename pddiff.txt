@@ -16,19 +16,19 @@ A0 0B 06 09
 
 Setoguni region -> Strelan region
 Shirahana Town -> Astera Town [white]
-Tsuyukusa Town -> Comelia Town [blue]
+Tsuyukusa Town -> Commelina Town [blue]
 Taisha City -> Hemati City [reddish brown]
-Hisoku City -> Chipota City [sky blue]
-Arazome City -> Tinctori City [pink]
-Kokutan City -> Ospiro City [black]
-Hashibami City -> Hazell City [light brown]
-Urumi City -> Clowen City [gray]
+Hisoku City -> Hisoko City [sky blue]
+Arazome City -> Cartham City [pink]
+Kokutan City -> Ebonwood City [black]
+Hashibami City -> Hazella City [light brown]
+Urumi City -> Vercas City [gray]
 Ryokuou City -> Chartru City [greenish yellow]
 Futaai Town -> Persica Town [purple]
 Sango Town -> Anthozo Town [orange]
-Kihadashi City -> Murco City [yellow]
-Suou Island -> Salpin Island [reddish purple]
-Rokushou Island -> Verdigrin Island [green]
+Kihadashi City -> Amur City [yellow]
+Suou Island -> Brazeil Island [reddish purple]
+Rokushou Island -> Verdigri Island [green]
 Kaihaku Island -> Pallidin Island [off-white]
 
 (stench actual desc: 71D9FE)
@@ -273,9 +273,9 @@ items:
 - 0x11E = Root Fossil -> Spike Fossil: "The fossil of an ancient, sea-dwelling Pokemon. It appears to be part of a root." -> "The fossil of an ancient, land-dwelling Pokemon. It appears to be part of a spike. (quill? thorn? depends on actual mon)"
 - 0x11F = Claw Fossil -> Fang Fossil: "The fossil of an ancient, sea-dwelling Pokemon. It appears to be part of a claw." -> "The fossil of an ancient, land-dwelling Pokemon. It appears to be part of a fang."
 - 0x15B = Mysterious Charm [A mysterious charm handed down since ancient times in Strelan. It shines all colors of the rainbow.]
-- 0x15C = Stolen Ball [A Pokemon stolen by Team Cosmos. Return it to the young man in Tinctori City.]
-- 0x15D = Oak's Parcel -> Package: "It contains frozen noodles. Deliver it to the child in Hazell City."
-- 0x160 = Bike Voucher -> PokeSeg Voucher: "Take this to the Cycle Shop in Cerulean to exchange it for a Bicycle." -> "Take this to the PokeSeg Shop in Ospiro to exchange it for a PokeSeg."
+- 0x15C = Stolen Ball [A Pokemon stolen by Team Cosmos. Return it to the young man in Cartham City.]
+- 0x15D = Oak's Parcel -> Package: "It contains frozen noodles. Deliver it to the child in Hazella City."
+- 0x160 = Bike Voucher -> PokeSeg Voucher: "Take this to the Cycle Shop in Cerulean City to exchange it for a Bicycle." -> "Take this to the PokeSeg Shop in Ebonwood City to exchange it for a PokeSeg."
 - 0x162 = Old Amber -> Dark Fossil: "The fossil of an ancient, land-dwelling Pokemon. It appears to be a clump of pure malice."
 - 0x164 = Lift Key: "The key that operates the elevator in the Rocket Hideout. It bears the Team Rocket logo." -> "The key that operates the elevator in the DH Hideout. It bears the Team DH logo."
 - 0x165 = Dome Fossil -> Unknown [no description]
