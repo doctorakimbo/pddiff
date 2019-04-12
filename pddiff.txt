@@ -53,7 +53,7 @@ Ouni City~ouni~a shade of orange~Orpimence City~orpiment~a mineral used for oran
 Karasuba City~karasuba[iro]~crow feathers~Ravenplume City~crow feathers~''~
 Rapisura City~lapis lazuli~a gemstone~Lapizula City~lapis lazuli~a gemstone~
 Shakudou Island~shakudou[iro]~shakudo (a copper-gold compound)~Shakudo Island~shakudo~a copper-gold compound~
-Shirahana Town~shirahana[iro]~white flower~Astera Town~Asteraceae~family of daisies~
+Shirahana Town~shirahana[iro]~white flowers~Astera Town~Asteraceae~scientific family of daisies~
 Tsuyukusa Town~tsuyukusa[iro]~Asiatic dayflower~Commelina Town~Commelina communis~Asiatic dayflower~
 Taisha City~taisha[iro]~red ocher (a pigment)~Hemati City~hematite~red ocher (a pigment)~
 Hisoku City~hisoku[iro]~a type of Chinese pottery~Hisoko City~hisoku~a type of Chinese pottery~
@@ -63,7 +63,7 @@ Hashibami City~hashibami[iro]~hazel~Hazella City~hazel~''~
 Urumi City~urumi[iro]~cloudy~Vercas City~overcast~''~
 Ryokuou City~ryokuou[shoku]~yellow-green~Chartru City~chartreuse~yellow-green~
 Futaai Town~futaai[iro]~Japanese indigo (plant)~Persica Town~Persicaria tinctoria~Japanese indigo (plant)~
-Sango Town~sango[iro]~coral~Anthozo Town~Anthozoa~class of coral~
+Sango Town~sango[iro]~coral~Anthozo Town~Anthozoa~scientific class of coral~
 Kihadashi City~kihadashi[iro]~amur cork (tree)~Amur City~amur cork~a tree~
 Suou Island~suou[iro]~sappanwood dye~Brazeil Island~brazilein~sappanwood dye~
 Rokushou Island~rokushou[iro]~verdigris (green pigment)~Verdigri Island~verdigris~green pigment~
