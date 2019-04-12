@@ -220,8 +220,6 @@ item effects:
 + 0x57 = Destiny Knot
 
 items:
-(max repel old desc: 727C02)
-(super rod old desc: 72AC80)
 + 0x34 = Anthozo Dumpling [One of Anthozo Town's famous dumplings. Cures a single Pokemon of any status problems.]
 + 0x36 = Ability Capsule
 + 0x3D = X Sp. Def [Use this item to raise a Pokemon's Sp. Def in battle. The effect disappears after switching out.]
