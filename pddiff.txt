@@ -31,6 +31,46 @@ Suou Island -> Brazeil Island [reddish purple]
 Rokushou Island -> Verdigri Island [green]
 Kaihaku Island -> Pallidin Island [off-white]
 
+
+Japanese name~Japanese root word~Japanese name overly-literal meaning~English name~English root word~English name meaning~Notes
+Masara Town~malsara~a red pigment~Malsara Town~malsara~a red pigment~Pallet Town
+Tokiwa City~tokiwa[iro]~eternal~Everlas City~everlasting~''~Viridian City
+Nibi City~nibi[iro]~dull~Dulsa City~dull~''~Pewter City
+Hanada City~hanada[iro]~light blue~~~light blue~Cerulean City
+Kuchiba City~kuchiba[iro]~decayed leaves~~~~Vermilion City
+Tamamushi City~tamamushi[iro]~jewel beetle~Dishima City~Chrysocroa fulgidissima~jewel beetle~Celadon City
+Shion Town~shion[iro]~Tartarian aster (flower)~Tartara Town~Aster tartaricus~Tartarian aster (flower)~Lavender Town
+Sekichiku City~sekichiku[iro]~China pink (flower)~Nensi City~Dianthus chinensis~China pink (flower)~Fuchsia City
+Yamabuki City~yamabuki[iro]~yellow rose~Kerria City~Kerria japonica~yellow rose~Saffron City
+Guren Island~guren~crimson~Cinnabar Island~cinnabar~a red color~Cinnabar Island (this works under this logic)
+Sekiei Plateau~sekiei~quartz~~~~Indigo Plateau
+Hakuji Town~hakuji[iro]~white porcelain~Porcelia Town~porcelain~''~
+Ayame City~ayame[iro]~iris flower~Junopsis City~Junopsis~former genus of iris flowers~
+Miru City~miru[iro]~green sea fingers (a type of seaweed)~Seafin City~green sea fingers~a type of seaweed~
+Shiou City~shiou[iro]~"feminine yellow"~Gamboge City~gamboge~a yellow pigment~Incredibly unclear how this happened
+Hisui City~hisui[iro]~jade~Nephrite City~nephrite~jade~
+Ouni City~ouni~a shade of orange~Orpimence City~orpiment~a mineral used for orange pigment~Incredibly unclear how this happened
+Karasuba City~karasuba[iro]~crow feathers~Ravenplume City~crow feathers~''~
+Rapisura City~lapis lazuli~a gemstone~Lapizula City~lapis lazuli~a gemstone~
+Shakudou Island~shakudou[iro]~shakudo (a copper-gold compound)~Shakudo Island~shakudo~a copper-gold compound~
+Shirahana Town~shirahana[iro]~white flowers~Astera Town~Asteraceae~scientific family of daisies~
+Tsuyukusa Town~tsuyukusa[iro]~Asiatic dayflower~Commelina Town~Commelina communis~Asiatic dayflower~
+Taisha City~taisha[iro]~red ocher (a pigment)~Hemati City~hematite~red ocher (a pigment)~
+Hisoku City~hisoku[iro]~a type of Chinese pottery~Hisoko City~hisoku~a type of Chinese pottery~
+Arazome City~arazome~safflower dye~Cartham City~Carthamus tinctorius~safflower~
+Kokutan City~kokutan~ebony~Ebonwood City~ebony wood~''~
+Hashibami City~hashibami[iro]~hazel~Hazella City~hazel~''~
+Urumi City~urumi[iro]~cloudy~Vercas City~overcast~''~
+Ryokuou City~ryokuou[shoku]~yellow-green~Chartru City~chartreuse~yellow-green~
+Futaai Town~futaai[iro]~Japanese indigo (plant)~Persica Town~Persicaria tinctoria~Japanese indigo (plant)~
+Sango Town~sango[iro]~coral~Anthozo Town~Anthozoa~scientific class of coral~
+Kihadashi City~kihadashi[iro]~amur cork (tree)~Amur City~amur cork~a tree~
+Suou Island~suou[iro]~sappanwood dye~Brazeil Island~brazilein~sappanwood dye~
+Rokushou Island~rokushou[iro]~verdigris (green pigment)~Verdigri Island~verdigris~green pigment~
+Kaihaku Island~kaihaku[shoku]~pallid (pale)~Pallidin Island~pallid~pale~
+
+
+
 (stench actual desc: 71D9FE)
 ("the pkmn" -> "it"; if "it" would be at the beginning, skip it)
 abilities:
