@@ -1,0 +1,610 @@
+Too bad! Looks like there is no room for more [ITEM] in your Bag! -> Too bad! It seems your Bag has no room for more [ITEM]!
+You opened up the [POCKET] Pocket and put the [ITEM] away inside. -> You put [ITEM] in your Bag's [POCKET] pocket.
+Which Pokémon do you want to use it on? -> Which Pokémon will you use it on?
+[PKMN] and [MOVE] are not compatible. [MOVE] can't be learned by this Pokémon. -> [MOVE] can't be learned by [PKMN]! The two are incompatible!
+[PKMN] already knows the move [MOVE]. -> [PKMN] already knows [MOVE].
+1, 2, and... ... ... Ta-da! [PKMN] forgot how to use [MOVE1]. And... [PKMN] learned [MOVE2]! -> One... two... and... ta-da! [PKMN] forgot [MOVE1]! And it learned [MOVE2] instead!
+Able!/Unable!/Learned -> Can learn/Cannot learn/Knows this move
+You turned over the [ITEM] and received $$$. -> You turned over the [ITEM] and got $$$.
+I can pay $$$. Would that be OK? -> I can pay you $$$. Would that be OK?
+[PKMN] was cured of its poisoning. -> [PKMN] was cured of its poisoning!
+[PKMN] was cured of paralysis. -> [PKMN] was cured of paralysis!
+[PKMN]'s burn was healed. -> [PKMN]'s burn was healed!
+[PKMN] was thawed out. -> [PKMN] was thawed out!
+[PKMN] became healthy. -> [PKMN] became healthy!
+[PKMN]'s base [STAT] rose! -> [PKMN]'s [STAT] base points rose!
+[PKMN] became more friendly. However, its base [STAT] fell! -> [PKMN] became more friendly. However, its [STAT] base points fell!
+[PKMN] adores you! However, its base [STAT] fell! -> [PKMN] adores you! However, its [STAT] base points fell!
+[PKMN] became more friendly. Its base [STAT] can't go lower. -> [PKMN] became more friendly. Its [STAT] base points can't go lower.
+You can't use that now because the Repel you used is still in effect. -> You can't use that now, because the last Repel you used is still in effect.
+Kukui's words echoed... [NAME]! There's a time and place for everything, but this ain't it! -> You seem to hear the professor's voice, echoing in your head... "[NAME], dear! This isn't the time to use that." <remove "dear">
+The move's PP was restored. -> PP was restored!
+This can't be used on the fainted Pokémon. -> This can't be used on a fainted Pokémon.
+You have no room to separate the Pokémon. -> You can't separate the Pokémon now. There's not enough room in your party.
+It cannot be fused with that fainted Pokémon. -> It can't be fused with a Pokémon that has fainted.
+Which Pokémon do you want to fuse? -> Which Pokémon do you want to fuse this Pokémon with?
+[PKMN]s Ability changed to [ABILITY]! -> [PKMN]'s Ability changed! Its Ability is now [ABILITY]!
+You cannot release a Pokémon Egg. -> You can't release an Egg.
+You cannot release the fused Pokémon. -> You can't release the fused [PKMN].
+A Pokémon Egg cannot hold an item. -> An Egg can't hold an item.
+
+You cannot decide for your partner! -> You can't decide for your partner!
+[PKMN] has already been selected. -> [PKMN] is already selected.
+[PKMN]'s status was restored! -> [PKMN]'s stats were returned to normal!
+[PKMN] was cured of its poisoning. -> [PKMN] was cured of its poisoning!
+[PKMN] is already poisoned. -> [PKMN] is already poisoned!
+[PKMN]'s burn was healed. -> [PKMN]'s burn was healed!
+[PKMN] already has a burn. -> [PKMN] is already burned!
+[PKMN] was cured of paralysis. -> [PKMN] was cured of paralysis!
+[PKMN] fell in love from the [ITEM]! -> [PKMN] fell in love because of the [ITEM]!
+[PKMN] got over its infatuation. -> [PKMN] got over its infatuation!
+[PKMN] snapped out of its confusion. -> [PKMN] snapped out of its confusion!
+[PKMN] doesn't become confused! -> [PKMN] can't be confused!
+[PKMN] is damaged by the recoil! -> [PKMN] was damaged by the recoil!
+[PKMN]'s HP was restored. -> [PKMN] had its HP restored.
+[PKMN] restored all its moves' PP! -> All of [PKMN]'s moves had their PP restored!
+[PKMN] is hurt! -> [PKMN] was hurt!
+It was alerted to [PKMN]'s [MOVE]! -> [PKMN]'s [MOVE] was revealed!
+[PKMN] stays awake! -> [PKMN] stayed awake!
+[PKMN] anchors itself! -> [PKMN] is anchored in place with its suction cups!
+It stole [PKMN]'s [ITEM]! -> [PKMN] had its [ITEM] stolen!
+It bounced back [PKMN]'s [MOVE]! -> [PKMN]'s [MOVE] was bounced back!
+[PKMN] avoids attacks by its ally Pokémon! -> [PKMN] can't be hit by attacks from its ally Pokémon!
+It poisoned [PKMN]! -> [PKMN] was poisoned!
+[PKMN] harvested one [ITEM]! -> [PKMN] harvested [ITEM]!
+[PKMN] received an encore! -> [PKMN] must do an encore!
+[PKMN]'s taunt wore off! -> [PKMN] shook off the taunt!
+[PKMN]'s torment wore off! -> [PKMN] is no longer tormented!
+[PKMN] anchored itself with its roots! -> [PKMN] is anchored in place with its roots!
+[PKMN] waits for a target to make a move! -> [PKMN] is waiting for a target to make a move!
+[PKMN] is hurt by the spikes! -> [PKMN] was hurt by the spikes!
+[PKMN] transformed into the [TYPE] type! -> [PKMN]'s type changed to [TYPE]!
+[PKMN] restored PP to its [MOVE] move using [ITEM]! -> [PKMN] restored PP to its [MOVE] move using its [ITEM]!
+[PKMN] returned its status to normal using its [ITEM]! -> [PKMN] returned its stats to normal using its [ITEM]!
+[PKMN]'s [ITEM] let it move first! -> [PKMN] can act faster than normal, thanks to its [ITEM]!
+[ATTACKER] is hurt by [DEFENDER]'s [ITEM]! -> [ATTACKER] was hurt by [DEFENDER]'s [ITEM]!
+[PKMN] is hurt by its [ITEM]! -> [PKMN] was hurt by its [ITEM]!
+[PKMN] couldn't stay airborne because of gravity! -> [PKMN] fell from the sky due to the gravity!
+[DEFENDER] received [ITEM] from [ATTACKER]! -> [ATTACKER] gave [DEFENDER] its [ITEM]!
+[PKMN] is hurt by the sea of fire! -> [PKMN] was hurt by the sea of fire!
+[PKMN]'s [ITEM] is reacting to the [MEGAITEM]! -> [PKMN]'s [ITEM] is reacting to [TRAINER]'s [MEGAITEM]!
+[PKMN] surrounded itself with a veil of sweetness! -> [PKMN] can't fall asleep due to a veil of sweetness!
+[PKMN] surrounds itself with electrified terrain! -> [PKMN] is protected by the Electric Terrain!
+[PKMN] surrounds itself with psychic terrain! -> [PKMN] is protected by the Psychic Terrain!
+[DEFENDER] used the move instructed by [ATTACKER]! -> [DEFENDER] followed [ATTACKER]'s instructions!
+
+A wild [PKMN] appeared! -> You encountered a wild [PKMN]!
+You blacked out! -> You were overwhelmed by your defeat!
+You received $$$ for winning! -> You got $$$ for winning!
+There is no room left in the PC! -> Your Boxes are full!
+Would you like to forfeit the match and quit now? -> Would you like to give up on this battle and quit now?
+The sunlight faded. -> The harsh sunlight faded.
+The match was forfeited. -> The battle was canceled.
+Mist swirls around the battlefield! -> Mist swirled around the battlefield!
+An electric current runs across the battlefield! -> An electric current ran across the battlefield!
+A sticky web spreads out on the ground around your team! -> A sticky web has been laid out on the ground around your team!
+[PKMN] avoided the move in time with your shout! -> [PKMN] avoided the move in time via your shout!
+
+GREAT BALL:
+	A good, high-performance Poké Ball that provides a higher Pokémon catch rate than a standard Poké Ball.
+->	A good, high-performance Poké Ball that provides a higher success rate for catching Pokémon than a standard Poké Ball.
+TIMER BALL:
+	A somewhat different Poké Ball that becomes progressively more effective the more turns that are taken in battle.
+->	A somewhat different Poké Ball that becomes progressively more effective at catching Pokémon the more turns that are taken in battle.
+DUSK BALL:
+	A somewhat different Poké Ball that makes it easier to catch wild Pokémon at night or in dark places like caves.
+->	A somewhat different Poké Ball that makes it easier to catch wild Pokémon at night or in dark places such as caves.
+POTION:
+	A spray-type medicine for treating wounds. It can be used to restore 20 HP to an injured Pokémon.
+->	A spray-type medicine for treating wounds. It can be used to restore 20 HP to a single Pokémon.
+ANTIDOTE:
+	A spray-type medicine for poisoning. It can be used once to lift the effects of being poisoned from a Pokémon.
+->	A spray-type medicine for treating poisoning. It can be used to lift the effects of being poisoned from a single Pokémon.
+BURN HEAL:
+	A spray-type medicine for treating burns. It can be used once to heal a Pokémon suffering from a burn.
+->	A spray-type medicine for treating burns. It can be used to heal a single Pokémon suffering from a burn.
+ICE HEAL:
+	A spray-type medicine for freezing. It can be used once to defrost a Pokémon that has been frozen solid.
+->	A spray-type medicine for treating freezing. It can be used to thaw out a single Pokémon that has been frozen solid.
+AWAKENING:
+	A spray-type medicine used against sleep. It can be used once to rouse a Pokémon from the clutches of sleep.
+->	A spray-type medicine to wake the sleeping. It can be used to rouse a single Pokémon from the clutches of sleep.
+PARALYZE HEAL:
+	A spray-type medicine for paralysis. It can be used once to free a Pokémon that has been paralyzed.
+->	A spray-type medicine for treating paralysis. It can be used to free a single Pokémon that has been paralyzed.
+MAX POTION:
+	A spray-type medicine for treating wounds. It will completely restore the max HP of a single Pokémon.
+->	A spray-type medicine for treating wounds. It can be used to completely restore the max HP of a single Pokémon.
+HYPER POTION:
+	A spray-type medicine for treating wounds. It can be used to restore 120 HP to an injured Pokémon.
+->	A spray-type medicine for treating wounds. It can be used to restore 120 HP to a single Pokémon.
+SUPER POTION:
+	A spray-type medicine for treating wounds. It can be used to restore 60 HP to an injured Pokémon.
+->	A spray-type medicine for treating wounds. It can be used to restore 60 HP to a single Pokémon.
+FULL HEAL:
+	A spray-type medicine that is broadly effective. It can be used once to heal all the status conditions of a Pokémon.
+->	A spray-type medicine that is broadly effective. It can be used to heal all the status conditions of a single Pokémon.
+REVIVE:
+	A medicine that can revive fainted Pokémon. It also restores half of a fainted Pokémon's maximum HP.
+->	A medicine that can be used to revive a single Pokémon that has fainted. It also restores half of the Pokémon's max HP.
+MAX REVIVE:
+	A medicine that can revive fainted Pokémon. It also fully restores a fainted Pokémon's maximum HP.
+->	A medicine that can be used to revive a single Pokémon that has fainted. It also fully restores the Pokémon's max HP.
+FRESH WATER:
+	Water with a high mineral content. When consumed, it restores up to 30 HP to an injured Pokémon.
+->	Water with high mineral content. It can be used to restore 30 HP to a single Pokémon.
+SODA POP:
+	A highly carbonated soda drink. When consumed, it restores up to 50 HP to an injured Pokémon.
+->	A highly carbonated soda drink. It can be used to restore 50 HP to a single Pokémon.
+LEMONADE:
+	A very sweet and refreshing drink. When consumed, it restores up to 70 HP to an injured Pokémon.
+->	A very sweet and refreshing drink. It can be used to restore 70 HP to a single Pokémon.
+MOOMOO MILK:
+	A bottle of highly nutritious milk. When consumed, it restores up to 100 HP to an injured Pokémon.
+->	A bottle of highly nutritious milk. It can be used to restore 100 HP to a single Pokémon.
+ENERGY POWDER:
+	A very bitter medicinal powder. When consumed, it restores up to 60 HP to an injured Pokémon.
+->	A very bitter medicinal powder. It can be used to restore 60 HP to a single Pokémon.
+ENERGY ROOT:
+	An extremely bitter medicinal root. When consumed, it restores up to 120 HP to an injured Pokémon.
+->	An extremely bitter medicinal root. It can be used to restore 120 HP to a single Pokémon.
+ETHER:
+	This medicine can restore 10 PP to a single selected move that has been learned by a Pokémon.
+->	This medicine can be used to restore 10 PP to a single selected move that has been learned by a Pokémon.
+MAX ETHER:
+	This medicine can fully restore the PP of a single selected move that has been learned by a Pokémon.
+->	This medicine can be used to fully restore the PP of a single selected move that has been learned by a Pokémon.
+ELIXIR:
+	This medicine can restore 10 PP to each of the moves that have been learned by a Pokémon.
+->	This medicine can be used to restore 10 PP to each of the moves that have been learned by a Pokémon.
+MAX ELIXIR:
+	This medicine can fully restore the PP of all of the moves that have been learned by a Pokémon.
+->	This medicine can be used to fully restore the PP of all of the moves that have been learned by a Pokémon.
+BERRY JUICE:
+	A 100 percent pure juice made of Berries. When consumed, it restores 20 HP to an injured Pokémon.
+->	A 100 percent pure juice made of Berries. It can be used to restore 20 HP to a single Pokémon.
+SACRED ASH:
+	This rare ash can revive all fainted Pokémon in a party. In doing so, it also fully restores their maximum HP.
+->	This rare ash can revive all fainted Pokémon in a party. In doing so, it also fully restores their max HP.
+HP UP:
+	A nutritious drink for Pokémon. When consumed, it raises the base HP of a single Pokémon.
+->	A nutritious drink for Pokémon. When consumed, it raises the HP base points of a single Pokémon.
+PROTEIN:
+	A nutritious drink for Pokémon. When consumed, it raises the base Attack of a single Pokémon.
+->	A nutritious drink for Pokémon. When consumed, it raises the Attack base points of a single Pokémon.
+IRON:
+	A nutritious drink for Pokémon. When consumed, it raises the base Defense of a single Pokémon.
+->	A nutritious drink for Pokémon. When consumed, it raises the Defense base points of a single Pokémon.
+CARBOS:
+	A nutritious drink for Pokémon. When consumed, it raises the base Speed of a single Pokémon.
+->	A nutritious drink for Pokémon. When consumed, it raises the Speed base points of a single Pokémon.
+CALCIUM:
+	A nutritious drink for Pokémon. When consumed, it raises the base Sp. Atk of a single Pokémon.
+->	A nutritious drink for Pokémon. When consumed, it raises the Sp. Atk base points of a single Pokémon.
+PP UP:
+	A medicine that can slightly raise the maximum PP of a single move that has been learned by the target Pokémon.
+->	A medicine that slightly raises the max PP of a single selected move that has been learned by a Pokémon.
+ZINC:
+	A nutritious drink for Pokémon. When consumed, it raises the base Sp. Def of a single Pokémon.
+->	A nutritious drink for Pokémon. When consumed, it raises the Sp. Def base points of a single Pokémon.
+PP MAX:
+	A medicine that can optimally raise the maximum PP of a single move that has been learned by the target Pokémon.
+->	A medicine that optimally raises the max PP of a single selected move that has been learned by a Pokémon.
+DIRE HIT:
+	An item that raises the critical-hit ratio greatly. It can be used only once and wears off if the Pokémon is withdrawn.
+->	An item that greatly raises the critical-hit ratio of a Pokémon during a battle. It can be used only once and wears off if the Pokémon is withdrawn.
+BLUE FLUTE:
+	A flute made from blue glass that awakens sleeping Pokémon.
+->	A flute made from blue glass. It awakens sleeping Pokémon.
+YELLOW FLUTE:
+	A flute made from yellow glass that snaps Pokémon out of confusion.
+->	A flute made from yellow glass. It snaps Pokémon out of confusion.
+RED FLUTE:
+	A flute made from red glass that snaps Pokémon out of infatuation.
+->	A flute made from red glass. It snaps Pokémon out of infatuation.
+ESCAPE ROPE:
+	A long and durable rope. Use it to escape instantly from a cave or a dungeon.
+->	A long and durable rope. Use it to escape instantly from locations like caves or dungeons. It can be used any number of times.
+TINY MUSHROOM:
+	A very small and rare mushroom. It's popular with a certain class of collectors and sought out by them.
+->	A very small and rare mushroom. It's popular with a certain class of collectors.
+BIG MUSHROOM:
+	A very large and rare mushroom. It's popular with a certain class of collectors and sought out by them.
+->	A very large and rare mushroom. It's popular with a certain class of collectors.
+PEARL:
+	A rather small pearl that has a very nice silvery sheen to it. It can be sold cheaply to shops.
+->	A rather small pearl that has a very nice silvery sheen to it. It can be sold at a low price to shops.
+BIG PEARL:
+	A rather large pearl that has a very nice silvery sheen. It can be sold to shops for a high price.
+->	A rather large pearl that has a very nice silvery sheen. It can be sold at a high price to shops.
+STAR PIECE:
+	A small shard of a beautiful gem that demonstrates a distinctly red sparkle. It can be sold at a high price to shops.
+->	A small shard of a beautiful gem that gives off a distinctly red sparkle. It can be sold at a high price to shops.
+HONEY:
+	A sweet honey with a lush aroma that attracts wild Pokémon when it is used in tall grass, in caves, or on special trees.
+->	A sweet honey collected by Pokémon. It has a lush aroma and can be sold at a low price to shops.
+TEA:
+	[no desc]
+->	Aromatic tea that has a slightly bitter taste. It soothes a dry throat.
+SWEET HEART:
+	A piece of cloyingly sweet chocolate. When consumed, it restores 20 HP to an injured Pokémon.
+->	A piece of cloyingly sweet chocolate. It can be used to restore 20 HP to a single Pokémon.
+POMEG BERRY:
+	A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base HP.
+->	A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its HP base points.
+KELPSY BERRY:
+	A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base Attack.
+->	A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its Attack base points.
+QUALOT BERRY:
+	A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base Defense.
+->	A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its Defense base points.
+HONDEW BERRY:
+	A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base Sp. Atk.
+->	A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its Sp. Atk base points.
+GREPA BERRY:
+	A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base Sp. Def.
+->	A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its Sp. Def base points.
+TAMATO BERRY:
+	A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base Speed.
+->	A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its Speed base points.
+LUCKY EGG:
+	An item to be held by a Pokémon. It's an egg filled with happiness that earns extra Exp. Points in battle.
+->	An item to be held by a Pokémon. It's an egg filled with happiness that earns the holder extra Exp. Points in battle.
+BLACK GLASSES:
+	An item to be held by a Pokémon. A pair of shady-looking glasses that boost the power of Dark-type moves.
+->	An item to be held by a Pokémon. It's a pair of shady-looking glasses that boost the power of Dark-type moves.
+SHELL BELL:
+	An item to be held by a Pokémon. The holder regains a little HP every time it inflicts damage on others.
+->	An item to be held by a Pokémon. The holder restores a little HP every time it inflicts damage on others.
+IRON BALL:
+	An item to be held by a Pokémon. It lowers Speed and allows Ground-type moves to hit Flying-type and levitating holders.
+->	An item to be held by a Pokémon. It lowers Speed and allows Ground-type moves to hit Flying types and holders that are levitating.
+GRIP CLAW:
+	An item to be held by a Pokémon. It extends the duration of multi-turn attacks like Bind and Wrap.
+->	An item to be held by a Pokémon. It extends the duration of multi-turn attacks, such as Bind and Wrap.
+POWER WEIGHT:
+	An item to be held by a Pokémon. It reduces Speed but allows the holder's maximum HP to grow more after battling.
+->	An item to be held by a Pokémon. It reduces Speed but allows the holder's max HP to grow more after battling.
+GRACIDEA:
+	A flower sometimes bundled in bouquets to convey gratitude on special occasions like birthdays.
+->	A flower sometimes bundled in bouquets to convey gratitude on special occasions, such as birthdays.
+DOWSING MACHINE:
+	This high-tech machine shows the location of invisible items. It's attached to the head when in use.
+->	A high-tech machine that shows the location of invisible items. It's attached to the head when in use.
+AIR BALLOON:
+	An item to be held by a Pokémon. The holder will float in the air until hit. Once hit, this item will burst.
+->	An item to be held by a Pokémon. The holder will float in the air until hit. Once the holder is hit, this item will burst.
+BINDING BAND:
+	An item to be held by a Pokémon. A band that increases the power of binding moves used by the holder.
+->	An item to be held by a Pokémon. It's a band that increases the power of binding moves used by the holder.
+ABSORB BULB:
+	An item to be held by a Pokémon. It boosts Sp. Atk if hit with a Water-type attack. It can only be used once.
+->	An item to be held by a Pokémon. It boosts Sp. Atk if the holder is hit with a Water-type attack. It can only be used once.
+CELL BATTERY:
+	An item to be held by a Pokémon. It boosts Attack if hit with an Electric-type attack. It can only be used once.
+->	An item to be held by a Pokémon. It boosts Attack if the holder is hit with an Electric-type attack. It can only be used once.
+HEALTH FEATHER:
+	An item for use on a Pokémon. It slightly increases the base HP of a single Pokémon.
+->	An item for use on a Pokémon. It slightly increases the HP base points of a single Pokémon.
+MUSCLE FEATHER:
+	An item for use on a Pokémon. It slightly increases the base HP of a single Pokémon.
+->	An item for use on a Pokémon. It slightly increases the HP base points of a single Pokémon.
+RESIST FEATHER:
+	An item for use on a Pokémon. It slightly increases the base HP of a single Pokémon.
+->	An item for use on a Pokémon. It slightly increases the HP base points of a single Pokémon.
+GENIUS FEATHER:
+	An item for use on a Pokémon. It slightly increases the base HP of a single Pokémon.
+->	An item for use on a Pokémon. It slightly increases the HP base points of a single Pokémon.
+CLEVER FEATHER:
+	An item for use on a Pokémon. It slightly increases the base HP of a single Pokémon.
+->	An item for use on a Pokémon. It slightly increases the HP base points of a single Pokémon.
+SWIFT FEATHER:
+	An item for use on a Pokémon. It slightly increases the base HP of a single Pokémon.
+->	An item for use on a Pokémon. It slightly increases the HP base points of a single Pokémon.
+PRETTY FEATHER:
+	Though this feather is beautiful, it's just a regular feather and has no effect on Pokémon.
+->	Though this feather is beautiful, it's just a regular feather and has no effect.
+DREAM BALL:
+	A special Poké Ball that appears in your Bag out of nowhere in the Entree Forest. It can catch any Pokémon.
+->	A somewhat different Poké Ball that makes it easier to catch wild Pokémon while they're asleep.
+RELIC COPPER:
+	A copper coin used by an ancient civilization about 3,000 years ago.
+->	A copper coin used by an ancient civilization about three thousand years ago.
+RELIC SILVER:
+	A silver coin used by an ancient civilization about 3,000 years ago.
+->	A silver coin used by an ancient civilization about three thousand years ago.
+RELIC GOLD:
+	A gold coin used by an ancient civilization about 3,000 years ago.
+->	A gold coin used by an ancient civilization about three thousand years ago.
+RELIC VASE:
+	A fragile vase used by an ancient civilization about 3,000 years ago.
+->	A fragile vase used by an ancient civilization about three thousand years ago.
+RELIC BAND:
+	A heavy bracelet used by an ancient civilization about 3,000 years ago.
+->	A heavy bracelet used by an ancient civilization about three thousand years ago.
+RELIC STATUE:
+	A stone figurine used by an ancient civilization about 3,000 years ago.
+->	A stone figurine used by an ancient civilization about three thousand years ago.
+RELIC CROWN:
+	A heavy crown used by an ancient civilization about 3,000 years ago.
+->	A heavy crown used by an ancient civilization about three thousand years ago.
+LUMINOUS MOSS:
+	An item to be held by a Pokémon. It boosts Sp. Def if hit with a Water-type attack. It can only be used once.
+->	An item to be held by a Pokémon. It boosts Sp. Def if the holder is hit with a Water-type attack. It can only be used once.
+SNOWBALL:
+	An item to be held by a Pokémon. It boosts Attack if hit with an Ice-type attack. It can only be used once.
+->	An item to be held by a Pokémon. It boosts Attack if the holder is hit with an Ice-type attack. It can only be used once.
+POKé FLUTE:
+	A flute that can play with such a beautiful tone that even sleeping Pokémon find themselves roused.
+->	A flute that can play with such a beautiful tone that even sleeping Pokémon find themselves woken up.
+POWER PLANT PASS:
+	This pass serves as an ID card for gaining access to the power plant that lies along Route 13.
+->	This pass serves as an ID card for gaining access to the Power Plant that lies along Route 13.
+LETTER:
+	An extremely important letter to Steven from the President of Devon Corporation.
+->	An extremely important letter to Steven from the president of Devon Corporation.
+ADRENALINE ORB:
+	Using it makes wild Pokémon call for help a number of times. If held by a Pokémon, it boosts Speed when intimidated. It can be used only once.
+->	If held by a Pokémon, it boosts Speed when intimidated.
+BEAST BALL:
+	A special Poké Ball designed to catch Ultra Beasts. It has a low success rate for catching others.
+->	A somewhat different Poké Ball that has a low success rate for catching a Pokémon.
+RED NECTAR:
+	The flower nectar obtained at the flowering shrubs on Royal Avenue. It changes the form of certain species of Pokémon.
+->	A flower nectar obtained from the flowering shrubs on Royal Avenue. It changes the form of certain species of Pokémon.
+SECRET KEY:
+	[no desc]
+->	The key that unlocks the front door of the Pokémon Gym on Cinnabar Island. It has a red decoration.
+S.S. TICKET:
+	[no desc]
+->	The ticket required to board the S.S. Anne. It has a drawing of a ship on it.
+SILPH SCOPE:
+	[no desc]
+->	A scope that lets you see what cannot usually be seen. It is made by Silph Co.
+OAK'S PARCEL:
+	[no desc]
+->	A parcel to be delivered to Professor Oak from Viridian City's Poké Mart.
+CARD KEY:
+	[no desc]
+->	A card key that unlocks doors in Silph Co.'s head office in Saffron City.
+GOLD TEETH:
+	[no desc]
+->	A set of golden false teeth lost by the Safari Zone's warden. They make his smile sparkle.
+LIFT KEY:
+	[no desc]
+->	A key that operates the elevator in the Team Rocket Hideout. It bears the Team Rocket logo.
+
+Stick -> Leek
+Health Wing -> Health Feather
+Muscle Wing -> Muscle Feather
+Resist Wing -> Resist Feather
+Genius Wing -> Genius Feather
+Clever Wing -> Clever Feather
+Swift Wing -> Swift Feather
+Pretty Wing -> Pretty Feather
+
+DAMP:
+	Prevents the use of explosive moves such as Self-Destruct by dampening its surroundings.
+->	Prevents the use of explosive moves, such as Self-Destruct, by dampening its surroundings.
+SAND VEIL:
+	Boosts the Pokémon's evasion in a sandstorm.
+->	Boosts the Pokémon's evasiveness in a sandstorm.
+VOLT ABSORB:
+	Restores HP if hit by an Electric-type move, instead of taking damage.
+->	Restores HP if hit by an Electric-type move instead of taking damage.
+WATER ABSORB:
+	Restores HP if hit by a Water-type move, instead of taking damage.
+->	Restores HP if hit by a Water-type move instead of taking damage.
+SOUNDPROOF:
+	Soundproofing of the Pokémon itself gives full immunity to all sound-based moves.
+->	Soundproofing gives the Pokémon full immunity to all sound-based moves.
+EARLY BIRD:
+	The Pokémon awakens twice as fast as other Pokémon from sleep.
+->	The Pokémon awakens from sleep twice as fast as other Pokémon.
+TRUANT:
+	The Pokémon can't use a move the following turn if it uses one.
+->	The Pokémon can't use a move if it had used a move on the previous turn.
+LIQUID OOZE:
+	Oozed liquid has strong stench, which damages attackers using any draining move.
+->	The oozed liquid has a strong stench, which damages attackers using any draining move.
+TANGLED FEET:
+	Raises evasion if the Pokémon is confused.
+->	Raises evasiveness if the Pokémon is confused.
+MOTOR DRIVE:
+	Boosts the Speed stat if hit by an Electric-type move, instead of taking damage.
+->	Boosts the Speed stat if hit by an Electric-type move instead of taking damage.
+SNOW CLOAK:
+	Boosts evasion in a hailstorm.
+->	Boosts evasiveness in a hailstorm.
+SKILL LINK:
+	Maximizes the number of times multi-strike moves hit.
+->	Maximizes the number of times multistrike moves hit.
+MULTISCALE:
+	Reduces the amount of damage the Pokémon takes when its HP is full.
+->	Reduces the amount of damage the Pokémon takes while its HP is full.
+MAGIC BOUNCE:
+	Reflects status moves, instead of getting hit by them.
+->	Reflects status moves instead of getting hit by them.
+SAP SIPPER:
+	Boosts the Attack stat if hit by a Grass-type move, instead of taking damage.
+->	Boosts the Attack stat if hit by a Grass-type move instead of taking damage.
+IRON BARBS:
+	Inflicts damage to the attacker on contact with iron barbs.
+->	Inflicts damage to the attacker upon contact with iron barbs.
+
+FLY:
+	The user soars and then strikes its target on the next turn.
+->	The user flies up into the sky and then strikes its target on the next turn.
+DOUBLE-EDGE:
+	A reckless, life-risking tackle. This also damages the user quite a lot.
+->	A reckless, life-risking tackle in which the user rushes the target. This also damages the user quite a lot.
+TAIL WHIP:
+	The user wags its tail cutely, making opposing Pokémon less wary and lowering their Defense stat.
+->	The user wags its tail cutely, making opposing Pokémon less wary and lowering their Defense stats.
+ACID:
+	The opposing Pokémon are attacked with a spray of harsh acid. This may also lower their Sp. Def stat.
+->	Opposing Pokémon are attacked with a spray of harsh acid. This may also lower their Sp. Def stats.
+BUBBLE BEAM:
+	A spray of bubbles is forcefully ejected at the target. This may also lower its Speed stat.
+->	A spray of bubbles is forcefully ejected at the target. This may also lower the target's Speed stat.
+DRILL PECK:
+	A corkscrewing attack with a sharp beak acting as a drill.
+->	A corkscrewing attack that strikes the target with a sharp beak acting as a drill.
+RAZOR LEAF:
+	Sharp-edged leaves are launched to slash at the opposing Pokémon. Critical hits land more easily.
+->	Sharp-edged leaves are launched to slash at opposing Pokémon. Critical hits land more easily.
+STRING SHOT:
+	The opposing Pokémon are bound with silk blown from the user's mouth that harshly lowers the Speed stat.
+->	Opposing Pokémon are bound with silk blown from the user's mouth that harshly lowers the Speed stat.
+DIG:
+	The user burrows, then attacks on the next turn.
+->	The user burrows into the ground, then attacks on the next turn.
+TELEPORT:
+	Use it to flee from any wild Pokémon.
+->	The user switches places with a party Pokémon in waiting, if any. If a wild Pokémon uses this move, it flees.
+SWIFT:
+	Star-shaped rays are shot at the opposing Pokémon. This attack never misses.
+->	Star-shaped rays are shot at opposing Pokémon. This attack never misses.
+DREAM EATER:
+	The user eats the dreams of a sleeping target. It absorbs half the damage caused to heal its own HP.
+->	The user eats the dreams of a sleeping target. The user's HP is restored by half the damage taken by the target.
+POISON GAS:
+	A cloud of poison gas is sprayed in the face of opposing Pokémon, poisoning those hit.
+->	A cloud of poison gas is sprayed in the face of opposing Pokémon, poisoning those it hits.
+ROCK SLIDE:
+	Large boulders are hurled at the opposing Pokémon to inflict damage. This may also make the opposing Pokémon flinch.
+->	Large boulders are hurled at opposing Pokémon to inflict damage. This may also make the opposing Pokémon flinch.
+TRI ATTACK:
+	The user strikes with a simultaneous three-beam attack. May also burn, freeze, or paralyze the target.
+->	The user strikes with a simultaneous three-beam attack. This may also burn, freeze, or paralyze the target.
+SUBSTITUTE:
+	The user makes a copy of itself using some of its HP. The copy serves as the user's decoy.
+->	The user creates a substitute for itself using some of its HP. The substitute serves as the user's decoy.
+CONVERSION:
+	The user changes its type to make itself resistant to the type of the attack the opponent used last.
+->	The user changes its type to make itself resistant to the type of the attack the target used last.
+COTTON SPORE:
+	The user releases cotton-like spores that cling to the opposing Pokémon, which harshly lowers their Speed stat.
+->	The user releases cotton-like spores that cling to opposing Pokémon, which harshly lowers their Speed stats.
+POWDER SNOW:
+	The user attacks with a chilling gust of powdery snow. This may also freeze the opposing Pokémon.
+->	The user attacks with a chilling gust of powdery snow. This may also freeze opposing Pokémon.
+PROTECT:
+	Enables the user to evade all attacks. Its chance of failing rises if it is used in succession.
+->	This move enables the user to protect itself from all attacks. Its chance of failing rises if it is used in succession.
+DETECT:
+	Enables the user to evade all attacks. Its chance of failing rises if it is used in succession.
+->	This move enables the user to protect itself from all attacks. Its chance of failing rises if it is used in succession.
+SANDSTORM:
+	A five-turn sandstorm is summoned to hurt all combatants except the Rock, Ground, and Steel types. It raises the Sp. Def stat of Rock types.
+->	A five-turn sandstorm is summoned to hurt all combatants except Rock, Ground, and Steel types. It raises the Sp. Def stat of Rock types.
+CHARM:
+	The user gazes at the target rather charmingly, making it less wary. This harshly lowers its Attack stat.
+->	The user gazes at the target rather charmingly, making it less wary. This harshly lowers the target's Attack stat.
+RAPID SPIN:
+	A spin attack that can also eliminate such moves as Bind, Wrap, Leech Seed, and Spikes.
+->	A spin attack that can also eliminate such moves as Bind, Wrap, and Leech Seed. This also raises the user's Speed stat.
+TWISTER:
+	The user whips up a vicious tornado to tear at the opposing Pokémon. This may also make them flinch.
+->	The user whips up a vicious tornado to tear at opposing Pokémon. This may also make them flinch.
+FAKE OUT:
+	This attack hits first and makes the target flinch. It only works the first turn the user is in battle.
+->	This attack hits first and makes the target flinch. It only works the first turn each time the user enters battle.
+HEAT WAVE:
+	The user attacks by exhaling hot breath on the opposing Pokémon. This may also leave those Pokémon with a burn.
+->	The user attacks by exhaling hot breath on opposing Pokémon. This may also leave those Pokémon with a burn.
+WILL-O-WISP:
+	The user shoots a sinister, bluish-white flame at the target to inflict a burn.
+->	The user shoots a sinister flame at the target to inflict a burn.
+ROLE PLAY:
+	The user mimics the target completely, copying the target's natural Ability.
+->	The user mimics the target completely, copying the target's Ability.
+AIR CUTTER:
+	The user launches razor-like wind to slash the opposing Pokémon. Critical hits land more easily.
+->	The user launches razor-like wind to slash opposing Pokémon. Critical hits land more easily.
+MUDDY WATER:
+	The user attacks by shooting muddy water at the opposing Pokémon. This may also lower their accuracy.
+->	The user attacks by shooting muddy water at opposing Pokémon. This may also lower their accuracy.
+HOWL:
+	The user howls loudly to raise its spirit, which raises its Attack stat.
+->	The user howls loudly to raise the spirit of itself and allies. This raises their Attack stats.
+FRENZY PLANT:
+	The user slams the target with an enormous tree. The user can't move on the next turn.
+->	The user slams the target with the roots of an enormous tree. The user can't move on the next turn.
+ROOST:
+	The user lands and rests its body. It restores the user's HP by up to half of its max HP.
+->	The user lands and rests its body. This move restores the user's HP by up to half of its max HP.
+GRAVITY:
+	Enables Flying-type Pokémon or Pokémon with the Levitate Ability to be hit by Ground-type moves. Flying moves can't be used.
+->	This move enables Flying-type Pokémon or Pokémon with the Levitate Ability to be hit by Ground-type moves. Moves that involve flying can't be used.
+TAILWIND:
+	The user whips up a turbulent whirlwind that ups the Speed stat of the user and its allies for four turns.
+->	The user whips up a turbulent whirlwind that ups the Speed stats of the user and its allies for four turns.
+ROCK POLISH:
+	The user polishes its body to reduce drag. This can sharply raise the Speed stat.
+->	The user polishes its body to reduce drag. This sharply raises the Speed stat.
+POISON JAB:
+	The target is stabbed with a tentacle or arm steeped in poison. This may also poison the target.
+->	The target is stabbed with a tentacle, arm, or the like steeped in poison. This may also poison the target.
+CHARGE BEAM:
+	The user attacks with an electric charge. The user may use any remaining electricity to raise its Sp. Atk stat.
+->	The user attacks the target with an electric charge. The user may use any remaining electricity to raise its Sp. Atk stat.
+SMACK DOWN:
+	The user throws a stone or similar projectile to attack an opponent. A flying Pokémon will fall to the ground when it’s hit.
+->	The user throws a stone or similar projectile to attack the target. A flying Pokémon will fall to the ground when it’s hit.
+FLAME CHARGE:
+	Cloaking itself in flame, the user attacks the target. Then, building up more power, the user raises its Speed stat.
+->	Cloaking itself in flame, the user attacks. Then, building up more power, the user raises its Speed stat.
+FOUL PLAY:
+	The user turns the target's power against it. The higher the target's Attack stat, the greater the move's power.
+->	The user turns the target's power against it. The higher the target's Attack stat, the greater the damage it deals.
+CLEAR SMOG:
+	The user attacks by throwing a clump of special mud. All stat changes are returned to normal.
+->	The user attacks the target by throwing a clump of special mud. All stat changes are returned to normal.
+REFLECT TYPE:
+	The user reflects the target's type, making it the same type as the target.
+->	The user reflects the target's type, making the user the same type as the target.
+WATER PLEDGE:
+	A column of water strikes the target. When combined with its fire equivalent, its power increases and a rainbow appears.
+->	A column of water hits the target. When used with its fire equivalent, its power increases and a rainbow appears.
+STRUGGLE BUG:
+	While resisting, the user attacks the opposing Pokémon. This lowers the Sp. Atk stats of those hit.
+->	While resisting, the user attacks opposing Pokémon. This lowers the Sp. Atk stats of those hit.
+ELECTROWEB:
+	The user attacks and captures opposing Pokémon using an electric net. This lowers their Speed stat.
+->	The user attacks and captures opposing Pokémon using an electric net. This lowers their Speed stats.
+GLACIATE:
+	The user attacks by blowing freezing cold air at opposing Pokémon. This lowers their Speed stat.
+->	The user attacks by blowing freezing cold air at opposing Pokémon. This lowers their Speed stats.
+FIERY DANCE:
+	Cloaked in flames, the user dances and flaps its wings. This may also raise the user's Sp. Atk stat.
+->	Cloaked in flames, the user attacks the target by dancing and flapping its wings. This may also raise the user's Sp. Atk stat.
+SNARL:
+	The user yells as if it’s ranting about something, which lowers the Sp. Atk stat of opposing Pokémon.
+->	The user yells as if it’s ranting about something, which lowers the Sp. Atk stats of opposing Pokémon.
+STICKY WEB:
+	The user weaves a sticky net around the opposing team, which lowers their Speed stat upon switching into battle.
+->	The user weaves a sticky net around the opposing team, which lowers their Speed stats upon switching into battle.
+KING'S SHIELD:
+	The user takes a defensive stance while it protects itself from damage. It also harshly lowers the Attack stat of any attacker that makes direct contact.
+->	The user takes a defensive stance while it protects itself from damage. It also lowers the Attack stat of any attacker that makes direct contact.
+BABY-DOLL EYES:
+	The user stares at the target with its baby-doll eyes, which lowers its Attack stat. This move always goes first.
+->	The user stares at the target with its baby-doll eyes, which lowers the target's Attack stat. This move always goes first.
+THOUSAND WAVES:
+	The user attacks with a wave that crawls along the ground. Those hit can't flee from battle.
+->	The user attacks with a wave that crawls along the ground. Those it hits can't flee from battle.
+FIRST IMPRESSION:
+	Although this move has great power, it only works the first turn the user is in battle.
+->	Although this move has great power, it only works the first turn each time the user enters battle.
+CLANGING SCALES:
+	The user rubs the scales on its entire body and makes a huge noise to attack the opposing Pokémon. The user's Defense stat goes down after the attack.
+->	The user rubs the scales on its entire body and makes a huge noise to attack opposing Pokémon. The user's Defense stat goes down after the attack.
+SHELL TRAP:
+	The user sets a shell trap. If the user is hit by a physical move, the trap will explode and inflict damage on the opposing Pokémon.
+->	The user sets a shell trap. If the user is hit by a physical move, the trap will explode and inflict damage on opposing Pokémon.
+
+Vice Grip -> Vise Grip
+
+(Useful Characters dialogue changes)
+(gen 3->8: The sunlight is harsh! / It's raining! / The sandstorm is raging! / It's hailing!)

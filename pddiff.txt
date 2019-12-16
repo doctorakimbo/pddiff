@@ -313,7 +313,7 @@ items:
 + 0x11E = Root Fossil -> Spike Fossil: "The fossil of an ancient, sea-dwelling Pokemon. It appears to be part of a root." -> "The fossil of an ancient, land-dwelling Pokemon. It appears to be part of a spike. (quill? thorn? depends on actual mon)"
 + 0x11F = Claw Fossil -> Fang Fossil: "The fossil of an ancient, sea-dwelling Pokemon. It appears to be part of a claw." -> "The fossil of an ancient, land-dwelling Pokemon. It appears to be part of a fang."
 + 0x15B = Mysterious Charm [A mysterious charm handed down since ancient times in Strelan. It shines all colors of the rainbow.]
-+ 0x15C = Stolen Ball [A Pokemon stolen by Team Cosmos. Return it to the young man in Cartham City.]
++ 0x15C = Stolen Ball [A Pokemon stolen by Team Cosmic. Return it to the young man in Cartham City.]
 + 0x15D = Oak's Parcel -> Package: "It contains frozen noodles. Deliver it to the child in Hazella City."
 + 0x160 = Bike Voucher -> PokeSeg Voucher: "Take this to the Cycle Shop in Cerulean City to exchange it for a Bicycle." -> "Take this to the PokeSeg Shop in Ebonwood City to exchange it for a PokeSeg."
 + 0x162 = Old Amber -> Dark Fossil: "The fossil of an ancient, land-dwelling Pokemon. It appears to be a clump of pure malice."
@@ -504,7 +504,7 @@ ALSO RETEST NEW MOVE EFFECTS ESPECIALLY PARAMETERIZED ONES
 + 0x1C4 = Toxin Spray [The user attacks by spraying a dangerous toxin from deep inside its body. This may also badly poison the foe.]
 + 0x1C5 = Smogscreen [The user attacks with poisonous smoke. This may also lower the foe's accuracy or poison it.]
 + 0x1C6 = Burrow [The user attacks from under the foe's feet. This may also harshly lower the foe's Speed stat.]
-+ 0x1C7 = Sonic Sand [Sand is thrown at supersonic speeds to attack. This may also harshly lower foes' Sp. Def stat.]
++ 0x1C7 = Sonic Sand [Sand is thrown at supersonic speeds to attack. This may also harshly lower foes' Sp. Def stats.]
 + 0x1C8 = Sandblast [The user blows wind carrying countless fine grains of sand. This may also lower the accuracy of those hit. (CHECK LAVA PLUME)]
 + 0x1C9 = Glide [The user attacks the foe by flying with wings spread wide. This may also raise the user's accuracy.]
 + 0x1CA = Typhoon [The user attacks with a blade of wind. This may also randomly raise or lower the user's stats.]
@@ -678,7 +678,7 @@ ALSO RETEST NEW MOVE EFFECTS ESPECIALLY PARAMETERIZED ONES
 = 0x272 = [kajibanoichigeki (Strike at the Scene of a Fire) (Burnout Strike?)] <card: Fire Counterattack> (attacking move with Brine effect, but doubles when the user has less than half HP, not the target), (has Flame Wheel animation on a fiery background), "If the user's HP is half or less, this attack will hit with double the power."
 + 0x273 = Stretch [The user does some light exercise to get in shape, raising its Attack and Speed stats and its evasiveness.]
 = 0x274 = [iyananioi (Bad Smell)] (non-attacking move), (animation is brownish Mist), "The user wafts a nose-curling stench over to the foe, lowering its evasiveness and causing it to become confused."
-+ 0x275 = Warble [A beautiful birdsong that saps foes' motivation, lowering their Sp. Def stat.] [check target]
++ 0x275 = Warble [A beautiful birdsong that saps foes' motivation, lowering their Sp. Def stats.]
 = 0x276 = [mushinokoe (Insect Voice)] (non-attacking move, +1 sp. atk), (has Growl animation), "The user summons its fellow insects to hear their cries, which raise the user's Sp. Atk stat."
 = 0x277 = [mushigatsuku (Infestation) (Insect Plague?)] (non-attacking move, turns target into pure Bug-type), (animation is a swarm of insects flying in all directions, then a single insect swaying in front of the foe), "The foe is covered in a huge amount of insects, changing its type to Bug."
 = 0x278 = [mushikaesu (Send Bugs) (Bug Out?)] (attacking move), (animation is user getting angry, then a swarm of insects flying in all directions), "This move's power doubles if the user has been hurt by the foe this turn."
@@ -878,7 +878,7 @@ battle strings (ADD 9 TO ALL):
 + 0xCD = "Due to [ATTACKER]'s [ABILITY], [DEFENDER]'s [STAT] [CHANGED]! (FIX THIS)" <DON'T ADD 9> <REFACTOR LATER> [make sure it's fd13, fd1a, fd10, fd00, fd01]
 + 0xD5 = "drastically " <DON'T ADD 9>
 + 0xD6 = "severely " <DON'T ADD 9>
-+ 0xE9 = "[PKMN] is hurt by its [ABILITY]! (CHECK THIS)" <DON'T ADD 9>
++ 0xE9 = "[PKMN] was hurt by its [ABILITY]! (CHECK THIS)" <DON'T ADD 9>
 + 0xEB = "[PKMN]'s [ABILITY] made it hail! (CHECK THIS)" <DON'T ADD 9>
 + 0x131 = "[PKMN]'s [ABILITY] prevents burns!" (same, but change B_EFF_ABILITY to B_LAST_ABILITY to allow for Flower Veil) <DON'T ADD 9>
 + 0x138 = "[PKMN]'s [ABILITY] cured its [STATUS] problem!" (same, but change B_SCR_ACTIVE_ABILITY to B_LAST_ABILITY to allow for Healer) <DON'T ADD 9>
@@ -889,8 +889,8 @@ battle strings (ADD 9 TO ALL):
 = 0x172 = (one of the PC messages) <DON'T ADD 9>
 + 0x17D = "Silph Scope unveiled the Ghost's identity! The Ghost was Dusknoir!" <DON'T ADD 9>
 = 0x180 = "[PKMN]'s [ABILITY] nullified the effects of weather!" (do later)
-= 0x181 = "[PKMN]'s [ITEM] let it move first!" (do later)
-+ 0x182 = "It is hailing. (CHECK THIS)"
+= 0x181 = "[PKMN] can act faster than normal, thanks to its [ITEM]!" (do later)
++ 0x182 = "It's hailing!"
 + 0x183 = "The [ITEM] weakened [MOVE]'s power!"
 + 0x184 = "[PKMN] is not affected by [MOVE] thanks to its [ITEM]!"
 + 0x185 = "[PKMN] breaks the mold! (CHECK THIS)"
@@ -918,14 +918,14 @@ battle strings (ADD 9 TO ALL):
 + 0x19B = "[PKMN]'s [ABILITY] bounced the [MOVE] back!"
 + 0x19C = "[PKMN]'s [ABILITY] blocks the use of [MOVE]!"
 + 0x19D = "[PKMN] restored HP using its [ABILITY]!"
-+ 0x19E = "[PKMN] is hurt by its [ITEM]!"
++ 0x19E = "[PKMN] was hurt by its [ITEM]!"
 + 0x1FF = [not copying the whole thing, but it's an error-handling message]
 + 0x200 = "[PKMN] shared its power with the target!"
 + 0x201 = "[PKMN] shared its guard with the target!"
 + 0x202 = "[PKMN] switched all changes to its Attack and Sp. Atk with its target!"
 + 0x203 = "[PKMN] switched all changes to its Defense and Sp. Def with its target!"
 + 0x204 = "[ATTACKER]'s type became the same as [DEFENDER]'s type!"
-+ 0x205 = "[DEFENDER] received [ITEM] from [ATTACKER]!"
++ 0x205 = "[ATTACKER] gave [DEFENDER] its [ITEM]!"
 + 0x206 = "[PKMN]'s [ITEM] was burned up!"
 + 0x207 = "[PKMN]'s Ability was suppressed!"
 + 0x208 = "[PKMN] acquired [ABILITY]!"

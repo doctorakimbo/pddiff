@@ -1,0 +1,12 @@
+1, 2, and... ... ... Ta-da! [PKMN] forgot how to use [MOVE1]. And... [PKMN] learned [MOVE2]! -> One... two... and... ta-da! [PKMN] forgot [MOVE1]! And it learned [MOVE2] instead! <fix this somehow>
+Able!/Unable!/Learned -> Can learn/Cannot learn/Knows this move <check new ui>
+[PKMN] can't be hit by attacks from its ally Pokémon! <fix later>
+[PKMN] is no longer tormented! <fix when mental herb changed>
+[ATTACKER] is hurt by [DEFENDER]'s [ITEM]! -> [ATTACKER] was hurt by [DEFENDER]'s [ITEM]! <only if damage before message>
+[PKMN] is hurt by its [ITEM]! -> [PKMN] was hurt by its [ITEM]! <only if damage before message>
+
+(Useful Characters dialogue changes)
+
+
+R'duckulus:	Fighting/Flying,	Pure Power/Inner Focus, 106/ 75/65/58/72/116 (functionally	106/197/65/56/72/116)
+Sirfetch'd:	Fighting,			Steadfast/Scrappy,		 62/135/95/68/82/ 65				 62/135/95/68/82/ 65
