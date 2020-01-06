@@ -1,5 +1,8 @@
 "beloved cowboyish daughter" (IMPORTANT!!!)
 
+Sharpshoot has Snipe Shot's jp name
+Shadow Clamp has Jaw Lock's jp name
+
 ignore the following (pe):
 00 30 A2 08
 F0 30 A2 08
