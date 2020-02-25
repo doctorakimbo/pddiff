@@ -1912,8 +1912,8 @@ cur changes (do them): guillotine/horn drill/fissure/sheer cold "KO'd in one hit
 ! 0C369A: FF FF FF FF FF FF -> 9B 08 FF FF 9C 08 (PDONLY, adds fly points for region map sections 7B (checks flag 0x89B) and 7C (checks flag 0x89C))
 + 0C3878: sub_80C3878 (see 197disasm)
 		  Implements: makes it easier to add new town map points of interest
-! 0C3D40: sub_80C3D40 (see 198disasm)
-		  Implements: PDONLY; makes it easier to add new custom (?????) (and changes them), this also removes the ability to set them for a specific map within a section (what are they, though?)
+! 0C3D40: GetPlayerPositionOnRegionMap_HandleOverrides (see 198disasm)
+		  Implements: PDONLY; makes it easier to add new custom town map areas (and changes them), this also removes the ability to set them for a specific map within a section
 + 0C6DA0: BattleAI_SetupAIData (see 199disasm)
 		  Implements: instead of 7 (previous "smartest" AI), the flags are set to the current value of 0203BFF4
 + 0C7038: BattleAI_DoAIProcessing (see 200disasm)

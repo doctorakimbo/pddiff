@@ -1,0 +1,175 @@
+GetPlayerPositionOnRegionMap_HandleOverrides()
+{
+	regionMapSectionId = GetPlayerCurrentMapSectionId();
+
+	switch(regionMapSectionId)
+	{
+	case MAPSEC_ROUTE_2:
+		if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE))
+		{
+			gUnknown_20399E4->field_000 = 4;
+			gUnknown_20399E4->field_002 = 7;
+		}
+		elseif(gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE))
+		{
+			gUnknown_20399E4->field_000 = 4;
+			gUnknown_20399E4->field_002 = 5;
+		}
+		else
+			GetPlayerPositionOnRegionMap();
+		
+		break;
+	case MAPSEC_ROUTE_5:
+		if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE5_SOUTH_ENTRANCE))
+		{
+			gUnknown_20399E4->field_000 = 14;
+			gUnknown_20399E4->field_002 = 5;
+		}
+		else
+			GetPlayerPositionOnRegionMap();
+		
+		break;
+	case MAPSEC_ROUTE_6:
+		if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE6_NORTH_ENTRANCE))
+		{
+			gUnknown_20399E4->field_000 = 14;
+			gUnknown_20399E4->field_002 = 7;
+		}
+		else
+			GetPlayerPositionOnRegionMap();
+			
+		break;
+	case MAPSEC_ROUTE_7:
+		if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(0))
+		{
+			gUnknown_20399E4->field_000 = 13;
+			gUnknown_20399E4->field_002 = 6;
+		}
+		else
+			GetPlayerPositionOnRegionMap();
+			
+		break;
+	case MAPSEC_ROUTE_8:
+		if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE8_WEST_ENTRANCE))
+		{
+			gUnknown_20399E4->field_000 = 15;
+			gUnknown_20399E4->field_002 = 6;
+		}
+		else
+			GetPlayerPositionOnRegionMap();
+		
+		break;
+	case MAPSEC_ROUTE_21:
+		if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE21_NORTH))
+		{
+			gUnknown_20399E4->field_000 = 4;
+			gUnknown_20399E4->field_002 = 12;
+		}
+		elseif(gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE21_SOUTH))
+		{
+			gUnknown_20399E4->field_000 = 4;
+			gUnknown_20399E4->field_002 = 13;
+		}
+		
+		break;
+	case MAPSEC_VIRIDIAN_FOREST:
+		gUnknown_20399E4->field_000 = 4;
+		gUnknown_20399E4->field_002 = 6;
+		break;
+	case MAPSEC_S_S_ANNE:
+		gUnknown_20399E4->field_000 = 14;
+		gUnknown_20399E4->field_002 = 9;
+		break;
+	case MAPSEC_UNDERGROUND_PATH:
+		gUnknown_20399E4->field_000 = 14;
+		
+		if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(UNDERGROUND_PATH_NORTH_ENTRANCE))
+			gUnknown_20399E4->field_002 = 5;
+		else
+			gUnknown_20399E4->field_002 = 7;
+			
+		break;
+	case MAPSEC_UNDERGROUND_PATH_2:
+		if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(UNDERGROUND_PATH_EAST_ENTRANCE))
+			gUnknown_20399E4->field_000 = 15;
+		else
+			gUnknown_20399E4->field_000 = 12;
+		
+		gUnknown_20399E4->field_002 = 6;
+		
+		break;
+	case MAPSEC_ROCKET_HIDEOUT:
+		gUnknown_20399E4->field_000 = 11;
+		gUnknown_20399E4->field_002 = 6;
+		break;
+	case MAPSEC_SILPH_CO:
+		gUnknown_20399E4->field_000 = 14;
+		gUnknown_20399E4->field_002 = 6;
+		break;
+	case MAPSEC_POKEMON_MANSION:
+		gUnknown_20399E4->field_000 = 4;
+		gUnknown_20399E4->field_002 = 14;
+		break;
+	case MAPSEC_KANTO_SAFARI_ZONE:
+		gUnknown_20399E4->field_000 = 12;
+		gUnknown_20399E4->field_002 = 12;
+		break;
+	case MAPSEC_POKEMON_LEAGUE:
+	case MAPSEC_MT_EMBER:
+		gUnknown_20399E4->field_000 = 2;
+		gUnknown_20399E4->field_002 = 3;
+		break;
+	case MAPSEC_POKEMON_TOWER:
+		gUnknown_20399E4->field_000 = 18;
+		gUnknown_20399E4->field_002 = 6;
+		break;
+	case MAPSEC_POWER_PLANT:
+		gUnknown_20399E4->field_000 = 18;
+		gUnknown_20399E4->field_002 = 4;
+		break;
+	case MAPSEC_NAVEL_ROCK:
+		gUnknown_20399E4->field_000 = 10;
+		gUnknown_20399E4->field_002 = 8;
+		break;
+	case MAPSEC_BERRY_FOREST:
+		gUnknown_20399E4->field_000 = 14;
+		gUnknown_20399E4->field_002 = 12;
+		break;
+	case MAPSEC_ROCKET_WAREHOUSE:
+		gUnknown_20399E4->field_000 = 17;
+		gUnknown_20399E4->field_002 = 11;
+		break;
+	case MAPSEC_TRAINER_TOWER_2:
+		gUnknown_20399E4->field_000 = 5;
+		gUnknown_20399E4->field_002 = 6;
+		break;
+	case MAPSEC_DOTTED_HOLE:
+		gUnknown_20399E4->field_000 = 16;
+		gUnknown_20399E4->field_002 = 8;
+		break;
+	case MAPSEC_PATTERN_BUSH:
+		gUnknown_20399E4->field_000 = 17;
+		gUnknown_20399E4->field_002 = 3;
+		break;
+	case MAPSEC_BIRTH_ISLAND:
+		gUnknown_20399E4->field_000 = 18;
+		gUnknown_20399E4->field_002 = 13;
+		break;
+	case MAPSEC_TANOBY_CHAMBERS:
+	case MAPSEC_MONEAN_CHAMBER:
+	case MAPSEC_LIPTOO_CHAMBER:
+	case MAPSEC_WEEPTH_CHAMBER:
+	case MAPSEC_DILFORD_CHAMBER:
+	case MAPSEC_SCUFIB_CHAMBER:
+	case MAPSEC_RIXY_CHAMBER:
+	case MAPSEC_VIAPOIS_CHAMBER:
+		gUnknown_20399E4->field_000 = 9;
+		gUnknown_20399E4->field_002 = 12;
+		break;
+	default:
+		GetPlayerPositionOnRegionMap();
+		break;
+	}
+	
+	gUnknown_20399E4->field_014 = GetSelectedMapSection(GetWhichRegionMap(), 0, gUnknown_20399E4->field_002, gUnknown_20399E4->field_000);
+}
