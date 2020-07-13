@@ -2,6 +2,9 @@
 
 Sharpshoot has Snipe Shot's jp name
 Shadow Clamp has Jaw Lock's jp name
+Up-Grade -> Upgrade
+
+check pokecommunity PMs - "Procyon/Deneb English logos + other stuff"
 
 ignore the following (pe):
 00 30 A2 08
