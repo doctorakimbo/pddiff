@@ -4,6 +4,9 @@ Sharpshoot has Snipe Shot's jp name
 Shadow Clamp has Jaw Lock's jp name
 Up-Grade -> Upgrade
 
+
+altair/sirius bugs: "brendan"/"may" somewhere in birch's lab scripts; Sirius needs Fang Fossil -> Dark Fossil in Desert Underpass
+
 check pokecommunity PMs - "Procyon/Deneb English logos + other stuff"
 
 ignore the following (pe):
