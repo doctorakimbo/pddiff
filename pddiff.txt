@@ -6,7 +6,7 @@ Up-Grade -> Upgrade
 
 
 altair/sirius bugs: "brendan"/"may" somewhere in birch's lab scripts; Sirius needs Fang Fossil -> Dark Fossil in Desert Underpass; Pidgeot statue in Move Tutor's house is missing pretty stone; check the fishing/surfing encounters in the Sphere Ruins; false hidden item (itemfinder beeps) in Route west of Fallarbor; ampharos animation (? expert said he can't fix this); fortree bridges; switch romero and mom in pokenav
-vega "bugs": Signet region -> Strelan region; disable wildmons in Nemea room during puzzle; make Lucky Punch/Hula Hoop actually work
+vega "bugs": "chie/rito" mixup (check all); Signet region -> Strelan region; disable wildmons in Nemea room during puzzle; make Lucky Punch/Hula Hoop actually work
 
 check pokecommunity PMs - "Procyon/Deneb English logos + other stuff"
 
